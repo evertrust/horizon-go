@@ -44,23 +44,39 @@ func (c *Client) Get(id string) (*HorizonRequest, error) {
 
 // CentralizedEnroll is a wrapper method around the Requests API that generates a
 // centralized enroll request given a profile, DN and SAN elements and a list of labels
-func (c *Client) CentralizedEnroll(profile string, subject []IndexedDNElement, sans []IndexedSANElement, labels []LabelElement, keyType string) (*HorizonRequest, error) {
+func (c *Client) CentralizedEnroll(profile string, subject []IndexedDNElement, sans []IndexedSANElement, labels []LabelElement, keyType string, owner *string, team *string) (*HorizonRequest, error) {
+	template := WebRARequestTemplate{
+		Subject:  subject,
+		Sans:     sans,
+		Labels:   labels,
+		KeyTypes: []string{keyType},
+	}
+
+	if owner != nil {
+		template.Owner = &CertificateOwner{
+			Value:    *owner,
+			Editable: false,
+		}
+	}
+
+	if team != nil {
+		template.Team = &CertificateTeam{
+			Value:    *team,
+			Editable: false,
+		}
+	}
+
 	return c.Submit(HorizonRequest{
 		Workflow: RequestWorkflowEnroll,
 		Profile:  profile,
 		Module:   "webra",
-		Template: WebRARequestTemplate{
-			Subject:  subject,
-			Sans:     sans,
-			Labels:   labels,
-			KeyTypes: []string{keyType},
-		},
+		Template: template,
 	})
 }
 
 // DecentralizedEnroll is a wrapper method around the Requests API that generates a
 // decentralized enroll request given a profile, a CSR and a list of labels
-func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelElement) (*HorizonRequest, error) {
+func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelElement, owner *string, team *string) (*HorizonRequest, error) {
 	rfcClient := rfc5280.Client{
 		Http: c.Http,
 	}
@@ -93,16 +109,32 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 		})
 	}
 
+	template := WebRARequestTemplate{
+		Csr:     parsedCsr.Pem,
+		Subject: subject,
+		Sans:    sans,
+		Labels:  labels,
+	}
+
+	if owner != nil {
+		template.Owner = &CertificateOwner{
+			Value:    *owner,
+			Editable: false,
+		}
+	}
+
+	if team != nil {
+		template.Team = &CertificateTeam{
+			Value:    *team,
+			Editable: false,
+		}
+	}
+
 	return c.Submit(HorizonRequest{
 		Workflow: RequestWorkflowEnroll,
 		Profile:  profile,
 		Module:   "webra",
-		Template: WebRARequestTemplate{
-			Csr:     parsedCsr.Pem,
-			Subject: subject,
-			Sans:    sans,
-			Labels:  labels,
-		},
+		Template: template,
 	})
 }
 

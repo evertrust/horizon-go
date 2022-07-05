@@ -41,6 +41,17 @@ type LabelElement struct {
 	Value string `json:"value,omitempty"`
 }
 
+type CertificateOwner struct {
+	Value    string `json:"value"`
+	Editable bool   `json:"editable"`
+}
+
+type CertificateTeam struct {
+	Value      string `json:"value"`
+	Authorized bool   `json:"authorized"`
+	Editable   bool   `json:"editable"`
+}
+
 type WebRARequestTemplate struct {
 	Subject      []IndexedDNElement                                 `json:"subject"`
 	Sans         []IndexedSANElement                                `json:"sans"`
@@ -48,6 +59,8 @@ type WebRARequestTemplate struct {
 	KeyTypes     []string                                           `json:"keyTypes"`
 	Capabilities certificateprofiles.CertificateProfileCryptoPolicy `json:"capabilities"`
 	Csr          string                                             `json:"csr,omitempty"`
+	Owner        *CertificateOwner                                  `json:"owner,omitempty"`
+	Team         *CertificateTeam                                   `json:"team,omitempty"`
 }
 
 type WebRARevokeTemplate struct {
