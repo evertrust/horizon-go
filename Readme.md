@@ -1,6 +1,6 @@
 # Go Horizon
 
-The official Go client for Horizon. 
+The official Go SDK for Horizon. 
 
 ## Installation
 
@@ -15,3 +15,11 @@ You can also explicitely require the package in your existing project using `go 
 ```shell
 go get -u "github.com/evertrust/horizon-go"
 ```
+
+
+## Compatibility matrix
+
+| SDK version | Horizon version |
+|-------------|-----------------|
+| 0.0.1       | >= 2.1.0        |
+| 0.0.2       | >= 2.2.0        |
