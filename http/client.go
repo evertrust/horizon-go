@@ -25,15 +25,22 @@ func (c *Client) Init(baseUrl url.URL, apiId string, apiKey string) {
 	c.baseUrl = baseUrl
 	c.apiId = apiId
 	c.apiKey = apiKey
+	c.Transport.TLSClientConfig = &tls.Config{}
+	c.baseClient.Transport = &c.Transport
 }
 
 // SetCaBundle sets the client certificate than can be used for authentication.
 func (c *Client) SetCaBundle(caBundle string) {
-	caCertPool := x509.NewCertPool()
-	caCertPool.AppendCertsFromPEM([]byte(caBundle))
-	c.Transport.TLSClientConfig = &tls.Config{
-		RootCAs: caCertPool,
+	caCertPool, _ := x509.SystemCertPool()
+	if caCertPool == nil {
+		caCertPool = x509.NewCertPool()
 	}
+	caCertPool.AppendCertsFromPEM([]byte(caBundle))
+	c.Transport.TLSClientConfig.RootCAs = caCertPool
+}
+
+func (c *Client) SkipTLSVerify() {
+	c.Transport.TLSClientConfig.InsecureSkipVerify = true
 }
 
 func (c *Client) SetProxy(proxyUrl url.URL) {
