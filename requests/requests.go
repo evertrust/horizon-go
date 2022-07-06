@@ -47,9 +47,9 @@ type CertificateOwner struct {
 }
 
 type CertificateTeam struct {
-	Value      string `json:"value"`
-	Authorized bool   `json:"authorized"`
-	Editable   bool   `json:"editable"`
+	Value      string   `json:"value"`
+	Authorized []string `json:"authorized,omitempty"`
+	Editable   bool     `json:"editable"`
 }
 
 type WebRARequestTemplate struct {
