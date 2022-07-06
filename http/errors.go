@@ -9,5 +9,9 @@ type HorizonErrorResponse struct {
 }
 
 func (e *HorizonErrorResponse) Error() string {
-	return fmt.Sprintf("Horizon returned a %s error: %s", e.Code, e.Message)
+	msg := fmt.Sprintf("Horizon returned a %s error: %s", e.Code, e.Message)
+	if e.Detail != "" {
+		msg = fmt.Sprintf("%s (%s)", msg, e.Detail)
+	}
+	return msg
 }
