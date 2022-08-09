@@ -102,6 +102,7 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 	// Translate the parsed certificate SAN elements into the request elements
 	var sans []IndexedSANElement
 	for _, sanElement := range parsedCsr.Sans {
+		typeCounts[sanElement.SanType]++
 		sans = append(sans, IndexedSANElement{
 			Element: fmt.Sprintf("%s.%d", strings.ToLower(sanElement.SanType), typeCounts[sanElement.SanType]),
 			Type:    sanElement.SanType,
