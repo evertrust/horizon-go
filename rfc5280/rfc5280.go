@@ -18,3 +18,40 @@ type CFCertificationRequest struct {
 	KeyType    string                 `json:"keyType"`
 	Pem        string                 `json:"pem"`
 }
+
+type CfCertificate struct {
+	Dn               string                 `json:"dn"`
+	Sans             []SubjectAlternateName `json:"sans"`
+	DnElements       []CFDistinguishedName  `json:"dnElements"`
+	KeyType          string                 `json:"keyType"`
+	SigningAlgorithm string                 `json:"signingAlgorithm"`
+	Pem              string                 `json:"pem"`
+	Serial           string                 `json:"serial"`
+	IssuerDn         string                 `json:"issuerDn"`
+	NotBefore        int                    `json:"notBefore"`
+	NotAfter         int                    `json:"notAfter"`
+	SelfSigned       bool                   `json:"selfSigned"`
+}
+
+type TrustchainOrder int
+
+const (
+	RootToLeaf TrustchainOrder = iota
+	LeafToRoot
+	IssuingRootToLeaf
+	IssuingLeafToRoot
+)
+
+func (order TrustchainOrder) String() string {
+	switch order {
+	case RootToLeaf:
+		return "rtl"
+	case LeafToRoot:
+		return "ltr"
+	case IssuingRootToLeaf:
+		return "irtl"
+	case IssuingLeafToRoot:
+		return "iltr"
+	}
+	return ""
+}
