@@ -60,6 +60,13 @@ func (c *Client) Trustchain(cert []byte, order TrustchainOrder) ([]CfCertificate
 		return nil, err
 	}
 
+	if response.HasContentType("text/plain") {
+		return nil, &http.NotImplementedError{
+			Feature:       http.TrustchainDecoding,
+			ImplementedIn: "2.2.2",
+		}
+	}
+
 	var trustchain []CfCertificate
 	err = response.Json().Decode(&trustchain)
 	if err != nil {
