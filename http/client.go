@@ -110,6 +110,8 @@ func (c *Client) Post(path string, body []byte) (response *HorizonResponse, err 
 func (c *Client) Do(req *http.Request) (*http.Response, error) {
 	req.Header.Add("x-api-id", c.apiId)
 	req.Header.Add("x-api-key", c.apiKey)
+	// Always prefer JSON responses
+	req.Header.Add("Accept", "application/json")
 	return c.baseClient.Do(req)
 }
 
