@@ -13,6 +13,7 @@ const (
 )
 
 type Certificate struct {
+	Id                  string           `json:"_id,omitempty"`
 	Module              string           `json:"module"`
 	Profile             string           `json:"profile,omitempty"`
 	Owner               string           `json:"owner,omitempty"`

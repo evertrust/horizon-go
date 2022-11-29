@@ -4,10 +4,11 @@ package requests
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
+
 	"github.com/evertrust/horizon-go/certificates"
 	"github.com/evertrust/horizon-go/http"
 	"github.com/evertrust/horizon-go/rfc5280"
-	"strings"
 )
 
 type Client struct {
@@ -20,7 +21,6 @@ func (c *Client) Submit(request HorizonRequest) (*HorizonRequest, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	err = response.Json().Decode(&request)
 	if err != nil {
 		return nil, err
@@ -45,12 +45,14 @@ func (c *Client) Get(id string) (*HorizonRequest, error) {
 // CentralizedEnroll is a wrapper method around the Requests API that generates a
 // centralized enroll request given a profile, DN and SAN elements and a list of labels
 func (c *Client) CentralizedEnroll(profile string, subject []IndexedDNElement, sans []IndexedSANElement, labels []LabelElement, keyType string, owner *string, team *string) (*HorizonRequest, error) {
+	fmt.Printf("I'm in !!! \n")
 	template := WebRARequestTemplate{
 		Subject:  subject,
 		Sans:     sans,
 		Labels:   labels,
 		KeyTypes: []string{keyType},
 	}
+	fmt.Printf("--- CentralizedEnroll => template : %v \n", template)
 
 	if owner != nil {
 		template.Owner = &CertificateOwner{
@@ -58,6 +60,7 @@ func (c *Client) CentralizedEnroll(profile string, subject []IndexedDNElement, s
 			Editable: false,
 		}
 	}
+	fmt.Printf("--- CentralizedEnroll => owner : %v \n", owner)
 
 	if team != nil {
 		template.Team = &CertificateTeam{
@@ -65,6 +68,7 @@ func (c *Client) CentralizedEnroll(profile string, subject []IndexedDNElement, s
 			Editable: false,
 		}
 	}
+	fmt.Printf("--- CentralizedEnroll => team : %v \n", team)
 
 	return c.Submit(HorizonRequest{
 		Workflow: RequestWorkflowEnroll,
@@ -80,12 +84,10 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 	rfcClient := rfc5280.Client{
 		Http: c.Http,
 	}
-
 	parsedCsr, err := rfcClient.Pkcs10(csr)
 	if err != nil {
 		return nil, err
 	}
-
 	var typeCounts = make(map[string]int)
 
 	// Translate the parsed certificate DN elements into the request elements
@@ -98,7 +100,6 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 			Value:   fmt.Sprintf("%v", dnElement.Value),
 		})
 	}
-
 	// Translate the parsed certificate SAN elements into the request elements
 	var sans []IndexedSANElement
 	for _, sanElement := range parsedCsr.Sans {
@@ -109,28 +110,24 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 			Value:   fmt.Sprintf("%v", sanElement.Value),
 		})
 	}
-
 	template := WebRARequestTemplate{
 		Csr:     parsedCsr.Pem,
 		Subject: subject,
 		Sans:    sans,
 		Labels:  labels,
 	}
-
 	if owner != nil {
 		template.Owner = &CertificateOwner{
 			Value:    *owner,
 			Editable: false,
 		}
 	}
-
 	if team != nil {
 		template.Team = &CertificateTeam{
 			Value:    *team,
 			Editable: false,
 		}
 	}
-
 	return c.Submit(HorizonRequest{
 		Workflow: RequestWorkflowEnroll,
 		Profile:  profile,

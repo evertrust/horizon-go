@@ -6,6 +6,7 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -94,16 +95,20 @@ func (c *Client) Get(path string) (response *HorizonResponse, err error) {
 
 func (c *Client) Post(path string, body []byte) (response *HorizonResponse, err error) {
 	req, err := c.newRequest("POST", path, bytes.NewBuffer(body))
+	fmt.Printf("=== REQ : %v\n", req)
 	if err != nil {
+		fmt.Printf("===== GOT AN ERROR : %v", err)
 		return nil, err
 	}
 	req.Header.Set("Content-Type", "application/json")
+	fmt.Printf("=== REQ.HEADER.SET DONE")
 
 	baseResponse, err := c.Do(req)
+	fmt.Printf("=== BASERESPONSE : %v\n", baseResponse)
 	if err != nil {
+		fmt.Printf("===== GOT AN ERROR 2 : %v", err)
 		return nil, err
 	}
-
 	return c.Unmarshal(baseResponse)
 }
 
