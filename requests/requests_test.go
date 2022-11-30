@@ -1,10 +1,11 @@
 package requests
 
 import (
-	"github.com/evertrust/horizon-go/http"
 	"net/url"
 	"os"
 	"testing"
+
+	"github.com/evertrust/horizon-go/http"
 )
 
 var client Client
@@ -16,6 +17,8 @@ func init() {
 		*endpoint,
 		os.Getenv("HORIZON_API_ID"),
 		os.Getenv("HORIZON_API_KEY"),
+		"",
+		"",
 	)
 	client = Client{Http: &baseClient}
 }

@@ -20,9 +20,9 @@ type Horizon struct {
 }
 
 // Init initializes the instance parameters such as its location, and authentication data.
-func (client *Horizon) Init(baseUrl url.URL, apiId string, apiKey string) {
+func (client *Horizon) Init(baseUrl url.URL, apiId string, apiKey string, cert string, key string) {
 	client.Http = &http.Client{}
-	client.Http.Init(baseUrl, apiId, apiKey)
+	client.Http.Init(baseUrl, apiId, apiKey, cert, key)
 	client.Requests = &requests.Client{Http: client.Http}
 	client.License = &license.Client{Http: client.Http}
 	client.Rfc5280 = &rfc5280.Client{Http: client.Http}

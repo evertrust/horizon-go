@@ -17,16 +17,22 @@ type Client struct {
 	baseClient http.Client
 	Transport  http.Transport
 	baseUrl    url.URL
+	cert       string
+	key        string
 	apiId      string
 	apiKey     string
 }
 
 // Init initializes the instance parameters such as its location, and authentication data.
-func (c *Client) Init(baseUrl url.URL, apiId string, apiKey string) {
+func (c *Client) Init(baseUrl url.URL, apiId string, apiKey string, cert string, key string) {
 	c.baseUrl = baseUrl
 	c.apiId = apiId
 	c.apiKey = apiKey
-	c.Transport.TLSClientConfig = &tls.Config{}
+	c.cert = cert
+	c.key = key
+	c.Transport.TLSClientConfig = &tls.Config{
+		Certificates: []tls.Certificate{},
+	}
 	c.baseClient.Transport = &c.Transport
 }
 
@@ -95,18 +101,13 @@ func (c *Client) Get(path string) (response *HorizonResponse, err error) {
 
 func (c *Client) Post(path string, body []byte) (response *HorizonResponse, err error) {
 	req, err := c.newRequest("POST", path, bytes.NewBuffer(body))
-	fmt.Printf("=== REQ : %v\n", req)
 	if err != nil {
-		fmt.Printf("===== GOT AN ERROR : %v", err)
 		return nil, err
 	}
 	req.Header.Set("Content-Type", "application/json")
-	fmt.Printf("=== REQ.HEADER.SET DONE")
 
 	baseResponse, err := c.Do(req)
-	fmt.Printf("=== BASERESPONSE : %v\n", baseResponse)
 	if err != nil {
-		fmt.Printf("===== GOT AN ERROR 2 : %v", err)
 		return nil, err
 	}
 	return c.Unmarshal(baseResponse)
@@ -117,6 +118,11 @@ func (c *Client) Do(req *http.Request) (*http.Response, error) {
 	req.Header.Add("x-api-key", c.apiKey)
 	// Always prefer JSON responses
 	req.Header.Add("Accept", "application/json")
+	tempCert, err := tls.LoadX509KeyPair(c.cert, c.key)
+	if err != nil {
+		fmt.Printf("ERROR: %s", err)
+	}
+	c.Transport.TLSClientConfig.Certificates = append(c.Transport.TLSClientConfig.Certificates, tempCert)
 	return c.baseClient.Do(req)
 }
 
