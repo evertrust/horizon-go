@@ -8,10 +8,24 @@ type HorizonErrorResponse struct {
 	Detail  string `json:"detail"`
 }
 
+type HorizonMultipleErrorsResponse []HorizonErrorResponse
+
 func (e *HorizonErrorResponse) Error() string {
 	msg := fmt.Sprintf("Horizon returned a %s error: %s", e.Code, e.Message)
 	if e.Detail != "" {
 		msg = fmt.Sprintf("%s (%s)", msg, e.Detail)
+	}
+	return msg
+}
+
+func (e *HorizonMultipleErrorsResponse) Error() string {
+	msg := "Horizon returned multiple errors:\n"
+	for _, err := range *e {
+		toAppend := fmt.Sprintf("\t- %s: %s\n", err.Code, err.Message)
+		if err.Detail != "" {
+			toAppend = fmt.Sprintf("\t- %s: %s (%s)\n", err.Code, err.Message, err.Detail)
+		}
+		msg = fmt.Sprintf("%s%s", msg, toAppend)
 	}
 	return msg
 }

@@ -55,14 +55,20 @@ func (c *Client) SetProxy(proxyUrl url.URL) {
 }
 
 func (c *Client) Unmarshal(r *http.Response) (*HorizonResponse, error) {
-	d := json.NewDecoder(r.Body)
+	var responseBodyCopy bytes.Buffer
+	teeReader := io.TeeReader(r.Body, &responseBodyCopy)
+	d := json.NewDecoder(teeReader)
 
 	if r.StatusCode > 300 {
 		if r.Header.Get("Content-Type") == "application/json" {
 			// Deserialize the response to an error
 			var horizonError HorizonErrorResponse
+			var horizonMultiError HorizonMultipleErrorsResponse
 			if err := d.Decode(&horizonError); err != nil {
-				log.Fatalf("(HTTP %d) error deserializing error JSON", r.StatusCode)
+				if err := json.Unmarshal(responseBodyCopy.Bytes(), &horizonMultiError); err != nil {
+					log.Fatalf("(HTTP %d) error deserializing error JSON: %s", r.StatusCode, string(responseBodyCopy.Bytes()))
+				}
+				return nil, &horizonMultiError
 			}
 			return nil, &horizonError
 		} else {

@@ -31,3 +31,12 @@ type Certificate struct {
 	KeyType             string           `json:"keyType"`
 	SigningAlgorithm    string           `json:"signingAlgorithm"`
 }
+
+type HrzSearchQuery struct {
+	Query     string   `json:"query,omitempty"`
+	WithCount bool     `json:"withCount,omitempty"`
+	PageIndex int      `json:"pageIndex,omitempty"`
+	PageSize  int      `json:"pageSize,omitempty"`
+	SortedBy  []string `json:"sortedBy,omitempty"`
+	Fields    []string `json:"fields,omitempty"`
+}

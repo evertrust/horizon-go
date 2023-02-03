@@ -1,14 +1,16 @@
-package requests
+package rfc5280
 
 import (
 	"net/url"
 	"os"
 	"testing"
 
+	"github.com/evertrust/horizon-go/certificates"
 	"github.com/evertrust/horizon-go/http"
 )
 
 var client Client
+var certsClient certificates.Client
 
 func init() {
 	var baseClient = http.Client{}
@@ -21,32 +23,10 @@ func init() {
 		"",
 	)
 	client = Client{Http: &baseClient}
+	certsClient = certificates.Client{Http: &baseClient}
 }
 
-// Enroll a certificate
-//func TestCentralizedEnroll(t *testing.T) {
-//	_, err := client.CentralizedEnroll(
-//		"webra-test",
-//		[]IndexedDNElement{
-//			{
-//				Element: "cn.1",
-//				Type:    "CN",
-//				Value:   "example.org",
-//			},
-//		},
-//		[]IndexedSANElement{},
-//		[]LabelElement{},
-//		"rsa-2048",
-//		nil,
-//		nil,
-//	)
-//	if err != nil {
-//		t.Error(err.Error())
-//	}
-//}
-
-// Sign a CSR
-func TestDecentralizedEnroll(t *testing.T) {
+func TestPkcs10(t *testing.T) {
 	var csrPem = []byte(`-----BEGIN CERTIFICATE REQUEST-----
 MIICvjCCAaYCAQAweTELMAkGA1UEBhMCRlIxDjAMBgNVBAgMBVBhcmlzMQ4wDAYD
 VQQHDAVQYXJpczESMBAGA1UECgwJRXZlclRydXN0MRUwEwYDVQQDDAxldmVydHJ1
@@ -64,66 +44,23 @@ p15duhuN9EJ1DaEfEvPiGrc38waOejJdrGXopFtTeojyi1KVwcU8EVYdaqbtuMvz
 vTvxBgHwMuplYhU1m0/KIJbhe4RTrA74wOPGS6OOZzLghcKZfQYhF6SPTeXPmGrm
 VUqN/gOTLaBgj9fvEiJJFJUga4d6K+LHFW9rMhgva4GA+Q==
 -----END CERTIFICATE REQUEST-----`)
-
-	_, err := client.DecentralizedEnroll(
-		os.Getenv("PROFILE"),
-		csrPem,
-		[]LabelElement{},
-		nil,
-		nil,
-	)
-
+	csr, err := client.Pkcs10(csrPem)
 	if err != nil {
 		t.Error(err.Error())
 	}
+	t.Logf("csr: %v", csr.Dn)
 }
 
-func TestGetRequest(t *testing.T) {
-	initialRequest, err := client.CentralizedEnroll(
-		os.Getenv("PROFILE"),
-		[]IndexedDNElement{
-			{
-				Element: "cn.1",
-				Type:    "CN",
-				Value:   "example.org",
-			},
-		},
-		[]IndexedSANElement{},
-		[]LabelElement{},
-		"rsa-2048",
-		nil,
-		nil,
-	)
-	if err != nil {
-		t.Skip(err.Error())
-	}
-
-	_, err = client.Get(initialRequest.Id)
-
+func TestTrustChain(t *testing.T) {
+	certs, _, _, err := certsClient.Search("status is valid", 0, false)
 	if err != nil {
 		t.Error(err.Error())
 	}
-}
 
-//func TestRevokeRequest(t *testing.T) {
-//	initialRequest, err := client.CentralizedEnroll(
-//		os.Getenv("HORIZON_PROFILE"),
-//		[]IndexedDNElement{
-//			{
-//				Element: "cn.1",
-//				Type:    "CN",
-//				Value:   "example.org",
-//			},
-//		},
-//		[]IndexedSANElement{},
-//		[]LabelElement{},
-//		"rsa-2048",
-//		nil,
-//		nil,
-//	)
-//
-//	_, err = client.Revoke(initialRequest.Certificate.Certificate, "UNSPECIFIED")
-//	if err != nil {
-//		t.Error(err.Error())
-//	}
-//}
+	chain, err := client.Trustchain([]byte(certs[0].Certificate), RootToLeaf)
+	if err != nil {
+		t.Error(err.Error())
+	}
+
+	t.Logf("root: %v", chain[0].Dn)
+}
