@@ -44,7 +44,7 @@ func (c *Client) Get(id string) (*HorizonRequest, error) {
 
 // CentralizedEnroll is a wrapper method around the Requests API that generates a
 // centralized enroll request given a profile, DN and SAN elements and a list of labels
-func (c *Client) CentralizedEnroll(profile string, subject []IndexedDNElement, sans []IndexedSANElement, labels []LabelElement, keyType string, owner *string, team *string) (*HorizonRequest, error) {
+func (c *Client) CentralizedEnroll(profile string, password string, subject []IndexedDNElement, sans []IndexedSANElement, labels []LabelElement, keyType string, owner *string, team *string) (*HorizonRequest, error) {
 	template := WebRARequestTemplate{
 		Subject:  subject,
 		Sans:     sans,
@@ -71,6 +71,9 @@ func (c *Client) CentralizedEnroll(profile string, subject []IndexedDNElement, s
 		Profile:  profile,
 		Module:   "webra",
 		Template: template,
+		Password: P12Password{
+			Value: password,
+		},
 	})
 }
 

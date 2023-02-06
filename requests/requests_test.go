@@ -24,26 +24,28 @@ func init() {
 }
 
 // Enroll a certificate
-//func TestCentralizedEnroll(t *testing.T) {
-//	_, err := client.CentralizedEnroll(
-//		"webra-test",
-//		[]IndexedDNElement{
-//			{
-//				Element: "cn.1",
-//				Type:    "CN",
-//				Value:   "example.org",
-//			},
-//		},
-//		[]IndexedSANElement{},
-//		[]LabelElement{},
-//		"rsa-2048",
-//		nil,
-//		nil,
-//	)
-//	if err != nil {
-//		t.Error(err.Error())
-//	}
-//}
+func TestCentralizedEnroll(t *testing.T) {
+	request, err := client.CentralizedEnroll(
+		os.Getenv("PROFILE"),
+		"challengepassword",
+		[]IndexedDNElement{
+			{
+				Element: "cn.1",
+				Type:    "CN",
+				Value:   "example.org",
+			},
+		},
+		[]IndexedSANElement{},
+		[]LabelElement{},
+		"rsa-2048",
+		nil,
+		nil,
+	)
+	if err != nil {
+		t.Error(err.Error())
+	}
+	t.Log(request.Password.Value)
+}
 
 // Sign a CSR
 func TestDecentralizedEnroll(t *testing.T) {
@@ -81,6 +83,7 @@ VUqN/gOTLaBgj9fvEiJJFJUga4d6K+LHFW9rMhgva4GA+Q==
 func TestGetRequest(t *testing.T) {
 	initialRequest, err := client.CentralizedEnroll(
 		os.Getenv("PROFILE"),
+		"challenge_password",
 		[]IndexedDNElement{
 			{
 				Element: "cn.1",
@@ -105,25 +108,26 @@ func TestGetRequest(t *testing.T) {
 	}
 }
 
-//func TestRevokeRequest(t *testing.T) {
-//	initialRequest, err := client.CentralizedEnroll(
-//		os.Getenv("HORIZON_PROFILE"),
-//		[]IndexedDNElement{
-//			{
-//				Element: "cn.1",
-//				Type:    "CN",
-//				Value:   "example.org",
-//			},
-//		},
-//		[]IndexedSANElement{},
-//		[]LabelElement{},
-//		"rsa-2048",
-//		nil,
-//		nil,
-//	)
-//
-//	_, err = client.Revoke(initialRequest.Certificate.Certificate, "UNSPECIFIED")
-//	if err != nil {
-//		t.Error(err.Error())
-//	}
-//}
+func TestRevokeRequest(t *testing.T) {
+	initialRequest, err := client.CentralizedEnroll(
+		os.Getenv("PROFILE"),
+		"challenge_password",
+		[]IndexedDNElement{
+			{
+				Element: "cn.1",
+				Type:    "CN",
+				Value:   "example.org",
+			},
+		},
+		[]IndexedSANElement{},
+		[]LabelElement{},
+		"rsa-2048",
+		nil,
+		nil,
+	)
+
+	_, err = client.Revoke(initialRequest.Certificate.Certificate, "UNSPECIFIED")
+	if err != nil {
+		t.Error(err.Error())
+	}
+}

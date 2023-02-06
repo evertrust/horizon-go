@@ -67,6 +67,12 @@ type WebRARevokeTemplate struct {
 	RevocationReason certificates.RevocationReason `json:"revocationReason,omitempty"`
 }
 
+type P12Password struct {
+	HorizonKey string `json:"horizonKey"`
+	Value      string `json:"value"`
+	Transient  bool   `json:"transient"`
+}
+
 type HorizonRequest struct {
 	Id                   string                    `json:"_id,omitempty"`
 	Workflow             RequestWorkflow           `json:"workflow"`
@@ -84,4 +90,10 @@ type HorizonRequest struct {
 	Template             interface{}               `json:"template"`
 	CertificatePEM       string                    `json:"certificatePem,omitempty"`
 	Certificate          *certificates.Certificate `json:"certificate,omitempty"`
+	Pkcs12               struct {
+		HorizonKey string `json:"horizonKey"`
+		Value      string `json:"value"`
+		Transient  bool   `json:"transient"`
+	} `json:"pkcs12"`
+	Password P12Password `json:"password"`
 }
