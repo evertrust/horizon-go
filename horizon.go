@@ -29,4 +29,5 @@ func (client *Horizon) Init(baseUrl url.URL, apiId string, apiKey string, cert s
 	client.License = &license.Client{Http: client.Http}
 	client.Rfc5280 = &rfc5280.Client{Http: client.Http}
 	client.Certificate = &certificates.Client{Http: client.Http}
+	client.Discovery = &discovery.Client{Http: client.Http}
 }
