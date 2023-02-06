@@ -5,6 +5,7 @@ import (
 	"net/url"
 
 	"github.com/evertrust/horizon-go/certificates"
+	"github.com/evertrust/horizon-go/discovery"
 	"github.com/evertrust/horizon-go/http"
 	"github.com/evertrust/horizon-go/license"
 	"github.com/evertrust/horizon-go/requests"
@@ -17,6 +18,7 @@ type Horizon struct {
 	License     *license.Client
 	Rfc5280     *rfc5280.Client
 	Certificate *certificates.Client
+	Discovery   *discovery.Client
 }
 
 // Init initializes the instance parameters such as its location, and authentication data.
