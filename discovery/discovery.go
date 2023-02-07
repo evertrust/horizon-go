@@ -89,3 +89,24 @@ type DiscoveryCampaign struct {
 	EventOnWarning      bool                                 `json:"eventOnWarning"`
 	Triggers            struct{}                             `json:"triggers,omitempty"`
 }
+
+// HrzDiscoveryCampaign is the struct of the discovery campaign as defined in Horizon
+type HrzDiscoveryCampaign struct {
+	Campaign       string   `json:"campaign,omitempty"`
+	Id             string   `json:"id,omitempty"`
+	EventOnSuccess bool     `json:"eventOnSuccess,omitempty"`
+	EventOnFailure bool     `json:"eventOnFailure,omitempty"`
+	EventOnWarning bool     `json:"eventOnWarning,omitempty"`
+	Hosts          []string `json:"hosts,omitempty"`
+	Ports          []string `json:"ports,omitempty"`
+}
+
+// HrzDiscoveryEvent is the struct for the discovery event as defined in Horizon
+type HrzDiscoveryEvent struct {
+	Code         string `json:"code,omitempty"`
+	Campaign     string `json:"campaign,omitempty"`
+	SessionId    string `json:"sessionId,omitempty"`
+	Status       string `json:"status,omitempty"`
+	ErrorCode    string `json:"errorCode,omitempty"`
+	ErrorMessage string `json:"errorMessage,omitempty"`
+}

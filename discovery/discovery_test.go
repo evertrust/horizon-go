@@ -10,6 +10,8 @@ import (
 
 var client Client
 
+var sessionId string
+
 func init() {
 	var baseClient = http.Client{}
 	endpoint, _ := url.Parse(os.Getenv("ENDPOINT"))
@@ -55,6 +57,14 @@ func TestCreate(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+}
+
+func TestStart(t *testing.T) {
+	campaign, err := client.Start("testCampaign")
+	if err != nil {
+		t.Error(err)
+	}
+	sessionId = campaign.Id
 }
 
 func TestFeed(t *testing.T) {
@@ -123,6 +133,27 @@ TCpufK0vZkK9D2keW3AInl0EKyCNyFdoPW0Ji5bIefIBqnhXSFbtBvjg6tZB170T
 	})
 	if err != nil {
 		t.Error(err.Error())
+	}
+}
+
+func TestEvent(t *testing.T) {
+	err := client.Event(HrzDiscoveryEvent{
+		Code:         "NETIMPORT",
+		Campaign:     "testCampaign",
+		SessionId:    sessionId,
+		Status:       "failure",
+		ErrorCode:    "HCL-NETIMPORT-DCC-001",
+		ErrorMessage: "Could not get certificates from DigiCert CertCentral",
+	})
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+func TestStop(t *testing.T) {
+	err := client.Stop("testCampaign", sessionId)
+	if err != nil {
+		t.Error(err)
 	}
 }
 

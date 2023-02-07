@@ -131,6 +131,20 @@ func (c *Client) Delete(path string) (response *HorizonResponse, err error) {
 	return c.Unmarshal(baseResponse)
 }
 
+func (c *Client) Put(path string, body []byte) (response *HorizonResponse, err error) {
+	req, err := c.newRequest("PUT", path, bytes.NewBuffer(body))
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	baseResponse, err := c.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	return c.Unmarshal(baseResponse)
+}
+
 func (c *Client) Do(req *http.Request) (*http.Response, error) {
 	req.Header.Add("x-api-id", c.apiId)
 	req.Header.Add("x-api-key", c.apiKey)
