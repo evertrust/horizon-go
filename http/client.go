@@ -119,6 +119,21 @@ func (c *Client) Post(path string, body []byte) (response *HorizonResponse, err 
 	return c.Unmarshal(baseResponse)
 }
 
+func (c *Client) PostWithJwt(path, jwt string, body []byte) (response *HorizonResponse, err error) {
+	req, err := c.newRequest("POST", path, bytes.NewBuffer(body))
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("X-JWT-POP-AUTH", jwt)
+
+	baseResponse, err := c.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	return c.Unmarshal(baseResponse)
+}
+
 func (c *Client) Delete(path string) (response *HorizonResponse, err error) {
 	req, err := c.newRequest("DELETE", path, nil)
 	if err != nil {
