@@ -40,3 +40,36 @@ type HrzSearchQuery struct {
 	SortedBy  []string `json:"sortedBy,omitempty"`
 	Fields    []string `json:"fields,omitempty"`
 }
+
+type certificateResponse struct {
+	Certificate Certificate `json:"certificate"`
+}
+
+type searchResponse struct {
+	Results   []Certificate `json:"results"`
+	PageIndex int           `json:"pageIndex"`
+	PageSize  int           `json:"pageSize"`
+	Count     int           `json:"count"`
+	HasMore   bool          `json:"hasMore"`
+}
+
+type HorizonRequestValue struct {
+	Label string `json:"label,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
+type HorizonRequestTemplate struct {
+	RevocationReason string                `json:"revocationReason,omitempty"`
+	Team             *HorizonRequestValue  `json:"team,omitempty"`
+	Owner            *HorizonRequestValue  `json:"owner,omitempty"`
+	Labels           []HorizonRequestValue `json:"labels,omitempty"`
+}
+
+// HorizonRequest is a type defining an Horizon API request
+type HorizonRequest struct {
+	CertificatePEM string                 `json:"certificatePem,omitempty"`
+	CertificateId  string                 `json:"certificateId,omitempty"`
+	Workflow       string                 `json:"workflow,omitempty"`
+	Profile        string                 `json:"profile,omitempty"`
+	Template       HorizonRequestTemplate `json:"template,omitempty"`
+}

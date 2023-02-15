@@ -89,6 +89,7 @@ type HorizonRequest struct {
 	LastModificationDate int                       `json:"lastModificationDate"`
 	Template             interface{}               `json:"template"`
 	CertificatePEM       string                    `json:"certificatePem,omitempty"`
+	CertificateId        string                    `json:"certificateId,omitempty"`
 	Certificate          *certificates.Certificate `json:"certificate,omitempty"`
 	Pkcs12               struct {
 		HorizonKey string `json:"horizonKey"`

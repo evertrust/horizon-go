@@ -43,3 +43,14 @@ func TestGet(t *testing.T) {
 	}
 	t.Logf("cert: %v", cert.Serial)
 }
+
+func TestUpdateMigrate(t *testing.T) {
+	certs, _, _, err := client.Search("status is valid", 0, true)
+	if err != nil {
+		t.Error(err.Error())
+	}
+	err = client.UpdateMigrate(certs[0].Id, "", "", "", "", "")
+	if err != nil {
+		t.Error(err.Error())
+	}
+}

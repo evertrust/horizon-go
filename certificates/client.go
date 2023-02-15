@@ -7,18 +7,6 @@ import (
 	"github.com/evertrust/horizon-go/http"
 )
 
-type certificateResponse struct {
-	Certificate Certificate `json:"certificate"`
-}
-
-type searchResponse struct {
-	Results   []Certificate `json:"results"`
-	PageIndex int           `json:"pageIndex"`
-	PageSize  int           `json:"pageSize"`
-	Count     int           `json:"count"`
-	HasMore   bool          `json:"hasMore"`
-}
-
 type Client struct {
 	Http *http.Client
 }
@@ -60,4 +48,40 @@ func (c *Client) Search(query string, pageIndex int, withCount bool) ([]Certific
 	}
 
 	return searchResponse.Results, searchResponse.HasMore, searchResponse.Count, nil
+}
+
+func (c *Client) UpdateMigrate(id, profile, owner, team, labelName, labelValue string) error {
+	template := HorizonRequestTemplate{}
+	if owner == "unset" {
+		template.Owner = &HorizonRequestValue{}
+	} else if owner != "" {
+		template.Owner = &HorizonRequestValue{Value: owner}
+	} else {
+		template.Owner = nil
+	}
+	if team == "unset" {
+		template.Team = &HorizonRequestValue{}
+	} else if team != "" {
+		template.Team = &HorizonRequestValue{Value: team}
+	} else {
+		template.Team = nil
+	}
+	if labelName != "" {
+		template.Labels = []HorizonRequestValue{{Label: labelName, Value: labelValue}}
+	}
+	hrzRequest := HorizonRequest{
+		CertificateId: id,
+		Workflow:      "update",
+		Template:      template,
+	}
+	if profile != "" {
+		hrzRequest.Workflow = "migrate"
+		hrzRequest.Profile = profile
+	}
+	jsonBody, err := json.Marshal(hrzRequest)
+	if err != nil {
+		return err
+	}
+	_, err = c.Http.Post("/api/v1/requests/submit", jsonBody)
+	return err
 }
