@@ -4,6 +4,7 @@ package horizon
 import (
 	"net/url"
 
+	"github.com/evertrust/horizon-go/automation"
 	"github.com/evertrust/horizon-go/certificates"
 	"github.com/evertrust/horizon-go/discovery"
 	"github.com/evertrust/horizon-go/http"
@@ -19,6 +20,7 @@ type Horizon struct {
 	Rfc5280     *rfc5280.Client
 	Certificate *certificates.Client
 	Discovery   *discovery.Client
+	Automation  *automation.Client
 }
 
 // Init initializes the instance parameters such as its location, and authentication data.
@@ -30,4 +32,5 @@ func (client *Horizon) Init(baseUrl url.URL, apiId string, apiKey string, cert s
 	client.Rfc5280 = &rfc5280.Client{Http: client.Http}
 	client.Certificate = &certificates.Client{Http: client.Http}
 	client.Discovery = &discovery.Client{Http: client.Http}
+	client.Automation = &automation.Client{Http: client.Http}
 }
