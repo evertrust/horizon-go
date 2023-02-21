@@ -22,6 +22,20 @@ func (c *Client) Get(policyName string) (Policy, error) {
 	return policy, nil
 }
 
+func (c *Client) List() ([]Policy, error) {
+	response, err := c.Http.Get("/api/v1/automation/policies")
+	if err != nil {
+		return nil, err
+	}
+	var policies []Policy
+	err = response.Json().Decode(&policies)
+	if err != nil {
+		return nil, err
+	}
+
+	return policies, nil
+}
+
 func (c *Client) Check(jwt, policyName string) (bool, error) {
 	response, err := c.Http.PostWithJwt("/api/v1/automation/lifecycle/"+policyName+"/check", jwt, nil)
 	if err != nil {
