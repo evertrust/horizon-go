@@ -34,3 +34,10 @@ func TestCheck(t *testing.T) {
 	// TODO
 	t.Skip()
 }
+
+func TestList(t *testing.T) {
+	_, err := client.List()
+	if err != nil {
+		t.Error(err.Error())
+	}
+}

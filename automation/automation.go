@@ -1,6 +1,7 @@
 package automation
 
 type Policy struct {
+	Name       string              `json:"name"`
 	KeyType    string              `json:"keyType"`
 	Module     string              `json:"module"`
 	Profile    string              `json:"profile"`
