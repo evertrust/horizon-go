@@ -13,23 +13,33 @@ const (
 )
 
 type Certificate struct {
-	Id                  string           `json:"_id,omitempty"`
-	Module              string           `json:"module"`
-	Profile             string           `json:"profile,omitempty"`
-	Owner               string           `json:"owner,omitempty"`
-	Certificate         string           `json:"certificate"`
-	Thumbprint          string           `json:"thumbprint"`
-	SelfSigned          bool             `json:"selfSigned"`
-	PublicKeyThumbprint string           `json:"publicKeyThumbprint"`
-	Dn                  string           `json:"dn"`
-	Serial              string           `json:"serial"`
-	Issuer              string           `json:"issuer"`
-	NotBefore           int              `json:"notBefore"`
-	NotAfter            int              `json:"notAfter"`
-	RevocationDate      int              `json:"revocationDate,omitempty"`
-	RevocationReason    RevocationReason `json:"revocationReason,omitempty"`
-	KeyType             string           `json:"keyType"`
-	SigningAlgorithm    string           `json:"signingAlgorithm"`
+	Id                    string           `json:"_id,omitempty"`
+	Module                string           `json:"module"`
+	Profile               string           `json:"profile,omitempty"`
+	Owner                 string           `json:"owner,omitempty"`
+	Certificate           string           `json:"certificate"`
+	Thumbprint            string           `json:"thumbprint"`
+	SelfSigned            bool             `json:"selfSigned"`
+	PublicKeyThumbprint   string           `json:"publicKeyThumbprint"`
+	Dn                    string           `json:"dn"`
+	Serial                string           `json:"serial"`
+	Issuer                string           `json:"issuer"`
+	NotBefore             int              `json:"notBefore"`
+	NotAfter              int              `json:"notAfter"`
+	RevocationDate        int              `json:"revocationDate,omitempty"`
+	RevocationReason      RevocationReason `json:"revocationReason,omitempty"`
+	KeyType               string           `json:"keyType"`
+	SigningAlgorithm      string           `json:"signingAlgorithm"`
+	Revoked               bool             `json:"revoked"`
+	SubjectAlternateNames []struct {
+		SanType string `json:"sanType"`
+		Value   string `json:"value"`
+	} `json:"subjectAlternateNames"`
+	Metadata []struct {
+		Key   string `json:"key"`
+		Value string `json:"value"`
+	} `json:"metadata"`
+	HolderId string `json:"holderId"`
 }
 
 type HrzSearchQuery struct {

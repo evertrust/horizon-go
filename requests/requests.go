@@ -162,4 +162,9 @@ type HorizonRequest struct {
 		Transient  bool   `json:"transient"`
 	} `json:"pkcs12"`
 	Password P12Password `json:"password"`
+
+	RemoveAt int64  `json:"removeAt"`
+	Error    string `json:"error,omitempty"`
+	Message  string `json:"message,omitempty"`
+	Detail   string `json:"detail,omitempty"`
 }
