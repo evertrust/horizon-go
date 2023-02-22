@@ -131,3 +131,10 @@ func TestRevokeRequest(t *testing.T) {
 		t.Error(err.Error())
 	}
 }
+
+func TestGetTemplate(t *testing.T) {
+	_, err := client.GetTemplate(os.Getenv("PROFILE"))
+	if err != nil {
+		t.Error(err.Error())
+	}
+}

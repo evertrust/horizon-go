@@ -145,3 +145,27 @@ func (c *Client) Revoke(certificatePem string, revocationReason certificates.Rev
 		Template:       WebRARevokeTemplate{RevocationReason: revocationReason},
 	})
 }
+
+// GetTemplate returns the template information for a given WebRA profile
+func (c *Client) GetTemplate(profile string) (*HorizonRequest, error) {
+	var request HorizonRequest
+	body := map[string]string{
+		"module":   "webra",
+		"profile":  profile,
+		"workflow": "enroll",
+	}
+	marshalledBody, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	response, err := c.Http.Post("/api/v1/requests/template", marshalledBody)
+	if err != nil {
+		return nil, err
+	}
+
+	err = response.Json().Decode(&request)
+	if err != nil {
+		return nil, err
+	}
+	return &request, nil
+}

@@ -73,6 +73,80 @@ type P12Password struct {
 	Transient  bool   `json:"transient"`
 }
 
+type HrzTemplateSan struct {
+	Type     string   `json:"type,omitempty"`
+	Value    []string `json:"value,omitempty"`
+	Editable bool     `json:"editable,omitempty"`
+	Min      int      `json:"min,omitempty"`
+	Max      int      `json:"max,omitempty"`
+}
+
+type HrzTemplateExtension struct {
+	Type      string `json:"type,omitempty"`
+	Editable  bool   `json:"editable,omitempty"`
+	Mandatory bool   `json:"mandatory,omitempty"`
+	Value     string `json:"value,omitempty"`
+}
+
+type HrzTemplateTeam struct {
+	Authorized []string `json:"authorized,omitempty"`
+	Value      string   `json:"value,omitempty"`
+	Editable   bool     `json:"editable,omitempty"`
+}
+
+type HrzTemplateOwner struct {
+	Value    string `json:"value,omitempty"`
+	Editable bool   `json:"editable,omitempty"`
+}
+
+type HrzTemplateLabel struct {
+	Label     string `json:"label,omitempty"`
+	Mandatory bool   `json:"mandatory,omitempty"`
+	Editable  bool   `json:"editable,omitempty"`
+	Value     string `json:"value,omitempty"`
+}
+
+type HrzTemplateContactEmail struct {
+	Editable  bool   `json:"editable,omitempty"`
+	Mandatory bool   `json:"mandatory,omitempty"`
+	Value     string `json:"value,omitempty"`
+}
+
+type CertificateTemplate struct {
+	Subject []struct {
+		Element   string `json:"element,omitempty"`
+		Type      string `json:"type,omitempty"`
+		Value     string `json:"value,omitempty"`
+		Mandatory bool   `json:"mandatory,omitempty"`
+		Editable  bool   `json:"editable,omitempty"`
+	} `json:"subject,omitempty"`
+	Csr          string           `json:"csr,omitempty"`
+	Sans         []HrzTemplateSan `json:"sans,omitempty"`
+	Capabilities struct {
+		Centralized              bool     `json:"centralized,omitempty"`
+		Decentralized            bool     `json:"decentralized,omitempty"`
+		PreferredEnrollmentMode  string   `json:"preferredEnrollmentMode,omitempty"`
+		DefaultKeyType           string   `json:"defaultKeyType,omitempty"`
+		AuthorizedKeyTypes       []string `json:"authorizedKeyTypes,omitempty"`
+		Escrow                   bool     `json:"escrow,omitempty"`
+		ShowP12PasswordOnEnroll  bool     `json:"showP12PasswordOnEnroll,omitempty"`
+		ShowP12OnEnroll          bool     `json:"showP12OnEnroll,omitempty"`
+		ShowP12PasswordOnRecover bool     `json:"showP12PasswordOnRecover,omitempty"`
+		ShowP12OnRecover         bool     `json:"showP12OnRecover,omitempty"`
+	} `json:"capabilities,omitempty"`
+	Extensions []HrzTemplateExtension `json:"extensions,omitempty"`
+	KeyTypes   []string               `json:"keyTypes,omitempty"`
+	Owner      *HrzTemplateOwner      `json:"owner,omitempty"`
+	Team       *HrzTemplateTeam       `json:"team,omitempty"`
+	Labels     []*HrzTemplateLabel    `json:"labels,omitempty"`
+	Metadata   []*struct {
+		Metadata string `json:"metadata,omitempty"`
+		Editable bool   `json:"editable,omitempty"`
+		Value    string `json:"value,omitempty"`
+	} `json:"metadata,omitempty"`
+	ContactEmail *HrzTemplateContactEmail `json:"contactEmail,omitempty"`
+}
+
 type HorizonRequest struct {
 	Id                   string                    `json:"_id,omitempty"`
 	Workflow             RequestWorkflow           `json:"workflow"`
