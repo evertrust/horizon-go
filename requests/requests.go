@@ -25,20 +25,27 @@ const (
 )
 
 type IndexedDNElement struct {
-	Element string `json:"element"`
-	Type    string `json:"type,omitempty"`
-	Value   string `json:"value,omitempty"`
+	Element   string `json:"element"`
+	Type      string `json:"type,omitempty"`
+	Value     string `json:"value,omitempty"`
+	Mandatory bool   `json:"mandatory,omitempty"`
+	Editable  bool   `json:"editable,omitempty"`
 }
 
 type IndexedSANElement struct {
-	Element string `json:"element"`
-	Type    string `json:"type,omitempty"`
-	Value   string `json:"value,omitempty"`
+	Element  string `json:"element"`
+	Type     string `json:"type,omitempty"`
+	Value    string `json:"value,omitempty"`
+	Editable bool   `json:"editable,omitempty"`
+	Min      int    `json:"min,omitempty"`
+	Max      int    `json:"max,omitempty"`
 }
 
 type LabelElement struct {
-	Label string `json:"label"`
-	Value string `json:"value,omitempty"`
+	Label     string `json:"label,omitempty"`
+	Mandatory bool   `json:"mandatory,omitempty"`
+	Editable  bool   `json:"editable,omitempty"`
+	Value     string `json:"value,omitempty"`
 }
 
 type CertificateOwner struct {
@@ -88,17 +95,6 @@ type HrzTemplateExtension struct {
 	Value     string `json:"value,omitempty"`
 }
 
-type HrzTemplateTeam struct {
-	Authorized []string `json:"authorized,omitempty"`
-	Value      string   `json:"value,omitempty"`
-	Editable   bool     `json:"editable,omitempty"`
-}
-
-type HrzTemplateOwner struct {
-	Value    string `json:"value,omitempty"`
-	Editable bool   `json:"editable,omitempty"`
-}
-
 type HrzTemplateLabel struct {
 	Label     string `json:"label,omitempty"`
 	Mandatory bool   `json:"mandatory,omitempty"`
@@ -113,15 +109,9 @@ type HrzTemplateContactEmail struct {
 }
 
 type CertificateTemplate struct {
-	Subject []struct {
-		Element   string `json:"element,omitempty"`
-		Type      string `json:"type,omitempty"`
-		Value     string `json:"value,omitempty"`
-		Mandatory bool   `json:"mandatory,omitempty"`
-		Editable  bool   `json:"editable,omitempty"`
-	} `json:"subject,omitempty"`
-	Csr          string           `json:"csr,omitempty"`
-	Sans         []HrzTemplateSan `json:"sans,omitempty"`
+	Subject      []IndexedDNElement  `json:"subject,omitempty"`
+	Csr          string              `json:"csr,omitempty"`
+	Sans         []IndexedSANElement `json:"sans,omitempty"`
 	Capabilities struct {
 		Centralized              bool     `json:"centralized,omitempty"`
 		Decentralized            bool     `json:"decentralized,omitempty"`
@@ -136,15 +126,16 @@ type CertificateTemplate struct {
 	} `json:"capabilities,omitempty"`
 	Extensions []HrzTemplateExtension `json:"extensions,omitempty"`
 	KeyTypes   []string               `json:"keyTypes,omitempty"`
-	Owner      *HrzTemplateOwner      `json:"owner,omitempty"`
-	Team       *HrzTemplateTeam       `json:"team,omitempty"`
-	Labels     []*HrzTemplateLabel    `json:"labels,omitempty"`
+	Owner      *CertificateOwner      `json:"owner,omitempty"`
+	Team       *CertificateTeam       `json:"team,omitempty"`
+	Labels     []LabelElement         `json:"labels,omitempty"`
 	Metadata   []*struct {
 		Metadata string `json:"metadata,omitempty"`
 		Editable bool   `json:"editable,omitempty"`
 		Value    string `json:"value,omitempty"`
 	} `json:"metadata,omitempty"`
-	ContactEmail *HrzTemplateContactEmail `json:"contactEmail,omitempty"`
+	RevocationReason certificates.RevocationReason `json:"revocationReason,omitempty"`
+	ContactEmail     *HrzTemplateContactEmail      `json:"contactEmail,omitempty"`
 }
 
 type HorizonRequest struct {
@@ -161,7 +152,7 @@ type HorizonRequest struct {
 	ApproverComment      string                    `json:"approverComment"`
 	RegistrationDate     int                       `json:"registrationDate"`
 	LastModificationDate int                       `json:"lastModificationDate"`
-	Template             interface{}               `json:"template"`
+	Template             CertificateTemplate       `json:"template"`
 	CertificatePEM       string                    `json:"certificatePem,omitempty"`
 	CertificateId        string                    `json:"certificateId,omitempty"`
 	Certificate          *certificates.Certificate `json:"certificate,omitempty"`
