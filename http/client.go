@@ -68,9 +68,13 @@ func (c *Client) Unmarshal(r *http.Response) (*HorizonResponse, error) {
 				if err := json.Unmarshal(responseBodyCopy.Bytes(), &horizonMultiError); err != nil {
 					log.Fatalf("(HTTP %d) error deserializing error JSON: %s", r.StatusCode, string(responseBodyCopy.Bytes()))
 				}
-				return nil, &horizonMultiError
+				return &HorizonResponse{
+					BaseResponse: r,
+				}, &horizonMultiError
 			}
-			return nil, &horizonError
+			return &HorizonResponse{
+				BaseResponse: r,
+			}, &horizonError
 		} else {
 			body, err := io.ReadAll(r.Body)
 			if err != nil {
@@ -125,7 +129,21 @@ func (c *Client) PostWithJwt(path, jwt string, body []byte) (response *HorizonRe
 		return nil, err
 	}
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("X-JWT-POP-AUTH", jwt)
+	req.Header.Set("X-JWT-CERT-POP", jwt)
+
+	baseResponse, err := c.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	return c.Unmarshal(baseResponse)
+}
+
+func (c *Client) GetWithJwt(path, jwt string) (response *HorizonResponse, err error) {
+	req, err := c.newRequest("GET", path, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("X-JWT-CERT-POP", jwt)
 
 	baseResponse, err := c.Do(req)
 	if err != nil {

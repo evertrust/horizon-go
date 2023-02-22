@@ -1,6 +1,8 @@
 package automation
 
 import (
+	"errors"
+
 	"github.com/evertrust/horizon-go/http"
 )
 
@@ -37,7 +39,7 @@ func (c *Client) List() ([]Policy, error) {
 }
 
 func (c *Client) Check(jwt, policyName string) (bool, error) {
-	response, err := c.Http.PostWithJwt("/api/v1/automation/lifecycle/"+policyName+"/check", jwt, nil)
+	response, err := c.Http.GetWithJwt("/api/v1/automation/lifecycle/"+policyName+"/verify", jwt)
 	if err != nil {
 		return false, err
 	}
@@ -46,4 +48,14 @@ func (c *Client) Check(jwt, policyName string) (bool, error) {
 		return true, nil
 	}
 	return false, nil
+}
+
+func (c *Client) Nonce(policyName string) (string, error) {
+	response, _ := c.Http.GetWithJwt("/api/v1/automation/lifecycle/"+policyName+"/verify", "{}")
+	nonce := response.BaseResponse.Header.Get("Replay-Nonce")
+	if nonce == "" {
+		return "", errors.New("Replay-Nonce not found")
+	}
+
+	return nonce, nil
 }

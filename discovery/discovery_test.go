@@ -106,16 +106,7 @@ TCpufK0vZkK9D2keW3AInl0EKyCNyFdoPW0Ji5bIefIBqnhXSFbtBvjg6tZB170T
 	err := client.Feed(HrzDiscoveredCert{
 		DiscoveryCampaign: "testCampaign",
 		Certificate:       certPem,
-		Metadata: []HrzCertificateMetadata{
-			{
-				Key:   "test",
-				Value: "test",
-			},
-			{
-				Key:   "test2",
-				Value: "test2",
-			},
-		},
+		Metadata:          nil,
 		DiscoveryInfos: HrzDiscoveredCertsMetadata{
 			CertificateLocation:      []string{"gitlab.com"},
 			CertificateUsageLocation: []string{"mysuperusage"},

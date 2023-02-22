@@ -25,7 +25,7 @@ func (c *Client) Get(id string) (*Certificate, error) {
 	return &certificate.Certificate, nil
 }
 
-func (c *Client) Search(query string, pageIndex int, withCount bool) ([]Certificate, bool, int, error) {
+func (c *Client) Search(query string, pageIndex int, withCount bool) ([]SearchResult, bool, int, error) {
 	hrzRequest := HrzSearchQuery{
 		Query:     query,
 		PageIndex: pageIndex,
@@ -41,7 +41,7 @@ func (c *Client) Search(query string, pageIndex int, withCount bool) ([]Certific
 	if err != nil {
 		return nil, false, 0, err
 	}
-	var searchResponse searchResponse
+	var searchResponse SearchResponse
 	err = response.Json().Decode(&searchResponse)
 	if err != nil {
 		return nil, false, 0, err

@@ -45,12 +45,29 @@ type certificateResponse struct {
 	Certificate Certificate `json:"certificate"`
 }
 
-type searchResponse struct {
-	Results   []Certificate `json:"results"`
-	PageIndex int           `json:"pageIndex"`
-	PageSize  int           `json:"pageSize"`
-	Count     int           `json:"count"`
-	HasMore   bool          `json:"hasMore"`
+type SearchResult struct {
+	Id          string `json:"_id,omitempty"`
+	Module      string `json:"module"`
+	DN          string `json:"dn"`
+	NotAfter    int    `json:"notAfter"`
+	Permissions struct {
+		Revoke         bool `json:"revoke"`
+		RequestRevoke  bool `json:"requestRevoke"`
+		Update         bool `json:"update"`
+		RequestUpdate  bool `json:"requestUpdate"`
+		Recover        bool `json:"recover"`
+		RequestRecover bool `json:"requestRecover"`
+		Migrate        bool `json:"migrate"`
+		RequestMigrate bool `json:"requestMigrate"`
+	} `json:"permissions"`
+}
+
+type SearchResponse struct {
+	Results   []SearchResult `json:"results"`
+	PageIndex int            `json:"pageIndex"`
+	PageSize  int            `json:"pageSize"`
+	Count     int            `json:"count"`
+	HasMore   bool           `json:"hasMore"`
 }
 
 type HorizonRequestValue struct {

@@ -45,7 +45,7 @@ func TestGet(t *testing.T) {
 }
 
 func TestUpdateMigrate(t *testing.T) {
-	certs, _, _, err := client.Search("status is valid", 0, true)
+	certs, _, _, err := client.Search("status is valid and module not in [\"discovery\"]", 0, true)
 	if err != nil {
 		t.Error(err.Error())
 	}

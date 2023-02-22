@@ -57,7 +57,12 @@ func TestTrustChain(t *testing.T) {
 		t.Error(err.Error())
 	}
 
-	chain, err := client.Trustchain([]byte(certs[0].Certificate), RootToLeaf)
+	detailedCert, err := certsClient.Get(certs[0].Id)
+	if err != nil {
+		t.Error(err.Error())
+	}
+
+	chain, err := client.Trustchain([]byte(detailedCert.Certificate), RootToLeaf)
 	if err != nil {
 		t.Error(err.Error())
 	}

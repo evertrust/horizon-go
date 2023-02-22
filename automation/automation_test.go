@@ -41,3 +41,11 @@ func TestList(t *testing.T) {
 		t.Error(err.Error())
 	}
 }
+
+func TestNonce(t *testing.T) {
+	nonce, err := client.Nonce(os.Getenv("AUTOMATION_POLICY"))
+	if err != nil {
+		t.Error(err.Error())
+	}
+	t.Log(nonce)
+}
