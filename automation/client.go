@@ -44,7 +44,7 @@ func (c *Client) Check(jwt, policyName string) (bool, error) {
 		return false, err
 	}
 
-	if response.BaseResponse.StatusCode == 204 {
+	if response.RestyResponse.RawResponse.StatusCode == 204 {
 		return true, nil
 	}
 	return false, nil
@@ -52,7 +52,7 @@ func (c *Client) Check(jwt, policyName string) (bool, error) {
 
 func (c *Client) Nonce(policyName string) (string, error) {
 	response, _ := c.Http.GetWithJwt("/api/v1/automation/lifecycle/"+policyName+"/verify", "{}")
-	nonce := response.BaseResponse.Header.Get("Replay-Nonce")
+	nonce := response.RestyResponse.RawResponse.Header.Get("Replay-Nonce")
 	if nonce == "" {
 		return "", errors.New("Replay-Nonce not found")
 	}

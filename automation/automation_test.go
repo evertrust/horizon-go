@@ -36,10 +36,11 @@ func TestCheck(t *testing.T) {
 }
 
 func TestList(t *testing.T) {
-	_, err := client.List()
+	policies, err := client.List()
 	if err != nil {
 		t.Error(err.Error())
 	}
+	t.Log(policies)
 }
 
 func TestNonce(t *testing.T) {

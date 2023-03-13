@@ -37,6 +37,8 @@ func TestGet(t *testing.T) {
 	if err != nil {
 		t.Error(err.Error())
 	}
+
+	t.Logf("after search")
 	cert, err := client.Get(certs[0].Id)
 	if err != nil {
 		t.Error(err.Error())
