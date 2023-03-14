@@ -78,10 +78,15 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 	if err != nil {
 		return nil, err
 	}
-	var typeCounts = make(map[string]int)
+
+	request, err := c.GetTemplate(profile)
+	if err != nil {
+		return nil, err
+	}
 
 	// Translate the parsed certificate DN elements into the request elements
 	var subject []IndexedDNElement
+	var typeCounts = make(map[string]int)
 	for _, dnElement := range parsedCsr.DnElements {
 		typeCounts[dnElement.Type]++
 		subject = append(subject, IndexedDNElement{
@@ -93,39 +98,33 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 	// Translate the parsed certificate SAN elements into the request elements
 	var sans []IndexedSANElement
 	for _, sanElement := range parsedCsr.Sans {
-		// typeCounts[sanElement.SanType]++
-		var value []string
-		value = append(value, sanElement.Value)
-		sans = append(sans, IndexedSANElement{
-			// Element: fmt.Sprintf("%s.%d", strings.ToLower(sanElement.SanType), typeCounts[sanElement.SanType]),
-			Type:  sanElement.SanType,
-			Value: value,
-		})
-	}
-	template := CertificateTemplate{
-		Csr:     parsedCsr.Pem,
-		Subject: subject,
-		Sans:    sans,
-		Labels:  labels,
-	}
-	if owner != nil {
-		template.Owner = &CertificateOwner{
-			Value:    owner,
-			Editable: false,
+		new := true
+		for _, indexedSan := range sans {
+			if strings.ToUpper(indexedSan.Type) == strings.ToUpper(sanElement.SanType) {
+				indexedSan.Value = append(indexedSan.Value, sanElement.Value)
+				new = false
+			}
+		}
+		if new {
+			sans = append(sans, IndexedSANElement{
+				Type:  strings.ToUpper(sanElement.SanType),
+				Value: []string{sanElement.Value},
+			})
 		}
 	}
-	if team != nil {
-		template.Team = &CertificateTeam{
-			Value:    team,
-			Editable: false,
-		}
+	request.Template.Csr = parsedCsr.Pem
+	request.Template.Subject = subject
+	request.Template.Sans = sans
+	request.Template.Labels = labels
+
+	if request.Template.Owner.Editable && owner != nil {
+		request.Template.Owner.Value = owner
 	}
-	return c.Submit(HorizonRequest{
-		Workflow: RequestWorkflowEnroll,
-		Profile:  profile,
-		Module:   "webra",
-		Template: template,
-	})
+	if request.Template.Team.Editable && team != nil {
+		request.Template.Team.Value = team
+	}
+
+	return c.Submit(*request)
 }
 
 // Revoke is a wrapper around the Requests API that generates a revocation request
