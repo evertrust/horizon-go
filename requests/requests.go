@@ -33,12 +33,11 @@ type IndexedDNElement struct {
 }
 
 type IndexedSANElement struct {
-	Element  string `json:"element"`
-	Type     string `json:"type,omitempty"`
-	Value    string `json:"value,omitempty"`
-	Editable bool   `json:"editable,omitempty"`
-	Min      int    `json:"min,omitempty"`
-	Max      int    `json:"max,omitempty"`
+	Type     string   `json:"type,omitempty"`
+	Value    []string `json:"value,omitempty"`
+	Editable bool     `json:"editable,omitempty"`
+	Min      int      `json:"min,omitempty"`
+	Max      int      `json:"max,omitempty"`
 }
 
 type LabelElement struct {
@@ -49,12 +48,12 @@ type LabelElement struct {
 }
 
 type CertificateOwner struct {
-	Value    string `json:"value"`
-	Editable bool   `json:"editable"`
+	Value    *string `json:"value"`
+	Editable bool    `json:"editable"`
 }
 
 type CertificateTeam struct {
-	Value      string   `json:"value"`
+	Value      *string  `json:"value"`
 	Authorized []string `json:"authorized,omitempty"`
 	Editable   bool     `json:"editable"`
 }

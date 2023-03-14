@@ -45,36 +45,27 @@ func (c *Client) Get(id string) (*HorizonRequest, error) {
 // CentralizedEnroll is a wrapper method around the Requests API that generates a
 // centralized enroll request given a profile, DN and SAN elements and a list of labels
 func (c *Client) CentralizedEnroll(profile string, password string, subject []IndexedDNElement, sans []IndexedSANElement, labels []LabelElement, keyType string, owner *string, team *string) (*HorizonRequest, error) {
-	template := CertificateTemplate{
-		Subject:  subject,
-		Sans:     sans,
-		Labels:   labels,
-		KeyTypes: []string{keyType},
+	request, err := c.GetTemplate(profile)
+	if err != nil {
+		return nil, err
 	}
 
+	request.Template.KeyTypes = []string{keyType}
+	request.Template.Subject = subject
+	request.Template.Sans = sans
+	request.Template.Labels = labels
+
 	if owner != nil {
-		template.Owner = &CertificateOwner{
-			Value:    *owner,
-			Editable: false,
-		}
+		request.Template.Owner.Value = owner
 	}
 
 	if team != nil {
-		template.Team = &CertificateTeam{
-			Value:    *team,
-			Editable: false,
-		}
+		request.Template.Team.Value = team
 	}
 
-	return c.Submit(HorizonRequest{
-		Workflow: RequestWorkflowEnroll,
-		Profile:  profile,
-		Module:   "webra",
-		Template: template,
-		Password: P12Password{
-			Value: password,
-		},
-	})
+	request.Password.Value = password
+
+	return c.Submit(*request)
 }
 
 // DecentralizedEnroll is a wrapper method around the Requests API that generates a
@@ -102,11 +93,13 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 	// Translate the parsed certificate SAN elements into the request elements
 	var sans []IndexedSANElement
 	for _, sanElement := range parsedCsr.Sans {
-		typeCounts[sanElement.SanType]++
+		// typeCounts[sanElement.SanType]++
+		var value []string
+		value = append(value, sanElement.Value)
 		sans = append(sans, IndexedSANElement{
-			Element: fmt.Sprintf("%s.%d", strings.ToLower(sanElement.SanType), typeCounts[sanElement.SanType]),
-			Type:    sanElement.SanType,
-			Value:   fmt.Sprintf("%v", sanElement.Value),
+			// Element: fmt.Sprintf("%s.%d", strings.ToLower(sanElement.SanType), typeCounts[sanElement.SanType]),
+			Type:  sanElement.SanType,
+			Value: value,
 		})
 	}
 	template := CertificateTemplate{
@@ -117,13 +110,13 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 	}
 	if owner != nil {
 		template.Owner = &CertificateOwner{
-			Value:    *owner,
+			Value:    owner,
 			Editable: false,
 		}
 	}
 	if team != nil {
 		template.Team = &CertificateTeam{
-			Value:    *team,
+			Value:    team,
 			Editable: false,
 		}
 	}
