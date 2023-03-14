@@ -136,6 +136,17 @@ func (c *Client) Put(path string, body []byte) (response *HorizonResponse, err e
 	return c.Unmarshal(resp)
 }
 
+func (c *Client) Patch(path string, body []byte) (response *HorizonResponse, err error) {
+	resp, err := c.newRequest().
+		SetBody(body).
+		Patch(path)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.Unmarshal(resp)
+}
+
 func (c *Client) newRequest() *resty.Request {
 	return c.restyClient.R().
 		SetHeader("X-API-ID", c.apiId).
