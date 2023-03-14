@@ -147,6 +147,10 @@ func (c *Client) Patch(path string, body []byte) (response *HorizonResponse, err
 	return c.Unmarshal(resp)
 }
 
+func (c *Client) BaseUrl() url.URL {
+	return c.baseUrl
+}
+
 func (c *Client) newRequest() *resty.Request {
 	return c.restyClient.R().
 		SetHeader("X-API-ID", c.apiId).
