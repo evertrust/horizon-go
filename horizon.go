@@ -2,8 +2,6 @@
 package horizon
 
 import (
-	"net/url"
-
 	"github.com/evertrust/horizon-go/automation"
 	"github.com/evertrust/horizon-go/certificates"
 	"github.com/evertrust/horizon-go/discovery"
@@ -12,6 +10,7 @@ import (
 	"github.com/evertrust/horizon-go/locals"
 	"github.com/evertrust/horizon-go/requests"
 	"github.com/evertrust/horizon-go/rfc5280"
+	"gopkg.in/resty.v1"
 )
 
 type Horizon struct {
@@ -26,9 +25,9 @@ type Horizon struct {
 }
 
 // Init initializes the instance parameters such as its location, and authentication data.
-func (client *Horizon) Init(baseUrl url.URL, apiId string, apiKey string, cert string, key string) {
+func (client *Horizon) Init(restyClient *resty.Client) {
 	client.Http = &http.Client{}
-	client.Http.Init(baseUrl, apiId, apiKey, cert, key)
+	client.Http.Init(restyClient)
 	client.Requests = &requests.Client{Http: client.Http}
 	client.License = &license.Client{Http: client.Http}
 	client.Rfc5280 = &rfc5280.Client{Http: client.Http}
