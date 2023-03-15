@@ -98,14 +98,14 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 	// Translate the parsed certificate SAN elements into the request elements
 	var sans []IndexedSANElement
 	for _, sanElement := range parsedCsr.Sans {
-		new := true
+		isNew := true
 		for _, indexedSan := range sans {
 			if strings.ToUpper(indexedSan.Type) == strings.ToUpper(sanElement.SanType) {
 				indexedSan.Value = append(indexedSan.Value, sanElement.Value)
-				new = false
+				isNew = false
 			}
 		}
-		if new {
+		if isNew {
 			sans = append(sans, IndexedSANElement{
 				Type:  strings.ToUpper(sanElement.SanType),
 				Value: []string{sanElement.Value},
@@ -125,6 +125,19 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 	}
 
 	return c.Submit(*request)
+}
+
+// DecentralizedRenew is a wrapper method around the Requests API that generates a
+// renewal request given a profile and a certificate PEM
+func (c *Client) DecentralizedRenew(csr []byte, lastCertificateId string) (*HorizonRequest, error) {
+	request := HorizonRequest{
+		Workflow:      RequestWorkflowRenew,
+		Module:        "webra",
+		CertificateId: lastCertificateId,
+		Template:      CertificateTemplate{Csr: string(csr)},
+	}
+
+	return c.Submit(request)
 }
 
 // Revoke is a wrapper around the Requests API that generates a revocation request

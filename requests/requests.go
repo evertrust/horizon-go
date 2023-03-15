@@ -12,6 +12,7 @@ const (
 	RequestWorkflowRevoke  RequestWorkflow = "revoke"
 	RequestWorkflowUpdate  RequestWorkflow = "update"
 	RequestWorkflowRecover RequestWorkflow = "recover"
+	RequestWorkflowRenew   RequestWorkflow = "renew"
 )
 
 type RequestStatus string
