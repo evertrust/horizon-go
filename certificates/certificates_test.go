@@ -13,12 +13,10 @@ var client Client
 func init() {
 	var baseClient = http.Client{}
 	endpoint, _ := url.Parse(os.Getenv("ENDPOINT"))
-	baseClient.Init(
-		*endpoint,
+	baseClient.SetBaseUrl(*endpoint)
+	baseClient.InitPasswordAuth(
 		os.Getenv("APIID"),
 		os.Getenv("APIKEY"),
-		"",
-		"",
 	)
 	client = Client{Http: &baseClient}
 }

@@ -12,35 +12,39 @@ import (
 )
 
 type Client struct {
-	baseUrl     url.URL
 	restyClient resty.Client
-	cert        string
-	key         string
-	apiId       string
-	apiKey      string
 }
 
 // Init initializes the instance parameters such as its location, and authentication data.
-func (c *Client) Init(baseUrl url.URL, apiId string, apiKey string, cert string, key string) {
-	c.baseUrl = baseUrl
-	c.apiId = apiId
-	c.apiKey = apiKey
-	c.cert = cert
-	c.key = key
+func (c *Client) Init(restyClient *resty.Client) {
 
-	c.restyClient = *resty.New()
-	// load cert and key
-	clientCert, err := tls.LoadX509KeyPair(c.cert, c.key)
+	if restyClient == nil {
+		restyClient = resty.New()
+	}
+
+	c.restyClient = *restyClient
+	c.restyClient.
+		SetHeader("Content-Type", "application/json").
+		SetCookieJar(nil)
+}
+
+func (c *Client) SetBaseUrl(baseUrl url.URL) {
+	c.restyClient.SetHostURL(baseUrl.String())
+}
+
+func (c *Client) InitPasswordAuth(apiId string, apiKey string) {
+	c.restyClient.
+		SetHeader("X-API-ID", apiId).
+		SetHeader("X-API-KEY", apiKey)
+}
+
+func (c *Client) InitCertAuth(cert string, key string) {
+	clientCert, err := tls.LoadX509KeyPair(cert, key)
 	if err != nil {
 		fmt.Printf("ERROR: %s", err)
 	}
 	c.restyClient.
-		SetCertificates(clientCert).
-		SetHeader("Content-Type", "application/json").
-		SetHostURL(baseUrl.String()).
-		SetHeader("X-API-ID", c.apiId).
-		SetHeader("X-API-KEY", c.apiKey).
-		SetCookieJar(nil)
+		SetCertificates(clientCert)
 }
 
 func (c *Client) Unmarshal(r *resty.Response) (*HorizonResponse, error) {
@@ -136,9 +140,40 @@ func (c *Client) Put(path string, body []byte) (response *HorizonResponse, err e
 	return c.Unmarshal(resp)
 }
 
+func (c *Client) Patch(path string, body []byte) (response *HorizonResponse, err error) {
+	resp, err := c.newRequest().
+		SetBody(body).
+		Patch(path)
+	if err != nil {
+		return nil, err
+	}
+
+	return c.Unmarshal(resp)
+}
+
+func (c *Client) BaseUrl() url.URL {
+	baseUrl, err := url.Parse(c.restyClient.HostURL)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return *baseUrl
+}
+
+// SetCaBundle sets the client certificate than can be used for authentication.
+func (c *Client) SetCaBundle(caBundle string) {
+	c.restyClient.SetRootCertificate(caBundle)
+}
+
+// SkipTLSVerify skips the TLS verification.
+// Warning: this will override any other TLS configuration, due to a limitation in the underlying library.
+func (c *Client) SkipTLSVerify() {
+	c.restyClient.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
+}
+
+func (c *Client) SetProxy(proxyUrl url.URL) {
+	c.restyClient.SetProxy(proxyUrl.String())
+}
+
 func (c *Client) newRequest() *resty.Request {
-	return c.restyClient.R().
-		SetHeader("X-API-ID", c.apiId).
-		SetHeader("X-API-KEY", c.apiKey).
-		SetHeader("Accept", "application/json")
+	return c.restyClient.R()
 }
