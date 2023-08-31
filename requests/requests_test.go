@@ -13,8 +13,8 @@ var client Client
 func init() {
 	var baseClient = http.Client{}
 	endpoint, _ := url.Parse(os.Getenv("ENDPOINT"))
-	baseClient.SetBaseUrl(*endpoint)
-	baseClient.InitPasswordAuth(
+	baseClient.WithBaseUrl(*endpoint)
+	baseClient.WithPasswordAuth(
 		os.Getenv("APIID"),
 		os.Getenv("APIKEY"),
 	)
@@ -33,7 +33,7 @@ func TestCentralizedEnroll(t *testing.T) {
 				Value:   "example.org",
 			},
 		},
-		[]IndexedSANElement{},
+		[]ListSANElement{},
 		[]LabelElement{},
 		"rsa-2048",
 		nil,
@@ -89,7 +89,7 @@ func TestGetRequest(t *testing.T) {
 				Value:   "example.org",
 			},
 		},
-		[]IndexedSANElement{},
+		[]ListSANElement{},
 		[]LabelElement{},
 		"rsa-2048",
 		nil,
@@ -117,7 +117,7 @@ func TestRevokeRequest(t *testing.T) {
 				Value:   "example.org",
 			},
 		},
-		[]IndexedSANElement{},
+		[]ListSANElement{},
 		[]LabelElement{},
 		"rsa-2048",
 		nil,

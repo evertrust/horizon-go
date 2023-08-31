@@ -44,7 +44,7 @@ func (c *Client) Get(id string) (*HorizonRequest, error) {
 
 // CentralizedEnroll is a wrapper method around the Requests API that generates a
 // centralized enroll request given a profile, DN and SAN elements and a list of labels
-func (c *Client) CentralizedEnroll(profile string, password string, subject []IndexedDNElement, sans []IndexedSANElement, labels []LabelElement, keyType string, owner *string, team *string) (*HorizonRequest, error) {
+func (c *Client) CentralizedEnroll(profile string, password string, subject []IndexedDNElement, sans []ListSANElement, labels []LabelElement, keyType string, owner *string, team *string, contactEmail *string) (*HorizonRequest, error) {
 	request, err := c.GetTemplate(profile)
 	if err != nil {
 		return nil, err
@@ -55,11 +55,13 @@ func (c *Client) CentralizedEnroll(profile string, password string, subject []In
 	request.Template.Sans = sans
 	request.Template.Labels = labels
 
-	if owner != nil {
+	if contactEmail != nil {
+		request.Template.ContactEmail = &HrzTemplateContactEmail{Value: *contactEmail}
+	}
+	if request.Template.Owner.Editable && owner != nil {
 		request.Template.Owner.Value = owner
 	}
-
-	if team != nil {
+	if request.Template.Team.Editable && team != nil {
 		request.Template.Team.Value = team
 	}
 
@@ -70,7 +72,7 @@ func (c *Client) CentralizedEnroll(profile string, password string, subject []In
 
 // DecentralizedEnroll is a wrapper method around the Requests API that generates a
 // decentralized enroll request given a profile, a CSR and a list of labels
-func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelElement, owner *string, team *string) (*HorizonRequest, error) {
+func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelElement, owner *string, team *string, contactEmail *string) (*HorizonRequest, error) {
 	rfcClient := rfc5280.Client{
 		Http: c.Http,
 	}
@@ -96,7 +98,7 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 		})
 	}
 	// Translate the parsed certificate SAN elements into the request elements
-	var sans []IndexedSANElement
+	var sans []ListSANElement
 	for _, sanElement := range parsedCsr.Sans {
 		isNew := true
 		for _, indexedSan := range sans {
@@ -106,7 +108,7 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 			}
 		}
 		if isNew {
-			sans = append(sans, IndexedSANElement{
+			sans = append(sans, ListSANElement{
 				Type:  strings.ToUpper(sanElement.SanType),
 				Value: []string{sanElement.Value},
 			})
@@ -117,6 +119,9 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 	request.Template.Sans = sans
 	request.Template.Labels = labels
 
+	if contactEmail != nil {
+		request.Template.ContactEmail = &HrzTemplateContactEmail{Value: *contactEmail}
+	}
 	if request.Template.Owner.Editable && owner != nil {
 		request.Template.Owner.Value = owner
 	}

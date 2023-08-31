@@ -33,7 +33,7 @@ type IndexedDNElement struct {
 	Editable  bool   `json:"editable,omitempty"`
 }
 
-type IndexedSANElement struct {
+type ListSANElement struct {
 	Type     string   `json:"type,omitempty"`
 	Value    []string `json:"value,omitempty"`
 	Editable bool     `json:"editable,omitempty"`
@@ -61,7 +61,7 @@ type CertificateTeam struct {
 
 type WebRARequestTemplate struct {
 	Subject      []IndexedDNElement                                 `json:"subject"`
-	Sans         []IndexedSANElement                                `json:"sans"`
+	Sans         []ListSANElement                                   `json:"sans"`
 	Labels       []LabelElement                                     `json:"labels"`
 	KeyTypes     []string                                           `json:"keyTypes"`
 	Capabilities certificateprofiles.CertificateProfileCryptoPolicy `json:"capabilities"`
@@ -109,9 +109,9 @@ type HrzTemplateContactEmail struct {
 }
 
 type CertificateTemplate struct {
-	Subject      []IndexedDNElement  `json:"subject,omitempty"`
-	Csr          string              `json:"csr,omitempty"`
-	Sans         []IndexedSANElement `json:"sans,omitempty"`
+	Subject      []IndexedDNElement `json:"subject,omitempty"`
+	Csr          string             `json:"csr,omitempty"`
+	Sans         []ListSANElement   `json:"sans,omitempty"`
 	Capabilities struct {
 		Centralized              bool     `json:"centralized,omitempty"`
 		Decentralized            bool     `json:"decentralized,omitempty"`

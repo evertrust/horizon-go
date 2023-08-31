@@ -15,8 +15,8 @@ type Client struct {
 	restyClient resty.Client
 }
 
-// Init initializes the instance parameters such as its location, and authentication data.
-func (c *Client) Init(restyClient *resty.Client) {
+// WithRestyClient initializes the instance parameters such as its location, and authentication data.
+func (c *Client) WithRestyClient(restyClient *resty.Client) {
 
 	if restyClient == nil {
 		restyClient = resty.New()
@@ -28,23 +28,26 @@ func (c *Client) Init(restyClient *resty.Client) {
 		SetCookieJar(nil)
 }
 
-func (c *Client) SetBaseUrl(baseUrl url.URL) {
+func (c *Client) WithBaseUrl(baseUrl url.URL) *Client {
 	c.restyClient.SetHostURL(baseUrl.String())
+	return c
 }
 
-func (c *Client) InitPasswordAuth(apiId string, apiKey string) {
+func (c *Client) WithPasswordAuth(apiId string, apiKey string) *Client {
 	c.restyClient.
 		SetHeader("X-API-ID", apiId).
 		SetHeader("X-API-KEY", apiKey)
+	return c
 }
 
-func (c *Client) InitCertAuth(cert string, key string) {
+func (c *Client) WithCertAuth(cert string, key string) *Client {
 	clientCert, err := tls.LoadX509KeyPair(cert, key)
 	if err != nil {
 		fmt.Printf("ERROR: %s", err)
 	}
 	c.restyClient.
 		SetCertificates(clientCert)
+	return c
 }
 
 func (c *Client) Unmarshal(r *resty.Response) (*HorizonResponse, error) {

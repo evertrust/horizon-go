@@ -27,7 +27,7 @@ type Horizon struct {
 // Init initializes the instance parameters such as its location, and authentication data.
 func (client *Horizon) Init(restyClient *resty.Client) {
 	client.Http = &http.Client{}
-	client.Http.Init(restyClient)
+	client.Http.WithRestyClient(restyClient)
 	client.Requests = &requests.Client{Http: client.Http}
 	client.License = &license.Client{Http: client.Http}
 	client.Rfc5280 = &rfc5280.Client{Http: client.Http}

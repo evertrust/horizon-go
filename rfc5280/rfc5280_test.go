@@ -15,8 +15,8 @@ var certsClient certificates.Client
 func init() {
 	var baseClient = http.Client{}
 	endpoint, _ := url.Parse(os.Getenv("ENDPOINT"))
-	baseClient.SetBaseUrl(*endpoint)
-	baseClient.InitPasswordAuth(
+	baseClient.WithBaseUrl(*endpoint)
+	baseClient.WithPasswordAuth(
 		os.Getenv("APIID"),
 		os.Getenv("APIKEY"),
 	)
