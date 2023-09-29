@@ -60,7 +60,7 @@ func (c *Client) Unmarshal(r *resty.Response) (*HorizonResponse, error) {
 			var horizonMultiError HorizonMultipleErrorsResponse
 			if err := json.Unmarshal(body, &horizonError); err != nil {
 				if err := json.Unmarshal(body, &horizonMultiError); err != nil {
-					log.Fatalf("(HTTP %d) error deserializing error JSON: %s", r.StatusCode(), string(body))
+					return nil, fmt.Errorf("cannot deserialize error JSON: %s", string(body))
 				}
 				return &HorizonResponse{
 					RestyResponse: r,
