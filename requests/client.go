@@ -44,42 +44,35 @@ func (c *Client) Get(id string) (*HorizonRequest, error) {
 
 // CentralizedEnroll is a wrapper method around the Requests API that generates a
 // centralized enroll request given a profile, DN and SAN elements and a list of labels
-func (c *Client) CentralizedEnroll(profile string, password string, subject []IndexedDNElement, sans []IndexedSANElement, labels []LabelElement, keyType string, owner *string, team *string) (*HorizonRequest, error) {
-	template := CertificateTemplate{
-		Subject:  subject,
-		Sans:     sans,
-		Labels:   labels,
-		KeyTypes: []string{keyType},
+func (c *Client) CentralizedEnroll(profile string, password string, subject []IndexedDNElement, sans []ListSANElement, labels []LabelElement, keyType string, owner *string, team *string, contactEmail *string) (*HorizonRequest, error) {
+	request, err := c.GetTemplate(profile)
+	if err != nil {
+		return nil, err
 	}
 
-	if owner != nil {
-		template.Owner = &CertificateOwner{
-			Value:    *owner,
-			Editable: false,
-		}
+	request.Template.KeyTypes = []string{keyType}
+	request.Template.Subject = subject
+	request.Template.Sans = sans
+	request.Template.Labels = labels
+
+	if contactEmail != nil {
+		request.Template.ContactEmail = &HrzTemplateContactEmail{Value: *contactEmail}
+	}
+	if request.Template.Owner.Editable && owner != nil {
+		request.Template.Owner.Value = owner
+	}
+	if request.Template.Team.Editable && team != nil {
+		request.Template.Team.Value = team
 	}
 
-	if team != nil {
-		template.Team = &CertificateTeam{
-			Value:    *team,
-			Editable: false,
-		}
-	}
+	request.Password.Value = password
 
-	return c.Submit(HorizonRequest{
-		Workflow: RequestWorkflowEnroll,
-		Profile:  profile,
-		Module:   "webra",
-		Template: template,
-		Password: P12Password{
-			Value: password,
-		},
-	})
+	return c.Submit(*request)
 }
 
 // DecentralizedEnroll is a wrapper method around the Requests API that generates a
 // decentralized enroll request given a profile, a CSR and a list of labels
-func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelElement, owner *string, team *string) (*HorizonRequest, error) {
+func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelElement, owner *string, team *string, contactEmail *string) (*HorizonRequest, error) {
 	rfcClient := rfc5280.Client{
 		Http: c.Http,
 	}
@@ -87,10 +80,15 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 	if err != nil {
 		return nil, err
 	}
-	var typeCounts = make(map[string]int)
+
+	request, err := c.GetTemplate(profile)
+	if err != nil {
+		return nil, err
+	}
 
 	// Translate the parsed certificate DN elements into the request elements
 	var subject []IndexedDNElement
+	var typeCounts = make(map[string]int)
 	for _, dnElement := range parsedCsr.DnElements {
 		typeCounts[dnElement.Type]++
 		subject = append(subject, IndexedDNElement{
@@ -100,39 +98,51 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 		})
 	}
 	// Translate the parsed certificate SAN elements into the request elements
-	var sans []IndexedSANElement
+	var sans []ListSANElement
 	for _, sanElement := range parsedCsr.Sans {
-		typeCounts[sanElement.SanType]++
-		sans = append(sans, IndexedSANElement{
-			Element: fmt.Sprintf("%s.%d", strings.ToLower(sanElement.SanType), typeCounts[sanElement.SanType]),
-			Type:    sanElement.SanType,
-			Value:   fmt.Sprintf("%v", sanElement.Value),
-		})
-	}
-	template := CertificateTemplate{
-		Csr:     parsedCsr.Pem,
-		Subject: subject,
-		Sans:    sans,
-		Labels:  labels,
-	}
-	if owner != nil {
-		template.Owner = &CertificateOwner{
-			Value:    *owner,
-			Editable: false,
+		isNew := true
+		for _, indexedSan := range sans {
+			if strings.ToUpper(indexedSan.Type) == strings.ToUpper(sanElement.SanType) {
+				indexedSan.Value = append(indexedSan.Value, sanElement.Value)
+				isNew = false
+			}
+		}
+		if isNew {
+			sans = append(sans, ListSANElement{
+				Type:  strings.ToUpper(sanElement.SanType),
+				Value: []string{sanElement.Value},
+			})
 		}
 	}
-	if team != nil {
-		template.Team = &CertificateTeam{
-			Value:    *team,
-			Editable: false,
-		}
+	request.Template.Csr = parsedCsr.Pem
+	request.Template.Subject = subject
+	request.Template.Sans = sans
+	request.Template.Labels = labels
+
+	if contactEmail != nil {
+		request.Template.ContactEmail = &HrzTemplateContactEmail{Value: *contactEmail}
 	}
-	return c.Submit(HorizonRequest{
-		Workflow: RequestWorkflowEnroll,
-		Profile:  profile,
-		Module:   "webra",
-		Template: template,
-	})
+	if request.Template.Owner.Editable && owner != nil {
+		request.Template.Owner.Value = owner
+	}
+	if request.Template.Team.Editable && team != nil {
+		request.Template.Team.Value = team
+	}
+
+	return c.Submit(*request)
+}
+
+// DecentralizedRenew is a wrapper method around the Requests API that generates a
+// renewal request given a profile and a certificate PEM
+func (c *Client) DecentralizedRenew(csr []byte, lastCertificateId string) (*HorizonRequest, error) {
+	request := HorizonRequest{
+		Workflow:      RequestWorkflowRenew,
+		Module:        "webra",
+		CertificateId: lastCertificateId,
+		Template:      CertificateTemplate{Csr: string(csr)},
+	}
+
+	return c.Submit(request)
 }
 
 // Revoke is a wrapper around the Requests API that generates a revocation request
