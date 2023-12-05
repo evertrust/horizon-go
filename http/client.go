@@ -40,13 +40,8 @@ func (c *Client) WithPasswordAuth(apiId string, apiKey string) *Client {
 	return c
 }
 
-func (c *Client) WithCertAuth(cert string, key string) *Client {
-	clientCert, err := tls.LoadX509KeyPair(cert, key)
-	if err != nil {
-		fmt.Printf("ERROR: %s", err)
-	}
-	c.restyClient.
-		SetCertificates(clientCert)
+func (c *Client) WithCertAuth(cert tls.Certificate) *Client {
+	c.restyClient.SetCertificates(cert)
 	return c
 }
 
