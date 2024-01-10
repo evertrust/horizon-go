@@ -125,7 +125,7 @@ type CertificateTemplate struct {
 		ShowP12OnRecover         bool     `json:"showP12OnRecover,omitempty"`
 	} `json:"capabilities,omitempty"`
 	Extensions []HrzTemplateExtension `json:"extensions,omitempty"`
-	KeyTypes   []string               `json:"keyTypes,omitempty"`
+	KeyType    string                 `json:"keyType,omitempty"`
 	Owner      *CertificateOwner      `json:"owner,omitempty"`
 	Team       *CertificateTeam       `json:"team,omitempty"`
 	Labels     []LabelElement         `json:"labels,omitempty"`

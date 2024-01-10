@@ -45,12 +45,12 @@ func (c *Client) Get(id string) (*HorizonRequest, error) {
 // CentralizedEnroll is a wrapper method around the Requests API that generates a
 // centralized enroll request given a profile, DN and SAN elements and a list of labels
 func (c *Client) CentralizedEnroll(profile string, password string, subject []IndexedDNElement, sans []ListSANElement, labels []LabelElement, keyType string, owner *string, team *string, contactEmail *string) (*HorizonRequest, error) {
-	request, err := c.GetTemplate(profile)
+	request, err := c.GetTemplate(profile, RequestWorkflowEnroll)
 	if err != nil {
 		return nil, err
 	}
 
-	request.Template.KeyTypes = []string{keyType}
+	request.Template.KeyType = keyType
 	request.Template.Subject = subject
 	request.Template.Sans = sans
 	request.Template.Labels = labels
@@ -81,7 +81,7 @@ func (c *Client) DecentralizedEnroll(profile string, csr []byte, labels []LabelE
 		return nil, err
 	}
 
-	request, err := c.GetTemplate(profile)
+	request, err := c.GetTemplate(profile, RequestWorkflowEnroll)
 	if err != nil {
 		return nil, err
 	}
@@ -157,12 +157,12 @@ func (c *Client) Revoke(certificatePem string, revocationReason certificates.Rev
 }
 
 // GetTemplate returns the template information for a given WebRA profile
-func (c *Client) GetTemplate(profile string) (*HorizonRequest, error) {
+func (c *Client) GetTemplate(profile string, workflow RequestWorkflow) (*HorizonRequest, error) {
 	var request HorizonRequest
 	body := map[string]string{
 		"module":   "webra",
 		"profile":  profile,
-		"workflow": "enroll",
+		"workflow": string(workflow),
 	}
 	marshalledBody, err := json.Marshal(body)
 	if err != nil {
