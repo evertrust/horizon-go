@@ -49,7 +49,7 @@ func (c *Client) Unmarshal(r *resty.Response) (*HorizonResponse, error) {
 	body := r.Body()
 
 	if r.StatusCode() > 300 {
-		if r.Header().Get("Content-Type") == "application/json" {
+		if r.Header().Get("Content-Type") == "application/json" || r.Header().Get("Content-Type") == "application/problem+json" {
 			// Deserialize the response to an error
 			var horizonError HorizonErrorResponse
 			var horizonMultiError HorizonMultipleErrorsResponse
