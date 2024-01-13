@@ -8,13 +8,15 @@ import (
 	"github.com/evertrust/horizon-go/http"
 	"github.com/evertrust/horizon-go/license"
 	"github.com/evertrust/horizon-go/locals"
+	mylog "github.com/evertrust/horizon-go/log"
 	"github.com/evertrust/horizon-go/requests"
 	"github.com/evertrust/horizon-go/rfc5280"
-	"gopkg.in/resty.v1"
+	"io"
+	"log"
+	gohttp "net/http"
 )
 
 type Horizon struct {
-	Http        *http.Client
 	Requests    *requests.Client
 	License     *license.Client
 	Rfc5280     *rfc5280.Client
@@ -22,17 +24,35 @@ type Horizon struct {
 	Discovery   *discovery.Client
 	Automation  *automation.Client
 	Locals      *locals.Client
+	Http        *http.Client
 }
 
-// Init initializes the instance parameters such as its location, and authentication data.
-func (client *Horizon) Init(restyClient *resty.Client) {
-	client.Http = &http.Client{}
-	client.Http.WithRestyClient(restyClient)
-	client.Requests = &requests.Client{Http: client.Http}
+// New instantiates a new Horizon client
+func New(restyClient *gohttp.Client) *Horizon {
+	var client Horizon
+	if restyClient == nil {
+		restyClient = &gohttp.Client{}
+	}
+	var httpClient http.Client
+	httpClient.SetHttpClient(restyClient)
+	return client.init(&httpClient)
+}
+
+func (client *Horizon) SetDebugWriter(writer io.Writer) *Horizon {
+	log.SetOutput(writer)
+	mylog.LogEnabled = true
+	return client
+}
+
+// init initializes the instance parameters such as its location, and authentication data.
+func (client *Horizon) init(httpClient *http.Client) *Horizon {
+	client.Http = httpClient
+	client.Requests = requests.Init(httpClient)
 	client.License = &license.Client{Http: client.Http}
 	client.Rfc5280 = &rfc5280.Client{Http: client.Http}
 	client.Certificate = &certificates.Client{Http: client.Http}
 	client.Discovery = &discovery.Client{Http: client.Http}
 	client.Automation = &automation.Client{Http: client.Http}
 	client.Locals = &locals.Client{Http: client.Http}
+	return client
 }

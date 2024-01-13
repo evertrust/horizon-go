@@ -8,7 +8,11 @@ import (
 )
 
 type Client struct {
-	Http *http.Client
+	http *http.Client
+}
+
+func Init(http *http.Client) *Client {
+	return &Client{http: http}
 }
 
 var InvalidTypeError = errors.New("invalid response type")
@@ -390,7 +394,7 @@ func (c *Client) NewRecoverRequest(request WebRARecoverRequestParams) (*WebRARec
 
 func (c *Client) NewRequest(request Request) (Request, error) {
 	jsonData, _ := json.Marshal(request)
-	response, err := c.Http.Post("/api/v1/requests/submit", jsonData)
+	response, err := c.http.Post("/api/v1/requests/submit", jsonData)
 	if err != nil {
 		return nil, err
 	}
@@ -403,7 +407,7 @@ func (c *Client) NewRequest(request Request) (Request, error) {
 
 func (c *Client) GetTemplate(request Request) (Request, error) {
 	jsonData, _ := json.Marshal(request)
-	response, err := c.Http.Post("/api/v1/requests/template", jsonData)
+	response, err := c.http.Post("/api/v1/requests/template", jsonData)
 	if err != nil {
 		return nil, err
 	}
@@ -415,7 +419,7 @@ func (c *Client) GetTemplate(request Request) (Request, error) {
 }
 
 func (c *Client) GetRequest(id string, result Request) error {
-	response, err := c.Http.Get("/api/v1/requests/" + id)
+	response, err := c.http.Get("/api/v1/requests/" + id)
 	if err != nil {
 		return err
 	}

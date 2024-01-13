@@ -1,8 +1,9 @@
 package requests
 
 import (
+	"github.com/evertrust/horizon-go/certificates"
+	"github.com/evertrust/horizon-go/log"
 	"net/url"
-	"os"
 	"testing"
 
 	"github.com/evertrust/horizon-go/http"
@@ -11,43 +12,65 @@ import (
 var client Client
 
 func init() {
+	endpoint, _ := url.Parse("https://horizon-qa.int.evertrust.fr")
 	var baseClient = http.Client{}
-	endpoint, _ := url.Parse(os.Getenv("ENDPOINT"))
-	baseClient.WithBaseUrl(*endpoint)
-	baseClient.WithPasswordAuth(
-		os.Getenv("APIID"),
-		os.Getenv("APIKEY"),
-	)
-	client = Client{Http: &baseClient}
+	log.LogEnabled = true
+	baseClient.SetHttpClient(nil).
+		SkipTLSVerify().
+		SetBaseUrl(*endpoint).
+		SetPasswordAuth(
+			"sma",
+			"test",
+		)
+	client = Client{http: &baseClient}
 }
 
 // Enroll a certificate
 func TestCentralizedEnroll(t *testing.T) {
-	request, err := client.CentralizedEnroll(
-		os.Getenv("PROFILE"),
-		"challengepassword",
-		[]IndexedDNElement{
-			{
-				Element: "cn.1",
-				Type:    "CN",
-				Value:   "example.org",
+	request, err := client.NewEnrollRequest(WebRAEnrollRequestParams{
+		Profile: "webra-centralized",
+		Template: &WebRAEnrollTemplate{
+			KeyType: "rsa-2048",
+			Subject: []IndexedDNElement{
+				{
+					Element: "cn.1",
+					Type:    "CN",
+					Value:   "example.org",
+				},
 			},
 		},
-		[]ListSANElement{},
-		[]LabelElement{},
-		"rsa-2048",
-		nil,
-		nil,
-	)
+		Password: "challengepassword",
+	})
 	if err != nil {
-		t.Error(err.Error())
+		t.Fatal(err.Error())
 	}
+	t.Log(request.Password.Value)
+}
+
+func TestTemplateAndCentralizedEnroll(t *testing.T) {
+	template, err := client.GetEnrollTemplate(WebRAEnrollTemplateParams{
+		CertificateId: "65a1764f33000021008e143e",
+		Profile:       "webra-centralized",
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	template.KeyType = "rsa-2048"
+	request, err := client.NewEnrollRequest(WebRAEnrollRequestParams{
+		Profile:  "webra-centralized",
+		Template: template,
+		Password: "challengepassword",
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
 	t.Log(request.Password.Value)
 }
 
 // Sign a CSR
 func TestDecentralizedEnroll(t *testing.T) {
-	var csrPem = []byte(`-----BEGIN CERTIFICATE REQUEST-----
+	var csrPem = `-----BEGIN CERTIFICATE REQUEST-----
 MIICvjCCAaYCAQAweTELMAkGA1UEBhMCRlIxDjAMBgNVBAgMBVBhcmlzMQ4wDAYD
 VQQHDAVQYXJpczESMBAGA1UECgwJRXZlclRydXN0MRUwEwYDVQQDDAxldmVydHJ1
 c3QuZnIxHzAdBgkqhkiG9w0BCQEWEGFndUBldmVydHJ1c3QuZnIwggEiMA0GCSqG
@@ -63,76 +86,195 @@ p15duhuN9EJ1DaEfEvPiGrc38waOejJdrGXopFtTeojyi1KVwcU8EVYdaqbtuMvz
 9k8zSJ1lnLB5CyPXW/TYl1pgqFd5XyQK/AgYifYDBbqdJ97xea1nN9cnyJ4NQ62F
 vTvxBgHwMuplYhU1m0/KIJbhe4RTrA74wOPGS6OOZzLghcKZfQYhF6SPTeXPmGrm
 VUqN/gOTLaBgj9fvEiJJFJUga4d6K+LHFW9rMhgva4GA+Q==
------END CERTIFICATE REQUEST-----`)
+-----END CERTIFICATE REQUEST-----`
 
-	_, err := client.DecentralizedEnroll(
-		os.Getenv("PROFILE"),
-		csrPem,
-		[]LabelElement{},
-		nil,
-		nil,
-	)
-
+	template, err := client.GetEnrollTemplate(WebRAEnrollTemplateParams{
+		Csr:     csrPem,
+		Profile: "webra-decentralized",
+	})
 	if err != nil {
-		t.Error(err.Error())
+		t.Fatal(err.Error())
 	}
+	template.KeyType = "rsa-3072"
+	request, err := client.NewEnrollRequest(WebRAEnrollRequestParams{
+		Profile:  "webra-decentralized",
+		Template: template,
+		Password: "challengepassword",
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	t.Log(request.Password.Value)
 }
 
-func TestGetRequest(t *testing.T) {
-	initialRequest, err := client.CentralizedEnroll(
-		os.Getenv("PROFILE"),
-		"challenge_password",
-		[]IndexedDNElement{
-			{
-				Element: "cn.1",
-				Type:    "CN",
-				Value:   "example.org",
-			},
-		},
-		[]ListSANElement{},
-		[]LabelElement{},
-		"rsa-2048",
-		nil,
-		nil,
-	)
+func TestGetEnrollRequest(t *testing.T) {
+	request, err := client.GetEnrollRequest("65a27f9b3300003f008e1582")
 	if err != nil {
-		t.Skip(err.Error())
+		t.Fatal(err.Error())
 	}
-
-	_, err = client.Get(initialRequest.Id)
-
-	if err != nil {
-		t.Error(err.Error())
-	}
+	t.Log(request)
 }
 
 func TestRevokeRequest(t *testing.T) {
-	initialRequest, err := client.CentralizedEnroll(
-		os.Getenv("PROFILE"),
-		"challenge_password",
-		[]IndexedDNElement{
-			{
-				Element: "cn.1",
-				Type:    "CN",
-				Value:   "example.org",
-			},
-		},
-		[]ListSANElement{},
-		[]LabelElement{},
-		"rsa-2048",
-		nil,
-		nil,
-	)
-
-	_, err = client.Revoke(initialRequest.Certificate.Certificate, "UNSPECIFIED")
+	var csrPem = `-----BEGIN CERTIFICATE-----
+MIIEWTCCAkGgAwIBAgIQVskkZfpj966LygN5QqpKfDANBgkqhkiG9w0BAQsFADBD
+MQswCQYDVQQGEwJGUjESMBAGA1UEChMJRXZlclRydXN0MSAwHgYDVQQDExdFdmVy
+VHJ1c3QgUUEgSXNzdWluZyBDQTAeFw0yNDAxMTMxMjEzMzVaFw0yODAxMTMxMjEz
+MzVaMBcxFTATBgNVBAMMDGV2ZXJ0cnVzdC5mcjCCASIwDQYJKoZIhvcNAQEBBQAD
+ggEPADCCAQoCggEBAOedT216+7lFZBMLWXT8Ue6vBL9AHMOcirHVVsPAy36wU9oj
+V7Tae8o/qITMNTfhRvbH9I2H+NayWam97fI0MKMmRH1M1L1hSqJgB0BHGHjnaeOp
+I7UJv1xlgFfFJsSxwRZtUIVDONebjW8KGcuqM2A0p/9f6Q5Otc6Oeh1J6F8Bbhix
+nU9iARYZfRPUEF9xxAXfAnoe6cuTz8R+3MMi9CB7yCLU3Uq2kuaDtIx15WfD4bxB
+F2XxbcnYqdLFcZfYinih4gqnRD8i2RUn90+S1AO2C4t5Y/+UBdc5jQjwGKtkVVgG
+ymQ3qjPYNUbqxKmVc4paYEvRnk2b6Doibn4CPRkCAwEAAaN1MHMwDAYDVR0TAQH/
+BAIwADAdBgNVHQ4EFgQUvfD0qxtnSpDKI1vORu7hHbOQCw4wHwYDVR0jBBgwFoAU
+FBDcsDMJ96AamspqCNYWV3IlwKkwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoG
+CCsGAQUFBwMCMA0GCSqGSIb3DQEBCwUAA4ICAQAYvEvHaMN/Q3Cd06cgmjtTnKXF
+lIi+ptNSJw1CboPSBmljMaiyOC/36gcbo4vsD/dj761P5BZ1cmshxbX1MprmN37E
+WGFARej6JezAaxg3ULBRmXQ1SP2ov8Ai7Qm4nP/K0hqAUWMGPKKKmBHfCYYle4Gv
+m+qPla4qgcSpnhltTPtG4VNdn9V4F9KeTdCgMwWlSVPYMO8G7u21LDfV4nMB/Llc
+n0MptbFKxCYnfdWsXPa3Xbr/aT6l6JQi3Tpd2GNYT7I2iTWBE6IOFezyyrEPk0x4
+vrjrk5c2UqfspwSmvu2sc9516vz072fKK0cq5Xh8f2sIWlKvK+fM5SQCuSI9KS1m
+2psTGYEZ6w/b83unxTXYpPMhnDeBT8sH7JhkX4QOP2RfdWAS75Lvp53D9TKW0Zod
+zwqqM9UGlobKqzCPZjF650SABns9i7YAImf5GcPRWoljxmJsmnqmZDC3FVBkkj7x
+FjbIHoNzfLzS9fWl7q8ISvl9ogqKwUiV+fZDLuN93TegEqoBAVTJIiycFnaDyH54
+ppA6kWKWGyvQUm3f3JO9PURCzJITdZtAm7WNaeVvLjKsLQai3AsENwiRh1tlNbEZ
+XrSDPEPo/Sr442rFNJPTJb6pzcipPl5uZKzIxC097vay+jJ9XT308oEf6rqzkDDW
+jxB4kE0fnjsnyV/Lzg==
+-----END CERTIFICATE-----`
+	request, err := client.NewRevokeRequest(WebRARevokeRequestParams{
+		CertificatePEM:   csrPem,
+		RevocationReason: certificates.Unspecified,
+	})
 	if err != nil {
-		t.Error(err.Error())
+		t.Fatal(err.Error())
 	}
+	t.Log(request)
 }
 
-func TestGetTemplate(t *testing.T) {
-	_, err := client.GetTemplate(os.Getenv("PROFILE"))
+func TestUpdateRequest(t *testing.T) {
+	template, err := client.GetUpdateTemplate(WebRAUpdateTemplateParams{
+		CertificateId: "65a27f593300001a008e1548",
+	})
 	if err != nil {
-		t.Error(err.Error())
+		t.Fatal(err.Error())
 	}
+
+	if template.Team.Editable {
+		template.Team.Value = "frontend"
+	}
+	if template.ContactEmail.Editable {
+		template.ContactEmail.Value = "abcd@free.fr"
+	}
+
+	request, err := client.NewUpdateRequest(WebRAUpdateRequestParams{
+		CertificateId: "65a27f593300001a008e1548",
+		Template:      template,
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	t.Log(request)
+}
+
+func TestMigrateRequest(t *testing.T) {
+	targetProfile := "webra-centralized"
+	template, err := client.GetMigrateTemplate(WebRAMigrateTemplateParams{
+		CertificateId: "65a27f593300001a008e1548",
+		Profile:       targetProfile,
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	t.Log(template.Team)
+	if template.Team.Editable {
+		template.Team.Value = "backend"
+	}
+	if template.ContactEmail.Editable {
+		template.ContactEmail.Value = "toto@free.fr"
+	}
+
+	request, err := client.NewMigrateRequest(WebRAMigrateRequestParams{
+		CertificateId: "65a27f593300001a008e1548",
+		Template:      template,
+		Profile:       targetProfile,
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	t.Log(request)
+}
+
+func TestTemplateAndScepChallenge(t *testing.T) {
+	profile := "SCEP_Client"
+	template, err := client.GetScepChallengeTemplate(ScepChallengeTemplateParams{
+		Profile: profile,
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	t.Log(template)
+
+	template.Subject[0].Value = "moncn"
+	template.Sans[0].Value = []string{"monsan.com"}
+
+	requestParams := ScepChallengeRequestParams{
+		Profile:  profile,
+		Template: template,
+	}
+	if template.IsDnWhitelist() {
+		t.Log("DN Whitelist enabled")
+		requestParams.Dn = "CN=abcd,O=efgh"
+	}
+	request, err := client.NewScepChallengeRequest(requestParams)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	t.Log(request.Challenge.Value)
+}
+
+func TestTemplateAndEstChallenge(t *testing.T) {
+	profile := "est-challenge"
+	template, err := client.GetEstChallengeTemplate(EstChallengeTemplateParams{
+		Profile: profile,
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	t.Log(template)
+
+	template.Subject[0].Value = "moncn"
+	//template.Sans[0].Value = []string{"monsan.com"}
+
+	requestParams := EstChallengeRequestParams{
+		Profile:  profile,
+		Template: template,
+	}
+	if template.IsDnWhitelist() {
+		t.Log("DN Whitelist enabled")
+		requestParams.Dn = "CN=abcd,O=efgh"
+	}
+	request, err := client.NewEstChallengeRequest(requestParams)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	t.Log(request.Challenge.Value)
+}
+
+func TestRecover(t *testing.T) {
+	requestParams := WebRARecoverRequestParams{
+		CertificateId: "65a17a8f33000020008e14c5",
+		Contact:       "toto@toto.com",
+		Password:      "monp12",
+	}
+	request, err := client.NewRecoverRequest(requestParams)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+
+	t.Log(request.Password.Value)
+	t.Log(request.Pkcs12.Value)
 }
