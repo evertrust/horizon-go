@@ -1,4 +1,4 @@
-// Package webra provides utilities to use Horizon api protocol WebRA.
+// Package requests provides utilities to interact with the Horizon api.requests APIs.
 package requests
 
 import (
