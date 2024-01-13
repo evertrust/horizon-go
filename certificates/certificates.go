@@ -4,12 +4,12 @@ package certificates
 type RevocationReason string
 
 const (
-	RevocationReasonUnspecified          RevocationReason = "UNSPECIFIED"
-	RevocationReasonKeyCompromise        RevocationReason = "KEYCOMPROMISE"
-	RevocationReasonCACompromise         RevocationReason = "CACOMPROMISE"
-	RevocationReasonAffiliationChange    RevocationReason = "AFFILIATIONCHANGE"
-	RevocationReasonSuperseded           RevocationReason = "SUPERSEDED"
-	RevocationReasonCessationOfOperation RevocationReason = "CESSATIONOFOPERATION"
+	Unspecified          RevocationReason = "UNSPECIFIED"
+	KeyCompromise        RevocationReason = "KEYCOMPROMISE"
+	CACompromise         RevocationReason = "CACOMPROMISE"
+	AffiliationChange    RevocationReason = "AFFILIATIONCHANGE"
+	Superseded           RevocationReason = "SUPERSEDED"
+	CessationOfOperation RevocationReason = "CESSATIONOFOPERATION"
 )
 
 type Certificate struct {
