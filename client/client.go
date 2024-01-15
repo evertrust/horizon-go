@@ -20,7 +20,7 @@ import (
 	"time"
 )
 
-type Horizon struct {
+type Client struct {
 	Requests    *requests.Client
 	License     *license.Client
 	Rfc5280     *rfc5280.Client
@@ -31,9 +31,9 @@ type Horizon struct {
 	Http        *http.Client
 }
 
-// New instantiates a new Horizon client
-func New(httpClient *http.Client) *Horizon {
-	var client Horizon
+// New instantiates a new Client client
+func New(httpClient *http.Client) *Client {
+	var client Client
 	if httpClient == nil {
 		httpClient = &http.Client{}
 		httpClient.SetHttpClient(nil)
@@ -41,14 +41,14 @@ func New(httpClient *http.Client) *Horizon {
 	return client.init(httpClient)
 }
 
-func (client *Horizon) SetDebugWriter(writer io.Writer) *Horizon {
+func (client *Client) SetDebugWriter(writer io.Writer) *Client {
 	log.SetOutput(writer)
 	mylog.LogEnabled = true
 	return client
 }
 
 // SetHttpClient initializes the instance parameters such as its location, and authentication data.
-func (c *Horizon) SetHttpClient(httpClient *gohttp.Client) *Horizon {
+func (c *Client) SetHttpClient(httpClient *gohttp.Client) *Client {
 	c.Http.SetHttpClient(httpClient)
 	return c
 }
@@ -56,72 +56,72 @@ func (c *Horizon) SetHttpClient(httpClient *gohttp.Client) *Horizon {
 // SetBaseUrl sets the base url for the client
 // This is the endpoint without any additional path
 // For example: https://horizon-test.com
-func (c *Horizon) SetBaseUrl(baseUrl url.URL) *Horizon {
+func (c *Client) SetBaseUrl(baseUrl url.URL) *Client {
 	c.Http.SetBaseUrl(baseUrl)
 	return c
 }
 
-func (c *Horizon) ClearAuth() {
+func (c *Client) ClearAuth() {
 	c.Http.ClearAuth()
 }
 
-func (c *Horizon) SetPasswordAuth(apiId string, apiKey string) *Horizon {
+func (c *Client) SetPasswordAuth(apiId string, apiKey string) *Client {
 	c.Http.SetPasswordAuth(apiId, apiKey)
 	return c
 }
 
 // SetCertAuth sets the client certificate than can be used for authentication.
-func (c *Horizon) SetCertAuth(cert tls.Certificate) *Horizon {
+func (c *Client) SetCertAuth(cert tls.Certificate) *Client {
 	c.Http.SetCertAuth(cert)
 	return c
 }
 
-func (c *Horizon) SetJwtAuth(cert x509.Certificate, key crypto.Signer) *Horizon {
+func (c *Client) SetJwtAuth(cert x509.Certificate, key crypto.Signer) *Client {
 	c.Http.SetJwtAuth(cert, key)
 	return c
 }
 
 // SetCaBundle sets the CA bundle
-func (c *Horizon) SetCaBundle(caBundle *x509.CertPool) *Horizon {
+func (c *Client) SetCaBundle(caBundle *x509.CertPool) *Client {
 	c.Http.SetCaBundle(caBundle)
 	return c
 }
 
-func (c *Horizon) GetCaBundle() *x509.CertPool {
+func (c *Client) GetCaBundle() *x509.CertPool {
 	return c.GetTlsConfig().RootCAs
 }
 
 // SkipTLSVerify skips the TLS verification.
-func (c *Horizon) SkipTLSVerify() *Horizon {
+func (c *Client) SkipTLSVerify() *Client {
 	c.Http.SkipTLSVerify()
 	return c
 }
 
 // SetTimeout sets the timeout for http requests
-func (c *Horizon) SetTimeout(timeout time.Duration) *Horizon {
+func (c *Client) SetTimeout(timeout time.Duration) *Client {
 	c.Http.SetTimeout(timeout)
 	return c
 }
 
-func (c *Horizon) SetProxy(proxyUrl url.URL) *Horizon {
+func (c *Client) SetProxy(proxyUrl url.URL) *Client {
 	c.Http.SetProxy(proxyUrl)
 	return c
 }
 
-func (c *Horizon) GetTransport() *gohttp.Transport {
+func (c *Client) GetTransport() *gohttp.Transport {
 	return c.Http.GetTransport()
 }
 
-func (c *Horizon) GetTlsConfig() *tls.Config {
+func (c *Client) GetTlsConfig() *tls.Config {
 	return c.Http.GetTlsConfig()
 }
 
-func (c *Horizon) BaseUrl() (url.URL, error) {
+func (c *Client) BaseUrl() (url.URL, error) {
 	return c.Http.BaseUrl()
 }
 
 // init initializes the instance parameters such as its location, and authentication data.
-func (client *Horizon) init(httpClient *http.Client) *Horizon {
+func (client *Client) init(httpClient *http.Client) *Client {
 	client.Http = httpClient
 	client.Requests = requests.Init(httpClient)
 	client.License = &license.Client{Http: client.Http}
