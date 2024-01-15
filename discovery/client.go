@@ -11,6 +11,8 @@ type Client struct {
 }
 
 // Feed feeds a certificate to the discovery campaign
+// It is associated to a discovery session that is either the result of
+// Start or a struct containing the campaign name
 func (c *Client) Feed(certificate horizon.DiscoveredCertificateParams, session *horizon.DiscoverySession) error {
 	cert := &horizon.DiscoveredCertificate{
 		DiscoveryCampaign: session.Campaign,

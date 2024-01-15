@@ -10,7 +10,7 @@ import (
 	"crypto/x509/pkix"
 	"encoding/pem"
 	"errors"
-	"github.com/evertrust/horizon-go/certificates"
+	"github.com/evertrust/horizon-go"
 	"github.com/evertrust/horizon-go/log"
 	"net/url"
 	"strconv"
@@ -38,11 +38,11 @@ func init() {
 
 // Enroll a certificate
 func TestCentralizedEnroll(t *testing.T) {
-	request, err := client.NewEnrollRequest(WebRAEnrollRequestParams{
+	request, err := client.NewEnrollRequest(horizon.WebRAEnrollRequestParams{
 		Profile: "webra-centralized",
-		Template: &WebRAEnrollTemplate{
+		Template: &horizon.WebRAEnrollTemplate{
 			KeyType: "rsa-2048",
-			Subject: []IndexedDNElement{
+			Subject: []horizon.IndexedDNElement{
 				{
 					Element: "cn.1",
 					Type:    "CN",
@@ -59,7 +59,7 @@ func TestCentralizedEnroll(t *testing.T) {
 }
 
 func TestSearch(t *testing.T) {
-	results, err := client.Search(SearchQuery{
+	results, err := client.Search(horizon.RequestSearchQuery{
 		Fields:    []string{"profile"},
 		WithCount: true,
 		Scope:     "self",
@@ -138,7 +138,7 @@ func TestPopUpdate(t *testing.T) {
 	if err != nil {
 		t.Fatal(err.Error())
 	}
-	template, err := client.GetEnrollTemplate(WebRAEnrollTemplateParams{
+	template, err := client.GetEnrollTemplate(horizon.WebRAEnrollTemplateParams{
 		Csr:     csr,
 		Profile: "webra-decentralized",
 	})
@@ -146,8 +146,8 @@ func TestPopUpdate(t *testing.T) {
 		t.Fatal(err.Error())
 	}
 	template.KeyType = "rsa-3072"
-	template.Team.Value = &HorizonString{"frontend"}
-	request, err := client.NewEnrollRequest(WebRAEnrollRequestParams{
+	template.Team.Value = &horizon.String{"frontend"}
+	request, err := client.NewEnrollRequest(horizon.WebRAEnrollRequestParams{
 		Profile:  "webra-decentralized",
 		Template: template,
 		Password: "challengepassword",
@@ -163,12 +163,12 @@ func TestPopUpdate(t *testing.T) {
 	cert, err := x509.ParseCertificate(block.Bytes)
 	// Set it as JWT pop
 	client.http.SetJwtAuth(*cert, key.(crypto.Signer))
-	templateUpdate, err := client.GetUpdateTemplate(WebRAUpdateTemplateParams{})
+	templateUpdate, err := client.GetUpdateTemplate(horizon.WebRAUpdateTemplateParams{})
 	if err != nil {
 		t.Fatal(err.Error())
 	}
-	templateUpdate.Team.Value = Delete
-	response, err := client.NewUpdateRequest(WebRAUpdateRequestParams{
+	templateUpdate.Team.Value = horizon.Delete
+	response, err := client.NewUpdateRequest(horizon.WebRAUpdateRequestParams{
 		Template: templateUpdate,
 	})
 	if err != nil {
@@ -179,7 +179,7 @@ func TestPopUpdate(t *testing.T) {
 }
 
 func TestTemplateAndCentralizedEnroll(t *testing.T) {
-	template, err := client.GetEnrollTemplate(WebRAEnrollTemplateParams{
+	template, err := client.GetEnrollTemplate(horizon.WebRAEnrollTemplateParams{
 		CertificateId: "65a1764f33000021008e143e",
 		Profile:       "webra-centralized",
 	})
@@ -187,7 +187,7 @@ func TestTemplateAndCentralizedEnroll(t *testing.T) {
 		t.Fatal(err.Error())
 	}
 	template.KeyType = "rsa-2048"
-	request, err := client.NewEnrollRequest(WebRAEnrollRequestParams{
+	request, err := client.NewEnrollRequest(horizon.WebRAEnrollRequestParams{
 		Profile:  "webra-centralized",
 		Template: template,
 		Password: "challengepassword",
@@ -219,7 +219,7 @@ vTvxBgHwMuplYhU1m0/KIJbhe4RTrA74wOPGS6OOZzLghcKZfQYhF6SPTeXPmGrm
 VUqN/gOTLaBgj9fvEiJJFJUga4d6K+LHFW9rMhgva4GA+Q==
 -----END CERTIFICATE REQUEST-----`
 
-	template, err := client.GetEnrollTemplate(WebRAEnrollTemplateParams{
+	template, err := client.GetEnrollTemplate(horizon.WebRAEnrollTemplateParams{
 		Csr:     csrPem,
 		Profile: "webra-decentralized",
 	})
@@ -227,7 +227,7 @@ VUqN/gOTLaBgj9fvEiJJFJUga4d6K+LHFW9rMhgva4GA+Q==
 		t.Fatal(err.Error())
 	}
 	template.KeyType = "rsa-3072"
-	request, err := client.NewEnrollRequest(WebRAEnrollRequestParams{
+	request, err := client.NewEnrollRequest(horizon.WebRAEnrollRequestParams{
 		Profile:  "webra-decentralized",
 		Template: template,
 		Password: "challengepassword",
@@ -274,9 +274,9 @@ ppA6kWKWGyvQUm3f3JO9PURCzJITdZtAm7WNaeVvLjKsLQai3AsENwiRh1tlNbEZ
 XrSDPEPo/Sr442rFNJPTJb6pzcipPl5uZKzIxC097vay+jJ9XT308oEf6rqzkDDW
 jxB4kE0fnjsnyV/Lzg==
 -----END CERTIFICATE-----`
-	request, err := client.NewRevokeRequest(WebRARevokeRequestParams{
+	request, err := client.NewRevokeRequest(horizon.WebRARevokeRequestParams{
 		CertificatePEM:   csrPem,
-		RevocationReason: certificates.Unspecified,
+		RevocationReason: horizon.Unspecified,
 	})
 	if err != nil {
 		t.Fatal(err.Error())
@@ -285,7 +285,7 @@ jxB4kE0fnjsnyV/Lzg==
 }
 
 func TestUpdateRequest(t *testing.T) {
-	template, err := client.GetUpdateTemplate(WebRAUpdateTemplateParams{
+	template, err := client.GetUpdateTemplate(horizon.WebRAUpdateTemplateParams{
 		CertificateId: "65a27f593300001a008e1548",
 	})
 	if err != nil {
@@ -293,13 +293,13 @@ func TestUpdateRequest(t *testing.T) {
 	}
 
 	if template.Team.Editable {
-		template.Team.Value = &HorizonString{"frontend"}
+		template.Team.Value = &horizon.String{"frontend"}
 	}
 	if template.ContactEmail.Editable {
-		template.ContactEmail.Value = &HorizonString{"abcd@free.fr"}
+		template.ContactEmail.Value = &horizon.String{"abcd@free.fr"}
 	}
 
-	request, err := client.NewUpdateRequest(WebRAUpdateRequestParams{
+	request, err := client.NewUpdateRequest(horizon.WebRAUpdateRequestParams{
 		CertificateId: "65a27f593300001a008e1548",
 		Template:      template,
 	})
@@ -311,7 +311,7 @@ func TestUpdateRequest(t *testing.T) {
 
 func TestMigrateRequest(t *testing.T) {
 	targetProfile := "webra-centralized"
-	template, err := client.GetMigrateTemplate(WebRAMigrateTemplateParams{
+	template, err := client.GetMigrateTemplate(horizon.WebRAMigrateTemplateParams{
 		CertificateId: "65a27f593300001a008e1548",
 		Profile:       targetProfile,
 	})
@@ -320,13 +320,13 @@ func TestMigrateRequest(t *testing.T) {
 	}
 	t.Log(template.Team)
 	if template.Team.Editable {
-		template.Team.Value = &HorizonString{"backend"}
+		template.Team.Value = &horizon.String{"backend"}
 	}
 	if template.ContactEmail.Editable {
-		template.ContactEmail.Value = Delete
+		template.ContactEmail.Value = horizon.Delete
 	}
 
-	request, err := client.NewMigrateRequest(WebRAMigrateRequestParams{
+	request, err := client.NewMigrateRequest(horizon.WebRAMigrateRequestParams{
 		CertificateId: "65a27f593300001a008e1548",
 		Template:      template,
 		Profile:       targetProfile,
@@ -339,7 +339,7 @@ func TestMigrateRequest(t *testing.T) {
 
 func TestTemplateAndScepChallenge(t *testing.T) {
 	profile := "SCEP_Client"
-	template, err := client.GetScepChallengeTemplate(ScepChallengeTemplateParams{
+	template, err := client.GetScepChallengeTemplate(horizon.ScepChallengeTemplateParams{
 		Profile: profile,
 	})
 	if err != nil {
@@ -350,7 +350,7 @@ func TestTemplateAndScepChallenge(t *testing.T) {
 	template.Subject[0].Value = "moncn"
 	template.Sans[0].Value = []string{"monsan.com"}
 
-	requestParams := ScepChallengeRequestParams{
+	requestParams := horizon.ScepChallengeRequestParams{
 		Profile:  profile,
 		Template: template,
 	}
@@ -368,7 +368,7 @@ func TestTemplateAndScepChallenge(t *testing.T) {
 
 func TestTemplateAndEstChallenge(t *testing.T) {
 	profile := "est-challenge"
-	template, err := client.GetEstChallengeTemplate(EstChallengeTemplateParams{
+	template, err := client.GetEstChallengeTemplate(horizon.EstChallengeTemplateParams{
 		Profile: profile,
 	})
 	if err != nil {
@@ -379,7 +379,7 @@ func TestTemplateAndEstChallenge(t *testing.T) {
 	template.Subject[0].Value = "moncn"
 	//template.Sans[0].Value = []string{"monsan.com"}
 
-	requestParams := EstChallengeRequestParams{
+	requestParams := horizon.EstChallengeRequestParams{
 		Profile:  profile,
 		Template: template,
 	}
@@ -396,7 +396,7 @@ func TestTemplateAndEstChallenge(t *testing.T) {
 }
 
 func TestRecover(t *testing.T) {
-	requestParams := WebRARecoverRequestParams{
+	requestParams := horizon.WebRARecoverRequestParams{
 		CertificateId: "65a17a8f33000020008e14c5",
 		Contact:       "toto@toto.com",
 		Password:      "monp12",
