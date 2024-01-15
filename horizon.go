@@ -13,7 +13,6 @@ import (
 	"github.com/evertrust/horizon-go/rfc5280"
 	"io"
 	"log"
-	gohttp "net/http"
 )
 
 type Horizon struct {
@@ -28,14 +27,17 @@ type Horizon struct {
 }
 
 // New instantiates a new Horizon client
-func New(restyClient *gohttp.Client) *Horizon {
+func New(httpClient *http.Client) *Horizon {
 	var client Horizon
-	if restyClient == nil {
-		restyClient = &gohttp.Client{}
+	if httpClient == nil {
+		httpClient = &http.Client{}
+		httpClient.SetHttpClient(nil)
 	}
-	var httpClient http.Client
-	httpClient.SetHttpClient(restyClient)
-	return client.init(&httpClient)
+	return client.init(httpClient)
+}
+
+func NewHttpClient() *http.Client {
+	return &http.Client{}
 }
 
 func (client *Horizon) SetDebugWriter(writer io.Writer) *Horizon {
@@ -50,9 +52,9 @@ func (client *Horizon) init(httpClient *http.Client) *Horizon {
 	client.Requests = requests.Init(httpClient)
 	client.License = &license.Client{Http: client.Http}
 	client.Rfc5280 = &rfc5280.Client{Http: client.Http}
-	client.Certificate = &certificates.Client{Http: client.Http}
+	client.Certificate = certificates.Init(httpClient)
 	client.Discovery = &discovery.Client{Http: client.Http}
-	client.Automation = &automation.Client{Http: client.Http}
+	client.Automation = automation.Init(httpClient)
 	client.Locals = &locals.Client{Http: client.Http}
 	return client
 }

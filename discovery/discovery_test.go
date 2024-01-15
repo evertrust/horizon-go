@@ -24,19 +24,19 @@ func init() {
 func TestCreate(t *testing.T) {
 	campaign := DiscoveryCampaign{
 		Name: "testCampaign",
-		AuthorizationLevels: DiscoveryCampaignAuthorizationLevels{
-			Search: DiscoveryCampaignAuthorizationLevel{
+		AuthorizationLevels: AuthorizationLevels{
+			Search: AuthorizationLevel{
 				AccessLevel: "authorized",
-				EnforcedIdentityProviders: []DiscoveryCampaignEnforcedIdentityProviders{
+				EnforcedIdentityProviders: []EnforcedIdentityProviders{
 					{
 						Name: "local",
 						Type: "Local",
 					},
 				},
 			},
-			Feed: DiscoveryCampaignAuthorizationLevel{
+			Feed: AuthorizationLevel{
 				AccessLevel: "authorized",
-				EnforcedIdentityProviders: []DiscoveryCampaignEnforcedIdentityProviders{
+				EnforcedIdentityProviders: []EnforcedIdentityProviders{
 					{
 						Name: "local",
 						Type: "Local",
@@ -124,7 +124,7 @@ TCpufK0vZkK9D2keW3AInl0EKyCNyFdoPW0Ji5bIefIBqnhXSFbtBvjg6tZB170T
 }
 
 func TestEvent(t *testing.T) {
-	err := client.Event(HrzDiscoveryEvent{
+	err := client.Event(Event{
 		Code:         "NETIMPORT",
 		Campaign:     "testCampaign",
 		SessionId:    sessionId,

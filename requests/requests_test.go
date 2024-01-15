@@ -1,9 +1,20 @@
 package requests
 
 import (
+	"crypto"
+	"crypto/ecdsa"
+	"crypto/elliptic"
+	"crypto/rand"
+	"crypto/rsa"
+	"crypto/x509"
+	"crypto/x509/pkix"
+	"encoding/pem"
+	"errors"
 	"github.com/evertrust/horizon-go/certificates"
 	"github.com/evertrust/horizon-go/log"
 	"net/url"
+	"strconv"
+	"strings"
 	"testing"
 
 	"github.com/evertrust/horizon-go/http"
@@ -45,6 +56,126 @@ func TestCentralizedEnroll(t *testing.T) {
 		t.Fatal(err.Error())
 	}
 	t.Log(request.Password.Value)
+}
+
+func TestSearch(t *testing.T) {
+	results, err := client.Search(SearchQuery{
+		Fields:    []string{"profile"},
+		WithCount: true,
+		Scope:     "self",
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	t.Log(results)
+}
+func GenerateKeySafely(keyType string) (crypto.PrivateKey, error) {
+	if !strings.Contains(keyType, "-") {
+		return nil, errors.New("invalid key type: " + keyType)
+	}
+	keyProps := strings.Split(keyType, "-")
+	if keyProps[0] != "rsa" && keyProps[0] != "ec" {
+		return nil, errors.New("only RSA and ECDSA keys are supported. Invalid key type: " + keyType)
+	}
+	var privatekey crypto.PrivateKey
+	var err error
+	if keyProps[0] == "rsa" {
+		keySize, err := strconv.Atoi(keyProps[1])
+		if err != nil {
+			return nil, errors.New("invalid key size: " + err.Error())
+		}
+		privatekey, err = rsa.GenerateKey(rand.Reader, keySize)
+		if err != nil {
+			return nil, errors.New("could not generate private key: " + err.Error())
+		}
+	} else if keyProps[0] == "ec" {
+		var curve elliptic.Curve
+		if keyProps[1] == "secp384r1" {
+			curve = elliptic.P384()
+		}
+		if keyProps[1] == "secp256r1" {
+			curve = elliptic.P256()
+		}
+		if curve == nil {
+			return nil, errors.New("invalid curve: " + keyProps[1])
+		}
+		privatekey, err = ecdsa.GenerateKey(curve, rand.Reader)
+		if err != nil {
+			return nil, errors.New("could not generate private key: " + err.Error())
+		}
+	} else {
+		return nil, errors.New("invalid curve type: " + keyProps[0])
+	}
+	return privatekey, nil
+}
+
+func CreateCsrPem(key crypto.PrivateKey) (string, error) {
+	template := x509.CertificateRequest{
+		Subject: pkix.Name{
+			CommonName:         "CN",
+			OrganizationalUnit: []string{"DEV"},
+		},
+		DNSNames: []string{"test.evertrust"},
+	}
+	csrBytes, err := x509.CreateCertificateRequest(rand.Reader, &template, key)
+	if err != nil {
+		return "", errors.New("could not generate CSR: " + err.Error())
+	}
+	csrBlock := &pem.Block{
+		Type:  "CERTIFICATE REQUEST",
+		Bytes: csrBytes,
+	}
+	return string(pem.EncodeToMemory(csrBlock)), nil
+}
+
+func TestPopUpdate(t *testing.T) {
+	// Generate CSR locally and enroll it
+	key, err := GenerateKeySafely("rsa-2048")
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	csr, err := CreateCsrPem(key)
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	template, err := client.GetEnrollTemplate(WebRAEnrollTemplateParams{
+		Csr:     csr,
+		Profile: "webra-decentralized",
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	template.KeyType = "rsa-3072"
+	template.Team.Value = &HorizonString{"frontend"}
+	request, err := client.NewEnrollRequest(WebRAEnrollRequestParams{
+		Profile:  "webra-decentralized",
+		Template: template,
+		Password: "challengepassword",
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	certPem := request.Certificate.Certificate
+	block, _ := pem.Decode([]byte(certPem))
+	if block == nil {
+		t.Fatal("failed to parse certificate PEM")
+	}
+	cert, err := x509.ParseCertificate(block.Bytes)
+	// Set it as JWT pop
+	client.http.SetJwtAuth(*cert, key.(crypto.Signer))
+	templateUpdate, err := client.GetUpdateTemplate(WebRAUpdateTemplateParams{})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	templateUpdate.Team.Value = Delete
+	response, err := client.NewUpdateRequest(WebRAUpdateRequestParams{
+		Template: templateUpdate,
+	})
+	if err != nil {
+		t.Fatal(err.Error())
+	}
+	t.Log(templateUpdate)
+	t.Log(response)
 }
 
 func TestTemplateAndCentralizedEnroll(t *testing.T) {
@@ -162,10 +293,10 @@ func TestUpdateRequest(t *testing.T) {
 	}
 
 	if template.Team.Editable {
-		template.Team.Value = "frontend"
+		template.Team.Value = &HorizonString{"frontend"}
 	}
 	if template.ContactEmail.Editable {
-		template.ContactEmail.Value = "abcd@free.fr"
+		template.ContactEmail.Value = &HorizonString{"abcd@free.fr"}
 	}
 
 	request, err := client.NewUpdateRequest(WebRAUpdateRequestParams{
@@ -189,10 +320,10 @@ func TestMigrateRequest(t *testing.T) {
 	}
 	t.Log(template.Team)
 	if template.Team.Editable {
-		template.Team.Value = "backend"
+		template.Team.Value = &HorizonString{"backend"}
 	}
 	if template.ContactEmail.Editable {
-		template.ContactEmail.Value = "toto@free.fr"
+		template.ContactEmail.Value = Delete
 	}
 
 	request, err := client.NewMigrateRequest(WebRAMigrateRequestParams{

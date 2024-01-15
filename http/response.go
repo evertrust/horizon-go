@@ -1,7 +1,9 @@
 package http
 
 import (
+	"bytes"
 	"encoding/json"
+	"io"
 	"mime"
 	gohttp "net/http"
 	"strings"
@@ -9,6 +11,7 @@ import (
 
 type HorizonResponse struct {
 	HttpResponse *gohttp.Response
+	body         []byte
 }
 
 func (r *HorizonResponse) HasContentType(mimeType string) bool {
@@ -25,5 +28,9 @@ func (r *HorizonResponse) HasContentType(mimeType string) bool {
 }
 
 func (r *HorizonResponse) Json() *json.Decoder {
-	return json.NewDecoder(r.HttpResponse.Body)
+	if r.body == nil {
+		// Saving the body since it is a stream
+		r.body, _ = io.ReadAll(r.HttpResponse.Body)
+	}
+	return json.NewDecoder(bytes.NewReader(r.body))
 }
