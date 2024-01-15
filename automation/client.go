@@ -3,8 +3,8 @@ package automation
 import (
 	"errors"
 	"fmt"
+	"github.com/evertrust/horizon-go"
 	"github.com/evertrust/horizon-go/http"
-	"github.com/evertrust/horizon-go/types"
 )
 
 type Client struct {
@@ -15,12 +15,12 @@ func Init(http *http.Client) *Client {
 	return &Client{http: http}
 }
 
-func (c *Client) List() ([]types.Policy, error) {
+func (c *Client) List() ([]horizon.Policy, error) {
 	response, err := c.http.Get("/api/v1/automation/policies")
 	if err != nil {
 		return nil, err
 	}
-	var policies []types.Policy
+	var policies []horizon.Policy
 	err = response.Json().Decode(&policies)
 	if err != nil {
 		return nil, err
@@ -29,12 +29,12 @@ func (c *Client) List() ([]types.Policy, error) {
 	return policies, nil
 }
 
-func (c *Client) Get(name string) (*types.Policy, error) {
+func (c *Client) Get(name string) (*horizon.Policy, error) {
 	response, err := c.http.Get("/api/v1/automation/policies/" + name)
 	if err != nil {
 		return nil, err
 	}
-	var policy types.Policy
+	var policy horizon.Policy
 	err = response.Json().Decode(&policy)
 	if err != nil {
 		return nil, err
@@ -42,28 +42,28 @@ func (c *Client) Get(name string) (*types.Policy, error) {
 	return &policy, nil
 }
 
-func (c *Client) GetParameters(policyName string) (types.InitParameters, error) {
+func (c *Client) GetParameters(policyName string) (horizon.InitParameters, error) {
 	response, err := c.http.Get("/api/v1/automation/lifecycle/" + policyName)
 	if err != nil {
 		return nil, err
 	}
-	var policy types.InitParameters
+	var policy horizon.InitParameters
 	err = response.Json().Decode(&policy)
 	switch policy.GetModule() {
-	case types.Acme:
-		var acmeParams types.AcmeInitParameters
+	case horizon.Acme:
+		var acmeParams horizon.AcmeInitParameters
 		err = response.Json().Decode(&acmeParams)
 		return &acmeParams, err
-	case types.AcmeExternal:
-		var acmeExternalParams types.AcmeExternalInitParameters
+	case horizon.AcmeExternal:
+		var acmeExternalParams horizon.AcmeExternalInitParameters
 		err = response.Json().Decode(&acmeExternalParams)
 		return &acmeExternalParams, err
-	case types.Est:
-		var estParams types.EstInitParameters
+	case horizon.Est:
+		var estParams horizon.EstInitParameters
 		err = response.Json().Decode(&estParams)
 		return &estParams, err
-	case types.Scep:
-		var scepParams types.ScepInitParameters
+	case horizon.Scep:
+		var scepParams horizon.ScepInitParameters
 		err = response.Json().Decode(&scepParams)
 		return &scepParams, err
 	}
@@ -84,7 +84,7 @@ func (c *Client) Check(policyName string) (bool, bool, bool, bool, error) {
 		return true, false, false, false, nil
 	case 200:
 		// Certificate is not compliant, check if runnable or not, and the reason
-		var automationReport types.Report
+		var automationReport horizon.Report
 		err = response.Json().Decode(&automationReport)
 		if err != nil {
 			return false, false, false, false, err

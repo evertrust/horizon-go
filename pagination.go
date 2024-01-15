@@ -1,4 +1,4 @@
-package types
+package horizon
 
 // Pagination
 type SearchResults[T any] struct {

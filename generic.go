@@ -1,4 +1,4 @@
-package types
+package horizon
 
 import "encoding/json"
 

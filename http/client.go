@@ -63,7 +63,7 @@ func (c *Client) SetBaseUrl(baseUrl url.URL) *Client {
 func (c *Client) ClearAuth() {
 	c.headerCreds = nil
 	c.jwt = nil
-	tlsConfig := c.getTlsConfig()
+	tlsConfig := c.GetTlsConfig()
 	tlsConfig.Certificates = nil
 }
 
@@ -79,7 +79,7 @@ func (c *Client) SetPasswordAuth(apiId string, apiKey string) *Client {
 // SetCertAuth sets the client certificate than can be used for authentication.
 func (c *Client) SetCertAuth(cert tls.Certificate) *Client {
 	c.ClearAuth()
-	tlsConfig := c.getTlsConfig()
+	tlsConfig := c.GetTlsConfig()
 	tlsConfig.Certificates = []tls.Certificate{cert}
 	return c
 }
@@ -194,18 +194,18 @@ func computeJwtForNonce(cert x509.Certificate, key crypto.Signer, nonce string) 
 
 // SetCaBundle sets the CA bundle
 func (c *Client) SetCaBundle(caBundle *x509.CertPool) *Client {
-	tlsConfig := c.getTlsConfig()
+	tlsConfig := c.GetTlsConfig()
 	tlsConfig.RootCAs = caBundle
 	return c
 }
 
 func (c *Client) GetCaBundle() *x509.CertPool {
-	return c.getTlsConfig().RootCAs
+	return c.GetTlsConfig().RootCAs
 }
 
 // SkipTLSVerify skips the TLS verification.
 func (c *Client) SkipTLSVerify() *Client {
-	tlsConfig := c.getTlsConfig()
+	tlsConfig := c.GetTlsConfig()
 	tlsConfig.InsecureSkipVerify = true
 	return c
 }
@@ -216,7 +216,7 @@ func (c *Client) SetTimeout(timeout time.Duration) *Client {
 	return c
 }
 
-func (c *Client) getTransport() *gohttp.Transport {
+func (c *Client) GetTransport() *gohttp.Transport {
 	if c.client.Transport == nil {
 		tr := &gohttp.Transport{}
 		c.client.Transport = tr
@@ -229,12 +229,12 @@ func (c *Client) getTransport() *gohttp.Transport {
 	return transportTlS
 }
 
-func (c *Client) getTlsConfig() *tls.Config {
-	return c.getTransport().TLSClientConfig
+func (c *Client) GetTlsConfig() *tls.Config {
+	return c.GetTransport().TLSClientConfig
 }
 
 func (c *Client) SetProxy(proxyUrl url.URL) *Client {
-	transport := c.getTransport()
+	transport := c.GetTransport()
 	transport.Proxy = gohttp.ProxyURL(&proxyUrl)
 	return c
 }
@@ -335,7 +335,7 @@ func (c *Client) sendRequest(method, urlToRequest string, body []byte) (*gohttp.
 		request.Header.Set("X-API-ID", c.headerCreds.id)
 		request.Header.Set("X-API-KEY", c.headerCreds.key)
 	}
-	if len(c.getTlsConfig().Certificates) > 0 {
+	if len(c.GetTlsConfig().Certificates) > 0 {
 		log.Debug("Authenticating using certificate")
 	}
 	return c.client.Do(request)

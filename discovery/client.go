@@ -2,8 +2,7 @@ package discovery
 
 import (
 	"encoding/json"
-	"github.com/evertrust/horizon-go/types"
-
+	"github.com/evertrust/horizon-go"
 	"github.com/evertrust/horizon-go/http"
 )
 
@@ -12,8 +11,8 @@ type Client struct {
 }
 
 // Feed feeds a certificate to the discovery campaign
-func (c *Client) Feed(certificate types.DiscoveredCertificateParams, session *types.DiscoverySession) error {
-	cert := &types.DiscoveredCertificate{
+func (c *Client) Feed(certificate horizon.DiscoveredCertificateParams, session *horizon.DiscoverySession) error {
+	cert := &horizon.DiscoveredCertificate{
 		DiscoveryCampaign: session.Campaign,
 		SessionId:         session.Id,
 		Certificate:       certificate.Certificate,
@@ -36,25 +35,25 @@ func (c *Client) Feed(certificate types.DiscoveredCertificateParams, session *ty
 }
 
 // Start a discovery campaign
-func (c *Client) Start(name string) (*types.DiscoverySession, error) {
+func (c *Client) Start(name string) (*horizon.DiscoverySession, error) {
 	res, err := c.Http.Get("/api/v1/discovery/feed/" + name)
 	if err != nil {
 		return nil, err
 	}
-	var session types.DiscoverySession
+	var session horizon.DiscoverySession
 	if err = res.Json().Decode(&session); err != nil {
 		return nil, err
 	}
 	return &session, err
 }
 
-func (c *Client) Stop(session *types.DiscoverySession) (err error) {
+func (c *Client) Stop(session *horizon.DiscoverySession) (err error) {
 	_, err = c.Http.Delete("/api/v1/discovery/feed/" + session.Campaign + "/" + session.Id)
 	return err
 }
 
-func (c *Client) Event(event types.DiscoveryEventParams, session *types.DiscoverySession) error {
-	hrzEvent := &types.DiscoveryEvent{
+func (c *Client) Event(event horizon.DiscoveryEventParams, session *horizon.DiscoverySession) error {
+	hrzEvent := &horizon.DiscoveryEvent{
 		Campaign:     session.Campaign,
 		SessionId:    session.Id,
 		Code:         event.Code,
@@ -70,10 +69,10 @@ func (c *Client) Event(event types.DiscoveryEventParams, session *types.Discover
 	return err
 }
 
-func (c *Client) Events(events []types.DiscoveryEventParams, session *types.DiscoverySession) error {
-	var completeEvents []types.DiscoveryEvent
+func (c *Client) Events(events []horizon.DiscoveryEventParams, session *horizon.DiscoverySession) error {
+	var completeEvents []horizon.DiscoveryEvent
 	for i := 0; i < len(events); i++ {
-		hrzEvent := types.DiscoveryEvent{
+		hrzEvent := horizon.DiscoveryEvent{
 			Campaign:     session.Campaign,
 			SessionId:    session.Id,
 			Code:         events[i].Code,
@@ -92,7 +91,7 @@ func (c *Client) Events(events []types.DiscoveryEventParams, session *types.Disc
 }
 
 // Create a new discovery campaign
-func (c *Client) Create(campaign types.DiscoveryCampaign) error {
+func (c *Client) Create(campaign horizon.DiscoveryCampaign) error {
 	marshalledData, err := json.Marshal(campaign)
 	if err != nil {
 		return err

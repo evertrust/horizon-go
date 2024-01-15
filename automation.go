@@ -1,4 +1,4 @@
-package types
+package horizon
 
 type CompliancePolicy struct {
 	AuthorizedSigningAlgorithms []string `json:"authorizedSigningAlgorithms,omitempty"`
