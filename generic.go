@@ -28,4 +28,4 @@ func (s *String) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-var Delete = &String{""}
+var Delete *String = nil

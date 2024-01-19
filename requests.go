@@ -56,11 +56,31 @@ type ExtensionElement struct {
 	Value     string `json:"value,omitempty"`
 }
 
+func NewLabelElement(label string, value *string) *LabelElement {
+	if value == nil {
+		return nil
+	}
+	if *value == "" {
+		return &LabelElement{Label: label, Value: Delete}
+	}
+	return &LabelElement{Label: label, Value: &String{*value}}
+}
+
 type LabelElement struct {
 	Label     string  `json:"label,omitempty"`
 	Mandatory bool    `json:"mandatory,omitempty"`
 	Editable  bool    `json:"editable,omitempty"`
 	Value     *String `json:"value"`
+}
+
+func NewMetadataElement(metadata string, value *string) *MetadataElement {
+	if value == nil {
+		return nil
+	}
+	if *value == "" {
+		return &MetadataElement{Metadata: metadata, Value: Delete}
+	}
+	return &MetadataElement{Metadata: metadata, Value: &String{*value}}
 }
 
 type MetadataElement struct {
@@ -69,36 +89,47 @@ type MetadataElement struct {
 	Value    *String `json:"value"`
 }
 
-func NewOwnerElement(value, ignored string) *OwnerElement {
-	if value == ignored {
+func NewOwnerElement(value *string) *OwnerElement {
+	if value == nil {
 		return nil
 	}
-	return &OwnerElement{Value: &String{value}}
+	if *value == "" {
+		return &OwnerElement{Value: Delete}
+	}
+	return &OwnerElement{Value: &String{*value}}
 }
 
 type OwnerElement struct {
-	Value    *String `json:"value"`
-	Editable bool    `json:"editable"`
+	Value     *String `json:"value"`
+	Mandatory bool    `json:"mandatory"`
+	Editable  bool    `json:"editable"`
 }
 
-func NewTeamElement(value, ignored string) *TeamElement {
-	if value == ignored {
+func NewTeamElement(value *string) *TeamElement {
+	if value == nil {
 		return nil
 	}
-	return &TeamElement{Value: &String{value}}
+	if *value == "" {
+		return &TeamElement{Value: Delete}
+	}
+	return &TeamElement{Value: &String{*value}}
 }
 
 type TeamElement struct {
 	Value      *String  `json:"value"`
+	Mandatory  bool     `json:"mandatory"`
 	Authorized []string `json:"authorized,omitempty"`
 	Editable   bool     `json:"editable"`
 }
 
-func NewContactEmailElement(value, ignored string) *ContactEmailElement {
-	if value == ignored {
+func NewContactEmailElement(value *string) *ContactEmailElement {
+	if value == nil {
 		return nil
 	}
-	return &ContactEmailElement{Value: &String{value}}
+	if *value == "" {
+		return &ContactEmailElement{Value: Delete}
+	}
+	return &ContactEmailElement{Value: &String{*value}}
 }
 
 type ContactEmailElement struct {

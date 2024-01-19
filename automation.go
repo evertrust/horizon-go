@@ -61,9 +61,10 @@ func (p *AcmeInitParameters) GetModule() Module {
 }
 
 type ScepInitParameters struct {
-	Profile        string `json:"profile"`
-	KeyType        string `json:"keyType"`
-	CsrInfoIgnored bool   `json:"csrInfoIgnored"`
+	Profile           string `json:"profile"`
+	KeyType           string `json:"keyType"`
+	CsrInfoIgnored    bool   `json:"csrInfoIgnored"`
+	AuthorizationMode string `json:"authorizationMode"`
 }
 
 func (p *ScepInitParameters) GetModule() Module {
