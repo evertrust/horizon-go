@@ -47,7 +47,7 @@ func (c *Client) GetParameters(policyName string) (horizon.InitParameters, error
 	if err != nil {
 		return nil, err
 	}
-	var policy horizon.InitParameters
+	var policy horizon.InitParameter
 	err = response.Json().Decode(&policy)
 	if err != nil {
 		return nil, err
