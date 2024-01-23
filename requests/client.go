@@ -4,39 +4,52 @@ package requests
 import (
 	"encoding/json"
 	"errors"
+	"github.com/evertrust/horizon-go"
 	"github.com/evertrust/horizon-go/http"
 )
 
 type Client struct {
-	Http *http.Client
+	http *http.Client
+}
+
+func Init(http *http.Client) *Client {
+	return &Client{http: http}
 }
 
 var InvalidTypeError = errors.New("invalid response type")
 
-// WebRA Enroll
-
-func (c *Client) GetEnrollTemplate(request WebRAEnrollTemplateParams) (*WebRAEnrollTemplate, error) {
-	// Merge params in struct
-	enrollRequest := WebRAEnrollRequest{
-		Profile:        request.Profile,
-		CertificateId:  request.CertificateId,
-		CertificatePEM: request.CertificatePEM,
-		Template:       &WebRAEnrollTemplate{Csr: request.Csr},
-		Module:         WebRA,
-		Workflow:       Enroll}
-	response, err := c.GetTemplate(&enrollRequest)
+// Search sends back paginated results
+func (c *Client) Search(query horizon.RequestSearchQuery) (*horizon.SearchResults[horizon.RequestSearchResult], error) {
+	jsonData, _ := json.Marshal(query)
+	response, err := c.http.Post("/api/v1/requests/search", jsonData)
 	if err != nil {
 		return nil, err
 	}
-	webRAEnrollRequest, ok := response.(*WebRAEnrollRequest)
-	if !ok {
-		return nil, InvalidTypeError
-	}
-	return webRAEnrollRequest.Template, nil
+	var resultPage horizon.SearchResults[horizon.RequestSearchResult]
+	err = response.Json().Decode(&resultPage)
+	return &resultPage, err
 }
 
-func (c *Client) GetEnrollRequest(id string) (*WebRAEnrollRequest, error) {
-	var webRAEnrollRequest WebRAEnrollRequest
+// WebRA Enroll
+
+func (c *Client) GetEnrollTemplate(request horizon.WebRAEnrollTemplateParams) (*horizon.WebRAEnrollTemplate, error) {
+	// Merge params in struct
+	enrollRequest := horizon.WebRAEnrollRequest{
+		Profile:        request.Profile,
+		CertificateId:  request.CertificateId,
+		CertificatePEM: request.CertificatePEM,
+		Template:       &horizon.WebRAEnrollTemplate{Csr: request.Csr},
+		Module:         horizon.WebRA,
+		Workflow:       horizon.Enroll}
+	err := c.GetTemplate(&enrollRequest)
+	if err != nil {
+		return nil, err
+	}
+	return enrollRequest.Template, nil
+}
+
+func (c *Client) GetEnrollRequest(id string) (*horizon.WebRAEnrollRequest, error) {
+	var webRAEnrollRequest horizon.WebRAEnrollRequest
 	// Merge params in struct
 	err := c.GetRequest(id, &webRAEnrollRequest)
 	if err != nil {
@@ -45,52 +58,57 @@ func (c *Client) GetEnrollRequest(id string) (*WebRAEnrollRequest, error) {
 	return &webRAEnrollRequest, nil
 }
 
-func (c *Client) NewEnrollRequest(request WebRAEnrollRequestParams) (*WebRAEnrollRequest, error) {
-	// Merge params in struct
-	var password *Secret
-	if request.Password != "" {
-		password = new(Secret)
-		password.Value = request.Password
+func (c *Client) CancelEnrollRequest(id string) (*horizon.WebRAEnrollRequest, error) {
+	webRAEnrollRequest := horizon.WebRAEnrollRequest{
+		Module:   horizon.WebRA,
+		Workflow: horizon.Enroll,
+		Id:       id,
 	}
-	enrollRequest := WebRAEnrollRequest{
-		Profile:  request.Profile,
-		Template: request.Template,
-		Module:   WebRA,
-		Workflow: Enroll,
-		Password: password,
-	}
-	response, err := c.NewRequest(&enrollRequest)
+	err := c.CancelRequest(&webRAEnrollRequest)
 	if err != nil {
 		return nil, err
 	}
-	webRAEnrollRequest, ok := response.(*WebRAEnrollRequest)
-	if !ok {
-		return nil, InvalidTypeError
+	return &webRAEnrollRequest, nil
+}
+
+func (c *Client) NewEnrollRequest(request horizon.WebRAEnrollRequestParams) (*horizon.WebRAEnrollRequest, error) {
+	// Merge params in struct
+	var password *horizon.Secret
+	if request.Password != "" {
+		password = new(horizon.Secret)
+		password.Value = request.Password
 	}
-	return webRAEnrollRequest, nil
+	enrollRequest := horizon.WebRAEnrollRequest{
+		Profile:  request.Profile,
+		Template: request.Template,
+		Module:   horizon.WebRA,
+		Workflow: horizon.Enroll,
+		Password: password,
+	}
+	err := c.NewRequest(&enrollRequest)
+	if err != nil {
+		return nil, err
+	}
+	return &enrollRequest, nil
 }
 
 // SCEP Challenge
 
-func (c *Client) GetScepChallengeTemplate(request ScepChallengeTemplateParams) (*ScepChallengeTemplate, error) {
+func (c *Client) GetScepChallengeTemplate(request horizon.ScepChallengeTemplateParams) (*horizon.ScepChallengeTemplate, error) {
 	// Merge params in struct
-	challengeRequest := ScepChallengeRequest{
+	challengeRequest := horizon.ScepChallengeRequest{
 		Profile:  request.Profile,
-		Module:   Scep,
-		Workflow: Enroll}
-	response, err := c.GetTemplate(&challengeRequest)
+		Module:   horizon.Scep,
+		Workflow: horizon.Enroll}
+	err := c.GetTemplate(&challengeRequest)
 	if err != nil {
 		return nil, err
 	}
-	scepChallengeRequest, ok := response.(*ScepChallengeRequest)
-	if !ok {
-		return nil, InvalidTypeError
-	}
-	return scepChallengeRequest.Template, nil
+	return challengeRequest.Template, nil
 }
 
-func (c *Client) GetScepChallengeRequest(id string) (*ScepChallengeRequest, error) {
-	var scepChallengeRequest ScepChallengeRequest
+func (c *Client) GetScepChallengeRequest(id string) (*horizon.ScepChallengeRequest, error) {
+	var scepChallengeRequest horizon.ScepChallengeRequest
 	// Merge params in struct
 	err := c.GetRequest(id, &scepChallengeRequest)
 	if err != nil {
@@ -99,46 +117,38 @@ func (c *Client) GetScepChallengeRequest(id string) (*ScepChallengeRequest, erro
 	return &scepChallengeRequest, nil
 }
 
-func (c *Client) NewScepChallengeRequest(request ScepChallengeRequestParams) (*ScepChallengeRequest, error) {
-	challengeRequest := ScepChallengeRequest{
+func (c *Client) NewScepChallengeRequest(request horizon.ScepChallengeRequestParams) (*horizon.ScepChallengeRequest, error) {
+	challengeRequest := horizon.ScepChallengeRequest{
 		Profile:  request.Profile,
 		Template: request.Template,
-		Module:   Scep,
-		Workflow: Enroll,
+		Module:   horizon.Scep,
+		Workflow: horizon.Enroll,
 		Dn:       request.Dn,
 	}
-	response, err := c.NewRequest(&challengeRequest)
+	err := c.NewRequest(&challengeRequest)
 	if err != nil {
 		return nil, err
 	}
-	scepChallengeRequest, ok := response.(*ScepChallengeRequest)
-	if !ok {
-		return nil, InvalidTypeError
-	}
-	return scepChallengeRequest, nil
+	return &challengeRequest, nil
 }
 
 // EST Challenge
 
-func (c *Client) GetEstChallengeTemplate(request EstChallengeTemplateParams) (*EstChallengeTemplate, error) {
+func (c *Client) GetEstChallengeTemplate(request horizon.EstChallengeTemplateParams) (*horizon.EstChallengeTemplate, error) {
 	// Merge params in struct
-	challengeRequest := EstChallengeRequest{
+	challengeRequest := horizon.EstChallengeRequest{
 		Profile:  request.Profile,
-		Module:   Est,
-		Workflow: Enroll}
-	response, err := c.GetTemplate(&challengeRequest)
+		Module:   horizon.Est,
+		Workflow: horizon.Enroll}
+	err := c.GetTemplate(&challengeRequest)
 	if err != nil {
 		return nil, err
 	}
-	estChallengeRequest, ok := response.(*EstChallengeRequest)
-	if !ok {
-		return nil, InvalidTypeError
-	}
-	return estChallengeRequest.Template, nil
+	return challengeRequest.Template, nil
 }
 
-func (c *Client) GetEstChallengeRequest(id string) (*EstChallengeRequest, error) {
-	var estChallengeRequest EstChallengeRequest
+func (c *Client) GetEstChallengeRequest(id string) (*horizon.EstChallengeRequest, error) {
+	var estChallengeRequest horizon.EstChallengeRequest
 	// Merge params in struct
 	err := c.GetRequest(id, &estChallengeRequest)
 	if err != nil {
@@ -147,43 +157,39 @@ func (c *Client) GetEstChallengeRequest(id string) (*EstChallengeRequest, error)
 	return &estChallengeRequest, nil
 }
 
-func (c *Client) NewEstChallengeRequest(request EstChallengeRequestParams) (*EstChallengeRequest, error) {
-	challengeRequest := EstChallengeRequest{
+func (c *Client) NewEstChallengeRequest(request horizon.EstChallengeRequestParams) (*horizon.EstChallengeRequest, error) {
+	challengeRequest := horizon.EstChallengeRequest{
 		Profile:  request.Profile,
 		Template: request.Template,
-		Module:   Est,
-		Workflow: Enroll,
+		Module:   horizon.Est,
+		Workflow: horizon.Enroll,
 		Dn:       request.Dn,
 	}
-	response, err := c.NewRequest(&challengeRequest)
+	err := c.NewRequest(&challengeRequest)
 	if err != nil {
 		return nil, err
 	}
-	estChallengeRequest, ok := response.(*EstChallengeRequest)
-	if !ok {
-		return nil, InvalidTypeError
-	}
-	return estChallengeRequest, nil
+	return &challengeRequest, nil
 }
 
 // WebRA Renew
 
-func (c *Client) GetRenewTemplate(request WebRARenewTemplateParams) (*WebRARenewTemplate, error) {
+func (c *Client) GetRenewTemplate(request horizon.WebRARenewTemplateParams) (*horizon.WebRARenewTemplate, error) {
 	// Merge params in struct
-	renewRequest := WebRARenewRequest{Profile: request.Profile, CertificateId: request.CertificateId, CertificatePEM: request.CertificatePEM, Module: WebRA, Workflow: Renew}
-	response, err := c.GetTemplate(&renewRequest)
+	renewRequest := horizon.WebRARenewRequest{
+		CertificateId:  request.CertificateId,
+		CertificatePEM: request.CertificatePEM,
+		Module:         horizon.WebRA,
+		Workflow:       horizon.Renew}
+	err := c.GetTemplate(&renewRequest)
 	if err != nil {
 		return nil, err
 	}
-	webRARenewRequest, ok := response.(*WebRARenewRequest)
-	if !ok {
-		return nil, InvalidTypeError
-	}
-	return webRARenewRequest.Template, nil
+	return renewRequest.Template, nil
 }
 
-func (c *Client) GetRenewRequest(id string) (*WebRARenewRequest, error) {
-	var webRARenewRequest WebRARenewRequest
+func (c *Client) GetRenewRequest(id string) (*horizon.WebRARenewRequest, error) {
+	var webRARenewRequest horizon.WebRARenewRequest
 	// Merge params in struct
 	err := c.GetRequest(id, &webRARenewRequest)
 	if err != nil {
@@ -192,35 +198,43 @@ func (c *Client) GetRenewRequest(id string) (*WebRARenewRequest, error) {
 	return &webRARenewRequest, nil
 }
 
-func (c *Client) NewRenewRequest(request WebRARenewRequestParams) (*WebRARenewRequest, error) {
-	// Merge params in struct
-	var password *Secret
-	if request.Password != "" {
-		password = new(Secret)
-		password.Value = request.Password
+func (c *Client) CancelRenewRequest(id string) (*horizon.WebRARenewRequest, error) {
+	webRARenewRequest := horizon.WebRARenewRequest{
+		Module:   horizon.WebRA,
+		Workflow: horizon.Renew,
+		Id:       id,
 	}
-	renewRequest := WebRARenewRequest{
-		Profile:  request.Profile,
-		Template: request.Template,
-		Module:   WebRA,
-		Workflow: Renew,
-		Password: password,
-	}
-	response, err := c.NewRequest(&renewRequest)
+	err := c.CancelRequest(&webRARenewRequest)
 	if err != nil {
 		return nil, err
 	}
-	webRARenewRequest, ok := response.(*WebRARenewRequest)
-	if !ok {
-		return nil, InvalidTypeError
+	return &webRARenewRequest, nil
+}
+
+func (c *Client) NewRenewRequest(request horizon.WebRARenewRequestParams) (*horizon.WebRARenewRequest, error) {
+	// Merge params in struct
+	var password *horizon.Secret
+	if request.Password != "" {
+		password = new(horizon.Secret)
+		password.Value = request.Password
 	}
-	return webRARenewRequest, nil
+	renewRequest := horizon.WebRARenewRequest{
+		Template: request.Template,
+		Module:   horizon.WebRA,
+		Workflow: horizon.Renew,
+		Password: password,
+	}
+	err := c.NewRequest(&renewRequest)
+	if err != nil {
+		return nil, err
+	}
+	return &renewRequest, nil
 }
 
 // WebRA Revoke
 
-func (c *Client) GetRevokeRequest(id string) (*WebRARevokeRequest, error) {
-	var webRARevokeRequest WebRARevokeRequest
+func (c *Client) GetRevokeRequest(id string) (*horizon.WebRARevokeRequest, error) {
+	var webRARevokeRequest horizon.WebRARevokeRequest
 	// Merge params in struct
 	err := c.GetRequest(id, &webRARevokeRequest)
 	if err != nil {
@@ -229,48 +243,40 @@ func (c *Client) GetRevokeRequest(id string) (*WebRARevokeRequest, error) {
 	return &webRARevokeRequest, nil
 }
 
-func (c *Client) NewRevokeRequest(request WebRARevokeRequestParams) (*WebRARevokeRequest, error) {
+func (c *Client) NewRevokeRequest(request horizon.WebRARevokeRequestParams) (*horizon.WebRARevokeRequest, error) {
 	// Merge params in struct
-	revokeRequest := WebRARevokeRequest{
+	revokeRequest := horizon.WebRARevokeRequest{
 		CertificateId:  request.CertificateId,
 		CertificatePEM: request.CertificatePEM,
-		Template:       &WebRARevokeTemplate{RevocationReason: request.RevocationReason},
-		Module:         WebRA,
-		Workflow:       Revoke,
+		Template:       &horizon.WebRARevokeTemplate{RevocationReason: request.RevocationReason},
+		Module:         horizon.WebRA,
+		Workflow:       horizon.Revoke,
 	}
-	response, err := c.NewRequest(&revokeRequest)
+	err := c.NewRequest(&revokeRequest)
 	if err != nil {
 		return nil, err
 	}
-	webRARevokeRequest, ok := response.(*WebRARevokeRequest)
-	if !ok {
-		return nil, InvalidTypeError
-	}
-	return webRARevokeRequest, nil
+	return &revokeRequest, nil
 }
 
 // WebRA Update
 
-func (c *Client) GetUpdateTemplate(request WebRAUpdateTemplateParams) (*WebRAUpdateTemplate, error) {
+func (c *Client) GetUpdateTemplate(request horizon.WebRAUpdateTemplateParams) (*horizon.WebRAUpdateTemplate, error) {
 	// Merge params in struct
-	updateRequest := WebRAUpdateRequest{
+	updateRequest := horizon.WebRAUpdateRequest{
 		CertificateId:  request.CertificateId,
 		CertificatePEM: request.CertificatePEM,
-		Module:         WebRA,
-		Workflow:       Update}
-	response, err := c.GetTemplate(&updateRequest)
+		Module:         horizon.WebRA,
+		Workflow:       horizon.Update}
+	err := c.GetTemplate(&updateRequest)
 	if err != nil {
 		return nil, err
 	}
-	webRAUpdateRequest, ok := response.(*WebRAUpdateRequest)
-	if !ok {
-		return nil, InvalidTypeError
-	}
-	return webRAUpdateRequest.Template, nil
+	return updateRequest.Template, nil
 }
 
-func (c *Client) GetUpdateRequest(id string) (*WebRAUpdateRequest, error) {
-	var webRAUpdateRequest WebRAUpdateRequest
+func (c *Client) GetUpdateRequest(id string) (*horizon.WebRAUpdateRequest, error) {
+	var webRAUpdateRequest horizon.WebRAUpdateRequest
 	// Merge params in struct
 	err := c.GetRequest(id, &webRAUpdateRequest)
 	if err != nil {
@@ -279,48 +285,40 @@ func (c *Client) GetUpdateRequest(id string) (*WebRAUpdateRequest, error) {
 	return &webRAUpdateRequest, nil
 }
 
-func (c *Client) NewUpdateRequest(request WebRAUpdateRequestParams) (*WebRAUpdateRequest, error) {
-	updateRequest := WebRAUpdateRequest{
+func (c *Client) NewUpdateRequest(request horizon.WebRAUpdateRequestParams) (*horizon.WebRAUpdateRequest, error) {
+	updateRequest := horizon.WebRAUpdateRequest{
 		CertificateId:  request.CertificateId,
 		CertificatePEM: request.CertificatePEM,
 		Template:       request.Template,
-		Module:         WebRA,
-		Workflow:       Update,
+		Module:         horizon.WebRA,
+		Workflow:       horizon.Update,
 	}
-	response, err := c.NewRequest(&updateRequest)
+	err := c.NewRequest(&updateRequest)
 	if err != nil {
 		return nil, err
 	}
-	webRAUpdateRequest, ok := response.(*WebRAUpdateRequest)
-	if !ok {
-		return nil, InvalidTypeError
-	}
-	return webRAUpdateRequest, nil
+	return &updateRequest, nil
 }
 
 // WebRA Migrate
 
-func (c *Client) GetMigrateTemplate(request WebRAMigrateTemplateParams) (*WebRAMigrateTemplate, error) {
+func (c *Client) GetMigrateTemplate(request horizon.WebRAMigrateTemplateParams) (*horizon.WebRAMigrateTemplate, error) {
 	// Merge params in struct
-	migrateRequest := WebRAMigrateRequest{
+	migrateRequest := horizon.WebRAMigrateRequest{
 		CertificateId:  request.CertificateId,
 		CertificatePEM: request.CertificatePEM,
 		Profile:        request.Profile,
-		Module:         WebRA,
-		Workflow:       Migrate}
-	response, err := c.GetTemplate(&migrateRequest)
+		Module:         horizon.WebRA,
+		Workflow:       horizon.Migrate}
+	err := c.GetTemplate(&migrateRequest)
 	if err != nil {
 		return nil, err
 	}
-	webRAMigrateRequest, ok := response.(*WebRAMigrateRequest)
-	if !ok {
-		return nil, InvalidTypeError
-	}
-	return webRAMigrateRequest.Template, nil
+	return migrateRequest.Template, nil
 }
 
-func (c *Client) GetMigrateRequest(id string) (*WebRAMigrateRequest, error) {
-	var webRAMigrateRequest WebRAMigrateRequest
+func (c *Client) GetMigrateRequest(id string) (*horizon.WebRAMigrateRequest, error) {
+	var webRAMigrateRequest horizon.WebRAMigrateRequest
 	// Merge params in struct
 	err := c.GetRequest(id, &webRAMigrateRequest)
 	if err != nil {
@@ -329,30 +327,69 @@ func (c *Client) GetMigrateRequest(id string) (*WebRAMigrateRequest, error) {
 	return &webRAMigrateRequest, nil
 }
 
-func (c *Client) NewMigrateRequest(request WebRAMigrateRequestParams) (*WebRAMigrateRequest, error) {
-	migrateRequest := WebRAMigrateRequest{
+func (c *Client) NewMigrateRequest(request horizon.WebRAMigrateRequestParams) (*horizon.WebRAMigrateRequest, error) {
+	migrateRequest := horizon.WebRAMigrateRequest{
 		CertificateId:  request.CertificateId,
 		CertificatePEM: request.CertificatePEM,
 		Template:       request.Template,
 		Profile:        request.Profile,
-		Module:         WebRA,
-		Workflow:       Migrate,
+		Module:         horizon.WebRA,
+		Workflow:       horizon.Migrate,
 	}
-	response, err := c.NewRequest(&migrateRequest)
+	err := c.NewRequest(&migrateRequest)
 	if err != nil {
 		return nil, err
 	}
-	webRAMigrateRequest, ok := response.(*WebRAMigrateRequest)
-	if !ok {
-		return nil, InvalidTypeError
+	return &migrateRequest, nil
+}
+
+// WebRA Import
+
+func (c *Client) GetImportTemplate(request horizon.WebRAImportTemplateParams) (*horizon.WebRAImportTemplate, error) {
+	// Merge params in struct
+	importRequest := horizon.WebRAImportRequest{
+		Profile:        request.Profile,
+		CertificateId:  request.CertificateId,
+		CertificatePEM: request.CertificatePEM,
+		Module:         horizon.WebRA,
+		Workflow:       horizon.Import,
 	}
-	return webRAMigrateRequest, nil
+	err := c.GetTemplate(&importRequest)
+	if err != nil {
+		return nil, err
+	}
+	return importRequest.Template, nil
+}
+
+func (c *Client) GetImportRequest(id string) (*horizon.WebRAImportRequest, error) {
+	var webRAImportRequest horizon.WebRAImportRequest
+	// Merge params in struct
+	err := c.GetRequest(id, &webRAImportRequest)
+	if err != nil {
+		return nil, err
+	}
+	return &webRAImportRequest, nil
+}
+
+func (c *Client) NewImportRequest(request horizon.WebRAImportRequestParams) (*horizon.WebRAImportRequest, error) {
+	// Merge params in struct
+	importRequest := horizon.WebRAImportRequest{
+		Profile:  request.Profile,
+		Template: request.Template,
+		Module:   horizon.WebRA,
+		Workflow: horizon.Import,
+	}
+	err := c.NewRequest(&importRequest)
+	if err != nil {
+		return nil, err
+	}
+	return &importRequest, nil
 }
 
 // WebRA Recover
 
-func (c *Client) GetRecoverRequest(id string) (*WebRARecoverRequest, error) {
-	var webRARecoverRequest WebRARecoverRequest
+func (c *Client) GetRecoverRequest(id string) (*horizon.WebRARecoverRequest, error) {
+	var webRARecoverRequest horizon.WebRARecoverRequest
 	// Merge params in struct
 	err := c.GetRequest(id, &webRARecoverRequest)
 	if err != nil {
@@ -361,61 +398,60 @@ func (c *Client) GetRecoverRequest(id string) (*WebRARecoverRequest, error) {
 	return &webRARecoverRequest, nil
 }
 
-func (c *Client) NewRecoverRequest(request WebRARecoverRequestParams) (*WebRARecoverRequest, error) {
-	var password *Secret
+func (c *Client) NewRecoverRequest(request horizon.WebRARecoverRequestParams) (*horizon.WebRARecoverRequest, error) {
+	var password *horizon.Secret
 	if request.Password != "" {
-		password = new(Secret)
+		password = new(horizon.Secret)
 		password.Value = request.Password
 	}
-	recoverRequest := WebRARecoverRequest{
+	recoverRequest := horizon.WebRARecoverRequest{
 		CertificateId:  request.CertificateId,
 		CertificatePEM: request.CertificatePEM,
 		Contact:        request.Contact,
 		Password:       password,
-		Module:         WebRA,
-		Workflow:       Recover,
+		Module:         horizon.WebRA,
+		Workflow:       horizon.Recover,
 	}
-	response, err := c.NewRequest(&recoverRequest)
+	err := c.NewRequest(&recoverRequest)
 	if err != nil {
 		return nil, err
 	}
-	webRARecoverRequest, ok := response.(*WebRARecoverRequest)
-	if !ok {
-		return nil, InvalidTypeError
-	}
-	return webRARecoverRequest, nil
+	return &recoverRequest, nil
 }
 
 // Low level functions
 
-func (c *Client) NewRequest(request Request) (Request, error) {
-	jsonData, _ := json.Marshal(request)
-	response, err := c.Http.Post("/api/v1/requests/submit", jsonData)
+func (c *Client) NewRequest(request horizon.Request) error {
+	jsonData, err := json.Marshal(request)
 	if err != nil {
-		return nil, err
+		return err
+	}
+	response, err := c.http.Post("/api/v1/requests/submit", jsonData)
+	if err != nil {
+		return err
 	}
 	err = response.Json().Decode(&request)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return request, request.EnsureType()
+	return request.EnsureType()
 }
 
-func (c *Client) GetTemplate(request Request) (Request, error) {
+func (c *Client) GetTemplate(request horizon.Request) error {
 	jsonData, _ := json.Marshal(request)
-	response, err := c.Http.Post("/api/v1/requests/template", jsonData)
+	response, err := c.http.Post("/api/v1/requests/template", jsonData)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	err = response.Json().Decode(&request)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return request, request.EnsureType()
+	return request.EnsureType()
 }
 
-func (c *Client) GetRequest(id string, result Request) error {
-	response, err := c.Http.Get("/api/v1/requests/" + id)
+func (c *Client) GetRequest(id string, result horizon.Request) error {
+	response, err := c.http.Get("/api/v1/requests/" + id)
 	if err != nil {
 		return err
 	}
@@ -425,4 +461,18 @@ func (c *Client) GetRequest(id string, result Request) error {
 	}
 	// Ensuring that the type received is the expected one
 	return result.EnsureType()
+}
+
+// Request operations
+func (c *Client) CancelRequest(request horizon.Request) error {
+	jsonData, _ := json.Marshal(request)
+	response, err := c.http.Post("/api/v1/requests/cancel", jsonData)
+	if err != nil {
+		return err
+	}
+	err = response.Json().Decode(&request)
+	if err != nil {
+		return err
+	}
+	return request.EnsureType()
 }

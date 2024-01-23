@@ -1,6 +1,7 @@
 package discovery
 
 import (
+	"github.com/evertrust/horizon-go"
 	"net/url"
 	"os"
 	"testing"
@@ -22,21 +23,21 @@ func init() {
 }
 
 func TestCreate(t *testing.T) {
-	campaign := DiscoveryCampaign{
+	campaign := horizon.DiscoveryCampaign{
 		Name: "testCampaign",
-		AuthorizationLevels: DiscoveryCampaignAuthorizationLevels{
-			Search: DiscoveryCampaignAuthorizationLevel{
+		AuthorizationLevels: horizon.AuthorizationLevels{
+			Search: horizon.AuthorizationLevel{
 				AccessLevel: "authorized",
-				EnforcedIdentityProviders: []DiscoveryCampaignEnforcedIdentityProviders{
+				EnforcedIdentityProviders: []horizon.EnforcedIdentityProviders{
 					{
 						Name: "local",
 						Type: "Local",
 					},
 				},
 			},
-			Feed: DiscoveryCampaignAuthorizationLevel{
+			Feed: horizon.AuthorizationLevel{
 				AccessLevel: "authorized",
-				EnforcedIdentityProviders: []DiscoveryCampaignEnforcedIdentityProviders{
+				EnforcedIdentityProviders: []horizon.EnforcedIdentityProviders{
 					{
 						Name: "local",
 						Type: "Local",
@@ -61,6 +62,23 @@ func TestStart(t *testing.T) {
 		t.Error(err)
 	}
 	sessionId = campaign.Id
+}
+
+func ExampleClient_Feed() {
+	client.Feed(horizon.DiscoveredCertificateParams{
+		Certificate:   "-----BEGIN...",
+		Code:          horizon.DiscoveryNetImport,
+		DiscoveryData: nil,
+		Metadata:      nil,
+		PrivateKey:    "-----BEGIN...",
+		ContactEmail:  "test@test.test",
+		ThirdPartyData: []horizon.ThirdPartyItem{{
+			Connector:   "thirdPartyConnector",
+			Id:          "certId",
+			Fingerprint: "certFp",
+		}},
+	}, &horizon.DiscoverySession{Campaign: "my-campaign"})
+	// Output: No output
 }
 
 func TestFeed(t *testing.T) {
@@ -99,18 +117,17 @@ yMG9Jkh6kW+qN0KHM1ykKuslfFMJwTUwGITqI0PaG9i3vhxOqX9Db5pHYNYw84pc
 TCpufK0vZkK9D2keW3AInl0EKyCNyFdoPW0Ji5bIefIBqnhXSFbtBvjg6tZB170T
 +mne9YL2B0AIzbzyEStG1DqMet+AsTUEyBrWJf9H7PgciQe/rANSCaI=
 -----END CERTIFICATE-----`
-	err := client.Feed(HrzDiscoveredCert{
-		DiscoveryCampaign: "testCampaign",
-		Certificate:       certPem,
-		Metadata:          nil,
-		DiscoveryInfos: HrzDiscoveredCertsMetadata{
+	err := client.Feed(horizon.DiscoveredCertificateParams{
+		Certificate: certPem,
+		Metadata:    nil,
+		DiscoveryData: &horizon.DiscoveryData{
 			CertificateLocation:      []string{"gitlab.com"},
 			CertificateUsageLocation: []string{"mysuperusage"},
 			OS:                       []string{"linux"},
 			Hostname:                 []string{"gitlab.com"},
 			IP:                       "172.123.21.9",
 			Source:                   []string{"unittesting"},
-			TLSPorts: []HrzTLSPorts{
+			TLSPorts: []horizon.DiscoveredTLSPorts{
 				{
 					Port:    443,
 					Version: "TLSv1.2",
@@ -124,7 +141,7 @@ TCpufK0vZkK9D2keW3AInl0EKyCNyFdoPW0Ji5bIefIBqnhXSFbtBvjg6tZB170T
 }
 
 func TestEvent(t *testing.T) {
-	err := client.Event(HrzDiscoveryEvent{
+	err := client.Event(Event{
 		Code:         "NETIMPORT",
 		Campaign:     "testCampaign",
 		SessionId:    sessionId,

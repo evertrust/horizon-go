@@ -12,17 +12,19 @@ var client Client
 
 func init() {
 	var baseClient = http.Client{}
-	endpoint, _ := url.Parse(os.Getenv("ENDPOINT"))
-	baseClient.WithBaseUrl(*endpoint)
-	baseClient.WithPasswordAuth(
-		os.Getenv("APIID"),
-		os.Getenv("APIKEY"),
-	)
-	client = Client{Http: &baseClient}
+	endpoint, _ := url.Parse("https://horizon-qa.int.evertrust.fr")
+	baseClient.
+		SetBaseUrl(*endpoint).
+		SetPasswordAuth(
+			"sma",
+			"test",
+		).
+		SkipTLSVerify()
+	client = Client{http: &baseClient}
 }
 
-func TestGet(t *testing.T) {
-	_, err := client.Get(os.Getenv("AUTOMATION_POLICY"))
+func TestGetParams(t *testing.T) {
+	_, err := client.GetParameters(os.Getenv("AUTOMATION_POLICY"))
 	if err != nil {
 		t.Error(err.Error())
 	}
@@ -41,10 +43,10 @@ func TestList(t *testing.T) {
 	t.Log(policies)
 }
 
-func TestNonce(t *testing.T) {
-	nonce, err := client.Nonce(os.Getenv("AUTOMATION_POLICY"))
+func TestGet(t *testing.T) {
+	policies, err := client.Get("Azdz")
 	if err != nil {
 		t.Error(err.Error())
 	}
-	t.Log(nonce)
+	t.Log(policies)
 }

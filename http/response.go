@@ -1,19 +1,21 @@
 package http
 
 import (
+	"bytes"
 	"encoding/json"
+	"io"
 	"mime"
+	gohttp "net/http"
 	"strings"
-
-	"gopkg.in/resty.v1"
 )
 
 type HorizonResponse struct {
-	RestyResponse *resty.Response
+	HttpResponse *gohttp.Response
+	body         []byte
 }
 
 func (r *HorizonResponse) HasContentType(mimeType string) bool {
-	for _, v := range strings.Split(r.RestyResponse.RawResponse.Header.Get("Content-Type"), ",") {
+	for _, v := range strings.Split(r.HttpResponse.Header.Get("Content-Type"), ",") {
 		t, _, err := mime.ParseMediaType(v)
 		if err != nil {
 			break
@@ -26,5 +28,9 @@ func (r *HorizonResponse) HasContentType(mimeType string) bool {
 }
 
 func (r *HorizonResponse) Json() *json.Decoder {
-	return json.NewDecoder(strings.NewReader(string(r.RestyResponse.Body())))
+	if r.body == nil {
+		// Saving the body since it is a stream
+		r.body, _ = io.ReadAll(r.HttpResponse.Body)
+	}
+	return json.NewDecoder(bytes.NewReader(r.body))
 }
