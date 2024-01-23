@@ -49,6 +49,9 @@ func (c *Client) GetParameters(policyName string) (horizon.InitParameters, error
 	}
 	var policy horizon.InitParameters
 	err = response.Json().Decode(&policy)
+	if err != nil {
+		return nil, err
+	}
 	switch policy.GetModule() {
 	case horizon.Acme:
 		var acmeParams horizon.AcmeInitParameters
