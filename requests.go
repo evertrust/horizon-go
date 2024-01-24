@@ -513,9 +513,7 @@ type WebRAUpdateRequest struct {
 }
 
 func (r *WebRAUpdateRequest) EnsureType() error {
-	if r.Module != WebRA {
-		return invalidModuleError(r.Module, WebRA)
-	}
+	// Do not validate module as it depends on target profile
 	if r.Workflow != Update {
 		return invalidWorkflowError(r.Workflow, Update)
 	}
@@ -572,9 +570,7 @@ type WebRAMigrateRequest struct {
 }
 
 func (r *WebRAMigrateRequest) EnsureType() error {
-	if r.Module != WebRA {
-		return invalidModuleError(r.Module, WebRA)
-	}
+	// Do not validate module as it depends on target profile
 	if r.Workflow != Migrate {
 		return invalidWorkflowError(r.Workflow, Migrate)
 	}
@@ -683,9 +679,7 @@ type WebRAImportRequest struct {
 }
 
 func (r *WebRAImportRequest) EnsureType() error {
-	if r.Module != WebRA {
-		return invalidModuleError(r.Module, WebRA)
-	}
+	// Do not validate module as it depends on target profile
 	if r.Workflow != Import {
 		return invalidWorkflowError(r.Workflow, Import)
 	}
