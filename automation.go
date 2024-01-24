@@ -52,8 +52,8 @@ func (p *AcmeExternalInitParameters) GetModule() Module {
 type AcmeInitParameters struct {
 	Profile       string `json:"profile"`
 	KeyType       string `json:"keyType"`
-	TlsAlpn01Port string `json:"tlsAlpn01Port"`
-	Http01Port    string `json:"http01Port"`
+	TlsAlpn01Port int    `json:"tlsAlpn01Port"`
+	Http01Port    int    `json:"http01Port"`
 }
 
 func (p *AcmeInitParameters) GetModule() Module {
