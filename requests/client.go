@@ -374,10 +374,12 @@ func (c *Client) GetImportRequest(id string) (*horizon.WebRAImportRequest, error
 func (c *Client) NewImportRequest(request horizon.WebRAImportRequestParams) (*horizon.WebRAImportRequest, error) {
 	// Merge params in struct
 	importRequest := horizon.WebRAImportRequest{
-		Profile:  request.Profile,
-		Template: request.Template,
-		Module:   horizon.WebRA,
-		Workflow: horizon.Import,
+		Profile:        request.Profile,
+		Template:       request.Template,
+		CertificatePEM: request.CertificatePEM,
+		CertificateId:  request.CertificateId,
+		Module:         horizon.WebRA,
+		Workflow:       horizon.Import,
 	}
 	err := c.NewRequest(&importRequest)
 	if err != nil {
