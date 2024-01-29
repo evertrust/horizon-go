@@ -6,6 +6,7 @@ type HorizonErrorResponse struct {
 	Code    string `json:"error"`
 	Message string `json:"message"`
 	Detail  string `json:"detail"`
+	Status  int    `json:"status"`
 }
 
 type HorizonMultipleErrorsResponse []HorizonErrorResponse
