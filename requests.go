@@ -1,6 +1,8 @@
 package horizon
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Requests
 type Workflow string
@@ -73,20 +75,81 @@ type LabelElement struct {
 	Value     *String `json:"value"`
 }
 
+type MetadataType string
+
+const (
+	// Horizon metadata
+	MetadataPkiConnector          MetadataType = "pki_connector"
+	MetadataScepTransId           MetadataType = "scep_transid"
+	MetadataRenewedCertificateId  MetadataType = "renewed_certificate_id"
+	MetadataPreviousCertificateId MetadataType = "previous_certificate_id"
+	MetadataAutomationPolicy      MetadataType = "automation_policy"
+
+	// Third party PKI metadata
+	MetadataCertEuropeId      MetadataType = "certeurope_id"
+	MetadataDigiCertId        MetadataType = "digicert_id"
+	MetadataDigicertOrderId   MetadataType = "digicert_order_id"
+	MetadataEntrustId         MetadataType = "entrust_id"
+	MetadataFCMSId            MetadataType = "fcms_id"
+	MetadataGlobalSignAtlasId MetadataType = "gsatlas_id"
+	MetadataGlobalSignId      MetadataType = "gs_order_id"
+	MetadataMetaPKIId         MetadataType = "metapki_id"
+	MetadataIDCAId            MetadataType = "eviden_idca_id"
+)
+
+func GetMetadataType(metadata string) (MetadataType, error) {
+	switch MetadataType(metadata) {
+	case MetadataPkiConnector:
+		return MetadataPkiConnector, nil
+	case MetadataScepTransId:
+		return MetadataScepTransId, nil
+	case MetadataRenewedCertificateId:
+		return MetadataRenewedCertificateId, nil
+	case MetadataPreviousCertificateId:
+		return MetadataPreviousCertificateId, nil
+	case MetadataAutomationPolicy:
+		return MetadataAutomationPolicy, nil
+	case MetadataCertEuropeId:
+		return MetadataCertEuropeId, nil
+	case MetadataDigiCertId:
+		return MetadataDigiCertId, nil
+	case MetadataDigicertOrderId:
+		return MetadataDigicertOrderId, nil
+	case MetadataEntrustId:
+		return MetadataEntrustId, nil
+	case MetadataFCMSId:
+		return MetadataFCMSId, nil
+	case MetadataGlobalSignAtlasId:
+		return MetadataGlobalSignAtlasId, nil
+	case MetadataGlobalSignId:
+		return MetadataGlobalSignId, nil
+	case MetadataMetaPKIId:
+		return MetadataMetaPKIId, nil
+	case MetadataIDCAId:
+		return MetadataIDCAId, nil
+	}
+	return "", fmt.Errorf("invalid metadata type: %s", metadata)
+}
+
+// NewMetadataElement creates a new metadata element for Horizon:
+// nil value means no change should be made
+// empty value means the value was deleted
+// any other value is setting the value
+// note: this function does not check that metadata is a valid enum value. For this, use GetMetadataType beforehand
 func NewMetadataElement(metadata string, value *string) *MetadataElement {
 	if value == nil {
 		return nil
 	}
 	if *value == "" {
-		return &MetadataElement{Metadata: metadata, Value: Delete}
+		return &MetadataElement{Metadata: MetadataType(metadata), Value: Delete}
 	}
-	return &MetadataElement{Metadata: metadata, Value: &String{*value}}
+	return &MetadataElement{Metadata: MetadataType(metadata), Value: &String{*value}}
 }
 
 type MetadataElement struct {
-	Metadata string  `json:"metadata,omitempty"`
-	Editable bool    `json:"editable,omitempty"`
-	Value    *String `json:"value"`
+	Metadata MetadataType `json:"metadata,omitempty"`
+	Editable bool         `json:"editable,omitempty"`
+	Value    *String      `json:"value"`
 }
 
 func NewOwnerElement(value *string) *OwnerElement {
