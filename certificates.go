@@ -89,6 +89,23 @@ type DiscoveryInfo struct {
 	Identifier        string `json:"identifier,omitempty"`
 }
 
+type TriggerResultStatus string
+
+const (
+	TriggerResultStatusSuccess TriggerResultStatus = "success"
+	TriggerResultStatusFailure TriggerResultStatus = "failure"
+)
+
+type TriggerResult struct {
+	Name              string              `json:"name,omitempty"`
+	Event             string              `json:"event,omitempty"`
+	TriggerType       string              `json:"triggerType,omitempty"`
+	LastExecutionDate int                 `json:"lastExecutionDate,omitempty"`
+	Status            TriggerResultStatus `json:"status,omitempty"`
+	Detail            string              `json:"detail,omitempty"`
+	Retryable         bool                `json:"retryable,omitempty"`
+}
+
 type Certificate struct {
 	Id                    string           `json:"_id,omitempty"`
 	Module                string           `json:"module"`
@@ -109,6 +126,7 @@ type Certificate struct {
 	SigningAlgorithm      string           `json:"signingAlgorithm"`
 	Revoked               bool             `json:"revoked"`
 	ThirdPartyData        []ThirdPartyItem `json:"thirdPartyData,omitempty"`
+	TriggerResults        []TriggerResult  `json:"triggerResults,omitempty"`
 	DiscoveryData         []DiscoveryData  `json:"discoveryData,omitempty"`
 	DiscoveryInfo         []DiscoveryInfo  `json:"discoveryInfo,omitempty"`
 	DiscoveryTrusted      *bool            `json:"discoveryTrusted,omitempty"`

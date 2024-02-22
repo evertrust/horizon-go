@@ -219,10 +219,12 @@ func (c *Client) NewRenewRequest(request horizon.WebRARenewRequestParams) (*hori
 		password.Value = request.Password
 	}
 	renewRequest := horizon.WebRARenewRequest{
-		Template: request.Template,
-		Module:   horizon.WebRA,
-		Workflow: horizon.Renew,
-		Password: password,
+		Template:       request.Template,
+		Module:         horizon.WebRA,
+		Workflow:       horizon.Renew,
+		Password:       password,
+		CertificateId:  request.CertToRenewId,
+		CertificatePEM: request.CertToRenewPem,
 	}
 	err := c.NewRequest(&renewRequest)
 	if err != nil {

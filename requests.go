@@ -438,7 +438,9 @@ type WebRARenewTemplate struct {
 type WebRARenewRequestParams struct {
 	Template *WebRARenewTemplate
 	// If the request allows password set on client side, give the password here
-	Password string
+	Password       string
+	CertToRenewId  string
+	CertToRenewPem string
 }
 
 type WebRARenewRequest struct {
