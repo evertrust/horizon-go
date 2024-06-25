@@ -521,9 +521,6 @@ type WebRARevokeRequest struct {
 }
 
 func (r *WebRARevokeRequest) EnsureType() error {
-	if r.Module != WebRA {
-		return invalidModuleError(r.Module, WebRA)
-	}
 	if r.Workflow != Revoke {
 		return invalidWorkflowError(r.Workflow, Revoke)
 	}
