@@ -14,15 +14,21 @@ type Policy struct {
 }
 
 type InitParameter struct {
-	Module string `json:"module"`
+	Module  string `json:"module"`
+	Profile string `json:"profile"`
 }
 
 func (p *InitParameter) GetModule() Module {
 	return Module(p.Module)
 }
 
+func (p *InitParameter) GetProfile() string {
+	return p.Profile
+}
+
 type InitParameters interface {
 	GetModule() Module
+	GetProfile() string
 }
 
 type EstInitParameters struct {
@@ -37,6 +43,10 @@ func (p *EstInitParameters) GetModule() Module {
 	return Est
 }
 
+func (p *EstInitParameters) GetProfile() string {
+	return p.Profile
+}
+
 type AcmeExternalInitParameters struct {
 	Profile                    string   `json:"profile"`
 	KeyType                    string   `json:"keyType"`
@@ -47,6 +57,10 @@ type AcmeExternalInitParameters struct {
 
 func (p *AcmeExternalInitParameters) GetModule() Module {
 	return AcmeExternal
+}
+
+func (p *AcmeExternalInitParameters) GetProfile() string {
+	return p.Profile
 }
 
 type AcmeInitParameters struct {
@@ -60,6 +74,10 @@ func (p *AcmeInitParameters) GetModule() Module {
 	return Acme
 }
 
+func (p *AcmeInitParameters) GetProfile() string {
+	return p.Profile
+}
+
 type ScepInitParameters struct {
 	Profile           string `json:"profile"`
 	KeyType           string `json:"keyType"`
@@ -69,6 +87,10 @@ type ScepInitParameters struct {
 
 func (p *ScepInitParameters) GetModule() Module {
 	return Scep
+}
+
+func (p *ScepInitParameters) GetProfile() string {
+	return p.Profile
 }
 
 type Report struct {
