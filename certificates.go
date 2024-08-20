@@ -111,6 +111,8 @@ type Certificate struct {
 	Module                string           `json:"module"`
 	Profile               string           `json:"profile,omitempty"`
 	Owner                 string           `json:"owner,omitempty"`
+	Team                  string           `json:"team,omitempty"`
+	ContactEmail          string           `json:"contactEmail,omitempty"`
 	Certificate           string           `json:"certificate"`
 	Thumbprint            string           `json:"thumbprint"`
 	SelfSigned            bool             `json:"selfSigned"`
