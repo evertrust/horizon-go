@@ -20,11 +20,12 @@ const (
 type Status string
 
 const (
-	Denied    Status = "denied"
-	Pending   Status = "pending"
-	Approved  Status = "approved"
-	Canceled  Status = "canceled"
-	Completed Status = "completed"
+	Denied     Status = "denied"
+	Pending    Status = "pending"
+	Approved   Status = "approved"
+	Canceled   Status = "canceled"
+	Completed  Status = "completed"
+	Processing Status = "processing"
 )
 
 func invalidModuleError(found, expected Module) error {
