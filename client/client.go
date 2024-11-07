@@ -11,6 +11,7 @@ import (
 	"github.com/evertrust/horizon-go/license"
 	"github.com/evertrust/horizon-go/locals"
 	mylog "github.com/evertrust/horizon-go/log"
+	"github.com/evertrust/horizon-go/principals"
 	"github.com/evertrust/horizon-go/requests"
 	"github.com/evertrust/horizon-go/rfc5280"
 	"io"
@@ -29,6 +30,7 @@ type Client struct {
 	Automation  *automation.Client
 	Locals      *locals.Client
 	Http        *http.Client
+	Principals  *principals.Client
 }
 
 // New instantiates a new Client client
@@ -130,5 +132,6 @@ func (client *Client) init(httpClient *http.Client) *Client {
 	client.Discovery = &discovery.Client{Http: client.Http}
 	client.Automation = automation.Init(httpClient)
 	client.Locals = &locals.Client{Http: client.Http}
+	client.Principals = principals.Init(httpClient)
 	return client
 }
