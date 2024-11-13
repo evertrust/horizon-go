@@ -23,7 +23,7 @@ const (
 	Unspecified          RevocationReason = "UNSPECIFIED"
 	KeyCompromise        RevocationReason = "KEYCOMPROMISE"
 	CACompromise         RevocationReason = "CACOMPROMISE"
-	AffiliationChange    RevocationReason = "AFFILIATIONCHANGE"
+	AffiliationChanged   RevocationReason = "AFFILIATIONCHANGED"
 	Superseded           RevocationReason = "SUPERSEDED"
 	CessationOfOperation RevocationReason = "CESSATIONOFOPERATION"
 )
@@ -37,8 +37,8 @@ func ValidateRevocationReason(reason string) (RevocationReason, error) {
 		return KeyCompromise, nil
 	case CACompromise:
 		return CACompromise, nil
-	case AffiliationChange:
-		return AffiliationChange, nil
+	case AffiliationChanged:
+		return AffiliationChanged, nil
 	case Superseded:
 		return Superseded, nil
 	case CessationOfOperation:
