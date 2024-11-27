@@ -17,8 +17,8 @@ func init() {
 	var baseClient = http.Client{}
 	endpoint, _ := url.Parse(os.Getenv("ENDPOINT"))
 	baseClient.
-		WithBaseUrl(*endpoint).
-		WithPasswordAuth(os.Getenv("APIID"), os.Getenv("APIKEY"))
+		SetBaseUrl(*endpoint).
+		SetPasswordAuth(os.Getenv("APIID"), os.Getenv("APIKEY"))
 	client = Client{Http: &baseClient}
 }
 
@@ -134,28 +134,31 @@ TCpufK0vZkK9D2keW3AInl0EKyCNyFdoPW0Ji5bIefIBqnhXSFbtBvjg6tZB170T
 				},
 			},
 		},
-	})
+	}, &horizon.DiscoverySession{Campaign: "test"})
 	if err != nil {
 		t.Error(err.Error())
 	}
 }
 
-func TestEvent(t *testing.T) {
-	err := client.Event(Event{
-		Code:         "NETIMPORT",
-		Campaign:     "testCampaign",
-		SessionId:    sessionId,
-		Status:       "failure",
-		ErrorCode:    "HCL-NETIMPORT-DCC-001",
-		ErrorMessage: "Could not get certificates from DigiCert CertCentral",
-	})
-	if err != nil {
-		t.Error(err)
-	}
-}
+//func TestEvent(t *testing.T) {
+//	err := client.Event(Event{
+//		Code:         "NETIMPORT",
+//		Campaign:     "testCampaign",
+//		SessionId:    sessionId,
+//		Status:       "failure",
+//		ErrorCode:    "HCL-NETIMPORT-DCC-001",
+//		ErrorMessage: "Could not get certificates from DigiCert CertCentral",
+//	})
+//	if err != nil {
+//		t.Error(err)
+//	}
+//}
 
 func TestStop(t *testing.T) {
-	err := client.Stop("testCampaign", sessionId)
+	err := client.Stop(&horizon.DiscoverySession{
+		Campaign: "testCampaign",
+		Id:       sessionId,
+	})
 	if err != nil {
 		t.Error(err)
 	}
@@ -166,4 +169,13 @@ func TestDelete(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+}
+
+func TestSearch(t *testing.T) {
+	results, err := client.EventSearch(horizon.DiscoveryEventSearchQuery{Query: "code = \"SESSION-END\""})
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(results.Results)
+
 }

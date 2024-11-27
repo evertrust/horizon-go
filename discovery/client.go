@@ -56,12 +56,16 @@ func (c *Client) Stop(session *horizon.DiscoverySession) (err error) {
 
 func (c *Client) Event(event horizon.DiscoveryEventParams, session *horizon.DiscoverySession) error {
 	hrzEvent := &horizon.DiscoveryEvent{
+		Code:         event.Code,
 		Campaign:     session.Campaign,
 		SessionId:    session.Id,
-		Code:         event.Code,
 		Status:       event.Status,
 		ErrorCode:    event.ErrorCode,
 		ErrorMessage: event.ErrorMessage,
+		Hostname:     event.Hostname,
+		Ip:           event.Ip,
+		Port:         event.Port,
+		Source:       event.Source,
 	}
 	marshalledData, err := json.Marshal(hrzEvent)
 	if err != nil {
@@ -81,6 +85,10 @@ func (c *Client) Events(events []horizon.DiscoveryEventParams, session *horizon.
 			Status:       events[i].Status,
 			ErrorCode:    events[i].ErrorCode,
 			ErrorMessage: events[i].ErrorMessage,
+			Hostname:     events[i].Hostname,
+			Ip:           events[i].Ip,
+			Port:         events[i].Port,
+			Source:       events[i].Source,
 		}
 		completeEvents = append(completeEvents, hrzEvent)
 	}
@@ -106,4 +114,16 @@ func (c *Client) Create(campaign horizon.DiscoveryCampaign) error {
 func (c *Client) Delete(campaignID string) error {
 	_, err := c.Http.Delete("/api/v1/discovery/campaigns/" + campaignID)
 	return err
+}
+
+// Search sends back paginated results
+func (c *Client) EventSearch(query horizon.DiscoveryEventSearchQuery) (*horizon.SearchResults[horizon.DiscoveryEvent], error) {
+	jsonData, _ := json.Marshal(query)
+	response, err := c.Http.Post("/api/v1/discovery/events/search", jsonData)
+	if err != nil {
+		return nil, err
+	}
+	var resultPage horizon.SearchResults[horizon.DiscoveryEvent]
+	err = response.Json().Decode(&resultPage)
+	return &resultPage, err
 }
