@@ -1,11 +1,14 @@
-module github.com/evertrust/horizon-go
+module github.com/evertrust/horizon-go/horizon
 
-go 1.20
-
-require gopkg.in/resty.v1 v1.12.0
+go 1.18
 
 require (
-	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
-	golang.org/x/crypto v0.18.0 // indirect
-	golang.org/x/net v0.10.0 // indirect
+	github.com/stretchr/testify v1.10.0
+	gopkg.in/validator.v2 v2.0.1
+)
+
+require (
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
