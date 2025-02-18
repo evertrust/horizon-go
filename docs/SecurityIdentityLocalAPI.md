@@ -32,7 +32,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go/horizon"
+	openapiclient "github.com/evertrust/horizon-go"
 )
 
 func main() {
@@ -98,7 +98,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go/horizon"
+	openapiclient "github.com/evertrust/horizon-go"
 )
 
 func main() {
@@ -166,7 +166,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go/horizon"
+	openapiclient "github.com/evertrust/horizon-go"
 )
 
 func main() {
@@ -236,7 +236,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go/horizon"
+	openapiclient "github.com/evertrust/horizon-go"
 )
 
 func main() {
@@ -297,7 +297,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go/horizon"
+	openapiclient "github.com/evertrust/horizon-go"
 )
 
 func main() {
@@ -361,7 +361,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go/horizon"
+	openapiclient "github.com/evertrust/horizon-go"
 )
 
 func main() {
@@ -429,7 +429,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go/horizon"
+	openapiclient "github.com/evertrust/horizon-go"
 )
 
 func main() {
@@ -493,7 +493,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go/horizon"
+	openapiclient "github.com/evertrust/horizon-go"
 )
 
 func main() {
