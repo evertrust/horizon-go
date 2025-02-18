@@ -29,7 +29,7 @@ os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost:9000*
+All URIs are relative to your configured server URL
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -1539,3 +1539,4 @@ auth := context.WithValue(
 	)
 r, err := client.Service.Operation(auth, args)
 ```
+
