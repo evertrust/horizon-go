@@ -15,7 +15,7 @@ import (
     "crypto/tls"
 	"fmt"
 	"net/http"
-    "net/url"
+	"net/url"
 	"strings"
 )
 
@@ -154,10 +154,9 @@ func (c *Configuration) AddDefaultHeader(key string, value string) {
 }
 
 // SetProxyUrl sets the proxy URL for the configuration
-func (c *Configuration) SetProxyUrl(proxyUrl string) {
+func (c *Configuration) SetProxyUrl(proxyUrl *url.URL) {
     transport := c.GetTransport()
-    parsedUrl,_ := url.Parse(proxyUrl)
-    transport.Proxy = http.ProxyURL(parsedUrl)
+    transport.Proxy = http.ProxyURL(proxyUrl)
 }
 
 // URL formats template on a index using given variables

@@ -25,7 +25,8 @@ To use a proxy, use the SetProxyURL method on the configuration object:
 ```go
     conf := horizon.NewConfiguration()
     c.Host = "horizon.com"
-    c.SetProxyURL("http://proxy.com")
+    parsedUrl, err := url.Parse("http://proxy.com")
+    c.SetProxyURL(parsedUrl)
     client := horizon.NewAPIClient(c)
 ```
 
