@@ -42,7 +42,7 @@ var (
 )
 
 type Requests struct {
-    c *APIClient
+	c *APIClient
 }
 
 // APIClient manages communication with the Horizon API API v2.7.0
@@ -51,7 +51,7 @@ type APIClient struct {
 
 	cfg    *Configuration
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
-    Requests *Requests
+	Requests *Requests
 
 	// API Services
 

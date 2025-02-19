@@ -15,6 +15,7 @@ import (
     "crypto/tls"
 	"fmt"
 	"net/http"
+    "net/url"
 	"strings"
 )
 
@@ -150,6 +151,13 @@ func (c *Configuration) SetCertAuth(cert tls.Certificate) *Configuration {
 // AddDefaultHeader adds a new HTTP header to the default header in the request
 func (c *Configuration) AddDefaultHeader(key string, value string) {
 	c.DefaultHeader[key] = value
+}
+
+// SetProxyUrl sets the proxy URL for the configuration
+func (c *Configuration) SetProxyUrl(proxyUrl string) {
+    transport := c.GetTransport()
+    parsedUrl,_ := url.Parse(proxyUrl)
+    transport.Proxy = http.ProxyURL(parsedUrl)
 }
 
 // URL formats template on a index using given variables
