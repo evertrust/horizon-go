@@ -20,10 +20,13 @@ Put the package under your project folder and add the following in import:
 import horizon "github.com/evertrust/horizon-go"
 ```
 
-To use a proxy, set the environment variable `HTTP_PROXY`:
+To use a proxy, use the SetProxyURL method on the configuration object:
 
 ```go
-os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
+    conf := horizon.NewConfiguration()
+    c.Host = "horizon.com"
+    c.SetProxyURL("http://proxy.com")
+    client := horizon.NewAPIClient(c)
 ```
 
 ## Authorization
