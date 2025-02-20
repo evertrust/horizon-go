@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Identity** | [**Identity**](Identity.md) |  | 
 **Permissions** | Pointer to [**[]Permission**](Permission.md) | The permissions of the principal | [optional] 
-**Roles** | Pointer to [**[]Role**](Role.md) | The roles of the principal | [optional] 
+**Roles** | Pointer to **[]string** | The roles of the principal | [optional] 
 **Teams** | Pointer to **[]string** | The teams of the principal | [optional] 
 **Preferences** | Pointer to [**NullablePrincipalInfoPreferences**](PrincipalInfoPreferences.md) | The UI preferences of the principal | [optional] 
 **CustomDashboards** | Pointer to [**[]Dashboard**](Dashboard.md) | The custom dashboards of the principal | [optional] 
@@ -87,20 +87,20 @@ HasPermissions returns a boolean if a field has been set.
 UnsetPermissions ensures that no value is present for Permissions, not even an explicit nil
 ### GetRoles
 
-`func (o *PrincipalResponse) GetRoles() []Role`
+`func (o *PrincipalResponse) GetRoles() []string`
 
 GetRoles returns the Roles field if non-nil, zero value otherwise.
 
 ### GetRolesOk
 
-`func (o *PrincipalResponse) GetRolesOk() (*[]Role, bool)`
+`func (o *PrincipalResponse) GetRolesOk() (*[]string, bool)`
 
 GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRoles
 
-`func (o *PrincipalResponse) SetRoles(v []Role)`
+`func (o *PrincipalResponse) SetRoles(v []string)`
 
 SetRoles sets Roles field to given value.
 

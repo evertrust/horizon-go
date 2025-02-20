@@ -24,7 +24,7 @@ type PrincipalResponse struct {
 	// The permissions of the principal
 	Permissions []Permission `json:"permissions,omitempty"`
 	// The roles of the principal
-	Roles []Role `json:"roles,omitempty"`
+	Roles []string `json:"roles,omitempty"`
 	// The teams of the principal
 	Teams []string `json:"teams,omitempty"`
 	// The UI preferences of the principal
@@ -112,9 +112,9 @@ func (o *PrincipalResponse) SetPermissions(v []Permission) {
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalResponse) GetRoles() []Role {
+func (o *PrincipalResponse) GetRoles() []string {
 	if o == nil {
-		var ret []Role
+		var ret []string
 		return ret
 	}
 	return o.Roles
@@ -123,7 +123,7 @@ func (o *PrincipalResponse) GetRoles() []Role {
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalResponse) GetRolesOk() ([]Role, bool) {
+func (o *PrincipalResponse) GetRolesOk() ([]string, bool) {
 	if o == nil || IsNil(o.Roles) {
 		return nil, false
 	}
@@ -139,8 +139,8 @@ func (o *PrincipalResponse) HasRoles() bool {
 	return false
 }
 
-// SetRoles gets a reference to the given []Role and assigns it to the Roles field.
-func (o *PrincipalResponse) SetRoles(v []Role) {
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *PrincipalResponse) SetRoles(v []string) {
 	o.Roles = v
 }
 
