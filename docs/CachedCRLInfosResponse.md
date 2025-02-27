@@ -5,20 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ca** | **string** |  | 
-**CRLNumber** | Pointer to **NullableFloat32** |  | [optional] 
+**Number** | Pointer to **NullableFloat32** |  | [optional] 
 **IssuerDn** | Pointer to **NullableString** |  | [optional] 
 **ThisUpdate** | Pointer to **NullableInt64** |  | [optional] 
 **NextUpdate** | Pointer to **NullableInt64** |  | [optional] 
 **LastRefresh** | Pointer to **NullableInt64** |  | [optional] 
 **NextRefresh** | Pointer to **NullableInt64** |  | [optional] 
-**CrlSize** | **int64** |  | 
+**Size** | Pointer to **int64** |  | [optional] 
 **Error** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewCachedCRLInfosResponse
 
-`func NewCachedCRLInfosResponse(ca string, crlSize int64, ) *CachedCRLInfosResponse`
+`func NewCachedCRLInfosResponse(ca string, ) *CachedCRLInfosResponse`
 
 NewCachedCRLInfosResponse instantiates a new CachedCRLInfosResponse object
 This constructor will assign default values to properties that have it defined,
@@ -53,41 +53,41 @@ and a boolean to check if the value has been set.
 SetCa sets Ca field to given value.
 
 
-### GetCRLNumber
+### GetNumber
 
-`func (o *CachedCRLInfosResponse) GetCRLNumber() float32`
+`func (o *CachedCRLInfosResponse) GetNumber() float32`
 
-GetCRLNumber returns the CRLNumber field if non-nil, zero value otherwise.
+GetNumber returns the Number field if non-nil, zero value otherwise.
 
-### GetCRLNumberOk
+### GetNumberOk
 
-`func (o *CachedCRLInfosResponse) GetCRLNumberOk() (*float32, bool)`
+`func (o *CachedCRLInfosResponse) GetNumberOk() (*float32, bool)`
 
-GetCRLNumberOk returns a tuple with the CRLNumber field if it's non-nil, zero value otherwise
+GetNumberOk returns a tuple with the Number field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCRLNumber
+### SetNumber
 
-`func (o *CachedCRLInfosResponse) SetCRLNumber(v float32)`
+`func (o *CachedCRLInfosResponse) SetNumber(v float32)`
 
-SetCRLNumber sets CRLNumber field to given value.
+SetNumber sets Number field to given value.
 
-### HasCRLNumber
+### HasNumber
 
-`func (o *CachedCRLInfosResponse) HasCRLNumber() bool`
+`func (o *CachedCRLInfosResponse) HasNumber() bool`
 
-HasCRLNumber returns a boolean if a field has been set.
+HasNumber returns a boolean if a field has been set.
 
-### SetCRLNumberNil
+### SetNumberNil
 
-`func (o *CachedCRLInfosResponse) SetCRLNumberNil(b bool)`
+`func (o *CachedCRLInfosResponse) SetNumberNil(b bool)`
 
- SetCRLNumberNil sets the value for CRLNumber to be an explicit nil
+ SetNumberNil sets the value for Number to be an explicit nil
 
-### UnsetCRLNumber
-`func (o *CachedCRLInfosResponse) UnsetCRLNumber()`
+### UnsetNumber
+`func (o *CachedCRLInfosResponse) UnsetNumber()`
 
-UnsetCRLNumber ensures that no value is present for CRLNumber, not even an explicit nil
+UnsetNumber ensures that no value is present for Number, not even an explicit nil
 ### GetIssuerDn
 
 `func (o *CachedCRLInfosResponse) GetIssuerDn() string`
@@ -263,25 +263,30 @@ HasNextRefresh returns a boolean if a field has been set.
 `func (o *CachedCRLInfosResponse) UnsetNextRefresh()`
 
 UnsetNextRefresh ensures that no value is present for NextRefresh, not even an explicit nil
-### GetCrlSize
+### GetSize
 
-`func (o *CachedCRLInfosResponse) GetCrlSize() int64`
+`func (o *CachedCRLInfosResponse) GetSize() int64`
 
-GetCrlSize returns the CrlSize field if non-nil, zero value otherwise.
+GetSize returns the Size field if non-nil, zero value otherwise.
 
-### GetCrlSizeOk
+### GetSizeOk
 
-`func (o *CachedCRLInfosResponse) GetCrlSizeOk() (*int64, bool)`
+`func (o *CachedCRLInfosResponse) GetSizeOk() (*int64, bool)`
 
-GetCrlSizeOk returns a tuple with the CrlSize field if it's non-nil, zero value otherwise
+GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCrlSize
+### SetSize
 
-`func (o *CachedCRLInfosResponse) SetCrlSize(v int64)`
+`func (o *CachedCRLInfosResponse) SetSize(v int64)`
 
-SetCrlSize sets CrlSize field to given value.
+SetSize sets Size field to given value.
 
+### HasSize
+
+`func (o *CachedCRLInfosResponse) HasSize() bool`
+
+HasSize returns a boolean if a field has been set.
 
 ### GetError
 
