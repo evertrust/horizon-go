@@ -21,13 +21,13 @@ var _ MappedNullable = &CachedCRLInfosResponse{}
 // CachedCRLInfosResponse struct for CachedCRLInfosResponse
 type CachedCRLInfosResponse struct {
 	Ca string `json:"ca"`
-	CRLNumber NullableFloat32 `json:"cRLNumber,omitempty"`
+	Number NullableFloat32 `json:"number,omitempty"`
 	IssuerDn NullableString `json:"issuerDn,omitempty"`
 	ThisUpdate NullableInt64 `json:"thisUpdate,omitempty"`
 	NextUpdate NullableInt64 `json:"nextUpdate,omitempty"`
 	LastRefresh NullableInt64 `json:"lastRefresh,omitempty"`
 	NextRefresh NullableInt64 `json:"nextRefresh,omitempty"`
-	CrlSize int64 `json:"crlSize"`
+	Size *int64 `json:"size,omitempty"`
 	Error NullableString `json:"error,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -38,10 +38,9 @@ type _CachedCRLInfosResponse CachedCRLInfosResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCachedCRLInfosResponse(ca string, crlSize int64) *CachedCRLInfosResponse {
+func NewCachedCRLInfosResponse(ca string) *CachedCRLInfosResponse {
 	this := CachedCRLInfosResponse{}
 	this.Ca = ca
-	this.CrlSize = crlSize
 	return &this
 }
 
@@ -77,46 +76,46 @@ func (o *CachedCRLInfosResponse) SetCa(v string) {
 	o.Ca = v
 }
 
-// GetCRLNumber returns the CRLNumber field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CachedCRLInfosResponse) GetCRLNumber() float32 {
-	if o == nil || IsNil(o.CRLNumber.Get()) {
+// GetNumber returns the Number field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CachedCRLInfosResponse) GetNumber() float32 {
+	if o == nil || IsNil(o.Number.Get()) {
 		var ret float32
 		return ret
 	}
-	return *o.CRLNumber.Get()
+	return *o.Number.Get()
 }
 
-// GetCRLNumberOk returns a tuple with the CRLNumber field value if set, nil otherwise
+// GetNumberOk returns a tuple with the Number field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CachedCRLInfosResponse) GetCRLNumberOk() (*float32, bool) {
+func (o *CachedCRLInfosResponse) GetNumberOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.CRLNumber.Get(), o.CRLNumber.IsSet()
+	return o.Number.Get(), o.Number.IsSet()
 }
 
-// HasCRLNumber returns a boolean if a field has been set.
-func (o *CachedCRLInfosResponse) HasCRLNumber() bool {
-	if o != nil && o.CRLNumber.IsSet() {
+// HasNumber returns a boolean if a field has been set.
+func (o *CachedCRLInfosResponse) HasNumber() bool {
+	if o != nil && o.Number.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCRLNumber gets a reference to the given NullableFloat32 and assigns it to the CRLNumber field.
-func (o *CachedCRLInfosResponse) SetCRLNumber(v float32) {
-	o.CRLNumber.Set(&v)
+// SetNumber gets a reference to the given NullableFloat32 and assigns it to the Number field.
+func (o *CachedCRLInfosResponse) SetNumber(v float32) {
+	o.Number.Set(&v)
 }
-// SetCRLNumberNil sets the value for CRLNumber to be an explicit nil
-func (o *CachedCRLInfosResponse) SetCRLNumberNil() {
-	o.CRLNumber.Set(nil)
+// SetNumberNil sets the value for Number to be an explicit nil
+func (o *CachedCRLInfosResponse) SetNumberNil() {
+	o.Number.Set(nil)
 }
 
-// UnsetCRLNumber ensures that no value is present for CRLNumber, not even an explicit nil
-func (o *CachedCRLInfosResponse) UnsetCRLNumber() {
-	o.CRLNumber.Unset()
+// UnsetNumber ensures that no value is present for Number, not even an explicit nil
+func (o *CachedCRLInfosResponse) UnsetNumber() {
+	o.Number.Unset()
 }
 
 // GetIssuerDn returns the IssuerDn field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -329,28 +328,36 @@ func (o *CachedCRLInfosResponse) UnsetNextRefresh() {
 	o.NextRefresh.Unset()
 }
 
-// GetCrlSize returns the CrlSize field value
-func (o *CachedCRLInfosResponse) GetCrlSize() int64 {
-	if o == nil {
+// GetSize returns the Size field value if set, zero value otherwise.
+func (o *CachedCRLInfosResponse) GetSize() int64 {
+	if o == nil || IsNil(o.Size) {
 		var ret int64
 		return ret
 	}
-
-	return o.CrlSize
+	return *o.Size
 }
 
-// GetCrlSizeOk returns a tuple with the CrlSize field value
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CachedCRLInfosResponse) GetCrlSizeOk() (*int64, bool) {
-	if o == nil {
+func (o *CachedCRLInfosResponse) GetSizeOk() (*int64, bool) {
+	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
-	return &o.CrlSize, true
+	return o.Size, true
 }
 
-// SetCrlSize sets field value
-func (o *CachedCRLInfosResponse) SetCrlSize(v int64) {
-	o.CrlSize = v
+// HasSize returns a boolean if a field has been set.
+func (o *CachedCRLInfosResponse) HasSize() bool {
+	if o != nil && !IsNil(o.Size) {
+		return true
+	}
+
+	return false
+}
+
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *CachedCRLInfosResponse) SetSize(v int64) {
+	o.Size = &v
 }
 
 // GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -406,8 +413,8 @@ func (o CachedCRLInfosResponse) MarshalJSON() ([]byte, error) {
 func (o CachedCRLInfosResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["ca"] = o.Ca
-	if o.CRLNumber.IsSet() {
-		toSerialize["cRLNumber"] = o.CRLNumber.Get()
+	if o.Number.IsSet() {
+		toSerialize["number"] = o.Number.Get()
 	}
 	if o.IssuerDn.IsSet() {
 		toSerialize["issuerDn"] = o.IssuerDn.Get()
@@ -424,7 +431,9 @@ func (o CachedCRLInfosResponse) ToMap() (map[string]interface{}, error) {
 	if o.NextRefresh.IsSet() {
 		toSerialize["nextRefresh"] = o.NextRefresh.Get()
 	}
-	toSerialize["crlSize"] = o.CrlSize
+	if !IsNil(o.Size) {
+		toSerialize["size"] = o.Size
+	}
 	if o.Error.IsSet() {
 		toSerialize["error"] = o.Error.Get()
 	}
@@ -442,7 +451,6 @@ func (o *CachedCRLInfosResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"ca",
-		"crlSize",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -473,13 +481,13 @@ func (o *CachedCRLInfosResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "ca")
-		delete(additionalProperties, "cRLNumber")
+		delete(additionalProperties, "number")
 		delete(additionalProperties, "issuerDn")
 		delete(additionalProperties, "thisUpdate")
 		delete(additionalProperties, "nextUpdate")
 		delete(additionalProperties, "lastRefresh")
 		delete(additionalProperties, "nextRefresh")
-		delete(additionalProperties, "crlSize")
+		delete(additionalProperties, "size")
 		delete(additionalProperties, "error")
 		o.AdditionalProperties = additionalProperties
 	}
