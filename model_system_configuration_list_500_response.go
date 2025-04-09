@@ -12,8 +12,8 @@ package horizon
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
 // SystemConfigurationList500Response - struct for SystemConfigurationList500Response

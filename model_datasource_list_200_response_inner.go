@@ -12,8 +12,8 @@ package horizon
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
 // DatasourceList200ResponseInner - struct for DatasourceList200ResponseInner

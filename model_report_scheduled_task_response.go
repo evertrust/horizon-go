@@ -38,6 +38,8 @@ type ReportScheduledTaskResponse struct {
 	Title string `json:"title"`
 	Body NullableString `json:"body,omitempty"`
 	IsHtml bool `json:"isHtml"`
+	// Should the report be compressed using GZ. It will divide by two the size of the csv
+	CompressCsv *bool `json:"compressCsv,omitempty"`
 	HqlType string `json:"hqlType"`
 	HqlQuery NullableString `json:"hqlQuery,omitempty"`
 	HqlFields []string `json:"hqlFields,omitempty"`
@@ -627,6 +629,38 @@ func (o *ReportScheduledTaskResponse) SetIsHtml(v bool) {
 	o.IsHtml = v
 }
 
+// GetCompressCsv returns the CompressCsv field value if set, zero value otherwise.
+func (o *ReportScheduledTaskResponse) GetCompressCsv() bool {
+	if o == nil || IsNil(o.CompressCsv) {
+		var ret bool
+		return ret
+	}
+	return *o.CompressCsv
+}
+
+// GetCompressCsvOk returns a tuple with the CompressCsv field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReportScheduledTaskResponse) GetCompressCsvOk() (*bool, bool) {
+	if o == nil || IsNil(o.CompressCsv) {
+		return nil, false
+	}
+	return o.CompressCsv, true
+}
+
+// HasCompressCsv returns a boolean if a field has been set.
+func (o *ReportScheduledTaskResponse) HasCompressCsv() bool {
+	if o != nil && !IsNil(o.CompressCsv) {
+		return true
+	}
+
+	return false
+}
+
+// SetCompressCsv gets a reference to the given bool and assigns it to the CompressCsv field.
+func (o *ReportScheduledTaskResponse) SetCompressCsv(v bool) {
+	o.CompressCsv = &v
+}
+
 // GetHqlType returns the HqlType field value
 func (o *ReportScheduledTaskResponse) GetHqlType() string {
 	if o == nil {
@@ -844,6 +878,9 @@ func (o ReportScheduledTaskResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["body"] = o.Body.Get()
 	}
 	toSerialize["isHtml"] = o.IsHtml
+	if !IsNil(o.CompressCsv) {
+		toSerialize["compressCsv"] = o.CompressCsv
+	}
 	toSerialize["hqlType"] = o.HqlType
 	if o.HqlQuery.IsSet() {
 		toSerialize["hqlQuery"] = o.HqlQuery.Get()
@@ -926,6 +963,7 @@ func (o *ReportScheduledTaskResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "title")
 		delete(additionalProperties, "body")
 		delete(additionalProperties, "isHtml")
+		delete(additionalProperties, "compressCsv")
 		delete(additionalProperties, "hqlType")
 		delete(additionalProperties, "hqlQuery")
 		delete(additionalProperties, "hqlFields")

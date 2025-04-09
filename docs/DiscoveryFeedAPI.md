@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ## DiscoveryFeedSessionStart
 
-> []DiscoveryFeedSessionResponse DiscoveryFeedSessionStart(ctx, name).Execute()
+> DiscoveryFeedSessionResponse DiscoveryFeedSessionStart(ctx, name).Execute()
 
 Create a new discovery feed session
 
@@ -240,7 +240,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DiscoveryFeedAPI.DiscoveryFeedSessionStart``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DiscoveryFeedSessionStart`: []DiscoveryFeedSessionResponse
+	// response from `DiscoveryFeedSessionStart`: DiscoveryFeedSessionResponse
 	fmt.Fprintf(os.Stdout, "Response from `DiscoveryFeedAPI.DiscoveryFeedSessionStart`: %v\n", resp)
 }
 ```
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]DiscoveryFeedSessionResponse**](DiscoveryFeedSessionResponse.md)
+[**DiscoveryFeedSessionResponse**](DiscoveryFeedSessionResponse.md)
 
 ### Authorization
 

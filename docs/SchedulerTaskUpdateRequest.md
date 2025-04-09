@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **Title** | **string** |  | 
 **Body** | Pointer to **NullableString** |  | [optional] 
 **IsHtml** | **bool** |  | 
+**CompressCsv** | Pointer to **bool** | Should the report be compressed using GZ. It will divide by two the size of the csv | [optional] 
 **HqlType** | **string** |  | 
 **HqlQuery** | Pointer to **NullableString** |  | [optional] 
 **HqlFields** | Pointer to **[]string** |  | [optional] 
@@ -702,6 +703,31 @@ and a boolean to check if the value has been set.
 
 SetIsHtml sets IsHtml field to given value.
 
+
+### GetCompressCsv
+
+`func (o *SchedulerTaskUpdateRequest) GetCompressCsv() bool`
+
+GetCompressCsv returns the CompressCsv field if non-nil, zero value otherwise.
+
+### GetCompressCsvOk
+
+`func (o *SchedulerTaskUpdateRequest) GetCompressCsvOk() (*bool, bool)`
+
+GetCompressCsvOk returns a tuple with the CompressCsv field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCompressCsv
+
+`func (o *SchedulerTaskUpdateRequest) SetCompressCsv(v bool)`
+
+SetCompressCsv sets CompressCsv field to given value.
+
+### HasCompressCsv
+
+`func (o *SchedulerTaskUpdateRequest) HasCompressCsv() bool`
+
+HasCompressCsv returns a boolean if a field has been set.
 
 ### GetHqlType
 

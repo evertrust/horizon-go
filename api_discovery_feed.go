@@ -560,7 +560,7 @@ type DiscoveryFeedAPIDiscoveryFeedSessionStartRequest struct {
 	name string
 }
 
-func (r DiscoveryFeedAPIDiscoveryFeedSessionStartRequest) Execute() ([]DiscoveryFeedSessionResponse, *http.Response, error) {
+func (r DiscoveryFeedAPIDiscoveryFeedSessionStartRequest) Execute() (*DiscoveryFeedSessionResponse, *http.Response, error) {
 	return r.ApiService.DiscoveryFeedSessionStartExecute(r)
 }
 
@@ -582,13 +582,13 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionStart(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []DiscoveryFeedSessionResponse
-func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionStartExecute(r DiscoveryFeedAPIDiscoveryFeedSessionStartRequest) ([]DiscoveryFeedSessionResponse, *http.Response, error) {
+//  @return DiscoveryFeedSessionResponse
+func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionStartExecute(r DiscoveryFeedAPIDiscoveryFeedSessionStartRequest) (*DiscoveryFeedSessionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []DiscoveryFeedSessionResponse
+		localVarReturnValue  *DiscoveryFeedSessionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscoveryFeedAPIService.DiscoveryFeedSessionStart")

@@ -12,8 +12,8 @@ package horizon
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
 // ThirdpartyConnectorUpdate400Response - struct for ThirdpartyConnectorUpdate400Response
