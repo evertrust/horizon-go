@@ -34,7 +34,7 @@ type DiscoveryFeedSessionResponse struct {
 	// The hosts on which the discovery campaign takes place
 	Hosts []string `json:"hosts,omitempty"`
 	// The ports on which the discovery campaign takes place
-	Ports []int64 `json:"ports,omitempty"`
+	Ports []string `json:"ports,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -323,9 +323,9 @@ func (o *DiscoveryFeedSessionResponse) SetHosts(v []string) {
 }
 
 // GetPorts returns the Ports field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryFeedSessionResponse) GetPorts() []int64 {
+func (o *DiscoveryFeedSessionResponse) GetPorts() []string {
 	if o == nil {
-		var ret []int64
+		var ret []string
 		return ret
 	}
 	return o.Ports
@@ -334,7 +334,7 @@ func (o *DiscoveryFeedSessionResponse) GetPorts() []int64 {
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryFeedSessionResponse) GetPortsOk() ([]int64, bool) {
+func (o *DiscoveryFeedSessionResponse) GetPortsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Ports) {
 		return nil, false
 	}
@@ -350,8 +350,8 @@ func (o *DiscoveryFeedSessionResponse) HasPorts() bool {
 	return false
 }
 
-// SetPorts gets a reference to the given []int64 and assigns it to the Ports field.
-func (o *DiscoveryFeedSessionResponse) SetPorts(v []int64) {
+// SetPorts gets a reference to the given []string and assigns it to the Ports field.
+func (o *DiscoveryFeedSessionResponse) SetPorts(v []string) {
 	o.Ports = v
 }
 

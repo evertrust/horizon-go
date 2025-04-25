@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **EventOnWarning** | Pointer to **NullableBool** | Whether to generate an event on warning (defaults to the campaign setting) | [optional] 
 **EventOnFailure** | Pointer to **NullableBool** | Whether to generate an event on failure (defaults to the campaign setting) | [optional] 
 **Hosts** | Pointer to **[]string** | The hosts on which the discovery campaign takes place | [optional] 
-**Ports** | Pointer to **[]int64** | The ports on which the discovery campaign takes place | [optional] 
+**Ports** | Pointer to **[]string** | The ports on which the discovery campaign takes place | [optional] 
 
 ## Methods
 
@@ -259,20 +259,20 @@ HasHosts returns a boolean if a field has been set.
 UnsetHosts ensures that no value is present for Hosts, not even an explicit nil
 ### GetPorts
 
-`func (o *DiscoveryFeedSessionResponse) GetPorts() []int64`
+`func (o *DiscoveryFeedSessionResponse) GetPorts() []string`
 
 GetPorts returns the Ports field if non-nil, zero value otherwise.
 
 ### GetPortsOk
 
-`func (o *DiscoveryFeedSessionResponse) GetPortsOk() (*[]int64, bool)`
+`func (o *DiscoveryFeedSessionResponse) GetPortsOk() (*[]string, bool)`
 
 GetPortsOk returns a tuple with the Ports field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPorts
 
-`func (o *DiscoveryFeedSessionResponse) SetPorts(v []int64)`
+`func (o *DiscoveryFeedSessionResponse) SetPorts(v []string)`
 
 SetPorts sets Ports field to given value.
 
