@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost:9000*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DiscoveryFeed**](DiscoveryFeedAPI.md#DiscoveryFeed) | **Post** /api/v1/discovery/feed | Feed a discovered certificate into a discovery campaign
-[**DiscoveryFeedEventRegister**](DiscoveryFeedAPI.md#DiscoveryFeedEventRegister) | **Put** /api/v1/discovery/feed | Push a new discovery event
+[**DiscoveryFeedEventRegister**](DiscoveryFeedAPI.md#DiscoveryFeedEventRegister) | **Put** /api/v1/discovery/feed | Push one or more discovery events
 [**DiscoveryFeedSessionEnd**](DiscoveryFeedAPI.md#DiscoveryFeedSessionEnd) | **Delete** /api/v1/discovery/feed/{campaign}/{id} | End a discovery session
 [**DiscoveryFeedSessionStart**](DiscoveryFeedAPI.md#DiscoveryFeedSessionStart) | **Get** /api/v1/discovery/feed/{name} | Create a new discovery feed session
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 > DiscoveryFeedEventRegister(ctx).DiscoveryEvent(discoveryEvent).Execute()
 
-Push a new discovery event
+Push one or more discovery events
 
 
 
@@ -96,7 +96,7 @@ import (
 )
 
 func main() {
-	discoveryEvent := *openapiclient.NewDiscoveryEvent("NETSCAN", "Discovery-DMZ01", "failure") // DiscoveryEvent | The discovery event to push
+	discoveryEvent := []openapiclient.DiscoveryEvent{*openapiclient.NewDiscoveryEvent("NETSCAN", "Discovery-DMZ01", "failure")} // []DiscoveryEvent | The discovery events to be pushed
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -119,7 +119,7 @@ Other parameters are passed through a pointer to a apiDiscoveryFeedEventRegister
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **discoveryEvent** | [**DiscoveryEvent**](DiscoveryEvent.md) | The discovery event to push | 
+ **discoveryEvent** | [**[]DiscoveryEvent**](DiscoveryEvent.md) | The discovery events to be pushed | 
 
 ### Return type
 

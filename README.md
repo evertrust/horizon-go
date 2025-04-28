@@ -203,7 +203,7 @@ Class | Method | HTTP request | Description
 *DiscoveryEventAnalyticsAPI* | [**AnalyticsDiscoveryEventGet**](docs/DiscoveryEventAnalyticsAPI.md#analyticsdiscoveryeventget) | **Get** /api/v1/analytics/discovery/events | Retrieve the discovery event analytics status
 *DiscoveryEventAnalyticsAPI* | [**AnalyticsDiscoveryEventUpdate**](docs/DiscoveryEventAnalyticsAPI.md#analyticsdiscoveryeventupdate) | **Patch** /api/v1/analytics/discovery/events | Schedule a new discovery event analytics synchronization
 *DiscoveryFeedAPI* | [**DiscoveryFeed**](docs/DiscoveryFeedAPI.md#discoveryfeed) | **Post** /api/v1/discovery/feed | Feed a discovered certificate into a discovery campaign
-*DiscoveryFeedAPI* | [**DiscoveryFeedEventRegister**](docs/DiscoveryFeedAPI.md#discoveryfeedeventregister) | **Put** /api/v1/discovery/feed | Push a new discovery event
+*DiscoveryFeedAPI* | [**DiscoveryFeedEventRegister**](docs/DiscoveryFeedAPI.md#discoveryfeedeventregister) | **Put** /api/v1/discovery/feed | Push one or more discovery events
 *DiscoveryFeedAPI* | [**DiscoveryFeedSessionEnd**](docs/DiscoveryFeedAPI.md#discoveryfeedsessionend) | **Delete** /api/v1/discovery/feed/{campaign}/{id} | End a discovery session
 *DiscoveryFeedAPI* | [**DiscoveryFeedSessionStart**](docs/DiscoveryFeedAPI.md#discoveryfeedsessionstart) | **Get** /api/v1/discovery/feed/{name} | Create a new discovery feed session
 *EventAPI* | [**EventGet**](docs/EventAPI.md#eventget) | **Get** /api/v1/events/{id} | Retrieved an existing Event

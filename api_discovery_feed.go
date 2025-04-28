@@ -197,11 +197,11 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedExecute(r DiscoveryFeedAPIDiscove
 type DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest struct {
 	ctx context.Context
 	ApiService *DiscoveryFeedAPIService
-	discoveryEvent *DiscoveryEvent
+	discoveryEvent *[]DiscoveryEvent
 }
 
-// The discovery event to push
-func (r DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest) DiscoveryEvent(discoveryEvent DiscoveryEvent) DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest {
+// The discovery events to be pushed
+func (r DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest) DiscoveryEvent(discoveryEvent []DiscoveryEvent) DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest {
 	r.discoveryEvent = &discoveryEvent
 	return r
 }
@@ -211,9 +211,9 @@ func (r DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest) Execute() (*http.Resp
 }
 
 /*
-DiscoveryFeedEventRegister Push a new discovery event
+DiscoveryFeedEventRegister Push one or more discovery events
 
-Push a new discovery event for a specific discovery feed session on a discovery campaign
+Push one or more discovery event for a specific discovery feed session on a discovery campaign
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest
