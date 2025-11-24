@@ -1,5 +1,10 @@
 package horizon
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 type Principal struct {
 	Identity Identity `json:"identity"`
 
@@ -11,6 +16,45 @@ type Principal struct {
 
 	// Teams The teams of the principal
 	Teams []string `json:"teams"`
+}
+
+type InternalPrincipal struct {
+	Identity Identity `json:"identity"`
+
+	// Permissions The permissions of the principal
+	Permissions []Permission `json:"permissions"`
+
+	// Roles The roles of the principal
+	Roles []string `json:"roles"`
+
+	// Teams The teams of the principal
+	Teams Teams `json:"teams"`
+}
+type Teams []string
+
+func (t *Teams) UnmarshalJSON(data []byte) error {
+	// Try the old format: []string
+	var oldFormat []string
+	if err := json.Unmarshal(data, &oldFormat); err == nil {
+		*t = oldFormat
+		return nil
+	}
+
+	// Try the new format: []object{name:string}
+	var newFormat []struct {
+		Name string `json:"name"`
+	}
+	if err := json.Unmarshal(data, &newFormat); err == nil {
+		out := make([]string, 0, len(newFormat))
+		for _, item := range newFormat {
+			out = append(out, item.Name)
+		}
+		*t = out
+		return nil
+	}
+
+	// If both fail, bail out
+	return fmt.Errorf("teams: unsupported JSON format: %s", string(data))
 }
 
 // Identity The principal's identity

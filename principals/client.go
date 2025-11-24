@@ -19,10 +19,18 @@ func (c *Client) Self() (*horizon.Principal, error) {
 	if err != nil {
 		return nil, err
 	}
-	var result horizon.Principal
+	var result horizon.InternalPrincipal
+	var out horizon.Principal
 	if response.HttpResponse.StatusCode == 204 {
 		return nil, nil
 	}
 	err = response.Json().Decode(&result)
-	return &result, err
+	if err != nil {
+		return nil, err
+	}
+	out.Identity = result.Identity
+	out.Permissions = result.Permissions
+	out.Roles = result.Roles
+	out.Teams = result.Teams
+	return &out, err
 }
