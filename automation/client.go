@@ -73,7 +73,7 @@ func (c *Client) GetParameters(policyName string) (horizon.InitParameters, error
 	case horizon.WebRA:
 		var webraParams horizon.WebRAInitParameters
 		err = response.Json().Decode(&webraParams)
-		return nil, nil
+		return &webraParams, err
 	}
 	return nil, fmt.Errorf("unknown module '%s'", policy.GetModule())
 }
