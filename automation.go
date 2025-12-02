@@ -93,6 +93,21 @@ func (p *ScepInitParameters) GetProfile() string {
 	return p.Profile
 }
 
+type WebRAInitParameters struct {
+	Profile           string `json:"profile"`
+	KeyType           string `json:"keyType"`
+	AuthorizationMode string `json:"authorizationMode"`
+	EnrollmentMode    string `json:"enrollmentMode"`
+}
+
+func (p *WebRAInitParameters) GetModule() Module {
+	return WebRA
+}
+
+func (p *WebRAInitParameters) GetProfile() string {
+	return p.Profile
+}
+
 type Report struct {
 	IsRunnable bool `json:"runnable"`
 	// If renewable, renew, else enroll

@@ -3,6 +3,7 @@ package automation
 import (
 	"errors"
 	"fmt"
+
 	"github.com/evertrust/horizon-go"
 	"github.com/evertrust/horizon-go/http"
 )
@@ -69,6 +70,10 @@ func (c *Client) GetParameters(policyName string) (horizon.InitParameters, error
 		var scepParams horizon.ScepInitParameters
 		err = response.Json().Decode(&scepParams)
 		return &scepParams, err
+	case horizon.WebRA:
+		var webraParams horizon.WebRAInitParameters
+		err = response.Json().Decode(&webraParams)
+		return nil, nil
 	}
 	return nil, fmt.Errorf("unknown module '%s'", policy.GetModule())
 }
