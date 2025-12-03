@@ -424,6 +424,41 @@ func (r *EstChallengeRequest) EnsureType() error {
 	return nil
 }
 
+type WebRARequest struct {
+	Id                   string                `json:"_id,omitempty"`
+	Workflow             Workflow              `json:"workflow"`
+	Module               Module                `json:"module,omitempty"`
+	Status               Status                `json:"status,omitempty"`
+	Profile              string                `json:"profile,omitempty"`
+	Dn                   string                `json:"dn,omitempty"`
+	Requester            string                `json:"requester,omitempty"`
+	Approver             string                `json:"approver,omitempty"`
+	Contact              string                `json:"contact,omitempty"`
+	RequesterComment     string                `json:"requesterComment,omitempty"`
+	ApproverComment      string                `json:"approverComment,omitempty"`
+	RegistrationDate     int64                 `json:"registrationDate"`
+	LastModificationDate int64                 `json:"lastModificationDate"`
+	ExpirationDate       int64                 `json:"expirationDate"`
+	RemoveAt             int64                 `json:"removeAt"`
+	Template             *EstChallengeTemplate `json:"template"`
+	CertificatePEM       string                `json:"certificatePem,omitempty"`
+	CertificateId        string                `json:"certificateId,omitempty"`
+	Certificate          *Certificate          `json:"certificate,omitempty"`
+	Challenge            *Secret               `json:"password,omitempty"`
+	Labels               []Label               `json:"labels,omitempty"`
+	Metadata             []Metadata            `json:"metadata,omitempty"`
+	HolderId             string                `json:"holderId,omitempty"`
+	GlobalHolderIdCount  int                   `json:"globalHolderIdCount,omitempty"`
+	ProfileHolderIdCount int                   `json:"profileHolderIdCount,omitempty"`
+}
+
+func (r *WebRARequest) EnsureType() error {
+	if r.Module != WebRA {
+		return invalidModuleError(r.Module, WebRA)
+	}
+	return nil
+}
+
 type WebRARenewTemplateParams struct {
 	CertificatePEM string
 	CertificateId  string
