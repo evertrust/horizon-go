@@ -172,8 +172,8 @@ func (c *Client) NewEstChallengeRequest(request horizon.EstChallengeRequestParam
 	return &challengeRequest, nil
 }
 
-func (c *Client) GetWebRARequest(id string) (*horizon.WebRARequest, error) {
-	var webRARequest horizon.WebRARequest
+func (c *Client) GetWebRAEnrollRequest(id string) (*horizon.WebRAEnrollRequest, error) {
+	var webRARequest horizon.WebRAEnrollRequest
 	// Merge params in struct
 	err := c.GetRequest(id, &webRARequest)
 	if err != nil {
