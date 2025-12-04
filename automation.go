@@ -93,11 +93,16 @@ func (p *ScepInitParameters) GetProfile() string {
 	return p.Profile
 }
 
+type PasswordPolicy struct {
+	Name string `json:"name"`
+}
+
 type WebRAInitParameters struct {
-	Profile           string `json:"profile"`
-	KeyType           string `json:"keyType"`
-	AuthorizationMode string `json:"authorizationMode"`
-	EnrollmentMode    string `json:"enrollmentMode"`
+	Profile           string         `json:"profile"`
+	KeyType           string         `json:"keyType"`
+	AuthorizationMode string         `json:"authorizationMode"`
+	EnrollmentMode    string         `json:"enrollmentMode"`
+	PasswordPolicy    PasswordPolicy `json:"passwordPolicy"`
 }
 
 func (p *WebRAInitParameters) GetModule() Module {
