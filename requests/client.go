@@ -4,6 +4,7 @@ package requests
 import (
 	"encoding/json"
 	"errors"
+
 	"github.com/evertrust/horizon-go"
 	"github.com/evertrust/horizon-go/http"
 )
@@ -183,6 +184,15 @@ func (c *Client) GetWebRAEnrollRequest(id string) (*horizon.WebRAEnrollRequest, 
 }
 
 // WebRA Renew
+func (c *Client) GetWebRARenewRequest(id string) (*horizon.WebRARenewRequest, error) {
+	var webRARequest horizon.WebRARenewRequest
+	// Merge params in struct
+	err := c.GetRequest(id, &webRARequest)
+	if err != nil {
+		return nil, err
+	}
+	return &webRARequest, nil
+}
 
 func (c *Client) GetRenewTemplate(request horizon.WebRARenewTemplateParams) (*horizon.WebRARenewTemplate, error) {
 	// Merge params in struct
