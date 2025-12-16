@@ -4,7 +4,6 @@ package requests
 import (
 	"encoding/json"
 	"errors"
-
 	"github.com/evertrust/horizon-go"
 	"github.com/evertrust/horizon-go/http"
 )
@@ -172,6 +171,8 @@ func (c *Client) NewEstChallengeRequest(request horizon.EstChallengeRequestParam
 	}
 	return &challengeRequest, nil
 }
+
+// WebRA Renew
 
 func (c *Client) GetRenewTemplate(request horizon.WebRARenewTemplateParams) (*horizon.WebRARenewTemplate, error) {
 	// Merge params in struct
