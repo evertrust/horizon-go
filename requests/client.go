@@ -173,27 +173,6 @@ func (c *Client) NewEstChallengeRequest(request horizon.EstChallengeRequestParam
 	return &challengeRequest, nil
 }
 
-func (c *Client) GetWebRAEnrollRequest(id string) (*horizon.WebRAEnrollRequest, error) {
-	var webRARequest horizon.WebRAEnrollRequest
-	// Merge params in struct
-	err := c.GetRequest(id, &webRARequest)
-	if err != nil {
-		return nil, err
-	}
-	return &webRARequest, nil
-}
-
-// WebRA Renew
-func (c *Client) GetWebRARenewRequest(id string) (*horizon.WebRARenewRequest, error) {
-	var webRARequest horizon.WebRARenewRequest
-	// Merge params in struct
-	err := c.GetRequest(id, &webRARequest)
-	if err != nil {
-		return nil, err
-	}
-	return &webRARequest, nil
-}
-
 func (c *Client) GetRenewTemplate(request horizon.WebRARenewTemplateParams) (*horizon.WebRARenewTemplate, error) {
 	// Merge params in struct
 	renewRequest := horizon.WebRARenewRequest{
