@@ -29,11 +29,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	httpProxy := *openapiclient.NewHttpProxy("ExternalProxy", "36.52.145.12", int64(8888)) // HttpProxy | HTTP proxy to register
+	httpProxy := *openapiclient.NewHttpProxy("36.52.145.12", "ExternalProxy", int64(8888)) // HttpProxy | HTTP proxy to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -95,7 +95,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -163,7 +163,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -233,7 +233,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -294,11 +294,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	httpProxy := *openapiclient.NewHttpProxy("ExternalProxy", "36.52.145.12", int64(8888)) // HttpProxy | HTTP proxy to update
+	httpProxy := *openapiclient.NewHttpProxy("36.52.145.12", "ExternalProxy", int64(8888)) // HttpProxy | HTTP proxy to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

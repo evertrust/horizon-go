@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** | The name of the Scim profile | 
 **Description** | Pointer to **NullableString** | The description of the Scim profile | [optional] 
 **MailType** | Pointer to **NullableString** | The mail type corresponds to the mail coming from the scim provider that must be synchronised in horizon. By default, the mail type is \&quot;work\&quot;. | [optional] [default to "work"]
-**Mappings** | Pointer to [**[]ScimProfileResponseMappingsInner**](ScimProfileResponseMappingsInner.md) | The mapping used to synchronize user and group between the scim provider and Horizon. | [optional] 
+**Mappings** | Pointer to [**[]ScimProfileMappingsInner**](ScimProfileMappingsInner.md) | The mapping used to synchronize user and group between the scim provider and Horizon. | [optional] 
+**Name** | **string** | The name of the Scim profile | 
 
 ## Methods
 
@@ -47,26 +47,6 @@ and a boolean to check if the value has been set.
 `func (o *ScimProfileResponse) SetId(v string)`
 
 SetId sets Id field to given value.
-
-
-### GetName
-
-`func (o *ScimProfileResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ScimProfileResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ScimProfileResponse) SetName(v string)`
-
-SetName sets Name field to given value.
 
 
 ### GetDescription
@@ -141,20 +121,20 @@ HasMailType returns a boolean if a field has been set.
 UnsetMailType ensures that no value is present for MailType, not even an explicit nil
 ### GetMappings
 
-`func (o *ScimProfileResponse) GetMappings() []ScimProfileResponseMappingsInner`
+`func (o *ScimProfileResponse) GetMappings() []ScimProfileMappingsInner`
 
 GetMappings returns the Mappings field if non-nil, zero value otherwise.
 
 ### GetMappingsOk
 
-`func (o *ScimProfileResponse) GetMappingsOk() (*[]ScimProfileResponseMappingsInner, bool)`
+`func (o *ScimProfileResponse) GetMappingsOk() (*[]ScimProfileMappingsInner, bool)`
 
 GetMappingsOk returns a tuple with the Mappings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMappings
 
-`func (o *ScimProfileResponse) SetMappings(v []ScimProfileResponseMappingsInner)`
+`func (o *ScimProfileResponse) SetMappings(v []ScimProfileMappingsInner)`
 
 SetMappings sets Mappings field to given value.
 
@@ -174,6 +154,26 @@ HasMappings returns a boolean if a field has been set.
 `func (o *ScimProfileResponse) UnsetMappings()`
 
 UnsetMappings ensures that no value is present for Mappings, not even an explicit nil
+### GetName
+
+`func (o *ScimProfileResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ScimProfileResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ScimProfileResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

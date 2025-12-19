@@ -5,26 +5,26 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
-**Type** | **string** |  | 
-**CaKey** | Pointer to [**NullableSecretString**](SecretString.md) |  | [optional] 
 **CaCert** | Pointer to **NullableString** |  | [optional] 
-**CrlPath** | Pointer to **NullableString** |  | [optional] 
-**CrlLifetime** | Pointer to **NullableString** |  | [optional] 
+**CaKey** | Pointer to [**NullableSecretString**](SecretString.md) |  | [optional] 
 **CertType** | Pointer to **NullableString** |  | [optional] 
-**SignAlg** | Pointer to **NullableString** |  | [optional] 
-**CrtLifetime** | Pointer to **NullableString** |  | [optional] 
-**CrtBackDate** | Pointer to **NullableString** |  | [optional] 
 **CheckPop** | Pointer to **NullableBool** |  | [optional] 
-**Queue** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
+**CrlLifetime** | Pointer to **NullableString** |  | [optional] 
+**CrlPath** | Pointer to **NullableString** |  | [optional] 
+**CrtBackDate** | Pointer to **NullableString** |  | [optional] 
+**CrtLifetime** | Pointer to **NullableString** |  | [optional] 
 **CryptoType** | **string** |  | 
+**Name** | **string** |  | 
+**Queue** | Pointer to **NullableString** |  | [optional] 
+**SignAlg** | Pointer to **NullableString** |  | [optional] 
+**Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewIntegratedCAConnectorResponse
 
-`func NewIntegratedCAConnectorResponse(id string, name string, type_ string, cryptoType string, ) *IntegratedCAConnectorResponse`
+`func NewIntegratedCAConnectorResponse(id string, cryptoType string, name string, type_ string, ) *IntegratedCAConnectorResponse`
 
 NewIntegratedCAConnectorResponse instantiates a new IntegratedCAConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -59,81 +59,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetName
-
-`func (o *IntegratedCAConnectorResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *IntegratedCAConnectorResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *IntegratedCAConnectorResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetType
-
-`func (o *IntegratedCAConnectorResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *IntegratedCAConnectorResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *IntegratedCAConnectorResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetCaKey
-
-`func (o *IntegratedCAConnectorResponse) GetCaKey() SecretString`
-
-GetCaKey returns the CaKey field if non-nil, zero value otherwise.
-
-### GetCaKeyOk
-
-`func (o *IntegratedCAConnectorResponse) GetCaKeyOk() (*SecretString, bool)`
-
-GetCaKeyOk returns a tuple with the CaKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCaKey
-
-`func (o *IntegratedCAConnectorResponse) SetCaKey(v SecretString)`
-
-SetCaKey sets CaKey field to given value.
-
-### HasCaKey
-
-`func (o *IntegratedCAConnectorResponse) HasCaKey() bool`
-
-HasCaKey returns a boolean if a field has been set.
-
-### SetCaKeyNil
-
-`func (o *IntegratedCAConnectorResponse) SetCaKeyNil(b bool)`
-
- SetCaKeyNil sets the value for CaKey to be an explicit nil
-
-### UnsetCaKey
-`func (o *IntegratedCAConnectorResponse) UnsetCaKey()`
-
-UnsetCaKey ensures that no value is present for CaKey, not even an explicit nil
 ### GetCaCert
 
 `func (o *IntegratedCAConnectorResponse) GetCaCert() string`
@@ -169,76 +94,41 @@ HasCaCert returns a boolean if a field has been set.
 `func (o *IntegratedCAConnectorResponse) UnsetCaCert()`
 
 UnsetCaCert ensures that no value is present for CaCert, not even an explicit nil
-### GetCrlPath
+### GetCaKey
 
-`func (o *IntegratedCAConnectorResponse) GetCrlPath() string`
+`func (o *IntegratedCAConnectorResponse) GetCaKey() SecretString`
 
-GetCrlPath returns the CrlPath field if non-nil, zero value otherwise.
+GetCaKey returns the CaKey field if non-nil, zero value otherwise.
 
-### GetCrlPathOk
+### GetCaKeyOk
 
-`func (o *IntegratedCAConnectorResponse) GetCrlPathOk() (*string, bool)`
+`func (o *IntegratedCAConnectorResponse) GetCaKeyOk() (*SecretString, bool)`
 
-GetCrlPathOk returns a tuple with the CrlPath field if it's non-nil, zero value otherwise
+GetCaKeyOk returns a tuple with the CaKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCrlPath
+### SetCaKey
 
-`func (o *IntegratedCAConnectorResponse) SetCrlPath(v string)`
+`func (o *IntegratedCAConnectorResponse) SetCaKey(v SecretString)`
 
-SetCrlPath sets CrlPath field to given value.
+SetCaKey sets CaKey field to given value.
 
-### HasCrlPath
+### HasCaKey
 
-`func (o *IntegratedCAConnectorResponse) HasCrlPath() bool`
+`func (o *IntegratedCAConnectorResponse) HasCaKey() bool`
 
-HasCrlPath returns a boolean if a field has been set.
+HasCaKey returns a boolean if a field has been set.
 
-### SetCrlPathNil
+### SetCaKeyNil
 
-`func (o *IntegratedCAConnectorResponse) SetCrlPathNil(b bool)`
+`func (o *IntegratedCAConnectorResponse) SetCaKeyNil(b bool)`
 
- SetCrlPathNil sets the value for CrlPath to be an explicit nil
+ SetCaKeyNil sets the value for CaKey to be an explicit nil
 
-### UnsetCrlPath
-`func (o *IntegratedCAConnectorResponse) UnsetCrlPath()`
+### UnsetCaKey
+`func (o *IntegratedCAConnectorResponse) UnsetCaKey()`
 
-UnsetCrlPath ensures that no value is present for CrlPath, not even an explicit nil
-### GetCrlLifetime
-
-`func (o *IntegratedCAConnectorResponse) GetCrlLifetime() string`
-
-GetCrlLifetime returns the CrlLifetime field if non-nil, zero value otherwise.
-
-### GetCrlLifetimeOk
-
-`func (o *IntegratedCAConnectorResponse) GetCrlLifetimeOk() (*string, bool)`
-
-GetCrlLifetimeOk returns a tuple with the CrlLifetime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCrlLifetime
-
-`func (o *IntegratedCAConnectorResponse) SetCrlLifetime(v string)`
-
-SetCrlLifetime sets CrlLifetime field to given value.
-
-### HasCrlLifetime
-
-`func (o *IntegratedCAConnectorResponse) HasCrlLifetime() bool`
-
-HasCrlLifetime returns a boolean if a field has been set.
-
-### SetCrlLifetimeNil
-
-`func (o *IntegratedCAConnectorResponse) SetCrlLifetimeNil(b bool)`
-
- SetCrlLifetimeNil sets the value for CrlLifetime to be an explicit nil
-
-### UnsetCrlLifetime
-`func (o *IntegratedCAConnectorResponse) UnsetCrlLifetime()`
-
-UnsetCrlLifetime ensures that no value is present for CrlLifetime, not even an explicit nil
+UnsetCaKey ensures that no value is present for CaKey, not even an explicit nil
 ### GetCertType
 
 `func (o *IntegratedCAConnectorResponse) GetCertType() string`
@@ -274,111 +164,6 @@ HasCertType returns a boolean if a field has been set.
 `func (o *IntegratedCAConnectorResponse) UnsetCertType()`
 
 UnsetCertType ensures that no value is present for CertType, not even an explicit nil
-### GetSignAlg
-
-`func (o *IntegratedCAConnectorResponse) GetSignAlg() string`
-
-GetSignAlg returns the SignAlg field if non-nil, zero value otherwise.
-
-### GetSignAlgOk
-
-`func (o *IntegratedCAConnectorResponse) GetSignAlgOk() (*string, bool)`
-
-GetSignAlgOk returns a tuple with the SignAlg field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSignAlg
-
-`func (o *IntegratedCAConnectorResponse) SetSignAlg(v string)`
-
-SetSignAlg sets SignAlg field to given value.
-
-### HasSignAlg
-
-`func (o *IntegratedCAConnectorResponse) HasSignAlg() bool`
-
-HasSignAlg returns a boolean if a field has been set.
-
-### SetSignAlgNil
-
-`func (o *IntegratedCAConnectorResponse) SetSignAlgNil(b bool)`
-
- SetSignAlgNil sets the value for SignAlg to be an explicit nil
-
-### UnsetSignAlg
-`func (o *IntegratedCAConnectorResponse) UnsetSignAlg()`
-
-UnsetSignAlg ensures that no value is present for SignAlg, not even an explicit nil
-### GetCrtLifetime
-
-`func (o *IntegratedCAConnectorResponse) GetCrtLifetime() string`
-
-GetCrtLifetime returns the CrtLifetime field if non-nil, zero value otherwise.
-
-### GetCrtLifetimeOk
-
-`func (o *IntegratedCAConnectorResponse) GetCrtLifetimeOk() (*string, bool)`
-
-GetCrtLifetimeOk returns a tuple with the CrtLifetime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCrtLifetime
-
-`func (o *IntegratedCAConnectorResponse) SetCrtLifetime(v string)`
-
-SetCrtLifetime sets CrtLifetime field to given value.
-
-### HasCrtLifetime
-
-`func (o *IntegratedCAConnectorResponse) HasCrtLifetime() bool`
-
-HasCrtLifetime returns a boolean if a field has been set.
-
-### SetCrtLifetimeNil
-
-`func (o *IntegratedCAConnectorResponse) SetCrtLifetimeNil(b bool)`
-
- SetCrtLifetimeNil sets the value for CrtLifetime to be an explicit nil
-
-### UnsetCrtLifetime
-`func (o *IntegratedCAConnectorResponse) UnsetCrtLifetime()`
-
-UnsetCrtLifetime ensures that no value is present for CrtLifetime, not even an explicit nil
-### GetCrtBackDate
-
-`func (o *IntegratedCAConnectorResponse) GetCrtBackDate() string`
-
-GetCrtBackDate returns the CrtBackDate field if non-nil, zero value otherwise.
-
-### GetCrtBackDateOk
-
-`func (o *IntegratedCAConnectorResponse) GetCrtBackDateOk() (*string, bool)`
-
-GetCrtBackDateOk returns a tuple with the CrtBackDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCrtBackDate
-
-`func (o *IntegratedCAConnectorResponse) SetCrtBackDate(v string)`
-
-SetCrtBackDate sets CrtBackDate field to given value.
-
-### HasCrtBackDate
-
-`func (o *IntegratedCAConnectorResponse) HasCrtBackDate() bool`
-
-HasCrtBackDate returns a boolean if a field has been set.
-
-### SetCrtBackDateNil
-
-`func (o *IntegratedCAConnectorResponse) SetCrtBackDateNil(b bool)`
-
- SetCrtBackDateNil sets the value for CrtBackDate to be an explicit nil
-
-### UnsetCrtBackDate
-`func (o *IntegratedCAConnectorResponse) UnsetCrtBackDate()`
-
-UnsetCrtBackDate ensures that no value is present for CrtBackDate, not even an explicit nil
 ### GetCheckPop
 
 `func (o *IntegratedCAConnectorResponse) GetCheckPop() bool`
@@ -414,6 +199,186 @@ HasCheckPop returns a boolean if a field has been set.
 `func (o *IntegratedCAConnectorResponse) UnsetCheckPop()`
 
 UnsetCheckPop ensures that no value is present for CheckPop, not even an explicit nil
+### GetCrlLifetime
+
+`func (o *IntegratedCAConnectorResponse) GetCrlLifetime() string`
+
+GetCrlLifetime returns the CrlLifetime field if non-nil, zero value otherwise.
+
+### GetCrlLifetimeOk
+
+`func (o *IntegratedCAConnectorResponse) GetCrlLifetimeOk() (*string, bool)`
+
+GetCrlLifetimeOk returns a tuple with the CrlLifetime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCrlLifetime
+
+`func (o *IntegratedCAConnectorResponse) SetCrlLifetime(v string)`
+
+SetCrlLifetime sets CrlLifetime field to given value.
+
+### HasCrlLifetime
+
+`func (o *IntegratedCAConnectorResponse) HasCrlLifetime() bool`
+
+HasCrlLifetime returns a boolean if a field has been set.
+
+### SetCrlLifetimeNil
+
+`func (o *IntegratedCAConnectorResponse) SetCrlLifetimeNil(b bool)`
+
+ SetCrlLifetimeNil sets the value for CrlLifetime to be an explicit nil
+
+### UnsetCrlLifetime
+`func (o *IntegratedCAConnectorResponse) UnsetCrlLifetime()`
+
+UnsetCrlLifetime ensures that no value is present for CrlLifetime, not even an explicit nil
+### GetCrlPath
+
+`func (o *IntegratedCAConnectorResponse) GetCrlPath() string`
+
+GetCrlPath returns the CrlPath field if non-nil, zero value otherwise.
+
+### GetCrlPathOk
+
+`func (o *IntegratedCAConnectorResponse) GetCrlPathOk() (*string, bool)`
+
+GetCrlPathOk returns a tuple with the CrlPath field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCrlPath
+
+`func (o *IntegratedCAConnectorResponse) SetCrlPath(v string)`
+
+SetCrlPath sets CrlPath field to given value.
+
+### HasCrlPath
+
+`func (o *IntegratedCAConnectorResponse) HasCrlPath() bool`
+
+HasCrlPath returns a boolean if a field has been set.
+
+### SetCrlPathNil
+
+`func (o *IntegratedCAConnectorResponse) SetCrlPathNil(b bool)`
+
+ SetCrlPathNil sets the value for CrlPath to be an explicit nil
+
+### UnsetCrlPath
+`func (o *IntegratedCAConnectorResponse) UnsetCrlPath()`
+
+UnsetCrlPath ensures that no value is present for CrlPath, not even an explicit nil
+### GetCrtBackDate
+
+`func (o *IntegratedCAConnectorResponse) GetCrtBackDate() string`
+
+GetCrtBackDate returns the CrtBackDate field if non-nil, zero value otherwise.
+
+### GetCrtBackDateOk
+
+`func (o *IntegratedCAConnectorResponse) GetCrtBackDateOk() (*string, bool)`
+
+GetCrtBackDateOk returns a tuple with the CrtBackDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCrtBackDate
+
+`func (o *IntegratedCAConnectorResponse) SetCrtBackDate(v string)`
+
+SetCrtBackDate sets CrtBackDate field to given value.
+
+### HasCrtBackDate
+
+`func (o *IntegratedCAConnectorResponse) HasCrtBackDate() bool`
+
+HasCrtBackDate returns a boolean if a field has been set.
+
+### SetCrtBackDateNil
+
+`func (o *IntegratedCAConnectorResponse) SetCrtBackDateNil(b bool)`
+
+ SetCrtBackDateNil sets the value for CrtBackDate to be an explicit nil
+
+### UnsetCrtBackDate
+`func (o *IntegratedCAConnectorResponse) UnsetCrtBackDate()`
+
+UnsetCrtBackDate ensures that no value is present for CrtBackDate, not even an explicit nil
+### GetCrtLifetime
+
+`func (o *IntegratedCAConnectorResponse) GetCrtLifetime() string`
+
+GetCrtLifetime returns the CrtLifetime field if non-nil, zero value otherwise.
+
+### GetCrtLifetimeOk
+
+`func (o *IntegratedCAConnectorResponse) GetCrtLifetimeOk() (*string, bool)`
+
+GetCrtLifetimeOk returns a tuple with the CrtLifetime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCrtLifetime
+
+`func (o *IntegratedCAConnectorResponse) SetCrtLifetime(v string)`
+
+SetCrtLifetime sets CrtLifetime field to given value.
+
+### HasCrtLifetime
+
+`func (o *IntegratedCAConnectorResponse) HasCrtLifetime() bool`
+
+HasCrtLifetime returns a boolean if a field has been set.
+
+### SetCrtLifetimeNil
+
+`func (o *IntegratedCAConnectorResponse) SetCrtLifetimeNil(b bool)`
+
+ SetCrtLifetimeNil sets the value for CrtLifetime to be an explicit nil
+
+### UnsetCrtLifetime
+`func (o *IntegratedCAConnectorResponse) UnsetCrtLifetime()`
+
+UnsetCrtLifetime ensures that no value is present for CrtLifetime, not even an explicit nil
+### GetCryptoType
+
+`func (o *IntegratedCAConnectorResponse) GetCryptoType() string`
+
+GetCryptoType returns the CryptoType field if non-nil, zero value otherwise.
+
+### GetCryptoTypeOk
+
+`func (o *IntegratedCAConnectorResponse) GetCryptoTypeOk() (*string, bool)`
+
+GetCryptoTypeOk returns a tuple with the CryptoType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCryptoType
+
+`func (o *IntegratedCAConnectorResponse) SetCryptoType(v string)`
+
+SetCryptoType sets CryptoType field to given value.
+
+
+### GetName
+
+`func (o *IntegratedCAConnectorResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *IntegratedCAConnectorResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *IntegratedCAConnectorResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetQueue
 
 `func (o *IntegratedCAConnectorResponse) GetQueue() string`
@@ -449,6 +414,41 @@ HasQueue returns a boolean if a field has been set.
 `func (o *IntegratedCAConnectorResponse) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetSignAlg
+
+`func (o *IntegratedCAConnectorResponse) GetSignAlg() string`
+
+GetSignAlg returns the SignAlg field if non-nil, zero value otherwise.
+
+### GetSignAlgOk
+
+`func (o *IntegratedCAConnectorResponse) GetSignAlgOk() (*string, bool)`
+
+GetSignAlgOk returns a tuple with the SignAlg field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSignAlg
+
+`func (o *IntegratedCAConnectorResponse) SetSignAlg(v string)`
+
+SetSignAlg sets SignAlg field to given value.
+
+### HasSignAlg
+
+`func (o *IntegratedCAConnectorResponse) HasSignAlg() bool`
+
+HasSignAlg returns a boolean if a field has been set.
+
+### SetSignAlgNil
+
+`func (o *IntegratedCAConnectorResponse) SetSignAlgNil(b bool)`
+
+ SetSignAlgNil sets the value for SignAlg to be an explicit nil
+
+### UnsetSignAlg
+`func (o *IntegratedCAConnectorResponse) UnsetSignAlg()`
+
+UnsetSignAlg ensures that no value is present for SignAlg, not even an explicit nil
 ### GetStatus
 
 `func (o *IntegratedCAConnectorResponse) GetStatus() PKIConnectorStatus`
@@ -484,24 +484,24 @@ HasStatus returns a boolean if a field has been set.
 `func (o *IntegratedCAConnectorResponse) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
-### GetCryptoType
+### GetType
 
-`func (o *IntegratedCAConnectorResponse) GetCryptoType() string`
+`func (o *IntegratedCAConnectorResponse) GetType() string`
 
-GetCryptoType returns the CryptoType field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetCryptoTypeOk
+### GetTypeOk
 
-`func (o *IntegratedCAConnectorResponse) GetCryptoTypeOk() (*string, bool)`
+`func (o *IntegratedCAConnectorResponse) GetTypeOk() (*string, bool)`
 
-GetCryptoTypeOk returns a tuple with the CryptoType field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCryptoType
+### SetType
 
-`func (o *IntegratedCAConnectorResponse) SetCryptoType(v string)`
+`func (o *IntegratedCAConnectorResponse) SetType(v string)`
 
-SetCryptoType sets CryptoType field to given value.
+SetType sets Type field to given value.
 
 
 

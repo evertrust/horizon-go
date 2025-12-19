@@ -5,23 +5,23 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Type** | **string** |  | 
+**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the App ID and Key to authenticate on Intune | 
+**IntuneResourceUrl** | Pointer to **NullableString** |  | [optional] 
+**LegacyRevocationMode** | **bool** |  | 
 **Name** | **string** |  | 
+**OsQueryString** | Pointer to **NullableString** |  | [optional] 
+**Proxy** | Pointer to **NullableString** |  | [optional] 
+**Tenant** | **string** |  | 
 **ThrottleDuration** | **string** |  | 
 **ThrottleParallelism** | **int64** |  | 
 **Timeout** | Pointer to **NullableString** |  | [optional] 
-**Proxy** | Pointer to **NullableString** |  | [optional] 
-**Tenant** | **string** |  | 
-**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/api.security.credentials) containing the App ID and Key to authenticate on Intune | 
-**IntuneResourceUrl** | Pointer to **NullableString** |  | [optional] 
-**OsQueryString** | Pointer to **NullableString** |  | [optional] 
-**LegacyRevocationMode** | **bool** |  | 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewIntuneConnectorResponse
 
-`func NewIntuneConnectorResponse(id string, type_ string, name string, throttleDuration string, throttleParallelism int64, tenant string, credentials string, legacyRevocationMode bool, ) *IntuneConnectorResponse`
+`func NewIntuneConnectorResponse(id string, credentials string, legacyRevocationMode bool, name string, tenant string, throttleDuration string, throttleParallelism int64, type_ string, ) *IntuneConnectorResponse`
 
 NewIntuneConnectorResponse instantiates a new IntuneConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -56,24 +56,79 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetType
+### GetCredentials
 
-`func (o *IntuneConnectorResponse) GetType() string`
+`func (o *IntuneConnectorResponse) GetCredentials() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetCredentialsOk
 
-`func (o *IntuneConnectorResponse) GetTypeOk() (*string, bool)`
+`func (o *IntuneConnectorResponse) GetCredentialsOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetCredentials
 
-`func (o *IntuneConnectorResponse) SetType(v string)`
+`func (o *IntuneConnectorResponse) SetCredentials(v string)`
 
-SetType sets Type field to given value.
+SetCredentials sets Credentials field to given value.
+
+
+### GetIntuneResourceUrl
+
+`func (o *IntuneConnectorResponse) GetIntuneResourceUrl() string`
+
+GetIntuneResourceUrl returns the IntuneResourceUrl field if non-nil, zero value otherwise.
+
+### GetIntuneResourceUrlOk
+
+`func (o *IntuneConnectorResponse) GetIntuneResourceUrlOk() (*string, bool)`
+
+GetIntuneResourceUrlOk returns a tuple with the IntuneResourceUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntuneResourceUrl
+
+`func (o *IntuneConnectorResponse) SetIntuneResourceUrl(v string)`
+
+SetIntuneResourceUrl sets IntuneResourceUrl field to given value.
+
+### HasIntuneResourceUrl
+
+`func (o *IntuneConnectorResponse) HasIntuneResourceUrl() bool`
+
+HasIntuneResourceUrl returns a boolean if a field has been set.
+
+### SetIntuneResourceUrlNil
+
+`func (o *IntuneConnectorResponse) SetIntuneResourceUrlNil(b bool)`
+
+ SetIntuneResourceUrlNil sets the value for IntuneResourceUrl to be an explicit nil
+
+### UnsetIntuneResourceUrl
+`func (o *IntuneConnectorResponse) UnsetIntuneResourceUrl()`
+
+UnsetIntuneResourceUrl ensures that no value is present for IntuneResourceUrl, not even an explicit nil
+### GetLegacyRevocationMode
+
+`func (o *IntuneConnectorResponse) GetLegacyRevocationMode() bool`
+
+GetLegacyRevocationMode returns the LegacyRevocationMode field if non-nil, zero value otherwise.
+
+### GetLegacyRevocationModeOk
+
+`func (o *IntuneConnectorResponse) GetLegacyRevocationModeOk() (*bool, bool)`
+
+GetLegacyRevocationModeOk returns a tuple with the LegacyRevocationMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLegacyRevocationMode
+
+`func (o *IntuneConnectorResponse) SetLegacyRevocationMode(v bool)`
+
+SetLegacyRevocationMode sets LegacyRevocationMode field to given value.
 
 
 ### GetName
@@ -94,6 +149,96 @@ and a boolean to check if the value has been set.
 `func (o *IntuneConnectorResponse) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetOsQueryString
+
+`func (o *IntuneConnectorResponse) GetOsQueryString() string`
+
+GetOsQueryString returns the OsQueryString field if non-nil, zero value otherwise.
+
+### GetOsQueryStringOk
+
+`func (o *IntuneConnectorResponse) GetOsQueryStringOk() (*string, bool)`
+
+GetOsQueryStringOk returns a tuple with the OsQueryString field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOsQueryString
+
+`func (o *IntuneConnectorResponse) SetOsQueryString(v string)`
+
+SetOsQueryString sets OsQueryString field to given value.
+
+### HasOsQueryString
+
+`func (o *IntuneConnectorResponse) HasOsQueryString() bool`
+
+HasOsQueryString returns a boolean if a field has been set.
+
+### SetOsQueryStringNil
+
+`func (o *IntuneConnectorResponse) SetOsQueryStringNil(b bool)`
+
+ SetOsQueryStringNil sets the value for OsQueryString to be an explicit nil
+
+### UnsetOsQueryString
+`func (o *IntuneConnectorResponse) UnsetOsQueryString()`
+
+UnsetOsQueryString ensures that no value is present for OsQueryString, not even an explicit nil
+### GetProxy
+
+`func (o *IntuneConnectorResponse) GetProxy() string`
+
+GetProxy returns the Proxy field if non-nil, zero value otherwise.
+
+### GetProxyOk
+
+`func (o *IntuneConnectorResponse) GetProxyOk() (*string, bool)`
+
+GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxy
+
+`func (o *IntuneConnectorResponse) SetProxy(v string)`
+
+SetProxy sets Proxy field to given value.
+
+### HasProxy
+
+`func (o *IntuneConnectorResponse) HasProxy() bool`
+
+HasProxy returns a boolean if a field has been set.
+
+### SetProxyNil
+
+`func (o *IntuneConnectorResponse) SetProxyNil(b bool)`
+
+ SetProxyNil sets the value for Proxy to be an explicit nil
+
+### UnsetProxy
+`func (o *IntuneConnectorResponse) UnsetProxy()`
+
+UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+### GetTenant
+
+`func (o *IntuneConnectorResponse) GetTenant() string`
+
+GetTenant returns the Tenant field if non-nil, zero value otherwise.
+
+### GetTenantOk
+
+`func (o *IntuneConnectorResponse) GetTenantOk() (*string, bool)`
+
+GetTenantOk returns a tuple with the Tenant field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTenant
+
+`func (o *IntuneConnectorResponse) SetTenant(v string)`
+
+SetTenant sets Tenant field to given value.
 
 
 ### GetThrottleDuration
@@ -171,169 +316,24 @@ HasTimeout returns a boolean if a field has been set.
 `func (o *IntuneConnectorResponse) UnsetTimeout()`
 
 UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetProxy
+### GetType
 
-`func (o *IntuneConnectorResponse) GetProxy() string`
+`func (o *IntuneConnectorResponse) GetType() string`
 
-GetProxy returns the Proxy field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetProxyOk
+### GetTypeOk
 
-`func (o *IntuneConnectorResponse) GetProxyOk() (*string, bool)`
+`func (o *IntuneConnectorResponse) GetTypeOk() (*string, bool)`
 
-GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProxy
+### SetType
 
-`func (o *IntuneConnectorResponse) SetProxy(v string)`
+`func (o *IntuneConnectorResponse) SetType(v string)`
 
-SetProxy sets Proxy field to given value.
-
-### HasProxy
-
-`func (o *IntuneConnectorResponse) HasProxy() bool`
-
-HasProxy returns a boolean if a field has been set.
-
-### SetProxyNil
-
-`func (o *IntuneConnectorResponse) SetProxyNil(b bool)`
-
- SetProxyNil sets the value for Proxy to be an explicit nil
-
-### UnsetProxy
-`func (o *IntuneConnectorResponse) UnsetProxy()`
-
-UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetTenant
-
-`func (o *IntuneConnectorResponse) GetTenant() string`
-
-GetTenant returns the Tenant field if non-nil, zero value otherwise.
-
-### GetTenantOk
-
-`func (o *IntuneConnectorResponse) GetTenantOk() (*string, bool)`
-
-GetTenantOk returns a tuple with the Tenant field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTenant
-
-`func (o *IntuneConnectorResponse) SetTenant(v string)`
-
-SetTenant sets Tenant field to given value.
-
-
-### GetCredentials
-
-`func (o *IntuneConnectorResponse) GetCredentials() string`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *IntuneConnectorResponse) GetCredentialsOk() (*string, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *IntuneConnectorResponse) SetCredentials(v string)`
-
-SetCredentials sets Credentials field to given value.
-
-
-### GetIntuneResourceUrl
-
-`func (o *IntuneConnectorResponse) GetIntuneResourceUrl() string`
-
-GetIntuneResourceUrl returns the IntuneResourceUrl field if non-nil, zero value otherwise.
-
-### GetIntuneResourceUrlOk
-
-`func (o *IntuneConnectorResponse) GetIntuneResourceUrlOk() (*string, bool)`
-
-GetIntuneResourceUrlOk returns a tuple with the IntuneResourceUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIntuneResourceUrl
-
-`func (o *IntuneConnectorResponse) SetIntuneResourceUrl(v string)`
-
-SetIntuneResourceUrl sets IntuneResourceUrl field to given value.
-
-### HasIntuneResourceUrl
-
-`func (o *IntuneConnectorResponse) HasIntuneResourceUrl() bool`
-
-HasIntuneResourceUrl returns a boolean if a field has been set.
-
-### SetIntuneResourceUrlNil
-
-`func (o *IntuneConnectorResponse) SetIntuneResourceUrlNil(b bool)`
-
- SetIntuneResourceUrlNil sets the value for IntuneResourceUrl to be an explicit nil
-
-### UnsetIntuneResourceUrl
-`func (o *IntuneConnectorResponse) UnsetIntuneResourceUrl()`
-
-UnsetIntuneResourceUrl ensures that no value is present for IntuneResourceUrl, not even an explicit nil
-### GetOsQueryString
-
-`func (o *IntuneConnectorResponse) GetOsQueryString() string`
-
-GetOsQueryString returns the OsQueryString field if non-nil, zero value otherwise.
-
-### GetOsQueryStringOk
-
-`func (o *IntuneConnectorResponse) GetOsQueryStringOk() (*string, bool)`
-
-GetOsQueryStringOk returns a tuple with the OsQueryString field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOsQueryString
-
-`func (o *IntuneConnectorResponse) SetOsQueryString(v string)`
-
-SetOsQueryString sets OsQueryString field to given value.
-
-### HasOsQueryString
-
-`func (o *IntuneConnectorResponse) HasOsQueryString() bool`
-
-HasOsQueryString returns a boolean if a field has been set.
-
-### SetOsQueryStringNil
-
-`func (o *IntuneConnectorResponse) SetOsQueryStringNil(b bool)`
-
- SetOsQueryStringNil sets the value for OsQueryString to be an explicit nil
-
-### UnsetOsQueryString
-`func (o *IntuneConnectorResponse) UnsetOsQueryString()`
-
-UnsetOsQueryString ensures that no value is present for OsQueryString, not even an explicit nil
-### GetLegacyRevocationMode
-
-`func (o *IntuneConnectorResponse) GetLegacyRevocationMode() bool`
-
-GetLegacyRevocationMode returns the LegacyRevocationMode field if non-nil, zero value otherwise.
-
-### GetLegacyRevocationModeOk
-
-`func (o *IntuneConnectorResponse) GetLegacyRevocationModeOk() (*bool, bool)`
-
-GetLegacyRevocationModeOk returns a tuple with the LegacyRevocationMode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLegacyRevocationMode
-
-`func (o *IntuneConnectorResponse) SetLegacyRevocationMode(v bool)`
-
-SetLegacyRevocationMode sets LegacyRevocationMode field to given value.
+SetType sets Type field to given value.
 
 
 

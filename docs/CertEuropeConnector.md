@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Type** | **string** |  | 
+**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
 **EndPoint** | **string** |  | 
-**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/api.security.credentials) to use for technical account on the PKI | 
+**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for technical account on the PKI | 
+**Name** | **string** |  | 
 **OfferId** | **string** |  | 
 **OrganizationId** | **string** |  | 
-**RevReason** | Pointer to **NullableString** |  | [optional] 
-**RetryInterval** | Pointer to **NullableString** |  | [optional] 
-**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/api.security.credentials) to use to authenticate on the PKI | 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
+**RetryInterval** | Pointer to **NullableString** |  | [optional] 
+**RevReason** | Pointer to **NullableString** |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewCertEuropeConnector
 
-`func NewCertEuropeConnector(name string, type_ string, endPoint string, loginCredentials string, offerId string, organizationId string, authenticationCredentials string, ) *CertEuropeConnector`
+`func NewCertEuropeConnector(authenticationCredentials string, endPoint string, loginCredentials string, name string, offerId string, organizationId string, type_ string, ) *CertEuropeConnector`
 
 NewCertEuropeConnector instantiates a new CertEuropeConnector object
 This constructor will assign default values to properties that have it defined,
@@ -36,44 +36,24 @@ NewCertEuropeConnectorWithDefaults instantiates a new CertEuropeConnector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetAuthenticationCredentials
 
-`func (o *CertEuropeConnector) GetName() string`
+`func (o *CertEuropeConnector) GetAuthenticationCredentials() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAuthenticationCredentialsOk
 
-`func (o *CertEuropeConnector) GetNameOk() (*string, bool)`
+`func (o *CertEuropeConnector) GetAuthenticationCredentialsOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetAuthenticationCredentials
 
-`func (o *CertEuropeConnector) SetName(v string)`
+`func (o *CertEuropeConnector) SetAuthenticationCredentials(v string)`
 
-SetName sets Name field to given value.
-
-
-### GetType
-
-`func (o *CertEuropeConnector) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *CertEuropeConnector) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *CertEuropeConnector) SetType(v string)`
-
-SetType sets Type field to given value.
+SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
 
 
 ### GetEndPoint
@@ -116,6 +96,26 @@ and a boolean to check if the value has been set.
 SetLoginCredentials sets LoginCredentials field to given value.
 
 
+### GetName
+
+`func (o *CertEuropeConnector) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *CertEuropeConnector) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *CertEuropeConnector) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetOfferId
 
 `func (o *CertEuropeConnector) GetOfferId() string`
@@ -156,131 +156,6 @@ and a boolean to check if the value has been set.
 SetOrganizationId sets OrganizationId field to given value.
 
 
-### GetRevReason
-
-`func (o *CertEuropeConnector) GetRevReason() string`
-
-GetRevReason returns the RevReason field if non-nil, zero value otherwise.
-
-### GetRevReasonOk
-
-`func (o *CertEuropeConnector) GetRevReasonOk() (*string, bool)`
-
-GetRevReasonOk returns a tuple with the RevReason field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRevReason
-
-`func (o *CertEuropeConnector) SetRevReason(v string)`
-
-SetRevReason sets RevReason field to given value.
-
-### HasRevReason
-
-`func (o *CertEuropeConnector) HasRevReason() bool`
-
-HasRevReason returns a boolean if a field has been set.
-
-### SetRevReasonNil
-
-`func (o *CertEuropeConnector) SetRevReasonNil(b bool)`
-
- SetRevReasonNil sets the value for RevReason to be an explicit nil
-
-### UnsetRevReason
-`func (o *CertEuropeConnector) UnsetRevReason()`
-
-UnsetRevReason ensures that no value is present for RevReason, not even an explicit nil
-### GetRetryInterval
-
-`func (o *CertEuropeConnector) GetRetryInterval() string`
-
-GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
-
-### GetRetryIntervalOk
-
-`func (o *CertEuropeConnector) GetRetryIntervalOk() (*string, bool)`
-
-GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRetryInterval
-
-`func (o *CertEuropeConnector) SetRetryInterval(v string)`
-
-SetRetryInterval sets RetryInterval field to given value.
-
-### HasRetryInterval
-
-`func (o *CertEuropeConnector) HasRetryInterval() bool`
-
-HasRetryInterval returns a boolean if a field has been set.
-
-### SetRetryIntervalNil
-
-`func (o *CertEuropeConnector) SetRetryIntervalNil(b bool)`
-
- SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
-
-### UnsetRetryInterval
-`func (o *CertEuropeConnector) UnsetRetryInterval()`
-
-UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-### GetAuthenticationCredentials
-
-`func (o *CertEuropeConnector) GetAuthenticationCredentials() string`
-
-GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
-
-### GetAuthenticationCredentialsOk
-
-`func (o *CertEuropeConnector) GetAuthenticationCredentialsOk() (*string, bool)`
-
-GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticationCredentials
-
-`func (o *CertEuropeConnector) SetAuthenticationCredentials(v string)`
-
-SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
-
-
-### GetTimeout
-
-`func (o *CertEuropeConnector) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *CertEuropeConnector) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *CertEuropeConnector) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *CertEuropeConnector) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *CertEuropeConnector) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *CertEuropeConnector) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *CertEuropeConnector) GetProxy() string`
@@ -351,6 +226,131 @@ HasQueue returns a boolean if a field has been set.
 `func (o *CertEuropeConnector) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetRetryInterval
+
+`func (o *CertEuropeConnector) GetRetryInterval() string`
+
+GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
+
+### GetRetryIntervalOk
+
+`func (o *CertEuropeConnector) GetRetryIntervalOk() (*string, bool)`
+
+GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryInterval
+
+`func (o *CertEuropeConnector) SetRetryInterval(v string)`
+
+SetRetryInterval sets RetryInterval field to given value.
+
+### HasRetryInterval
+
+`func (o *CertEuropeConnector) HasRetryInterval() bool`
+
+HasRetryInterval returns a boolean if a field has been set.
+
+### SetRetryIntervalNil
+
+`func (o *CertEuropeConnector) SetRetryIntervalNil(b bool)`
+
+ SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+
+### UnsetRetryInterval
+`func (o *CertEuropeConnector) UnsetRetryInterval()`
+
+UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
+### GetRevReason
+
+`func (o *CertEuropeConnector) GetRevReason() string`
+
+GetRevReason returns the RevReason field if non-nil, zero value otherwise.
+
+### GetRevReasonOk
+
+`func (o *CertEuropeConnector) GetRevReasonOk() (*string, bool)`
+
+GetRevReasonOk returns a tuple with the RevReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevReason
+
+`func (o *CertEuropeConnector) SetRevReason(v string)`
+
+SetRevReason sets RevReason field to given value.
+
+### HasRevReason
+
+`func (o *CertEuropeConnector) HasRevReason() bool`
+
+HasRevReason returns a boolean if a field has been set.
+
+### SetRevReasonNil
+
+`func (o *CertEuropeConnector) SetRevReasonNil(b bool)`
+
+ SetRevReasonNil sets the value for RevReason to be an explicit nil
+
+### UnsetRevReason
+`func (o *CertEuropeConnector) UnsetRevReason()`
+
+UnsetRevReason ensures that no value is present for RevReason, not even an explicit nil
+### GetTimeout
+
+`func (o *CertEuropeConnector) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *CertEuropeConnector) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *CertEuropeConnector) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *CertEuropeConnector) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *CertEuropeConnector) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *CertEuropeConnector) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *CertEuropeConnector) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *CertEuropeConnector) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *CertEuropeConnector) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

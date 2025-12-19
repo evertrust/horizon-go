@@ -1,9 +1,9 @@
 /*
-    Horizon API
+   Horizon API
 
-    ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
+   ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
 
-    API version: 2.7.0
+   API version: 2.8.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -17,20 +17,22 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-)
 
+	"github.com/evertrust/horizon-go/v2/models"
+	"github.com/evertrust/horizon-go/v2/utils"
+)
 
 // DiscoveryFeedAPIService DiscoveryFeedAPI service
 type DiscoveryFeedAPIService service
 
 type DiscoveryFeedAPIDiscoveryFeedRequest struct {
-	ctx context.Context
-	ApiService *DiscoveryFeedAPIService
-	discoveryFeed *DiscoveryFeed
+	ctx           context.Context
+	ApiService    *DiscoveryFeedAPIService
+	discoveryFeed *models.DiscoveryFeed
 }
 
 // The discovery feed
-func (r DiscoveryFeedAPIDiscoveryFeedRequest) DiscoveryFeed(discoveryFeed DiscoveryFeed) DiscoveryFeedAPIDiscoveryFeedRequest {
+func (r DiscoveryFeedAPIDiscoveryFeedRequest) DiscoveryFeed(discoveryFeed models.DiscoveryFeed) DiscoveryFeedAPIDiscoveryFeedRequest {
 	r.discoveryFeed = &discoveryFeed
 	return r
 }
@@ -44,22 +46,22 @@ DiscoveryFeed Feed a discovered certificate into a discovery campaign
 
 Feed a discovered certificate into a discovery campaign
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return DiscoveryFeedAPIDiscoveryFeedRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return DiscoveryFeedAPIDiscoveryFeedRequest
 */
 func (a *DiscoveryFeedAPIService) DiscoveryFeed(ctx context.Context) DiscoveryFeedAPIDiscoveryFeedRequest {
 	return DiscoveryFeedAPIDiscoveryFeedRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *DiscoveryFeedAPIService) DiscoveryFeedExecute(r DiscoveryFeedAPIDiscoveryFeedRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscoveryFeedAPIService.DiscoveryFeed")
@@ -73,7 +75,7 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedExecute(r DiscoveryFeedAPIDiscove
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.discoveryFeed == nil {
-		return nil, reportError("discoveryFeed is required and must be specified")
+		return nil, utils.ReportError("discoveryFeed is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -146,47 +148,47 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedExecute(r DiscoveryFeedAPIDiscove
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v DiscoveryFeed400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v AdocGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DiscoveryCampaignUpdate404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v DiscoveryFeedSessionStart500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -195,13 +197,13 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedExecute(r DiscoveryFeedAPIDiscove
 }
 
 type DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest struct {
-	ctx context.Context
-	ApiService *DiscoveryFeedAPIService
-	discoveryEvent *DiscoveryEvent
+	ctx            context.Context
+	ApiService     *DiscoveryFeedAPIService
+	discoveryEvent *models.DiscoveryEvent
 }
 
 // The discovery event to push
-func (r DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest) DiscoveryEvent(discoveryEvent DiscoveryEvent) DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest {
+func (r DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest) DiscoveryEvent(discoveryEvent models.DiscoveryEvent) DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest {
 	r.discoveryEvent = &discoveryEvent
 	return r
 }
@@ -215,22 +217,22 @@ DiscoveryFeedEventRegister Push a new discovery event
 
 Push a new discovery event for a specific discovery feed session on a discovery campaign
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest
 */
 func (a *DiscoveryFeedAPIService) DiscoveryFeedEventRegister(ctx context.Context) DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest {
 	return DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *DiscoveryFeedAPIService) DiscoveryFeedEventRegisterExecute(r DiscoveryFeedAPIDiscoveryFeedEventRegisterRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscoveryFeedAPIService.DiscoveryFeedEventRegister")
@@ -244,7 +246,7 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedEventRegisterExecute(r DiscoveryF
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.discoveryEvent == nil {
-		return nil, reportError("discoveryEvent is required and must be specified")
+		return nil, utils.ReportError("discoveryEvent is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -317,58 +319,58 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedEventRegisterExecute(r DiscoveryF
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v DiscoveryFeedEventRegister400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v CertificateList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v CertificateGetId403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DiscoveryCampaignUpdate404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v DiscoveryFeedSessionStart500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -377,10 +379,10 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedEventRegisterExecute(r DiscoveryF
 }
 
 type DiscoveryFeedAPIDiscoveryFeedSessionEndRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *DiscoveryFeedAPIService
-	campaign string
-	id string
+	campaign   string
+	id         string
 }
 
 func (r DiscoveryFeedAPIDiscoveryFeedSessionEndRequest) Execute() (*http.Response, error) {
@@ -392,26 +394,26 @@ DiscoveryFeedSessionEnd End a discovery session
 
 Ends an active discovery session and raises the appropriate discovery event
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param campaign The name of the discovery campaign where the session was started
- @param id The discovery session ID to end
- @return DiscoveryFeedAPIDiscoveryFeedSessionEndRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param campaign The name of the discovery campaign where the session was started
+	@param id The discovery session ID to end
+	@return DiscoveryFeedAPIDiscoveryFeedSessionEndRequest
 */
 func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionEnd(ctx context.Context, campaign string, id string) DiscoveryFeedAPIDiscoveryFeedSessionEndRequest {
 	return DiscoveryFeedAPIDiscoveryFeedSessionEndRequest{
 		ApiService: a,
-		ctx: ctx,
-		campaign: campaign,
-		id: id,
+		ctx:        ctx,
+		campaign:   campaign,
+		id:         id,
 	}
 }
 
 // Execute executes the request
 func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionEndExecute(r DiscoveryFeedAPIDiscoveryFeedSessionEndRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscoveryFeedAPIService.DiscoveryFeedSessionEnd")
@@ -495,58 +497,58 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionEndExecute(r DiscoveryFeed
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v DiscoveryFeedSessionEnd400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v CertificateList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v CertificateGetId403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DiscoveryCampaignUpdate404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v DiscoveryFeedSessionStart500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -555,12 +557,12 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionEndExecute(r DiscoveryFeed
 }
 
 type DiscoveryFeedAPIDiscoveryFeedSessionStartRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *DiscoveryFeedAPIService
-	name string
+	name       string
 }
 
-func (r DiscoveryFeedAPIDiscoveryFeedSessionStartRequest) Execute() ([]DiscoveryFeedSessionResponse, *http.Response, error) {
+func (r DiscoveryFeedAPIDiscoveryFeedSessionStartRequest) Execute() (*models.DiscoveryFeedSessionResponse, *http.Response, error) {
 	return r.ApiService.DiscoveryFeedSessionStartExecute(r)
 }
 
@@ -569,26 +571,27 @@ DiscoveryFeedSessionStart Create a new discovery feed session
 
 Create a new discovery feed session, starts it and raises the appropriate discovery event. This call will return the discovery feed session ID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name The name of the discovery campaign to create a new feed session for
- @return DiscoveryFeedAPIDiscoveryFeedSessionStartRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param name The name of the discovery campaign to create a new feed session for
+	@return DiscoveryFeedAPIDiscoveryFeedSessionStartRequest
 */
 func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionStart(ctx context.Context, name string) DiscoveryFeedAPIDiscoveryFeedSessionStartRequest {
 	return DiscoveryFeedAPIDiscoveryFeedSessionStartRequest{
 		ApiService: a,
-		ctx: ctx,
-		name: name,
+		ctx:        ctx,
+		name:       name,
 	}
 }
 
 // Execute executes the request
-//  @return []DiscoveryFeedSessionResponse
-func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionStartExecute(r DiscoveryFeedAPIDiscoveryFeedSessionStartRequest) ([]DiscoveryFeedSessionResponse, *http.Response, error) {
+//
+//	@return DiscoveryFeedSessionResponse
+func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionStartExecute(r DiscoveryFeedAPIDiscoveryFeedSessionStartRequest) (*models.DiscoveryFeedSessionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []DiscoveryFeedSessionResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.DiscoveryFeedSessionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscoveryFeedAPIService.DiscoveryFeedSessionStart")
@@ -671,58 +674,58 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionStartExecute(r DiscoveryFe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v CertificateList400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v CertificateList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v CertificateGetId403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v DiscoveryCampaignUpdate404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v DiscoveryFeedSessionStart500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

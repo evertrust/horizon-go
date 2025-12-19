@@ -30,11 +30,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	datasourceUpdateRequest := openapiclient.datasource_update_request{DNSDatasource: openapiclient.NewDNSDatasource("Type_example", "DNS_Datasource", "Lookup_example")} // DatasourceUpdateRequest | Datasource to register
+	datasourceUpdateRequest := openapiclient.datasource_update_request{DNSDatasource: openapiclient.NewDNSDatasource("Lookup_example", "DNS_Datasource", "Type_example")} // DatasourceUpdateRequest | Datasource to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -96,7 +96,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -164,7 +164,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -234,7 +234,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -280,7 +280,7 @@ Other parameters are passed through a pointer to a apiDatasourceListRequest stru
 
 ## DatasourceTest
 
-> DatasourceTest200Response DatasourceTest(ctx).DataSourceTestRequest(dataSourceTestRequest).Execute()
+> DatasourceFlowTest200ResponseInner DatasourceTest(ctx).DataSourceTestRequest(dataSourceTestRequest).Execute()
 
 Test a datasource
 
@@ -295,11 +295,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	dataSourceTestRequest := *openapiclient.NewDataSourceTestRequest(openapiclient.DataSourceTestRequest_ds{DNSDatasource: openapiclient.NewDNSDatasource("Type_example", "DNS_Datasource", "Lookup_example")}) // DataSourceTestRequest | Datasource to test
+	dataSourceTestRequest := *openapiclient.NewDataSourceTestRequest(openapiclient.DataSourceTestRequest_ds{DNSDatasource: openapiclient.NewDNSDatasource("Lookup_example", "DNS_Datasource", "Type_example")}) // DataSourceTestRequest | Datasource to test
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -308,7 +308,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DatasourceAPI.DatasourceTest``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DatasourceTest`: DatasourceTest200Response
+	// response from `DatasourceTest`: DatasourceFlowTest200ResponseInner
 	fmt.Fprintf(os.Stdout, "Response from `DatasourceAPI.DatasourceTest`: %v\n", resp)
 }
 ```
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DatasourceTest200Response**](DatasourceTest200Response.md)
+[**DatasourceFlowTest200ResponseInner**](DatasourceFlowTest200ResponseInner.md)
 
 ### Authorization
 
@@ -361,11 +361,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	datasourceUpdateRequest := openapiclient.datasource_update_request{DNSDatasource: openapiclient.NewDNSDatasource("Type_example", "DNS_Datasource", "Lookup_example")} // DatasourceUpdateRequest | Datasource to update
+	datasourceUpdateRequest := openapiclient.datasource_update_request{DNSDatasource: openapiclient.NewDNSDatasource("Lookup_example", "DNS_Datasource", "Type_example")} // DatasourceUpdateRequest | Datasource to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

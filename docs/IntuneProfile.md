@@ -4,38 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Module** | **string** |  | 
-**Name** | **string** |  | 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
-**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
-**Enabled** | **bool** |  | 
-**Mode** | **string** |  | 
-**ThirdPartyConnector** | **string** |  | 
-**PkiConnector** | **string** |  | 
-**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
-**Constraints** | Pointer to [**NullableCertificateRequestConstraints**](CertificateRequestConstraints.md) |  | [optional] 
-**CsrDataMapping** | Pointer to **map[string]string** |  | [optional] 
-**ScepRA** | **string** |  | 
+**AuthorizationLevels** | [**CertificateProfileAuthorizationLevels**](CertificateProfileAuthorizationLevels.md) |  | 
 **Caps** | **[]string** |  | 
-**PostPKIOperation** | Pointer to **NullableBool** |  | [optional] 
-**EncryptionAlgorithm** | **string** |  | 
+**CertificateTemplate** | Pointer to [**NullableCertificateTemplate**](CertificateTemplate.md) |  | [optional] 
+**Constraints** | Pointer to [**NullableCertificateRequestConstraints**](CertificateRequestConstraints.md) |  | [optional] 
+**CryptoPolicy** | [**ManagedCertificateProfileCryptoPolicy**](ManagedCertificateProfileCryptoPolicy.md) |  | 
+**CsrDataMapping** | Pointer to **map[string]string** |  | [optional] 
+**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
 **DeviceIdField** | Pointer to **NullableString** |  | [optional] 
 **DeviceIdSeparator** | Pointer to **NullableString** |  | [optional] 
-**MaxCertificatePerHolderPolicy** | Pointer to [**NullableMaxCertificatePerHolderPolicy**](MaxCertificatePerHolderPolicy.md) |  | [optional] 
-**AuthorizationLevels** | [**CertificateProfileAuthorizationLevels**](CertificateProfileAuthorizationLevels.md) |  | 
-**Triggers** | Pointer to [**NullableCertificateProfileTriggers**](CertificateProfileTriggers.md) |  | [optional] 
-**RequestsPolicy** | [**RequestsPolicy**](RequestsPolicy.md) |  | 
-**SelfPermissions** | [**CertificateProfileSelfPermissions**](CertificateProfileSelfPermissions.md) |  | 
-**CertificateTemplate** | Pointer to [**NullableCertificateTemplate**](CertificateTemplate.md) |  | [optional] 
-**CryptoPolicy** | [**CertificateProfileCryptoPolicy**](CertificateProfileCryptoPolicy.md) |  | 
-**GradingPolicies** | Pointer to **[]string** |  | [optional] 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
 **DsFlow** | Pointer to [**[]DataSourceFlowEntry**](DataSourceFlowEntry.md) | Representation of a datasource execution flow | [optional] 
+**Enabled** | **bool** |  | 
+**EncryptionAlgorithm** | **string** |  | 
+**GradingPolicies** | Pointer to **[]string** |  | [optional] 
+**MaxCertificatePerHolderPolicy** | Pointer to [**NullableMaxCertificatePerHolderPolicy**](MaxCertificatePerHolderPolicy.md) |  | [optional] 
+**Mode** | **string** |  | 
+**Module** | **string** |  | 
+**Name** | **string** |  | 
+**PkiConnector** | **string** |  | 
+**PostPKIOperation** | Pointer to **NullableBool** |  | [optional] 
+**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
+**RequestsPolicy** | [**RequestsPolicy**](RequestsPolicy.md) |  | 
+**ScepRA** | **string** |  | 
+**SelfPermissions** | [**CertificateProfileSelfPermissions**](CertificateProfileSelfPermissions.md) |  | 
+**ThirdPartyConnector** | **string** |  | 
+**Triggers** | Pointer to [**NullableCertificateProfileTriggers**](CertificateProfileTriggers.md) |  | [optional] 
 
 ## Methods
 
 ### NewIntuneProfile
 
-`func NewIntuneProfile(module string, name string, enabled bool, mode string, thirdPartyConnector string, pkiConnector string, scepRA string, caps []string, encryptionAlgorithm string, authorizationLevels CertificateProfileAuthorizationLevels, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions, cryptoPolicy CertificateProfileCryptoPolicy, ) *IntuneProfile`
+`func NewIntuneProfile(authorizationLevels CertificateProfileAuthorizationLevels, caps []string, cryptoPolicy ManagedCertificateProfileCryptoPolicy, enabled bool, encryptionAlgorithm string, mode string, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, scepRA string, selfPermissions CertificateProfileSelfPermissions, thirdPartyConnector string, ) *IntuneProfile`
 
 NewIntuneProfile instantiates a new IntuneProfile object
 This constructor will assign default values to properties that have it defined,
@@ -50,231 +50,81 @@ NewIntuneProfileWithDefaults instantiates a new IntuneProfile object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetModule
+### GetAuthorizationLevels
 
-`func (o *IntuneProfile) GetModule() string`
+`func (o *IntuneProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels`
 
-GetModule returns the Module field if non-nil, zero value otherwise.
+GetAuthorizationLevels returns the AuthorizationLevels field if non-nil, zero value otherwise.
 
-### GetModuleOk
+### GetAuthorizationLevelsOk
 
-`func (o *IntuneProfile) GetModuleOk() (*string, bool)`
+`func (o *IntuneProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool)`
 
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetModule
+### SetAuthorizationLevels
 
-`func (o *IntuneProfile) SetModule(v string)`
+`func (o *IntuneProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels)`
 
-SetModule sets Module field to given value.
+SetAuthorizationLevels sets AuthorizationLevels field to given value.
 
 
-### GetName
+### GetCaps
 
-`func (o *IntuneProfile) GetName() string`
+`func (o *IntuneProfile) GetCaps() []string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetCaps returns the Caps field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetCapsOk
 
-`func (o *IntuneProfile) GetNameOk() (*string, bool)`
+`func (o *IntuneProfile) GetCapsOk() (*[]string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetCapsOk returns a tuple with the Caps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetCaps
 
-`func (o *IntuneProfile) SetName(v string)`
+`func (o *IntuneProfile) SetCaps(v []string)`
 
-SetName sets Name field to given value.
+SetCaps sets Caps field to given value.
 
 
-### GetDisplayName
+### GetCertificateTemplate
 
-`func (o *IntuneProfile) GetDisplayName() []LocalizedString`
+`func (o *IntuneProfile) GetCertificateTemplate() CertificateTemplate`
 
-GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+GetCertificateTemplate returns the CertificateTemplate field if non-nil, zero value otherwise.
 
-### GetDisplayNameOk
+### GetCertificateTemplateOk
 
-`func (o *IntuneProfile) GetDisplayNameOk() (*[]LocalizedString, bool)`
+`func (o *IntuneProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool)`
 
-GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+GetCertificateTemplateOk returns a tuple with the CertificateTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDisplayName
+### SetCertificateTemplate
 
-`func (o *IntuneProfile) SetDisplayName(v []LocalizedString)`
+`func (o *IntuneProfile) SetCertificateTemplate(v CertificateTemplate)`
 
-SetDisplayName sets DisplayName field to given value.
+SetCertificateTemplate sets CertificateTemplate field to given value.
 
-### HasDisplayName
+### HasCertificateTemplate
 
-`func (o *IntuneProfile) HasDisplayName() bool`
+`func (o *IntuneProfile) HasCertificateTemplate() bool`
 
-HasDisplayName returns a boolean if a field has been set.
+HasCertificateTemplate returns a boolean if a field has been set.
 
-### SetDisplayNameNil
+### SetCertificateTemplateNil
 
-`func (o *IntuneProfile) SetDisplayNameNil(b bool)`
+`func (o *IntuneProfile) SetCertificateTemplateNil(b bool)`
 
- SetDisplayNameNil sets the value for DisplayName to be an explicit nil
+ SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
 
-### UnsetDisplayName
-`func (o *IntuneProfile) UnsetDisplayName()`
+### UnsetCertificateTemplate
+`func (o *IntuneProfile) UnsetCertificateTemplate()`
 
-UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetDescription
-
-`func (o *IntuneProfile) GetDescription() []LocalizedString`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *IntuneProfile) GetDescriptionOk() (*[]LocalizedString, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *IntuneProfile) SetDescription(v []LocalizedString)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *IntuneProfile) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescriptionNil
-
-`func (o *IntuneProfile) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *IntuneProfile) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetEnabled
-
-`func (o *IntuneProfile) GetEnabled() bool`
-
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
-
-### GetEnabledOk
-
-`func (o *IntuneProfile) GetEnabledOk() (*bool, bool)`
-
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnabled
-
-`func (o *IntuneProfile) SetEnabled(v bool)`
-
-SetEnabled sets Enabled field to given value.
-
-
-### GetMode
-
-`func (o *IntuneProfile) GetMode() string`
-
-GetMode returns the Mode field if non-nil, zero value otherwise.
-
-### GetModeOk
-
-`func (o *IntuneProfile) GetModeOk() (*string, bool)`
-
-GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMode
-
-`func (o *IntuneProfile) SetMode(v string)`
-
-SetMode sets Mode field to given value.
-
-
-### GetThirdPartyConnector
-
-`func (o *IntuneProfile) GetThirdPartyConnector() string`
-
-GetThirdPartyConnector returns the ThirdPartyConnector field if non-nil, zero value otherwise.
-
-### GetThirdPartyConnectorOk
-
-`func (o *IntuneProfile) GetThirdPartyConnectorOk() (*string, bool)`
-
-GetThirdPartyConnectorOk returns a tuple with the ThirdPartyConnector field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThirdPartyConnector
-
-`func (o *IntuneProfile) SetThirdPartyConnector(v string)`
-
-SetThirdPartyConnector sets ThirdPartyConnector field to given value.
-
-
-### GetPkiConnector
-
-`func (o *IntuneProfile) GetPkiConnector() string`
-
-GetPkiConnector returns the PkiConnector field if non-nil, zero value otherwise.
-
-### GetPkiConnectorOk
-
-`func (o *IntuneProfile) GetPkiConnectorOk() (*string, bool)`
-
-GetPkiConnectorOk returns a tuple with the PkiConnector field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPkiConnector
-
-`func (o *IntuneProfile) SetPkiConnector(v string)`
-
-SetPkiConnector sets PkiConnector field to given value.
-
-
-### GetRenewalPeriod
-
-`func (o *IntuneProfile) GetRenewalPeriod() string`
-
-GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
-
-### GetRenewalPeriodOk
-
-`func (o *IntuneProfile) GetRenewalPeriodOk() (*string, bool)`
-
-GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRenewalPeriod
-
-`func (o *IntuneProfile) SetRenewalPeriod(v string)`
-
-SetRenewalPeriod sets RenewalPeriod field to given value.
-
-### HasRenewalPeriod
-
-`func (o *IntuneProfile) HasRenewalPeriod() bool`
-
-HasRenewalPeriod returns a boolean if a field has been set.
-
-### SetRenewalPeriodNil
-
-`func (o *IntuneProfile) SetRenewalPeriodNil(b bool)`
-
- SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-
-### UnsetRenewalPeriod
-`func (o *IntuneProfile) UnsetRenewalPeriod()`
-
-UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
 ### GetConstraints
 
 `func (o *IntuneProfile) GetConstraints() CertificateRequestConstraints`
@@ -310,6 +160,26 @@ HasConstraints returns a boolean if a field has been set.
 `func (o *IntuneProfile) UnsetConstraints()`
 
 UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
+### GetCryptoPolicy
+
+`func (o *IntuneProfile) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy`
+
+GetCryptoPolicy returns the CryptoPolicy field if non-nil, zero value otherwise.
+
+### GetCryptoPolicyOk
+
+`func (o *IntuneProfile) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool)`
+
+GetCryptoPolicyOk returns a tuple with the CryptoPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCryptoPolicy
+
+`func (o *IntuneProfile) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy)`
+
+SetCryptoPolicy sets CryptoPolicy field to given value.
+
+
 ### GetCsrDataMapping
 
 `func (o *IntuneProfile) GetCsrDataMapping() map[string]string`
@@ -345,101 +215,41 @@ HasCsrDataMapping returns a boolean if a field has been set.
 `func (o *IntuneProfile) UnsetCsrDataMapping()`
 
 UnsetCsrDataMapping ensures that no value is present for CsrDataMapping, not even an explicit nil
-### GetScepRA
+### GetDescription
 
-`func (o *IntuneProfile) GetScepRA() string`
+`func (o *IntuneProfile) GetDescription() []LocalizedString`
 
-GetScepRA returns the ScepRA field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetScepRAOk
+### GetDescriptionOk
 
-`func (o *IntuneProfile) GetScepRAOk() (*string, bool)`
+`func (o *IntuneProfile) GetDescriptionOk() (*[]LocalizedString, bool)`
 
-GetScepRAOk returns a tuple with the ScepRA field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetScepRA
+### SetDescription
 
-`func (o *IntuneProfile) SetScepRA(v string)`
+`func (o *IntuneProfile) SetDescription(v []LocalizedString)`
 
-SetScepRA sets ScepRA field to given value.
+SetDescription sets Description field to given value.
 
+### HasDescription
 
-### GetCaps
+`func (o *IntuneProfile) HasDescription() bool`
 
-`func (o *IntuneProfile) GetCaps() []string`
+HasDescription returns a boolean if a field has been set.
 
-GetCaps returns the Caps field if non-nil, zero value otherwise.
+### SetDescriptionNil
 
-### GetCapsOk
+`func (o *IntuneProfile) SetDescriptionNil(b bool)`
 
-`func (o *IntuneProfile) GetCapsOk() (*[]string, bool)`
+ SetDescriptionNil sets the value for Description to be an explicit nil
 
-GetCapsOk returns a tuple with the Caps field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetDescription
+`func (o *IntuneProfile) UnsetDescription()`
 
-### SetCaps
-
-`func (o *IntuneProfile) SetCaps(v []string)`
-
-SetCaps sets Caps field to given value.
-
-
-### GetPostPKIOperation
-
-`func (o *IntuneProfile) GetPostPKIOperation() bool`
-
-GetPostPKIOperation returns the PostPKIOperation field if non-nil, zero value otherwise.
-
-### GetPostPKIOperationOk
-
-`func (o *IntuneProfile) GetPostPKIOperationOk() (*bool, bool)`
-
-GetPostPKIOperationOk returns a tuple with the PostPKIOperation field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPostPKIOperation
-
-`func (o *IntuneProfile) SetPostPKIOperation(v bool)`
-
-SetPostPKIOperation sets PostPKIOperation field to given value.
-
-### HasPostPKIOperation
-
-`func (o *IntuneProfile) HasPostPKIOperation() bool`
-
-HasPostPKIOperation returns a boolean if a field has been set.
-
-### SetPostPKIOperationNil
-
-`func (o *IntuneProfile) SetPostPKIOperationNil(b bool)`
-
- SetPostPKIOperationNil sets the value for PostPKIOperation to be an explicit nil
-
-### UnsetPostPKIOperation
-`func (o *IntuneProfile) UnsetPostPKIOperation()`
-
-UnsetPostPKIOperation ensures that no value is present for PostPKIOperation, not even an explicit nil
-### GetEncryptionAlgorithm
-
-`func (o *IntuneProfile) GetEncryptionAlgorithm() string`
-
-GetEncryptionAlgorithm returns the EncryptionAlgorithm field if non-nil, zero value otherwise.
-
-### GetEncryptionAlgorithmOk
-
-`func (o *IntuneProfile) GetEncryptionAlgorithmOk() (*string, bool)`
-
-GetEncryptionAlgorithmOk returns a tuple with the EncryptionAlgorithm field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEncryptionAlgorithm
-
-`func (o *IntuneProfile) SetEncryptionAlgorithm(v string)`
-
-SetEncryptionAlgorithm sets EncryptionAlgorithm field to given value.
-
-
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetDeviceIdField
 
 `func (o *IntuneProfile) GetDeviceIdField() string`
@@ -510,189 +320,114 @@ HasDeviceIdSeparator returns a boolean if a field has been set.
 `func (o *IntuneProfile) UnsetDeviceIdSeparator()`
 
 UnsetDeviceIdSeparator ensures that no value is present for DeviceIdSeparator, not even an explicit nil
-### GetMaxCertificatePerHolderPolicy
+### GetDisplayName
 
-`func (o *IntuneProfile) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy`
+`func (o *IntuneProfile) GetDisplayName() []LocalizedString`
 
-GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field if non-nil, zero value otherwise.
+GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
 
-### GetMaxCertificatePerHolderPolicyOk
+### GetDisplayNameOk
 
-`func (o *IntuneProfile) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool)`
+`func (o *IntuneProfile) GetDisplayNameOk() (*[]LocalizedString, bool)`
 
-GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field if it's non-nil, zero value otherwise
+GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxCertificatePerHolderPolicy
+### SetDisplayName
 
-`func (o *IntuneProfile) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy)`
+`func (o *IntuneProfile) SetDisplayName(v []LocalizedString)`
 
-SetMaxCertificatePerHolderPolicy sets MaxCertificatePerHolderPolicy field to given value.
+SetDisplayName sets DisplayName field to given value.
 
-### HasMaxCertificatePerHolderPolicy
+### HasDisplayName
 
-`func (o *IntuneProfile) HasMaxCertificatePerHolderPolicy() bool`
+`func (o *IntuneProfile) HasDisplayName() bool`
 
-HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
+HasDisplayName returns a boolean if a field has been set.
 
-### SetMaxCertificatePerHolderPolicyNil
+### SetDisplayNameNil
 
-`func (o *IntuneProfile) SetMaxCertificatePerHolderPolicyNil(b bool)`
+`func (o *IntuneProfile) SetDisplayNameNil(b bool)`
 
- SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
+ SetDisplayNameNil sets the value for DisplayName to be an explicit nil
 
-### UnsetMaxCertificatePerHolderPolicy
-`func (o *IntuneProfile) UnsetMaxCertificatePerHolderPolicy()`
+### UnsetDisplayName
+`func (o *IntuneProfile) UnsetDisplayName()`
 
-UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
-### GetAuthorizationLevels
+UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
+### GetDsFlow
 
-`func (o *IntuneProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels`
+`func (o *IntuneProfile) GetDsFlow() []DataSourceFlowEntry`
 
-GetAuthorizationLevels returns the AuthorizationLevels field if non-nil, zero value otherwise.
+GetDsFlow returns the DsFlow field if non-nil, zero value otherwise.
 
-### GetAuthorizationLevelsOk
+### GetDsFlowOk
 
-`func (o *IntuneProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool)`
+`func (o *IntuneProfile) GetDsFlowOk() (*[]DataSourceFlowEntry, bool)`
 
-GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field if it's non-nil, zero value otherwise
+GetDsFlowOk returns a tuple with the DsFlow field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthorizationLevels
+### SetDsFlow
 
-`func (o *IntuneProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels)`
+`func (o *IntuneProfile) SetDsFlow(v []DataSourceFlowEntry)`
 
-SetAuthorizationLevels sets AuthorizationLevels field to given value.
+SetDsFlow sets DsFlow field to given value.
 
+### HasDsFlow
 
-### GetTriggers
+`func (o *IntuneProfile) HasDsFlow() bool`
 
-`func (o *IntuneProfile) GetTriggers() CertificateProfileTriggers`
+HasDsFlow returns a boolean if a field has been set.
 
-GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+### SetDsFlowNil
 
-### GetTriggersOk
+`func (o *IntuneProfile) SetDsFlowNil(b bool)`
 
-`func (o *IntuneProfile) GetTriggersOk() (*CertificateProfileTriggers, bool)`
+ SetDsFlowNil sets the value for DsFlow to be an explicit nil
 
-GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+### UnsetDsFlow
+`func (o *IntuneProfile) UnsetDsFlow()`
+
+UnsetDsFlow ensures that no value is present for DsFlow, not even an explicit nil
+### GetEnabled
+
+`func (o *IntuneProfile) GetEnabled() bool`
+
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+
+### GetEnabledOk
+
+`func (o *IntuneProfile) GetEnabledOk() (*bool, bool)`
+
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTriggers
+### SetEnabled
 
-`func (o *IntuneProfile) SetTriggers(v CertificateProfileTriggers)`
+`func (o *IntuneProfile) SetEnabled(v bool)`
 
-SetTriggers sets Triggers field to given value.
+SetEnabled sets Enabled field to given value.
 
-### HasTriggers
 
-`func (o *IntuneProfile) HasTriggers() bool`
+### GetEncryptionAlgorithm
 
-HasTriggers returns a boolean if a field has been set.
+`func (o *IntuneProfile) GetEncryptionAlgorithm() string`
 
-### SetTriggersNil
+GetEncryptionAlgorithm returns the EncryptionAlgorithm field if non-nil, zero value otherwise.
 
-`func (o *IntuneProfile) SetTriggersNil(b bool)`
+### GetEncryptionAlgorithmOk
 
- SetTriggersNil sets the value for Triggers to be an explicit nil
+`func (o *IntuneProfile) GetEncryptionAlgorithmOk() (*string, bool)`
 
-### UnsetTriggers
-`func (o *IntuneProfile) UnsetTriggers()`
-
-UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
-### GetRequestsPolicy
-
-`func (o *IntuneProfile) GetRequestsPolicy() RequestsPolicy`
-
-GetRequestsPolicy returns the RequestsPolicy field if non-nil, zero value otherwise.
-
-### GetRequestsPolicyOk
-
-`func (o *IntuneProfile) GetRequestsPolicyOk() (*RequestsPolicy, bool)`
-
-GetRequestsPolicyOk returns a tuple with the RequestsPolicy field if it's non-nil, zero value otherwise
+GetEncryptionAlgorithmOk returns a tuple with the EncryptionAlgorithm field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRequestsPolicy
+### SetEncryptionAlgorithm
 
-`func (o *IntuneProfile) SetRequestsPolicy(v RequestsPolicy)`
+`func (o *IntuneProfile) SetEncryptionAlgorithm(v string)`
 
-SetRequestsPolicy sets RequestsPolicy field to given value.
-
-
-### GetSelfPermissions
-
-`func (o *IntuneProfile) GetSelfPermissions() CertificateProfileSelfPermissions`
-
-GetSelfPermissions returns the SelfPermissions field if non-nil, zero value otherwise.
-
-### GetSelfPermissionsOk
-
-`func (o *IntuneProfile) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool)`
-
-GetSelfPermissionsOk returns a tuple with the SelfPermissions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSelfPermissions
-
-`func (o *IntuneProfile) SetSelfPermissions(v CertificateProfileSelfPermissions)`
-
-SetSelfPermissions sets SelfPermissions field to given value.
-
-
-### GetCertificateTemplate
-
-`func (o *IntuneProfile) GetCertificateTemplate() CertificateTemplate`
-
-GetCertificateTemplate returns the CertificateTemplate field if non-nil, zero value otherwise.
-
-### GetCertificateTemplateOk
-
-`func (o *IntuneProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool)`
-
-GetCertificateTemplateOk returns a tuple with the CertificateTemplate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificateTemplate
-
-`func (o *IntuneProfile) SetCertificateTemplate(v CertificateTemplate)`
-
-SetCertificateTemplate sets CertificateTemplate field to given value.
-
-### HasCertificateTemplate
-
-`func (o *IntuneProfile) HasCertificateTemplate() bool`
-
-HasCertificateTemplate returns a boolean if a field has been set.
-
-### SetCertificateTemplateNil
-
-`func (o *IntuneProfile) SetCertificateTemplateNil(b bool)`
-
- SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-
-### UnsetCertificateTemplate
-`func (o *IntuneProfile) UnsetCertificateTemplate()`
-
-UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
-### GetCryptoPolicy
-
-`func (o *IntuneProfile) GetCryptoPolicy() CertificateProfileCryptoPolicy`
-
-GetCryptoPolicy returns the CryptoPolicy field if non-nil, zero value otherwise.
-
-### GetCryptoPolicyOk
-
-`func (o *IntuneProfile) GetCryptoPolicyOk() (*CertificateProfileCryptoPolicy, bool)`
-
-GetCryptoPolicyOk returns a tuple with the CryptoPolicy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCryptoPolicy
-
-`func (o *IntuneProfile) SetCryptoPolicy(v CertificateProfileCryptoPolicy)`
-
-SetCryptoPolicy sets CryptoPolicy field to given value.
+SetEncryptionAlgorithm sets EncryptionAlgorithm field to given value.
 
 
 ### GetGradingPolicies
@@ -730,41 +465,306 @@ HasGradingPolicies returns a boolean if a field has been set.
 `func (o *IntuneProfile) UnsetGradingPolicies()`
 
 UnsetGradingPolicies ensures that no value is present for GradingPolicies, not even an explicit nil
-### GetDsFlow
+### GetMaxCertificatePerHolderPolicy
 
-`func (o *IntuneProfile) GetDsFlow() []DataSourceFlowEntry`
+`func (o *IntuneProfile) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy`
 
-GetDsFlow returns the DsFlow field if non-nil, zero value otherwise.
+GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field if non-nil, zero value otherwise.
 
-### GetDsFlowOk
+### GetMaxCertificatePerHolderPolicyOk
 
-`func (o *IntuneProfile) GetDsFlowOk() (*[]DataSourceFlowEntry, bool)`
+`func (o *IntuneProfile) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool)`
 
-GetDsFlowOk returns a tuple with the DsFlow field if it's non-nil, zero value otherwise
+GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDsFlow
+### SetMaxCertificatePerHolderPolicy
 
-`func (o *IntuneProfile) SetDsFlow(v []DataSourceFlowEntry)`
+`func (o *IntuneProfile) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy)`
 
-SetDsFlow sets DsFlow field to given value.
+SetMaxCertificatePerHolderPolicy sets MaxCertificatePerHolderPolicy field to given value.
 
-### HasDsFlow
+### HasMaxCertificatePerHolderPolicy
 
-`func (o *IntuneProfile) HasDsFlow() bool`
+`func (o *IntuneProfile) HasMaxCertificatePerHolderPolicy() bool`
 
-HasDsFlow returns a boolean if a field has been set.
+HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
 
-### SetDsFlowNil
+### SetMaxCertificatePerHolderPolicyNil
 
-`func (o *IntuneProfile) SetDsFlowNil(b bool)`
+`func (o *IntuneProfile) SetMaxCertificatePerHolderPolicyNil(b bool)`
 
- SetDsFlowNil sets the value for DsFlow to be an explicit nil
+ SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
 
-### UnsetDsFlow
-`func (o *IntuneProfile) UnsetDsFlow()`
+### UnsetMaxCertificatePerHolderPolicy
+`func (o *IntuneProfile) UnsetMaxCertificatePerHolderPolicy()`
 
-UnsetDsFlow ensures that no value is present for DsFlow, not even an explicit nil
+UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
+### GetMode
+
+`func (o *IntuneProfile) GetMode() string`
+
+GetMode returns the Mode field if non-nil, zero value otherwise.
+
+### GetModeOk
+
+`func (o *IntuneProfile) GetModeOk() (*string, bool)`
+
+GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMode
+
+`func (o *IntuneProfile) SetMode(v string)`
+
+SetMode sets Mode field to given value.
+
+
+### GetModule
+
+`func (o *IntuneProfile) GetModule() string`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *IntuneProfile) GetModuleOk() (*string, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *IntuneProfile) SetModule(v string)`
+
+SetModule sets Module field to given value.
+
+
+### GetName
+
+`func (o *IntuneProfile) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *IntuneProfile) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *IntuneProfile) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetPkiConnector
+
+`func (o *IntuneProfile) GetPkiConnector() string`
+
+GetPkiConnector returns the PkiConnector field if non-nil, zero value otherwise.
+
+### GetPkiConnectorOk
+
+`func (o *IntuneProfile) GetPkiConnectorOk() (*string, bool)`
+
+GetPkiConnectorOk returns a tuple with the PkiConnector field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkiConnector
+
+`func (o *IntuneProfile) SetPkiConnector(v string)`
+
+SetPkiConnector sets PkiConnector field to given value.
+
+
+### GetPostPKIOperation
+
+`func (o *IntuneProfile) GetPostPKIOperation() bool`
+
+GetPostPKIOperation returns the PostPKIOperation field if non-nil, zero value otherwise.
+
+### GetPostPKIOperationOk
+
+`func (o *IntuneProfile) GetPostPKIOperationOk() (*bool, bool)`
+
+GetPostPKIOperationOk returns a tuple with the PostPKIOperation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPostPKIOperation
+
+`func (o *IntuneProfile) SetPostPKIOperation(v bool)`
+
+SetPostPKIOperation sets PostPKIOperation field to given value.
+
+### HasPostPKIOperation
+
+`func (o *IntuneProfile) HasPostPKIOperation() bool`
+
+HasPostPKIOperation returns a boolean if a field has been set.
+
+### SetPostPKIOperationNil
+
+`func (o *IntuneProfile) SetPostPKIOperationNil(b bool)`
+
+ SetPostPKIOperationNil sets the value for PostPKIOperation to be an explicit nil
+
+### UnsetPostPKIOperation
+`func (o *IntuneProfile) UnsetPostPKIOperation()`
+
+UnsetPostPKIOperation ensures that no value is present for PostPKIOperation, not even an explicit nil
+### GetRenewalPeriod
+
+`func (o *IntuneProfile) GetRenewalPeriod() string`
+
+GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
+
+### GetRenewalPeriodOk
+
+`func (o *IntuneProfile) GetRenewalPeriodOk() (*string, bool)`
+
+GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRenewalPeriod
+
+`func (o *IntuneProfile) SetRenewalPeriod(v string)`
+
+SetRenewalPeriod sets RenewalPeriod field to given value.
+
+### HasRenewalPeriod
+
+`func (o *IntuneProfile) HasRenewalPeriod() bool`
+
+HasRenewalPeriod returns a boolean if a field has been set.
+
+### SetRenewalPeriodNil
+
+`func (o *IntuneProfile) SetRenewalPeriodNil(b bool)`
+
+ SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
+
+### UnsetRenewalPeriod
+`func (o *IntuneProfile) UnsetRenewalPeriod()`
+
+UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+### GetRequestsPolicy
+
+`func (o *IntuneProfile) GetRequestsPolicy() RequestsPolicy`
+
+GetRequestsPolicy returns the RequestsPolicy field if non-nil, zero value otherwise.
+
+### GetRequestsPolicyOk
+
+`func (o *IntuneProfile) GetRequestsPolicyOk() (*RequestsPolicy, bool)`
+
+GetRequestsPolicyOk returns a tuple with the RequestsPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestsPolicy
+
+`func (o *IntuneProfile) SetRequestsPolicy(v RequestsPolicy)`
+
+SetRequestsPolicy sets RequestsPolicy field to given value.
+
+
+### GetScepRA
+
+`func (o *IntuneProfile) GetScepRA() string`
+
+GetScepRA returns the ScepRA field if non-nil, zero value otherwise.
+
+### GetScepRAOk
+
+`func (o *IntuneProfile) GetScepRAOk() (*string, bool)`
+
+GetScepRAOk returns a tuple with the ScepRA field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScepRA
+
+`func (o *IntuneProfile) SetScepRA(v string)`
+
+SetScepRA sets ScepRA field to given value.
+
+
+### GetSelfPermissions
+
+`func (o *IntuneProfile) GetSelfPermissions() CertificateProfileSelfPermissions`
+
+GetSelfPermissions returns the SelfPermissions field if non-nil, zero value otherwise.
+
+### GetSelfPermissionsOk
+
+`func (o *IntuneProfile) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool)`
+
+GetSelfPermissionsOk returns a tuple with the SelfPermissions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfPermissions
+
+`func (o *IntuneProfile) SetSelfPermissions(v CertificateProfileSelfPermissions)`
+
+SetSelfPermissions sets SelfPermissions field to given value.
+
+
+### GetThirdPartyConnector
+
+`func (o *IntuneProfile) GetThirdPartyConnector() string`
+
+GetThirdPartyConnector returns the ThirdPartyConnector field if non-nil, zero value otherwise.
+
+### GetThirdPartyConnectorOk
+
+`func (o *IntuneProfile) GetThirdPartyConnectorOk() (*string, bool)`
+
+GetThirdPartyConnectorOk returns a tuple with the ThirdPartyConnector field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThirdPartyConnector
+
+`func (o *IntuneProfile) SetThirdPartyConnector(v string)`
+
+SetThirdPartyConnector sets ThirdPartyConnector field to given value.
+
+
+### GetTriggers
+
+`func (o *IntuneProfile) GetTriggers() CertificateProfileTriggers`
+
+GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+
+### GetTriggersOk
+
+`func (o *IntuneProfile) GetTriggersOk() (*CertificateProfileTriggers, bool)`
+
+GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggers
+
+`func (o *IntuneProfile) SetTriggers(v CertificateProfileTriggers)`
+
+SetTriggers sets Triggers field to given value.
+
+### HasTriggers
+
+`func (o *IntuneProfile) HasTriggers() bool`
+
+HasTriggers returns a boolean if a field has been set.
+
+### SetTriggersNil
+
+`func (o *IntuneProfile) SetTriggersNil(b bool)`
+
+ SetTriggersNil sets the value for Triggers to be an explicit nil
+
+### UnsetTriggers
+`func (o *IntuneProfile) UnsetTriggers()`
+
+UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

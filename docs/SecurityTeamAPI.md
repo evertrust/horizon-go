@@ -8,6 +8,9 @@ Method | HTTP request | Description
 [**SecurityTeamDelete**](SecurityTeamAPI.md#SecurityTeamDelete) | **Delete** /api/v1/security/teams/{name} | Delete a team
 [**SecurityTeamGet**](SecurityTeamAPI.md#SecurityTeamGet) | **Get** /api/v1/security/teams/{name} | Retrieve a team
 [**SecurityTeamList**](SecurityTeamAPI.md#SecurityTeamList) | **Get** /api/v1/security/teams | List the team(s)
+[**SecurityTeamMembersAdd**](SecurityTeamAPI.md#SecurityTeamMembersAdd) | **Post** /api/v1/security/teams/{name}/members | Add members to a team
+[**SecurityTeamMembersGet**](SecurityTeamAPI.md#SecurityTeamMembersGet) | **Get** /api/v1/security/teams/{name}/members | Retrieve a team&#39;s members
+[**SecurityTeamMembersRemove**](SecurityTeamAPI.md#SecurityTeamMembersRemove) | **Delete** /api/v1/security/teams/{name}/members | Remove members from a team
 [**SecurityTeamSwitch**](SecurityTeamAPI.md#SecurityTeamSwitch) | **Patch** /api/v1/security/teams/{previousTeam}/{newTeam} | Transfer objects from a team to another
 [**SecurityTeamUpdate**](SecurityTeamAPI.md#SecurityTeamUpdate) | **Put** /api/v1/security/teams | Update a team
 
@@ -30,7 +33,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -96,7 +99,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -164,7 +167,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -234,7 +237,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -278,6 +281,216 @@ Other parameters are passed through a pointer to a apiSecurityTeamListRequest st
 [[Back to README]](../README.md)
 
 
+## SecurityTeamMembersAdd
+
+> SecurityTeamMembersAdd(ctx, name).RequestBody(requestBody).Execute()
+
+Add members to a team
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/evertrust/horizon-go/v2"
+)
+
+func main() {
+	name := "SuperAdmin" // string | Team name
+	requestBody := []string{"Property_example"} // []string | The members to add
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SecurityTeamAPI.SecurityTeamMembersAdd(context.Background(), name).RequestBody(requestBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityTeamAPI.SecurityTeamMembersAdd``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**name** | **string** | Team name | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSecurityTeamMembersAddRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **requestBody** | **[]string** | The members to add | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [cookieAuth](../README.md#cookieAuth), [apiId](../README.md#apiId)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SecurityTeamMembersGet
+
+> []string SecurityTeamMembersGet(ctx, name).Execute()
+
+Retrieve a team's members
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/evertrust/horizon-go/v2"
+)
+
+func main() {
+	name := "SuperAdmin" // string | Team name
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SecurityTeamAPI.SecurityTeamMembersGet(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityTeamAPI.SecurityTeamMembersGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SecurityTeamMembersGet`: []string
+	fmt.Fprintf(os.Stdout, "Response from `SecurityTeamAPI.SecurityTeamMembersGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**name** | **string** | Team name | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSecurityTeamMembersGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**[]string**
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [cookieAuth](../README.md#cookieAuth), [apiId](../README.md#apiId)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SecurityTeamMembersRemove
+
+> SecurityTeamMembersRemove(ctx, name).RequestBody(requestBody).Execute()
+
+Remove members from a team
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/evertrust/horizon-go/v2"
+)
+
+func main() {
+	name := "SuperAdmin" // string | Team name
+	requestBody := []string{"Property_example"} // []string | The members to remove
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SecurityTeamAPI.SecurityTeamMembersRemove(context.Background(), name).RequestBody(requestBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityTeamAPI.SecurityTeamMembersRemove``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**name** | **string** | Team name | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSecurityTeamMembersRemoveRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **requestBody** | **[]string** | The members to remove | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [cookieAuth](../README.md#cookieAuth), [apiId](../README.md#apiId)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## SecurityTeamSwitch
 
 > SecurityTeamSwitch(ctx, previousTeam, newTeam).Execute()
@@ -295,7 +508,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -366,7 +579,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {

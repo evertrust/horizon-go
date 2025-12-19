@@ -5,12 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Expires** | **NullableInt64** | The expiration date of these credentials | 
-**Type** | **string** | These credentials type | 
 **Store** | [**SecretStoreResponse**](SecretStoreResponse.md) | These credentials certificate | 
-**Name** | **string** | These credentials identifying name | 
+**Type** | **string** | These credentials type | 
+**Id** | **string** | Object internal ID | 
 **Description** | Pointer to **NullableString** | These credentials description | [optional] 
-**Triggers** | Pointer to [**CredentialsTriggers**](CredentialsTriggers.md) |  | [optional] 
+**Name** | **string** | These credentials identifying name | 
 **Targets** | Pointer to **[]string** | On which configuration the credentials are usable | [optional] 
+**Triggers** | Pointer to [**CredentialsTriggers**](CredentialsTriggers.md) |  | [optional] 
 **Login** | **string** | These credentials login | 
 **Password** | [**SecretString**](SecretString.md) | These credentials password | 
 **Secret** | [**SecretString**](SecretString.md) | These credentials secret | 
@@ -19,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewSecurityCredentialsList200ResponseInner
 
-`func NewSecurityCredentialsList200ResponseInner(expires NullableInt64, type_ string, store SecretStoreResponse, name string, login string, password SecretString, secret SecretString, ) *SecurityCredentialsList200ResponseInner`
+`func NewSecurityCredentialsList200ResponseInner(expires NullableInt64, store SecretStoreResponse, type_ string, id string, name string, login string, password SecretString, secret SecretString, ) *SecurityCredentialsList200ResponseInner`
 
 NewSecurityCredentialsList200ResponseInner instantiates a new SecurityCredentialsList200ResponseInner object
 This constructor will assign default values to properties that have it defined,
@@ -64,26 +65,6 @@ SetExpires sets Expires field to given value.
 `func (o *SecurityCredentialsList200ResponseInner) UnsetExpires()`
 
 UnsetExpires ensures that no value is present for Expires, not even an explicit nil
-### GetType
-
-`func (o *SecurityCredentialsList200ResponseInner) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *SecurityCredentialsList200ResponseInner) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *SecurityCredentialsList200ResponseInner) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 ### GetStore
 
 `func (o *SecurityCredentialsList200ResponseInner) GetStore() SecretStoreResponse`
@@ -104,24 +85,44 @@ and a boolean to check if the value has been set.
 SetStore sets Store field to given value.
 
 
-### GetName
+### GetType
 
-`func (o *SecurityCredentialsList200ResponseInner) GetName() string`
+`func (o *SecurityCredentialsList200ResponseInner) GetType() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetTypeOk
 
-`func (o *SecurityCredentialsList200ResponseInner) GetNameOk() (*string, bool)`
+`func (o *SecurityCredentialsList200ResponseInner) GetTypeOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetType
 
-`func (o *SecurityCredentialsList200ResponseInner) SetName(v string)`
+`func (o *SecurityCredentialsList200ResponseInner) SetType(v string)`
 
-SetName sets Name field to given value.
+SetType sets Type field to given value.
+
+
+### GetId
+
+`func (o *SecurityCredentialsList200ResponseInner) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *SecurityCredentialsList200ResponseInner) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *SecurityCredentialsList200ResponseInner) SetId(v string)`
+
+SetId sets Id field to given value.
 
 
 ### GetDescription
@@ -159,30 +160,25 @@ HasDescription returns a boolean if a field has been set.
 `func (o *SecurityCredentialsList200ResponseInner) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetTriggers
+### GetName
 
-`func (o *SecurityCredentialsList200ResponseInner) GetTriggers() CredentialsTriggers`
+`func (o *SecurityCredentialsList200ResponseInner) GetName() string`
 
-GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTriggersOk
+### GetNameOk
 
-`func (o *SecurityCredentialsList200ResponseInner) GetTriggersOk() (*CredentialsTriggers, bool)`
+`func (o *SecurityCredentialsList200ResponseInner) GetNameOk() (*string, bool)`
 
-GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTriggers
+### SetName
 
-`func (o *SecurityCredentialsList200ResponseInner) SetTriggers(v CredentialsTriggers)`
+`func (o *SecurityCredentialsList200ResponseInner) SetName(v string)`
 
-SetTriggers sets Triggers field to given value.
+SetName sets Name field to given value.
 
-### HasTriggers
-
-`func (o *SecurityCredentialsList200ResponseInner) HasTriggers() bool`
-
-HasTriggers returns a boolean if a field has been set.
 
 ### GetTargets
 
@@ -208,6 +204,31 @@ SetTargets sets Targets field to given value.
 `func (o *SecurityCredentialsList200ResponseInner) HasTargets() bool`
 
 HasTargets returns a boolean if a field has been set.
+
+### GetTriggers
+
+`func (o *SecurityCredentialsList200ResponseInner) GetTriggers() CredentialsTriggers`
+
+GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+
+### GetTriggersOk
+
+`func (o *SecurityCredentialsList200ResponseInner) GetTriggersOk() (*CredentialsTriggers, bool)`
+
+GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggers
+
+`func (o *SecurityCredentialsList200ResponseInner) SetTriggers(v CredentialsTriggers)`
+
+SetTriggers sets Triggers field to given value.
+
+### HasTriggers
+
+`func (o *SecurityCredentialsList200ResponseInner) HasTriggers() bool`
+
+HasTriggers returns a boolean if a field has been set.
 
 ### GetLogin
 

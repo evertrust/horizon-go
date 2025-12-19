@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Oid** | **string** |  | 
 **Hex** | **string** |  | 
+**Oid** | **string** |  | 
 
 ## Methods
 
 ### NewCFCertificateUnsupportedExtensionsInner
 
-`func NewCFCertificateUnsupportedExtensionsInner(oid string, hex string, ) *CFCertificateUnsupportedExtensionsInner`
+`func NewCFCertificateUnsupportedExtensionsInner(hex string, oid string, ) *CFCertificateUnsupportedExtensionsInner`
 
 NewCFCertificateUnsupportedExtensionsInner instantiates a new CFCertificateUnsupportedExtensionsInner object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewCFCertificateUnsupportedExtensionsInnerWithDefaults instantiates a new CFCertificateUnsupportedExtensionsInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetOid
-
-`func (o *CFCertificateUnsupportedExtensionsInner) GetOid() string`
-
-GetOid returns the Oid field if non-nil, zero value otherwise.
-
-### GetOidOk
-
-`func (o *CFCertificateUnsupportedExtensionsInner) GetOidOk() (*string, bool)`
-
-GetOidOk returns a tuple with the Oid field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOid
-
-`func (o *CFCertificateUnsupportedExtensionsInner) SetOid(v string)`
-
-SetOid sets Oid field to given value.
-
 
 ### GetHex
 
@@ -64,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *CFCertificateUnsupportedExtensionsInner) SetHex(v string)`
 
 SetHex sets Hex field to given value.
+
+
+### GetOid
+
+`func (o *CFCertificateUnsupportedExtensionsInner) GetOid() string`
+
+GetOid returns the Oid field if non-nil, zero value otherwise.
+
+### GetOidOk
+
+`func (o *CFCertificateUnsupportedExtensionsInner) GetOidOk() (*string, bool)`
+
+GetOidOk returns a tuple with the Oid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOid
+
+`func (o *CFCertificateUnsupportedExtensionsInner) SetOid(v string)`
+
+SetOid sets Oid field to given value.
 
 
 

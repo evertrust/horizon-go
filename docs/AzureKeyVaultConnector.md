@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
+**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the App ID and Key to authenticate on AKV | 
 **Name** | **string** |  | 
+**Prefix** | Pointer to **NullableString** |  | [optional] 
+**Proxy** | Pointer to **NullableString** |  | [optional] 
+**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
+**Tenant** | **string** |  | 
 **ThrottleDuration** | **string** |  | 
 **ThrottleParallelism** | **int64** |  | 
-**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
 **Timeout** | Pointer to **NullableString** |  | [optional] 
-**Proxy** | Pointer to **NullableString** |  | [optional] 
-**Tenant** | **string** |  | 
-**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/api.security.credentials) containing the App ID and Key to authenticate on AKV | 
+**Type** | **string** |  | 
 **VaultBaseUrl** | **string** |  | 
-**Prefix** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewAzureKeyVaultConnector
 
-`func NewAzureKeyVaultConnector(type_ string, name string, throttleDuration string, throttleParallelism int64, tenant string, credentials string, vaultBaseUrl string, ) *AzureKeyVaultConnector`
+`func NewAzureKeyVaultConnector(credentials string, name string, tenant string, throttleDuration string, throttleParallelism int64, type_ string, vaultBaseUrl string, ) *AzureKeyVaultConnector`
 
 NewAzureKeyVaultConnector instantiates a new AzureKeyVaultConnector object
 This constructor will assign default values to properties that have it defined,
@@ -35,24 +35,24 @@ NewAzureKeyVaultConnectorWithDefaults instantiates a new AzureKeyVaultConnector 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetType
+### GetCredentials
 
-`func (o *AzureKeyVaultConnector) GetType() string`
+`func (o *AzureKeyVaultConnector) GetCredentials() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetCredentialsOk
 
-`func (o *AzureKeyVaultConnector) GetTypeOk() (*string, bool)`
+`func (o *AzureKeyVaultConnector) GetCredentialsOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetCredentials
 
-`func (o *AzureKeyVaultConnector) SetType(v string)`
+`func (o *AzureKeyVaultConnector) SetCredentials(v string)`
 
-SetType sets Type field to given value.
+SetCredentials sets Credentials field to given value.
 
 
 ### GetName
@@ -73,6 +73,131 @@ and a boolean to check if the value has been set.
 `func (o *AzureKeyVaultConnector) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetPrefix
+
+`func (o *AzureKeyVaultConnector) GetPrefix() string`
+
+GetPrefix returns the Prefix field if non-nil, zero value otherwise.
+
+### GetPrefixOk
+
+`func (o *AzureKeyVaultConnector) GetPrefixOk() (*string, bool)`
+
+GetPrefixOk returns a tuple with the Prefix field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrefix
+
+`func (o *AzureKeyVaultConnector) SetPrefix(v string)`
+
+SetPrefix sets Prefix field to given value.
+
+### HasPrefix
+
+`func (o *AzureKeyVaultConnector) HasPrefix() bool`
+
+HasPrefix returns a boolean if a field has been set.
+
+### SetPrefixNil
+
+`func (o *AzureKeyVaultConnector) SetPrefixNil(b bool)`
+
+ SetPrefixNil sets the value for Prefix to be an explicit nil
+
+### UnsetPrefix
+`func (o *AzureKeyVaultConnector) UnsetPrefix()`
+
+UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
+### GetProxy
+
+`func (o *AzureKeyVaultConnector) GetProxy() string`
+
+GetProxy returns the Proxy field if non-nil, zero value otherwise.
+
+### GetProxyOk
+
+`func (o *AzureKeyVaultConnector) GetProxyOk() (*string, bool)`
+
+GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxy
+
+`func (o *AzureKeyVaultConnector) SetProxy(v string)`
+
+SetProxy sets Proxy field to given value.
+
+### HasProxy
+
+`func (o *AzureKeyVaultConnector) HasProxy() bool`
+
+HasProxy returns a boolean if a field has been set.
+
+### SetProxyNil
+
+`func (o *AzureKeyVaultConnector) SetProxyNil(b bool)`
+
+ SetProxyNil sets the value for Proxy to be an explicit nil
+
+### UnsetProxy
+`func (o *AzureKeyVaultConnector) UnsetProxy()`
+
+UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+### GetRenewalPeriod
+
+`func (o *AzureKeyVaultConnector) GetRenewalPeriod() string`
+
+GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
+
+### GetRenewalPeriodOk
+
+`func (o *AzureKeyVaultConnector) GetRenewalPeriodOk() (*string, bool)`
+
+GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRenewalPeriod
+
+`func (o *AzureKeyVaultConnector) SetRenewalPeriod(v string)`
+
+SetRenewalPeriod sets RenewalPeriod field to given value.
+
+### HasRenewalPeriod
+
+`func (o *AzureKeyVaultConnector) HasRenewalPeriod() bool`
+
+HasRenewalPeriod returns a boolean if a field has been set.
+
+### SetRenewalPeriodNil
+
+`func (o *AzureKeyVaultConnector) SetRenewalPeriodNil(b bool)`
+
+ SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
+
+### UnsetRenewalPeriod
+`func (o *AzureKeyVaultConnector) UnsetRenewalPeriod()`
+
+UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+### GetTenant
+
+`func (o *AzureKeyVaultConnector) GetTenant() string`
+
+GetTenant returns the Tenant field if non-nil, zero value otherwise.
+
+### GetTenantOk
+
+`func (o *AzureKeyVaultConnector) GetTenantOk() (*string, bool)`
+
+GetTenantOk returns a tuple with the Tenant field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTenant
+
+`func (o *AzureKeyVaultConnector) SetTenant(v string)`
+
+SetTenant sets Tenant field to given value.
 
 
 ### GetThrottleDuration
@@ -115,41 +240,6 @@ and a boolean to check if the value has been set.
 SetThrottleParallelism sets ThrottleParallelism field to given value.
 
 
-### GetRenewalPeriod
-
-`func (o *AzureKeyVaultConnector) GetRenewalPeriod() string`
-
-GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
-
-### GetRenewalPeriodOk
-
-`func (o *AzureKeyVaultConnector) GetRenewalPeriodOk() (*string, bool)`
-
-GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRenewalPeriod
-
-`func (o *AzureKeyVaultConnector) SetRenewalPeriod(v string)`
-
-SetRenewalPeriod sets RenewalPeriod field to given value.
-
-### HasRenewalPeriod
-
-`func (o *AzureKeyVaultConnector) HasRenewalPeriod() bool`
-
-HasRenewalPeriod returns a boolean if a field has been set.
-
-### SetRenewalPeriodNil
-
-`func (o *AzureKeyVaultConnector) SetRenewalPeriodNil(b bool)`
-
- SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-
-### UnsetRenewalPeriod
-`func (o *AzureKeyVaultConnector) UnsetRenewalPeriod()`
-
-UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
 ### GetTimeout
 
 `func (o *AzureKeyVaultConnector) GetTimeout() string`
@@ -185,79 +275,24 @@ HasTimeout returns a boolean if a field has been set.
 `func (o *AzureKeyVaultConnector) UnsetTimeout()`
 
 UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetProxy
+### GetType
 
-`func (o *AzureKeyVaultConnector) GetProxy() string`
+`func (o *AzureKeyVaultConnector) GetType() string`
 
-GetProxy returns the Proxy field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetProxyOk
+### GetTypeOk
 
-`func (o *AzureKeyVaultConnector) GetProxyOk() (*string, bool)`
+`func (o *AzureKeyVaultConnector) GetTypeOk() (*string, bool)`
 
-GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProxy
+### SetType
 
-`func (o *AzureKeyVaultConnector) SetProxy(v string)`
+`func (o *AzureKeyVaultConnector) SetType(v string)`
 
-SetProxy sets Proxy field to given value.
-
-### HasProxy
-
-`func (o *AzureKeyVaultConnector) HasProxy() bool`
-
-HasProxy returns a boolean if a field has been set.
-
-### SetProxyNil
-
-`func (o *AzureKeyVaultConnector) SetProxyNil(b bool)`
-
- SetProxyNil sets the value for Proxy to be an explicit nil
-
-### UnsetProxy
-`func (o *AzureKeyVaultConnector) UnsetProxy()`
-
-UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetTenant
-
-`func (o *AzureKeyVaultConnector) GetTenant() string`
-
-GetTenant returns the Tenant field if non-nil, zero value otherwise.
-
-### GetTenantOk
-
-`func (o *AzureKeyVaultConnector) GetTenantOk() (*string, bool)`
-
-GetTenantOk returns a tuple with the Tenant field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTenant
-
-`func (o *AzureKeyVaultConnector) SetTenant(v string)`
-
-SetTenant sets Tenant field to given value.
-
-
-### GetCredentials
-
-`func (o *AzureKeyVaultConnector) GetCredentials() string`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *AzureKeyVaultConnector) GetCredentialsOk() (*string, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *AzureKeyVaultConnector) SetCredentials(v string)`
-
-SetCredentials sets Credentials field to given value.
+SetType sets Type field to given value.
 
 
 ### GetVaultBaseUrl
@@ -280,41 +315,6 @@ and a boolean to check if the value has been set.
 SetVaultBaseUrl sets VaultBaseUrl field to given value.
 
 
-### GetPrefix
-
-`func (o *AzureKeyVaultConnector) GetPrefix() string`
-
-GetPrefix returns the Prefix field if non-nil, zero value otherwise.
-
-### GetPrefixOk
-
-`func (o *AzureKeyVaultConnector) GetPrefixOk() (*string, bool)`
-
-GetPrefixOk returns a tuple with the Prefix field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrefix
-
-`func (o *AzureKeyVaultConnector) SetPrefix(v string)`
-
-SetPrefix sets Prefix field to given value.
-
-### HasPrefix
-
-`func (o *AzureKeyVaultConnector) HasPrefix() bool`
-
-HasPrefix returns a boolean if a field has been set.
-
-### SetPrefixNil
-
-`func (o *AzureKeyVaultConnector) SetPrefixNil(b bool)`
-
- SetPrefixNil sets the value for Prefix to be an explicit nil
-
-### UnsetPrefix
-`func (o *AzureKeyVaultConnector) UnsetPrefix()`
-
-UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

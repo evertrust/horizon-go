@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
+**Credentials** | Pointer to **NullableString** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing Access Key Id and Secret Access Key. If not defined, an account present in environment variables can be used. | [optional] 
 **Name** | **string** |  | 
-**ThrottleDuration** | **string** |  | 
-**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Region** | **string** |  | 
-**Credentials** | Pointer to **NullableString** | Name of the &#x60;password&#x60; [credentials](#tag/api.security.credentials) containing Access Key Id and Secret Access Key. If not defined, an account present in environment variables can be used. | [optional] 
+**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
 **ResourceGroupName** | Pointer to **NullableString** |  | [optional] 
 **RoleArn** | Pointer to **NullableString** |  | [optional] 
 **TagKey** | Pointer to **NullableString** |  | [optional] 
 **TagValue** | Pointer to **NullableString** |  | [optional] 
+**ThrottleDuration** | **string** |  | 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewAWSConnector
 
-`func NewAWSConnector(type_ string, name string, throttleDuration string, region string, ) *AWSConnector`
+`func NewAWSConnector(name string, region string, throttleDuration string, type_ string, ) *AWSConnector`
 
 NewAWSConnector instantiates a new AWSConnector object
 This constructor will assign default values to properties that have it defined,
@@ -36,26 +36,41 @@ NewAWSConnectorWithDefaults instantiates a new AWSConnector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetType
+### GetCredentials
 
-`func (o *AWSConnector) GetType() string`
+`func (o *AWSConnector) GetCredentials() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetCredentialsOk
 
-`func (o *AWSConnector) GetTypeOk() (*string, bool)`
+`func (o *AWSConnector) GetCredentialsOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetCredentials
 
-`func (o *AWSConnector) SetType(v string)`
+`func (o *AWSConnector) SetCredentials(v string)`
 
-SetType sets Type field to given value.
+SetCredentials sets Credentials field to given value.
 
+### HasCredentials
 
+`func (o *AWSConnector) HasCredentials() bool`
+
+HasCredentials returns a boolean if a field has been set.
+
+### SetCredentialsNil
+
+`func (o *AWSConnector) SetCredentialsNil(b bool)`
+
+ SetCredentialsNil sets the value for Credentials to be an explicit nil
+
+### UnsetCredentials
+`func (o *AWSConnector) UnsetCredentials()`
+
+UnsetCredentials ensures that no value is present for Credentials, not even an explicit nil
 ### GetName
 
 `func (o *AWSConnector) GetName() string`
@@ -76,96 +91,6 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetThrottleDuration
-
-`func (o *AWSConnector) GetThrottleDuration() string`
-
-GetThrottleDuration returns the ThrottleDuration field if non-nil, zero value otherwise.
-
-### GetThrottleDurationOk
-
-`func (o *AWSConnector) GetThrottleDurationOk() (*string, bool)`
-
-GetThrottleDurationOk returns a tuple with the ThrottleDuration field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThrottleDuration
-
-`func (o *AWSConnector) SetThrottleDuration(v string)`
-
-SetThrottleDuration sets ThrottleDuration field to given value.
-
-
-### GetRenewalPeriod
-
-`func (o *AWSConnector) GetRenewalPeriod() string`
-
-GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
-
-### GetRenewalPeriodOk
-
-`func (o *AWSConnector) GetRenewalPeriodOk() (*string, bool)`
-
-GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRenewalPeriod
-
-`func (o *AWSConnector) SetRenewalPeriod(v string)`
-
-SetRenewalPeriod sets RenewalPeriod field to given value.
-
-### HasRenewalPeriod
-
-`func (o *AWSConnector) HasRenewalPeriod() bool`
-
-HasRenewalPeriod returns a boolean if a field has been set.
-
-### SetRenewalPeriodNil
-
-`func (o *AWSConnector) SetRenewalPeriodNil(b bool)`
-
- SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-
-### UnsetRenewalPeriod
-`func (o *AWSConnector) UnsetRenewalPeriod()`
-
-UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
-### GetTimeout
-
-`func (o *AWSConnector) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *AWSConnector) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *AWSConnector) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *AWSConnector) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *AWSConnector) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *AWSConnector) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *AWSConnector) GetProxy() string`
@@ -221,41 +146,41 @@ and a boolean to check if the value has been set.
 SetRegion sets Region field to given value.
 
 
-### GetCredentials
+### GetRenewalPeriod
 
-`func (o *AWSConnector) GetCredentials() string`
+`func (o *AWSConnector) GetRenewalPeriod() string`
 
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
+GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
 
-### GetCredentialsOk
+### GetRenewalPeriodOk
 
-`func (o *AWSConnector) GetCredentialsOk() (*string, bool)`
+`func (o *AWSConnector) GetRenewalPeriodOk() (*string, bool)`
 
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
+GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCredentials
+### SetRenewalPeriod
 
-`func (o *AWSConnector) SetCredentials(v string)`
+`func (o *AWSConnector) SetRenewalPeriod(v string)`
 
-SetCredentials sets Credentials field to given value.
+SetRenewalPeriod sets RenewalPeriod field to given value.
 
-### HasCredentials
+### HasRenewalPeriod
 
-`func (o *AWSConnector) HasCredentials() bool`
+`func (o *AWSConnector) HasRenewalPeriod() bool`
 
-HasCredentials returns a boolean if a field has been set.
+HasRenewalPeriod returns a boolean if a field has been set.
 
-### SetCredentialsNil
+### SetRenewalPeriodNil
 
-`func (o *AWSConnector) SetCredentialsNil(b bool)`
+`func (o *AWSConnector) SetRenewalPeriodNil(b bool)`
 
- SetCredentialsNil sets the value for Credentials to be an explicit nil
+ SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
 
-### UnsetCredentials
-`func (o *AWSConnector) UnsetCredentials()`
+### UnsetRenewalPeriod
+`func (o *AWSConnector) UnsetRenewalPeriod()`
 
-UnsetCredentials ensures that no value is present for Credentials, not even an explicit nil
+UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
 ### GetResourceGroupName
 
 `func (o *AWSConnector) GetResourceGroupName() string`
@@ -396,6 +321,81 @@ HasTagValue returns a boolean if a field has been set.
 `func (o *AWSConnector) UnsetTagValue()`
 
 UnsetTagValue ensures that no value is present for TagValue, not even an explicit nil
+### GetThrottleDuration
+
+`func (o *AWSConnector) GetThrottleDuration() string`
+
+GetThrottleDuration returns the ThrottleDuration field if non-nil, zero value otherwise.
+
+### GetThrottleDurationOk
+
+`func (o *AWSConnector) GetThrottleDurationOk() (*string, bool)`
+
+GetThrottleDurationOk returns a tuple with the ThrottleDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThrottleDuration
+
+`func (o *AWSConnector) SetThrottleDuration(v string)`
+
+SetThrottleDuration sets ThrottleDuration field to given value.
+
+
+### GetTimeout
+
+`func (o *AWSConnector) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *AWSConnector) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *AWSConnector) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *AWSConnector) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *AWSConnector) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *AWSConnector) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *AWSConnector) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *AWSConnector) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *AWSConnector) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

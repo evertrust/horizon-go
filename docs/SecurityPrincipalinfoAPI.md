@@ -29,7 +29,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -99,11 +99,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	principalInfo := *openapiclient.NewPrincipalInfo("administrator", true) // PrincipalInfo | The principal's information to register
+	principalInfo := *openapiclient.NewPrincipalInfo(true, "administrator") // PrincipalInfo | The principal's information to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -165,7 +165,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -233,7 +233,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -299,11 +299,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	principalInfo := *openapiclient.NewPrincipalInfo("administrator", true) // PrincipalInfo | The principal information to update
+	principalInfo := *openapiclient.NewPrincipalInfo(true, "administrator") // PrincipalInfo | The principal information to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

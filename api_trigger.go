@@ -1,9 +1,9 @@
 /*
-    Horizon API
+   Horizon API
 
-    ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
+   ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
 
-    API version: 2.7.0
+   API version: 2.8.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -16,27 +16,29 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 	"reflect"
-)
+	"strings"
 
+	"github.com/evertrust/horizon-go/v2/models"
+	"github.com/evertrust/horizon-go/v2/utils"
+)
 
 // TriggerAPIService TriggerAPI service
 type TriggerAPIService service
 
 type TriggerAPITriggerAddRequest struct {
-	ctx context.Context
-	ApiService *TriggerAPIService
-	triggerUpdateRequest *TriggerUpdateRequest
+	ctx                  context.Context
+	ApiService           *TriggerAPIService
+	triggerUpdateRequest *models.TriggerUpdateRequest
 }
 
 // The trigger to register
-func (r TriggerAPITriggerAddRequest) TriggerUpdateRequest(triggerUpdateRequest TriggerUpdateRequest) TriggerAPITriggerAddRequest {
+func (r TriggerAPITriggerAddRequest) TriggerUpdateRequest(triggerUpdateRequest models.TriggerUpdateRequest) TriggerAPITriggerAddRequest {
 	r.triggerUpdateRequest = &triggerUpdateRequest
 	return r
 }
 
-func (r TriggerAPITriggerAddRequest) Execute() (*TriggerUpdate200Response, *http.Response, error) {
+func (r TriggerAPITriggerAddRequest) Execute() (*models.TriggerUpdate200Response, *http.Response, error) {
 	return r.ApiService.TriggerAddExecute(r)
 }
 
@@ -45,24 +47,25 @@ TriggerAdd Register a new trigger
 
 Register a new trigger
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return TriggerAPITriggerAddRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TriggerAPITriggerAddRequest
 */
 func (a *TriggerAPIService) TriggerAdd(ctx context.Context) TriggerAPITriggerAddRequest {
 	return TriggerAPITriggerAddRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TriggerUpdate200Response
-func (a *TriggerAPIService) TriggerAddExecute(r TriggerAPITriggerAddRequest) (*TriggerUpdate200Response, *http.Response, error) {
+//
+//	@return TriggerUpdate200Response
+func (a *TriggerAPIService) TriggerAddExecute(r TriggerAPITriggerAddRequest) (*models.TriggerUpdate200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TriggerUpdate200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.TriggerUpdate200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TriggerAPIService.TriggerAdd")
@@ -76,7 +79,7 @@ func (a *TriggerAPIService) TriggerAddExecute(r TriggerAPITriggerAddRequest) (*T
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.triggerUpdateRequest == nil {
-		return localVarReturnValue, nil, reportError("triggerUpdateRequest is required and must be specified")
+		return localVarReturnValue, nil, utils.ReportError("triggerUpdateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -149,47 +152,47 @@ func (a *TriggerAPIService) TriggerAddExecute(r TriggerAPITriggerAddRequest) (*T
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v TriggerAdd400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v AdocGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v TriggerList500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -207,9 +210,9 @@ func (a *TriggerAPIService) TriggerAddExecute(r TriggerAPITriggerAddRequest) (*T
 }
 
 type TriggerAPITriggerDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TriggerAPIService
-	name string
+	name       string
 }
 
 func (r TriggerAPITriggerDeleteRequest) Execute() (*http.Response, error) {
@@ -221,24 +224,24 @@ TriggerDelete Delete an existing trigger
 
 Delete an existing trigger based on its name
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name
- @return TriggerAPITriggerDeleteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param name
+	@return TriggerAPITriggerDeleteRequest
 */
 func (a *TriggerAPIService) TriggerDelete(ctx context.Context, name string) TriggerAPITriggerDeleteRequest {
 	return TriggerAPITriggerDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		name: name,
+		ctx:        ctx,
+		name:       name,
 	}
 }
 
 // Execute executes the request
 func (a *TriggerAPIService) TriggerDeleteExecute(r TriggerAPITriggerDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TriggerAPIService.TriggerDelete")
@@ -321,58 +324,58 @@ func (a *TriggerAPIService) TriggerDeleteExecute(r TriggerAPITriggerDeleteReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v TriggerDelete400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v AdocGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v TriggerUpdate404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v TriggerList500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -381,12 +384,12 @@ func (a *TriggerAPIService) TriggerDeleteExecute(r TriggerAPITriggerDeleteReques
 }
 
 type TriggerAPITriggerGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TriggerAPIService
-	name string
+	name       string
 }
 
-func (r TriggerAPITriggerGetRequest) Execute() (*TriggerUpdate200Response, *http.Response, error) {
+func (r TriggerAPITriggerGetRequest) Execute() (*models.TriggerUpdate200Response, *http.Response, error) {
 	return r.ApiService.TriggerGetExecute(r)
 }
 
@@ -395,26 +398,27 @@ TriggerGet Retrieve an existing trigger
 
 Retrieve an existing trigger based on its name
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name
- @return TriggerAPITriggerGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param name
+	@return TriggerAPITriggerGetRequest
 */
 func (a *TriggerAPIService) TriggerGet(ctx context.Context, name string) TriggerAPITriggerGetRequest {
 	return TriggerAPITriggerGetRequest{
 		ApiService: a,
-		ctx: ctx,
-		name: name,
+		ctx:        ctx,
+		name:       name,
 	}
 }
 
 // Execute executes the request
-//  @return TriggerUpdate200Response
-func (a *TriggerAPIService) TriggerGetExecute(r TriggerAPITriggerGetRequest) (*TriggerUpdate200Response, *http.Response, error) {
+//
+//	@return TriggerUpdate200Response
+func (a *TriggerAPIService) TriggerGetExecute(r TriggerAPITriggerGetRequest) (*models.TriggerUpdate200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TriggerUpdate200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.TriggerUpdate200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TriggerAPIService.TriggerGet")
@@ -497,47 +501,47 @@ func (a *TriggerAPIService) TriggerGetExecute(r TriggerAPITriggerGetRequest) (*T
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v AdocGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v TriggerUpdate404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v TriggerList500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -555,10 +559,10 @@ func (a *TriggerAPIService) TriggerGetExecute(r TriggerAPITriggerGetRequest) (*T
 }
 
 type TriggerAPITriggerListRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TriggerAPIService
-	types *[]string
-	module *string
+	types      *[]string
+	module     *string
 }
 
 func (r TriggerAPITriggerListRequest) Types(types []string) TriggerAPITriggerListRequest {
@@ -571,7 +575,7 @@ func (r TriggerAPITriggerListRequest) Module(module string) TriggerAPITriggerLis
 	return r
 }
 
-func (r TriggerAPITriggerListRequest) Execute() ([]TriggerList200ResponseInner, *http.Response, error) {
+func (r TriggerAPITriggerListRequest) Execute() ([]models.TriggerList200ResponseInner, *http.Response, error) {
 	return r.ApiService.TriggerListExecute(r)
 }
 
@@ -580,24 +584,25 @@ TriggerList List the existing trigger(s)
 
 List the existing trigger(s) with the capability to filter on type and/or module.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return TriggerAPITriggerListRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TriggerAPITriggerListRequest
 */
 func (a *TriggerAPIService) TriggerList(ctx context.Context) TriggerAPITriggerListRequest {
 	return TriggerAPITriggerListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []TriggerList200ResponseInner
-func (a *TriggerAPIService) TriggerListExecute(r TriggerAPITriggerListRequest) ([]TriggerList200ResponseInner, *http.Response, error) {
+//
+//	@return []TriggerList200ResponseInner
+func (a *TriggerAPIService) TriggerListExecute(r TriggerAPITriggerListRequest) ([]models.TriggerList200ResponseInner, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []TriggerList200ResponseInner
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []models.TriggerList200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TriggerAPIService.TriggerList")
@@ -693,36 +698,36 @@ func (a *TriggerAPIService) TriggerListExecute(r TriggerAPITriggerListRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v AutomationExecutionList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v AdocGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v TriggerList500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -740,18 +745,18 @@ func (a *TriggerAPIService) TriggerListExecute(r TriggerAPITriggerListRequest) (
 }
 
 type TriggerAPITriggerTestRequest struct {
-	ctx context.Context
-	ApiService *TriggerAPIService
-	triggerTestRequest *TriggerTestRequest
+	ctx                context.Context
+	ApiService         *TriggerAPIService
+	triggerTestRequest *models.TriggerTestRequest
 }
 
 // Trigger to test and its dictionary
-func (r TriggerAPITriggerTestRequest) TriggerTestRequest(triggerTestRequest TriggerTestRequest) TriggerAPITriggerTestRequest {
+func (r TriggerAPITriggerTestRequest) TriggerTestRequest(triggerTestRequest models.TriggerTestRequest) TriggerAPITriggerTestRequest {
 	r.triggerTestRequest = &triggerTestRequest
 	return r
 }
 
-func (r TriggerAPITriggerTestRequest) Execute() (*TriggerTest200Response, *http.Response, error) {
+func (r TriggerAPITriggerTestRequest) Execute() (*models.TriggerTest200Response, *http.Response, error) {
 	return r.ApiService.TriggerTestExecute(r)
 }
 
@@ -760,24 +765,25 @@ TriggerTest Test a trigger
 
 Test an existing trigger
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return TriggerAPITriggerTestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TriggerAPITriggerTestRequest
 */
 func (a *TriggerAPIService) TriggerTest(ctx context.Context) TriggerAPITriggerTestRequest {
 	return TriggerAPITriggerTestRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TriggerTest200Response
-func (a *TriggerAPIService) TriggerTestExecute(r TriggerAPITriggerTestRequest) (*TriggerTest200Response, *http.Response, error) {
+//
+//	@return TriggerTest200Response
+func (a *TriggerAPIService) TriggerTestExecute(r TriggerAPITriggerTestRequest) (*models.TriggerTest200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TriggerTest200Response
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.TriggerTest200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TriggerAPIService.TriggerTest")
@@ -791,7 +797,7 @@ func (a *TriggerAPIService) TriggerTestExecute(r TriggerAPITriggerTestRequest) (
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.triggerTestRequest == nil {
-		return localVarReturnValue, nil, reportError("triggerTestRequest is required and must be specified")
+		return localVarReturnValue, nil, utils.ReportError("triggerTestRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -864,47 +870,47 @@ func (a *TriggerAPIService) TriggerTestExecute(r TriggerAPITriggerTestRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v TriggerUpdate400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v AdocGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v TriggerList500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -922,18 +928,18 @@ func (a *TriggerAPIService) TriggerTestExecute(r TriggerAPITriggerTestRequest) (
 }
 
 type TriggerAPITriggerUpdateRequest struct {
-	ctx context.Context
-	ApiService *TriggerAPIService
-	triggerUpdateRequest *TriggerUpdateRequest
+	ctx                  context.Context
+	ApiService           *TriggerAPIService
+	triggerUpdateRequest *models.TriggerUpdateRequest
 }
 
 // Trigger to update
-func (r TriggerAPITriggerUpdateRequest) TriggerUpdateRequest(triggerUpdateRequest TriggerUpdateRequest) TriggerAPITriggerUpdateRequest {
+func (r TriggerAPITriggerUpdateRequest) TriggerUpdateRequest(triggerUpdateRequest models.TriggerUpdateRequest) TriggerAPITriggerUpdateRequest {
 	r.triggerUpdateRequest = &triggerUpdateRequest
 	return r
 }
 
-func (r TriggerAPITriggerUpdateRequest) Execute() (*TriggerUpdate200Response, *http.Response, error) {
+func (r TriggerAPITriggerUpdateRequest) Execute() (*models.TriggerUpdate200Response, *http.Response, error) {
 	return r.ApiService.TriggerUpdateExecute(r)
 }
 
@@ -942,24 +948,25 @@ TriggerUpdate Update an existing trigger
 
 Update an existing trigger
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return TriggerAPITriggerUpdateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return TriggerAPITriggerUpdateRequest
 */
 func (a *TriggerAPIService) TriggerUpdate(ctx context.Context) TriggerAPITriggerUpdateRequest {
 	return TriggerAPITriggerUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TriggerUpdate200Response
-func (a *TriggerAPIService) TriggerUpdateExecute(r TriggerAPITriggerUpdateRequest) (*TriggerUpdate200Response, *http.Response, error) {
+//
+//	@return TriggerUpdate200Response
+func (a *TriggerAPIService) TriggerUpdateExecute(r TriggerAPITriggerUpdateRequest) (*models.TriggerUpdate200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TriggerUpdate200Response
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.TriggerUpdate200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TriggerAPIService.TriggerUpdate")
@@ -973,7 +980,7 @@ func (a *TriggerAPIService) TriggerUpdateExecute(r TriggerAPITriggerUpdateReques
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.triggerUpdateRequest == nil {
-		return localVarReturnValue, nil, reportError("triggerUpdateRequest is required and must be specified")
+		return localVarReturnValue, nil, utils.ReportError("triggerUpdateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1046,58 +1053,58 @@ func (a *TriggerAPIService) TriggerUpdateExecute(r TriggerAPITriggerUpdateReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v TriggerUpdate400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v AdocGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v TriggerUpdate404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v TriggerList500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

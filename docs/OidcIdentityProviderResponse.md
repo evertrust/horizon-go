@@ -5,27 +5,27 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The internal ID of the Identity Provider | 
-**Name** | **string** | The internal name of the identity provider | 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The display name of the identity provider | [optional] 
+**ClientCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the client ID  and secret to use to authenticate Horizon against the identity provider | 
 **Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The description of the identity provider | [optional] 
-**Type** | **string** | The type of Identity provider to register | 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The display name of the identity provider | [optional] 
+**EmailClaim** | **string** | The OpenID information that will be used as the user&#39;s email in Horizon | 
 **Enabled** | **bool** | Whether the identity provider can be used to identify against Horizon | 
 **EnabledOnUI** | **bool** | Whether the identity provider can be selected on login to the Horizon UI | 
-**Proxy** | Pointer to **NullableString** | The name of the proxy to use to reach the identity provider | [optional] 
-**Timeout** | Pointer to **NullableString** | The timeout value to use when connecting to the identity provider (must be a valid finite duration) | [optional] 
-**ProviderMetadataUrl** | **string** | The URL of the identity provider OpenID callback | 
-**ClientCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/api.security.credentials) containing the client ID  and secret to use to authenticate Horizon against the identity provider | 
-**Scope** | **string** | The scope where to retrieve the user data from | 
-**TrustSystemCAs** | **bool** | Trust AC coming from the system trust store or only trust AC imported in Horizon | [default to true]
 **IdentifierClaim** | **string** | The OpenID information that will be used as the user&#39;s identifier in Horizon | 
-**EmailClaim** | **string** | The OpenID information that will be used as the user&#39;s email in Horizon | 
+**Name** | **string** | The internal name of the identity provider | 
 **NameClaim** | **string** | The OpenID information that will be used as the user&#39;s name in Horizon | 
+**ProviderMetadataUrl** | **string** | The URL of the identity provider OpenID callback | 
+**Proxy** | Pointer to **NullableString** | The name of the proxy to use to reach the identity provider | [optional] 
+**Scope** | **string** | The scope where to retrieve the user data from | 
+**Timeout** | Pointer to **NullableString** | The timeout value to use when connecting to the identity provider (must be a valid finite duration) | [optional] 
+**TrustSystemCAs** | **bool** | Trust AC coming from the system trust store or only trust AC imported in Horizon | [default to true]
+**Type** | **string** | The type of Identity provider to register | 
 
 ## Methods
 
 ### NewOidcIdentityProviderResponse
 
-`func NewOidcIdentityProviderResponse(id string, name string, type_ string, enabled bool, enabledOnUI bool, providerMetadataUrl string, clientCredentials string, scope string, trustSystemCAs bool, identifierClaim string, emailClaim string, nameClaim string, ) *OidcIdentityProviderResponse`
+`func NewOidcIdentityProviderResponse(id string, clientCredentials string, emailClaim string, enabled bool, enabledOnUI bool, identifierClaim string, name string, nameClaim string, providerMetadataUrl string, scope string, trustSystemCAs bool, type_ string, ) *OidcIdentityProviderResponse`
 
 NewOidcIdentityProviderResponse instantiates a new OidcIdentityProviderResponse object
 This constructor will assign default values to properties that have it defined,
@@ -60,61 +60,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetName
+### GetClientCredentials
 
-`func (o *OidcIdentityProviderResponse) GetName() string`
+`func (o *OidcIdentityProviderResponse) GetClientCredentials() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetClientCredentials returns the ClientCredentials field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetClientCredentialsOk
 
-`func (o *OidcIdentityProviderResponse) GetNameOk() (*string, bool)`
+`func (o *OidcIdentityProviderResponse) GetClientCredentialsOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetClientCredentialsOk returns a tuple with the ClientCredentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetClientCredentials
 
-`func (o *OidcIdentityProviderResponse) SetName(v string)`
+`func (o *OidcIdentityProviderResponse) SetClientCredentials(v string)`
 
-SetName sets Name field to given value.
+SetClientCredentials sets ClientCredentials field to given value.
 
 
-### GetDisplayName
-
-`func (o *OidcIdentityProviderResponse) GetDisplayName() []LocalizedString`
-
-GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
-
-### GetDisplayNameOk
-
-`func (o *OidcIdentityProviderResponse) GetDisplayNameOk() (*[]LocalizedString, bool)`
-
-GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDisplayName
-
-`func (o *OidcIdentityProviderResponse) SetDisplayName(v []LocalizedString)`
-
-SetDisplayName sets DisplayName field to given value.
-
-### HasDisplayName
-
-`func (o *OidcIdentityProviderResponse) HasDisplayName() bool`
-
-HasDisplayName returns a boolean if a field has been set.
-
-### SetDisplayNameNil
-
-`func (o *OidcIdentityProviderResponse) SetDisplayNameNil(b bool)`
-
- SetDisplayNameNil sets the value for DisplayName to be an explicit nil
-
-### UnsetDisplayName
-`func (o *OidcIdentityProviderResponse) UnsetDisplayName()`
-
-UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
 ### GetDescription
 
 `func (o *OidcIdentityProviderResponse) GetDescription() []LocalizedString`
@@ -150,24 +115,59 @@ HasDescription returns a boolean if a field has been set.
 `func (o *OidcIdentityProviderResponse) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetType
+### GetDisplayName
 
-`func (o *OidcIdentityProviderResponse) GetType() string`
+`func (o *OidcIdentityProviderResponse) GetDisplayName() []LocalizedString`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetDisplayNameOk
 
-`func (o *OidcIdentityProviderResponse) GetTypeOk() (*string, bool)`
+`func (o *OidcIdentityProviderResponse) GetDisplayNameOk() (*[]LocalizedString, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetDisplayName
 
-`func (o *OidcIdentityProviderResponse) SetType(v string)`
+`func (o *OidcIdentityProviderResponse) SetDisplayName(v []LocalizedString)`
 
-SetType sets Type field to given value.
+SetDisplayName sets DisplayName field to given value.
+
+### HasDisplayName
+
+`func (o *OidcIdentityProviderResponse) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
+
+### SetDisplayNameNil
+
+`func (o *OidcIdentityProviderResponse) SetDisplayNameNil(b bool)`
+
+ SetDisplayNameNil sets the value for DisplayName to be an explicit nil
+
+### UnsetDisplayName
+`func (o *OidcIdentityProviderResponse) UnsetDisplayName()`
+
+UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
+### GetEmailClaim
+
+`func (o *OidcIdentityProviderResponse) GetEmailClaim() string`
+
+GetEmailClaim returns the EmailClaim field if non-nil, zero value otherwise.
+
+### GetEmailClaimOk
+
+`func (o *OidcIdentityProviderResponse) GetEmailClaimOk() (*string, bool)`
+
+GetEmailClaimOk returns a tuple with the EmailClaim field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmailClaim
+
+`func (o *OidcIdentityProviderResponse) SetEmailClaim(v string)`
+
+SetEmailClaim sets EmailClaim field to given value.
 
 
 ### GetEnabled
@@ -210,6 +210,86 @@ and a boolean to check if the value has been set.
 SetEnabledOnUI sets EnabledOnUI field to given value.
 
 
+### GetIdentifierClaim
+
+`func (o *OidcIdentityProviderResponse) GetIdentifierClaim() string`
+
+GetIdentifierClaim returns the IdentifierClaim field if non-nil, zero value otherwise.
+
+### GetIdentifierClaimOk
+
+`func (o *OidcIdentityProviderResponse) GetIdentifierClaimOk() (*string, bool)`
+
+GetIdentifierClaimOk returns a tuple with the IdentifierClaim field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdentifierClaim
+
+`func (o *OidcIdentityProviderResponse) SetIdentifierClaim(v string)`
+
+SetIdentifierClaim sets IdentifierClaim field to given value.
+
+
+### GetName
+
+`func (o *OidcIdentityProviderResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *OidcIdentityProviderResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *OidcIdentityProviderResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetNameClaim
+
+`func (o *OidcIdentityProviderResponse) GetNameClaim() string`
+
+GetNameClaim returns the NameClaim field if non-nil, zero value otherwise.
+
+### GetNameClaimOk
+
+`func (o *OidcIdentityProviderResponse) GetNameClaimOk() (*string, bool)`
+
+GetNameClaimOk returns a tuple with the NameClaim field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNameClaim
+
+`func (o *OidcIdentityProviderResponse) SetNameClaim(v string)`
+
+SetNameClaim sets NameClaim field to given value.
+
+
+### GetProviderMetadataUrl
+
+`func (o *OidcIdentityProviderResponse) GetProviderMetadataUrl() string`
+
+GetProviderMetadataUrl returns the ProviderMetadataUrl field if non-nil, zero value otherwise.
+
+### GetProviderMetadataUrlOk
+
+`func (o *OidcIdentityProviderResponse) GetProviderMetadataUrlOk() (*string, bool)`
+
+GetProviderMetadataUrlOk returns a tuple with the ProviderMetadataUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProviderMetadataUrl
+
+`func (o *OidcIdentityProviderResponse) SetProviderMetadataUrl(v string)`
+
+SetProviderMetadataUrl sets ProviderMetadataUrl field to given value.
+
+
 ### GetProxy
 
 `func (o *OidcIdentityProviderResponse) GetProxy() string`
@@ -245,6 +325,26 @@ HasProxy returns a boolean if a field has been set.
 `func (o *OidcIdentityProviderResponse) UnsetProxy()`
 
 UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+### GetScope
+
+`func (o *OidcIdentityProviderResponse) GetScope() string`
+
+GetScope returns the Scope field if non-nil, zero value otherwise.
+
+### GetScopeOk
+
+`func (o *OidcIdentityProviderResponse) GetScopeOk() (*string, bool)`
+
+GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScope
+
+`func (o *OidcIdentityProviderResponse) SetScope(v string)`
+
+SetScope sets Scope field to given value.
+
+
 ### GetTimeout
 
 `func (o *OidcIdentityProviderResponse) GetTimeout() string`
@@ -280,66 +380,6 @@ HasTimeout returns a boolean if a field has been set.
 `func (o *OidcIdentityProviderResponse) UnsetTimeout()`
 
 UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetProviderMetadataUrl
-
-`func (o *OidcIdentityProviderResponse) GetProviderMetadataUrl() string`
-
-GetProviderMetadataUrl returns the ProviderMetadataUrl field if non-nil, zero value otherwise.
-
-### GetProviderMetadataUrlOk
-
-`func (o *OidcIdentityProviderResponse) GetProviderMetadataUrlOk() (*string, bool)`
-
-GetProviderMetadataUrlOk returns a tuple with the ProviderMetadataUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProviderMetadataUrl
-
-`func (o *OidcIdentityProviderResponse) SetProviderMetadataUrl(v string)`
-
-SetProviderMetadataUrl sets ProviderMetadataUrl field to given value.
-
-
-### GetClientCredentials
-
-`func (o *OidcIdentityProviderResponse) GetClientCredentials() string`
-
-GetClientCredentials returns the ClientCredentials field if non-nil, zero value otherwise.
-
-### GetClientCredentialsOk
-
-`func (o *OidcIdentityProviderResponse) GetClientCredentialsOk() (*string, bool)`
-
-GetClientCredentialsOk returns a tuple with the ClientCredentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClientCredentials
-
-`func (o *OidcIdentityProviderResponse) SetClientCredentials(v string)`
-
-SetClientCredentials sets ClientCredentials field to given value.
-
-
-### GetScope
-
-`func (o *OidcIdentityProviderResponse) GetScope() string`
-
-GetScope returns the Scope field if non-nil, zero value otherwise.
-
-### GetScopeOk
-
-`func (o *OidcIdentityProviderResponse) GetScopeOk() (*string, bool)`
-
-GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetScope
-
-`func (o *OidcIdentityProviderResponse) SetScope(v string)`
-
-SetScope sets Scope field to given value.
-
-
 ### GetTrustSystemCAs
 
 `func (o *OidcIdentityProviderResponse) GetTrustSystemCAs() bool`
@@ -360,64 +400,24 @@ and a boolean to check if the value has been set.
 SetTrustSystemCAs sets TrustSystemCAs field to given value.
 
 
-### GetIdentifierClaim
+### GetType
 
-`func (o *OidcIdentityProviderResponse) GetIdentifierClaim() string`
+`func (o *OidcIdentityProviderResponse) GetType() string`
 
-GetIdentifierClaim returns the IdentifierClaim field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetIdentifierClaimOk
+### GetTypeOk
 
-`func (o *OidcIdentityProviderResponse) GetIdentifierClaimOk() (*string, bool)`
+`func (o *OidcIdentityProviderResponse) GetTypeOk() (*string, bool)`
 
-GetIdentifierClaimOk returns a tuple with the IdentifierClaim field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIdentifierClaim
+### SetType
 
-`func (o *OidcIdentityProviderResponse) SetIdentifierClaim(v string)`
+`func (o *OidcIdentityProviderResponse) SetType(v string)`
 
-SetIdentifierClaim sets IdentifierClaim field to given value.
-
-
-### GetEmailClaim
-
-`func (o *OidcIdentityProviderResponse) GetEmailClaim() string`
-
-GetEmailClaim returns the EmailClaim field if non-nil, zero value otherwise.
-
-### GetEmailClaimOk
-
-`func (o *OidcIdentityProviderResponse) GetEmailClaimOk() (*string, bool)`
-
-GetEmailClaimOk returns a tuple with the EmailClaim field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmailClaim
-
-`func (o *OidcIdentityProviderResponse) SetEmailClaim(v string)`
-
-SetEmailClaim sets EmailClaim field to given value.
-
-
-### GetNameClaim
-
-`func (o *OidcIdentityProviderResponse) GetNameClaim() string`
-
-GetNameClaim returns the NameClaim field if non-nil, zero value otherwise.
-
-### GetNameClaimOk
-
-`func (o *OidcIdentityProviderResponse) GetNameClaimOk() (*string, bool)`
-
-GetNameClaimOk returns a tuple with the NameClaim field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNameClaim
-
-`func (o *OidcIdentityProviderResponse) SetNameClaim(v string)`
-
-SetNameClaim sets NameClaim field to given value.
+SetType sets Type field to given value.
 
 
 

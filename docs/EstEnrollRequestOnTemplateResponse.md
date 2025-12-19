@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Workflow** | **string** |  | 
 **Module** | **string** |  | 
 **Template** | [**EstEnrollRequestTemplateResponse**](EstEnrollRequestTemplateResponse.md) | The template with the constraint set on the profile | 
+**Workflow** | **string** |  | 
 **Profile** | **string** | The profile for which to return the template. | 
 
 ## Methods
 
 ### NewEstEnrollRequestOnTemplateResponse
 
-`func NewEstEnrollRequestOnTemplateResponse(workflow string, module string, template EstEnrollRequestTemplateResponse, profile string, ) *EstEnrollRequestOnTemplateResponse`
+`func NewEstEnrollRequestOnTemplateResponse(module string, template EstEnrollRequestTemplateResponse, workflow string, profile string, ) *EstEnrollRequestOnTemplateResponse`
 
 NewEstEnrollRequestOnTemplateResponse instantiates a new EstEnrollRequestOnTemplateResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,26 +27,6 @@ will change when the set of required properties is changed
 NewEstEnrollRequestOnTemplateResponseWithDefaults instantiates a new EstEnrollRequestOnTemplateResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetWorkflow
-
-`func (o *EstEnrollRequestOnTemplateResponse) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *EstEnrollRequestOnTemplateResponse) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *EstEnrollRequestOnTemplateResponse) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
 
 ### GetModule
 
@@ -86,6 +66,26 @@ and a boolean to check if the value has been set.
 `func (o *EstEnrollRequestOnTemplateResponse) SetTemplate(v EstEnrollRequestTemplateResponse)`
 
 SetTemplate sets Template field to given value.
+
+
+### GetWorkflow
+
+`func (o *EstEnrollRequestOnTemplateResponse) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *EstEnrollRequestOnTemplateResponse) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *EstEnrollRequestOnTemplateResponse) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
 
 
 ### GetProfile

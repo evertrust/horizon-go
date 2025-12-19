@@ -4,40 +4,40 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | The type of notification | 
-**EmailTemplate** | [**EmailTemplate**](EmailTemplate.md) |  | 
-**IfPkcs12** | Pointer to **NullableBool** | On events triggering an enrollment, select if mail is sent: - **Always**: set the value to &#x60;null&#x60;  - **Only when a PKCS#12 is available in the request**: set the value to &#x60;true&#x60;  - **Only when a PKCS#12 is not in the request**: set the value to &#x60;false&#x60;  | [optional] 
-**AttachPemCertificate** | Pointer to **NullableBool** | Attach the certificate in PEM format if available | [optional] 
-**AttachPemBundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PEM format if available | [optional] 
+**Id** | **string** | Object internal ID | 
 **AttachDerCertificate** | Pointer to **NullableBool** | Attach the certificate in DER format if available | [optional] 
+**AttachPemBundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PEM format if available | [optional] 
+**AttachPemCertificate** | Pointer to **NullableBool** | Attach the certificate in PEM format if available | [optional] 
 **AttachPkcs7** | Pointer to **NullableBool** | Attach the certificate in PKCS7 format if available | [optional] 
 **AttachPkcs7Bundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PKCS7 format if available | [optional] 
 **AttachPkcs12** | Pointer to **NullableBool** | Attach the certificate in PKCS#12 format if available | [optional] 
+**EmailTemplate** | [**EmailTemplate**](EmailTemplate.md) |  | 
+**IfPkcs12** | Pointer to **NullableBool** | On events triggering an enrollment, select if mail is sent: - **Always**: set the value to &#x60;null&#x60;  - **Only when a PKCS#12 is available in the request**: set the value to &#x60;true&#x60;  - **Only when a PKCS#12 is not in the request**: set the value to &#x60;false&#x60;  | [optional] 
+**Type** | **string** | The type of notification | 
+**Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
+**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
 **Name** | **string** |  | 
 **Retries** | Pointer to **NullableInt64** |  | [optional] 
-**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
-**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
-**Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
 **RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
-**WebhookTemplate** | [**WebhookTemplate**](WebhookTemplate.md) |  | 
+**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
 **Proxy** | Pointer to **NullableString** | Name of a Proxy to use while making the request | [optional] 
 **Timeout** | **string** | Timeout for the HTTP request. | 
-**Method** | **string** | The HTTP method to use for the request | 
-**Url** | **string** | The URL to request | 
+**WebhookTemplate** | [**WebhookTemplate**](WebhookTemplate.md) |  | 
 **AuthenticationType** | **string** | The authentication type to use while making the REST call. Is linked to &#x60;credentials&#x60;. | 
 **Credentials** | Pointer to **NullableString** | Name of the credentials to use for authentication | [optional] 
-**Headers** | Pointer to [**[]RESTHeader**](RESTHeader.md) | The headers of the request | [optional] 
-**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
-**Payload** | Pointer to **NullableString** | The body of the request. Can contain dynamic attributes. | [optional] 
 **ExpectedHttpCodes** | **[]int64** | The success HTTP codes for the request. If the return code is not in this list, the notification will be considered failed. | 
-**Id** | **string** | Object internal ID | 
+**Headers** | Pointer to [**[]RESTHeader**](RESTHeader.md) | The headers of the request | [optional] 
+**Method** | **string** | The HTTP method to use for the request | 
+**Payload** | Pointer to **NullableString** | The body of the request. Can contain dynamic attributes. | [optional] 
+**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
+**Url** | **string** | The URL to request | 
 **Connector** | **string** |  | 
 
 ## Methods
 
 ### NewTriggerUpdate200Response
 
-`func NewTriggerUpdate200Response(type_ string, emailTemplate EmailTemplate, name string, events []string, webhookTemplate WebhookTemplate, timeout string, method string, url string, authenticationType string, expectedHttpCodes []int64, id string, connector string, ) *TriggerUpdate200Response`
+`func NewTriggerUpdate200Response(id string, emailTemplate EmailTemplate, type_ string, events []string, name string, timeout string, webhookTemplate WebhookTemplate, authenticationType string, expectedHttpCodes []int64, method string, url string, connector string, ) *TriggerUpdate200Response`
 
 NewTriggerUpdate200Response instantiates a new TriggerUpdate200Response object
 This constructor will assign default values to properties that have it defined,
@@ -52,151 +52,26 @@ NewTriggerUpdate200ResponseWithDefaults instantiates a new TriggerUpdate200Respo
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetType
+### GetId
 
-`func (o *TriggerUpdate200Response) GetType() string`
+`func (o *TriggerUpdate200Response) GetId() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetIdOk
 
-`func (o *TriggerUpdate200Response) GetTypeOk() (*string, bool)`
+`func (o *TriggerUpdate200Response) GetIdOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetId
 
-`func (o *TriggerUpdate200Response) SetType(v string)`
+`func (o *TriggerUpdate200Response) SetId(v string)`
 
-SetType sets Type field to given value.
-
-
-### GetEmailTemplate
-
-`func (o *TriggerUpdate200Response) GetEmailTemplate() EmailTemplate`
-
-GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
-
-### GetEmailTemplateOk
-
-`func (o *TriggerUpdate200Response) GetEmailTemplateOk() (*EmailTemplate, bool)`
-
-GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmailTemplate
-
-`func (o *TriggerUpdate200Response) SetEmailTemplate(v EmailTemplate)`
-
-SetEmailTemplate sets EmailTemplate field to given value.
+SetId sets Id field to given value.
 
 
-### GetIfPkcs12
-
-`func (o *TriggerUpdate200Response) GetIfPkcs12() bool`
-
-GetIfPkcs12 returns the IfPkcs12 field if non-nil, zero value otherwise.
-
-### GetIfPkcs12Ok
-
-`func (o *TriggerUpdate200Response) GetIfPkcs12Ok() (*bool, bool)`
-
-GetIfPkcs12Ok returns a tuple with the IfPkcs12 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIfPkcs12
-
-`func (o *TriggerUpdate200Response) SetIfPkcs12(v bool)`
-
-SetIfPkcs12 sets IfPkcs12 field to given value.
-
-### HasIfPkcs12
-
-`func (o *TriggerUpdate200Response) HasIfPkcs12() bool`
-
-HasIfPkcs12 returns a boolean if a field has been set.
-
-### SetIfPkcs12Nil
-
-`func (o *TriggerUpdate200Response) SetIfPkcs12Nil(b bool)`
-
- SetIfPkcs12Nil sets the value for IfPkcs12 to be an explicit nil
-
-### UnsetIfPkcs12
-`func (o *TriggerUpdate200Response) UnsetIfPkcs12()`
-
-UnsetIfPkcs12 ensures that no value is present for IfPkcs12, not even an explicit nil
-### GetAttachPemCertificate
-
-`func (o *TriggerUpdate200Response) GetAttachPemCertificate() bool`
-
-GetAttachPemCertificate returns the AttachPemCertificate field if non-nil, zero value otherwise.
-
-### GetAttachPemCertificateOk
-
-`func (o *TriggerUpdate200Response) GetAttachPemCertificateOk() (*bool, bool)`
-
-GetAttachPemCertificateOk returns a tuple with the AttachPemCertificate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAttachPemCertificate
-
-`func (o *TriggerUpdate200Response) SetAttachPemCertificate(v bool)`
-
-SetAttachPemCertificate sets AttachPemCertificate field to given value.
-
-### HasAttachPemCertificate
-
-`func (o *TriggerUpdate200Response) HasAttachPemCertificate() bool`
-
-HasAttachPemCertificate returns a boolean if a field has been set.
-
-### SetAttachPemCertificateNil
-
-`func (o *TriggerUpdate200Response) SetAttachPemCertificateNil(b bool)`
-
- SetAttachPemCertificateNil sets the value for AttachPemCertificate to be an explicit nil
-
-### UnsetAttachPemCertificate
-`func (o *TriggerUpdate200Response) UnsetAttachPemCertificate()`
-
-UnsetAttachPemCertificate ensures that no value is present for AttachPemCertificate, not even an explicit nil
-### GetAttachPemBundle
-
-`func (o *TriggerUpdate200Response) GetAttachPemBundle() bool`
-
-GetAttachPemBundle returns the AttachPemBundle field if non-nil, zero value otherwise.
-
-### GetAttachPemBundleOk
-
-`func (o *TriggerUpdate200Response) GetAttachPemBundleOk() (*bool, bool)`
-
-GetAttachPemBundleOk returns a tuple with the AttachPemBundle field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAttachPemBundle
-
-`func (o *TriggerUpdate200Response) SetAttachPemBundle(v bool)`
-
-SetAttachPemBundle sets AttachPemBundle field to given value.
-
-### HasAttachPemBundle
-
-`func (o *TriggerUpdate200Response) HasAttachPemBundle() bool`
-
-HasAttachPemBundle returns a boolean if a field has been set.
-
-### SetAttachPemBundleNil
-
-`func (o *TriggerUpdate200Response) SetAttachPemBundleNil(b bool)`
-
- SetAttachPemBundleNil sets the value for AttachPemBundle to be an explicit nil
-
-### UnsetAttachPemBundle
-`func (o *TriggerUpdate200Response) UnsetAttachPemBundle()`
-
-UnsetAttachPemBundle ensures that no value is present for AttachPemBundle, not even an explicit nil
 ### GetAttachDerCertificate
 
 `func (o *TriggerUpdate200Response) GetAttachDerCertificate() bool`
@@ -232,6 +107,76 @@ HasAttachDerCertificate returns a boolean if a field has been set.
 `func (o *TriggerUpdate200Response) UnsetAttachDerCertificate()`
 
 UnsetAttachDerCertificate ensures that no value is present for AttachDerCertificate, not even an explicit nil
+### GetAttachPemBundle
+
+`func (o *TriggerUpdate200Response) GetAttachPemBundle() bool`
+
+GetAttachPemBundle returns the AttachPemBundle field if non-nil, zero value otherwise.
+
+### GetAttachPemBundleOk
+
+`func (o *TriggerUpdate200Response) GetAttachPemBundleOk() (*bool, bool)`
+
+GetAttachPemBundleOk returns a tuple with the AttachPemBundle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttachPemBundle
+
+`func (o *TriggerUpdate200Response) SetAttachPemBundle(v bool)`
+
+SetAttachPemBundle sets AttachPemBundle field to given value.
+
+### HasAttachPemBundle
+
+`func (o *TriggerUpdate200Response) HasAttachPemBundle() bool`
+
+HasAttachPemBundle returns a boolean if a field has been set.
+
+### SetAttachPemBundleNil
+
+`func (o *TriggerUpdate200Response) SetAttachPemBundleNil(b bool)`
+
+ SetAttachPemBundleNil sets the value for AttachPemBundle to be an explicit nil
+
+### UnsetAttachPemBundle
+`func (o *TriggerUpdate200Response) UnsetAttachPemBundle()`
+
+UnsetAttachPemBundle ensures that no value is present for AttachPemBundle, not even an explicit nil
+### GetAttachPemCertificate
+
+`func (o *TriggerUpdate200Response) GetAttachPemCertificate() bool`
+
+GetAttachPemCertificate returns the AttachPemCertificate field if non-nil, zero value otherwise.
+
+### GetAttachPemCertificateOk
+
+`func (o *TriggerUpdate200Response) GetAttachPemCertificateOk() (*bool, bool)`
+
+GetAttachPemCertificateOk returns a tuple with the AttachPemCertificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttachPemCertificate
+
+`func (o *TriggerUpdate200Response) SetAttachPemCertificate(v bool)`
+
+SetAttachPemCertificate sets AttachPemCertificate field to given value.
+
+### HasAttachPemCertificate
+
+`func (o *TriggerUpdate200Response) HasAttachPemCertificate() bool`
+
+HasAttachPemCertificate returns a boolean if a field has been set.
+
+### SetAttachPemCertificateNil
+
+`func (o *TriggerUpdate200Response) SetAttachPemCertificateNil(b bool)`
+
+ SetAttachPemCertificateNil sets the value for AttachPemCertificate to be an explicit nil
+
+### UnsetAttachPemCertificate
+`func (o *TriggerUpdate200Response) UnsetAttachPemCertificate()`
+
+UnsetAttachPemCertificate ensures that no value is present for AttachPemCertificate, not even an explicit nil
 ### GetAttachPkcs7
 
 `func (o *TriggerUpdate200Response) GetAttachPkcs7() bool`
@@ -337,6 +282,136 @@ HasAttachPkcs12 returns a boolean if a field has been set.
 `func (o *TriggerUpdate200Response) UnsetAttachPkcs12()`
 
 UnsetAttachPkcs12 ensures that no value is present for AttachPkcs12, not even an explicit nil
+### GetEmailTemplate
+
+`func (o *TriggerUpdate200Response) GetEmailTemplate() EmailTemplate`
+
+GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
+
+### GetEmailTemplateOk
+
+`func (o *TriggerUpdate200Response) GetEmailTemplateOk() (*EmailTemplate, bool)`
+
+GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmailTemplate
+
+`func (o *TriggerUpdate200Response) SetEmailTemplate(v EmailTemplate)`
+
+SetEmailTemplate sets EmailTemplate field to given value.
+
+
+### GetIfPkcs12
+
+`func (o *TriggerUpdate200Response) GetIfPkcs12() bool`
+
+GetIfPkcs12 returns the IfPkcs12 field if non-nil, zero value otherwise.
+
+### GetIfPkcs12Ok
+
+`func (o *TriggerUpdate200Response) GetIfPkcs12Ok() (*bool, bool)`
+
+GetIfPkcs12Ok returns a tuple with the IfPkcs12 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIfPkcs12
+
+`func (o *TriggerUpdate200Response) SetIfPkcs12(v bool)`
+
+SetIfPkcs12 sets IfPkcs12 field to given value.
+
+### HasIfPkcs12
+
+`func (o *TriggerUpdate200Response) HasIfPkcs12() bool`
+
+HasIfPkcs12 returns a boolean if a field has been set.
+
+### SetIfPkcs12Nil
+
+`func (o *TriggerUpdate200Response) SetIfPkcs12Nil(b bool)`
+
+ SetIfPkcs12Nil sets the value for IfPkcs12 to be an explicit nil
+
+### UnsetIfPkcs12
+`func (o *TriggerUpdate200Response) UnsetIfPkcs12()`
+
+UnsetIfPkcs12 ensures that no value is present for IfPkcs12, not even an explicit nil
+### GetType
+
+`func (o *TriggerUpdate200Response) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *TriggerUpdate200Response) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *TriggerUpdate200Response) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
+### GetEvents
+
+`func (o *TriggerUpdate200Response) GetEvents() []string`
+
+GetEvents returns the Events field if non-nil, zero value otherwise.
+
+### GetEventsOk
+
+`func (o *TriggerUpdate200Response) GetEventsOk() (*[]string, bool)`
+
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvents
+
+`func (o *TriggerUpdate200Response) SetEvents(v []string)`
+
+SetEvents sets Events field to given value.
+
+
+### GetLicenseUsagePercent
+
+`func (o *TriggerUpdate200Response) GetLicenseUsagePercent() int64`
+
+GetLicenseUsagePercent returns the LicenseUsagePercent field if non-nil, zero value otherwise.
+
+### GetLicenseUsagePercentOk
+
+`func (o *TriggerUpdate200Response) GetLicenseUsagePercentOk() (*int64, bool)`
+
+GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLicenseUsagePercent
+
+`func (o *TriggerUpdate200Response) SetLicenseUsagePercent(v int64)`
+
+SetLicenseUsagePercent sets LicenseUsagePercent field to given value.
+
+### HasLicenseUsagePercent
+
+`func (o *TriggerUpdate200Response) HasLicenseUsagePercent() bool`
+
+HasLicenseUsagePercent returns a boolean if a field has been set.
+
+### SetLicenseUsagePercentNil
+
+`func (o *TriggerUpdate200Response) SetLicenseUsagePercentNil(b bool)`
+
+ SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
+
+### UnsetLicenseUsagePercent
+`func (o *TriggerUpdate200Response) UnsetLicenseUsagePercent()`
+
+UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
 ### GetName
 
 `func (o *TriggerUpdate200Response) GetName() string`
@@ -392,96 +467,6 @@ HasRetries returns a boolean if a field has been set.
 `func (o *TriggerUpdate200Response) UnsetRetries()`
 
 UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetRunPeriod
-
-`func (o *TriggerUpdate200Response) GetRunPeriod() string`
-
-GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
-
-### GetRunPeriodOk
-
-`func (o *TriggerUpdate200Response) GetRunPeriodOk() (*string, bool)`
-
-GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRunPeriod
-
-`func (o *TriggerUpdate200Response) SetRunPeriod(v string)`
-
-SetRunPeriod sets RunPeriod field to given value.
-
-### HasRunPeriod
-
-`func (o *TriggerUpdate200Response) HasRunPeriod() bool`
-
-HasRunPeriod returns a boolean if a field has been set.
-
-### SetRunPeriodNil
-
-`func (o *TriggerUpdate200Response) SetRunPeriodNil(b bool)`
-
- SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
-
-### UnsetRunPeriod
-`func (o *TriggerUpdate200Response) UnsetRunPeriod()`
-
-UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
-### GetLicenseUsagePercent
-
-`func (o *TriggerUpdate200Response) GetLicenseUsagePercent() int64`
-
-GetLicenseUsagePercent returns the LicenseUsagePercent field if non-nil, zero value otherwise.
-
-### GetLicenseUsagePercentOk
-
-`func (o *TriggerUpdate200Response) GetLicenseUsagePercentOk() (*int64, bool)`
-
-GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLicenseUsagePercent
-
-`func (o *TriggerUpdate200Response) SetLicenseUsagePercent(v int64)`
-
-SetLicenseUsagePercent sets LicenseUsagePercent field to given value.
-
-### HasLicenseUsagePercent
-
-`func (o *TriggerUpdate200Response) HasLicenseUsagePercent() bool`
-
-HasLicenseUsagePercent returns a boolean if a field has been set.
-
-### SetLicenseUsagePercentNil
-
-`func (o *TriggerUpdate200Response) SetLicenseUsagePercentNil(b bool)`
-
- SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
-
-### UnsetLicenseUsagePercent
-`func (o *TriggerUpdate200Response) UnsetLicenseUsagePercent()`
-
-UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
-### GetEvents
-
-`func (o *TriggerUpdate200Response) GetEvents() []string`
-
-GetEvents returns the Events field if non-nil, zero value otherwise.
-
-### GetEventsOk
-
-`func (o *TriggerUpdate200Response) GetEventsOk() (*[]string, bool)`
-
-GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEvents
-
-`func (o *TriggerUpdate200Response) SetEvents(v []string)`
-
-SetEvents sets Events field to given value.
-
-
 ### GetRunOnRenewed
 
 `func (o *TriggerUpdate200Response) GetRunOnRenewed() bool`
@@ -517,26 +502,41 @@ HasRunOnRenewed returns a boolean if a field has been set.
 `func (o *TriggerUpdate200Response) UnsetRunOnRenewed()`
 
 UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
-### GetWebhookTemplate
+### GetRunPeriod
 
-`func (o *TriggerUpdate200Response) GetWebhookTemplate() WebhookTemplate`
+`func (o *TriggerUpdate200Response) GetRunPeriod() string`
 
-GetWebhookTemplate returns the WebhookTemplate field if non-nil, zero value otherwise.
+GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
 
-### GetWebhookTemplateOk
+### GetRunPeriodOk
 
-`func (o *TriggerUpdate200Response) GetWebhookTemplateOk() (*WebhookTemplate, bool)`
+`func (o *TriggerUpdate200Response) GetRunPeriodOk() (*string, bool)`
 
-GetWebhookTemplateOk returns a tuple with the WebhookTemplate field if it's non-nil, zero value otherwise
+GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWebhookTemplate
+### SetRunPeriod
 
-`func (o *TriggerUpdate200Response) SetWebhookTemplate(v WebhookTemplate)`
+`func (o *TriggerUpdate200Response) SetRunPeriod(v string)`
 
-SetWebhookTemplate sets WebhookTemplate field to given value.
+SetRunPeriod sets RunPeriod field to given value.
 
+### HasRunPeriod
 
+`func (o *TriggerUpdate200Response) HasRunPeriod() bool`
+
+HasRunPeriod returns a boolean if a field has been set.
+
+### SetRunPeriodNil
+
+`func (o *TriggerUpdate200Response) SetRunPeriodNil(b bool)`
+
+ SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
+
+### UnsetRunPeriod
+`func (o *TriggerUpdate200Response) UnsetRunPeriod()`
+
+UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
 ### GetProxy
 
 `func (o *TriggerUpdate200Response) GetProxy() string`
@@ -592,44 +592,24 @@ and a boolean to check if the value has been set.
 SetTimeout sets Timeout field to given value.
 
 
-### GetMethod
+### GetWebhookTemplate
 
-`func (o *TriggerUpdate200Response) GetMethod() string`
+`func (o *TriggerUpdate200Response) GetWebhookTemplate() WebhookTemplate`
 
-GetMethod returns the Method field if non-nil, zero value otherwise.
+GetWebhookTemplate returns the WebhookTemplate field if non-nil, zero value otherwise.
 
-### GetMethodOk
+### GetWebhookTemplateOk
 
-`func (o *TriggerUpdate200Response) GetMethodOk() (*string, bool)`
+`func (o *TriggerUpdate200Response) GetWebhookTemplateOk() (*WebhookTemplate, bool)`
 
-GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
+GetWebhookTemplateOk returns a tuple with the WebhookTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMethod
+### SetWebhookTemplate
 
-`func (o *TriggerUpdate200Response) SetMethod(v string)`
+`func (o *TriggerUpdate200Response) SetWebhookTemplate(v WebhookTemplate)`
 
-SetMethod sets Method field to given value.
-
-
-### GetUrl
-
-`func (o *TriggerUpdate200Response) GetUrl() string`
-
-GetUrl returns the Url field if non-nil, zero value otherwise.
-
-### GetUrlOk
-
-`func (o *TriggerUpdate200Response) GetUrlOk() (*string, bool)`
-
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUrl
-
-`func (o *TriggerUpdate200Response) SetUrl(v string)`
-
-SetUrl sets Url field to given value.
+SetWebhookTemplate sets WebhookTemplate field to given value.
 
 
 ### GetAuthenticationType
@@ -687,6 +667,26 @@ HasCredentials returns a boolean if a field has been set.
 `func (o *TriggerUpdate200Response) UnsetCredentials()`
 
 UnsetCredentials ensures that no value is present for Credentials, not even an explicit nil
+### GetExpectedHttpCodes
+
+`func (o *TriggerUpdate200Response) GetExpectedHttpCodes() []int64`
+
+GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
+
+### GetExpectedHttpCodesOk
+
+`func (o *TriggerUpdate200Response) GetExpectedHttpCodesOk() (*[]int64, bool)`
+
+GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpectedHttpCodes
+
+`func (o *TriggerUpdate200Response) SetExpectedHttpCodes(v []int64)`
+
+SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
+
+
 ### GetHeaders
 
 `func (o *TriggerUpdate200Response) GetHeaders() []RESTHeader`
@@ -722,41 +722,26 @@ HasHeaders returns a boolean if a field has been set.
 `func (o *TriggerUpdate200Response) UnsetHeaders()`
 
 UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
-### GetPayloadType
+### GetMethod
 
-`func (o *TriggerUpdate200Response) GetPayloadType() string`
+`func (o *TriggerUpdate200Response) GetMethod() string`
 
-GetPayloadType returns the PayloadType field if non-nil, zero value otherwise.
+GetMethod returns the Method field if non-nil, zero value otherwise.
 
-### GetPayloadTypeOk
+### GetMethodOk
 
-`func (o *TriggerUpdate200Response) GetPayloadTypeOk() (*string, bool)`
+`func (o *TriggerUpdate200Response) GetMethodOk() (*string, bool)`
 
-GetPayloadTypeOk returns a tuple with the PayloadType field if it's non-nil, zero value otherwise
+GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPayloadType
+### SetMethod
 
-`func (o *TriggerUpdate200Response) SetPayloadType(v string)`
+`func (o *TriggerUpdate200Response) SetMethod(v string)`
 
-SetPayloadType sets PayloadType field to given value.
+SetMethod sets Method field to given value.
 
-### HasPayloadType
 
-`func (o *TriggerUpdate200Response) HasPayloadType() bool`
-
-HasPayloadType returns a boolean if a field has been set.
-
-### SetPayloadTypeNil
-
-`func (o *TriggerUpdate200Response) SetPayloadTypeNil(b bool)`
-
- SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
-
-### UnsetPayloadType
-`func (o *TriggerUpdate200Response) UnsetPayloadType()`
-
-UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
 ### GetPayload
 
 `func (o *TriggerUpdate200Response) GetPayload() string`
@@ -792,44 +777,59 @@ HasPayload returns a boolean if a field has been set.
 `func (o *TriggerUpdate200Response) UnsetPayload()`
 
 UnsetPayload ensures that no value is present for Payload, not even an explicit nil
-### GetExpectedHttpCodes
+### GetPayloadType
 
-`func (o *TriggerUpdate200Response) GetExpectedHttpCodes() []int64`
+`func (o *TriggerUpdate200Response) GetPayloadType() string`
 
-GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
+GetPayloadType returns the PayloadType field if non-nil, zero value otherwise.
 
-### GetExpectedHttpCodesOk
+### GetPayloadTypeOk
 
-`func (o *TriggerUpdate200Response) GetExpectedHttpCodesOk() (*[]int64, bool)`
+`func (o *TriggerUpdate200Response) GetPayloadTypeOk() (*string, bool)`
 
-GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
+GetPayloadTypeOk returns a tuple with the PayloadType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExpectedHttpCodes
+### SetPayloadType
 
-`func (o *TriggerUpdate200Response) SetExpectedHttpCodes(v []int64)`
+`func (o *TriggerUpdate200Response) SetPayloadType(v string)`
 
-SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
+SetPayloadType sets PayloadType field to given value.
 
+### HasPayloadType
 
-### GetId
+`func (o *TriggerUpdate200Response) HasPayloadType() bool`
 
-`func (o *TriggerUpdate200Response) GetId() string`
+HasPayloadType returns a boolean if a field has been set.
 
-GetId returns the Id field if non-nil, zero value otherwise.
+### SetPayloadTypeNil
 
-### GetIdOk
+`func (o *TriggerUpdate200Response) SetPayloadTypeNil(b bool)`
 
-`func (o *TriggerUpdate200Response) GetIdOk() (*string, bool)`
+ SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+### UnsetPayloadType
+`func (o *TriggerUpdate200Response) UnsetPayloadType()`
+
+UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
+### GetUrl
+
+`func (o *TriggerUpdate200Response) GetUrl() string`
+
+GetUrl returns the Url field if non-nil, zero value otherwise.
+
+### GetUrlOk
+
+`func (o *TriggerUpdate200Response) GetUrlOk() (*string, bool)`
+
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetUrl
 
-`func (o *TriggerUpdate200Response) SetId(v string)`
+`func (o *TriggerUpdate200Response) SetUrl(v string)`
 
-SetId sets Id field to given value.
+SetUrl sets Url field to given value.
 
 
 ### GetConnector

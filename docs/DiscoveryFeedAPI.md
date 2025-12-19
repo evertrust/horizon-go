@@ -28,7 +28,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -92,11 +92,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	discoveryEvent := *openapiclient.NewDiscoveryEvent("NETSCAN", "Discovery-DMZ01", "failure") // DiscoveryEvent | The discovery event to push
+	discoveryEvent := *openapiclient.NewDiscoveryEvent("Discovery-DMZ01", "NETSCAN", "failure") // DiscoveryEvent | The discovery event to push
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -156,7 +156,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ## DiscoveryFeedSessionStart
 
-> []DiscoveryFeedSessionResponse DiscoveryFeedSessionStart(ctx, name).Execute()
+> DiscoveryFeedSessionResponse DiscoveryFeedSessionStart(ctx, name).Execute()
 
 Create a new discovery feed session
 
@@ -227,7 +227,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -240,7 +240,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DiscoveryFeedAPI.DiscoveryFeedSessionStart``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DiscoveryFeedSessionStart`: []DiscoveryFeedSessionResponse
+	// response from `DiscoveryFeedSessionStart`: DiscoveryFeedSessionResponse
 	fmt.Fprintf(os.Stdout, "Response from `DiscoveryFeedAPI.DiscoveryFeedSessionStart`: %v\n", resp)
 }
 ```
@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]DiscoveryFeedSessionResponse**](DiscoveryFeedSessionResponse.md)
+[**DiscoveryFeedSessionResponse**](DiscoveryFeedSessionResponse.md)
 
 ### Authorization
 

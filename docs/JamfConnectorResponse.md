@@ -5,20 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Type** | **string** |  | 
+**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the account to authenticate on JAMF | 
+**Endpoint** | **string** |  | 
 **Name** | **string** |  | 
+**Proxy** | Pointer to **NullableString** |  | [optional] 
 **ThrottleDuration** | **string** |  | 
 **ThrottleParallelism** | **int64** |  | 
 **Timeout** | Pointer to **NullableString** |  | [optional] 
-**Proxy** | Pointer to **NullableString** |  | [optional] 
-**Endpoint** | **string** |  | 
-**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/api.security.credentials) containing the account to authenticate on JAMF | 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewJamfConnectorResponse
 
-`func NewJamfConnectorResponse(id string, type_ string, name string, throttleDuration string, throttleParallelism int64, endpoint string, credentials string, ) *JamfConnectorResponse`
+`func NewJamfConnectorResponse(id string, credentials string, endpoint string, name string, throttleDuration string, throttleParallelism int64, type_ string, ) *JamfConnectorResponse`
 
 NewJamfConnectorResponse instantiates a new JamfConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -53,24 +53,44 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetType
+### GetCredentials
 
-`func (o *JamfConnectorResponse) GetType() string`
+`func (o *JamfConnectorResponse) GetCredentials() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetCredentialsOk
 
-`func (o *JamfConnectorResponse) GetTypeOk() (*string, bool)`
+`func (o *JamfConnectorResponse) GetCredentialsOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetCredentials
 
-`func (o *JamfConnectorResponse) SetType(v string)`
+`func (o *JamfConnectorResponse) SetCredentials(v string)`
 
-SetType sets Type field to given value.
+SetCredentials sets Credentials field to given value.
+
+
+### GetEndpoint
+
+`func (o *JamfConnectorResponse) GetEndpoint() string`
+
+GetEndpoint returns the Endpoint field if non-nil, zero value otherwise.
+
+### GetEndpointOk
+
+`func (o *JamfConnectorResponse) GetEndpointOk() (*string, bool)`
+
+GetEndpointOk returns a tuple with the Endpoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndpoint
+
+`func (o *JamfConnectorResponse) SetEndpoint(v string)`
+
+SetEndpoint sets Endpoint field to given value.
 
 
 ### GetName
@@ -93,6 +113,41 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetProxy
+
+`func (o *JamfConnectorResponse) GetProxy() string`
+
+GetProxy returns the Proxy field if non-nil, zero value otherwise.
+
+### GetProxyOk
+
+`func (o *JamfConnectorResponse) GetProxyOk() (*string, bool)`
+
+GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxy
+
+`func (o *JamfConnectorResponse) SetProxy(v string)`
+
+SetProxy sets Proxy field to given value.
+
+### HasProxy
+
+`func (o *JamfConnectorResponse) HasProxy() bool`
+
+HasProxy returns a boolean if a field has been set.
+
+### SetProxyNil
+
+`func (o *JamfConnectorResponse) SetProxyNil(b bool)`
+
+ SetProxyNil sets the value for Proxy to be an explicit nil
+
+### UnsetProxy
+`func (o *JamfConnectorResponse) UnsetProxy()`
+
+UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
 ### GetThrottleDuration
 
 `func (o *JamfConnectorResponse) GetThrottleDuration() string`
@@ -168,79 +223,24 @@ HasTimeout returns a boolean if a field has been set.
 `func (o *JamfConnectorResponse) UnsetTimeout()`
 
 UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetProxy
+### GetType
 
-`func (o *JamfConnectorResponse) GetProxy() string`
+`func (o *JamfConnectorResponse) GetType() string`
 
-GetProxy returns the Proxy field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetProxyOk
+### GetTypeOk
 
-`func (o *JamfConnectorResponse) GetProxyOk() (*string, bool)`
+`func (o *JamfConnectorResponse) GetTypeOk() (*string, bool)`
 
-GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProxy
+### SetType
 
-`func (o *JamfConnectorResponse) SetProxy(v string)`
+`func (o *JamfConnectorResponse) SetType(v string)`
 
-SetProxy sets Proxy field to given value.
-
-### HasProxy
-
-`func (o *JamfConnectorResponse) HasProxy() bool`
-
-HasProxy returns a boolean if a field has been set.
-
-### SetProxyNil
-
-`func (o *JamfConnectorResponse) SetProxyNil(b bool)`
-
- SetProxyNil sets the value for Proxy to be an explicit nil
-
-### UnsetProxy
-`func (o *JamfConnectorResponse) UnsetProxy()`
-
-UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetEndpoint
-
-`func (o *JamfConnectorResponse) GetEndpoint() string`
-
-GetEndpoint returns the Endpoint field if non-nil, zero value otherwise.
-
-### GetEndpointOk
-
-`func (o *JamfConnectorResponse) GetEndpointOk() (*string, bool)`
-
-GetEndpointOk returns a tuple with the Endpoint field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEndpoint
-
-`func (o *JamfConnectorResponse) SetEndpoint(v string)`
-
-SetEndpoint sets Endpoint field to given value.
-
-
-### GetCredentials
-
-`func (o *JamfConnectorResponse) GetCredentials() string`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *JamfConnectorResponse) GetCredentialsOk() (*string, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *JamfConnectorResponse) SetCredentials(v string)`
-
-SetCredentials sets Credentials field to given value.
+SetType sets Type field to given value.
 
 
 

@@ -4,22 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Retries** | Pointer to **interface{}** | Number of retries when the notification fails (non 200 return code) | [optional] 
-**WebhookTemplate** | [**WebhookTemplate**](WebhookTemplate.md) |  | 
+**Id** | **string** | Object internal ID | 
 **Proxy** | Pointer to **NullableString** | Name of a Proxy to use while sending the webhook | [optional] 
+**Retries** | Pointer to **interface{}** | Number of retries when the notification fails (non 200 return code) | [optional] 
 **Timeout** | Pointer to **string** | Timeout for the webhook request | [optional] 
-**Name** | **string** | Name of the notification | 
-**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
-**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**Type** | **string** |  | 
+**WebhookTemplate** | [**WebhookTemplate**](WebhookTemplate.md) |  | 
 **Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
+**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**Name** | **string** | Name of the notification | 
 **RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
+**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
 
 ## Methods
 
 ### NewWebhookNotificationResponse
 
-`func NewWebhookNotificationResponse(type_ string, webhookTemplate WebhookTemplate, name string, events []string, ) *WebhookNotificationResponse`
+`func NewWebhookNotificationResponse(id string, type_ string, webhookTemplate WebhookTemplate, events []string, name string, ) *WebhookNotificationResponse`
 
 NewWebhookNotificationResponse instantiates a new WebhookNotificationResponse object
 This constructor will assign default values to properties that have it defined,
@@ -34,79 +35,24 @@ NewWebhookNotificationResponseWithDefaults instantiates a new WebhookNotificatio
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetType
+### GetId
 
-`func (o *WebhookNotificationResponse) GetType() string`
+`func (o *WebhookNotificationResponse) GetId() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetIdOk
 
-`func (o *WebhookNotificationResponse) GetTypeOk() (*string, bool)`
+`func (o *WebhookNotificationResponse) GetIdOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetId
 
-`func (o *WebhookNotificationResponse) SetType(v string)`
+`func (o *WebhookNotificationResponse) SetId(v string)`
 
-SetType sets Type field to given value.
-
-
-### GetRetries
-
-`func (o *WebhookNotificationResponse) GetRetries() interface{}`
-
-GetRetries returns the Retries field if non-nil, zero value otherwise.
-
-### GetRetriesOk
-
-`func (o *WebhookNotificationResponse) GetRetriesOk() (*interface{}, bool)`
-
-GetRetriesOk returns a tuple with the Retries field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRetries
-
-`func (o *WebhookNotificationResponse) SetRetries(v interface{})`
-
-SetRetries sets Retries field to given value.
-
-### HasRetries
-
-`func (o *WebhookNotificationResponse) HasRetries() bool`
-
-HasRetries returns a boolean if a field has been set.
-
-### SetRetriesNil
-
-`func (o *WebhookNotificationResponse) SetRetriesNil(b bool)`
-
- SetRetriesNil sets the value for Retries to be an explicit nil
-
-### UnsetRetries
-`func (o *WebhookNotificationResponse) UnsetRetries()`
-
-UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetWebhookTemplate
-
-`func (o *WebhookNotificationResponse) GetWebhookTemplate() WebhookTemplate`
-
-GetWebhookTemplate returns the WebhookTemplate field if non-nil, zero value otherwise.
-
-### GetWebhookTemplateOk
-
-`func (o *WebhookNotificationResponse) GetWebhookTemplateOk() (*WebhookTemplate, bool)`
-
-GetWebhookTemplateOk returns a tuple with the WebhookTemplate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWebhookTemplate
-
-`func (o *WebhookNotificationResponse) SetWebhookTemplate(v WebhookTemplate)`
-
-SetWebhookTemplate sets WebhookTemplate field to given value.
+SetId sets Id field to given value.
 
 
 ### GetProxy
@@ -144,6 +90,41 @@ HasProxy returns a boolean if a field has been set.
 `func (o *WebhookNotificationResponse) UnsetProxy()`
 
 UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+### GetRetries
+
+`func (o *WebhookNotificationResponse) GetRetries() interface{}`
+
+GetRetries returns the Retries field if non-nil, zero value otherwise.
+
+### GetRetriesOk
+
+`func (o *WebhookNotificationResponse) GetRetriesOk() (*interface{}, bool)`
+
+GetRetriesOk returns a tuple with the Retries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetries
+
+`func (o *WebhookNotificationResponse) SetRetries(v interface{})`
+
+SetRetries sets Retries field to given value.
+
+### HasRetries
+
+`func (o *WebhookNotificationResponse) HasRetries() bool`
+
+HasRetries returns a boolean if a field has been set.
+
+### SetRetriesNil
+
+`func (o *WebhookNotificationResponse) SetRetriesNil(b bool)`
+
+ SetRetriesNil sets the value for Retries to be an explicit nil
+
+### UnsetRetries
+`func (o *WebhookNotificationResponse) UnsetRetries()`
+
+UnsetRetries ensures that no value is present for Retries, not even an explicit nil
 ### GetTimeout
 
 `func (o *WebhookNotificationResponse) GetTimeout() string`
@@ -169,61 +150,66 @@ SetTimeout sets Timeout field to given value.
 
 HasTimeout returns a boolean if a field has been set.
 
-### GetName
+### GetType
 
-`func (o *WebhookNotificationResponse) GetName() string`
+`func (o *WebhookNotificationResponse) GetType() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetTypeOk
 
-`func (o *WebhookNotificationResponse) GetNameOk() (*string, bool)`
+`func (o *WebhookNotificationResponse) GetTypeOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetType
 
-`func (o *WebhookNotificationResponse) SetName(v string)`
+`func (o *WebhookNotificationResponse) SetType(v string)`
 
-SetName sets Name field to given value.
+SetType sets Type field to given value.
 
 
-### GetRunPeriod
+### GetWebhookTemplate
 
-`func (o *WebhookNotificationResponse) GetRunPeriod() string`
+`func (o *WebhookNotificationResponse) GetWebhookTemplate() WebhookTemplate`
 
-GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
+GetWebhookTemplate returns the WebhookTemplate field if non-nil, zero value otherwise.
 
-### GetRunPeriodOk
+### GetWebhookTemplateOk
 
-`func (o *WebhookNotificationResponse) GetRunPeriodOk() (*string, bool)`
+`func (o *WebhookNotificationResponse) GetWebhookTemplateOk() (*WebhookTemplate, bool)`
 
-GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
+GetWebhookTemplateOk returns a tuple with the WebhookTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRunPeriod
+### SetWebhookTemplate
 
-`func (o *WebhookNotificationResponse) SetRunPeriod(v string)`
+`func (o *WebhookNotificationResponse) SetWebhookTemplate(v WebhookTemplate)`
 
-SetRunPeriod sets RunPeriod field to given value.
+SetWebhookTemplate sets WebhookTemplate field to given value.
 
-### HasRunPeriod
 
-`func (o *WebhookNotificationResponse) HasRunPeriod() bool`
+### GetEvents
 
-HasRunPeriod returns a boolean if a field has been set.
+`func (o *WebhookNotificationResponse) GetEvents() []string`
 
-### SetRunPeriodNil
+GetEvents returns the Events field if non-nil, zero value otherwise.
 
-`func (o *WebhookNotificationResponse) SetRunPeriodNil(b bool)`
+### GetEventsOk
 
- SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
+`func (o *WebhookNotificationResponse) GetEventsOk() (*[]string, bool)`
 
-### UnsetRunPeriod
-`func (o *WebhookNotificationResponse) UnsetRunPeriod()`
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
+### SetEvents
+
+`func (o *WebhookNotificationResponse) SetEvents(v []string)`
+
+SetEvents sets Events field to given value.
+
+
 ### GetLicenseUsagePercent
 
 `func (o *WebhookNotificationResponse) GetLicenseUsagePercent() int64`
@@ -259,24 +245,24 @@ HasLicenseUsagePercent returns a boolean if a field has been set.
 `func (o *WebhookNotificationResponse) UnsetLicenseUsagePercent()`
 
 UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
-### GetEvents
+### GetName
 
-`func (o *WebhookNotificationResponse) GetEvents() []string`
+`func (o *WebhookNotificationResponse) GetName() string`
 
-GetEvents returns the Events field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetEventsOk
+### GetNameOk
 
-`func (o *WebhookNotificationResponse) GetEventsOk() (*[]string, bool)`
+`func (o *WebhookNotificationResponse) GetNameOk() (*string, bool)`
 
-GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEvents
+### SetName
 
-`func (o *WebhookNotificationResponse) SetEvents(v []string)`
+`func (o *WebhookNotificationResponse) SetName(v string)`
 
-SetEvents sets Events field to given value.
+SetName sets Name field to given value.
 
 
 ### GetRunOnRenewed
@@ -314,6 +300,41 @@ HasRunOnRenewed returns a boolean if a field has been set.
 `func (o *WebhookNotificationResponse) UnsetRunOnRenewed()`
 
 UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
+### GetRunPeriod
+
+`func (o *WebhookNotificationResponse) GetRunPeriod() string`
+
+GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
+
+### GetRunPeriodOk
+
+`func (o *WebhookNotificationResponse) GetRunPeriodOk() (*string, bool)`
+
+GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRunPeriod
+
+`func (o *WebhookNotificationResponse) SetRunPeriod(v string)`
+
+SetRunPeriod sets RunPeriod field to given value.
+
+### HasRunPeriod
+
+`func (o *WebhookNotificationResponse) HasRunPeriod() bool`
+
+HasRunPeriod returns a boolean if a field has been set.
+
+### SetRunPeriodNil
+
+`func (o *WebhookNotificationResponse) SetRunPeriodNil(b bool)`
+
+ SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
+
+### UnsetRunPeriod
+`func (o *WebhookNotificationResponse) UnsetRunPeriod()`
+
+UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

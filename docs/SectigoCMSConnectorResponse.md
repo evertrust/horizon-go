@@ -5,25 +5,25 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
-**Type** | **string** |  | 
-**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/api.security.credentials) to use to authenticate on the PKI | 
 **CustomerUri** | **string** |  | 
+**EndpointType** | Pointer to **string** |  | [optional] 
+**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**Name** | **string** |  | 
 **OrganizationId** | **int64** |  | 
 **Profile** | **string** |  | 
-**RetryInterval** | Pointer to **NullableString** |  | [optional] 
-**ValidDays** | Pointer to **NullableString** |  | [optional] 
-**EndpointType** | Pointer to **string** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
+**RetryInterval** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
+**ValidDays** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewSectigoCMSConnectorResponse
 
-`func NewSectigoCMSConnectorResponse(id string, name string, type_ string, loginCredentials string, customerUri string, organizationId int64, profile string, ) *SectigoCMSConnectorResponse`
+`func NewSectigoCMSConnectorResponse(id string, customerUri string, loginCredentials string, name string, organizationId int64, profile string, type_ string, ) *SectigoCMSConnectorResponse`
 
 NewSectigoCMSConnectorResponse instantiates a new SectigoCMSConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -58,45 +58,50 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetName
+### GetCustomerUri
 
-`func (o *SectigoCMSConnectorResponse) GetName() string`
+`func (o *SectigoCMSConnectorResponse) GetCustomerUri() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetCustomerUri returns the CustomerUri field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetCustomerUriOk
 
-`func (o *SectigoCMSConnectorResponse) GetNameOk() (*string, bool)`
+`func (o *SectigoCMSConnectorResponse) GetCustomerUriOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetCustomerUriOk returns a tuple with the CustomerUri field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetCustomerUri
 
-`func (o *SectigoCMSConnectorResponse) SetName(v string)`
+`func (o *SectigoCMSConnectorResponse) SetCustomerUri(v string)`
 
-SetName sets Name field to given value.
+SetCustomerUri sets CustomerUri field to given value.
 
 
-### GetType
+### GetEndpointType
 
-`func (o *SectigoCMSConnectorResponse) GetType() string`
+`func (o *SectigoCMSConnectorResponse) GetEndpointType() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetEndpointType returns the EndpointType field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetEndpointTypeOk
 
-`func (o *SectigoCMSConnectorResponse) GetTypeOk() (*string, bool)`
+`func (o *SectigoCMSConnectorResponse) GetEndpointTypeOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetEndpointTypeOk returns a tuple with the EndpointType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetEndpointType
 
-`func (o *SectigoCMSConnectorResponse) SetType(v string)`
+`func (o *SectigoCMSConnectorResponse) SetEndpointType(v string)`
 
-SetType sets Type field to given value.
+SetEndpointType sets EndpointType field to given value.
 
+### HasEndpointType
+
+`func (o *SectigoCMSConnectorResponse) HasEndpointType() bool`
+
+HasEndpointType returns a boolean if a field has been set.
 
 ### GetLoginCredentials
 
@@ -118,24 +123,24 @@ and a boolean to check if the value has been set.
 SetLoginCredentials sets LoginCredentials field to given value.
 
 
-### GetCustomerUri
+### GetName
 
-`func (o *SectigoCMSConnectorResponse) GetCustomerUri() string`
+`func (o *SectigoCMSConnectorResponse) GetName() string`
 
-GetCustomerUri returns the CustomerUri field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetCustomerUriOk
+### GetNameOk
 
-`func (o *SectigoCMSConnectorResponse) GetCustomerUriOk() (*string, bool)`
+`func (o *SectigoCMSConnectorResponse) GetNameOk() (*string, bool)`
 
-GetCustomerUriOk returns a tuple with the CustomerUri field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCustomerUri
+### SetName
 
-`func (o *SectigoCMSConnectorResponse) SetCustomerUri(v string)`
+`func (o *SectigoCMSConnectorResponse) SetName(v string)`
 
-SetCustomerUri sets CustomerUri field to given value.
+SetName sets Name field to given value.
 
 
 ### GetOrganizationId
@@ -178,136 +183,6 @@ and a boolean to check if the value has been set.
 SetProfile sets Profile field to given value.
 
 
-### GetRetryInterval
-
-`func (o *SectigoCMSConnectorResponse) GetRetryInterval() string`
-
-GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
-
-### GetRetryIntervalOk
-
-`func (o *SectigoCMSConnectorResponse) GetRetryIntervalOk() (*string, bool)`
-
-GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRetryInterval
-
-`func (o *SectigoCMSConnectorResponse) SetRetryInterval(v string)`
-
-SetRetryInterval sets RetryInterval field to given value.
-
-### HasRetryInterval
-
-`func (o *SectigoCMSConnectorResponse) HasRetryInterval() bool`
-
-HasRetryInterval returns a boolean if a field has been set.
-
-### SetRetryIntervalNil
-
-`func (o *SectigoCMSConnectorResponse) SetRetryIntervalNil(b bool)`
-
- SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
-
-### UnsetRetryInterval
-`func (o *SectigoCMSConnectorResponse) UnsetRetryInterval()`
-
-UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-### GetValidDays
-
-`func (o *SectigoCMSConnectorResponse) GetValidDays() string`
-
-GetValidDays returns the ValidDays field if non-nil, zero value otherwise.
-
-### GetValidDaysOk
-
-`func (o *SectigoCMSConnectorResponse) GetValidDaysOk() (*string, bool)`
-
-GetValidDaysOk returns a tuple with the ValidDays field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetValidDays
-
-`func (o *SectigoCMSConnectorResponse) SetValidDays(v string)`
-
-SetValidDays sets ValidDays field to given value.
-
-### HasValidDays
-
-`func (o *SectigoCMSConnectorResponse) HasValidDays() bool`
-
-HasValidDays returns a boolean if a field has been set.
-
-### SetValidDaysNil
-
-`func (o *SectigoCMSConnectorResponse) SetValidDaysNil(b bool)`
-
- SetValidDaysNil sets the value for ValidDays to be an explicit nil
-
-### UnsetValidDays
-`func (o *SectigoCMSConnectorResponse) UnsetValidDays()`
-
-UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
-### GetEndpointType
-
-`func (o *SectigoCMSConnectorResponse) GetEndpointType() string`
-
-GetEndpointType returns the EndpointType field if non-nil, zero value otherwise.
-
-### GetEndpointTypeOk
-
-`func (o *SectigoCMSConnectorResponse) GetEndpointTypeOk() (*string, bool)`
-
-GetEndpointTypeOk returns a tuple with the EndpointType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEndpointType
-
-`func (o *SectigoCMSConnectorResponse) SetEndpointType(v string)`
-
-SetEndpointType sets EndpointType field to given value.
-
-### HasEndpointType
-
-`func (o *SectigoCMSConnectorResponse) HasEndpointType() bool`
-
-HasEndpointType returns a boolean if a field has been set.
-
-### GetTimeout
-
-`func (o *SectigoCMSConnectorResponse) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *SectigoCMSConnectorResponse) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *SectigoCMSConnectorResponse) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *SectigoCMSConnectorResponse) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *SectigoCMSConnectorResponse) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *SectigoCMSConnectorResponse) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *SectigoCMSConnectorResponse) GetProxy() string`
@@ -378,6 +253,41 @@ HasQueue returns a boolean if a field has been set.
 `func (o *SectigoCMSConnectorResponse) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetRetryInterval
+
+`func (o *SectigoCMSConnectorResponse) GetRetryInterval() string`
+
+GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
+
+### GetRetryIntervalOk
+
+`func (o *SectigoCMSConnectorResponse) GetRetryIntervalOk() (*string, bool)`
+
+GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryInterval
+
+`func (o *SectigoCMSConnectorResponse) SetRetryInterval(v string)`
+
+SetRetryInterval sets RetryInterval field to given value.
+
+### HasRetryInterval
+
+`func (o *SectigoCMSConnectorResponse) HasRetryInterval() bool`
+
+HasRetryInterval returns a boolean if a field has been set.
+
+### SetRetryIntervalNil
+
+`func (o *SectigoCMSConnectorResponse) SetRetryIntervalNil(b bool)`
+
+ SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+
+### UnsetRetryInterval
+`func (o *SectigoCMSConnectorResponse) UnsetRetryInterval()`
+
+UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
 ### GetStatus
 
 `func (o *SectigoCMSConnectorResponse) GetStatus() PKIConnectorStatus`
@@ -413,6 +323,96 @@ HasStatus returns a boolean if a field has been set.
 `func (o *SectigoCMSConnectorResponse) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
+### GetTimeout
+
+`func (o *SectigoCMSConnectorResponse) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *SectigoCMSConnectorResponse) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *SectigoCMSConnectorResponse) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *SectigoCMSConnectorResponse) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *SectigoCMSConnectorResponse) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *SectigoCMSConnectorResponse) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *SectigoCMSConnectorResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *SectigoCMSConnectorResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *SectigoCMSConnectorResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
+### GetValidDays
+
+`func (o *SectigoCMSConnectorResponse) GetValidDays() string`
+
+GetValidDays returns the ValidDays field if non-nil, zero value otherwise.
+
+### GetValidDaysOk
+
+`func (o *SectigoCMSConnectorResponse) GetValidDaysOk() (*string, bool)`
+
+GetValidDaysOk returns a tuple with the ValidDays field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidDays
+
+`func (o *SectigoCMSConnectorResponse) SetValidDays(v string)`
+
+SetValidDays sets ValidDays field to given value.
+
+### HasValidDays
+
+`func (o *SectigoCMSConnectorResponse) HasValidDays() bool`
+
+HasValidDays returns a boolean if a field has been set.
+
+### SetValidDaysNil
+
+`func (o *SectigoCMSConnectorResponse) SetValidDaysNil(b bool)`
+
+ SetValidDaysNil sets the value for ValidDays to be an explicit nil
+
+### UnsetValidDays
+`func (o *SectigoCMSConnectorResponse) UnsetValidDays()`
+
+UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

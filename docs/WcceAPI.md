@@ -29,11 +29,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	wcceForestMapping := *openapiclient.NewWcceForestMapping("Forest_example", []openapiclient.WcceTemplateMapping{*openapiclient.NewWcceTemplateMapping("Template_example", "Profile_example", "EnrollmentMode_example")}) // WcceForestMapping | The WCCE forest mapping to register
+	wcceForestMapping := *openapiclient.NewWcceForestMapping("Forest_example", []openapiclient.WcceTemplateMapping{*openapiclient.NewWcceTemplateMapping("EnrollmentMode_example", "Profile_example", "Template_example")}) // WcceForestMapping | The WCCE forest mapping to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -95,7 +95,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -163,7 +163,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -233,7 +233,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -294,11 +294,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	wcceForestMapping := *openapiclient.NewWcceForestMapping("Forest_example", []openapiclient.WcceTemplateMapping{*openapiclient.NewWcceTemplateMapping("Template_example", "Profile_example", "EnrollmentMode_example")}) // WcceForestMapping | The WCCE forest mapping to update
+	wcceForestMapping := *openapiclient.NewWcceForestMapping("Forest_example", []openapiclient.WcceTemplateMapping{*openapiclient.NewWcceTemplateMapping("EnrollmentMode_example", "Profile_example", "Template_example")}) // WcceForestMapping | The WCCE forest mapping to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

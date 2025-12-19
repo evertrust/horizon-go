@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CaAdd
 
-> CertificateAuthorityResponseResponse CaAdd(ctx).CertificateAuthorityRequest(certificateAuthorityRequest).Execute()
+> CertificateAuthorityResponse CaAdd(ctx).CertificateAuthorityRequest(certificateAuthorityRequest).Execute()
 
 Register a new certificate authority
 
@@ -29,11 +29,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	certificateAuthorityRequest := *openapiclient.NewCertificateAuthorityRequest("Name_example", false, false, "OutdatedRevocationStatusPolicy_example", false) // CertificateAuthorityRequest | Certificate authority to register
+	certificateAuthorityRequest := *openapiclient.NewCertificateAuthorityRequest("Certificate_example", "Name_example", "OutdatedRevocationStatusPolicy_example", false, false, false) // CertificateAuthorityRequest | Certificate authority to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -42,7 +42,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CaAPI.CaAdd``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CaAdd`: CertificateAuthorityResponseResponse
+	// response from `CaAdd`: CertificateAuthorityResponse
 	fmt.Fprintf(os.Stdout, "Response from `CaAPI.CaAdd`: %v\n", resp)
 }
 ```
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CertificateAuthorityResponseResponse**](CertificateAuthorityResponseResponse.md)
+[**CertificateAuthorityResponse**](CertificateAuthorityResponse.md)
 
 ### Authorization
 
@@ -95,7 +95,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## CaGet
 
-> CertificateAuthorityResponseResponse CaGet(ctx, name).Execute()
+> CertificateAuthorityResponse CaGet(ctx, name).Execute()
 
 Retrieve an existing certificate authority
 
@@ -163,7 +163,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -176,7 +176,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CaAPI.CaGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CaGet`: CertificateAuthorityResponseResponse
+	// response from `CaGet`: CertificateAuthorityResponse
 	fmt.Fprintf(os.Stdout, "Response from `CaAPI.CaGet`: %v\n", resp)
 }
 ```
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CertificateAuthorityResponseResponse**](CertificateAuthorityResponseResponse.md)
+[**CertificateAuthorityResponse**](CertificateAuthorityResponse.md)
 
 ### Authorization
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## CaList
 
-> []CertificateAuthorityResponseResponse CaList(ctx).Execute()
+> []CertificateAuthorityResponse CaList(ctx).Execute()
 
 List the existing certificate authorities
 
@@ -233,7 +233,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -245,7 +245,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CaAPI.CaList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CaList`: []CertificateAuthorityResponseResponse
+	// response from `CaList`: []CertificateAuthorityResponse
 	fmt.Fprintf(os.Stdout, "Response from `CaAPI.CaList`: %v\n", resp)
 }
 ```
@@ -261,7 +261,7 @@ Other parameters are passed through a pointer to a apiCaListRequest struct via t
 
 ### Return type
 
-[**[]CertificateAuthorityResponseResponse**](CertificateAuthorityResponseResponse.md)
+[**[]CertificateAuthorityResponse**](CertificateAuthorityResponse.md)
 
 ### Authorization
 
@@ -279,7 +279,7 @@ Other parameters are passed through a pointer to a apiCaListRequest struct via t
 
 ## CaUpdate
 
-> CertificateAuthorityResponseResponse CaUpdate(ctx).CertificateAuthorityRequest(certificateAuthorityRequest).Execute()
+> CertificateAuthorityResponse CaUpdate(ctx).CertificateAuthorityRequest(certificateAuthorityRequest).Execute()
 
 Update an existing certificate authority
 
@@ -294,11 +294,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	certificateAuthorityRequest := *openapiclient.NewCertificateAuthorityRequest("Name_example", false, false, "OutdatedRevocationStatusPolicy_example", false) // CertificateAuthorityRequest | Certificate authority to update
+	certificateAuthorityRequest := *openapiclient.NewCertificateAuthorityRequest("Certificate_example", "Name_example", "OutdatedRevocationStatusPolicy_example", false, false, false) // CertificateAuthorityRequest | Certificate authority to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -307,7 +307,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CaAPI.CaUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CaUpdate`: CertificateAuthorityResponseResponse
+	// response from `CaUpdate`: CertificateAuthorityResponse
 	fmt.Fprintf(os.Stdout, "Response from `CaAPI.CaUpdate`: %v\n", resp)
 }
 ```
@@ -327,7 +327,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CertificateAuthorityResponseResponse**](CertificateAuthorityResponseResponse.md)
+[**CertificateAuthorityResponse**](CertificateAuthorityResponse.md)
 
 ### Authorization
 

@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Type** | **string** |  | 
-**ApiCredentials** | **string** | Name of the &#x60;api-key&#x60; [credentials](#tag/api.security.credentials) to use to authenticate on the PKI | 
+**ApiCredentials** | **string** | Name of the &#x60;api-key&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**CustomerId** | **string** |  | 
 **Environment** | **string** | The testing environment will use https://ote-api.nameshield.net endpoint  and the production will use https://api.nameshield.net  | 
+**Name** | **string** |  | 
 **OrganizationId** | **string** |  | 
 **ProductId** | **string** |  | 
-**CustomerId** | **string** |  | 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewNameshield
 
-`func NewNameshield(name string, type_ string, apiCredentials string, environment string, organizationId string, productId string, customerId string, ) *Nameshield`
+`func NewNameshield(apiCredentials string, customerId string, environment string, name string, organizationId string, productId string, type_ string, ) *Nameshield`
 
 NewNameshield instantiates a new Nameshield object
 This constructor will assign default values to properties that have it defined,
@@ -33,46 +33,6 @@ will change when the set of required properties is changed
 NewNameshieldWithDefaults instantiates a new Nameshield object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetName
-
-`func (o *Nameshield) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *Nameshield) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *Nameshield) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetType
-
-`func (o *Nameshield) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *Nameshield) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *Nameshield) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetApiCredentials
 
@@ -94,6 +54,26 @@ and a boolean to check if the value has been set.
 SetApiCredentials sets ApiCredentials field to given value.
 
 
+### GetCustomerId
+
+`func (o *Nameshield) GetCustomerId() string`
+
+GetCustomerId returns the CustomerId field if non-nil, zero value otherwise.
+
+### GetCustomerIdOk
+
+`func (o *Nameshield) GetCustomerIdOk() (*string, bool)`
+
+GetCustomerIdOk returns a tuple with the CustomerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomerId
+
+`func (o *Nameshield) SetCustomerId(v string)`
+
+SetCustomerId sets CustomerId field to given value.
+
+
 ### GetEnvironment
 
 `func (o *Nameshield) GetEnvironment() string`
@@ -112,6 +92,26 @@ and a boolean to check if the value has been set.
 `func (o *Nameshield) SetEnvironment(v string)`
 
 SetEnvironment sets Environment field to given value.
+
+
+### GetName
+
+`func (o *Nameshield) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *Nameshield) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *Nameshield) SetName(v string)`
+
+SetName sets Name field to given value.
 
 
 ### GetOrganizationId
@@ -154,61 +154,6 @@ and a boolean to check if the value has been set.
 SetProductId sets ProductId field to given value.
 
 
-### GetCustomerId
-
-`func (o *Nameshield) GetCustomerId() string`
-
-GetCustomerId returns the CustomerId field if non-nil, zero value otherwise.
-
-### GetCustomerIdOk
-
-`func (o *Nameshield) GetCustomerIdOk() (*string, bool)`
-
-GetCustomerIdOk returns a tuple with the CustomerId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCustomerId
-
-`func (o *Nameshield) SetCustomerId(v string)`
-
-SetCustomerId sets CustomerId field to given value.
-
-
-### GetTimeout
-
-`func (o *Nameshield) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *Nameshield) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *Nameshield) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *Nameshield) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *Nameshield) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *Nameshield) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *Nameshield) GetProxy() string`
@@ -279,6 +224,61 @@ HasQueue returns a boolean if a field has been set.
 `func (o *Nameshield) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetTimeout
+
+`func (o *Nameshield) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *Nameshield) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *Nameshield) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *Nameshield) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *Nameshield) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *Nameshield) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *Nameshield) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *Nameshield) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *Nameshield) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

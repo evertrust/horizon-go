@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Label** | **string** | The name of the label | 
-**Value** | Pointer to **NullableString** | The default value of the label element | [optional] 
 **ComputationRule** | Pointer to **NullableString** | The computation rule of the label element | [optional] 
-**Mandatory** | Pointer to **NullableBool** | Whether the label element is mandatory to submit a request | [optional] 
-**EditableByRequester** | Pointer to **NullableBool** | Whether the label element is editable by the requester | [optional] 
 **EditableByApprover** | Pointer to **NullableBool** | Whether the label element is editable by the approver | [optional] 
-**Regex** | Pointer to **NullableString** | The regex used to validate the label element | [optional] 
+**EditableByRequester** | Pointer to **NullableBool** | Whether the label element is editable by the requester | [optional] 
 **Enum** | Pointer to **[]string** | The whitelist used to validate the label element | [optional] 
+**Label** | **string** | The name of the label | 
+**Mandatory** | Pointer to **NullableBool** | Whether the label element is mandatory to submit a request | [optional] 
+**Regex** | Pointer to **NullableString** | The regex used to validate the label element | [optional] 
 **Suggestions** | Pointer to **[]string** | The suggestions used to recommend the label element values | [optional] 
+**Value** | Pointer to **NullableString** | The default value of the label element | [optional] 
 
 ## Methods
 
@@ -33,61 +33,6 @@ NewLabelElementWithDefaults instantiates a new LabelElement object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetLabel
-
-`func (o *LabelElement) GetLabel() string`
-
-GetLabel returns the Label field if non-nil, zero value otherwise.
-
-### GetLabelOk
-
-`func (o *LabelElement) GetLabelOk() (*string, bool)`
-
-GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLabel
-
-`func (o *LabelElement) SetLabel(v string)`
-
-SetLabel sets Label field to given value.
-
-
-### GetValue
-
-`func (o *LabelElement) GetValue() string`
-
-GetValue returns the Value field if non-nil, zero value otherwise.
-
-### GetValueOk
-
-`func (o *LabelElement) GetValueOk() (*string, bool)`
-
-GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetValue
-
-`func (o *LabelElement) SetValue(v string)`
-
-SetValue sets Value field to given value.
-
-### HasValue
-
-`func (o *LabelElement) HasValue() bool`
-
-HasValue returns a boolean if a field has been set.
-
-### SetValueNil
-
-`func (o *LabelElement) SetValueNil(b bool)`
-
- SetValueNil sets the value for Value to be an explicit nil
-
-### UnsetValue
-`func (o *LabelElement) UnsetValue()`
-
-UnsetValue ensures that no value is present for Value, not even an explicit nil
 ### GetComputationRule
 
 `func (o *LabelElement) GetComputationRule() string`
@@ -123,76 +68,6 @@ HasComputationRule returns a boolean if a field has been set.
 `func (o *LabelElement) UnsetComputationRule()`
 
 UnsetComputationRule ensures that no value is present for ComputationRule, not even an explicit nil
-### GetMandatory
-
-`func (o *LabelElement) GetMandatory() bool`
-
-GetMandatory returns the Mandatory field if non-nil, zero value otherwise.
-
-### GetMandatoryOk
-
-`func (o *LabelElement) GetMandatoryOk() (*bool, bool)`
-
-GetMandatoryOk returns a tuple with the Mandatory field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMandatory
-
-`func (o *LabelElement) SetMandatory(v bool)`
-
-SetMandatory sets Mandatory field to given value.
-
-### HasMandatory
-
-`func (o *LabelElement) HasMandatory() bool`
-
-HasMandatory returns a boolean if a field has been set.
-
-### SetMandatoryNil
-
-`func (o *LabelElement) SetMandatoryNil(b bool)`
-
- SetMandatoryNil sets the value for Mandatory to be an explicit nil
-
-### UnsetMandatory
-`func (o *LabelElement) UnsetMandatory()`
-
-UnsetMandatory ensures that no value is present for Mandatory, not even an explicit nil
-### GetEditableByRequester
-
-`func (o *LabelElement) GetEditableByRequester() bool`
-
-GetEditableByRequester returns the EditableByRequester field if non-nil, zero value otherwise.
-
-### GetEditableByRequesterOk
-
-`func (o *LabelElement) GetEditableByRequesterOk() (*bool, bool)`
-
-GetEditableByRequesterOk returns a tuple with the EditableByRequester field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEditableByRequester
-
-`func (o *LabelElement) SetEditableByRequester(v bool)`
-
-SetEditableByRequester sets EditableByRequester field to given value.
-
-### HasEditableByRequester
-
-`func (o *LabelElement) HasEditableByRequester() bool`
-
-HasEditableByRequester returns a boolean if a field has been set.
-
-### SetEditableByRequesterNil
-
-`func (o *LabelElement) SetEditableByRequesterNil(b bool)`
-
- SetEditableByRequesterNil sets the value for EditableByRequester to be an explicit nil
-
-### UnsetEditableByRequester
-`func (o *LabelElement) UnsetEditableByRequester()`
-
-UnsetEditableByRequester ensures that no value is present for EditableByRequester, not even an explicit nil
 ### GetEditableByApprover
 
 `func (o *LabelElement) GetEditableByApprover() bool`
@@ -228,41 +103,41 @@ HasEditableByApprover returns a boolean if a field has been set.
 `func (o *LabelElement) UnsetEditableByApprover()`
 
 UnsetEditableByApprover ensures that no value is present for EditableByApprover, not even an explicit nil
-### GetRegex
+### GetEditableByRequester
 
-`func (o *LabelElement) GetRegex() string`
+`func (o *LabelElement) GetEditableByRequester() bool`
 
-GetRegex returns the Regex field if non-nil, zero value otherwise.
+GetEditableByRequester returns the EditableByRequester field if non-nil, zero value otherwise.
 
-### GetRegexOk
+### GetEditableByRequesterOk
 
-`func (o *LabelElement) GetRegexOk() (*string, bool)`
+`func (o *LabelElement) GetEditableByRequesterOk() (*bool, bool)`
 
-GetRegexOk returns a tuple with the Regex field if it's non-nil, zero value otherwise
+GetEditableByRequesterOk returns a tuple with the EditableByRequester field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRegex
+### SetEditableByRequester
 
-`func (o *LabelElement) SetRegex(v string)`
+`func (o *LabelElement) SetEditableByRequester(v bool)`
 
-SetRegex sets Regex field to given value.
+SetEditableByRequester sets EditableByRequester field to given value.
 
-### HasRegex
+### HasEditableByRequester
 
-`func (o *LabelElement) HasRegex() bool`
+`func (o *LabelElement) HasEditableByRequester() bool`
 
-HasRegex returns a boolean if a field has been set.
+HasEditableByRequester returns a boolean if a field has been set.
 
-### SetRegexNil
+### SetEditableByRequesterNil
 
-`func (o *LabelElement) SetRegexNil(b bool)`
+`func (o *LabelElement) SetEditableByRequesterNil(b bool)`
 
- SetRegexNil sets the value for Regex to be an explicit nil
+ SetEditableByRequesterNil sets the value for EditableByRequester to be an explicit nil
 
-### UnsetRegex
-`func (o *LabelElement) UnsetRegex()`
+### UnsetEditableByRequester
+`func (o *LabelElement) UnsetEditableByRequester()`
 
-UnsetRegex ensures that no value is present for Regex, not even an explicit nil
+UnsetEditableByRequester ensures that no value is present for EditableByRequester, not even an explicit nil
 ### GetEnum
 
 `func (o *LabelElement) GetEnum() []string`
@@ -298,6 +173,96 @@ HasEnum returns a boolean if a field has been set.
 `func (o *LabelElement) UnsetEnum()`
 
 UnsetEnum ensures that no value is present for Enum, not even an explicit nil
+### GetLabel
+
+`func (o *LabelElement) GetLabel() string`
+
+GetLabel returns the Label field if non-nil, zero value otherwise.
+
+### GetLabelOk
+
+`func (o *LabelElement) GetLabelOk() (*string, bool)`
+
+GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabel
+
+`func (o *LabelElement) SetLabel(v string)`
+
+SetLabel sets Label field to given value.
+
+
+### GetMandatory
+
+`func (o *LabelElement) GetMandatory() bool`
+
+GetMandatory returns the Mandatory field if non-nil, zero value otherwise.
+
+### GetMandatoryOk
+
+`func (o *LabelElement) GetMandatoryOk() (*bool, bool)`
+
+GetMandatoryOk returns a tuple with the Mandatory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMandatory
+
+`func (o *LabelElement) SetMandatory(v bool)`
+
+SetMandatory sets Mandatory field to given value.
+
+### HasMandatory
+
+`func (o *LabelElement) HasMandatory() bool`
+
+HasMandatory returns a boolean if a field has been set.
+
+### SetMandatoryNil
+
+`func (o *LabelElement) SetMandatoryNil(b bool)`
+
+ SetMandatoryNil sets the value for Mandatory to be an explicit nil
+
+### UnsetMandatory
+`func (o *LabelElement) UnsetMandatory()`
+
+UnsetMandatory ensures that no value is present for Mandatory, not even an explicit nil
+### GetRegex
+
+`func (o *LabelElement) GetRegex() string`
+
+GetRegex returns the Regex field if non-nil, zero value otherwise.
+
+### GetRegexOk
+
+`func (o *LabelElement) GetRegexOk() (*string, bool)`
+
+GetRegexOk returns a tuple with the Regex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegex
+
+`func (o *LabelElement) SetRegex(v string)`
+
+SetRegex sets Regex field to given value.
+
+### HasRegex
+
+`func (o *LabelElement) HasRegex() bool`
+
+HasRegex returns a boolean if a field has been set.
+
+### SetRegexNil
+
+`func (o *LabelElement) SetRegexNil(b bool)`
+
+ SetRegexNil sets the value for Regex to be an explicit nil
+
+### UnsetRegex
+`func (o *LabelElement) UnsetRegex()`
+
+UnsetRegex ensures that no value is present for Regex, not even an explicit nil
 ### GetSuggestions
 
 `func (o *LabelElement) GetSuggestions() []string`
@@ -333,6 +298,41 @@ HasSuggestions returns a boolean if a field has been set.
 `func (o *LabelElement) UnsetSuggestions()`
 
 UnsetSuggestions ensures that no value is present for Suggestions, not even an explicit nil
+### GetValue
+
+`func (o *LabelElement) GetValue() string`
+
+GetValue returns the Value field if non-nil, zero value otherwise.
+
+### GetValueOk
+
+`func (o *LabelElement) GetValueOk() (*string, bool)`
+
+GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValue
+
+`func (o *LabelElement) SetValue(v string)`
+
+SetValue sets Value field to given value.
+
+### HasValue
+
+`func (o *LabelElement) HasValue() bool`
+
+HasValue returns a boolean if a field has been set.
+
+### SetValueNil
+
+`func (o *LabelElement) SetValueNil(b bool)`
+
+ SetValueNil sets the value for Value to be an explicit nil
+
+### UnsetValue
+`func (o *LabelElement) UnsetValue()`
+
+UnsetValue ensures that no value is present for Value, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

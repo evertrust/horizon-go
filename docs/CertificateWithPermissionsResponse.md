@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Certificate** | [**Certificate**](Certificate.md) | The certificate object | 
+**Certificate** | [**CertificateResponse**](CertificateResponse.md) | The certificate object | 
 **Permissions** | [**CertificatePermissions**](CertificatePermissions.md) | The permissions of the currently authenticated principal on the certificate | 
 
 ## Methods
 
 ### NewCertificateWithPermissionsResponse
 
-`func NewCertificateWithPermissionsResponse(certificate Certificate, permissions CertificatePermissions, ) *CertificateWithPermissionsResponse`
+`func NewCertificateWithPermissionsResponse(certificate CertificateResponse, permissions CertificatePermissions, ) *CertificateWithPermissionsResponse`
 
 NewCertificateWithPermissionsResponse instantiates a new CertificateWithPermissionsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCertificate
 
-`func (o *CertificateWithPermissionsResponse) GetCertificate() Certificate`
+`func (o *CertificateWithPermissionsResponse) GetCertificate() CertificateResponse`
 
 GetCertificate returns the Certificate field if non-nil, zero value otherwise.
 
 ### GetCertificateOk
 
-`func (o *CertificateWithPermissionsResponse) GetCertificateOk() (*Certificate, bool)`
+`func (o *CertificateWithPermissionsResponse) GetCertificateOk() (*CertificateResponse, bool)`
 
 GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCertificate
 
-`func (o *CertificateWithPermissionsResponse) SetCertificate(v Certificate)`
+`func (o *CertificateWithPermissionsResponse) SetCertificate(v CertificateResponse)`
 
 SetCertificate sets Certificate field to given value.
 

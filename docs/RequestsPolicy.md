@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enroll** | Pointer to **NullableString** |  | [optional] 
-**Revoke** | Pointer to **NullableString** |  | [optional] 
-**Recover** | Pointer to **NullableString** |  | [optional] 
-**Update** | Pointer to **NullableString** |  | [optional] 
 **Migrate** | Pointer to **NullableString** |  | [optional] 
+**Recover** | Pointer to **NullableString** |  | [optional] 
 **Renew** | Pointer to **NullableString** |  | [optional] 
+**Revoke** | Pointer to **NullableString** |  | [optional] 
+**Update** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -65,111 +65,6 @@ HasEnroll returns a boolean if a field has been set.
 `func (o *RequestsPolicy) UnsetEnroll()`
 
 UnsetEnroll ensures that no value is present for Enroll, not even an explicit nil
-### GetRevoke
-
-`func (o *RequestsPolicy) GetRevoke() string`
-
-GetRevoke returns the Revoke field if non-nil, zero value otherwise.
-
-### GetRevokeOk
-
-`func (o *RequestsPolicy) GetRevokeOk() (*string, bool)`
-
-GetRevokeOk returns a tuple with the Revoke field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRevoke
-
-`func (o *RequestsPolicy) SetRevoke(v string)`
-
-SetRevoke sets Revoke field to given value.
-
-### HasRevoke
-
-`func (o *RequestsPolicy) HasRevoke() bool`
-
-HasRevoke returns a boolean if a field has been set.
-
-### SetRevokeNil
-
-`func (o *RequestsPolicy) SetRevokeNil(b bool)`
-
- SetRevokeNil sets the value for Revoke to be an explicit nil
-
-### UnsetRevoke
-`func (o *RequestsPolicy) UnsetRevoke()`
-
-UnsetRevoke ensures that no value is present for Revoke, not even an explicit nil
-### GetRecover
-
-`func (o *RequestsPolicy) GetRecover() string`
-
-GetRecover returns the Recover field if non-nil, zero value otherwise.
-
-### GetRecoverOk
-
-`func (o *RequestsPolicy) GetRecoverOk() (*string, bool)`
-
-GetRecoverOk returns a tuple with the Recover field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRecover
-
-`func (o *RequestsPolicy) SetRecover(v string)`
-
-SetRecover sets Recover field to given value.
-
-### HasRecover
-
-`func (o *RequestsPolicy) HasRecover() bool`
-
-HasRecover returns a boolean if a field has been set.
-
-### SetRecoverNil
-
-`func (o *RequestsPolicy) SetRecoverNil(b bool)`
-
- SetRecoverNil sets the value for Recover to be an explicit nil
-
-### UnsetRecover
-`func (o *RequestsPolicy) UnsetRecover()`
-
-UnsetRecover ensures that no value is present for Recover, not even an explicit nil
-### GetUpdate
-
-`func (o *RequestsPolicy) GetUpdate() string`
-
-GetUpdate returns the Update field if non-nil, zero value otherwise.
-
-### GetUpdateOk
-
-`func (o *RequestsPolicy) GetUpdateOk() (*string, bool)`
-
-GetUpdateOk returns a tuple with the Update field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdate
-
-`func (o *RequestsPolicy) SetUpdate(v string)`
-
-SetUpdate sets Update field to given value.
-
-### HasUpdate
-
-`func (o *RequestsPolicy) HasUpdate() bool`
-
-HasUpdate returns a boolean if a field has been set.
-
-### SetUpdateNil
-
-`func (o *RequestsPolicy) SetUpdateNil(b bool)`
-
- SetUpdateNil sets the value for Update to be an explicit nil
-
-### UnsetUpdate
-`func (o *RequestsPolicy) UnsetUpdate()`
-
-UnsetUpdate ensures that no value is present for Update, not even an explicit nil
 ### GetMigrate
 
 `func (o *RequestsPolicy) GetMigrate() string`
@@ -205,6 +100,41 @@ HasMigrate returns a boolean if a field has been set.
 `func (o *RequestsPolicy) UnsetMigrate()`
 
 UnsetMigrate ensures that no value is present for Migrate, not even an explicit nil
+### GetRecover
+
+`func (o *RequestsPolicy) GetRecover() string`
+
+GetRecover returns the Recover field if non-nil, zero value otherwise.
+
+### GetRecoverOk
+
+`func (o *RequestsPolicy) GetRecoverOk() (*string, bool)`
+
+GetRecoverOk returns a tuple with the Recover field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRecover
+
+`func (o *RequestsPolicy) SetRecover(v string)`
+
+SetRecover sets Recover field to given value.
+
+### HasRecover
+
+`func (o *RequestsPolicy) HasRecover() bool`
+
+HasRecover returns a boolean if a field has been set.
+
+### SetRecoverNil
+
+`func (o *RequestsPolicy) SetRecoverNil(b bool)`
+
+ SetRecoverNil sets the value for Recover to be an explicit nil
+
+### UnsetRecover
+`func (o *RequestsPolicy) UnsetRecover()`
+
+UnsetRecover ensures that no value is present for Recover, not even an explicit nil
 ### GetRenew
 
 `func (o *RequestsPolicy) GetRenew() string`
@@ -240,6 +170,76 @@ HasRenew returns a boolean if a field has been set.
 `func (o *RequestsPolicy) UnsetRenew()`
 
 UnsetRenew ensures that no value is present for Renew, not even an explicit nil
+### GetRevoke
+
+`func (o *RequestsPolicy) GetRevoke() string`
+
+GetRevoke returns the Revoke field if non-nil, zero value otherwise.
+
+### GetRevokeOk
+
+`func (o *RequestsPolicy) GetRevokeOk() (*string, bool)`
+
+GetRevokeOk returns a tuple with the Revoke field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevoke
+
+`func (o *RequestsPolicy) SetRevoke(v string)`
+
+SetRevoke sets Revoke field to given value.
+
+### HasRevoke
+
+`func (o *RequestsPolicy) HasRevoke() bool`
+
+HasRevoke returns a boolean if a field has been set.
+
+### SetRevokeNil
+
+`func (o *RequestsPolicy) SetRevokeNil(b bool)`
+
+ SetRevokeNil sets the value for Revoke to be an explicit nil
+
+### UnsetRevoke
+`func (o *RequestsPolicy) UnsetRevoke()`
+
+UnsetRevoke ensures that no value is present for Revoke, not even an explicit nil
+### GetUpdate
+
+`func (o *RequestsPolicy) GetUpdate() string`
+
+GetUpdate returns the Update field if non-nil, zero value otherwise.
+
+### GetUpdateOk
+
+`func (o *RequestsPolicy) GetUpdateOk() (*string, bool)`
+
+GetUpdateOk returns a tuple with the Update field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdate
+
+`func (o *RequestsPolicy) SetUpdate(v string)`
+
+SetUpdate sets Update field to given value.
+
+### HasUpdate
+
+`func (o *RequestsPolicy) HasUpdate() bool`
+
+HasUpdate returns a boolean if a field has been set.
+
+### SetUpdateNil
+
+`func (o *RequestsPolicy) SetUpdateNil(b bool)`
+
+ SetUpdateNil sets the value for Update to be an explicit nil
+
+### UnsetUpdate
+`func (o *RequestsPolicy) UnsetUpdate()`
+
+UnsetUpdate ensures that no value is present for Update, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

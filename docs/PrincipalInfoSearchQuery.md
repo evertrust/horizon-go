@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Identifier** | Pointer to **NullableString** | The identifier of the principal | [optional] 
 **Contact** | Pointer to **NullableString** | The contact e-mail of the principal | [optional] 
-**Role** | Pointer to **NullableString** | The role of the principal | [optional] 
-**Team** | Pointer to **NullableString** | The team of the principal | [optional] 
-**SortedBy** | Pointer to [**[]SortElement**](SortElement.md) | How to sort the results of the search | [optional] 
+**Identifier** | Pointer to **NullableString** | The identifier of the principal | [optional] 
 **PageIndex** | Pointer to **NullableInt64** | Which page result to display | [optional] 
 **PageSize** | Pointer to **NullableInt64** | How many results to display per page | [optional] 
+**Role** | Pointer to **NullableString** | The role of the principal | [optional] 
+**SortedBy** | Pointer to [**[]SortElement**](SortElement.md) | How to sort the results of the search | [optional] 
+**StrictSearch** | Pointer to **NullableBool** | If enabled, &#x60;role&#x60;, &#x60;identifier&#x60; and &#x60;team&#x60; fields will list exact matches only | [optional] [default to false]
+**Team** | Pointer to **NullableString** | The team of the principal | [optional] 
 **WithCount** | Pointer to **NullableBool** | Whether to include the total number of results in the response | [optional] 
 
 ## Methods
@@ -32,41 +33,6 @@ NewPrincipalInfoSearchQueryWithDefaults instantiates a new PrincipalInfoSearchQu
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetIdentifier
-
-`func (o *PrincipalInfoSearchQuery) GetIdentifier() string`
-
-GetIdentifier returns the Identifier field if non-nil, zero value otherwise.
-
-### GetIdentifierOk
-
-`func (o *PrincipalInfoSearchQuery) GetIdentifierOk() (*string, bool)`
-
-GetIdentifierOk returns a tuple with the Identifier field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIdentifier
-
-`func (o *PrincipalInfoSearchQuery) SetIdentifier(v string)`
-
-SetIdentifier sets Identifier field to given value.
-
-### HasIdentifier
-
-`func (o *PrincipalInfoSearchQuery) HasIdentifier() bool`
-
-HasIdentifier returns a boolean if a field has been set.
-
-### SetIdentifierNil
-
-`func (o *PrincipalInfoSearchQuery) SetIdentifierNil(b bool)`
-
- SetIdentifierNil sets the value for Identifier to be an explicit nil
-
-### UnsetIdentifier
-`func (o *PrincipalInfoSearchQuery) UnsetIdentifier()`
-
-UnsetIdentifier ensures that no value is present for Identifier, not even an explicit nil
 ### GetContact
 
 `func (o *PrincipalInfoSearchQuery) GetContact() string`
@@ -102,111 +68,41 @@ HasContact returns a boolean if a field has been set.
 `func (o *PrincipalInfoSearchQuery) UnsetContact()`
 
 UnsetContact ensures that no value is present for Contact, not even an explicit nil
-### GetRole
+### GetIdentifier
 
-`func (o *PrincipalInfoSearchQuery) GetRole() string`
+`func (o *PrincipalInfoSearchQuery) GetIdentifier() string`
 
-GetRole returns the Role field if non-nil, zero value otherwise.
+GetIdentifier returns the Identifier field if non-nil, zero value otherwise.
 
-### GetRoleOk
+### GetIdentifierOk
 
-`func (o *PrincipalInfoSearchQuery) GetRoleOk() (*string, bool)`
+`func (o *PrincipalInfoSearchQuery) GetIdentifierOk() (*string, bool)`
 
-GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+GetIdentifierOk returns a tuple with the Identifier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRole
+### SetIdentifier
 
-`func (o *PrincipalInfoSearchQuery) SetRole(v string)`
+`func (o *PrincipalInfoSearchQuery) SetIdentifier(v string)`
 
-SetRole sets Role field to given value.
+SetIdentifier sets Identifier field to given value.
 
-### HasRole
+### HasIdentifier
 
-`func (o *PrincipalInfoSearchQuery) HasRole() bool`
+`func (o *PrincipalInfoSearchQuery) HasIdentifier() bool`
 
-HasRole returns a boolean if a field has been set.
+HasIdentifier returns a boolean if a field has been set.
 
-### SetRoleNil
+### SetIdentifierNil
 
-`func (o *PrincipalInfoSearchQuery) SetRoleNil(b bool)`
+`func (o *PrincipalInfoSearchQuery) SetIdentifierNil(b bool)`
 
- SetRoleNil sets the value for Role to be an explicit nil
+ SetIdentifierNil sets the value for Identifier to be an explicit nil
 
-### UnsetRole
-`func (o *PrincipalInfoSearchQuery) UnsetRole()`
+### UnsetIdentifier
+`func (o *PrincipalInfoSearchQuery) UnsetIdentifier()`
 
-UnsetRole ensures that no value is present for Role, not even an explicit nil
-### GetTeam
-
-`func (o *PrincipalInfoSearchQuery) GetTeam() string`
-
-GetTeam returns the Team field if non-nil, zero value otherwise.
-
-### GetTeamOk
-
-`func (o *PrincipalInfoSearchQuery) GetTeamOk() (*string, bool)`
-
-GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTeam
-
-`func (o *PrincipalInfoSearchQuery) SetTeam(v string)`
-
-SetTeam sets Team field to given value.
-
-### HasTeam
-
-`func (o *PrincipalInfoSearchQuery) HasTeam() bool`
-
-HasTeam returns a boolean if a field has been set.
-
-### SetTeamNil
-
-`func (o *PrincipalInfoSearchQuery) SetTeamNil(b bool)`
-
- SetTeamNil sets the value for Team to be an explicit nil
-
-### UnsetTeam
-`func (o *PrincipalInfoSearchQuery) UnsetTeam()`
-
-UnsetTeam ensures that no value is present for Team, not even an explicit nil
-### GetSortedBy
-
-`func (o *PrincipalInfoSearchQuery) GetSortedBy() []SortElement`
-
-GetSortedBy returns the SortedBy field if non-nil, zero value otherwise.
-
-### GetSortedByOk
-
-`func (o *PrincipalInfoSearchQuery) GetSortedByOk() (*[]SortElement, bool)`
-
-GetSortedByOk returns a tuple with the SortedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSortedBy
-
-`func (o *PrincipalInfoSearchQuery) SetSortedBy(v []SortElement)`
-
-SetSortedBy sets SortedBy field to given value.
-
-### HasSortedBy
-
-`func (o *PrincipalInfoSearchQuery) HasSortedBy() bool`
-
-HasSortedBy returns a boolean if a field has been set.
-
-### SetSortedByNil
-
-`func (o *PrincipalInfoSearchQuery) SetSortedByNil(b bool)`
-
- SetSortedByNil sets the value for SortedBy to be an explicit nil
-
-### UnsetSortedBy
-`func (o *PrincipalInfoSearchQuery) UnsetSortedBy()`
-
-UnsetSortedBy ensures that no value is present for SortedBy, not even an explicit nil
+UnsetIdentifier ensures that no value is present for Identifier, not even an explicit nil
 ### GetPageIndex
 
 `func (o *PrincipalInfoSearchQuery) GetPageIndex() int64`
@@ -277,6 +173,146 @@ HasPageSize returns a boolean if a field has been set.
 `func (o *PrincipalInfoSearchQuery) UnsetPageSize()`
 
 UnsetPageSize ensures that no value is present for PageSize, not even an explicit nil
+### GetRole
+
+`func (o *PrincipalInfoSearchQuery) GetRole() string`
+
+GetRole returns the Role field if non-nil, zero value otherwise.
+
+### GetRoleOk
+
+`func (o *PrincipalInfoSearchQuery) GetRoleOk() (*string, bool)`
+
+GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRole
+
+`func (o *PrincipalInfoSearchQuery) SetRole(v string)`
+
+SetRole sets Role field to given value.
+
+### HasRole
+
+`func (o *PrincipalInfoSearchQuery) HasRole() bool`
+
+HasRole returns a boolean if a field has been set.
+
+### SetRoleNil
+
+`func (o *PrincipalInfoSearchQuery) SetRoleNil(b bool)`
+
+ SetRoleNil sets the value for Role to be an explicit nil
+
+### UnsetRole
+`func (o *PrincipalInfoSearchQuery) UnsetRole()`
+
+UnsetRole ensures that no value is present for Role, not even an explicit nil
+### GetSortedBy
+
+`func (o *PrincipalInfoSearchQuery) GetSortedBy() []SortElement`
+
+GetSortedBy returns the SortedBy field if non-nil, zero value otherwise.
+
+### GetSortedByOk
+
+`func (o *PrincipalInfoSearchQuery) GetSortedByOk() (*[]SortElement, bool)`
+
+GetSortedByOk returns a tuple with the SortedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSortedBy
+
+`func (o *PrincipalInfoSearchQuery) SetSortedBy(v []SortElement)`
+
+SetSortedBy sets SortedBy field to given value.
+
+### HasSortedBy
+
+`func (o *PrincipalInfoSearchQuery) HasSortedBy() bool`
+
+HasSortedBy returns a boolean if a field has been set.
+
+### SetSortedByNil
+
+`func (o *PrincipalInfoSearchQuery) SetSortedByNil(b bool)`
+
+ SetSortedByNil sets the value for SortedBy to be an explicit nil
+
+### UnsetSortedBy
+`func (o *PrincipalInfoSearchQuery) UnsetSortedBy()`
+
+UnsetSortedBy ensures that no value is present for SortedBy, not even an explicit nil
+### GetStrictSearch
+
+`func (o *PrincipalInfoSearchQuery) GetStrictSearch() bool`
+
+GetStrictSearch returns the StrictSearch field if non-nil, zero value otherwise.
+
+### GetStrictSearchOk
+
+`func (o *PrincipalInfoSearchQuery) GetStrictSearchOk() (*bool, bool)`
+
+GetStrictSearchOk returns a tuple with the StrictSearch field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStrictSearch
+
+`func (o *PrincipalInfoSearchQuery) SetStrictSearch(v bool)`
+
+SetStrictSearch sets StrictSearch field to given value.
+
+### HasStrictSearch
+
+`func (o *PrincipalInfoSearchQuery) HasStrictSearch() bool`
+
+HasStrictSearch returns a boolean if a field has been set.
+
+### SetStrictSearchNil
+
+`func (o *PrincipalInfoSearchQuery) SetStrictSearchNil(b bool)`
+
+ SetStrictSearchNil sets the value for StrictSearch to be an explicit nil
+
+### UnsetStrictSearch
+`func (o *PrincipalInfoSearchQuery) UnsetStrictSearch()`
+
+UnsetStrictSearch ensures that no value is present for StrictSearch, not even an explicit nil
+### GetTeam
+
+`func (o *PrincipalInfoSearchQuery) GetTeam() string`
+
+GetTeam returns the Team field if non-nil, zero value otherwise.
+
+### GetTeamOk
+
+`func (o *PrincipalInfoSearchQuery) GetTeamOk() (*string, bool)`
+
+GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeam
+
+`func (o *PrincipalInfoSearchQuery) SetTeam(v string)`
+
+SetTeam sets Team field to given value.
+
+### HasTeam
+
+`func (o *PrincipalInfoSearchQuery) HasTeam() bool`
+
+HasTeam returns a boolean if a field has been set.
+
+### SetTeamNil
+
+`func (o *PrincipalInfoSearchQuery) SetTeamNil(b bool)`
+
+ SetTeamNil sets the value for Team to be an explicit nil
+
+### UnsetTeam
+`func (o *PrincipalInfoSearchQuery) UnsetTeam()`
+
+UnsetTeam ensures that no value is present for Team, not even an explicit nil
 ### GetWithCount
 
 `func (o *PrincipalInfoSearchQuery) GetWithCount() bool`

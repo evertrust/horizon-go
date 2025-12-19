@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Capabilities** | Pointer to [**NullableCertificateProfileCryptoPolicy**](CertificateProfileCryptoPolicy.md) | Describes how certificates will be enrolled on this profile | [optional] 
+**Capabilities** | Pointer to [**NullableManagedCertificateProfileCryptoPolicy**](ManagedCertificateProfileCryptoPolicy.md) | Describes how certificates will be enrolled on this profile | [optional] 
 **PasswordPolicy** | Pointer to [**NullablePasswordPolicy**](PasswordPolicy.md) | The password policy that will be used to generate the certificate&#39;s PKCS#12 password | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCapabilities
 
-`func (o *WebRARenewRequestTemplateResponse) GetCapabilities() CertificateProfileCryptoPolicy`
+`func (o *WebRARenewRequestTemplateResponse) GetCapabilities() ManagedCertificateProfileCryptoPolicy`
 
 GetCapabilities returns the Capabilities field if non-nil, zero value otherwise.
 
 ### GetCapabilitiesOk
 
-`func (o *WebRARenewRequestTemplateResponse) GetCapabilitiesOk() (*CertificateProfileCryptoPolicy, bool)`
+`func (o *WebRARenewRequestTemplateResponse) GetCapabilitiesOk() (*ManagedCertificateProfileCryptoPolicy, bool)`
 
 GetCapabilitiesOk returns a tuple with the Capabilities field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCapabilities
 
-`func (o *WebRARenewRequestTemplateResponse) SetCapabilities(v CertificateProfileCryptoPolicy)`
+`func (o *WebRARenewRequestTemplateResponse) SetCapabilities(v ManagedCertificateProfileCryptoPolicy)`
 
 SetCapabilities sets Capabilities field to given value.
 

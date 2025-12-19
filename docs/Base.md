@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the notification | [optional] 
-**Type** | Pointer to **string** | The type of notification | [optional] 
-**Retries** | Pointer to **NullableInt64** | Number of retries when the notification fails | [optional] 
-**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
-**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
 **Events** | Pointer to **[]string** | Event on which the notification runs. This MUST contain only one value. | [optional] 
+**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**Name** | Pointer to **string** | Name of the notification | [optional] 
+**Retries** | Pointer to **NullableInt64** | Number of retries when the notification fails | [optional] 
 **RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
+**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
+**Type** | Pointer to **string** | The type of notification | [optional] 
 
 ## Methods
 
@@ -31,6 +31,66 @@ NewBaseWithDefaults instantiates a new Base object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetEvents
+
+`func (o *Base) GetEvents() []string`
+
+GetEvents returns the Events field if non-nil, zero value otherwise.
+
+### GetEventsOk
+
+`func (o *Base) GetEventsOk() (*[]string, bool)`
+
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvents
+
+`func (o *Base) SetEvents(v []string)`
+
+SetEvents sets Events field to given value.
+
+### HasEvents
+
+`func (o *Base) HasEvents() bool`
+
+HasEvents returns a boolean if a field has been set.
+
+### GetLicenseUsagePercent
+
+`func (o *Base) GetLicenseUsagePercent() int64`
+
+GetLicenseUsagePercent returns the LicenseUsagePercent field if non-nil, zero value otherwise.
+
+### GetLicenseUsagePercentOk
+
+`func (o *Base) GetLicenseUsagePercentOk() (*int64, bool)`
+
+GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLicenseUsagePercent
+
+`func (o *Base) SetLicenseUsagePercent(v int64)`
+
+SetLicenseUsagePercent sets LicenseUsagePercent field to given value.
+
+### HasLicenseUsagePercent
+
+`func (o *Base) HasLicenseUsagePercent() bool`
+
+HasLicenseUsagePercent returns a boolean if a field has been set.
+
+### SetLicenseUsagePercentNil
+
+`func (o *Base) SetLicenseUsagePercentNil(b bool)`
+
+ SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
+
+### UnsetLicenseUsagePercent
+`func (o *Base) UnsetLicenseUsagePercent()`
+
+UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
 ### GetName
 
 `func (o *Base) GetName() string`
@@ -55,31 +115,6 @@ SetName sets Name field to given value.
 `func (o *Base) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *Base) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *Base) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *Base) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *Base) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetRetries
 
@@ -116,101 +151,6 @@ HasRetries returns a boolean if a field has been set.
 `func (o *Base) UnsetRetries()`
 
 UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetRunPeriod
-
-`func (o *Base) GetRunPeriod() string`
-
-GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
-
-### GetRunPeriodOk
-
-`func (o *Base) GetRunPeriodOk() (*string, bool)`
-
-GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRunPeriod
-
-`func (o *Base) SetRunPeriod(v string)`
-
-SetRunPeriod sets RunPeriod field to given value.
-
-### HasRunPeriod
-
-`func (o *Base) HasRunPeriod() bool`
-
-HasRunPeriod returns a boolean if a field has been set.
-
-### SetRunPeriodNil
-
-`func (o *Base) SetRunPeriodNil(b bool)`
-
- SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
-
-### UnsetRunPeriod
-`func (o *Base) UnsetRunPeriod()`
-
-UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
-### GetLicenseUsagePercent
-
-`func (o *Base) GetLicenseUsagePercent() int64`
-
-GetLicenseUsagePercent returns the LicenseUsagePercent field if non-nil, zero value otherwise.
-
-### GetLicenseUsagePercentOk
-
-`func (o *Base) GetLicenseUsagePercentOk() (*int64, bool)`
-
-GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLicenseUsagePercent
-
-`func (o *Base) SetLicenseUsagePercent(v int64)`
-
-SetLicenseUsagePercent sets LicenseUsagePercent field to given value.
-
-### HasLicenseUsagePercent
-
-`func (o *Base) HasLicenseUsagePercent() bool`
-
-HasLicenseUsagePercent returns a boolean if a field has been set.
-
-### SetLicenseUsagePercentNil
-
-`func (o *Base) SetLicenseUsagePercentNil(b bool)`
-
- SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
-
-### UnsetLicenseUsagePercent
-`func (o *Base) UnsetLicenseUsagePercent()`
-
-UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
-### GetEvents
-
-`func (o *Base) GetEvents() []string`
-
-GetEvents returns the Events field if non-nil, zero value otherwise.
-
-### GetEventsOk
-
-`func (o *Base) GetEventsOk() (*[]string, bool)`
-
-GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEvents
-
-`func (o *Base) SetEvents(v []string)`
-
-SetEvents sets Events field to given value.
-
-### HasEvents
-
-`func (o *Base) HasEvents() bool`
-
-HasEvents returns a boolean if a field has been set.
-
 ### GetRunOnRenewed
 
 `func (o *Base) GetRunOnRenewed() bool`
@@ -246,6 +186,66 @@ HasRunOnRenewed returns a boolean if a field has been set.
 `func (o *Base) UnsetRunOnRenewed()`
 
 UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
+### GetRunPeriod
+
+`func (o *Base) GetRunPeriod() string`
+
+GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
+
+### GetRunPeriodOk
+
+`func (o *Base) GetRunPeriodOk() (*string, bool)`
+
+GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRunPeriod
+
+`func (o *Base) SetRunPeriod(v string)`
+
+SetRunPeriod sets RunPeriod field to given value.
+
+### HasRunPeriod
+
+`func (o *Base) HasRunPeriod() bool`
+
+HasRunPeriod returns a boolean if a field has been set.
+
+### SetRunPeriodNil
+
+`func (o *Base) SetRunPeriodNil(b bool)`
+
+ SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
+
+### UnsetRunPeriod
+`func (o *Base) UnsetRunPeriod()`
+
+UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
+### GetType
+
+`func (o *Base) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *Base) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *Base) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *Base) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

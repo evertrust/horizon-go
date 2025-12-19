@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
 **Certificate** | [**CFCertificate**](CFCertificate.md) |  | 
+**Name** | **string** |  | 
 **Subordinates** | Pointer to [**[]TrustChainAnchor**](TrustChainAnchor.md) |  | [optional] 
 
 ## Methods
 
 ### NewTrustChainAnchorResponse
 
-`func NewTrustChainAnchorResponse(name string, certificate CFCertificate, ) *TrustChainAnchorResponse`
+`func NewTrustChainAnchorResponse(certificate CFCertificate, name string, ) *TrustChainAnchorResponse`
 
 NewTrustChainAnchorResponse instantiates a new TrustChainAnchorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -26,26 +26,6 @@ will change when the set of required properties is changed
 NewTrustChainAnchorResponseWithDefaults instantiates a new TrustChainAnchorResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetName
-
-`func (o *TrustChainAnchorResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *TrustChainAnchorResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *TrustChainAnchorResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
 
 ### GetCertificate
 
@@ -65,6 +45,26 @@ and a boolean to check if the value has been set.
 `func (o *TrustChainAnchorResponse) SetCertificate(v CFCertificate)`
 
 SetCertificate sets Certificate field to given value.
+
+
+### GetName
+
+`func (o *TrustChainAnchorResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *TrustChainAnchorResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *TrustChainAnchorResponse) SetName(v string)`
+
+SetName sets Name field to given value.
 
 
 ### GetSubordinates

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Owner** | Pointer to [**NullableCertificateOwnerElement**](CertificateOwnerElement.md) | The owner for this certificate | [optional] 
-**Team** | Pointer to [**NullableCertificateTeamElement**](CertificateTeamElement.md) | The team for this certificate | [optional] 
 **ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | The contact email for this certificate | [optional] 
+**DiscoveryData** | Pointer to [**HostDiscoveryData**](HostDiscoveryData.md) | The host discovery data associated with the certificate (discovery metadata) | [optional] 
+**DiscoveryInfo** | Pointer to [**NullableDiscoveryInfo**](DiscoveryInfo.md) | Information about the discovery of this certificate | [optional] 
 **Labels** | Pointer to [**[]RequestLabelElement**](RequestLabelElement.md) | The labels for this certificate | [optional] 
 **Metadata** | Pointer to [**[]CertificateMetadataElement**](CertificateMetadataElement.md) | The technical metadata for this certificate | [optional] 
+**Owner** | Pointer to [**NullableCertificateOwnerElement**](CertificateOwnerElement.md) | The owner for this certificate | [optional] 
+**Team** | Pointer to [**NullableCertificateTeamElement**](CertificateTeamElement.md) | The team for this certificate | [optional] 
 **ThirdPartyData** | Pointer to [**[]ThirdPartyItem**](ThirdPartyItem.md) | The third party data associated with the certificate | [optional] 
-**DiscoveryInfo** | Pointer to [**NullableDiscoveryInfo**](DiscoveryInfo.md) | Information about the discovery of this certificate | [optional] 
-**DiscoveryData** | Pointer to [**HostDiscoveryData**](HostDiscoveryData.md) | The host discovery data associated with the certificate (discovery metadata) | [optional] 
 
 ## Methods
 
@@ -32,76 +32,6 @@ NewWebRAImportRequestTemplateResponseWithDefaults instantiates a new WebRAImport
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetOwner
-
-`func (o *WebRAImportRequestTemplateResponse) GetOwner() CertificateOwnerElement`
-
-GetOwner returns the Owner field if non-nil, zero value otherwise.
-
-### GetOwnerOk
-
-`func (o *WebRAImportRequestTemplateResponse) GetOwnerOk() (*CertificateOwnerElement, bool)`
-
-GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOwner
-
-`func (o *WebRAImportRequestTemplateResponse) SetOwner(v CertificateOwnerElement)`
-
-SetOwner sets Owner field to given value.
-
-### HasOwner
-
-`func (o *WebRAImportRequestTemplateResponse) HasOwner() bool`
-
-HasOwner returns a boolean if a field has been set.
-
-### SetOwnerNil
-
-`func (o *WebRAImportRequestTemplateResponse) SetOwnerNil(b bool)`
-
- SetOwnerNil sets the value for Owner to be an explicit nil
-
-### UnsetOwner
-`func (o *WebRAImportRequestTemplateResponse) UnsetOwner()`
-
-UnsetOwner ensures that no value is present for Owner, not even an explicit nil
-### GetTeam
-
-`func (o *WebRAImportRequestTemplateResponse) GetTeam() CertificateTeamElement`
-
-GetTeam returns the Team field if non-nil, zero value otherwise.
-
-### GetTeamOk
-
-`func (o *WebRAImportRequestTemplateResponse) GetTeamOk() (*CertificateTeamElement, bool)`
-
-GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTeam
-
-`func (o *WebRAImportRequestTemplateResponse) SetTeam(v CertificateTeamElement)`
-
-SetTeam sets Team field to given value.
-
-### HasTeam
-
-`func (o *WebRAImportRequestTemplateResponse) HasTeam() bool`
-
-HasTeam returns a boolean if a field has been set.
-
-### SetTeamNil
-
-`func (o *WebRAImportRequestTemplateResponse) SetTeamNil(b bool)`
-
- SetTeamNil sets the value for Team to be an explicit nil
-
-### UnsetTeam
-`func (o *WebRAImportRequestTemplateResponse) UnsetTeam()`
-
-UnsetTeam ensures that no value is present for Team, not even an explicit nil
 ### GetContactEmail
 
 `func (o *WebRAImportRequestTemplateResponse) GetContactEmail() CertificateContactEmailElement`
@@ -137,6 +67,66 @@ HasContactEmail returns a boolean if a field has been set.
 `func (o *WebRAImportRequestTemplateResponse) UnsetContactEmail()`
 
 UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
+### GetDiscoveryData
+
+`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryData() HostDiscoveryData`
+
+GetDiscoveryData returns the DiscoveryData field if non-nil, zero value otherwise.
+
+### GetDiscoveryDataOk
+
+`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryDataOk() (*HostDiscoveryData, bool)`
+
+GetDiscoveryDataOk returns a tuple with the DiscoveryData field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiscoveryData
+
+`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryData(v HostDiscoveryData)`
+
+SetDiscoveryData sets DiscoveryData field to given value.
+
+### HasDiscoveryData
+
+`func (o *WebRAImportRequestTemplateResponse) HasDiscoveryData() bool`
+
+HasDiscoveryData returns a boolean if a field has been set.
+
+### GetDiscoveryInfo
+
+`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfo() DiscoveryInfo`
+
+GetDiscoveryInfo returns the DiscoveryInfo field if non-nil, zero value otherwise.
+
+### GetDiscoveryInfoOk
+
+`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfoOk() (*DiscoveryInfo, bool)`
+
+GetDiscoveryInfoOk returns a tuple with the DiscoveryInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiscoveryInfo
+
+`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfo(v DiscoveryInfo)`
+
+SetDiscoveryInfo sets DiscoveryInfo field to given value.
+
+### HasDiscoveryInfo
+
+`func (o *WebRAImportRequestTemplateResponse) HasDiscoveryInfo() bool`
+
+HasDiscoveryInfo returns a boolean if a field has been set.
+
+### SetDiscoveryInfoNil
+
+`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfoNil(b bool)`
+
+ SetDiscoveryInfoNil sets the value for DiscoveryInfo to be an explicit nil
+
+### UnsetDiscoveryInfo
+`func (o *WebRAImportRequestTemplateResponse) UnsetDiscoveryInfo()`
+
+UnsetDiscoveryInfo ensures that no value is present for DiscoveryInfo, not even an explicit nil
 ### GetLabels
 
 `func (o *WebRAImportRequestTemplateResponse) GetLabels() []RequestLabelElement`
@@ -207,6 +197,76 @@ HasMetadata returns a boolean if a field has been set.
 `func (o *WebRAImportRequestTemplateResponse) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
+### GetOwner
+
+`func (o *WebRAImportRequestTemplateResponse) GetOwner() CertificateOwnerElement`
+
+GetOwner returns the Owner field if non-nil, zero value otherwise.
+
+### GetOwnerOk
+
+`func (o *WebRAImportRequestTemplateResponse) GetOwnerOk() (*CertificateOwnerElement, bool)`
+
+GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOwner
+
+`func (o *WebRAImportRequestTemplateResponse) SetOwner(v CertificateOwnerElement)`
+
+SetOwner sets Owner field to given value.
+
+### HasOwner
+
+`func (o *WebRAImportRequestTemplateResponse) HasOwner() bool`
+
+HasOwner returns a boolean if a field has been set.
+
+### SetOwnerNil
+
+`func (o *WebRAImportRequestTemplateResponse) SetOwnerNil(b bool)`
+
+ SetOwnerNil sets the value for Owner to be an explicit nil
+
+### UnsetOwner
+`func (o *WebRAImportRequestTemplateResponse) UnsetOwner()`
+
+UnsetOwner ensures that no value is present for Owner, not even an explicit nil
+### GetTeam
+
+`func (o *WebRAImportRequestTemplateResponse) GetTeam() CertificateTeamElement`
+
+GetTeam returns the Team field if non-nil, zero value otherwise.
+
+### GetTeamOk
+
+`func (o *WebRAImportRequestTemplateResponse) GetTeamOk() (*CertificateTeamElement, bool)`
+
+GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeam
+
+`func (o *WebRAImportRequestTemplateResponse) SetTeam(v CertificateTeamElement)`
+
+SetTeam sets Team field to given value.
+
+### HasTeam
+
+`func (o *WebRAImportRequestTemplateResponse) HasTeam() bool`
+
+HasTeam returns a boolean if a field has been set.
+
+### SetTeamNil
+
+`func (o *WebRAImportRequestTemplateResponse) SetTeamNil(b bool)`
+
+ SetTeamNil sets the value for Team to be an explicit nil
+
+### UnsetTeam
+`func (o *WebRAImportRequestTemplateResponse) UnsetTeam()`
+
+UnsetTeam ensures that no value is present for Team, not even an explicit nil
 ### GetThirdPartyData
 
 `func (o *WebRAImportRequestTemplateResponse) GetThirdPartyData() []ThirdPartyItem`
@@ -242,66 +302,6 @@ HasThirdPartyData returns a boolean if a field has been set.
 `func (o *WebRAImportRequestTemplateResponse) UnsetThirdPartyData()`
 
 UnsetThirdPartyData ensures that no value is present for ThirdPartyData, not even an explicit nil
-### GetDiscoveryInfo
-
-`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfo() DiscoveryInfo`
-
-GetDiscoveryInfo returns the DiscoveryInfo field if non-nil, zero value otherwise.
-
-### GetDiscoveryInfoOk
-
-`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfoOk() (*DiscoveryInfo, bool)`
-
-GetDiscoveryInfoOk returns a tuple with the DiscoveryInfo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDiscoveryInfo
-
-`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfo(v DiscoveryInfo)`
-
-SetDiscoveryInfo sets DiscoveryInfo field to given value.
-
-### HasDiscoveryInfo
-
-`func (o *WebRAImportRequestTemplateResponse) HasDiscoveryInfo() bool`
-
-HasDiscoveryInfo returns a boolean if a field has been set.
-
-### SetDiscoveryInfoNil
-
-`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfoNil(b bool)`
-
- SetDiscoveryInfoNil sets the value for DiscoveryInfo to be an explicit nil
-
-### UnsetDiscoveryInfo
-`func (o *WebRAImportRequestTemplateResponse) UnsetDiscoveryInfo()`
-
-UnsetDiscoveryInfo ensures that no value is present for DiscoveryInfo, not even an explicit nil
-### GetDiscoveryData
-
-`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryData() HostDiscoveryData`
-
-GetDiscoveryData returns the DiscoveryData field if non-nil, zero value otherwise.
-
-### GetDiscoveryDataOk
-
-`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryDataOk() (*HostDiscoveryData, bool)`
-
-GetDiscoveryDataOk returns a tuple with the DiscoveryData field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDiscoveryData
-
-`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryData(v HostDiscoveryData)`
-
-SetDiscoveryData sets DiscoveryData field to given value.
-
-### HasDiscoveryData
-
-`func (o *WebRAImportRequestTemplateResponse) HasDiscoveryData() bool`
-
-HasDiscoveryData returns a boolean if a field has been set.
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

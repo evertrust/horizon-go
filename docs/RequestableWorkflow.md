@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Workflow** | **string** | A possible workflow on this profile | 
-**Request** | **bool** | The principal has the ability to create a request for this workflow | 
 **Perform** | **bool** | The principal can perform this workflow without validation | 
+**Request** | **bool** | The principal has the ability to create a request for this workflow | 
+**Workflow** | **string** | A possible workflow on this profile | 
 
 ## Methods
 
 ### NewRequestableWorkflow
 
-`func NewRequestableWorkflow(workflow string, request bool, perform bool, ) *RequestableWorkflow`
+`func NewRequestableWorkflow(perform bool, request bool, workflow string, ) *RequestableWorkflow`
 
 NewRequestableWorkflow instantiates a new RequestableWorkflow object
 This constructor will assign default values to properties that have it defined,
@@ -27,24 +27,24 @@ NewRequestableWorkflowWithDefaults instantiates a new RequestableWorkflow object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetWorkflow
+### GetPerform
 
-`func (o *RequestableWorkflow) GetWorkflow() string`
+`func (o *RequestableWorkflow) GetPerform() bool`
 
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+GetPerform returns the Perform field if non-nil, zero value otherwise.
 
-### GetWorkflowOk
+### GetPerformOk
 
-`func (o *RequestableWorkflow) GetWorkflowOk() (*string, bool)`
+`func (o *RequestableWorkflow) GetPerformOk() (*bool, bool)`
 
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+GetPerformOk returns a tuple with the Perform field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWorkflow
+### SetPerform
 
-`func (o *RequestableWorkflow) SetWorkflow(v string)`
+`func (o *RequestableWorkflow) SetPerform(v bool)`
 
-SetWorkflow sets Workflow field to given value.
+SetPerform sets Perform field to given value.
 
 
 ### GetRequest
@@ -67,24 +67,24 @@ and a boolean to check if the value has been set.
 SetRequest sets Request field to given value.
 
 
-### GetPerform
+### GetWorkflow
 
-`func (o *RequestableWorkflow) GetPerform() bool`
+`func (o *RequestableWorkflow) GetWorkflow() string`
 
-GetPerform returns the Perform field if non-nil, zero value otherwise.
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
 
-### GetPerformOk
+### GetWorkflowOk
 
-`func (o *RequestableWorkflow) GetPerformOk() (*bool, bool)`
+`func (o *RequestableWorkflow) GetWorkflowOk() (*string, bool)`
 
-GetPerformOk returns a tuple with the Perform field if it's non-nil, zero value otherwise
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPerform
+### SetWorkflow
 
-`func (o *RequestableWorkflow) SetPerform(v bool)`
+`func (o *RequestableWorkflow) SetWorkflow(v string)`
 
-SetPerform sets Perform field to given value.
+SetWorkflow sets Workflow field to given value.
 
 
 

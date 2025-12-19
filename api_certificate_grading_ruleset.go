@@ -1,9 +1,9 @@
 /*
-    Horizon API
+   Horizon API
 
-    ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
+   ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
 
-    API version: 2.7.0
+   API version: 2.8.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -17,25 +17,26 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-)
 
+	"github.com/evertrust/horizon-go/v2/models"
+)
 
 // CertificateGradingRulesetAPIService CertificateGradingRulesetAPI service
 type CertificateGradingRulesetAPIService service
 
 type CertificateGradingRulesetAPIGradingRulesetExplainFileRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CertificateGradingRulesetAPIService
-	ruleset string
-	x509 *GradingPolicyExplainFileRequestX509
+	ruleset    string
+	x509       *models.GradingPolicyExplainFileRequestX509
 }
 
-func (r CertificateGradingRulesetAPIGradingRulesetExplainFileRequest) X509(x509 GradingPolicyExplainFileRequestX509) CertificateGradingRulesetAPIGradingRulesetExplainFileRequest {
+func (r CertificateGradingRulesetAPIGradingRulesetExplainFileRequest) X509(x509 models.GradingPolicyExplainFileRequestX509) CertificateGradingRulesetAPIGradingRulesetExplainFileRequest {
 	r.x509 = &x509
 	return r
 }
 
-func (r CertificateGradingRulesetAPIGradingRulesetExplainFileRequest) Execute() (*ExplainedGradingRulesetResponse, *http.Response, error) {
+func (r CertificateGradingRulesetAPIGradingRulesetExplainFileRequest) Execute() (*models.ExplainedGradingRulesetResponse, *http.Response, error) {
 	return r.ApiService.GradingRulesetExplainFileExecute(r)
 }
 
@@ -44,26 +45,27 @@ GradingRulesetExplainFile Explain a Grading Ruleset
 
 Explain a Grading Ruleset based on a certificate provided in the request body
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param ruleset
- @return CertificateGradingRulesetAPIGradingRulesetExplainFileRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ruleset
+	@return CertificateGradingRulesetAPIGradingRulesetExplainFileRequest
 */
 func (a *CertificateGradingRulesetAPIService) GradingRulesetExplainFile(ctx context.Context, ruleset string) CertificateGradingRulesetAPIGradingRulesetExplainFileRequest {
 	return CertificateGradingRulesetAPIGradingRulesetExplainFileRequest{
 		ApiService: a,
-		ctx: ctx,
-		ruleset: ruleset,
+		ctx:        ctx,
+		ruleset:    ruleset,
 	}
 }
 
 // Execute executes the request
-//  @return ExplainedGradingRulesetResponse
-func (a *CertificateGradingRulesetAPIService) GradingRulesetExplainFileExecute(r CertificateGradingRulesetAPIGradingRulesetExplainFileRequest) (*ExplainedGradingRulesetResponse, *http.Response, error) {
+//
+//	@return ExplainedGradingRulesetResponse
+func (a *CertificateGradingRulesetAPIService) GradingRulesetExplainFileExecute(r CertificateGradingRulesetAPIGradingRulesetExplainFileRequest) (*models.ExplainedGradingRulesetResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ExplainedGradingRulesetResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.ExplainedGradingRulesetResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CertificateGradingRulesetAPIService.GradingRulesetExplainFile")
@@ -153,36 +155,36 @@ func (a *CertificateGradingRulesetAPIService) GradingRulesetExplainFileExecute(r
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GradingRulesetExplainUrl400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GradingRulesetGet404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GradingRulesetExplainUrl500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -200,13 +202,13 @@ func (a *CertificateGradingRulesetAPIService) GradingRulesetExplainFileExecute(r
 }
 
 type CertificateGradingRulesetAPIGradingRulesetExplainUrlRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CertificateGradingRulesetAPIService
-	ruleset string
-	input string
+	ruleset    string
+	input      string
 }
 
-func (r CertificateGradingRulesetAPIGradingRulesetExplainUrlRequest) Execute() (*ExplainedGradingRulesetResponse, *http.Response, error) {
+func (r CertificateGradingRulesetAPIGradingRulesetExplainUrlRequest) Execute() (*models.ExplainedGradingRulesetResponse, *http.Response, error) {
 	return r.ApiService.GradingRulesetExplainUrlExecute(r)
 }
 
@@ -215,28 +217,29 @@ GradingRulesetExplainUrl Explain a Grading Ruleset
 
 Explain a Grading Ruleset based on a certificate provided URL encoded (PEM or DER) in the URL
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param ruleset
- @param input
- @return CertificateGradingRulesetAPIGradingRulesetExplainUrlRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param ruleset
+	@param input
+	@return CertificateGradingRulesetAPIGradingRulesetExplainUrlRequest
 */
 func (a *CertificateGradingRulesetAPIService) GradingRulesetExplainUrl(ctx context.Context, ruleset string, input string) CertificateGradingRulesetAPIGradingRulesetExplainUrlRequest {
 	return CertificateGradingRulesetAPIGradingRulesetExplainUrlRequest{
 		ApiService: a,
-		ctx: ctx,
-		ruleset: ruleset,
-		input: input,
+		ctx:        ctx,
+		ruleset:    ruleset,
+		input:      input,
 	}
 }
 
 // Execute executes the request
-//  @return ExplainedGradingRulesetResponse
-func (a *CertificateGradingRulesetAPIService) GradingRulesetExplainUrlExecute(r CertificateGradingRulesetAPIGradingRulesetExplainUrlRequest) (*ExplainedGradingRulesetResponse, *http.Response, error) {
+//
+//	@return ExplainedGradingRulesetResponse
+func (a *CertificateGradingRulesetAPIService) GradingRulesetExplainUrlExecute(r CertificateGradingRulesetAPIGradingRulesetExplainUrlRequest) (*models.ExplainedGradingRulesetResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ExplainedGradingRulesetResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.ExplainedGradingRulesetResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CertificateGradingRulesetAPIService.GradingRulesetExplainUrl")
@@ -320,36 +323,36 @@ func (a *CertificateGradingRulesetAPIService) GradingRulesetExplainUrlExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v GradingRulesetExplainUrl400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GradingRulesetGet404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GradingRulesetExplainUrl500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -367,12 +370,12 @@ func (a *CertificateGradingRulesetAPIService) GradingRulesetExplainUrlExecute(r 
 }
 
 type CertificateGradingRulesetAPIGradingRulesetGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CertificateGradingRulesetAPIService
-	name string
+	name       string
 }
 
-func (r CertificateGradingRulesetAPIGradingRulesetGetRequest) Execute() (*GradingRulesetResponse, *http.Response, error) {
+func (r CertificateGradingRulesetAPIGradingRulesetGetRequest) Execute() (*models.GradingRulesetResponse, *http.Response, error) {
 	return r.ApiService.GradingRulesetGetExecute(r)
 }
 
@@ -381,26 +384,27 @@ GradingRulesetGet Retrieve an existing grading ruleset
 
 Retrieve an existing grading rukeset based on its name
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name
- @return CertificateGradingRulesetAPIGradingRulesetGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param name
+	@return CertificateGradingRulesetAPIGradingRulesetGetRequest
 */
 func (a *CertificateGradingRulesetAPIService) GradingRulesetGet(ctx context.Context, name string) CertificateGradingRulesetAPIGradingRulesetGetRequest {
 	return CertificateGradingRulesetAPIGradingRulesetGetRequest{
 		ApiService: a,
-		ctx: ctx,
-		name: name,
+		ctx:        ctx,
+		name:       name,
 	}
 }
 
 // Execute executes the request
-//  @return GradingRulesetResponse
-func (a *CertificateGradingRulesetAPIService) GradingRulesetGetExecute(r CertificateGradingRulesetAPIGradingRulesetGetRequest) (*GradingRulesetResponse, *http.Response, error) {
+//
+//	@return GradingRulesetResponse
+func (a *CertificateGradingRulesetAPIService) GradingRulesetGetExecute(r CertificateGradingRulesetAPIGradingRulesetGetRequest) (*models.GradingRulesetResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GradingRulesetResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.GradingRulesetResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CertificateGradingRulesetAPIService.GradingRulesetGet")
@@ -483,47 +487,47 @@ func (a *CertificateGradingRulesetAPIService) GradingRulesetGetExecute(r Certifi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GradingPolicyGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v GradingRulesetGet404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GradingRulesetGet500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -541,11 +545,11 @@ func (a *CertificateGradingRulesetAPIService) GradingRulesetGetExecute(r Certifi
 }
 
 type CertificateGradingRulesetAPIGradingRulesetListRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *CertificateGradingRulesetAPIService
 }
 
-func (r CertificateGradingRulesetAPIGradingRulesetListRequest) Execute() ([]GradingRulesetResponse, *http.Response, error) {
+func (r CertificateGradingRulesetAPIGradingRulesetListRequest) Execute() ([]models.GradingRulesetResponse, *http.Response, error) {
 	return r.ApiService.GradingRulesetListExecute(r)
 }
 
@@ -554,24 +558,25 @@ GradingRulesetList List the existing grading rulesets
 
 List the existing grading rulesets
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return CertificateGradingRulesetAPIGradingRulesetListRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return CertificateGradingRulesetAPIGradingRulesetListRequest
 */
 func (a *CertificateGradingRulesetAPIService) GradingRulesetList(ctx context.Context) CertificateGradingRulesetAPIGradingRulesetListRequest {
 	return CertificateGradingRulesetAPIGradingRulesetListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []GradingRulesetResponse
-func (a *CertificateGradingRulesetAPIService) GradingRulesetListExecute(r CertificateGradingRulesetAPIGradingRulesetListRequest) ([]GradingRulesetResponse, *http.Response, error) {
+//
+//	@return []GradingRulesetResponse
+func (a *CertificateGradingRulesetAPIService) GradingRulesetListExecute(r CertificateGradingRulesetAPIGradingRulesetListRequest) ([]models.GradingRulesetResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []GradingRulesetResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []models.GradingRulesetResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CertificateGradingRulesetAPIService.GradingRulesetList")
@@ -653,36 +658,36 @@ func (a *CertificateGradingRulesetAPIService) GradingRulesetListExecute(r Certif
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v GradingPolicyGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v GradingRulesetGet500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

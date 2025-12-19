@@ -5,18 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** | The name of the team | 
-**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized description of the team | [optional] 
 **Contact** | Pointer to **NullableString** | The generic contact e-mail of the Team | [optional] 
-**Webhook** | Pointer to [**NullableWebhook**](Webhook.md) | The webhook of the team&#39;s corporate channel (Teams, Slack, Mattermost) | [optional] 
-**Manager** | Pointer to **NullableString** | The e-mail address of the team&#39;s manager | [optional] 
+**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized description of the team | [optional] 
 **DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized display name of the team | [optional] 
+**Managers** | **[]string** | The identifiers of the team&#39;s managers | 
+**Name** | **string** | The name of the team | 
+**Webhook** | Pointer to [**NullableWebhook**](Webhook.md) | The webhook of the team&#39;s corporate channel (Teams, Slack, Mattermost) | [optional] 
 
 ## Methods
 
 ### NewTeamResponse
 
-`func NewTeamResponse(id string, name string, ) *TeamResponse`
+`func NewTeamResponse(id string, managers []string, name string, ) *TeamResponse`
 
 NewTeamResponse instantiates a new TeamResponse object
 This constructor will assign default values to properties that have it defined,
@@ -51,61 +51,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetName
-
-`func (o *TeamResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *TeamResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *TeamResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetDescription
-
-`func (o *TeamResponse) GetDescription() []LocalizedString`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *TeamResponse) GetDescriptionOk() (*[]LocalizedString, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *TeamResponse) SetDescription(v []LocalizedString)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *TeamResponse) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescriptionNil
-
-`func (o *TeamResponse) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *TeamResponse) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetContact
 
 `func (o *TeamResponse) GetContact() string`
@@ -141,76 +86,41 @@ HasContact returns a boolean if a field has been set.
 `func (o *TeamResponse) UnsetContact()`
 
 UnsetContact ensures that no value is present for Contact, not even an explicit nil
-### GetWebhook
+### GetDescription
 
-`func (o *TeamResponse) GetWebhook() Webhook`
+`func (o *TeamResponse) GetDescription() []LocalizedString`
 
-GetWebhook returns the Webhook field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetWebhookOk
+### GetDescriptionOk
 
-`func (o *TeamResponse) GetWebhookOk() (*Webhook, bool)`
+`func (o *TeamResponse) GetDescriptionOk() (*[]LocalizedString, bool)`
 
-GetWebhookOk returns a tuple with the Webhook field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWebhook
+### SetDescription
 
-`func (o *TeamResponse) SetWebhook(v Webhook)`
+`func (o *TeamResponse) SetDescription(v []LocalizedString)`
 
-SetWebhook sets Webhook field to given value.
+SetDescription sets Description field to given value.
 
-### HasWebhook
+### HasDescription
 
-`func (o *TeamResponse) HasWebhook() bool`
+`func (o *TeamResponse) HasDescription() bool`
 
-HasWebhook returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
-### SetWebhookNil
+### SetDescriptionNil
 
-`func (o *TeamResponse) SetWebhookNil(b bool)`
+`func (o *TeamResponse) SetDescriptionNil(b bool)`
 
- SetWebhookNil sets the value for Webhook to be an explicit nil
+ SetDescriptionNil sets the value for Description to be an explicit nil
 
-### UnsetWebhook
-`func (o *TeamResponse) UnsetWebhook()`
+### UnsetDescription
+`func (o *TeamResponse) UnsetDescription()`
 
-UnsetWebhook ensures that no value is present for Webhook, not even an explicit nil
-### GetManager
-
-`func (o *TeamResponse) GetManager() string`
-
-GetManager returns the Manager field if non-nil, zero value otherwise.
-
-### GetManagerOk
-
-`func (o *TeamResponse) GetManagerOk() (*string, bool)`
-
-GetManagerOk returns a tuple with the Manager field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetManager
-
-`func (o *TeamResponse) SetManager(v string)`
-
-SetManager sets Manager field to given value.
-
-### HasManager
-
-`func (o *TeamResponse) HasManager() bool`
-
-HasManager returns a boolean if a field has been set.
-
-### SetManagerNil
-
-`func (o *TeamResponse) SetManagerNil(b bool)`
-
- SetManagerNil sets the value for Manager to be an explicit nil
-
-### UnsetManager
-`func (o *TeamResponse) UnsetManager()`
-
-UnsetManager ensures that no value is present for Manager, not even an explicit nil
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetDisplayName
 
 `func (o *TeamResponse) GetDisplayName() []LocalizedString`
@@ -246,6 +156,81 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *TeamResponse) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
+### GetManagers
+
+`func (o *TeamResponse) GetManagers() []string`
+
+GetManagers returns the Managers field if non-nil, zero value otherwise.
+
+### GetManagersOk
+
+`func (o *TeamResponse) GetManagersOk() (*[]string, bool)`
+
+GetManagersOk returns a tuple with the Managers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManagers
+
+`func (o *TeamResponse) SetManagers(v []string)`
+
+SetManagers sets Managers field to given value.
+
+
+### GetName
+
+`func (o *TeamResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *TeamResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *TeamResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetWebhook
+
+`func (o *TeamResponse) GetWebhook() Webhook`
+
+GetWebhook returns the Webhook field if non-nil, zero value otherwise.
+
+### GetWebhookOk
+
+`func (o *TeamResponse) GetWebhookOk() (*Webhook, bool)`
+
+GetWebhookOk returns a tuple with the Webhook field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWebhook
+
+`func (o *TeamResponse) SetWebhook(v Webhook)`
+
+SetWebhook sets Webhook field to given value.
+
+### HasWebhook
+
+`func (o *TeamResponse) HasWebhook() bool`
+
+HasWebhook returns a boolean if a field has been set.
+
+### SetWebhookNil
+
+`func (o *TeamResponse) SetWebhookNil(b bool)`
+
+ SetWebhookNil sets the value for Webhook to be an explicit nil
+
+### UnsetWebhook
+`func (o *TeamResponse) UnsetWebhook()`
+
+UnsetWebhook ensures that no value is present for Webhook, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

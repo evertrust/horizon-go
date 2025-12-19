@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## SchedulerTaskAdd
 
-> SchedulerTaskList200ResponseInner SchedulerTaskAdd(ctx).SchedulerTaskAddRequest(schedulerTaskAddRequest).Execute()
+> ScheduledTaskResponses SchedulerTaskAdd(ctx).ScheduledTasks(scheduledTasks).Execute()
 
 Register a new scheduled task
 
@@ -30,20 +30,20 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	schedulerTaskAddRequest := openapiclient.scheduler_task_add_request{ReportScheduledTask: openapiclient.NewReportScheduledTask("Type_example", "Cron_example", false, "Name_example", []openapiclient.ReportRecipient{*openapiclient.NewReportRecipient("Type_example")}, "From_example", "Title_example", false, "HqlType_example")} // SchedulerTaskAddRequest | Scheduled task to register
+	scheduledTasks := openapiclient.ScheduledTasks{AttachmentReportScheduledTask: openapiclient.NewAttachmentReportScheduledTask("ReportType_example", "From_example", "HqlType_example", false, "Name_example", []openapiclient.ReportRecipient{*openapiclient.NewReportRecipient("Type_example")}, "Title_example", "Type_example", "Cron_example", false)} // ScheduledTasks | Scheduled task to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SchedulerTaskAPI.SchedulerTaskAdd(context.Background()).SchedulerTaskAddRequest(schedulerTaskAddRequest).Execute()
+	resp, r, err := apiClient.SchedulerTaskAPI.SchedulerTaskAdd(context.Background()).ScheduledTasks(scheduledTasks).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SchedulerTaskAPI.SchedulerTaskAdd``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SchedulerTaskAdd`: SchedulerTaskList200ResponseInner
+	// response from `SchedulerTaskAdd`: ScheduledTaskResponses
 	fmt.Fprintf(os.Stdout, "Response from `SchedulerTaskAPI.SchedulerTaskAdd`: %v\n", resp)
 }
 ```
@@ -59,11 +59,11 @@ Other parameters are passed through a pointer to a apiSchedulerTaskAddRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **schedulerTaskAddRequest** | [**SchedulerTaskAddRequest**](SchedulerTaskAddRequest.md) | Scheduled task to register | 
+ **scheduledTasks** | [**ScheduledTasks**](ScheduledTasks.md) | Scheduled task to register | 
 
 ### Return type
 
-[**SchedulerTaskList200ResponseInner**](SchedulerTaskList200ResponseInner.md)
+[**ScheduledTaskResponses**](ScheduledTaskResponses.md)
 
 ### Authorization
 
@@ -96,7 +96,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## SchedulerTaskGet
 
-> SchedulerTaskList200ResponseInner SchedulerTaskGet(ctx, id).Execute()
+> ScheduledTaskResponses SchedulerTaskGet(ctx, id).Execute()
 
 Retrieve an existing scheduled task
 
@@ -164,7 +164,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -177,7 +177,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SchedulerTaskAPI.SchedulerTaskGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SchedulerTaskGet`: SchedulerTaskList200ResponseInner
+	// response from `SchedulerTaskGet`: ScheduledTaskResponses
 	fmt.Fprintf(os.Stdout, "Response from `SchedulerTaskAPI.SchedulerTaskGet`: %v\n", resp)
 }
 ```
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SchedulerTaskList200ResponseInner**](SchedulerTaskList200ResponseInner.md)
+[**ScheduledTaskResponses**](ScheduledTaskResponses.md)
 
 ### Authorization
 
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ## SchedulerTaskList
 
-> []SchedulerTaskList200ResponseInner SchedulerTaskList(ctx).ScheduledTaskType(scheduledTaskType).Execute()
+> []ScheduledTaskResponses SchedulerTaskList(ctx).ScheduledTaskType(scheduledTaskType).Execute()
 
 List the existing scheduled task(s)
 
@@ -234,7 +234,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -247,7 +247,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SchedulerTaskAPI.SchedulerTaskList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SchedulerTaskList`: []SchedulerTaskList200ResponseInner
+	// response from `SchedulerTaskList`: []ScheduledTaskResponses
 	fmt.Fprintf(os.Stdout, "Response from `SchedulerTaskAPI.SchedulerTaskList`: %v\n", resp)
 }
 ```
@@ -267,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]SchedulerTaskList200ResponseInner**](SchedulerTaskList200ResponseInner.md)
+[**[]ScheduledTaskResponses**](ScheduledTaskResponses.md)
 
 ### Authorization
 
@@ -300,7 +300,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -353,7 +353,7 @@ Name | Type | Description  | Notes
 
 ## SchedulerTaskUpdate
 
-> SchedulerTaskUpdate200Response SchedulerTaskUpdate(ctx).SchedulerTaskUpdateRequest(schedulerTaskUpdateRequest).Execute()
+> ScheduledTaskResponses SchedulerTaskUpdate(ctx).ScheduledTasks(scheduledTasks).Execute()
 
 Update an existing scheduled task
 
@@ -368,20 +368,20 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	schedulerTaskUpdateRequest := openapiclient.scheduler_task_update_request{ReportScheduledTask: openapiclient.NewReportScheduledTask("Type_example", "Cron_example", false, "Name_example", []openapiclient.ReportRecipient{*openapiclient.NewReportRecipient("Type_example")}, "From_example", "Title_example", false, "HqlType_example")} // SchedulerTaskUpdateRequest | Scheduled task to update
+	scheduledTasks := openapiclient.ScheduledTasks{AttachmentReportScheduledTask: openapiclient.NewAttachmentReportScheduledTask("ReportType_example", "From_example", "HqlType_example", false, "Name_example", []openapiclient.ReportRecipient{*openapiclient.NewReportRecipient("Type_example")}, "Title_example", "Type_example", "Cron_example", false)} // ScheduledTasks | Scheduled task to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SchedulerTaskAPI.SchedulerTaskUpdate(context.Background()).SchedulerTaskUpdateRequest(schedulerTaskUpdateRequest).Execute()
+	resp, r, err := apiClient.SchedulerTaskAPI.SchedulerTaskUpdate(context.Background()).ScheduledTasks(scheduledTasks).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SchedulerTaskAPI.SchedulerTaskUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SchedulerTaskUpdate`: SchedulerTaskUpdate200Response
+	// response from `SchedulerTaskUpdate`: ScheduledTaskResponses
 	fmt.Fprintf(os.Stdout, "Response from `SchedulerTaskAPI.SchedulerTaskUpdate`: %v\n", resp)
 }
 ```
@@ -397,11 +397,11 @@ Other parameters are passed through a pointer to a apiSchedulerTaskUpdateRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **schedulerTaskUpdateRequest** | [**SchedulerTaskUpdateRequest**](SchedulerTaskUpdateRequest.md) | Scheduled task to update | 
+ **scheduledTasks** | [**ScheduledTasks**](ScheduledTasks.md) | Scheduled task to update | 
 
 ### Return type
 
-[**SchedulerTaskUpdate200Response**](SchedulerTaskUpdate200Response.md)
+[**ScheduledTaskResponses**](ScheduledTaskResponses.md)
 
 ### Authorization
 

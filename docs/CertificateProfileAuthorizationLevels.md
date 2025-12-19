@@ -4,35 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ApproveEnroll** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
+**ApproveMigrate** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
+**ApproveRecover** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
+**ApproveRenew** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
+**ApproveRevoke** | Pointer to [**AuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
+**ApproveUpdate** | [**AuthorizationLevel**](AuthorizationLevel.md) |  | 
+**AuditRequest** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
 **Enroll** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
 **EnrollApi** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
-**RequestEnroll** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
-**ApproveEnroll** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
-**Revoke** | [**AuthorizationLevel**](AuthorizationLevel.md) |  | 
-**RequestRevoke** | [**AuthorizationLevel**](AuthorizationLevel.md) |  | 
-**ApproveRevoke** | [**AuthorizationLevel**](AuthorizationLevel.md) |  | 
-**Search** | [**AuthorizationLevel**](AuthorizationLevel.md) |  | 
-**Update** | [**AuthorizationLevel**](AuthorizationLevel.md) |  | 
-**RequestUpdate** | [**AuthorizationLevel**](AuthorizationLevel.md) |  | 
-**ApproveUpdate** | [**AuthorizationLevel**](AuthorizationLevel.md) |  | 
+**Migrate** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
 **Recover** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
 **RecoverApi** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
-**RequestRecover** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
-**ApproveRecover** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
-**Migrate** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
-**RequestMigrate** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
-**ApproveMigrate** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
 **Renew** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
 **RenewApi** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
+**RequestEnroll** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
+**RequestMigrate** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
+**RequestRecover** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
 **RequestRenew** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
-**ApproveRenew** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
-**AuditRequest** | Pointer to [**NullableAuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
+**RequestRevoke** | Pointer to [**AuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
+**RequestUpdate** | [**AuthorizationLevel**](AuthorizationLevel.md) |  | 
+**Revoke** | Pointer to [**AuthorizationLevel**](AuthorizationLevel.md) |  | [optional] 
+**Search** | [**AuthorizationLevel**](AuthorizationLevel.md) |  | 
+**Update** | [**AuthorizationLevel**](AuthorizationLevel.md) |  | 
 
 ## Methods
 
 ### NewCertificateProfileAuthorizationLevels
 
-`func NewCertificateProfileAuthorizationLevels(revoke AuthorizationLevel, requestRevoke AuthorizationLevel, approveRevoke AuthorizationLevel, search AuthorizationLevel, update AuthorizationLevel, requestUpdate AuthorizationLevel, approveUpdate AuthorizationLevel, ) *CertificateProfileAuthorizationLevels`
+`func NewCertificateProfileAuthorizationLevels(approveUpdate AuthorizationLevel, requestUpdate AuthorizationLevel, search AuthorizationLevel, update AuthorizationLevel, ) *CertificateProfileAuthorizationLevels`
 
 NewCertificateProfileAuthorizationLevels instantiates a new CertificateProfileAuthorizationLevels object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,226 @@ NewCertificateProfileAuthorizationLevelsWithDefaults instantiates a new Certific
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetApproveEnroll
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveEnroll() AuthorizationLevel`
+
+GetApproveEnroll returns the ApproveEnroll field if non-nil, zero value otherwise.
+
+### GetApproveEnrollOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveEnrollOk() (*AuthorizationLevel, bool)`
+
+GetApproveEnrollOk returns a tuple with the ApproveEnroll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApproveEnroll
+
+`func (o *CertificateProfileAuthorizationLevels) SetApproveEnroll(v AuthorizationLevel)`
+
+SetApproveEnroll sets ApproveEnroll field to given value.
+
+### HasApproveEnroll
+
+`func (o *CertificateProfileAuthorizationLevels) HasApproveEnroll() bool`
+
+HasApproveEnroll returns a boolean if a field has been set.
+
+### SetApproveEnrollNil
+
+`func (o *CertificateProfileAuthorizationLevels) SetApproveEnrollNil(b bool)`
+
+ SetApproveEnrollNil sets the value for ApproveEnroll to be an explicit nil
+
+### UnsetApproveEnroll
+`func (o *CertificateProfileAuthorizationLevels) UnsetApproveEnroll()`
+
+UnsetApproveEnroll ensures that no value is present for ApproveEnroll, not even an explicit nil
+### GetApproveMigrate
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveMigrate() AuthorizationLevel`
+
+GetApproveMigrate returns the ApproveMigrate field if non-nil, zero value otherwise.
+
+### GetApproveMigrateOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveMigrateOk() (*AuthorizationLevel, bool)`
+
+GetApproveMigrateOk returns a tuple with the ApproveMigrate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApproveMigrate
+
+`func (o *CertificateProfileAuthorizationLevels) SetApproveMigrate(v AuthorizationLevel)`
+
+SetApproveMigrate sets ApproveMigrate field to given value.
+
+### HasApproveMigrate
+
+`func (o *CertificateProfileAuthorizationLevels) HasApproveMigrate() bool`
+
+HasApproveMigrate returns a boolean if a field has been set.
+
+### SetApproveMigrateNil
+
+`func (o *CertificateProfileAuthorizationLevels) SetApproveMigrateNil(b bool)`
+
+ SetApproveMigrateNil sets the value for ApproveMigrate to be an explicit nil
+
+### UnsetApproveMigrate
+`func (o *CertificateProfileAuthorizationLevels) UnsetApproveMigrate()`
+
+UnsetApproveMigrate ensures that no value is present for ApproveMigrate, not even an explicit nil
+### GetApproveRecover
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveRecover() AuthorizationLevel`
+
+GetApproveRecover returns the ApproveRecover field if non-nil, zero value otherwise.
+
+### GetApproveRecoverOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveRecoverOk() (*AuthorizationLevel, bool)`
+
+GetApproveRecoverOk returns a tuple with the ApproveRecover field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApproveRecover
+
+`func (o *CertificateProfileAuthorizationLevels) SetApproveRecover(v AuthorizationLevel)`
+
+SetApproveRecover sets ApproveRecover field to given value.
+
+### HasApproveRecover
+
+`func (o *CertificateProfileAuthorizationLevels) HasApproveRecover() bool`
+
+HasApproveRecover returns a boolean if a field has been set.
+
+### SetApproveRecoverNil
+
+`func (o *CertificateProfileAuthorizationLevels) SetApproveRecoverNil(b bool)`
+
+ SetApproveRecoverNil sets the value for ApproveRecover to be an explicit nil
+
+### UnsetApproveRecover
+`func (o *CertificateProfileAuthorizationLevels) UnsetApproveRecover()`
+
+UnsetApproveRecover ensures that no value is present for ApproveRecover, not even an explicit nil
+### GetApproveRenew
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveRenew() AuthorizationLevel`
+
+GetApproveRenew returns the ApproveRenew field if non-nil, zero value otherwise.
+
+### GetApproveRenewOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveRenewOk() (*AuthorizationLevel, bool)`
+
+GetApproveRenewOk returns a tuple with the ApproveRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApproveRenew
+
+`func (o *CertificateProfileAuthorizationLevels) SetApproveRenew(v AuthorizationLevel)`
+
+SetApproveRenew sets ApproveRenew field to given value.
+
+### HasApproveRenew
+
+`func (o *CertificateProfileAuthorizationLevels) HasApproveRenew() bool`
+
+HasApproveRenew returns a boolean if a field has been set.
+
+### SetApproveRenewNil
+
+`func (o *CertificateProfileAuthorizationLevels) SetApproveRenewNil(b bool)`
+
+ SetApproveRenewNil sets the value for ApproveRenew to be an explicit nil
+
+### UnsetApproveRenew
+`func (o *CertificateProfileAuthorizationLevels) UnsetApproveRenew()`
+
+UnsetApproveRenew ensures that no value is present for ApproveRenew, not even an explicit nil
+### GetApproveRevoke
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveRevoke() AuthorizationLevel`
+
+GetApproveRevoke returns the ApproveRevoke field if non-nil, zero value otherwise.
+
+### GetApproveRevokeOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveRevokeOk() (*AuthorizationLevel, bool)`
+
+GetApproveRevokeOk returns a tuple with the ApproveRevoke field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApproveRevoke
+
+`func (o *CertificateProfileAuthorizationLevels) SetApproveRevoke(v AuthorizationLevel)`
+
+SetApproveRevoke sets ApproveRevoke field to given value.
+
+### HasApproveRevoke
+
+`func (o *CertificateProfileAuthorizationLevels) HasApproveRevoke() bool`
+
+HasApproveRevoke returns a boolean if a field has been set.
+
+### GetApproveUpdate
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveUpdate() AuthorizationLevel`
+
+GetApproveUpdate returns the ApproveUpdate field if non-nil, zero value otherwise.
+
+### GetApproveUpdateOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetApproveUpdateOk() (*AuthorizationLevel, bool)`
+
+GetApproveUpdateOk returns a tuple with the ApproveUpdate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApproveUpdate
+
+`func (o *CertificateProfileAuthorizationLevels) SetApproveUpdate(v AuthorizationLevel)`
+
+SetApproveUpdate sets ApproveUpdate field to given value.
+
+
+### GetAuditRequest
+
+`func (o *CertificateProfileAuthorizationLevels) GetAuditRequest() AuthorizationLevel`
+
+GetAuditRequest returns the AuditRequest field if non-nil, zero value otherwise.
+
+### GetAuditRequestOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetAuditRequestOk() (*AuthorizationLevel, bool)`
+
+GetAuditRequestOk returns a tuple with the AuditRequest field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuditRequest
+
+`func (o *CertificateProfileAuthorizationLevels) SetAuditRequest(v AuthorizationLevel)`
+
+SetAuditRequest sets AuditRequest field to given value.
+
+### HasAuditRequest
+
+`func (o *CertificateProfileAuthorizationLevels) HasAuditRequest() bool`
+
+HasAuditRequest returns a boolean if a field has been set.
+
+### SetAuditRequestNil
+
+`func (o *CertificateProfileAuthorizationLevels) SetAuditRequestNil(b bool)`
+
+ SetAuditRequestNil sets the value for AuditRequest to be an explicit nil
+
+### UnsetAuditRequest
+`func (o *CertificateProfileAuthorizationLevels) UnsetAuditRequest()`
+
+UnsetAuditRequest ensures that no value is present for AuditRequest, not even an explicit nil
 ### GetEnroll
 
 `func (o *CertificateProfileAuthorizationLevels) GetEnroll() AuthorizationLevel`
@@ -117,216 +337,41 @@ HasEnrollApi returns a boolean if a field has been set.
 `func (o *CertificateProfileAuthorizationLevels) UnsetEnrollApi()`
 
 UnsetEnrollApi ensures that no value is present for EnrollApi, not even an explicit nil
-### GetRequestEnroll
+### GetMigrate
 
-`func (o *CertificateProfileAuthorizationLevels) GetRequestEnroll() AuthorizationLevel`
+`func (o *CertificateProfileAuthorizationLevels) GetMigrate() AuthorizationLevel`
 
-GetRequestEnroll returns the RequestEnroll field if non-nil, zero value otherwise.
+GetMigrate returns the Migrate field if non-nil, zero value otherwise.
 
-### GetRequestEnrollOk
+### GetMigrateOk
 
-`func (o *CertificateProfileAuthorizationLevels) GetRequestEnrollOk() (*AuthorizationLevel, bool)`
+`func (o *CertificateProfileAuthorizationLevels) GetMigrateOk() (*AuthorizationLevel, bool)`
 
-GetRequestEnrollOk returns a tuple with the RequestEnroll field if it's non-nil, zero value otherwise
+GetMigrateOk returns a tuple with the Migrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRequestEnroll
+### SetMigrate
 
-`func (o *CertificateProfileAuthorizationLevels) SetRequestEnroll(v AuthorizationLevel)`
+`func (o *CertificateProfileAuthorizationLevels) SetMigrate(v AuthorizationLevel)`
 
-SetRequestEnroll sets RequestEnroll field to given value.
+SetMigrate sets Migrate field to given value.
 
-### HasRequestEnroll
+### HasMigrate
 
-`func (o *CertificateProfileAuthorizationLevels) HasRequestEnroll() bool`
+`func (o *CertificateProfileAuthorizationLevels) HasMigrate() bool`
 
-HasRequestEnroll returns a boolean if a field has been set.
+HasMigrate returns a boolean if a field has been set.
 
-### SetRequestEnrollNil
+### SetMigrateNil
 
-`func (o *CertificateProfileAuthorizationLevels) SetRequestEnrollNil(b bool)`
+`func (o *CertificateProfileAuthorizationLevels) SetMigrateNil(b bool)`
 
- SetRequestEnrollNil sets the value for RequestEnroll to be an explicit nil
+ SetMigrateNil sets the value for Migrate to be an explicit nil
 
-### UnsetRequestEnroll
-`func (o *CertificateProfileAuthorizationLevels) UnsetRequestEnroll()`
+### UnsetMigrate
+`func (o *CertificateProfileAuthorizationLevels) UnsetMigrate()`
 
-UnsetRequestEnroll ensures that no value is present for RequestEnroll, not even an explicit nil
-### GetApproveEnroll
-
-`func (o *CertificateProfileAuthorizationLevels) GetApproveEnroll() AuthorizationLevel`
-
-GetApproveEnroll returns the ApproveEnroll field if non-nil, zero value otherwise.
-
-### GetApproveEnrollOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetApproveEnrollOk() (*AuthorizationLevel, bool)`
-
-GetApproveEnrollOk returns a tuple with the ApproveEnroll field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApproveEnroll
-
-`func (o *CertificateProfileAuthorizationLevels) SetApproveEnroll(v AuthorizationLevel)`
-
-SetApproveEnroll sets ApproveEnroll field to given value.
-
-### HasApproveEnroll
-
-`func (o *CertificateProfileAuthorizationLevels) HasApproveEnroll() bool`
-
-HasApproveEnroll returns a boolean if a field has been set.
-
-### SetApproveEnrollNil
-
-`func (o *CertificateProfileAuthorizationLevels) SetApproveEnrollNil(b bool)`
-
- SetApproveEnrollNil sets the value for ApproveEnroll to be an explicit nil
-
-### UnsetApproveEnroll
-`func (o *CertificateProfileAuthorizationLevels) UnsetApproveEnroll()`
-
-UnsetApproveEnroll ensures that no value is present for ApproveEnroll, not even an explicit nil
-### GetRevoke
-
-`func (o *CertificateProfileAuthorizationLevels) GetRevoke() AuthorizationLevel`
-
-GetRevoke returns the Revoke field if non-nil, zero value otherwise.
-
-### GetRevokeOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetRevokeOk() (*AuthorizationLevel, bool)`
-
-GetRevokeOk returns a tuple with the Revoke field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRevoke
-
-`func (o *CertificateProfileAuthorizationLevels) SetRevoke(v AuthorizationLevel)`
-
-SetRevoke sets Revoke field to given value.
-
-
-### GetRequestRevoke
-
-`func (o *CertificateProfileAuthorizationLevels) GetRequestRevoke() AuthorizationLevel`
-
-GetRequestRevoke returns the RequestRevoke field if non-nil, zero value otherwise.
-
-### GetRequestRevokeOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetRequestRevokeOk() (*AuthorizationLevel, bool)`
-
-GetRequestRevokeOk returns a tuple with the RequestRevoke field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequestRevoke
-
-`func (o *CertificateProfileAuthorizationLevels) SetRequestRevoke(v AuthorizationLevel)`
-
-SetRequestRevoke sets RequestRevoke field to given value.
-
-
-### GetApproveRevoke
-
-`func (o *CertificateProfileAuthorizationLevels) GetApproveRevoke() AuthorizationLevel`
-
-GetApproveRevoke returns the ApproveRevoke field if non-nil, zero value otherwise.
-
-### GetApproveRevokeOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetApproveRevokeOk() (*AuthorizationLevel, bool)`
-
-GetApproveRevokeOk returns a tuple with the ApproveRevoke field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApproveRevoke
-
-`func (o *CertificateProfileAuthorizationLevels) SetApproveRevoke(v AuthorizationLevel)`
-
-SetApproveRevoke sets ApproveRevoke field to given value.
-
-
-### GetSearch
-
-`func (o *CertificateProfileAuthorizationLevels) GetSearch() AuthorizationLevel`
-
-GetSearch returns the Search field if non-nil, zero value otherwise.
-
-### GetSearchOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetSearchOk() (*AuthorizationLevel, bool)`
-
-GetSearchOk returns a tuple with the Search field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSearch
-
-`func (o *CertificateProfileAuthorizationLevels) SetSearch(v AuthorizationLevel)`
-
-SetSearch sets Search field to given value.
-
-
-### GetUpdate
-
-`func (o *CertificateProfileAuthorizationLevels) GetUpdate() AuthorizationLevel`
-
-GetUpdate returns the Update field if non-nil, zero value otherwise.
-
-### GetUpdateOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetUpdateOk() (*AuthorizationLevel, bool)`
-
-GetUpdateOk returns a tuple with the Update field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdate
-
-`func (o *CertificateProfileAuthorizationLevels) SetUpdate(v AuthorizationLevel)`
-
-SetUpdate sets Update field to given value.
-
-
-### GetRequestUpdate
-
-`func (o *CertificateProfileAuthorizationLevels) GetRequestUpdate() AuthorizationLevel`
-
-GetRequestUpdate returns the RequestUpdate field if non-nil, zero value otherwise.
-
-### GetRequestUpdateOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetRequestUpdateOk() (*AuthorizationLevel, bool)`
-
-GetRequestUpdateOk returns a tuple with the RequestUpdate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequestUpdate
-
-`func (o *CertificateProfileAuthorizationLevels) SetRequestUpdate(v AuthorizationLevel)`
-
-SetRequestUpdate sets RequestUpdate field to given value.
-
-
-### GetApproveUpdate
-
-`func (o *CertificateProfileAuthorizationLevels) GetApproveUpdate() AuthorizationLevel`
-
-GetApproveUpdate returns the ApproveUpdate field if non-nil, zero value otherwise.
-
-### GetApproveUpdateOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetApproveUpdateOk() (*AuthorizationLevel, bool)`
-
-GetApproveUpdateOk returns a tuple with the ApproveUpdate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApproveUpdate
-
-`func (o *CertificateProfileAuthorizationLevels) SetApproveUpdate(v AuthorizationLevel)`
-
-SetApproveUpdate sets ApproveUpdate field to given value.
-
-
+UnsetMigrate ensures that no value is present for Migrate, not even an explicit nil
 ### GetRecover
 
 `func (o *CertificateProfileAuthorizationLevels) GetRecover() AuthorizationLevel`
@@ -397,181 +442,6 @@ HasRecoverApi returns a boolean if a field has been set.
 `func (o *CertificateProfileAuthorizationLevels) UnsetRecoverApi()`
 
 UnsetRecoverApi ensures that no value is present for RecoverApi, not even an explicit nil
-### GetRequestRecover
-
-`func (o *CertificateProfileAuthorizationLevels) GetRequestRecover() AuthorizationLevel`
-
-GetRequestRecover returns the RequestRecover field if non-nil, zero value otherwise.
-
-### GetRequestRecoverOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetRequestRecoverOk() (*AuthorizationLevel, bool)`
-
-GetRequestRecoverOk returns a tuple with the RequestRecover field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequestRecover
-
-`func (o *CertificateProfileAuthorizationLevels) SetRequestRecover(v AuthorizationLevel)`
-
-SetRequestRecover sets RequestRecover field to given value.
-
-### HasRequestRecover
-
-`func (o *CertificateProfileAuthorizationLevels) HasRequestRecover() bool`
-
-HasRequestRecover returns a boolean if a field has been set.
-
-### SetRequestRecoverNil
-
-`func (o *CertificateProfileAuthorizationLevels) SetRequestRecoverNil(b bool)`
-
- SetRequestRecoverNil sets the value for RequestRecover to be an explicit nil
-
-### UnsetRequestRecover
-`func (o *CertificateProfileAuthorizationLevels) UnsetRequestRecover()`
-
-UnsetRequestRecover ensures that no value is present for RequestRecover, not even an explicit nil
-### GetApproveRecover
-
-`func (o *CertificateProfileAuthorizationLevels) GetApproveRecover() AuthorizationLevel`
-
-GetApproveRecover returns the ApproveRecover field if non-nil, zero value otherwise.
-
-### GetApproveRecoverOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetApproveRecoverOk() (*AuthorizationLevel, bool)`
-
-GetApproveRecoverOk returns a tuple with the ApproveRecover field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApproveRecover
-
-`func (o *CertificateProfileAuthorizationLevels) SetApproveRecover(v AuthorizationLevel)`
-
-SetApproveRecover sets ApproveRecover field to given value.
-
-### HasApproveRecover
-
-`func (o *CertificateProfileAuthorizationLevels) HasApproveRecover() bool`
-
-HasApproveRecover returns a boolean if a field has been set.
-
-### SetApproveRecoverNil
-
-`func (o *CertificateProfileAuthorizationLevels) SetApproveRecoverNil(b bool)`
-
- SetApproveRecoverNil sets the value for ApproveRecover to be an explicit nil
-
-### UnsetApproveRecover
-`func (o *CertificateProfileAuthorizationLevels) UnsetApproveRecover()`
-
-UnsetApproveRecover ensures that no value is present for ApproveRecover, not even an explicit nil
-### GetMigrate
-
-`func (o *CertificateProfileAuthorizationLevels) GetMigrate() AuthorizationLevel`
-
-GetMigrate returns the Migrate field if non-nil, zero value otherwise.
-
-### GetMigrateOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetMigrateOk() (*AuthorizationLevel, bool)`
-
-GetMigrateOk returns a tuple with the Migrate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMigrate
-
-`func (o *CertificateProfileAuthorizationLevels) SetMigrate(v AuthorizationLevel)`
-
-SetMigrate sets Migrate field to given value.
-
-### HasMigrate
-
-`func (o *CertificateProfileAuthorizationLevels) HasMigrate() bool`
-
-HasMigrate returns a boolean if a field has been set.
-
-### SetMigrateNil
-
-`func (o *CertificateProfileAuthorizationLevels) SetMigrateNil(b bool)`
-
- SetMigrateNil sets the value for Migrate to be an explicit nil
-
-### UnsetMigrate
-`func (o *CertificateProfileAuthorizationLevels) UnsetMigrate()`
-
-UnsetMigrate ensures that no value is present for Migrate, not even an explicit nil
-### GetRequestMigrate
-
-`func (o *CertificateProfileAuthorizationLevels) GetRequestMigrate() AuthorizationLevel`
-
-GetRequestMigrate returns the RequestMigrate field if non-nil, zero value otherwise.
-
-### GetRequestMigrateOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetRequestMigrateOk() (*AuthorizationLevel, bool)`
-
-GetRequestMigrateOk returns a tuple with the RequestMigrate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequestMigrate
-
-`func (o *CertificateProfileAuthorizationLevels) SetRequestMigrate(v AuthorizationLevel)`
-
-SetRequestMigrate sets RequestMigrate field to given value.
-
-### HasRequestMigrate
-
-`func (o *CertificateProfileAuthorizationLevels) HasRequestMigrate() bool`
-
-HasRequestMigrate returns a boolean if a field has been set.
-
-### SetRequestMigrateNil
-
-`func (o *CertificateProfileAuthorizationLevels) SetRequestMigrateNil(b bool)`
-
- SetRequestMigrateNil sets the value for RequestMigrate to be an explicit nil
-
-### UnsetRequestMigrate
-`func (o *CertificateProfileAuthorizationLevels) UnsetRequestMigrate()`
-
-UnsetRequestMigrate ensures that no value is present for RequestMigrate, not even an explicit nil
-### GetApproveMigrate
-
-`func (o *CertificateProfileAuthorizationLevels) GetApproveMigrate() AuthorizationLevel`
-
-GetApproveMigrate returns the ApproveMigrate field if non-nil, zero value otherwise.
-
-### GetApproveMigrateOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetApproveMigrateOk() (*AuthorizationLevel, bool)`
-
-GetApproveMigrateOk returns a tuple with the ApproveMigrate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApproveMigrate
-
-`func (o *CertificateProfileAuthorizationLevels) SetApproveMigrate(v AuthorizationLevel)`
-
-SetApproveMigrate sets ApproveMigrate field to given value.
-
-### HasApproveMigrate
-
-`func (o *CertificateProfileAuthorizationLevels) HasApproveMigrate() bool`
-
-HasApproveMigrate returns a boolean if a field has been set.
-
-### SetApproveMigrateNil
-
-`func (o *CertificateProfileAuthorizationLevels) SetApproveMigrateNil(b bool)`
-
- SetApproveMigrateNil sets the value for ApproveMigrate to be an explicit nil
-
-### UnsetApproveMigrate
-`func (o *CertificateProfileAuthorizationLevels) UnsetApproveMigrate()`
-
-UnsetApproveMigrate ensures that no value is present for ApproveMigrate, not even an explicit nil
 ### GetRenew
 
 `func (o *CertificateProfileAuthorizationLevels) GetRenew() AuthorizationLevel`
@@ -642,6 +512,111 @@ HasRenewApi returns a boolean if a field has been set.
 `func (o *CertificateProfileAuthorizationLevels) UnsetRenewApi()`
 
 UnsetRenewApi ensures that no value is present for RenewApi, not even an explicit nil
+### GetRequestEnroll
+
+`func (o *CertificateProfileAuthorizationLevels) GetRequestEnroll() AuthorizationLevel`
+
+GetRequestEnroll returns the RequestEnroll field if non-nil, zero value otherwise.
+
+### GetRequestEnrollOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetRequestEnrollOk() (*AuthorizationLevel, bool)`
+
+GetRequestEnrollOk returns a tuple with the RequestEnroll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestEnroll
+
+`func (o *CertificateProfileAuthorizationLevels) SetRequestEnroll(v AuthorizationLevel)`
+
+SetRequestEnroll sets RequestEnroll field to given value.
+
+### HasRequestEnroll
+
+`func (o *CertificateProfileAuthorizationLevels) HasRequestEnroll() bool`
+
+HasRequestEnroll returns a boolean if a field has been set.
+
+### SetRequestEnrollNil
+
+`func (o *CertificateProfileAuthorizationLevels) SetRequestEnrollNil(b bool)`
+
+ SetRequestEnrollNil sets the value for RequestEnroll to be an explicit nil
+
+### UnsetRequestEnroll
+`func (o *CertificateProfileAuthorizationLevels) UnsetRequestEnroll()`
+
+UnsetRequestEnroll ensures that no value is present for RequestEnroll, not even an explicit nil
+### GetRequestMigrate
+
+`func (o *CertificateProfileAuthorizationLevels) GetRequestMigrate() AuthorizationLevel`
+
+GetRequestMigrate returns the RequestMigrate field if non-nil, zero value otherwise.
+
+### GetRequestMigrateOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetRequestMigrateOk() (*AuthorizationLevel, bool)`
+
+GetRequestMigrateOk returns a tuple with the RequestMigrate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestMigrate
+
+`func (o *CertificateProfileAuthorizationLevels) SetRequestMigrate(v AuthorizationLevel)`
+
+SetRequestMigrate sets RequestMigrate field to given value.
+
+### HasRequestMigrate
+
+`func (o *CertificateProfileAuthorizationLevels) HasRequestMigrate() bool`
+
+HasRequestMigrate returns a boolean if a field has been set.
+
+### SetRequestMigrateNil
+
+`func (o *CertificateProfileAuthorizationLevels) SetRequestMigrateNil(b bool)`
+
+ SetRequestMigrateNil sets the value for RequestMigrate to be an explicit nil
+
+### UnsetRequestMigrate
+`func (o *CertificateProfileAuthorizationLevels) UnsetRequestMigrate()`
+
+UnsetRequestMigrate ensures that no value is present for RequestMigrate, not even an explicit nil
+### GetRequestRecover
+
+`func (o *CertificateProfileAuthorizationLevels) GetRequestRecover() AuthorizationLevel`
+
+GetRequestRecover returns the RequestRecover field if non-nil, zero value otherwise.
+
+### GetRequestRecoverOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetRequestRecoverOk() (*AuthorizationLevel, bool)`
+
+GetRequestRecoverOk returns a tuple with the RequestRecover field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestRecover
+
+`func (o *CertificateProfileAuthorizationLevels) SetRequestRecover(v AuthorizationLevel)`
+
+SetRequestRecover sets RequestRecover field to given value.
+
+### HasRequestRecover
+
+`func (o *CertificateProfileAuthorizationLevels) HasRequestRecover() bool`
+
+HasRequestRecover returns a boolean if a field has been set.
+
+### SetRequestRecoverNil
+
+`func (o *CertificateProfileAuthorizationLevels) SetRequestRecoverNil(b bool)`
+
+ SetRequestRecoverNil sets the value for RequestRecover to be an explicit nil
+
+### UnsetRequestRecover
+`func (o *CertificateProfileAuthorizationLevels) UnsetRequestRecover()`
+
+UnsetRequestRecover ensures that no value is present for RequestRecover, not even an explicit nil
 ### GetRequestRenew
 
 `func (o *CertificateProfileAuthorizationLevels) GetRequestRenew() AuthorizationLevel`
@@ -677,76 +652,116 @@ HasRequestRenew returns a boolean if a field has been set.
 `func (o *CertificateProfileAuthorizationLevels) UnsetRequestRenew()`
 
 UnsetRequestRenew ensures that no value is present for RequestRenew, not even an explicit nil
-### GetApproveRenew
+### GetRequestRevoke
 
-`func (o *CertificateProfileAuthorizationLevels) GetApproveRenew() AuthorizationLevel`
+`func (o *CertificateProfileAuthorizationLevels) GetRequestRevoke() AuthorizationLevel`
 
-GetApproveRenew returns the ApproveRenew field if non-nil, zero value otherwise.
+GetRequestRevoke returns the RequestRevoke field if non-nil, zero value otherwise.
 
-### GetApproveRenewOk
+### GetRequestRevokeOk
 
-`func (o *CertificateProfileAuthorizationLevels) GetApproveRenewOk() (*AuthorizationLevel, bool)`
+`func (o *CertificateProfileAuthorizationLevels) GetRequestRevokeOk() (*AuthorizationLevel, bool)`
 
-GetApproveRenewOk returns a tuple with the ApproveRenew field if it's non-nil, zero value otherwise
+GetRequestRevokeOk returns a tuple with the RequestRevoke field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetApproveRenew
+### SetRequestRevoke
 
-`func (o *CertificateProfileAuthorizationLevels) SetApproveRenew(v AuthorizationLevel)`
+`func (o *CertificateProfileAuthorizationLevels) SetRequestRevoke(v AuthorizationLevel)`
 
-SetApproveRenew sets ApproveRenew field to given value.
+SetRequestRevoke sets RequestRevoke field to given value.
 
-### HasApproveRenew
+### HasRequestRevoke
 
-`func (o *CertificateProfileAuthorizationLevels) HasApproveRenew() bool`
+`func (o *CertificateProfileAuthorizationLevels) HasRequestRevoke() bool`
 
-HasApproveRenew returns a boolean if a field has been set.
+HasRequestRevoke returns a boolean if a field has been set.
 
-### SetApproveRenewNil
+### GetRequestUpdate
 
-`func (o *CertificateProfileAuthorizationLevels) SetApproveRenewNil(b bool)`
+`func (o *CertificateProfileAuthorizationLevels) GetRequestUpdate() AuthorizationLevel`
 
- SetApproveRenewNil sets the value for ApproveRenew to be an explicit nil
+GetRequestUpdate returns the RequestUpdate field if non-nil, zero value otherwise.
 
-### UnsetApproveRenew
-`func (o *CertificateProfileAuthorizationLevels) UnsetApproveRenew()`
+### GetRequestUpdateOk
 
-UnsetApproveRenew ensures that no value is present for ApproveRenew, not even an explicit nil
-### GetAuditRequest
+`func (o *CertificateProfileAuthorizationLevels) GetRequestUpdateOk() (*AuthorizationLevel, bool)`
 
-`func (o *CertificateProfileAuthorizationLevels) GetAuditRequest() AuthorizationLevel`
-
-GetAuditRequest returns the AuditRequest field if non-nil, zero value otherwise.
-
-### GetAuditRequestOk
-
-`func (o *CertificateProfileAuthorizationLevels) GetAuditRequestOk() (*AuthorizationLevel, bool)`
-
-GetAuditRequestOk returns a tuple with the AuditRequest field if it's non-nil, zero value otherwise
+GetRequestUpdateOk returns a tuple with the RequestUpdate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuditRequest
+### SetRequestUpdate
 
-`func (o *CertificateProfileAuthorizationLevels) SetAuditRequest(v AuthorizationLevel)`
+`func (o *CertificateProfileAuthorizationLevels) SetRequestUpdate(v AuthorizationLevel)`
 
-SetAuditRequest sets AuditRequest field to given value.
+SetRequestUpdate sets RequestUpdate field to given value.
 
-### HasAuditRequest
 
-`func (o *CertificateProfileAuthorizationLevels) HasAuditRequest() bool`
+### GetRevoke
 
-HasAuditRequest returns a boolean if a field has been set.
+`func (o *CertificateProfileAuthorizationLevels) GetRevoke() AuthorizationLevel`
 
-### SetAuditRequestNil
+GetRevoke returns the Revoke field if non-nil, zero value otherwise.
 
-`func (o *CertificateProfileAuthorizationLevels) SetAuditRequestNil(b bool)`
+### GetRevokeOk
 
- SetAuditRequestNil sets the value for AuditRequest to be an explicit nil
+`func (o *CertificateProfileAuthorizationLevels) GetRevokeOk() (*AuthorizationLevel, bool)`
 
-### UnsetAuditRequest
-`func (o *CertificateProfileAuthorizationLevels) UnsetAuditRequest()`
+GetRevokeOk returns a tuple with the Revoke field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetAuditRequest ensures that no value is present for AuditRequest, not even an explicit nil
+### SetRevoke
+
+`func (o *CertificateProfileAuthorizationLevels) SetRevoke(v AuthorizationLevel)`
+
+SetRevoke sets Revoke field to given value.
+
+### HasRevoke
+
+`func (o *CertificateProfileAuthorizationLevels) HasRevoke() bool`
+
+HasRevoke returns a boolean if a field has been set.
+
+### GetSearch
+
+`func (o *CertificateProfileAuthorizationLevels) GetSearch() AuthorizationLevel`
+
+GetSearch returns the Search field if non-nil, zero value otherwise.
+
+### GetSearchOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetSearchOk() (*AuthorizationLevel, bool)`
+
+GetSearchOk returns a tuple with the Search field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSearch
+
+`func (o *CertificateProfileAuthorizationLevels) SetSearch(v AuthorizationLevel)`
+
+SetSearch sets Search field to given value.
+
+
+### GetUpdate
+
+`func (o *CertificateProfileAuthorizationLevels) GetUpdate() AuthorizationLevel`
+
+GetUpdate returns the Update field if non-nil, zero value otherwise.
+
+### GetUpdateOk
+
+`func (o *CertificateProfileAuthorizationLevels) GetUpdateOk() (*AuthorizationLevel, bool)`
+
+GetUpdateOk returns a tuple with the Update field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdate
+
+`func (o *CertificateProfileAuthorizationLevels) SetUpdate(v AuthorizationLevel)`
+
+SetUpdate sets Update field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

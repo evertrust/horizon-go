@@ -5,26 +5,26 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
-**Type** | **string** |  | 
+**AuthenticationCredentials** | Pointer to **NullableString** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | [optional] 
 **EndPoint** | **string** | MetaPKI base endpoint | 
 **EndPointIssuingCA** | **string** | Certificate authority of the endpoint | 
-**Profile** | **string** |  | 
-**Workflow** | **NullableString** |  | 
-**ProfilCle** | **NullableString** |  | 
-**ValidDays** | Pointer to **NullableString** |  | [optional] 
 **FormPorteurName** | Pointer to **NullableString** |  | [optional] 
-**AuthenticationCredentials** | Pointer to **NullableString** | Name of the &#x60;certificate&#x60; [credentials](#tag/api.security.credentials) to use to authenticate on the PKI | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Name** | **string** |  | 
+**ProfilCle** | **NullableString** |  | 
+**Profile** | **string** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
+**ValidDays** | Pointer to **NullableString** |  | [optional] 
+**Workflow** | **NullableString** |  | 
 
 ## Methods
 
 ### NewMetaPKIConnectorResponse
 
-`func NewMetaPKIConnectorResponse(id string, name string, type_ string, endPoint string, endPointIssuingCA string, profile string, workflow NullableString, profilCle NullableString, ) *MetaPKIConnectorResponse`
+`func NewMetaPKIConnectorResponse(id string, endPoint string, endPointIssuingCA string, name string, profilCle NullableString, profile string, type_ string, workflow NullableString, ) *MetaPKIConnectorResponse`
 
 NewMetaPKIConnectorResponse instantiates a new MetaPKIConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -59,46 +59,41 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetName
+### GetAuthenticationCredentials
 
-`func (o *MetaPKIConnectorResponse) GetName() string`
+`func (o *MetaPKIConnectorResponse) GetAuthenticationCredentials() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAuthenticationCredentialsOk
 
-`func (o *MetaPKIConnectorResponse) GetNameOk() (*string, bool)`
+`func (o *MetaPKIConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetAuthenticationCredentials
 
-`func (o *MetaPKIConnectorResponse) SetName(v string)`
+`func (o *MetaPKIConnectorResponse) SetAuthenticationCredentials(v string)`
 
-SetName sets Name field to given value.
+SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
 
+### HasAuthenticationCredentials
 
-### GetType
+`func (o *MetaPKIConnectorResponse) HasAuthenticationCredentials() bool`
 
-`func (o *MetaPKIConnectorResponse) GetType() string`
+HasAuthenticationCredentials returns a boolean if a field has been set.
 
-GetType returns the Type field if non-nil, zero value otherwise.
+### SetAuthenticationCredentialsNil
 
-### GetTypeOk
+`func (o *MetaPKIConnectorResponse) SetAuthenticationCredentialsNil(b bool)`
 
-`func (o *MetaPKIConnectorResponse) GetTypeOk() (*string, bool)`
+ SetAuthenticationCredentialsNil sets the value for AuthenticationCredentials to be an explicit nil
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetAuthenticationCredentials
+`func (o *MetaPKIConnectorResponse) UnsetAuthenticationCredentials()`
 
-### SetType
-
-`func (o *MetaPKIConnectorResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
+UnsetAuthenticationCredentials ensures that no value is present for AuthenticationCredentials, not even an explicit nil
 ### GetEndPoint
 
 `func (o *MetaPKIConnectorResponse) GetEndPoint() string`
@@ -139,121 +134,6 @@ and a boolean to check if the value has been set.
 SetEndPointIssuingCA sets EndPointIssuingCA field to given value.
 
 
-### GetProfile
-
-`func (o *MetaPKIConnectorResponse) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *MetaPKIConnectorResponse) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *MetaPKIConnectorResponse) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-
-### GetWorkflow
-
-`func (o *MetaPKIConnectorResponse) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *MetaPKIConnectorResponse) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *MetaPKIConnectorResponse) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-
-### SetWorkflowNil
-
-`func (o *MetaPKIConnectorResponse) SetWorkflowNil(b bool)`
-
- SetWorkflowNil sets the value for Workflow to be an explicit nil
-
-### UnsetWorkflow
-`func (o *MetaPKIConnectorResponse) UnsetWorkflow()`
-
-UnsetWorkflow ensures that no value is present for Workflow, not even an explicit nil
-### GetProfilCle
-
-`func (o *MetaPKIConnectorResponse) GetProfilCle() string`
-
-GetProfilCle returns the ProfilCle field if non-nil, zero value otherwise.
-
-### GetProfilCleOk
-
-`func (o *MetaPKIConnectorResponse) GetProfilCleOk() (*string, bool)`
-
-GetProfilCleOk returns a tuple with the ProfilCle field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfilCle
-
-`func (o *MetaPKIConnectorResponse) SetProfilCle(v string)`
-
-SetProfilCle sets ProfilCle field to given value.
-
-
-### SetProfilCleNil
-
-`func (o *MetaPKIConnectorResponse) SetProfilCleNil(b bool)`
-
- SetProfilCleNil sets the value for ProfilCle to be an explicit nil
-
-### UnsetProfilCle
-`func (o *MetaPKIConnectorResponse) UnsetProfilCle()`
-
-UnsetProfilCle ensures that no value is present for ProfilCle, not even an explicit nil
-### GetValidDays
-
-`func (o *MetaPKIConnectorResponse) GetValidDays() string`
-
-GetValidDays returns the ValidDays field if non-nil, zero value otherwise.
-
-### GetValidDaysOk
-
-`func (o *MetaPKIConnectorResponse) GetValidDaysOk() (*string, bool)`
-
-GetValidDaysOk returns a tuple with the ValidDays field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetValidDays
-
-`func (o *MetaPKIConnectorResponse) SetValidDays(v string)`
-
-SetValidDays sets ValidDays field to given value.
-
-### HasValidDays
-
-`func (o *MetaPKIConnectorResponse) HasValidDays() bool`
-
-HasValidDays returns a boolean if a field has been set.
-
-### SetValidDaysNil
-
-`func (o *MetaPKIConnectorResponse) SetValidDaysNil(b bool)`
-
- SetValidDaysNil sets the value for ValidDays to be an explicit nil
-
-### UnsetValidDays
-`func (o *MetaPKIConnectorResponse) UnsetValidDays()`
-
-UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
 ### GetFormPorteurName
 
 `func (o *MetaPKIConnectorResponse) GetFormPorteurName() string`
@@ -289,76 +169,76 @@ HasFormPorteurName returns a boolean if a field has been set.
 `func (o *MetaPKIConnectorResponse) UnsetFormPorteurName()`
 
 UnsetFormPorteurName ensures that no value is present for FormPorteurName, not even an explicit nil
-### GetAuthenticationCredentials
+### GetName
 
-`func (o *MetaPKIConnectorResponse) GetAuthenticationCredentials() string`
+`func (o *MetaPKIConnectorResponse) GetName() string`
 
-GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAuthenticationCredentialsOk
+### GetNameOk
 
-`func (o *MetaPKIConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool)`
+`func (o *MetaPKIConnectorResponse) GetNameOk() (*string, bool)`
 
-GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationCredentials
+### SetName
 
-`func (o *MetaPKIConnectorResponse) SetAuthenticationCredentials(v string)`
+`func (o *MetaPKIConnectorResponse) SetName(v string)`
 
-SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
+SetName sets Name field to given value.
 
-### HasAuthenticationCredentials
 
-`func (o *MetaPKIConnectorResponse) HasAuthenticationCredentials() bool`
+### GetProfilCle
 
-HasAuthenticationCredentials returns a boolean if a field has been set.
+`func (o *MetaPKIConnectorResponse) GetProfilCle() string`
 
-### SetAuthenticationCredentialsNil
+GetProfilCle returns the ProfilCle field if non-nil, zero value otherwise.
 
-`func (o *MetaPKIConnectorResponse) SetAuthenticationCredentialsNil(b bool)`
+### GetProfilCleOk
 
- SetAuthenticationCredentialsNil sets the value for AuthenticationCredentials to be an explicit nil
+`func (o *MetaPKIConnectorResponse) GetProfilCleOk() (*string, bool)`
 
-### UnsetAuthenticationCredentials
-`func (o *MetaPKIConnectorResponse) UnsetAuthenticationCredentials()`
-
-UnsetAuthenticationCredentials ensures that no value is present for AuthenticationCredentials, not even an explicit nil
-### GetTimeout
-
-`func (o *MetaPKIConnectorResponse) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *MetaPKIConnectorResponse) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+GetProfilCleOk returns a tuple with the ProfilCle field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeout
+### SetProfilCle
 
-`func (o *MetaPKIConnectorResponse) SetTimeout(v string)`
+`func (o *MetaPKIConnectorResponse) SetProfilCle(v string)`
 
-SetTimeout sets Timeout field to given value.
+SetProfilCle sets ProfilCle field to given value.
 
-### HasTimeout
 
-`func (o *MetaPKIConnectorResponse) HasTimeout() bool`
+### SetProfilCleNil
 
-HasTimeout returns a boolean if a field has been set.
+`func (o *MetaPKIConnectorResponse) SetProfilCleNil(b bool)`
 
-### SetTimeoutNil
+ SetProfilCleNil sets the value for ProfilCle to be an explicit nil
 
-`func (o *MetaPKIConnectorResponse) SetTimeoutNil(b bool)`
+### UnsetProfilCle
+`func (o *MetaPKIConnectorResponse) UnsetProfilCle()`
 
- SetTimeoutNil sets the value for Timeout to be an explicit nil
+UnsetProfilCle ensures that no value is present for ProfilCle, not even an explicit nil
+### GetProfile
 
-### UnsetTimeout
-`func (o *MetaPKIConnectorResponse) UnsetTimeout()`
+`func (o *MetaPKIConnectorResponse) GetProfile() string`
 
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *MetaPKIConnectorResponse) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *MetaPKIConnectorResponse) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
+
+
 ### GetProxy
 
 `func (o *MetaPKIConnectorResponse) GetProxy() string`
@@ -464,6 +344,126 @@ HasStatus returns a boolean if a field has been set.
 `func (o *MetaPKIConnectorResponse) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
+### GetTimeout
+
+`func (o *MetaPKIConnectorResponse) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *MetaPKIConnectorResponse) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *MetaPKIConnectorResponse) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *MetaPKIConnectorResponse) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *MetaPKIConnectorResponse) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *MetaPKIConnectorResponse) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *MetaPKIConnectorResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *MetaPKIConnectorResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *MetaPKIConnectorResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
+### GetValidDays
+
+`func (o *MetaPKIConnectorResponse) GetValidDays() string`
+
+GetValidDays returns the ValidDays field if non-nil, zero value otherwise.
+
+### GetValidDaysOk
+
+`func (o *MetaPKIConnectorResponse) GetValidDaysOk() (*string, bool)`
+
+GetValidDaysOk returns a tuple with the ValidDays field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidDays
+
+`func (o *MetaPKIConnectorResponse) SetValidDays(v string)`
+
+SetValidDays sets ValidDays field to given value.
+
+### HasValidDays
+
+`func (o *MetaPKIConnectorResponse) HasValidDays() bool`
+
+HasValidDays returns a boolean if a field has been set.
+
+### SetValidDaysNil
+
+`func (o *MetaPKIConnectorResponse) SetValidDaysNil(b bool)`
+
+ SetValidDaysNil sets the value for ValidDays to be an explicit nil
+
+### UnsetValidDays
+`func (o *MetaPKIConnectorResponse) UnsetValidDays()`
+
+UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
+### GetWorkflow
+
+`func (o *MetaPKIConnectorResponse) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *MetaPKIConnectorResponse) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *MetaPKIConnectorResponse) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
+### SetWorkflowNil
+
+`func (o *MetaPKIConnectorResponse) SetWorkflowNil(b bool)`
+
+ SetWorkflowNil sets the value for Workflow to be an explicit nil
+
+### UnsetWorkflow
+`func (o *MetaPKIConnectorResponse) UnsetWorkflow()`
+
+UnsetWorkflow ensures that no value is present for Workflow, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

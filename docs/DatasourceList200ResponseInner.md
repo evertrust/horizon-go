@@ -5,36 +5,36 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Type** | **string** | Type of datasource | 
-**Name** | **string** | Name of the datasource | 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
 **Description** | Pointer to **string** | Description of the datasource | [optional] 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
 **Host** | Pointer to **NullableString** | Ip of the DNS server. If empty, Horizon Server DNS is used | [optional] 
-**Port** | Pointer to **NullableInt64** | Port on which to join the LDAP server | [optional] [default to 389]
-**Timeout** | **string** | Timeout for the HTTP request. | 
-**RecordTypes** | Pointer to **[]string** | Type of DNS records to fetch. All available record types are fetched if null | [optional] 
 **Lookup** | **string** | Host to lookup | 
-**Credentials** | **string** | Name of the [credentials](#tag/api.security.credentials) to use for authentication | 
+**Name** | **string** | Name of the datasource | 
+**Port** | Pointer to **NullableInt64** | Port on which to join the LDAP server | [optional] [default to 389]
+**RecordTypes** | Pointer to **[]string** | Type of DNS records to fetch. All available record types are fetched if null | [optional] 
+**Timeout** | **string** | Timeout for the HTTP request. | 
+**Type** | **string** | Type of datasource | 
+**Attributes** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of attributes to fetch for this datasource | [optional] 
+**BaseDn** | **string** | LDAP Base DN | 
+**Credentials** | **string** | Name of the [credentials](#tag/security.credentials) to use for authentication | 
+**DisableHostnameValidation** | Pointer to **NullableBool** | Disable hostname validation for the LDAP connection | [optional] [default to false]
+**Filter** | **string** | LDAP Filter | 
 **Hostname** | **string** | Hostname of the LDAP server | 
 **Proxy** | Pointer to **NullableString** | Name of a Proxy to use while making the request | [optional] 
 **Secure** | **bool** | Use secure LDAP connection | 
-**DisableHostnameValidation** | Pointer to **NullableBool** | Disable hostname validation for the LDAP connection | [optional] [default to false]
-**BaseDn** | **string** | LDAP Base DN | 
-**Filter** | **string** | LDAP Filter | 
-**Attributes** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of attributes to fetch for this datasource | [optional] 
-**Method** | **string** | The HTTP method to use for the request | 
-**Url** | **string** | The URL to request | 
 **AuthenticationType** | **string** | The authentication type to use while making the REST call. Is linked to &#x60;credentials&#x60;. | 
-**Headers** | Pointer to [**[]Header**](Header.md) | The headers of the request | [optional] 
-**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
-**Payload** | Pointer to **NullableString** | The body of the request | [optional] 
 **ExpectedHttpCodes** | **[]int64** | The success HTTP codes for the request. If the return code is not in this list, the request will be considered failed. | 
+**Headers** | Pointer to [**[]Header**](Header.md) | The headers of the request | [optional] 
+**Method** | **string** | The HTTP method to use for the request | 
+**Payload** | Pointer to **NullableString** | The body of the request | [optional] 
+**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
+**Url** | **string** | The URL to request | 
 
 ## Methods
 
 ### NewDatasourceList200ResponseInner
 
-`func NewDatasourceList200ResponseInner(id string, type_ string, name string, timeout string, lookup string, credentials string, hostname string, secure bool, baseDn string, filter string, method string, url string, authenticationType string, expectedHttpCodes []int64, ) *DatasourceList200ResponseInner`
+`func NewDatasourceList200ResponseInner(id string, lookup string, name string, timeout string, type_ string, baseDn string, credentials string, filter string, hostname string, secure bool, authenticationType string, expectedHttpCodes []int64, method string, url string, ) *DatasourceList200ResponseInner`
 
 NewDatasourceList200ResponseInner instantiates a new DatasourceList200ResponseInner object
 This constructor will assign default values to properties that have it defined,
@@ -69,45 +69,30 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetType
+### GetDescription
 
-`func (o *DatasourceList200ResponseInner) GetType() string`
+`func (o *DatasourceList200ResponseInner) GetDescription() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetDescriptionOk
 
-`func (o *DatasourceList200ResponseInner) GetTypeOk() (*string, bool)`
+`func (o *DatasourceList200ResponseInner) GetDescriptionOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetDescription
 
-`func (o *DatasourceList200ResponseInner) SetType(v string)`
+`func (o *DatasourceList200ResponseInner) SetDescription(v string)`
 
-SetType sets Type field to given value.
+SetDescription sets Description field to given value.
 
+### HasDescription
 
-### GetName
+`func (o *DatasourceList200ResponseInner) HasDescription() bool`
 
-`func (o *DatasourceList200ResponseInner) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *DatasourceList200ResponseInner) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *DatasourceList200ResponseInner) SetName(v string)`
-
-SetName sets Name field to given value.
-
+HasDescription returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -144,31 +129,6 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *DatasourceList200ResponseInner) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetDescription
-
-`func (o *DatasourceList200ResponseInner) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *DatasourceList200ResponseInner) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *DatasourceList200ResponseInner) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *DatasourceList200ResponseInner) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
 ### GetHost
 
 `func (o *DatasourceList200ResponseInner) GetHost() string`
@@ -204,6 +164,46 @@ HasHost returns a boolean if a field has been set.
 `func (o *DatasourceList200ResponseInner) UnsetHost()`
 
 UnsetHost ensures that no value is present for Host, not even an explicit nil
+### GetLookup
+
+`func (o *DatasourceList200ResponseInner) GetLookup() string`
+
+GetLookup returns the Lookup field if non-nil, zero value otherwise.
+
+### GetLookupOk
+
+`func (o *DatasourceList200ResponseInner) GetLookupOk() (*string, bool)`
+
+GetLookupOk returns a tuple with the Lookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLookup
+
+`func (o *DatasourceList200ResponseInner) SetLookup(v string)`
+
+SetLookup sets Lookup field to given value.
+
+
+### GetName
+
+`func (o *DatasourceList200ResponseInner) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *DatasourceList200ResponseInner) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *DatasourceList200ResponseInner) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetPort
 
 `func (o *DatasourceList200ResponseInner) GetPort() int64`
@@ -239,26 +239,6 @@ HasPort returns a boolean if a field has been set.
 `func (o *DatasourceList200ResponseInner) UnsetPort()`
 
 UnsetPort ensures that no value is present for Port, not even an explicit nil
-### GetTimeout
-
-`func (o *DatasourceList200ResponseInner) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *DatasourceList200ResponseInner) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *DatasourceList200ResponseInner) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-
 ### GetRecordTypes
 
 `func (o *DatasourceList200ResponseInner) GetRecordTypes() []string`
@@ -294,24 +274,99 @@ HasRecordTypes returns a boolean if a field has been set.
 `func (o *DatasourceList200ResponseInner) UnsetRecordTypes()`
 
 UnsetRecordTypes ensures that no value is present for RecordTypes, not even an explicit nil
-### GetLookup
+### GetTimeout
 
-`func (o *DatasourceList200ResponseInner) GetLookup() string`
+`func (o *DatasourceList200ResponseInner) GetTimeout() string`
 
-GetLookup returns the Lookup field if non-nil, zero value otherwise.
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
 
-### GetLookupOk
+### GetTimeoutOk
 
-`func (o *DatasourceList200ResponseInner) GetLookupOk() (*string, bool)`
+`func (o *DatasourceList200ResponseInner) GetTimeoutOk() (*string, bool)`
 
-GetLookupOk returns a tuple with the Lookup field if it's non-nil, zero value otherwise
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLookup
+### SetTimeout
 
-`func (o *DatasourceList200ResponseInner) SetLookup(v string)`
+`func (o *DatasourceList200ResponseInner) SetTimeout(v string)`
 
-SetLookup sets Lookup field to given value.
+SetTimeout sets Timeout field to given value.
+
+
+### GetType
+
+`func (o *DatasourceList200ResponseInner) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *DatasourceList200ResponseInner) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *DatasourceList200ResponseInner) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
+### GetAttributes
+
+`func (o *DatasourceList200ResponseInner) GetAttributes() []DataSourceOutput`
+
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+
+### GetAttributesOk
+
+`func (o *DatasourceList200ResponseInner) GetAttributesOk() (*[]DataSourceOutput, bool)`
+
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttributes
+
+`func (o *DatasourceList200ResponseInner) SetAttributes(v []DataSourceOutput)`
+
+SetAttributes sets Attributes field to given value.
+
+### HasAttributes
+
+`func (o *DatasourceList200ResponseInner) HasAttributes() bool`
+
+HasAttributes returns a boolean if a field has been set.
+
+### SetAttributesNil
+
+`func (o *DatasourceList200ResponseInner) SetAttributesNil(b bool)`
+
+ SetAttributesNil sets the value for Attributes to be an explicit nil
+
+### UnsetAttributes
+`func (o *DatasourceList200ResponseInner) UnsetAttributes()`
+
+UnsetAttributes ensures that no value is present for Attributes, not even an explicit nil
+### GetBaseDn
+
+`func (o *DatasourceList200ResponseInner) GetBaseDn() string`
+
+GetBaseDn returns the BaseDn field if non-nil, zero value otherwise.
+
+### GetBaseDnOk
+
+`func (o *DatasourceList200ResponseInner) GetBaseDnOk() (*string, bool)`
+
+GetBaseDnOk returns a tuple with the BaseDn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBaseDn
+
+`func (o *DatasourceList200ResponseInner) SetBaseDn(v string)`
+
+SetBaseDn sets BaseDn field to given value.
 
 
 ### GetCredentials
@@ -332,6 +387,61 @@ and a boolean to check if the value has been set.
 `func (o *DatasourceList200ResponseInner) SetCredentials(v string)`
 
 SetCredentials sets Credentials field to given value.
+
+
+### GetDisableHostnameValidation
+
+`func (o *DatasourceList200ResponseInner) GetDisableHostnameValidation() bool`
+
+GetDisableHostnameValidation returns the DisableHostnameValidation field if non-nil, zero value otherwise.
+
+### GetDisableHostnameValidationOk
+
+`func (o *DatasourceList200ResponseInner) GetDisableHostnameValidationOk() (*bool, bool)`
+
+GetDisableHostnameValidationOk returns a tuple with the DisableHostnameValidation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableHostnameValidation
+
+`func (o *DatasourceList200ResponseInner) SetDisableHostnameValidation(v bool)`
+
+SetDisableHostnameValidation sets DisableHostnameValidation field to given value.
+
+### HasDisableHostnameValidation
+
+`func (o *DatasourceList200ResponseInner) HasDisableHostnameValidation() bool`
+
+HasDisableHostnameValidation returns a boolean if a field has been set.
+
+### SetDisableHostnameValidationNil
+
+`func (o *DatasourceList200ResponseInner) SetDisableHostnameValidationNil(b bool)`
+
+ SetDisableHostnameValidationNil sets the value for DisableHostnameValidation to be an explicit nil
+
+### UnsetDisableHostnameValidation
+`func (o *DatasourceList200ResponseInner) UnsetDisableHostnameValidation()`
+
+UnsetDisableHostnameValidation ensures that no value is present for DisableHostnameValidation, not even an explicit nil
+### GetFilter
+
+`func (o *DatasourceList200ResponseInner) GetFilter() string`
+
+GetFilter returns the Filter field if non-nil, zero value otherwise.
+
+### GetFilterOk
+
+`func (o *DatasourceList200ResponseInner) GetFilterOk() (*string, bool)`
+
+GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilter
+
+`func (o *DatasourceList200ResponseInner) SetFilter(v string)`
+
+SetFilter sets Filter field to given value.
 
 
 ### GetHostname
@@ -409,156 +519,6 @@ and a boolean to check if the value has been set.
 SetSecure sets Secure field to given value.
 
 
-### GetDisableHostnameValidation
-
-`func (o *DatasourceList200ResponseInner) GetDisableHostnameValidation() bool`
-
-GetDisableHostnameValidation returns the DisableHostnameValidation field if non-nil, zero value otherwise.
-
-### GetDisableHostnameValidationOk
-
-`func (o *DatasourceList200ResponseInner) GetDisableHostnameValidationOk() (*bool, bool)`
-
-GetDisableHostnameValidationOk returns a tuple with the DisableHostnameValidation field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDisableHostnameValidation
-
-`func (o *DatasourceList200ResponseInner) SetDisableHostnameValidation(v bool)`
-
-SetDisableHostnameValidation sets DisableHostnameValidation field to given value.
-
-### HasDisableHostnameValidation
-
-`func (o *DatasourceList200ResponseInner) HasDisableHostnameValidation() bool`
-
-HasDisableHostnameValidation returns a boolean if a field has been set.
-
-### SetDisableHostnameValidationNil
-
-`func (o *DatasourceList200ResponseInner) SetDisableHostnameValidationNil(b bool)`
-
- SetDisableHostnameValidationNil sets the value for DisableHostnameValidation to be an explicit nil
-
-### UnsetDisableHostnameValidation
-`func (o *DatasourceList200ResponseInner) UnsetDisableHostnameValidation()`
-
-UnsetDisableHostnameValidation ensures that no value is present for DisableHostnameValidation, not even an explicit nil
-### GetBaseDn
-
-`func (o *DatasourceList200ResponseInner) GetBaseDn() string`
-
-GetBaseDn returns the BaseDn field if non-nil, zero value otherwise.
-
-### GetBaseDnOk
-
-`func (o *DatasourceList200ResponseInner) GetBaseDnOk() (*string, bool)`
-
-GetBaseDnOk returns a tuple with the BaseDn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBaseDn
-
-`func (o *DatasourceList200ResponseInner) SetBaseDn(v string)`
-
-SetBaseDn sets BaseDn field to given value.
-
-
-### GetFilter
-
-`func (o *DatasourceList200ResponseInner) GetFilter() string`
-
-GetFilter returns the Filter field if non-nil, zero value otherwise.
-
-### GetFilterOk
-
-`func (o *DatasourceList200ResponseInner) GetFilterOk() (*string, bool)`
-
-GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilter
-
-`func (o *DatasourceList200ResponseInner) SetFilter(v string)`
-
-SetFilter sets Filter field to given value.
-
-
-### GetAttributes
-
-`func (o *DatasourceList200ResponseInner) GetAttributes() []DataSourceOutput`
-
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
-
-### GetAttributesOk
-
-`func (o *DatasourceList200ResponseInner) GetAttributesOk() (*[]DataSourceOutput, bool)`
-
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAttributes
-
-`func (o *DatasourceList200ResponseInner) SetAttributes(v []DataSourceOutput)`
-
-SetAttributes sets Attributes field to given value.
-
-### HasAttributes
-
-`func (o *DatasourceList200ResponseInner) HasAttributes() bool`
-
-HasAttributes returns a boolean if a field has been set.
-
-### SetAttributesNil
-
-`func (o *DatasourceList200ResponseInner) SetAttributesNil(b bool)`
-
- SetAttributesNil sets the value for Attributes to be an explicit nil
-
-### UnsetAttributes
-`func (o *DatasourceList200ResponseInner) UnsetAttributes()`
-
-UnsetAttributes ensures that no value is present for Attributes, not even an explicit nil
-### GetMethod
-
-`func (o *DatasourceList200ResponseInner) GetMethod() string`
-
-GetMethod returns the Method field if non-nil, zero value otherwise.
-
-### GetMethodOk
-
-`func (o *DatasourceList200ResponseInner) GetMethodOk() (*string, bool)`
-
-GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMethod
-
-`func (o *DatasourceList200ResponseInner) SetMethod(v string)`
-
-SetMethod sets Method field to given value.
-
-
-### GetUrl
-
-`func (o *DatasourceList200ResponseInner) GetUrl() string`
-
-GetUrl returns the Url field if non-nil, zero value otherwise.
-
-### GetUrlOk
-
-`func (o *DatasourceList200ResponseInner) GetUrlOk() (*string, bool)`
-
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUrl
-
-`func (o *DatasourceList200ResponseInner) SetUrl(v string)`
-
-SetUrl sets Url field to given value.
-
-
 ### GetAuthenticationType
 
 `func (o *DatasourceList200ResponseInner) GetAuthenticationType() string`
@@ -577,6 +537,26 @@ and a boolean to check if the value has been set.
 `func (o *DatasourceList200ResponseInner) SetAuthenticationType(v string)`
 
 SetAuthenticationType sets AuthenticationType field to given value.
+
+
+### GetExpectedHttpCodes
+
+`func (o *DatasourceList200ResponseInner) GetExpectedHttpCodes() []int64`
+
+GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
+
+### GetExpectedHttpCodesOk
+
+`func (o *DatasourceList200ResponseInner) GetExpectedHttpCodesOk() (*[]int64, bool)`
+
+GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpectedHttpCodes
+
+`func (o *DatasourceList200ResponseInner) SetExpectedHttpCodes(v []int64)`
+
+SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
 
 
 ### GetHeaders
@@ -614,41 +594,26 @@ HasHeaders returns a boolean if a field has been set.
 `func (o *DatasourceList200ResponseInner) UnsetHeaders()`
 
 UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
-### GetPayloadType
+### GetMethod
 
-`func (o *DatasourceList200ResponseInner) GetPayloadType() string`
+`func (o *DatasourceList200ResponseInner) GetMethod() string`
 
-GetPayloadType returns the PayloadType field if non-nil, zero value otherwise.
+GetMethod returns the Method field if non-nil, zero value otherwise.
 
-### GetPayloadTypeOk
+### GetMethodOk
 
-`func (o *DatasourceList200ResponseInner) GetPayloadTypeOk() (*string, bool)`
+`func (o *DatasourceList200ResponseInner) GetMethodOk() (*string, bool)`
 
-GetPayloadTypeOk returns a tuple with the PayloadType field if it's non-nil, zero value otherwise
+GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPayloadType
+### SetMethod
 
-`func (o *DatasourceList200ResponseInner) SetPayloadType(v string)`
+`func (o *DatasourceList200ResponseInner) SetMethod(v string)`
 
-SetPayloadType sets PayloadType field to given value.
+SetMethod sets Method field to given value.
 
-### HasPayloadType
 
-`func (o *DatasourceList200ResponseInner) HasPayloadType() bool`
-
-HasPayloadType returns a boolean if a field has been set.
-
-### SetPayloadTypeNil
-
-`func (o *DatasourceList200ResponseInner) SetPayloadTypeNil(b bool)`
-
- SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
-
-### UnsetPayloadType
-`func (o *DatasourceList200ResponseInner) UnsetPayloadType()`
-
-UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
 ### GetPayload
 
 `func (o *DatasourceList200ResponseInner) GetPayload() string`
@@ -684,24 +649,59 @@ HasPayload returns a boolean if a field has been set.
 `func (o *DatasourceList200ResponseInner) UnsetPayload()`
 
 UnsetPayload ensures that no value is present for Payload, not even an explicit nil
-### GetExpectedHttpCodes
+### GetPayloadType
 
-`func (o *DatasourceList200ResponseInner) GetExpectedHttpCodes() []int64`
+`func (o *DatasourceList200ResponseInner) GetPayloadType() string`
 
-GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
+GetPayloadType returns the PayloadType field if non-nil, zero value otherwise.
 
-### GetExpectedHttpCodesOk
+### GetPayloadTypeOk
 
-`func (o *DatasourceList200ResponseInner) GetExpectedHttpCodesOk() (*[]int64, bool)`
+`func (o *DatasourceList200ResponseInner) GetPayloadTypeOk() (*string, bool)`
 
-GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
+GetPayloadTypeOk returns a tuple with the PayloadType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExpectedHttpCodes
+### SetPayloadType
 
-`func (o *DatasourceList200ResponseInner) SetExpectedHttpCodes(v []int64)`
+`func (o *DatasourceList200ResponseInner) SetPayloadType(v string)`
 
-SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
+SetPayloadType sets PayloadType field to given value.
+
+### HasPayloadType
+
+`func (o *DatasourceList200ResponseInner) HasPayloadType() bool`
+
+HasPayloadType returns a boolean if a field has been set.
+
+### SetPayloadTypeNil
+
+`func (o *DatasourceList200ResponseInner) SetPayloadTypeNil(b bool)`
+
+ SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
+
+### UnsetPayloadType
+`func (o *DatasourceList200ResponseInner) UnsetPayloadType()`
+
+UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
+### GetUrl
+
+`func (o *DatasourceList200ResponseInner) GetUrl() string`
+
+GetUrl returns the Url field if non-nil, zero value otherwise.
+
+### GetUrlOk
+
+`func (o *DatasourceList200ResponseInner) GetUrlOk() (*string, bool)`
+
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUrl
+
+`func (o *DatasourceList200ResponseInner) SetUrl(v string)`
+
+SetUrl sets Url field to given value.
 
 
 

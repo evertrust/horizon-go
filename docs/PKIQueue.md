@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
+**ClusterWide** | **bool** |  | 
 **Description** | Pointer to **NullableString** |  | [optional] 
+**Name** | **string** |  | 
+**Size** | **int64** |  | 
 **ThrottleDuration** | Pointer to **NullableString** |  | [optional] 
 **ThrottleParallelism** | Pointer to **NullableInt64** |  | [optional] 
-**ClusterWide** | **bool** |  | 
-**Size** | **int64** |  | 
 
 ## Methods
 
 ### NewPKIQueue
 
-`func NewPKIQueue(name string, clusterWide bool, size int64, ) *PKIQueue`
+`func NewPKIQueue(clusterWide bool, name string, size int64, ) *PKIQueue`
 
 NewPKIQueue instantiates a new PKIQueue object
 This constructor will assign default values to properties that have it defined,
@@ -30,24 +30,24 @@ NewPKIQueueWithDefaults instantiates a new PKIQueue object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetClusterWide
 
-`func (o *PKIQueue) GetName() string`
+`func (o *PKIQueue) GetClusterWide() bool`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetClusterWide returns the ClusterWide field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetClusterWideOk
 
-`func (o *PKIQueue) GetNameOk() (*string, bool)`
+`func (o *PKIQueue) GetClusterWideOk() (*bool, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetClusterWideOk returns a tuple with the ClusterWide field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetClusterWide
 
-`func (o *PKIQueue) SetName(v string)`
+`func (o *PKIQueue) SetClusterWide(v bool)`
 
-SetName sets Name field to given value.
+SetClusterWide sets ClusterWide field to given value.
 
 
 ### GetDescription
@@ -85,6 +85,46 @@ HasDescription returns a boolean if a field has been set.
 `func (o *PKIQueue) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetName
+
+`func (o *PKIQueue) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *PKIQueue) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *PKIQueue) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetSize
+
+`func (o *PKIQueue) GetSize() int64`
+
+GetSize returns the Size field if non-nil, zero value otherwise.
+
+### GetSizeOk
+
+`func (o *PKIQueue) GetSizeOk() (*int64, bool)`
+
+GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSize
+
+`func (o *PKIQueue) SetSize(v int64)`
+
+SetSize sets Size field to given value.
+
+
 ### GetThrottleDuration
 
 `func (o *PKIQueue) GetThrottleDuration() string`
@@ -155,46 +195,6 @@ HasThrottleParallelism returns a boolean if a field has been set.
 `func (o *PKIQueue) UnsetThrottleParallelism()`
 
 UnsetThrottleParallelism ensures that no value is present for ThrottleParallelism, not even an explicit nil
-### GetClusterWide
-
-`func (o *PKIQueue) GetClusterWide() bool`
-
-GetClusterWide returns the ClusterWide field if non-nil, zero value otherwise.
-
-### GetClusterWideOk
-
-`func (o *PKIQueue) GetClusterWideOk() (*bool, bool)`
-
-GetClusterWideOk returns a tuple with the ClusterWide field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClusterWide
-
-`func (o *PKIQueue) SetClusterWide(v bool)`
-
-SetClusterWide sets ClusterWide field to given value.
-
-
-### GetSize
-
-`func (o *PKIQueue) GetSize() int64`
-
-GetSize returns the Size field if non-nil, zero value otherwise.
-
-### GetSizeOk
-
-`func (o *PKIQueue) GetSizeOk() (*int64, bool)`
-
-GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSize
-
-`func (o *PKIQueue) SetSize(v int64)`
-
-SetSize sets Size field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CertificateAggregate**](CertificateAPI.md#CertificateAggregate) | **Post** /api/v1/certificates/aggregate | Certificate aggregation
 [**CertificateCsv**](CertificateAPI.md#CertificateCsv) | **Post** /api/v1/certificates/csv | Export certificates
 [**CertificateDictionary**](CertificateAPI.md#CertificateDictionary) | **Get** /api/v1/certificates/search/dictionary | Retrieve the certificate search dictionary
+[**CertificateFind**](CertificateAPI.md#CertificateFind) | **Post** /api/v1/certificates/find | Find a certificate
 [**CertificateGetId**](CertificateAPI.md#CertificateGetId) | **Get** /api/v1/certificates/{id} | Retrieve a certificate
 [**CertificateGetPem**](CertificateAPI.md#CertificateGetPem) | **Get** /api/v1/certificates/{pem} | Retrieve a certificate by PEM
 [**CertificateList**](CertificateAPI.md#CertificateList) | **Post** /api/v1/certificates | List certificates
@@ -32,7 +33,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -85,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## CertificateCsv
 
-> CertificateCsv(ctx).CertificateSearchQuery(certificateSearchQuery).Execute()
+> CertificateCsv(ctx).CertificateSearchQuery(certificateSearchQuery).EnableAnalytics(enableAnalytics).Execute()
 
 Export certificates
 
@@ -100,15 +101,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
 	certificateSearchQuery := *openapiclient.NewCertificateSearchQuery() // CertificateSearchQuery | The certificate search query
+	enableAnalytics := true // bool | Use the analytics database if enabled. `true` if not specified. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CertificateAPI.CertificateCsv(context.Background()).CertificateSearchQuery(certificateSearchQuery).Execute()
+	r, err := apiClient.CertificateAPI.CertificateCsv(context.Background()).CertificateSearchQuery(certificateSearchQuery).EnableAnalytics(enableAnalytics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CertificateAPI.CertificateCsv``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,6 +130,7 @@ Other parameters are passed through a pointer to a apiCertificateCsvRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **certificateSearchQuery** | [**CertificateSearchQuery**](CertificateSearchQuery.md) | The certificate search query | 
+ **enableAnalytics** | **bool** | Use the analytics database if enabled. &#x60;true&#x60; if not specified. | 
 
 ### Return type
 
@@ -164,7 +167,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -208,6 +211,72 @@ Other parameters are passed through a pointer to a apiCertificateDictionaryReque
 [[Back to README]](../README.md)
 
 
+## CertificateFind
+
+> CertificateWithPermissionsResponse CertificateFind(ctx).CertificateFindRequest(certificateFindRequest).Execute()
+
+Find a certificate
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/evertrust/horizon-go/v2"
+)
+
+func main() {
+	certificateFindRequest := openapiclient.certificate_find_request{FindCertificateById: openapiclient.NewFindCertificateById("6448d56b310000400063f014")} // CertificateFindRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CertificateAPI.CertificateFind(context.Background()).CertificateFindRequest(certificateFindRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CertificateAPI.CertificateFind``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CertificateFind`: CertificateWithPermissionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `CertificateAPI.CertificateFind`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCertificateFindRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **certificateFindRequest** | [**CertificateFindRequest**](CertificateFindRequest.md) |  | 
+
+### Return type
+
+[**CertificateWithPermissionsResponse**](CertificateWithPermissionsResponse.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [cookieAuth](../README.md#cookieAuth), [apiId](../README.md#apiId)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CertificateGetId
 
 > CertificateWithPermissionsResponse CertificateGetId(ctx, id).Execute()
@@ -225,7 +294,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -295,7 +364,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -365,7 +434,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -431,7 +500,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -492,7 +561,7 @@ Name | Type | Description  | Notes
 
 ## CertificateSearch
 
-> CertificateSearchResultsResponse CertificateSearch(ctx).CertificateSearchQuery(certificateSearchQuery).Execute()
+> CertificateSearchResultsResponse CertificateSearch(ctx).CertificateSearchQuery(certificateSearchQuery).EnableAnalytics(enableAnalytics).Execute()
 
 Search certificates
 
@@ -507,15 +576,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
 	certificateSearchQuery := *openapiclient.NewCertificateSearchQuery() // CertificateSearchQuery | 
+	enableAnalytics := true // bool | Use the analytics database if enabled. `true` if not specified. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CertificateAPI.CertificateSearch(context.Background()).CertificateSearchQuery(certificateSearchQuery).Execute()
+	resp, r, err := apiClient.CertificateAPI.CertificateSearch(context.Background()).CertificateSearchQuery(certificateSearchQuery).EnableAnalytics(enableAnalytics).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CertificateAPI.CertificateSearch``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -537,6 +607,7 @@ Other parameters are passed through a pointer to a apiCertificateSearchRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **certificateSearchQuery** | [**CertificateSearchQuery**](CertificateSearchQuery.md) |  | 
+ **enableAnalytics** | **bool** | Use the analytics database if enabled. &#x60;true&#x60; if not specified. | 
 
 ### Return type
 

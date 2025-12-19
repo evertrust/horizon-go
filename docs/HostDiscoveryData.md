@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ip** | Pointer to **NullableString** | The certificate&#39;s host ip | [optional] 
-**Sources** | Pointer to **[]string** | Information on the type of discovery that discovered this certificate | [optional] 
 **Hostnames** | Pointer to **[]string** | The certificate&#39;s host hostnames (netscan only) | [optional] 
+**Ip** | Pointer to **NullableString** | The certificate&#39;s host ip | [optional] 
 **OperatingSystems** | Pointer to **[]string** | The certificate&#39;s host operating system (localscan only) | [optional] 
 **Paths** | Pointer to **[]string** | The path to the certificate on the host machine (localscan only) | [optional] 
-**Usages** | Pointer to **[]string** | The path of the configuration files that were used to find the certificates | [optional] 
+**Sources** | Pointer to **[]string** | Information on the type of discovery that discovered this certificate | [optional] 
 **TlsPorts** | Pointer to [**[]TlsPort**](TlsPort.md) | The ports on which the certificate is exposed for https connexion | [optional] 
+**Usages** | Pointer to **[]string** | The path of the configuration files that were used to find the certificates | [optional] 
 
 ## Methods
 
@@ -31,76 +31,6 @@ NewHostDiscoveryDataWithDefaults instantiates a new HostDiscoveryData object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetIp
-
-`func (o *HostDiscoveryData) GetIp() string`
-
-GetIp returns the Ip field if non-nil, zero value otherwise.
-
-### GetIpOk
-
-`func (o *HostDiscoveryData) GetIpOk() (*string, bool)`
-
-GetIpOk returns a tuple with the Ip field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIp
-
-`func (o *HostDiscoveryData) SetIp(v string)`
-
-SetIp sets Ip field to given value.
-
-### HasIp
-
-`func (o *HostDiscoveryData) HasIp() bool`
-
-HasIp returns a boolean if a field has been set.
-
-### SetIpNil
-
-`func (o *HostDiscoveryData) SetIpNil(b bool)`
-
- SetIpNil sets the value for Ip to be an explicit nil
-
-### UnsetIp
-`func (o *HostDiscoveryData) UnsetIp()`
-
-UnsetIp ensures that no value is present for Ip, not even an explicit nil
-### GetSources
-
-`func (o *HostDiscoveryData) GetSources() []string`
-
-GetSources returns the Sources field if non-nil, zero value otherwise.
-
-### GetSourcesOk
-
-`func (o *HostDiscoveryData) GetSourcesOk() (*[]string, bool)`
-
-GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSources
-
-`func (o *HostDiscoveryData) SetSources(v []string)`
-
-SetSources sets Sources field to given value.
-
-### HasSources
-
-`func (o *HostDiscoveryData) HasSources() bool`
-
-HasSources returns a boolean if a field has been set.
-
-### SetSourcesNil
-
-`func (o *HostDiscoveryData) SetSourcesNil(b bool)`
-
- SetSourcesNil sets the value for Sources to be an explicit nil
-
-### UnsetSources
-`func (o *HostDiscoveryData) UnsetSources()`
-
-UnsetSources ensures that no value is present for Sources, not even an explicit nil
 ### GetHostnames
 
 `func (o *HostDiscoveryData) GetHostnames() []string`
@@ -136,6 +66,41 @@ HasHostnames returns a boolean if a field has been set.
 `func (o *HostDiscoveryData) UnsetHostnames()`
 
 UnsetHostnames ensures that no value is present for Hostnames, not even an explicit nil
+### GetIp
+
+`func (o *HostDiscoveryData) GetIp() string`
+
+GetIp returns the Ip field if non-nil, zero value otherwise.
+
+### GetIpOk
+
+`func (o *HostDiscoveryData) GetIpOk() (*string, bool)`
+
+GetIpOk returns a tuple with the Ip field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIp
+
+`func (o *HostDiscoveryData) SetIp(v string)`
+
+SetIp sets Ip field to given value.
+
+### HasIp
+
+`func (o *HostDiscoveryData) HasIp() bool`
+
+HasIp returns a boolean if a field has been set.
+
+### SetIpNil
+
+`func (o *HostDiscoveryData) SetIpNil(b bool)`
+
+ SetIpNil sets the value for Ip to be an explicit nil
+
+### UnsetIp
+`func (o *HostDiscoveryData) UnsetIp()`
+
+UnsetIp ensures that no value is present for Ip, not even an explicit nil
 ### GetOperatingSystems
 
 `func (o *HostDiscoveryData) GetOperatingSystems() []string`
@@ -206,41 +171,41 @@ HasPaths returns a boolean if a field has been set.
 `func (o *HostDiscoveryData) UnsetPaths()`
 
 UnsetPaths ensures that no value is present for Paths, not even an explicit nil
-### GetUsages
+### GetSources
 
-`func (o *HostDiscoveryData) GetUsages() []string`
+`func (o *HostDiscoveryData) GetSources() []string`
 
-GetUsages returns the Usages field if non-nil, zero value otherwise.
+GetSources returns the Sources field if non-nil, zero value otherwise.
 
-### GetUsagesOk
+### GetSourcesOk
 
-`func (o *HostDiscoveryData) GetUsagesOk() (*[]string, bool)`
+`func (o *HostDiscoveryData) GetSourcesOk() (*[]string, bool)`
 
-GetUsagesOk returns a tuple with the Usages field if it's non-nil, zero value otherwise
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUsages
+### SetSources
 
-`func (o *HostDiscoveryData) SetUsages(v []string)`
+`func (o *HostDiscoveryData) SetSources(v []string)`
 
-SetUsages sets Usages field to given value.
+SetSources sets Sources field to given value.
 
-### HasUsages
+### HasSources
 
-`func (o *HostDiscoveryData) HasUsages() bool`
+`func (o *HostDiscoveryData) HasSources() bool`
 
-HasUsages returns a boolean if a field has been set.
+HasSources returns a boolean if a field has been set.
 
-### SetUsagesNil
+### SetSourcesNil
 
-`func (o *HostDiscoveryData) SetUsagesNil(b bool)`
+`func (o *HostDiscoveryData) SetSourcesNil(b bool)`
 
- SetUsagesNil sets the value for Usages to be an explicit nil
+ SetSourcesNil sets the value for Sources to be an explicit nil
 
-### UnsetUsages
-`func (o *HostDiscoveryData) UnsetUsages()`
+### UnsetSources
+`func (o *HostDiscoveryData) UnsetSources()`
 
-UnsetUsages ensures that no value is present for Usages, not even an explicit nil
+UnsetSources ensures that no value is present for Sources, not even an explicit nil
 ### GetTlsPorts
 
 `func (o *HostDiscoveryData) GetTlsPorts() []TlsPort`
@@ -276,6 +241,41 @@ HasTlsPorts returns a boolean if a field has been set.
 `func (o *HostDiscoveryData) UnsetTlsPorts()`
 
 UnsetTlsPorts ensures that no value is present for TlsPorts, not even an explicit nil
+### GetUsages
+
+`func (o *HostDiscoveryData) GetUsages() []string`
+
+GetUsages returns the Usages field if non-nil, zero value otherwise.
+
+### GetUsagesOk
+
+`func (o *HostDiscoveryData) GetUsagesOk() (*[]string, bool)`
+
+GetUsagesOk returns a tuple with the Usages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsages
+
+`func (o *HostDiscoveryData) SetUsages(v []string)`
+
+SetUsages sets Usages field to given value.
+
+### HasUsages
+
+`func (o *HostDiscoveryData) HasUsages() bool`
+
+HasUsages returns a boolean if a field has been set.
+
+### SetUsagesNil
+
+`func (o *HostDiscoveryData) SetUsagesNil(b bool)`
+
+ SetUsagesNil sets the value for Usages to be an explicit nil
+
+### UnsetUsages
+`func (o *HostDiscoveryData) UnsetUsages()`
+
+UnsetUsages ensures that no value is present for Usages, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

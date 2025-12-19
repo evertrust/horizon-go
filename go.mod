@@ -1,4 +1,4 @@
-module github.com/evertrust/horizon-go
+module github.com/evertrust/horizon-go/v2
 
 go 1.18
 

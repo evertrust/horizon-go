@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Name** | **string** |  | 
-**ThrottleDuration** | **string** |  | 
-**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Proxy** | Pointer to **NullableString** |  | [optional] 
-**Project** | **string** |  | 
+**Credentials** | **string** | Name of the &#x60;raw&#x60; [credentials](#tag/security.credentials) containing User Account credentials. | 
 **Location** | **string** |  | 
-**Credentials** | **string** | Name of the &#x60;raw&#x60; [credentials](#tag/api.security.credentials) containing User Account credentials. | 
+**Name** | **string** |  | 
+**Project** | **string** |  | 
+**Proxy** | Pointer to **NullableString** |  | [optional] 
+**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
 **TagKey** | Pointer to **NullableString** |  | [optional] 
 **TagValue** | Pointer to **NullableString** |  | [optional] 
+**ThrottleDuration** | **string** |  | 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewGCMConnector
 
-`func NewGCMConnector(type_ string, name string, throttleDuration string, project string, location string, credentials string, ) *GCMConnector`
+`func NewGCMConnector(credentials string, location string, name string, project string, throttleDuration string, type_ string, ) *GCMConnector`
 
 NewGCMConnector instantiates a new GCMConnector object
 This constructor will assign default values to properties that have it defined,
@@ -35,24 +35,44 @@ NewGCMConnectorWithDefaults instantiates a new GCMConnector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetType
+### GetCredentials
 
-`func (o *GCMConnector) GetType() string`
+`func (o *GCMConnector) GetCredentials() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetCredentialsOk
 
-`func (o *GCMConnector) GetTypeOk() (*string, bool)`
+`func (o *GCMConnector) GetCredentialsOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetCredentials
 
-`func (o *GCMConnector) SetType(v string)`
+`func (o *GCMConnector) SetCredentials(v string)`
 
-SetType sets Type field to given value.
+SetCredentials sets Credentials field to given value.
+
+
+### GetLocation
+
+`func (o *GCMConnector) GetLocation() string`
+
+GetLocation returns the Location field if non-nil, zero value otherwise.
+
+### GetLocationOk
+
+`func (o *GCMConnector) GetLocationOk() (*string, bool)`
+
+GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocation
+
+`func (o *GCMConnector) SetLocation(v string)`
+
+SetLocation sets Location field to given value.
 
 
 ### GetName
@@ -75,96 +95,26 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetThrottleDuration
+### GetProject
 
-`func (o *GCMConnector) GetThrottleDuration() string`
+`func (o *GCMConnector) GetProject() string`
 
-GetThrottleDuration returns the ThrottleDuration field if non-nil, zero value otherwise.
+GetProject returns the Project field if non-nil, zero value otherwise.
 
-### GetThrottleDurationOk
+### GetProjectOk
 
-`func (o *GCMConnector) GetThrottleDurationOk() (*string, bool)`
+`func (o *GCMConnector) GetProjectOk() (*string, bool)`
 
-GetThrottleDurationOk returns a tuple with the ThrottleDuration field if it's non-nil, zero value otherwise
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetThrottleDuration
+### SetProject
 
-`func (o *GCMConnector) SetThrottleDuration(v string)`
+`func (o *GCMConnector) SetProject(v string)`
 
-SetThrottleDuration sets ThrottleDuration field to given value.
+SetProject sets Project field to given value.
 
 
-### GetRenewalPeriod
-
-`func (o *GCMConnector) GetRenewalPeriod() string`
-
-GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
-
-### GetRenewalPeriodOk
-
-`func (o *GCMConnector) GetRenewalPeriodOk() (*string, bool)`
-
-GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRenewalPeriod
-
-`func (o *GCMConnector) SetRenewalPeriod(v string)`
-
-SetRenewalPeriod sets RenewalPeriod field to given value.
-
-### HasRenewalPeriod
-
-`func (o *GCMConnector) HasRenewalPeriod() bool`
-
-HasRenewalPeriod returns a boolean if a field has been set.
-
-### SetRenewalPeriodNil
-
-`func (o *GCMConnector) SetRenewalPeriodNil(b bool)`
-
- SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-
-### UnsetRenewalPeriod
-`func (o *GCMConnector) UnsetRenewalPeriod()`
-
-UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
-### GetTimeout
-
-`func (o *GCMConnector) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *GCMConnector) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *GCMConnector) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *GCMConnector) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *GCMConnector) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *GCMConnector) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *GCMConnector) GetProxy() string`
@@ -200,66 +150,41 @@ HasProxy returns a boolean if a field has been set.
 `func (o *GCMConnector) UnsetProxy()`
 
 UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetProject
+### GetRenewalPeriod
 
-`func (o *GCMConnector) GetProject() string`
+`func (o *GCMConnector) GetRenewalPeriod() string`
 
-GetProject returns the Project field if non-nil, zero value otherwise.
+GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
 
-### GetProjectOk
+### GetRenewalPeriodOk
 
-`func (o *GCMConnector) GetProjectOk() (*string, bool)`
+`func (o *GCMConnector) GetRenewalPeriodOk() (*string, bool)`
 
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProject
+### SetRenewalPeriod
 
-`func (o *GCMConnector) SetProject(v string)`
+`func (o *GCMConnector) SetRenewalPeriod(v string)`
 
-SetProject sets Project field to given value.
+SetRenewalPeriod sets RenewalPeriod field to given value.
 
+### HasRenewalPeriod
 
-### GetLocation
+`func (o *GCMConnector) HasRenewalPeriod() bool`
 
-`func (o *GCMConnector) GetLocation() string`
+HasRenewalPeriod returns a boolean if a field has been set.
 
-GetLocation returns the Location field if non-nil, zero value otherwise.
+### SetRenewalPeriodNil
 
-### GetLocationOk
+`func (o *GCMConnector) SetRenewalPeriodNil(b bool)`
 
-`func (o *GCMConnector) GetLocationOk() (*string, bool)`
+ SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
 
-GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetRenewalPeriod
+`func (o *GCMConnector) UnsetRenewalPeriod()`
 
-### SetLocation
-
-`func (o *GCMConnector) SetLocation(v string)`
-
-SetLocation sets Location field to given value.
-
-
-### GetCredentials
-
-`func (o *GCMConnector) GetCredentials() string`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *GCMConnector) GetCredentialsOk() (*string, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *GCMConnector) SetCredentials(v string)`
-
-SetCredentials sets Credentials field to given value.
-
-
+UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
 ### GetTagKey
 
 `func (o *GCMConnector) GetTagKey() string`
@@ -330,6 +255,81 @@ HasTagValue returns a boolean if a field has been set.
 `func (o *GCMConnector) UnsetTagValue()`
 
 UnsetTagValue ensures that no value is present for TagValue, not even an explicit nil
+### GetThrottleDuration
+
+`func (o *GCMConnector) GetThrottleDuration() string`
+
+GetThrottleDuration returns the ThrottleDuration field if non-nil, zero value otherwise.
+
+### GetThrottleDurationOk
+
+`func (o *GCMConnector) GetThrottleDurationOk() (*string, bool)`
+
+GetThrottleDurationOk returns a tuple with the ThrottleDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThrottleDuration
+
+`func (o *GCMConnector) SetThrottleDuration(v string)`
+
+SetThrottleDuration sets ThrottleDuration field to given value.
+
+
+### GetTimeout
+
+`func (o *GCMConnector) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *GCMConnector) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *GCMConnector) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *GCMConnector) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *GCMConnector) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *GCMConnector) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *GCMConnector) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *GCMConnector) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *GCMConnector) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

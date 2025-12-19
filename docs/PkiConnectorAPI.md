@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## PkiConnectorAdd
 
-> PkiConnectorList200ResponseInner PkiConnectorAdd(ctx).PkiConnectorUpdateRequest(pkiConnectorUpdateRequest).Execute()
+> PKIResponses PkiConnectorAdd(ctx).PKIConnectors(pKIConnectors).Execute()
 
 Register a new PKI connector
 
@@ -29,20 +29,20 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	pkiConnectorUpdateRequest := openapiclient.pki_connector_update_request{ADCSConnector: openapiclient.NewADCSConnector("Name_example", "Type_example", "EndPoint_example", "Profile_example", "myPasswordCredentials", "myCertificateCredentials")} // PkiConnectorUpdateRequest | PKI connector to register
+	pKIConnectors := openapiclient.PKIConnectors{ADCSConnector: openapiclient.NewADCSConnector("EndPoint_example", "myCertificateCredentials", "myPasswordCredentials", "Name_example", "Profile_example", "Type_example")} // PKIConnectors | PKI connector to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PkiConnectorAPI.PkiConnectorAdd(context.Background()).PkiConnectorUpdateRequest(pkiConnectorUpdateRequest).Execute()
+	resp, r, err := apiClient.PkiConnectorAPI.PkiConnectorAdd(context.Background()).PKIConnectors(pKIConnectors).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PkiConnectorAPI.PkiConnectorAdd``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PkiConnectorAdd`: PkiConnectorList200ResponseInner
+	// response from `PkiConnectorAdd`: PKIResponses
 	fmt.Fprintf(os.Stdout, "Response from `PkiConnectorAPI.PkiConnectorAdd`: %v\n", resp)
 }
 ```
@@ -58,11 +58,11 @@ Other parameters are passed through a pointer to a apiPkiConnectorAddRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pkiConnectorUpdateRequest** | [**PkiConnectorUpdateRequest**](PkiConnectorUpdateRequest.md) | PKI connector to register | 
+ **pKIConnectors** | [**PKIConnectors**](PKIConnectors.md) | PKI connector to register | 
 
 ### Return type
 
-[**PkiConnectorList200ResponseInner**](PkiConnectorList200ResponseInner.md)
+[**PKIResponses**](PKIResponses.md)
 
 ### Authorization
 
@@ -95,7 +95,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## PkiConnectorGet
 
-> PkiConnectorGet200Response PkiConnectorGet(ctx, name).Execute()
+> PKIResponses PkiConnectorGet(ctx, name).Execute()
 
 Retrieve an existing PKI connector
 
@@ -163,7 +163,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -176,7 +176,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PkiConnectorAPI.PkiConnectorGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PkiConnectorGet`: PkiConnectorGet200Response
+	// response from `PkiConnectorGet`: PKIResponses
 	fmt.Fprintf(os.Stdout, "Response from `PkiConnectorAPI.PkiConnectorGet`: %v\n", resp)
 }
 ```
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PkiConnectorGet200Response**](PkiConnectorGet200Response.md)
+[**PKIResponses**](PKIResponses.md)
 
 ### Authorization
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## PkiConnectorList
 
-> []PkiConnectorList200ResponseInner PkiConnectorList(ctx).Execute()
+> []PKIResponses PkiConnectorList(ctx).Execute()
 
 List the existing PKI connector(s)
 
@@ -233,7 +233,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -245,7 +245,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PkiConnectorAPI.PkiConnectorList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PkiConnectorList`: []PkiConnectorList200ResponseInner
+	// response from `PkiConnectorList`: []PKIResponses
 	fmt.Fprintf(os.Stdout, "Response from `PkiConnectorAPI.PkiConnectorList`: %v\n", resp)
 }
 ```
@@ -261,7 +261,7 @@ Other parameters are passed through a pointer to a apiPkiConnectorListRequest st
 
 ### Return type
 
-[**[]PkiConnectorList200ResponseInner**](PkiConnectorList200ResponseInner.md)
+[**[]PKIResponses**](PKIResponses.md)
 
 ### Authorization
 
@@ -279,7 +279,7 @@ Other parameters are passed through a pointer to a apiPkiConnectorListRequest st
 
 ## PkiConnectorUpdate
 
-> PkiConnectorList200ResponseInner PkiConnectorUpdate(ctx).PkiConnectorUpdateRequest(pkiConnectorUpdateRequest).Execute()
+> PKIResponses PkiConnectorUpdate(ctx).PKIConnectors(pKIConnectors).Execute()
 
 Update an existing PKI connector
 
@@ -294,20 +294,20 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	pkiConnectorUpdateRequest := openapiclient.pki_connector_update_request{ADCSConnector: openapiclient.NewADCSConnector("Name_example", "Type_example", "EndPoint_example", "Profile_example", "myPasswordCredentials", "myCertificateCredentials")} // PkiConnectorUpdateRequest | PKI connector to update
+	pKIConnectors := openapiclient.PKIConnectors{ADCSConnector: openapiclient.NewADCSConnector("EndPoint_example", "myCertificateCredentials", "myPasswordCredentials", "Name_example", "Profile_example", "Type_example")} // PKIConnectors | PKI connector to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PkiConnectorAPI.PkiConnectorUpdate(context.Background()).PkiConnectorUpdateRequest(pkiConnectorUpdateRequest).Execute()
+	resp, r, err := apiClient.PkiConnectorAPI.PkiConnectorUpdate(context.Background()).PKIConnectors(pKIConnectors).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PkiConnectorAPI.PkiConnectorUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PkiConnectorUpdate`: PkiConnectorList200ResponseInner
+	// response from `PkiConnectorUpdate`: PKIResponses
 	fmt.Fprintf(os.Stdout, "Response from `PkiConnectorAPI.PkiConnectorUpdate`: %v\n", resp)
 }
 ```
@@ -323,11 +323,11 @@ Other parameters are passed through a pointer to a apiPkiConnectorUpdateRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pkiConnectorUpdateRequest** | [**PkiConnectorUpdateRequest**](PkiConnectorUpdateRequest.md) | PKI connector to update | 
+ **pKIConnectors** | [**PKIConnectors**](PKIConnectors.md) | PKI connector to update | 
 
 ### Return type
 
-[**PkiConnectorList200ResponseInner**](PkiConnectorList200ResponseInner.md)
+[**PKIResponses**](PKIResponses.md)
 
 ### Authorization
 

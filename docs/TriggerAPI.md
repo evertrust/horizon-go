@@ -30,11 +30,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	triggerUpdateRequest := openapiclient.trigger_update_request{AWSTrigger: openapiclient.NewAWSTrigger("Name_example", "Type_example", "Connector_example")} // TriggerUpdateRequest | The trigger to register
+	triggerUpdateRequest := openapiclient.trigger_update_request{AWSTrigger: openapiclient.NewAWSTrigger("Connector_example", "Name_example", "Type_example")} // TriggerUpdateRequest | The trigger to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -96,7 +96,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -164,7 +164,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -234,7 +234,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -302,11 +302,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	triggerTestRequest := *openapiclient.NewTriggerTestRequest(openapiclient.TriggerTestRequest_trigger{EmailNotification: openapiclient.NewEmailNotification("Type_example", *openapiclient.NewEmailTemplate([]openapiclient.EmailRecipient{*openapiclient.NewEmailRecipient("Type_example")}, "noreply@horizon.evertrust.fr", "Password recovery", false), "NOTIFICATION_ENROLL", []string{"Events_example"})}) // TriggerTestRequest | Trigger to test and its dictionary
+	triggerTestRequest := *openapiclient.NewTriggerTestRequest(openapiclient.TriggerTestRequest_trigger{EmailNotification: openapiclient.NewEmailNotification(*openapiclient.NewEmailTemplate("noreply@horizon.evertrust.fr", false, "Password recovery", []openapiclient.EmailRecipient{*openapiclient.NewEmailRecipient("Type_example")}), "Type_example", []string{"Events_example"}, "NOTIFICATION_ENROLL")}) // TriggerTestRequest | Trigger to test and its dictionary
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -368,11 +368,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	triggerUpdateRequest := openapiclient.trigger_update_request{AWSTrigger: openapiclient.NewAWSTrigger("Name_example", "Type_example", "Connector_example")} // TriggerUpdateRequest | Trigger to update
+	triggerUpdateRequest := openapiclient.trigger_update_request{AWSTrigger: openapiclient.NewAWSTrigger("Connector_example", "Name_example", "Type_example")} // TriggerUpdateRequest | Trigger to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

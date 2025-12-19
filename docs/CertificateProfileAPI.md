@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CertificateProfileAdd
 
-> CertificateProfileList200ResponseInner CertificateProfileAdd(ctx).CertificateProfileUpdateRequest(certificateProfileUpdateRequest).Execute()
+> CertificateProfileResponses CertificateProfileAdd(ctx).CertificateProfiles(certificateProfiles).Execute()
 
 Register a new certificate profile
 
@@ -29,20 +29,20 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	certificateProfileUpdateRequest := openapiclient.certificate_profile_update_request{AcmeExternalProfile: openapiclient.NewAcmeExternalProfile("Module_example", "Name_example", false, []string{"AuthorizationMethods_example"}, "PkiConnector_example", false, []string{"AuthorizedCas_example"}, *openapiclient.NewCertificateProfileAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), *openapiclient.NewRequestsPolicy(), *openapiclient.NewCertificateProfileSelfPermissions(), *openapiclient.NewCertificateProfileCryptoPolicy())} // CertificateProfileUpdateRequest | Certificate profile to register
+	certificateProfiles := openapiclient.CertificateProfiles{AcmeExternalProfile: openapiclient.NewAcmeExternalProfile(*openapiclient.NewCertificateProfileAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), []string{"AuthorizationMethods_example"}, []string{"AuthorizedCas_example"}, *openapiclient.NewManagedCertificateProfileCryptoPolicy(), false, "Module_example", "Name_example", "PkiConnector_example", *openapiclient.NewRequestsPolicy(), false, *openapiclient.NewCertificateProfileSelfPermissions())} // CertificateProfiles | Certificate profile to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CertificateProfileAPI.CertificateProfileAdd(context.Background()).CertificateProfileUpdateRequest(certificateProfileUpdateRequest).Execute()
+	resp, r, err := apiClient.CertificateProfileAPI.CertificateProfileAdd(context.Background()).CertificateProfiles(certificateProfiles).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CertificateProfileAPI.CertificateProfileAdd``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CertificateProfileAdd`: CertificateProfileList200ResponseInner
+	// response from `CertificateProfileAdd`: CertificateProfileResponses
 	fmt.Fprintf(os.Stdout, "Response from `CertificateProfileAPI.CertificateProfileAdd`: %v\n", resp)
 }
 ```
@@ -58,11 +58,11 @@ Other parameters are passed through a pointer to a apiCertificateProfileAddReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **certificateProfileUpdateRequest** | [**CertificateProfileUpdateRequest**](CertificateProfileUpdateRequest.md) | Certificate profile to register | 
+ **certificateProfiles** | [**CertificateProfiles**](CertificateProfiles.md) | Certificate profile to register | 
 
 ### Return type
 
-[**CertificateProfileList200ResponseInner**](CertificateProfileList200ResponseInner.md)
+[**CertificateProfileResponses**](CertificateProfileResponses.md)
 
 ### Authorization
 
@@ -95,7 +95,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## CertificateProfileGet
 
-> CertificateProfileGet200Response CertificateProfileGet(ctx, name).Execute()
+> CertificateProfileResponses CertificateProfileGet(ctx, name).Execute()
 
 Retrieve a specific certificate profile
 
@@ -163,7 +163,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -176,7 +176,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CertificateProfileAPI.CertificateProfileGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CertificateProfileGet`: CertificateProfileGet200Response
+	// response from `CertificateProfileGet`: CertificateProfileResponses
 	fmt.Fprintf(os.Stdout, "Response from `CertificateProfileAPI.CertificateProfileGet`: %v\n", resp)
 }
 ```
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CertificateProfileGet200Response**](CertificateProfileGet200Response.md)
+[**CertificateProfileResponses**](CertificateProfileResponses.md)
 
 ### Authorization
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## CertificateProfileList
 
-> []CertificateProfileList200ResponseInner CertificateProfileList(ctx).Modules(modules).Execute()
+> []CertificateProfileResponses CertificateProfileList(ctx).Modules(modules).Execute()
 
 List the existing certificate profiles
 
@@ -233,11 +233,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	modules := []string{"Inner_example"} // []string | 
+	modules := []string{"Inner_example"} // []string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -246,7 +246,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CertificateProfileAPI.CertificateProfileList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CertificateProfileList`: []CertificateProfileList200ResponseInner
+	// response from `CertificateProfileList`: []CertificateProfileResponses
 	fmt.Fprintf(os.Stdout, "Response from `CertificateProfileAPI.CertificateProfileList`: %v\n", resp)
 }
 ```
@@ -266,7 +266,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]CertificateProfileList200ResponseInner**](CertificateProfileList200ResponseInner.md)
+[**[]CertificateProfileResponses**](CertificateProfileResponses.md)
 
 ### Authorization
 
@@ -284,7 +284,7 @@ Name | Type | Description  | Notes
 
 ## CertificateProfileUpdate
 
-> CertificateProfileList200ResponseInner CertificateProfileUpdate(ctx).CertificateProfileUpdateRequest(certificateProfileUpdateRequest).Execute()
+> CertificateProfileResponses CertificateProfileUpdate(ctx).CertificateProfiles(certificateProfiles).Execute()
 
 Update an existing certificate profile
 
@@ -299,20 +299,20 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	certificateProfileUpdateRequest := openapiclient.certificate_profile_update_request{AcmeExternalProfile: openapiclient.NewAcmeExternalProfile("Module_example", "Name_example", false, []string{"AuthorizationMethods_example"}, "PkiConnector_example", false, []string{"AuthorizedCas_example"}, *openapiclient.NewCertificateProfileAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), *openapiclient.NewRequestsPolicy(), *openapiclient.NewCertificateProfileSelfPermissions(), *openapiclient.NewCertificateProfileCryptoPolicy())} // CertificateProfileUpdateRequest | Certificate profile to update
+	certificateProfiles := openapiclient.CertificateProfiles{AcmeExternalProfile: openapiclient.NewAcmeExternalProfile(*openapiclient.NewCertificateProfileAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), []string{"AuthorizationMethods_example"}, []string{"AuthorizedCas_example"}, *openapiclient.NewManagedCertificateProfileCryptoPolicy(), false, "Module_example", "Name_example", "PkiConnector_example", *openapiclient.NewRequestsPolicy(), false, *openapiclient.NewCertificateProfileSelfPermissions())} // CertificateProfiles | Certificate profile to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CertificateProfileAPI.CertificateProfileUpdate(context.Background()).CertificateProfileUpdateRequest(certificateProfileUpdateRequest).Execute()
+	resp, r, err := apiClient.CertificateProfileAPI.CertificateProfileUpdate(context.Background()).CertificateProfiles(certificateProfiles).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CertificateProfileAPI.CertificateProfileUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CertificateProfileUpdate`: CertificateProfileList200ResponseInner
+	// response from `CertificateProfileUpdate`: CertificateProfileResponses
 	fmt.Fprintf(os.Stdout, "Response from `CertificateProfileAPI.CertificateProfileUpdate`: %v\n", resp)
 }
 ```
@@ -328,11 +328,11 @@ Other parameters are passed through a pointer to a apiCertificateProfileUpdateRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **certificateProfileUpdateRequest** | [**CertificateProfileUpdateRequest**](CertificateProfileUpdateRequest.md) | Certificate profile to update | 
+ **certificateProfiles** | [**CertificateProfiles**](CertificateProfiles.md) | Certificate profile to update | 
 
 ### Return type
 
-[**CertificateProfileList200ResponseInner**](CertificateProfileList200ResponseInner.md)
+[**CertificateProfileResponses**](CertificateProfileResponses.md)
 
 ### Authorization
 

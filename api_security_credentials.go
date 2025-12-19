@@ -1,9 +1,9 @@
 /*
-    Horizon API
+   Horizon API
 
-    ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
+   ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
 
-    API version: 2.7.0
+   API version: 2.8.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -17,24 +17,26 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-)
 
+	"github.com/evertrust/horizon-go/v2/models"
+	"github.com/evertrust/horizon-go/v2/utils"
+)
 
 // SecurityCredentialsAPIService SecurityCredentialsAPI service
 type SecurityCredentialsAPIService service
 
 type SecurityCredentialsAPISecurityCredentialsAddRequest struct {
-	ctx context.Context
-	ApiService *SecurityCredentialsAPIService
-	securityCredentialsUpdateRequest *SecurityCredentialsUpdateRequest
+	ctx                              context.Context
+	ApiService                       *SecurityCredentialsAPIService
+	securityCredentialsUpdateRequest *models.SecurityCredentialsUpdateRequest
 }
 
-func (r SecurityCredentialsAPISecurityCredentialsAddRequest) SecurityCredentialsUpdateRequest(securityCredentialsUpdateRequest SecurityCredentialsUpdateRequest) SecurityCredentialsAPISecurityCredentialsAddRequest {
+func (r SecurityCredentialsAPISecurityCredentialsAddRequest) SecurityCredentialsUpdateRequest(securityCredentialsUpdateRequest models.SecurityCredentialsUpdateRequest) SecurityCredentialsAPISecurityCredentialsAddRequest {
 	r.securityCredentialsUpdateRequest = &securityCredentialsUpdateRequest
 	return r
 }
 
-func (r SecurityCredentialsAPISecurityCredentialsAddRequest) Execute() (*SecurityCredentialsList200ResponseInner, *http.Response, error) {
+func (r SecurityCredentialsAPISecurityCredentialsAddRequest) Execute() (*models.SecurityCredentialsList200ResponseInner, *http.Response, error) {
 	return r.ApiService.SecurityCredentialsAddExecute(r)
 }
 
@@ -43,24 +45,25 @@ SecurityCredentialsAdd Create new credentials
 
 Create new credentials in Horizon
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return SecurityCredentialsAPISecurityCredentialsAddRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return SecurityCredentialsAPISecurityCredentialsAddRequest
 */
 func (a *SecurityCredentialsAPIService) SecurityCredentialsAdd(ctx context.Context) SecurityCredentialsAPISecurityCredentialsAddRequest {
 	return SecurityCredentialsAPISecurityCredentialsAddRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SecurityCredentialsList200ResponseInner
-func (a *SecurityCredentialsAPIService) SecurityCredentialsAddExecute(r SecurityCredentialsAPISecurityCredentialsAddRequest) (*SecurityCredentialsList200ResponseInner, *http.Response, error) {
+//
+//	@return SecurityCredentialsList200ResponseInner
+func (a *SecurityCredentialsAPIService) SecurityCredentialsAddExecute(r SecurityCredentialsAPISecurityCredentialsAddRequest) (*models.SecurityCredentialsList200ResponseInner, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SecurityCredentialsList200ResponseInner
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.SecurityCredentialsList200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityCredentialsAPIService.SecurityCredentialsAdd")
@@ -74,7 +77,7 @@ func (a *SecurityCredentialsAPIService) SecurityCredentialsAddExecute(r Security
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.securityCredentialsUpdateRequest == nil {
-		return localVarReturnValue, nil, reportError("securityCredentialsUpdateRequest is required and must be specified")
+		return localVarReturnValue, nil, utils.ReportError("securityCredentialsUpdateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -147,47 +150,47 @@ func (a *SecurityCredentialsAPIService) SecurityCredentialsAddExecute(r Security
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SecurityCredentialsAdd400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SecurityRoleUpdate401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SecurityIdentityLocalList403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SecurityCredentialsList500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -205,9 +208,9 @@ func (a *SecurityCredentialsAPIService) SecurityCredentialsAddExecute(r Security
 }
 
 type SecurityCredentialsAPISecurityCredentialsDeleteRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *SecurityCredentialsAPIService
-	name string
+	name       string
 }
 
 func (r SecurityCredentialsAPISecurityCredentialsDeleteRequest) Execute() (*http.Response, error) {
@@ -219,24 +222,24 @@ SecurityCredentialsDelete Delete credentials
 
 Delete existing credentials based on its name
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name Credentials name
- @return SecurityCredentialsAPISecurityCredentialsDeleteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param name Credentials name
+	@return SecurityCredentialsAPISecurityCredentialsDeleteRequest
 */
 func (a *SecurityCredentialsAPIService) SecurityCredentialsDelete(ctx context.Context, name string) SecurityCredentialsAPISecurityCredentialsDeleteRequest {
 	return SecurityCredentialsAPISecurityCredentialsDeleteRequest{
 		ApiService: a,
-		ctx: ctx,
-		name: name,
+		ctx:        ctx,
+		name:       name,
 	}
 }
 
 // Execute executes the request
 func (a *SecurityCredentialsAPIService) SecurityCredentialsDeleteExecute(r SecurityCredentialsAPISecurityCredentialsDeleteRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityCredentialsAPIService.SecurityCredentialsDelete")
@@ -319,58 +322,58 @@ func (a *SecurityCredentialsAPIService) SecurityCredentialsDeleteExecute(r Secur
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SecurityCredentialsDelete400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SecurityRoleUpdate401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SecurityIdentityLocalList403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SecurityCredentialsUpdate404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SecurityCredentialsList500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -379,12 +382,12 @@ func (a *SecurityCredentialsAPIService) SecurityCredentialsDeleteExecute(r Secur
 }
 
 type SecurityCredentialsAPISecurityCredentialsGetRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *SecurityCredentialsAPIService
-	name string
+	name       string
 }
 
-func (r SecurityCredentialsAPISecurityCredentialsGetRequest) Execute() (*SecurityCredentialsList200ResponseInner, *http.Response, error) {
+func (r SecurityCredentialsAPISecurityCredentialsGetRequest) Execute() (*models.SecurityCredentialsList200ResponseInner, *http.Response, error) {
 	return r.ApiService.SecurityCredentialsGetExecute(r)
 }
 
@@ -393,26 +396,27 @@ SecurityCredentialsGet Retrieve credentials
 
 Retrieves existing credentials based on its name
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name Credentials name
- @return SecurityCredentialsAPISecurityCredentialsGetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param name Credentials name
+	@return SecurityCredentialsAPISecurityCredentialsGetRequest
 */
 func (a *SecurityCredentialsAPIService) SecurityCredentialsGet(ctx context.Context, name string) SecurityCredentialsAPISecurityCredentialsGetRequest {
 	return SecurityCredentialsAPISecurityCredentialsGetRequest{
 		ApiService: a,
-		ctx: ctx,
-		name: name,
+		ctx:        ctx,
+		name:       name,
 	}
 }
 
 // Execute executes the request
-//  @return SecurityCredentialsList200ResponseInner
-func (a *SecurityCredentialsAPIService) SecurityCredentialsGetExecute(r SecurityCredentialsAPISecurityCredentialsGetRequest) (*SecurityCredentialsList200ResponseInner, *http.Response, error) {
+//
+//	@return SecurityCredentialsList200ResponseInner
+func (a *SecurityCredentialsAPIService) SecurityCredentialsGetExecute(r SecurityCredentialsAPISecurityCredentialsGetRequest) (*models.SecurityCredentialsList200ResponseInner, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SecurityCredentialsList200ResponseInner
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.SecurityCredentialsList200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityCredentialsAPIService.SecurityCredentialsGet")
@@ -495,47 +499,47 @@ func (a *SecurityCredentialsAPIService) SecurityCredentialsGetExecute(r Security
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SecurityRoleUpdate401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SecurityIdentityLocalList403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SecurityCredentialsUpdate404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SecurityCredentialsList500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -553,11 +557,11 @@ func (a *SecurityCredentialsAPIService) SecurityCredentialsGetExecute(r Security
 }
 
 type SecurityCredentialsAPISecurityCredentialsListRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *SecurityCredentialsAPIService
 }
 
-func (r SecurityCredentialsAPISecurityCredentialsListRequest) Execute() ([]SecurityCredentialsList200ResponseInner, *http.Response, error) {
+func (r SecurityCredentialsAPISecurityCredentialsListRequest) Execute() ([]models.SecurityCredentialsList200ResponseInner, *http.Response, error) {
 	return r.ApiService.SecurityCredentialsListExecute(r)
 }
 
@@ -566,24 +570,25 @@ SecurityCredentialsList List credentials
 
 Retrieves a list of all existing credentials
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return SecurityCredentialsAPISecurityCredentialsListRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return SecurityCredentialsAPISecurityCredentialsListRequest
 */
 func (a *SecurityCredentialsAPIService) SecurityCredentialsList(ctx context.Context) SecurityCredentialsAPISecurityCredentialsListRequest {
 	return SecurityCredentialsAPISecurityCredentialsListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []SecurityCredentialsList200ResponseInner
-func (a *SecurityCredentialsAPIService) SecurityCredentialsListExecute(r SecurityCredentialsAPISecurityCredentialsListRequest) ([]SecurityCredentialsList200ResponseInner, *http.Response, error) {
+//
+//	@return []SecurityCredentialsList200ResponseInner
+func (a *SecurityCredentialsAPIService) SecurityCredentialsListExecute(r SecurityCredentialsAPISecurityCredentialsListRequest) ([]models.SecurityCredentialsList200ResponseInner, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []SecurityCredentialsList200ResponseInner
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []models.SecurityCredentialsList200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityCredentialsAPIService.SecurityCredentialsList")
@@ -665,36 +670,36 @@ func (a *SecurityCredentialsAPIService) SecurityCredentialsListExecute(r Securit
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SecurityRoleList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SecurityIdentityLocalList403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SecurityCredentialsList500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -712,18 +717,18 @@ func (a *SecurityCredentialsAPIService) SecurityCredentialsListExecute(r Securit
 }
 
 type SecurityCredentialsAPISecurityCredentialsUpdateRequest struct {
-	ctx context.Context
-	ApiService *SecurityCredentialsAPIService
-	securityCredentialsUpdateRequest *SecurityCredentialsUpdateRequest
+	ctx                              context.Context
+	ApiService                       *SecurityCredentialsAPIService
+	securityCredentialsUpdateRequest *models.SecurityCredentialsUpdateRequest
 }
 
 // The credentials to update
-func (r SecurityCredentialsAPISecurityCredentialsUpdateRequest) SecurityCredentialsUpdateRequest(securityCredentialsUpdateRequest SecurityCredentialsUpdateRequest) SecurityCredentialsAPISecurityCredentialsUpdateRequest {
+func (r SecurityCredentialsAPISecurityCredentialsUpdateRequest) SecurityCredentialsUpdateRequest(securityCredentialsUpdateRequest models.SecurityCredentialsUpdateRequest) SecurityCredentialsAPISecurityCredentialsUpdateRequest {
 	r.securityCredentialsUpdateRequest = &securityCredentialsUpdateRequest
 	return r
 }
 
-func (r SecurityCredentialsAPISecurityCredentialsUpdateRequest) Execute() (*SecurityCredentialsList200ResponseInner, *http.Response, error) {
+func (r SecurityCredentialsAPISecurityCredentialsUpdateRequest) Execute() (*models.SecurityCredentialsList200ResponseInner, *http.Response, error) {
 	return r.ApiService.SecurityCredentialsUpdateExecute(r)
 }
 
@@ -732,24 +737,25 @@ SecurityCredentialsUpdate Update credentials
 
 Update existing credentials
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return SecurityCredentialsAPISecurityCredentialsUpdateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return SecurityCredentialsAPISecurityCredentialsUpdateRequest
 */
 func (a *SecurityCredentialsAPIService) SecurityCredentialsUpdate(ctx context.Context) SecurityCredentialsAPISecurityCredentialsUpdateRequest {
 	return SecurityCredentialsAPISecurityCredentialsUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SecurityCredentialsList200ResponseInner
-func (a *SecurityCredentialsAPIService) SecurityCredentialsUpdateExecute(r SecurityCredentialsAPISecurityCredentialsUpdateRequest) (*SecurityCredentialsList200ResponseInner, *http.Response, error) {
+//
+//	@return SecurityCredentialsList200ResponseInner
+func (a *SecurityCredentialsAPIService) SecurityCredentialsUpdateExecute(r SecurityCredentialsAPISecurityCredentialsUpdateRequest) (*models.SecurityCredentialsList200ResponseInner, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SecurityCredentialsList200ResponseInner
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.SecurityCredentialsList200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityCredentialsAPIService.SecurityCredentialsUpdate")
@@ -763,7 +769,7 @@ func (a *SecurityCredentialsAPIService) SecurityCredentialsUpdateExecute(r Secur
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.securityCredentialsUpdateRequest == nil {
-		return localVarReturnValue, nil, reportError("securityCredentialsUpdateRequest is required and must be specified")
+		return localVarReturnValue, nil, utils.ReportError("securityCredentialsUpdateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -836,58 +842,58 @@ func (a *SecurityCredentialsAPIService) SecurityCredentialsUpdateExecute(r Secur
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v SecurityCredentialsUpdate400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v SecurityRoleUpdate401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v SecurityIdentityLocalList403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v SecurityCredentialsUpdate404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v SecurityCredentialsList500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

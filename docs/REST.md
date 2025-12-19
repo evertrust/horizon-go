@@ -4,29 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
-**Retries** | Pointer to **interface{}** | Number of retries when the notification fails (depends on &#x60;expectedHttpCodes&#x60;) | [optional] 
-**Method** | **string** | The HTTP method to use for the request | 
-**Url** | **string** | The URL to request | 
 **AuthenticationType** | **string** | The authentication type to use while making the REST call. Is linked to &#x60;credentials&#x60;. | 
 **Credentials** | Pointer to **NullableString** | Name of the credentials to use for authentication | [optional] 
-**Headers** | Pointer to [**[]RESTHeader**](RESTHeader.md) | The headers of the request | [optional] 
-**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
-**Payload** | Pointer to **NullableString** | The body of the request. Can contain dynamic attributes. | [optional] 
 **ExpectedHttpCodes** | **[]int64** | The success HTTP codes for the request. If the return code is not in this list, the notification will be considered failed. | 
+**Headers** | Pointer to [**[]RESTHeader**](RESTHeader.md) | The headers of the request | [optional] 
+**Method** | **string** | The HTTP method to use for the request | 
+**Payload** | Pointer to **NullableString** | The body of the request. Can contain dynamic attributes. | [optional] 
+**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
 **Proxy** | Pointer to **NullableString** | Name of a Proxy to use while making the request | [optional] 
+**Retries** | Pointer to **interface{}** | Number of retries when the notification fails (depends on &#x60;expectedHttpCodes&#x60;) | [optional] 
 **Timeout** | **string** | Timeout for the HTTP request. | 
-**Name** | **string** | Name of the notification | 
-**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
-**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**Type** | **string** |  | 
+**Url** | **string** | The URL to request | 
 **Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
+**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**Name** | **string** | Name of the notification | 
 **RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
+**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
 
 ## Methods
 
 ### NewREST
 
-`func NewREST(type_ string, method string, url string, authenticationType string, expectedHttpCodes []int64, timeout string, name string, events []string, ) *REST`
+`func NewREST(authenticationType string, expectedHttpCodes []int64, method string, timeout string, type_ string, url string, events []string, name string, ) *REST`
 
 NewREST instantiates a new REST object
 This constructor will assign default values to properties that have it defined,
@@ -40,101 +40,6 @@ will change when the set of required properties is changed
 NewRESTWithDefaults instantiates a new REST object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetType
-
-`func (o *REST) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *REST) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *REST) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetRetries
-
-`func (o *REST) GetRetries() interface{}`
-
-GetRetries returns the Retries field if non-nil, zero value otherwise.
-
-### GetRetriesOk
-
-`func (o *REST) GetRetriesOk() (*interface{}, bool)`
-
-GetRetriesOk returns a tuple with the Retries field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRetries
-
-`func (o *REST) SetRetries(v interface{})`
-
-SetRetries sets Retries field to given value.
-
-### HasRetries
-
-`func (o *REST) HasRetries() bool`
-
-HasRetries returns a boolean if a field has been set.
-
-### SetRetriesNil
-
-`func (o *REST) SetRetriesNil(b bool)`
-
- SetRetriesNil sets the value for Retries to be an explicit nil
-
-### UnsetRetries
-`func (o *REST) UnsetRetries()`
-
-UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetMethod
-
-`func (o *REST) GetMethod() string`
-
-GetMethod returns the Method field if non-nil, zero value otherwise.
-
-### GetMethodOk
-
-`func (o *REST) GetMethodOk() (*string, bool)`
-
-GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMethod
-
-`func (o *REST) SetMethod(v string)`
-
-SetMethod sets Method field to given value.
-
-
-### GetUrl
-
-`func (o *REST) GetUrl() string`
-
-GetUrl returns the Url field if non-nil, zero value otherwise.
-
-### GetUrlOk
-
-`func (o *REST) GetUrlOk() (*string, bool)`
-
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUrl
-
-`func (o *REST) SetUrl(v string)`
-
-SetUrl sets Url field to given value.
-
 
 ### GetAuthenticationType
 
@@ -191,6 +96,26 @@ HasCredentials returns a boolean if a field has been set.
 `func (o *REST) UnsetCredentials()`
 
 UnsetCredentials ensures that no value is present for Credentials, not even an explicit nil
+### GetExpectedHttpCodes
+
+`func (o *REST) GetExpectedHttpCodes() []int64`
+
+GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
+
+### GetExpectedHttpCodesOk
+
+`func (o *REST) GetExpectedHttpCodesOk() (*[]int64, bool)`
+
+GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpectedHttpCodes
+
+`func (o *REST) SetExpectedHttpCodes(v []int64)`
+
+SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
+
+
 ### GetHeaders
 
 `func (o *REST) GetHeaders() []RESTHeader`
@@ -226,41 +151,26 @@ HasHeaders returns a boolean if a field has been set.
 `func (o *REST) UnsetHeaders()`
 
 UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
-### GetPayloadType
+### GetMethod
 
-`func (o *REST) GetPayloadType() string`
+`func (o *REST) GetMethod() string`
 
-GetPayloadType returns the PayloadType field if non-nil, zero value otherwise.
+GetMethod returns the Method field if non-nil, zero value otherwise.
 
-### GetPayloadTypeOk
+### GetMethodOk
 
-`func (o *REST) GetPayloadTypeOk() (*string, bool)`
+`func (o *REST) GetMethodOk() (*string, bool)`
 
-GetPayloadTypeOk returns a tuple with the PayloadType field if it's non-nil, zero value otherwise
+GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPayloadType
+### SetMethod
 
-`func (o *REST) SetPayloadType(v string)`
+`func (o *REST) SetMethod(v string)`
 
-SetPayloadType sets PayloadType field to given value.
+SetMethod sets Method field to given value.
 
-### HasPayloadType
 
-`func (o *REST) HasPayloadType() bool`
-
-HasPayloadType returns a boolean if a field has been set.
-
-### SetPayloadTypeNil
-
-`func (o *REST) SetPayloadTypeNil(b bool)`
-
- SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
-
-### UnsetPayloadType
-`func (o *REST) UnsetPayloadType()`
-
-UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
 ### GetPayload
 
 `func (o *REST) GetPayload() string`
@@ -296,26 +206,41 @@ HasPayload returns a boolean if a field has been set.
 `func (o *REST) UnsetPayload()`
 
 UnsetPayload ensures that no value is present for Payload, not even an explicit nil
-### GetExpectedHttpCodes
+### GetPayloadType
 
-`func (o *REST) GetExpectedHttpCodes() []int64`
+`func (o *REST) GetPayloadType() string`
 
-GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
+GetPayloadType returns the PayloadType field if non-nil, zero value otherwise.
 
-### GetExpectedHttpCodesOk
+### GetPayloadTypeOk
 
-`func (o *REST) GetExpectedHttpCodesOk() (*[]int64, bool)`
+`func (o *REST) GetPayloadTypeOk() (*string, bool)`
 
-GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
+GetPayloadTypeOk returns a tuple with the PayloadType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExpectedHttpCodes
+### SetPayloadType
 
-`func (o *REST) SetExpectedHttpCodes(v []int64)`
+`func (o *REST) SetPayloadType(v string)`
 
-SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
+SetPayloadType sets PayloadType field to given value.
 
+### HasPayloadType
 
+`func (o *REST) HasPayloadType() bool`
+
+HasPayloadType returns a boolean if a field has been set.
+
+### SetPayloadTypeNil
+
+`func (o *REST) SetPayloadTypeNil(b bool)`
+
+ SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
+
+### UnsetPayloadType
+`func (o *REST) UnsetPayloadType()`
+
+UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
 ### GetProxy
 
 `func (o *REST) GetProxy() string`
@@ -351,6 +276,41 @@ HasProxy returns a boolean if a field has been set.
 `func (o *REST) UnsetProxy()`
 
 UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+### GetRetries
+
+`func (o *REST) GetRetries() interface{}`
+
+GetRetries returns the Retries field if non-nil, zero value otherwise.
+
+### GetRetriesOk
+
+`func (o *REST) GetRetriesOk() (*interface{}, bool)`
+
+GetRetriesOk returns a tuple with the Retries field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetries
+
+`func (o *REST) SetRetries(v interface{})`
+
+SetRetries sets Retries field to given value.
+
+### HasRetries
+
+`func (o *REST) HasRetries() bool`
+
+HasRetries returns a boolean if a field has been set.
+
+### SetRetriesNil
+
+`func (o *REST) SetRetriesNil(b bool)`
+
+ SetRetriesNil sets the value for Retries to be an explicit nil
+
+### UnsetRetries
+`func (o *REST) UnsetRetries()`
+
+UnsetRetries ensures that no value is present for Retries, not even an explicit nil
 ### GetTimeout
 
 `func (o *REST) GetTimeout() string`
@@ -371,61 +331,66 @@ and a boolean to check if the value has been set.
 SetTimeout sets Timeout field to given value.
 
 
-### GetName
+### GetType
 
-`func (o *REST) GetName() string`
+`func (o *REST) GetType() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetTypeOk
 
-`func (o *REST) GetNameOk() (*string, bool)`
+`func (o *REST) GetTypeOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetType
 
-`func (o *REST) SetName(v string)`
+`func (o *REST) SetType(v string)`
 
-SetName sets Name field to given value.
+SetType sets Type field to given value.
 
 
-### GetRunPeriod
+### GetUrl
 
-`func (o *REST) GetRunPeriod() string`
+`func (o *REST) GetUrl() string`
 
-GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
+GetUrl returns the Url field if non-nil, zero value otherwise.
 
-### GetRunPeriodOk
+### GetUrlOk
 
-`func (o *REST) GetRunPeriodOk() (*string, bool)`
+`func (o *REST) GetUrlOk() (*string, bool)`
 
-GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRunPeriod
+### SetUrl
 
-`func (o *REST) SetRunPeriod(v string)`
+`func (o *REST) SetUrl(v string)`
 
-SetRunPeriod sets RunPeriod field to given value.
+SetUrl sets Url field to given value.
 
-### HasRunPeriod
 
-`func (o *REST) HasRunPeriod() bool`
+### GetEvents
 
-HasRunPeriod returns a boolean if a field has been set.
+`func (o *REST) GetEvents() []string`
 
-### SetRunPeriodNil
+GetEvents returns the Events field if non-nil, zero value otherwise.
 
-`func (o *REST) SetRunPeriodNil(b bool)`
+### GetEventsOk
 
- SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
+`func (o *REST) GetEventsOk() (*[]string, bool)`
 
-### UnsetRunPeriod
-`func (o *REST) UnsetRunPeriod()`
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
+### SetEvents
+
+`func (o *REST) SetEvents(v []string)`
+
+SetEvents sets Events field to given value.
+
+
 ### GetLicenseUsagePercent
 
 `func (o *REST) GetLicenseUsagePercent() int64`
@@ -461,24 +426,24 @@ HasLicenseUsagePercent returns a boolean if a field has been set.
 `func (o *REST) UnsetLicenseUsagePercent()`
 
 UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
-### GetEvents
+### GetName
 
-`func (o *REST) GetEvents() []string`
+`func (o *REST) GetName() string`
 
-GetEvents returns the Events field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetEventsOk
+### GetNameOk
 
-`func (o *REST) GetEventsOk() (*[]string, bool)`
+`func (o *REST) GetNameOk() (*string, bool)`
 
-GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEvents
+### SetName
 
-`func (o *REST) SetEvents(v []string)`
+`func (o *REST) SetName(v string)`
 
-SetEvents sets Events field to given value.
+SetName sets Name field to given value.
 
 
 ### GetRunOnRenewed
@@ -516,6 +481,41 @@ HasRunOnRenewed returns a boolean if a field has been set.
 `func (o *REST) UnsetRunOnRenewed()`
 
 UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
+### GetRunPeriod
+
+`func (o *REST) GetRunPeriod() string`
+
+GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
+
+### GetRunPeriodOk
+
+`func (o *REST) GetRunPeriodOk() (*string, bool)`
+
+GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRunPeriod
+
+`func (o *REST) SetRunPeriod(v string)`
+
+SetRunPeriod sets RunPeriod field to given value.
+
+### HasRunPeriod
+
+`func (o *REST) HasRunPeriod() bool`
+
+HasRunPeriod returns a boolean if a field has been set.
+
+### SetRunPeriodNil
+
+`func (o *REST) SetRunPeriodNil(b bool)`
+
+ SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
+
+### UnsetRunPeriod
+`func (o *REST) UnsetRunPeriod()`
+
+UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

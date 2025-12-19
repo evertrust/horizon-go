@@ -5,20 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ca** | **string** |  | 
-**CRLNumber** | Pointer to **NullableFloat32** |  | [optional] 
+**Error** | Pointer to **NullableString** |  | [optional] 
 **IssuerDn** | Pointer to **NullableString** |  | [optional] 
-**ThisUpdate** | Pointer to **NullableInt64** |  | [optional] 
-**NextUpdate** | Pointer to **NullableInt64** |  | [optional] 
 **LastRefresh** | Pointer to **NullableInt64** |  | [optional] 
 **NextRefresh** | Pointer to **NullableInt64** |  | [optional] 
-**CrlSize** | **int64** |  | 
-**Error** | Pointer to **NullableString** |  | [optional] 
+**NextUpdate** | Pointer to **NullableInt64** |  | [optional] 
+**Number** | Pointer to **NullableFloat32** |  | [optional] 
+**Size** | **int64** |  | 
+**ThisUpdate** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
 
 ### NewCachedCRLInfosResponse
 
-`func NewCachedCRLInfosResponse(ca string, crlSize int64, ) *CachedCRLInfosResponse`
+`func NewCachedCRLInfosResponse(ca string, size int64, ) *CachedCRLInfosResponse`
 
 NewCachedCRLInfosResponse instantiates a new CachedCRLInfosResponse object
 This constructor will assign default values to properties that have it defined,
@@ -53,41 +53,41 @@ and a boolean to check if the value has been set.
 SetCa sets Ca field to given value.
 
 
-### GetCRLNumber
+### GetError
 
-`func (o *CachedCRLInfosResponse) GetCRLNumber() float32`
+`func (o *CachedCRLInfosResponse) GetError() string`
 
-GetCRLNumber returns the CRLNumber field if non-nil, zero value otherwise.
+GetError returns the Error field if non-nil, zero value otherwise.
 
-### GetCRLNumberOk
+### GetErrorOk
 
-`func (o *CachedCRLInfosResponse) GetCRLNumberOk() (*float32, bool)`
+`func (o *CachedCRLInfosResponse) GetErrorOk() (*string, bool)`
 
-GetCRLNumberOk returns a tuple with the CRLNumber field if it's non-nil, zero value otherwise
+GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCRLNumber
+### SetError
 
-`func (o *CachedCRLInfosResponse) SetCRLNumber(v float32)`
+`func (o *CachedCRLInfosResponse) SetError(v string)`
 
-SetCRLNumber sets CRLNumber field to given value.
+SetError sets Error field to given value.
 
-### HasCRLNumber
+### HasError
 
-`func (o *CachedCRLInfosResponse) HasCRLNumber() bool`
+`func (o *CachedCRLInfosResponse) HasError() bool`
 
-HasCRLNumber returns a boolean if a field has been set.
+HasError returns a boolean if a field has been set.
 
-### SetCRLNumberNil
+### SetErrorNil
 
-`func (o *CachedCRLInfosResponse) SetCRLNumberNil(b bool)`
+`func (o *CachedCRLInfosResponse) SetErrorNil(b bool)`
 
- SetCRLNumberNil sets the value for CRLNumber to be an explicit nil
+ SetErrorNil sets the value for Error to be an explicit nil
 
-### UnsetCRLNumber
-`func (o *CachedCRLInfosResponse) UnsetCRLNumber()`
+### UnsetError
+`func (o *CachedCRLInfosResponse) UnsetError()`
 
-UnsetCRLNumber ensures that no value is present for CRLNumber, not even an explicit nil
+UnsetError ensures that no value is present for Error, not even an explicit nil
 ### GetIssuerDn
 
 `func (o *CachedCRLInfosResponse) GetIssuerDn() string`
@@ -123,76 +123,6 @@ HasIssuerDn returns a boolean if a field has been set.
 `func (o *CachedCRLInfosResponse) UnsetIssuerDn()`
 
 UnsetIssuerDn ensures that no value is present for IssuerDn, not even an explicit nil
-### GetThisUpdate
-
-`func (o *CachedCRLInfosResponse) GetThisUpdate() int64`
-
-GetThisUpdate returns the ThisUpdate field if non-nil, zero value otherwise.
-
-### GetThisUpdateOk
-
-`func (o *CachedCRLInfosResponse) GetThisUpdateOk() (*int64, bool)`
-
-GetThisUpdateOk returns a tuple with the ThisUpdate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThisUpdate
-
-`func (o *CachedCRLInfosResponse) SetThisUpdate(v int64)`
-
-SetThisUpdate sets ThisUpdate field to given value.
-
-### HasThisUpdate
-
-`func (o *CachedCRLInfosResponse) HasThisUpdate() bool`
-
-HasThisUpdate returns a boolean if a field has been set.
-
-### SetThisUpdateNil
-
-`func (o *CachedCRLInfosResponse) SetThisUpdateNil(b bool)`
-
- SetThisUpdateNil sets the value for ThisUpdate to be an explicit nil
-
-### UnsetThisUpdate
-`func (o *CachedCRLInfosResponse) UnsetThisUpdate()`
-
-UnsetThisUpdate ensures that no value is present for ThisUpdate, not even an explicit nil
-### GetNextUpdate
-
-`func (o *CachedCRLInfosResponse) GetNextUpdate() int64`
-
-GetNextUpdate returns the NextUpdate field if non-nil, zero value otherwise.
-
-### GetNextUpdateOk
-
-`func (o *CachedCRLInfosResponse) GetNextUpdateOk() (*int64, bool)`
-
-GetNextUpdateOk returns a tuple with the NextUpdate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNextUpdate
-
-`func (o *CachedCRLInfosResponse) SetNextUpdate(v int64)`
-
-SetNextUpdate sets NextUpdate field to given value.
-
-### HasNextUpdate
-
-`func (o *CachedCRLInfosResponse) HasNextUpdate() bool`
-
-HasNextUpdate returns a boolean if a field has been set.
-
-### SetNextUpdateNil
-
-`func (o *CachedCRLInfosResponse) SetNextUpdateNil(b bool)`
-
- SetNextUpdateNil sets the value for NextUpdate to be an explicit nil
-
-### UnsetNextUpdate
-`func (o *CachedCRLInfosResponse) UnsetNextUpdate()`
-
-UnsetNextUpdate ensures that no value is present for NextUpdate, not even an explicit nil
 ### GetLastRefresh
 
 `func (o *CachedCRLInfosResponse) GetLastRefresh() int64`
@@ -263,61 +193,131 @@ HasNextRefresh returns a boolean if a field has been set.
 `func (o *CachedCRLInfosResponse) UnsetNextRefresh()`
 
 UnsetNextRefresh ensures that no value is present for NextRefresh, not even an explicit nil
-### GetCrlSize
+### GetNextUpdate
 
-`func (o *CachedCRLInfosResponse) GetCrlSize() int64`
+`func (o *CachedCRLInfosResponse) GetNextUpdate() int64`
 
-GetCrlSize returns the CrlSize field if non-nil, zero value otherwise.
+GetNextUpdate returns the NextUpdate field if non-nil, zero value otherwise.
 
-### GetCrlSizeOk
+### GetNextUpdateOk
 
-`func (o *CachedCRLInfosResponse) GetCrlSizeOk() (*int64, bool)`
+`func (o *CachedCRLInfosResponse) GetNextUpdateOk() (*int64, bool)`
 
-GetCrlSizeOk returns a tuple with the CrlSize field if it's non-nil, zero value otherwise
+GetNextUpdateOk returns a tuple with the NextUpdate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCrlSize
+### SetNextUpdate
 
-`func (o *CachedCRLInfosResponse) SetCrlSize(v int64)`
+`func (o *CachedCRLInfosResponse) SetNextUpdate(v int64)`
 
-SetCrlSize sets CrlSize field to given value.
+SetNextUpdate sets NextUpdate field to given value.
 
+### HasNextUpdate
 
-### GetError
+`func (o *CachedCRLInfosResponse) HasNextUpdate() bool`
 
-`func (o *CachedCRLInfosResponse) GetError() string`
+HasNextUpdate returns a boolean if a field has been set.
 
-GetError returns the Error field if non-nil, zero value otherwise.
+### SetNextUpdateNil
 
-### GetErrorOk
+`func (o *CachedCRLInfosResponse) SetNextUpdateNil(b bool)`
 
-`func (o *CachedCRLInfosResponse) GetErrorOk() (*string, bool)`
+ SetNextUpdateNil sets the value for NextUpdate to be an explicit nil
 
-GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+### UnsetNextUpdate
+`func (o *CachedCRLInfosResponse) UnsetNextUpdate()`
+
+UnsetNextUpdate ensures that no value is present for NextUpdate, not even an explicit nil
+### GetNumber
+
+`func (o *CachedCRLInfosResponse) GetNumber() float32`
+
+GetNumber returns the Number field if non-nil, zero value otherwise.
+
+### GetNumberOk
+
+`func (o *CachedCRLInfosResponse) GetNumberOk() (*float32, bool)`
+
+GetNumberOk returns a tuple with the Number field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetError
+### SetNumber
 
-`func (o *CachedCRLInfosResponse) SetError(v string)`
+`func (o *CachedCRLInfosResponse) SetNumber(v float32)`
 
-SetError sets Error field to given value.
+SetNumber sets Number field to given value.
 
-### HasError
+### HasNumber
 
-`func (o *CachedCRLInfosResponse) HasError() bool`
+`func (o *CachedCRLInfosResponse) HasNumber() bool`
 
-HasError returns a boolean if a field has been set.
+HasNumber returns a boolean if a field has been set.
 
-### SetErrorNil
+### SetNumberNil
 
-`func (o *CachedCRLInfosResponse) SetErrorNil(b bool)`
+`func (o *CachedCRLInfosResponse) SetNumberNil(b bool)`
 
- SetErrorNil sets the value for Error to be an explicit nil
+ SetNumberNil sets the value for Number to be an explicit nil
 
-### UnsetError
-`func (o *CachedCRLInfosResponse) UnsetError()`
+### UnsetNumber
+`func (o *CachedCRLInfosResponse) UnsetNumber()`
 
-UnsetError ensures that no value is present for Error, not even an explicit nil
+UnsetNumber ensures that no value is present for Number, not even an explicit nil
+### GetSize
+
+`func (o *CachedCRLInfosResponse) GetSize() int64`
+
+GetSize returns the Size field if non-nil, zero value otherwise.
+
+### GetSizeOk
+
+`func (o *CachedCRLInfosResponse) GetSizeOk() (*int64, bool)`
+
+GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSize
+
+`func (o *CachedCRLInfosResponse) SetSize(v int64)`
+
+SetSize sets Size field to given value.
+
+
+### GetThisUpdate
+
+`func (o *CachedCRLInfosResponse) GetThisUpdate() int64`
+
+GetThisUpdate returns the ThisUpdate field if non-nil, zero value otherwise.
+
+### GetThisUpdateOk
+
+`func (o *CachedCRLInfosResponse) GetThisUpdateOk() (*int64, bool)`
+
+GetThisUpdateOk returns a tuple with the ThisUpdate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThisUpdate
+
+`func (o *CachedCRLInfosResponse) SetThisUpdate(v int64)`
+
+SetThisUpdate sets ThisUpdate field to given value.
+
+### HasThisUpdate
+
+`func (o *CachedCRLInfosResponse) HasThisUpdate() bool`
+
+HasThisUpdate returns a boolean if a field has been set.
+
+### SetThisUpdateNil
+
+`func (o *CachedCRLInfosResponse) SetThisUpdateNil(b bool)`
+
+ SetThisUpdateNil sets the value for ThisUpdate to be an explicit nil
+
+### UnsetThisUpdate
+`func (o *CachedCRLInfosResponse) UnsetThisUpdate()`
+
+UnsetThisUpdate ensures that no value is present for ThisUpdate, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -8,13 +8,14 @@ Method | HTTP request | Description
 [**ThirdpartyConnectorDelete**](ThirdpartyConnectorAPI.md#ThirdpartyConnectorDelete) | **Delete** /api/v1/thirdparty/connectors/{name} | Delete an existing third party connector
 [**ThirdpartyConnectorGet**](ThirdpartyConnectorAPI.md#ThirdpartyConnectorGet) | **Get** /api/v1/thirdparty/connectors/{name} | Retrieve an existing third party connector
 [**ThirdpartyConnectorList**](ThirdpartyConnectorAPI.md#ThirdpartyConnectorList) | **Get** /api/v1/thirdparty/connectors | List the existing third party connector(s)
+[**ThirdpartyConnectorRetry**](ThirdpartyConnectorAPI.md#ThirdpartyConnectorRetry) | **Patch** /api/v1/thirdparty/connectors/{name} | Retry failed triggers on a connector
 [**ThirdpartyConnectorUpdate**](ThirdpartyConnectorAPI.md#ThirdpartyConnectorUpdate) | **Put** /api/v1/thirdparty/connectors | Update an existing third party connector
 
 
 
 ## ThirdpartyConnectorAdd
 
-> ThirdpartyConnectorList200ResponseInner ThirdpartyConnectorAdd(ctx).ThirdpartyConnectorUpdateRequest(thirdpartyConnectorUpdateRequest).Execute()
+> ThirdPartyConnectorResponses ThirdpartyConnectorAdd(ctx).ThirdPartyConnectors(thirdPartyConnectors).Execute()
 
 Register a new third party connector
 
@@ -29,20 +30,20 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	thirdpartyConnectorUpdateRequest := openapiclient.thirdparty_connector_update_request{AWSConnector: openapiclient.NewAWSConnector("Type_example", "Name_example", "5 seconds", "Region_example")} // ThirdpartyConnectorUpdateRequest | Third party connector to register
+	thirdPartyConnectors := openapiclient.ThirdPartyConnectors{AWSConnector: openapiclient.NewAWSConnector("Name_example", "Region_example", "5 seconds", "Type_example")} // ThirdPartyConnectors | Third party connector to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ThirdpartyConnectorAPI.ThirdpartyConnectorAdd(context.Background()).ThirdpartyConnectorUpdateRequest(thirdpartyConnectorUpdateRequest).Execute()
+	resp, r, err := apiClient.ThirdpartyConnectorAPI.ThirdpartyConnectorAdd(context.Background()).ThirdPartyConnectors(thirdPartyConnectors).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ThirdpartyConnectorAPI.ThirdpartyConnectorAdd``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ThirdpartyConnectorAdd`: ThirdpartyConnectorList200ResponseInner
+	// response from `ThirdpartyConnectorAdd`: ThirdPartyConnectorResponses
 	fmt.Fprintf(os.Stdout, "Response from `ThirdpartyConnectorAPI.ThirdpartyConnectorAdd`: %v\n", resp)
 }
 ```
@@ -58,11 +59,11 @@ Other parameters are passed through a pointer to a apiThirdpartyConnectorAddRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **thirdpartyConnectorUpdateRequest** | [**ThirdpartyConnectorUpdateRequest**](ThirdpartyConnectorUpdateRequest.md) | Third party connector to register | 
+ **thirdPartyConnectors** | [**ThirdPartyConnectors**](ThirdPartyConnectors.md) | Third party connector to register | 
 
 ### Return type
 
-[**ThirdpartyConnectorList200ResponseInner**](ThirdpartyConnectorList200ResponseInner.md)
+[**ThirdPartyConnectorResponses**](ThirdPartyConnectorResponses.md)
 
 ### Authorization
 
@@ -95,7 +96,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -163,7 +164,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -233,7 +234,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
@@ -284,9 +285,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ThirdpartyConnectorRetry
+
+> ThirdpartyConnectorRetry(ctx, name).Execute()
+
+Retry failed triggers on a connector
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/evertrust/horizon-go/v2"
+)
+
+func main() {
+	name := "name_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.ThirdpartyConnectorAPI.ThirdpartyConnectorRetry(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ThirdpartyConnectorAPI.ThirdpartyConnectorRetry``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**name** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiThirdpartyConnectorRetryRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [cookieAuth](../README.md#cookieAuth), [apiId](../README.md#apiId)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ThirdpartyConnectorUpdate
 
-> ThirdpartyConnectorList200ResponseInner ThirdpartyConnectorUpdate(ctx).ThirdpartyConnectorUpdateRequest(thirdpartyConnectorUpdateRequest).Execute()
+> ThirdPartyConnectorResponses ThirdpartyConnectorUpdate(ctx).ThirdPartyConnectors(thirdPartyConnectors).Execute()
 
 Update an existing third party connector
 
@@ -301,20 +370,20 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/evertrust/horizon-go"
+	openapiclient "github.com/evertrust/horizon-go/v2"
 )
 
 func main() {
-	thirdpartyConnectorUpdateRequest := openapiclient.thirdparty_connector_update_request{AWSConnector: openapiclient.NewAWSConnector("Type_example", "Name_example", "5 seconds", "Region_example")} // ThirdpartyConnectorUpdateRequest | Third party connector to update
+	thirdPartyConnectors := openapiclient.ThirdPartyConnectors{AWSConnector: openapiclient.NewAWSConnector("Name_example", "Region_example", "5 seconds", "Type_example")} // ThirdPartyConnectors | Third party connector to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ThirdpartyConnectorAPI.ThirdpartyConnectorUpdate(context.Background()).ThirdpartyConnectorUpdateRequest(thirdpartyConnectorUpdateRequest).Execute()
+	resp, r, err := apiClient.ThirdpartyConnectorAPI.ThirdpartyConnectorUpdate(context.Background()).ThirdPartyConnectors(thirdPartyConnectors).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ThirdpartyConnectorAPI.ThirdpartyConnectorUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ThirdpartyConnectorUpdate`: ThirdpartyConnectorList200ResponseInner
+	// response from `ThirdpartyConnectorUpdate`: ThirdPartyConnectorResponses
 	fmt.Fprintf(os.Stdout, "Response from `ThirdpartyConnectorAPI.ThirdpartyConnectorUpdate`: %v\n", resp)
 }
 ```
@@ -330,11 +399,11 @@ Other parameters are passed through a pointer to a apiThirdpartyConnectorUpdateR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **thirdpartyConnectorUpdateRequest** | [**ThirdpartyConnectorUpdateRequest**](ThirdpartyConnectorUpdateRequest.md) | Third party connector to update | 
+ **thirdPartyConnectors** | [**ThirdPartyConnectors**](ThirdPartyConnectors.md) | Third party connector to update | 
 
 ### Return type
 
-[**ThirdpartyConnectorList200ResponseInner**](ThirdpartyConnectorList200ResponseInner.md)
+[**ThirdPartyConnectorResponses**](ThirdPartyConnectorResponses.md)
 
 ### Authorization
 
