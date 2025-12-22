@@ -30,9 +30,10 @@ type PrincipalResponse struct {
 	// The UI preferences of the principal
 	Preferences NullablePrincipalInfoPreferences `json:"preferences,omitempty"`
 	// The roles of the principal
-	Roles []string `json:"roles,omitempty"`
+	Roles     []string                          `json:"roles,omitempty"`
+	TeamInfos []PrincipalResponseTeamInfosInner `json:"teamInfos,omitempty"`
 	// The teams of the principal
-	Teams                []PrincipalResponseTeamsInner `json:"teams,omitempty"`
+	Teams                []string `json:"teams,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -222,10 +223,43 @@ func (o *PrincipalResponse) SetRoles(v []string) {
 	o.Roles = v
 }
 
-// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalResponse) GetTeams() []PrincipalResponseTeamsInner {
+// GetTeamInfos returns the TeamInfos field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalResponse) GetTeamInfos() []PrincipalResponseTeamInfosInner {
 	if o == nil {
-		var ret []PrincipalResponseTeamsInner
+		var ret []PrincipalResponseTeamInfosInner
+		return ret
+	}
+	return o.TeamInfos
+}
+
+// GetTeamInfosOk returns a tuple with the TeamInfos field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalResponse) GetTeamInfosOk() ([]PrincipalResponseTeamInfosInner, bool) {
+	if o == nil || utils.IsNil(o.TeamInfos) {
+		return nil, false
+	}
+	return o.TeamInfos, true
+}
+
+// HasTeamInfos returns a boolean if a field has been set.
+func (o *PrincipalResponse) HasTeamInfos() bool {
+	if o != nil && !utils.IsNil(o.TeamInfos) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeamInfos gets a reference to the given []PrincipalResponseTeamInfosInner and assigns it to the TeamInfos field.
+func (o *PrincipalResponse) SetTeamInfos(v []PrincipalResponseTeamInfosInner) {
+	o.TeamInfos = v
+}
+
+// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalResponse) GetTeams() []string {
+	if o == nil {
+		var ret []string
 		return ret
 	}
 	return o.Teams
@@ -234,7 +268,7 @@ func (o *PrincipalResponse) GetTeams() []PrincipalResponseTeamsInner {
 // GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalResponse) GetTeamsOk() ([]PrincipalResponseTeamsInner, bool) {
+func (o *PrincipalResponse) GetTeamsOk() ([]string, bool) {
 	if o == nil || utils.IsNil(o.Teams) {
 		return nil, false
 	}
@@ -250,8 +284,8 @@ func (o *PrincipalResponse) HasTeams() bool {
 	return false
 }
 
-// SetTeams gets a reference to the given []PrincipalResponseTeamsInner and assigns it to the Teams field.
-func (o *PrincipalResponse) SetTeams(v []PrincipalResponseTeamsInner) {
+// SetTeams gets a reference to the given []string and assigns it to the Teams field.
+func (o *PrincipalResponse) SetTeams(v []string) {
 	o.Teams = v
 }
 
@@ -277,6 +311,9 @@ func (o PrincipalResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Roles != nil {
 		toSerialize["roles"] = o.Roles
+	}
+	if o.TeamInfos != nil {
+		toSerialize["teamInfos"] = o.TeamInfos
 	}
 	if o.Teams != nil {
 		toSerialize["teams"] = o.Teams
@@ -329,6 +366,7 @@ func (o *PrincipalResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "permissions")
 		delete(additionalProperties, "preferences")
 		delete(additionalProperties, "roles")
+		delete(additionalProperties, "teamInfos")
 		delete(additionalProperties, "teams")
 		o.AdditionalProperties = additionalProperties
 	}
