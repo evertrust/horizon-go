@@ -668,7 +668,7 @@ Class | Method | HTTP request | Description
  - [PrincipalInfoSearchResultResponse](docs/PrincipalInfoSearchResultResponse.md)
  - [PrincipalInfoSearchResultsResponse](docs/PrincipalInfoSearchResultsResponse.md)
  - [PrincipalResponse](docs/PrincipalResponse.md)
- - [PrincipalResponseTeamsInner](docs/PrincipalResponseTeamsInner.md)
+ - [PrincipalResponseTeamInfosInner](docs/PrincipalResponseTeamInfosInner.md)
  - [REST](docs/REST.md)
  - [RESTDataSourceResultResponse](docs/RESTDataSourceResultResponse.md)
  - [RESTDatasource](docs/RESTDatasource.md)

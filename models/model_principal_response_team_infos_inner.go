@@ -16,11 +16,11 @@ import (
 	"github.com/evertrust/horizon-go/v2/utils"
 )
 
-// checks if the PrincipalResponseTeamsInner type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &PrincipalResponseTeamsInner{}
+// checks if the PrincipalResponseTeamInfosInner type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &PrincipalResponseTeamInfosInner{}
 
-// PrincipalResponseTeamsInner The team information
-type PrincipalResponseTeamsInner struct {
+// PrincipalResponseTeamInfosInner The team information
+type PrincipalResponseTeamInfosInner struct {
 	Description []LocalizedStringResponse `json:"description,omitempty"`
 	DisplayName []LocalizedStringResponse `json:"displayName,omitempty"`
 	// `true` if this team is externally managed (SCIM,...)
@@ -31,27 +31,27 @@ type PrincipalResponseTeamsInner struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _PrincipalResponseTeamsInner PrincipalResponseTeamsInner
+type _PrincipalResponseTeamInfosInner PrincipalResponseTeamInfosInner
 
-// NewPrincipalResponseTeamsInner instantiates a new PrincipalResponseTeamsInner object
+// NewPrincipalResponseTeamInfosInner instantiates a new PrincipalResponseTeamInfosInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrincipalResponseTeamsInner() *PrincipalResponseTeamsInner {
-	this := PrincipalResponseTeamsInner{}
+func NewPrincipalResponseTeamInfosInner() *PrincipalResponseTeamInfosInner {
+	this := PrincipalResponseTeamInfosInner{}
 	return &this
 }
 
-// NewPrincipalResponseTeamsInnerWithDefaults instantiates a new PrincipalResponseTeamsInner object
+// NewPrincipalResponseTeamInfosInnerWithDefaults instantiates a new PrincipalResponseTeamInfosInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPrincipalResponseTeamsInnerWithDefaults() *PrincipalResponseTeamsInner {
-	this := PrincipalResponseTeamsInner{}
+func NewPrincipalResponseTeamInfosInnerWithDefaults() *PrincipalResponseTeamInfosInner {
+	this := PrincipalResponseTeamInfosInner{}
 	return &this
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *PrincipalResponseTeamsInner) GetDescription() []LocalizedStringResponse {
+func (o *PrincipalResponseTeamInfosInner) GetDescription() []LocalizedStringResponse {
 	if o == nil || utils.IsNil(o.Description) {
 		var ret []LocalizedStringResponse
 		return ret
@@ -61,7 +61,7 @@ func (o *PrincipalResponseTeamsInner) GetDescription() []LocalizedStringResponse
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PrincipalResponseTeamsInner) GetDescriptionOk() ([]LocalizedStringResponse, bool) {
+func (o *PrincipalResponseTeamInfosInner) GetDescriptionOk() ([]LocalizedStringResponse, bool) {
 	if o == nil || utils.IsNil(o.Description) {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *PrincipalResponseTeamsInner) GetDescriptionOk() ([]LocalizedStringRespo
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *PrincipalResponseTeamsInner) HasDescription() bool {
+func (o *PrincipalResponseTeamInfosInner) HasDescription() bool {
 	if o != nil && !utils.IsNil(o.Description) {
 		return true
 	}
@@ -78,12 +78,12 @@ func (o *PrincipalResponseTeamsInner) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given []LocalizedStringResponse and assigns it to the Description field.
-func (o *PrincipalResponseTeamsInner) SetDescription(v []LocalizedStringResponse) {
+func (o *PrincipalResponseTeamInfosInner) SetDescription(v []LocalizedStringResponse) {
 	o.Description = v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *PrincipalResponseTeamsInner) GetDisplayName() []LocalizedStringResponse {
+func (o *PrincipalResponseTeamInfosInner) GetDisplayName() []LocalizedStringResponse {
 	if o == nil || utils.IsNil(o.DisplayName) {
 		var ret []LocalizedStringResponse
 		return ret
@@ -93,7 +93,7 @@ func (o *PrincipalResponseTeamsInner) GetDisplayName() []LocalizedStringResponse
 
 // GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PrincipalResponseTeamsInner) GetDisplayNameOk() ([]LocalizedStringResponse, bool) {
+func (o *PrincipalResponseTeamInfosInner) GetDisplayNameOk() ([]LocalizedStringResponse, bool) {
 	if o == nil || utils.IsNil(o.DisplayName) {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *PrincipalResponseTeamsInner) GetDisplayNameOk() ([]LocalizedStringRespo
 }
 
 // HasDisplayName returns a boolean if a field has been set.
-func (o *PrincipalResponseTeamsInner) HasDisplayName() bool {
+func (o *PrincipalResponseTeamInfosInner) HasDisplayName() bool {
 	if o != nil && !utils.IsNil(o.DisplayName) {
 		return true
 	}
@@ -110,12 +110,12 @@ func (o *PrincipalResponseTeamsInner) HasDisplayName() bool {
 }
 
 // SetDisplayName gets a reference to the given []LocalizedStringResponse and assigns it to the DisplayName field.
-func (o *PrincipalResponseTeamsInner) SetDisplayName(v []LocalizedStringResponse) {
+func (o *PrincipalResponseTeamInfosInner) SetDisplayName(v []LocalizedStringResponse) {
 	o.DisplayName = v
 }
 
 // GetExternallyManaged returns the ExternallyManaged field value if set, zero value otherwise.
-func (o *PrincipalResponseTeamsInner) GetExternallyManaged() bool {
+func (o *PrincipalResponseTeamInfosInner) GetExternallyManaged() bool {
 	if o == nil || utils.IsNil(o.ExternallyManaged) {
 		var ret bool
 		return ret
@@ -125,7 +125,7 @@ func (o *PrincipalResponseTeamsInner) GetExternallyManaged() bool {
 
 // GetExternallyManagedOk returns a tuple with the ExternallyManaged field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PrincipalResponseTeamsInner) GetExternallyManagedOk() (*bool, bool) {
+func (o *PrincipalResponseTeamInfosInner) GetExternallyManagedOk() (*bool, bool) {
 	if o == nil || utils.IsNil(o.ExternallyManaged) {
 		return nil, false
 	}
@@ -133,7 +133,7 @@ func (o *PrincipalResponseTeamsInner) GetExternallyManagedOk() (*bool, bool) {
 }
 
 // HasExternallyManaged returns a boolean if a field has been set.
-func (o *PrincipalResponseTeamsInner) HasExternallyManaged() bool {
+func (o *PrincipalResponseTeamInfosInner) HasExternallyManaged() bool {
 	if o != nil && !utils.IsNil(o.ExternallyManaged) {
 		return true
 	}
@@ -142,12 +142,12 @@ func (o *PrincipalResponseTeamsInner) HasExternallyManaged() bool {
 }
 
 // SetExternallyManaged gets a reference to the given bool and assigns it to the ExternallyManaged field.
-func (o *PrincipalResponseTeamsInner) SetExternallyManaged(v bool) {
+func (o *PrincipalResponseTeamInfosInner) SetExternallyManaged(v bool) {
 	o.ExternallyManaged = &v
 }
 
 // GetManager returns the Manager field value if set, zero value otherwise.
-func (o *PrincipalResponseTeamsInner) GetManager() bool {
+func (o *PrincipalResponseTeamInfosInner) GetManager() bool {
 	if o == nil || utils.IsNil(o.Manager) {
 		var ret bool
 		return ret
@@ -157,7 +157,7 @@ func (o *PrincipalResponseTeamsInner) GetManager() bool {
 
 // GetManagerOk returns a tuple with the Manager field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PrincipalResponseTeamsInner) GetManagerOk() (*bool, bool) {
+func (o *PrincipalResponseTeamInfosInner) GetManagerOk() (*bool, bool) {
 	if o == nil || utils.IsNil(o.Manager) {
 		return nil, false
 	}
@@ -165,7 +165,7 @@ func (o *PrincipalResponseTeamsInner) GetManagerOk() (*bool, bool) {
 }
 
 // HasManager returns a boolean if a field has been set.
-func (o *PrincipalResponseTeamsInner) HasManager() bool {
+func (o *PrincipalResponseTeamInfosInner) HasManager() bool {
 	if o != nil && !utils.IsNil(o.Manager) {
 		return true
 	}
@@ -174,12 +174,12 @@ func (o *PrincipalResponseTeamsInner) HasManager() bool {
 }
 
 // SetManager gets a reference to the given bool and assigns it to the Manager field.
-func (o *PrincipalResponseTeamsInner) SetManager(v bool) {
+func (o *PrincipalResponseTeamInfosInner) SetManager(v bool) {
 	o.Manager = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PrincipalResponseTeamsInner) GetName() string {
+func (o *PrincipalResponseTeamInfosInner) GetName() string {
 	if o == nil || utils.IsNil(o.Name) {
 		var ret string
 		return ret
@@ -189,7 +189,7 @@ func (o *PrincipalResponseTeamsInner) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PrincipalResponseTeamsInner) GetNameOk() (*string, bool) {
+func (o *PrincipalResponseTeamInfosInner) GetNameOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
@@ -197,7 +197,7 @@ func (o *PrincipalResponseTeamsInner) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *PrincipalResponseTeamsInner) HasName() bool {
+func (o *PrincipalResponseTeamInfosInner) HasName() bool {
 	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
@@ -206,11 +206,11 @@ func (o *PrincipalResponseTeamsInner) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PrincipalResponseTeamsInner) SetName(v string) {
+func (o *PrincipalResponseTeamInfosInner) SetName(v string) {
 	o.Name = &v
 }
 
-func (o PrincipalResponseTeamsInner) MarshalJSON() ([]byte, error) {
+func (o PrincipalResponseTeamInfosInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -218,7 +218,7 @@ func (o PrincipalResponseTeamsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PrincipalResponseTeamsInner) ToMap() (map[string]interface{}, error) {
+func (o PrincipalResponseTeamInfosInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !utils.IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -243,16 +243,16 @@ func (o PrincipalResponseTeamsInner) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *PrincipalResponseTeamsInner) UnmarshalJSON(data []byte) (err error) {
-	varPrincipalResponseTeamsInner := _PrincipalResponseTeamsInner{}
+func (o *PrincipalResponseTeamInfosInner) UnmarshalJSON(data []byte) (err error) {
+	varPrincipalResponseTeamInfosInner := _PrincipalResponseTeamInfosInner{}
 
-	err = json.Unmarshal(data, &varPrincipalResponseTeamsInner)
+	err = json.Unmarshal(data, &varPrincipalResponseTeamInfosInner)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PrincipalResponseTeamsInner(varPrincipalResponseTeamsInner)
+	*o = PrincipalResponseTeamInfosInner(varPrincipalResponseTeamInfosInner)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -268,38 +268,38 @@ func (o *PrincipalResponseTeamsInner) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullablePrincipalResponseTeamsInner struct {
-	value *PrincipalResponseTeamsInner
+type NullablePrincipalResponseTeamInfosInner struct {
+	value *PrincipalResponseTeamInfosInner
 	isSet bool
 }
 
-func (v NullablePrincipalResponseTeamsInner) Get() *PrincipalResponseTeamsInner {
+func (v NullablePrincipalResponseTeamInfosInner) Get() *PrincipalResponseTeamInfosInner {
 	return v.value
 }
 
-func (v *NullablePrincipalResponseTeamsInner) Set(val *PrincipalResponseTeamsInner) {
+func (v *NullablePrincipalResponseTeamInfosInner) Set(val *PrincipalResponseTeamInfosInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePrincipalResponseTeamsInner) IsSet() bool {
+func (v NullablePrincipalResponseTeamInfosInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePrincipalResponseTeamsInner) Unset() {
+func (v *NullablePrincipalResponseTeamInfosInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePrincipalResponseTeamsInner(val *PrincipalResponseTeamsInner) *NullablePrincipalResponseTeamsInner {
-	return &NullablePrincipalResponseTeamsInner{value: val, isSet: true}
+func NewNullablePrincipalResponseTeamInfosInner(val *PrincipalResponseTeamInfosInner) *NullablePrincipalResponseTeamInfosInner {
+	return &NullablePrincipalResponseTeamInfosInner{value: val, isSet: true}
 }
 
-func (v NullablePrincipalResponseTeamsInner) MarshalJSON() ([]byte, error) {
+func (v NullablePrincipalResponseTeamInfosInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePrincipalResponseTeamsInner) UnmarshalJSON(src []byte) error {
+func (v *NullablePrincipalResponseTeamInfosInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

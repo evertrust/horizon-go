@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **Permissions** | Pointer to [**[]Permission**](Permission.md) | The permissions of the principal | [optional] 
 **Preferences** | Pointer to [**NullablePrincipalInfoPreferences**](PrincipalInfoPreferences.md) | The UI preferences of the principal | [optional] 
 **Roles** | Pointer to **[]string** | The roles of the principal | [optional] 
-**Teams** | Pointer to [**[]PrincipalResponseTeamsInner**](PrincipalResponseTeamsInner.md) | The teams of the principal | [optional] 
+**TeamInfos** | Pointer to [**[]PrincipalResponseTeamInfosInner**](PrincipalResponseTeamInfosInner.md) |  | [optional] 
+**Teams** | Pointer to **[]string** | The teams of the principal | [optional] 
 
 ## Methods
 
@@ -190,22 +191,57 @@ HasRoles returns a boolean if a field has been set.
 `func (o *PrincipalResponse) UnsetRoles()`
 
 UnsetRoles ensures that no value is present for Roles, not even an explicit nil
+### GetTeamInfos
+
+`func (o *PrincipalResponse) GetTeamInfos() []PrincipalResponseTeamInfosInner`
+
+GetTeamInfos returns the TeamInfos field if non-nil, zero value otherwise.
+
+### GetTeamInfosOk
+
+`func (o *PrincipalResponse) GetTeamInfosOk() (*[]PrincipalResponseTeamInfosInner, bool)`
+
+GetTeamInfosOk returns a tuple with the TeamInfos field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeamInfos
+
+`func (o *PrincipalResponse) SetTeamInfos(v []PrincipalResponseTeamInfosInner)`
+
+SetTeamInfos sets TeamInfos field to given value.
+
+### HasTeamInfos
+
+`func (o *PrincipalResponse) HasTeamInfos() bool`
+
+HasTeamInfos returns a boolean if a field has been set.
+
+### SetTeamInfosNil
+
+`func (o *PrincipalResponse) SetTeamInfosNil(b bool)`
+
+ SetTeamInfosNil sets the value for TeamInfos to be an explicit nil
+
+### UnsetTeamInfos
+`func (o *PrincipalResponse) UnsetTeamInfos()`
+
+UnsetTeamInfos ensures that no value is present for TeamInfos, not even an explicit nil
 ### GetTeams
 
-`func (o *PrincipalResponse) GetTeams() []PrincipalResponseTeamsInner`
+`func (o *PrincipalResponse) GetTeams() []string`
 
 GetTeams returns the Teams field if non-nil, zero value otherwise.
 
 ### GetTeamsOk
 
-`func (o *PrincipalResponse) GetTeamsOk() (*[]PrincipalResponseTeamsInner, bool)`
+`func (o *PrincipalResponse) GetTeamsOk() (*[]string, bool)`
 
 GetTeamsOk returns a tuple with the Teams field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTeams
 
-`func (o *PrincipalResponse) SetTeams(v []PrincipalResponseTeamsInner)`
+`func (o *PrincipalResponse) SetTeams(v []string)`
 
 SetTeams sets Teams field to given value.
 
