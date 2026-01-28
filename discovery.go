@@ -67,9 +67,9 @@ type DiscoveryCampaign struct {
 	GradingPolicies     []string            `json:"gradingPolicies,omitempty"`
 	AuthorizationLevels AuthorizationLevels `json:"authorizationLevels,omitempty"`
 	Id                  string              `json:"id,omitempty"`
-	EventOnSuccess      bool                `json:"eventOnSuccess,omitempty"`
-	EventOnFailure      bool                `json:"eventOnFailure,omitempty"`
-	EventOnWarning      bool                `json:"eventOnWarning,omitempty"`
+	EventOnSuccess      bool                `json:"eventOnSuccess"`
+	EventOnFailure      bool                `json:"eventOnFailure"`
+	EventOnWarning      bool                `json:"eventOnWarning"`
 	Hosts               []string            `json:"hosts,omitempty"`
 	Ports               []string            `json:"ports,omitempty"`
 }
