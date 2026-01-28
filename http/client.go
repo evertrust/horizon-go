@@ -13,10 +13,6 @@ import (
 	"encoding/pem"
 	"errors"
 	"fmt"
-	"github.com/evertrust/horizon-go/log"
-	"github.com/golang-jwt/jwt"
-	"golang.org/x/crypto/cryptobyte"
-	asn1Crypto "golang.org/x/crypto/cryptobyte/asn1"
 	"io"
 	"math/big"
 	gohttp "net/http"
@@ -24,6 +20,11 @@ import (
 	"reflect"
 	"strings"
 	"time"
+
+	"github.com/evertrust/horizon-go/log"
+	"github.com/golang-jwt/jwt/v5"
+	"golang.org/x/crypto/cryptobyte"
+	asn1Crypto "golang.org/x/crypto/cryptobyte/asn1"
 )
 
 type Client struct {
@@ -97,11 +98,11 @@ func (c *Client) JwtEnabled() bool {
 }
 
 func (c *Client) computeJwt(nonce string) (string, error) {
-	jwt, err := computeJwtForNonce(c.jwt.cert, c.jwt.key, nonce)
+	jwtValue, err := computeJwtForNonce(c.jwt.cert, c.jwt.key, nonce)
 	if err != nil {
 		return "", fmt.Errorf("could not compute jwt: %s", err.Error())
 	} else {
-		return jwt, nil
+		return jwtValue, nil
 	}
 }
 
@@ -310,7 +311,7 @@ func (c *Client) sendRequest(method, urlToRequest string, body []byte) (*gohttp.
 	if c.JwtEnabled() {
 		log.Debug("Authentication using JWT")
 		// Do a first request to get the nonce
-		requestForNonce, err := gohttp.NewRequest(method, urlToSend, strings.NewReader("{}"))
+		requestForNonce, err := gohttp.NewRequest(method, urlToSend, nil)
 		if err != nil {
 			return nil, err
 		}
