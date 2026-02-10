@@ -22,24 +22,24 @@ var _ utils.MappedNullable = &DNSDatasource{}
 
 // DNSDatasource struct for DNSDatasource
 type DNSDatasource struct {
-	// Description of the datasource
-	Description *string `json:"description,omitempty"`
-	// The localized name of the datasource
-	DisplayName []LocalizedString `json:"displayName,omitempty"`
-	// Ip of the DNS server. If empty, Horizon Server DNS is used
-	Host utils.NullableString `json:"host,omitempty"`
-	// Host to lookup
-	Lookup string `json:"lookup"`
+	// Type of datasource
+	Type string `json:"type"`
 	// Name of the datasource
 	Name string `json:"name"`
+	// The localized name of the datasource
+	DisplayName []LocalizedString `json:"displayName,omitempty"`
+	// Description of the datasource
+	Description *string `json:"description,omitempty"`
+	// Ip of the DNS server. If empty, Horizon Server DNS is used
+	Host utils.NullableString `json:"host,omitempty"`
 	// Port on which to join the DNS server
 	Port utils.NullableInt64 `json:"port,omitempty"`
-	// Type of DNS records to fetch. All available record types are fetched if null
-	RecordTypes []string `json:"recordTypes,omitempty"`
 	// Timeout for the DNS request
 	Timeout utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	// Type of datasource
-	Type                 string `json:"type"`
+	// Type of DNS records to fetch. All available record types are fetched if null
+	RecordTypes []string `json:"recordTypes,omitempty"`
+	// Host to lookup
+	Lookup               string `json:"lookup"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,15 +49,15 @@ type _DNSDatasource DNSDatasource
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDNSDatasource(lookup string, name string, type_ string) *DNSDatasource {
+func NewDNSDatasource(type_ string, name string, lookup string) *DNSDatasource {
 	this := DNSDatasource{}
-	this.Lookup = lookup
+	this.Type = type_
 	this.Name = name
 	var port int64 = 53
 	this.Port = *utils.NewNullableInt64(&port)
 	var timeout string = "10 seconds"
 	this.Timeout = *utils.NewNullableString(&timeout)
-	this.Type = type_
+	this.Lookup = lookup
 	return &this
 }
 
@@ -73,36 +73,52 @@ func NewDNSDatasourceWithDefaults() *DNSDatasource {
 	return &this
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *DNSDatasource) GetDescription() string {
-	if o == nil || utils.IsNil(o.Description) {
+// GetType returns the Type field value
+func (o *DNSDatasource) GetType() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+
+	return o.Type
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *DNSDatasource) GetDescriptionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Description) {
+func (o *DNSDatasource) GetTypeOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Type, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *DNSDatasource) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
+// SetType sets field value
+func (o *DNSDatasource) SetType(v string) {
+	o.Type = v
+}
+
+// GetName returns the Name field value
+func (o *DNSDatasource) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Name
 }
 
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *DNSDatasource) SetDescription(v string) {
-	o.Description = &v
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *DNSDatasource) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *DNSDatasource) SetName(v string) {
+	o.Name = v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -136,6 +152,38 @@ func (o *DNSDatasource) HasDisplayName() bool {
 // SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
 func (o *DNSDatasource) SetDisplayName(v []LocalizedString) {
 	o.DisplayName = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *DNSDatasource) GetDescription() string {
+	if o == nil || utils.IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DNSDatasource) GetDescriptionOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *DNSDatasource) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *DNSDatasource) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetHost returns the Host field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -181,54 +229,6 @@ func (o *DNSDatasource) UnsetHost() {
 	o.Host.Unset()
 }
 
-// GetLookup returns the Lookup field value
-func (o *DNSDatasource) GetLookup() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Lookup
-}
-
-// GetLookupOk returns a tuple with the Lookup field value
-// and a boolean to check if the value has been set.
-func (o *DNSDatasource) GetLookupOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Lookup, true
-}
-
-// SetLookup sets field value
-func (o *DNSDatasource) SetLookup(v string) {
-	o.Lookup = v
-}
-
-// GetName returns the Name field value
-func (o *DNSDatasource) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *DNSDatasource) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *DNSDatasource) SetName(v string) {
-	o.Name = v
-}
-
 // GetPort returns the Port field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DNSDatasource) GetPort() int64 {
 	if o == nil || utils.IsNil(o.Port.Get()) {
@@ -270,39 +270,6 @@ func (o *DNSDatasource) SetPortNil() {
 // UnsetPort ensures that no value is present for Port, not even an explicit nil
 func (o *DNSDatasource) UnsetPort() {
 	o.Port.Unset()
-}
-
-// GetRecordTypes returns the RecordTypes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DNSDatasource) GetRecordTypes() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.RecordTypes
-}
-
-// GetRecordTypesOk returns a tuple with the RecordTypes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DNSDatasource) GetRecordTypesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.RecordTypes) {
-		return nil, false
-	}
-	return o.RecordTypes, true
-}
-
-// HasRecordTypes returns a boolean if a field has been set.
-func (o *DNSDatasource) HasRecordTypes() bool {
-	if o != nil && !utils.IsNil(o.RecordTypes) {
-		return true
-	}
-
-	return false
-}
-
-// SetRecordTypes gets a reference to the given []string and assigns it to the RecordTypes field.
-func (o *DNSDatasource) SetRecordTypes(v []string) {
-	o.RecordTypes = v
 }
 
 // GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -348,28 +315,61 @@ func (o *DNSDatasource) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
-// GetType returns the Type field value
-func (o *DNSDatasource) GetType() string {
+// GetRecordTypes returns the RecordTypes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DNSDatasource) GetRecordTypes() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.RecordTypes
+}
+
+// GetRecordTypesOk returns a tuple with the RecordTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DNSDatasource) GetRecordTypesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.RecordTypes) {
+		return nil, false
+	}
+	return o.RecordTypes, true
+}
+
+// HasRecordTypes returns a boolean if a field has been set.
+func (o *DNSDatasource) HasRecordTypes() bool {
+	if o != nil && !utils.IsNil(o.RecordTypes) {
+		return true
+	}
+
+	return false
+}
+
+// SetRecordTypes gets a reference to the given []string and assigns it to the RecordTypes field.
+func (o *DNSDatasource) SetRecordTypes(v []string) {
+	o.RecordTypes = v
+}
+
+// GetLookup returns the Lookup field value
+func (o *DNSDatasource) GetLookup() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.Lookup
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetLookupOk returns a tuple with the Lookup field value
 // and a boolean to check if the value has been set.
-func (o *DNSDatasource) GetTypeOk() (*string, bool) {
+func (o *DNSDatasource) GetLookupOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.Lookup, true
 }
 
-// SetType sets field value
-func (o *DNSDatasource) SetType(v string) {
-	o.Type = v
+// SetLookup sets field value
+func (o *DNSDatasource) SetLookup(v string) {
+	o.Lookup = v
 }
 
 func (o DNSDatasource) MarshalJSON() ([]byte, error) {
@@ -382,27 +382,27 @@ func (o DNSDatasource) MarshalJSON() ([]byte, error) {
 
 func (o DNSDatasource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["name"] = o.Name
 	if o.DisplayName != nil {
 		toSerialize["displayName"] = o.DisplayName
+	}
+	if !utils.IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
 	if o.Host.IsSet() {
 		toSerialize["host"] = o.Host.Get()
 	}
-	toSerialize["lookup"] = o.Lookup
-	toSerialize["name"] = o.Name
 	if o.Port.IsSet() {
 		toSerialize["port"] = o.Port.Get()
-	}
-	if o.RecordTypes != nil {
-		toSerialize["recordTypes"] = o.RecordTypes
 	}
 	if o.Timeout.IsSet() {
 		toSerialize["timeout"] = o.Timeout.Get()
 	}
-	toSerialize["type"] = o.Type
+	if o.RecordTypes != nil {
+		toSerialize["recordTypes"] = o.RecordTypes
+	}
+	toSerialize["lookup"] = o.Lookup
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -416,9 +416,9 @@ func (o *DNSDatasource) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"lookup",
-		"name",
 		"type",
+		"name",
+		"lookup",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -448,15 +448,15 @@ func (o *DNSDatasource) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "host")
-		delete(additionalProperties, "lookup")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "port")
-		delete(additionalProperties, "recordTypes")
-		delete(additionalProperties, "timeout")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "recordTypes")
+		delete(additionalProperties, "lookup")
 		o.AdditionalProperties = additionalProperties
 	}
 

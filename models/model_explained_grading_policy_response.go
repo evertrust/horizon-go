@@ -22,13 +22,13 @@ var _ utils.MappedNullable = &ExplainedGradingPolicyResponse{}
 
 // ExplainedGradingPolicyResponse struct for ExplainedGradingPolicyResponse
 type ExplainedGradingPolicyResponse struct {
-	Certificate          string                    `json:"certificate"`
-	Description          []LocalizedString         `json:"description,omitempty"`
-	Explained            []ExplainedGradingRuleset `json:"explained,omitempty"`
-	Grade                utils.NullableString      `json:"grade,omitempty"`
 	Name                 string                    `json:"name"`
+	Description          []LocalizedString         `json:"description,omitempty"`
 	Rulesets             []WeightedGradingRuleset  `json:"rulesets"`
+	Certificate          string                    `json:"certificate"`
 	Score                utils.NullableFloat32     `json:"score,omitempty"`
+	Grade                utils.NullableString      `json:"grade,omitempty"`
+	Explained            []ExplainedGradingRuleset `json:"explained,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,11 +38,11 @@ type _ExplainedGradingPolicyResponse ExplainedGradingPolicyResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExplainedGradingPolicyResponse(certificate string, name string, rulesets []WeightedGradingRuleset) *ExplainedGradingPolicyResponse {
+func NewExplainedGradingPolicyResponse(name string, rulesets []WeightedGradingRuleset, certificate string) *ExplainedGradingPolicyResponse {
 	this := ExplainedGradingPolicyResponse{}
-	this.Certificate = certificate
 	this.Name = name
 	this.Rulesets = rulesets
+	this.Certificate = certificate
 	return &this
 }
 
@@ -54,28 +54,28 @@ func NewExplainedGradingPolicyResponseWithDefaults() *ExplainedGradingPolicyResp
 	return &this
 }
 
-// GetCertificate returns the Certificate field value
-func (o *ExplainedGradingPolicyResponse) GetCertificate() string {
+// GetName returns the Name field value
+func (o *ExplainedGradingPolicyResponse) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Certificate
+	return o.Name
 }
 
-// GetCertificateOk returns a tuple with the Certificate field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ExplainedGradingPolicyResponse) GetCertificateOk() (*string, bool) {
+func (o *ExplainedGradingPolicyResponse) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Certificate, true
+	return &o.Name, true
 }
 
-// SetCertificate sets field value
-func (o *ExplainedGradingPolicyResponse) SetCertificate(v string) {
-	o.Certificate = v
+// SetName sets field value
+func (o *ExplainedGradingPolicyResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -111,106 +111,6 @@ func (o *ExplainedGradingPolicyResponse) SetDescription(v []LocalizedString) {
 	o.Description = v
 }
 
-// GetExplained returns the Explained field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExplainedGradingPolicyResponse) GetExplained() []ExplainedGradingRuleset {
-	if o == nil {
-		var ret []ExplainedGradingRuleset
-		return ret
-	}
-	return o.Explained
-}
-
-// GetExplainedOk returns a tuple with the Explained field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExplainedGradingPolicyResponse) GetExplainedOk() ([]ExplainedGradingRuleset, bool) {
-	if o == nil || utils.IsNil(o.Explained) {
-		return nil, false
-	}
-	return o.Explained, true
-}
-
-// HasExplained returns a boolean if a field has been set.
-func (o *ExplainedGradingPolicyResponse) HasExplained() bool {
-	if o != nil && !utils.IsNil(o.Explained) {
-		return true
-	}
-
-	return false
-}
-
-// SetExplained gets a reference to the given []ExplainedGradingRuleset and assigns it to the Explained field.
-func (o *ExplainedGradingPolicyResponse) SetExplained(v []ExplainedGradingRuleset) {
-	o.Explained = v
-}
-
-// GetGrade returns the Grade field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExplainedGradingPolicyResponse) GetGrade() string {
-	if o == nil || utils.IsNil(o.Grade.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Grade.Get()
-}
-
-// GetGradeOk returns a tuple with the Grade field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExplainedGradingPolicyResponse) GetGradeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Grade.Get(), o.Grade.IsSet()
-}
-
-// HasGrade returns a boolean if a field has been set.
-func (o *ExplainedGradingPolicyResponse) HasGrade() bool {
-	if o != nil && o.Grade.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetGrade gets a reference to the given NullableString and assigns it to the Grade field.
-func (o *ExplainedGradingPolicyResponse) SetGrade(v string) {
-	o.Grade.Set(&v)
-}
-
-// SetGradeNil sets the value for Grade to be an explicit nil
-func (o *ExplainedGradingPolicyResponse) SetGradeNil() {
-	o.Grade.Set(nil)
-}
-
-// UnsetGrade ensures that no value is present for Grade, not even an explicit nil
-func (o *ExplainedGradingPolicyResponse) UnsetGrade() {
-	o.Grade.Unset()
-}
-
-// GetName returns the Name field value
-func (o *ExplainedGradingPolicyResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ExplainedGradingPolicyResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ExplainedGradingPolicyResponse) SetName(v string) {
-	o.Name = v
-}
-
 // GetRulesets returns the Rulesets field value
 func (o *ExplainedGradingPolicyResponse) GetRulesets() []WeightedGradingRuleset {
 	if o == nil {
@@ -233,6 +133,30 @@ func (o *ExplainedGradingPolicyResponse) GetRulesetsOk() ([]WeightedGradingRules
 // SetRulesets sets field value
 func (o *ExplainedGradingPolicyResponse) SetRulesets(v []WeightedGradingRuleset) {
 	o.Rulesets = v
+}
+
+// GetCertificate returns the Certificate field value
+func (o *ExplainedGradingPolicyResponse) GetCertificate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Certificate
+}
+
+// GetCertificateOk returns a tuple with the Certificate field value
+// and a boolean to check if the value has been set.
+func (o *ExplainedGradingPolicyResponse) GetCertificateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Certificate, true
+}
+
+// SetCertificate sets field value
+func (o *ExplainedGradingPolicyResponse) SetCertificate(v string) {
+	o.Certificate = v
 }
 
 // GetScore returns the Score field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -278,6 +202,82 @@ func (o *ExplainedGradingPolicyResponse) UnsetScore() {
 	o.Score.Unset()
 }
 
+// GetGrade returns the Grade field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExplainedGradingPolicyResponse) GetGrade() string {
+	if o == nil || utils.IsNil(o.Grade.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Grade.Get()
+}
+
+// GetGradeOk returns a tuple with the Grade field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExplainedGradingPolicyResponse) GetGradeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Grade.Get(), o.Grade.IsSet()
+}
+
+// HasGrade returns a boolean if a field has been set.
+func (o *ExplainedGradingPolicyResponse) HasGrade() bool {
+	if o != nil && o.Grade.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGrade gets a reference to the given NullableString and assigns it to the Grade field.
+func (o *ExplainedGradingPolicyResponse) SetGrade(v string) {
+	o.Grade.Set(&v)
+}
+
+// SetGradeNil sets the value for Grade to be an explicit nil
+func (o *ExplainedGradingPolicyResponse) SetGradeNil() {
+	o.Grade.Set(nil)
+}
+
+// UnsetGrade ensures that no value is present for Grade, not even an explicit nil
+func (o *ExplainedGradingPolicyResponse) UnsetGrade() {
+	o.Grade.Unset()
+}
+
+// GetExplained returns the Explained field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExplainedGradingPolicyResponse) GetExplained() []ExplainedGradingRuleset {
+	if o == nil {
+		var ret []ExplainedGradingRuleset
+		return ret
+	}
+	return o.Explained
+}
+
+// GetExplainedOk returns a tuple with the Explained field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExplainedGradingPolicyResponse) GetExplainedOk() ([]ExplainedGradingRuleset, bool) {
+	if o == nil || utils.IsNil(o.Explained) {
+		return nil, false
+	}
+	return o.Explained, true
+}
+
+// HasExplained returns a boolean if a field has been set.
+func (o *ExplainedGradingPolicyResponse) HasExplained() bool {
+	if o != nil && !utils.IsNil(o.Explained) {
+		return true
+	}
+
+	return false
+}
+
+// SetExplained gets a reference to the given []ExplainedGradingRuleset and assigns it to the Explained field.
+func (o *ExplainedGradingPolicyResponse) SetExplained(v []ExplainedGradingRuleset) {
+	o.Explained = v
+}
+
 func (o ExplainedGradingPolicyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -288,20 +288,20 @@ func (o ExplainedGradingPolicyResponse) MarshalJSON() ([]byte, error) {
 
 func (o ExplainedGradingPolicyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["certificate"] = o.Certificate
+	toSerialize["name"] = o.Name
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.Explained != nil {
-		toSerialize["explained"] = o.Explained
+	toSerialize["rulesets"] = o.Rulesets
+	toSerialize["certificate"] = o.Certificate
+	if o.Score.IsSet() {
+		toSerialize["score"] = o.Score.Get()
 	}
 	if o.Grade.IsSet() {
 		toSerialize["grade"] = o.Grade.Get()
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["rulesets"] = o.Rulesets
-	if o.Score.IsSet() {
-		toSerialize["score"] = o.Score.Get()
+	if o.Explained != nil {
+		toSerialize["explained"] = o.Explained
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -316,9 +316,9 @@ func (o *ExplainedGradingPolicyResponse) UnmarshalJSON(data []byte) (err error) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"certificate",
 		"name",
 		"rulesets",
+		"certificate",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -348,13 +348,13 @@ func (o *ExplainedGradingPolicyResponse) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "certificate")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "explained")
-		delete(additionalProperties, "grade")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "rulesets")
+		delete(additionalProperties, "certificate")
 		delete(additionalProperties, "score")
+		delete(additionalProperties, "grade")
+		delete(additionalProperties, "explained")
 		o.AdditionalProperties = additionalProperties
 	}
 

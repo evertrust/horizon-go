@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DateRange** | Pointer to [**NullableDateRange**](DateRange.md) |  | [optional] 
-**TimeRange** | Pointer to **NullableString** |  | [optional] 
-**WeekDays** | Pointer to **[]string** |  | [optional] 
 **Weeks** | Pointer to **[]int64** |  | [optional] 
+**WeekDays** | Pointer to **[]string** |  | [optional] 
+**TimeRange** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -63,76 +63,6 @@ HasDateRange returns a boolean if a field has been set.
 `func (o *ExecutionPeriod) UnsetDateRange()`
 
 UnsetDateRange ensures that no value is present for DateRange, not even an explicit nil
-### GetTimeRange
-
-`func (o *ExecutionPeriod) GetTimeRange() string`
-
-GetTimeRange returns the TimeRange field if non-nil, zero value otherwise.
-
-### GetTimeRangeOk
-
-`func (o *ExecutionPeriod) GetTimeRangeOk() (*string, bool)`
-
-GetTimeRangeOk returns a tuple with the TimeRange field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeRange
-
-`func (o *ExecutionPeriod) SetTimeRange(v string)`
-
-SetTimeRange sets TimeRange field to given value.
-
-### HasTimeRange
-
-`func (o *ExecutionPeriod) HasTimeRange() bool`
-
-HasTimeRange returns a boolean if a field has been set.
-
-### SetTimeRangeNil
-
-`func (o *ExecutionPeriod) SetTimeRangeNil(b bool)`
-
- SetTimeRangeNil sets the value for TimeRange to be an explicit nil
-
-### UnsetTimeRange
-`func (o *ExecutionPeriod) UnsetTimeRange()`
-
-UnsetTimeRange ensures that no value is present for TimeRange, not even an explicit nil
-### GetWeekDays
-
-`func (o *ExecutionPeriod) GetWeekDays() []string`
-
-GetWeekDays returns the WeekDays field if non-nil, zero value otherwise.
-
-### GetWeekDaysOk
-
-`func (o *ExecutionPeriod) GetWeekDaysOk() (*[]string, bool)`
-
-GetWeekDaysOk returns a tuple with the WeekDays field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWeekDays
-
-`func (o *ExecutionPeriod) SetWeekDays(v []string)`
-
-SetWeekDays sets WeekDays field to given value.
-
-### HasWeekDays
-
-`func (o *ExecutionPeriod) HasWeekDays() bool`
-
-HasWeekDays returns a boolean if a field has been set.
-
-### SetWeekDaysNil
-
-`func (o *ExecutionPeriod) SetWeekDaysNil(b bool)`
-
- SetWeekDaysNil sets the value for WeekDays to be an explicit nil
-
-### UnsetWeekDays
-`func (o *ExecutionPeriod) UnsetWeekDays()`
-
-UnsetWeekDays ensures that no value is present for WeekDays, not even an explicit nil
 ### GetWeeks
 
 `func (o *ExecutionPeriod) GetWeeks() []int64`
@@ -168,6 +98,76 @@ HasWeeks returns a boolean if a field has been set.
 `func (o *ExecutionPeriod) UnsetWeeks()`
 
 UnsetWeeks ensures that no value is present for Weeks, not even an explicit nil
+### GetWeekDays
+
+`func (o *ExecutionPeriod) GetWeekDays() []string`
+
+GetWeekDays returns the WeekDays field if non-nil, zero value otherwise.
+
+### GetWeekDaysOk
+
+`func (o *ExecutionPeriod) GetWeekDaysOk() (*[]string, bool)`
+
+GetWeekDaysOk returns a tuple with the WeekDays field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWeekDays
+
+`func (o *ExecutionPeriod) SetWeekDays(v []string)`
+
+SetWeekDays sets WeekDays field to given value.
+
+### HasWeekDays
+
+`func (o *ExecutionPeriod) HasWeekDays() bool`
+
+HasWeekDays returns a boolean if a field has been set.
+
+### SetWeekDaysNil
+
+`func (o *ExecutionPeriod) SetWeekDaysNil(b bool)`
+
+ SetWeekDaysNil sets the value for WeekDays to be an explicit nil
+
+### UnsetWeekDays
+`func (o *ExecutionPeriod) UnsetWeekDays()`
+
+UnsetWeekDays ensures that no value is present for WeekDays, not even an explicit nil
+### GetTimeRange
+
+`func (o *ExecutionPeriod) GetTimeRange() string`
+
+GetTimeRange returns the TimeRange field if non-nil, zero value otherwise.
+
+### GetTimeRangeOk
+
+`func (o *ExecutionPeriod) GetTimeRangeOk() (*string, bool)`
+
+GetTimeRangeOk returns a tuple with the TimeRange field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeRange
+
+`func (o *ExecutionPeriod) SetTimeRange(v string)`
+
+SetTimeRange sets TimeRange field to given value.
+
+### HasTimeRange
+
+`func (o *ExecutionPeriod) HasTimeRange() bool`
+
+HasTimeRange returns a boolean if a field has been set.
+
+### SetTimeRangeNil
+
+`func (o *ExecutionPeriod) SetTimeRangeNil(b bool)`
+
+ SetTimeRangeNil sets the value for TimeRange to be an explicit nil
+
+### UnsetTimeRange
+`func (o *ExecutionPeriod) UnsetTimeRange()`
+
+UnsetTimeRange ensures that no value is present for TimeRange, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

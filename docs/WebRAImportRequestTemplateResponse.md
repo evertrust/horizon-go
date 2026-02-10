@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | The contact email for this certificate | [optional] 
-**DiscoveryData** | Pointer to [**HostDiscoveryData**](HostDiscoveryData.md) | The host discovery data associated with the certificate (discovery metadata) | [optional] 
-**DiscoveryInfo** | Pointer to [**NullableDiscoveryInfo**](DiscoveryInfo.md) | Information about the discovery of this certificate | [optional] 
-**Labels** | Pointer to [**[]RequestLabelElement**](RequestLabelElement.md) | The labels for this certificate | [optional] 
-**Metadata** | Pointer to [**[]CertificateMetadataElement**](CertificateMetadataElement.md) | The technical metadata for this certificate | [optional] 
 **Owner** | Pointer to [**NullableCertificateOwnerElement**](CertificateOwnerElement.md) | The owner for this certificate | [optional] 
 **Team** | Pointer to [**NullableCertificateTeamElement**](CertificateTeamElement.md) | The team for this certificate | [optional] 
+**ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | The contact email for this certificate | [optional] 
+**Labels** | Pointer to [**[]RequestLabelElement**](RequestLabelElement.md) | The labels for this certificate | [optional] 
+**Metadata** | Pointer to [**[]CertificateMetadataElement**](CertificateMetadataElement.md) | The technical metadata for this certificate | [optional] 
 **ThirdPartyData** | Pointer to [**[]ThirdPartyItem**](ThirdPartyItem.md) | The third party data associated with the certificate | [optional] 
+**DiscoveryInfo** | Pointer to [**NullableDiscoveryInfo**](DiscoveryInfo.md) | Information about the discovery of this certificate | [optional] 
+**DiscoveryData** | Pointer to [**HostDiscoveryData**](HostDiscoveryData.md) | The host discovery data associated with the certificate (discovery metadata) | [optional] 
 
 ## Methods
 
@@ -32,171 +32,6 @@ NewWebRAImportRequestTemplateResponseWithDefaults instantiates a new WebRAImport
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetContactEmail
-
-`func (o *WebRAImportRequestTemplateResponse) GetContactEmail() CertificateContactEmailElement`
-
-GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
-
-### GetContactEmailOk
-
-`func (o *WebRAImportRequestTemplateResponse) GetContactEmailOk() (*CertificateContactEmailElement, bool)`
-
-GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContactEmail
-
-`func (o *WebRAImportRequestTemplateResponse) SetContactEmail(v CertificateContactEmailElement)`
-
-SetContactEmail sets ContactEmail field to given value.
-
-### HasContactEmail
-
-`func (o *WebRAImportRequestTemplateResponse) HasContactEmail() bool`
-
-HasContactEmail returns a boolean if a field has been set.
-
-### SetContactEmailNil
-
-`func (o *WebRAImportRequestTemplateResponse) SetContactEmailNil(b bool)`
-
- SetContactEmailNil sets the value for ContactEmail to be an explicit nil
-
-### UnsetContactEmail
-`func (o *WebRAImportRequestTemplateResponse) UnsetContactEmail()`
-
-UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
-### GetDiscoveryData
-
-`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryData() HostDiscoveryData`
-
-GetDiscoveryData returns the DiscoveryData field if non-nil, zero value otherwise.
-
-### GetDiscoveryDataOk
-
-`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryDataOk() (*HostDiscoveryData, bool)`
-
-GetDiscoveryDataOk returns a tuple with the DiscoveryData field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDiscoveryData
-
-`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryData(v HostDiscoveryData)`
-
-SetDiscoveryData sets DiscoveryData field to given value.
-
-### HasDiscoveryData
-
-`func (o *WebRAImportRequestTemplateResponse) HasDiscoveryData() bool`
-
-HasDiscoveryData returns a boolean if a field has been set.
-
-### GetDiscoveryInfo
-
-`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfo() DiscoveryInfo`
-
-GetDiscoveryInfo returns the DiscoveryInfo field if non-nil, zero value otherwise.
-
-### GetDiscoveryInfoOk
-
-`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfoOk() (*DiscoveryInfo, bool)`
-
-GetDiscoveryInfoOk returns a tuple with the DiscoveryInfo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDiscoveryInfo
-
-`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfo(v DiscoveryInfo)`
-
-SetDiscoveryInfo sets DiscoveryInfo field to given value.
-
-### HasDiscoveryInfo
-
-`func (o *WebRAImportRequestTemplateResponse) HasDiscoveryInfo() bool`
-
-HasDiscoveryInfo returns a boolean if a field has been set.
-
-### SetDiscoveryInfoNil
-
-`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfoNil(b bool)`
-
- SetDiscoveryInfoNil sets the value for DiscoveryInfo to be an explicit nil
-
-### UnsetDiscoveryInfo
-`func (o *WebRAImportRequestTemplateResponse) UnsetDiscoveryInfo()`
-
-UnsetDiscoveryInfo ensures that no value is present for DiscoveryInfo, not even an explicit nil
-### GetLabels
-
-`func (o *WebRAImportRequestTemplateResponse) GetLabels() []RequestLabelElement`
-
-GetLabels returns the Labels field if non-nil, zero value otherwise.
-
-### GetLabelsOk
-
-`func (o *WebRAImportRequestTemplateResponse) GetLabelsOk() (*[]RequestLabelElement, bool)`
-
-GetLabelsOk returns a tuple with the Labels field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLabels
-
-`func (o *WebRAImportRequestTemplateResponse) SetLabels(v []RequestLabelElement)`
-
-SetLabels sets Labels field to given value.
-
-### HasLabels
-
-`func (o *WebRAImportRequestTemplateResponse) HasLabels() bool`
-
-HasLabels returns a boolean if a field has been set.
-
-### SetLabelsNil
-
-`func (o *WebRAImportRequestTemplateResponse) SetLabelsNil(b bool)`
-
- SetLabelsNil sets the value for Labels to be an explicit nil
-
-### UnsetLabels
-`func (o *WebRAImportRequestTemplateResponse) UnsetLabels()`
-
-UnsetLabels ensures that no value is present for Labels, not even an explicit nil
-### GetMetadata
-
-`func (o *WebRAImportRequestTemplateResponse) GetMetadata() []CertificateMetadataElement`
-
-GetMetadata returns the Metadata field if non-nil, zero value otherwise.
-
-### GetMetadataOk
-
-`func (o *WebRAImportRequestTemplateResponse) GetMetadataOk() (*[]CertificateMetadataElement, bool)`
-
-GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetadata
-
-`func (o *WebRAImportRequestTemplateResponse) SetMetadata(v []CertificateMetadataElement)`
-
-SetMetadata sets Metadata field to given value.
-
-### HasMetadata
-
-`func (o *WebRAImportRequestTemplateResponse) HasMetadata() bool`
-
-HasMetadata returns a boolean if a field has been set.
-
-### SetMetadataNil
-
-`func (o *WebRAImportRequestTemplateResponse) SetMetadataNil(b bool)`
-
- SetMetadataNil sets the value for Metadata to be an explicit nil
-
-### UnsetMetadata
-`func (o *WebRAImportRequestTemplateResponse) UnsetMetadata()`
-
-UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetOwner
 
 `func (o *WebRAImportRequestTemplateResponse) GetOwner() CertificateOwnerElement`
@@ -267,6 +102,111 @@ HasTeam returns a boolean if a field has been set.
 `func (o *WebRAImportRequestTemplateResponse) UnsetTeam()`
 
 UnsetTeam ensures that no value is present for Team, not even an explicit nil
+### GetContactEmail
+
+`func (o *WebRAImportRequestTemplateResponse) GetContactEmail() CertificateContactEmailElement`
+
+GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
+
+### GetContactEmailOk
+
+`func (o *WebRAImportRequestTemplateResponse) GetContactEmailOk() (*CertificateContactEmailElement, bool)`
+
+GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContactEmail
+
+`func (o *WebRAImportRequestTemplateResponse) SetContactEmail(v CertificateContactEmailElement)`
+
+SetContactEmail sets ContactEmail field to given value.
+
+### HasContactEmail
+
+`func (o *WebRAImportRequestTemplateResponse) HasContactEmail() bool`
+
+HasContactEmail returns a boolean if a field has been set.
+
+### SetContactEmailNil
+
+`func (o *WebRAImportRequestTemplateResponse) SetContactEmailNil(b bool)`
+
+ SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+
+### UnsetContactEmail
+`func (o *WebRAImportRequestTemplateResponse) UnsetContactEmail()`
+
+UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
+### GetLabels
+
+`func (o *WebRAImportRequestTemplateResponse) GetLabels() []RequestLabelElement`
+
+GetLabels returns the Labels field if non-nil, zero value otherwise.
+
+### GetLabelsOk
+
+`func (o *WebRAImportRequestTemplateResponse) GetLabelsOk() (*[]RequestLabelElement, bool)`
+
+GetLabelsOk returns a tuple with the Labels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabels
+
+`func (o *WebRAImportRequestTemplateResponse) SetLabels(v []RequestLabelElement)`
+
+SetLabels sets Labels field to given value.
+
+### HasLabels
+
+`func (o *WebRAImportRequestTemplateResponse) HasLabels() bool`
+
+HasLabels returns a boolean if a field has been set.
+
+### SetLabelsNil
+
+`func (o *WebRAImportRequestTemplateResponse) SetLabelsNil(b bool)`
+
+ SetLabelsNil sets the value for Labels to be an explicit nil
+
+### UnsetLabels
+`func (o *WebRAImportRequestTemplateResponse) UnsetLabels()`
+
+UnsetLabels ensures that no value is present for Labels, not even an explicit nil
+### GetMetadata
+
+`func (o *WebRAImportRequestTemplateResponse) GetMetadata() []CertificateMetadataElement`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *WebRAImportRequestTemplateResponse) GetMetadataOk() (*[]CertificateMetadataElement, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *WebRAImportRequestTemplateResponse) SetMetadata(v []CertificateMetadataElement)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *WebRAImportRequestTemplateResponse) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
+### SetMetadataNil
+
+`func (o *WebRAImportRequestTemplateResponse) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *WebRAImportRequestTemplateResponse) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetThirdPartyData
 
 `func (o *WebRAImportRequestTemplateResponse) GetThirdPartyData() []ThirdPartyItem`
@@ -302,6 +242,66 @@ HasThirdPartyData returns a boolean if a field has been set.
 `func (o *WebRAImportRequestTemplateResponse) UnsetThirdPartyData()`
 
 UnsetThirdPartyData ensures that no value is present for ThirdPartyData, not even an explicit nil
+### GetDiscoveryInfo
+
+`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfo() DiscoveryInfo`
+
+GetDiscoveryInfo returns the DiscoveryInfo field if non-nil, zero value otherwise.
+
+### GetDiscoveryInfoOk
+
+`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfoOk() (*DiscoveryInfo, bool)`
+
+GetDiscoveryInfoOk returns a tuple with the DiscoveryInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiscoveryInfo
+
+`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfo(v DiscoveryInfo)`
+
+SetDiscoveryInfo sets DiscoveryInfo field to given value.
+
+### HasDiscoveryInfo
+
+`func (o *WebRAImportRequestTemplateResponse) HasDiscoveryInfo() bool`
+
+HasDiscoveryInfo returns a boolean if a field has been set.
+
+### SetDiscoveryInfoNil
+
+`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfoNil(b bool)`
+
+ SetDiscoveryInfoNil sets the value for DiscoveryInfo to be an explicit nil
+
+### UnsetDiscoveryInfo
+`func (o *WebRAImportRequestTemplateResponse) UnsetDiscoveryInfo()`
+
+UnsetDiscoveryInfo ensures that no value is present for DiscoveryInfo, not even an explicit nil
+### GetDiscoveryData
+
+`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryData() HostDiscoveryData`
+
+GetDiscoveryData returns the DiscoveryData field if non-nil, zero value otherwise.
+
+### GetDiscoveryDataOk
+
+`func (o *WebRAImportRequestTemplateResponse) GetDiscoveryDataOk() (*HostDiscoveryData, bool)`
+
+GetDiscoveryDataOk returns a tuple with the DiscoveryData field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDiscoveryData
+
+`func (o *WebRAImportRequestTemplateResponse) SetDiscoveryData(v HostDiscoveryData)`
+
+SetDiscoveryData sets DiscoveryData field to given value.
+
+### HasDiscoveryData
+
+`func (o *WebRAImportRequestTemplateResponse) HasDiscoveryData() bool`
+
+HasDiscoveryData returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

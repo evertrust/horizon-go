@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	scheduledTasks := openapiclient.ScheduledTasks{AttachmentReportScheduledTask: openapiclient.NewAttachmentReportScheduledTask("ReportType_example", "From_example", "HqlType_example", false, "Name_example", []openapiclient.ReportRecipient{*openapiclient.NewReportRecipient("Type_example")}, "Title_example", "Type_example", "Cron_example", false)} // ScheduledTasks | Scheduled task to register
+	scheduledTasks := openapiclient.ScheduledTasks{AttachmentReportScheduledTask: openapiclient.NewAttachmentReportScheduledTask("ReportType_example", "Type_example", "Name_example", []openapiclient.ReportRecipient{*openapiclient.NewReportRecipient("Type_example")}, "From_example", "Title_example", false, "HqlType_example", "Cron_example", false)} // ScheduledTasks | Scheduled task to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -372,7 +372,7 @@ import (
 )
 
 func main() {
-	scheduledTasks := openapiclient.ScheduledTasks{AttachmentReportScheduledTask: openapiclient.NewAttachmentReportScheduledTask("ReportType_example", "From_example", "HqlType_example", false, "Name_example", []openapiclient.ReportRecipient{*openapiclient.NewReportRecipient("Type_example")}, "Title_example", "Type_example", "Cron_example", false)} // ScheduledTasks | Scheduled task to update
+	scheduledTasks := openapiclient.ScheduledTasks{AttachmentReportScheduledTask: openapiclient.NewAttachmentReportScheduledTask("ReportType_example", "Type_example", "Name_example", []openapiclient.ReportRecipient{*openapiclient.NewReportRecipient("Type_example")}, "From_example", "Title_example", false, "HqlType_example", "Cron_example", false)} // ScheduledTasks | Scheduled task to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

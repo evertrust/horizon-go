@@ -96,7 +96,7 @@ import (
 )
 
 func main() {
-	discoveryEvent := *openapiclient.NewDiscoveryEvent("Discovery-DMZ01", "NETSCAN", "failure") // DiscoveryEvent | The discovery event to push
+	discoveryEvent := *openapiclient.NewDiscoveryEvent("NETSCAN", "Discovery-DMZ01", "failure") // DiscoveryEvent | The discovery event to push
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

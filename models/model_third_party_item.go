@@ -24,10 +24,10 @@ var _ utils.MappedNullable = &ThirdPartyItem{}
 type ThirdPartyItem struct {
 	// The third party connector name on which this certificate is synchronized
 	Connector string `json:"connector"`
-	// The fingerprint of this certificate on the third party
-	Fingerprint utils.NullableString `json:"fingerprint,omitempty"`
 	// The Id of this certificate on the third party
 	Id string `json:"id"`
+	// The fingerprint of this certificate on the third party
+	Fingerprint utils.NullableString `json:"fingerprint,omitempty"`
 	// The date when the certificate was pushed to this third party
 	PushDate utils.NullableInt64 `json:"pushDate,omitempty"`
 	// The date when the certificate was removed from this third party (in case of revocation)
@@ -80,6 +80,30 @@ func (o *ThirdPartyItem) SetConnector(v string) {
 	o.Connector = v
 }
 
+// GetId returns the Id field value
+func (o *ThirdPartyItem) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ThirdPartyItem) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *ThirdPartyItem) SetId(v string) {
+	o.Id = v
+}
+
 // GetFingerprint returns the Fingerprint field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ThirdPartyItem) GetFingerprint() string {
 	if o == nil || utils.IsNil(o.Fingerprint.Get()) {
@@ -121,30 +145,6 @@ func (o *ThirdPartyItem) SetFingerprintNil() {
 // UnsetFingerprint ensures that no value is present for Fingerprint, not even an explicit nil
 func (o *ThirdPartyItem) UnsetFingerprint() {
 	o.Fingerprint.Unset()
-}
-
-// GetId returns the Id field value
-func (o *ThirdPartyItem) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *ThirdPartyItem) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *ThirdPartyItem) SetId(v string) {
-	o.Id = v
 }
 
 // GetPushDate returns the PushDate field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -244,10 +244,10 @@ func (o ThirdPartyItem) MarshalJSON() ([]byte, error) {
 func (o ThirdPartyItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["connector"] = o.Connector
+	toSerialize["id"] = o.Id
 	if o.Fingerprint.IsSet() {
 		toSerialize["fingerprint"] = o.Fingerprint.Get()
 	}
-	toSerialize["id"] = o.Id
 	if o.PushDate.IsSet() {
 		toSerialize["pushDate"] = o.PushDate.Get()
 	}
@@ -299,8 +299,8 @@ func (o *ThirdPartyItem) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "connector")
-		delete(additionalProperties, "fingerprint")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "fingerprint")
 		delete(additionalProperties, "pushDate")
 		delete(additionalProperties, "removeDate")
 		o.AdditionalProperties = additionalProperties

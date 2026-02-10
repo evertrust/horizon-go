@@ -22,8 +22,8 @@ var _ utils.MappedNullable = &WebRARevokeRequestOnTemplate{}
 
 // WebRARevokeRequestOnTemplate struct for WebRARevokeRequestOnTemplate
 type WebRARevokeRequestOnTemplate struct {
-	Profile  *string `json:"profile,omitempty"`
 	Workflow string  `json:"workflow"`
+	Profile  *string `json:"profile,omitempty"`
 	// Used to pre-fill the template field with the certificate values.
 	CertificateId utils.NullableString `json:"certificateId,omitempty"`
 	// Used to pre-fill the template field with the certificate values.
@@ -51,6 +51,30 @@ func NewWebRARevokeRequestOnTemplate(workflow string) *WebRARevokeRequestOnTempl
 func NewWebRARevokeRequestOnTemplateWithDefaults() *WebRARevokeRequestOnTemplate {
 	this := WebRARevokeRequestOnTemplate{}
 	return &this
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *WebRARevokeRequestOnTemplate) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRARevokeRequestOnTemplate) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRARevokeRequestOnTemplate) SetWorkflow(v string) {
+	o.Workflow = v
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
@@ -83,30 +107,6 @@ func (o *WebRARevokeRequestOnTemplate) HasProfile() bool {
 // SetProfile gets a reference to the given string and assigns it to the Profile field.
 func (o *WebRARevokeRequestOnTemplate) SetProfile(v string) {
 	o.Profile = &v
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRARevokeRequestOnTemplate) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRARevokeRequestOnTemplate) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRARevokeRequestOnTemplate) SetWorkflow(v string) {
-	o.Workflow = v
 }
 
 // GetCertificateId returns the CertificateId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -237,10 +237,10 @@ func (o WebRARevokeRequestOnTemplate) MarshalJSON() ([]byte, error) {
 
 func (o WebRARevokeRequestOnTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["workflow"] = o.Workflow
 	if !utils.IsNil(o.Profile) {
 		toSerialize["profile"] = o.Profile
 	}
-	toSerialize["workflow"] = o.Workflow
 	if o.CertificateId.IsSet() {
 		toSerialize["certificateId"] = o.CertificateId.Get()
 	}
@@ -293,8 +293,8 @@ func (o *WebRARevokeRequestOnTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "profile")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "profile")
 		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "certificatePem")
 		delete(additionalProperties, "module")

@@ -21,8 +21,6 @@ var _ utils.MappedNullable = &WebRAUpdateRequestTemplate{}
 
 // WebRAUpdateRequestTemplate struct for WebRAUpdateRequestTemplate
 type WebRAUpdateRequestTemplate struct {
-	// Information about the certificate's contact email and how to edit it
-	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
 	// Information about the certificate's labels and how to edit them
 	Labels []RequestLabelElement `json:"labels,omitempty"`
 	// Information about the certificate's metadata and how to edit them
@@ -30,7 +28,9 @@ type WebRAUpdateRequestTemplate struct {
 	// Information about the certificate's owner and how to edit it
 	Owner NullableCertificateOwnerElement `json:"owner,omitempty"`
 	// Information about the certificate's team and how to edit it
-	Team                 NullableCertificateTeamElement `json:"team,omitempty"`
+	Team NullableCertificateTeamElement `json:"team,omitempty"`
+	// Information about the certificate's contact email and how to edit it
+	ContactEmail         NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,49 +51,6 @@ func NewWebRAUpdateRequestTemplate() *WebRAUpdateRequestTemplate {
 func NewWebRAUpdateRequestTemplateWithDefaults() *WebRAUpdateRequestTemplate {
 	this := WebRAUpdateRequestTemplate{}
 	return &this
-}
-
-// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAUpdateRequestTemplate) GetContactEmail() CertificateContactEmailElement {
-	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
-		var ret CertificateContactEmailElement
-		return ret
-	}
-	return *o.ContactEmail.Get()
-}
-
-// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAUpdateRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
-}
-
-// HasContactEmail returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestTemplate) HasContactEmail() bool {
-	if o != nil && o.ContactEmail.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
-func (o *WebRAUpdateRequestTemplate) SetContactEmail(v CertificateContactEmailElement) {
-	o.ContactEmail.Set(&v)
-}
-
-// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
-func (o *WebRAUpdateRequestTemplate) SetContactEmailNil() {
-	o.ContactEmail.Set(nil)
-}
-
-// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
-func (o *WebRAUpdateRequestTemplate) UnsetContactEmail() {
-	o.ContactEmail.Unset()
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -248,6 +205,49 @@ func (o *WebRAUpdateRequestTemplate) UnsetTeam() {
 	o.Team.Unset()
 }
 
+// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAUpdateRequestTemplate) GetContactEmail() CertificateContactEmailElement {
+	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
+		var ret CertificateContactEmailElement
+		return ret
+	}
+	return *o.ContactEmail.Get()
+}
+
+// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAUpdateRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
+}
+
+// HasContactEmail returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestTemplate) HasContactEmail() bool {
+	if o != nil && o.ContactEmail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
+func (o *WebRAUpdateRequestTemplate) SetContactEmail(v CertificateContactEmailElement) {
+	o.ContactEmail.Set(&v)
+}
+
+// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+func (o *WebRAUpdateRequestTemplate) SetContactEmailNil() {
+	o.ContactEmail.Set(nil)
+}
+
+// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
+func (o *WebRAUpdateRequestTemplate) UnsetContactEmail() {
+	o.ContactEmail.Unset()
+}
+
 func (o WebRAUpdateRequestTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -258,9 +258,6 @@ func (o WebRAUpdateRequestTemplate) MarshalJSON() ([]byte, error) {
 
 func (o WebRAUpdateRequestTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ContactEmail.IsSet() {
-		toSerialize["contactEmail"] = o.ContactEmail.Get()
-	}
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
@@ -272,6 +269,9 @@ func (o WebRAUpdateRequestTemplate) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Team.IsSet() {
 		toSerialize["team"] = o.Team.Get()
+	}
+	if o.ContactEmail.IsSet() {
+		toSerialize["contactEmail"] = o.ContactEmail.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -295,11 +295,11 @@ func (o *WebRAUpdateRequestTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "contactEmail")
 		delete(additionalProperties, "labels")
 		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "owner")
 		delete(additionalProperties, "team")
+		delete(additionalProperties, "contactEmail")
 		o.AdditionalProperties = additionalProperties
 	}
 

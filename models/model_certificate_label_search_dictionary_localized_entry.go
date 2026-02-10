@@ -22,12 +22,12 @@ var _ utils.MappedNullable = &CertificateLabelSearchDictionaryLocalizedEntry{}
 
 // CertificateLabelSearchDictionaryLocalizedEntry struct for CertificateLabelSearchDictionaryLocalizedEntry
 type CertificateLabelSearchDictionaryLocalizedEntry struct {
-	// The localized description of the label
-	Description []LocalizedString `json:"description,omitempty"`
+	// The technical name of the label
+	Name string `json:"name"`
 	// The localized name of the label
 	DisplayName []LocalizedString `json:"displayName,omitempty"`
-	// The technical name of the label
-	Name                 string `json:"name"`
+	// The localized description of the label
+	Description          []LocalizedString `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,37 +51,28 @@ func NewCertificateLabelSearchDictionaryLocalizedEntryWithDefaults() *Certificat
 	return &this
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetDescription() []LocalizedString {
+// GetName returns the Name field value
+func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetName() string {
 	if o == nil {
-		var ret []LocalizedString
+		var ret string
 		return ret
 	}
-	return o.Description
+
+	return o.Name
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
+func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Name, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *CertificateLabelSearchDictionaryLocalizedEntry) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *CertificateLabelSearchDictionaryLocalizedEntry) SetDescription(v []LocalizedString) {
-	o.Description = v
+// SetName sets field value
+func (o *CertificateLabelSearchDictionaryLocalizedEntry) SetName(v string) {
+	o.Name = v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -117,28 +108,37 @@ func (o *CertificateLabelSearchDictionaryLocalizedEntry) SetDisplayName(v []Loca
 	o.DisplayName = v
 }
 
-// GetName returns the Name field value
-func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetName() string {
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetDescription() []LocalizedString {
 	if o == nil {
-		var ret string
+		var ret []LocalizedString
 		return ret
 	}
-
-	return o.Name
+	return o.Description
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Description, true
 }
 
-// SetName sets field value
-func (o *CertificateLabelSearchDictionaryLocalizedEntry) SetName(v string) {
-	o.Name = v
+// HasDescription returns a boolean if a field has been set.
+func (o *CertificateLabelSearchDictionaryLocalizedEntry) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *CertificateLabelSearchDictionaryLocalizedEntry) SetDescription(v []LocalizedString) {
+	o.Description = v
 }
 
 func (o CertificateLabelSearchDictionaryLocalizedEntry) MarshalJSON() ([]byte, error) {
@@ -151,13 +151,13 @@ func (o CertificateLabelSearchDictionaryLocalizedEntry) MarshalJSON() ([]byte, e
 
 func (o CertificateLabelSearchDictionaryLocalizedEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
+	toSerialize["name"] = o.Name
 	if o.DisplayName != nil {
 		toSerialize["displayName"] = o.DisplayName
 	}
-	toSerialize["name"] = o.Name
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -201,9 +201,9 @@ func (o *CertificateLabelSearchDictionaryLocalizedEntry) UnmarshalJSON(data []by
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "description")
 		o.AdditionalProperties = additionalProperties
 	}
 

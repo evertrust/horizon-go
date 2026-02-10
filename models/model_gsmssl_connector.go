@@ -22,20 +22,20 @@ var _ utils.MappedNullable = &GSMSSLConnector{}
 
 // GSMSSLConnector struct for GSMSSLConnector
 type GSMSSLConnector struct {
-	CertificateValidity utils.NullableInt64  `json:"certificateValidity,omitempty"`
-	DefaultEmail        utils.NullableString `json:"defaultEmail,omitempty"`
-	DefaultPhone        utils.NullableString `json:"defaultPhone,omitempty"`
-	DomainId            string               `json:"domainId"`
-	EndpointType        string               `json:"endpointType"`
+	Name         string `json:"name"`
+	Type         string `json:"type"`
+	EndpointType string `json:"endpointType"`
+	Profile      string `json:"profile"`
 	// Name of the `password` [credentials](#tag/security.credentials) to use for technical account on the PKI
 	LoginCredentials     string               `json:"loginCredentials"`
-	Name                 string               `json:"name"`
-	Profile              string               `json:"profile"`
-	Proxy                utils.NullableString `json:"proxy,omitempty"`
-	Queue                utils.NullableString `json:"queue,omitempty"`
+	DomainId             string               `json:"domainId"`
+	CertificateValidity  utils.NullableInt64  `json:"certificateValidity,omitempty"`
+	DefaultEmail         utils.NullableString `json:"defaultEmail,omitempty"`
+	DefaultPhone         utils.NullableString `json:"defaultPhone,omitempty"`
 	RetryInterval        utils.NullableString `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Type                 string               `json:"type"`
+	Proxy                utils.NullableString `json:"proxy,omitempty"`
+	Queue                utils.NullableString `json:"queue,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,14 +45,14 @@ type _GSMSSLConnector GSMSSLConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGSMSSLConnector(domainId string, endpointType string, loginCredentials string, name string, profile string, type_ string) *GSMSSLConnector {
+func NewGSMSSLConnector(name string, type_ string, endpointType string, profile string, loginCredentials string, domainId string) *GSMSSLConnector {
 	this := GSMSSLConnector{}
-	this.DomainId = domainId
-	this.EndpointType = endpointType
-	this.LoginCredentials = loginCredentials
 	this.Name = name
-	this.Profile = profile
 	this.Type = type_
+	this.EndpointType = endpointType
+	this.Profile = profile
+	this.LoginCredentials = loginCredentials
+	this.DomainId = domainId
 	return &this
 }
 
@@ -62,6 +62,150 @@ func NewGSMSSLConnector(domainId string, endpointType string, loginCredentials s
 func NewGSMSSLConnectorWithDefaults() *GSMSSLConnector {
 	this := GSMSSLConnector{}
 	return &this
+}
+
+// GetName returns the Name field value
+func (o *GSMSSLConnector) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GSMSSLConnector) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GSMSSLConnector) SetName(v string) {
+	o.Name = v
+}
+
+// GetType returns the Type field value
+func (o *GSMSSLConnector) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *GSMSSLConnector) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *GSMSSLConnector) SetType(v string) {
+	o.Type = v
+}
+
+// GetEndpointType returns the EndpointType field value
+func (o *GSMSSLConnector) GetEndpointType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndpointType
+}
+
+// GetEndpointTypeOk returns a tuple with the EndpointType field value
+// and a boolean to check if the value has been set.
+func (o *GSMSSLConnector) GetEndpointTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EndpointType, true
+}
+
+// SetEndpointType sets field value
+func (o *GSMSSLConnector) SetEndpointType(v string) {
+	o.EndpointType = v
+}
+
+// GetProfile returns the Profile field value
+func (o *GSMSSLConnector) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *GSMSSLConnector) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *GSMSSLConnector) SetProfile(v string) {
+	o.Profile = v
+}
+
+// GetLoginCredentials returns the LoginCredentials field value
+func (o *GSMSSLConnector) GetLoginCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LoginCredentials
+}
+
+// GetLoginCredentialsOk returns a tuple with the LoginCredentials field value
+// and a boolean to check if the value has been set.
+func (o *GSMSSLConnector) GetLoginCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LoginCredentials, true
+}
+
+// SetLoginCredentials sets field value
+func (o *GSMSSLConnector) SetLoginCredentials(v string) {
+	o.LoginCredentials = v
+}
+
+// GetDomainId returns the DomainId field value
+func (o *GSMSSLConnector) GetDomainId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DomainId
+}
+
+// GetDomainIdOk returns a tuple with the DomainId field value
+// and a boolean to check if the value has been set.
+func (o *GSMSSLConnector) GetDomainIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DomainId, true
+}
+
+// SetDomainId sets field value
+func (o *GSMSSLConnector) SetDomainId(v string) {
+	o.DomainId = v
 }
 
 // GetCertificateValidity returns the CertificateValidity field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -193,124 +337,90 @@ func (o *GSMSSLConnector) UnsetDefaultPhone() {
 	o.DefaultPhone.Unset()
 }
 
-// GetDomainId returns the DomainId field value
-func (o *GSMSSLConnector) GetDomainId() string {
-	if o == nil {
+// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GSMSSLConnector) GetRetryInterval() string {
+	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DomainId
+	return *o.RetryInterval.Get()
 }
 
-// GetDomainIdOk returns a tuple with the DomainId field value
+// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GSMSSLConnector) GetDomainIdOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GSMSSLConnector) GetRetryIntervalOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DomainId, true
+	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
 }
 
-// SetDomainId sets field value
-func (o *GSMSSLConnector) SetDomainId(v string) {
-	o.DomainId = v
+// HasRetryInterval returns a boolean if a field has been set.
+func (o *GSMSSLConnector) HasRetryInterval() bool {
+	if o != nil && o.RetryInterval.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-// GetEndpointType returns the EndpointType field value
-func (o *GSMSSLConnector) GetEndpointType() string {
-	if o == nil {
+// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
+func (o *GSMSSLConnector) SetRetryInterval(v string) {
+	o.RetryInterval.Set(&v)
+}
+
+// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+func (o *GSMSSLConnector) SetRetryIntervalNil() {
+	o.RetryInterval.Set(nil)
+}
+
+// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
+func (o *GSMSSLConnector) UnsetRetryInterval() {
+	o.RetryInterval.Unset()
+}
+
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GSMSSLConnector) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.EndpointType
+	return *o.Timeout.Get()
 }
 
-// GetEndpointTypeOk returns a tuple with the EndpointType field value
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GSMSSLConnector) GetEndpointTypeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GSMSSLConnector) GetTimeoutOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.EndpointType, true
+	return o.Timeout.Get(), o.Timeout.IsSet()
 }
 
-// SetEndpointType sets field value
-func (o *GSMSSLConnector) SetEndpointType(v string) {
-	o.EndpointType = v
-}
-
-// GetLoginCredentials returns the LoginCredentials field value
-func (o *GSMSSLConnector) GetLoginCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
+// HasTimeout returns a boolean if a field has been set.
+func (o *GSMSSLConnector) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
 	}
 
-	return o.LoginCredentials
+	return false
 }
 
-// GetLoginCredentialsOk returns a tuple with the LoginCredentials field value
-// and a boolean to check if the value has been set.
-func (o *GSMSSLConnector) GetLoginCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LoginCredentials, true
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *GSMSSLConnector) SetTimeout(v string) {
+	o.Timeout.Set(&v)
 }
 
-// SetLoginCredentials sets field value
-func (o *GSMSSLConnector) SetLoginCredentials(v string) {
-	o.LoginCredentials = v
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *GSMSSLConnector) SetTimeoutNil() {
+	o.Timeout.Set(nil)
 }
 
-// GetName returns the Name field value
-func (o *GSMSSLConnector) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *GSMSSLConnector) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *GSMSSLConnector) SetName(v string) {
-	o.Name = v
-}
-
-// GetProfile returns the Profile field value
-func (o *GSMSSLConnector) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *GSMSSLConnector) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *GSMSSLConnector) SetProfile(v string) {
-	o.Profile = v
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *GSMSSLConnector) UnsetTimeout() {
+	o.Timeout.Unset()
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -399,116 +509,6 @@ func (o *GSMSSLConnector) UnsetQueue() {
 	o.Queue.Unset()
 }
 
-// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GSMSSLConnector) GetRetryInterval() string {
-	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RetryInterval.Get()
-}
-
-// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GSMSSLConnector) GetRetryIntervalOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
-}
-
-// HasRetryInterval returns a boolean if a field has been set.
-func (o *GSMSSLConnector) HasRetryInterval() bool {
-	if o != nil && o.RetryInterval.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
-func (o *GSMSSLConnector) SetRetryInterval(v string) {
-	o.RetryInterval.Set(&v)
-}
-
-// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
-func (o *GSMSSLConnector) SetRetryIntervalNil() {
-	o.RetryInterval.Set(nil)
-}
-
-// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-func (o *GSMSSLConnector) UnsetRetryInterval() {
-	o.RetryInterval.Unset()
-}
-
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GSMSSLConnector) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Timeout.Get()
-}
-
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GSMSSLConnector) GetTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
-}
-
-// HasTimeout returns a boolean if a field has been set.
-func (o *GSMSSLConnector) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *GSMSSLConnector) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *GSMSSLConnector) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *GSMSSLConnector) UnsetTimeout() {
-	o.Timeout.Unset()
-}
-
-// GetType returns the Type field value
-func (o *GSMSSLConnector) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *GSMSSLConnector) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *GSMSSLConnector) SetType(v string) {
-	o.Type = v
-}
-
 func (o GSMSSLConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -519,6 +519,12 @@ func (o GSMSSLConnector) MarshalJSON() ([]byte, error) {
 
 func (o GSMSSLConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
+	toSerialize["endpointType"] = o.EndpointType
+	toSerialize["profile"] = o.Profile
+	toSerialize["loginCredentials"] = o.LoginCredentials
+	toSerialize["domainId"] = o.DomainId
 	if o.CertificateValidity.IsSet() {
 		toSerialize["certificateValidity"] = o.CertificateValidity.Get()
 	}
@@ -528,24 +534,18 @@ func (o GSMSSLConnector) ToMap() (map[string]interface{}, error) {
 	if o.DefaultPhone.IsSet() {
 		toSerialize["defaultPhone"] = o.DefaultPhone.Get()
 	}
-	toSerialize["domainId"] = o.DomainId
-	toSerialize["endpointType"] = o.EndpointType
-	toSerialize["loginCredentials"] = o.LoginCredentials
-	toSerialize["name"] = o.Name
-	toSerialize["profile"] = o.Profile
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
-	if o.Queue.IsSet() {
-		toSerialize["queue"] = o.Queue.Get()
-	}
 	if o.RetryInterval.IsSet() {
 		toSerialize["retryInterval"] = o.RetryInterval.Get()
 	}
 	if o.Timeout.IsSet() {
 		toSerialize["timeout"] = o.Timeout.Get()
 	}
-	toSerialize["type"] = o.Type
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
+	if o.Queue.IsSet() {
+		toSerialize["queue"] = o.Queue.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -559,12 +559,12 @@ func (o *GSMSSLConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"domainId",
-		"endpointType",
-		"loginCredentials",
 		"name",
-		"profile",
 		"type",
+		"endpointType",
+		"profile",
+		"loginCredentials",
+		"domainId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -594,19 +594,19 @@ func (o *GSMSSLConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "endpointType")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "loginCredentials")
+		delete(additionalProperties, "domainId")
 		delete(additionalProperties, "certificateValidity")
 		delete(additionalProperties, "defaultEmail")
 		delete(additionalProperties, "defaultPhone")
-		delete(additionalProperties, "domainId")
-		delete(additionalProperties, "endpointType")
-		delete(additionalProperties, "loginCredentials")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "profile")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "queue")
 		delete(additionalProperties, "retryInterval")
 		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "queue")
 		o.AdditionalProperties = additionalProperties
 	}
 

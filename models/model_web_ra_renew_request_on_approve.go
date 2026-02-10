@@ -26,14 +26,14 @@ type WebRARenewRequestOnApprove struct {
 	Id string `json:"_id"`
 	// Free-text field editable by the approver to provider more context on the request
 	ApproverComment utils.NullableString `json:"approverComment,omitempty"`
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun utils.NullableBool `json:"dryRun,omitempty"`
 	// The module that will be used to process this request. For a WebRA request, this is always `webra`
 	Module string `json:"module"`
+	// What this request will do. For a renewal request, this is always `renew`
+	Workflow string `json:"workflow"`
 	// The user-data that will be used to generate the certificate
 	Template *WebRARenewRequestTemplate `json:"template,omitempty"`
-	// What this request will do. For a renewal request, this is always `renew`
-	Workflow             string `json:"workflow"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,10 +45,10 @@ type _WebRARenewRequestOnApprove WebRARenewRequestOnApprove
 // will change when the set of required properties is changed
 func NewWebRARenewRequestOnApprove(id string, module string, workflow string) *WebRARenewRequestOnApprove {
 	this := WebRARenewRequestOnApprove{}
-	var dryRun bool = false
-	this.DryRun = *utils.NewNullableBool(&dryRun)
 	this.Module = module
 	this.Workflow = workflow
+	var dryRun bool = false
+	this.DryRun = *utils.NewNullableBool(&dryRun)
 	return &this
 }
 
@@ -129,6 +129,86 @@ func (o *WebRARenewRequestOnApprove) UnsetApproverComment() {
 	o.ApproverComment.Unset()
 }
 
+// GetModule returns the Module field value
+func (o *WebRARenewRequestOnApprove) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *WebRARenewRequestOnApprove) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *WebRARenewRequestOnApprove) SetModule(v string) {
+	o.Module = v
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *WebRARenewRequestOnApprove) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRARenewRequestOnApprove) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRARenewRequestOnApprove) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
+// GetTemplate returns the Template field value if set, zero value otherwise.
+func (o *WebRARenewRequestOnApprove) GetTemplate() WebRARenewRequestTemplate {
+	if o == nil || utils.IsNil(o.Template) {
+		var ret WebRARenewRequestTemplate
+		return ret
+	}
+	return *o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRARenewRequestOnApprove) GetTemplateOk() (*WebRARenewRequestTemplate, bool) {
+	if o == nil || utils.IsNil(o.Template) {
+		return nil, false
+	}
+	return o.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (o *WebRARenewRequestOnApprove) HasTemplate() bool {
+	if o != nil && !utils.IsNil(o.Template) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplate gets a reference to the given WebRARenewRequestTemplate and assigns it to the Template field.
+func (o *WebRARenewRequestOnApprove) SetTemplate(v WebRARenewRequestTemplate) {
+	o.Template = &v
+}
+
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRARenewRequestOnApprove) GetDryRun() bool {
 	if o == nil || utils.IsNil(o.DryRun.Get()) {
@@ -172,86 +252,6 @@ func (o *WebRARenewRequestOnApprove) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
-// GetModule returns the Module field value
-func (o *WebRARenewRequestOnApprove) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *WebRARenewRequestOnApprove) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *WebRARenewRequestOnApprove) SetModule(v string) {
-	o.Module = v
-}
-
-// GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *WebRARenewRequestOnApprove) GetTemplate() WebRARenewRequestTemplate {
-	if o == nil || utils.IsNil(o.Template) {
-		var ret WebRARenewRequestTemplate
-		return ret
-	}
-	return *o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebRARenewRequestOnApprove) GetTemplateOk() (*WebRARenewRequestTemplate, bool) {
-	if o == nil || utils.IsNil(o.Template) {
-		return nil, false
-	}
-	return o.Template, true
-}
-
-// HasTemplate returns a boolean if a field has been set.
-func (o *WebRARenewRequestOnApprove) HasTemplate() bool {
-	if o != nil && !utils.IsNil(o.Template) {
-		return true
-	}
-
-	return false
-}
-
-// SetTemplate gets a reference to the given WebRARenewRequestTemplate and assigns it to the Template field.
-func (o *WebRARenewRequestOnApprove) SetTemplate(v WebRARenewRequestTemplate) {
-	o.Template = &v
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRARenewRequestOnApprove) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRARenewRequestOnApprove) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRARenewRequestOnApprove) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
 func (o WebRARenewRequestOnApprove) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -266,14 +266,14 @@ func (o WebRARenewRequestOnApprove) ToMap() (map[string]interface{}, error) {
 	if o.ApproverComment.IsSet() {
 		toSerialize["approverComment"] = o.ApproverComment.Get()
 	}
-	if o.DryRun.IsSet() {
-		toSerialize["dryRun"] = o.DryRun.Get()
-	}
 	toSerialize["module"] = o.Module
+	toSerialize["workflow"] = o.Workflow
 	if !utils.IsNil(o.Template) {
 		toSerialize["template"] = o.Template
 	}
-	toSerialize["workflow"] = o.Workflow
+	if o.DryRun.IsSet() {
+		toSerialize["dryRun"] = o.DryRun.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -321,10 +321,10 @@ func (o *WebRARenewRequestOnApprove) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
 		delete(additionalProperties, "approverComment")
-		delete(additionalProperties, "dryRun")
 		delete(additionalProperties, "module")
-		delete(additionalProperties, "template")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "template")
+		delete(additionalProperties, "dryRun")
 		o.AdditionalProperties = additionalProperties
 	}
 

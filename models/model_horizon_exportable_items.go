@@ -21,25 +21,25 @@ var _ utils.MappedNullable = &HorizonExportableItems{}
 
 // HorizonExportableItems struct for HorizonExportableItems
 type HorizonExportableItems struct {
-	Automations          []HorizonExportableItem `json:"automations,omitempty"`
 	Cas                  []HorizonExportableItem `json:"cas,omitempty"`
+	PkiQueues            []HorizonExportableItem `json:"pkiQueues,omitempty"`
+	PkiConnectors        []HorizonExportableItem `json:"pkiConnectors,omitempty"`
+	Roles                []HorizonExportableItem `json:"roles,omitempty"`
+	Teams                []HorizonExportableItem `json:"teams,omitempty"`
+	PasswordPolicies     []HorizonExportableItem `json:"passwordPolicies,omitempty"`
+	ScimProfiles         []HorizonExportableItem `json:"scimProfiles,omitempty"`
+	Notifications        []HorizonExportableItem `json:"notifications,omitempty"`
 	Datasources          []HorizonExportableItem `json:"datasources,omitempty"`
 	DiscoveryCampaigns   []HorizonExportableItem `json:"discoveryCampaigns,omitempty"`
+	ThirdParties         []HorizonExportableItem `json:"thirdParties,omitempty"`
+	Reports              []HorizonExportableItem `json:"reports,omitempty"`
+	Triggers             []HorizonExportableItem `json:"triggers,omitempty"`
+	Automations          []HorizonExportableItem `json:"automations,omitempty"`
 	Executions           []HorizonExportableItem `json:"executions,omitempty"`
+	Profiles             []HorizonExportableItem `json:"profiles,omitempty"`
 	ForestMappings       []HorizonExportableItem `json:"forestMappings,omitempty"`
 	Labels               []HorizonExportableItem `json:"labels,omitempty"`
-	Notifications        []HorizonExportableItem `json:"notifications,omitempty"`
-	PasswordPolicies     []HorizonExportableItem `json:"passwordPolicies,omitempty"`
-	PkiConnectors        []HorizonExportableItem `json:"pkiConnectors,omitempty"`
-	PkiQueues            []HorizonExportableItem `json:"pkiQueues,omitempty"`
-	Profiles             []HorizonExportableItem `json:"profiles,omitempty"`
 	Proxies              []HorizonExportableItem `json:"proxies,omitempty"`
-	Reports              []HorizonExportableItem `json:"reports,omitempty"`
-	Roles                []HorizonExportableItem `json:"roles,omitempty"`
-	ScimProfiles         []HorizonExportableItem `json:"scimProfiles,omitempty"`
-	Teams                []HorizonExportableItem `json:"teams,omitempty"`
-	ThirdParties         []HorizonExportableItem `json:"thirdParties,omitempty"`
-	Triggers             []HorizonExportableItem `json:"triggers,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,39 +60,6 @@ func NewHorizonExportableItems() *HorizonExportableItems {
 func NewHorizonExportableItemsWithDefaults() *HorizonExportableItems {
 	this := HorizonExportableItems{}
 	return &this
-}
-
-// GetAutomations returns the Automations field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetAutomations() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.Automations
-}
-
-// GetAutomationsOk returns a tuple with the Automations field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetAutomationsOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.Automations) {
-		return nil, false
-	}
-	return o.Automations, true
-}
-
-// HasAutomations returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasAutomations() bool {
-	if o != nil && !utils.IsNil(o.Automations) {
-		return true
-	}
-
-	return false
-}
-
-// SetAutomations gets a reference to the given []HorizonExportableItem and assigns it to the Automations field.
-func (o *HorizonExportableItems) SetAutomations(v []HorizonExportableItem) {
-	o.Automations = v
 }
 
 // GetCas returns the Cas field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -126,6 +93,237 @@ func (o *HorizonExportableItems) HasCas() bool {
 // SetCas gets a reference to the given []HorizonExportableItem and assigns it to the Cas field.
 func (o *HorizonExportableItems) SetCas(v []HorizonExportableItem) {
 	o.Cas = v
+}
+
+// GetPkiQueues returns the PkiQueues field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetPkiQueues() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.PkiQueues
+}
+
+// GetPkiQueuesOk returns a tuple with the PkiQueues field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetPkiQueuesOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.PkiQueues) {
+		return nil, false
+	}
+	return o.PkiQueues, true
+}
+
+// HasPkiQueues returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasPkiQueues() bool {
+	if o != nil && !utils.IsNil(o.PkiQueues) {
+		return true
+	}
+
+	return false
+}
+
+// SetPkiQueues gets a reference to the given []HorizonExportableItem and assigns it to the PkiQueues field.
+func (o *HorizonExportableItems) SetPkiQueues(v []HorizonExportableItem) {
+	o.PkiQueues = v
+}
+
+// GetPkiConnectors returns the PkiConnectors field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetPkiConnectors() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.PkiConnectors
+}
+
+// GetPkiConnectorsOk returns a tuple with the PkiConnectors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetPkiConnectorsOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.PkiConnectors) {
+		return nil, false
+	}
+	return o.PkiConnectors, true
+}
+
+// HasPkiConnectors returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasPkiConnectors() bool {
+	if o != nil && !utils.IsNil(o.PkiConnectors) {
+		return true
+	}
+
+	return false
+}
+
+// SetPkiConnectors gets a reference to the given []HorizonExportableItem and assigns it to the PkiConnectors field.
+func (o *HorizonExportableItems) SetPkiConnectors(v []HorizonExportableItem) {
+	o.PkiConnectors = v
+}
+
+// GetRoles returns the Roles field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetRoles() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetRolesOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.Roles) {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// HasRoles returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasRoles() bool {
+	if o != nil && !utils.IsNil(o.Roles) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []HorizonExportableItem and assigns it to the Roles field.
+func (o *HorizonExportableItems) SetRoles(v []HorizonExportableItem) {
+	o.Roles = v
+}
+
+// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetTeams() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.Teams
+}
+
+// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetTeamsOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.Teams) {
+		return nil, false
+	}
+	return o.Teams, true
+}
+
+// HasTeams returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasTeams() bool {
+	if o != nil && !utils.IsNil(o.Teams) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeams gets a reference to the given []HorizonExportableItem and assigns it to the Teams field.
+func (o *HorizonExportableItems) SetTeams(v []HorizonExportableItem) {
+	o.Teams = v
+}
+
+// GetPasswordPolicies returns the PasswordPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetPasswordPolicies() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.PasswordPolicies
+}
+
+// GetPasswordPoliciesOk returns a tuple with the PasswordPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetPasswordPoliciesOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.PasswordPolicies) {
+		return nil, false
+	}
+	return o.PasswordPolicies, true
+}
+
+// HasPasswordPolicies returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasPasswordPolicies() bool {
+	if o != nil && !utils.IsNil(o.PasswordPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetPasswordPolicies gets a reference to the given []HorizonExportableItem and assigns it to the PasswordPolicies field.
+func (o *HorizonExportableItems) SetPasswordPolicies(v []HorizonExportableItem) {
+	o.PasswordPolicies = v
+}
+
+// GetScimProfiles returns the ScimProfiles field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetScimProfiles() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.ScimProfiles
+}
+
+// GetScimProfilesOk returns a tuple with the ScimProfiles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetScimProfilesOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.ScimProfiles) {
+		return nil, false
+	}
+	return o.ScimProfiles, true
+}
+
+// HasScimProfiles returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasScimProfiles() bool {
+	if o != nil && !utils.IsNil(o.ScimProfiles) {
+		return true
+	}
+
+	return false
+}
+
+// SetScimProfiles gets a reference to the given []HorizonExportableItem and assigns it to the ScimProfiles field.
+func (o *HorizonExportableItems) SetScimProfiles(v []HorizonExportableItem) {
+	o.ScimProfiles = v
+}
+
+// GetNotifications returns the Notifications field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetNotifications() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.Notifications
+}
+
+// GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetNotificationsOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.Notifications) {
+		return nil, false
+	}
+	return o.Notifications, true
+}
+
+// HasNotifications returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasNotifications() bool {
+	if o != nil && !utils.IsNil(o.Notifications) {
+		return true
+	}
+
+	return false
+}
+
+// SetNotifications gets a reference to the given []HorizonExportableItem and assigns it to the Notifications field.
+func (o *HorizonExportableItems) SetNotifications(v []HorizonExportableItem) {
+	o.Notifications = v
 }
 
 // GetDatasources returns the Datasources field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -194,6 +392,138 @@ func (o *HorizonExportableItems) SetDiscoveryCampaigns(v []HorizonExportableItem
 	o.DiscoveryCampaigns = v
 }
 
+// GetThirdParties returns the ThirdParties field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetThirdParties() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.ThirdParties
+}
+
+// GetThirdPartiesOk returns a tuple with the ThirdParties field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetThirdPartiesOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.ThirdParties) {
+		return nil, false
+	}
+	return o.ThirdParties, true
+}
+
+// HasThirdParties returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasThirdParties() bool {
+	if o != nil && !utils.IsNil(o.ThirdParties) {
+		return true
+	}
+
+	return false
+}
+
+// SetThirdParties gets a reference to the given []HorizonExportableItem and assigns it to the ThirdParties field.
+func (o *HorizonExportableItems) SetThirdParties(v []HorizonExportableItem) {
+	o.ThirdParties = v
+}
+
+// GetReports returns the Reports field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetReports() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.Reports
+}
+
+// GetReportsOk returns a tuple with the Reports field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetReportsOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.Reports) {
+		return nil, false
+	}
+	return o.Reports, true
+}
+
+// HasReports returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasReports() bool {
+	if o != nil && !utils.IsNil(o.Reports) {
+		return true
+	}
+
+	return false
+}
+
+// SetReports gets a reference to the given []HorizonExportableItem and assigns it to the Reports field.
+func (o *HorizonExportableItems) SetReports(v []HorizonExportableItem) {
+	o.Reports = v
+}
+
+// GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetTriggers() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.Triggers
+}
+
+// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetTriggersOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.Triggers) {
+		return nil, false
+	}
+	return o.Triggers, true
+}
+
+// HasTriggers returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasTriggers() bool {
+	if o != nil && !utils.IsNil(o.Triggers) {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggers gets a reference to the given []HorizonExportableItem and assigns it to the Triggers field.
+func (o *HorizonExportableItems) SetTriggers(v []HorizonExportableItem) {
+	o.Triggers = v
+}
+
+// GetAutomations returns the Automations field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetAutomations() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.Automations
+}
+
+// GetAutomationsOk returns a tuple with the Automations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetAutomationsOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.Automations) {
+		return nil, false
+	}
+	return o.Automations, true
+}
+
+// HasAutomations returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasAutomations() bool {
+	if o != nil && !utils.IsNil(o.Automations) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutomations gets a reference to the given []HorizonExportableItem and assigns it to the Automations field.
+func (o *HorizonExportableItems) SetAutomations(v []HorizonExportableItem) {
+	o.Automations = v
+}
+
 // GetExecutions returns the Executions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *HorizonExportableItems) GetExecutions() []HorizonExportableItem {
 	if o == nil {
@@ -225,6 +555,39 @@ func (o *HorizonExportableItems) HasExecutions() bool {
 // SetExecutions gets a reference to the given []HorizonExportableItem and assigns it to the Executions field.
 func (o *HorizonExportableItems) SetExecutions(v []HorizonExportableItem) {
 	o.Executions = v
+}
+
+// GetProfiles returns the Profiles field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItems) GetProfiles() []HorizonExportableItem {
+	if o == nil {
+		var ret []HorizonExportableItem
+		return ret
+	}
+	return o.Profiles
+}
+
+// GetProfilesOk returns a tuple with the Profiles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItems) GetProfilesOk() ([]HorizonExportableItem, bool) {
+	if o == nil || utils.IsNil(o.Profiles) {
+		return nil, false
+	}
+	return o.Profiles, true
+}
+
+// HasProfiles returns a boolean if a field has been set.
+func (o *HorizonExportableItems) HasProfiles() bool {
+	if o != nil && !utils.IsNil(o.Profiles) {
+		return true
+	}
+
+	return false
+}
+
+// SetProfiles gets a reference to the given []HorizonExportableItem and assigns it to the Profiles field.
+func (o *HorizonExportableItems) SetProfiles(v []HorizonExportableItem) {
+	o.Profiles = v
 }
 
 // GetForestMappings returns the ForestMappings field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -293,171 +656,6 @@ func (o *HorizonExportableItems) SetLabels(v []HorizonExportableItem) {
 	o.Labels = v
 }
 
-// GetNotifications returns the Notifications field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetNotifications() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.Notifications
-}
-
-// GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetNotificationsOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.Notifications) {
-		return nil, false
-	}
-	return o.Notifications, true
-}
-
-// HasNotifications returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasNotifications() bool {
-	if o != nil && !utils.IsNil(o.Notifications) {
-		return true
-	}
-
-	return false
-}
-
-// SetNotifications gets a reference to the given []HorizonExportableItem and assigns it to the Notifications field.
-func (o *HorizonExportableItems) SetNotifications(v []HorizonExportableItem) {
-	o.Notifications = v
-}
-
-// GetPasswordPolicies returns the PasswordPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetPasswordPolicies() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.PasswordPolicies
-}
-
-// GetPasswordPoliciesOk returns a tuple with the PasswordPolicies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetPasswordPoliciesOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.PasswordPolicies) {
-		return nil, false
-	}
-	return o.PasswordPolicies, true
-}
-
-// HasPasswordPolicies returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasPasswordPolicies() bool {
-	if o != nil && !utils.IsNil(o.PasswordPolicies) {
-		return true
-	}
-
-	return false
-}
-
-// SetPasswordPolicies gets a reference to the given []HorizonExportableItem and assigns it to the PasswordPolicies field.
-func (o *HorizonExportableItems) SetPasswordPolicies(v []HorizonExportableItem) {
-	o.PasswordPolicies = v
-}
-
-// GetPkiConnectors returns the PkiConnectors field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetPkiConnectors() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.PkiConnectors
-}
-
-// GetPkiConnectorsOk returns a tuple with the PkiConnectors field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetPkiConnectorsOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.PkiConnectors) {
-		return nil, false
-	}
-	return o.PkiConnectors, true
-}
-
-// HasPkiConnectors returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasPkiConnectors() bool {
-	if o != nil && !utils.IsNil(o.PkiConnectors) {
-		return true
-	}
-
-	return false
-}
-
-// SetPkiConnectors gets a reference to the given []HorizonExportableItem and assigns it to the PkiConnectors field.
-func (o *HorizonExportableItems) SetPkiConnectors(v []HorizonExportableItem) {
-	o.PkiConnectors = v
-}
-
-// GetPkiQueues returns the PkiQueues field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetPkiQueues() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.PkiQueues
-}
-
-// GetPkiQueuesOk returns a tuple with the PkiQueues field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetPkiQueuesOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.PkiQueues) {
-		return nil, false
-	}
-	return o.PkiQueues, true
-}
-
-// HasPkiQueues returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasPkiQueues() bool {
-	if o != nil && !utils.IsNil(o.PkiQueues) {
-		return true
-	}
-
-	return false
-}
-
-// SetPkiQueues gets a reference to the given []HorizonExportableItem and assigns it to the PkiQueues field.
-func (o *HorizonExportableItems) SetPkiQueues(v []HorizonExportableItem) {
-	o.PkiQueues = v
-}
-
-// GetProfiles returns the Profiles field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetProfiles() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.Profiles
-}
-
-// GetProfilesOk returns a tuple with the Profiles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetProfilesOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.Profiles) {
-		return nil, false
-	}
-	return o.Profiles, true
-}
-
-// HasProfiles returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasProfiles() bool {
-	if o != nil && !utils.IsNil(o.Profiles) {
-		return true
-	}
-
-	return false
-}
-
-// SetProfiles gets a reference to the given []HorizonExportableItem and assigns it to the Profiles field.
-func (o *HorizonExportableItems) SetProfiles(v []HorizonExportableItem) {
-	o.Profiles = v
-}
-
 // GetProxies returns the Proxies field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *HorizonExportableItems) GetProxies() []HorizonExportableItem {
 	if o == nil {
@@ -491,204 +689,6 @@ func (o *HorizonExportableItems) SetProxies(v []HorizonExportableItem) {
 	o.Proxies = v
 }
 
-// GetReports returns the Reports field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetReports() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.Reports
-}
-
-// GetReportsOk returns a tuple with the Reports field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetReportsOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.Reports) {
-		return nil, false
-	}
-	return o.Reports, true
-}
-
-// HasReports returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasReports() bool {
-	if o != nil && !utils.IsNil(o.Reports) {
-		return true
-	}
-
-	return false
-}
-
-// SetReports gets a reference to the given []HorizonExportableItem and assigns it to the Reports field.
-func (o *HorizonExportableItems) SetReports(v []HorizonExportableItem) {
-	o.Reports = v
-}
-
-// GetRoles returns the Roles field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetRoles() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.Roles
-}
-
-// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetRolesOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.Roles) {
-		return nil, false
-	}
-	return o.Roles, true
-}
-
-// HasRoles returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasRoles() bool {
-	if o != nil && !utils.IsNil(o.Roles) {
-		return true
-	}
-
-	return false
-}
-
-// SetRoles gets a reference to the given []HorizonExportableItem and assigns it to the Roles field.
-func (o *HorizonExportableItems) SetRoles(v []HorizonExportableItem) {
-	o.Roles = v
-}
-
-// GetScimProfiles returns the ScimProfiles field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetScimProfiles() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.ScimProfiles
-}
-
-// GetScimProfilesOk returns a tuple with the ScimProfiles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetScimProfilesOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.ScimProfiles) {
-		return nil, false
-	}
-	return o.ScimProfiles, true
-}
-
-// HasScimProfiles returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasScimProfiles() bool {
-	if o != nil && !utils.IsNil(o.ScimProfiles) {
-		return true
-	}
-
-	return false
-}
-
-// SetScimProfiles gets a reference to the given []HorizonExportableItem and assigns it to the ScimProfiles field.
-func (o *HorizonExportableItems) SetScimProfiles(v []HorizonExportableItem) {
-	o.ScimProfiles = v
-}
-
-// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetTeams() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.Teams
-}
-
-// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetTeamsOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.Teams) {
-		return nil, false
-	}
-	return o.Teams, true
-}
-
-// HasTeams returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasTeams() bool {
-	if o != nil && !utils.IsNil(o.Teams) {
-		return true
-	}
-
-	return false
-}
-
-// SetTeams gets a reference to the given []HorizonExportableItem and assigns it to the Teams field.
-func (o *HorizonExportableItems) SetTeams(v []HorizonExportableItem) {
-	o.Teams = v
-}
-
-// GetThirdParties returns the ThirdParties field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetThirdParties() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.ThirdParties
-}
-
-// GetThirdPartiesOk returns a tuple with the ThirdParties field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetThirdPartiesOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.ThirdParties) {
-		return nil, false
-	}
-	return o.ThirdParties, true
-}
-
-// HasThirdParties returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasThirdParties() bool {
-	if o != nil && !utils.IsNil(o.ThirdParties) {
-		return true
-	}
-
-	return false
-}
-
-// SetThirdParties gets a reference to the given []HorizonExportableItem and assigns it to the ThirdParties field.
-func (o *HorizonExportableItems) SetThirdParties(v []HorizonExportableItem) {
-	o.ThirdParties = v
-}
-
-// GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItems) GetTriggers() []HorizonExportableItem {
-	if o == nil {
-		var ret []HorizonExportableItem
-		return ret
-	}
-	return o.Triggers
-}
-
-// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItems) GetTriggersOk() ([]HorizonExportableItem, bool) {
-	if o == nil || utils.IsNil(o.Triggers) {
-		return nil, false
-	}
-	return o.Triggers, true
-}
-
-// HasTriggers returns a boolean if a field has been set.
-func (o *HorizonExportableItems) HasTriggers() bool {
-	if o != nil && !utils.IsNil(o.Triggers) {
-		return true
-	}
-
-	return false
-}
-
-// SetTriggers gets a reference to the given []HorizonExportableItem and assigns it to the Triggers field.
-func (o *HorizonExportableItems) SetTriggers(v []HorizonExportableItem) {
-	o.Triggers = v
-}
-
 func (o HorizonExportableItems) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -699,11 +699,29 @@ func (o HorizonExportableItems) MarshalJSON() ([]byte, error) {
 
 func (o HorizonExportableItems) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Automations != nil {
-		toSerialize["automations"] = o.Automations
-	}
 	if o.Cas != nil {
 		toSerialize["cas"] = o.Cas
+	}
+	if o.PkiQueues != nil {
+		toSerialize["pkiQueues"] = o.PkiQueues
+	}
+	if o.PkiConnectors != nil {
+		toSerialize["pkiConnectors"] = o.PkiConnectors
+	}
+	if o.Roles != nil {
+		toSerialize["roles"] = o.Roles
+	}
+	if o.Teams != nil {
+		toSerialize["teams"] = o.Teams
+	}
+	if o.PasswordPolicies != nil {
+		toSerialize["passwordPolicies"] = o.PasswordPolicies
+	}
+	if o.ScimProfiles != nil {
+		toSerialize["scimProfiles"] = o.ScimProfiles
+	}
+	if o.Notifications != nil {
+		toSerialize["notifications"] = o.Notifications
 	}
 	if o.Datasources != nil {
 		toSerialize["datasources"] = o.Datasources
@@ -711,8 +729,23 @@ func (o HorizonExportableItems) ToMap() (map[string]interface{}, error) {
 	if o.DiscoveryCampaigns != nil {
 		toSerialize["discoveryCampaigns"] = o.DiscoveryCampaigns
 	}
+	if o.ThirdParties != nil {
+		toSerialize["thirdParties"] = o.ThirdParties
+	}
+	if o.Reports != nil {
+		toSerialize["reports"] = o.Reports
+	}
+	if o.Triggers != nil {
+		toSerialize["triggers"] = o.Triggers
+	}
+	if o.Automations != nil {
+		toSerialize["automations"] = o.Automations
+	}
 	if o.Executions != nil {
 		toSerialize["executions"] = o.Executions
+	}
+	if o.Profiles != nil {
+		toSerialize["profiles"] = o.Profiles
 	}
 	if o.ForestMappings != nil {
 		toSerialize["forestMappings"] = o.ForestMappings
@@ -720,41 +753,8 @@ func (o HorizonExportableItems) ToMap() (map[string]interface{}, error) {
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
-	if o.Notifications != nil {
-		toSerialize["notifications"] = o.Notifications
-	}
-	if o.PasswordPolicies != nil {
-		toSerialize["passwordPolicies"] = o.PasswordPolicies
-	}
-	if o.PkiConnectors != nil {
-		toSerialize["pkiConnectors"] = o.PkiConnectors
-	}
-	if o.PkiQueues != nil {
-		toSerialize["pkiQueues"] = o.PkiQueues
-	}
-	if o.Profiles != nil {
-		toSerialize["profiles"] = o.Profiles
-	}
 	if o.Proxies != nil {
 		toSerialize["proxies"] = o.Proxies
-	}
-	if o.Reports != nil {
-		toSerialize["reports"] = o.Reports
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
-	}
-	if o.ScimProfiles != nil {
-		toSerialize["scimProfiles"] = o.ScimProfiles
-	}
-	if o.Teams != nil {
-		toSerialize["teams"] = o.Teams
-	}
-	if o.ThirdParties != nil {
-		toSerialize["thirdParties"] = o.ThirdParties
-	}
-	if o.Triggers != nil {
-		toSerialize["triggers"] = o.Triggers
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -778,25 +778,25 @@ func (o *HorizonExportableItems) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "automations")
 		delete(additionalProperties, "cas")
+		delete(additionalProperties, "pkiQueues")
+		delete(additionalProperties, "pkiConnectors")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "teams")
+		delete(additionalProperties, "passwordPolicies")
+		delete(additionalProperties, "scimProfiles")
+		delete(additionalProperties, "notifications")
 		delete(additionalProperties, "datasources")
 		delete(additionalProperties, "discoveryCampaigns")
+		delete(additionalProperties, "thirdParties")
+		delete(additionalProperties, "reports")
+		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "automations")
 		delete(additionalProperties, "executions")
+		delete(additionalProperties, "profiles")
 		delete(additionalProperties, "forestMappings")
 		delete(additionalProperties, "labels")
-		delete(additionalProperties, "notifications")
-		delete(additionalProperties, "passwordPolicies")
-		delete(additionalProperties, "pkiConnectors")
-		delete(additionalProperties, "pkiQueues")
-		delete(additionalProperties, "profiles")
 		delete(additionalProperties, "proxies")
-		delete(additionalProperties, "reports")
-		delete(additionalProperties, "roles")
-		delete(additionalProperties, "scimProfiles")
-		delete(additionalProperties, "teams")
-		delete(additionalProperties, "thirdParties")
-		delete(additionalProperties, "triggers")
 		o.AdditionalProperties = additionalProperties
 	}
 

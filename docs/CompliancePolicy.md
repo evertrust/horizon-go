@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthorizedCas** | Pointer to **[]string** |  | [optional] 
 **AuthorizedSigningAlgorithms** | Pointer to **[]string** |  | [optional] 
+**AuthorizedCas** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -26,41 +26,6 @@ NewCompliancePolicyWithDefaults instantiates a new CompliancePolicy object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAuthorizedCas
-
-`func (o *CompliancePolicy) GetAuthorizedCas() []string`
-
-GetAuthorizedCas returns the AuthorizedCas field if non-nil, zero value otherwise.
-
-### GetAuthorizedCasOk
-
-`func (o *CompliancePolicy) GetAuthorizedCasOk() (*[]string, bool)`
-
-GetAuthorizedCasOk returns a tuple with the AuthorizedCas field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthorizedCas
-
-`func (o *CompliancePolicy) SetAuthorizedCas(v []string)`
-
-SetAuthorizedCas sets AuthorizedCas field to given value.
-
-### HasAuthorizedCas
-
-`func (o *CompliancePolicy) HasAuthorizedCas() bool`
-
-HasAuthorizedCas returns a boolean if a field has been set.
-
-### SetAuthorizedCasNil
-
-`func (o *CompliancePolicy) SetAuthorizedCasNil(b bool)`
-
- SetAuthorizedCasNil sets the value for AuthorizedCas to be an explicit nil
-
-### UnsetAuthorizedCas
-`func (o *CompliancePolicy) UnsetAuthorizedCas()`
-
-UnsetAuthorizedCas ensures that no value is present for AuthorizedCas, not even an explicit nil
 ### GetAuthorizedSigningAlgorithms
 
 `func (o *CompliancePolicy) GetAuthorizedSigningAlgorithms() []string`
@@ -96,6 +61,41 @@ HasAuthorizedSigningAlgorithms returns a boolean if a field has been set.
 `func (o *CompliancePolicy) UnsetAuthorizedSigningAlgorithms()`
 
 UnsetAuthorizedSigningAlgorithms ensures that no value is present for AuthorizedSigningAlgorithms, not even an explicit nil
+### GetAuthorizedCas
+
+`func (o *CompliancePolicy) GetAuthorizedCas() []string`
+
+GetAuthorizedCas returns the AuthorizedCas field if non-nil, zero value otherwise.
+
+### GetAuthorizedCasOk
+
+`func (o *CompliancePolicy) GetAuthorizedCasOk() (*[]string, bool)`
+
+GetAuthorizedCasOk returns a tuple with the AuthorizedCas field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthorizedCas
+
+`func (o *CompliancePolicy) SetAuthorizedCas(v []string)`
+
+SetAuthorizedCas sets AuthorizedCas field to given value.
+
+### HasAuthorizedCas
+
+`func (o *CompliancePolicy) HasAuthorizedCas() bool`
+
+HasAuthorizedCas returns a boolean if a field has been set.
+
+### SetAuthorizedCasNil
+
+`func (o *CompliancePolicy) SetAuthorizedCasNil(b bool)`
+
+ SetAuthorizedCasNil sets the value for AuthorizedCas to be an explicit nil
+
+### UnsetAuthorizedCas
+`func (o *CompliancePolicy) UnsetAuthorizedCas()`
+
+UnsetAuthorizedCas ensures that no value is present for AuthorizedCas, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

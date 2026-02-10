@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Module** | **string** | The module for which to return the template. | 
-**Profile** | **string** | The profile on which the renewal occurred | 
-**Template** | [**WebRARenewRequestTemplateResponse**](WebRARenewRequestTemplateResponse.md) | The cryptography policy applied during the renewal of a certificate | 
 **Workflow** | **string** | The request workflow | 
+**Profile** | **string** | The profile on which the renewal occurred | 
+**Module** | **string** | The module for which to return the template. | 
+**Template** | [**WebRARenewRequestTemplateResponse**](WebRARenewRequestTemplateResponse.md) | The cryptography policy applied during the renewal of a certificate | 
 
 ## Methods
 
 ### NewWebRARenewRequestOnTemplateResponse
 
-`func NewWebRARenewRequestOnTemplateResponse(module string, profile string, template WebRARenewRequestTemplateResponse, workflow string, ) *WebRARenewRequestOnTemplateResponse`
+`func NewWebRARenewRequestOnTemplateResponse(workflow string, profile string, module string, template WebRARenewRequestTemplateResponse, ) *WebRARenewRequestOnTemplateResponse`
 
 NewWebRARenewRequestOnTemplateResponse instantiates a new WebRARenewRequestOnTemplateResponse object
 This constructor will assign default values to properties that have it defined,
@@ -28,24 +28,24 @@ NewWebRARenewRequestOnTemplateResponseWithDefaults instantiates a new WebRARenew
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetModule
+### GetWorkflow
 
-`func (o *WebRARenewRequestOnTemplateResponse) GetModule() string`
+`func (o *WebRARenewRequestOnTemplateResponse) GetWorkflow() string`
 
-GetModule returns the Module field if non-nil, zero value otherwise.
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
 
-### GetModuleOk
+### GetWorkflowOk
 
-`func (o *WebRARenewRequestOnTemplateResponse) GetModuleOk() (*string, bool)`
+`func (o *WebRARenewRequestOnTemplateResponse) GetWorkflowOk() (*string, bool)`
 
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetModule
+### SetWorkflow
 
-`func (o *WebRARenewRequestOnTemplateResponse) SetModule(v string)`
+`func (o *WebRARenewRequestOnTemplateResponse) SetWorkflow(v string)`
 
-SetModule sets Module field to given value.
+SetWorkflow sets Workflow field to given value.
 
 
 ### GetProfile
@@ -68,6 +68,26 @@ and a boolean to check if the value has been set.
 SetProfile sets Profile field to given value.
 
 
+### GetModule
+
+`func (o *WebRARenewRequestOnTemplateResponse) GetModule() string`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *WebRARenewRequestOnTemplateResponse) GetModuleOk() (*string, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *WebRARenewRequestOnTemplateResponse) SetModule(v string)`
+
+SetModule sets Module field to given value.
+
+
 ### GetTemplate
 
 `func (o *WebRARenewRequestOnTemplateResponse) GetTemplate() WebRARenewRequestTemplateResponse`
@@ -86,26 +106,6 @@ and a boolean to check if the value has been set.
 `func (o *WebRARenewRequestOnTemplateResponse) SetTemplate(v WebRARenewRequestTemplateResponse)`
 
 SetTemplate sets Template field to given value.
-
-
-### GetWorkflow
-
-`func (o *WebRARenewRequestOnTemplateResponse) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRARenewRequestOnTemplateResponse) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRARenewRequestOnTemplateResponse) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
 
 
 

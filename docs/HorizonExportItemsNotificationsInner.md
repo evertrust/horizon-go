@@ -5,38 +5,31 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**AttachDerCertificate** | Pointer to **NullableBool** | Attach the certificate in DER format if available | [optional] 
-**AttachPemBundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PEM format if available | [optional] 
+**Type** | **string** | The type of notification | 
+**EmailTemplate** | [**EmailTemplate**](EmailTemplate.md) |  | 
+**IfPkcs12** | Pointer to **NullableBool** | On events triggering an enrollment, select if mail is sent: - **Always**: set the value to &#x60;null&#x60;  - **Only when a PKCS#12 is available in the request**: set the value to &#x60;true&#x60;  - **Only when a PKCS#12 is not in the request**: set the value to &#x60;false&#x60;  | [optional] 
 **AttachPemCertificate** | Pointer to **NullableBool** | Attach the certificate in PEM format if available | [optional] 
+**AttachPemBundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PEM format if available | [optional] 
+**AttachDerCertificate** | Pointer to **NullableBool** | Attach the certificate in DER format if available | [optional] 
 **AttachPkcs7** | Pointer to **NullableBool** | Attach the certificate in PKCS7 format if available | [optional] 
 **AttachPkcs7Bundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PKCS7 format if available | [optional] 
 **AttachPkcs12** | Pointer to **NullableBool** | Attach the certificate in PKCS#12 format if available | [optional] 
-**EmailTemplate** | [**EmailTemplate**](EmailTemplate.md) |  | 
-**IfPkcs12** | Pointer to **NullableBool** | On events triggering an enrollment, select if mail is sent: - **Always**: set the value to &#x60;null&#x60;  - **Only when a PKCS#12 is available in the request**: set the value to &#x60;true&#x60;  - **Only when a PKCS#12 is not in the request**: set the value to &#x60;false&#x60;  | [optional] 
-**Type** | **string** | The type of notification | 
-**Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
-**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
 **Name** | **string** | Name of the notification | 
 **Retries** | Pointer to **NullableInt64** | Number of retries when the notification fails | [optional] 
-**RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
 **RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
-**Proxy** | Pointer to **NullableString** | Name of a Proxy to use while making the request | [optional] 
-**Timeout** | **string** | Timeout for the HTTP request. | 
+**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
+**RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
 **WebhookTemplate** | [**WebhookTemplate**](WebhookTemplate.md) |  | 
-**AuthenticationType** | **string** | The authentication type to use while making the REST call. Is linked to &#x60;credentials&#x60;. | 
-**Credentials** | Pointer to **NullableString** | Name of the credentials to use for authentication | [optional] 
-**ExpectedHttpCodes** | **[]int64** | The success HTTP codes for the request. If the return code is not in this list, the notification will be considered failed. | 
-**Headers** | Pointer to [**[]RESTHeader**](RESTHeader.md) | The headers of the request | [optional] 
-**Method** | **string** | The HTTP method to use for the request | 
-**Payload** | Pointer to **NullableString** | The body of the request. Can contain dynamic attributes. | [optional] 
-**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
-**Url** | **string** | The URL to request | 
+**Proxy** | Pointer to **NullableString** | Name of a Proxy to use while sending the webhook | [optional] 
+**Timeout** | Pointer to **string** | Timeout for the webhook request | [optional] 
+**Sequence** | **[]map[string]interface{}** | The REST requests to execute, in execution order. Each request enriches the dictionary with its response for the next one | 
 
 ## Methods
 
 ### NewHorizonExportItemsNotificationsInner
 
-`func NewHorizonExportItemsNotificationsInner(id string, emailTemplate EmailTemplate, type_ string, events []string, name string, timeout string, webhookTemplate WebhookTemplate, authenticationType string, expectedHttpCodes []int64, method string, url string, ) *HorizonExportItemsNotificationsInner`
+`func NewHorizonExportItemsNotificationsInner(id string, type_ string, emailTemplate EmailTemplate, name string, events []string, webhookTemplate WebhookTemplate, sequence []map[string]interface{}, ) *HorizonExportItemsNotificationsInner`
 
 NewHorizonExportItemsNotificationsInner instantiates a new HorizonExportItemsNotificationsInner object
 This constructor will assign default values to properties that have it defined,
@@ -71,76 +64,81 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetAttachDerCertificate
+### GetType
 
-`func (o *HorizonExportItemsNotificationsInner) GetAttachDerCertificate() bool`
+`func (o *HorizonExportItemsNotificationsInner) GetType() string`
 
-GetAttachDerCertificate returns the AttachDerCertificate field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetAttachDerCertificateOk
+### GetTypeOk
 
-`func (o *HorizonExportItemsNotificationsInner) GetAttachDerCertificateOk() (*bool, bool)`
+`func (o *HorizonExportItemsNotificationsInner) GetTypeOk() (*string, bool)`
 
-GetAttachDerCertificateOk returns a tuple with the AttachDerCertificate field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttachDerCertificate
+### SetType
 
-`func (o *HorizonExportItemsNotificationsInner) SetAttachDerCertificate(v bool)`
+`func (o *HorizonExportItemsNotificationsInner) SetType(v string)`
 
-SetAttachDerCertificate sets AttachDerCertificate field to given value.
+SetType sets Type field to given value.
 
-### HasAttachDerCertificate
 
-`func (o *HorizonExportItemsNotificationsInner) HasAttachDerCertificate() bool`
+### GetEmailTemplate
 
-HasAttachDerCertificate returns a boolean if a field has been set.
+`func (o *HorizonExportItemsNotificationsInner) GetEmailTemplate() EmailTemplate`
 
-### SetAttachDerCertificateNil
+GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
 
-`func (o *HorizonExportItemsNotificationsInner) SetAttachDerCertificateNil(b bool)`
+### GetEmailTemplateOk
 
- SetAttachDerCertificateNil sets the value for AttachDerCertificate to be an explicit nil
+`func (o *HorizonExportItemsNotificationsInner) GetEmailTemplateOk() (*EmailTemplate, bool)`
 
-### UnsetAttachDerCertificate
-`func (o *HorizonExportItemsNotificationsInner) UnsetAttachDerCertificate()`
-
-UnsetAttachDerCertificate ensures that no value is present for AttachDerCertificate, not even an explicit nil
-### GetAttachPemBundle
-
-`func (o *HorizonExportItemsNotificationsInner) GetAttachPemBundle() bool`
-
-GetAttachPemBundle returns the AttachPemBundle field if non-nil, zero value otherwise.
-
-### GetAttachPemBundleOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetAttachPemBundleOk() (*bool, bool)`
-
-GetAttachPemBundleOk returns a tuple with the AttachPemBundle field if it's non-nil, zero value otherwise
+GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttachPemBundle
+### SetEmailTemplate
 
-`func (o *HorizonExportItemsNotificationsInner) SetAttachPemBundle(v bool)`
+`func (o *HorizonExportItemsNotificationsInner) SetEmailTemplate(v EmailTemplate)`
 
-SetAttachPemBundle sets AttachPemBundle field to given value.
+SetEmailTemplate sets EmailTemplate field to given value.
 
-### HasAttachPemBundle
 
-`func (o *HorizonExportItemsNotificationsInner) HasAttachPemBundle() bool`
+### GetIfPkcs12
 
-HasAttachPemBundle returns a boolean if a field has been set.
+`func (o *HorizonExportItemsNotificationsInner) GetIfPkcs12() bool`
 
-### SetAttachPemBundleNil
+GetIfPkcs12 returns the IfPkcs12 field if non-nil, zero value otherwise.
 
-`func (o *HorizonExportItemsNotificationsInner) SetAttachPemBundleNil(b bool)`
+### GetIfPkcs12Ok
 
- SetAttachPemBundleNil sets the value for AttachPemBundle to be an explicit nil
+`func (o *HorizonExportItemsNotificationsInner) GetIfPkcs12Ok() (*bool, bool)`
 
-### UnsetAttachPemBundle
-`func (o *HorizonExportItemsNotificationsInner) UnsetAttachPemBundle()`
+GetIfPkcs12Ok returns a tuple with the IfPkcs12 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetAttachPemBundle ensures that no value is present for AttachPemBundle, not even an explicit nil
+### SetIfPkcs12
+
+`func (o *HorizonExportItemsNotificationsInner) SetIfPkcs12(v bool)`
+
+SetIfPkcs12 sets IfPkcs12 field to given value.
+
+### HasIfPkcs12
+
+`func (o *HorizonExportItemsNotificationsInner) HasIfPkcs12() bool`
+
+HasIfPkcs12 returns a boolean if a field has been set.
+
+### SetIfPkcs12Nil
+
+`func (o *HorizonExportItemsNotificationsInner) SetIfPkcs12Nil(b bool)`
+
+ SetIfPkcs12Nil sets the value for IfPkcs12 to be an explicit nil
+
+### UnsetIfPkcs12
+`func (o *HorizonExportItemsNotificationsInner) UnsetIfPkcs12()`
+
+UnsetIfPkcs12 ensures that no value is present for IfPkcs12, not even an explicit nil
 ### GetAttachPemCertificate
 
 `func (o *HorizonExportItemsNotificationsInner) GetAttachPemCertificate() bool`
@@ -176,6 +174,76 @@ HasAttachPemCertificate returns a boolean if a field has been set.
 `func (o *HorizonExportItemsNotificationsInner) UnsetAttachPemCertificate()`
 
 UnsetAttachPemCertificate ensures that no value is present for AttachPemCertificate, not even an explicit nil
+### GetAttachPemBundle
+
+`func (o *HorizonExportItemsNotificationsInner) GetAttachPemBundle() bool`
+
+GetAttachPemBundle returns the AttachPemBundle field if non-nil, zero value otherwise.
+
+### GetAttachPemBundleOk
+
+`func (o *HorizonExportItemsNotificationsInner) GetAttachPemBundleOk() (*bool, bool)`
+
+GetAttachPemBundleOk returns a tuple with the AttachPemBundle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttachPemBundle
+
+`func (o *HorizonExportItemsNotificationsInner) SetAttachPemBundle(v bool)`
+
+SetAttachPemBundle sets AttachPemBundle field to given value.
+
+### HasAttachPemBundle
+
+`func (o *HorizonExportItemsNotificationsInner) HasAttachPemBundle() bool`
+
+HasAttachPemBundle returns a boolean if a field has been set.
+
+### SetAttachPemBundleNil
+
+`func (o *HorizonExportItemsNotificationsInner) SetAttachPemBundleNil(b bool)`
+
+ SetAttachPemBundleNil sets the value for AttachPemBundle to be an explicit nil
+
+### UnsetAttachPemBundle
+`func (o *HorizonExportItemsNotificationsInner) UnsetAttachPemBundle()`
+
+UnsetAttachPemBundle ensures that no value is present for AttachPemBundle, not even an explicit nil
+### GetAttachDerCertificate
+
+`func (o *HorizonExportItemsNotificationsInner) GetAttachDerCertificate() bool`
+
+GetAttachDerCertificate returns the AttachDerCertificate field if non-nil, zero value otherwise.
+
+### GetAttachDerCertificateOk
+
+`func (o *HorizonExportItemsNotificationsInner) GetAttachDerCertificateOk() (*bool, bool)`
+
+GetAttachDerCertificateOk returns a tuple with the AttachDerCertificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttachDerCertificate
+
+`func (o *HorizonExportItemsNotificationsInner) SetAttachDerCertificate(v bool)`
+
+SetAttachDerCertificate sets AttachDerCertificate field to given value.
+
+### HasAttachDerCertificate
+
+`func (o *HorizonExportItemsNotificationsInner) HasAttachDerCertificate() bool`
+
+HasAttachDerCertificate returns a boolean if a field has been set.
+
+### SetAttachDerCertificateNil
+
+`func (o *HorizonExportItemsNotificationsInner) SetAttachDerCertificateNil(b bool)`
+
+ SetAttachDerCertificateNil sets the value for AttachDerCertificate to be an explicit nil
+
+### UnsetAttachDerCertificate
+`func (o *HorizonExportItemsNotificationsInner) UnsetAttachDerCertificate()`
+
+UnsetAttachDerCertificate ensures that no value is present for AttachDerCertificate, not even an explicit nil
 ### GetAttachPkcs7
 
 `func (o *HorizonExportItemsNotificationsInner) GetAttachPkcs7() bool`
@@ -281,136 +349,6 @@ HasAttachPkcs12 returns a boolean if a field has been set.
 `func (o *HorizonExportItemsNotificationsInner) UnsetAttachPkcs12()`
 
 UnsetAttachPkcs12 ensures that no value is present for AttachPkcs12, not even an explicit nil
-### GetEmailTemplate
-
-`func (o *HorizonExportItemsNotificationsInner) GetEmailTemplate() EmailTemplate`
-
-GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
-
-### GetEmailTemplateOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetEmailTemplateOk() (*EmailTemplate, bool)`
-
-GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmailTemplate
-
-`func (o *HorizonExportItemsNotificationsInner) SetEmailTemplate(v EmailTemplate)`
-
-SetEmailTemplate sets EmailTemplate field to given value.
-
-
-### GetIfPkcs12
-
-`func (o *HorizonExportItemsNotificationsInner) GetIfPkcs12() bool`
-
-GetIfPkcs12 returns the IfPkcs12 field if non-nil, zero value otherwise.
-
-### GetIfPkcs12Ok
-
-`func (o *HorizonExportItemsNotificationsInner) GetIfPkcs12Ok() (*bool, bool)`
-
-GetIfPkcs12Ok returns a tuple with the IfPkcs12 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIfPkcs12
-
-`func (o *HorizonExportItemsNotificationsInner) SetIfPkcs12(v bool)`
-
-SetIfPkcs12 sets IfPkcs12 field to given value.
-
-### HasIfPkcs12
-
-`func (o *HorizonExportItemsNotificationsInner) HasIfPkcs12() bool`
-
-HasIfPkcs12 returns a boolean if a field has been set.
-
-### SetIfPkcs12Nil
-
-`func (o *HorizonExportItemsNotificationsInner) SetIfPkcs12Nil(b bool)`
-
- SetIfPkcs12Nil sets the value for IfPkcs12 to be an explicit nil
-
-### UnsetIfPkcs12
-`func (o *HorizonExportItemsNotificationsInner) UnsetIfPkcs12()`
-
-UnsetIfPkcs12 ensures that no value is present for IfPkcs12, not even an explicit nil
-### GetType
-
-`func (o *HorizonExportItemsNotificationsInner) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *HorizonExportItemsNotificationsInner) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetEvents
-
-`func (o *HorizonExportItemsNotificationsInner) GetEvents() []string`
-
-GetEvents returns the Events field if non-nil, zero value otherwise.
-
-### GetEventsOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetEventsOk() (*[]string, bool)`
-
-GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEvents
-
-`func (o *HorizonExportItemsNotificationsInner) SetEvents(v []string)`
-
-SetEvents sets Events field to given value.
-
-
-### GetLicenseUsagePercent
-
-`func (o *HorizonExportItemsNotificationsInner) GetLicenseUsagePercent() int64`
-
-GetLicenseUsagePercent returns the LicenseUsagePercent field if non-nil, zero value otherwise.
-
-### GetLicenseUsagePercentOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetLicenseUsagePercentOk() (*int64, bool)`
-
-GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLicenseUsagePercent
-
-`func (o *HorizonExportItemsNotificationsInner) SetLicenseUsagePercent(v int64)`
-
-SetLicenseUsagePercent sets LicenseUsagePercent field to given value.
-
-### HasLicenseUsagePercent
-
-`func (o *HorizonExportItemsNotificationsInner) HasLicenseUsagePercent() bool`
-
-HasLicenseUsagePercent returns a boolean if a field has been set.
-
-### SetLicenseUsagePercentNil
-
-`func (o *HorizonExportItemsNotificationsInner) SetLicenseUsagePercentNil(b bool)`
-
- SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
-
-### UnsetLicenseUsagePercent
-`func (o *HorizonExportItemsNotificationsInner) UnsetLicenseUsagePercent()`
-
-UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
 ### GetName
 
 `func (o *HorizonExportItemsNotificationsInner) GetName() string`
@@ -466,41 +404,6 @@ HasRetries returns a boolean if a field has been set.
 `func (o *HorizonExportItemsNotificationsInner) UnsetRetries()`
 
 UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetRunOnRenewed
-
-`func (o *HorizonExportItemsNotificationsInner) GetRunOnRenewed() bool`
-
-GetRunOnRenewed returns the RunOnRenewed field if non-nil, zero value otherwise.
-
-### GetRunOnRenewedOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetRunOnRenewedOk() (*bool, bool)`
-
-GetRunOnRenewedOk returns a tuple with the RunOnRenewed field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRunOnRenewed
-
-`func (o *HorizonExportItemsNotificationsInner) SetRunOnRenewed(v bool)`
-
-SetRunOnRenewed sets RunOnRenewed field to given value.
-
-### HasRunOnRenewed
-
-`func (o *HorizonExportItemsNotificationsInner) HasRunOnRenewed() bool`
-
-HasRunOnRenewed returns a boolean if a field has been set.
-
-### SetRunOnRenewedNil
-
-`func (o *HorizonExportItemsNotificationsInner) SetRunOnRenewedNil(b bool)`
-
- SetRunOnRenewedNil sets the value for RunOnRenewed to be an explicit nil
-
-### UnsetRunOnRenewed
-`func (o *HorizonExportItemsNotificationsInner) UnsetRunOnRenewed()`
-
-UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
 ### GetRunPeriod
 
 `func (o *HorizonExportItemsNotificationsInner) GetRunPeriod() string`
@@ -536,6 +439,116 @@ HasRunPeriod returns a boolean if a field has been set.
 `func (o *HorizonExportItemsNotificationsInner) UnsetRunPeriod()`
 
 UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
+### GetLicenseUsagePercent
+
+`func (o *HorizonExportItemsNotificationsInner) GetLicenseUsagePercent() int64`
+
+GetLicenseUsagePercent returns the LicenseUsagePercent field if non-nil, zero value otherwise.
+
+### GetLicenseUsagePercentOk
+
+`func (o *HorizonExportItemsNotificationsInner) GetLicenseUsagePercentOk() (*int64, bool)`
+
+GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLicenseUsagePercent
+
+`func (o *HorizonExportItemsNotificationsInner) SetLicenseUsagePercent(v int64)`
+
+SetLicenseUsagePercent sets LicenseUsagePercent field to given value.
+
+### HasLicenseUsagePercent
+
+`func (o *HorizonExportItemsNotificationsInner) HasLicenseUsagePercent() bool`
+
+HasLicenseUsagePercent returns a boolean if a field has been set.
+
+### SetLicenseUsagePercentNil
+
+`func (o *HorizonExportItemsNotificationsInner) SetLicenseUsagePercentNil(b bool)`
+
+ SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
+
+### UnsetLicenseUsagePercent
+`func (o *HorizonExportItemsNotificationsInner) UnsetLicenseUsagePercent()`
+
+UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
+### GetEvents
+
+`func (o *HorizonExportItemsNotificationsInner) GetEvents() []string`
+
+GetEvents returns the Events field if non-nil, zero value otherwise.
+
+### GetEventsOk
+
+`func (o *HorizonExportItemsNotificationsInner) GetEventsOk() (*[]string, bool)`
+
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvents
+
+`func (o *HorizonExportItemsNotificationsInner) SetEvents(v []string)`
+
+SetEvents sets Events field to given value.
+
+
+### GetRunOnRenewed
+
+`func (o *HorizonExportItemsNotificationsInner) GetRunOnRenewed() bool`
+
+GetRunOnRenewed returns the RunOnRenewed field if non-nil, zero value otherwise.
+
+### GetRunOnRenewedOk
+
+`func (o *HorizonExportItemsNotificationsInner) GetRunOnRenewedOk() (*bool, bool)`
+
+GetRunOnRenewedOk returns a tuple with the RunOnRenewed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRunOnRenewed
+
+`func (o *HorizonExportItemsNotificationsInner) SetRunOnRenewed(v bool)`
+
+SetRunOnRenewed sets RunOnRenewed field to given value.
+
+### HasRunOnRenewed
+
+`func (o *HorizonExportItemsNotificationsInner) HasRunOnRenewed() bool`
+
+HasRunOnRenewed returns a boolean if a field has been set.
+
+### SetRunOnRenewedNil
+
+`func (o *HorizonExportItemsNotificationsInner) SetRunOnRenewedNil(b bool)`
+
+ SetRunOnRenewedNil sets the value for RunOnRenewed to be an explicit nil
+
+### UnsetRunOnRenewed
+`func (o *HorizonExportItemsNotificationsInner) UnsetRunOnRenewed()`
+
+UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
+### GetWebhookTemplate
+
+`func (o *HorizonExportItemsNotificationsInner) GetWebhookTemplate() WebhookTemplate`
+
+GetWebhookTemplate returns the WebhookTemplate field if non-nil, zero value otherwise.
+
+### GetWebhookTemplateOk
+
+`func (o *HorizonExportItemsNotificationsInner) GetWebhookTemplateOk() (*WebhookTemplate, bool)`
+
+GetWebhookTemplateOk returns a tuple with the WebhookTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWebhookTemplate
+
+`func (o *HorizonExportItemsNotificationsInner) SetWebhookTemplate(v WebhookTemplate)`
+
+SetWebhookTemplate sets WebhookTemplate field to given value.
+
+
 ### GetProxy
 
 `func (o *HorizonExportItemsNotificationsInner) GetProxy() string`
@@ -590,245 +603,30 @@ and a boolean to check if the value has been set.
 
 SetTimeout sets Timeout field to given value.
 
+### HasTimeout
 
-### GetWebhookTemplate
+`func (o *HorizonExportItemsNotificationsInner) HasTimeout() bool`
 
-`func (o *HorizonExportItemsNotificationsInner) GetWebhookTemplate() WebhookTemplate`
+HasTimeout returns a boolean if a field has been set.
 
-GetWebhookTemplate returns the WebhookTemplate field if non-nil, zero value otherwise.
+### GetSequence
 
-### GetWebhookTemplateOk
+`func (o *HorizonExportItemsNotificationsInner) GetSequence() []map[string]interface{}`
 
-`func (o *HorizonExportItemsNotificationsInner) GetWebhookTemplateOk() (*WebhookTemplate, bool)`
+GetSequence returns the Sequence field if non-nil, zero value otherwise.
 
-GetWebhookTemplateOk returns a tuple with the WebhookTemplate field if it's non-nil, zero value otherwise
+### GetSequenceOk
+
+`func (o *HorizonExportItemsNotificationsInner) GetSequenceOk() (*[]map[string]interface{}, bool)`
+
+GetSequenceOk returns a tuple with the Sequence field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWebhookTemplate
+### SetSequence
 
-`func (o *HorizonExportItemsNotificationsInner) SetWebhookTemplate(v WebhookTemplate)`
+`func (o *HorizonExportItemsNotificationsInner) SetSequence(v []map[string]interface{})`
 
-SetWebhookTemplate sets WebhookTemplate field to given value.
-
-
-### GetAuthenticationType
-
-`func (o *HorizonExportItemsNotificationsInner) GetAuthenticationType() string`
-
-GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
-
-### GetAuthenticationTypeOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetAuthenticationTypeOk() (*string, bool)`
-
-GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticationType
-
-`func (o *HorizonExportItemsNotificationsInner) SetAuthenticationType(v string)`
-
-SetAuthenticationType sets AuthenticationType field to given value.
-
-
-### GetCredentials
-
-`func (o *HorizonExportItemsNotificationsInner) GetCredentials() string`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetCredentialsOk() (*string, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *HorizonExportItemsNotificationsInner) SetCredentials(v string)`
-
-SetCredentials sets Credentials field to given value.
-
-### HasCredentials
-
-`func (o *HorizonExportItemsNotificationsInner) HasCredentials() bool`
-
-HasCredentials returns a boolean if a field has been set.
-
-### SetCredentialsNil
-
-`func (o *HorizonExportItemsNotificationsInner) SetCredentialsNil(b bool)`
-
- SetCredentialsNil sets the value for Credentials to be an explicit nil
-
-### UnsetCredentials
-`func (o *HorizonExportItemsNotificationsInner) UnsetCredentials()`
-
-UnsetCredentials ensures that no value is present for Credentials, not even an explicit nil
-### GetExpectedHttpCodes
-
-`func (o *HorizonExportItemsNotificationsInner) GetExpectedHttpCodes() []int64`
-
-GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
-
-### GetExpectedHttpCodesOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetExpectedHttpCodesOk() (*[]int64, bool)`
-
-GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExpectedHttpCodes
-
-`func (o *HorizonExportItemsNotificationsInner) SetExpectedHttpCodes(v []int64)`
-
-SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
-
-
-### GetHeaders
-
-`func (o *HorizonExportItemsNotificationsInner) GetHeaders() []RESTHeader`
-
-GetHeaders returns the Headers field if non-nil, zero value otherwise.
-
-### GetHeadersOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetHeadersOk() (*[]RESTHeader, bool)`
-
-GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHeaders
-
-`func (o *HorizonExportItemsNotificationsInner) SetHeaders(v []RESTHeader)`
-
-SetHeaders sets Headers field to given value.
-
-### HasHeaders
-
-`func (o *HorizonExportItemsNotificationsInner) HasHeaders() bool`
-
-HasHeaders returns a boolean if a field has been set.
-
-### SetHeadersNil
-
-`func (o *HorizonExportItemsNotificationsInner) SetHeadersNil(b bool)`
-
- SetHeadersNil sets the value for Headers to be an explicit nil
-
-### UnsetHeaders
-`func (o *HorizonExportItemsNotificationsInner) UnsetHeaders()`
-
-UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
-### GetMethod
-
-`func (o *HorizonExportItemsNotificationsInner) GetMethod() string`
-
-GetMethod returns the Method field if non-nil, zero value otherwise.
-
-### GetMethodOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetMethodOk() (*string, bool)`
-
-GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMethod
-
-`func (o *HorizonExportItemsNotificationsInner) SetMethod(v string)`
-
-SetMethod sets Method field to given value.
-
-
-### GetPayload
-
-`func (o *HorizonExportItemsNotificationsInner) GetPayload() string`
-
-GetPayload returns the Payload field if non-nil, zero value otherwise.
-
-### GetPayloadOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetPayloadOk() (*string, bool)`
-
-GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPayload
-
-`func (o *HorizonExportItemsNotificationsInner) SetPayload(v string)`
-
-SetPayload sets Payload field to given value.
-
-### HasPayload
-
-`func (o *HorizonExportItemsNotificationsInner) HasPayload() bool`
-
-HasPayload returns a boolean if a field has been set.
-
-### SetPayloadNil
-
-`func (o *HorizonExportItemsNotificationsInner) SetPayloadNil(b bool)`
-
- SetPayloadNil sets the value for Payload to be an explicit nil
-
-### UnsetPayload
-`func (o *HorizonExportItemsNotificationsInner) UnsetPayload()`
-
-UnsetPayload ensures that no value is present for Payload, not even an explicit nil
-### GetPayloadType
-
-`func (o *HorizonExportItemsNotificationsInner) GetPayloadType() string`
-
-GetPayloadType returns the PayloadType field if non-nil, zero value otherwise.
-
-### GetPayloadTypeOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetPayloadTypeOk() (*string, bool)`
-
-GetPayloadTypeOk returns a tuple with the PayloadType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPayloadType
-
-`func (o *HorizonExportItemsNotificationsInner) SetPayloadType(v string)`
-
-SetPayloadType sets PayloadType field to given value.
-
-### HasPayloadType
-
-`func (o *HorizonExportItemsNotificationsInner) HasPayloadType() bool`
-
-HasPayloadType returns a boolean if a field has been set.
-
-### SetPayloadTypeNil
-
-`func (o *HorizonExportItemsNotificationsInner) SetPayloadTypeNil(b bool)`
-
- SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
-
-### UnsetPayloadType
-`func (o *HorizonExportItemsNotificationsInner) UnsetPayloadType()`
-
-UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
-### GetUrl
-
-`func (o *HorizonExportItemsNotificationsInner) GetUrl() string`
-
-GetUrl returns the Url field if non-nil, zero value otherwise.
-
-### GetUrlOk
-
-`func (o *HorizonExportItemsNotificationsInner) GetUrlOk() (*string, bool)`
-
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUrl
-
-`func (o *HorizonExportItemsNotificationsInner) SetUrl(v string)`
-
-SetUrl sets Url field to given value.
+SetSequence sets Sequence field to given value.
 
 
 

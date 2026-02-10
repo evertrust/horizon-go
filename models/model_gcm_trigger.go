@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &GCMTrigger{}
 
 // GCMTrigger struct for GCMTrigger
 type GCMTrigger struct {
-	Connector            string              `json:"connector"`
 	Name                 string              `json:"name"`
-	Retries              utils.NullableInt64 `json:"retries,omitempty"`
 	Type                 string              `json:"type"`
+	Retries              utils.NullableInt64 `json:"retries,omitempty"`
+	Connector            string              `json:"connector"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,11 +35,11 @@ type _GCMTrigger GCMTrigger
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGCMTrigger(connector string, name string, type_ string) *GCMTrigger {
+func NewGCMTrigger(name string, type_ string, connector string) *GCMTrigger {
 	this := GCMTrigger{}
-	this.Connector = connector
 	this.Name = name
 	this.Type = type_
+	this.Connector = connector
 	return &this
 }
 
@@ -49,30 +49,6 @@ func NewGCMTrigger(connector string, name string, type_ string) *GCMTrigger {
 func NewGCMTriggerWithDefaults() *GCMTrigger {
 	this := GCMTrigger{}
 	return &this
-}
-
-// GetConnector returns the Connector field value
-func (o *GCMTrigger) GetConnector() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Connector
-}
-
-// GetConnectorOk returns a tuple with the Connector field value
-// and a boolean to check if the value has been set.
-func (o *GCMTrigger) GetConnectorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Connector, true
-}
-
-// SetConnector sets field value
-func (o *GCMTrigger) SetConnector(v string) {
-	o.Connector = v
 }
 
 // GetName returns the Name field value
@@ -97,6 +73,30 @@ func (o *GCMTrigger) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *GCMTrigger) SetName(v string) {
 	o.Name = v
+}
+
+// GetType returns the Type field value
+func (o *GCMTrigger) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *GCMTrigger) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *GCMTrigger) SetType(v string) {
+	o.Type = v
 }
 
 // GetRetries returns the Retries field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -142,28 +142,28 @@ func (o *GCMTrigger) UnsetRetries() {
 	o.Retries.Unset()
 }
 
-// GetType returns the Type field value
-func (o *GCMTrigger) GetType() string {
+// GetConnector returns the Connector field value
+func (o *GCMTrigger) GetConnector() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.Connector
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetConnectorOk returns a tuple with the Connector field value
 // and a boolean to check if the value has been set.
-func (o *GCMTrigger) GetTypeOk() (*string, bool) {
+func (o *GCMTrigger) GetConnectorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.Connector, true
 }
 
-// SetType sets field value
-func (o *GCMTrigger) SetType(v string) {
-	o.Type = v
+// SetConnector sets field value
+func (o *GCMTrigger) SetConnector(v string) {
+	o.Connector = v
 }
 
 func (o GCMTrigger) MarshalJSON() ([]byte, error) {
@@ -176,12 +176,12 @@ func (o GCMTrigger) MarshalJSON() ([]byte, error) {
 
 func (o GCMTrigger) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["connector"] = o.Connector
 	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
 	if o.Retries.IsSet() {
 		toSerialize["retries"] = o.Retries.Get()
 	}
-	toSerialize["type"] = o.Type
+	toSerialize["connector"] = o.Connector
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -195,9 +195,9 @@ func (o *GCMTrigger) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"connector",
 		"name",
 		"type",
+		"connector",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -227,10 +227,10 @@ func (o *GCMTrigger) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "connector")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "retries")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "retries")
+		delete(additionalProperties, "connector")
 		o.AdditionalProperties = additionalProperties
 	}
 

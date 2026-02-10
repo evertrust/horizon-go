@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Name** | **string** |  | 
+**DisplayName** | Pointer to [**[]LocalizedStringResponse**](LocalizedStringResponse.md) |  | [optional] 
 **Description** | Pointer to [**[]LocalizedStringResponse**](LocalizedStringResponse.md) |  | [optional] 
 **Detail** | Pointer to **NullableString** |  | [optional] 
-**DisplayName** | Pointer to [**[]LocalizedStringResponse**](LocalizedStringResponse.md) |  | [optional] 
-**Name** | **string** |  | 
 
 ## Methods
 
@@ -28,6 +28,61 @@ NewHorizonExportableItemWithDefaults instantiates a new HorizonExportableItem ob
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetName
+
+`func (o *HorizonExportableItem) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *HorizonExportableItem) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *HorizonExportableItem) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetDisplayName
+
+`func (o *HorizonExportableItem) GetDisplayName() []LocalizedStringResponse`
+
+GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+
+### GetDisplayNameOk
+
+`func (o *HorizonExportableItem) GetDisplayNameOk() (*[]LocalizedStringResponse, bool)`
+
+GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayName
+
+`func (o *HorizonExportableItem) SetDisplayName(v []LocalizedStringResponse)`
+
+SetDisplayName sets DisplayName field to given value.
+
+### HasDisplayName
+
+`func (o *HorizonExportableItem) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
+
+### SetDisplayNameNil
+
+`func (o *HorizonExportableItem) SetDisplayNameNil(b bool)`
+
+ SetDisplayNameNil sets the value for DisplayName to be an explicit nil
+
+### UnsetDisplayName
+`func (o *HorizonExportableItem) UnsetDisplayName()`
+
+UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
 ### GetDescription
 
 `func (o *HorizonExportableItem) GetDescription() []LocalizedStringResponse`
@@ -98,61 +153,6 @@ HasDetail returns a boolean if a field has been set.
 `func (o *HorizonExportableItem) UnsetDetail()`
 
 UnsetDetail ensures that no value is present for Detail, not even an explicit nil
-### GetDisplayName
-
-`func (o *HorizonExportableItem) GetDisplayName() []LocalizedStringResponse`
-
-GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
-
-### GetDisplayNameOk
-
-`func (o *HorizonExportableItem) GetDisplayNameOk() (*[]LocalizedStringResponse, bool)`
-
-GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDisplayName
-
-`func (o *HorizonExportableItem) SetDisplayName(v []LocalizedStringResponse)`
-
-SetDisplayName sets DisplayName field to given value.
-
-### HasDisplayName
-
-`func (o *HorizonExportableItem) HasDisplayName() bool`
-
-HasDisplayName returns a boolean if a field has been set.
-
-### SetDisplayNameNil
-
-`func (o *HorizonExportableItem) SetDisplayNameNil(b bool)`
-
- SetDisplayNameNil sets the value for DisplayName to be an explicit nil
-
-### UnsetDisplayName
-`func (o *HorizonExportableItem) UnsetDisplayName()`
-
-UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetName
-
-`func (o *HorizonExportableItem) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *HorizonExportableItem) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *HorizonExportableItem) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

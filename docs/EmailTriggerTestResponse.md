@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | **string** | A message describing the test | 
 **Status** | **string** | Status of the test | 
+**Message** | **string** | A message describing the test | 
 
 ## Methods
 
 ### NewEmailTriggerTestResponse
 
-`func NewEmailTriggerTestResponse(message string, status string, ) *EmailTriggerTestResponse`
+`func NewEmailTriggerTestResponse(status string, message string, ) *EmailTriggerTestResponse`
 
 NewEmailTriggerTestResponse instantiates a new EmailTriggerTestResponse object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewEmailTriggerTestResponseWithDefaults instantiates a new EmailTriggerTestResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetMessage
-
-`func (o *EmailTriggerTestResponse) GetMessage() string`
-
-GetMessage returns the Message field if non-nil, zero value otherwise.
-
-### GetMessageOk
-
-`func (o *EmailTriggerTestResponse) GetMessageOk() (*string, bool)`
-
-GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMessage
-
-`func (o *EmailTriggerTestResponse) SetMessage(v string)`
-
-SetMessage sets Message field to given value.
-
 
 ### GetStatus
 
@@ -64,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *EmailTriggerTestResponse) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
+
+
+### GetMessage
+
+`func (o *EmailTriggerTestResponse) GetMessage() string`
+
+GetMessage returns the Message field if non-nil, zero value otherwise.
+
+### GetMessageOk
+
+`func (o *EmailTriggerTestResponse) GetMessageOk() (*string, bool)`
+
+GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMessage
+
+`func (o *EmailTriggerTestResponse) SetMessage(v string)`
+
+SetMessage sets Message field to given value.
 
 
 

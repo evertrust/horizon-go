@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	wcceForestMapping := *openapiclient.NewWcceForestMapping("Forest_example", []openapiclient.WcceTemplateMapping{*openapiclient.NewWcceTemplateMapping("EnrollmentMode_example", "Profile_example", "Template_example")}) // WcceForestMapping | The WCCE forest mapping to register
+	wcceForestMapping := *openapiclient.NewWcceForestMapping("Forest_example", []openapiclient.WcceTemplateMapping{*openapiclient.NewWcceTemplateMapping("Template_example", "Profile_example", "EnrollmentMode_example")}) // WcceForestMapping | The WCCE forest mapping to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -298,7 +298,7 @@ import (
 )
 
 func main() {
-	wcceForestMapping := *openapiclient.NewWcceForestMapping("Forest_example", []openapiclient.WcceTemplateMapping{*openapiclient.NewWcceTemplateMapping("EnrollmentMode_example", "Profile_example", "Template_example")}) // WcceForestMapping | The WCCE forest mapping to update
+	wcceForestMapping := *openapiclient.NewWcceForestMapping("Forest_example", []openapiclient.WcceTemplateMapping{*openapiclient.NewWcceTemplateMapping("Template_example", "Profile_example", "EnrollmentMode_example")}) // WcceForestMapping | The WCCE forest mapping to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) |  | [optional] 
 **Labels** | Pointer to [**[]RequestLabelElement**](RequestLabelElement.md) |  | [optional] 
-**Metadata** | Pointer to [**[]CertificateMetadataElement**](CertificateMetadataElement.md) |  | [optional] 
 **Owner** | Pointer to [**NullableCertificateOwnerElement**](CertificateOwnerElement.md) |  | [optional] 
 **Team** | Pointer to [**NullableCertificateTeamElement**](CertificateTeamElement.md) |  | [optional] 
+**Metadata** | Pointer to [**[]CertificateMetadataElement**](CertificateMetadataElement.md) |  | [optional] 
+**ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) |  | [optional] 
 
 ## Methods
 
@@ -29,41 +29,6 @@ NewWebRAMigrateRequestTemplateWithDefaults instantiates a new WebRAMigrateReques
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetContactEmail
-
-`func (o *WebRAMigrateRequestTemplate) GetContactEmail() CertificateContactEmailElement`
-
-GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
-
-### GetContactEmailOk
-
-`func (o *WebRAMigrateRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool)`
-
-GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContactEmail
-
-`func (o *WebRAMigrateRequestTemplate) SetContactEmail(v CertificateContactEmailElement)`
-
-SetContactEmail sets ContactEmail field to given value.
-
-### HasContactEmail
-
-`func (o *WebRAMigrateRequestTemplate) HasContactEmail() bool`
-
-HasContactEmail returns a boolean if a field has been set.
-
-### SetContactEmailNil
-
-`func (o *WebRAMigrateRequestTemplate) SetContactEmailNil(b bool)`
-
- SetContactEmailNil sets the value for ContactEmail to be an explicit nil
-
-### UnsetContactEmail
-`func (o *WebRAMigrateRequestTemplate) UnsetContactEmail()`
-
-UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
 ### GetLabels
 
 `func (o *WebRAMigrateRequestTemplate) GetLabels() []RequestLabelElement`
@@ -99,41 +64,6 @@ HasLabels returns a boolean if a field has been set.
 `func (o *WebRAMigrateRequestTemplate) UnsetLabels()`
 
 UnsetLabels ensures that no value is present for Labels, not even an explicit nil
-### GetMetadata
-
-`func (o *WebRAMigrateRequestTemplate) GetMetadata() []CertificateMetadataElement`
-
-GetMetadata returns the Metadata field if non-nil, zero value otherwise.
-
-### GetMetadataOk
-
-`func (o *WebRAMigrateRequestTemplate) GetMetadataOk() (*[]CertificateMetadataElement, bool)`
-
-GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetadata
-
-`func (o *WebRAMigrateRequestTemplate) SetMetadata(v []CertificateMetadataElement)`
-
-SetMetadata sets Metadata field to given value.
-
-### HasMetadata
-
-`func (o *WebRAMigrateRequestTemplate) HasMetadata() bool`
-
-HasMetadata returns a boolean if a field has been set.
-
-### SetMetadataNil
-
-`func (o *WebRAMigrateRequestTemplate) SetMetadataNil(b bool)`
-
- SetMetadataNil sets the value for Metadata to be an explicit nil
-
-### UnsetMetadata
-`func (o *WebRAMigrateRequestTemplate) UnsetMetadata()`
-
-UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetOwner
 
 `func (o *WebRAMigrateRequestTemplate) GetOwner() CertificateOwnerElement`
@@ -204,6 +134,76 @@ HasTeam returns a boolean if a field has been set.
 `func (o *WebRAMigrateRequestTemplate) UnsetTeam()`
 
 UnsetTeam ensures that no value is present for Team, not even an explicit nil
+### GetMetadata
+
+`func (o *WebRAMigrateRequestTemplate) GetMetadata() []CertificateMetadataElement`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *WebRAMigrateRequestTemplate) GetMetadataOk() (*[]CertificateMetadataElement, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *WebRAMigrateRequestTemplate) SetMetadata(v []CertificateMetadataElement)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *WebRAMigrateRequestTemplate) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
+### SetMetadataNil
+
+`func (o *WebRAMigrateRequestTemplate) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *WebRAMigrateRequestTemplate) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
+### GetContactEmail
+
+`func (o *WebRAMigrateRequestTemplate) GetContactEmail() CertificateContactEmailElement`
+
+GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
+
+### GetContactEmailOk
+
+`func (o *WebRAMigrateRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool)`
+
+GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContactEmail
+
+`func (o *WebRAMigrateRequestTemplate) SetContactEmail(v CertificateContactEmailElement)`
+
+SetContactEmail sets ContactEmail field to given value.
+
+### HasContactEmail
+
+`func (o *WebRAMigrateRequestTemplate) HasContactEmail() bool`
+
+HasContactEmail returns a boolean if a field has been set.
+
+### SetContactEmailNil
+
+`func (o *WebRAMigrateRequestTemplate) SetContactEmailNil(b bool)`
+
+ SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+
+### UnsetContactEmail
+`func (o *WebRAMigrateRequestTemplate) UnsetContactEmail()`
+
+UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

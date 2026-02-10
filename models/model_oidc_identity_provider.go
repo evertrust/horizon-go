@@ -22,36 +22,36 @@ var _ utils.MappedNullable = &OidcIdentityProvider{}
 
 // OidcIdentityProvider struct for OidcIdentityProvider
 type OidcIdentityProvider struct {
-	// Name of the `password` [credentials](#tag/security.credentials) containing the client ID  and secret to use to authenticate Horizon against the identity provider
-	ClientCredentials string `json:"clientCredentials"`
-	// The description of the identity provider
-	Description []LocalizedString `json:"description,omitempty"`
+	// The internal name of the identity provider
+	Name string `json:"name"`
 	// The display name of the identity provider
 	DisplayName []LocalizedString `json:"displayName,omitempty"`
-	// The OpenID information that will be used as the user's email in Horizon
-	EmailClaim *string `json:"emailClaim,omitempty"`
+	// The description of the identity provider
+	Description []LocalizedString `json:"description,omitempty"`
+	// The type of Identity provider to register
+	Type string `json:"type"`
 	// Whether the identity provider can be used to identify against Horizon
 	Enabled bool `json:"enabled"`
 	// Whether the identity provider can be selected on login to the Horizon UI
 	EnabledOnUI bool `json:"enabledOnUI"`
-	// The OpenID information that will be used as the user's identifier in Horizon
-	IdentifierClaim *string `json:"identifierClaim,omitempty"`
-	// The internal name of the identity provider
-	Name string `json:"name"`
-	// The OpenID information that will be used as the user's name in Horizon
-	NameClaim *string `json:"nameClaim,omitempty"`
-	// The URL of the identity provider OpenID callback
-	ProviderMetadataUrl string `json:"providerMetadataUrl"`
 	// The name of the proxy to use to reach the identity provider
 	Proxy utils.NullableString `json:"proxy,omitempty"`
-	// The scope where to retrieve the user data from
-	Scope string `json:"scope"`
 	// The timeout value to use when connecting to the identity provider (must be a valid finite duration)
 	Timeout utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	// The URL of the identity provider OpenID callback
+	ProviderMetadataUrl string `json:"providerMetadataUrl"`
+	// Name of the `password` [credentials](#tag/security.credentials) containing the client ID  and secret to use to authenticate Horizon against the identity provider
+	ClientCredentials string `json:"clientCredentials"`
+	// The scope where to retrieve the user data from
+	Scope string `json:"scope"`
 	// Trust AC coming from the system trust store or only trust AC imported in Horizon
 	TrustSystemCAs bool `json:"trustSystemCAs"`
-	// The type of Identity provider to register
-	Type                 string `json:"type"`
+	// The OpenID information that will be used as the user's identifier in Horizon
+	IdentifierClaim *string `json:"identifierClaim,omitempty"`
+	// The OpenID information that will be used as the user's email in Horizon
+	EmailClaim *string `json:"emailClaim,omitempty"`
+	// The OpenID information that will be used as the user's name in Horizon
+	NameClaim            *string `json:"nameClaim,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,22 +61,22 @@ type _OidcIdentityProvider OidcIdentityProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOidcIdentityProvider(clientCredentials string, enabled bool, enabledOnUI bool, name string, providerMetadataUrl string, scope string, trustSystemCAs bool, type_ string) *OidcIdentityProvider {
+func NewOidcIdentityProvider(name string, type_ string, enabled bool, enabledOnUI bool, providerMetadataUrl string, clientCredentials string, scope string, trustSystemCAs bool) *OidcIdentityProvider {
 	this := OidcIdentityProvider{}
-	this.ClientCredentials = clientCredentials
-	var emailClaim string = "{{email}}"
-	this.EmailClaim = &emailClaim
+	this.Name = name
+	this.Type = type_
 	this.Enabled = enabled
 	this.EnabledOnUI = enabledOnUI
-	var identifierClaim string = "{{email}}"
-	this.IdentifierClaim = &identifierClaim
-	this.Name = name
-	var nameClaim string = "{{name}}"
-	this.NameClaim = &nameClaim
 	this.ProviderMetadataUrl = providerMetadataUrl
+	this.ClientCredentials = clientCredentials
 	this.Scope = scope
 	this.TrustSystemCAs = trustSystemCAs
-	this.Type = type_
+	var identifierClaim string = "{{email}}"
+	this.IdentifierClaim = &identifierClaim
+	var emailClaim string = "{{email}}"
+	this.EmailClaim = &emailClaim
+	var nameClaim string = "{{name}}"
+	this.NameClaim = &nameClaim
 	return &this
 }
 
@@ -85,72 +85,39 @@ func NewOidcIdentityProvider(clientCredentials string, enabled bool, enabledOnUI
 // but it doesn't guarantee that properties required by API are set
 func NewOidcIdentityProviderWithDefaults() *OidcIdentityProvider {
 	this := OidcIdentityProvider{}
-	var emailClaim string = "{{email}}"
-	this.EmailClaim = &emailClaim
-	var identifierClaim string = "{{email}}"
-	this.IdentifierClaim = &identifierClaim
-	var nameClaim string = "{{name}}"
-	this.NameClaim = &nameClaim
 	var trustSystemCAs bool = true
 	this.TrustSystemCAs = trustSystemCAs
+	var identifierClaim string = "{{email}}"
+	this.IdentifierClaim = &identifierClaim
+	var emailClaim string = "{{email}}"
+	this.EmailClaim = &emailClaim
+	var nameClaim string = "{{name}}"
+	this.NameClaim = &nameClaim
 	return &this
 }
 
-// GetClientCredentials returns the ClientCredentials field value
-func (o *OidcIdentityProvider) GetClientCredentials() string {
+// GetName returns the Name field value
+func (o *OidcIdentityProvider) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ClientCredentials
+	return o.Name
 }
 
-// GetClientCredentialsOk returns a tuple with the ClientCredentials field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *OidcIdentityProvider) GetClientCredentialsOk() (*string, bool) {
+func (o *OidcIdentityProvider) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ClientCredentials, true
+	return &o.Name, true
 }
 
-// SetClientCredentials sets field value
-func (o *OidcIdentityProvider) SetClientCredentials(v string) {
-	o.ClientCredentials = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *OidcIdentityProvider) GetDescription() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *OidcIdentityProvider) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *OidcIdentityProvider) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *OidcIdentityProvider) SetDescription(v []LocalizedString) {
-	o.Description = v
+// SetName sets field value
+func (o *OidcIdentityProvider) SetName(v string) {
+	o.Name = v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -186,36 +153,61 @@ func (o *OidcIdentityProvider) SetDisplayName(v []LocalizedString) {
 	o.DisplayName = v
 }
 
-// GetEmailClaim returns the EmailClaim field value if set, zero value otherwise.
-func (o *OidcIdentityProvider) GetEmailClaim() string {
-	if o == nil || utils.IsNil(o.EmailClaim) {
-		var ret string
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OidcIdentityProvider) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
 		return ret
 	}
-	return *o.EmailClaim
+	return o.Description
 }
 
-// GetEmailClaimOk returns a tuple with the EmailClaim field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OidcIdentityProvider) GetEmailClaimOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.EmailClaim) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OidcIdentityProvider) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
 		return nil, false
 	}
-	return o.EmailClaim, true
+	return o.Description, true
 }
 
-// HasEmailClaim returns a boolean if a field has been set.
-func (o *OidcIdentityProvider) HasEmailClaim() bool {
-	if o != nil && !utils.IsNil(o.EmailClaim) {
+// HasDescription returns a boolean if a field has been set.
+func (o *OidcIdentityProvider) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetEmailClaim gets a reference to the given string and assigns it to the EmailClaim field.
-func (o *OidcIdentityProvider) SetEmailClaim(v string) {
-	o.EmailClaim = &v
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *OidcIdentityProvider) SetDescription(v []LocalizedString) {
+	o.Description = v
+}
+
+// GetType returns the Type field value
+func (o *OidcIdentityProvider) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *OidcIdentityProvider) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *OidcIdentityProvider) SetType(v string) {
+	o.Type = v
 }
 
 // GetEnabled returns the Enabled field value
@@ -266,118 +258,6 @@ func (o *OidcIdentityProvider) SetEnabledOnUI(v bool) {
 	o.EnabledOnUI = v
 }
 
-// GetIdentifierClaim returns the IdentifierClaim field value if set, zero value otherwise.
-func (o *OidcIdentityProvider) GetIdentifierClaim() string {
-	if o == nil || utils.IsNil(o.IdentifierClaim) {
-		var ret string
-		return ret
-	}
-	return *o.IdentifierClaim
-}
-
-// GetIdentifierClaimOk returns a tuple with the IdentifierClaim field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OidcIdentityProvider) GetIdentifierClaimOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.IdentifierClaim) {
-		return nil, false
-	}
-	return o.IdentifierClaim, true
-}
-
-// HasIdentifierClaim returns a boolean if a field has been set.
-func (o *OidcIdentityProvider) HasIdentifierClaim() bool {
-	if o != nil && !utils.IsNil(o.IdentifierClaim) {
-		return true
-	}
-
-	return false
-}
-
-// SetIdentifierClaim gets a reference to the given string and assigns it to the IdentifierClaim field.
-func (o *OidcIdentityProvider) SetIdentifierClaim(v string) {
-	o.IdentifierClaim = &v
-}
-
-// GetName returns the Name field value
-func (o *OidcIdentityProvider) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *OidcIdentityProvider) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *OidcIdentityProvider) SetName(v string) {
-	o.Name = v
-}
-
-// GetNameClaim returns the NameClaim field value if set, zero value otherwise.
-func (o *OidcIdentityProvider) GetNameClaim() string {
-	if o == nil || utils.IsNil(o.NameClaim) {
-		var ret string
-		return ret
-	}
-	return *o.NameClaim
-}
-
-// GetNameClaimOk returns a tuple with the NameClaim field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OidcIdentityProvider) GetNameClaimOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.NameClaim) {
-		return nil, false
-	}
-	return o.NameClaim, true
-}
-
-// HasNameClaim returns a boolean if a field has been set.
-func (o *OidcIdentityProvider) HasNameClaim() bool {
-	if o != nil && !utils.IsNil(o.NameClaim) {
-		return true
-	}
-
-	return false
-}
-
-// SetNameClaim gets a reference to the given string and assigns it to the NameClaim field.
-func (o *OidcIdentityProvider) SetNameClaim(v string) {
-	o.NameClaim = &v
-}
-
-// GetProviderMetadataUrl returns the ProviderMetadataUrl field value
-func (o *OidcIdentityProvider) GetProviderMetadataUrl() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ProviderMetadataUrl
-}
-
-// GetProviderMetadataUrlOk returns a tuple with the ProviderMetadataUrl field value
-// and a boolean to check if the value has been set.
-func (o *OidcIdentityProvider) GetProviderMetadataUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ProviderMetadataUrl, true
-}
-
-// SetProviderMetadataUrl sets field value
-func (o *OidcIdentityProvider) SetProviderMetadataUrl(v string) {
-	o.ProviderMetadataUrl = v
-}
-
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OidcIdentityProvider) GetProxy() string {
 	if o == nil || utils.IsNil(o.Proxy.Get()) {
@@ -419,30 +299,6 @@ func (o *OidcIdentityProvider) SetProxyNil() {
 // UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
 func (o *OidcIdentityProvider) UnsetProxy() {
 	o.Proxy.Unset()
-}
-
-// GetScope returns the Scope field value
-func (o *OidcIdentityProvider) GetScope() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Scope
-}
-
-// GetScopeOk returns a tuple with the Scope field value
-// and a boolean to check if the value has been set.
-func (o *OidcIdentityProvider) GetScopeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Scope, true
-}
-
-// SetScope sets field value
-func (o *OidcIdentityProvider) SetScope(v string) {
-	o.Scope = v
 }
 
 // GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -488,6 +344,78 @@ func (o *OidcIdentityProvider) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
+// GetProviderMetadataUrl returns the ProviderMetadataUrl field value
+func (o *OidcIdentityProvider) GetProviderMetadataUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProviderMetadataUrl
+}
+
+// GetProviderMetadataUrlOk returns a tuple with the ProviderMetadataUrl field value
+// and a boolean to check if the value has been set.
+func (o *OidcIdentityProvider) GetProviderMetadataUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProviderMetadataUrl, true
+}
+
+// SetProviderMetadataUrl sets field value
+func (o *OidcIdentityProvider) SetProviderMetadataUrl(v string) {
+	o.ProviderMetadataUrl = v
+}
+
+// GetClientCredentials returns the ClientCredentials field value
+func (o *OidcIdentityProvider) GetClientCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ClientCredentials
+}
+
+// GetClientCredentialsOk returns a tuple with the ClientCredentials field value
+// and a boolean to check if the value has been set.
+func (o *OidcIdentityProvider) GetClientCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ClientCredentials, true
+}
+
+// SetClientCredentials sets field value
+func (o *OidcIdentityProvider) SetClientCredentials(v string) {
+	o.ClientCredentials = v
+}
+
+// GetScope returns the Scope field value
+func (o *OidcIdentityProvider) GetScope() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Scope
+}
+
+// GetScopeOk returns a tuple with the Scope field value
+// and a boolean to check if the value has been set.
+func (o *OidcIdentityProvider) GetScopeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Scope, true
+}
+
+// SetScope sets field value
+func (o *OidcIdentityProvider) SetScope(v string) {
+	o.Scope = v
+}
+
 // GetTrustSystemCAs returns the TrustSystemCAs field value
 func (o *OidcIdentityProvider) GetTrustSystemCAs() bool {
 	if o == nil {
@@ -512,28 +440,100 @@ func (o *OidcIdentityProvider) SetTrustSystemCAs(v bool) {
 	o.TrustSystemCAs = v
 }
 
-// GetType returns the Type field value
-func (o *OidcIdentityProvider) GetType() string {
-	if o == nil {
+// GetIdentifierClaim returns the IdentifierClaim field value if set, zero value otherwise.
+func (o *OidcIdentityProvider) GetIdentifierClaim() string {
+	if o == nil || utils.IsNil(o.IdentifierClaim) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.IdentifierClaim
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetIdentifierClaimOk returns a tuple with the IdentifierClaim field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OidcIdentityProvider) GetTypeOk() (*string, bool) {
-	if o == nil {
+func (o *OidcIdentityProvider) GetIdentifierClaimOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.IdentifierClaim) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.IdentifierClaim, true
 }
 
-// SetType sets field value
-func (o *OidcIdentityProvider) SetType(v string) {
-	o.Type = v
+// HasIdentifierClaim returns a boolean if a field has been set.
+func (o *OidcIdentityProvider) HasIdentifierClaim() bool {
+	if o != nil && !utils.IsNil(o.IdentifierClaim) {
+		return true
+	}
+
+	return false
+}
+
+// SetIdentifierClaim gets a reference to the given string and assigns it to the IdentifierClaim field.
+func (o *OidcIdentityProvider) SetIdentifierClaim(v string) {
+	o.IdentifierClaim = &v
+}
+
+// GetEmailClaim returns the EmailClaim field value if set, zero value otherwise.
+func (o *OidcIdentityProvider) GetEmailClaim() string {
+	if o == nil || utils.IsNil(o.EmailClaim) {
+		var ret string
+		return ret
+	}
+	return *o.EmailClaim
+}
+
+// GetEmailClaimOk returns a tuple with the EmailClaim field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcIdentityProvider) GetEmailClaimOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.EmailClaim) {
+		return nil, false
+	}
+	return o.EmailClaim, true
+}
+
+// HasEmailClaim returns a boolean if a field has been set.
+func (o *OidcIdentityProvider) HasEmailClaim() bool {
+	if o != nil && !utils.IsNil(o.EmailClaim) {
+		return true
+	}
+
+	return false
+}
+
+// SetEmailClaim gets a reference to the given string and assigns it to the EmailClaim field.
+func (o *OidcIdentityProvider) SetEmailClaim(v string) {
+	o.EmailClaim = &v
+}
+
+// GetNameClaim returns the NameClaim field value if set, zero value otherwise.
+func (o *OidcIdentityProvider) GetNameClaim() string {
+	if o == nil || utils.IsNil(o.NameClaim) {
+		var ret string
+		return ret
+	}
+	return *o.NameClaim
+}
+
+// GetNameClaimOk returns a tuple with the NameClaim field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcIdentityProvider) GetNameClaimOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.NameClaim) {
+		return nil, false
+	}
+	return o.NameClaim, true
+}
+
+// HasNameClaim returns a boolean if a field has been set.
+func (o *OidcIdentityProvider) HasNameClaim() bool {
+	if o != nil && !utils.IsNil(o.NameClaim) {
+		return true
+	}
+
+	return false
+}
+
+// SetNameClaim gets a reference to the given string and assigns it to the NameClaim field.
+func (o *OidcIdentityProvider) SetNameClaim(v string) {
+	o.NameClaim = &v
 }
 
 func (o OidcIdentityProvider) MarshalJSON() ([]byte, error) {
@@ -546,35 +546,35 @@ func (o OidcIdentityProvider) MarshalJSON() ([]byte, error) {
 
 func (o OidcIdentityProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["clientCredentials"] = o.ClientCredentials
+	toSerialize["name"] = o.Name
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
+	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
+	toSerialize["type"] = o.Type
+	toSerialize["enabled"] = o.Enabled
+	toSerialize["enabledOnUI"] = o.EnabledOnUI
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["providerMetadataUrl"] = o.ProviderMetadataUrl
+	toSerialize["clientCredentials"] = o.ClientCredentials
+	toSerialize["scope"] = o.Scope
+	toSerialize["trustSystemCAs"] = o.TrustSystemCAs
+	if !utils.IsNil(o.IdentifierClaim) {
+		toSerialize["identifierClaim"] = o.IdentifierClaim
 	}
 	if !utils.IsNil(o.EmailClaim) {
 		toSerialize["emailClaim"] = o.EmailClaim
 	}
-	toSerialize["enabled"] = o.Enabled
-	toSerialize["enabledOnUI"] = o.EnabledOnUI
-	if !utils.IsNil(o.IdentifierClaim) {
-		toSerialize["identifierClaim"] = o.IdentifierClaim
-	}
-	toSerialize["name"] = o.Name
 	if !utils.IsNil(o.NameClaim) {
 		toSerialize["nameClaim"] = o.NameClaim
 	}
-	toSerialize["providerMetadataUrl"] = o.ProviderMetadataUrl
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
-	toSerialize["scope"] = o.Scope
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
-	toSerialize["trustSystemCAs"] = o.TrustSystemCAs
-	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -588,14 +588,14 @@ func (o *OidcIdentityProvider) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"clientCredentials",
+		"name",
+		"type",
 		"enabled",
 		"enabledOnUI",
-		"name",
 		"providerMetadataUrl",
+		"clientCredentials",
 		"scope",
 		"trustSystemCAs",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -625,21 +625,21 @@ func (o *OidcIdentityProvider) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "clientCredentials")
-		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "emailClaim")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "enabledOnUI")
-		delete(additionalProperties, "identifierClaim")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "nameClaim")
-		delete(additionalProperties, "providerMetadataUrl")
 		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "scope")
 		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "providerMetadataUrl")
+		delete(additionalProperties, "clientCredentials")
+		delete(additionalProperties, "scope")
 		delete(additionalProperties, "trustSystemCAs")
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "identifierClaim")
+		delete(additionalProperties, "emailClaim")
+		delete(additionalProperties, "nameClaim")
 		o.AdditionalProperties = additionalProperties
 	}
 

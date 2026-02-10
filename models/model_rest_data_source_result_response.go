@@ -22,27 +22,27 @@ var _ utils.MappedNullable = &RESTDataSourceResultResponse{}
 
 // RESTDataSourceResultResponse struct for RESTDataSourceResultResponse
 type RESTDataSourceResultResponse struct {
-	// Headers that were sent
-	ComputedHeaders []map[string]interface{} `json:"computedHeaders,omitempty"`
-	// Url that was requested
-	ComputedPayload utils.NullableString `json:"computedPayload,omitempty"`
+	Type string `json:"type"`
 	// Url that was requested
 	ComputedUrl utils.NullableString `json:"computedUrl,omitempty"`
-	// Received response body
-	ResponseBody utils.NullableString `json:"responseBody,omitempty"`
+	// Url that was requested
+	ComputedPayload utils.NullableString `json:"computedPayload,omitempty"`
+	// Headers that were sent
+	ComputedHeaders []map[string]interface{} `json:"computedHeaders,omitempty"`
 	// Received response code
 	ResponseCode utils.NullableInt64 `json:"responseCode,omitempty"`
 	// Headers that were received
 	ResponseHeaders []map[string]interface{} `json:"responseHeaders,omitempty"`
-	Type            string                   `json:"type"`
-	// Data fetched from the datasource
-	Dictionary []MapEntry `json:"dictionary"`
-	// If `status` is `failure`, the error message
-	Error utils.NullableString `json:"error,omitempty"`
+	// Received response body
+	ResponseBody utils.NullableString `json:"responseBody,omitempty"`
 	// Name of the executed datasource
 	Name string `json:"name"`
 	// Status of the execution. `success` if the datasource data was fetched correctly, `failure` if an error occured and `ignored` if inputs were not all filled, resulting in no request being sent
-	Status               string `json:"status"`
+	Status string `json:"status"`
+	// Data fetched from the datasource
+	Dictionary []MapEntry `json:"dictionary"`
+	// If `status` is `failure`, the error message
+	Error                utils.NullableString `json:"error,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -52,12 +52,12 @@ type _RESTDataSourceResultResponse RESTDataSourceResultResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRESTDataSourceResultResponse(type_ string, dictionary []MapEntry, name string, status string) *RESTDataSourceResultResponse {
+func NewRESTDataSourceResultResponse(type_ string, name string, status string, dictionary []MapEntry) *RESTDataSourceResultResponse {
 	this := RESTDataSourceResultResponse{}
-	this.Dictionary = dictionary
 	this.Name = name
-	this.Status = status
 	this.Type = type_
+	this.Status = status
+	this.Dictionary = dictionary
 	return &this
 }
 
@@ -69,80 +69,28 @@ func NewRESTDataSourceResultResponseWithDefaults() *RESTDataSourceResultResponse
 	return &this
 }
 
-// GetComputedHeaders returns the ComputedHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RESTDataSourceResultResponse) GetComputedHeaders() []map[string]interface{} {
+// GetType returns the Type field value
+func (o *RESTDataSourceResultResponse) GetType() string {
 	if o == nil {
-		var ret []map[string]interface{}
-		return ret
-	}
-	return o.ComputedHeaders
-}
-
-// GetComputedHeadersOk returns a tuple with the ComputedHeaders field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RESTDataSourceResultResponse) GetComputedHeadersOk() ([]map[string]interface{}, bool) {
-	if o == nil || utils.IsNil(o.ComputedHeaders) {
-		return nil, false
-	}
-	return o.ComputedHeaders, true
-}
-
-// HasComputedHeaders returns a boolean if a field has been set.
-func (o *RESTDataSourceResultResponse) HasComputedHeaders() bool {
-	if o != nil && !utils.IsNil(o.ComputedHeaders) {
-		return true
-	}
-
-	return false
-}
-
-// SetComputedHeaders gets a reference to the given []map[string]interface{} and assigns it to the ComputedHeaders field.
-func (o *RESTDataSourceResultResponse) SetComputedHeaders(v []map[string]interface{}) {
-	o.ComputedHeaders = v
-}
-
-// GetComputedPayload returns the ComputedPayload field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RESTDataSourceResultResponse) GetComputedPayload() string {
-	if o == nil || utils.IsNil(o.ComputedPayload.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ComputedPayload.Get()
+
+	return o.Type
 }
 
-// GetComputedPayloadOk returns a tuple with the ComputedPayload field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RESTDataSourceResultResponse) GetComputedPayloadOk() (*string, bool) {
+func (o *RESTDataSourceResultResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ComputedPayload.Get(), o.ComputedPayload.IsSet()
+	return &o.Type, true
 }
 
-// HasComputedPayload returns a boolean if a field has been set.
-func (o *RESTDataSourceResultResponse) HasComputedPayload() bool {
-	if o != nil && o.ComputedPayload.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetComputedPayload gets a reference to the given NullableString and assigns it to the ComputedPayload field.
-func (o *RESTDataSourceResultResponse) SetComputedPayload(v string) {
-	o.ComputedPayload.Set(&v)
-}
-
-// SetComputedPayloadNil sets the value for ComputedPayload to be an explicit nil
-func (o *RESTDataSourceResultResponse) SetComputedPayloadNil() {
-	o.ComputedPayload.Set(nil)
-}
-
-// UnsetComputedPayload ensures that no value is present for ComputedPayload, not even an explicit nil
-func (o *RESTDataSourceResultResponse) UnsetComputedPayload() {
-	o.ComputedPayload.Unset()
+// SetType sets field value
+func (o *RESTDataSourceResultResponse) SetType(v string) {
+	o.Type = v
 }
 
 // GetComputedUrl returns the ComputedUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -188,47 +136,80 @@ func (o *RESTDataSourceResultResponse) UnsetComputedUrl() {
 	o.ComputedUrl.Unset()
 }
 
-// GetResponseBody returns the ResponseBody field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RESTDataSourceResultResponse) GetResponseBody() string {
-	if o == nil || utils.IsNil(o.ResponseBody.Get()) {
+// GetComputedPayload returns the ComputedPayload field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RESTDataSourceResultResponse) GetComputedPayload() string {
+	if o == nil || utils.IsNil(o.ComputedPayload.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ResponseBody.Get()
+	return *o.ComputedPayload.Get()
 }
 
-// GetResponseBodyOk returns a tuple with the ResponseBody field value if set, nil otherwise
+// GetComputedPayloadOk returns a tuple with the ComputedPayload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RESTDataSourceResultResponse) GetResponseBodyOk() (*string, bool) {
+func (o *RESTDataSourceResultResponse) GetComputedPayloadOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ResponseBody.Get(), o.ResponseBody.IsSet()
+	return o.ComputedPayload.Get(), o.ComputedPayload.IsSet()
 }
 
-// HasResponseBody returns a boolean if a field has been set.
-func (o *RESTDataSourceResultResponse) HasResponseBody() bool {
-	if o != nil && o.ResponseBody.IsSet() {
+// HasComputedPayload returns a boolean if a field has been set.
+func (o *RESTDataSourceResultResponse) HasComputedPayload() bool {
+	if o != nil && o.ComputedPayload.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetResponseBody gets a reference to the given NullableString and assigns it to the ResponseBody field.
-func (o *RESTDataSourceResultResponse) SetResponseBody(v string) {
-	o.ResponseBody.Set(&v)
+// SetComputedPayload gets a reference to the given NullableString and assigns it to the ComputedPayload field.
+func (o *RESTDataSourceResultResponse) SetComputedPayload(v string) {
+	o.ComputedPayload.Set(&v)
 }
 
-// SetResponseBodyNil sets the value for ResponseBody to be an explicit nil
-func (o *RESTDataSourceResultResponse) SetResponseBodyNil() {
-	o.ResponseBody.Set(nil)
+// SetComputedPayloadNil sets the value for ComputedPayload to be an explicit nil
+func (o *RESTDataSourceResultResponse) SetComputedPayloadNil() {
+	o.ComputedPayload.Set(nil)
 }
 
-// UnsetResponseBody ensures that no value is present for ResponseBody, not even an explicit nil
-func (o *RESTDataSourceResultResponse) UnsetResponseBody() {
-	o.ResponseBody.Unset()
+// UnsetComputedPayload ensures that no value is present for ComputedPayload, not even an explicit nil
+func (o *RESTDataSourceResultResponse) UnsetComputedPayload() {
+	o.ComputedPayload.Unset()
+}
+
+// GetComputedHeaders returns the ComputedHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RESTDataSourceResultResponse) GetComputedHeaders() []map[string]interface{} {
+	if o == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+	return o.ComputedHeaders
+}
+
+// GetComputedHeadersOk returns a tuple with the ComputedHeaders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RESTDataSourceResultResponse) GetComputedHeadersOk() ([]map[string]interface{}, bool) {
+	if o == nil || utils.IsNil(o.ComputedHeaders) {
+		return nil, false
+	}
+	return o.ComputedHeaders, true
+}
+
+// HasComputedHeaders returns a boolean if a field has been set.
+func (o *RESTDataSourceResultResponse) HasComputedHeaders() bool {
+	if o != nil && !utils.IsNil(o.ComputedHeaders) {
+		return true
+	}
+
+	return false
+}
+
+// SetComputedHeaders gets a reference to the given []map[string]interface{} and assigns it to the ComputedHeaders field.
+func (o *RESTDataSourceResultResponse) SetComputedHeaders(v []map[string]interface{}) {
+	o.ComputedHeaders = v
 }
 
 // GetResponseCode returns the ResponseCode field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -307,28 +288,95 @@ func (o *RESTDataSourceResultResponse) SetResponseHeaders(v []map[string]interfa
 	o.ResponseHeaders = v
 }
 
-// GetType returns the Type field value
-func (o *RESTDataSourceResultResponse) GetType() string {
+// GetResponseBody returns the ResponseBody field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RESTDataSourceResultResponse) GetResponseBody() string {
+	if o == nil || utils.IsNil(o.ResponseBody.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ResponseBody.Get()
+}
+
+// GetResponseBodyOk returns a tuple with the ResponseBody field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RESTDataSourceResultResponse) GetResponseBodyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ResponseBody.Get(), o.ResponseBody.IsSet()
+}
+
+// HasResponseBody returns a boolean if a field has been set.
+func (o *RESTDataSourceResultResponse) HasResponseBody() bool {
+	if o != nil && o.ResponseBody.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetResponseBody gets a reference to the given NullableString and assigns it to the ResponseBody field.
+func (o *RESTDataSourceResultResponse) SetResponseBody(v string) {
+	o.ResponseBody.Set(&v)
+}
+
+// SetResponseBodyNil sets the value for ResponseBody to be an explicit nil
+func (o *RESTDataSourceResultResponse) SetResponseBodyNil() {
+	o.ResponseBody.Set(nil)
+}
+
+// UnsetResponseBody ensures that no value is present for ResponseBody, not even an explicit nil
+func (o *RESTDataSourceResultResponse) UnsetResponseBody() {
+	o.ResponseBody.Unset()
+}
+
+// GetName returns the Name field value
+func (o *RESTDataSourceResultResponse) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.Name
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *RESTDataSourceResultResponse) GetTypeOk() (*string, bool) {
+func (o *RESTDataSourceResultResponse) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.Name, true
 }
 
-// SetType sets field value
-func (o *RESTDataSourceResultResponse) SetType(v string) {
-	o.Type = v
+// SetName sets field value
+func (o *RESTDataSourceResultResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetStatus returns the Status field value
+func (o *RESTDataSourceResultResponse) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *RESTDataSourceResultResponse) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *RESTDataSourceResultResponse) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetDictionary returns the Dictionary field value
@@ -398,54 +446,6 @@ func (o *RESTDataSourceResultResponse) UnsetError() {
 	o.Error.Unset()
 }
 
-// GetName returns the Name field value
-func (o *RESTDataSourceResultResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *RESTDataSourceResultResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *RESTDataSourceResultResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetStatus returns the Status field value
-func (o *RESTDataSourceResultResponse) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *RESTDataSourceResultResponse) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *RESTDataSourceResultResponse) SetStatus(v string) {
-	o.Status = v
-}
-
 func (o RESTDataSourceResultResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -456,17 +456,15 @@ func (o RESTDataSourceResultResponse) MarshalJSON() ([]byte, error) {
 
 func (o RESTDataSourceResultResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ComputedHeaders != nil {
-		toSerialize["computedHeaders"] = o.ComputedHeaders
+	toSerialize["type"] = o.Type
+	if o.ComputedUrl.IsSet() {
+		toSerialize["computedUrl"] = o.ComputedUrl.Get()
 	}
 	if o.ComputedPayload.IsSet() {
 		toSerialize["computedPayload"] = o.ComputedPayload.Get()
 	}
-	if o.ComputedUrl.IsSet() {
-		toSerialize["computedUrl"] = o.ComputedUrl.Get()
-	}
-	if o.ResponseBody.IsSet() {
-		toSerialize["responseBody"] = o.ResponseBody.Get()
+	if o.ComputedHeaders != nil {
+		toSerialize["computedHeaders"] = o.ComputedHeaders
 	}
 	if o.ResponseCode.IsSet() {
 		toSerialize["responseCode"] = o.ResponseCode.Get()
@@ -474,13 +472,15 @@ func (o RESTDataSourceResultResponse) ToMap() (map[string]interface{}, error) {
 	if o.ResponseHeaders != nil {
 		toSerialize["responseHeaders"] = o.ResponseHeaders
 	}
-	toSerialize["type"] = o.Type
+	if o.ResponseBody.IsSet() {
+		toSerialize["responseBody"] = o.ResponseBody.Get()
+	}
+	toSerialize["name"] = o.Name
+	toSerialize["status"] = o.Status
 	toSerialize["dictionary"] = o.Dictionary
 	if o.Error.IsSet() {
 		toSerialize["error"] = o.Error.Get()
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -495,9 +495,9 @@ func (o *RESTDataSourceResultResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"type",
-		"dictionary",
 		"name",
 		"status",
+		"dictionary",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -527,17 +527,17 @@ func (o *RESTDataSourceResultResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "computedHeaders")
-		delete(additionalProperties, "computedPayload")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "computedUrl")
-		delete(additionalProperties, "responseBody")
+		delete(additionalProperties, "computedPayload")
+		delete(additionalProperties, "computedHeaders")
 		delete(additionalProperties, "responseCode")
 		delete(additionalProperties, "responseHeaders")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "dictionary")
-		delete(additionalProperties, "error")
+		delete(additionalProperties, "responseBody")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "dictionary")
+		delete(additionalProperties, "error")
 		o.AdditionalProperties = additionalProperties
 	}
 

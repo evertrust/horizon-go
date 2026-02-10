@@ -42,8 +42,8 @@ type _WebRAMigrateRequestOnTemplate WebRAMigrateRequestOnTemplate
 // will change when the set of required properties is changed
 func NewWebRAMigrateRequestOnTemplate(workflow string, profile string) *WebRAMigrateRequestOnTemplate {
 	this := WebRAMigrateRequestOnTemplate{}
-	this.Profile = profile
 	this.Workflow = workflow
+	this.Profile = profile
 	return &this
 }
 

@@ -5,23 +5,23 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**AuthenticationCredentials** | Pointer to **NullableString** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | [optional] 
-**Ca** | **string** | Stream&#39;s technical name of the CA on which to enroll | 
-**EndPoint** | **string** | Stream&#39;s base endpoint | 
-**LoginCredentials** | Pointer to **NullableString** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | [optional] 
 **Name** | **string** |  | 
+**Type** | **string** |  | 
+**EndPoint** | **string** | Stream&#39;s base endpoint | 
+**Template** | **string** | Stream&#39;s certificate template to use for enrollment | 
+**Ca** | **string** | Stream&#39;s technical name of the CA on which to enroll | 
+**LoginCredentials** | Pointer to **NullableString** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | [optional] 
+**AuthenticationCredentials** | Pointer to **NullableString** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
-**Template** | **string** | Stream&#39;s certificate template to use for enrollment | 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Type** | **string** |  | 
 
 ## Methods
 
 ### NewStreamConnectorResponse
 
-`func NewStreamConnectorResponse(id string, ca string, endPoint string, name string, template string, type_ string, ) *StreamConnectorResponse`
+`func NewStreamConnectorResponse(id string, name string, type_ string, endPoint string, template string, ca string, ) *StreamConnectorResponse`
 
 NewStreamConnectorResponse instantiates a new StreamConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -56,59 +56,44 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetAuthenticationCredentials
+### GetName
 
-`func (o *StreamConnectorResponse) GetAuthenticationCredentials() string`
+`func (o *StreamConnectorResponse) GetName() string`
 
-GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAuthenticationCredentialsOk
+### GetNameOk
 
-`func (o *StreamConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool)`
+`func (o *StreamConnectorResponse) GetNameOk() (*string, bool)`
 
-GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationCredentials
+### SetName
 
-`func (o *StreamConnectorResponse) SetAuthenticationCredentials(v string)`
+`func (o *StreamConnectorResponse) SetName(v string)`
 
-SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
+SetName sets Name field to given value.
 
-### HasAuthenticationCredentials
 
-`func (o *StreamConnectorResponse) HasAuthenticationCredentials() bool`
+### GetType
 
-HasAuthenticationCredentials returns a boolean if a field has been set.
+`func (o *StreamConnectorResponse) GetType() string`
 
-### SetAuthenticationCredentialsNil
+GetType returns the Type field if non-nil, zero value otherwise.
 
-`func (o *StreamConnectorResponse) SetAuthenticationCredentialsNil(b bool)`
+### GetTypeOk
 
- SetAuthenticationCredentialsNil sets the value for AuthenticationCredentials to be an explicit nil
+`func (o *StreamConnectorResponse) GetTypeOk() (*string, bool)`
 
-### UnsetAuthenticationCredentials
-`func (o *StreamConnectorResponse) UnsetAuthenticationCredentials()`
-
-UnsetAuthenticationCredentials ensures that no value is present for AuthenticationCredentials, not even an explicit nil
-### GetCa
-
-`func (o *StreamConnectorResponse) GetCa() string`
-
-GetCa returns the Ca field if non-nil, zero value otherwise.
-
-### GetCaOk
-
-`func (o *StreamConnectorResponse) GetCaOk() (*string, bool)`
-
-GetCaOk returns a tuple with the Ca field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCa
+### SetType
 
-`func (o *StreamConnectorResponse) SetCa(v string)`
+`func (o *StreamConnectorResponse) SetType(v string)`
 
-SetCa sets Ca field to given value.
+SetType sets Type field to given value.
 
 
 ### GetEndPoint
@@ -129,6 +114,46 @@ and a boolean to check if the value has been set.
 `func (o *StreamConnectorResponse) SetEndPoint(v string)`
 
 SetEndPoint sets EndPoint field to given value.
+
+
+### GetTemplate
+
+`func (o *StreamConnectorResponse) GetTemplate() string`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *StreamConnectorResponse) GetTemplateOk() (*string, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *StreamConnectorResponse) SetTemplate(v string)`
+
+SetTemplate sets Template field to given value.
+
+
+### GetCa
+
+`func (o *StreamConnectorResponse) GetCa() string`
+
+GetCa returns the Ca field if non-nil, zero value otherwise.
+
+### GetCaOk
+
+`func (o *StreamConnectorResponse) GetCaOk() (*string, bool)`
+
+GetCaOk returns a tuple with the Ca field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCa
+
+`func (o *StreamConnectorResponse) SetCa(v string)`
+
+SetCa sets Ca field to given value.
 
 
 ### GetLoginCredentials
@@ -166,26 +191,76 @@ HasLoginCredentials returns a boolean if a field has been set.
 `func (o *StreamConnectorResponse) UnsetLoginCredentials()`
 
 UnsetLoginCredentials ensures that no value is present for LoginCredentials, not even an explicit nil
-### GetName
+### GetAuthenticationCredentials
 
-`func (o *StreamConnectorResponse) GetName() string`
+`func (o *StreamConnectorResponse) GetAuthenticationCredentials() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAuthenticationCredentialsOk
 
-`func (o *StreamConnectorResponse) GetNameOk() (*string, bool)`
+`func (o *StreamConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetAuthenticationCredentials
 
-`func (o *StreamConnectorResponse) SetName(v string)`
+`func (o *StreamConnectorResponse) SetAuthenticationCredentials(v string)`
 
-SetName sets Name field to given value.
+SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
 
+### HasAuthenticationCredentials
 
+`func (o *StreamConnectorResponse) HasAuthenticationCredentials() bool`
+
+HasAuthenticationCredentials returns a boolean if a field has been set.
+
+### SetAuthenticationCredentialsNil
+
+`func (o *StreamConnectorResponse) SetAuthenticationCredentialsNil(b bool)`
+
+ SetAuthenticationCredentialsNil sets the value for AuthenticationCredentials to be an explicit nil
+
+### UnsetAuthenticationCredentials
+`func (o *StreamConnectorResponse) UnsetAuthenticationCredentials()`
+
+UnsetAuthenticationCredentials ensures that no value is present for AuthenticationCredentials, not even an explicit nil
+### GetTimeout
+
+`func (o *StreamConnectorResponse) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *StreamConnectorResponse) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *StreamConnectorResponse) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *StreamConnectorResponse) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *StreamConnectorResponse) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *StreamConnectorResponse) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *StreamConnectorResponse) GetProxy() string`
@@ -291,81 +366,6 @@ HasStatus returns a boolean if a field has been set.
 `func (o *StreamConnectorResponse) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
-### GetTemplate
-
-`func (o *StreamConnectorResponse) GetTemplate() string`
-
-GetTemplate returns the Template field if non-nil, zero value otherwise.
-
-### GetTemplateOk
-
-`func (o *StreamConnectorResponse) GetTemplateOk() (*string, bool)`
-
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplate
-
-`func (o *StreamConnectorResponse) SetTemplate(v string)`
-
-SetTemplate sets Template field to given value.
-
-
-### GetTimeout
-
-`func (o *StreamConnectorResponse) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *StreamConnectorResponse) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *StreamConnectorResponse) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *StreamConnectorResponse) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *StreamConnectorResponse) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *StreamConnectorResponse) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
-
-`func (o *StreamConnectorResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *StreamConnectorResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *StreamConnectorResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

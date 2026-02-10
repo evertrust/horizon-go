@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &MetadataPolicy{}
 
 // MetadataPolicy struct for MetadataPolicy
 type MetadataPolicy struct {
-	EditableByApprover   bool   `json:"editableByApprover"`
-	EditableByRequester  bool   `json:"editableByRequester"`
 	Metadata             string `json:"metadata"`
+	EditableByRequester  bool   `json:"editableByRequester"`
+	EditableByApprover   bool   `json:"editableByApprover"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,11 +34,11 @@ type _MetadataPolicy MetadataPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMetadataPolicy(editableByApprover bool, editableByRequester bool, metadata string) *MetadataPolicy {
+func NewMetadataPolicy(metadata string, editableByRequester bool, editableByApprover bool) *MetadataPolicy {
 	this := MetadataPolicy{}
-	this.EditableByApprover = editableByApprover
-	this.EditableByRequester = editableByRequester
 	this.Metadata = metadata
+	this.EditableByRequester = editableByRequester
+	this.EditableByApprover = editableByApprover
 	return &this
 }
 
@@ -48,54 +48,6 @@ func NewMetadataPolicy(editableByApprover bool, editableByRequester bool, metada
 func NewMetadataPolicyWithDefaults() *MetadataPolicy {
 	this := MetadataPolicy{}
 	return &this
-}
-
-// GetEditableByApprover returns the EditableByApprover field value
-func (o *MetadataPolicy) GetEditableByApprover() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.EditableByApprover
-}
-
-// GetEditableByApproverOk returns a tuple with the EditableByApprover field value
-// and a boolean to check if the value has been set.
-func (o *MetadataPolicy) GetEditableByApproverOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EditableByApprover, true
-}
-
-// SetEditableByApprover sets field value
-func (o *MetadataPolicy) SetEditableByApprover(v bool) {
-	o.EditableByApprover = v
-}
-
-// GetEditableByRequester returns the EditableByRequester field value
-func (o *MetadataPolicy) GetEditableByRequester() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.EditableByRequester
-}
-
-// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value
-// and a boolean to check if the value has been set.
-func (o *MetadataPolicy) GetEditableByRequesterOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EditableByRequester, true
-}
-
-// SetEditableByRequester sets field value
-func (o *MetadataPolicy) SetEditableByRequester(v bool) {
-	o.EditableByRequester = v
 }
 
 // GetMetadata returns the Metadata field value
@@ -122,6 +74,54 @@ func (o *MetadataPolicy) SetMetadata(v string) {
 	o.Metadata = v
 }
 
+// GetEditableByRequester returns the EditableByRequester field value
+func (o *MetadataPolicy) GetEditableByRequester() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.EditableByRequester
+}
+
+// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value
+// and a boolean to check if the value has been set.
+func (o *MetadataPolicy) GetEditableByRequesterOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EditableByRequester, true
+}
+
+// SetEditableByRequester sets field value
+func (o *MetadataPolicy) SetEditableByRequester(v bool) {
+	o.EditableByRequester = v
+}
+
+// GetEditableByApprover returns the EditableByApprover field value
+func (o *MetadataPolicy) GetEditableByApprover() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.EditableByApprover
+}
+
+// GetEditableByApproverOk returns a tuple with the EditableByApprover field value
+// and a boolean to check if the value has been set.
+func (o *MetadataPolicy) GetEditableByApproverOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EditableByApprover, true
+}
+
+// SetEditableByApprover sets field value
+func (o *MetadataPolicy) SetEditableByApprover(v bool) {
+	o.EditableByApprover = v
+}
+
 func (o MetadataPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -132,9 +132,9 @@ func (o MetadataPolicy) MarshalJSON() ([]byte, error) {
 
 func (o MetadataPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["editableByApprover"] = o.EditableByApprover
-	toSerialize["editableByRequester"] = o.EditableByRequester
 	toSerialize["metadata"] = o.Metadata
+	toSerialize["editableByRequester"] = o.EditableByRequester
+	toSerialize["editableByApprover"] = o.EditableByApprover
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -148,9 +148,9 @@ func (o *MetadataPolicy) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"editableByApprover",
-		"editableByRequester",
 		"metadata",
+		"editableByRequester",
+		"editableByApprover",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -180,9 +180,9 @@ func (o *MetadataPolicy) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "editableByApprover")
-		delete(additionalProperties, "editableByRequester")
 		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "editableByRequester")
+		delete(additionalProperties, "editableByApprover")
 		o.AdditionalProperties = additionalProperties
 	}
 

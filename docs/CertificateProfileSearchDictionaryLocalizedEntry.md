@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized description of the profile | [optional] 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the profile | [optional] 
-**Module** | **string** | The module on which the profile belongs | 
 **Name** | **string** | The technical name of the profile | 
+**Module** | **string** | The module on which the profile belongs | 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the profile | [optional] 
+**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized description of the profile | [optional] 
 
 ## Methods
 
 ### NewCertificateProfileSearchDictionaryLocalizedEntry
 
-`func NewCertificateProfileSearchDictionaryLocalizedEntry(module string, name string, ) *CertificateProfileSearchDictionaryLocalizedEntry`
+`func NewCertificateProfileSearchDictionaryLocalizedEntry(name string, module string, ) *CertificateProfileSearchDictionaryLocalizedEntry`
 
 NewCertificateProfileSearchDictionaryLocalizedEntry instantiates a new CertificateProfileSearchDictionaryLocalizedEntry object
 This constructor will assign default values to properties that have it defined,
@@ -28,41 +28,46 @@ NewCertificateProfileSearchDictionaryLocalizedEntryWithDefaults instantiates a n
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDescription
+### GetName
 
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDescription() []LocalizedString`
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetName() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetNameOk
 
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDescriptionOk() (*[]LocalizedString, bool)`
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetName
 
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetDescription(v []LocalizedString)`
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetName(v string)`
 
-SetDescription sets Description field to given value.
+SetName sets Name field to given value.
 
-### HasDescription
 
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) HasDescription() bool`
+### GetModule
 
-HasDescription returns a boolean if a field has been set.
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModule() string`
 
-### SetDescriptionNil
+GetModule returns the Module field if non-nil, zero value otherwise.
 
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetDescriptionNil(b bool)`
+### GetModuleOk
 
- SetDescriptionNil sets the value for Description to be an explicit nil
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModuleOk() (*string, bool)`
 
-### UnsetDescription
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) UnsetDescription()`
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### SetModule
+
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetModule(v string)`
+
+SetModule sets Module field to given value.
+
+
 ### GetDisplayName
 
 `func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDisplayName() []LocalizedString`
@@ -98,46 +103,41 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *CertificateProfileSearchDictionaryLocalizedEntry) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetModule
+### GetDescription
 
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModule() string`
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDescription() []LocalizedString`
 
-GetModule returns the Module field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetModuleOk
+### GetDescriptionOk
 
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModuleOk() (*string, bool)`
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDescriptionOk() (*[]LocalizedString, bool)`
 
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetModule
+### SetDescription
 
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetModule(v string)`
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetDescription(v []LocalizedString)`
 
-SetModule sets Module field to given value.
+SetDescription sets Description field to given value.
 
+### HasDescription
 
-### GetName
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) HasDescription() bool`
 
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetName() string`
+HasDescription returns a boolean if a field has been set.
 
-GetName returns the Name field if non-nil, zero value otherwise.
+### SetDescriptionNil
 
-### GetNameOk
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetDescriptionNil(b bool)`
 
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool)`
+ SetDescriptionNil sets the value for Description to be an explicit nil
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetDescription
+`func (o *CertificateProfileSearchDictionaryLocalizedEntry) UnsetDescription()`
 
-### SetName
-
-`func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiCredentials** | **string** | Name of the &#x60;raw&#x60; [credentials](#tag/security.credentials) containing the API key to authenticate on the PKI | 
-**AuthenticationDomainId** | **int64** |  | 
-**DefaultOwner** | **string** |  | 
-**DeleteOnRevoke** | **bool** |  | 
-**EndPoint** | **string** |  | 
 **Name** | **string** |  | 
+**Type** | **string** |  | 
+**EndPoint** | **string** |  | 
+**ApiCredentials** | **string** | Name of the &#x60;raw&#x60; [credentials](#tag/security.credentials) containing the API key to authenticate on the PKI | 
+**TemplateId** | **int64** |  | 
+**DefaultOwner** | **string** |  | 
+**AuthenticationDomainId** | **int64** |  | 
 **OwnerGroups** | Pointer to **NullableString** |  | [optional] 
+**DeleteOnRevoke** | **bool** |  | 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
-**TemplateId** | **int64** |  | 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Type** | **string** |  | 
 
 ## Methods
 
 ### NewFCMSConnector
 
-`func NewFCMSConnector(apiCredentials string, authenticationDomainId int64, defaultOwner string, deleteOnRevoke bool, endPoint string, name string, templateId int64, type_ string, ) *FCMSConnector`
+`func NewFCMSConnector(name string, type_ string, endPoint string, apiCredentials string, templateId int64, defaultOwner string, authenticationDomainId int64, deleteOnRevoke bool, ) *FCMSConnector`
 
 NewFCMSConnector instantiates a new FCMSConnector object
 This constructor will assign default values to properties that have it defined,
@@ -36,84 +36,44 @@ NewFCMSConnectorWithDefaults instantiates a new FCMSConnector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetApiCredentials
+### GetName
 
-`func (o *FCMSConnector) GetApiCredentials() string`
+`func (o *FCMSConnector) GetName() string`
 
-GetApiCredentials returns the ApiCredentials field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetApiCredentialsOk
+### GetNameOk
 
-`func (o *FCMSConnector) GetApiCredentialsOk() (*string, bool)`
+`func (o *FCMSConnector) GetNameOk() (*string, bool)`
 
-GetApiCredentialsOk returns a tuple with the ApiCredentials field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetApiCredentials
+### SetName
 
-`func (o *FCMSConnector) SetApiCredentials(v string)`
+`func (o *FCMSConnector) SetName(v string)`
 
-SetApiCredentials sets ApiCredentials field to given value.
+SetName sets Name field to given value.
 
 
-### GetAuthenticationDomainId
+### GetType
 
-`func (o *FCMSConnector) GetAuthenticationDomainId() int64`
+`func (o *FCMSConnector) GetType() string`
 
-GetAuthenticationDomainId returns the AuthenticationDomainId field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetAuthenticationDomainIdOk
+### GetTypeOk
 
-`func (o *FCMSConnector) GetAuthenticationDomainIdOk() (*int64, bool)`
+`func (o *FCMSConnector) GetTypeOk() (*string, bool)`
 
-GetAuthenticationDomainIdOk returns a tuple with the AuthenticationDomainId field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationDomainId
+### SetType
 
-`func (o *FCMSConnector) SetAuthenticationDomainId(v int64)`
+`func (o *FCMSConnector) SetType(v string)`
 
-SetAuthenticationDomainId sets AuthenticationDomainId field to given value.
-
-
-### GetDefaultOwner
-
-`func (o *FCMSConnector) GetDefaultOwner() string`
-
-GetDefaultOwner returns the DefaultOwner field if non-nil, zero value otherwise.
-
-### GetDefaultOwnerOk
-
-`func (o *FCMSConnector) GetDefaultOwnerOk() (*string, bool)`
-
-GetDefaultOwnerOk returns a tuple with the DefaultOwner field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultOwner
-
-`func (o *FCMSConnector) SetDefaultOwner(v string)`
-
-SetDefaultOwner sets DefaultOwner field to given value.
-
-
-### GetDeleteOnRevoke
-
-`func (o *FCMSConnector) GetDeleteOnRevoke() bool`
-
-GetDeleteOnRevoke returns the DeleteOnRevoke field if non-nil, zero value otherwise.
-
-### GetDeleteOnRevokeOk
-
-`func (o *FCMSConnector) GetDeleteOnRevokeOk() (*bool, bool)`
-
-GetDeleteOnRevokeOk returns a tuple with the DeleteOnRevoke field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDeleteOnRevoke
-
-`func (o *FCMSConnector) SetDeleteOnRevoke(v bool)`
-
-SetDeleteOnRevoke sets DeleteOnRevoke field to given value.
+SetType sets Type field to given value.
 
 
 ### GetEndPoint
@@ -136,24 +96,84 @@ and a boolean to check if the value has been set.
 SetEndPoint sets EndPoint field to given value.
 
 
-### GetName
+### GetApiCredentials
 
-`func (o *FCMSConnector) GetName() string`
+`func (o *FCMSConnector) GetApiCredentials() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetApiCredentials returns the ApiCredentials field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetApiCredentialsOk
 
-`func (o *FCMSConnector) GetNameOk() (*string, bool)`
+`func (o *FCMSConnector) GetApiCredentialsOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetApiCredentialsOk returns a tuple with the ApiCredentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetApiCredentials
 
-`func (o *FCMSConnector) SetName(v string)`
+`func (o *FCMSConnector) SetApiCredentials(v string)`
 
-SetName sets Name field to given value.
+SetApiCredentials sets ApiCredentials field to given value.
+
+
+### GetTemplateId
+
+`func (o *FCMSConnector) GetTemplateId() int64`
+
+GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+
+### GetTemplateIdOk
+
+`func (o *FCMSConnector) GetTemplateIdOk() (*int64, bool)`
+
+GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplateId
+
+`func (o *FCMSConnector) SetTemplateId(v int64)`
+
+SetTemplateId sets TemplateId field to given value.
+
+
+### GetDefaultOwner
+
+`func (o *FCMSConnector) GetDefaultOwner() string`
+
+GetDefaultOwner returns the DefaultOwner field if non-nil, zero value otherwise.
+
+### GetDefaultOwnerOk
+
+`func (o *FCMSConnector) GetDefaultOwnerOk() (*string, bool)`
+
+GetDefaultOwnerOk returns a tuple with the DefaultOwner field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultOwner
+
+`func (o *FCMSConnector) SetDefaultOwner(v string)`
+
+SetDefaultOwner sets DefaultOwner field to given value.
+
+
+### GetAuthenticationDomainId
+
+`func (o *FCMSConnector) GetAuthenticationDomainId() int64`
+
+GetAuthenticationDomainId returns the AuthenticationDomainId field if non-nil, zero value otherwise.
+
+### GetAuthenticationDomainIdOk
+
+`func (o *FCMSConnector) GetAuthenticationDomainIdOk() (*int64, bool)`
+
+GetAuthenticationDomainIdOk returns a tuple with the AuthenticationDomainId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationDomainId
+
+`func (o *FCMSConnector) SetAuthenticationDomainId(v int64)`
+
+SetAuthenticationDomainId sets AuthenticationDomainId field to given value.
 
 
 ### GetOwnerGroups
@@ -191,6 +211,61 @@ HasOwnerGroups returns a boolean if a field has been set.
 `func (o *FCMSConnector) UnsetOwnerGroups()`
 
 UnsetOwnerGroups ensures that no value is present for OwnerGroups, not even an explicit nil
+### GetDeleteOnRevoke
+
+`func (o *FCMSConnector) GetDeleteOnRevoke() bool`
+
+GetDeleteOnRevoke returns the DeleteOnRevoke field if non-nil, zero value otherwise.
+
+### GetDeleteOnRevokeOk
+
+`func (o *FCMSConnector) GetDeleteOnRevokeOk() (*bool, bool)`
+
+GetDeleteOnRevokeOk returns a tuple with the DeleteOnRevoke field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeleteOnRevoke
+
+`func (o *FCMSConnector) SetDeleteOnRevoke(v bool)`
+
+SetDeleteOnRevoke sets DeleteOnRevoke field to given value.
+
+
+### GetTimeout
+
+`func (o *FCMSConnector) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *FCMSConnector) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *FCMSConnector) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *FCMSConnector) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *FCMSConnector) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *FCMSConnector) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *FCMSConnector) GetProxy() string`
@@ -261,81 +336,6 @@ HasQueue returns a boolean if a field has been set.
 `func (o *FCMSConnector) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
-### GetTemplateId
-
-`func (o *FCMSConnector) GetTemplateId() int64`
-
-GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
-
-### GetTemplateIdOk
-
-`func (o *FCMSConnector) GetTemplateIdOk() (*int64, bool)`
-
-GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplateId
-
-`func (o *FCMSConnector) SetTemplateId(v int64)`
-
-SetTemplateId sets TemplateId field to given value.
-
-
-### GetTimeout
-
-`func (o *FCMSConnector) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *FCMSConnector) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *FCMSConnector) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *FCMSConnector) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *FCMSConnector) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *FCMSConnector) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
-
-`func (o *FCMSConnector) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *FCMSConnector) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *FCMSConnector) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

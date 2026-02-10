@@ -22,22 +22,22 @@ var _ utils.MappedNullable = &EntrustConnector{}
 
 // EntrustConnector struct for EntrustConnector
 type EntrustConnector struct {
-	// Name of the `certificate` [credentials](#tag/security.credentials) to use to authenticate on the PKI
-	AuthenticationCredentials string               `json:"authenticationCredentials"`
-	CertLifetime              utils.NullableString `json:"certLifetime,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	CertType                  string               `json:"certType"`
-	ClientId                  utils.NullableInt64  `json:"clientId,omitempty"`
+	Name string `json:"name"`
+	Type string `json:"type"`
 	// Name of the `password` [credentials](#tag/security.credentials) to use for technical account on the PKI
 	LoginCredentials     string               `json:"loginCredentials"`
-	Name                 string               `json:"name"`
-	Proxy                utils.NullableString `json:"proxy,omitempty"`
-	Queue                utils.NullableString `json:"queue,omitempty"`
+	CertType             string               `json:"certType"`
 	RequesterDefaultMail string               `json:"requesterDefaultMail"`
 	RequesterName        utils.NullableString `json:"requesterName,omitempty"`
 	RequesterPhone       utils.NullableString `json:"requesterPhone,omitempty"`
-	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Type                 string               `json:"type"`
-	AdditionalProperties map[string]interface{}
+	CertLifetime         utils.NullableString `json:"certLifetime,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	ClientId             utils.NullableInt64  `json:"clientId,omitempty"`
+	// Name of the `certificate` [credentials](#tag/security.credentials) to use to authenticate on the PKI
+	AuthenticationCredentials string               `json:"authenticationCredentials"`
+	Timeout                   utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Proxy                     utils.NullableString `json:"proxy,omitempty"`
+	Queue                     utils.NullableString `json:"queue,omitempty"`
+	AdditionalProperties      map[string]interface{}
 }
 
 type _EntrustConnector EntrustConnector
@@ -46,14 +46,14 @@ type _EntrustConnector EntrustConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEntrustConnector(authenticationCredentials string, certType string, loginCredentials string, name string, requesterDefaultMail string, type_ string) *EntrustConnector {
+func NewEntrustConnector(name string, type_ string, loginCredentials string, certType string, requesterDefaultMail string, authenticationCredentials string) *EntrustConnector {
 	this := EntrustConnector{}
-	this.AuthenticationCredentials = authenticationCredentials
-	this.CertType = certType
-	this.LoginCredentials = loginCredentials
 	this.Name = name
-	this.RequesterDefaultMail = requesterDefaultMail
 	this.Type = type_
+	this.LoginCredentials = loginCredentials
+	this.CertType = certType
+	this.RequesterDefaultMail = requesterDefaultMail
+	this.AuthenticationCredentials = authenticationCredentials
 	return &this
 }
 
@@ -63,164 +63,6 @@ func NewEntrustConnector(authenticationCredentials string, certType string, logi
 func NewEntrustConnectorWithDefaults() *EntrustConnector {
 	this := EntrustConnector{}
 	return &this
-}
-
-// GetAuthenticationCredentials returns the AuthenticationCredentials field value
-func (o *EntrustConnector) GetAuthenticationCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.AuthenticationCredentials
-}
-
-// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value
-// and a boolean to check if the value has been set.
-func (o *EntrustConnector) GetAuthenticationCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthenticationCredentials, true
-}
-
-// SetAuthenticationCredentials sets field value
-func (o *EntrustConnector) SetAuthenticationCredentials(v string) {
-	o.AuthenticationCredentials = v
-}
-
-// GetCertLifetime returns the CertLifetime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EntrustConnector) GetCertLifetime() string {
-	if o == nil || utils.IsNil(o.CertLifetime.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.CertLifetime.Get()
-}
-
-// GetCertLifetimeOk returns a tuple with the CertLifetime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EntrustConnector) GetCertLifetimeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CertLifetime.Get(), o.CertLifetime.IsSet()
-}
-
-// HasCertLifetime returns a boolean if a field has been set.
-func (o *EntrustConnector) HasCertLifetime() bool {
-	if o != nil && o.CertLifetime.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertLifetime gets a reference to the given NullableString and assigns it to the CertLifetime field.
-func (o *EntrustConnector) SetCertLifetime(v string) {
-	o.CertLifetime.Set(&v)
-}
-
-// SetCertLifetimeNil sets the value for CertLifetime to be an explicit nil
-func (o *EntrustConnector) SetCertLifetimeNil() {
-	o.CertLifetime.Set(nil)
-}
-
-// UnsetCertLifetime ensures that no value is present for CertLifetime, not even an explicit nil
-func (o *EntrustConnector) UnsetCertLifetime() {
-	o.CertLifetime.Unset()
-}
-
-// GetCertType returns the CertType field value
-func (o *EntrustConnector) GetCertType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CertType
-}
-
-// GetCertTypeOk returns a tuple with the CertType field value
-// and a boolean to check if the value has been set.
-func (o *EntrustConnector) GetCertTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CertType, true
-}
-
-// SetCertType sets field value
-func (o *EntrustConnector) SetCertType(v string) {
-	o.CertType = v
-}
-
-// GetClientId returns the ClientId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EntrustConnector) GetClientId() int64 {
-	if o == nil || utils.IsNil(o.ClientId.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.ClientId.Get()
-}
-
-// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EntrustConnector) GetClientIdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ClientId.Get(), o.ClientId.IsSet()
-}
-
-// HasClientId returns a boolean if a field has been set.
-func (o *EntrustConnector) HasClientId() bool {
-	if o != nil && o.ClientId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetClientId gets a reference to the given NullableInt64 and assigns it to the ClientId field.
-func (o *EntrustConnector) SetClientId(v int64) {
-	o.ClientId.Set(&v)
-}
-
-// SetClientIdNil sets the value for ClientId to be an explicit nil
-func (o *EntrustConnector) SetClientIdNil() {
-	o.ClientId.Set(nil)
-}
-
-// UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
-func (o *EntrustConnector) UnsetClientId() {
-	o.ClientId.Unset()
-}
-
-// GetLoginCredentials returns the LoginCredentials field value
-func (o *EntrustConnector) GetLoginCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LoginCredentials
-}
-
-// GetLoginCredentialsOk returns a tuple with the LoginCredentials field value
-// and a boolean to check if the value has been set.
-func (o *EntrustConnector) GetLoginCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LoginCredentials, true
-}
-
-// SetLoginCredentials sets field value
-func (o *EntrustConnector) SetLoginCredentials(v string) {
-	o.LoginCredentials = v
 }
 
 // GetName returns the Name field value
@@ -247,90 +89,76 @@ func (o *EntrustConnector) SetName(v string) {
 	o.Name = v
 }
 
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EntrustConnector) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
+// GetType returns the Type field value
+func (o *EntrustConnector) GetType() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Proxy.Get()
+
+	return o.Type
 }
 
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EntrustConnector) GetProxyOk() (*string, bool) {
+func (o *EntrustConnector) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
+	return &o.Type, true
 }
 
-// HasProxy returns a boolean if a field has been set.
-func (o *EntrustConnector) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
-		return true
-	}
-
-	return false
+// SetType sets field value
+func (o *EntrustConnector) SetType(v string) {
+	o.Type = v
 }
 
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *EntrustConnector) SetProxy(v string) {
-	o.Proxy.Set(&v)
-}
-
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *EntrustConnector) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *EntrustConnector) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetQueue returns the Queue field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EntrustConnector) GetQueue() string {
-	if o == nil || utils.IsNil(o.Queue.Get()) {
+// GetLoginCredentials returns the LoginCredentials field value
+func (o *EntrustConnector) GetLoginCredentials() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Queue.Get()
+
+	return o.LoginCredentials
 }
 
-// GetQueueOk returns a tuple with the Queue field value if set, nil otherwise
+// GetLoginCredentialsOk returns a tuple with the LoginCredentials field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EntrustConnector) GetQueueOk() (*string, bool) {
+func (o *EntrustConnector) GetLoginCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Queue.Get(), o.Queue.IsSet()
+	return &o.LoginCredentials, true
 }
 
-// HasQueue returns a boolean if a field has been set.
-func (o *EntrustConnector) HasQueue() bool {
-	if o != nil && o.Queue.IsSet() {
-		return true
+// SetLoginCredentials sets field value
+func (o *EntrustConnector) SetLoginCredentials(v string) {
+	o.LoginCredentials = v
+}
+
+// GetCertType returns the CertType field value
+func (o *EntrustConnector) GetCertType() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.CertType
 }
 
-// SetQueue gets a reference to the given NullableString and assigns it to the Queue field.
-func (o *EntrustConnector) SetQueue(v string) {
-	o.Queue.Set(&v)
+// GetCertTypeOk returns a tuple with the CertType field value
+// and a boolean to check if the value has been set.
+func (o *EntrustConnector) GetCertTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CertType, true
 }
 
-// SetQueueNil sets the value for Queue to be an explicit nil
-func (o *EntrustConnector) SetQueueNil() {
-	o.Queue.Set(nil)
-}
-
-// UnsetQueue ensures that no value is present for Queue, not even an explicit nil
-func (o *EntrustConnector) UnsetQueue() {
-	o.Queue.Unset()
+// SetCertType sets field value
+func (o *EntrustConnector) SetCertType(v string) {
+	o.CertType = v
 }
 
 // GetRequesterDefaultMail returns the RequesterDefaultMail field value
@@ -443,6 +271,116 @@ func (o *EntrustConnector) UnsetRequesterPhone() {
 	o.RequesterPhone.Unset()
 }
 
+// GetCertLifetime returns the CertLifetime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EntrustConnector) GetCertLifetime() string {
+	if o == nil || utils.IsNil(o.CertLifetime.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CertLifetime.Get()
+}
+
+// GetCertLifetimeOk returns a tuple with the CertLifetime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EntrustConnector) GetCertLifetimeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertLifetime.Get(), o.CertLifetime.IsSet()
+}
+
+// HasCertLifetime returns a boolean if a field has been set.
+func (o *EntrustConnector) HasCertLifetime() bool {
+	if o != nil && o.CertLifetime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertLifetime gets a reference to the given NullableString and assigns it to the CertLifetime field.
+func (o *EntrustConnector) SetCertLifetime(v string) {
+	o.CertLifetime.Set(&v)
+}
+
+// SetCertLifetimeNil sets the value for CertLifetime to be an explicit nil
+func (o *EntrustConnector) SetCertLifetimeNil() {
+	o.CertLifetime.Set(nil)
+}
+
+// UnsetCertLifetime ensures that no value is present for CertLifetime, not even an explicit nil
+func (o *EntrustConnector) UnsetCertLifetime() {
+	o.CertLifetime.Unset()
+}
+
+// GetClientId returns the ClientId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EntrustConnector) GetClientId() int64 {
+	if o == nil || utils.IsNil(o.ClientId.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.ClientId.Get()
+}
+
+// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EntrustConnector) GetClientIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ClientId.Get(), o.ClientId.IsSet()
+}
+
+// HasClientId returns a boolean if a field has been set.
+func (o *EntrustConnector) HasClientId() bool {
+	if o != nil && o.ClientId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetClientId gets a reference to the given NullableInt64 and assigns it to the ClientId field.
+func (o *EntrustConnector) SetClientId(v int64) {
+	o.ClientId.Set(&v)
+}
+
+// SetClientIdNil sets the value for ClientId to be an explicit nil
+func (o *EntrustConnector) SetClientIdNil() {
+	o.ClientId.Set(nil)
+}
+
+// UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
+func (o *EntrustConnector) UnsetClientId() {
+	o.ClientId.Unset()
+}
+
+// GetAuthenticationCredentials returns the AuthenticationCredentials field value
+func (o *EntrustConnector) GetAuthenticationCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AuthenticationCredentials
+}
+
+// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value
+// and a boolean to check if the value has been set.
+func (o *EntrustConnector) GetAuthenticationCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthenticationCredentials, true
+}
+
+// SetAuthenticationCredentials sets field value
+func (o *EntrustConnector) SetAuthenticationCredentials(v string) {
+	o.AuthenticationCredentials = v
+}
+
 // GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EntrustConnector) GetTimeout() string {
 	if o == nil || utils.IsNil(o.Timeout.Get()) {
@@ -486,28 +424,90 @@ func (o *EntrustConnector) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
-// GetType returns the Type field value
-func (o *EntrustConnector) GetType() string {
-	if o == nil {
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EntrustConnector) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Proxy.Get()
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EntrustConnector) GetTypeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EntrustConnector) GetProxyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Proxy.Get(), o.Proxy.IsSet()
 }
 
-// SetType sets field value
-func (o *EntrustConnector) SetType(v string) {
-	o.Type = v
+// HasProxy returns a boolean if a field has been set.
+func (o *EntrustConnector) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *EntrustConnector) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *EntrustConnector) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *EntrustConnector) UnsetProxy() {
+	o.Proxy.Unset()
+}
+
+// GetQueue returns the Queue field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EntrustConnector) GetQueue() string {
+	if o == nil || utils.IsNil(o.Queue.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Queue.Get()
+}
+
+// GetQueueOk returns a tuple with the Queue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EntrustConnector) GetQueueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Queue.Get(), o.Queue.IsSet()
+}
+
+// HasQueue returns a boolean if a field has been set.
+func (o *EntrustConnector) HasQueue() bool {
+	if o != nil && o.Queue.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetQueue gets a reference to the given NullableString and assigns it to the Queue field.
+func (o *EntrustConnector) SetQueue(v string) {
+	o.Queue.Set(&v)
+}
+
+// SetQueueNil sets the value for Queue to be an explicit nil
+func (o *EntrustConnector) SetQueueNil() {
+	o.Queue.Set(nil)
+}
+
+// UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+func (o *EntrustConnector) UnsetQueue() {
+	o.Queue.Unset()
 }
 
 func (o EntrustConnector) MarshalJSON() ([]byte, error) {
@@ -520,22 +520,10 @@ func (o EntrustConnector) MarshalJSON() ([]byte, error) {
 
 func (o EntrustConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authenticationCredentials"] = o.AuthenticationCredentials
-	if o.CertLifetime.IsSet() {
-		toSerialize["certLifetime"] = o.CertLifetime.Get()
-	}
-	toSerialize["certType"] = o.CertType
-	if o.ClientId.IsSet() {
-		toSerialize["clientId"] = o.ClientId.Get()
-	}
-	toSerialize["loginCredentials"] = o.LoginCredentials
 	toSerialize["name"] = o.Name
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
-	if o.Queue.IsSet() {
-		toSerialize["queue"] = o.Queue.Get()
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["loginCredentials"] = o.LoginCredentials
+	toSerialize["certType"] = o.CertType
 	toSerialize["requesterDefaultMail"] = o.RequesterDefaultMail
 	if o.RequesterName.IsSet() {
 		toSerialize["requesterName"] = o.RequesterName.Get()
@@ -543,10 +531,22 @@ func (o EntrustConnector) ToMap() (map[string]interface{}, error) {
 	if o.RequesterPhone.IsSet() {
 		toSerialize["requesterPhone"] = o.RequesterPhone.Get()
 	}
+	if o.CertLifetime.IsSet() {
+		toSerialize["certLifetime"] = o.CertLifetime.Get()
+	}
+	if o.ClientId.IsSet() {
+		toSerialize["clientId"] = o.ClientId.Get()
+	}
+	toSerialize["authenticationCredentials"] = o.AuthenticationCredentials
 	if o.Timeout.IsSet() {
 		toSerialize["timeout"] = o.Timeout.Get()
 	}
-	toSerialize["type"] = o.Type
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
+	if o.Queue.IsSet() {
+		toSerialize["queue"] = o.Queue.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -560,12 +560,12 @@ func (o *EntrustConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"authenticationCredentials",
-		"certType",
-		"loginCredentials",
 		"name",
-		"requesterDefaultMail",
 		"type",
+		"loginCredentials",
+		"certType",
+		"requesterDefaultMail",
+		"authenticationCredentials",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -595,19 +595,19 @@ func (o *EntrustConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "authenticationCredentials")
-		delete(additionalProperties, "certLifetime")
-		delete(additionalProperties, "certType")
-		delete(additionalProperties, "clientId")
-		delete(additionalProperties, "loginCredentials")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "queue")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "loginCredentials")
+		delete(additionalProperties, "certType")
 		delete(additionalProperties, "requesterDefaultMail")
 		delete(additionalProperties, "requesterName")
 		delete(additionalProperties, "requesterPhone")
+		delete(additionalProperties, "certLifetime")
+		delete(additionalProperties, "clientId")
+		delete(additionalProperties, "authenticationCredentials")
 		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "queue")
 		o.AdditionalProperties = additionalProperties
 	}
 

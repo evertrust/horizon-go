@@ -9,16 +9,16 @@ Name | Type | Description | Notes
 **Details** | Pointer to [**[]EventDetail**](EventDetail.md) |  | [optional] 
 **Module** | [**EventModule**](EventModule.md) |  | 
 **Node** | **string** |  | 
+**Timestamp** | **int64** |  | 
 **RemoveAt** | Pointer to **NullableInt64** |  | [optional] 
 **Seal** | Pointer to **NullableString** |  | [optional] 
 **Status** | **string** |  | 
-**Timestamp** | **int64** |  | 
 
 ## Methods
 
 ### NewEventResponse
 
-`func NewEventResponse(code EventCode, module EventModule, node string, status string, timestamp int64, ) *EventResponse`
+`func NewEventResponse(code EventCode, module EventModule, node string, timestamp int64, status string, ) *EventResponse`
 
 NewEventResponse instantiates a new EventResponse object
 This constructor will assign default values to properties that have it defined,
@@ -163,6 +163,26 @@ and a boolean to check if the value has been set.
 SetNode sets Node field to given value.
 
 
+### GetTimestamp
+
+`func (o *EventResponse) GetTimestamp() int64`
+
+GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
+
+### GetTimestampOk
+
+`func (o *EventResponse) GetTimestampOk() (*int64, bool)`
+
+GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimestamp
+
+`func (o *EventResponse) SetTimestamp(v int64)`
+
+SetTimestamp sets Timestamp field to given value.
+
+
 ### GetRemoveAt
 
 `func (o *EventResponse) GetRemoveAt() int64`
@@ -251,26 +271,6 @@ and a boolean to check if the value has been set.
 `func (o *EventResponse) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
-
-
-### GetTimestamp
-
-`func (o *EventResponse) GetTimestamp() int64`
-
-GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
-
-### GetTimestampOk
-
-`func (o *EventResponse) GetTimestampOk() (*int64, bool)`
-
-GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimestamp
-
-`func (o *EventResponse) SetTimestamp(v int64)`
-
-SetTimestamp sets Timestamp field to given value.
 
 
 

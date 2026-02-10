@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The description of the identity provider | [optional] 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The display name of the identity provider | [optional] 
-**Name** | **string** | The internal name of the identity provider | 
-**Reset** | **bool** | Whether the password reset option is enabled on the identity provider (only for IdentityProvider of type &#x60;Local&#x60;) | 
 **Type** | **string** | The type of the identity provider | 
+**Name** | **string** | The internal name of the identity provider | 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The display name of the identity provider | [optional] 
+**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The description of the identity provider | [optional] 
+**Reset** | **bool** | Whether the password reset option is enabled on the identity provider (only for IdentityProvider of type &#x60;Local&#x60;) | 
 
 ## Methods
 
 ### NewEnabledIdentityProviderResponse
 
-`func NewEnabledIdentityProviderResponse(name string, reset bool, type_ string, ) *EnabledIdentityProviderResponse`
+`func NewEnabledIdentityProviderResponse(type_ string, name string, reset bool, ) *EnabledIdentityProviderResponse`
 
 NewEnabledIdentityProviderResponse instantiates a new EnabledIdentityProviderResponse object
 This constructor will assign default values to properties that have it defined,
@@ -29,41 +29,46 @@ NewEnabledIdentityProviderResponseWithDefaults instantiates a new EnabledIdentit
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDescription
+### GetType
 
-`func (o *EnabledIdentityProviderResponse) GetDescription() []LocalizedString`
+`func (o *EnabledIdentityProviderResponse) GetType() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetTypeOk
 
-`func (o *EnabledIdentityProviderResponse) GetDescriptionOk() (*[]LocalizedString, bool)`
+`func (o *EnabledIdentityProviderResponse) GetTypeOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetType
 
-`func (o *EnabledIdentityProviderResponse) SetDescription(v []LocalizedString)`
+`func (o *EnabledIdentityProviderResponse) SetType(v string)`
 
-SetDescription sets Description field to given value.
+SetType sets Type field to given value.
 
-### HasDescription
 
-`func (o *EnabledIdentityProviderResponse) HasDescription() bool`
+### GetName
 
-HasDescription returns a boolean if a field has been set.
+`func (o *EnabledIdentityProviderResponse) GetName() string`
 
-### SetDescriptionNil
+GetName returns the Name field if non-nil, zero value otherwise.
 
-`func (o *EnabledIdentityProviderResponse) SetDescriptionNil(b bool)`
+### GetNameOk
 
- SetDescriptionNil sets the value for Description to be an explicit nil
+`func (o *EnabledIdentityProviderResponse) GetNameOk() (*string, bool)`
 
-### UnsetDescription
-`func (o *EnabledIdentityProviderResponse) UnsetDescription()`
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### SetName
+
+`func (o *EnabledIdentityProviderResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetDisplayName
 
 `func (o *EnabledIdentityProviderResponse) GetDisplayName() []LocalizedString`
@@ -99,26 +104,41 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *EnabledIdentityProviderResponse) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetName
+### GetDescription
 
-`func (o *EnabledIdentityProviderResponse) GetName() string`
+`func (o *EnabledIdentityProviderResponse) GetDescription() []LocalizedString`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetDescriptionOk
 
-`func (o *EnabledIdentityProviderResponse) GetNameOk() (*string, bool)`
+`func (o *EnabledIdentityProviderResponse) GetDescriptionOk() (*[]LocalizedString, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetDescription
 
-`func (o *EnabledIdentityProviderResponse) SetName(v string)`
+`func (o *EnabledIdentityProviderResponse) SetDescription(v []LocalizedString)`
 
-SetName sets Name field to given value.
+SetDescription sets Description field to given value.
 
+### HasDescription
 
+`func (o *EnabledIdentityProviderResponse) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescriptionNil
+
+`func (o *EnabledIdentityProviderResponse) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *EnabledIdentityProviderResponse) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetReset
 
 `func (o *EnabledIdentityProviderResponse) GetReset() bool`
@@ -137,26 +157,6 @@ and a boolean to check if the value has been set.
 `func (o *EnabledIdentityProviderResponse) SetReset(v bool)`
 
 SetReset sets Reset field to given value.
-
-
-### GetType
-
-`func (o *EnabledIdentityProviderResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *EnabledIdentityProviderResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *EnabledIdentityProviderResponse) SetType(v string)`
-
-SetType sets Type field to given value.
 
 
 

@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &AnalyticsStatus2{}
 
 // AnalyticsStatus2 struct for AnalyticsStatus2
 type AnalyticsStatus2 struct {
-	// The last event id synchronized
-	Id *string `json:"_id,omitempty"`
-	// The number of event synchronized
+	// If the discovery event analytics is ready to use
+	Ready bool `json:"ready"`
+	// The number of discovery event synchronized
 	Count int64 `json:"count"`
+	// The last discovery event id synchronized
+	Id *string `json:"_id,omitempty"`
 	// If an error happened during the synchronization process
-	Error utils.NullableString `json:"error,omitempty"`
-	// If the event analytics is ready to use
-	Ready                bool `json:"ready"`
+	Error                utils.NullableString `json:"error,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,10 +39,10 @@ type _AnalyticsStatus2 AnalyticsStatus2
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAnalyticsStatus2(count int64, ready bool) *AnalyticsStatus2 {
+func NewAnalyticsStatus2(ready bool, count int64) *AnalyticsStatus2 {
 	this := AnalyticsStatus2{}
-	this.Count = count
 	this.Ready = ready
+	this.Count = count
 	return &this
 }
 
@@ -52,6 +52,54 @@ func NewAnalyticsStatus2(count int64, ready bool) *AnalyticsStatus2 {
 func NewAnalyticsStatus2WithDefaults() *AnalyticsStatus2 {
 	this := AnalyticsStatus2{}
 	return &this
+}
+
+// GetReady returns the Ready field value
+func (o *AnalyticsStatus2) GetReady() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Ready
+}
+
+// GetReadyOk returns a tuple with the Ready field value
+// and a boolean to check if the value has been set.
+func (o *AnalyticsStatus2) GetReadyOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ready, true
+}
+
+// SetReady sets field value
+func (o *AnalyticsStatus2) SetReady(v bool) {
+	o.Ready = v
+}
+
+// GetCount returns the Count field value
+func (o *AnalyticsStatus2) GetCount() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.Count
+}
+
+// GetCountOk returns a tuple with the Count field value
+// and a boolean to check if the value has been set.
+func (o *AnalyticsStatus2) GetCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Count, true
+}
+
+// SetCount sets field value
+func (o *AnalyticsStatus2) SetCount(v int64) {
+	o.Count = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -84,30 +132,6 @@ func (o *AnalyticsStatus2) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *AnalyticsStatus2) SetId(v string) {
 	o.Id = &v
-}
-
-// GetCount returns the Count field value
-func (o *AnalyticsStatus2) GetCount() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Count
-}
-
-// GetCountOk returns a tuple with the Count field value
-// and a boolean to check if the value has been set.
-func (o *AnalyticsStatus2) GetCountOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Count, true
-}
-
-// SetCount sets field value
-func (o *AnalyticsStatus2) SetCount(v int64) {
-	o.Count = v
 }
 
 // GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -153,30 +177,6 @@ func (o *AnalyticsStatus2) UnsetError() {
 	o.Error.Unset()
 }
 
-// GetReady returns the Ready field value
-func (o *AnalyticsStatus2) GetReady() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Ready
-}
-
-// GetReadyOk returns a tuple with the Ready field value
-// and a boolean to check if the value has been set.
-func (o *AnalyticsStatus2) GetReadyOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Ready, true
-}
-
-// SetReady sets field value
-func (o *AnalyticsStatus2) SetReady(v bool) {
-	o.Ready = v
-}
-
 func (o AnalyticsStatus2) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -187,14 +187,14 @@ func (o AnalyticsStatus2) MarshalJSON() ([]byte, error) {
 
 func (o AnalyticsStatus2) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["ready"] = o.Ready
+	toSerialize["count"] = o.Count
 	if !utils.IsNil(o.Id) {
 		toSerialize["_id"] = o.Id
 	}
-	toSerialize["count"] = o.Count
 	if o.Error.IsSet() {
 		toSerialize["error"] = o.Error.Get()
 	}
-	toSerialize["ready"] = o.Ready
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -208,8 +208,8 @@ func (o *AnalyticsStatus2) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"count",
 		"ready",
+		"count",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -239,10 +239,10 @@ func (o *AnalyticsStatus2) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "_id")
-		delete(additionalProperties, "count")
-		delete(additionalProperties, "error")
 		delete(additionalProperties, "ready")
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "_id")
+		delete(additionalProperties, "error")
 		o.AdditionalProperties = additionalProperties
 	}
 

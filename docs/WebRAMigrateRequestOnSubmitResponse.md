@@ -4,37 +4,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Certificate** | Pointer to [**NullableCertificate**](Certificate.md) | The certificate that was updated for this request. This is only available after the request has been approved | [optional] 
-**DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in a migration | [optional] [default to false]
 **Module** | [**Module**](Module.md) | The module of the certificate migrated. | 
+**Workflow** | **string** | What this request will do. For a migration request, this is always &#x60;migrate&#x60; | 
 **Profile** | **interface{}** | The target profile name | 
 **Template** | [**WebRAMigrateRequestTemplate**](WebRAMigrateRequestTemplate.md) | The user-data that will be used to generate the certificate | 
-**Workflow** | **string** | What this request will do. For a migration request, this is always &#x60;migrate&#x60; | 
+**Certificate** | Pointer to [**NullableCertificate**](Certificate.md) | The certificate that was updated for this request. This is only available after the request has been approved | [optional] 
+**DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in a migration | [optional] [default to false]
 **Id** | **string** | Object internal ID | 
-**Approver** | Pointer to **NullableString** | The approver&#39;s principal identifier | [optional] 
-**ApproverComment** | Pointer to **NullableString** | Free-text field editable by the approver to provider more context on the request | [optional] 
-**Contact** | Pointer to **NullableString** | The request&#39;s contact email | [optional] 
-**Dn** | Pointer to **string** | Certificate&#39;s Distinguished Name | [optional] 
-**ExpirationDate** | Pointer to **int64** | The date the request will expire. This is set by the system | [optional] 
-**GlobalHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the Horizon database | [optional] 
-**HolderId** | **string** | The computed holderID for this request. This is set by the system based on DN and SANs | 
-**Labels** | Pointer to [**[]LabelData**](LabelData.md) | The labels set in this request | [optional] 
-**LastModificationDate** | **int64** | The date the request was last modified. This is set by the system | 
-**Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The metadata set in this request | [optional] 
-**ProfileHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile | [optional] 
-**RegistrationDate** | **int64** | The date the request was created. This is set by the system | 
-**RemoveAt** | **int64** | The date the requested will be deleted. This is set by the system | 
-**Requester** | Pointer to **NullableString** | The requester&#39;s principal identifier | [optional] 
-**RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
 **Status** | [**RequestStatus**](RequestStatus.md) |  | 
+**Dn** | Pointer to **string** | Certificate&#39;s Distinguished Name | [optional] 
+**Requester** | Pointer to **NullableString** | The requester&#39;s principal identifier | [optional] 
 **Team** | Pointer to **NullableString** | The team that will be assigned to this certificate. Teams are used to link certificates to people and to assign permissions to them | [optional] 
+**Approver** | Pointer to **NullableString** | The approver&#39;s principal identifier | [optional] 
+**Contact** | Pointer to **NullableString** | The request&#39;s contact email | [optional] 
+**RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
+**ApproverComment** | Pointer to **NullableString** | Free-text field editable by the approver to provider more context on the request | [optional] 
+**RegistrationDate** | **int64** | The date the request was created. This is set by the system | 
+**LastModificationDate** | **int64** | The date the request was last modified. This is set by the system | 
+**ExpirationDate** | Pointer to **int64** | The date the request will expire. This is set by the system | [optional] 
+**RemoveAt** | **int64** | The date the requested will be deleted. This is set by the system | 
 **TriggerResults** | Pointer to [**[]TriggerResult**](TriggerResult.md) | The result of the execution of triggers on this request | [optional] 
+**HolderId** | **string** | The computed holderID for this request. This is set by the system based on DN and SANs | 
+**GlobalHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the Horizon database | [optional] 
+**ProfileHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile | [optional] 
+**Labels** | Pointer to [**[]LabelData**](LabelData.md) | The labels set in this request | [optional] 
+**Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The metadata set in this request | [optional] 
 
 ## Methods
 
 ### NewWebRAMigrateRequestOnSubmitResponse
 
-`func NewWebRAMigrateRequestOnSubmitResponse(module Module, profile interface{}, template WebRAMigrateRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAMigrateRequestOnSubmitResponse`
+`func NewWebRAMigrateRequestOnSubmitResponse(module Module, workflow string, profile interface{}, template WebRAMigrateRequestTemplate, id string, status RequestStatus, registrationDate int64, lastModificationDate int64, removeAt int64, holderId string, ) *WebRAMigrateRequestOnSubmitResponse`
 
 NewWebRAMigrateRequestOnSubmitResponse instantiates a new WebRAMigrateRequestOnSubmitResponse object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,96 @@ will change when the set of required properties is changed
 NewWebRAMigrateRequestOnSubmitResponseWithDefaults instantiates a new WebRAMigrateRequestOnSubmitResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetModule
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetModule() Module`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetModuleOk() (*Module, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetModule(v Module)`
+
+SetModule sets Module field to given value.
+
+
+### GetWorkflow
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
+### GetProfile
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfile() interface{}`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfileOk() (*interface{}, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetProfile(v interface{})`
+
+SetProfile sets Profile field to given value.
+
+
+### SetProfileNil
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetProfileNil(b bool)`
+
+ SetProfileNil sets the value for Profile to be an explicit nil
+
+### UnsetProfile
+`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetProfile()`
+
+UnsetProfile ensures that no value is present for Profile, not even an explicit nil
+### GetTemplate
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetTemplate() WebRAMigrateRequestTemplate`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetTemplateOk() (*WebRAMigrateRequestTemplate, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetTemplate(v WebRAMigrateRequestTemplate)`
+
+SetTemplate sets Template field to given value.
+
 
 ### GetCertificate
 
@@ -119,96 +209,6 @@ HasDryRun returns a boolean if a field has been set.
 `func (o *WebRAMigrateRequestOnSubmitResponse) UnsetDryRun()`
 
 UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
-### GetModule
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetModule() Module`
-
-GetModule returns the Module field if non-nil, zero value otherwise.
-
-### GetModuleOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetModuleOk() (*Module, bool)`
-
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModule
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetModule(v Module)`
-
-SetModule sets Module field to given value.
-
-
-### GetProfile
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfile() interface{}`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfileOk() (*interface{}, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetProfile(v interface{})`
-
-SetProfile sets Profile field to given value.
-
-
-### SetProfileNil
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetProfileNil(b bool)`
-
- SetProfileNil sets the value for Profile to be an explicit nil
-
-### UnsetProfile
-`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetProfile()`
-
-UnsetProfile ensures that no value is present for Profile, not even an explicit nil
-### GetTemplate
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetTemplate() WebRAMigrateRequestTemplate`
-
-GetTemplate returns the Template field if non-nil, zero value otherwise.
-
-### GetTemplateOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetTemplateOk() (*WebRAMigrateRequestTemplate, bool)`
-
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplate
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetTemplate(v WebRAMigrateRequestTemplate)`
-
-SetTemplate sets Template field to given value.
-
-
-### GetWorkflow
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-
 ### GetId
 
 `func (o *WebRAMigrateRequestOnSubmitResponse) GetId() string`
@@ -229,111 +229,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetApprover
+### GetStatus
 
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetApprover() string`
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetStatus() RequestStatus`
 
-GetApprover returns the Approver field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetApproverOk
+### GetStatusOk
 
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetApproverOk() (*string, bool)`
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetStatusOk() (*RequestStatus, bool)`
 
-GetApproverOk returns a tuple with the Approver field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetApprover
+### SetStatus
 
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetApprover(v string)`
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetStatus(v RequestStatus)`
 
-SetApprover sets Approver field to given value.
+SetStatus sets Status field to given value.
 
-### HasApprover
 
-`func (o *WebRAMigrateRequestOnSubmitResponse) HasApprover() bool`
-
-HasApprover returns a boolean if a field has been set.
-
-### SetApproverNil
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetApproverNil(b bool)`
-
- SetApproverNil sets the value for Approver to be an explicit nil
-
-### UnsetApprover
-`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetApprover()`
-
-UnsetApprover ensures that no value is present for Approver, not even an explicit nil
-### GetApproverComment
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetApproverComment() string`
-
-GetApproverComment returns the ApproverComment field if non-nil, zero value otherwise.
-
-### GetApproverCommentOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetApproverCommentOk() (*string, bool)`
-
-GetApproverCommentOk returns a tuple with the ApproverComment field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApproverComment
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetApproverComment(v string)`
-
-SetApproverComment sets ApproverComment field to given value.
-
-### HasApproverComment
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) HasApproverComment() bool`
-
-HasApproverComment returns a boolean if a field has been set.
-
-### SetApproverCommentNil
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetApproverCommentNil(b bool)`
-
- SetApproverCommentNil sets the value for ApproverComment to be an explicit nil
-
-### UnsetApproverComment
-`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetApproverComment()`
-
-UnsetApproverComment ensures that no value is present for ApproverComment, not even an explicit nil
-### GetContact
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetContact() string`
-
-GetContact returns the Contact field if non-nil, zero value otherwise.
-
-### GetContactOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetContactOk() (*string, bool)`
-
-GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContact
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetContact(v string)`
-
-SetContact sets Contact field to given value.
-
-### HasContact
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) HasContact() bool`
-
-HasContact returns a boolean if a field has been set.
-
-### SetContactNil
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetContactNil(b bool)`
-
- SetContactNil sets the value for Contact to be an explicit nil
-
-### UnsetContact
-`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetContact()`
-
-UnsetContact ensures that no value is present for Contact, not even an explicit nil
 ### GetDn
 
 `func (o *WebRAMigrateRequestOnSubmitResponse) GetDn() string`
@@ -358,251 +273,6 @@ SetDn sets Dn field to given value.
 `func (o *WebRAMigrateRequestOnSubmitResponse) HasDn() bool`
 
 HasDn returns a boolean if a field has been set.
-
-### GetExpirationDate
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetExpirationDate() int64`
-
-GetExpirationDate returns the ExpirationDate field if non-nil, zero value otherwise.
-
-### GetExpirationDateOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetExpirationDateOk() (*int64, bool)`
-
-GetExpirationDateOk returns a tuple with the ExpirationDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExpirationDate
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetExpirationDate(v int64)`
-
-SetExpirationDate sets ExpirationDate field to given value.
-
-### HasExpirationDate
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) HasExpirationDate() bool`
-
-HasExpirationDate returns a boolean if a field has been set.
-
-### GetGlobalHolderIdCount
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetGlobalHolderIdCount() int64`
-
-GetGlobalHolderIdCount returns the GlobalHolderIdCount field if non-nil, zero value otherwise.
-
-### GetGlobalHolderIdCountOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetGlobalHolderIdCountOk() (*int64, bool)`
-
-GetGlobalHolderIdCountOk returns a tuple with the GlobalHolderIdCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGlobalHolderIdCount
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetGlobalHolderIdCount(v int64)`
-
-SetGlobalHolderIdCount sets GlobalHolderIdCount field to given value.
-
-### HasGlobalHolderIdCount
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) HasGlobalHolderIdCount() bool`
-
-HasGlobalHolderIdCount returns a boolean if a field has been set.
-
-### SetGlobalHolderIdCountNil
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetGlobalHolderIdCountNil(b bool)`
-
- SetGlobalHolderIdCountNil sets the value for GlobalHolderIdCount to be an explicit nil
-
-### UnsetGlobalHolderIdCount
-`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetGlobalHolderIdCount()`
-
-UnsetGlobalHolderIdCount ensures that no value is present for GlobalHolderIdCount, not even an explicit nil
-### GetHolderId
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetHolderId() string`
-
-GetHolderId returns the HolderId field if non-nil, zero value otherwise.
-
-### GetHolderIdOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetHolderIdOk() (*string, bool)`
-
-GetHolderIdOk returns a tuple with the HolderId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHolderId
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetHolderId(v string)`
-
-SetHolderId sets HolderId field to given value.
-
-
-### GetLabels
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetLabels() []LabelData`
-
-GetLabels returns the Labels field if non-nil, zero value otherwise.
-
-### GetLabelsOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetLabelsOk() (*[]LabelData, bool)`
-
-GetLabelsOk returns a tuple with the Labels field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLabels
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetLabels(v []LabelData)`
-
-SetLabels sets Labels field to given value.
-
-### HasLabels
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) HasLabels() bool`
-
-HasLabels returns a boolean if a field has been set.
-
-### SetLabelsNil
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetLabelsNil(b bool)`
-
- SetLabelsNil sets the value for Labels to be an explicit nil
-
-### UnsetLabels
-`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetLabels()`
-
-UnsetLabels ensures that no value is present for Labels, not even an explicit nil
-### GetLastModificationDate
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetLastModificationDate() int64`
-
-GetLastModificationDate returns the LastModificationDate field if non-nil, zero value otherwise.
-
-### GetLastModificationDateOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetLastModificationDateOk() (*int64, bool)`
-
-GetLastModificationDateOk returns a tuple with the LastModificationDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastModificationDate
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetLastModificationDate(v int64)`
-
-SetLastModificationDate sets LastModificationDate field to given value.
-
-
-### GetMetadata
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetMetadata() []CertificateMetadata`
-
-GetMetadata returns the Metadata field if non-nil, zero value otherwise.
-
-### GetMetadataOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetMetadataOk() (*[]CertificateMetadata, bool)`
-
-GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMetadata
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetMetadata(v []CertificateMetadata)`
-
-SetMetadata sets Metadata field to given value.
-
-### HasMetadata
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) HasMetadata() bool`
-
-HasMetadata returns a boolean if a field has been set.
-
-### SetMetadataNil
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetMetadataNil(b bool)`
-
- SetMetadataNil sets the value for Metadata to be an explicit nil
-
-### UnsetMetadata
-`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetMetadata()`
-
-UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
-### GetProfileHolderIdCount
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfileHolderIdCount() int64`
-
-GetProfileHolderIdCount returns the ProfileHolderIdCount field if non-nil, zero value otherwise.
-
-### GetProfileHolderIdCountOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfileHolderIdCountOk() (*int64, bool)`
-
-GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfileHolderIdCount
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetProfileHolderIdCount(v int64)`
-
-SetProfileHolderIdCount sets ProfileHolderIdCount field to given value.
-
-### HasProfileHolderIdCount
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) HasProfileHolderIdCount() bool`
-
-HasProfileHolderIdCount returns a boolean if a field has been set.
-
-### SetProfileHolderIdCountNil
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetProfileHolderIdCountNil(b bool)`
-
- SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
-
-### UnsetProfileHolderIdCount
-`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetProfileHolderIdCount()`
-
-UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
-### GetRegistrationDate
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetRegistrationDate() int64`
-
-GetRegistrationDate returns the RegistrationDate field if non-nil, zero value otherwise.
-
-### GetRegistrationDateOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetRegistrationDateOk() (*int64, bool)`
-
-GetRegistrationDateOk returns a tuple with the RegistrationDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRegistrationDate
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetRegistrationDate(v int64)`
-
-SetRegistrationDate sets RegistrationDate field to given value.
-
-
-### GetRemoveAt
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetRemoveAt() int64`
-
-GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
-
-### GetRemoveAtOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetRemoveAtOk() (*int64, bool)`
-
-GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoveAt
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetRemoveAt(v int64)`
-
-SetRemoveAt sets RemoveAt field to given value.
-
 
 ### GetRequester
 
@@ -639,61 +309,6 @@ HasRequester returns a boolean if a field has been set.
 `func (o *WebRAMigrateRequestOnSubmitResponse) UnsetRequester()`
 
 UnsetRequester ensures that no value is present for Requester, not even an explicit nil
-### GetRequesterComment
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetRequesterComment() string`
-
-GetRequesterComment returns the RequesterComment field if non-nil, zero value otherwise.
-
-### GetRequesterCommentOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetRequesterCommentOk() (*string, bool)`
-
-GetRequesterCommentOk returns a tuple with the RequesterComment field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequesterComment
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetRequesterComment(v string)`
-
-SetRequesterComment sets RequesterComment field to given value.
-
-### HasRequesterComment
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) HasRequesterComment() bool`
-
-HasRequesterComment returns a boolean if a field has been set.
-
-### SetRequesterCommentNil
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetRequesterCommentNil(b bool)`
-
- SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
-
-### UnsetRequesterComment
-`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetRequesterComment()`
-
-UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
-### GetStatus
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetStatus() RequestStatus`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetStatusOk() (*RequestStatus, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetStatus(v RequestStatus)`
-
-SetStatus sets Status field to given value.
-
-
 ### GetTeam
 
 `func (o *WebRAMigrateRequestOnSubmitResponse) GetTeam() string`
@@ -729,6 +344,231 @@ HasTeam returns a boolean if a field has been set.
 `func (o *WebRAMigrateRequestOnSubmitResponse) UnsetTeam()`
 
 UnsetTeam ensures that no value is present for Team, not even an explicit nil
+### GetApprover
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetApprover() string`
+
+GetApprover returns the Approver field if non-nil, zero value otherwise.
+
+### GetApproverOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetApproverOk() (*string, bool)`
+
+GetApproverOk returns a tuple with the Approver field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApprover
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetApprover(v string)`
+
+SetApprover sets Approver field to given value.
+
+### HasApprover
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) HasApprover() bool`
+
+HasApprover returns a boolean if a field has been set.
+
+### SetApproverNil
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetApproverNil(b bool)`
+
+ SetApproverNil sets the value for Approver to be an explicit nil
+
+### UnsetApprover
+`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetApprover()`
+
+UnsetApprover ensures that no value is present for Approver, not even an explicit nil
+### GetContact
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetContact() string`
+
+GetContact returns the Contact field if non-nil, zero value otherwise.
+
+### GetContactOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetContactOk() (*string, bool)`
+
+GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContact
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetContact(v string)`
+
+SetContact sets Contact field to given value.
+
+### HasContact
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) HasContact() bool`
+
+HasContact returns a boolean if a field has been set.
+
+### SetContactNil
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetContactNil(b bool)`
+
+ SetContactNil sets the value for Contact to be an explicit nil
+
+### UnsetContact
+`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetContact()`
+
+UnsetContact ensures that no value is present for Contact, not even an explicit nil
+### GetRequesterComment
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetRequesterComment() string`
+
+GetRequesterComment returns the RequesterComment field if non-nil, zero value otherwise.
+
+### GetRequesterCommentOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetRequesterCommentOk() (*string, bool)`
+
+GetRequesterCommentOk returns a tuple with the RequesterComment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequesterComment
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetRequesterComment(v string)`
+
+SetRequesterComment sets RequesterComment field to given value.
+
+### HasRequesterComment
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) HasRequesterComment() bool`
+
+HasRequesterComment returns a boolean if a field has been set.
+
+### SetRequesterCommentNil
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetRequesterCommentNil(b bool)`
+
+ SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
+
+### UnsetRequesterComment
+`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetRequesterComment()`
+
+UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
+### GetApproverComment
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetApproverComment() string`
+
+GetApproverComment returns the ApproverComment field if non-nil, zero value otherwise.
+
+### GetApproverCommentOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetApproverCommentOk() (*string, bool)`
+
+GetApproverCommentOk returns a tuple with the ApproverComment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApproverComment
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetApproverComment(v string)`
+
+SetApproverComment sets ApproverComment field to given value.
+
+### HasApproverComment
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) HasApproverComment() bool`
+
+HasApproverComment returns a boolean if a field has been set.
+
+### SetApproverCommentNil
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetApproverCommentNil(b bool)`
+
+ SetApproverCommentNil sets the value for ApproverComment to be an explicit nil
+
+### UnsetApproverComment
+`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetApproverComment()`
+
+UnsetApproverComment ensures that no value is present for ApproverComment, not even an explicit nil
+### GetRegistrationDate
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetRegistrationDate() int64`
+
+GetRegistrationDate returns the RegistrationDate field if non-nil, zero value otherwise.
+
+### GetRegistrationDateOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetRegistrationDateOk() (*int64, bool)`
+
+GetRegistrationDateOk returns a tuple with the RegistrationDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationDate
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetRegistrationDate(v int64)`
+
+SetRegistrationDate sets RegistrationDate field to given value.
+
+
+### GetLastModificationDate
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetLastModificationDate() int64`
+
+GetLastModificationDate returns the LastModificationDate field if non-nil, zero value otherwise.
+
+### GetLastModificationDateOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetLastModificationDateOk() (*int64, bool)`
+
+GetLastModificationDateOk returns a tuple with the LastModificationDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastModificationDate
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetLastModificationDate(v int64)`
+
+SetLastModificationDate sets LastModificationDate field to given value.
+
+
+### GetExpirationDate
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetExpirationDate() int64`
+
+GetExpirationDate returns the ExpirationDate field if non-nil, zero value otherwise.
+
+### GetExpirationDateOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetExpirationDateOk() (*int64, bool)`
+
+GetExpirationDateOk returns a tuple with the ExpirationDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpirationDate
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetExpirationDate(v int64)`
+
+SetExpirationDate sets ExpirationDate field to given value.
+
+### HasExpirationDate
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) HasExpirationDate() bool`
+
+HasExpirationDate returns a boolean if a field has been set.
+
+### GetRemoveAt
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetRemoveAt() int64`
+
+GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
+
+### GetRemoveAtOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetRemoveAtOk() (*int64, bool)`
+
+GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveAt
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetRemoveAt(v int64)`
+
+SetRemoveAt sets RemoveAt field to given value.
+
+
 ### GetTriggerResults
 
 `func (o *WebRAMigrateRequestOnSubmitResponse) GetTriggerResults() []TriggerResult`
@@ -764,6 +604,166 @@ HasTriggerResults returns a boolean if a field has been set.
 `func (o *WebRAMigrateRequestOnSubmitResponse) UnsetTriggerResults()`
 
 UnsetTriggerResults ensures that no value is present for TriggerResults, not even an explicit nil
+### GetHolderId
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetHolderId() string`
+
+GetHolderId returns the HolderId field if non-nil, zero value otherwise.
+
+### GetHolderIdOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetHolderIdOk() (*string, bool)`
+
+GetHolderIdOk returns a tuple with the HolderId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHolderId
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetHolderId(v string)`
+
+SetHolderId sets HolderId field to given value.
+
+
+### GetGlobalHolderIdCount
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetGlobalHolderIdCount() int64`
+
+GetGlobalHolderIdCount returns the GlobalHolderIdCount field if non-nil, zero value otherwise.
+
+### GetGlobalHolderIdCountOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetGlobalHolderIdCountOk() (*int64, bool)`
+
+GetGlobalHolderIdCountOk returns a tuple with the GlobalHolderIdCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGlobalHolderIdCount
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetGlobalHolderIdCount(v int64)`
+
+SetGlobalHolderIdCount sets GlobalHolderIdCount field to given value.
+
+### HasGlobalHolderIdCount
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) HasGlobalHolderIdCount() bool`
+
+HasGlobalHolderIdCount returns a boolean if a field has been set.
+
+### SetGlobalHolderIdCountNil
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetGlobalHolderIdCountNil(b bool)`
+
+ SetGlobalHolderIdCountNil sets the value for GlobalHolderIdCount to be an explicit nil
+
+### UnsetGlobalHolderIdCount
+`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetGlobalHolderIdCount()`
+
+UnsetGlobalHolderIdCount ensures that no value is present for GlobalHolderIdCount, not even an explicit nil
+### GetProfileHolderIdCount
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfileHolderIdCount() int64`
+
+GetProfileHolderIdCount returns the ProfileHolderIdCount field if non-nil, zero value otherwise.
+
+### GetProfileHolderIdCountOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfileHolderIdCountOk() (*int64, bool)`
+
+GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfileHolderIdCount
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetProfileHolderIdCount(v int64)`
+
+SetProfileHolderIdCount sets ProfileHolderIdCount field to given value.
+
+### HasProfileHolderIdCount
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) HasProfileHolderIdCount() bool`
+
+HasProfileHolderIdCount returns a boolean if a field has been set.
+
+### SetProfileHolderIdCountNil
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetProfileHolderIdCountNil(b bool)`
+
+ SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
+
+### UnsetProfileHolderIdCount
+`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetProfileHolderIdCount()`
+
+UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
+### GetLabels
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetLabels() []LabelData`
+
+GetLabels returns the Labels field if non-nil, zero value otherwise.
+
+### GetLabelsOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetLabelsOk() (*[]LabelData, bool)`
+
+GetLabelsOk returns a tuple with the Labels field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLabels
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetLabels(v []LabelData)`
+
+SetLabels sets Labels field to given value.
+
+### HasLabels
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) HasLabels() bool`
+
+HasLabels returns a boolean if a field has been set.
+
+### SetLabelsNil
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetLabelsNil(b bool)`
+
+ SetLabelsNil sets the value for Labels to be an explicit nil
+
+### UnsetLabels
+`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetLabels()`
+
+UnsetLabels ensures that no value is present for Labels, not even an explicit nil
+### GetMetadata
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetMetadata() []CertificateMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetMetadataOk() (*[]CertificateMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetMetadata(v []CertificateMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
+### SetMetadataNil
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

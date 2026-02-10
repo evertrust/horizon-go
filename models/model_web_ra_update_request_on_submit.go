@@ -28,12 +28,12 @@ type WebRAUpdateRequestOnSubmit struct {
 	CertificatePem utils.NullableString `json:"certificatePem,omitempty"`
 	// Free-text field editable by the requester to provider more context on the request
 	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun utils.NullableBool `json:"dryRun,omitempty"`
+	// What this request will do. For an update request, this is always `update`
+	Workflow string `json:"workflow"`
 	// The user-data that will be used to update the certificate
 	Template WebRAUpdateRequestTemplate `json:"template"`
-	// What this request will do. For an update request, this is always `update`
-	Workflow             string `json:"workflow"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,12 +43,12 @@ type _WebRAUpdateRequestOnSubmit WebRAUpdateRequestOnSubmit
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAUpdateRequestOnSubmit(template WebRAUpdateRequestTemplate, workflow string) *WebRAUpdateRequestOnSubmit {
+func NewWebRAUpdateRequestOnSubmit(workflow string, template WebRAUpdateRequestTemplate) *WebRAUpdateRequestOnSubmit {
 	this := WebRAUpdateRequestOnSubmit{}
+	this.Workflow = workflow
+	this.Template = template
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
-	this.Template = template
-	this.Workflow = workflow
 	return &this
 }
 
@@ -191,6 +191,54 @@ func (o *WebRAUpdateRequestOnSubmit) UnsetRequesterComment() {
 	o.RequesterComment.Unset()
 }
 
+// GetWorkflow returns the Workflow field value
+func (o *WebRAUpdateRequestOnSubmit) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnSubmit) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRAUpdateRequestOnSubmit) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
+// GetTemplate returns the Template field value
+func (o *WebRAUpdateRequestOnSubmit) GetTemplate() WebRAUpdateRequestTemplate {
+	if o == nil {
+		var ret WebRAUpdateRequestTemplate
+		return ret
+	}
+
+	return o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnSubmit) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Template, true
+}
+
+// SetTemplate sets field value
+func (o *WebRAUpdateRequestOnSubmit) SetTemplate(v WebRAUpdateRequestTemplate) {
+	o.Template = v
+}
+
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRAUpdateRequestOnSubmit) GetDryRun() bool {
 	if o == nil || utils.IsNil(o.DryRun.Get()) {
@@ -234,54 +282,6 @@ func (o *WebRAUpdateRequestOnSubmit) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
-// GetTemplate returns the Template field value
-func (o *WebRAUpdateRequestOnSubmit) GetTemplate() WebRAUpdateRequestTemplate {
-	if o == nil {
-		var ret WebRAUpdateRequestTemplate
-		return ret
-	}
-
-	return o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnSubmit) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Template, true
-}
-
-// SetTemplate sets field value
-func (o *WebRAUpdateRequestOnSubmit) SetTemplate(v WebRAUpdateRequestTemplate) {
-	o.Template = v
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRAUpdateRequestOnSubmit) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnSubmit) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRAUpdateRequestOnSubmit) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
 func (o WebRAUpdateRequestOnSubmit) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -301,11 +301,11 @@ func (o WebRAUpdateRequestOnSubmit) ToMap() (map[string]interface{}, error) {
 	if o.RequesterComment.IsSet() {
 		toSerialize["requesterComment"] = o.RequesterComment.Get()
 	}
+	toSerialize["workflow"] = o.Workflow
+	toSerialize["template"] = o.Template
 	if o.DryRun.IsSet() {
 		toSerialize["dryRun"] = o.DryRun.Get()
 	}
-	toSerialize["template"] = o.Template
-	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -319,8 +319,8 @@ func (o *WebRAUpdateRequestOnSubmit) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"template",
 		"workflow",
+		"template",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -353,9 +353,9 @@ func (o *WebRAUpdateRequestOnSubmit) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "certificatePem")
 		delete(additionalProperties, "requesterComment")
-		delete(additionalProperties, "dryRun")
-		delete(additionalProperties, "template")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "template")
+		delete(additionalProperties, "dryRun")
 		o.AdditionalProperties = additionalProperties
 	}
 

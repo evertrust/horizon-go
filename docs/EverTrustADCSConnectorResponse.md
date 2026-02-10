@@ -5,24 +5,24 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**CaConfig** | **string** |  | 
-**Domain** | **string** |  | 
-**EndPoint** | **string** |  | 
-**EnrollmentCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to enroll on the PKI | 
-**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for technical account on the PKI | 
 **Name** | **string** |  | 
+**Type** | **string** |  | 
+**EndPoint** | **string** |  | 
+**CaConfig** | **string** |  | 
 **Profile** | **string** |  | 
+**Domain** | **string** |  | 
+**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for technical account on the PKI | 
+**EnrollmentCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to enroll on the PKI | 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Type** | **string** |  | 
 
 ## Methods
 
 ### NewEverTrustADCSConnectorResponse
 
-`func NewEverTrustADCSConnectorResponse(id string, caConfig string, domain string, endPoint string, enrollmentCredentials string, loginCredentials string, name string, profile string, type_ string, ) *EverTrustADCSConnectorResponse`
+`func NewEverTrustADCSConnectorResponse(id string, name string, type_ string, endPoint string, caConfig string, profile string, domain string, loginCredentials string, enrollmentCredentials string, ) *EverTrustADCSConnectorResponse`
 
 NewEverTrustADCSConnectorResponse instantiates a new EverTrustADCSConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -57,44 +57,44 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetCaConfig
+### GetName
 
-`func (o *EverTrustADCSConnectorResponse) GetCaConfig() string`
+`func (o *EverTrustADCSConnectorResponse) GetName() string`
 
-GetCaConfig returns the CaConfig field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetCaConfigOk
+### GetNameOk
 
-`func (o *EverTrustADCSConnectorResponse) GetCaConfigOk() (*string, bool)`
+`func (o *EverTrustADCSConnectorResponse) GetNameOk() (*string, bool)`
 
-GetCaConfigOk returns a tuple with the CaConfig field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCaConfig
+### SetName
 
-`func (o *EverTrustADCSConnectorResponse) SetCaConfig(v string)`
+`func (o *EverTrustADCSConnectorResponse) SetName(v string)`
 
-SetCaConfig sets CaConfig field to given value.
+SetName sets Name field to given value.
 
 
-### GetDomain
+### GetType
 
-`func (o *EverTrustADCSConnectorResponse) GetDomain() string`
+`func (o *EverTrustADCSConnectorResponse) GetType() string`
 
-GetDomain returns the Domain field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetDomainOk
+### GetTypeOk
 
-`func (o *EverTrustADCSConnectorResponse) GetDomainOk() (*string, bool)`
+`func (o *EverTrustADCSConnectorResponse) GetTypeOk() (*string, bool)`
 
-GetDomainOk returns a tuple with the Domain field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDomain
+### SetType
 
-`func (o *EverTrustADCSConnectorResponse) SetDomain(v string)`
+`func (o *EverTrustADCSConnectorResponse) SetType(v string)`
 
-SetDomain sets Domain field to given value.
+SetType sets Type field to given value.
 
 
 ### GetEndPoint
@@ -117,64 +117,24 @@ and a boolean to check if the value has been set.
 SetEndPoint sets EndPoint field to given value.
 
 
-### GetEnrollmentCredentials
+### GetCaConfig
 
-`func (o *EverTrustADCSConnectorResponse) GetEnrollmentCredentials() string`
+`func (o *EverTrustADCSConnectorResponse) GetCaConfig() string`
 
-GetEnrollmentCredentials returns the EnrollmentCredentials field if non-nil, zero value otherwise.
+GetCaConfig returns the CaConfig field if non-nil, zero value otherwise.
 
-### GetEnrollmentCredentialsOk
+### GetCaConfigOk
 
-`func (o *EverTrustADCSConnectorResponse) GetEnrollmentCredentialsOk() (*string, bool)`
+`func (o *EverTrustADCSConnectorResponse) GetCaConfigOk() (*string, bool)`
 
-GetEnrollmentCredentialsOk returns a tuple with the EnrollmentCredentials field if it's non-nil, zero value otherwise
+GetCaConfigOk returns a tuple with the CaConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnrollmentCredentials
+### SetCaConfig
 
-`func (o *EverTrustADCSConnectorResponse) SetEnrollmentCredentials(v string)`
+`func (o *EverTrustADCSConnectorResponse) SetCaConfig(v string)`
 
-SetEnrollmentCredentials sets EnrollmentCredentials field to given value.
-
-
-### GetLoginCredentials
-
-`func (o *EverTrustADCSConnectorResponse) GetLoginCredentials() string`
-
-GetLoginCredentials returns the LoginCredentials field if non-nil, zero value otherwise.
-
-### GetLoginCredentialsOk
-
-`func (o *EverTrustADCSConnectorResponse) GetLoginCredentialsOk() (*string, bool)`
-
-GetLoginCredentialsOk returns a tuple with the LoginCredentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLoginCredentials
-
-`func (o *EverTrustADCSConnectorResponse) SetLoginCredentials(v string)`
-
-SetLoginCredentials sets LoginCredentials field to given value.
-
-
-### GetName
-
-`func (o *EverTrustADCSConnectorResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *EverTrustADCSConnectorResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *EverTrustADCSConnectorResponse) SetName(v string)`
-
-SetName sets Name field to given value.
+SetCaConfig sets CaConfig field to given value.
 
 
 ### GetProfile
@@ -197,6 +157,101 @@ and a boolean to check if the value has been set.
 SetProfile sets Profile field to given value.
 
 
+### GetDomain
+
+`func (o *EverTrustADCSConnectorResponse) GetDomain() string`
+
+GetDomain returns the Domain field if non-nil, zero value otherwise.
+
+### GetDomainOk
+
+`func (o *EverTrustADCSConnectorResponse) GetDomainOk() (*string, bool)`
+
+GetDomainOk returns a tuple with the Domain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomain
+
+`func (o *EverTrustADCSConnectorResponse) SetDomain(v string)`
+
+SetDomain sets Domain field to given value.
+
+
+### GetLoginCredentials
+
+`func (o *EverTrustADCSConnectorResponse) GetLoginCredentials() string`
+
+GetLoginCredentials returns the LoginCredentials field if non-nil, zero value otherwise.
+
+### GetLoginCredentialsOk
+
+`func (o *EverTrustADCSConnectorResponse) GetLoginCredentialsOk() (*string, bool)`
+
+GetLoginCredentialsOk returns a tuple with the LoginCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoginCredentials
+
+`func (o *EverTrustADCSConnectorResponse) SetLoginCredentials(v string)`
+
+SetLoginCredentials sets LoginCredentials field to given value.
+
+
+### GetEnrollmentCredentials
+
+`func (o *EverTrustADCSConnectorResponse) GetEnrollmentCredentials() string`
+
+GetEnrollmentCredentials returns the EnrollmentCredentials field if non-nil, zero value otherwise.
+
+### GetEnrollmentCredentialsOk
+
+`func (o *EverTrustADCSConnectorResponse) GetEnrollmentCredentialsOk() (*string, bool)`
+
+GetEnrollmentCredentialsOk returns a tuple with the EnrollmentCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnrollmentCredentials
+
+`func (o *EverTrustADCSConnectorResponse) SetEnrollmentCredentials(v string)`
+
+SetEnrollmentCredentials sets EnrollmentCredentials field to given value.
+
+
+### GetTimeout
+
+`func (o *EverTrustADCSConnectorResponse) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *EverTrustADCSConnectorResponse) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *EverTrustADCSConnectorResponse) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *EverTrustADCSConnectorResponse) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *EverTrustADCSConnectorResponse) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *EverTrustADCSConnectorResponse) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *EverTrustADCSConnectorResponse) GetProxy() string`
@@ -302,61 +357,6 @@ HasStatus returns a boolean if a field has been set.
 `func (o *EverTrustADCSConnectorResponse) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
-### GetTimeout
-
-`func (o *EverTrustADCSConnectorResponse) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *EverTrustADCSConnectorResponse) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *EverTrustADCSConnectorResponse) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *EverTrustADCSConnectorResponse) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *EverTrustADCSConnectorResponse) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *EverTrustADCSConnectorResponse) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
-
-`func (o *EverTrustADCSConnectorResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *EverTrustADCSConnectorResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *EverTrustADCSConnectorResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

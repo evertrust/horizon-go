@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &ManualDnsChallengeProvider{}
 
 // ManualDnsChallengeProvider Manually configure the DNS Challenge Provider using REST Triggers
 type ManualDnsChallengeProvider struct {
+	Type string `json:"type"`
 	// The triggers that will set the DNS challenge on the provider.
 	SetTriggers []AcmeRestRequest `json:"setTriggers"`
-	Type        string            `json:"type"`
 	// The triggers that will unset the DNS challenge on the provider.
 	UnsetTriggers        []AcmeRestRequest `json:"unsetTriggers,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -36,10 +36,10 @@ type _ManualDnsChallengeProvider ManualDnsChallengeProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualDnsChallengeProvider(setTriggers []AcmeRestRequest, type_ string) *ManualDnsChallengeProvider {
+func NewManualDnsChallengeProvider(type_ string, setTriggers []AcmeRestRequest) *ManualDnsChallengeProvider {
 	this := ManualDnsChallengeProvider{}
-	this.SetTriggers = setTriggers
 	this.Type = type_
+	this.SetTriggers = setTriggers
 	return &this
 }
 
@@ -49,30 +49,6 @@ func NewManualDnsChallengeProvider(setTriggers []AcmeRestRequest, type_ string) 
 func NewManualDnsChallengeProviderWithDefaults() *ManualDnsChallengeProvider {
 	this := ManualDnsChallengeProvider{}
 	return &this
-}
-
-// GetSetTriggers returns the SetTriggers field value
-func (o *ManualDnsChallengeProvider) GetSetTriggers() []AcmeRestRequest {
-	if o == nil {
-		var ret []AcmeRestRequest
-		return ret
-	}
-
-	return o.SetTriggers
-}
-
-// GetSetTriggersOk returns a tuple with the SetTriggers field value
-// and a boolean to check if the value has been set.
-func (o *ManualDnsChallengeProvider) GetSetTriggersOk() ([]AcmeRestRequest, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SetTriggers, true
-}
-
-// SetSetTriggers sets field value
-func (o *ManualDnsChallengeProvider) SetSetTriggers(v []AcmeRestRequest) {
-	o.SetTriggers = v
 }
 
 // GetType returns the Type field value
@@ -97,6 +73,30 @@ func (o *ManualDnsChallengeProvider) GetTypeOk() (*string, bool) {
 // SetType sets field value
 func (o *ManualDnsChallengeProvider) SetType(v string) {
 	o.Type = v
+}
+
+// GetSetTriggers returns the SetTriggers field value
+func (o *ManualDnsChallengeProvider) GetSetTriggers() []AcmeRestRequest {
+	if o == nil {
+		var ret []AcmeRestRequest
+		return ret
+	}
+
+	return o.SetTriggers
+}
+
+// GetSetTriggersOk returns a tuple with the SetTriggers field value
+// and a boolean to check if the value has been set.
+func (o *ManualDnsChallengeProvider) GetSetTriggersOk() ([]AcmeRestRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SetTriggers, true
+}
+
+// SetSetTriggers sets field value
+func (o *ManualDnsChallengeProvider) SetSetTriggers(v []AcmeRestRequest) {
+	o.SetTriggers = v
 }
 
 // GetUnsetTriggers returns the UnsetTriggers field value if set, zero value otherwise.
@@ -141,8 +141,8 @@ func (o ManualDnsChallengeProvider) MarshalJSON() ([]byte, error) {
 
 func (o ManualDnsChallengeProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["setTriggers"] = o.SetTriggers
 	toSerialize["type"] = o.Type
+	toSerialize["setTriggers"] = o.SetTriggers
 	if !utils.IsNil(o.UnsetTriggers) {
 		toSerialize["unsetTriggers"] = o.UnsetTriggers
 	}
@@ -159,8 +159,8 @@ func (o *ManualDnsChallengeProvider) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"setTriggers",
 		"type",
+		"setTriggers",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -190,8 +190,8 @@ func (o *ManualDnsChallengeProvider) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "setTriggers")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "setTriggers")
 		delete(additionalProperties, "unsetTriggers")
 		o.AdditionalProperties = additionalProperties
 	}

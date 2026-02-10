@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	httpProxy := *openapiclient.NewHttpProxy("36.52.145.12", "ExternalProxy", int64(8888)) // HttpProxy | HTTP proxy to register
+	httpProxy := *openapiclient.NewHttpProxy("ExternalProxy", "36.52.145.12", int64(8888)) // HttpProxy | HTTP proxy to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -298,7 +298,7 @@ import (
 )
 
 func main() {
-	httpProxy := *openapiclient.NewHttpProxy("36.52.145.12", "ExternalProxy", int64(8888)) // HttpProxy | HTTP proxy to update
+	httpProxy := *openapiclient.NewHttpProxy("ExternalProxy", "36.52.145.12", int64(8888)) // HttpProxy | HTTP proxy to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **interface{}** |  | [optional] 
-**Contact** | Pointer to **NullableString** | The generic contact e-mail of the Team | [optional] 
-**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized description of the team | [optional] 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized display name of the team | [optional] 
-**Managers** | Pointer to **[]string** | The identifiers of the team&#39;s managers | [optional] 
 **Name** | **string** | The name of the team | 
+**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized description of the team | [optional] 
+**Contact** | Pointer to **NullableString** | The generic contact e-mail of the Team | [optional] 
 **Webhook** | Pointer to [**NullableWebhook**](Webhook.md) | The webhook of the team&#39;s corporate channel (Teams, Slack, Mattermost) | [optional] 
+**Managers** | Pointer to **[]string** | The identifiers of the team&#39;s managers | [optional] 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized display name of the team | [optional] 
 
 ## Methods
 
@@ -66,41 +66,26 @@ HasId returns a boolean if a field has been set.
 `func (o *SecurityTeamUpdateRequest) UnsetId()`
 
 UnsetId ensures that no value is present for Id, not even an explicit nil
-### GetContact
+### GetName
 
-`func (o *SecurityTeamUpdateRequest) GetContact() string`
+`func (o *SecurityTeamUpdateRequest) GetName() string`
 
-GetContact returns the Contact field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetContactOk
+### GetNameOk
 
-`func (o *SecurityTeamUpdateRequest) GetContactOk() (*string, bool)`
+`func (o *SecurityTeamUpdateRequest) GetNameOk() (*string, bool)`
 
-GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetContact
+### SetName
 
-`func (o *SecurityTeamUpdateRequest) SetContact(v string)`
+`func (o *SecurityTeamUpdateRequest) SetName(v string)`
 
-SetContact sets Contact field to given value.
+SetName sets Name field to given value.
 
-### HasContact
 
-`func (o *SecurityTeamUpdateRequest) HasContact() bool`
-
-HasContact returns a boolean if a field has been set.
-
-### SetContactNil
-
-`func (o *SecurityTeamUpdateRequest) SetContactNil(b bool)`
-
- SetContactNil sets the value for Contact to be an explicit nil
-
-### UnsetContact
-`func (o *SecurityTeamUpdateRequest) UnsetContact()`
-
-UnsetContact ensures that no value is present for Contact, not even an explicit nil
 ### GetDescription
 
 `func (o *SecurityTeamUpdateRequest) GetDescription() []LocalizedString`
@@ -136,96 +121,41 @@ HasDescription returns a boolean if a field has been set.
 `func (o *SecurityTeamUpdateRequest) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetDisplayName
+### GetContact
 
-`func (o *SecurityTeamUpdateRequest) GetDisplayName() []LocalizedString`
+`func (o *SecurityTeamUpdateRequest) GetContact() string`
 
-GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+GetContact returns the Contact field if non-nil, zero value otherwise.
 
-### GetDisplayNameOk
+### GetContactOk
 
-`func (o *SecurityTeamUpdateRequest) GetDisplayNameOk() (*[]LocalizedString, bool)`
+`func (o *SecurityTeamUpdateRequest) GetContactOk() (*string, bool)`
 
-GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDisplayName
+### SetContact
 
-`func (o *SecurityTeamUpdateRequest) SetDisplayName(v []LocalizedString)`
+`func (o *SecurityTeamUpdateRequest) SetContact(v string)`
 
-SetDisplayName sets DisplayName field to given value.
+SetContact sets Contact field to given value.
 
-### HasDisplayName
+### HasContact
 
-`func (o *SecurityTeamUpdateRequest) HasDisplayName() bool`
+`func (o *SecurityTeamUpdateRequest) HasContact() bool`
 
-HasDisplayName returns a boolean if a field has been set.
+HasContact returns a boolean if a field has been set.
 
-### SetDisplayNameNil
+### SetContactNil
 
-`func (o *SecurityTeamUpdateRequest) SetDisplayNameNil(b bool)`
+`func (o *SecurityTeamUpdateRequest) SetContactNil(b bool)`
 
- SetDisplayNameNil sets the value for DisplayName to be an explicit nil
+ SetContactNil sets the value for Contact to be an explicit nil
 
-### UnsetDisplayName
-`func (o *SecurityTeamUpdateRequest) UnsetDisplayName()`
+### UnsetContact
+`func (o *SecurityTeamUpdateRequest) UnsetContact()`
 
-UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetManagers
-
-`func (o *SecurityTeamUpdateRequest) GetManagers() []string`
-
-GetManagers returns the Managers field if non-nil, zero value otherwise.
-
-### GetManagersOk
-
-`func (o *SecurityTeamUpdateRequest) GetManagersOk() (*[]string, bool)`
-
-GetManagersOk returns a tuple with the Managers field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetManagers
-
-`func (o *SecurityTeamUpdateRequest) SetManagers(v []string)`
-
-SetManagers sets Managers field to given value.
-
-### HasManagers
-
-`func (o *SecurityTeamUpdateRequest) HasManagers() bool`
-
-HasManagers returns a boolean if a field has been set.
-
-### SetManagersNil
-
-`func (o *SecurityTeamUpdateRequest) SetManagersNil(b bool)`
-
- SetManagersNil sets the value for Managers to be an explicit nil
-
-### UnsetManagers
-`func (o *SecurityTeamUpdateRequest) UnsetManagers()`
-
-UnsetManagers ensures that no value is present for Managers, not even an explicit nil
-### GetName
-
-`func (o *SecurityTeamUpdateRequest) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *SecurityTeamUpdateRequest) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *SecurityTeamUpdateRequest) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
+UnsetContact ensures that no value is present for Contact, not even an explicit nil
 ### GetWebhook
 
 `func (o *SecurityTeamUpdateRequest) GetWebhook() Webhook`
@@ -261,6 +191,76 @@ HasWebhook returns a boolean if a field has been set.
 `func (o *SecurityTeamUpdateRequest) UnsetWebhook()`
 
 UnsetWebhook ensures that no value is present for Webhook, not even an explicit nil
+### GetManagers
+
+`func (o *SecurityTeamUpdateRequest) GetManagers() []string`
+
+GetManagers returns the Managers field if non-nil, zero value otherwise.
+
+### GetManagersOk
+
+`func (o *SecurityTeamUpdateRequest) GetManagersOk() (*[]string, bool)`
+
+GetManagersOk returns a tuple with the Managers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManagers
+
+`func (o *SecurityTeamUpdateRequest) SetManagers(v []string)`
+
+SetManagers sets Managers field to given value.
+
+### HasManagers
+
+`func (o *SecurityTeamUpdateRequest) HasManagers() bool`
+
+HasManagers returns a boolean if a field has been set.
+
+### SetManagersNil
+
+`func (o *SecurityTeamUpdateRequest) SetManagersNil(b bool)`
+
+ SetManagersNil sets the value for Managers to be an explicit nil
+
+### UnsetManagers
+`func (o *SecurityTeamUpdateRequest) UnsetManagers()`
+
+UnsetManagers ensures that no value is present for Managers, not even an explicit nil
+### GetDisplayName
+
+`func (o *SecurityTeamUpdateRequest) GetDisplayName() []LocalizedString`
+
+GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+
+### GetDisplayNameOk
+
+`func (o *SecurityTeamUpdateRequest) GetDisplayNameOk() (*[]LocalizedString, bool)`
+
+GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayName
+
+`func (o *SecurityTeamUpdateRequest) SetDisplayName(v []LocalizedString)`
+
+SetDisplayName sets DisplayName field to given value.
+
+### HasDisplayName
+
+`func (o *SecurityTeamUpdateRequest) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
+
+### SetDisplayNameNil
+
+`func (o *SecurityTeamUpdateRequest) SetDisplayNameNil(b bool)`
+
+ SetDisplayNameNil sets the value for DisplayName to be an explicit nil
+
+### UnsetDisplayName
+`func (o *SecurityTeamUpdateRequest) UnsetDisplayName()`
+
+UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

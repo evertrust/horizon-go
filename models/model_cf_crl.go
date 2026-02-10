@@ -22,11 +22,11 @@ var _ utils.MappedNullable = &CFCrl{}
 
 // CFCrl struct for CFCrl
 type CFCrl struct {
-	Issuer               string  `json:"issuer"`
-	NextUpdate           int64   `json:"nextUpdate"`
 	Number               *string `json:"number,omitempty"`
-	ThisUpdate           int64   `json:"thisUpdate"`
 	Version              *int64  `json:"version,omitempty"`
+	Issuer               string  `json:"issuer"`
+	ThisUpdate           int64   `json:"thisUpdate"`
+	NextUpdate           int64   `json:"nextUpdate"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,11 +36,11 @@ type _CFCrl CFCrl
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCFCrl(issuer string, nextUpdate int64, thisUpdate int64) *CFCrl {
+func NewCFCrl(issuer string, thisUpdate int64, nextUpdate int64) *CFCrl {
 	this := CFCrl{}
 	this.Issuer = issuer
-	this.NextUpdate = nextUpdate
 	this.ThisUpdate = thisUpdate
+	this.NextUpdate = nextUpdate
 	return &this
 }
 
@@ -50,54 +50,6 @@ func NewCFCrl(issuer string, nextUpdate int64, thisUpdate int64) *CFCrl {
 func NewCFCrlWithDefaults() *CFCrl {
 	this := CFCrl{}
 	return &this
-}
-
-// GetIssuer returns the Issuer field value
-func (o *CFCrl) GetIssuer() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Issuer
-}
-
-// GetIssuerOk returns a tuple with the Issuer field value
-// and a boolean to check if the value has been set.
-func (o *CFCrl) GetIssuerOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Issuer, true
-}
-
-// SetIssuer sets field value
-func (o *CFCrl) SetIssuer(v string) {
-	o.Issuer = v
-}
-
-// GetNextUpdate returns the NextUpdate field value
-func (o *CFCrl) GetNextUpdate() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.NextUpdate
-}
-
-// GetNextUpdateOk returns a tuple with the NextUpdate field value
-// and a boolean to check if the value has been set.
-func (o *CFCrl) GetNextUpdateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.NextUpdate, true
-}
-
-// SetNextUpdate sets field value
-func (o *CFCrl) SetNextUpdate(v int64) {
-	o.NextUpdate = v
 }
 
 // GetNumber returns the Number field value if set, zero value otherwise.
@@ -132,30 +84,6 @@ func (o *CFCrl) SetNumber(v string) {
 	o.Number = &v
 }
 
-// GetThisUpdate returns the ThisUpdate field value
-func (o *CFCrl) GetThisUpdate() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.ThisUpdate
-}
-
-// GetThisUpdateOk returns a tuple with the ThisUpdate field value
-// and a boolean to check if the value has been set.
-func (o *CFCrl) GetThisUpdateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ThisUpdate, true
-}
-
-// SetThisUpdate sets field value
-func (o *CFCrl) SetThisUpdate(v int64) {
-	o.ThisUpdate = v
-}
-
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *CFCrl) GetVersion() int64 {
 	if o == nil || utils.IsNil(o.Version) {
@@ -188,6 +116,78 @@ func (o *CFCrl) SetVersion(v int64) {
 	o.Version = &v
 }
 
+// GetIssuer returns the Issuer field value
+func (o *CFCrl) GetIssuer() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Issuer
+}
+
+// GetIssuerOk returns a tuple with the Issuer field value
+// and a boolean to check if the value has been set.
+func (o *CFCrl) GetIssuerOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Issuer, true
+}
+
+// SetIssuer sets field value
+func (o *CFCrl) SetIssuer(v string) {
+	o.Issuer = v
+}
+
+// GetThisUpdate returns the ThisUpdate field value
+func (o *CFCrl) GetThisUpdate() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.ThisUpdate
+}
+
+// GetThisUpdateOk returns a tuple with the ThisUpdate field value
+// and a boolean to check if the value has been set.
+func (o *CFCrl) GetThisUpdateOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ThisUpdate, true
+}
+
+// SetThisUpdate sets field value
+func (o *CFCrl) SetThisUpdate(v int64) {
+	o.ThisUpdate = v
+}
+
+// GetNextUpdate returns the NextUpdate field value
+func (o *CFCrl) GetNextUpdate() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.NextUpdate
+}
+
+// GetNextUpdateOk returns a tuple with the NextUpdate field value
+// and a boolean to check if the value has been set.
+func (o *CFCrl) GetNextUpdateOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NextUpdate, true
+}
+
+// SetNextUpdate sets field value
+func (o *CFCrl) SetNextUpdate(v int64) {
+	o.NextUpdate = v
+}
+
 func (o CFCrl) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -198,15 +198,15 @@ func (o CFCrl) MarshalJSON() ([]byte, error) {
 
 func (o CFCrl) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["issuer"] = o.Issuer
-	toSerialize["nextUpdate"] = o.NextUpdate
 	if !utils.IsNil(o.Number) {
 		toSerialize["number"] = o.Number
 	}
-	toSerialize["thisUpdate"] = o.ThisUpdate
 	if !utils.IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+	toSerialize["issuer"] = o.Issuer
+	toSerialize["thisUpdate"] = o.ThisUpdate
+	toSerialize["nextUpdate"] = o.NextUpdate
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -221,8 +221,8 @@ func (o *CFCrl) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"issuer",
-		"nextUpdate",
 		"thisUpdate",
+		"nextUpdate",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -252,11 +252,11 @@ func (o *CFCrl) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "issuer")
-		delete(additionalProperties, "nextUpdate")
 		delete(additionalProperties, "number")
-		delete(additionalProperties, "thisUpdate")
 		delete(additionalProperties, "version")
+		delete(additionalProperties, "issuer")
+		delete(additionalProperties, "thisUpdate")
+		delete(additionalProperties, "nextUpdate")
 		o.AdditionalProperties = additionalProperties
 	}
 

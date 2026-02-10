@@ -5,26 +5,26 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
-**CertLifetime** | Pointer to **NullableString** |  | [optional] 
-**CertType** | **string** |  | 
-**ClientId** | Pointer to **NullableInt64** |  | [optional] 
-**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for technical account on the PKI | 
 **Name** | **string** |  | 
-**Proxy** | Pointer to **NullableString** |  | [optional] 
-**Queue** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
+**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for technical account on the PKI | 
+**CertType** | **string** |  | 
 **RequesterDefaultMail** | **string** |  | 
 **RequesterName** | Pointer to **NullableString** |  | [optional] 
 **RequesterPhone** | Pointer to **NullableString** |  | [optional] 
-**Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
+**CertLifetime** | Pointer to **NullableString** |  | [optional] 
+**ClientId** | Pointer to **NullableInt64** |  | [optional] 
+**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
 **Timeout** | Pointer to **NullableString** |  | [optional] 
-**Type** | **string** |  | 
+**Proxy** | Pointer to **NullableString** |  | [optional] 
+**Queue** | Pointer to **NullableString** |  | [optional] 
+**Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
 
 ## Methods
 
 ### NewEntrustConnectorResponse
 
-`func NewEntrustConnectorResponse(id string, authenticationCredentials string, certType string, loginCredentials string, name string, requesterDefaultMail string, type_ string, ) *EntrustConnectorResponse`
+`func NewEntrustConnectorResponse(id string, name string, type_ string, loginCredentials string, certType string, requesterDefaultMail string, authenticationCredentials string, ) *EntrustConnectorResponse`
 
 NewEntrustConnectorResponse instantiates a new EntrustConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -59,136 +59,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetAuthenticationCredentials
-
-`func (o *EntrustConnectorResponse) GetAuthenticationCredentials() string`
-
-GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
-
-### GetAuthenticationCredentialsOk
-
-`func (o *EntrustConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool)`
-
-GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticationCredentials
-
-`func (o *EntrustConnectorResponse) SetAuthenticationCredentials(v string)`
-
-SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
-
-
-### GetCertLifetime
-
-`func (o *EntrustConnectorResponse) GetCertLifetime() string`
-
-GetCertLifetime returns the CertLifetime field if non-nil, zero value otherwise.
-
-### GetCertLifetimeOk
-
-`func (o *EntrustConnectorResponse) GetCertLifetimeOk() (*string, bool)`
-
-GetCertLifetimeOk returns a tuple with the CertLifetime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertLifetime
-
-`func (o *EntrustConnectorResponse) SetCertLifetime(v string)`
-
-SetCertLifetime sets CertLifetime field to given value.
-
-### HasCertLifetime
-
-`func (o *EntrustConnectorResponse) HasCertLifetime() bool`
-
-HasCertLifetime returns a boolean if a field has been set.
-
-### SetCertLifetimeNil
-
-`func (o *EntrustConnectorResponse) SetCertLifetimeNil(b bool)`
-
- SetCertLifetimeNil sets the value for CertLifetime to be an explicit nil
-
-### UnsetCertLifetime
-`func (o *EntrustConnectorResponse) UnsetCertLifetime()`
-
-UnsetCertLifetime ensures that no value is present for CertLifetime, not even an explicit nil
-### GetCertType
-
-`func (o *EntrustConnectorResponse) GetCertType() string`
-
-GetCertType returns the CertType field if non-nil, zero value otherwise.
-
-### GetCertTypeOk
-
-`func (o *EntrustConnectorResponse) GetCertTypeOk() (*string, bool)`
-
-GetCertTypeOk returns a tuple with the CertType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertType
-
-`func (o *EntrustConnectorResponse) SetCertType(v string)`
-
-SetCertType sets CertType field to given value.
-
-
-### GetClientId
-
-`func (o *EntrustConnectorResponse) GetClientId() int64`
-
-GetClientId returns the ClientId field if non-nil, zero value otherwise.
-
-### GetClientIdOk
-
-`func (o *EntrustConnectorResponse) GetClientIdOk() (*int64, bool)`
-
-GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClientId
-
-`func (o *EntrustConnectorResponse) SetClientId(v int64)`
-
-SetClientId sets ClientId field to given value.
-
-### HasClientId
-
-`func (o *EntrustConnectorResponse) HasClientId() bool`
-
-HasClientId returns a boolean if a field has been set.
-
-### SetClientIdNil
-
-`func (o *EntrustConnectorResponse) SetClientIdNil(b bool)`
-
- SetClientIdNil sets the value for ClientId to be an explicit nil
-
-### UnsetClientId
-`func (o *EntrustConnectorResponse) UnsetClientId()`
-
-UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
-### GetLoginCredentials
-
-`func (o *EntrustConnectorResponse) GetLoginCredentials() string`
-
-GetLoginCredentials returns the LoginCredentials field if non-nil, zero value otherwise.
-
-### GetLoginCredentialsOk
-
-`func (o *EntrustConnectorResponse) GetLoginCredentialsOk() (*string, bool)`
-
-GetLoginCredentialsOk returns a tuple with the LoginCredentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLoginCredentials
-
-`func (o *EntrustConnectorResponse) SetLoginCredentials(v string)`
-
-SetLoginCredentials sets LoginCredentials field to given value.
-
-
 ### GetName
 
 `func (o *EntrustConnectorResponse) GetName() string`
@@ -209,76 +79,66 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetProxy
+### GetType
 
-`func (o *EntrustConnectorResponse) GetProxy() string`
+`func (o *EntrustConnectorResponse) GetType() string`
 
-GetProxy returns the Proxy field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetProxyOk
+### GetTypeOk
 
-`func (o *EntrustConnectorResponse) GetProxyOk() (*string, bool)`
+`func (o *EntrustConnectorResponse) GetTypeOk() (*string, bool)`
 
-GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProxy
+### SetType
 
-`func (o *EntrustConnectorResponse) SetProxy(v string)`
+`func (o *EntrustConnectorResponse) SetType(v string)`
 
-SetProxy sets Proxy field to given value.
+SetType sets Type field to given value.
 
-### HasProxy
 
-`func (o *EntrustConnectorResponse) HasProxy() bool`
+### GetLoginCredentials
 
-HasProxy returns a boolean if a field has been set.
+`func (o *EntrustConnectorResponse) GetLoginCredentials() string`
 
-### SetProxyNil
+GetLoginCredentials returns the LoginCredentials field if non-nil, zero value otherwise.
 
-`func (o *EntrustConnectorResponse) SetProxyNil(b bool)`
+### GetLoginCredentialsOk
 
- SetProxyNil sets the value for Proxy to be an explicit nil
+`func (o *EntrustConnectorResponse) GetLoginCredentialsOk() (*string, bool)`
 
-### UnsetProxy
-`func (o *EntrustConnectorResponse) UnsetProxy()`
-
-UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetQueue
-
-`func (o *EntrustConnectorResponse) GetQueue() string`
-
-GetQueue returns the Queue field if non-nil, zero value otherwise.
-
-### GetQueueOk
-
-`func (o *EntrustConnectorResponse) GetQueueOk() (*string, bool)`
-
-GetQueueOk returns a tuple with the Queue field if it's non-nil, zero value otherwise
+GetLoginCredentialsOk returns a tuple with the LoginCredentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetQueue
+### SetLoginCredentials
 
-`func (o *EntrustConnectorResponse) SetQueue(v string)`
+`func (o *EntrustConnectorResponse) SetLoginCredentials(v string)`
 
-SetQueue sets Queue field to given value.
+SetLoginCredentials sets LoginCredentials field to given value.
 
-### HasQueue
 
-`func (o *EntrustConnectorResponse) HasQueue() bool`
+### GetCertType
 
-HasQueue returns a boolean if a field has been set.
+`func (o *EntrustConnectorResponse) GetCertType() string`
 
-### SetQueueNil
+GetCertType returns the CertType field if non-nil, zero value otherwise.
 
-`func (o *EntrustConnectorResponse) SetQueueNil(b bool)`
+### GetCertTypeOk
 
- SetQueueNil sets the value for Queue to be an explicit nil
+`func (o *EntrustConnectorResponse) GetCertTypeOk() (*string, bool)`
 
-### UnsetQueue
-`func (o *EntrustConnectorResponse) UnsetQueue()`
+GetCertTypeOk returns a tuple with the CertType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### SetCertType
+
+`func (o *EntrustConnectorResponse) SetCertType(v string)`
+
+SetCertType sets CertType field to given value.
+
+
 ### GetRequesterDefaultMail
 
 `func (o *EntrustConnectorResponse) GetRequesterDefaultMail() string`
@@ -369,41 +229,96 @@ HasRequesterPhone returns a boolean if a field has been set.
 `func (o *EntrustConnectorResponse) UnsetRequesterPhone()`
 
 UnsetRequesterPhone ensures that no value is present for RequesterPhone, not even an explicit nil
-### GetStatus
+### GetCertLifetime
 
-`func (o *EntrustConnectorResponse) GetStatus() PKIConnectorStatus`
+`func (o *EntrustConnectorResponse) GetCertLifetime() string`
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+GetCertLifetime returns the CertLifetime field if non-nil, zero value otherwise.
 
-### GetStatusOk
+### GetCertLifetimeOk
 
-`func (o *EntrustConnectorResponse) GetStatusOk() (*PKIConnectorStatus, bool)`
+`func (o *EntrustConnectorResponse) GetCertLifetimeOk() (*string, bool)`
 
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+GetCertLifetimeOk returns a tuple with the CertLifetime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStatus
+### SetCertLifetime
 
-`func (o *EntrustConnectorResponse) SetStatus(v PKIConnectorStatus)`
+`func (o *EntrustConnectorResponse) SetCertLifetime(v string)`
 
-SetStatus sets Status field to given value.
+SetCertLifetime sets CertLifetime field to given value.
 
-### HasStatus
+### HasCertLifetime
 
-`func (o *EntrustConnectorResponse) HasStatus() bool`
+`func (o *EntrustConnectorResponse) HasCertLifetime() bool`
 
-HasStatus returns a boolean if a field has been set.
+HasCertLifetime returns a boolean if a field has been set.
 
-### SetStatusNil
+### SetCertLifetimeNil
 
-`func (o *EntrustConnectorResponse) SetStatusNil(b bool)`
+`func (o *EntrustConnectorResponse) SetCertLifetimeNil(b bool)`
 
- SetStatusNil sets the value for Status to be an explicit nil
+ SetCertLifetimeNil sets the value for CertLifetime to be an explicit nil
 
-### UnsetStatus
-`func (o *EntrustConnectorResponse) UnsetStatus()`
+### UnsetCertLifetime
+`func (o *EntrustConnectorResponse) UnsetCertLifetime()`
 
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
+UnsetCertLifetime ensures that no value is present for CertLifetime, not even an explicit nil
+### GetClientId
+
+`func (o *EntrustConnectorResponse) GetClientId() int64`
+
+GetClientId returns the ClientId field if non-nil, zero value otherwise.
+
+### GetClientIdOk
+
+`func (o *EntrustConnectorResponse) GetClientIdOk() (*int64, bool)`
+
+GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientId
+
+`func (o *EntrustConnectorResponse) SetClientId(v int64)`
+
+SetClientId sets ClientId field to given value.
+
+### HasClientId
+
+`func (o *EntrustConnectorResponse) HasClientId() bool`
+
+HasClientId returns a boolean if a field has been set.
+
+### SetClientIdNil
+
+`func (o *EntrustConnectorResponse) SetClientIdNil(b bool)`
+
+ SetClientIdNil sets the value for ClientId to be an explicit nil
+
+### UnsetClientId
+`func (o *EntrustConnectorResponse) UnsetClientId()`
+
+UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
+### GetAuthenticationCredentials
+
+`func (o *EntrustConnectorResponse) GetAuthenticationCredentials() string`
+
+GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
+
+### GetAuthenticationCredentialsOk
+
+`func (o *EntrustConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool)`
+
+GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationCredentials
+
+`func (o *EntrustConnectorResponse) SetAuthenticationCredentials(v string)`
+
+SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
+
+
 ### GetTimeout
 
 `func (o *EntrustConnectorResponse) GetTimeout() string`
@@ -439,26 +354,111 @@ HasTimeout returns a boolean if a field has been set.
 `func (o *EntrustConnectorResponse) UnsetTimeout()`
 
 UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
+### GetProxy
 
-`func (o *EntrustConnectorResponse) GetType() string`
+`func (o *EntrustConnectorResponse) GetProxy() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetProxy returns the Proxy field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetProxyOk
 
-`func (o *EntrustConnectorResponse) GetTypeOk() (*string, bool)`
+`func (o *EntrustConnectorResponse) GetProxyOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetProxy
 
-`func (o *EntrustConnectorResponse) SetType(v string)`
+`func (o *EntrustConnectorResponse) SetProxy(v string)`
 
-SetType sets Type field to given value.
+SetProxy sets Proxy field to given value.
 
+### HasProxy
 
+`func (o *EntrustConnectorResponse) HasProxy() bool`
+
+HasProxy returns a boolean if a field has been set.
+
+### SetProxyNil
+
+`func (o *EntrustConnectorResponse) SetProxyNil(b bool)`
+
+ SetProxyNil sets the value for Proxy to be an explicit nil
+
+### UnsetProxy
+`func (o *EntrustConnectorResponse) UnsetProxy()`
+
+UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+### GetQueue
+
+`func (o *EntrustConnectorResponse) GetQueue() string`
+
+GetQueue returns the Queue field if non-nil, zero value otherwise.
+
+### GetQueueOk
+
+`func (o *EntrustConnectorResponse) GetQueueOk() (*string, bool)`
+
+GetQueueOk returns a tuple with the Queue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQueue
+
+`func (o *EntrustConnectorResponse) SetQueue(v string)`
+
+SetQueue sets Queue field to given value.
+
+### HasQueue
+
+`func (o *EntrustConnectorResponse) HasQueue() bool`
+
+HasQueue returns a boolean if a field has been set.
+
+### SetQueueNil
+
+`func (o *EntrustConnectorResponse) SetQueueNil(b bool)`
+
+ SetQueueNil sets the value for Queue to be an explicit nil
+
+### UnsetQueue
+`func (o *EntrustConnectorResponse) UnsetQueue()`
+
+UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetStatus
+
+`func (o *EntrustConnectorResponse) GetStatus() PKIConnectorStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *EntrustConnectorResponse) GetStatusOk() (*PKIConnectorStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *EntrustConnectorResponse) SetStatus(v PKIConnectorStatus)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *EntrustConnectorResponse) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### SetStatusNil
+
+`func (o *EntrustConnectorResponse) SetStatusNil(b bool)`
+
+ SetStatusNil sets the value for Status to be an explicit nil
+
+### UnsetStatus
+`func (o *EntrustConnectorResponse) UnsetStatus()`
+
+UnsetStatus ensures that no value is present for Status, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -5,29 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**AuthenticationType** | **string** | The authentication type to use while making the REST call. Is linked to &#x60;credentials&#x60;. | 
-**Credentials** | Pointer to **NullableString** | Name of the credentials to use for authentication | [optional] 
-**ExpectedHttpCodes** | **[]int64** | The success HTTP codes for the request. If the return code is not in this list, the notification will be considered failed. | 
-**Headers** | Pointer to [**[]RESTHeader**](RESTHeader.md) | The headers of the request | [optional] 
-**Method** | **string** | The HTTP method to use for the request | 
-**Payload** | Pointer to **NullableString** | The body of the request. Can contain dynamic attributes. | [optional] 
-**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
-**Proxy** | Pointer to **NullableString** | Name of a Proxy to use while making the request | [optional] 
-**Retries** | Pointer to **interface{}** | Number of retries when the notification fails (depends on &#x60;expectedHttpCodes&#x60;) | [optional] 
-**Timeout** | **string** | Timeout for the HTTP request. | 
 **Type** | **string** |  | 
-**Url** | **string** | The URL to request | 
-**Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
-**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**Retries** | Pointer to **interface{}** | Number of retries when the notification fails (depends on &#x60;expectedHttpCodes&#x60;) | [optional] 
+**Sequence** | **[]interface{}** | The REST requests to execute, in execution order. Each request enriches the dictionary with its response for the next one | 
 **Name** | **string** | Name of the notification | 
-**RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
 **RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
+**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
+**RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
 
 ## Methods
 
 ### NewRESTResponse
 
-`func NewRESTResponse(id string, authenticationType string, expectedHttpCodes []int64, method string, timeout string, type_ string, url string, events []string, name string, ) *RESTResponse`
+`func NewRESTResponse(id string, type_ string, sequence []interface{}, name string, events []string, ) *RESTResponse`
 
 NewRESTResponse instantiates a new RESTResponse object
 This constructor will assign default values to properties that have it defined,
@@ -62,241 +53,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetAuthenticationType
+### GetType
 
-`func (o *RESTResponse) GetAuthenticationType() string`
+`func (o *RESTResponse) GetType() string`
 
-GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetAuthenticationTypeOk
+### GetTypeOk
 
-`func (o *RESTResponse) GetAuthenticationTypeOk() (*string, bool)`
+`func (o *RESTResponse) GetTypeOk() (*string, bool)`
 
-GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationType
+### SetType
 
-`func (o *RESTResponse) SetAuthenticationType(v string)`
+`func (o *RESTResponse) SetType(v string)`
 
-SetAuthenticationType sets AuthenticationType field to given value.
+SetType sets Type field to given value.
 
 
-### GetCredentials
-
-`func (o *RESTResponse) GetCredentials() string`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *RESTResponse) GetCredentialsOk() (*string, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *RESTResponse) SetCredentials(v string)`
-
-SetCredentials sets Credentials field to given value.
-
-### HasCredentials
-
-`func (o *RESTResponse) HasCredentials() bool`
-
-HasCredentials returns a boolean if a field has been set.
-
-### SetCredentialsNil
-
-`func (o *RESTResponse) SetCredentialsNil(b bool)`
-
- SetCredentialsNil sets the value for Credentials to be an explicit nil
-
-### UnsetCredentials
-`func (o *RESTResponse) UnsetCredentials()`
-
-UnsetCredentials ensures that no value is present for Credentials, not even an explicit nil
-### GetExpectedHttpCodes
-
-`func (o *RESTResponse) GetExpectedHttpCodes() []int64`
-
-GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
-
-### GetExpectedHttpCodesOk
-
-`func (o *RESTResponse) GetExpectedHttpCodesOk() (*[]int64, bool)`
-
-GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExpectedHttpCodes
-
-`func (o *RESTResponse) SetExpectedHttpCodes(v []int64)`
-
-SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
-
-
-### GetHeaders
-
-`func (o *RESTResponse) GetHeaders() []RESTHeader`
-
-GetHeaders returns the Headers field if non-nil, zero value otherwise.
-
-### GetHeadersOk
-
-`func (o *RESTResponse) GetHeadersOk() (*[]RESTHeader, bool)`
-
-GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHeaders
-
-`func (o *RESTResponse) SetHeaders(v []RESTHeader)`
-
-SetHeaders sets Headers field to given value.
-
-### HasHeaders
-
-`func (o *RESTResponse) HasHeaders() bool`
-
-HasHeaders returns a boolean if a field has been set.
-
-### SetHeadersNil
-
-`func (o *RESTResponse) SetHeadersNil(b bool)`
-
- SetHeadersNil sets the value for Headers to be an explicit nil
-
-### UnsetHeaders
-`func (o *RESTResponse) UnsetHeaders()`
-
-UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
-### GetMethod
-
-`func (o *RESTResponse) GetMethod() string`
-
-GetMethod returns the Method field if non-nil, zero value otherwise.
-
-### GetMethodOk
-
-`func (o *RESTResponse) GetMethodOk() (*string, bool)`
-
-GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMethod
-
-`func (o *RESTResponse) SetMethod(v string)`
-
-SetMethod sets Method field to given value.
-
-
-### GetPayload
-
-`func (o *RESTResponse) GetPayload() string`
-
-GetPayload returns the Payload field if non-nil, zero value otherwise.
-
-### GetPayloadOk
-
-`func (o *RESTResponse) GetPayloadOk() (*string, bool)`
-
-GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPayload
-
-`func (o *RESTResponse) SetPayload(v string)`
-
-SetPayload sets Payload field to given value.
-
-### HasPayload
-
-`func (o *RESTResponse) HasPayload() bool`
-
-HasPayload returns a boolean if a field has been set.
-
-### SetPayloadNil
-
-`func (o *RESTResponse) SetPayloadNil(b bool)`
-
- SetPayloadNil sets the value for Payload to be an explicit nil
-
-### UnsetPayload
-`func (o *RESTResponse) UnsetPayload()`
-
-UnsetPayload ensures that no value is present for Payload, not even an explicit nil
-### GetPayloadType
-
-`func (o *RESTResponse) GetPayloadType() string`
-
-GetPayloadType returns the PayloadType field if non-nil, zero value otherwise.
-
-### GetPayloadTypeOk
-
-`func (o *RESTResponse) GetPayloadTypeOk() (*string, bool)`
-
-GetPayloadTypeOk returns a tuple with the PayloadType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPayloadType
-
-`func (o *RESTResponse) SetPayloadType(v string)`
-
-SetPayloadType sets PayloadType field to given value.
-
-### HasPayloadType
-
-`func (o *RESTResponse) HasPayloadType() bool`
-
-HasPayloadType returns a boolean if a field has been set.
-
-### SetPayloadTypeNil
-
-`func (o *RESTResponse) SetPayloadTypeNil(b bool)`
-
- SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
-
-### UnsetPayloadType
-`func (o *RESTResponse) UnsetPayloadType()`
-
-UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
-### GetProxy
-
-`func (o *RESTResponse) GetProxy() string`
-
-GetProxy returns the Proxy field if non-nil, zero value otherwise.
-
-### GetProxyOk
-
-`func (o *RESTResponse) GetProxyOk() (*string, bool)`
-
-GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProxy
-
-`func (o *RESTResponse) SetProxy(v string)`
-
-SetProxy sets Proxy field to given value.
-
-### HasProxy
-
-`func (o *RESTResponse) HasProxy() bool`
-
-HasProxy returns a boolean if a field has been set.
-
-### SetProxyNil
-
-`func (o *RESTResponse) SetProxyNil(b bool)`
-
- SetProxyNil sets the value for Proxy to be an explicit nil
-
-### UnsetProxy
-`func (o *RESTResponse) UnsetProxy()`
-
-UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
 ### GetRetries
 
 `func (o *RESTResponse) GetRetries() interface{}`
@@ -332,86 +108,81 @@ HasRetries returns a boolean if a field has been set.
 `func (o *RESTResponse) UnsetRetries()`
 
 UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetTimeout
+### GetSequence
 
-`func (o *RESTResponse) GetTimeout() string`
+`func (o *RESTResponse) GetSequence() []interface{}`
 
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+GetSequence returns the Sequence field if non-nil, zero value otherwise.
 
-### GetTimeoutOk
+### GetSequenceOk
 
-`func (o *RESTResponse) GetTimeoutOk() (*string, bool)`
+`func (o *RESTResponse) GetSequenceOk() (*[]interface{}, bool)`
 
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+GetSequenceOk returns a tuple with the Sequence field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeout
+### SetSequence
 
-`func (o *RESTResponse) SetTimeout(v string)`
+`func (o *RESTResponse) SetSequence(v []interface{})`
 
-SetTimeout sets Timeout field to given value.
+SetSequence sets Sequence field to given value.
 
 
-### GetType
+### GetName
 
-`func (o *RESTResponse) GetType() string`
+`func (o *RESTResponse) GetName() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetNameOk
 
-`func (o *RESTResponse) GetTypeOk() (*string, bool)`
+`func (o *RESTResponse) GetNameOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetName
 
-`func (o *RESTResponse) SetType(v string)`
+`func (o *RESTResponse) SetName(v string)`
 
-SetType sets Type field to given value.
+SetName sets Name field to given value.
 
 
-### GetUrl
+### GetRunPeriod
 
-`func (o *RESTResponse) GetUrl() string`
+`func (o *RESTResponse) GetRunPeriod() string`
 
-GetUrl returns the Url field if non-nil, zero value otherwise.
+GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
 
-### GetUrlOk
+### GetRunPeriodOk
 
-`func (o *RESTResponse) GetUrlOk() (*string, bool)`
+`func (o *RESTResponse) GetRunPeriodOk() (*string, bool)`
 
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUrl
+### SetRunPeriod
 
-`func (o *RESTResponse) SetUrl(v string)`
+`func (o *RESTResponse) SetRunPeriod(v string)`
 
-SetUrl sets Url field to given value.
+SetRunPeriod sets RunPeriod field to given value.
 
+### HasRunPeriod
 
-### GetEvents
+`func (o *RESTResponse) HasRunPeriod() bool`
 
-`func (o *RESTResponse) GetEvents() []string`
+HasRunPeriod returns a boolean if a field has been set.
 
-GetEvents returns the Events field if non-nil, zero value otherwise.
+### SetRunPeriodNil
 
-### GetEventsOk
+`func (o *RESTResponse) SetRunPeriodNil(b bool)`
 
-`func (o *RESTResponse) GetEventsOk() (*[]string, bool)`
+ SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
 
-GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetRunPeriod
+`func (o *RESTResponse) UnsetRunPeriod()`
 
-### SetEvents
-
-`func (o *RESTResponse) SetEvents(v []string)`
-
-SetEvents sets Events field to given value.
-
-
+UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
 ### GetLicenseUsagePercent
 
 `func (o *RESTResponse) GetLicenseUsagePercent() int64`
@@ -447,24 +218,24 @@ HasLicenseUsagePercent returns a boolean if a field has been set.
 `func (o *RESTResponse) UnsetLicenseUsagePercent()`
 
 UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
-### GetName
+### GetEvents
 
-`func (o *RESTResponse) GetName() string`
+`func (o *RESTResponse) GetEvents() []string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetEvents returns the Events field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetEventsOk
 
-`func (o *RESTResponse) GetNameOk() (*string, bool)`
+`func (o *RESTResponse) GetEventsOk() (*[]string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetEvents
 
-`func (o *RESTResponse) SetName(v string)`
+`func (o *RESTResponse) SetEvents(v []string)`
 
-SetName sets Name field to given value.
+SetEvents sets Events field to given value.
 
 
 ### GetRunOnRenewed
@@ -502,41 +273,6 @@ HasRunOnRenewed returns a boolean if a field has been set.
 `func (o *RESTResponse) UnsetRunOnRenewed()`
 
 UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
-### GetRunPeriod
-
-`func (o *RESTResponse) GetRunPeriod() string`
-
-GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
-
-### GetRunPeriodOk
-
-`func (o *RESTResponse) GetRunPeriodOk() (*string, bool)`
-
-GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRunPeriod
-
-`func (o *RESTResponse) SetRunPeriod(v string)`
-
-SetRunPeriod sets RunPeriod field to given value.
-
-### HasRunPeriod
-
-`func (o *RESTResponse) HasRunPeriod() bool`
-
-HasRunPeriod returns a boolean if a field has been set.
-
-### SetRunPeriodNil
-
-`func (o *RESTResponse) SetRunPeriodNil(b bool)`
-
- SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
-
-### UnsetRunPeriod
-`func (o *RESTResponse) UnsetRunPeriod()`
-
-UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

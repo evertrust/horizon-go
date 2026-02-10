@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **NullableString** | The email address of the local identity | [optional] 
 **Identifier** | **string** | The identifier of the local identity (used by the identity to log in to the web UI) | 
+**Email** | Pointer to **NullableString** | The email address of the local identity | [optional] 
 **Name** | Pointer to **NullableString** | The display name of the local identity | [optional] 
 
 ## Methods
@@ -26,6 +26,26 @@ will change when the set of required properties is changed
 NewLocalIdentityWithDefaults instantiates a new LocalIdentity object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetIdentifier
+
+`func (o *LocalIdentity) GetIdentifier() string`
+
+GetIdentifier returns the Identifier field if non-nil, zero value otherwise.
+
+### GetIdentifierOk
+
+`func (o *LocalIdentity) GetIdentifierOk() (*string, bool)`
+
+GetIdentifierOk returns a tuple with the Identifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdentifier
+
+`func (o *LocalIdentity) SetIdentifier(v string)`
+
+SetIdentifier sets Identifier field to given value.
+
 
 ### GetEmail
 
@@ -62,26 +82,6 @@ HasEmail returns a boolean if a field has been set.
 `func (o *LocalIdentity) UnsetEmail()`
 
 UnsetEmail ensures that no value is present for Email, not even an explicit nil
-### GetIdentifier
-
-`func (o *LocalIdentity) GetIdentifier() string`
-
-GetIdentifier returns the Identifier field if non-nil, zero value otherwise.
-
-### GetIdentifierOk
-
-`func (o *LocalIdentity) GetIdentifierOk() (*string, bool)`
-
-GetIdentifierOk returns a tuple with the Identifier field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIdentifier
-
-`func (o *LocalIdentity) SetIdentifier(v string)`
-
-SetIdentifier sets Identifier field to given value.
-
-
 ### GetName
 
 `func (o *LocalIdentity) GetName() string`

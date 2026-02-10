@@ -21,22 +21,22 @@ var _ utils.MappedNullable = &PrincipalInfoSearchQuery{}
 
 // PrincipalInfoSearchQuery struct for PrincipalInfoSearchQuery
 type PrincipalInfoSearchQuery struct {
-	// The contact e-mail of the principal
-	Contact utils.NullableString `json:"contact,omitempty"`
 	// The identifier of the principal
 	Identifier utils.NullableString `json:"identifier,omitempty"`
+	// The contact e-mail of the principal
+	Contact utils.NullableString `json:"contact,omitempty"`
+	// The role of the principal
+	Role utils.NullableString `json:"role,omitempty"`
+	// The team of the principal
+	Team utils.NullableString `json:"team,omitempty"`
+	// If enabled, `role`, `identifier` and `team` fields will list exact matches only
+	StrictSearch utils.NullableBool `json:"strictSearch,omitempty"`
+	// How to sort the results of the search
+	SortedBy []SortElement `json:"sortedBy,omitempty"`
 	// Which page result to display
 	PageIndex utils.NullableInt64 `json:"pageIndex,omitempty"`
 	// How many results to display per page
 	PageSize utils.NullableInt64 `json:"pageSize,omitempty"`
-	// The role of the principal
-	Role utils.NullableString `json:"role,omitempty"`
-	// How to sort the results of the search
-	SortedBy []SortElement `json:"sortedBy,omitempty"`
-	// If enabled, `role`, `identifier` and `team` fields will list exact matches only
-	StrictSearch utils.NullableBool `json:"strictSearch,omitempty"`
-	// The team of the principal
-	Team utils.NullableString `json:"team,omitempty"`
 	// Whether to include the total number of results in the response
 	WithCount            utils.NullableBool `json:"withCount,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -63,6 +63,49 @@ func NewPrincipalInfoSearchQueryWithDefaults() *PrincipalInfoSearchQuery {
 	var strictSearch bool = false
 	this.StrictSearch = *utils.NewNullableBool(&strictSearch)
 	return &this
+}
+
+// GetIdentifier returns the Identifier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoSearchQuery) GetIdentifier() string {
+	if o == nil || utils.IsNil(o.Identifier.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Identifier.Get()
+}
+
+// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoSearchQuery) GetIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Identifier.Get(), o.Identifier.IsSet()
+}
+
+// HasIdentifier returns a boolean if a field has been set.
+func (o *PrincipalInfoSearchQuery) HasIdentifier() bool {
+	if o != nil && o.Identifier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIdentifier gets a reference to the given NullableString and assigns it to the Identifier field.
+func (o *PrincipalInfoSearchQuery) SetIdentifier(v string) {
+	o.Identifier.Set(&v)
+}
+
+// SetIdentifierNil sets the value for Identifier to be an explicit nil
+func (o *PrincipalInfoSearchQuery) SetIdentifierNil() {
+	o.Identifier.Set(nil)
+}
+
+// UnsetIdentifier ensures that no value is present for Identifier, not even an explicit nil
+func (o *PrincipalInfoSearchQuery) UnsetIdentifier() {
+	o.Identifier.Unset()
 }
 
 // GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -108,47 +151,166 @@ func (o *PrincipalInfoSearchQuery) UnsetContact() {
 	o.Contact.Unset()
 }
 
-// GetIdentifier returns the Identifier field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoSearchQuery) GetIdentifier() string {
-	if o == nil || utils.IsNil(o.Identifier.Get()) {
+// GetRole returns the Role field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoSearchQuery) GetRole() string {
+	if o == nil || utils.IsNil(o.Role.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Identifier.Get()
+	return *o.Role.Get()
 }
 
-// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
+// GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoSearchQuery) GetIdentifierOk() (*string, bool) {
+func (o *PrincipalInfoSearchQuery) GetRoleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Identifier.Get(), o.Identifier.IsSet()
+	return o.Role.Get(), o.Role.IsSet()
 }
 
-// HasIdentifier returns a boolean if a field has been set.
-func (o *PrincipalInfoSearchQuery) HasIdentifier() bool {
-	if o != nil && o.Identifier.IsSet() {
+// HasRole returns a boolean if a field has been set.
+func (o *PrincipalInfoSearchQuery) HasRole() bool {
+	if o != nil && o.Role.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIdentifier gets a reference to the given NullableString and assigns it to the Identifier field.
-func (o *PrincipalInfoSearchQuery) SetIdentifier(v string) {
-	o.Identifier.Set(&v)
+// SetRole gets a reference to the given NullableString and assigns it to the Role field.
+func (o *PrincipalInfoSearchQuery) SetRole(v string) {
+	o.Role.Set(&v)
 }
 
-// SetIdentifierNil sets the value for Identifier to be an explicit nil
-func (o *PrincipalInfoSearchQuery) SetIdentifierNil() {
-	o.Identifier.Set(nil)
+// SetRoleNil sets the value for Role to be an explicit nil
+func (o *PrincipalInfoSearchQuery) SetRoleNil() {
+	o.Role.Set(nil)
 }
 
-// UnsetIdentifier ensures that no value is present for Identifier, not even an explicit nil
-func (o *PrincipalInfoSearchQuery) UnsetIdentifier() {
-	o.Identifier.Unset()
+// UnsetRole ensures that no value is present for Role, not even an explicit nil
+func (o *PrincipalInfoSearchQuery) UnsetRole() {
+	o.Role.Unset()
+}
+
+// GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoSearchQuery) GetTeam() string {
+	if o == nil || utils.IsNil(o.Team.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Team.Get()
+}
+
+// GetTeamOk returns a tuple with the Team field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoSearchQuery) GetTeamOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Team.Get(), o.Team.IsSet()
+}
+
+// HasTeam returns a boolean if a field has been set.
+func (o *PrincipalInfoSearchQuery) HasTeam() bool {
+	if o != nil && o.Team.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTeam gets a reference to the given NullableString and assigns it to the Team field.
+func (o *PrincipalInfoSearchQuery) SetTeam(v string) {
+	o.Team.Set(&v)
+}
+
+// SetTeamNil sets the value for Team to be an explicit nil
+func (o *PrincipalInfoSearchQuery) SetTeamNil() {
+	o.Team.Set(nil)
+}
+
+// UnsetTeam ensures that no value is present for Team, not even an explicit nil
+func (o *PrincipalInfoSearchQuery) UnsetTeam() {
+	o.Team.Unset()
+}
+
+// GetStrictSearch returns the StrictSearch field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoSearchQuery) GetStrictSearch() bool {
+	if o == nil || utils.IsNil(o.StrictSearch.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.StrictSearch.Get()
+}
+
+// GetStrictSearchOk returns a tuple with the StrictSearch field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoSearchQuery) GetStrictSearchOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.StrictSearch.Get(), o.StrictSearch.IsSet()
+}
+
+// HasStrictSearch returns a boolean if a field has been set.
+func (o *PrincipalInfoSearchQuery) HasStrictSearch() bool {
+	if o != nil && o.StrictSearch.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStrictSearch gets a reference to the given NullableBool and assigns it to the StrictSearch field.
+func (o *PrincipalInfoSearchQuery) SetStrictSearch(v bool) {
+	o.StrictSearch.Set(&v)
+}
+
+// SetStrictSearchNil sets the value for StrictSearch to be an explicit nil
+func (o *PrincipalInfoSearchQuery) SetStrictSearchNil() {
+	o.StrictSearch.Set(nil)
+}
+
+// UnsetStrictSearch ensures that no value is present for StrictSearch, not even an explicit nil
+func (o *PrincipalInfoSearchQuery) UnsetStrictSearch() {
+	o.StrictSearch.Unset()
+}
+
+// GetSortedBy returns the SortedBy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoSearchQuery) GetSortedBy() []SortElement {
+	if o == nil {
+		var ret []SortElement
+		return ret
+	}
+	return o.SortedBy
+}
+
+// GetSortedByOk returns a tuple with the SortedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoSearchQuery) GetSortedByOk() ([]SortElement, bool) {
+	if o == nil || utils.IsNil(o.SortedBy) {
+		return nil, false
+	}
+	return o.SortedBy, true
+}
+
+// HasSortedBy returns a boolean if a field has been set.
+func (o *PrincipalInfoSearchQuery) HasSortedBy() bool {
+	if o != nil && !utils.IsNil(o.SortedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetSortedBy gets a reference to the given []SortElement and assigns it to the SortedBy field.
+func (o *PrincipalInfoSearchQuery) SetSortedBy(v []SortElement) {
+	o.SortedBy = v
 }
 
 // GetPageIndex returns the PageIndex field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -237,168 +399,6 @@ func (o *PrincipalInfoSearchQuery) UnsetPageSize() {
 	o.PageSize.Unset()
 }
 
-// GetRole returns the Role field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoSearchQuery) GetRole() string {
-	if o == nil || utils.IsNil(o.Role.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Role.Get()
-}
-
-// GetRoleOk returns a tuple with the Role field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoSearchQuery) GetRoleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Role.Get(), o.Role.IsSet()
-}
-
-// HasRole returns a boolean if a field has been set.
-func (o *PrincipalInfoSearchQuery) HasRole() bool {
-	if o != nil && o.Role.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRole gets a reference to the given NullableString and assigns it to the Role field.
-func (o *PrincipalInfoSearchQuery) SetRole(v string) {
-	o.Role.Set(&v)
-}
-
-// SetRoleNil sets the value for Role to be an explicit nil
-func (o *PrincipalInfoSearchQuery) SetRoleNil() {
-	o.Role.Set(nil)
-}
-
-// UnsetRole ensures that no value is present for Role, not even an explicit nil
-func (o *PrincipalInfoSearchQuery) UnsetRole() {
-	o.Role.Unset()
-}
-
-// GetSortedBy returns the SortedBy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoSearchQuery) GetSortedBy() []SortElement {
-	if o == nil {
-		var ret []SortElement
-		return ret
-	}
-	return o.SortedBy
-}
-
-// GetSortedByOk returns a tuple with the SortedBy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoSearchQuery) GetSortedByOk() ([]SortElement, bool) {
-	if o == nil || utils.IsNil(o.SortedBy) {
-		return nil, false
-	}
-	return o.SortedBy, true
-}
-
-// HasSortedBy returns a boolean if a field has been set.
-func (o *PrincipalInfoSearchQuery) HasSortedBy() bool {
-	if o != nil && !utils.IsNil(o.SortedBy) {
-		return true
-	}
-
-	return false
-}
-
-// SetSortedBy gets a reference to the given []SortElement and assigns it to the SortedBy field.
-func (o *PrincipalInfoSearchQuery) SetSortedBy(v []SortElement) {
-	o.SortedBy = v
-}
-
-// GetStrictSearch returns the StrictSearch field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoSearchQuery) GetStrictSearch() bool {
-	if o == nil || utils.IsNil(o.StrictSearch.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.StrictSearch.Get()
-}
-
-// GetStrictSearchOk returns a tuple with the StrictSearch field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoSearchQuery) GetStrictSearchOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.StrictSearch.Get(), o.StrictSearch.IsSet()
-}
-
-// HasStrictSearch returns a boolean if a field has been set.
-func (o *PrincipalInfoSearchQuery) HasStrictSearch() bool {
-	if o != nil && o.StrictSearch.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetStrictSearch gets a reference to the given NullableBool and assigns it to the StrictSearch field.
-func (o *PrincipalInfoSearchQuery) SetStrictSearch(v bool) {
-	o.StrictSearch.Set(&v)
-}
-
-// SetStrictSearchNil sets the value for StrictSearch to be an explicit nil
-func (o *PrincipalInfoSearchQuery) SetStrictSearchNil() {
-	o.StrictSearch.Set(nil)
-}
-
-// UnsetStrictSearch ensures that no value is present for StrictSearch, not even an explicit nil
-func (o *PrincipalInfoSearchQuery) UnsetStrictSearch() {
-	o.StrictSearch.Unset()
-}
-
-// GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoSearchQuery) GetTeam() string {
-	if o == nil || utils.IsNil(o.Team.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Team.Get()
-}
-
-// GetTeamOk returns a tuple with the Team field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoSearchQuery) GetTeamOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Team.Get(), o.Team.IsSet()
-}
-
-// HasTeam returns a boolean if a field has been set.
-func (o *PrincipalInfoSearchQuery) HasTeam() bool {
-	if o != nil && o.Team.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTeam gets a reference to the given NullableString and assigns it to the Team field.
-func (o *PrincipalInfoSearchQuery) SetTeam(v string) {
-	o.Team.Set(&v)
-}
-
-// SetTeamNil sets the value for Team to be an explicit nil
-func (o *PrincipalInfoSearchQuery) SetTeamNil() {
-	o.Team.Set(nil)
-}
-
-// UnsetTeam ensures that no value is present for Team, not even an explicit nil
-func (o *PrincipalInfoSearchQuery) UnsetTeam() {
-	o.Team.Unset()
-}
-
 // GetWithCount returns the WithCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PrincipalInfoSearchQuery) GetWithCount() bool {
 	if o == nil || utils.IsNil(o.WithCount.Get()) {
@@ -452,29 +452,29 @@ func (o PrincipalInfoSearchQuery) MarshalJSON() ([]byte, error) {
 
 func (o PrincipalInfoSearchQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Identifier.IsSet() {
+		toSerialize["identifier"] = o.Identifier.Get()
+	}
 	if o.Contact.IsSet() {
 		toSerialize["contact"] = o.Contact.Get()
 	}
-	if o.Identifier.IsSet() {
-		toSerialize["identifier"] = o.Identifier.Get()
+	if o.Role.IsSet() {
+		toSerialize["role"] = o.Role.Get()
+	}
+	if o.Team.IsSet() {
+		toSerialize["team"] = o.Team.Get()
+	}
+	if o.StrictSearch.IsSet() {
+		toSerialize["strictSearch"] = o.StrictSearch.Get()
+	}
+	if o.SortedBy != nil {
+		toSerialize["sortedBy"] = o.SortedBy
 	}
 	if o.PageIndex.IsSet() {
 		toSerialize["pageIndex"] = o.PageIndex.Get()
 	}
 	if o.PageSize.IsSet() {
 		toSerialize["pageSize"] = o.PageSize.Get()
-	}
-	if o.Role.IsSet() {
-		toSerialize["role"] = o.Role.Get()
-	}
-	if o.SortedBy != nil {
-		toSerialize["sortedBy"] = o.SortedBy
-	}
-	if o.StrictSearch.IsSet() {
-		toSerialize["strictSearch"] = o.StrictSearch.Get()
-	}
-	if o.Team.IsSet() {
-		toSerialize["team"] = o.Team.Get()
 	}
 	if o.WithCount.IsSet() {
 		toSerialize["withCount"] = o.WithCount.Get()
@@ -501,14 +501,14 @@ func (o *PrincipalInfoSearchQuery) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "contact")
 		delete(additionalProperties, "identifier")
+		delete(additionalProperties, "contact")
+		delete(additionalProperties, "role")
+		delete(additionalProperties, "team")
+		delete(additionalProperties, "strictSearch")
+		delete(additionalProperties, "sortedBy")
 		delete(additionalProperties, "pageIndex")
 		delete(additionalProperties, "pageSize")
-		delete(additionalProperties, "role")
-		delete(additionalProperties, "sortedBy")
-		delete(additionalProperties, "strictSearch")
-		delete(additionalProperties, "team")
 		delete(additionalProperties, "withCount")
 		o.AdditionalProperties = additionalProperties
 	}

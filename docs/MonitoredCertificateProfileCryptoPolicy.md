@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AuthorizedKeyTypes** | Pointer to **[]string** | List of authorized key types for enrollment | [optional] 
 **Escrow** | Pointer to **NullableBool** | Whether this profile will escrow the certificate private keys | [optional] [default to false]
-**KeyAvailability** | Pointer to **NullableString** | Availability of the key in the requests (enroll, recover), as well as time during which a non-escrowed key is available for trigger retries | [optional] 
-**P12passwordMode** | Pointer to **NullableString** | Whether the user will be required to input their PKCS#12 password upon enrollment | [optional] 
 **P12passwordPolicy** | Pointer to **NullableString** | Password policy for the P12 file | [optional] 
+**P12passwordMode** | Pointer to **NullableString** | Whether the user will be required to input their PKCS#12 password upon enrollment | [optional] 
 **P12storeEncryptionType** | Pointer to **NullableString** | Encryption type for the P12 file | [optional] 
-**ShowP12OnRecover** | Pointer to **NullableBool** | Whether the PKCS#12 file will be displayed to the user upon recovery | [optional] 
 **ShowP12PasswordOnRecover** | Pointer to **NullableBool** | Whether the PKCS#12 password will be displayed to the user upon recovery | [optional] 
+**ShowP12OnRecover** | Pointer to **NullableBool** | Whether the PKCS#12 file will be displayed to the user upon recovery | [optional] 
+**KeyAvailability** | Pointer to **NullableString** | Availability of the key in the requests (enroll, recover), as well as time during which a non-escrowed key is available for trigger retries | [optional] 
 
 ## Methods
 
@@ -102,76 +102,6 @@ HasEscrow returns a boolean if a field has been set.
 `func (o *MonitoredCertificateProfileCryptoPolicy) UnsetEscrow()`
 
 UnsetEscrow ensures that no value is present for Escrow, not even an explicit nil
-### GetKeyAvailability
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) GetKeyAvailability() string`
-
-GetKeyAvailability returns the KeyAvailability field if non-nil, zero value otherwise.
-
-### GetKeyAvailabilityOk
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) GetKeyAvailabilityOk() (*string, bool)`
-
-GetKeyAvailabilityOk returns a tuple with the KeyAvailability field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKeyAvailability
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) SetKeyAvailability(v string)`
-
-SetKeyAvailability sets KeyAvailability field to given value.
-
-### HasKeyAvailability
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) HasKeyAvailability() bool`
-
-HasKeyAvailability returns a boolean if a field has been set.
-
-### SetKeyAvailabilityNil
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) SetKeyAvailabilityNil(b bool)`
-
- SetKeyAvailabilityNil sets the value for KeyAvailability to be an explicit nil
-
-### UnsetKeyAvailability
-`func (o *MonitoredCertificateProfileCryptoPolicy) UnsetKeyAvailability()`
-
-UnsetKeyAvailability ensures that no value is present for KeyAvailability, not even an explicit nil
-### GetP12passwordMode
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) GetP12passwordMode() string`
-
-GetP12passwordMode returns the P12passwordMode field if non-nil, zero value otherwise.
-
-### GetP12passwordModeOk
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) GetP12passwordModeOk() (*string, bool)`
-
-GetP12passwordModeOk returns a tuple with the P12passwordMode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetP12passwordMode
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) SetP12passwordMode(v string)`
-
-SetP12passwordMode sets P12passwordMode field to given value.
-
-### HasP12passwordMode
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) HasP12passwordMode() bool`
-
-HasP12passwordMode returns a boolean if a field has been set.
-
-### SetP12passwordModeNil
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) SetP12passwordModeNil(b bool)`
-
- SetP12passwordModeNil sets the value for P12passwordMode to be an explicit nil
-
-### UnsetP12passwordMode
-`func (o *MonitoredCertificateProfileCryptoPolicy) UnsetP12passwordMode()`
-
-UnsetP12passwordMode ensures that no value is present for P12passwordMode, not even an explicit nil
 ### GetP12passwordPolicy
 
 `func (o *MonitoredCertificateProfileCryptoPolicy) GetP12passwordPolicy() string`
@@ -207,6 +137,41 @@ HasP12passwordPolicy returns a boolean if a field has been set.
 `func (o *MonitoredCertificateProfileCryptoPolicy) UnsetP12passwordPolicy()`
 
 UnsetP12passwordPolicy ensures that no value is present for P12passwordPolicy, not even an explicit nil
+### GetP12passwordMode
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) GetP12passwordMode() string`
+
+GetP12passwordMode returns the P12passwordMode field if non-nil, zero value otherwise.
+
+### GetP12passwordModeOk
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) GetP12passwordModeOk() (*string, bool)`
+
+GetP12passwordModeOk returns a tuple with the P12passwordMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetP12passwordMode
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) SetP12passwordMode(v string)`
+
+SetP12passwordMode sets P12passwordMode field to given value.
+
+### HasP12passwordMode
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) HasP12passwordMode() bool`
+
+HasP12passwordMode returns a boolean if a field has been set.
+
+### SetP12passwordModeNil
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) SetP12passwordModeNil(b bool)`
+
+ SetP12passwordModeNil sets the value for P12passwordMode to be an explicit nil
+
+### UnsetP12passwordMode
+`func (o *MonitoredCertificateProfileCryptoPolicy) UnsetP12passwordMode()`
+
+UnsetP12passwordMode ensures that no value is present for P12passwordMode, not even an explicit nil
 ### GetP12storeEncryptionType
 
 `func (o *MonitoredCertificateProfileCryptoPolicy) GetP12storeEncryptionType() string`
@@ -242,41 +207,6 @@ HasP12storeEncryptionType returns a boolean if a field has been set.
 `func (o *MonitoredCertificateProfileCryptoPolicy) UnsetP12storeEncryptionType()`
 
 UnsetP12storeEncryptionType ensures that no value is present for P12storeEncryptionType, not even an explicit nil
-### GetShowP12OnRecover
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) GetShowP12OnRecover() bool`
-
-GetShowP12OnRecover returns the ShowP12OnRecover field if non-nil, zero value otherwise.
-
-### GetShowP12OnRecoverOk
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) GetShowP12OnRecoverOk() (*bool, bool)`
-
-GetShowP12OnRecoverOk returns a tuple with the ShowP12OnRecover field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetShowP12OnRecover
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) SetShowP12OnRecover(v bool)`
-
-SetShowP12OnRecover sets ShowP12OnRecover field to given value.
-
-### HasShowP12OnRecover
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) HasShowP12OnRecover() bool`
-
-HasShowP12OnRecover returns a boolean if a field has been set.
-
-### SetShowP12OnRecoverNil
-
-`func (o *MonitoredCertificateProfileCryptoPolicy) SetShowP12OnRecoverNil(b bool)`
-
- SetShowP12OnRecoverNil sets the value for ShowP12OnRecover to be an explicit nil
-
-### UnsetShowP12OnRecover
-`func (o *MonitoredCertificateProfileCryptoPolicy) UnsetShowP12OnRecover()`
-
-UnsetShowP12OnRecover ensures that no value is present for ShowP12OnRecover, not even an explicit nil
 ### GetShowP12PasswordOnRecover
 
 `func (o *MonitoredCertificateProfileCryptoPolicy) GetShowP12PasswordOnRecover() bool`
@@ -312,6 +242,76 @@ HasShowP12PasswordOnRecover returns a boolean if a field has been set.
 `func (o *MonitoredCertificateProfileCryptoPolicy) UnsetShowP12PasswordOnRecover()`
 
 UnsetShowP12PasswordOnRecover ensures that no value is present for ShowP12PasswordOnRecover, not even an explicit nil
+### GetShowP12OnRecover
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) GetShowP12OnRecover() bool`
+
+GetShowP12OnRecover returns the ShowP12OnRecover field if non-nil, zero value otherwise.
+
+### GetShowP12OnRecoverOk
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) GetShowP12OnRecoverOk() (*bool, bool)`
+
+GetShowP12OnRecoverOk returns a tuple with the ShowP12OnRecover field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetShowP12OnRecover
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) SetShowP12OnRecover(v bool)`
+
+SetShowP12OnRecover sets ShowP12OnRecover field to given value.
+
+### HasShowP12OnRecover
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) HasShowP12OnRecover() bool`
+
+HasShowP12OnRecover returns a boolean if a field has been set.
+
+### SetShowP12OnRecoverNil
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) SetShowP12OnRecoverNil(b bool)`
+
+ SetShowP12OnRecoverNil sets the value for ShowP12OnRecover to be an explicit nil
+
+### UnsetShowP12OnRecover
+`func (o *MonitoredCertificateProfileCryptoPolicy) UnsetShowP12OnRecover()`
+
+UnsetShowP12OnRecover ensures that no value is present for ShowP12OnRecover, not even an explicit nil
+### GetKeyAvailability
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) GetKeyAvailability() string`
+
+GetKeyAvailability returns the KeyAvailability field if non-nil, zero value otherwise.
+
+### GetKeyAvailabilityOk
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) GetKeyAvailabilityOk() (*string, bool)`
+
+GetKeyAvailabilityOk returns a tuple with the KeyAvailability field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKeyAvailability
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) SetKeyAvailability(v string)`
+
+SetKeyAvailability sets KeyAvailability field to given value.
+
+### HasKeyAvailability
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) HasKeyAvailability() bool`
+
+HasKeyAvailability returns a boolean if a field has been set.
+
+### SetKeyAvailabilityNil
+
+`func (o *MonitoredCertificateProfileCryptoPolicy) SetKeyAvailabilityNil(b bool)`
+
+ SetKeyAvailabilityNil sets the value for KeyAvailability to be an explicit nil
+
+### UnsetKeyAvailability
+`func (o *MonitoredCertificateProfileCryptoPolicy) UnsetKeyAvailability()`
+
+UnsetKeyAvailability ensures that no value is present for KeyAvailability, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

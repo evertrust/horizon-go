@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of attributes to fetch for this datasource | [optional] 
-**BaseDn** | **string** | LDAP Base DN | 
-**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for LDAP Authentication | 
-**Description** | Pointer to **string** | Description of the datasource | [optional] 
-**DisableHostnameValidation** | Pointer to **NullableBool** | Disable hostname validation for the LDAP connection | [optional] [default to false]
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
-**Filter** | **string** | LDAP Filter | 
-**Hostname** | **string** | Hostname of the LDAP server | 
+**Type** | **string** | Type of datasource | 
 **Name** | **string** | Name of the datasource | 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
+**Description** | Pointer to **string** | Description of the datasource | [optional] 
+**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for LDAP Authentication | 
+**Hostname** | **string** | Hostname of the LDAP server | 
 **Port** | Pointer to **NullableInt64** | Port on which to join the LDAP server | [optional] [default to 389]
 **Proxy** | Pointer to **NullableString** | Name of the proxy to use to reach the LDAP server | [optional] 
-**Secure** | **bool** | Use secure LDAP connection | 
 **Timeout** | **string** | Timeout for the LDAP request | 
-**Type** | **string** | Type of datasource | 
+**Secure** | **bool** | Use secure LDAP connection | 
+**DisableHostnameValidation** | Pointer to **NullableBool** | Disable hostname validation for the LDAP connection | [optional] [default to false]
+**BaseDn** | **string** | LDAP Base DN | 
+**Filter** | **string** | LDAP Filter | 
+**Attributes** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of attributes to fetch for this datasource | [optional] 
 
 ## Methods
 
 ### NewLDAPDatasource
 
-`func NewLDAPDatasource(baseDn string, credentials string, filter string, hostname string, name string, secure bool, timeout string, type_ string, ) *LDAPDatasource`
+`func NewLDAPDatasource(type_ string, name string, credentials string, hostname string, timeout string, secure bool, baseDn string, filter string, ) *LDAPDatasource`
 
 NewLDAPDatasource instantiates a new LDAPDatasource object
 This constructor will assign default values to properties that have it defined,
@@ -38,141 +38,46 @@ NewLDAPDatasourceWithDefaults instantiates a new LDAPDatasource object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAttributes
+### GetType
 
-`func (o *LDAPDatasource) GetAttributes() []DataSourceOutput`
+`func (o *LDAPDatasource) GetType() string`
 
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetAttributesOk
+### GetTypeOk
 
-`func (o *LDAPDatasource) GetAttributesOk() (*[]DataSourceOutput, bool)`
+`func (o *LDAPDatasource) GetTypeOk() (*string, bool)`
 
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttributes
+### SetType
 
-`func (o *LDAPDatasource) SetAttributes(v []DataSourceOutput)`
+`func (o *LDAPDatasource) SetType(v string)`
 
-SetAttributes sets Attributes field to given value.
+SetType sets Type field to given value.
 
-### HasAttributes
 
-`func (o *LDAPDatasource) HasAttributes() bool`
+### GetName
 
-HasAttributes returns a boolean if a field has been set.
+`func (o *LDAPDatasource) GetName() string`
 
-### SetAttributesNil
+GetName returns the Name field if non-nil, zero value otherwise.
 
-`func (o *LDAPDatasource) SetAttributesNil(b bool)`
+### GetNameOk
 
- SetAttributesNil sets the value for Attributes to be an explicit nil
+`func (o *LDAPDatasource) GetNameOk() (*string, bool)`
 
-### UnsetAttributes
-`func (o *LDAPDatasource) UnsetAttributes()`
-
-UnsetAttributes ensures that no value is present for Attributes, not even an explicit nil
-### GetBaseDn
-
-`func (o *LDAPDatasource) GetBaseDn() string`
-
-GetBaseDn returns the BaseDn field if non-nil, zero value otherwise.
-
-### GetBaseDnOk
-
-`func (o *LDAPDatasource) GetBaseDnOk() (*string, bool)`
-
-GetBaseDnOk returns a tuple with the BaseDn field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBaseDn
+### SetName
 
-`func (o *LDAPDatasource) SetBaseDn(v string)`
+`func (o *LDAPDatasource) SetName(v string)`
 
-SetBaseDn sets BaseDn field to given value.
-
-
-### GetCredentials
-
-`func (o *LDAPDatasource) GetCredentials() string`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *LDAPDatasource) GetCredentialsOk() (*string, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *LDAPDatasource) SetCredentials(v string)`
-
-SetCredentials sets Credentials field to given value.
+SetName sets Name field to given value.
 
 
-### GetDescription
-
-`func (o *LDAPDatasource) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *LDAPDatasource) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *LDAPDatasource) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *LDAPDatasource) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### GetDisableHostnameValidation
-
-`func (o *LDAPDatasource) GetDisableHostnameValidation() bool`
-
-GetDisableHostnameValidation returns the DisableHostnameValidation field if non-nil, zero value otherwise.
-
-### GetDisableHostnameValidationOk
-
-`func (o *LDAPDatasource) GetDisableHostnameValidationOk() (*bool, bool)`
-
-GetDisableHostnameValidationOk returns a tuple with the DisableHostnameValidation field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDisableHostnameValidation
-
-`func (o *LDAPDatasource) SetDisableHostnameValidation(v bool)`
-
-SetDisableHostnameValidation sets DisableHostnameValidation field to given value.
-
-### HasDisableHostnameValidation
-
-`func (o *LDAPDatasource) HasDisableHostnameValidation() bool`
-
-HasDisableHostnameValidation returns a boolean if a field has been set.
-
-### SetDisableHostnameValidationNil
-
-`func (o *LDAPDatasource) SetDisableHostnameValidationNil(b bool)`
-
- SetDisableHostnameValidationNil sets the value for DisableHostnameValidation to be an explicit nil
-
-### UnsetDisableHostnameValidation
-`func (o *LDAPDatasource) UnsetDisableHostnameValidation()`
-
-UnsetDisableHostnameValidation ensures that no value is present for DisableHostnameValidation, not even an explicit nil
 ### GetDisplayName
 
 `func (o *LDAPDatasource) GetDisplayName() []LocalizedString`
@@ -208,24 +113,49 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *LDAPDatasource) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetFilter
+### GetDescription
 
-`func (o *LDAPDatasource) GetFilter() string`
+`func (o *LDAPDatasource) GetDescription() string`
 
-GetFilter returns the Filter field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetFilterOk
+### GetDescriptionOk
 
-`func (o *LDAPDatasource) GetFilterOk() (*string, bool)`
+`func (o *LDAPDatasource) GetDescriptionOk() (*string, bool)`
 
-GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFilter
+### SetDescription
 
-`func (o *LDAPDatasource) SetFilter(v string)`
+`func (o *LDAPDatasource) SetDescription(v string)`
 
-SetFilter sets Filter field to given value.
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *LDAPDatasource) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### GetCredentials
+
+`func (o *LDAPDatasource) GetCredentials() string`
+
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
+
+### GetCredentialsOk
+
+`func (o *LDAPDatasource) GetCredentialsOk() (*string, bool)`
+
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCredentials
+
+`func (o *LDAPDatasource) SetCredentials(v string)`
+
+SetCredentials sets Credentials field to given value.
 
 
 ### GetHostname
@@ -246,26 +176,6 @@ and a boolean to check if the value has been set.
 `func (o *LDAPDatasource) SetHostname(v string)`
 
 SetHostname sets Hostname field to given value.
-
-
-### GetName
-
-`func (o *LDAPDatasource) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *LDAPDatasource) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *LDAPDatasource) SetName(v string)`
-
-SetName sets Name field to given value.
 
 
 ### GetPort
@@ -338,26 +248,6 @@ HasProxy returns a boolean if a field has been set.
 `func (o *LDAPDatasource) UnsetProxy()`
 
 UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetSecure
-
-`func (o *LDAPDatasource) GetSecure() bool`
-
-GetSecure returns the Secure field if non-nil, zero value otherwise.
-
-### GetSecureOk
-
-`func (o *LDAPDatasource) GetSecureOk() (*bool, bool)`
-
-GetSecureOk returns a tuple with the Secure field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSecure
-
-`func (o *LDAPDatasource) SetSecure(v bool)`
-
-SetSecure sets Secure field to given value.
-
-
 ### GetTimeout
 
 `func (o *LDAPDatasource) GetTimeout() string`
@@ -378,26 +268,136 @@ and a boolean to check if the value has been set.
 SetTimeout sets Timeout field to given value.
 
 
-### GetType
+### GetSecure
 
-`func (o *LDAPDatasource) GetType() string`
+`func (o *LDAPDatasource) GetSecure() bool`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetSecure returns the Secure field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetSecureOk
 
-`func (o *LDAPDatasource) GetTypeOk() (*string, bool)`
+`func (o *LDAPDatasource) GetSecureOk() (*bool, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetSecureOk returns a tuple with the Secure field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetSecure
 
-`func (o *LDAPDatasource) SetType(v string)`
+`func (o *LDAPDatasource) SetSecure(v bool)`
 
-SetType sets Type field to given value.
+SetSecure sets Secure field to given value.
 
 
+### GetDisableHostnameValidation
+
+`func (o *LDAPDatasource) GetDisableHostnameValidation() bool`
+
+GetDisableHostnameValidation returns the DisableHostnameValidation field if non-nil, zero value otherwise.
+
+### GetDisableHostnameValidationOk
+
+`func (o *LDAPDatasource) GetDisableHostnameValidationOk() (*bool, bool)`
+
+GetDisableHostnameValidationOk returns a tuple with the DisableHostnameValidation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableHostnameValidation
+
+`func (o *LDAPDatasource) SetDisableHostnameValidation(v bool)`
+
+SetDisableHostnameValidation sets DisableHostnameValidation field to given value.
+
+### HasDisableHostnameValidation
+
+`func (o *LDAPDatasource) HasDisableHostnameValidation() bool`
+
+HasDisableHostnameValidation returns a boolean if a field has been set.
+
+### SetDisableHostnameValidationNil
+
+`func (o *LDAPDatasource) SetDisableHostnameValidationNil(b bool)`
+
+ SetDisableHostnameValidationNil sets the value for DisableHostnameValidation to be an explicit nil
+
+### UnsetDisableHostnameValidation
+`func (o *LDAPDatasource) UnsetDisableHostnameValidation()`
+
+UnsetDisableHostnameValidation ensures that no value is present for DisableHostnameValidation, not even an explicit nil
+### GetBaseDn
+
+`func (o *LDAPDatasource) GetBaseDn() string`
+
+GetBaseDn returns the BaseDn field if non-nil, zero value otherwise.
+
+### GetBaseDnOk
+
+`func (o *LDAPDatasource) GetBaseDnOk() (*string, bool)`
+
+GetBaseDnOk returns a tuple with the BaseDn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBaseDn
+
+`func (o *LDAPDatasource) SetBaseDn(v string)`
+
+SetBaseDn sets BaseDn field to given value.
+
+
+### GetFilter
+
+`func (o *LDAPDatasource) GetFilter() string`
+
+GetFilter returns the Filter field if non-nil, zero value otherwise.
+
+### GetFilterOk
+
+`func (o *LDAPDatasource) GetFilterOk() (*string, bool)`
+
+GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilter
+
+`func (o *LDAPDatasource) SetFilter(v string)`
+
+SetFilter sets Filter field to given value.
+
+
+### GetAttributes
+
+`func (o *LDAPDatasource) GetAttributes() []DataSourceOutput`
+
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+
+### GetAttributesOk
+
+`func (o *LDAPDatasource) GetAttributesOk() (*[]DataSourceOutput, bool)`
+
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttributes
+
+`func (o *LDAPDatasource) SetAttributes(v []DataSourceOutput)`
+
+SetAttributes sets Attributes field to given value.
+
+### HasAttributes
+
+`func (o *LDAPDatasource) HasAttributes() bool`
+
+HasAttributes returns a boolean if a field has been set.
+
+### SetAttributesNil
+
+`func (o *LDAPDatasource) SetAttributesNil(b bool)`
+
+ SetAttributesNil sets the value for Attributes to be an explicit nil
+
+### UnsetAttributes
+`func (o *LDAPDatasource) UnsetAttributes()`
+
+UnsetAttributes ensures that no value is present for Attributes, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Dictionary** | [**[]MapEntry**](MapEntry.md) |  | 
 **Domain** | **string** | Top level domain name | 
+**Dictionary** | [**[]MapEntry**](MapEntry.md) |  | 
 
 ## Methods
 
 ### NewStaticDomainDictionaryProviderDomainsInner
 
-`func NewStaticDomainDictionaryProviderDomainsInner(dictionary []MapEntry, domain string, ) *StaticDomainDictionaryProviderDomainsInner`
+`func NewStaticDomainDictionaryProviderDomainsInner(domain string, dictionary []MapEntry, ) *StaticDomainDictionaryProviderDomainsInner`
 
 NewStaticDomainDictionaryProviderDomainsInner instantiates a new StaticDomainDictionaryProviderDomainsInner object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewStaticDomainDictionaryProviderDomainsInnerWithDefaults instantiates a new StaticDomainDictionaryProviderDomainsInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetDictionary
-
-`func (o *StaticDomainDictionaryProviderDomainsInner) GetDictionary() []MapEntry`
-
-GetDictionary returns the Dictionary field if non-nil, zero value otherwise.
-
-### GetDictionaryOk
-
-`func (o *StaticDomainDictionaryProviderDomainsInner) GetDictionaryOk() (*[]MapEntry, bool)`
-
-GetDictionaryOk returns a tuple with the Dictionary field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDictionary
-
-`func (o *StaticDomainDictionaryProviderDomainsInner) SetDictionary(v []MapEntry)`
-
-SetDictionary sets Dictionary field to given value.
-
 
 ### GetDomain
 
@@ -64,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *StaticDomainDictionaryProviderDomainsInner) SetDomain(v string)`
 
 SetDomain sets Domain field to given value.
+
+
+### GetDictionary
+
+`func (o *StaticDomainDictionaryProviderDomainsInner) GetDictionary() []MapEntry`
+
+GetDictionary returns the Dictionary field if non-nil, zero value otherwise.
+
+### GetDictionaryOk
+
+`func (o *StaticDomainDictionaryProviderDomainsInner) GetDictionaryOk() (*[]MapEntry, bool)`
+
+GetDictionaryOk returns a tuple with the Dictionary field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDictionary
+
+`func (o *StaticDomainDictionaryProviderDomainsInner) SetDictionary(v []MapEntry)`
+
+SetDictionary sets Dictionary field to given value.
 
 
 

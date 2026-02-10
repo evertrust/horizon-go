@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CompliancePolicy** | Pointer to [**NullableCompliancePolicy**](CompliancePolicy.md) |  | [optional] 
-**ExecutionPolicy** | Pointer to **NullableString** |  | [optional] 
 **Name** | **string** |  | 
-**Profile** | **string** |  | 
+**ExecutionPolicy** | Pointer to **NullableString** |  | [optional] 
+**CompliancePolicy** | Pointer to [**NullableCompliancePolicy**](CompliancePolicy.md) |  | [optional] 
 **TrustChains** | Pointer to **[]string** |  | [optional] 
+**Profile** | **string** |  | 
 
 ## Methods
 
@@ -29,41 +29,26 @@ NewAutomationPolicyWithDefaults instantiates a new AutomationPolicy object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCompliancePolicy
+### GetName
 
-`func (o *AutomationPolicy) GetCompliancePolicy() CompliancePolicy`
+`func (o *AutomationPolicy) GetName() string`
 
-GetCompliancePolicy returns the CompliancePolicy field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetCompliancePolicyOk
+### GetNameOk
 
-`func (o *AutomationPolicy) GetCompliancePolicyOk() (*CompliancePolicy, bool)`
+`func (o *AutomationPolicy) GetNameOk() (*string, bool)`
 
-GetCompliancePolicyOk returns a tuple with the CompliancePolicy field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCompliancePolicy
+### SetName
 
-`func (o *AutomationPolicy) SetCompliancePolicy(v CompliancePolicy)`
+`func (o *AutomationPolicy) SetName(v string)`
 
-SetCompliancePolicy sets CompliancePolicy field to given value.
+SetName sets Name field to given value.
 
-### HasCompliancePolicy
 
-`func (o *AutomationPolicy) HasCompliancePolicy() bool`
-
-HasCompliancePolicy returns a boolean if a field has been set.
-
-### SetCompliancePolicyNil
-
-`func (o *AutomationPolicy) SetCompliancePolicyNil(b bool)`
-
- SetCompliancePolicyNil sets the value for CompliancePolicy to be an explicit nil
-
-### UnsetCompliancePolicy
-`func (o *AutomationPolicy) UnsetCompliancePolicy()`
-
-UnsetCompliancePolicy ensures that no value is present for CompliancePolicy, not even an explicit nil
 ### GetExecutionPolicy
 
 `func (o *AutomationPolicy) GetExecutionPolicy() string`
@@ -99,46 +84,41 @@ HasExecutionPolicy returns a boolean if a field has been set.
 `func (o *AutomationPolicy) UnsetExecutionPolicy()`
 
 UnsetExecutionPolicy ensures that no value is present for ExecutionPolicy, not even an explicit nil
-### GetName
+### GetCompliancePolicy
 
-`func (o *AutomationPolicy) GetName() string`
+`func (o *AutomationPolicy) GetCompliancePolicy() CompliancePolicy`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetCompliancePolicy returns the CompliancePolicy field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetCompliancePolicyOk
 
-`func (o *AutomationPolicy) GetNameOk() (*string, bool)`
+`func (o *AutomationPolicy) GetCompliancePolicyOk() (*CompliancePolicy, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetCompliancePolicyOk returns a tuple with the CompliancePolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetCompliancePolicy
 
-`func (o *AutomationPolicy) SetName(v string)`
+`func (o *AutomationPolicy) SetCompliancePolicy(v CompliancePolicy)`
 
-SetName sets Name field to given value.
+SetCompliancePolicy sets CompliancePolicy field to given value.
 
+### HasCompliancePolicy
 
-### GetProfile
+`func (o *AutomationPolicy) HasCompliancePolicy() bool`
 
-`func (o *AutomationPolicy) GetProfile() string`
+HasCompliancePolicy returns a boolean if a field has been set.
 
-GetProfile returns the Profile field if non-nil, zero value otherwise.
+### SetCompliancePolicyNil
 
-### GetProfileOk
+`func (o *AutomationPolicy) SetCompliancePolicyNil(b bool)`
 
-`func (o *AutomationPolicy) GetProfileOk() (*string, bool)`
+ SetCompliancePolicyNil sets the value for CompliancePolicy to be an explicit nil
 
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetCompliancePolicy
+`func (o *AutomationPolicy) UnsetCompliancePolicy()`
 
-### SetProfile
-
-`func (o *AutomationPolicy) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-
+UnsetCompliancePolicy ensures that no value is present for CompliancePolicy, not even an explicit nil
 ### GetTrustChains
 
 `func (o *AutomationPolicy) GetTrustChains() []string`
@@ -174,6 +154,26 @@ HasTrustChains returns a boolean if a field has been set.
 `func (o *AutomationPolicy) UnsetTrustChains()`
 
 UnsetTrustChains ensures that no value is present for TrustChains, not even an explicit nil
+### GetProfile
+
+`func (o *AutomationPolicy) GetProfile() string`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *AutomationPolicy) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *AutomationPolicy) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

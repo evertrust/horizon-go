@@ -21,22 +21,22 @@ var _ utils.MappedNullable = &WebRAImportRequestTemplateResponse{}
 
 // WebRAImportRequestTemplateResponse struct for WebRAImportRequestTemplateResponse
 type WebRAImportRequestTemplateResponse struct {
-	// The contact email for this certificate
-	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
-	// The host discovery data associated with the certificate (discovery metadata)
-	DiscoveryData *HostDiscoveryData `json:"discoveryData,omitempty"`
-	// Information about the discovery of this certificate
-	DiscoveryInfo NullableDiscoveryInfo `json:"discoveryInfo,omitempty"`
-	// The labels for this certificate
-	Labels []RequestLabelElement `json:"labels,omitempty"`
-	// The technical metadata for this certificate
-	Metadata []CertificateMetadataElement `json:"metadata,omitempty"`
 	// The owner for this certificate
 	Owner NullableCertificateOwnerElement `json:"owner,omitempty"`
 	// The team for this certificate
 	Team NullableCertificateTeamElement `json:"team,omitempty"`
+	// The contact email for this certificate
+	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
+	// The labels for this certificate
+	Labels []RequestLabelElement `json:"labels,omitempty"`
+	// The technical metadata for this certificate
+	Metadata []CertificateMetadataElement `json:"metadata,omitempty"`
 	// The third party data associated with the certificate
-	ThirdPartyData       []ThirdPartyItem `json:"thirdPartyData,omitempty"`
+	ThirdPartyData []ThirdPartyItem `json:"thirdPartyData,omitempty"`
+	// Information about the discovery of this certificate
+	DiscoveryInfo NullableDiscoveryInfo `json:"discoveryInfo,omitempty"`
+	// The host discovery data associated with the certificate (discovery metadata)
+	DiscoveryData        *HostDiscoveryData `json:"discoveryData,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,190 +57,6 @@ func NewWebRAImportRequestTemplateResponse() *WebRAImportRequestTemplateResponse
 func NewWebRAImportRequestTemplateResponseWithDefaults() *WebRAImportRequestTemplateResponse {
 	this := WebRAImportRequestTemplateResponse{}
 	return &this
-}
-
-// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAImportRequestTemplateResponse) GetContactEmail() CertificateContactEmailElement {
-	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
-		var ret CertificateContactEmailElement
-		return ret
-	}
-	return *o.ContactEmail.Get()
-}
-
-// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAImportRequestTemplateResponse) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
-}
-
-// HasContactEmail returns a boolean if a field has been set.
-func (o *WebRAImportRequestTemplateResponse) HasContactEmail() bool {
-	if o != nil && o.ContactEmail.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
-func (o *WebRAImportRequestTemplateResponse) SetContactEmail(v CertificateContactEmailElement) {
-	o.ContactEmail.Set(&v)
-}
-
-// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
-func (o *WebRAImportRequestTemplateResponse) SetContactEmailNil() {
-	o.ContactEmail.Set(nil)
-}
-
-// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
-func (o *WebRAImportRequestTemplateResponse) UnsetContactEmail() {
-	o.ContactEmail.Unset()
-}
-
-// GetDiscoveryData returns the DiscoveryData field value if set, zero value otherwise.
-func (o *WebRAImportRequestTemplateResponse) GetDiscoveryData() HostDiscoveryData {
-	if o == nil || utils.IsNil(o.DiscoveryData) {
-		var ret HostDiscoveryData
-		return ret
-	}
-	return *o.DiscoveryData
-}
-
-// GetDiscoveryDataOk returns a tuple with the DiscoveryData field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebRAImportRequestTemplateResponse) GetDiscoveryDataOk() (*HostDiscoveryData, bool) {
-	if o == nil || utils.IsNil(o.DiscoveryData) {
-		return nil, false
-	}
-	return o.DiscoveryData, true
-}
-
-// HasDiscoveryData returns a boolean if a field has been set.
-func (o *WebRAImportRequestTemplateResponse) HasDiscoveryData() bool {
-	if o != nil && !utils.IsNil(o.DiscoveryData) {
-		return true
-	}
-
-	return false
-}
-
-// SetDiscoveryData gets a reference to the given HostDiscoveryData and assigns it to the DiscoveryData field.
-func (o *WebRAImportRequestTemplateResponse) SetDiscoveryData(v HostDiscoveryData) {
-	o.DiscoveryData = &v
-}
-
-// GetDiscoveryInfo returns the DiscoveryInfo field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfo() DiscoveryInfo {
-	if o == nil || utils.IsNil(o.DiscoveryInfo.Get()) {
-		var ret DiscoveryInfo
-		return ret
-	}
-	return *o.DiscoveryInfo.Get()
-}
-
-// GetDiscoveryInfoOk returns a tuple with the DiscoveryInfo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfoOk() (*DiscoveryInfo, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DiscoveryInfo.Get(), o.DiscoveryInfo.IsSet()
-}
-
-// HasDiscoveryInfo returns a boolean if a field has been set.
-func (o *WebRAImportRequestTemplateResponse) HasDiscoveryInfo() bool {
-	if o != nil && o.DiscoveryInfo.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDiscoveryInfo gets a reference to the given NullableDiscoveryInfo and assigns it to the DiscoveryInfo field.
-func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfo(v DiscoveryInfo) {
-	o.DiscoveryInfo.Set(&v)
-}
-
-// SetDiscoveryInfoNil sets the value for DiscoveryInfo to be an explicit nil
-func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfoNil() {
-	o.DiscoveryInfo.Set(nil)
-}
-
-// UnsetDiscoveryInfo ensures that no value is present for DiscoveryInfo, not even an explicit nil
-func (o *WebRAImportRequestTemplateResponse) UnsetDiscoveryInfo() {
-	o.DiscoveryInfo.Unset()
-}
-
-// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAImportRequestTemplateResponse) GetLabels() []RequestLabelElement {
-	if o == nil {
-		var ret []RequestLabelElement
-		return ret
-	}
-	return o.Labels
-}
-
-// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAImportRequestTemplateResponse) GetLabelsOk() ([]RequestLabelElement, bool) {
-	if o == nil || utils.IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
-}
-
-// HasLabels returns a boolean if a field has been set.
-func (o *WebRAImportRequestTemplateResponse) HasLabels() bool {
-	if o != nil && !utils.IsNil(o.Labels) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabels gets a reference to the given []RequestLabelElement and assigns it to the Labels field.
-func (o *WebRAImportRequestTemplateResponse) SetLabels(v []RequestLabelElement) {
-	o.Labels = v
-}
-
-// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAImportRequestTemplateResponse) GetMetadata() []CertificateMetadataElement {
-	if o == nil {
-		var ret []CertificateMetadataElement
-		return ret
-	}
-	return o.Metadata
-}
-
-// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAImportRequestTemplateResponse) GetMetadataOk() ([]CertificateMetadataElement, bool) {
-	if o == nil || utils.IsNil(o.Metadata) {
-		return nil, false
-	}
-	return o.Metadata, true
-}
-
-// HasMetadata returns a boolean if a field has been set.
-func (o *WebRAImportRequestTemplateResponse) HasMetadata() bool {
-	if o != nil && !utils.IsNil(o.Metadata) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadata gets a reference to the given []CertificateMetadataElement and assigns it to the Metadata field.
-func (o *WebRAImportRequestTemplateResponse) SetMetadata(v []CertificateMetadataElement) {
-	o.Metadata = v
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -329,6 +145,115 @@ func (o *WebRAImportRequestTemplateResponse) UnsetTeam() {
 	o.Team.Unset()
 }
 
+// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAImportRequestTemplateResponse) GetContactEmail() CertificateContactEmailElement {
+	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
+		var ret CertificateContactEmailElement
+		return ret
+	}
+	return *o.ContactEmail.Get()
+}
+
+// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAImportRequestTemplateResponse) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
+}
+
+// HasContactEmail returns a boolean if a field has been set.
+func (o *WebRAImportRequestTemplateResponse) HasContactEmail() bool {
+	if o != nil && o.ContactEmail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
+func (o *WebRAImportRequestTemplateResponse) SetContactEmail(v CertificateContactEmailElement) {
+	o.ContactEmail.Set(&v)
+}
+
+// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+func (o *WebRAImportRequestTemplateResponse) SetContactEmailNil() {
+	o.ContactEmail.Set(nil)
+}
+
+// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
+func (o *WebRAImportRequestTemplateResponse) UnsetContactEmail() {
+	o.ContactEmail.Unset()
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAImportRequestTemplateResponse) GetLabels() []RequestLabelElement {
+	if o == nil {
+		var ret []RequestLabelElement
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAImportRequestTemplateResponse) GetLabelsOk() ([]RequestLabelElement, bool) {
+	if o == nil || utils.IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *WebRAImportRequestTemplateResponse) HasLabels() bool {
+	if o != nil && !utils.IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []RequestLabelElement and assigns it to the Labels field.
+func (o *WebRAImportRequestTemplateResponse) SetLabels(v []RequestLabelElement) {
+	o.Labels = v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAImportRequestTemplateResponse) GetMetadata() []CertificateMetadataElement {
+	if o == nil {
+		var ret []CertificateMetadataElement
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAImportRequestTemplateResponse) GetMetadataOk() ([]CertificateMetadataElement, bool) {
+	if o == nil || utils.IsNil(o.Metadata) {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *WebRAImportRequestTemplateResponse) HasMetadata() bool {
+	if o != nil && !utils.IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given []CertificateMetadataElement and assigns it to the Metadata field.
+func (o *WebRAImportRequestTemplateResponse) SetMetadata(v []CertificateMetadataElement) {
+	o.Metadata = v
+}
+
 // GetThirdPartyData returns the ThirdPartyData field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRAImportRequestTemplateResponse) GetThirdPartyData() []ThirdPartyItem {
 	if o == nil {
@@ -362,6 +287,81 @@ func (o *WebRAImportRequestTemplateResponse) SetThirdPartyData(v []ThirdPartyIte
 	o.ThirdPartyData = v
 }
 
+// GetDiscoveryInfo returns the DiscoveryInfo field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfo() DiscoveryInfo {
+	if o == nil || utils.IsNil(o.DiscoveryInfo.Get()) {
+		var ret DiscoveryInfo
+		return ret
+	}
+	return *o.DiscoveryInfo.Get()
+}
+
+// GetDiscoveryInfoOk returns a tuple with the DiscoveryInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAImportRequestTemplateResponse) GetDiscoveryInfoOk() (*DiscoveryInfo, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DiscoveryInfo.Get(), o.DiscoveryInfo.IsSet()
+}
+
+// HasDiscoveryInfo returns a boolean if a field has been set.
+func (o *WebRAImportRequestTemplateResponse) HasDiscoveryInfo() bool {
+	if o != nil && o.DiscoveryInfo.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscoveryInfo gets a reference to the given NullableDiscoveryInfo and assigns it to the DiscoveryInfo field.
+func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfo(v DiscoveryInfo) {
+	o.DiscoveryInfo.Set(&v)
+}
+
+// SetDiscoveryInfoNil sets the value for DiscoveryInfo to be an explicit nil
+func (o *WebRAImportRequestTemplateResponse) SetDiscoveryInfoNil() {
+	o.DiscoveryInfo.Set(nil)
+}
+
+// UnsetDiscoveryInfo ensures that no value is present for DiscoveryInfo, not even an explicit nil
+func (o *WebRAImportRequestTemplateResponse) UnsetDiscoveryInfo() {
+	o.DiscoveryInfo.Unset()
+}
+
+// GetDiscoveryData returns the DiscoveryData field value if set, zero value otherwise.
+func (o *WebRAImportRequestTemplateResponse) GetDiscoveryData() HostDiscoveryData {
+	if o == nil || utils.IsNil(o.DiscoveryData) {
+		var ret HostDiscoveryData
+		return ret
+	}
+	return *o.DiscoveryData
+}
+
+// GetDiscoveryDataOk returns a tuple with the DiscoveryData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRAImportRequestTemplateResponse) GetDiscoveryDataOk() (*HostDiscoveryData, bool) {
+	if o == nil || utils.IsNil(o.DiscoveryData) {
+		return nil, false
+	}
+	return o.DiscoveryData, true
+}
+
+// HasDiscoveryData returns a boolean if a field has been set.
+func (o *WebRAImportRequestTemplateResponse) HasDiscoveryData() bool {
+	if o != nil && !utils.IsNil(o.DiscoveryData) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscoveryData gets a reference to the given HostDiscoveryData and assigns it to the DiscoveryData field.
+func (o *WebRAImportRequestTemplateResponse) SetDiscoveryData(v HostDiscoveryData) {
+	o.DiscoveryData = &v
+}
+
 func (o WebRAImportRequestTemplateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -372,14 +372,14 @@ func (o WebRAImportRequestTemplateResponse) MarshalJSON() ([]byte, error) {
 
 func (o WebRAImportRequestTemplateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Owner.IsSet() {
+		toSerialize["owner"] = o.Owner.Get()
+	}
+	if o.Team.IsSet() {
+		toSerialize["team"] = o.Team.Get()
+	}
 	if o.ContactEmail.IsSet() {
 		toSerialize["contactEmail"] = o.ContactEmail.Get()
-	}
-	if !utils.IsNil(o.DiscoveryData) {
-		toSerialize["discoveryData"] = o.DiscoveryData
-	}
-	if o.DiscoveryInfo.IsSet() {
-		toSerialize["discoveryInfo"] = o.DiscoveryInfo.Get()
 	}
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
@@ -387,14 +387,14 @@ func (o WebRAImportRequestTemplateResponse) ToMap() (map[string]interface{}, err
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
-	if o.Owner.IsSet() {
-		toSerialize["owner"] = o.Owner.Get()
-	}
-	if o.Team.IsSet() {
-		toSerialize["team"] = o.Team.Get()
-	}
 	if o.ThirdPartyData != nil {
 		toSerialize["thirdPartyData"] = o.ThirdPartyData
+	}
+	if o.DiscoveryInfo.IsSet() {
+		toSerialize["discoveryInfo"] = o.DiscoveryInfo.Get()
+	}
+	if !utils.IsNil(o.DiscoveryData) {
+		toSerialize["discoveryData"] = o.DiscoveryData
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -418,14 +418,14 @@ func (o *WebRAImportRequestTemplateResponse) UnmarshalJSON(data []byte) (err err
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "contactEmail")
-		delete(additionalProperties, "discoveryData")
-		delete(additionalProperties, "discoveryInfo")
-		delete(additionalProperties, "labels")
-		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "owner")
 		delete(additionalProperties, "team")
+		delete(additionalProperties, "contactEmail")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "thirdPartyData")
+		delete(additionalProperties, "discoveryInfo")
+		delete(additionalProperties, "discoveryData")
 		o.AdditionalProperties = additionalProperties
 	}
 

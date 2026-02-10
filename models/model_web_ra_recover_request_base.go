@@ -21,10 +21,10 @@ var _ utils.MappedNullable = &WebRARecoverRequestBase{}
 
 // WebRARecoverRequestBase struct for WebRARecoverRequestBase
 type WebRARecoverRequestBase struct {
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun utils.NullableBool `json:"dryRun,omitempty"`
 	// What this request will do. For a recovery request, this is always `recover`
-	Workflow             *string `json:"workflow,omitempty"`
+	Workflow *string `json:"workflow,omitempty"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,6 +49,38 @@ func NewWebRARecoverRequestBaseWithDefaults() *WebRARecoverRequestBase {
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
 	return &this
+}
+
+// GetWorkflow returns the Workflow field value if set, zero value otherwise.
+func (o *WebRARecoverRequestBase) GetWorkflow() string {
+	if o == nil || utils.IsNil(o.Workflow) {
+		var ret string
+		return ret
+	}
+	return *o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRARecoverRequestBase) GetWorkflowOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Workflow) {
+		return nil, false
+	}
+	return o.Workflow, true
+}
+
+// HasWorkflow returns a boolean if a field has been set.
+func (o *WebRARecoverRequestBase) HasWorkflow() bool {
+	if o != nil && !utils.IsNil(o.Workflow) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkflow gets a reference to the given string and assigns it to the Workflow field.
+func (o *WebRARecoverRequestBase) SetWorkflow(v string) {
+	o.Workflow = &v
 }
 
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -94,38 +126,6 @@ func (o *WebRARecoverRequestBase) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
-// GetWorkflow returns the Workflow field value if set, zero value otherwise.
-func (o *WebRARecoverRequestBase) GetWorkflow() string {
-	if o == nil || utils.IsNil(o.Workflow) {
-		var ret string
-		return ret
-	}
-	return *o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebRARecoverRequestBase) GetWorkflowOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Workflow) {
-		return nil, false
-	}
-	return o.Workflow, true
-}
-
-// HasWorkflow returns a boolean if a field has been set.
-func (o *WebRARecoverRequestBase) HasWorkflow() bool {
-	if o != nil && !utils.IsNil(o.Workflow) {
-		return true
-	}
-
-	return false
-}
-
-// SetWorkflow gets a reference to the given string and assigns it to the Workflow field.
-func (o *WebRARecoverRequestBase) SetWorkflow(v string) {
-	o.Workflow = &v
-}
-
 func (o WebRARecoverRequestBase) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -136,11 +136,11 @@ func (o WebRARecoverRequestBase) MarshalJSON() ([]byte, error) {
 
 func (o WebRARecoverRequestBase) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.DryRun.IsSet() {
-		toSerialize["dryRun"] = o.DryRun.Get()
-	}
 	if !utils.IsNil(o.Workflow) {
 		toSerialize["workflow"] = o.Workflow
+	}
+	if o.DryRun.IsSet() {
+		toSerialize["dryRun"] = o.DryRun.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -164,8 +164,8 @@ func (o *WebRARecoverRequestBase) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "dryRun")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "dryRun")
 		o.AdditionalProperties = additionalProperties
 	}
 

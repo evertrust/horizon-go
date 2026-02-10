@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	discoveryCampaign := *openapiclient.NewDiscoveryCampaign(*openapiclient.NewDiscoveryCampaignAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), true, true, false, false, "DiscoveryDMZ01") // DiscoveryCampaign | Discovery campaign to register
+	discoveryCampaign := *openapiclient.NewDiscoveryCampaign("DiscoveryDMZ01", *openapiclient.NewDiscoveryCampaignAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), false, false, true, true) // DiscoveryCampaign | Discovery campaign to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -367,7 +367,7 @@ import (
 )
 
 func main() {
-	discoveryCampaign := *openapiclient.NewDiscoveryCampaign(*openapiclient.NewDiscoveryCampaignAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), true, true, false, false, "DiscoveryDMZ01") // DiscoveryCampaign | Discovery campaign to update
+	discoveryCampaign := *openapiclient.NewDiscoveryCampaign("DiscoveryDMZ01", *openapiclient.NewDiscoveryCampaignAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), false, false, true, true) // DiscoveryCampaign | Discovery campaign to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

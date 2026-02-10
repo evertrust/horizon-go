@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationCredentials** | **NullableString** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
-**EndPoint** | **string** |  | 
 **Name** | **string** |  | 
+**Type** | **string** |  | 
+**EndPoint** | **string** |  | 
 **Profile** | **string** |  | 
+**AuthenticationCredentials** | **NullableString** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Type** | **string** |  | 
 
 ## Methods
 
 ### NewIDCAConnector
 
-`func NewIDCAConnector(authenticationCredentials NullableString, endPoint string, name string, profile string, type_ string, ) *IDCAConnector`
+`func NewIDCAConnector(name string, type_ string, endPoint string, profile string, authenticationCredentials NullableString, ) *IDCAConnector`
 
 NewIDCAConnector instantiates a new IDCAConnector object
 This constructor will assign default values to properties that have it defined,
@@ -31,6 +31,86 @@ will change when the set of required properties is changed
 NewIDCAConnectorWithDefaults instantiates a new IDCAConnector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetName
+
+`func (o *IDCAConnector) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *IDCAConnector) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *IDCAConnector) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetType
+
+`func (o *IDCAConnector) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *IDCAConnector) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *IDCAConnector) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
+### GetEndPoint
+
+`func (o *IDCAConnector) GetEndPoint() string`
+
+GetEndPoint returns the EndPoint field if non-nil, zero value otherwise.
+
+### GetEndPointOk
+
+`func (o *IDCAConnector) GetEndPointOk() (*string, bool)`
+
+GetEndPointOk returns a tuple with the EndPoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndPoint
+
+`func (o *IDCAConnector) SetEndPoint(v string)`
+
+SetEndPoint sets EndPoint field to given value.
+
+
+### GetProfile
+
+`func (o *IDCAConnector) GetProfile() string`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *IDCAConnector) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *IDCAConnector) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
+
 
 ### GetAuthenticationCredentials
 
@@ -62,66 +142,41 @@ SetAuthenticationCredentials sets AuthenticationCredentials field to given value
 `func (o *IDCAConnector) UnsetAuthenticationCredentials()`
 
 UnsetAuthenticationCredentials ensures that no value is present for AuthenticationCredentials, not even an explicit nil
-### GetEndPoint
+### GetTimeout
 
-`func (o *IDCAConnector) GetEndPoint() string`
+`func (o *IDCAConnector) GetTimeout() string`
 
-GetEndPoint returns the EndPoint field if non-nil, zero value otherwise.
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
 
-### GetEndPointOk
+### GetTimeoutOk
 
-`func (o *IDCAConnector) GetEndPointOk() (*string, bool)`
+`func (o *IDCAConnector) GetTimeoutOk() (*string, bool)`
 
-GetEndPointOk returns a tuple with the EndPoint field if it's non-nil, zero value otherwise
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEndPoint
+### SetTimeout
 
-`func (o *IDCAConnector) SetEndPoint(v string)`
+`func (o *IDCAConnector) SetTimeout(v string)`
 
-SetEndPoint sets EndPoint field to given value.
+SetTimeout sets Timeout field to given value.
 
+### HasTimeout
 
-### GetName
+`func (o *IDCAConnector) HasTimeout() bool`
 
-`func (o *IDCAConnector) GetName() string`
+HasTimeout returns a boolean if a field has been set.
 
-GetName returns the Name field if non-nil, zero value otherwise.
+### SetTimeoutNil
 
-### GetNameOk
+`func (o *IDCAConnector) SetTimeoutNil(b bool)`
 
-`func (o *IDCAConnector) GetNameOk() (*string, bool)`
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetTimeout
+`func (o *IDCAConnector) UnsetTimeout()`
 
-### SetName
-
-`func (o *IDCAConnector) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetProfile
-
-`func (o *IDCAConnector) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *IDCAConnector) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *IDCAConnector) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *IDCAConnector) GetProxy() string`
@@ -192,61 +247,6 @@ HasQueue returns a boolean if a field has been set.
 `func (o *IDCAConnector) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
-### GetTimeout
-
-`func (o *IDCAConnector) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *IDCAConnector) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *IDCAConnector) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *IDCAConnector) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *IDCAConnector) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *IDCAConnector) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
-
-`func (o *IDCAConnector) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *IDCAConnector) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *IDCAConnector) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

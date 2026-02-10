@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Triggers** | Pointer to [**NullableLicenseTriggers**](LicenseTriggers.md) | Triggers to execute on license events | [optional] 
 **Type** | **string** | The type of the configuration entry | 
+**Triggers** | Pointer to [**NullableLicenseTriggers**](LicenseTriggers.md) | Triggers to execute on license events | [optional] 
 **Cron** | **string** | Cron defining when to run internal monitor checks | 
-**HeaderEnd** | Pointer to **NullableString** | The HTML color code for the right side of the banner gradient | [optional] 
-**HeaderStart** | Pointer to **NullableString** | The HTML color code for the left side of the banner gradient | [optional] 
 **Logo** | Pointer to **NullableString** | A logo to display on the product, base64 encoded | [optional] 
+**HeaderStart** | Pointer to **NullableString** | The HTML color code for the left side of the banner gradient | [optional] 
+**HeaderEnd** | Pointer to **NullableString** | The HTML color code for the right side of the banner gradient | [optional] 
 
 ## Methods
 
@@ -51,6 +51,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetType
+
+`func (o *SystemConfigurationList200ResponseInner) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *SystemConfigurationList200ResponseInner) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *SystemConfigurationList200ResponseInner) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 ### GetTriggers
 
 `func (o *SystemConfigurationList200ResponseInner) GetTriggers() LicenseTriggers`
@@ -86,26 +106,6 @@ HasTriggers returns a boolean if a field has been set.
 `func (o *SystemConfigurationList200ResponseInner) UnsetTriggers()`
 
 UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
-### GetType
-
-`func (o *SystemConfigurationList200ResponseInner) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *SystemConfigurationList200ResponseInner) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *SystemConfigurationList200ResponseInner) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 ### GetCron
 
 `func (o *SystemConfigurationList200ResponseInner) GetCron() string`
@@ -126,76 +126,6 @@ and a boolean to check if the value has been set.
 SetCron sets Cron field to given value.
 
 
-### GetHeaderEnd
-
-`func (o *SystemConfigurationList200ResponseInner) GetHeaderEnd() string`
-
-GetHeaderEnd returns the HeaderEnd field if non-nil, zero value otherwise.
-
-### GetHeaderEndOk
-
-`func (o *SystemConfigurationList200ResponseInner) GetHeaderEndOk() (*string, bool)`
-
-GetHeaderEndOk returns a tuple with the HeaderEnd field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHeaderEnd
-
-`func (o *SystemConfigurationList200ResponseInner) SetHeaderEnd(v string)`
-
-SetHeaderEnd sets HeaderEnd field to given value.
-
-### HasHeaderEnd
-
-`func (o *SystemConfigurationList200ResponseInner) HasHeaderEnd() bool`
-
-HasHeaderEnd returns a boolean if a field has been set.
-
-### SetHeaderEndNil
-
-`func (o *SystemConfigurationList200ResponseInner) SetHeaderEndNil(b bool)`
-
- SetHeaderEndNil sets the value for HeaderEnd to be an explicit nil
-
-### UnsetHeaderEnd
-`func (o *SystemConfigurationList200ResponseInner) UnsetHeaderEnd()`
-
-UnsetHeaderEnd ensures that no value is present for HeaderEnd, not even an explicit nil
-### GetHeaderStart
-
-`func (o *SystemConfigurationList200ResponseInner) GetHeaderStart() string`
-
-GetHeaderStart returns the HeaderStart field if non-nil, zero value otherwise.
-
-### GetHeaderStartOk
-
-`func (o *SystemConfigurationList200ResponseInner) GetHeaderStartOk() (*string, bool)`
-
-GetHeaderStartOk returns a tuple with the HeaderStart field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHeaderStart
-
-`func (o *SystemConfigurationList200ResponseInner) SetHeaderStart(v string)`
-
-SetHeaderStart sets HeaderStart field to given value.
-
-### HasHeaderStart
-
-`func (o *SystemConfigurationList200ResponseInner) HasHeaderStart() bool`
-
-HasHeaderStart returns a boolean if a field has been set.
-
-### SetHeaderStartNil
-
-`func (o *SystemConfigurationList200ResponseInner) SetHeaderStartNil(b bool)`
-
- SetHeaderStartNil sets the value for HeaderStart to be an explicit nil
-
-### UnsetHeaderStart
-`func (o *SystemConfigurationList200ResponseInner) UnsetHeaderStart()`
-
-UnsetHeaderStart ensures that no value is present for HeaderStart, not even an explicit nil
 ### GetLogo
 
 `func (o *SystemConfigurationList200ResponseInner) GetLogo() string`
@@ -231,6 +161,76 @@ HasLogo returns a boolean if a field has been set.
 `func (o *SystemConfigurationList200ResponseInner) UnsetLogo()`
 
 UnsetLogo ensures that no value is present for Logo, not even an explicit nil
+### GetHeaderStart
+
+`func (o *SystemConfigurationList200ResponseInner) GetHeaderStart() string`
+
+GetHeaderStart returns the HeaderStart field if non-nil, zero value otherwise.
+
+### GetHeaderStartOk
+
+`func (o *SystemConfigurationList200ResponseInner) GetHeaderStartOk() (*string, bool)`
+
+GetHeaderStartOk returns a tuple with the HeaderStart field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHeaderStart
+
+`func (o *SystemConfigurationList200ResponseInner) SetHeaderStart(v string)`
+
+SetHeaderStart sets HeaderStart field to given value.
+
+### HasHeaderStart
+
+`func (o *SystemConfigurationList200ResponseInner) HasHeaderStart() bool`
+
+HasHeaderStart returns a boolean if a field has been set.
+
+### SetHeaderStartNil
+
+`func (o *SystemConfigurationList200ResponseInner) SetHeaderStartNil(b bool)`
+
+ SetHeaderStartNil sets the value for HeaderStart to be an explicit nil
+
+### UnsetHeaderStart
+`func (o *SystemConfigurationList200ResponseInner) UnsetHeaderStart()`
+
+UnsetHeaderStart ensures that no value is present for HeaderStart, not even an explicit nil
+### GetHeaderEnd
+
+`func (o *SystemConfigurationList200ResponseInner) GetHeaderEnd() string`
+
+GetHeaderEnd returns the HeaderEnd field if non-nil, zero value otherwise.
+
+### GetHeaderEndOk
+
+`func (o *SystemConfigurationList200ResponseInner) GetHeaderEndOk() (*string, bool)`
+
+GetHeaderEndOk returns a tuple with the HeaderEnd field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHeaderEnd
+
+`func (o *SystemConfigurationList200ResponseInner) SetHeaderEnd(v string)`
+
+SetHeaderEnd sets HeaderEnd field to given value.
+
+### HasHeaderEnd
+
+`func (o *SystemConfigurationList200ResponseInner) HasHeaderEnd() bool`
+
+HasHeaderEnd returns a boolean if a field has been set.
+
+### SetHeaderEndNil
+
+`func (o *SystemConfigurationList200ResponseInner) SetHeaderEndNil(b bool)`
+
+ SetHeaderEndNil sets the value for HeaderEnd to be an explicit nil
+
+### UnsetHeaderEnd
+`func (o *SystemConfigurationList200ResponseInner) UnsetHeaderEnd()`
+
+UnsetHeaderEnd ensures that no value is present for HeaderEnd, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

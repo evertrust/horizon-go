@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **string** |  | 
 **ComputedDN** | Pointer to **NullableString** | DN that was requested on the LDAP server | [optional] 
 **ComputedFilter** | Pointer to **NullableString** | Filter that was requested on the LDAP server | [optional] 
-**Type** | **string** |  | 
-**Dictionary** | [**[]MapEntry**](MapEntry.md) | Data fetched from the datasource | 
-**Error** | Pointer to **NullableString** | If &#x60;status&#x60; is &#x60;failure&#x60;, the error message | [optional] 
 **Name** | **string** | Name of the executed datasource | 
 **Status** | **string** | Status of the execution. &#x60;success&#x60; if the datasource data was fetched correctly, &#x60;failure&#x60; if an error occured and &#x60;ignored&#x60; if inputs were not all filled, resulting in no request being sent | 
+**Dictionary** | [**[]MapEntry**](MapEntry.md) | Data fetched from the datasource | 
+**Error** | Pointer to **NullableString** | If &#x60;status&#x60; is &#x60;failure&#x60;, the error message | [optional] 
 
 ## Methods
 
 ### NewLDAPDataSourceResultResponse
 
-`func NewLDAPDataSourceResultResponse(type_ string, dictionary []MapEntry, name string, status string, ) *LDAPDataSourceResultResponse`
+`func NewLDAPDataSourceResultResponse(type_ string, name string, status string, dictionary []MapEntry, ) *LDAPDataSourceResultResponse`
 
 NewLDAPDataSourceResultResponse instantiates a new LDAPDataSourceResultResponse object
 This constructor will assign default values to properties that have it defined,
@@ -30,6 +30,26 @@ will change when the set of required properties is changed
 NewLDAPDataSourceResultResponseWithDefaults instantiates a new LDAPDataSourceResultResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *LDAPDataSourceResultResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *LDAPDataSourceResultResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LDAPDataSourceResultResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
 
 ### GetComputedDN
 
@@ -101,24 +121,44 @@ HasComputedFilter returns a boolean if a field has been set.
 `func (o *LDAPDataSourceResultResponse) UnsetComputedFilter()`
 
 UnsetComputedFilter ensures that no value is present for ComputedFilter, not even an explicit nil
-### GetType
+### GetName
 
-`func (o *LDAPDataSourceResultResponse) GetType() string`
+`func (o *LDAPDataSourceResultResponse) GetName() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetNameOk
 
-`func (o *LDAPDataSourceResultResponse) GetTypeOk() (*string, bool)`
+`func (o *LDAPDataSourceResultResponse) GetNameOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetName
 
-`func (o *LDAPDataSourceResultResponse) SetType(v string)`
+`func (o *LDAPDataSourceResultResponse) SetName(v string)`
 
-SetType sets Type field to given value.
+SetName sets Name field to given value.
+
+
+### GetStatus
+
+`func (o *LDAPDataSourceResultResponse) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *LDAPDataSourceResultResponse) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *LDAPDataSourceResultResponse) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 
 ### GetDictionary
@@ -176,46 +216,6 @@ HasError returns a boolean if a field has been set.
 `func (o *LDAPDataSourceResultResponse) UnsetError()`
 
 UnsetError ensures that no value is present for Error, not even an explicit nil
-### GetName
-
-`func (o *LDAPDataSourceResultResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *LDAPDataSourceResultResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *LDAPDataSourceResultResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetStatus
-
-`func (o *LDAPDataSourceResultResponse) GetStatus() string`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *LDAPDataSourceResultResponse) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *LDAPDataSourceResultResponse) SetStatus(v string)`
-
-SetStatus sets Status field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

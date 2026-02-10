@@ -22,37 +22,37 @@ var _ utils.MappedNullable = &Chart{}
 
 // Chart struct for Chart
 type Chart struct {
-	// The colors of the chart
-	Colors []string `json:"colors"`
-	// The description of the chart
-	Description utils.NullableString `json:"description,omitempty"`
-	Direction   utils.NullableString `json:"direction,omitempty"`
-	// The field that will be used to group data
-	Fields []string `json:"fields"`
-	// The height of the chart
-	H utils.NullableInt64 `json:"h,omitempty"`
-	// A condition to apply to the results of the aggregate. Only the aggregates results with more than 5 items in them can be kept for example
-	Having NullableHaving `json:"having,omitempty"`
-	// The index of the chart on the dashboard
-	I utils.NullableString `json:"i,omitempty"`
-	// The maximum number of results to display
-	Limit utils.NullableInt64 `json:"limit,omitempty"`
-	// The HCQL/HRQL query to build the chart from
-	LocalQuery utils.NullableString `json:"localQuery,omitempty"`
-	// Whether the logarithm scale is enabled or not
-	Log bool `json:"log"`
-	// How to sort the results in the chart (if applicable)
-	SortOrder utils.NullableString `json:"sortOrder,omitempty"`
 	// Title of the chart
 	Title string `json:"title"`
+	// The description of the chart
+	Description utils.NullableString `json:"description,omitempty"`
 	// The type of the chart
 	Type string `json:"type"`
-	// The width of the chart
-	W utils.NullableInt64 `json:"w,omitempty"`
+	// The field that will be used to group data
+	Fields []string `json:"fields"`
+	// The maximum number of results to display
+	Limit utils.NullableInt64 `json:"limit,omitempty"`
+	// A condition to apply to the results of the aggregate. Only the aggregates results with more than 5 items in them can be kept for example
+	Having NullableHaving `json:"having,omitempty"`
+	// How to sort the results in the chart (if applicable)
+	SortOrder utils.NullableString `json:"sortOrder,omitempty"`
+	// The HCQL/HRQL query to build the chart from
+	LocalQuery utils.NullableString `json:"localQuery,omitempty"`
+	Direction  utils.NullableString `json:"direction,omitempty"`
+	// The colors of the chart
+	Colors []string `json:"colors"`
+	// The index of the chart on the dashboard
+	I utils.NullableString `json:"i,omitempty"`
 	// The horizontal position of the chart on the grid
 	X utils.NullableInt64 `json:"x,omitempty"`
 	// The vertical position of the chart on the grid
-	Y                    utils.NullableInt64 `json:"y,omitempty"`
+	Y utils.NullableInt64 `json:"y,omitempty"`
+	// The width of the chart
+	W utils.NullableInt64 `json:"w,omitempty"`
+	// The height of the chart
+	H utils.NullableInt64 `json:"h,omitempty"`
+	// Whether the logarithm scale is enabled or not
+	Log                  bool `json:"log"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -62,13 +62,13 @@ type _Chart Chart
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChart(colors []string, fields []string, log bool, title string, type_ string) *Chart {
+func NewChart(title string, type_ string, fields []string, colors []string, log bool) *Chart {
 	this := Chart{}
-	this.Colors = colors
-	this.Fields = fields
-	this.Log = log
 	this.Title = title
 	this.Type = type_
+	this.Fields = fields
+	this.Colors = colors
+	this.Log = log
 	return &this
 }
 
@@ -80,28 +80,28 @@ func NewChartWithDefaults() *Chart {
 	return &this
 }
 
-// GetColors returns the Colors field value
-func (o *Chart) GetColors() []string {
+// GetTitle returns the Title field value
+func (o *Chart) GetTitle() string {
 	if o == nil {
-		var ret []string
+		var ret string
 		return ret
 	}
 
-	return o.Colors
+	return o.Title
 }
 
-// GetColorsOk returns a tuple with the Colors field value
+// GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
-func (o *Chart) GetColorsOk() ([]string, bool) {
+func (o *Chart) GetTitleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Colors, true
+	return &o.Title, true
 }
 
-// SetColors sets field value
-func (o *Chart) SetColors(v []string) {
-	o.Colors = v
+// SetTitle sets field value
+func (o *Chart) SetTitle(v string) {
+	o.Title = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -147,47 +147,28 @@ func (o *Chart) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetDirection returns the Direction field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Chart) GetDirection() string {
-	if o == nil || utils.IsNil(o.Direction.Get()) {
+// GetType returns the Type field value
+func (o *Chart) GetType() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Direction.Get()
+
+	return o.Type
 }
 
-// GetDirectionOk returns a tuple with the Direction field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Chart) GetDirectionOk() (*string, bool) {
+func (o *Chart) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Direction.Get(), o.Direction.IsSet()
+	return &o.Type, true
 }
 
-// HasDirection returns a boolean if a field has been set.
-func (o *Chart) HasDirection() bool {
-	if o != nil && o.Direction.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDirection gets a reference to the given NullableString and assigns it to the Direction field.
-func (o *Chart) SetDirection(v string) {
-	o.Direction.Set(&v)
-}
-
-// SetDirectionNil sets the value for Direction to be an explicit nil
-func (o *Chart) SetDirectionNil() {
-	o.Direction.Set(nil)
-}
-
-// UnsetDirection ensures that no value is present for Direction, not even an explicit nil
-func (o *Chart) UnsetDirection() {
-	o.Direction.Unset()
+// SetType sets field value
+func (o *Chart) SetType(v string) {
+	o.Type = v
 }
 
 // GetFields returns the Fields field value
@@ -212,135 +193,6 @@ func (o *Chart) GetFieldsOk() ([]string, bool) {
 // SetFields sets field value
 func (o *Chart) SetFields(v []string) {
 	o.Fields = v
-}
-
-// GetH returns the H field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Chart) GetH() int64 {
-	if o == nil || utils.IsNil(o.H.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.H.Get()
-}
-
-// GetHOk returns a tuple with the H field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Chart) GetHOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.H.Get(), o.H.IsSet()
-}
-
-// HasH returns a boolean if a field has been set.
-func (o *Chart) HasH() bool {
-	if o != nil && o.H.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetH gets a reference to the given NullableInt64 and assigns it to the H field.
-func (o *Chart) SetH(v int64) {
-	o.H.Set(&v)
-}
-
-// SetHNil sets the value for H to be an explicit nil
-func (o *Chart) SetHNil() {
-	o.H.Set(nil)
-}
-
-// UnsetH ensures that no value is present for H, not even an explicit nil
-func (o *Chart) UnsetH() {
-	o.H.Unset()
-}
-
-// GetHaving returns the Having field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Chart) GetHaving() Having {
-	if o == nil || utils.IsNil(o.Having.Get()) {
-		var ret Having
-		return ret
-	}
-	return *o.Having.Get()
-}
-
-// GetHavingOk returns a tuple with the Having field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Chart) GetHavingOk() (*Having, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Having.Get(), o.Having.IsSet()
-}
-
-// HasHaving returns a boolean if a field has been set.
-func (o *Chart) HasHaving() bool {
-	if o != nil && o.Having.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHaving gets a reference to the given NullableHaving and assigns it to the Having field.
-func (o *Chart) SetHaving(v Having) {
-	o.Having.Set(&v)
-}
-
-// SetHavingNil sets the value for Having to be an explicit nil
-func (o *Chart) SetHavingNil() {
-	o.Having.Set(nil)
-}
-
-// UnsetHaving ensures that no value is present for Having, not even an explicit nil
-func (o *Chart) UnsetHaving() {
-	o.Having.Unset()
-}
-
-// GetI returns the I field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Chart) GetI() string {
-	if o == nil || utils.IsNil(o.I.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.I.Get()
-}
-
-// GetIOk returns a tuple with the I field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Chart) GetIOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.I.Get(), o.I.IsSet()
-}
-
-// HasI returns a boolean if a field has been set.
-func (o *Chart) HasI() bool {
-	if o != nil && o.I.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetI gets a reference to the given NullableString and assigns it to the I field.
-func (o *Chart) SetI(v string) {
-	o.I.Set(&v)
-}
-
-// SetINil sets the value for I to be an explicit nil
-func (o *Chart) SetINil() {
-	o.I.Set(nil)
-}
-
-// UnsetI ensures that no value is present for I, not even an explicit nil
-func (o *Chart) UnsetI() {
-	o.I.Unset()
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -386,71 +238,47 @@ func (o *Chart) UnsetLimit() {
 	o.Limit.Unset()
 }
 
-// GetLocalQuery returns the LocalQuery field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Chart) GetLocalQuery() string {
-	if o == nil || utils.IsNil(o.LocalQuery.Get()) {
-		var ret string
+// GetHaving returns the Having field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Chart) GetHaving() Having {
+	if o == nil || utils.IsNil(o.Having.Get()) {
+		var ret Having
 		return ret
 	}
-	return *o.LocalQuery.Get()
+	return *o.Having.Get()
 }
 
-// GetLocalQueryOk returns a tuple with the LocalQuery field value if set, nil otherwise
+// GetHavingOk returns a tuple with the Having field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Chart) GetLocalQueryOk() (*string, bool) {
+func (o *Chart) GetHavingOk() (*Having, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.LocalQuery.Get(), o.LocalQuery.IsSet()
+	return o.Having.Get(), o.Having.IsSet()
 }
 
-// HasLocalQuery returns a boolean if a field has been set.
-func (o *Chart) HasLocalQuery() bool {
-	if o != nil && o.LocalQuery.IsSet() {
+// HasHaving returns a boolean if a field has been set.
+func (o *Chart) HasHaving() bool {
+	if o != nil && o.Having.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetLocalQuery gets a reference to the given NullableString and assigns it to the LocalQuery field.
-func (o *Chart) SetLocalQuery(v string) {
-	o.LocalQuery.Set(&v)
+// SetHaving gets a reference to the given NullableHaving and assigns it to the Having field.
+func (o *Chart) SetHaving(v Having) {
+	o.Having.Set(&v)
 }
 
-// SetLocalQueryNil sets the value for LocalQuery to be an explicit nil
-func (o *Chart) SetLocalQueryNil() {
-	o.LocalQuery.Set(nil)
+// SetHavingNil sets the value for Having to be an explicit nil
+func (o *Chart) SetHavingNil() {
+	o.Having.Set(nil)
 }
 
-// UnsetLocalQuery ensures that no value is present for LocalQuery, not even an explicit nil
-func (o *Chart) UnsetLocalQuery() {
-	o.LocalQuery.Unset()
-}
-
-// GetLog returns the Log field value
-func (o *Chart) GetLog() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Log
-}
-
-// GetLogOk returns a tuple with the Log field value
-// and a boolean to check if the value has been set.
-func (o *Chart) GetLogOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Log, true
-}
-
-// SetLog sets field value
-func (o *Chart) SetLog(v bool) {
-	o.Log = v
+// UnsetHaving ensures that no value is present for Having, not even an explicit nil
+func (o *Chart) UnsetHaving() {
+	o.Having.Unset()
 }
 
 // GetSortOrder returns the SortOrder field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -496,95 +324,157 @@ func (o *Chart) UnsetSortOrder() {
 	o.SortOrder.Unset()
 }
 
-// GetTitle returns the Title field value
-func (o *Chart) GetTitle() string {
-	if o == nil {
+// GetLocalQuery returns the LocalQuery field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Chart) GetLocalQuery() string {
+	if o == nil || utils.IsNil(o.LocalQuery.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Title
+	return *o.LocalQuery.Get()
 }
 
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *Chart) GetTitleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *Chart) SetTitle(v string) {
-	o.Title = v
-}
-
-// GetType returns the Type field value
-func (o *Chart) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *Chart) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *Chart) SetType(v string) {
-	o.Type = v
-}
-
-// GetW returns the W field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Chart) GetW() int64 {
-	if o == nil || utils.IsNil(o.W.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.W.Get()
-}
-
-// GetWOk returns a tuple with the W field value if set, nil otherwise
+// GetLocalQueryOk returns a tuple with the LocalQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Chart) GetWOk() (*int64, bool) {
+func (o *Chart) GetLocalQueryOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.W.Get(), o.W.IsSet()
+	return o.LocalQuery.Get(), o.LocalQuery.IsSet()
 }
 
-// HasW returns a boolean if a field has been set.
-func (o *Chart) HasW() bool {
-	if o != nil && o.W.IsSet() {
+// HasLocalQuery returns a boolean if a field has been set.
+func (o *Chart) HasLocalQuery() bool {
+	if o != nil && o.LocalQuery.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetW gets a reference to the given NullableInt64 and assigns it to the W field.
-func (o *Chart) SetW(v int64) {
-	o.W.Set(&v)
+// SetLocalQuery gets a reference to the given NullableString and assigns it to the LocalQuery field.
+func (o *Chart) SetLocalQuery(v string) {
+	o.LocalQuery.Set(&v)
 }
 
-// SetWNil sets the value for W to be an explicit nil
-func (o *Chart) SetWNil() {
-	o.W.Set(nil)
+// SetLocalQueryNil sets the value for LocalQuery to be an explicit nil
+func (o *Chart) SetLocalQueryNil() {
+	o.LocalQuery.Set(nil)
 }
 
-// UnsetW ensures that no value is present for W, not even an explicit nil
-func (o *Chart) UnsetW() {
-	o.W.Unset()
+// UnsetLocalQuery ensures that no value is present for LocalQuery, not even an explicit nil
+func (o *Chart) UnsetLocalQuery() {
+	o.LocalQuery.Unset()
+}
+
+// GetDirection returns the Direction field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Chart) GetDirection() string {
+	if o == nil || utils.IsNil(o.Direction.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Direction.Get()
+}
+
+// GetDirectionOk returns a tuple with the Direction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Chart) GetDirectionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Direction.Get(), o.Direction.IsSet()
+}
+
+// HasDirection returns a boolean if a field has been set.
+func (o *Chart) HasDirection() bool {
+	if o != nil && o.Direction.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDirection gets a reference to the given NullableString and assigns it to the Direction field.
+func (o *Chart) SetDirection(v string) {
+	o.Direction.Set(&v)
+}
+
+// SetDirectionNil sets the value for Direction to be an explicit nil
+func (o *Chart) SetDirectionNil() {
+	o.Direction.Set(nil)
+}
+
+// UnsetDirection ensures that no value is present for Direction, not even an explicit nil
+func (o *Chart) UnsetDirection() {
+	o.Direction.Unset()
+}
+
+// GetColors returns the Colors field value
+func (o *Chart) GetColors() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Colors
+}
+
+// GetColorsOk returns a tuple with the Colors field value
+// and a boolean to check if the value has been set.
+func (o *Chart) GetColorsOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Colors, true
+}
+
+// SetColors sets field value
+func (o *Chart) SetColors(v []string) {
+	o.Colors = v
+}
+
+// GetI returns the I field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Chart) GetI() string {
+	if o == nil || utils.IsNil(o.I.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.I.Get()
+}
+
+// GetIOk returns a tuple with the I field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Chart) GetIOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.I.Get(), o.I.IsSet()
+}
+
+// HasI returns a boolean if a field has been set.
+func (o *Chart) HasI() bool {
+	if o != nil && o.I.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetI gets a reference to the given NullableString and assigns it to the I field.
+func (o *Chart) SetI(v string) {
+	o.I.Set(&v)
+}
+
+// SetINil sets the value for I to be an explicit nil
+func (o *Chart) SetINil() {
+	o.I.Set(nil)
+}
+
+// UnsetI ensures that no value is present for I, not even an explicit nil
+func (o *Chart) UnsetI() {
+	o.I.Unset()
 }
 
 // GetX returns the X field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -673,6 +563,116 @@ func (o *Chart) UnsetY() {
 	o.Y.Unset()
 }
 
+// GetW returns the W field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Chart) GetW() int64 {
+	if o == nil || utils.IsNil(o.W.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.W.Get()
+}
+
+// GetWOk returns a tuple with the W field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Chart) GetWOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.W.Get(), o.W.IsSet()
+}
+
+// HasW returns a boolean if a field has been set.
+func (o *Chart) HasW() bool {
+	if o != nil && o.W.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetW gets a reference to the given NullableInt64 and assigns it to the W field.
+func (o *Chart) SetW(v int64) {
+	o.W.Set(&v)
+}
+
+// SetWNil sets the value for W to be an explicit nil
+func (o *Chart) SetWNil() {
+	o.W.Set(nil)
+}
+
+// UnsetW ensures that no value is present for W, not even an explicit nil
+func (o *Chart) UnsetW() {
+	o.W.Unset()
+}
+
+// GetH returns the H field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Chart) GetH() int64 {
+	if o == nil || utils.IsNil(o.H.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.H.Get()
+}
+
+// GetHOk returns a tuple with the H field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Chart) GetHOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.H.Get(), o.H.IsSet()
+}
+
+// HasH returns a boolean if a field has been set.
+func (o *Chart) HasH() bool {
+	if o != nil && o.H.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetH gets a reference to the given NullableInt64 and assigns it to the H field.
+func (o *Chart) SetH(v int64) {
+	o.H.Set(&v)
+}
+
+// SetHNil sets the value for H to be an explicit nil
+func (o *Chart) SetHNil() {
+	o.H.Set(nil)
+}
+
+// UnsetH ensures that no value is present for H, not even an explicit nil
+func (o *Chart) UnsetH() {
+	o.H.Unset()
+}
+
+// GetLog returns the Log field value
+func (o *Chart) GetLog() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Log
+}
+
+// GetLogOk returns a tuple with the Log field value
+// and a boolean to check if the value has been set.
+func (o *Chart) GetLogOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Log, true
+}
+
+// SetLog sets field value
+func (o *Chart) SetLog(v bool) {
+	o.Log = v
+}
+
 func (o Chart) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -683,37 +683,30 @@ func (o Chart) MarshalJSON() ([]byte, error) {
 
 func (o Chart) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["colors"] = o.Colors
+	toSerialize["title"] = o.Title
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	if o.Direction.IsSet() {
-		toSerialize["direction"] = o.Direction.Get()
-	}
+	toSerialize["type"] = o.Type
 	toSerialize["fields"] = o.Fields
-	if o.H.IsSet() {
-		toSerialize["h"] = o.H.Get()
+	if o.Limit.IsSet() {
+		toSerialize["limit"] = o.Limit.Get()
 	}
 	if o.Having.IsSet() {
 		toSerialize["having"] = o.Having.Get()
 	}
-	if o.I.IsSet() {
-		toSerialize["i"] = o.I.Get()
-	}
-	if o.Limit.IsSet() {
-		toSerialize["limit"] = o.Limit.Get()
+	if o.SortOrder.IsSet() {
+		toSerialize["sortOrder"] = o.SortOrder.Get()
 	}
 	if o.LocalQuery.IsSet() {
 		toSerialize["localQuery"] = o.LocalQuery.Get()
 	}
-	toSerialize["log"] = o.Log
-	if o.SortOrder.IsSet() {
-		toSerialize["sortOrder"] = o.SortOrder.Get()
+	if o.Direction.IsSet() {
+		toSerialize["direction"] = o.Direction.Get()
 	}
-	toSerialize["title"] = o.Title
-	toSerialize["type"] = o.Type
-	if o.W.IsSet() {
-		toSerialize["w"] = o.W.Get()
+	toSerialize["colors"] = o.Colors
+	if o.I.IsSet() {
+		toSerialize["i"] = o.I.Get()
 	}
 	if o.X.IsSet() {
 		toSerialize["x"] = o.X.Get()
@@ -721,6 +714,13 @@ func (o Chart) ToMap() (map[string]interface{}, error) {
 	if o.Y.IsSet() {
 		toSerialize["y"] = o.Y.Get()
 	}
+	if o.W.IsSet() {
+		toSerialize["w"] = o.W.Get()
+	}
+	if o.H.IsSet() {
+		toSerialize["h"] = o.H.Get()
+	}
+	toSerialize["log"] = o.Log
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -734,11 +734,11 @@ func (o *Chart) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"colors",
-		"fields",
-		"log",
 		"title",
 		"type",
+		"fields",
+		"colors",
+		"log",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -768,22 +768,22 @@ func (o *Chart) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "colors")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "direction")
-		delete(additionalProperties, "fields")
-		delete(additionalProperties, "h")
-		delete(additionalProperties, "having")
-		delete(additionalProperties, "i")
-		delete(additionalProperties, "limit")
-		delete(additionalProperties, "localQuery")
-		delete(additionalProperties, "log")
-		delete(additionalProperties, "sortOrder")
 		delete(additionalProperties, "title")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "type")
-		delete(additionalProperties, "w")
+		delete(additionalProperties, "fields")
+		delete(additionalProperties, "limit")
+		delete(additionalProperties, "having")
+		delete(additionalProperties, "sortOrder")
+		delete(additionalProperties, "localQuery")
+		delete(additionalProperties, "direction")
+		delete(additionalProperties, "colors")
+		delete(additionalProperties, "i")
 		delete(additionalProperties, "x")
 		delete(additionalProperties, "y")
+		delete(additionalProperties, "w")
+		delete(additionalProperties, "h")
+		delete(additionalProperties, "log")
 		o.AdditionalProperties = additionalProperties
 	}
 

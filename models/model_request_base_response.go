@@ -22,48 +22,48 @@ var _ utils.MappedNullable = &RequestBaseResponse{}
 // RequestBaseResponse struct for RequestBaseResponse
 type RequestBaseResponse struct {
 	// Object internal ID
-	Id *string `json:"_id,omitempty"`
-	// The approver's principal identifier
-	Approver utils.NullableString `json:"approver,omitempty"`
-	// Free-text field editable by the approver to provider more context on the request
-	ApproverComment utils.NullableString `json:"approverComment,omitempty"`
-	// The request's contact email
-	Contact utils.NullableString `json:"contact,omitempty"`
-	// Certificate's Distinguished Name
-	Dn *string `json:"dn,omitempty"`
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun utils.NullableBool `json:"dryRun,omitempty"`
-	// The date the request will expire. This is set by the system
-	ExpirationDate *int64 `json:"expirationDate,omitempty"`
-	// The number of certificates that are currently valid and have the same DN and SANs in the Horizon database
-	GlobalHolderIdCount utils.NullableInt64 `json:"globalHolderIdCount,omitempty"`
-	// The computed holderID for this request. This is set by the system based on DN and SANs
-	HolderId *string `json:"holderId,omitempty"`
-	// The labels set in this request
-	Labels []LabelData `json:"labels,omitempty"`
-	// The date the request was last modified. This is set by the system
-	LastModificationDate *int64 `json:"lastModificationDate,omitempty"`
-	// The metadata set in this request
-	Metadata []CertificateMetadata `json:"metadata,omitempty"`
-	Module   *string               `json:"module,omitempty"`
+	Id       *string        `json:"_id,omitempty"`
+	Module   *string        `json:"module,omitempty"`
+	Workflow *string        `json:"workflow,omitempty"`
+	Status   *RequestStatus `json:"status,omitempty"`
 	// The associated profile name
 	Profile *string `json:"profile,omitempty"`
-	// The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile
-	ProfileHolderIdCount utils.NullableInt64 `json:"profileHolderIdCount,omitempty"`
-	// The date the request was created. This is set by the system
-	RegistrationDate *int64 `json:"registrationDate,omitempty"`
-	// The date the requested will be deleted. This is set by the system
-	RemoveAt *int64 `json:"removeAt,omitempty"`
+	// Certificate's Distinguished Name
+	Dn *string `json:"dn,omitempty"`
 	// The requester's principal identifier
 	Requester utils.NullableString `json:"requester,omitempty"`
-	// Free-text field editable by the requester to provider more context on the request
-	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
-	Status           *RequestStatus       `json:"status,omitempty"`
 	// The team that will be assigned to this certificate. Teams are used to link certificates to people and to assign permissions to them
 	Team utils.NullableString `json:"team,omitempty"`
+	// The approver's principal identifier
+	Approver utils.NullableString `json:"approver,omitempty"`
+	// The request's contact email
+	Contact utils.NullableString `json:"contact,omitempty"`
+	// Free-text field editable by the requester to provider more context on the request
+	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
+	// Free-text field editable by the approver to provider more context on the request
+	ApproverComment utils.NullableString `json:"approverComment,omitempty"`
+	// The date the request was created. This is set by the system
+	RegistrationDate *int64 `json:"registrationDate,omitempty"`
+	// The date the request was last modified. This is set by the system
+	LastModificationDate *int64 `json:"lastModificationDate,omitempty"`
+	// The date the request will expire. This is set by the system
+	ExpirationDate *int64 `json:"expirationDate,omitempty"`
+	// The date the requested will be deleted. This is set by the system
+	RemoveAt *int64 `json:"removeAt,omitempty"`
 	// The result of the execution of triggers on this request
-	TriggerResults       []TriggerResult `json:"triggerResults,omitempty"`
-	Workflow             *string         `json:"workflow,omitempty"`
+	TriggerResults []TriggerResult `json:"triggerResults,omitempty"`
+	// The computed holderID for this request. This is set by the system based on DN and SANs
+	HolderId *string `json:"holderId,omitempty"`
+	// The number of certificates that are currently valid and have the same DN and SANs in the Horizon database
+	GlobalHolderIdCount utils.NullableInt64 `json:"globalHolderIdCount,omitempty"`
+	// The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile
+	ProfileHolderIdCount utils.NullableInt64 `json:"profileHolderIdCount,omitempty"`
+	// The labels set in this request
+	Labels []LabelData `json:"labels,omitempty"`
+	// The metadata set in this request
+	Metadata []CertificateMetadata `json:"metadata,omitempty"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -122,415 +122,6 @@ func (o *RequestBaseResponse) SetId(v string) {
 	o.Id = &v
 }
 
-// GetApprover returns the Approver field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestBaseResponse) GetApprover() string {
-	if o == nil || utils.IsNil(o.Approver.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Approver.Get()
-}
-
-// GetApproverOk returns a tuple with the Approver field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestBaseResponse) GetApproverOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Approver.Get(), o.Approver.IsSet()
-}
-
-// HasApprover returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasApprover() bool {
-	if o != nil && o.Approver.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetApprover gets a reference to the given NullableString and assigns it to the Approver field.
-func (o *RequestBaseResponse) SetApprover(v string) {
-	o.Approver.Set(&v)
-}
-
-// SetApproverNil sets the value for Approver to be an explicit nil
-func (o *RequestBaseResponse) SetApproverNil() {
-	o.Approver.Set(nil)
-}
-
-// UnsetApprover ensures that no value is present for Approver, not even an explicit nil
-func (o *RequestBaseResponse) UnsetApprover() {
-	o.Approver.Unset()
-}
-
-// GetApproverComment returns the ApproverComment field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestBaseResponse) GetApproverComment() string {
-	if o == nil || utils.IsNil(o.ApproverComment.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ApproverComment.Get()
-}
-
-// GetApproverCommentOk returns a tuple with the ApproverComment field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestBaseResponse) GetApproverCommentOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ApproverComment.Get(), o.ApproverComment.IsSet()
-}
-
-// HasApproverComment returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasApproverComment() bool {
-	if o != nil && o.ApproverComment.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetApproverComment gets a reference to the given NullableString and assigns it to the ApproverComment field.
-func (o *RequestBaseResponse) SetApproverComment(v string) {
-	o.ApproverComment.Set(&v)
-}
-
-// SetApproverCommentNil sets the value for ApproverComment to be an explicit nil
-func (o *RequestBaseResponse) SetApproverCommentNil() {
-	o.ApproverComment.Set(nil)
-}
-
-// UnsetApproverComment ensures that no value is present for ApproverComment, not even an explicit nil
-func (o *RequestBaseResponse) UnsetApproverComment() {
-	o.ApproverComment.Unset()
-}
-
-// GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestBaseResponse) GetContact() string {
-	if o == nil || utils.IsNil(o.Contact.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Contact.Get()
-}
-
-// GetContactOk returns a tuple with the Contact field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestBaseResponse) GetContactOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Contact.Get(), o.Contact.IsSet()
-}
-
-// HasContact returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasContact() bool {
-	if o != nil && o.Contact.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetContact gets a reference to the given NullableString and assigns it to the Contact field.
-func (o *RequestBaseResponse) SetContact(v string) {
-	o.Contact.Set(&v)
-}
-
-// SetContactNil sets the value for Contact to be an explicit nil
-func (o *RequestBaseResponse) SetContactNil() {
-	o.Contact.Set(nil)
-}
-
-// UnsetContact ensures that no value is present for Contact, not even an explicit nil
-func (o *RequestBaseResponse) UnsetContact() {
-	o.Contact.Unset()
-}
-
-// GetDn returns the Dn field value if set, zero value otherwise.
-func (o *RequestBaseResponse) GetDn() string {
-	if o == nil || utils.IsNil(o.Dn) {
-		var ret string
-		return ret
-	}
-	return *o.Dn
-}
-
-// GetDnOk returns a tuple with the Dn field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RequestBaseResponse) GetDnOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Dn) {
-		return nil, false
-	}
-	return o.Dn, true
-}
-
-// HasDn returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasDn() bool {
-	if o != nil && !utils.IsNil(o.Dn) {
-		return true
-	}
-
-	return false
-}
-
-// SetDn gets a reference to the given string and assigns it to the Dn field.
-func (o *RequestBaseResponse) SetDn(v string) {
-	o.Dn = &v
-}
-
-// GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestBaseResponse) GetDryRun() bool {
-	if o == nil || utils.IsNil(o.DryRun.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.DryRun.Get()
-}
-
-// GetDryRunOk returns a tuple with the DryRun field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestBaseResponse) GetDryRunOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DryRun.Get(), o.DryRun.IsSet()
-}
-
-// HasDryRun returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasDryRun() bool {
-	if o != nil && o.DryRun.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDryRun gets a reference to the given NullableBool and assigns it to the DryRun field.
-func (o *RequestBaseResponse) SetDryRun(v bool) {
-	o.DryRun.Set(&v)
-}
-
-// SetDryRunNil sets the value for DryRun to be an explicit nil
-func (o *RequestBaseResponse) SetDryRunNil() {
-	o.DryRun.Set(nil)
-}
-
-// UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
-func (o *RequestBaseResponse) UnsetDryRun() {
-	o.DryRun.Unset()
-}
-
-// GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
-func (o *RequestBaseResponse) GetExpirationDate() int64 {
-	if o == nil || utils.IsNil(o.ExpirationDate) {
-		var ret int64
-		return ret
-	}
-	return *o.ExpirationDate
-}
-
-// GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RequestBaseResponse) GetExpirationDateOk() (*int64, bool) {
-	if o == nil || utils.IsNil(o.ExpirationDate) {
-		return nil, false
-	}
-	return o.ExpirationDate, true
-}
-
-// HasExpirationDate returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasExpirationDate() bool {
-	if o != nil && !utils.IsNil(o.ExpirationDate) {
-		return true
-	}
-
-	return false
-}
-
-// SetExpirationDate gets a reference to the given int64 and assigns it to the ExpirationDate field.
-func (o *RequestBaseResponse) SetExpirationDate(v int64) {
-	o.ExpirationDate = &v
-}
-
-// GetGlobalHolderIdCount returns the GlobalHolderIdCount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestBaseResponse) GetGlobalHolderIdCount() int64 {
-	if o == nil || utils.IsNil(o.GlobalHolderIdCount.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.GlobalHolderIdCount.Get()
-}
-
-// GetGlobalHolderIdCountOk returns a tuple with the GlobalHolderIdCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestBaseResponse) GetGlobalHolderIdCountOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.GlobalHolderIdCount.Get(), o.GlobalHolderIdCount.IsSet()
-}
-
-// HasGlobalHolderIdCount returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasGlobalHolderIdCount() bool {
-	if o != nil && o.GlobalHolderIdCount.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetGlobalHolderIdCount gets a reference to the given NullableInt64 and assigns it to the GlobalHolderIdCount field.
-func (o *RequestBaseResponse) SetGlobalHolderIdCount(v int64) {
-	o.GlobalHolderIdCount.Set(&v)
-}
-
-// SetGlobalHolderIdCountNil sets the value for GlobalHolderIdCount to be an explicit nil
-func (o *RequestBaseResponse) SetGlobalHolderIdCountNil() {
-	o.GlobalHolderIdCount.Set(nil)
-}
-
-// UnsetGlobalHolderIdCount ensures that no value is present for GlobalHolderIdCount, not even an explicit nil
-func (o *RequestBaseResponse) UnsetGlobalHolderIdCount() {
-	o.GlobalHolderIdCount.Unset()
-}
-
-// GetHolderId returns the HolderId field value if set, zero value otherwise.
-func (o *RequestBaseResponse) GetHolderId() string {
-	if o == nil || utils.IsNil(o.HolderId) {
-		var ret string
-		return ret
-	}
-	return *o.HolderId
-}
-
-// GetHolderIdOk returns a tuple with the HolderId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RequestBaseResponse) GetHolderIdOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.HolderId) {
-		return nil, false
-	}
-	return o.HolderId, true
-}
-
-// HasHolderId returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasHolderId() bool {
-	if o != nil && !utils.IsNil(o.HolderId) {
-		return true
-	}
-
-	return false
-}
-
-// SetHolderId gets a reference to the given string and assigns it to the HolderId field.
-func (o *RequestBaseResponse) SetHolderId(v string) {
-	o.HolderId = &v
-}
-
-// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestBaseResponse) GetLabels() []LabelData {
-	if o == nil {
-		var ret []LabelData
-		return ret
-	}
-	return o.Labels
-}
-
-// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestBaseResponse) GetLabelsOk() ([]LabelData, bool) {
-	if o == nil || utils.IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
-}
-
-// HasLabels returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasLabels() bool {
-	if o != nil && !utils.IsNil(o.Labels) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabels gets a reference to the given []LabelData and assigns it to the Labels field.
-func (o *RequestBaseResponse) SetLabels(v []LabelData) {
-	o.Labels = v
-}
-
-// GetLastModificationDate returns the LastModificationDate field value if set, zero value otherwise.
-func (o *RequestBaseResponse) GetLastModificationDate() int64 {
-	if o == nil || utils.IsNil(o.LastModificationDate) {
-		var ret int64
-		return ret
-	}
-	return *o.LastModificationDate
-}
-
-// GetLastModificationDateOk returns a tuple with the LastModificationDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RequestBaseResponse) GetLastModificationDateOk() (*int64, bool) {
-	if o == nil || utils.IsNil(o.LastModificationDate) {
-		return nil, false
-	}
-	return o.LastModificationDate, true
-}
-
-// HasLastModificationDate returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasLastModificationDate() bool {
-	if o != nil && !utils.IsNil(o.LastModificationDate) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastModificationDate gets a reference to the given int64 and assigns it to the LastModificationDate field.
-func (o *RequestBaseResponse) SetLastModificationDate(v int64) {
-	o.LastModificationDate = &v
-}
-
-// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestBaseResponse) GetMetadata() []CertificateMetadata {
-	if o == nil {
-		var ret []CertificateMetadata
-		return ret
-	}
-	return o.Metadata
-}
-
-// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestBaseResponse) GetMetadataOk() ([]CertificateMetadata, bool) {
-	if o == nil || utils.IsNil(o.Metadata) {
-		return nil, false
-	}
-	return o.Metadata, true
-}
-
-// HasMetadata returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasMetadata() bool {
-	if o != nil && !utils.IsNil(o.Metadata) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadata gets a reference to the given []CertificateMetadata and assigns it to the Metadata field.
-func (o *RequestBaseResponse) SetMetadata(v []CertificateMetadata) {
-	o.Metadata = v
-}
-
 // GetModule returns the Module field value if set, zero value otherwise.
 func (o *RequestBaseResponse) GetModule() string {
 	if o == nil || utils.IsNil(o.Module) {
@@ -561,6 +152,70 @@ func (o *RequestBaseResponse) HasModule() bool {
 // SetModule gets a reference to the given string and assigns it to the Module field.
 func (o *RequestBaseResponse) SetModule(v string) {
 	o.Module = &v
+}
+
+// GetWorkflow returns the Workflow field value if set, zero value otherwise.
+func (o *RequestBaseResponse) GetWorkflow() string {
+	if o == nil || utils.IsNil(o.Workflow) {
+		var ret string
+		return ret
+	}
+	return *o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestBaseResponse) GetWorkflowOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Workflow) {
+		return nil, false
+	}
+	return o.Workflow, true
+}
+
+// HasWorkflow returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasWorkflow() bool {
+	if o != nil && !utils.IsNil(o.Workflow) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkflow gets a reference to the given string and assigns it to the Workflow field.
+func (o *RequestBaseResponse) SetWorkflow(v string) {
+	o.Workflow = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *RequestBaseResponse) GetStatus() RequestStatus {
+	if o == nil || utils.IsNil(o.Status) {
+		var ret RequestStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestBaseResponse) GetStatusOk() (*RequestStatus, bool) {
+	if o == nil || utils.IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasStatus() bool {
+	if o != nil && !utils.IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given RequestStatus and assigns it to the Status field.
+func (o *RequestBaseResponse) SetStatus(v RequestStatus) {
+	o.Status = &v
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
@@ -595,111 +250,36 @@ func (o *RequestBaseResponse) SetProfile(v string) {
 	o.Profile = &v
 }
 
-// GetProfileHolderIdCount returns the ProfileHolderIdCount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestBaseResponse) GetProfileHolderIdCount() int64 {
-	if o == nil || utils.IsNil(o.ProfileHolderIdCount.Get()) {
-		var ret int64
+// GetDn returns the Dn field value if set, zero value otherwise.
+func (o *RequestBaseResponse) GetDn() string {
+	if o == nil || utils.IsNil(o.Dn) {
+		var ret string
 		return ret
 	}
-	return *o.ProfileHolderIdCount.Get()
+	return *o.Dn
 }
 
-// GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field value if set, nil otherwise
+// GetDnOk returns a tuple with the Dn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestBaseResponse) GetProfileHolderIdCountOk() (*int64, bool) {
-	if o == nil {
+func (o *RequestBaseResponse) GetDnOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Dn) {
 		return nil, false
 	}
-	return o.ProfileHolderIdCount.Get(), o.ProfileHolderIdCount.IsSet()
+	return o.Dn, true
 }
 
-// HasProfileHolderIdCount returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasProfileHolderIdCount() bool {
-	if o != nil && o.ProfileHolderIdCount.IsSet() {
+// HasDn returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasDn() bool {
+	if o != nil && !utils.IsNil(o.Dn) {
 		return true
 	}
 
 	return false
 }
 
-// SetProfileHolderIdCount gets a reference to the given NullableInt64 and assigns it to the ProfileHolderIdCount field.
-func (o *RequestBaseResponse) SetProfileHolderIdCount(v int64) {
-	o.ProfileHolderIdCount.Set(&v)
-}
-
-// SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
-func (o *RequestBaseResponse) SetProfileHolderIdCountNil() {
-	o.ProfileHolderIdCount.Set(nil)
-}
-
-// UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
-func (o *RequestBaseResponse) UnsetProfileHolderIdCount() {
-	o.ProfileHolderIdCount.Unset()
-}
-
-// GetRegistrationDate returns the RegistrationDate field value if set, zero value otherwise.
-func (o *RequestBaseResponse) GetRegistrationDate() int64 {
-	if o == nil || utils.IsNil(o.RegistrationDate) {
-		var ret int64
-		return ret
-	}
-	return *o.RegistrationDate
-}
-
-// GetRegistrationDateOk returns a tuple with the RegistrationDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RequestBaseResponse) GetRegistrationDateOk() (*int64, bool) {
-	if o == nil || utils.IsNil(o.RegistrationDate) {
-		return nil, false
-	}
-	return o.RegistrationDate, true
-}
-
-// HasRegistrationDate returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasRegistrationDate() bool {
-	if o != nil && !utils.IsNil(o.RegistrationDate) {
-		return true
-	}
-
-	return false
-}
-
-// SetRegistrationDate gets a reference to the given int64 and assigns it to the RegistrationDate field.
-func (o *RequestBaseResponse) SetRegistrationDate(v int64) {
-	o.RegistrationDate = &v
-}
-
-// GetRemoveAt returns the RemoveAt field value if set, zero value otherwise.
-func (o *RequestBaseResponse) GetRemoveAt() int64 {
-	if o == nil || utils.IsNil(o.RemoveAt) {
-		var ret int64
-		return ret
-	}
-	return *o.RemoveAt
-}
-
-// GetRemoveAtOk returns a tuple with the RemoveAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RequestBaseResponse) GetRemoveAtOk() (*int64, bool) {
-	if o == nil || utils.IsNil(o.RemoveAt) {
-		return nil, false
-	}
-	return o.RemoveAt, true
-}
-
-// HasRemoveAt returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasRemoveAt() bool {
-	if o != nil && !utils.IsNil(o.RemoveAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoveAt gets a reference to the given int64 and assigns it to the RemoveAt field.
-func (o *RequestBaseResponse) SetRemoveAt(v int64) {
-	o.RemoveAt = &v
+// SetDn gets a reference to the given string and assigns it to the Dn field.
+func (o *RequestBaseResponse) SetDn(v string) {
+	o.Dn = &v
 }
 
 // GetRequester returns the Requester field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -745,81 +325,6 @@ func (o *RequestBaseResponse) UnsetRequester() {
 	o.Requester.Unset()
 }
 
-// GetRequesterComment returns the RequesterComment field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestBaseResponse) GetRequesterComment() string {
-	if o == nil || utils.IsNil(o.RequesterComment.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RequesterComment.Get()
-}
-
-// GetRequesterCommentOk returns a tuple with the RequesterComment field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestBaseResponse) GetRequesterCommentOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RequesterComment.Get(), o.RequesterComment.IsSet()
-}
-
-// HasRequesterComment returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasRequesterComment() bool {
-	if o != nil && o.RequesterComment.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRequesterComment gets a reference to the given NullableString and assigns it to the RequesterComment field.
-func (o *RequestBaseResponse) SetRequesterComment(v string) {
-	o.RequesterComment.Set(&v)
-}
-
-// SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
-func (o *RequestBaseResponse) SetRequesterCommentNil() {
-	o.RequesterComment.Set(nil)
-}
-
-// UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
-func (o *RequestBaseResponse) UnsetRequesterComment() {
-	o.RequesterComment.Unset()
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *RequestBaseResponse) GetStatus() RequestStatus {
-	if o == nil || utils.IsNil(o.Status) {
-		var ret RequestStatus
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RequestBaseResponse) GetStatusOk() (*RequestStatus, bool) {
-	if o == nil || utils.IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasStatus() bool {
-	if o != nil && !utils.IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given RequestStatus and assigns it to the Status field.
-func (o *RequestBaseResponse) SetStatus(v RequestStatus) {
-	o.Status = &v
-}
-
 // GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RequestBaseResponse) GetTeam() string {
 	if o == nil || utils.IsNil(o.Team.Get()) {
@@ -863,6 +368,306 @@ func (o *RequestBaseResponse) UnsetTeam() {
 	o.Team.Unset()
 }
 
+// GetApprover returns the Approver field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestBaseResponse) GetApprover() string {
+	if o == nil || utils.IsNil(o.Approver.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Approver.Get()
+}
+
+// GetApproverOk returns a tuple with the Approver field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestBaseResponse) GetApproverOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Approver.Get(), o.Approver.IsSet()
+}
+
+// HasApprover returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasApprover() bool {
+	if o != nil && o.Approver.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetApprover gets a reference to the given NullableString and assigns it to the Approver field.
+func (o *RequestBaseResponse) SetApprover(v string) {
+	o.Approver.Set(&v)
+}
+
+// SetApproverNil sets the value for Approver to be an explicit nil
+func (o *RequestBaseResponse) SetApproverNil() {
+	o.Approver.Set(nil)
+}
+
+// UnsetApprover ensures that no value is present for Approver, not even an explicit nil
+func (o *RequestBaseResponse) UnsetApprover() {
+	o.Approver.Unset()
+}
+
+// GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestBaseResponse) GetContact() string {
+	if o == nil || utils.IsNil(o.Contact.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Contact.Get()
+}
+
+// GetContactOk returns a tuple with the Contact field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestBaseResponse) GetContactOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Contact.Get(), o.Contact.IsSet()
+}
+
+// HasContact returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasContact() bool {
+	if o != nil && o.Contact.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContact gets a reference to the given NullableString and assigns it to the Contact field.
+func (o *RequestBaseResponse) SetContact(v string) {
+	o.Contact.Set(&v)
+}
+
+// SetContactNil sets the value for Contact to be an explicit nil
+func (o *RequestBaseResponse) SetContactNil() {
+	o.Contact.Set(nil)
+}
+
+// UnsetContact ensures that no value is present for Contact, not even an explicit nil
+func (o *RequestBaseResponse) UnsetContact() {
+	o.Contact.Unset()
+}
+
+// GetRequesterComment returns the RequesterComment field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestBaseResponse) GetRequesterComment() string {
+	if o == nil || utils.IsNil(o.RequesterComment.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RequesterComment.Get()
+}
+
+// GetRequesterCommentOk returns a tuple with the RequesterComment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestBaseResponse) GetRequesterCommentOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RequesterComment.Get(), o.RequesterComment.IsSet()
+}
+
+// HasRequesterComment returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasRequesterComment() bool {
+	if o != nil && o.RequesterComment.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRequesterComment gets a reference to the given NullableString and assigns it to the RequesterComment field.
+func (o *RequestBaseResponse) SetRequesterComment(v string) {
+	o.RequesterComment.Set(&v)
+}
+
+// SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
+func (o *RequestBaseResponse) SetRequesterCommentNil() {
+	o.RequesterComment.Set(nil)
+}
+
+// UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
+func (o *RequestBaseResponse) UnsetRequesterComment() {
+	o.RequesterComment.Unset()
+}
+
+// GetApproverComment returns the ApproverComment field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestBaseResponse) GetApproverComment() string {
+	if o == nil || utils.IsNil(o.ApproverComment.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ApproverComment.Get()
+}
+
+// GetApproverCommentOk returns a tuple with the ApproverComment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestBaseResponse) GetApproverCommentOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ApproverComment.Get(), o.ApproverComment.IsSet()
+}
+
+// HasApproverComment returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasApproverComment() bool {
+	if o != nil && o.ApproverComment.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetApproverComment gets a reference to the given NullableString and assigns it to the ApproverComment field.
+func (o *RequestBaseResponse) SetApproverComment(v string) {
+	o.ApproverComment.Set(&v)
+}
+
+// SetApproverCommentNil sets the value for ApproverComment to be an explicit nil
+func (o *RequestBaseResponse) SetApproverCommentNil() {
+	o.ApproverComment.Set(nil)
+}
+
+// UnsetApproverComment ensures that no value is present for ApproverComment, not even an explicit nil
+func (o *RequestBaseResponse) UnsetApproverComment() {
+	o.ApproverComment.Unset()
+}
+
+// GetRegistrationDate returns the RegistrationDate field value if set, zero value otherwise.
+func (o *RequestBaseResponse) GetRegistrationDate() int64 {
+	if o == nil || utils.IsNil(o.RegistrationDate) {
+		var ret int64
+		return ret
+	}
+	return *o.RegistrationDate
+}
+
+// GetRegistrationDateOk returns a tuple with the RegistrationDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestBaseResponse) GetRegistrationDateOk() (*int64, bool) {
+	if o == nil || utils.IsNil(o.RegistrationDate) {
+		return nil, false
+	}
+	return o.RegistrationDate, true
+}
+
+// HasRegistrationDate returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasRegistrationDate() bool {
+	if o != nil && !utils.IsNil(o.RegistrationDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegistrationDate gets a reference to the given int64 and assigns it to the RegistrationDate field.
+func (o *RequestBaseResponse) SetRegistrationDate(v int64) {
+	o.RegistrationDate = &v
+}
+
+// GetLastModificationDate returns the LastModificationDate field value if set, zero value otherwise.
+func (o *RequestBaseResponse) GetLastModificationDate() int64 {
+	if o == nil || utils.IsNil(o.LastModificationDate) {
+		var ret int64
+		return ret
+	}
+	return *o.LastModificationDate
+}
+
+// GetLastModificationDateOk returns a tuple with the LastModificationDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestBaseResponse) GetLastModificationDateOk() (*int64, bool) {
+	if o == nil || utils.IsNil(o.LastModificationDate) {
+		return nil, false
+	}
+	return o.LastModificationDate, true
+}
+
+// HasLastModificationDate returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasLastModificationDate() bool {
+	if o != nil && !utils.IsNil(o.LastModificationDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModificationDate gets a reference to the given int64 and assigns it to the LastModificationDate field.
+func (o *RequestBaseResponse) SetLastModificationDate(v int64) {
+	o.LastModificationDate = &v
+}
+
+// GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
+func (o *RequestBaseResponse) GetExpirationDate() int64 {
+	if o == nil || utils.IsNil(o.ExpirationDate) {
+		var ret int64
+		return ret
+	}
+	return *o.ExpirationDate
+}
+
+// GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestBaseResponse) GetExpirationDateOk() (*int64, bool) {
+	if o == nil || utils.IsNil(o.ExpirationDate) {
+		return nil, false
+	}
+	return o.ExpirationDate, true
+}
+
+// HasExpirationDate returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasExpirationDate() bool {
+	if o != nil && !utils.IsNil(o.ExpirationDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpirationDate gets a reference to the given int64 and assigns it to the ExpirationDate field.
+func (o *RequestBaseResponse) SetExpirationDate(v int64) {
+	o.ExpirationDate = &v
+}
+
+// GetRemoveAt returns the RemoveAt field value if set, zero value otherwise.
+func (o *RequestBaseResponse) GetRemoveAt() int64 {
+	if o == nil || utils.IsNil(o.RemoveAt) {
+		var ret int64
+		return ret
+	}
+	return *o.RemoveAt
+}
+
+// GetRemoveAtOk returns a tuple with the RemoveAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestBaseResponse) GetRemoveAtOk() (*int64, bool) {
+	if o == nil || utils.IsNil(o.RemoveAt) {
+		return nil, false
+	}
+	return o.RemoveAt, true
+}
+
+// HasRemoveAt returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasRemoveAt() bool {
+	if o != nil && !utils.IsNil(o.RemoveAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoveAt gets a reference to the given int64 and assigns it to the RemoveAt field.
+func (o *RequestBaseResponse) SetRemoveAt(v int64) {
+	o.RemoveAt = &v
+}
+
 // GetTriggerResults returns the TriggerResults field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RequestBaseResponse) GetTriggerResults() []TriggerResult {
 	if o == nil {
@@ -896,36 +701,231 @@ func (o *RequestBaseResponse) SetTriggerResults(v []TriggerResult) {
 	o.TriggerResults = v
 }
 
-// GetWorkflow returns the Workflow field value if set, zero value otherwise.
-func (o *RequestBaseResponse) GetWorkflow() string {
-	if o == nil || utils.IsNil(o.Workflow) {
+// GetHolderId returns the HolderId field value if set, zero value otherwise.
+func (o *RequestBaseResponse) GetHolderId() string {
+	if o == nil || utils.IsNil(o.HolderId) {
 		var ret string
 		return ret
 	}
-	return *o.Workflow
+	return *o.HolderId
 }
 
-// GetWorkflowOk returns a tuple with the Workflow field value if set, nil otherwise
+// GetHolderIdOk returns a tuple with the HolderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RequestBaseResponse) GetWorkflowOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Workflow) {
+func (o *RequestBaseResponse) GetHolderIdOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.HolderId) {
 		return nil, false
 	}
-	return o.Workflow, true
+	return o.HolderId, true
 }
 
-// HasWorkflow returns a boolean if a field has been set.
-func (o *RequestBaseResponse) HasWorkflow() bool {
-	if o != nil && !utils.IsNil(o.Workflow) {
+// HasHolderId returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasHolderId() bool {
+	if o != nil && !utils.IsNil(o.HolderId) {
 		return true
 	}
 
 	return false
 }
 
-// SetWorkflow gets a reference to the given string and assigns it to the Workflow field.
-func (o *RequestBaseResponse) SetWorkflow(v string) {
-	o.Workflow = &v
+// SetHolderId gets a reference to the given string and assigns it to the HolderId field.
+func (o *RequestBaseResponse) SetHolderId(v string) {
+	o.HolderId = &v
+}
+
+// GetGlobalHolderIdCount returns the GlobalHolderIdCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestBaseResponse) GetGlobalHolderIdCount() int64 {
+	if o == nil || utils.IsNil(o.GlobalHolderIdCount.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.GlobalHolderIdCount.Get()
+}
+
+// GetGlobalHolderIdCountOk returns a tuple with the GlobalHolderIdCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestBaseResponse) GetGlobalHolderIdCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GlobalHolderIdCount.Get(), o.GlobalHolderIdCount.IsSet()
+}
+
+// HasGlobalHolderIdCount returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasGlobalHolderIdCount() bool {
+	if o != nil && o.GlobalHolderIdCount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGlobalHolderIdCount gets a reference to the given NullableInt64 and assigns it to the GlobalHolderIdCount field.
+func (o *RequestBaseResponse) SetGlobalHolderIdCount(v int64) {
+	o.GlobalHolderIdCount.Set(&v)
+}
+
+// SetGlobalHolderIdCountNil sets the value for GlobalHolderIdCount to be an explicit nil
+func (o *RequestBaseResponse) SetGlobalHolderIdCountNil() {
+	o.GlobalHolderIdCount.Set(nil)
+}
+
+// UnsetGlobalHolderIdCount ensures that no value is present for GlobalHolderIdCount, not even an explicit nil
+func (o *RequestBaseResponse) UnsetGlobalHolderIdCount() {
+	o.GlobalHolderIdCount.Unset()
+}
+
+// GetProfileHolderIdCount returns the ProfileHolderIdCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestBaseResponse) GetProfileHolderIdCount() int64 {
+	if o == nil || utils.IsNil(o.ProfileHolderIdCount.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.ProfileHolderIdCount.Get()
+}
+
+// GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestBaseResponse) GetProfileHolderIdCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ProfileHolderIdCount.Get(), o.ProfileHolderIdCount.IsSet()
+}
+
+// HasProfileHolderIdCount returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasProfileHolderIdCount() bool {
+	if o != nil && o.ProfileHolderIdCount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProfileHolderIdCount gets a reference to the given NullableInt64 and assigns it to the ProfileHolderIdCount field.
+func (o *RequestBaseResponse) SetProfileHolderIdCount(v int64) {
+	o.ProfileHolderIdCount.Set(&v)
+}
+
+// SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
+func (o *RequestBaseResponse) SetProfileHolderIdCountNil() {
+	o.ProfileHolderIdCount.Set(nil)
+}
+
+// UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
+func (o *RequestBaseResponse) UnsetProfileHolderIdCount() {
+	o.ProfileHolderIdCount.Unset()
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestBaseResponse) GetLabels() []LabelData {
+	if o == nil {
+		var ret []LabelData
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestBaseResponse) GetLabelsOk() ([]LabelData, bool) {
+	if o == nil || utils.IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasLabels() bool {
+	if o != nil && !utils.IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []LabelData and assigns it to the Labels field.
+func (o *RequestBaseResponse) SetLabels(v []LabelData) {
+	o.Labels = v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestBaseResponse) GetMetadata() []CertificateMetadata {
+	if o == nil {
+		var ret []CertificateMetadata
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestBaseResponse) GetMetadataOk() ([]CertificateMetadata, bool) {
+	if o == nil || utils.IsNil(o.Metadata) {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasMetadata() bool {
+	if o != nil && !utils.IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given []CertificateMetadata and assigns it to the Metadata field.
+func (o *RequestBaseResponse) SetMetadata(v []CertificateMetadata) {
+	o.Metadata = v
+}
+
+// GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestBaseResponse) GetDryRun() bool {
+	if o == nil || utils.IsNil(o.DryRun.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.DryRun.Get()
+}
+
+// GetDryRunOk returns a tuple with the DryRun field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestBaseResponse) GetDryRunOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DryRun.Get(), o.DryRun.IsSet()
+}
+
+// HasDryRun returns a boolean if a field has been set.
+func (o *RequestBaseResponse) HasDryRun() bool {
+	if o != nil && o.DryRun.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDryRun gets a reference to the given NullableBool and assigns it to the DryRun field.
+func (o *RequestBaseResponse) SetDryRun(v bool) {
+	o.DryRun.Set(&v)
+}
+
+// SetDryRunNil sets the value for DryRun to be an explicit nil
+func (o *RequestBaseResponse) SetDryRunNil() {
+	o.DryRun.Set(nil)
+}
+
+// UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
+func (o *RequestBaseResponse) UnsetDryRun() {
+	o.DryRun.Unset()
 }
 
 func (o RequestBaseResponse) MarshalJSON() ([]byte, error) {
@@ -941,71 +941,71 @@ func (o RequestBaseResponse) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.Id) {
 		toSerialize["_id"] = o.Id
 	}
-	if o.Approver.IsSet() {
-		toSerialize["approver"] = o.Approver.Get()
-	}
-	if o.ApproverComment.IsSet() {
-		toSerialize["approverComment"] = o.ApproverComment.Get()
-	}
-	if o.Contact.IsSet() {
-		toSerialize["contact"] = o.Contact.Get()
-	}
-	if !utils.IsNil(o.Dn) {
-		toSerialize["dn"] = o.Dn
-	}
-	if o.DryRun.IsSet() {
-		toSerialize["dryRun"] = o.DryRun.Get()
-	}
-	if !utils.IsNil(o.ExpirationDate) {
-		toSerialize["expirationDate"] = o.ExpirationDate
-	}
-	if o.GlobalHolderIdCount.IsSet() {
-		toSerialize["globalHolderIdCount"] = o.GlobalHolderIdCount.Get()
-	}
-	if !utils.IsNil(o.HolderId) {
-		toSerialize["holderId"] = o.HolderId
-	}
-	if o.Labels != nil {
-		toSerialize["labels"] = o.Labels
-	}
-	if !utils.IsNil(o.LastModificationDate) {
-		toSerialize["lastModificationDate"] = o.LastModificationDate
-	}
-	if o.Metadata != nil {
-		toSerialize["metadata"] = o.Metadata
-	}
 	if !utils.IsNil(o.Module) {
 		toSerialize["module"] = o.Module
 	}
-	if !utils.IsNil(o.Profile) {
-		toSerialize["profile"] = o.Profile
-	}
-	if o.ProfileHolderIdCount.IsSet() {
-		toSerialize["profileHolderIdCount"] = o.ProfileHolderIdCount.Get()
-	}
-	if !utils.IsNil(o.RegistrationDate) {
-		toSerialize["registrationDate"] = o.RegistrationDate
-	}
-	if !utils.IsNil(o.RemoveAt) {
-		toSerialize["removeAt"] = o.RemoveAt
-	}
-	if o.Requester.IsSet() {
-		toSerialize["requester"] = o.Requester.Get()
-	}
-	if o.RequesterComment.IsSet() {
-		toSerialize["requesterComment"] = o.RequesterComment.Get()
+	if !utils.IsNil(o.Workflow) {
+		toSerialize["workflow"] = o.Workflow
 	}
 	if !utils.IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+	if !utils.IsNil(o.Profile) {
+		toSerialize["profile"] = o.Profile
+	}
+	if !utils.IsNil(o.Dn) {
+		toSerialize["dn"] = o.Dn
+	}
+	if o.Requester.IsSet() {
+		toSerialize["requester"] = o.Requester.Get()
+	}
 	if o.Team.IsSet() {
 		toSerialize["team"] = o.Team.Get()
+	}
+	if o.Approver.IsSet() {
+		toSerialize["approver"] = o.Approver.Get()
+	}
+	if o.Contact.IsSet() {
+		toSerialize["contact"] = o.Contact.Get()
+	}
+	if o.RequesterComment.IsSet() {
+		toSerialize["requesterComment"] = o.RequesterComment.Get()
+	}
+	if o.ApproverComment.IsSet() {
+		toSerialize["approverComment"] = o.ApproverComment.Get()
+	}
+	if !utils.IsNil(o.RegistrationDate) {
+		toSerialize["registrationDate"] = o.RegistrationDate
+	}
+	if !utils.IsNil(o.LastModificationDate) {
+		toSerialize["lastModificationDate"] = o.LastModificationDate
+	}
+	if !utils.IsNil(o.ExpirationDate) {
+		toSerialize["expirationDate"] = o.ExpirationDate
+	}
+	if !utils.IsNil(o.RemoveAt) {
+		toSerialize["removeAt"] = o.RemoveAt
 	}
 	if o.TriggerResults != nil {
 		toSerialize["triggerResults"] = o.TriggerResults
 	}
-	if !utils.IsNil(o.Workflow) {
-		toSerialize["workflow"] = o.Workflow
+	if !utils.IsNil(o.HolderId) {
+		toSerialize["holderId"] = o.HolderId
+	}
+	if o.GlobalHolderIdCount.IsSet() {
+		toSerialize["globalHolderIdCount"] = o.GlobalHolderIdCount.Get()
+	}
+	if o.ProfileHolderIdCount.IsSet() {
+		toSerialize["profileHolderIdCount"] = o.ProfileHolderIdCount.Get()
+	}
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
+	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
+	}
+	if o.DryRun.IsSet() {
+		toSerialize["dryRun"] = o.DryRun.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -1030,28 +1030,28 @@ func (o *RequestBaseResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "approver")
-		delete(additionalProperties, "approverComment")
-		delete(additionalProperties, "contact")
-		delete(additionalProperties, "dn")
-		delete(additionalProperties, "dryRun")
-		delete(additionalProperties, "expirationDate")
-		delete(additionalProperties, "globalHolderIdCount")
-		delete(additionalProperties, "holderId")
-		delete(additionalProperties, "labels")
-		delete(additionalProperties, "lastModificationDate")
-		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "module")
-		delete(additionalProperties, "profile")
-		delete(additionalProperties, "profileHolderIdCount")
-		delete(additionalProperties, "registrationDate")
-		delete(additionalProperties, "removeAt")
-		delete(additionalProperties, "requester")
-		delete(additionalProperties, "requesterComment")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "team")
-		delete(additionalProperties, "triggerResults")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "dn")
+		delete(additionalProperties, "requester")
+		delete(additionalProperties, "team")
+		delete(additionalProperties, "approver")
+		delete(additionalProperties, "contact")
+		delete(additionalProperties, "requesterComment")
+		delete(additionalProperties, "approverComment")
+		delete(additionalProperties, "registrationDate")
+		delete(additionalProperties, "lastModificationDate")
+		delete(additionalProperties, "expirationDate")
+		delete(additionalProperties, "removeAt")
+		delete(additionalProperties, "triggerResults")
+		delete(additionalProperties, "holderId")
+		delete(additionalProperties, "globalHolderIdCount")
+		delete(additionalProperties, "profileHolderIdCount")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "dryRun")
 		o.AdditionalProperties = additionalProperties
 	}
 

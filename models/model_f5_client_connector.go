@@ -22,24 +22,24 @@ var _ utils.MappedNullable = &F5ClientConnector{}
 
 // F5ClientConnector struct for F5ClientConnector
 type F5ClientConnector struct {
-	BigIPHostname string               `json:"bigIPHostname"`
-	CipherGroup   utils.NullableString `json:"cipherGroup,omitempty"`
-	// Name of the `password` [credentials](#tag/security.credentials) containing the account to authenticate on F5
-	Credentials                   string               `json:"credentials"`
-	MaxStoredCertificatePerHolder utils.NullableInt64  `json:"maxStoredCertificatePerHolder,omitempty"`
+	Type                          string               `json:"type"`
 	Name                          string               `json:"name"`
-	Partition                     utils.NullableString `json:"partition,omitempty"`
-	Prefix                        utils.NullableString `json:"prefix,omitempty"`
-	Proxy                         utils.NullableString `json:"proxy,omitempty"`
-	RenewalPeriod                 utils.NullableString `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	SslParent                     utils.NullableString `json:"sslParent,omitempty"`
 	ThrottleDuration              string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	ThrottleParallelism           int64                `json:"throttleParallelism"`
+	RenewalPeriod                 utils.NullableString `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	Timeout                       utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Proxy                         utils.NullableString `json:"proxy,omitempty"`
+	MaxStoredCertificatePerHolder utils.NullableInt64  `json:"maxStoredCertificatePerHolder,omitempty"`
+	BigIPHostname                 string               `json:"bigIPHostname"`
+	// Name of the `password` [credentials](#tag/security.credentials) containing the account to authenticate on F5
+	Credentials string               `json:"credentials"`
+	Partition   utils.NullableString `json:"partition,omitempty"`
+	SslParent   utils.NullableString `json:"sslParent,omitempty"`
+	Prefix      utils.NullableString `json:"prefix,omitempty"`
+	CipherGroup utils.NullableString `json:"cipherGroup,omitempty"`
+	Version     utils.NullableString `json:"version,omitempty"`
 	// Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended.
-	TlsInsecure          utils.NullableBool   `json:"tlsInsecure,omitempty"`
-	Type                 string               `json:"type"`
-	Version              utils.NullableString `json:"version,omitempty"`
+	TlsInsecure          utils.NullableBool `json:"tlsInsecure,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,16 +49,16 @@ type _F5ClientConnector F5ClientConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewF5ClientConnector(bigIPHostname string, credentials string, name string, throttleDuration string, throttleParallelism int64, type_ string) *F5ClientConnector {
+func NewF5ClientConnector(type_ string, name string, throttleDuration string, throttleParallelism int64, bigIPHostname string, credentials string) *F5ClientConnector {
 	this := F5ClientConnector{}
-	this.BigIPHostname = bigIPHostname
-	this.Credentials = credentials
+	this.Type = type_
 	this.Name = name
 	this.ThrottleDuration = throttleDuration
 	this.ThrottleParallelism = throttleParallelism
+	this.BigIPHostname = bigIPHostname
+	this.Credentials = credentials
 	var tlsInsecure bool = false
 	this.TlsInsecure = *utils.NewNullableBool(&tlsInsecure)
-	this.Type = type_
 	return &this
 }
 
@@ -72,138 +72,28 @@ func NewF5ClientConnectorWithDefaults() *F5ClientConnector {
 	return &this
 }
 
-// GetBigIPHostname returns the BigIPHostname field value
-func (o *F5ClientConnector) GetBigIPHostname() string {
+// GetType returns the Type field value
+func (o *F5ClientConnector) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.BigIPHostname
+	return o.Type
 }
 
-// GetBigIPHostnameOk returns a tuple with the BigIPHostname field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *F5ClientConnector) GetBigIPHostnameOk() (*string, bool) {
+func (o *F5ClientConnector) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.BigIPHostname, true
+	return &o.Type, true
 }
 
-// SetBigIPHostname sets field value
-func (o *F5ClientConnector) SetBigIPHostname(v string) {
-	o.BigIPHostname = v
-}
-
-// GetCipherGroup returns the CipherGroup field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5ClientConnector) GetCipherGroup() string {
-	if o == nil || utils.IsNil(o.CipherGroup.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.CipherGroup.Get()
-}
-
-// GetCipherGroupOk returns a tuple with the CipherGroup field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5ClientConnector) GetCipherGroupOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CipherGroup.Get(), o.CipherGroup.IsSet()
-}
-
-// HasCipherGroup returns a boolean if a field has been set.
-func (o *F5ClientConnector) HasCipherGroup() bool {
-	if o != nil && o.CipherGroup.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCipherGroup gets a reference to the given NullableString and assigns it to the CipherGroup field.
-func (o *F5ClientConnector) SetCipherGroup(v string) {
-	o.CipherGroup.Set(&v)
-}
-
-// SetCipherGroupNil sets the value for CipherGroup to be an explicit nil
-func (o *F5ClientConnector) SetCipherGroupNil() {
-	o.CipherGroup.Set(nil)
-}
-
-// UnsetCipherGroup ensures that no value is present for CipherGroup, not even an explicit nil
-func (o *F5ClientConnector) UnsetCipherGroup() {
-	o.CipherGroup.Unset()
-}
-
-// GetCredentials returns the Credentials field value
-func (o *F5ClientConnector) GetCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Credentials
-}
-
-// GetCredentialsOk returns a tuple with the Credentials field value
-// and a boolean to check if the value has been set.
-func (o *F5ClientConnector) GetCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Credentials, true
-}
-
-// SetCredentials sets field value
-func (o *F5ClientConnector) SetCredentials(v string) {
-	o.Credentials = v
-}
-
-// GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5ClientConnector) GetMaxStoredCertificatePerHolder() int64 {
-	if o == nil || utils.IsNil(o.MaxStoredCertificatePerHolder.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.MaxStoredCertificatePerHolder.Get()
-}
-
-// GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5ClientConnector) GetMaxStoredCertificatePerHolderOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxStoredCertificatePerHolder.Get(), o.MaxStoredCertificatePerHolder.IsSet()
-}
-
-// HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
-func (o *F5ClientConnector) HasMaxStoredCertificatePerHolder() bool {
-	if o != nil && o.MaxStoredCertificatePerHolder.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxStoredCertificatePerHolder gets a reference to the given NullableInt64 and assigns it to the MaxStoredCertificatePerHolder field.
-func (o *F5ClientConnector) SetMaxStoredCertificatePerHolder(v int64) {
-	o.MaxStoredCertificatePerHolder.Set(&v)
-}
-
-// SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
-func (o *F5ClientConnector) SetMaxStoredCertificatePerHolderNil() {
-	o.MaxStoredCertificatePerHolder.Set(nil)
-}
-
-// UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
-func (o *F5ClientConnector) UnsetMaxStoredCertificatePerHolder() {
-	o.MaxStoredCertificatePerHolder.Unset()
+// SetType sets field value
+func (o *F5ClientConnector) SetType(v string) {
+	o.Type = v
 }
 
 // GetName returns the Name field value
@@ -228,221 +118,6 @@ func (o *F5ClientConnector) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *F5ClientConnector) SetName(v string) {
 	o.Name = v
-}
-
-// GetPartition returns the Partition field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5ClientConnector) GetPartition() string {
-	if o == nil || utils.IsNil(o.Partition.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Partition.Get()
-}
-
-// GetPartitionOk returns a tuple with the Partition field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5ClientConnector) GetPartitionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Partition.Get(), o.Partition.IsSet()
-}
-
-// HasPartition returns a boolean if a field has been set.
-func (o *F5ClientConnector) HasPartition() bool {
-	if o != nil && o.Partition.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPartition gets a reference to the given NullableString and assigns it to the Partition field.
-func (o *F5ClientConnector) SetPartition(v string) {
-	o.Partition.Set(&v)
-}
-
-// SetPartitionNil sets the value for Partition to be an explicit nil
-func (o *F5ClientConnector) SetPartitionNil() {
-	o.Partition.Set(nil)
-}
-
-// UnsetPartition ensures that no value is present for Partition, not even an explicit nil
-func (o *F5ClientConnector) UnsetPartition() {
-	o.Partition.Unset()
-}
-
-// GetPrefix returns the Prefix field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5ClientConnector) GetPrefix() string {
-	if o == nil || utils.IsNil(o.Prefix.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Prefix.Get()
-}
-
-// GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5ClientConnector) GetPrefixOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Prefix.Get(), o.Prefix.IsSet()
-}
-
-// HasPrefix returns a boolean if a field has been set.
-func (o *F5ClientConnector) HasPrefix() bool {
-	if o != nil && o.Prefix.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPrefix gets a reference to the given NullableString and assigns it to the Prefix field.
-func (o *F5ClientConnector) SetPrefix(v string) {
-	o.Prefix.Set(&v)
-}
-
-// SetPrefixNil sets the value for Prefix to be an explicit nil
-func (o *F5ClientConnector) SetPrefixNil() {
-	o.Prefix.Set(nil)
-}
-
-// UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
-func (o *F5ClientConnector) UnsetPrefix() {
-	o.Prefix.Unset()
-}
-
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5ClientConnector) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Proxy.Get()
-}
-
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5ClientConnector) GetProxyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
-}
-
-// HasProxy returns a boolean if a field has been set.
-func (o *F5ClientConnector) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *F5ClientConnector) SetProxy(v string) {
-	o.Proxy.Set(&v)
-}
-
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *F5ClientConnector) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *F5ClientConnector) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5ClientConnector) GetRenewalPeriod() string {
-	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RenewalPeriod.Get()
-}
-
-// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5ClientConnector) GetRenewalPeriodOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
-}
-
-// HasRenewalPeriod returns a boolean if a field has been set.
-func (o *F5ClientConnector) HasRenewalPeriod() bool {
-	if o != nil && o.RenewalPeriod.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
-func (o *F5ClientConnector) SetRenewalPeriod(v string) {
-	o.RenewalPeriod.Set(&v)
-}
-
-// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-func (o *F5ClientConnector) SetRenewalPeriodNil() {
-	o.RenewalPeriod.Set(nil)
-}
-
-// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
-func (o *F5ClientConnector) UnsetRenewalPeriod() {
-	o.RenewalPeriod.Unset()
-}
-
-// GetSslParent returns the SslParent field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5ClientConnector) GetSslParent() string {
-	if o == nil || utils.IsNil(o.SslParent.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.SslParent.Get()
-}
-
-// GetSslParentOk returns a tuple with the SslParent field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5ClientConnector) GetSslParentOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SslParent.Get(), o.SslParent.IsSet()
-}
-
-// HasSslParent returns a boolean if a field has been set.
-func (o *F5ClientConnector) HasSslParent() bool {
-	if o != nil && o.SslParent.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSslParent gets a reference to the given NullableString and assigns it to the SslParent field.
-func (o *F5ClientConnector) SetSslParent(v string) {
-	o.SslParent.Set(&v)
-}
-
-// SetSslParentNil sets the value for SslParent to be an explicit nil
-func (o *F5ClientConnector) SetSslParentNil() {
-	o.SslParent.Set(nil)
-}
-
-// UnsetSslParent ensures that no value is present for SslParent, not even an explicit nil
-func (o *F5ClientConnector) UnsetSslParent() {
-	o.SslParent.Unset()
 }
 
 // GetThrottleDuration returns the ThrottleDuration field value
@@ -493,6 +168,49 @@ func (o *F5ClientConnector) SetThrottleParallelism(v int64) {
 	o.ThrottleParallelism = v
 }
 
+// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5ClientConnector) GetRenewalPeriod() string {
+	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RenewalPeriod.Get()
+}
+
+// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *F5ClientConnector) GetRenewalPeriodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
+}
+
+// HasRenewalPeriod returns a boolean if a field has been set.
+func (o *F5ClientConnector) HasRenewalPeriod() bool {
+	if o != nil && o.RenewalPeriod.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
+func (o *F5ClientConnector) SetRenewalPeriod(v string) {
+	o.RenewalPeriod.Set(&v)
+}
+
+// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
+func (o *F5ClientConnector) SetRenewalPeriodNil() {
+	o.RenewalPeriod.Set(nil)
+}
+
+// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+func (o *F5ClientConnector) UnsetRenewalPeriod() {
+	o.RenewalPeriod.Unset()
+}
+
 // GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *F5ClientConnector) GetTimeout() string {
 	if o == nil || utils.IsNil(o.Timeout.Get()) {
@@ -536,71 +254,310 @@ func (o *F5ClientConnector) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
-// GetTlsInsecure returns the TlsInsecure field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5ClientConnector) GetTlsInsecure() bool {
-	if o == nil || utils.IsNil(o.TlsInsecure.Get()) {
-		var ret bool
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5ClientConnector) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
+		var ret string
 		return ret
 	}
-	return *o.TlsInsecure.Get()
+	return *o.Proxy.Get()
 }
 
-// GetTlsInsecureOk returns a tuple with the TlsInsecure field value if set, nil otherwise
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5ClientConnector) GetTlsInsecureOk() (*bool, bool) {
+func (o *F5ClientConnector) GetProxyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.TlsInsecure.Get(), o.TlsInsecure.IsSet()
+	return o.Proxy.Get(), o.Proxy.IsSet()
 }
 
-// HasTlsInsecure returns a boolean if a field has been set.
-func (o *F5ClientConnector) HasTlsInsecure() bool {
-	if o != nil && o.TlsInsecure.IsSet() {
+// HasProxy returns a boolean if a field has been set.
+func (o *F5ClientConnector) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTlsInsecure gets a reference to the given NullableBool and assigns it to the TlsInsecure field.
-func (o *F5ClientConnector) SetTlsInsecure(v bool) {
-	o.TlsInsecure.Set(&v)
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *F5ClientConnector) SetProxy(v string) {
+	o.Proxy.Set(&v)
 }
 
-// SetTlsInsecureNil sets the value for TlsInsecure to be an explicit nil
-func (o *F5ClientConnector) SetTlsInsecureNil() {
-	o.TlsInsecure.Set(nil)
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *F5ClientConnector) SetProxyNil() {
+	o.Proxy.Set(nil)
 }
 
-// UnsetTlsInsecure ensures that no value is present for TlsInsecure, not even an explicit nil
-func (o *F5ClientConnector) UnsetTlsInsecure() {
-	o.TlsInsecure.Unset()
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *F5ClientConnector) UnsetProxy() {
+	o.Proxy.Unset()
 }
 
-// GetType returns the Type field value
-func (o *F5ClientConnector) GetType() string {
+// GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5ClientConnector) GetMaxStoredCertificatePerHolder() int64 {
+	if o == nil || utils.IsNil(o.MaxStoredCertificatePerHolder.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.MaxStoredCertificatePerHolder.Get()
+}
+
+// GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *F5ClientConnector) GetMaxStoredCertificatePerHolderOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxStoredCertificatePerHolder.Get(), o.MaxStoredCertificatePerHolder.IsSet()
+}
+
+// HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
+func (o *F5ClientConnector) HasMaxStoredCertificatePerHolder() bool {
+	if o != nil && o.MaxStoredCertificatePerHolder.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxStoredCertificatePerHolder gets a reference to the given NullableInt64 and assigns it to the MaxStoredCertificatePerHolder field.
+func (o *F5ClientConnector) SetMaxStoredCertificatePerHolder(v int64) {
+	o.MaxStoredCertificatePerHolder.Set(&v)
+}
+
+// SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
+func (o *F5ClientConnector) SetMaxStoredCertificatePerHolderNil() {
+	o.MaxStoredCertificatePerHolder.Set(nil)
+}
+
+// UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
+func (o *F5ClientConnector) UnsetMaxStoredCertificatePerHolder() {
+	o.MaxStoredCertificatePerHolder.Unset()
+}
+
+// GetBigIPHostname returns the BigIPHostname field value
+func (o *F5ClientConnector) GetBigIPHostname() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.BigIPHostname
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetBigIPHostnameOk returns a tuple with the BigIPHostname field value
 // and a boolean to check if the value has been set.
-func (o *F5ClientConnector) GetTypeOk() (*string, bool) {
+func (o *F5ClientConnector) GetBigIPHostnameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.BigIPHostname, true
 }
 
-// SetType sets field value
-func (o *F5ClientConnector) SetType(v string) {
-	o.Type = v
+// SetBigIPHostname sets field value
+func (o *F5ClientConnector) SetBigIPHostname(v string) {
+	o.BigIPHostname = v
+}
+
+// GetCredentials returns the Credentials field value
+func (o *F5ClientConnector) GetCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Credentials
+}
+
+// GetCredentialsOk returns a tuple with the Credentials field value
+// and a boolean to check if the value has been set.
+func (o *F5ClientConnector) GetCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Credentials, true
+}
+
+// SetCredentials sets field value
+func (o *F5ClientConnector) SetCredentials(v string) {
+	o.Credentials = v
+}
+
+// GetPartition returns the Partition field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5ClientConnector) GetPartition() string {
+	if o == nil || utils.IsNil(o.Partition.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Partition.Get()
+}
+
+// GetPartitionOk returns a tuple with the Partition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *F5ClientConnector) GetPartitionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Partition.Get(), o.Partition.IsSet()
+}
+
+// HasPartition returns a boolean if a field has been set.
+func (o *F5ClientConnector) HasPartition() bool {
+	if o != nil && o.Partition.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPartition gets a reference to the given NullableString and assigns it to the Partition field.
+func (o *F5ClientConnector) SetPartition(v string) {
+	o.Partition.Set(&v)
+}
+
+// SetPartitionNil sets the value for Partition to be an explicit nil
+func (o *F5ClientConnector) SetPartitionNil() {
+	o.Partition.Set(nil)
+}
+
+// UnsetPartition ensures that no value is present for Partition, not even an explicit nil
+func (o *F5ClientConnector) UnsetPartition() {
+	o.Partition.Unset()
+}
+
+// GetSslParent returns the SslParent field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5ClientConnector) GetSslParent() string {
+	if o == nil || utils.IsNil(o.SslParent.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SslParent.Get()
+}
+
+// GetSslParentOk returns a tuple with the SslParent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *F5ClientConnector) GetSslParentOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SslParent.Get(), o.SslParent.IsSet()
+}
+
+// HasSslParent returns a boolean if a field has been set.
+func (o *F5ClientConnector) HasSslParent() bool {
+	if o != nil && o.SslParent.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSslParent gets a reference to the given NullableString and assigns it to the SslParent field.
+func (o *F5ClientConnector) SetSslParent(v string) {
+	o.SslParent.Set(&v)
+}
+
+// SetSslParentNil sets the value for SslParent to be an explicit nil
+func (o *F5ClientConnector) SetSslParentNil() {
+	o.SslParent.Set(nil)
+}
+
+// UnsetSslParent ensures that no value is present for SslParent, not even an explicit nil
+func (o *F5ClientConnector) UnsetSslParent() {
+	o.SslParent.Unset()
+}
+
+// GetPrefix returns the Prefix field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5ClientConnector) GetPrefix() string {
+	if o == nil || utils.IsNil(o.Prefix.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Prefix.Get()
+}
+
+// GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *F5ClientConnector) GetPrefixOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Prefix.Get(), o.Prefix.IsSet()
+}
+
+// HasPrefix returns a boolean if a field has been set.
+func (o *F5ClientConnector) HasPrefix() bool {
+	if o != nil && o.Prefix.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPrefix gets a reference to the given NullableString and assigns it to the Prefix field.
+func (o *F5ClientConnector) SetPrefix(v string) {
+	o.Prefix.Set(&v)
+}
+
+// SetPrefixNil sets the value for Prefix to be an explicit nil
+func (o *F5ClientConnector) SetPrefixNil() {
+	o.Prefix.Set(nil)
+}
+
+// UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
+func (o *F5ClientConnector) UnsetPrefix() {
+	o.Prefix.Unset()
+}
+
+// GetCipherGroup returns the CipherGroup field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5ClientConnector) GetCipherGroup() string {
+	if o == nil || utils.IsNil(o.CipherGroup.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CipherGroup.Get()
+}
+
+// GetCipherGroupOk returns a tuple with the CipherGroup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *F5ClientConnector) GetCipherGroupOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CipherGroup.Get(), o.CipherGroup.IsSet()
+}
+
+// HasCipherGroup returns a boolean if a field has been set.
+func (o *F5ClientConnector) HasCipherGroup() bool {
+	if o != nil && o.CipherGroup.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCipherGroup gets a reference to the given NullableString and assigns it to the CipherGroup field.
+func (o *F5ClientConnector) SetCipherGroup(v string) {
+	o.CipherGroup.Set(&v)
+}
+
+// SetCipherGroupNil sets the value for CipherGroup to be an explicit nil
+func (o *F5ClientConnector) SetCipherGroupNil() {
+	o.CipherGroup.Set(nil)
+}
+
+// UnsetCipherGroup ensures that no value is present for CipherGroup, not even an explicit nil
+func (o *F5ClientConnector) UnsetCipherGroup() {
+	o.CipherGroup.Unset()
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -646,6 +603,49 @@ func (o *F5ClientConnector) UnsetVersion() {
 	o.Version.Unset()
 }
 
+// GetTlsInsecure returns the TlsInsecure field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5ClientConnector) GetTlsInsecure() bool {
+	if o == nil || utils.IsNil(o.TlsInsecure.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.TlsInsecure.Get()
+}
+
+// GetTlsInsecureOk returns a tuple with the TlsInsecure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *F5ClientConnector) GetTlsInsecureOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TlsInsecure.Get(), o.TlsInsecure.IsSet()
+}
+
+// HasTlsInsecure returns a boolean if a field has been set.
+func (o *F5ClientConnector) HasTlsInsecure() bool {
+	if o != nil && o.TlsInsecure.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTlsInsecure gets a reference to the given NullableBool and assigns it to the TlsInsecure field.
+func (o *F5ClientConnector) SetTlsInsecure(v bool) {
+	o.TlsInsecure.Set(&v)
+}
+
+// SetTlsInsecureNil sets the value for TlsInsecure to be an explicit nil
+func (o *F5ClientConnector) SetTlsInsecureNil() {
+	o.TlsInsecure.Set(nil)
+}
+
+// UnsetTlsInsecure ensures that no value is present for TlsInsecure, not even an explicit nil
+func (o *F5ClientConnector) UnsetTlsInsecure() {
+	o.TlsInsecure.Unset()
+}
+
 func (o F5ClientConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -656,41 +656,41 @@ func (o F5ClientConnector) MarshalJSON() ([]byte, error) {
 
 func (o F5ClientConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bigIPHostname"] = o.BigIPHostname
-	if o.CipherGroup.IsSet() {
-		toSerialize["cipherGroup"] = o.CipherGroup.Get()
-	}
-	toSerialize["credentials"] = o.Credentials
-	if o.MaxStoredCertificatePerHolder.IsSet() {
-		toSerialize["maxStoredCertificatePerHolder"] = o.MaxStoredCertificatePerHolder.Get()
-	}
+	toSerialize["type"] = o.Type
 	toSerialize["name"] = o.Name
-	if o.Partition.IsSet() {
-		toSerialize["partition"] = o.Partition.Get()
+	toSerialize["throttleDuration"] = o.ThrottleDuration
+	toSerialize["throttleParallelism"] = o.ThrottleParallelism
+	if o.RenewalPeriod.IsSet() {
+		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
 	}
-	if o.Prefix.IsSet() {
-		toSerialize["prefix"] = o.Prefix.Get()
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
 	}
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
-	if o.RenewalPeriod.IsSet() {
-		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
+	if o.MaxStoredCertificatePerHolder.IsSet() {
+		toSerialize["maxStoredCertificatePerHolder"] = o.MaxStoredCertificatePerHolder.Get()
+	}
+	toSerialize["bigIPHostname"] = o.BigIPHostname
+	toSerialize["credentials"] = o.Credentials
+	if o.Partition.IsSet() {
+		toSerialize["partition"] = o.Partition.Get()
 	}
 	if o.SslParent.IsSet() {
 		toSerialize["sslParent"] = o.SslParent.Get()
 	}
-	toSerialize["throttleDuration"] = o.ThrottleDuration
-	toSerialize["throttleParallelism"] = o.ThrottleParallelism
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
+	if o.Prefix.IsSet() {
+		toSerialize["prefix"] = o.Prefix.Get()
+	}
+	if o.CipherGroup.IsSet() {
+		toSerialize["cipherGroup"] = o.CipherGroup.Get()
+	}
+	if o.Version.IsSet() {
+		toSerialize["version"] = o.Version.Get()
 	}
 	if o.TlsInsecure.IsSet() {
 		toSerialize["tlsInsecure"] = o.TlsInsecure.Get()
-	}
-	toSerialize["type"] = o.Type
-	if o.Version.IsSet() {
-		toSerialize["version"] = o.Version.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -705,12 +705,12 @@ func (o *F5ClientConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"bigIPHostname",
-		"credentials",
+		"type",
 		"name",
 		"throttleDuration",
 		"throttleParallelism",
-		"type",
+		"bigIPHostname",
+		"credentials",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -740,22 +740,22 @@ func (o *F5ClientConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "bigIPHostname")
-		delete(additionalProperties, "cipherGroup")
-		delete(additionalProperties, "credentials")
-		delete(additionalProperties, "maxStoredCertificatePerHolder")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "partition")
-		delete(additionalProperties, "prefix")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "renewalPeriod")
-		delete(additionalProperties, "sslParent")
 		delete(additionalProperties, "throttleDuration")
 		delete(additionalProperties, "throttleParallelism")
+		delete(additionalProperties, "renewalPeriod")
 		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "tlsInsecure")
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "maxStoredCertificatePerHolder")
+		delete(additionalProperties, "bigIPHostname")
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "partition")
+		delete(additionalProperties, "sslParent")
+		delete(additionalProperties, "prefix")
+		delete(additionalProperties, "cipherGroup")
 		delete(additionalProperties, "version")
+		delete(additionalProperties, "tlsInsecure")
 		o.AdditionalProperties = additionalProperties
 	}
 

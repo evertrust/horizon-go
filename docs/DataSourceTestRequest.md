@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Context** | Pointer to [**[]MapEntry**](MapEntry.md) | Context to interpret dynamic values from | [optional] 
 **Ds** | [**DataSourceTestRequestDs**](DataSourceTestRequestDs.md) |  | 
+**Context** | Pointer to [**[]MapEntry**](MapEntry.md) | Context to interpret dynamic values from | [optional] 
 
 ## Methods
 
@@ -25,6 +25,26 @@ will change when the set of required properties is changed
 NewDataSourceTestRequestWithDefaults instantiates a new DataSourceTestRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDs
+
+`func (o *DataSourceTestRequest) GetDs() DataSourceTestRequestDs`
+
+GetDs returns the Ds field if non-nil, zero value otherwise.
+
+### GetDsOk
+
+`func (o *DataSourceTestRequest) GetDsOk() (*DataSourceTestRequestDs, bool)`
+
+GetDsOk returns a tuple with the Ds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDs
+
+`func (o *DataSourceTestRequest) SetDs(v DataSourceTestRequestDs)`
+
+SetDs sets Ds field to given value.
+
 
 ### GetContext
 
@@ -61,26 +81,6 @@ HasContext returns a boolean if a field has been set.
 `func (o *DataSourceTestRequest) UnsetContext()`
 
 UnsetContext ensures that no value is present for Context, not even an explicit nil
-### GetDs
-
-`func (o *DataSourceTestRequest) GetDs() DataSourceTestRequestDs`
-
-GetDs returns the Ds field if non-nil, zero value otherwise.
-
-### GetDsOk
-
-`func (o *DataSourceTestRequest) GetDsOk() (*DataSourceTestRequestDs, bool)`
-
-GetDsOk returns a tuple with the Ds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDs
-
-`func (o *DataSourceTestRequest) SetDs(v DataSourceTestRequestDs)`
-
-SetDs sets Ds field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

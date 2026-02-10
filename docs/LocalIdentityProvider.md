@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The description of the local identity provider | [optional] 
+**Name** | **string** | The internal name of the local identity provider | 
 **DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The display name of the local identity provider | [optional] 
-**EmailTemplate** | Pointer to [**NullableEmailTemplate**](EmailTemplate.md) | The e-mail template to use for password recovery | [optional] 
+**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The description of the local identity provider | [optional] 
+**Type** | **string** | The type of identity provider | 
 **Enabled** | **bool** | Whether the local identity provider can be used to identify against Horizon | 
 **EnabledOnUI** | **bool** | Whether the local identity provider can be selected on login to the Horizon UI | 
-**Name** | **string** | The internal name of the local identity provider | 
 **PasswordPolicy** | Pointer to **NullableString** | The password policy to enforce for user passwords on the local identity provider | [optional] 
-**Type** | **string** | The type of identity provider | 
+**EmailTemplate** | Pointer to [**NullableEmailTemplate**](EmailTemplate.md) | The e-mail template to use for password recovery | [optional] 
 
 ## Methods
 
 ### NewLocalIdentityProvider
 
-`func NewLocalIdentityProvider(enabled bool, enabledOnUI bool, name string, type_ string, ) *LocalIdentityProvider`
+`func NewLocalIdentityProvider(name string, type_ string, enabled bool, enabledOnUI bool, ) *LocalIdentityProvider`
 
 NewLocalIdentityProvider instantiates a new LocalIdentityProvider object
 This constructor will assign default values to properties that have it defined,
@@ -32,41 +32,26 @@ NewLocalIdentityProviderWithDefaults instantiates a new LocalIdentityProvider ob
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDescription
+### GetName
 
-`func (o *LocalIdentityProvider) GetDescription() []LocalizedString`
+`func (o *LocalIdentityProvider) GetName() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetNameOk
 
-`func (o *LocalIdentityProvider) GetDescriptionOk() (*[]LocalizedString, bool)`
+`func (o *LocalIdentityProvider) GetNameOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetName
 
-`func (o *LocalIdentityProvider) SetDescription(v []LocalizedString)`
+`func (o *LocalIdentityProvider) SetName(v string)`
 
-SetDescription sets Description field to given value.
+SetName sets Name field to given value.
 
-### HasDescription
 
-`func (o *LocalIdentityProvider) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescriptionNil
-
-`func (o *LocalIdentityProvider) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *LocalIdentityProvider) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetDisplayName
 
 `func (o *LocalIdentityProvider) GetDisplayName() []LocalizedString`
@@ -102,41 +87,61 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *LocalIdentityProvider) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetEmailTemplate
+### GetDescription
 
-`func (o *LocalIdentityProvider) GetEmailTemplate() EmailTemplate`
+`func (o *LocalIdentityProvider) GetDescription() []LocalizedString`
 
-GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetEmailTemplateOk
+### GetDescriptionOk
 
-`func (o *LocalIdentityProvider) GetEmailTemplateOk() (*EmailTemplate, bool)`
+`func (o *LocalIdentityProvider) GetDescriptionOk() (*[]LocalizedString, bool)`
 
-GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEmailTemplate
+### SetDescription
 
-`func (o *LocalIdentityProvider) SetEmailTemplate(v EmailTemplate)`
+`func (o *LocalIdentityProvider) SetDescription(v []LocalizedString)`
 
-SetEmailTemplate sets EmailTemplate field to given value.
+SetDescription sets Description field to given value.
 
-### HasEmailTemplate
+### HasDescription
 
-`func (o *LocalIdentityProvider) HasEmailTemplate() bool`
+`func (o *LocalIdentityProvider) HasDescription() bool`
 
-HasEmailTemplate returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
-### SetEmailTemplateNil
+### SetDescriptionNil
 
-`func (o *LocalIdentityProvider) SetEmailTemplateNil(b bool)`
+`func (o *LocalIdentityProvider) SetDescriptionNil(b bool)`
 
- SetEmailTemplateNil sets the value for EmailTemplate to be an explicit nil
+ SetDescriptionNil sets the value for Description to be an explicit nil
 
-### UnsetEmailTemplate
-`func (o *LocalIdentityProvider) UnsetEmailTemplate()`
+### UnsetDescription
+`func (o *LocalIdentityProvider) UnsetDescription()`
 
-UnsetEmailTemplate ensures that no value is present for EmailTemplate, not even an explicit nil
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetType
+
+`func (o *LocalIdentityProvider) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *LocalIdentityProvider) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LocalIdentityProvider) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 ### GetEnabled
 
 `func (o *LocalIdentityProvider) GetEnabled() bool`
@@ -177,26 +182,6 @@ and a boolean to check if the value has been set.
 SetEnabledOnUI sets EnabledOnUI field to given value.
 
 
-### GetName
-
-`func (o *LocalIdentityProvider) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *LocalIdentityProvider) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *LocalIdentityProvider) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetPasswordPolicy
 
 `func (o *LocalIdentityProvider) GetPasswordPolicy() string`
@@ -232,26 +217,41 @@ HasPasswordPolicy returns a boolean if a field has been set.
 `func (o *LocalIdentityProvider) UnsetPasswordPolicy()`
 
 UnsetPasswordPolicy ensures that no value is present for PasswordPolicy, not even an explicit nil
-### GetType
+### GetEmailTemplate
 
-`func (o *LocalIdentityProvider) GetType() string`
+`func (o *LocalIdentityProvider) GetEmailTemplate() EmailTemplate`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetEmailTemplateOk
 
-`func (o *LocalIdentityProvider) GetTypeOk() (*string, bool)`
+`func (o *LocalIdentityProvider) GetEmailTemplateOk() (*EmailTemplate, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetEmailTemplate
 
-`func (o *LocalIdentityProvider) SetType(v string)`
+`func (o *LocalIdentityProvider) SetEmailTemplate(v EmailTemplate)`
 
-SetType sets Type field to given value.
+SetEmailTemplate sets EmailTemplate field to given value.
 
+### HasEmailTemplate
 
+`func (o *LocalIdentityProvider) HasEmailTemplate() bool`
+
+HasEmailTemplate returns a boolean if a field has been set.
+
+### SetEmailTemplateNil
+
+`func (o *LocalIdentityProvider) SetEmailTemplateNil(b bool)`
+
+ SetEmailTemplateNil sets the value for EmailTemplate to be an explicit nil
+
+### UnsetEmailTemplate
+`func (o *LocalIdentityProvider) UnsetEmailTemplate()`
+
+UnsetEmailTemplate ensures that no value is present for EmailTemplate, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

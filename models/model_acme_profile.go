@@ -22,39 +22,41 @@ var _ utils.MappedNullable = &AcmeProfile{}
 
 // AcmeProfile struct for AcmeProfile
 type AcmeProfile struct {
-	AuthorizationLevels   CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
-	AuthorizationMethods  []string                              `json:"authorizationMethods,omitempty"`
-	AuthorizeEmptyContact bool                                  `json:"authorizeEmptyContact"`
-	AuthorizeShortName    bool                                  `json:"authorizeShortName"`
-	CertificateTemplate   NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
-	Constraints           NullableCertificateRequestConstraints `json:"constraints,omitempty"`
-	CryptoPolicy          ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
-	CsrDataMapping        map[string]string                     `json:"csrDataMapping,omitempty"`
-	DefaultContacts       []string                              `json:"defaultContacts,omitempty"`
-	Description           []LocalizedString                     `json:"description,omitempty"`
-	DisplayName           []LocalizedString                     `json:"displayName,omitempty"`
-	// Representation of a datasource execution flow
-	DsFlow                        []DataSourceFlowEntry                 `json:"dsFlow,omitempty"`
-	Enabled                       bool                                  `json:"enabled"`
-	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
-	Http01Port                    utils.NullableInt64                   `json:"http01Port,omitempty"`
-	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
-	MaxDnsName                    utils.NullableInt64                   `json:"maxDnsName,omitempty"`
-	Meta                          NullableDirectoryMeta                 `json:"meta,omitempty"`
 	Module                        string                                `json:"module"`
 	Name                          string                                `json:"name"`
-	PkiConnector                  string                                `json:"pkiConnector"`
-	Proxy                         utils.NullableString                  `json:"proxy,omitempty"`
-	RenewalPeriod                 utils.NullableString                  `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
-	RequireTermsOfService         bool                                  `json:"requireTermsOfService"`
-	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
+	DisplayName                   []LocalizedString                     `json:"displayName,omitempty"`
+	Description                   []LocalizedString                     `json:"description,omitempty"`
+	Enabled                       bool                                  `json:"enabled"`
 	Timeout                       string                                `json:"timeout" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Meta                          NullableDirectoryMeta                 `json:"meta,omitempty"`
+	Constraints                   NullableCertificateRequestConstraints `json:"constraints,omitempty"`
+	AuthorizationMethods          []string                              `json:"authorizationMethods,omitempty"`
+	PkiConnector                  string                                `json:"pkiConnector"`
+	Http01Port                    utils.NullableInt64                   `json:"http01Port,omitempty"`
 	TlsAlpn01Port                 utils.NullableInt64                   `json:"tlsAlpn01Port,omitempty"`
-	Triggers                      NullableCertificateProfileTriggers    `json:"triggers,omitempty"`
+	AuthorizeShortName            bool                                  `json:"authorizeShortName"`
+	AuthorizeEmptyContact         bool                                  `json:"authorizeEmptyContact"`
+	DefaultContacts               []string                              `json:"defaultContacts,omitempty"`
 	VerifyRetryCount              int64                                 `json:"verifyRetryCount"`
 	VerifyRetryDelay              string                                `json:"verifyRetryDelay" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	AdditionalProperties          map[string]interface{}
+	RequireTermsOfService         bool                                  `json:"requireTermsOfService"`
+	RenewalPeriod                 utils.NullableString                  `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	CsrDataMapping                map[string]string                     `json:"csrDataMapping,omitempty"`
+	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
+	MaxDnsName                    utils.NullableInt64                   `json:"maxDnsName,omitempty"`
+	Proxy                         utils.NullableString                  `json:"proxy,omitempty"`
+	AuthorizationLevels           CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
+	Triggers                      NullableCertificateProfileTriggers    `json:"triggers,omitempty"`
+	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
+	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
+	CertificateTemplate           NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
+	CryptoPolicy                  ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
+	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
+	// Representation of a datasource execution flow
+	DsFlow []DataSourceFlowEntry `json:"dsFlow,omitempty"`
+	// Available from `2.8.2`
+	ThirdPartyDiscoverySync utils.NullableBool `json:"thirdPartyDiscoverySync,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _AcmeProfile AcmeProfile
@@ -63,22 +65,24 @@ type _AcmeProfile AcmeProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAcmeProfile(authorizationLevels CertificateProfileAuthorizationLevels, authorizeEmptyContact bool, authorizeShortName bool, cryptoPolicy ManagedCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, requireTermsOfService bool, selfPermissions CertificateProfileSelfPermissions, timeout string, verifyRetryCount int64, verifyRetryDelay string) *AcmeProfile {
+func NewAcmeProfile(module string, name string, enabled bool, timeout string, pkiConnector string, authorizeShortName bool, authorizeEmptyContact bool, verifyRetryCount int64, verifyRetryDelay string, requireTermsOfService bool, authorizationLevels CertificateProfileAuthorizationLevels, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions, cryptoPolicy ManagedCertificateProfileCryptoPolicy) *AcmeProfile {
 	this := AcmeProfile{}
-	this.AuthorizationLevels = authorizationLevels
-	this.AuthorizeEmptyContact = authorizeEmptyContact
-	this.AuthorizeShortName = authorizeShortName
-	this.CryptoPolicy = cryptoPolicy
-	this.Enabled = enabled
 	this.Module = module
 	this.Name = name
-	this.PkiConnector = pkiConnector
-	this.RequestsPolicy = requestsPolicy
-	this.RequireTermsOfService = requireTermsOfService
-	this.SelfPermissions = selfPermissions
+	this.Enabled = enabled
 	this.Timeout = timeout
+	this.PkiConnector = pkiConnector
+	this.AuthorizeShortName = authorizeShortName
+	this.AuthorizeEmptyContact = authorizeEmptyContact
 	this.VerifyRetryCount = verifyRetryCount
 	this.VerifyRetryDelay = verifyRetryDelay
+	this.RequireTermsOfService = requireTermsOfService
+	this.AuthorizationLevels = authorizationLevels
+	this.RequestsPolicy = requestsPolicy
+	this.SelfPermissions = selfPermissions
+	this.CryptoPolicy = cryptoPolicy
+	var thirdPartyDiscoverySync bool = false
+	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
 }
 
@@ -87,155 +91,214 @@ func NewAcmeProfile(authorizationLevels CertificateProfileAuthorizationLevels, a
 // but it doesn't guarantee that properties required by API are set
 func NewAcmeProfileWithDefaults() *AcmeProfile {
 	this := AcmeProfile{}
+	var thirdPartyDiscoverySync bool = false
+	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
 }
 
-// GetAuthorizationLevels returns the AuthorizationLevels field value
-func (o *AcmeProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
+// GetModule returns the Module field value
+func (o *AcmeProfile) GetModule() string {
 	if o == nil {
-		var ret CertificateProfileAuthorizationLevels
+		var ret string
 		return ret
 	}
 
-	return o.AuthorizationLevels
+	return o.Module
 }
 
-// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
+// GetModuleOk returns a tuple with the Module field value
 // and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
+func (o *AcmeProfile) GetModuleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AuthorizationLevels, true
+	return &o.Module, true
 }
 
-// SetAuthorizationLevels sets field value
-func (o *AcmeProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
-	o.AuthorizationLevels = v
+// SetModule sets field value
+func (o *AcmeProfile) SetModule(v string) {
+	o.Module = v
 }
 
-// GetAuthorizationMethods returns the AuthorizationMethods field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeProfile) GetAuthorizationMethods() []string {
+// GetName returns the Name field value
+func (o *AcmeProfile) GetName() string {
 	if o == nil {
-		var ret []string
+		var ret string
 		return ret
 	}
-	return o.AuthorizationMethods
+
+	return o.Name
 }
 
-// GetAuthorizationMethodsOk returns a tuple with the AuthorizationMethods field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *AcmeProfile) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *AcmeProfile) SetName(v string) {
+	o.Name = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeProfile) GetAuthorizationMethodsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.AuthorizationMethods) {
+func (o *AcmeProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
 		return nil, false
 	}
-	return o.AuthorizationMethods, true
+	return o.DisplayName, true
 }
 
-// HasAuthorizationMethods returns a boolean if a field has been set.
-func (o *AcmeProfile) HasAuthorizationMethods() bool {
-	if o != nil && !utils.IsNil(o.AuthorizationMethods) {
+// HasDisplayName returns a boolean if a field has been set.
+func (o *AcmeProfile) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
 		return true
 	}
 
 	return false
 }
 
-// SetAuthorizationMethods gets a reference to the given []string and assigns it to the AuthorizationMethods field.
-func (o *AcmeProfile) SetAuthorizationMethods(v []string) {
-	o.AuthorizationMethods = v
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *AcmeProfile) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
 }
 
-// GetAuthorizeEmptyContact returns the AuthorizeEmptyContact field value
-func (o *AcmeProfile) GetAuthorizeEmptyContact() bool {
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetDescription() []LocalizedString {
 	if o == nil {
-		var ret bool
+		var ret []LocalizedString
 		return ret
 	}
-
-	return o.AuthorizeEmptyContact
+	return o.Description
 }
 
-// GetAuthorizeEmptyContactOk returns a tuple with the AuthorizeEmptyContact field value
-// and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetAuthorizeEmptyContactOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthorizeEmptyContact, true
-}
-
-// SetAuthorizeEmptyContact sets field value
-func (o *AcmeProfile) SetAuthorizeEmptyContact(v bool) {
-	o.AuthorizeEmptyContact = v
-}
-
-// GetAuthorizeShortName returns the AuthorizeShortName field value
-func (o *AcmeProfile) GetAuthorizeShortName() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.AuthorizeShortName
-}
-
-// GetAuthorizeShortNameOk returns a tuple with the AuthorizeShortName field value
-// and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetAuthorizeShortNameOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthorizeShortName, true
-}
-
-// SetAuthorizeShortName sets field value
-func (o *AcmeProfile) SetAuthorizeShortName(v bool) {
-	o.AuthorizeShortName = v
-}
-
-// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeProfile) GetCertificateTemplate() CertificateTemplate {
-	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
-		var ret CertificateTemplate
-		return ret
-	}
-	return *o.CertificateTemplate.Get()
-}
-
-// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
-	if o == nil {
+func (o *AcmeProfile) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
 		return nil, false
 	}
-	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
+	return o.Description, true
 }
 
-// HasCertificateTemplate returns a boolean if a field has been set.
-func (o *AcmeProfile) HasCertificateTemplate() bool {
-	if o != nil && o.CertificateTemplate.IsSet() {
+// HasDescription returns a boolean if a field has been set.
+func (o *AcmeProfile) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
-func (o *AcmeProfile) SetCertificateTemplate(v CertificateTemplate) {
-	o.CertificateTemplate.Set(&v)
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *AcmeProfile) SetDescription(v []LocalizedString) {
+	o.Description = v
 }
 
-// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-func (o *AcmeProfile) SetCertificateTemplateNil() {
-	o.CertificateTemplate.Set(nil)
+// GetEnabled returns the Enabled field value
+func (o *AcmeProfile) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
 }
 
-// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
-func (o *AcmeProfile) UnsetCertificateTemplate() {
-	o.CertificateTemplate.Unset()
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *AcmeProfile) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *AcmeProfile) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetTimeout returns the Timeout field value
+func (o *AcmeProfile) GetTimeout() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Timeout
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value
+// and a boolean to check if the value has been set.
+func (o *AcmeProfile) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Timeout, true
+}
+
+// SetTimeout sets field value
+func (o *AcmeProfile) SetTimeout(v string) {
+	o.Timeout = v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetMeta() DirectoryMeta {
+	if o == nil || utils.IsNil(o.Meta.Get()) {
+		var ret DirectoryMeta
+		return ret
+	}
+	return *o.Meta.Get()
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeProfile) GetMetaOk() (*DirectoryMeta, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Meta.Get(), o.Meta.IsSet()
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *AcmeProfile) HasMeta() bool {
+	if o != nil && o.Meta.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given NullableDirectoryMeta and assigns it to the Meta field.
+func (o *AcmeProfile) SetMeta(v DirectoryMeta) {
+	o.Meta.Set(&v)
+}
+
+// SetMetaNil sets the value for Meta to be an explicit nil
+func (o *AcmeProfile) SetMetaNil() {
+	o.Meta.Set(nil)
+}
+
+// UnsetMeta ensures that no value is present for Meta, not even an explicit nil
+func (o *AcmeProfile) UnsetMeta() {
+	o.Meta.Unset()
 }
 
 // GetConstraints returns the Constraints field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -281,250 +344,61 @@ func (o *AcmeProfile) UnsetConstraints() {
 	o.Constraints.Unset()
 }
 
-// GetCryptoPolicy returns the CryptoPolicy field value
-func (o *AcmeProfile) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
-	if o == nil {
-		var ret ManagedCertificateProfileCryptoPolicy
-		return ret
-	}
-
-	return o.CryptoPolicy
-}
-
-// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
-// and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CryptoPolicy, true
-}
-
-// SetCryptoPolicy sets field value
-func (o *AcmeProfile) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
-	o.CryptoPolicy = v
-}
-
-// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeProfile) GetCsrDataMapping() map[string]string {
-	if o == nil {
-		var ret map[string]string
-		return ret
-	}
-	return o.CsrDataMapping
-}
-
-// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeProfile) GetCsrDataMappingOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.CsrDataMapping) {
-		return nil, false
-	}
-	return &o.CsrDataMapping, true
-}
-
-// HasCsrDataMapping returns a boolean if a field has been set.
-func (o *AcmeProfile) HasCsrDataMapping() bool {
-	if o != nil && !utils.IsNil(o.CsrDataMapping) {
-		return true
-	}
-
-	return false
-}
-
-// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
-func (o *AcmeProfile) SetCsrDataMapping(v map[string]string) {
-	o.CsrDataMapping = v
-}
-
-// GetDefaultContacts returns the DefaultContacts field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeProfile) GetDefaultContacts() []string {
+// GetAuthorizationMethods returns the AuthorizationMethods field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetAuthorizationMethods() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-	return o.DefaultContacts
+	return o.AuthorizationMethods
 }
 
-// GetDefaultContactsOk returns a tuple with the DefaultContacts field value if set, nil otherwise
+// GetAuthorizationMethodsOk returns a tuple with the AuthorizationMethods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeProfile) GetDefaultContactsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.DefaultContacts) {
+func (o *AcmeProfile) GetAuthorizationMethodsOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.AuthorizationMethods) {
 		return nil, false
 	}
-	return o.DefaultContacts, true
+	return o.AuthorizationMethods, true
 }
 
-// HasDefaultContacts returns a boolean if a field has been set.
-func (o *AcmeProfile) HasDefaultContacts() bool {
-	if o != nil && !utils.IsNil(o.DefaultContacts) {
+// HasAuthorizationMethods returns a boolean if a field has been set.
+func (o *AcmeProfile) HasAuthorizationMethods() bool {
+	if o != nil && !utils.IsNil(o.AuthorizationMethods) {
 		return true
 	}
 
 	return false
 }
 
-// SetDefaultContacts gets a reference to the given []string and assigns it to the DefaultContacts field.
-func (o *AcmeProfile) SetDefaultContacts(v []string) {
-	o.DefaultContacts = v
+// SetAuthorizationMethods gets a reference to the given []string and assigns it to the AuthorizationMethods field.
+func (o *AcmeProfile) SetAuthorizationMethods(v []string) {
+	o.AuthorizationMethods = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeProfile) GetDescription() []LocalizedString {
+// GetPkiConnector returns the PkiConnector field value
+func (o *AcmeProfile) GetPkiConnector() string {
 	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeProfile) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *AcmeProfile) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *AcmeProfile) SetDescription(v []LocalizedString) {
-	o.Description = v
-}
-
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeProfile) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *AcmeProfile) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *AcmeProfile) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
-}
-
-// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeProfile) GetDsFlow() []DataSourceFlowEntry {
-	if o == nil {
-		var ret []DataSourceFlowEntry
-		return ret
-	}
-	return o.DsFlow
-}
-
-// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeProfile) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
-	if o == nil || utils.IsNil(o.DsFlow) {
-		return nil, false
-	}
-	return o.DsFlow, true
-}
-
-// HasDsFlow returns a boolean if a field has been set.
-func (o *AcmeProfile) HasDsFlow() bool {
-	if o != nil && !utils.IsNil(o.DsFlow) {
-		return true
-	}
-
-	return false
-}
-
-// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
-func (o *AcmeProfile) SetDsFlow(v []DataSourceFlowEntry) {
-	o.DsFlow = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *AcmeProfile) GetEnabled() bool {
-	if o == nil {
-		var ret bool
+		var ret string
 		return ret
 	}
 
-	return o.Enabled
+	return o.PkiConnector
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value
+// GetPkiConnectorOk returns a tuple with the PkiConnector field value
 // and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetEnabledOk() (*bool, bool) {
+func (o *AcmeProfile) GetPkiConnectorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return &o.PkiConnector, true
 }
 
-// SetEnabled sets field value
-func (o *AcmeProfile) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeProfile) GetGradingPolicies() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.GradingPolicies
-}
-
-// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeProfile) GetGradingPoliciesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.GradingPolicies) {
-		return nil, false
-	}
-	return o.GradingPolicies, true
-}
-
-// HasGradingPolicies returns a boolean if a field has been set.
-func (o *AcmeProfile) HasGradingPolicies() bool {
-	if o != nil && !utils.IsNil(o.GradingPolicies) {
-		return true
-	}
-
-	return false
-}
-
-// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
-func (o *AcmeProfile) SetGradingPolicies(v []string) {
-	o.GradingPolicies = v
+// SetPkiConnector sets field value
+func (o *AcmeProfile) SetPkiConnector(v string) {
+	o.PkiConnector = v
 }
 
 // GetHttp01Port returns the Http01Port field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -568,6 +442,278 @@ func (o *AcmeProfile) SetHttp01PortNil() {
 // UnsetHttp01Port ensures that no value is present for Http01Port, not even an explicit nil
 func (o *AcmeProfile) UnsetHttp01Port() {
 	o.Http01Port.Unset()
+}
+
+// GetTlsAlpn01Port returns the TlsAlpn01Port field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetTlsAlpn01Port() int64 {
+	if o == nil || utils.IsNil(o.TlsAlpn01Port.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.TlsAlpn01Port.Get()
+}
+
+// GetTlsAlpn01PortOk returns a tuple with the TlsAlpn01Port field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeProfile) GetTlsAlpn01PortOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TlsAlpn01Port.Get(), o.TlsAlpn01Port.IsSet()
+}
+
+// HasTlsAlpn01Port returns a boolean if a field has been set.
+func (o *AcmeProfile) HasTlsAlpn01Port() bool {
+	if o != nil && o.TlsAlpn01Port.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTlsAlpn01Port gets a reference to the given NullableInt64 and assigns it to the TlsAlpn01Port field.
+func (o *AcmeProfile) SetTlsAlpn01Port(v int64) {
+	o.TlsAlpn01Port.Set(&v)
+}
+
+// SetTlsAlpn01PortNil sets the value for TlsAlpn01Port to be an explicit nil
+func (o *AcmeProfile) SetTlsAlpn01PortNil() {
+	o.TlsAlpn01Port.Set(nil)
+}
+
+// UnsetTlsAlpn01Port ensures that no value is present for TlsAlpn01Port, not even an explicit nil
+func (o *AcmeProfile) UnsetTlsAlpn01Port() {
+	o.TlsAlpn01Port.Unset()
+}
+
+// GetAuthorizeShortName returns the AuthorizeShortName field value
+func (o *AcmeProfile) GetAuthorizeShortName() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AuthorizeShortName
+}
+
+// GetAuthorizeShortNameOk returns a tuple with the AuthorizeShortName field value
+// and a boolean to check if the value has been set.
+func (o *AcmeProfile) GetAuthorizeShortNameOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizeShortName, true
+}
+
+// SetAuthorizeShortName sets field value
+func (o *AcmeProfile) SetAuthorizeShortName(v bool) {
+	o.AuthorizeShortName = v
+}
+
+// GetAuthorizeEmptyContact returns the AuthorizeEmptyContact field value
+func (o *AcmeProfile) GetAuthorizeEmptyContact() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AuthorizeEmptyContact
+}
+
+// GetAuthorizeEmptyContactOk returns a tuple with the AuthorizeEmptyContact field value
+// and a boolean to check if the value has been set.
+func (o *AcmeProfile) GetAuthorizeEmptyContactOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizeEmptyContact, true
+}
+
+// SetAuthorizeEmptyContact sets field value
+func (o *AcmeProfile) SetAuthorizeEmptyContact(v bool) {
+	o.AuthorizeEmptyContact = v
+}
+
+// GetDefaultContacts returns the DefaultContacts field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetDefaultContacts() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.DefaultContacts
+}
+
+// GetDefaultContactsOk returns a tuple with the DefaultContacts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeProfile) GetDefaultContactsOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.DefaultContacts) {
+		return nil, false
+	}
+	return o.DefaultContacts, true
+}
+
+// HasDefaultContacts returns a boolean if a field has been set.
+func (o *AcmeProfile) HasDefaultContacts() bool {
+	if o != nil && !utils.IsNil(o.DefaultContacts) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultContacts gets a reference to the given []string and assigns it to the DefaultContacts field.
+func (o *AcmeProfile) SetDefaultContacts(v []string) {
+	o.DefaultContacts = v
+}
+
+// GetVerifyRetryCount returns the VerifyRetryCount field value
+func (o *AcmeProfile) GetVerifyRetryCount() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.VerifyRetryCount
+}
+
+// GetVerifyRetryCountOk returns a tuple with the VerifyRetryCount field value
+// and a boolean to check if the value has been set.
+func (o *AcmeProfile) GetVerifyRetryCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VerifyRetryCount, true
+}
+
+// SetVerifyRetryCount sets field value
+func (o *AcmeProfile) SetVerifyRetryCount(v int64) {
+	o.VerifyRetryCount = v
+}
+
+// GetVerifyRetryDelay returns the VerifyRetryDelay field value
+func (o *AcmeProfile) GetVerifyRetryDelay() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.VerifyRetryDelay
+}
+
+// GetVerifyRetryDelayOk returns a tuple with the VerifyRetryDelay field value
+// and a boolean to check if the value has been set.
+func (o *AcmeProfile) GetVerifyRetryDelayOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VerifyRetryDelay, true
+}
+
+// SetVerifyRetryDelay sets field value
+func (o *AcmeProfile) SetVerifyRetryDelay(v string) {
+	o.VerifyRetryDelay = v
+}
+
+// GetRequireTermsOfService returns the RequireTermsOfService field value
+func (o *AcmeProfile) GetRequireTermsOfService() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.RequireTermsOfService
+}
+
+// GetRequireTermsOfServiceOk returns a tuple with the RequireTermsOfService field value
+// and a boolean to check if the value has been set.
+func (o *AcmeProfile) GetRequireTermsOfServiceOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RequireTermsOfService, true
+}
+
+// SetRequireTermsOfService sets field value
+func (o *AcmeProfile) SetRequireTermsOfService(v bool) {
+	o.RequireTermsOfService = v
+}
+
+// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetRenewalPeriod() string {
+	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RenewalPeriod.Get()
+}
+
+// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeProfile) GetRenewalPeriodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
+}
+
+// HasRenewalPeriod returns a boolean if a field has been set.
+func (o *AcmeProfile) HasRenewalPeriod() bool {
+	if o != nil && o.RenewalPeriod.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
+func (o *AcmeProfile) SetRenewalPeriod(v string) {
+	o.RenewalPeriod.Set(&v)
+}
+
+// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
+func (o *AcmeProfile) SetRenewalPeriodNil() {
+	o.RenewalPeriod.Set(nil)
+}
+
+// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+func (o *AcmeProfile) UnsetRenewalPeriod() {
+	o.RenewalPeriod.Unset()
+}
+
+// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetCsrDataMapping() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.CsrDataMapping
+}
+
+// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeProfile) GetCsrDataMappingOk() (*map[string]string, bool) {
+	if o == nil || utils.IsNil(o.CsrDataMapping) {
+		return nil, false
+	}
+	return &o.CsrDataMapping, true
+}
+
+// HasCsrDataMapping returns a boolean if a field has been set.
+func (o *AcmeProfile) HasCsrDataMapping() bool {
+	if o != nil && !utils.IsNil(o.CsrDataMapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
+func (o *AcmeProfile) SetCsrDataMapping(v map[string]string) {
+	o.CsrDataMapping = v
 }
 
 // GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -656,121 +802,6 @@ func (o *AcmeProfile) UnsetMaxDnsName() {
 	o.MaxDnsName.Unset()
 }
 
-// GetMeta returns the Meta field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeProfile) GetMeta() DirectoryMeta {
-	if o == nil || utils.IsNil(o.Meta.Get()) {
-		var ret DirectoryMeta
-		return ret
-	}
-	return *o.Meta.Get()
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeProfile) GetMetaOk() (*DirectoryMeta, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Meta.Get(), o.Meta.IsSet()
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *AcmeProfile) HasMeta() bool {
-	if o != nil && o.Meta.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMeta gets a reference to the given NullableDirectoryMeta and assigns it to the Meta field.
-func (o *AcmeProfile) SetMeta(v DirectoryMeta) {
-	o.Meta.Set(&v)
-}
-
-// SetMetaNil sets the value for Meta to be an explicit nil
-func (o *AcmeProfile) SetMetaNil() {
-	o.Meta.Set(nil)
-}
-
-// UnsetMeta ensures that no value is present for Meta, not even an explicit nil
-func (o *AcmeProfile) UnsetMeta() {
-	o.Meta.Unset()
-}
-
-// GetModule returns the Module field value
-func (o *AcmeProfile) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *AcmeProfile) SetModule(v string) {
-	o.Module = v
-}
-
-// GetName returns the Name field value
-func (o *AcmeProfile) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *AcmeProfile) SetName(v string) {
-	o.Name = v
-}
-
-// GetPkiConnector returns the PkiConnector field value
-func (o *AcmeProfile) GetPkiConnector() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PkiConnector
-}
-
-// GetPkiConnectorOk returns a tuple with the PkiConnector field value
-// and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetPkiConnectorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.PkiConnector, true
-}
-
-// SetPkiConnector sets field value
-func (o *AcmeProfile) SetPkiConnector(v string) {
-	o.PkiConnector = v
-}
-
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AcmeProfile) GetProxy() string {
 	if o == nil || utils.IsNil(o.Proxy.Get()) {
@@ -814,186 +845,28 @@ func (o *AcmeProfile) UnsetProxy() {
 	o.Proxy.Unset()
 }
 
-// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeProfile) GetRenewalPeriod() string {
-	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RenewalPeriod.Get()
-}
-
-// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeProfile) GetRenewalPeriodOk() (*string, bool) {
+// GetAuthorizationLevels returns the AuthorizationLevels field value
+func (o *AcmeProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
 	if o == nil {
-		return nil, false
-	}
-	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
-}
-
-// HasRenewalPeriod returns a boolean if a field has been set.
-func (o *AcmeProfile) HasRenewalPeriod() bool {
-	if o != nil && o.RenewalPeriod.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
-func (o *AcmeProfile) SetRenewalPeriod(v string) {
-	o.RenewalPeriod.Set(&v)
-}
-
-// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-func (o *AcmeProfile) SetRenewalPeriodNil() {
-	o.RenewalPeriod.Set(nil)
-}
-
-// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
-func (o *AcmeProfile) UnsetRenewalPeriod() {
-	o.RenewalPeriod.Unset()
-}
-
-// GetRequestsPolicy returns the RequestsPolicy field value
-func (o *AcmeProfile) GetRequestsPolicy() RequestsPolicy {
-	if o == nil {
-		var ret RequestsPolicy
+		var ret CertificateProfileAuthorizationLevels
 		return ret
 	}
 
-	return o.RequestsPolicy
+	return o.AuthorizationLevels
 }
 
-// GetRequestsPolicyOk returns a tuple with the RequestsPolicy field value
+// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
 // and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetRequestsPolicyOk() (*RequestsPolicy, bool) {
+func (o *AcmeProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.RequestsPolicy, true
+	return &o.AuthorizationLevels, true
 }
 
-// SetRequestsPolicy sets field value
-func (o *AcmeProfile) SetRequestsPolicy(v RequestsPolicy) {
-	o.RequestsPolicy = v
-}
-
-// GetRequireTermsOfService returns the RequireTermsOfService field value
-func (o *AcmeProfile) GetRequireTermsOfService() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.RequireTermsOfService
-}
-
-// GetRequireTermsOfServiceOk returns a tuple with the RequireTermsOfService field value
-// and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetRequireTermsOfServiceOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RequireTermsOfService, true
-}
-
-// SetRequireTermsOfService sets field value
-func (o *AcmeProfile) SetRequireTermsOfService(v bool) {
-	o.RequireTermsOfService = v
-}
-
-// GetSelfPermissions returns the SelfPermissions field value
-func (o *AcmeProfile) GetSelfPermissions() CertificateProfileSelfPermissions {
-	if o == nil {
-		var ret CertificateProfileSelfPermissions
-		return ret
-	}
-
-	return o.SelfPermissions
-}
-
-// GetSelfPermissionsOk returns a tuple with the SelfPermissions field value
-// and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SelfPermissions, true
-}
-
-// SetSelfPermissions sets field value
-func (o *AcmeProfile) SetSelfPermissions(v CertificateProfileSelfPermissions) {
-	o.SelfPermissions = v
-}
-
-// GetTimeout returns the Timeout field value
-func (o *AcmeProfile) GetTimeout() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Timeout
-}
-
-// GetTimeoutOk returns a tuple with the Timeout field value
-// and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Timeout, true
-}
-
-// SetTimeout sets field value
-func (o *AcmeProfile) SetTimeout(v string) {
-	o.Timeout = v
-}
-
-// GetTlsAlpn01Port returns the TlsAlpn01Port field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeProfile) GetTlsAlpn01Port() int64 {
-	if o == nil || utils.IsNil(o.TlsAlpn01Port.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.TlsAlpn01Port.Get()
-}
-
-// GetTlsAlpn01PortOk returns a tuple with the TlsAlpn01Port field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeProfile) GetTlsAlpn01PortOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TlsAlpn01Port.Get(), o.TlsAlpn01Port.IsSet()
-}
-
-// HasTlsAlpn01Port returns a boolean if a field has been set.
-func (o *AcmeProfile) HasTlsAlpn01Port() bool {
-	if o != nil && o.TlsAlpn01Port.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTlsAlpn01Port gets a reference to the given NullableInt64 and assigns it to the TlsAlpn01Port field.
-func (o *AcmeProfile) SetTlsAlpn01Port(v int64) {
-	o.TlsAlpn01Port.Set(&v)
-}
-
-// SetTlsAlpn01PortNil sets the value for TlsAlpn01Port to be an explicit nil
-func (o *AcmeProfile) SetTlsAlpn01PortNil() {
-	o.TlsAlpn01Port.Set(nil)
-}
-
-// UnsetTlsAlpn01Port ensures that no value is present for TlsAlpn01Port, not even an explicit nil
-func (o *AcmeProfile) UnsetTlsAlpn01Port() {
-	o.TlsAlpn01Port.Unset()
+// SetAuthorizationLevels sets field value
+func (o *AcmeProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
+	o.AuthorizationLevels = v
 }
 
 // GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1039,52 +912,228 @@ func (o *AcmeProfile) UnsetTriggers() {
 	o.Triggers.Unset()
 }
 
-// GetVerifyRetryCount returns the VerifyRetryCount field value
-func (o *AcmeProfile) GetVerifyRetryCount() int64 {
+// GetRequestsPolicy returns the RequestsPolicy field value
+func (o *AcmeProfile) GetRequestsPolicy() RequestsPolicy {
 	if o == nil {
-		var ret int64
+		var ret RequestsPolicy
 		return ret
 	}
 
-	return o.VerifyRetryCount
+	return o.RequestsPolicy
 }
 
-// GetVerifyRetryCountOk returns a tuple with the VerifyRetryCount field value
+// GetRequestsPolicyOk returns a tuple with the RequestsPolicy field value
 // and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetVerifyRetryCountOk() (*int64, bool) {
+func (o *AcmeProfile) GetRequestsPolicyOk() (*RequestsPolicy, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.VerifyRetryCount, true
+	return &o.RequestsPolicy, true
 }
 
-// SetVerifyRetryCount sets field value
-func (o *AcmeProfile) SetVerifyRetryCount(v int64) {
-	o.VerifyRetryCount = v
+// SetRequestsPolicy sets field value
+func (o *AcmeProfile) SetRequestsPolicy(v RequestsPolicy) {
+	o.RequestsPolicy = v
 }
 
-// GetVerifyRetryDelay returns the VerifyRetryDelay field value
-func (o *AcmeProfile) GetVerifyRetryDelay() string {
+// GetSelfPermissions returns the SelfPermissions field value
+func (o *AcmeProfile) GetSelfPermissions() CertificateProfileSelfPermissions {
 	if o == nil {
-		var ret string
+		var ret CertificateProfileSelfPermissions
 		return ret
 	}
 
-	return o.VerifyRetryDelay
+	return o.SelfPermissions
 }
 
-// GetVerifyRetryDelayOk returns a tuple with the VerifyRetryDelay field value
+// GetSelfPermissionsOk returns a tuple with the SelfPermissions field value
 // and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetVerifyRetryDelayOk() (*string, bool) {
+func (o *AcmeProfile) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.VerifyRetryDelay, true
+	return &o.SelfPermissions, true
 }
 
-// SetVerifyRetryDelay sets field value
-func (o *AcmeProfile) SetVerifyRetryDelay(v string) {
-	o.VerifyRetryDelay = v
+// SetSelfPermissions sets field value
+func (o *AcmeProfile) SetSelfPermissions(v CertificateProfileSelfPermissions) {
+	o.SelfPermissions = v
+}
+
+// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetCertificateTemplate() CertificateTemplate {
+	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
+		var ret CertificateTemplate
+		return ret
+	}
+	return *o.CertificateTemplate.Get()
+}
+
+// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
+}
+
+// HasCertificateTemplate returns a boolean if a field has been set.
+func (o *AcmeProfile) HasCertificateTemplate() bool {
+	if o != nil && o.CertificateTemplate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
+func (o *AcmeProfile) SetCertificateTemplate(v CertificateTemplate) {
+	o.CertificateTemplate.Set(&v)
+}
+
+// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
+func (o *AcmeProfile) SetCertificateTemplateNil() {
+	o.CertificateTemplate.Set(nil)
+}
+
+// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
+func (o *AcmeProfile) UnsetCertificateTemplate() {
+	o.CertificateTemplate.Unset()
+}
+
+// GetCryptoPolicy returns the CryptoPolicy field value
+func (o *AcmeProfile) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
+	if o == nil {
+		var ret ManagedCertificateProfileCryptoPolicy
+		return ret
+	}
+
+	return o.CryptoPolicy
+}
+
+// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
+// and a boolean to check if the value has been set.
+func (o *AcmeProfile) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CryptoPolicy, true
+}
+
+// SetCryptoPolicy sets field value
+func (o *AcmeProfile) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
+	o.CryptoPolicy = v
+}
+
+// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetGradingPolicies() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.GradingPolicies
+}
+
+// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeProfile) GetGradingPoliciesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.GradingPolicies) {
+		return nil, false
+	}
+	return o.GradingPolicies, true
+}
+
+// HasGradingPolicies returns a boolean if a field has been set.
+func (o *AcmeProfile) HasGradingPolicies() bool {
+	if o != nil && !utils.IsNil(o.GradingPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
+func (o *AcmeProfile) SetGradingPolicies(v []string) {
+	o.GradingPolicies = v
+}
+
+// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetDsFlow() []DataSourceFlowEntry {
+	if o == nil {
+		var ret []DataSourceFlowEntry
+		return ret
+	}
+	return o.DsFlow
+}
+
+// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeProfile) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
+	if o == nil || utils.IsNil(o.DsFlow) {
+		return nil, false
+	}
+	return o.DsFlow, true
+}
+
+// HasDsFlow returns a boolean if a field has been set.
+func (o *AcmeProfile) HasDsFlow() bool {
+	if o != nil && !utils.IsNil(o.DsFlow) {
+		return true
+	}
+
+	return false
+}
+
+// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
+func (o *AcmeProfile) SetDsFlow(v []DataSourceFlowEntry) {
+	o.DsFlow = v
+}
+
+// GetThirdPartyDiscoverySync returns the ThirdPartyDiscoverySync field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeProfile) GetThirdPartyDiscoverySync() bool {
+	if o == nil || utils.IsNil(o.ThirdPartyDiscoverySync.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.ThirdPartyDiscoverySync.Get()
+}
+
+// GetThirdPartyDiscoverySyncOk returns a tuple with the ThirdPartyDiscoverySync field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeProfile) GetThirdPartyDiscoverySyncOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ThirdPartyDiscoverySync.Get(), o.ThirdPartyDiscoverySync.IsSet()
+}
+
+// HasThirdPartyDiscoverySync returns a boolean if a field has been set.
+func (o *AcmeProfile) HasThirdPartyDiscoverySync() bool {
+	if o != nil && o.ThirdPartyDiscoverySync.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetThirdPartyDiscoverySync gets a reference to the given NullableBool and assigns it to the ThirdPartyDiscoverySync field.
+func (o *AcmeProfile) SetThirdPartyDiscoverySync(v bool) {
+	o.ThirdPartyDiscoverySync.Set(&v)
+}
+
+// SetThirdPartyDiscoverySyncNil sets the value for ThirdPartyDiscoverySync to be an explicit nil
+func (o *AcmeProfile) SetThirdPartyDiscoverySyncNil() {
+	o.ThirdPartyDiscoverySync.Set(nil)
+}
+
+// UnsetThirdPartyDiscoverySync ensures that no value is present for ThirdPartyDiscoverySync, not even an explicit nil
+func (o *AcmeProfile) UnsetThirdPartyDiscoverySync() {
+	o.ThirdPartyDiscoverySync.Unset()
 }
 
 func (o AcmeProfile) MarshalJSON() ([]byte, error) {
@@ -1097,40 +1146,45 @@ func (o AcmeProfile) MarshalJSON() ([]byte, error) {
 
 func (o AcmeProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authorizationLevels"] = o.AuthorizationLevels
-	if o.AuthorizationMethods != nil {
-		toSerialize["authorizationMethods"] = o.AuthorizationMethods
-	}
-	toSerialize["authorizeEmptyContact"] = o.AuthorizeEmptyContact
-	toSerialize["authorizeShortName"] = o.AuthorizeShortName
-	if o.CertificateTemplate.IsSet() {
-		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
-	}
-	if o.Constraints.IsSet() {
-		toSerialize["constraints"] = o.Constraints.Get()
-	}
-	toSerialize["cryptoPolicy"] = o.CryptoPolicy
-	if o.CsrDataMapping != nil {
-		toSerialize["csrDataMapping"] = o.CsrDataMapping
-	}
-	if o.DefaultContacts != nil {
-		toSerialize["defaultContacts"] = o.DefaultContacts
+	toSerialize["module"] = o.Module
+	toSerialize["name"] = o.Name
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	if o.DsFlow != nil {
-		toSerialize["dsFlow"] = o.DsFlow
-	}
 	toSerialize["enabled"] = o.Enabled
-	if o.GradingPolicies != nil {
-		toSerialize["gradingPolicies"] = o.GradingPolicies
+	toSerialize["timeout"] = o.Timeout
+	if o.Meta.IsSet() {
+		toSerialize["meta"] = o.Meta.Get()
 	}
+	if o.Constraints.IsSet() {
+		toSerialize["constraints"] = o.Constraints.Get()
+	}
+	if o.AuthorizationMethods != nil {
+		toSerialize["authorizationMethods"] = o.AuthorizationMethods
+	}
+	toSerialize["pkiConnector"] = o.PkiConnector
 	if o.Http01Port.IsSet() {
 		toSerialize["http01Port"] = o.Http01Port.Get()
+	}
+	if o.TlsAlpn01Port.IsSet() {
+		toSerialize["tlsAlpn01Port"] = o.TlsAlpn01Port.Get()
+	}
+	toSerialize["authorizeShortName"] = o.AuthorizeShortName
+	toSerialize["authorizeEmptyContact"] = o.AuthorizeEmptyContact
+	if o.DefaultContacts != nil {
+		toSerialize["defaultContacts"] = o.DefaultContacts
+	}
+	toSerialize["verifyRetryCount"] = o.VerifyRetryCount
+	toSerialize["verifyRetryDelay"] = o.VerifyRetryDelay
+	toSerialize["requireTermsOfService"] = o.RequireTermsOfService
+	if o.RenewalPeriod.IsSet() {
+		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
+	}
+	if o.CsrDataMapping != nil {
+		toSerialize["csrDataMapping"] = o.CsrDataMapping
 	}
 	if o.MaxCertificatePerHolderPolicy.IsSet() {
 		toSerialize["maxCertificatePerHolderPolicy"] = o.MaxCertificatePerHolderPolicy.Get()
@@ -1138,30 +1192,28 @@ func (o AcmeProfile) ToMap() (map[string]interface{}, error) {
 	if o.MaxDnsName.IsSet() {
 		toSerialize["maxDnsName"] = o.MaxDnsName.Get()
 	}
-	if o.Meta.IsSet() {
-		toSerialize["meta"] = o.Meta.Get()
-	}
-	toSerialize["module"] = o.Module
-	toSerialize["name"] = o.Name
-	toSerialize["pkiConnector"] = o.PkiConnector
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
-	if o.RenewalPeriod.IsSet() {
-		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
-	}
-	toSerialize["requestsPolicy"] = o.RequestsPolicy
-	toSerialize["requireTermsOfService"] = o.RequireTermsOfService
-	toSerialize["selfPermissions"] = o.SelfPermissions
-	toSerialize["timeout"] = o.Timeout
-	if o.TlsAlpn01Port.IsSet() {
-		toSerialize["tlsAlpn01Port"] = o.TlsAlpn01Port.Get()
-	}
+	toSerialize["authorizationLevels"] = o.AuthorizationLevels
 	if o.Triggers.IsSet() {
 		toSerialize["triggers"] = o.Triggers.Get()
 	}
-	toSerialize["verifyRetryCount"] = o.VerifyRetryCount
-	toSerialize["verifyRetryDelay"] = o.VerifyRetryDelay
+	toSerialize["requestsPolicy"] = o.RequestsPolicy
+	toSerialize["selfPermissions"] = o.SelfPermissions
+	if o.CertificateTemplate.IsSet() {
+		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
+	}
+	toSerialize["cryptoPolicy"] = o.CryptoPolicy
+	if o.GradingPolicies != nil {
+		toSerialize["gradingPolicies"] = o.GradingPolicies
+	}
+	if o.DsFlow != nil {
+		toSerialize["dsFlow"] = o.DsFlow
+	}
+	if o.ThirdPartyDiscoverySync.IsSet() {
+		toSerialize["thirdPartyDiscoverySync"] = o.ThirdPartyDiscoverySync.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -1175,20 +1227,20 @@ func (o *AcmeProfile) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"authorizationLevels",
-		"authorizeEmptyContact",
-		"authorizeShortName",
-		"cryptoPolicy",
-		"enabled",
 		"module",
 		"name",
-		"pkiConnector",
-		"requestsPolicy",
-		"requireTermsOfService",
-		"selfPermissions",
+		"enabled",
 		"timeout",
+		"pkiConnector",
+		"authorizeShortName",
+		"authorizeEmptyContact",
 		"verifyRetryCount",
 		"verifyRetryDelay",
+		"requireTermsOfService",
+		"authorizationLevels",
+		"requestsPolicy",
+		"selfPermissions",
+		"cryptoPolicy",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -1218,37 +1270,38 @@ func (o *AcmeProfile) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "authorizationLevels")
-		delete(additionalProperties, "authorizationMethods")
-		delete(additionalProperties, "authorizeEmptyContact")
-		delete(additionalProperties, "authorizeShortName")
-		delete(additionalProperties, "certificateTemplate")
-		delete(additionalProperties, "constraints")
-		delete(additionalProperties, "cryptoPolicy")
-		delete(additionalProperties, "csrDataMapping")
-		delete(additionalProperties, "defaultContacts")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "dsFlow")
-		delete(additionalProperties, "enabled")
-		delete(additionalProperties, "gradingPolicies")
-		delete(additionalProperties, "http01Port")
-		delete(additionalProperties, "maxCertificatePerHolderPolicy")
-		delete(additionalProperties, "maxDnsName")
-		delete(additionalProperties, "meta")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "pkiConnector")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "renewalPeriod")
-		delete(additionalProperties, "requestsPolicy")
-		delete(additionalProperties, "requireTermsOfService")
-		delete(additionalProperties, "selfPermissions")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "meta")
+		delete(additionalProperties, "constraints")
+		delete(additionalProperties, "authorizationMethods")
+		delete(additionalProperties, "pkiConnector")
+		delete(additionalProperties, "http01Port")
 		delete(additionalProperties, "tlsAlpn01Port")
-		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "authorizeShortName")
+		delete(additionalProperties, "authorizeEmptyContact")
+		delete(additionalProperties, "defaultContacts")
 		delete(additionalProperties, "verifyRetryCount")
 		delete(additionalProperties, "verifyRetryDelay")
+		delete(additionalProperties, "requireTermsOfService")
+		delete(additionalProperties, "renewalPeriod")
+		delete(additionalProperties, "csrDataMapping")
+		delete(additionalProperties, "maxCertificatePerHolderPolicy")
+		delete(additionalProperties, "maxDnsName")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "authorizationLevels")
+		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "requestsPolicy")
+		delete(additionalProperties, "selfPermissions")
+		delete(additionalProperties, "certificateTemplate")
+		delete(additionalProperties, "cryptoPolicy")
+		delete(additionalProperties, "gradingPolicies")
+		delete(additionalProperties, "dsFlow")
+		delete(additionalProperties, "thirdPartyDiscoverySync")
 		o.AdditionalProperties = additionalProperties
 	}
 

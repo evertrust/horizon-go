@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
 **ApproverComment** | Pointer to **NullableString** | Free-text field editable by the approver to provider more context on the request | [optional] 
-**DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
 **Workflow** | **string** | What this request will do. For a recovery request, this is always &#x60;recover&#x60; | 
+**DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
 
 ## Methods
 
@@ -83,6 +83,26 @@ HasApproverComment returns a boolean if a field has been set.
 `func (o *WebRARecoverRequestOnApprove) UnsetApproverComment()`
 
 UnsetApproverComment ensures that no value is present for ApproverComment, not even an explicit nil
+### GetWorkflow
+
+`func (o *WebRARecoverRequestOnApprove) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRARecoverRequestOnApprove) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRARecoverRequestOnApprove) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
 ### GetDryRun
 
 `func (o *WebRARecoverRequestOnApprove) GetDryRun() bool`
@@ -118,26 +138,6 @@ HasDryRun returns a boolean if a field has been set.
 `func (o *WebRARecoverRequestOnApprove) UnsetDryRun()`
 
 UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
-### GetWorkflow
-
-`func (o *WebRARecoverRequestOnApprove) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRARecoverRequestOnApprove) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRARecoverRequestOnApprove) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

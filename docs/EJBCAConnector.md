@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**Name** | **string** |  | 
+**Type** | **string** |  | 
+**EndPoint** | **string** |  | 
+**Profile** | **string** |  | 
 **CaName** | **string** |  | 
 **EeProfile** | Pointer to **NullableString** |  | [optional] 
-**EndPoint** | **string** |  | 
-**Name** | **string** |  | 
-**Profile** | **string** |  | 
+**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Type** | **string** |  | 
 
 ## Methods
 
 ### NewEJBCAConnector
 
-`func NewEJBCAConnector(authenticationCredentials string, caName string, endPoint string, name string, profile string, type_ string, ) *EJBCAConnector`
+`func NewEJBCAConnector(name string, type_ string, endPoint string, profile string, caName string, authenticationCredentials string, ) *EJBCAConnector`
 
 NewEJBCAConnector instantiates a new EJBCAConnector object
 This constructor will assign default values to properties that have it defined,
@@ -34,24 +34,84 @@ NewEJBCAConnectorWithDefaults instantiates a new EJBCAConnector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAuthenticationCredentials
+### GetName
 
-`func (o *EJBCAConnector) GetAuthenticationCredentials() string`
+`func (o *EJBCAConnector) GetName() string`
 
-GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAuthenticationCredentialsOk
+### GetNameOk
 
-`func (o *EJBCAConnector) GetAuthenticationCredentialsOk() (*string, bool)`
+`func (o *EJBCAConnector) GetNameOk() (*string, bool)`
 
-GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationCredentials
+### SetName
 
-`func (o *EJBCAConnector) SetAuthenticationCredentials(v string)`
+`func (o *EJBCAConnector) SetName(v string)`
 
-SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
+SetName sets Name field to given value.
+
+
+### GetType
+
+`func (o *EJBCAConnector) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *EJBCAConnector) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *EJBCAConnector) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
+### GetEndPoint
+
+`func (o *EJBCAConnector) GetEndPoint() string`
+
+GetEndPoint returns the EndPoint field if non-nil, zero value otherwise.
+
+### GetEndPointOk
+
+`func (o *EJBCAConnector) GetEndPointOk() (*string, bool)`
+
+GetEndPointOk returns a tuple with the EndPoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndPoint
+
+`func (o *EJBCAConnector) SetEndPoint(v string)`
+
+SetEndPoint sets EndPoint field to given value.
+
+
+### GetProfile
+
+`func (o *EJBCAConnector) GetProfile() string`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *EJBCAConnector) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *EJBCAConnector) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
 
 
 ### GetCaName
@@ -109,66 +169,61 @@ HasEeProfile returns a boolean if a field has been set.
 `func (o *EJBCAConnector) UnsetEeProfile()`
 
 UnsetEeProfile ensures that no value is present for EeProfile, not even an explicit nil
-### GetEndPoint
+### GetAuthenticationCredentials
 
-`func (o *EJBCAConnector) GetEndPoint() string`
+`func (o *EJBCAConnector) GetAuthenticationCredentials() string`
 
-GetEndPoint returns the EndPoint field if non-nil, zero value otherwise.
+GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
 
-### GetEndPointOk
+### GetAuthenticationCredentialsOk
 
-`func (o *EJBCAConnector) GetEndPointOk() (*string, bool)`
+`func (o *EJBCAConnector) GetAuthenticationCredentialsOk() (*string, bool)`
 
-GetEndPointOk returns a tuple with the EndPoint field if it's non-nil, zero value otherwise
+GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEndPoint
+### SetAuthenticationCredentials
 
-`func (o *EJBCAConnector) SetEndPoint(v string)`
+`func (o *EJBCAConnector) SetAuthenticationCredentials(v string)`
 
-SetEndPoint sets EndPoint field to given value.
+SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
 
 
-### GetName
+### GetTimeout
 
-`func (o *EJBCAConnector) GetName() string`
+`func (o *EJBCAConnector) GetTimeout() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetTimeoutOk
 
-`func (o *EJBCAConnector) GetNameOk() (*string, bool)`
+`func (o *EJBCAConnector) GetTimeoutOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetTimeout
 
-`func (o *EJBCAConnector) SetName(v string)`
+`func (o *EJBCAConnector) SetTimeout(v string)`
 
-SetName sets Name field to given value.
+SetTimeout sets Timeout field to given value.
 
+### HasTimeout
 
-### GetProfile
+`func (o *EJBCAConnector) HasTimeout() bool`
 
-`func (o *EJBCAConnector) GetProfile() string`
+HasTimeout returns a boolean if a field has been set.
 
-GetProfile returns the Profile field if non-nil, zero value otherwise.
+### SetTimeoutNil
 
-### GetProfileOk
+`func (o *EJBCAConnector) SetTimeoutNil(b bool)`
 
-`func (o *EJBCAConnector) GetProfileOk() (*string, bool)`
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
 
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetTimeout
+`func (o *EJBCAConnector) UnsetTimeout()`
 
-### SetProfile
-
-`func (o *EJBCAConnector) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *EJBCAConnector) GetProxy() string`
@@ -239,61 +294,6 @@ HasQueue returns a boolean if a field has been set.
 `func (o *EJBCAConnector) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
-### GetTimeout
-
-`func (o *EJBCAConnector) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *EJBCAConnector) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *EJBCAConnector) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *EJBCAConnector) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *EJBCAConnector) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *EJBCAConnector) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
-
-`func (o *EJBCAConnector) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *EJBCAConnector) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *EJBCAConnector) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

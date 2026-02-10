@@ -42,8 +42,8 @@ type _WebRARecoverRequestOnTemplate WebRARecoverRequestOnTemplate
 // will change when the set of required properties is changed
 func NewWebRARecoverRequestOnTemplate(workflow string, profile string) *WebRARecoverRequestOnTemplate {
 	this := WebRARecoverRequestOnTemplate{}
-	this.Profile = profile
 	this.Workflow = workflow
+	this.Profile = profile
 	return &this
 }
 

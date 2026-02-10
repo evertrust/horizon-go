@@ -21,10 +21,10 @@ var _ utils.MappedNullable = &PrincipalInfoSearchRequest{}
 
 // PrincipalInfoSearchRequest struct for PrincipalInfoSearchRequest
 type PrincipalInfoSearchRequest struct {
-	// The contact e-mail of the principal to search for
-	Contact utils.NullableString `json:"contact,omitempty"`
 	// The identifier of the principal to search for
-	Identifier           utils.NullableString `json:"identifier,omitempty"`
+	Identifier utils.NullableString `json:"identifier,omitempty"`
+	// The contact e-mail of the principal to search for
+	Contact              utils.NullableString `json:"contact,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,49 +45,6 @@ func NewPrincipalInfoSearchRequest() *PrincipalInfoSearchRequest {
 func NewPrincipalInfoSearchRequestWithDefaults() *PrincipalInfoSearchRequest {
 	this := PrincipalInfoSearchRequest{}
 	return &this
-}
-
-// GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoSearchRequest) GetContact() string {
-	if o == nil || utils.IsNil(o.Contact.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Contact.Get()
-}
-
-// GetContactOk returns a tuple with the Contact field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoSearchRequest) GetContactOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Contact.Get(), o.Contact.IsSet()
-}
-
-// HasContact returns a boolean if a field has been set.
-func (o *PrincipalInfoSearchRequest) HasContact() bool {
-	if o != nil && o.Contact.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetContact gets a reference to the given NullableString and assigns it to the Contact field.
-func (o *PrincipalInfoSearchRequest) SetContact(v string) {
-	o.Contact.Set(&v)
-}
-
-// SetContactNil sets the value for Contact to be an explicit nil
-func (o *PrincipalInfoSearchRequest) SetContactNil() {
-	o.Contact.Set(nil)
-}
-
-// UnsetContact ensures that no value is present for Contact, not even an explicit nil
-func (o *PrincipalInfoSearchRequest) UnsetContact() {
-	o.Contact.Unset()
 }
 
 // GetIdentifier returns the Identifier field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -133,6 +90,49 @@ func (o *PrincipalInfoSearchRequest) UnsetIdentifier() {
 	o.Identifier.Unset()
 }
 
+// GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoSearchRequest) GetContact() string {
+	if o == nil || utils.IsNil(o.Contact.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Contact.Get()
+}
+
+// GetContactOk returns a tuple with the Contact field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoSearchRequest) GetContactOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Contact.Get(), o.Contact.IsSet()
+}
+
+// HasContact returns a boolean if a field has been set.
+func (o *PrincipalInfoSearchRequest) HasContact() bool {
+	if o != nil && o.Contact.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContact gets a reference to the given NullableString and assigns it to the Contact field.
+func (o *PrincipalInfoSearchRequest) SetContact(v string) {
+	o.Contact.Set(&v)
+}
+
+// SetContactNil sets the value for Contact to be an explicit nil
+func (o *PrincipalInfoSearchRequest) SetContactNil() {
+	o.Contact.Set(nil)
+}
+
+// UnsetContact ensures that no value is present for Contact, not even an explicit nil
+func (o *PrincipalInfoSearchRequest) UnsetContact() {
+	o.Contact.Unset()
+}
+
 func (o PrincipalInfoSearchRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -143,11 +143,11 @@ func (o PrincipalInfoSearchRequest) MarshalJSON() ([]byte, error) {
 
 func (o PrincipalInfoSearchRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Contact.IsSet() {
-		toSerialize["contact"] = o.Contact.Get()
-	}
 	if o.Identifier.IsSet() {
 		toSerialize["identifier"] = o.Identifier.Get()
+	}
+	if o.Contact.IsSet() {
+		toSerialize["contact"] = o.Contact.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -171,8 +171,8 @@ func (o *PrincipalInfoSearchRequest) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "contact")
 		delete(additionalProperties, "identifier")
+		delete(additionalProperties, "contact")
 		o.AdditionalProperties = additionalProperties
 	}
 

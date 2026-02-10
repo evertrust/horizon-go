@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &SANElement{}
 
 // SANElement struct for SANElement
 type SANElement struct {
+	Type string `json:"type"`
 	// A computation rule that will dynamically generate a string value from the request's context
 	ComputationRule      utils.NullableString `json:"computationRule,omitempty"`
-	EditableByApprover   utils.NullableBool   `json:"editableByApprover,omitempty"`
 	EditableByRequester  utils.NullableBool   `json:"editableByRequester,omitempty"`
-	Max                  utils.NullableInt64  `json:"max,omitempty"`
-	Min                  utils.NullableInt64  `json:"min,omitempty"`
+	EditableByApprover   utils.NullableBool   `json:"editableByApprover,omitempty"`
 	Regex                utils.NullableString `json:"regex,omitempty"`
-	Type                 string               `json:"type"`
+	Min                  utils.NullableInt64  `json:"min,omitempty"`
+	Max                  utils.NullableInt64  `json:"max,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,6 +51,30 @@ func NewSANElement(type_ string) *SANElement {
 func NewSANElementWithDefaults() *SANElement {
 	this := SANElement{}
 	return &this
+}
+
+// GetType returns the Type field value
+func (o *SANElement) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *SANElement) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *SANElement) SetType(v string) {
+	o.Type = v
 }
 
 // GetComputationRule returns the ComputationRule field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -96,49 +120,6 @@ func (o *SANElement) UnsetComputationRule() {
 	o.ComputationRule.Unset()
 }
 
-// GetEditableByApprover returns the EditableByApprover field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SANElement) GetEditableByApprover() bool {
-	if o == nil || utils.IsNil(o.EditableByApprover.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.EditableByApprover.Get()
-}
-
-// GetEditableByApproverOk returns a tuple with the EditableByApprover field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SANElement) GetEditableByApproverOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.EditableByApprover.Get(), o.EditableByApprover.IsSet()
-}
-
-// HasEditableByApprover returns a boolean if a field has been set.
-func (o *SANElement) HasEditableByApprover() bool {
-	if o != nil && o.EditableByApprover.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEditableByApprover gets a reference to the given NullableBool and assigns it to the EditableByApprover field.
-func (o *SANElement) SetEditableByApprover(v bool) {
-	o.EditableByApprover.Set(&v)
-}
-
-// SetEditableByApproverNil sets the value for EditableByApprover to be an explicit nil
-func (o *SANElement) SetEditableByApproverNil() {
-	o.EditableByApprover.Set(nil)
-}
-
-// UnsetEditableByApprover ensures that no value is present for EditableByApprover, not even an explicit nil
-func (o *SANElement) UnsetEditableByApprover() {
-	o.EditableByApprover.Unset()
-}
-
 // GetEditableByRequester returns the EditableByRequester field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SANElement) GetEditableByRequester() bool {
 	if o == nil || utils.IsNil(o.EditableByRequester.Get()) {
@@ -182,90 +163,47 @@ func (o *SANElement) UnsetEditableByRequester() {
 	o.EditableByRequester.Unset()
 }
 
-// GetMax returns the Max field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SANElement) GetMax() int64 {
-	if o == nil || utils.IsNil(o.Max.Get()) {
-		var ret int64
+// GetEditableByApprover returns the EditableByApprover field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SANElement) GetEditableByApprover() bool {
+	if o == nil || utils.IsNil(o.EditableByApprover.Get()) {
+		var ret bool
 		return ret
 	}
-	return *o.Max.Get()
+	return *o.EditableByApprover.Get()
 }
 
-// GetMaxOk returns a tuple with the Max field value if set, nil otherwise
+// GetEditableByApproverOk returns a tuple with the EditableByApprover field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SANElement) GetMaxOk() (*int64, bool) {
+func (o *SANElement) GetEditableByApproverOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Max.Get(), o.Max.IsSet()
+	return o.EditableByApprover.Get(), o.EditableByApprover.IsSet()
 }
 
-// HasMax returns a boolean if a field has been set.
-func (o *SANElement) HasMax() bool {
-	if o != nil && o.Max.IsSet() {
+// HasEditableByApprover returns a boolean if a field has been set.
+func (o *SANElement) HasEditableByApprover() bool {
+	if o != nil && o.EditableByApprover.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMax gets a reference to the given NullableInt64 and assigns it to the Max field.
-func (o *SANElement) SetMax(v int64) {
-	o.Max.Set(&v)
+// SetEditableByApprover gets a reference to the given NullableBool and assigns it to the EditableByApprover field.
+func (o *SANElement) SetEditableByApprover(v bool) {
+	o.EditableByApprover.Set(&v)
 }
 
-// SetMaxNil sets the value for Max to be an explicit nil
-func (o *SANElement) SetMaxNil() {
-	o.Max.Set(nil)
+// SetEditableByApproverNil sets the value for EditableByApprover to be an explicit nil
+func (o *SANElement) SetEditableByApproverNil() {
+	o.EditableByApprover.Set(nil)
 }
 
-// UnsetMax ensures that no value is present for Max, not even an explicit nil
-func (o *SANElement) UnsetMax() {
-	o.Max.Unset()
-}
-
-// GetMin returns the Min field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SANElement) GetMin() int64 {
-	if o == nil || utils.IsNil(o.Min.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.Min.Get()
-}
-
-// GetMinOk returns a tuple with the Min field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SANElement) GetMinOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Min.Get(), o.Min.IsSet()
-}
-
-// HasMin returns a boolean if a field has been set.
-func (o *SANElement) HasMin() bool {
-	if o != nil && o.Min.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMin gets a reference to the given NullableInt64 and assigns it to the Min field.
-func (o *SANElement) SetMin(v int64) {
-	o.Min.Set(&v)
-}
-
-// SetMinNil sets the value for Min to be an explicit nil
-func (o *SANElement) SetMinNil() {
-	o.Min.Set(nil)
-}
-
-// UnsetMin ensures that no value is present for Min, not even an explicit nil
-func (o *SANElement) UnsetMin() {
-	o.Min.Unset()
+// UnsetEditableByApprover ensures that no value is present for EditableByApprover, not even an explicit nil
+func (o *SANElement) UnsetEditableByApprover() {
+	o.EditableByApprover.Unset()
 }
 
 // GetRegex returns the Regex field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -311,28 +249,90 @@ func (o *SANElement) UnsetRegex() {
 	o.Regex.Unset()
 }
 
-// GetType returns the Type field value
-func (o *SANElement) GetType() string {
-	if o == nil {
-		var ret string
+// GetMin returns the Min field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SANElement) GetMin() int64 {
+	if o == nil || utils.IsNil(o.Min.Get()) {
+		var ret int64
 		return ret
 	}
-
-	return o.Type
+	return *o.Min.Get()
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SANElement) GetTypeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SANElement) GetMinOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Min.Get(), o.Min.IsSet()
 }
 
-// SetType sets field value
-func (o *SANElement) SetType(v string) {
-	o.Type = v
+// HasMin returns a boolean if a field has been set.
+func (o *SANElement) HasMin() bool {
+	if o != nil && o.Min.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMin gets a reference to the given NullableInt64 and assigns it to the Min field.
+func (o *SANElement) SetMin(v int64) {
+	o.Min.Set(&v)
+}
+
+// SetMinNil sets the value for Min to be an explicit nil
+func (o *SANElement) SetMinNil() {
+	o.Min.Set(nil)
+}
+
+// UnsetMin ensures that no value is present for Min, not even an explicit nil
+func (o *SANElement) UnsetMin() {
+	o.Min.Unset()
+}
+
+// GetMax returns the Max field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SANElement) GetMax() int64 {
+	if o == nil || utils.IsNil(o.Max.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Max.Get()
+}
+
+// GetMaxOk returns a tuple with the Max field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SANElement) GetMaxOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Max.Get(), o.Max.IsSet()
+}
+
+// HasMax returns a boolean if a field has been set.
+func (o *SANElement) HasMax() bool {
+	if o != nil && o.Max.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMax gets a reference to the given NullableInt64 and assigns it to the Max field.
+func (o *SANElement) SetMax(v int64) {
+	o.Max.Set(&v)
+}
+
+// SetMaxNil sets the value for Max to be an explicit nil
+func (o *SANElement) SetMaxNil() {
+	o.Max.Set(nil)
+}
+
+// UnsetMax ensures that no value is present for Max, not even an explicit nil
+func (o *SANElement) UnsetMax() {
+	o.Max.Unset()
 }
 
 func (o SANElement) MarshalJSON() ([]byte, error) {
@@ -345,25 +345,25 @@ func (o SANElement) MarshalJSON() ([]byte, error) {
 
 func (o SANElement) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
 	if o.ComputationRule.IsSet() {
 		toSerialize["computationRule"] = o.ComputationRule.Get()
-	}
-	if o.EditableByApprover.IsSet() {
-		toSerialize["editableByApprover"] = o.EditableByApprover.Get()
 	}
 	if o.EditableByRequester.IsSet() {
 		toSerialize["editableByRequester"] = o.EditableByRequester.Get()
 	}
-	if o.Max.IsSet() {
-		toSerialize["max"] = o.Max.Get()
-	}
-	if o.Min.IsSet() {
-		toSerialize["min"] = o.Min.Get()
+	if o.EditableByApprover.IsSet() {
+		toSerialize["editableByApprover"] = o.EditableByApprover.Get()
 	}
 	if o.Regex.IsSet() {
 		toSerialize["regex"] = o.Regex.Get()
 	}
-	toSerialize["type"] = o.Type
+	if o.Min.IsSet() {
+		toSerialize["min"] = o.Min.Get()
+	}
+	if o.Max.IsSet() {
+		toSerialize["max"] = o.Max.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -407,13 +407,13 @@ func (o *SANElement) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "computationRule")
-		delete(additionalProperties, "editableByApprover")
-		delete(additionalProperties, "editableByRequester")
-		delete(additionalProperties, "max")
-		delete(additionalProperties, "min")
-		delete(additionalProperties, "regex")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "computationRule")
+		delete(additionalProperties, "editableByRequester")
+		delete(additionalProperties, "editableByApprover")
+		delete(additionalProperties, "regex")
+		delete(additionalProperties, "min")
+		delete(additionalProperties, "max")
 		o.AdditionalProperties = additionalProperties
 	}
 

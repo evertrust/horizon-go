@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Module** | **string** | The module for which to return the template. | 
 **Workflow** | **string** |  | 
+**Module** | **string** | The module for which to return the template. | 
 **Profile** | **string** | The profile for which to return the template. | 
 
 ## Methods
 
 ### NewScepEnrollRequestOnTemplate
 
-`func NewScepEnrollRequestOnTemplate(module string, workflow string, profile string, ) *ScepEnrollRequestOnTemplate`
+`func NewScepEnrollRequestOnTemplate(workflow string, module string, profile string, ) *ScepEnrollRequestOnTemplate`
 
 NewScepEnrollRequestOnTemplate instantiates a new ScepEnrollRequestOnTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -26,26 +26,6 @@ will change when the set of required properties is changed
 NewScepEnrollRequestOnTemplateWithDefaults instantiates a new ScepEnrollRequestOnTemplate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetModule
-
-`func (o *ScepEnrollRequestOnTemplate) GetModule() string`
-
-GetModule returns the Module field if non-nil, zero value otherwise.
-
-### GetModuleOk
-
-`func (o *ScepEnrollRequestOnTemplate) GetModuleOk() (*string, bool)`
-
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModule
-
-`func (o *ScepEnrollRequestOnTemplate) SetModule(v string)`
-
-SetModule sets Module field to given value.
-
 
 ### GetWorkflow
 
@@ -65,6 +45,26 @@ and a boolean to check if the value has been set.
 `func (o *ScepEnrollRequestOnTemplate) SetWorkflow(v string)`
 
 SetWorkflow sets Workflow field to given value.
+
+
+### GetModule
+
+`func (o *ScepEnrollRequestOnTemplate) GetModule() string`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *ScepEnrollRequestOnTemplate) GetModuleOk() (*string, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *ScepEnrollRequestOnTemplate) SetModule(v string)`
+
+SetModule sets Module field to given value.
 
 
 ### GetProfile

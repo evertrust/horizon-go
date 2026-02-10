@@ -24,14 +24,14 @@ var _ utils.MappedNullable = &HttpProxyResponse{}
 type HttpProxyResponse struct {
 	// Object internal ID
 	Id string `json:"_id"`
-	// Name of the `password` [credentials](#tag/security.credentials) to use for Proxy Basic Authentication
-	Credentials utils.NullableString `json:"credentials,omitempty"`
-	// Hostname of the proxy
-	Host string `json:"host"`
 	// Name of the proxy
 	Name string `json:"name"`
+	// Hostname of the proxy
+	Host string `json:"host"`
 	// Port of the proxy
-	Port                 int64 `json:"port"`
+	Port int64 `json:"port"`
+	// Name of the `password` [credentials](#tag/security.credentials) to use for Proxy Basic Authentication
+	Credentials          utils.NullableString `json:"credentials,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,11 +41,11 @@ type _HttpProxyResponse HttpProxyResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHttpProxyResponse(id string, host string, name string, port int64) *HttpProxyResponse {
+func NewHttpProxyResponse(id string, name string, host string, port int64) *HttpProxyResponse {
 	this := HttpProxyResponse{}
 	this.Id = id
-	this.Host = host
 	this.Name = name
+	this.Host = host
 	this.Port = port
 	return &this
 }
@@ -80,6 +80,78 @@ func (o *HttpProxyResponse) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *HttpProxyResponse) SetId(v string) {
 	o.Id = v
+}
+
+// GetName returns the Name field value
+func (o *HttpProxyResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *HttpProxyResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *HttpProxyResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetHost returns the Host field value
+func (o *HttpProxyResponse) GetHost() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Host
+}
+
+// GetHostOk returns a tuple with the Host field value
+// and a boolean to check if the value has been set.
+func (o *HttpProxyResponse) GetHostOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Host, true
+}
+
+// SetHost sets field value
+func (o *HttpProxyResponse) SetHost(v string) {
+	o.Host = v
+}
+
+// GetPort returns the Port field value
+func (o *HttpProxyResponse) GetPort() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.Port
+}
+
+// GetPortOk returns a tuple with the Port field value
+// and a boolean to check if the value has been set.
+func (o *HttpProxyResponse) GetPortOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Port, true
+}
+
+// SetPort sets field value
+func (o *HttpProxyResponse) SetPort(v int64) {
+	o.Port = v
 }
 
 // GetCredentials returns the Credentials field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -125,78 +197,6 @@ func (o *HttpProxyResponse) UnsetCredentials() {
 	o.Credentials.Unset()
 }
 
-// GetHost returns the Host field value
-func (o *HttpProxyResponse) GetHost() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Host
-}
-
-// GetHostOk returns a tuple with the Host field value
-// and a boolean to check if the value has been set.
-func (o *HttpProxyResponse) GetHostOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Host, true
-}
-
-// SetHost sets field value
-func (o *HttpProxyResponse) SetHost(v string) {
-	o.Host = v
-}
-
-// GetName returns the Name field value
-func (o *HttpProxyResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *HttpProxyResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *HttpProxyResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetPort returns the Port field value
-func (o *HttpProxyResponse) GetPort() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Port
-}
-
-// GetPortOk returns a tuple with the Port field value
-// and a boolean to check if the value has been set.
-func (o *HttpProxyResponse) GetPortOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Port, true
-}
-
-// SetPort sets field value
-func (o *HttpProxyResponse) SetPort(v int64) {
-	o.Port = v
-}
-
 func (o HttpProxyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -208,12 +208,12 @@ func (o HttpProxyResponse) MarshalJSON() ([]byte, error) {
 func (o HttpProxyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["host"] = o.Host
+	toSerialize["port"] = o.Port
 	if o.Credentials.IsSet() {
 		toSerialize["credentials"] = o.Credentials.Get()
 	}
-	toSerialize["host"] = o.Host
-	toSerialize["name"] = o.Name
-	toSerialize["port"] = o.Port
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -228,8 +228,8 @@ func (o *HttpProxyResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"host",
 		"name",
+		"host",
 		"port",
 	}
 
@@ -261,10 +261,10 @@ func (o *HttpProxyResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "credentials")
-		delete(additionalProperties, "host")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "host")
 		delete(additionalProperties, "port")
+		delete(additionalProperties, "credentials")
 		o.AdditionalProperties = additionalProperties
 	}
 

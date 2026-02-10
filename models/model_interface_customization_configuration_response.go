@@ -24,14 +24,14 @@ var _ utils.MappedNullable = &InterfaceCustomizationConfigurationResponse{}
 type InterfaceCustomizationConfigurationResponse struct {
 	// Object internal ID
 	Id string `json:"_id"`
-	// The HTML color code for the right side of the banner gradient
-	HeaderEnd utils.NullableString `json:"headerEnd,omitempty"`
-	// The HTML color code for the left side of the banner gradient
-	HeaderStart utils.NullableString `json:"headerStart,omitempty"`
+	// The type of the configuration entry
+	Type string `json:"type"`
 	// A logo to display on the product, base64 encoded
 	Logo utils.NullableString `json:"logo,omitempty"`
-	// The type of the configuration entry
-	Type                 string `json:"type"`
+	// The HTML color code for the left side of the banner gradient
+	HeaderStart utils.NullableString `json:"headerStart,omitempty"`
+	// The HTML color code for the right side of the banner gradient
+	HeaderEnd            utils.NullableString `json:"headerEnd,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -80,90 +80,28 @@ func (o *InterfaceCustomizationConfigurationResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetHeaderEnd returns the HeaderEnd field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InterfaceCustomizationConfigurationResponse) GetHeaderEnd() string {
-	if o == nil || utils.IsNil(o.HeaderEnd.Get()) {
+// GetType returns the Type field value
+func (o *InterfaceCustomizationConfigurationResponse) GetType() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.HeaderEnd.Get()
+
+	return o.Type
 }
 
-// GetHeaderEndOk returns a tuple with the HeaderEnd field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InterfaceCustomizationConfigurationResponse) GetHeaderEndOk() (*string, bool) {
+func (o *InterfaceCustomizationConfigurationResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.HeaderEnd.Get(), o.HeaderEnd.IsSet()
+	return &o.Type, true
 }
 
-// HasHeaderEnd returns a boolean if a field has been set.
-func (o *InterfaceCustomizationConfigurationResponse) HasHeaderEnd() bool {
-	if o != nil && o.HeaderEnd.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHeaderEnd gets a reference to the given NullableString and assigns it to the HeaderEnd field.
-func (o *InterfaceCustomizationConfigurationResponse) SetHeaderEnd(v string) {
-	o.HeaderEnd.Set(&v)
-}
-
-// SetHeaderEndNil sets the value for HeaderEnd to be an explicit nil
-func (o *InterfaceCustomizationConfigurationResponse) SetHeaderEndNil() {
-	o.HeaderEnd.Set(nil)
-}
-
-// UnsetHeaderEnd ensures that no value is present for HeaderEnd, not even an explicit nil
-func (o *InterfaceCustomizationConfigurationResponse) UnsetHeaderEnd() {
-	o.HeaderEnd.Unset()
-}
-
-// GetHeaderStart returns the HeaderStart field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *InterfaceCustomizationConfigurationResponse) GetHeaderStart() string {
-	if o == nil || utils.IsNil(o.HeaderStart.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.HeaderStart.Get()
-}
-
-// GetHeaderStartOk returns a tuple with the HeaderStart field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *InterfaceCustomizationConfigurationResponse) GetHeaderStartOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.HeaderStart.Get(), o.HeaderStart.IsSet()
-}
-
-// HasHeaderStart returns a boolean if a field has been set.
-func (o *InterfaceCustomizationConfigurationResponse) HasHeaderStart() bool {
-	if o != nil && o.HeaderStart.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHeaderStart gets a reference to the given NullableString and assigns it to the HeaderStart field.
-func (o *InterfaceCustomizationConfigurationResponse) SetHeaderStart(v string) {
-	o.HeaderStart.Set(&v)
-}
-
-// SetHeaderStartNil sets the value for HeaderStart to be an explicit nil
-func (o *InterfaceCustomizationConfigurationResponse) SetHeaderStartNil() {
-	o.HeaderStart.Set(nil)
-}
-
-// UnsetHeaderStart ensures that no value is present for HeaderStart, not even an explicit nil
-func (o *InterfaceCustomizationConfigurationResponse) UnsetHeaderStart() {
-	o.HeaderStart.Unset()
+// SetType sets field value
+func (o *InterfaceCustomizationConfigurationResponse) SetType(v string) {
+	o.Type = v
 }
 
 // GetLogo returns the Logo field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -209,28 +147,90 @@ func (o *InterfaceCustomizationConfigurationResponse) UnsetLogo() {
 	o.Logo.Unset()
 }
 
-// GetType returns the Type field value
-func (o *InterfaceCustomizationConfigurationResponse) GetType() string {
-	if o == nil {
+// GetHeaderStart returns the HeaderStart field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *InterfaceCustomizationConfigurationResponse) GetHeaderStart() string {
+	if o == nil || utils.IsNil(o.HeaderStart.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.HeaderStart.Get()
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetHeaderStartOk returns a tuple with the HeaderStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InterfaceCustomizationConfigurationResponse) GetTypeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InterfaceCustomizationConfigurationResponse) GetHeaderStartOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.HeaderStart.Get(), o.HeaderStart.IsSet()
 }
 
-// SetType sets field value
-func (o *InterfaceCustomizationConfigurationResponse) SetType(v string) {
-	o.Type = v
+// HasHeaderStart returns a boolean if a field has been set.
+func (o *InterfaceCustomizationConfigurationResponse) HasHeaderStart() bool {
+	if o != nil && o.HeaderStart.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHeaderStart gets a reference to the given NullableString and assigns it to the HeaderStart field.
+func (o *InterfaceCustomizationConfigurationResponse) SetHeaderStart(v string) {
+	o.HeaderStart.Set(&v)
+}
+
+// SetHeaderStartNil sets the value for HeaderStart to be an explicit nil
+func (o *InterfaceCustomizationConfigurationResponse) SetHeaderStartNil() {
+	o.HeaderStart.Set(nil)
+}
+
+// UnsetHeaderStart ensures that no value is present for HeaderStart, not even an explicit nil
+func (o *InterfaceCustomizationConfigurationResponse) UnsetHeaderStart() {
+	o.HeaderStart.Unset()
+}
+
+// GetHeaderEnd returns the HeaderEnd field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *InterfaceCustomizationConfigurationResponse) GetHeaderEnd() string {
+	if o == nil || utils.IsNil(o.HeaderEnd.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.HeaderEnd.Get()
+}
+
+// GetHeaderEndOk returns a tuple with the HeaderEnd field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InterfaceCustomizationConfigurationResponse) GetHeaderEndOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HeaderEnd.Get(), o.HeaderEnd.IsSet()
+}
+
+// HasHeaderEnd returns a boolean if a field has been set.
+func (o *InterfaceCustomizationConfigurationResponse) HasHeaderEnd() bool {
+	if o != nil && o.HeaderEnd.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHeaderEnd gets a reference to the given NullableString and assigns it to the HeaderEnd field.
+func (o *InterfaceCustomizationConfigurationResponse) SetHeaderEnd(v string) {
+	o.HeaderEnd.Set(&v)
+}
+
+// SetHeaderEndNil sets the value for HeaderEnd to be an explicit nil
+func (o *InterfaceCustomizationConfigurationResponse) SetHeaderEndNil() {
+	o.HeaderEnd.Set(nil)
+}
+
+// UnsetHeaderEnd ensures that no value is present for HeaderEnd, not even an explicit nil
+func (o *InterfaceCustomizationConfigurationResponse) UnsetHeaderEnd() {
+	o.HeaderEnd.Unset()
 }
 
 func (o InterfaceCustomizationConfigurationResponse) MarshalJSON() ([]byte, error) {
@@ -244,16 +244,16 @@ func (o InterfaceCustomizationConfigurationResponse) MarshalJSON() ([]byte, erro
 func (o InterfaceCustomizationConfigurationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	if o.HeaderEnd.IsSet() {
-		toSerialize["headerEnd"] = o.HeaderEnd.Get()
+	toSerialize["type"] = o.Type
+	if o.Logo.IsSet() {
+		toSerialize["logo"] = o.Logo.Get()
 	}
 	if o.HeaderStart.IsSet() {
 		toSerialize["headerStart"] = o.HeaderStart.Get()
 	}
-	if o.Logo.IsSet() {
-		toSerialize["logo"] = o.Logo.Get()
+	if o.HeaderEnd.IsSet() {
+		toSerialize["headerEnd"] = o.HeaderEnd.Get()
 	}
-	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -299,10 +299,10 @@ func (o *InterfaceCustomizationConfigurationResponse) UnmarshalJSON(data []byte)
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "headerEnd")
-		delete(additionalProperties, "headerStart")
-		delete(additionalProperties, "logo")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "logo")
+		delete(additionalProperties, "headerStart")
+		delete(additionalProperties, "headerEnd")
 		o.AdditionalProperties = additionalProperties
 	}
 

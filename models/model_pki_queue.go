@@ -22,12 +22,12 @@ var _ utils.MappedNullable = &PKIQueue{}
 
 // PKIQueue struct for PKIQueue
 type PKIQueue struct {
-	ClusterWide          bool                 `json:"clusterWide"`
-	Description          utils.NullableString `json:"description,omitempty"`
 	Name                 string               `json:"name"`
-	Size                 int64                `json:"size"`
+	Description          utils.NullableString `json:"description,omitempty"`
 	ThrottleDuration     utils.NullableString `json:"throttleDuration,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	ThrottleParallelism  utils.NullableInt64  `json:"throttleParallelism,omitempty"`
+	ClusterWide          bool                 `json:"clusterWide"`
+	Size                 int64                `json:"size"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,10 +37,10 @@ type _PKIQueue PKIQueue
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPKIQueue(clusterWide bool, name string, size int64) *PKIQueue {
+func NewPKIQueue(name string, clusterWide bool, size int64) *PKIQueue {
 	this := PKIQueue{}
-	this.ClusterWide = clusterWide
 	this.Name = name
+	this.ClusterWide = clusterWide
 	this.Size = size
 	return &this
 }
@@ -53,28 +53,28 @@ func NewPKIQueueWithDefaults() *PKIQueue {
 	return &this
 }
 
-// GetClusterWide returns the ClusterWide field value
-func (o *PKIQueue) GetClusterWide() bool {
+// GetName returns the Name field value
+func (o *PKIQueue) GetName() string {
 	if o == nil {
-		var ret bool
+		var ret string
 		return ret
 	}
 
-	return o.ClusterWide
+	return o.Name
 }
 
-// GetClusterWideOk returns a tuple with the ClusterWide field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *PKIQueue) GetClusterWideOk() (*bool, bool) {
+func (o *PKIQueue) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ClusterWide, true
+	return &o.Name, true
 }
 
-// SetClusterWide sets field value
-func (o *PKIQueue) SetClusterWide(v bool) {
-	o.ClusterWide = v
+// SetName sets field value
+func (o *PKIQueue) SetName(v string) {
+	o.Name = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -118,54 +118,6 @@ func (o *PKIQueue) SetDescriptionNil() {
 // UnsetDescription ensures that no value is present for Description, not even an explicit nil
 func (o *PKIQueue) UnsetDescription() {
 	o.Description.Unset()
-}
-
-// GetName returns the Name field value
-func (o *PKIQueue) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *PKIQueue) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *PKIQueue) SetName(v string) {
-	o.Name = v
-}
-
-// GetSize returns the Size field value
-func (o *PKIQueue) GetSize() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Size
-}
-
-// GetSizeOk returns a tuple with the Size field value
-// and a boolean to check if the value has been set.
-func (o *PKIQueue) GetSizeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Size, true
-}
-
-// SetSize sets field value
-func (o *PKIQueue) SetSize(v int64) {
-	o.Size = v
 }
 
 // GetThrottleDuration returns the ThrottleDuration field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -254,6 +206,54 @@ func (o *PKIQueue) UnsetThrottleParallelism() {
 	o.ThrottleParallelism.Unset()
 }
 
+// GetClusterWide returns the ClusterWide field value
+func (o *PKIQueue) GetClusterWide() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ClusterWide
+}
+
+// GetClusterWideOk returns a tuple with the ClusterWide field value
+// and a boolean to check if the value has been set.
+func (o *PKIQueue) GetClusterWideOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ClusterWide, true
+}
+
+// SetClusterWide sets field value
+func (o *PKIQueue) SetClusterWide(v bool) {
+	o.ClusterWide = v
+}
+
+// GetSize returns the Size field value
+func (o *PKIQueue) GetSize() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value
+// and a boolean to check if the value has been set.
+func (o *PKIQueue) GetSizeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Size, true
+}
+
+// SetSize sets field value
+func (o *PKIQueue) SetSize(v int64) {
+	o.Size = v
+}
+
 func (o PKIQueue) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -264,18 +264,18 @@ func (o PKIQueue) MarshalJSON() ([]byte, error) {
 
 func (o PKIQueue) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["clusterWide"] = o.ClusterWide
+	toSerialize["name"] = o.Name
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["size"] = o.Size
 	if o.ThrottleDuration.IsSet() {
 		toSerialize["throttleDuration"] = o.ThrottleDuration.Get()
 	}
 	if o.ThrottleParallelism.IsSet() {
 		toSerialize["throttleParallelism"] = o.ThrottleParallelism.Get()
 	}
+	toSerialize["clusterWide"] = o.ClusterWide
+	toSerialize["size"] = o.Size
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -289,8 +289,8 @@ func (o *PKIQueue) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"clusterWide",
 		"name",
+		"clusterWide",
 		"size",
 	}
 
@@ -321,12 +321,12 @@ func (o *PKIQueue) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "clusterWide")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "size")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "throttleDuration")
 		delete(additionalProperties, "throttleParallelism")
+		delete(additionalProperties, "clusterWide")
+		delete(additionalProperties, "size")
 		o.AdditionalProperties = additionalProperties
 	}
 

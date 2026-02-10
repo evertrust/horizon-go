@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LastCheck** | **int64** | The date, in milliseconds since the epoch, of the last time the pki connector health check was ran. | 
-**Message** | Pointer to **NullableString** | A meaningful message about the result of the health check (in case of error) | [optional] 
 **Status** | **string** | The status of the pki connector connection.  The &#39;unknown&#39; status means that the healthcheck is not available.  | 
+**Message** | Pointer to **NullableString** | A meaningful message about the result of the health check (in case of error) | [optional] 
 
 ## Methods
 
@@ -47,6 +47,26 @@ and a boolean to check if the value has been set.
 SetLastCheck sets LastCheck field to given value.
 
 
+### GetStatus
+
+`func (o *PKIConnectorStatus) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *PKIConnectorStatus) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *PKIConnectorStatus) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
+
 ### GetMessage
 
 `func (o *PKIConnectorStatus) GetMessage() string`
@@ -82,26 +102,6 @@ HasMessage returns a boolean if a field has been set.
 `func (o *PKIConnectorStatus) UnsetMessage()`
 
 UnsetMessage ensures that no value is present for Message, not even an explicit nil
-### GetStatus
-
-`func (o *PKIConnectorStatus) GetStatus() string`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *PKIConnectorStatus) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *PKIConnectorStatus) SetStatus(v string)`
-
-SetStatus sets Status field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

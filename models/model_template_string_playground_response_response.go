@@ -21,9 +21,9 @@ var _ utils.MappedNullable = &TemplateStringPlaygroundResponseResponse{}
 
 // TemplateStringPlaygroundResponseResponse struct for TemplateStringPlaygroundResponseResponse
 type TemplateStringPlaygroundResponseResponse struct {
-	ComputedValueMulti   []string             `json:"computedValueMulti,omitempty"`
-	ComputedValueSingle  utils.NullableString `json:"computedValueSingle,omitempty"`
 	Dictionary           map[string]string    `json:"dictionary,omitempty"`
+	ComputedValueSingle  utils.NullableString `json:"computedValueSingle,omitempty"`
+	ComputedValueMulti   []string             `json:"computedValueMulti,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,37 +46,37 @@ func NewTemplateStringPlaygroundResponseResponseWithDefaults() *TemplateStringPl
 	return &this
 }
 
-// GetComputedValueMulti returns the ComputedValueMulti field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TemplateStringPlaygroundResponseResponse) GetComputedValueMulti() []string {
+// GetDictionary returns the Dictionary field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TemplateStringPlaygroundResponseResponse) GetDictionary() map[string]string {
 	if o == nil {
-		var ret []string
+		var ret map[string]string
 		return ret
 	}
-	return o.ComputedValueMulti
+	return o.Dictionary
 }
 
-// GetComputedValueMultiOk returns a tuple with the ComputedValueMulti field value if set, nil otherwise
+// GetDictionaryOk returns a tuple with the Dictionary field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TemplateStringPlaygroundResponseResponse) GetComputedValueMultiOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.ComputedValueMulti) {
+func (o *TemplateStringPlaygroundResponseResponse) GetDictionaryOk() (*map[string]string, bool) {
+	if o == nil || utils.IsNil(o.Dictionary) {
 		return nil, false
 	}
-	return o.ComputedValueMulti, true
+	return &o.Dictionary, true
 }
 
-// HasComputedValueMulti returns a boolean if a field has been set.
-func (o *TemplateStringPlaygroundResponseResponse) HasComputedValueMulti() bool {
-	if o != nil && !utils.IsNil(o.ComputedValueMulti) {
+// HasDictionary returns a boolean if a field has been set.
+func (o *TemplateStringPlaygroundResponseResponse) HasDictionary() bool {
+	if o != nil && !utils.IsNil(o.Dictionary) {
 		return true
 	}
 
 	return false
 }
 
-// SetComputedValueMulti gets a reference to the given []string and assigns it to the ComputedValueMulti field.
-func (o *TemplateStringPlaygroundResponseResponse) SetComputedValueMulti(v []string) {
-	o.ComputedValueMulti = v
+// SetDictionary gets a reference to the given map[string]string and assigns it to the Dictionary field.
+func (o *TemplateStringPlaygroundResponseResponse) SetDictionary(v map[string]string) {
+	o.Dictionary = v
 }
 
 // GetComputedValueSingle returns the ComputedValueSingle field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -122,37 +122,37 @@ func (o *TemplateStringPlaygroundResponseResponse) UnsetComputedValueSingle() {
 	o.ComputedValueSingle.Unset()
 }
 
-// GetDictionary returns the Dictionary field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TemplateStringPlaygroundResponseResponse) GetDictionary() map[string]string {
+// GetComputedValueMulti returns the ComputedValueMulti field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TemplateStringPlaygroundResponseResponse) GetComputedValueMulti() []string {
 	if o == nil {
-		var ret map[string]string
+		var ret []string
 		return ret
 	}
-	return o.Dictionary
+	return o.ComputedValueMulti
 }
 
-// GetDictionaryOk returns a tuple with the Dictionary field value if set, nil otherwise
+// GetComputedValueMultiOk returns a tuple with the ComputedValueMulti field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TemplateStringPlaygroundResponseResponse) GetDictionaryOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.Dictionary) {
+func (o *TemplateStringPlaygroundResponseResponse) GetComputedValueMultiOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.ComputedValueMulti) {
 		return nil, false
 	}
-	return &o.Dictionary, true
+	return o.ComputedValueMulti, true
 }
 
-// HasDictionary returns a boolean if a field has been set.
-func (o *TemplateStringPlaygroundResponseResponse) HasDictionary() bool {
-	if o != nil && !utils.IsNil(o.Dictionary) {
+// HasComputedValueMulti returns a boolean if a field has been set.
+func (o *TemplateStringPlaygroundResponseResponse) HasComputedValueMulti() bool {
+	if o != nil && !utils.IsNil(o.ComputedValueMulti) {
 		return true
 	}
 
 	return false
 }
 
-// SetDictionary gets a reference to the given map[string]string and assigns it to the Dictionary field.
-func (o *TemplateStringPlaygroundResponseResponse) SetDictionary(v map[string]string) {
-	o.Dictionary = v
+// SetComputedValueMulti gets a reference to the given []string and assigns it to the ComputedValueMulti field.
+func (o *TemplateStringPlaygroundResponseResponse) SetComputedValueMulti(v []string) {
+	o.ComputedValueMulti = v
 }
 
 func (o TemplateStringPlaygroundResponseResponse) MarshalJSON() ([]byte, error) {
@@ -165,14 +165,14 @@ func (o TemplateStringPlaygroundResponseResponse) MarshalJSON() ([]byte, error) 
 
 func (o TemplateStringPlaygroundResponseResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ComputedValueMulti != nil {
-		toSerialize["computedValueMulti"] = o.ComputedValueMulti
+	if o.Dictionary != nil {
+		toSerialize["dictionary"] = o.Dictionary
 	}
 	if o.ComputedValueSingle.IsSet() {
 		toSerialize["computedValueSingle"] = o.ComputedValueSingle.Get()
 	}
-	if o.Dictionary != nil {
-		toSerialize["dictionary"] = o.Dictionary
+	if o.ComputedValueMulti != nil {
+		toSerialize["computedValueMulti"] = o.ComputedValueMulti
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -196,9 +196,9 @@ func (o *TemplateStringPlaygroundResponseResponse) UnmarshalJSON(data []byte) (e
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "computedValueMulti")
-		delete(additionalProperties, "computedValueSingle")
 		delete(additionalProperties, "dictionary")
+		delete(additionalProperties, "computedValueSingle")
+		delete(additionalProperties, "computedValueMulti")
 		o.AdditionalProperties = additionalProperties
 	}
 

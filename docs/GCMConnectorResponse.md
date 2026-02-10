@@ -5,23 +5,23 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Credentials** | **string** | Name of the &#x60;raw&#x60; [credentials](#tag/security.credentials) containing User Account credentials. | 
-**Location** | **string** |  | 
+**Type** | **string** |  | 
 **Name** | **string** |  | 
-**Project** | **string** |  | 
-**Proxy** | Pointer to **NullableString** |  | [optional] 
+**ThrottleDuration** | **string** |  | 
 **RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Proxy** | Pointer to **NullableString** |  | [optional] 
+**Project** | **string** |  | 
+**Location** | **string** |  | 
+**Credentials** | **string** | Name of the &#x60;raw&#x60; [credentials](#tag/security.credentials) containing User Account credentials. | 
 **TagKey** | Pointer to **NullableString** |  | [optional] 
 **TagValue** | Pointer to **NullableString** |  | [optional] 
-**ThrottleDuration** | **string** |  | 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Type** | **string** |  | 
 
 ## Methods
 
 ### NewGCMConnectorResponse
 
-`func NewGCMConnectorResponse(id string, credentials string, location string, name string, project string, throttleDuration string, type_ string, ) *GCMConnectorResponse`
+`func NewGCMConnectorResponse(id string, type_ string, name string, throttleDuration string, project string, location string, credentials string, ) *GCMConnectorResponse`
 
 NewGCMConnectorResponse instantiates a new GCMConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -56,44 +56,24 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetCredentials
+### GetType
 
-`func (o *GCMConnectorResponse) GetCredentials() string`
+`func (o *GCMConnectorResponse) GetType() string`
 
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetCredentialsOk
+### GetTypeOk
 
-`func (o *GCMConnectorResponse) GetCredentialsOk() (*string, bool)`
+`func (o *GCMConnectorResponse) GetTypeOk() (*string, bool)`
 
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCredentials
+### SetType
 
-`func (o *GCMConnectorResponse) SetCredentials(v string)`
+`func (o *GCMConnectorResponse) SetType(v string)`
 
-SetCredentials sets Credentials field to given value.
-
-
-### GetLocation
-
-`func (o *GCMConnectorResponse) GetLocation() string`
-
-GetLocation returns the Location field if non-nil, zero value otherwise.
-
-### GetLocationOk
-
-`func (o *GCMConnectorResponse) GetLocationOk() (*string, bool)`
-
-GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocation
-
-`func (o *GCMConnectorResponse) SetLocation(v string)`
-
-SetLocation sets Location field to given value.
+SetType sets Type field to given value.
 
 
 ### GetName
@@ -116,61 +96,26 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetProject
+### GetThrottleDuration
 
-`func (o *GCMConnectorResponse) GetProject() string`
+`func (o *GCMConnectorResponse) GetThrottleDuration() string`
 
-GetProject returns the Project field if non-nil, zero value otherwise.
+GetThrottleDuration returns the ThrottleDuration field if non-nil, zero value otherwise.
 
-### GetProjectOk
+### GetThrottleDurationOk
 
-`func (o *GCMConnectorResponse) GetProjectOk() (*string, bool)`
+`func (o *GCMConnectorResponse) GetThrottleDurationOk() (*string, bool)`
 
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+GetThrottleDurationOk returns a tuple with the ThrottleDuration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProject
+### SetThrottleDuration
 
-`func (o *GCMConnectorResponse) SetProject(v string)`
+`func (o *GCMConnectorResponse) SetThrottleDuration(v string)`
 
-SetProject sets Project field to given value.
+SetThrottleDuration sets ThrottleDuration field to given value.
 
 
-### GetProxy
-
-`func (o *GCMConnectorResponse) GetProxy() string`
-
-GetProxy returns the Proxy field if non-nil, zero value otherwise.
-
-### GetProxyOk
-
-`func (o *GCMConnectorResponse) GetProxyOk() (*string, bool)`
-
-GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProxy
-
-`func (o *GCMConnectorResponse) SetProxy(v string)`
-
-SetProxy sets Proxy field to given value.
-
-### HasProxy
-
-`func (o *GCMConnectorResponse) HasProxy() bool`
-
-HasProxy returns a boolean if a field has been set.
-
-### SetProxyNil
-
-`func (o *GCMConnectorResponse) SetProxyNil(b bool)`
-
- SetProxyNil sets the value for Proxy to be an explicit nil
-
-### UnsetProxy
-`func (o *GCMConnectorResponse) UnsetProxy()`
-
-UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
 ### GetRenewalPeriod
 
 `func (o *GCMConnectorResponse) GetRenewalPeriod() string`
@@ -206,6 +151,136 @@ HasRenewalPeriod returns a boolean if a field has been set.
 `func (o *GCMConnectorResponse) UnsetRenewalPeriod()`
 
 UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+### GetTimeout
+
+`func (o *GCMConnectorResponse) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *GCMConnectorResponse) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *GCMConnectorResponse) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *GCMConnectorResponse) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *GCMConnectorResponse) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *GCMConnectorResponse) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetProxy
+
+`func (o *GCMConnectorResponse) GetProxy() string`
+
+GetProxy returns the Proxy field if non-nil, zero value otherwise.
+
+### GetProxyOk
+
+`func (o *GCMConnectorResponse) GetProxyOk() (*string, bool)`
+
+GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxy
+
+`func (o *GCMConnectorResponse) SetProxy(v string)`
+
+SetProxy sets Proxy field to given value.
+
+### HasProxy
+
+`func (o *GCMConnectorResponse) HasProxy() bool`
+
+HasProxy returns a boolean if a field has been set.
+
+### SetProxyNil
+
+`func (o *GCMConnectorResponse) SetProxyNil(b bool)`
+
+ SetProxyNil sets the value for Proxy to be an explicit nil
+
+### UnsetProxy
+`func (o *GCMConnectorResponse) UnsetProxy()`
+
+UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+### GetProject
+
+`func (o *GCMConnectorResponse) GetProject() string`
+
+GetProject returns the Project field if non-nil, zero value otherwise.
+
+### GetProjectOk
+
+`func (o *GCMConnectorResponse) GetProjectOk() (*string, bool)`
+
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProject
+
+`func (o *GCMConnectorResponse) SetProject(v string)`
+
+SetProject sets Project field to given value.
+
+
+### GetLocation
+
+`func (o *GCMConnectorResponse) GetLocation() string`
+
+GetLocation returns the Location field if non-nil, zero value otherwise.
+
+### GetLocationOk
+
+`func (o *GCMConnectorResponse) GetLocationOk() (*string, bool)`
+
+GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocation
+
+`func (o *GCMConnectorResponse) SetLocation(v string)`
+
+SetLocation sets Location field to given value.
+
+
+### GetCredentials
+
+`func (o *GCMConnectorResponse) GetCredentials() string`
+
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
+
+### GetCredentialsOk
+
+`func (o *GCMConnectorResponse) GetCredentialsOk() (*string, bool)`
+
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCredentials
+
+`func (o *GCMConnectorResponse) SetCredentials(v string)`
+
+SetCredentials sets Credentials field to given value.
+
+
 ### GetTagKey
 
 `func (o *GCMConnectorResponse) GetTagKey() string`
@@ -276,81 +351,6 @@ HasTagValue returns a boolean if a field has been set.
 `func (o *GCMConnectorResponse) UnsetTagValue()`
 
 UnsetTagValue ensures that no value is present for TagValue, not even an explicit nil
-### GetThrottleDuration
-
-`func (o *GCMConnectorResponse) GetThrottleDuration() string`
-
-GetThrottleDuration returns the ThrottleDuration field if non-nil, zero value otherwise.
-
-### GetThrottleDurationOk
-
-`func (o *GCMConnectorResponse) GetThrottleDurationOk() (*string, bool)`
-
-GetThrottleDurationOk returns a tuple with the ThrottleDuration field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThrottleDuration
-
-`func (o *GCMConnectorResponse) SetThrottleDuration(v string)`
-
-SetThrottleDuration sets ThrottleDuration field to given value.
-
-
-### GetTimeout
-
-`func (o *GCMConnectorResponse) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *GCMConnectorResponse) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *GCMConnectorResponse) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *GCMConnectorResponse) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *GCMConnectorResponse) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *GCMConnectorResponse) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
-
-`func (o *GCMConnectorResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *GCMConnectorResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *GCMConnectorResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -22,19 +22,19 @@ var _ utils.MappedNullable = &LDAPDataSourceResultResponse{}
 
 // LDAPDataSourceResultResponse struct for LDAPDataSourceResultResponse
 type LDAPDataSourceResultResponse struct {
+	Type string `json:"type"`
 	// DN that was requested on the LDAP server
 	ComputedDN utils.NullableString `json:"computedDN,omitempty"`
 	// Filter that was requested on the LDAP server
 	ComputedFilter utils.NullableString `json:"computedFilter,omitempty"`
-	Type           string               `json:"type"`
-	// Data fetched from the datasource
-	Dictionary []MapEntry `json:"dictionary"`
-	// If `status` is `failure`, the error message
-	Error utils.NullableString `json:"error,omitempty"`
 	// Name of the executed datasource
 	Name string `json:"name"`
 	// Status of the execution. `success` if the datasource data was fetched correctly, `failure` if an error occured and `ignored` if inputs were not all filled, resulting in no request being sent
-	Status               string `json:"status"`
+	Status string `json:"status"`
+	// Data fetched from the datasource
+	Dictionary []MapEntry `json:"dictionary"`
+	// If `status` is `failure`, the error message
+	Error                utils.NullableString `json:"error,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,12 +44,12 @@ type _LDAPDataSourceResultResponse LDAPDataSourceResultResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLDAPDataSourceResultResponse(type_ string, dictionary []MapEntry, name string, status string) *LDAPDataSourceResultResponse {
+func NewLDAPDataSourceResultResponse(type_ string, name string, status string, dictionary []MapEntry) *LDAPDataSourceResultResponse {
 	this := LDAPDataSourceResultResponse{}
-	this.Dictionary = dictionary
 	this.Name = name
-	this.Status = status
 	this.Type = type_
+	this.Status = status
+	this.Dictionary = dictionary
 	return &this
 }
 
@@ -59,6 +59,30 @@ func NewLDAPDataSourceResultResponse(type_ string, dictionary []MapEntry, name s
 func NewLDAPDataSourceResultResponseWithDefaults() *LDAPDataSourceResultResponse {
 	this := LDAPDataSourceResultResponse{}
 	return &this
+}
+
+// GetType returns the Type field value
+func (o *LDAPDataSourceResultResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *LDAPDataSourceResultResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *LDAPDataSourceResultResponse) SetType(v string) {
+	o.Type = v
 }
 
 // GetComputedDN returns the ComputedDN field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -147,28 +171,52 @@ func (o *LDAPDataSourceResultResponse) UnsetComputedFilter() {
 	o.ComputedFilter.Unset()
 }
 
-// GetType returns the Type field value
-func (o *LDAPDataSourceResultResponse) GetType() string {
+// GetName returns the Name field value
+func (o *LDAPDataSourceResultResponse) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.Name
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *LDAPDataSourceResultResponse) GetTypeOk() (*string, bool) {
+func (o *LDAPDataSourceResultResponse) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.Name, true
 }
 
-// SetType sets field value
-func (o *LDAPDataSourceResultResponse) SetType(v string) {
-	o.Type = v
+// SetName sets field value
+func (o *LDAPDataSourceResultResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetStatus returns the Status field value
+func (o *LDAPDataSourceResultResponse) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *LDAPDataSourceResultResponse) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *LDAPDataSourceResultResponse) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetDictionary returns the Dictionary field value
@@ -238,54 +286,6 @@ func (o *LDAPDataSourceResultResponse) UnsetError() {
 	o.Error.Unset()
 }
 
-// GetName returns the Name field value
-func (o *LDAPDataSourceResultResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *LDAPDataSourceResultResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *LDAPDataSourceResultResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetStatus returns the Status field value
-func (o *LDAPDataSourceResultResponse) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *LDAPDataSourceResultResponse) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *LDAPDataSourceResultResponse) SetStatus(v string) {
-	o.Status = v
-}
-
 func (o LDAPDataSourceResultResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -296,19 +296,19 @@ func (o LDAPDataSourceResultResponse) MarshalJSON() ([]byte, error) {
 
 func (o LDAPDataSourceResultResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
 	if o.ComputedDN.IsSet() {
 		toSerialize["computedDN"] = o.ComputedDN.Get()
 	}
 	if o.ComputedFilter.IsSet() {
 		toSerialize["computedFilter"] = o.ComputedFilter.Get()
 	}
-	toSerialize["type"] = o.Type
+	toSerialize["name"] = o.Name
+	toSerialize["status"] = o.Status
 	toSerialize["dictionary"] = o.Dictionary
 	if o.Error.IsSet() {
 		toSerialize["error"] = o.Error.Get()
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -323,9 +323,9 @@ func (o *LDAPDataSourceResultResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"type",
-		"dictionary",
 		"name",
 		"status",
+		"dictionary",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -355,13 +355,13 @@ func (o *LDAPDataSourceResultResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "computedDN")
 		delete(additionalProperties, "computedFilter")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "dictionary")
-		delete(additionalProperties, "error")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "dictionary")
+		delete(additionalProperties, "error")
 		o.AdditionalProperties = additionalProperties
 	}
 

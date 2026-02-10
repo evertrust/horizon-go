@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	pKIConnectors := openapiclient.PKIConnectors{ADCSConnector: openapiclient.NewADCSConnector("EndPoint_example", "myCertificateCredentials", "myPasswordCredentials", "Name_example", "Profile_example", "Type_example")} // PKIConnectors | PKI connector to register
+	pKIConnectors := openapiclient.PKIConnectors{ADCSConnector: openapiclient.NewADCSConnector("Name_example", "Type_example", "EndPoint_example", "Profile_example", "myPasswordCredentials", "myCertificateCredentials")} // PKIConnectors | PKI connector to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -298,7 +298,7 @@ import (
 )
 
 func main() {
-	pKIConnectors := openapiclient.PKIConnectors{ADCSConnector: openapiclient.NewADCSConnector("EndPoint_example", "myCertificateCredentials", "myPasswordCredentials", "Name_example", "Profile_example", "Type_example")} // PKIConnectors | PKI connector to update
+	pKIConnectors := openapiclient.PKIConnectors{ADCSConnector: openapiclient.NewADCSConnector("Name_example", "Type_example", "EndPoint_example", "Profile_example", "myPasswordCredentials", "myCertificateCredentials")} // PKIConnectors | PKI connector to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

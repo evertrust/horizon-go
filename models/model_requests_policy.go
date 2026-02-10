@@ -22,11 +22,11 @@ var _ utils.MappedNullable = &RequestsPolicy{}
 // RequestsPolicy struct for RequestsPolicy
 type RequestsPolicy struct {
 	Enroll               utils.NullableString `json:"enroll,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Migrate              utils.NullableString `json:"migrate,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Recover              utils.NullableString `json:"recover,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Renew                utils.NullableString `json:"renew,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	Revoke               utils.NullableString `json:"revoke,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Recover              utils.NullableString `json:"recover,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	Update               utils.NullableString `json:"update,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Migrate              utils.NullableString `json:"migrate,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Renew                utils.NullableString `json:"renew,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -92,47 +92,47 @@ func (o *RequestsPolicy) UnsetEnroll() {
 	o.Enroll.Unset()
 }
 
-// GetMigrate returns the Migrate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestsPolicy) GetMigrate() string {
-	if o == nil || utils.IsNil(o.Migrate.Get()) {
+// GetRevoke returns the Revoke field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestsPolicy) GetRevoke() string {
+	if o == nil || utils.IsNil(o.Revoke.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Migrate.Get()
+	return *o.Revoke.Get()
 }
 
-// GetMigrateOk returns a tuple with the Migrate field value if set, nil otherwise
+// GetRevokeOk returns a tuple with the Revoke field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestsPolicy) GetMigrateOk() (*string, bool) {
+func (o *RequestsPolicy) GetRevokeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Migrate.Get(), o.Migrate.IsSet()
+	return o.Revoke.Get(), o.Revoke.IsSet()
 }
 
-// HasMigrate returns a boolean if a field has been set.
-func (o *RequestsPolicy) HasMigrate() bool {
-	if o != nil && o.Migrate.IsSet() {
+// HasRevoke returns a boolean if a field has been set.
+func (o *RequestsPolicy) HasRevoke() bool {
+	if o != nil && o.Revoke.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMigrate gets a reference to the given NullableString and assigns it to the Migrate field.
-func (o *RequestsPolicy) SetMigrate(v string) {
-	o.Migrate.Set(&v)
+// SetRevoke gets a reference to the given NullableString and assigns it to the Revoke field.
+func (o *RequestsPolicy) SetRevoke(v string) {
+	o.Revoke.Set(&v)
 }
 
-// SetMigrateNil sets the value for Migrate to be an explicit nil
-func (o *RequestsPolicy) SetMigrateNil() {
-	o.Migrate.Set(nil)
+// SetRevokeNil sets the value for Revoke to be an explicit nil
+func (o *RequestsPolicy) SetRevokeNil() {
+	o.Revoke.Set(nil)
 }
 
-// UnsetMigrate ensures that no value is present for Migrate, not even an explicit nil
-func (o *RequestsPolicy) UnsetMigrate() {
-	o.Migrate.Unset()
+// UnsetRevoke ensures that no value is present for Revoke, not even an explicit nil
+func (o *RequestsPolicy) UnsetRevoke() {
+	o.Revoke.Unset()
 }
 
 // GetRecover returns the Recover field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -178,92 +178,6 @@ func (o *RequestsPolicy) UnsetRecover() {
 	o.Recover.Unset()
 }
 
-// GetRenew returns the Renew field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestsPolicy) GetRenew() string {
-	if o == nil || utils.IsNil(o.Renew.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Renew.Get()
-}
-
-// GetRenewOk returns a tuple with the Renew field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestsPolicy) GetRenewOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Renew.Get(), o.Renew.IsSet()
-}
-
-// HasRenew returns a boolean if a field has been set.
-func (o *RequestsPolicy) HasRenew() bool {
-	if o != nil && o.Renew.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRenew gets a reference to the given NullableString and assigns it to the Renew field.
-func (o *RequestsPolicy) SetRenew(v string) {
-	o.Renew.Set(&v)
-}
-
-// SetRenewNil sets the value for Renew to be an explicit nil
-func (o *RequestsPolicy) SetRenewNil() {
-	o.Renew.Set(nil)
-}
-
-// UnsetRenew ensures that no value is present for Renew, not even an explicit nil
-func (o *RequestsPolicy) UnsetRenew() {
-	o.Renew.Unset()
-}
-
-// GetRevoke returns the Revoke field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestsPolicy) GetRevoke() string {
-	if o == nil || utils.IsNil(o.Revoke.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Revoke.Get()
-}
-
-// GetRevokeOk returns a tuple with the Revoke field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestsPolicy) GetRevokeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Revoke.Get(), o.Revoke.IsSet()
-}
-
-// HasRevoke returns a boolean if a field has been set.
-func (o *RequestsPolicy) HasRevoke() bool {
-	if o != nil && o.Revoke.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRevoke gets a reference to the given NullableString and assigns it to the Revoke field.
-func (o *RequestsPolicy) SetRevoke(v string) {
-	o.Revoke.Set(&v)
-}
-
-// SetRevokeNil sets the value for Revoke to be an explicit nil
-func (o *RequestsPolicy) SetRevokeNil() {
-	o.Revoke.Set(nil)
-}
-
-// UnsetRevoke ensures that no value is present for Revoke, not even an explicit nil
-func (o *RequestsPolicy) UnsetRevoke() {
-	o.Revoke.Unset()
-}
-
 // GetUpdate returns the Update field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RequestsPolicy) GetUpdate() string {
 	if o == nil || utils.IsNil(o.Update.Get()) {
@@ -307,6 +221,92 @@ func (o *RequestsPolicy) UnsetUpdate() {
 	o.Update.Unset()
 }
 
+// GetMigrate returns the Migrate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestsPolicy) GetMigrate() string {
+	if o == nil || utils.IsNil(o.Migrate.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Migrate.Get()
+}
+
+// GetMigrateOk returns a tuple with the Migrate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestsPolicy) GetMigrateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Migrate.Get(), o.Migrate.IsSet()
+}
+
+// HasMigrate returns a boolean if a field has been set.
+func (o *RequestsPolicy) HasMigrate() bool {
+	if o != nil && o.Migrate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMigrate gets a reference to the given NullableString and assigns it to the Migrate field.
+func (o *RequestsPolicy) SetMigrate(v string) {
+	o.Migrate.Set(&v)
+}
+
+// SetMigrateNil sets the value for Migrate to be an explicit nil
+func (o *RequestsPolicy) SetMigrateNil() {
+	o.Migrate.Set(nil)
+}
+
+// UnsetMigrate ensures that no value is present for Migrate, not even an explicit nil
+func (o *RequestsPolicy) UnsetMigrate() {
+	o.Migrate.Unset()
+}
+
+// GetRenew returns the Renew field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestsPolicy) GetRenew() string {
+	if o == nil || utils.IsNil(o.Renew.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Renew.Get()
+}
+
+// GetRenewOk returns a tuple with the Renew field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestsPolicy) GetRenewOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Renew.Get(), o.Renew.IsSet()
+}
+
+// HasRenew returns a boolean if a field has been set.
+func (o *RequestsPolicy) HasRenew() bool {
+	if o != nil && o.Renew.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRenew gets a reference to the given NullableString and assigns it to the Renew field.
+func (o *RequestsPolicy) SetRenew(v string) {
+	o.Renew.Set(&v)
+}
+
+// SetRenewNil sets the value for Renew to be an explicit nil
+func (o *RequestsPolicy) SetRenewNil() {
+	o.Renew.Set(nil)
+}
+
+// UnsetRenew ensures that no value is present for Renew, not even an explicit nil
+func (o *RequestsPolicy) UnsetRenew() {
+	o.Renew.Unset()
+}
+
 func (o RequestsPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -320,20 +320,20 @@ func (o RequestsPolicy) ToMap() (map[string]interface{}, error) {
 	if o.Enroll.IsSet() {
 		toSerialize["enroll"] = o.Enroll.Get()
 	}
-	if o.Migrate.IsSet() {
-		toSerialize["migrate"] = o.Migrate.Get()
+	if o.Revoke.IsSet() {
+		toSerialize["revoke"] = o.Revoke.Get()
 	}
 	if o.Recover.IsSet() {
 		toSerialize["recover"] = o.Recover.Get()
 	}
-	if o.Renew.IsSet() {
-		toSerialize["renew"] = o.Renew.Get()
-	}
-	if o.Revoke.IsSet() {
-		toSerialize["revoke"] = o.Revoke.Get()
-	}
 	if o.Update.IsSet() {
 		toSerialize["update"] = o.Update.Get()
+	}
+	if o.Migrate.IsSet() {
+		toSerialize["migrate"] = o.Migrate.Get()
+	}
+	if o.Renew.IsSet() {
+		toSerialize["renew"] = o.Renew.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -358,11 +358,11 @@ func (o *RequestsPolicy) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "enroll")
-		delete(additionalProperties, "migrate")
-		delete(additionalProperties, "recover")
-		delete(additionalProperties, "renew")
 		delete(additionalProperties, "revoke")
+		delete(additionalProperties, "recover")
 		delete(additionalProperties, "update")
+		delete(additionalProperties, "migrate")
+		delete(additionalProperties, "renew")
 		o.AdditionalProperties = additionalProperties
 	}
 

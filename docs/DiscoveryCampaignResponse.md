@@ -5,22 +5,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**AuthorizationLevels** | [**DiscoveryCampaignAuthorizationLevels**](DiscoveryCampaignAuthorizationLevels.md) | The authorization levels of the discovery campaign | 
+**Name** | **string** | The name of the discovery campaign | 
 **Description** | Pointer to **NullableString** | The description of the discovery campaign | [optional] 
-**Enabled** | **bool** | Whether the discovery campaign is enabled, i.e. whether it can be fed | 
-**EventOnFailure** | **bool** | Whether to log a Horizon event in case of failure | 
+**AuthorizationLevels** | [**DiscoveryCampaignAuthorizationLevels**](DiscoveryCampaignAuthorizationLevels.md) | The authorization levels of the discovery campaign | 
 **EventOnSuccess** | **bool** | Whether to log a Horizon event in case of success | 
 **EventOnWarning** | **bool** | Whether to log a Horizon event in case of warning | 
-**GradingPolicies** | Pointer to **[]string** | The grading policies to apply to grade the discovered certificates on this campaign | [optional] 
+**EventOnFailure** | **bool** | Whether to log a Horizon event in case of failure | 
 **Hosts** | Pointer to **[]string** | The hosts to be scanned by the discovery campaign | [optional] 
-**Name** | **string** | The name of the discovery campaign | 
 **Ports** | Pointer to **[]string** | The ports to be scanned by the discovery campaign | [optional] [default to ["25","443","8443","689"]]
+**Enabled** | **bool** | Whether the discovery campaign is enabled, i.e. whether it can be fed | 
+**GradingPolicies** | Pointer to **[]string** | The grading policies to apply to grade the discovered certificates on this campaign | [optional] 
 
 ## Methods
 
 ### NewDiscoveryCampaignResponse
 
-`func NewDiscoveryCampaignResponse(id string, authorizationLevels DiscoveryCampaignAuthorizationLevels, enabled bool, eventOnFailure bool, eventOnSuccess bool, eventOnWarning bool, name string, ) *DiscoveryCampaignResponse`
+`func NewDiscoveryCampaignResponse(id string, name string, authorizationLevels DiscoveryCampaignAuthorizationLevels, eventOnSuccess bool, eventOnWarning bool, eventOnFailure bool, enabled bool, ) *DiscoveryCampaignResponse`
 
 NewDiscoveryCampaignResponse instantiates a new DiscoveryCampaignResponse object
 This constructor will assign default values to properties that have it defined,
@@ -55,24 +55,24 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetAuthorizationLevels
+### GetName
 
-`func (o *DiscoveryCampaignResponse) GetAuthorizationLevels() DiscoveryCampaignAuthorizationLevels`
+`func (o *DiscoveryCampaignResponse) GetName() string`
 
-GetAuthorizationLevels returns the AuthorizationLevels field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAuthorizationLevelsOk
+### GetNameOk
 
-`func (o *DiscoveryCampaignResponse) GetAuthorizationLevelsOk() (*DiscoveryCampaignAuthorizationLevels, bool)`
+`func (o *DiscoveryCampaignResponse) GetNameOk() (*string, bool)`
 
-GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthorizationLevels
+### SetName
 
-`func (o *DiscoveryCampaignResponse) SetAuthorizationLevels(v DiscoveryCampaignAuthorizationLevels)`
+`func (o *DiscoveryCampaignResponse) SetName(v string)`
 
-SetAuthorizationLevels sets AuthorizationLevels field to given value.
+SetName sets Name field to given value.
 
 
 ### GetDescription
@@ -110,44 +110,24 @@ HasDescription returns a boolean if a field has been set.
 `func (o *DiscoveryCampaignResponse) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetEnabled
+### GetAuthorizationLevels
 
-`func (o *DiscoveryCampaignResponse) GetEnabled() bool`
+`func (o *DiscoveryCampaignResponse) GetAuthorizationLevels() DiscoveryCampaignAuthorizationLevels`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetAuthorizationLevels returns the AuthorizationLevels field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetAuthorizationLevelsOk
 
-`func (o *DiscoveryCampaignResponse) GetEnabledOk() (*bool, bool)`
+`func (o *DiscoveryCampaignResponse) GetAuthorizationLevelsOk() (*DiscoveryCampaignAuthorizationLevels, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetAuthorizationLevels
 
-`func (o *DiscoveryCampaignResponse) SetEnabled(v bool)`
+`func (o *DiscoveryCampaignResponse) SetAuthorizationLevels(v DiscoveryCampaignAuthorizationLevels)`
 
-SetEnabled sets Enabled field to given value.
-
-
-### GetEventOnFailure
-
-`func (o *DiscoveryCampaignResponse) GetEventOnFailure() bool`
-
-GetEventOnFailure returns the EventOnFailure field if non-nil, zero value otherwise.
-
-### GetEventOnFailureOk
-
-`func (o *DiscoveryCampaignResponse) GetEventOnFailureOk() (*bool, bool)`
-
-GetEventOnFailureOk returns a tuple with the EventOnFailure field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEventOnFailure
-
-`func (o *DiscoveryCampaignResponse) SetEventOnFailure(v bool)`
-
-SetEventOnFailure sets EventOnFailure field to given value.
+SetAuthorizationLevels sets AuthorizationLevels field to given value.
 
 
 ### GetEventOnSuccess
@@ -190,41 +170,26 @@ and a boolean to check if the value has been set.
 SetEventOnWarning sets EventOnWarning field to given value.
 
 
-### GetGradingPolicies
+### GetEventOnFailure
 
-`func (o *DiscoveryCampaignResponse) GetGradingPolicies() []string`
+`func (o *DiscoveryCampaignResponse) GetEventOnFailure() bool`
 
-GetGradingPolicies returns the GradingPolicies field if non-nil, zero value otherwise.
+GetEventOnFailure returns the EventOnFailure field if non-nil, zero value otherwise.
 
-### GetGradingPoliciesOk
+### GetEventOnFailureOk
 
-`func (o *DiscoveryCampaignResponse) GetGradingPoliciesOk() (*[]string, bool)`
+`func (o *DiscoveryCampaignResponse) GetEventOnFailureOk() (*bool, bool)`
 
-GetGradingPoliciesOk returns a tuple with the GradingPolicies field if it's non-nil, zero value otherwise
+GetEventOnFailureOk returns a tuple with the EventOnFailure field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGradingPolicies
+### SetEventOnFailure
 
-`func (o *DiscoveryCampaignResponse) SetGradingPolicies(v []string)`
+`func (o *DiscoveryCampaignResponse) SetEventOnFailure(v bool)`
 
-SetGradingPolicies sets GradingPolicies field to given value.
+SetEventOnFailure sets EventOnFailure field to given value.
 
-### HasGradingPolicies
 
-`func (o *DiscoveryCampaignResponse) HasGradingPolicies() bool`
-
-HasGradingPolicies returns a boolean if a field has been set.
-
-### SetGradingPoliciesNil
-
-`func (o *DiscoveryCampaignResponse) SetGradingPoliciesNil(b bool)`
-
- SetGradingPoliciesNil sets the value for GradingPolicies to be an explicit nil
-
-### UnsetGradingPolicies
-`func (o *DiscoveryCampaignResponse) UnsetGradingPolicies()`
-
-UnsetGradingPolicies ensures that no value is present for GradingPolicies, not even an explicit nil
 ### GetHosts
 
 `func (o *DiscoveryCampaignResponse) GetHosts() []string`
@@ -260,26 +225,6 @@ HasHosts returns a boolean if a field has been set.
 `func (o *DiscoveryCampaignResponse) UnsetHosts()`
 
 UnsetHosts ensures that no value is present for Hosts, not even an explicit nil
-### GetName
-
-`func (o *DiscoveryCampaignResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *DiscoveryCampaignResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *DiscoveryCampaignResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetPorts
 
 `func (o *DiscoveryCampaignResponse) GetPorts() []string`
@@ -315,6 +260,61 @@ HasPorts returns a boolean if a field has been set.
 `func (o *DiscoveryCampaignResponse) UnsetPorts()`
 
 UnsetPorts ensures that no value is present for Ports, not even an explicit nil
+### GetEnabled
+
+`func (o *DiscoveryCampaignResponse) GetEnabled() bool`
+
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+
+### GetEnabledOk
+
+`func (o *DiscoveryCampaignResponse) GetEnabledOk() (*bool, bool)`
+
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnabled
+
+`func (o *DiscoveryCampaignResponse) SetEnabled(v bool)`
+
+SetEnabled sets Enabled field to given value.
+
+
+### GetGradingPolicies
+
+`func (o *DiscoveryCampaignResponse) GetGradingPolicies() []string`
+
+GetGradingPolicies returns the GradingPolicies field if non-nil, zero value otherwise.
+
+### GetGradingPoliciesOk
+
+`func (o *DiscoveryCampaignResponse) GetGradingPoliciesOk() (*[]string, bool)`
+
+GetGradingPoliciesOk returns a tuple with the GradingPolicies field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGradingPolicies
+
+`func (o *DiscoveryCampaignResponse) SetGradingPolicies(v []string)`
+
+SetGradingPolicies sets GradingPolicies field to given value.
+
+### HasGradingPolicies
+
+`func (o *DiscoveryCampaignResponse) HasGradingPolicies() bool`
+
+HasGradingPolicies returns a boolean if a field has been set.
+
+### SetGradingPoliciesNil
+
+`func (o *DiscoveryCampaignResponse) SetGradingPoliciesNil(b bool)`
+
+ SetGradingPoliciesNil sets the value for GradingPolicies to be an explicit nil
+
+### UnsetGradingPolicies
+`func (o *DiscoveryCampaignResponse) UnsetGradingPolicies()`
+
+UnsetGradingPolicies ensures that no value is present for GradingPolicies, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

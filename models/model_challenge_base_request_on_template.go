@@ -23,10 +23,10 @@ var _ utils.MappedNullable = &ChallengeBaseRequestOnTemplate{}
 type ChallengeBaseRequestOnTemplate struct {
 	// The request module
 	Module *string `json:"module,omitempty"`
-	// The profile for which to return the template.
-	Profile *string `json:"profile,omitempty"`
 	// The workflow for which to return the template.
-	Workflow             *string `json:"workflow,omitempty"`
+	Workflow *string `json:"workflow,omitempty"`
+	// The profile for which to return the template.
+	Profile              *string `json:"profile,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -81,38 +81,6 @@ func (o *ChallengeBaseRequestOnTemplate) SetModule(v string) {
 	o.Module = &v
 }
 
-// GetProfile returns the Profile field value if set, zero value otherwise.
-func (o *ChallengeBaseRequestOnTemplate) GetProfile() string {
-	if o == nil || utils.IsNil(o.Profile) {
-		var ret string
-		return ret
-	}
-	return *o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChallengeBaseRequestOnTemplate) GetProfileOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Profile) {
-		return nil, false
-	}
-	return o.Profile, true
-}
-
-// HasProfile returns a boolean if a field has been set.
-func (o *ChallengeBaseRequestOnTemplate) HasProfile() bool {
-	if o != nil && !utils.IsNil(o.Profile) {
-		return true
-	}
-
-	return false
-}
-
-// SetProfile gets a reference to the given string and assigns it to the Profile field.
-func (o *ChallengeBaseRequestOnTemplate) SetProfile(v string) {
-	o.Profile = &v
-}
-
 // GetWorkflow returns the Workflow field value if set, zero value otherwise.
 func (o *ChallengeBaseRequestOnTemplate) GetWorkflow() string {
 	if o == nil || utils.IsNil(o.Workflow) {
@@ -145,6 +113,38 @@ func (o *ChallengeBaseRequestOnTemplate) SetWorkflow(v string) {
 	o.Workflow = &v
 }
 
+// GetProfile returns the Profile field value if set, zero value otherwise.
+func (o *ChallengeBaseRequestOnTemplate) GetProfile() string {
+	if o == nil || utils.IsNil(o.Profile) {
+		var ret string
+		return ret
+	}
+	return *o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChallengeBaseRequestOnTemplate) GetProfileOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Profile) {
+		return nil, false
+	}
+	return o.Profile, true
+}
+
+// HasProfile returns a boolean if a field has been set.
+func (o *ChallengeBaseRequestOnTemplate) HasProfile() bool {
+	if o != nil && !utils.IsNil(o.Profile) {
+		return true
+	}
+
+	return false
+}
+
+// SetProfile gets a reference to the given string and assigns it to the Profile field.
+func (o *ChallengeBaseRequestOnTemplate) SetProfile(v string) {
+	o.Profile = &v
+}
+
 func (o ChallengeBaseRequestOnTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -158,11 +158,11 @@ func (o ChallengeBaseRequestOnTemplate) ToMap() (map[string]interface{}, error) 
 	if !utils.IsNil(o.Module) {
 		toSerialize["module"] = o.Module
 	}
-	if !utils.IsNil(o.Profile) {
-		toSerialize["profile"] = o.Profile
-	}
 	if !utils.IsNil(o.Workflow) {
 		toSerialize["workflow"] = o.Workflow
+	}
+	if !utils.IsNil(o.Profile) {
+		toSerialize["profile"] = o.Profile
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -187,8 +187,8 @@ func (o *ChallengeBaseRequestOnTemplate) UnmarshalJSON(data []byte) (err error) 
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "module")
-		delete(additionalProperties, "profile")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "profile")
 		o.AdditionalProperties = additionalProperties
 	}
 

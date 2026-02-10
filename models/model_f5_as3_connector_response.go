@@ -23,22 +23,22 @@ var _ utils.MappedNullable = &F5AS3ConnectorResponse{}
 // F5AS3ConnectorResponse struct for F5AS3ConnectorResponse
 type F5AS3ConnectorResponse struct {
 	// Object internal ID
-	Id string `json:"_id"`
-	// Name of the `password` [credentials](#tag/security.credentials) containing the account to authenticate on F5
-	Credentials string `json:"credentials"`
-	Hostname    string `json:"hostname"`
+	Id                  string `json:"_id"`
+	Type                string `json:"type"`
+	Name                string `json:"name"`
+	ThrottleDuration    string `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	ThrottleParallelism int64  `json:"throttleParallelism"`
 	// One of `rsa-2048`, `rsa-3072`, `rsa-4096`, `rsa-8192`, `ec-secp256r1`, `ec-secp384r1`, `ec-secp521r1`, `ed-448`, `ed-25519`, `mldsa-44`, `mldsa-65`, `mldsa-87`, `slhdsa-sha2-128s`, `slhdsa-sha2-128f`, `slhdsa-sha2-192s`, `slhdsa-sha2-192f`, `slhdsa-sha2-256s`, `slhdsa-sha2-256f`, `slhdsa-sha2-128ssha256`, `slhdsa-sha2-128fsha256`, `slhdsa-sha2-192ssha512`, `slhdsa-sha2-192fsha512`, `slhdsa-sha2-256ssha512`, `slhdsa-sha2-256fsha512` or `<primary key type>+<alternate key type>`
-	KeyType             utils.NullableString `json:"keyType,omitempty" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
-	LoginProvider       utils.NullableString `json:"loginProvider,omitempty"`
-	Name                string               `json:"name"`
-	Proxy               utils.NullableString `json:"proxy,omitempty"`
-	RenewalPeriod       utils.NullableString `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	ThrottleDuration    string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	ThrottleParallelism int64                `json:"throttleParallelism"`
-	Timeout             utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	KeyType       utils.NullableString `json:"keyType,omitempty" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
+	RenewalPeriod utils.NullableString `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Timeout       utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Proxy         utils.NullableString `json:"proxy,omitempty"`
+	Hostname      string               `json:"hostname"`
+	// Name of the `password` [credentials](#tag/security.credentials) containing the account to authenticate on F5
+	Credentials   string               `json:"credentials"`
+	LoginProvider utils.NullableString `json:"loginProvider,omitempty"`
 	// Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended.
 	TlsInsecure utils.NullableBool `json:"tlsInsecure,omitempty"`
-	Type        string             `json:"type"`
 	// Enable the certificate trust chain to be pushed.
 	WithChain            utils.NullableBool `json:"withChain,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -50,17 +50,17 @@ type _F5AS3ConnectorResponse F5AS3ConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewF5AS3ConnectorResponse(id string, credentials string, hostname string, name string, throttleDuration string, throttleParallelism int64, type_ string) *F5AS3ConnectorResponse {
+func NewF5AS3ConnectorResponse(id string, type_ string, name string, throttleDuration string, throttleParallelism int64, hostname string, credentials string) *F5AS3ConnectorResponse {
 	this := F5AS3ConnectorResponse{}
 	this.Id = id
-	this.Credentials = credentials
-	this.Hostname = hostname
+	this.Type = type_
 	this.Name = name
 	this.ThrottleDuration = throttleDuration
 	this.ThrottleParallelism = throttleParallelism
+	this.Hostname = hostname
+	this.Credentials = credentials
 	var tlsInsecure bool = false
 	this.TlsInsecure = *utils.NewNullableBool(&tlsInsecure)
-	this.Type = type_
 	var withChain bool = true
 	this.WithChain = *utils.NewNullableBool(&withChain)
 	return &this
@@ -102,138 +102,28 @@ func (o *F5AS3ConnectorResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetCredentials returns the Credentials field value
-func (o *F5AS3ConnectorResponse) GetCredentials() string {
+// GetType returns the Type field value
+func (o *F5AS3ConnectorResponse) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Credentials
+	return o.Type
 }
 
-// GetCredentialsOk returns a tuple with the Credentials field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *F5AS3ConnectorResponse) GetCredentialsOk() (*string, bool) {
+func (o *F5AS3ConnectorResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Credentials, true
+	return &o.Type, true
 }
 
-// SetCredentials sets field value
-func (o *F5AS3ConnectorResponse) SetCredentials(v string) {
-	o.Credentials = v
-}
-
-// GetHostname returns the Hostname field value
-func (o *F5AS3ConnectorResponse) GetHostname() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Hostname
-}
-
-// GetHostnameOk returns a tuple with the Hostname field value
-// and a boolean to check if the value has been set.
-func (o *F5AS3ConnectorResponse) GetHostnameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Hostname, true
-}
-
-// SetHostname sets field value
-func (o *F5AS3ConnectorResponse) SetHostname(v string) {
-	o.Hostname = v
-}
-
-// GetKeyType returns the KeyType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5AS3ConnectorResponse) GetKeyType() string {
-	if o == nil || utils.IsNil(o.KeyType.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.KeyType.Get()
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5AS3ConnectorResponse) GetKeyTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyType.Get(), o.KeyType.IsSet()
-}
-
-// HasKeyType returns a boolean if a field has been set.
-func (o *F5AS3ConnectorResponse) HasKeyType() bool {
-	if o != nil && o.KeyType.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetKeyType gets a reference to the given NullableString and assigns it to the KeyType field.
-func (o *F5AS3ConnectorResponse) SetKeyType(v string) {
-	o.KeyType.Set(&v)
-}
-
-// SetKeyTypeNil sets the value for KeyType to be an explicit nil
-func (o *F5AS3ConnectorResponse) SetKeyTypeNil() {
-	o.KeyType.Set(nil)
-}
-
-// UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
-func (o *F5AS3ConnectorResponse) UnsetKeyType() {
-	o.KeyType.Unset()
-}
-
-// GetLoginProvider returns the LoginProvider field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5AS3ConnectorResponse) GetLoginProvider() string {
-	if o == nil || utils.IsNil(o.LoginProvider.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.LoginProvider.Get()
-}
-
-// GetLoginProviderOk returns a tuple with the LoginProvider field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5AS3ConnectorResponse) GetLoginProviderOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LoginProvider.Get(), o.LoginProvider.IsSet()
-}
-
-// HasLoginProvider returns a boolean if a field has been set.
-func (o *F5AS3ConnectorResponse) HasLoginProvider() bool {
-	if o != nil && o.LoginProvider.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLoginProvider gets a reference to the given NullableString and assigns it to the LoginProvider field.
-func (o *F5AS3ConnectorResponse) SetLoginProvider(v string) {
-	o.LoginProvider.Set(&v)
-}
-
-// SetLoginProviderNil sets the value for LoginProvider to be an explicit nil
-func (o *F5AS3ConnectorResponse) SetLoginProviderNil() {
-	o.LoginProvider.Set(nil)
-}
-
-// UnsetLoginProvider ensures that no value is present for LoginProvider, not even an explicit nil
-func (o *F5AS3ConnectorResponse) UnsetLoginProvider() {
-	o.LoginProvider.Unset()
+// SetType sets field value
+func (o *F5AS3ConnectorResponse) SetType(v string) {
+	o.Type = v
 }
 
 // GetName returns the Name field value
@@ -258,92 +148,6 @@ func (o *F5AS3ConnectorResponse) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *F5AS3ConnectorResponse) SetName(v string) {
 	o.Name = v
-}
-
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5AS3ConnectorResponse) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Proxy.Get()
-}
-
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5AS3ConnectorResponse) GetProxyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
-}
-
-// HasProxy returns a boolean if a field has been set.
-func (o *F5AS3ConnectorResponse) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *F5AS3ConnectorResponse) SetProxy(v string) {
-	o.Proxy.Set(&v)
-}
-
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *F5AS3ConnectorResponse) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *F5AS3ConnectorResponse) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *F5AS3ConnectorResponse) GetRenewalPeriod() string {
-	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RenewalPeriod.Get()
-}
-
-// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *F5AS3ConnectorResponse) GetRenewalPeriodOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
-}
-
-// HasRenewalPeriod returns a boolean if a field has been set.
-func (o *F5AS3ConnectorResponse) HasRenewalPeriod() bool {
-	if o != nil && o.RenewalPeriod.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
-func (o *F5AS3ConnectorResponse) SetRenewalPeriod(v string) {
-	o.RenewalPeriod.Set(&v)
-}
-
-// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-func (o *F5AS3ConnectorResponse) SetRenewalPeriodNil() {
-	o.RenewalPeriod.Set(nil)
-}
-
-// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
-func (o *F5AS3ConnectorResponse) UnsetRenewalPeriod() {
-	o.RenewalPeriod.Unset()
 }
 
 // GetThrottleDuration returns the ThrottleDuration field value
@@ -394,6 +198,92 @@ func (o *F5AS3ConnectorResponse) SetThrottleParallelism(v int64) {
 	o.ThrottleParallelism = v
 }
 
+// GetKeyType returns the KeyType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5AS3ConnectorResponse) GetKeyType() string {
+	if o == nil || utils.IsNil(o.KeyType.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.KeyType.Get()
+}
+
+// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *F5AS3ConnectorResponse) GetKeyTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KeyType.Get(), o.KeyType.IsSet()
+}
+
+// HasKeyType returns a boolean if a field has been set.
+func (o *F5AS3ConnectorResponse) HasKeyType() bool {
+	if o != nil && o.KeyType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyType gets a reference to the given NullableString and assigns it to the KeyType field.
+func (o *F5AS3ConnectorResponse) SetKeyType(v string) {
+	o.KeyType.Set(&v)
+}
+
+// SetKeyTypeNil sets the value for KeyType to be an explicit nil
+func (o *F5AS3ConnectorResponse) SetKeyTypeNil() {
+	o.KeyType.Set(nil)
+}
+
+// UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
+func (o *F5AS3ConnectorResponse) UnsetKeyType() {
+	o.KeyType.Unset()
+}
+
+// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5AS3ConnectorResponse) GetRenewalPeriod() string {
+	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RenewalPeriod.Get()
+}
+
+// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *F5AS3ConnectorResponse) GetRenewalPeriodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
+}
+
+// HasRenewalPeriod returns a boolean if a field has been set.
+func (o *F5AS3ConnectorResponse) HasRenewalPeriod() bool {
+	if o != nil && o.RenewalPeriod.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
+func (o *F5AS3ConnectorResponse) SetRenewalPeriod(v string) {
+	o.RenewalPeriod.Set(&v)
+}
+
+// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
+func (o *F5AS3ConnectorResponse) SetRenewalPeriodNil() {
+	o.RenewalPeriod.Set(nil)
+}
+
+// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+func (o *F5AS3ConnectorResponse) UnsetRenewalPeriod() {
+	o.RenewalPeriod.Unset()
+}
+
 // GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *F5AS3ConnectorResponse) GetTimeout() string {
 	if o == nil || utils.IsNil(o.Timeout.Get()) {
@@ -437,6 +327,140 @@ func (o *F5AS3ConnectorResponse) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5AS3ConnectorResponse) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Proxy.Get()
+}
+
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *F5AS3ConnectorResponse) GetProxyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Proxy.Get(), o.Proxy.IsSet()
+}
+
+// HasProxy returns a boolean if a field has been set.
+func (o *F5AS3ConnectorResponse) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *F5AS3ConnectorResponse) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *F5AS3ConnectorResponse) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *F5AS3ConnectorResponse) UnsetProxy() {
+	o.Proxy.Unset()
+}
+
+// GetHostname returns the Hostname field value
+func (o *F5AS3ConnectorResponse) GetHostname() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Hostname
+}
+
+// GetHostnameOk returns a tuple with the Hostname field value
+// and a boolean to check if the value has been set.
+func (o *F5AS3ConnectorResponse) GetHostnameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Hostname, true
+}
+
+// SetHostname sets field value
+func (o *F5AS3ConnectorResponse) SetHostname(v string) {
+	o.Hostname = v
+}
+
+// GetCredentials returns the Credentials field value
+func (o *F5AS3ConnectorResponse) GetCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Credentials
+}
+
+// GetCredentialsOk returns a tuple with the Credentials field value
+// and a boolean to check if the value has been set.
+func (o *F5AS3ConnectorResponse) GetCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Credentials, true
+}
+
+// SetCredentials sets field value
+func (o *F5AS3ConnectorResponse) SetCredentials(v string) {
+	o.Credentials = v
+}
+
+// GetLoginProvider returns the LoginProvider field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *F5AS3ConnectorResponse) GetLoginProvider() string {
+	if o == nil || utils.IsNil(o.LoginProvider.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.LoginProvider.Get()
+}
+
+// GetLoginProviderOk returns a tuple with the LoginProvider field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *F5AS3ConnectorResponse) GetLoginProviderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LoginProvider.Get(), o.LoginProvider.IsSet()
+}
+
+// HasLoginProvider returns a boolean if a field has been set.
+func (o *F5AS3ConnectorResponse) HasLoginProvider() bool {
+	if o != nil && o.LoginProvider.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLoginProvider gets a reference to the given NullableString and assigns it to the LoginProvider field.
+func (o *F5AS3ConnectorResponse) SetLoginProvider(v string) {
+	o.LoginProvider.Set(&v)
+}
+
+// SetLoginProviderNil sets the value for LoginProvider to be an explicit nil
+func (o *F5AS3ConnectorResponse) SetLoginProviderNil() {
+	o.LoginProvider.Set(nil)
+}
+
+// UnsetLoginProvider ensures that no value is present for LoginProvider, not even an explicit nil
+func (o *F5AS3ConnectorResponse) UnsetLoginProvider() {
+	o.LoginProvider.Unset()
+}
+
 // GetTlsInsecure returns the TlsInsecure field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *F5AS3ConnectorResponse) GetTlsInsecure() bool {
 	if o == nil || utils.IsNil(o.TlsInsecure.Get()) {
@@ -478,30 +502,6 @@ func (o *F5AS3ConnectorResponse) SetTlsInsecureNil() {
 // UnsetTlsInsecure ensures that no value is present for TlsInsecure, not even an explicit nil
 func (o *F5AS3ConnectorResponse) UnsetTlsInsecure() {
 	o.TlsInsecure.Unset()
-}
-
-// GetType returns the Type field value
-func (o *F5AS3ConnectorResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *F5AS3ConnectorResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *F5AS3ConnectorResponse) SetType(v string) {
-	o.Type = v
 }
 
 // GetWithChain returns the WithChain field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -558,30 +558,30 @@ func (o F5AS3ConnectorResponse) MarshalJSON() ([]byte, error) {
 func (o F5AS3ConnectorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["credentials"] = o.Credentials
-	toSerialize["hostname"] = o.Hostname
+	toSerialize["type"] = o.Type
+	toSerialize["name"] = o.Name
+	toSerialize["throttleDuration"] = o.ThrottleDuration
+	toSerialize["throttleParallelism"] = o.ThrottleParallelism
 	if o.KeyType.IsSet() {
 		toSerialize["keyType"] = o.KeyType.Get()
-	}
-	if o.LoginProvider.IsSet() {
-		toSerialize["loginProvider"] = o.LoginProvider.Get()
-	}
-	toSerialize["name"] = o.Name
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	if o.RenewalPeriod.IsSet() {
 		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
 	}
-	toSerialize["throttleDuration"] = o.ThrottleDuration
-	toSerialize["throttleParallelism"] = o.ThrottleParallelism
 	if o.Timeout.IsSet() {
 		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
+	toSerialize["hostname"] = o.Hostname
+	toSerialize["credentials"] = o.Credentials
+	if o.LoginProvider.IsSet() {
+		toSerialize["loginProvider"] = o.LoginProvider.Get()
 	}
 	if o.TlsInsecure.IsSet() {
 		toSerialize["tlsInsecure"] = o.TlsInsecure.Get()
 	}
-	toSerialize["type"] = o.Type
 	if o.WithChain.IsSet() {
 		toSerialize["withChain"] = o.WithChain.Get()
 	}
@@ -599,12 +599,12 @@ func (o *F5AS3ConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"credentials",
-		"hostname",
+		"type",
 		"name",
 		"throttleDuration",
 		"throttleParallelism",
-		"type",
+		"hostname",
+		"credentials",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -635,18 +635,18 @@ func (o *F5AS3ConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "credentials")
-		delete(additionalProperties, "hostname")
-		delete(additionalProperties, "keyType")
-		delete(additionalProperties, "loginProvider")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "renewalPeriod")
 		delete(additionalProperties, "throttleDuration")
 		delete(additionalProperties, "throttleParallelism")
+		delete(additionalProperties, "keyType")
+		delete(additionalProperties, "renewalPeriod")
 		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "loginProvider")
 		delete(additionalProperties, "tlsInsecure")
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "withChain")
 		o.AdditionalProperties = additionalProperties
 	}

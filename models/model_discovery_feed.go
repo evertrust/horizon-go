@@ -24,18 +24,18 @@ var _ utils.MappedNullable = &DiscoveryFeed{}
 type DiscoveryFeed struct {
 	// The name of the discovery campaign to feed into
 	Campaign string `json:"campaign"`
-	// The PEM-encoded certificate to feed the discovery campaign with
-	Certificate string `json:"certificate"`
+	// The ID of the previously opened discovery feed session
+	SessionId utils.NullableString `json:"sessionId,omitempty"`
 	// The code of the event to raise in the discovery events
 	Code utils.NullableString `json:"code,omitempty"`
+	// The PEM-encoded certificate to feed the discovery campaign with
+	Certificate string `json:"certificate"`
 	// The host discovery data to feed the discovery campaign with (discovery metadata)
 	HostDiscoveryData HostDiscoveryData `json:"hostDiscoveryData"`
 	// The list of certificate metadata to feed the discovery campaign with
 	Metadata []CertificateMetadata `json:"metadata,omitempty"`
 	// The PEM-encoded private key to feed the discovery campaign with
-	PrivateKey utils.NullableString `json:"privateKey,omitempty"`
-	// The ID of the previously opened discovery feed session
-	SessionId            utils.NullableString `json:"sessionId,omitempty"`
+	PrivateKey           utils.NullableString `json:"privateKey,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -85,28 +85,47 @@ func (o *DiscoveryFeed) SetCampaign(v string) {
 	o.Campaign = v
 }
 
-// GetCertificate returns the Certificate field value
-func (o *DiscoveryFeed) GetCertificate() string {
-	if o == nil {
+// GetSessionId returns the SessionId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryFeed) GetSessionId() string {
+	if o == nil || utils.IsNil(o.SessionId.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Certificate
+	return *o.SessionId.Get()
 }
 
-// GetCertificateOk returns a tuple with the Certificate field value
+// GetSessionIdOk returns a tuple with the SessionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DiscoveryFeed) GetCertificateOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DiscoveryFeed) GetSessionIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Certificate, true
+	return o.SessionId.Get(), o.SessionId.IsSet()
 }
 
-// SetCertificate sets field value
-func (o *DiscoveryFeed) SetCertificate(v string) {
-	o.Certificate = v
+// HasSessionId returns a boolean if a field has been set.
+func (o *DiscoveryFeed) HasSessionId() bool {
+	if o != nil && o.SessionId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSessionId gets a reference to the given NullableString and assigns it to the SessionId field.
+func (o *DiscoveryFeed) SetSessionId(v string) {
+	o.SessionId.Set(&v)
+}
+
+// SetSessionIdNil sets the value for SessionId to be an explicit nil
+func (o *DiscoveryFeed) SetSessionIdNil() {
+	o.SessionId.Set(nil)
+}
+
+// UnsetSessionId ensures that no value is present for SessionId, not even an explicit nil
+func (o *DiscoveryFeed) UnsetSessionId() {
+	o.SessionId.Unset()
 }
 
 // GetCode returns the Code field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -150,6 +169,30 @@ func (o *DiscoveryFeed) SetCodeNil() {
 // UnsetCode ensures that no value is present for Code, not even an explicit nil
 func (o *DiscoveryFeed) UnsetCode() {
 	o.Code.Unset()
+}
+
+// GetCertificate returns the Certificate field value
+func (o *DiscoveryFeed) GetCertificate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Certificate
+}
+
+// GetCertificateOk returns a tuple with the Certificate field value
+// and a boolean to check if the value has been set.
+func (o *DiscoveryFeed) GetCertificateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Certificate, true
+}
+
+// SetCertificate sets field value
+func (o *DiscoveryFeed) SetCertificate(v string) {
+	o.Certificate = v
 }
 
 // GetHostDiscoveryData returns the HostDiscoveryData field value
@@ -252,49 +295,6 @@ func (o *DiscoveryFeed) UnsetPrivateKey() {
 	o.PrivateKey.Unset()
 }
 
-// GetSessionId returns the SessionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryFeed) GetSessionId() string {
-	if o == nil || utils.IsNil(o.SessionId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.SessionId.Get()
-}
-
-// GetSessionIdOk returns a tuple with the SessionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryFeed) GetSessionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SessionId.Get(), o.SessionId.IsSet()
-}
-
-// HasSessionId returns a boolean if a field has been set.
-func (o *DiscoveryFeed) HasSessionId() bool {
-	if o != nil && o.SessionId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSessionId gets a reference to the given NullableString and assigns it to the SessionId field.
-func (o *DiscoveryFeed) SetSessionId(v string) {
-	o.SessionId.Set(&v)
-}
-
-// SetSessionIdNil sets the value for SessionId to be an explicit nil
-func (o *DiscoveryFeed) SetSessionIdNil() {
-	o.SessionId.Set(nil)
-}
-
-// UnsetSessionId ensures that no value is present for SessionId, not even an explicit nil
-func (o *DiscoveryFeed) UnsetSessionId() {
-	o.SessionId.Unset()
-}
-
 func (o DiscoveryFeed) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -306,19 +306,19 @@ func (o DiscoveryFeed) MarshalJSON() ([]byte, error) {
 func (o DiscoveryFeed) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["campaign"] = o.Campaign
-	toSerialize["certificate"] = o.Certificate
+	if o.SessionId.IsSet() {
+		toSerialize["sessionId"] = o.SessionId.Get()
+	}
 	if o.Code.IsSet() {
 		toSerialize["code"] = o.Code.Get()
 	}
+	toSerialize["certificate"] = o.Certificate
 	toSerialize["hostDiscoveryData"] = o.HostDiscoveryData
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
 	if o.PrivateKey.IsSet() {
 		toSerialize["privateKey"] = o.PrivateKey.Get()
-	}
-	if o.SessionId.IsSet() {
-		toSerialize["sessionId"] = o.SessionId.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -366,12 +366,12 @@ func (o *DiscoveryFeed) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "campaign")
-		delete(additionalProperties, "certificate")
+		delete(additionalProperties, "sessionId")
 		delete(additionalProperties, "code")
+		delete(additionalProperties, "certificate")
 		delete(additionalProperties, "hostDiscoveryData")
 		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "privateKey")
-		delete(additionalProperties, "sessionId")
 		o.AdditionalProperties = additionalProperties
 	}
 

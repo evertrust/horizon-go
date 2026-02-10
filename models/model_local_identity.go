@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &LocalIdentity{}
 
 // LocalIdentity struct for LocalIdentity
 type LocalIdentity struct {
-	// The email address of the local identity
-	Email utils.NullableString `json:"email,omitempty"`
 	// The identifier of the local identity (used by the identity to log in to the web UI)
 	Identifier string `json:"identifier"`
+	// The email address of the local identity
+	Email utils.NullableString `json:"email,omitempty"`
 	// The display name of the local identity
 	Name                 utils.NullableString `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -49,6 +49,30 @@ func NewLocalIdentity(identifier string) *LocalIdentity {
 func NewLocalIdentityWithDefaults() *LocalIdentity {
 	this := LocalIdentity{}
 	return &this
+}
+
+// GetIdentifier returns the Identifier field value
+func (o *LocalIdentity) GetIdentifier() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Identifier
+}
+
+// GetIdentifierOk returns a tuple with the Identifier field value
+// and a boolean to check if the value has been set.
+func (o *LocalIdentity) GetIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Identifier, true
+}
+
+// SetIdentifier sets field value
+func (o *LocalIdentity) SetIdentifier(v string) {
+	o.Identifier = v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -92,30 +116,6 @@ func (o *LocalIdentity) SetEmailNil() {
 // UnsetEmail ensures that no value is present for Email, not even an explicit nil
 func (o *LocalIdentity) UnsetEmail() {
 	o.Email.Unset()
-}
-
-// GetIdentifier returns the Identifier field value
-func (o *LocalIdentity) GetIdentifier() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Identifier
-}
-
-// GetIdentifierOk returns a tuple with the Identifier field value
-// and a boolean to check if the value has been set.
-func (o *LocalIdentity) GetIdentifierOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Identifier, true
-}
-
-// SetIdentifier sets field value
-func (o *LocalIdentity) SetIdentifier(v string) {
-	o.Identifier = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -171,10 +171,10 @@ func (o LocalIdentity) MarshalJSON() ([]byte, error) {
 
 func (o LocalIdentity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["identifier"] = o.Identifier
 	if o.Email.IsSet() {
 		toSerialize["email"] = o.Email.Get()
 	}
-	toSerialize["identifier"] = o.Identifier
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
@@ -221,8 +221,8 @@ func (o *LocalIdentity) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "email")
 		delete(additionalProperties, "identifier")
+		delete(additionalProperties, "email")
 		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}

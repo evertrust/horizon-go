@@ -22,21 +22,21 @@ var _ utils.MappedNullable = &CertEuropeConnector{}
 
 // CertEuropeConnector struct for CertEuropeConnector
 type CertEuropeConnector struct {
-	// Name of the `certificate` [credentials](#tag/security.credentials) to use to authenticate on the PKI
-	AuthenticationCredentials string `json:"authenticationCredentials"`
-	EndPoint                  string `json:"endPoint"`
+	Name     string `json:"name"`
+	Type     string `json:"type"`
+	EndPoint string `json:"endPoint"`
 	// Name of the `password` [credentials](#tag/security.credentials) to use for technical account on the PKI
-	LoginCredentials     string               `json:"loginCredentials"`
-	Name                 string               `json:"name"`
-	OfferId              string               `json:"offerId"`
-	OrganizationId       string               `json:"organizationId"`
-	Proxy                utils.NullableString `json:"proxy,omitempty"`
-	Queue                utils.NullableString `json:"queue,omitempty"`
-	RetryInterval        utils.NullableString `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	RevReason            utils.NullableString `json:"revReason,omitempty"`
-	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Type                 string               `json:"type"`
-	AdditionalProperties map[string]interface{}
+	LoginCredentials string               `json:"loginCredentials"`
+	OfferId          string               `json:"offerId"`
+	OrganizationId   string               `json:"organizationId"`
+	RevReason        utils.NullableString `json:"revReason,omitempty"`
+	RetryInterval    utils.NullableString `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	// Name of the `certificate` [credentials](#tag/security.credentials) to use to authenticate on the PKI
+	AuthenticationCredentials string               `json:"authenticationCredentials"`
+	Timeout                   utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Proxy                     utils.NullableString `json:"proxy,omitempty"`
+	Queue                     utils.NullableString `json:"queue,omitempty"`
+	AdditionalProperties      map[string]interface{}
 }
 
 type _CertEuropeConnector CertEuropeConnector
@@ -45,15 +45,15 @@ type _CertEuropeConnector CertEuropeConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertEuropeConnector(authenticationCredentials string, endPoint string, loginCredentials string, name string, offerId string, organizationId string, type_ string) *CertEuropeConnector {
+func NewCertEuropeConnector(name string, type_ string, endPoint string, loginCredentials string, offerId string, organizationId string, authenticationCredentials string) *CertEuropeConnector {
 	this := CertEuropeConnector{}
-	this.AuthenticationCredentials = authenticationCredentials
+	this.Name = name
+	this.Type = type_
 	this.EndPoint = endPoint
 	this.LoginCredentials = loginCredentials
-	this.Name = name
 	this.OfferId = offerId
 	this.OrganizationId = organizationId
-	this.Type = type_
+	this.AuthenticationCredentials = authenticationCredentials
 	return &this
 }
 
@@ -65,28 +65,52 @@ func NewCertEuropeConnectorWithDefaults() *CertEuropeConnector {
 	return &this
 }
 
-// GetAuthenticationCredentials returns the AuthenticationCredentials field value
-func (o *CertEuropeConnector) GetAuthenticationCredentials() string {
+// GetName returns the Name field value
+func (o *CertEuropeConnector) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.AuthenticationCredentials
+	return o.Name
 }
 
-// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CertEuropeConnector) GetAuthenticationCredentialsOk() (*string, bool) {
+func (o *CertEuropeConnector) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AuthenticationCredentials, true
+	return &o.Name, true
 }
 
-// SetAuthenticationCredentials sets field value
-func (o *CertEuropeConnector) SetAuthenticationCredentials(v string) {
-	o.AuthenticationCredentials = v
+// SetName sets field value
+func (o *CertEuropeConnector) SetName(v string) {
+	o.Name = v
+}
+
+// GetType returns the Type field value
+func (o *CertEuropeConnector) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *CertEuropeConnector) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *CertEuropeConnector) SetType(v string) {
+	o.Type = v
 }
 
 // GetEndPoint returns the EndPoint field value
@@ -137,30 +161,6 @@ func (o *CertEuropeConnector) SetLoginCredentials(v string) {
 	o.LoginCredentials = v
 }
 
-// GetName returns the Name field value
-func (o *CertEuropeConnector) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *CertEuropeConnector) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *CertEuropeConnector) SetName(v string) {
-	o.Name = v
-}
-
 // GetOfferId returns the OfferId field value
 func (o *CertEuropeConnector) GetOfferId() string {
 	if o == nil {
@@ -207,6 +207,159 @@ func (o *CertEuropeConnector) GetOrganizationIdOk() (*string, bool) {
 // SetOrganizationId sets field value
 func (o *CertEuropeConnector) SetOrganizationId(v string) {
 	o.OrganizationId = v
+}
+
+// GetRevReason returns the RevReason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertEuropeConnector) GetRevReason() string {
+	if o == nil || utils.IsNil(o.RevReason.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RevReason.Get()
+}
+
+// GetRevReasonOk returns a tuple with the RevReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertEuropeConnector) GetRevReasonOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RevReason.Get(), o.RevReason.IsSet()
+}
+
+// HasRevReason returns a boolean if a field has been set.
+func (o *CertEuropeConnector) HasRevReason() bool {
+	if o != nil && o.RevReason.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRevReason gets a reference to the given NullableString and assigns it to the RevReason field.
+func (o *CertEuropeConnector) SetRevReason(v string) {
+	o.RevReason.Set(&v)
+}
+
+// SetRevReasonNil sets the value for RevReason to be an explicit nil
+func (o *CertEuropeConnector) SetRevReasonNil() {
+	o.RevReason.Set(nil)
+}
+
+// UnsetRevReason ensures that no value is present for RevReason, not even an explicit nil
+func (o *CertEuropeConnector) UnsetRevReason() {
+	o.RevReason.Unset()
+}
+
+// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertEuropeConnector) GetRetryInterval() string {
+	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RetryInterval.Get()
+}
+
+// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertEuropeConnector) GetRetryIntervalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
+}
+
+// HasRetryInterval returns a boolean if a field has been set.
+func (o *CertEuropeConnector) HasRetryInterval() bool {
+	if o != nil && o.RetryInterval.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
+func (o *CertEuropeConnector) SetRetryInterval(v string) {
+	o.RetryInterval.Set(&v)
+}
+
+// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+func (o *CertEuropeConnector) SetRetryIntervalNil() {
+	o.RetryInterval.Set(nil)
+}
+
+// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
+func (o *CertEuropeConnector) UnsetRetryInterval() {
+	o.RetryInterval.Unset()
+}
+
+// GetAuthenticationCredentials returns the AuthenticationCredentials field value
+func (o *CertEuropeConnector) GetAuthenticationCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AuthenticationCredentials
+}
+
+// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value
+// and a boolean to check if the value has been set.
+func (o *CertEuropeConnector) GetAuthenticationCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthenticationCredentials, true
+}
+
+// SetAuthenticationCredentials sets field value
+func (o *CertEuropeConnector) SetAuthenticationCredentials(v string) {
+	o.AuthenticationCredentials = v
+}
+
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertEuropeConnector) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertEuropeConnector) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *CertEuropeConnector) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *CertEuropeConnector) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *CertEuropeConnector) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *CertEuropeConnector) UnsetTimeout() {
+	o.Timeout.Unset()
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -295,159 +448,6 @@ func (o *CertEuropeConnector) UnsetQueue() {
 	o.Queue.Unset()
 }
 
-// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertEuropeConnector) GetRetryInterval() string {
-	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RetryInterval.Get()
-}
-
-// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertEuropeConnector) GetRetryIntervalOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
-}
-
-// HasRetryInterval returns a boolean if a field has been set.
-func (o *CertEuropeConnector) HasRetryInterval() bool {
-	if o != nil && o.RetryInterval.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
-func (o *CertEuropeConnector) SetRetryInterval(v string) {
-	o.RetryInterval.Set(&v)
-}
-
-// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
-func (o *CertEuropeConnector) SetRetryIntervalNil() {
-	o.RetryInterval.Set(nil)
-}
-
-// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-func (o *CertEuropeConnector) UnsetRetryInterval() {
-	o.RetryInterval.Unset()
-}
-
-// GetRevReason returns the RevReason field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertEuropeConnector) GetRevReason() string {
-	if o == nil || utils.IsNil(o.RevReason.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RevReason.Get()
-}
-
-// GetRevReasonOk returns a tuple with the RevReason field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertEuropeConnector) GetRevReasonOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RevReason.Get(), o.RevReason.IsSet()
-}
-
-// HasRevReason returns a boolean if a field has been set.
-func (o *CertEuropeConnector) HasRevReason() bool {
-	if o != nil && o.RevReason.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRevReason gets a reference to the given NullableString and assigns it to the RevReason field.
-func (o *CertEuropeConnector) SetRevReason(v string) {
-	o.RevReason.Set(&v)
-}
-
-// SetRevReasonNil sets the value for RevReason to be an explicit nil
-func (o *CertEuropeConnector) SetRevReasonNil() {
-	o.RevReason.Set(nil)
-}
-
-// UnsetRevReason ensures that no value is present for RevReason, not even an explicit nil
-func (o *CertEuropeConnector) UnsetRevReason() {
-	o.RevReason.Unset()
-}
-
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertEuropeConnector) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Timeout.Get()
-}
-
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertEuropeConnector) GetTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
-}
-
-// HasTimeout returns a boolean if a field has been set.
-func (o *CertEuropeConnector) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *CertEuropeConnector) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *CertEuropeConnector) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *CertEuropeConnector) UnsetTimeout() {
-	o.Timeout.Unset()
-}
-
-// GetType returns the Type field value
-func (o *CertEuropeConnector) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *CertEuropeConnector) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *CertEuropeConnector) SetType(v string) {
-	o.Type = v
-}
-
 func (o CertEuropeConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -458,28 +458,28 @@ func (o CertEuropeConnector) MarshalJSON() ([]byte, error) {
 
 func (o CertEuropeConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authenticationCredentials"] = o.AuthenticationCredentials
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
 	toSerialize["endPoint"] = o.EndPoint
 	toSerialize["loginCredentials"] = o.LoginCredentials
-	toSerialize["name"] = o.Name
 	toSerialize["offerId"] = o.OfferId
 	toSerialize["organizationId"] = o.OrganizationId
+	if o.RevReason.IsSet() {
+		toSerialize["revReason"] = o.RevReason.Get()
+	}
+	if o.RetryInterval.IsSet() {
+		toSerialize["retryInterval"] = o.RetryInterval.Get()
+	}
+	toSerialize["authenticationCredentials"] = o.AuthenticationCredentials
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	if o.Queue.IsSet() {
 		toSerialize["queue"] = o.Queue.Get()
 	}
-	if o.RetryInterval.IsSet() {
-		toSerialize["retryInterval"] = o.RetryInterval.Get()
-	}
-	if o.RevReason.IsSet() {
-		toSerialize["revReason"] = o.RevReason.Get()
-	}
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
-	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -493,13 +493,13 @@ func (o *CertEuropeConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"authenticationCredentials",
+		"name",
+		"type",
 		"endPoint",
 		"loginCredentials",
-		"name",
 		"offerId",
 		"organizationId",
-		"type",
+		"authenticationCredentials",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -529,18 +529,18 @@ func (o *CertEuropeConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "authenticationCredentials")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "endPoint")
 		delete(additionalProperties, "loginCredentials")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "offerId")
 		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "revReason")
+		delete(additionalProperties, "retryInterval")
+		delete(additionalProperties, "authenticationCredentials")
+		delete(additionalProperties, "timeout")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
-		delete(additionalProperties, "retryInterval")
-		delete(additionalProperties, "revReason")
-		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

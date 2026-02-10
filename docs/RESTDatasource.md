@@ -4,27 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of attributes to fetch for this datasource | [optional] 
-**AuthenticationType** | **string** | The authentication type to use while making the REST call. Is linked to &#x60;credentials&#x60;. | 
-**Credentials** | Pointer to **string** | Name of the [credentials](#tag/security.credentials) to use for authentication | [optional] 
-**Description** | Pointer to **string** | Description of the datasource | [optional] 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
-**ExpectedHttpCodes** | **[]int64** | The success HTTP codes for the request. If the return code is not in this list, the request will be considered failed. | 
-**Headers** | Pointer to [**[]Header**](Header.md) | The headers of the request | [optional] 
-**Method** | **string** | The HTTP method to use for the request | 
+**Type** | **string** | Type of datasource | 
 **Name** | **string** | Name of the datasource | 
-**Payload** | Pointer to **NullableString** | The body of the request | [optional] 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
+**Description** | Pointer to **string** | Description of the datasource | [optional] 
+**Credentials** | Pointer to **string** | Name of the [credentials](#tag/security.credentials) to use for authentication | [optional] 
+**Method** | **string** | The HTTP method to use for the request | 
+**Url** | **string** | The URL to request | 
+**AuthenticationType** | **string** | The authentication type to use while making the REST call. Is linked to &#x60;credentials&#x60;. | 
+**Headers** | Pointer to [**[]Header**](Header.md) | The headers of the request | [optional] 
 **PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
+**Payload** | Pointer to **NullableString** | The body of the request | [optional] 
+**ExpectedHttpCodes** | **[]int64** | The success HTTP codes for the request. If the return code is not in this list, the request will be considered failed. | 
 **Proxy** | Pointer to **NullableString** | Name of a Proxy to use while making the request | [optional] 
 **Timeout** | **string** | Timeout for the HTTP request. | 
-**Type** | **string** | Type of datasource | 
-**Url** | **string** | The URL to request | 
+**Attributes** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of attributes to fetch for this datasource | [optional] 
 
 ## Methods
 
 ### NewRESTDatasource
 
-`func NewRESTDatasource(authenticationType string, expectedHttpCodes []int64, method string, name string, timeout string, type_ string, url string, ) *RESTDatasource`
+`func NewRESTDatasource(type_ string, name string, method string, url string, authenticationType string, expectedHttpCodes []int64, timeout string, ) *RESTDatasource`
 
 NewRESTDatasource instantiates a new RESTDatasource object
 This constructor will assign default values to properties that have it defined,
@@ -39,110 +39,45 @@ NewRESTDatasourceWithDefaults instantiates a new RESTDatasource object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAttributes
+### GetType
 
-`func (o *RESTDatasource) GetAttributes() []DataSourceOutput`
+`func (o *RESTDatasource) GetType() string`
 
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetAttributesOk
+### GetTypeOk
 
-`func (o *RESTDatasource) GetAttributesOk() (*[]DataSourceOutput, bool)`
+`func (o *RESTDatasource) GetTypeOk() (*string, bool)`
 
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttributes
+### SetType
 
-`func (o *RESTDatasource) SetAttributes(v []DataSourceOutput)`
+`func (o *RESTDatasource) SetType(v string)`
 
-SetAttributes sets Attributes field to given value.
+SetType sets Type field to given value.
 
-### HasAttributes
 
-`func (o *RESTDatasource) HasAttributes() bool`
+### GetName
 
-HasAttributes returns a boolean if a field has been set.
+`func (o *RESTDatasource) GetName() string`
 
-### SetAttributesNil
+GetName returns the Name field if non-nil, zero value otherwise.
 
-`func (o *RESTDatasource) SetAttributesNil(b bool)`
+### GetNameOk
 
- SetAttributesNil sets the value for Attributes to be an explicit nil
+`func (o *RESTDatasource) GetNameOk() (*string, bool)`
 
-### UnsetAttributes
-`func (o *RESTDatasource) UnsetAttributes()`
-
-UnsetAttributes ensures that no value is present for Attributes, not even an explicit nil
-### GetAuthenticationType
-
-`func (o *RESTDatasource) GetAuthenticationType() string`
-
-GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
-
-### GetAuthenticationTypeOk
-
-`func (o *RESTDatasource) GetAuthenticationTypeOk() (*string, bool)`
-
-GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationType
+### SetName
 
-`func (o *RESTDatasource) SetAuthenticationType(v string)`
+`func (o *RESTDatasource) SetName(v string)`
 
-SetAuthenticationType sets AuthenticationType field to given value.
+SetName sets Name field to given value.
 
-
-### GetCredentials
-
-`func (o *RESTDatasource) GetCredentials() string`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *RESTDatasource) GetCredentialsOk() (*string, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *RESTDatasource) SetCredentials(v string)`
-
-SetCredentials sets Credentials field to given value.
-
-### HasCredentials
-
-`func (o *RESTDatasource) HasCredentials() bool`
-
-HasCredentials returns a boolean if a field has been set.
-
-### GetDescription
-
-`func (o *RESTDatasource) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *RESTDatasource) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *RESTDatasource) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *RESTDatasource) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -179,24 +114,114 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *RESTDatasource) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetExpectedHttpCodes
+### GetDescription
 
-`func (o *RESTDatasource) GetExpectedHttpCodes() []int64`
+`func (o *RESTDatasource) GetDescription() string`
 
-GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetExpectedHttpCodesOk
+### GetDescriptionOk
 
-`func (o *RESTDatasource) GetExpectedHttpCodesOk() (*[]int64, bool)`
+`func (o *RESTDatasource) GetDescriptionOk() (*string, bool)`
 
-GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExpectedHttpCodes
+### SetDescription
 
-`func (o *RESTDatasource) SetExpectedHttpCodes(v []int64)`
+`func (o *RESTDatasource) SetDescription(v string)`
 
-SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *RESTDatasource) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### GetCredentials
+
+`func (o *RESTDatasource) GetCredentials() string`
+
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
+
+### GetCredentialsOk
+
+`func (o *RESTDatasource) GetCredentialsOk() (*string, bool)`
+
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCredentials
+
+`func (o *RESTDatasource) SetCredentials(v string)`
+
+SetCredentials sets Credentials field to given value.
+
+### HasCredentials
+
+`func (o *RESTDatasource) HasCredentials() bool`
+
+HasCredentials returns a boolean if a field has been set.
+
+### GetMethod
+
+`func (o *RESTDatasource) GetMethod() string`
+
+GetMethod returns the Method field if non-nil, zero value otherwise.
+
+### GetMethodOk
+
+`func (o *RESTDatasource) GetMethodOk() (*string, bool)`
+
+GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMethod
+
+`func (o *RESTDatasource) SetMethod(v string)`
+
+SetMethod sets Method field to given value.
+
+
+### GetUrl
+
+`func (o *RESTDatasource) GetUrl() string`
+
+GetUrl returns the Url field if non-nil, zero value otherwise.
+
+### GetUrlOk
+
+`func (o *RESTDatasource) GetUrlOk() (*string, bool)`
+
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUrl
+
+`func (o *RESTDatasource) SetUrl(v string)`
+
+SetUrl sets Url field to given value.
+
+
+### GetAuthenticationType
+
+`func (o *RESTDatasource) GetAuthenticationType() string`
+
+GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
+
+### GetAuthenticationTypeOk
+
+`func (o *RESTDatasource) GetAuthenticationTypeOk() (*string, bool)`
+
+GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationType
+
+`func (o *RESTDatasource) SetAuthenticationType(v string)`
+
+SetAuthenticationType sets AuthenticationType field to given value.
 
 
 ### GetHeaders
@@ -234,81 +259,6 @@ HasHeaders returns a boolean if a field has been set.
 `func (o *RESTDatasource) UnsetHeaders()`
 
 UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
-### GetMethod
-
-`func (o *RESTDatasource) GetMethod() string`
-
-GetMethod returns the Method field if non-nil, zero value otherwise.
-
-### GetMethodOk
-
-`func (o *RESTDatasource) GetMethodOk() (*string, bool)`
-
-GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMethod
-
-`func (o *RESTDatasource) SetMethod(v string)`
-
-SetMethod sets Method field to given value.
-
-
-### GetName
-
-`func (o *RESTDatasource) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *RESTDatasource) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *RESTDatasource) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetPayload
-
-`func (o *RESTDatasource) GetPayload() string`
-
-GetPayload returns the Payload field if non-nil, zero value otherwise.
-
-### GetPayloadOk
-
-`func (o *RESTDatasource) GetPayloadOk() (*string, bool)`
-
-GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPayload
-
-`func (o *RESTDatasource) SetPayload(v string)`
-
-SetPayload sets Payload field to given value.
-
-### HasPayload
-
-`func (o *RESTDatasource) HasPayload() bool`
-
-HasPayload returns a boolean if a field has been set.
-
-### SetPayloadNil
-
-`func (o *RESTDatasource) SetPayloadNil(b bool)`
-
- SetPayloadNil sets the value for Payload to be an explicit nil
-
-### UnsetPayload
-`func (o *RESTDatasource) UnsetPayload()`
-
-UnsetPayload ensures that no value is present for Payload, not even an explicit nil
 ### GetPayloadType
 
 `func (o *RESTDatasource) GetPayloadType() string`
@@ -344,6 +294,61 @@ HasPayloadType returns a boolean if a field has been set.
 `func (o *RESTDatasource) UnsetPayloadType()`
 
 UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
+### GetPayload
+
+`func (o *RESTDatasource) GetPayload() string`
+
+GetPayload returns the Payload field if non-nil, zero value otherwise.
+
+### GetPayloadOk
+
+`func (o *RESTDatasource) GetPayloadOk() (*string, bool)`
+
+GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPayload
+
+`func (o *RESTDatasource) SetPayload(v string)`
+
+SetPayload sets Payload field to given value.
+
+### HasPayload
+
+`func (o *RESTDatasource) HasPayload() bool`
+
+HasPayload returns a boolean if a field has been set.
+
+### SetPayloadNil
+
+`func (o *RESTDatasource) SetPayloadNil(b bool)`
+
+ SetPayloadNil sets the value for Payload to be an explicit nil
+
+### UnsetPayload
+`func (o *RESTDatasource) UnsetPayload()`
+
+UnsetPayload ensures that no value is present for Payload, not even an explicit nil
+### GetExpectedHttpCodes
+
+`func (o *RESTDatasource) GetExpectedHttpCodes() []int64`
+
+GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
+
+### GetExpectedHttpCodesOk
+
+`func (o *RESTDatasource) GetExpectedHttpCodesOk() (*[]int64, bool)`
+
+GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpectedHttpCodes
+
+`func (o *RESTDatasource) SetExpectedHttpCodes(v []int64)`
+
+SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
+
+
 ### GetProxy
 
 `func (o *RESTDatasource) GetProxy() string`
@@ -399,46 +404,41 @@ and a boolean to check if the value has been set.
 SetTimeout sets Timeout field to given value.
 
 
-### GetType
+### GetAttributes
 
-`func (o *RESTDatasource) GetType() string`
+`func (o *RESTDatasource) GetAttributes() []DataSourceOutput`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetAttributesOk
 
-`func (o *RESTDatasource) GetTypeOk() (*string, bool)`
+`func (o *RESTDatasource) GetAttributesOk() (*[]DataSourceOutput, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetAttributes
 
-`func (o *RESTDatasource) SetType(v string)`
+`func (o *RESTDatasource) SetAttributes(v []DataSourceOutput)`
 
-SetType sets Type field to given value.
+SetAttributes sets Attributes field to given value.
 
+### HasAttributes
 
-### GetUrl
+`func (o *RESTDatasource) HasAttributes() bool`
 
-`func (o *RESTDatasource) GetUrl() string`
+HasAttributes returns a boolean if a field has been set.
 
-GetUrl returns the Url field if non-nil, zero value otherwise.
+### SetAttributesNil
 
-### GetUrlOk
+`func (o *RESTDatasource) SetAttributesNil(b bool)`
 
-`func (o *RESTDatasource) GetUrlOk() (*string, bool)`
+ SetAttributesNil sets the value for Attributes to be an explicit nil
 
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetAttributes
+`func (o *RESTDatasource) UnsetAttributes()`
 
-### SetUrl
-
-`func (o *RESTDatasource) SetUrl(v string)`
-
-SetUrl sets Url field to given value.
-
-
+UnsetAttributes ensures that no value is present for Attributes, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

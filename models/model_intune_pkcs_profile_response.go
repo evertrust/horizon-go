@@ -23,27 +23,29 @@ var _ utils.MappedNullable = &IntunePKCSProfileResponse{}
 // IntunePKCSProfileResponse struct for IntunePKCSProfileResponse
 type IntunePKCSProfileResponse struct {
 	// Object internal ID
-	Id                  string                                `json:"_id"`
-	AuthorizationLevels CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
-	CertificateTemplate NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
-	Constraints         NullableCertificateRequestConstraints `json:"constraints,omitempty"`
-	CryptoPolicy        ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
-	CsrDataMapping      map[string]string                     `json:"csrDataMapping,omitempty"`
-	Description         []LocalizedString                     `json:"description,omitempty"`
-	DisplayName         []LocalizedString                     `json:"displayName,omitempty"`
-	// Representation of a datasource execution flow
-	DsFlow                        []DataSourceFlowEntry                 `json:"dsFlow,omitempty"`
-	Enabled                       bool                                  `json:"enabled"`
-	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
-	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
+	Id                            string                                `json:"_id"`
 	Module                        string                                `json:"module"`
 	Name                          string                                `json:"name"`
+	DisplayName                   []LocalizedString                     `json:"displayName,omitempty"`
+	Description                   []LocalizedString                     `json:"description,omitempty"`
+	Enabled                       bool                                  `json:"enabled"`
 	PkiConnector                  string                                `json:"pkiConnector"`
-	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
-	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
 	ThirdPartyConnector           string                                `json:"thirdPartyConnector"`
+	Constraints                   NullableCertificateRequestConstraints `json:"constraints,omitempty"`
+	CsrDataMapping                map[string]string                     `json:"csrDataMapping,omitempty"`
+	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
+	AuthorizationLevels           CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
 	Triggers                      NullableCertificateProfileTriggers    `json:"triggers,omitempty"`
-	AdditionalProperties          map[string]interface{}
+	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
+	CryptoPolicy                  ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
+	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
+	CertificateTemplate           NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
+	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
+	// Representation of a datasource execution flow
+	DsFlow []DataSourceFlowEntry `json:"dsFlow,omitempty"`
+	// Available from `2.8.2`
+	ThirdPartyDiscoverySync utils.NullableBool `json:"thirdPartyDiscoverySync,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _IntunePKCSProfileResponse IntunePKCSProfileResponse
@@ -52,18 +54,20 @@ type _IntunePKCSProfileResponse IntunePKCSProfileResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntunePKCSProfileResponse(id string, authorizationLevels CertificateProfileAuthorizationLevels, cryptoPolicy ManagedCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions, thirdPartyConnector string) *IntunePKCSProfileResponse {
+func NewIntunePKCSProfileResponse(id string, module string, name string, enabled bool, pkiConnector string, thirdPartyConnector string, authorizationLevels CertificateProfileAuthorizationLevels, requestsPolicy RequestsPolicy, cryptoPolicy ManagedCertificateProfileCryptoPolicy, selfPermissions CertificateProfileSelfPermissions) *IntunePKCSProfileResponse {
 	this := IntunePKCSProfileResponse{}
 	this.Id = id
-	this.AuthorizationLevels = authorizationLevels
-	this.CryptoPolicy = cryptoPolicy
-	this.Enabled = enabled
 	this.Module = module
 	this.Name = name
+	this.Enabled = enabled
 	this.PkiConnector = pkiConnector
-	this.RequestsPolicy = requestsPolicy
-	this.SelfPermissions = selfPermissions
 	this.ThirdPartyConnector = thirdPartyConnector
+	this.AuthorizationLevels = authorizationLevels
+	this.RequestsPolicy = requestsPolicy
+	this.CryptoPolicy = cryptoPolicy
+	this.SelfPermissions = selfPermissions
+	var thirdPartyDiscoverySync bool = false
+	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
 }
 
@@ -72,6 +76,8 @@ func NewIntunePKCSProfileResponse(id string, authorizationLevels CertificateProf
 // but it doesn't guarantee that properties required by API are set
 func NewIntunePKCSProfileResponseWithDefaults() *IntunePKCSProfileResponse {
 	this := IntunePKCSProfileResponse{}
+	var thirdPartyDiscoverySync bool = false
+	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
 }
 
@@ -97,372 +103,6 @@ func (o *IntunePKCSProfileResponse) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *IntunePKCSProfileResponse) SetId(v string) {
 	o.Id = v
-}
-
-// GetAuthorizationLevels returns the AuthorizationLevels field value
-func (o *IntunePKCSProfileResponse) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
-	if o == nil {
-		var ret CertificateProfileAuthorizationLevels
-		return ret
-	}
-
-	return o.AuthorizationLevels
-}
-
-// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
-// and a boolean to check if the value has been set.
-func (o *IntunePKCSProfileResponse) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthorizationLevels, true
-}
-
-// SetAuthorizationLevels sets field value
-func (o *IntunePKCSProfileResponse) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
-	o.AuthorizationLevels = v
-}
-
-// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSProfileResponse) GetCertificateTemplate() CertificateTemplate {
-	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
-		var ret CertificateTemplate
-		return ret
-	}
-	return *o.CertificateTemplate.Get()
-}
-
-// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSProfileResponse) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
-}
-
-// HasCertificateTemplate returns a boolean if a field has been set.
-func (o *IntunePKCSProfileResponse) HasCertificateTemplate() bool {
-	if o != nil && o.CertificateTemplate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
-func (o *IntunePKCSProfileResponse) SetCertificateTemplate(v CertificateTemplate) {
-	o.CertificateTemplate.Set(&v)
-}
-
-// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-func (o *IntunePKCSProfileResponse) SetCertificateTemplateNil() {
-	o.CertificateTemplate.Set(nil)
-}
-
-// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
-func (o *IntunePKCSProfileResponse) UnsetCertificateTemplate() {
-	o.CertificateTemplate.Unset()
-}
-
-// GetConstraints returns the Constraints field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSProfileResponse) GetConstraints() CertificateRequestConstraints {
-	if o == nil || utils.IsNil(o.Constraints.Get()) {
-		var ret CertificateRequestConstraints
-		return ret
-	}
-	return *o.Constraints.Get()
-}
-
-// GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSProfileResponse) GetConstraintsOk() (*CertificateRequestConstraints, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Constraints.Get(), o.Constraints.IsSet()
-}
-
-// HasConstraints returns a boolean if a field has been set.
-func (o *IntunePKCSProfileResponse) HasConstraints() bool {
-	if o != nil && o.Constraints.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetConstraints gets a reference to the given NullableCertificateRequestConstraints and assigns it to the Constraints field.
-func (o *IntunePKCSProfileResponse) SetConstraints(v CertificateRequestConstraints) {
-	o.Constraints.Set(&v)
-}
-
-// SetConstraintsNil sets the value for Constraints to be an explicit nil
-func (o *IntunePKCSProfileResponse) SetConstraintsNil() {
-	o.Constraints.Set(nil)
-}
-
-// UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
-func (o *IntunePKCSProfileResponse) UnsetConstraints() {
-	o.Constraints.Unset()
-}
-
-// GetCryptoPolicy returns the CryptoPolicy field value
-func (o *IntunePKCSProfileResponse) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
-	if o == nil {
-		var ret ManagedCertificateProfileCryptoPolicy
-		return ret
-	}
-
-	return o.CryptoPolicy
-}
-
-// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
-// and a boolean to check if the value has been set.
-func (o *IntunePKCSProfileResponse) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CryptoPolicy, true
-}
-
-// SetCryptoPolicy sets field value
-func (o *IntunePKCSProfileResponse) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
-	o.CryptoPolicy = v
-}
-
-// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSProfileResponse) GetCsrDataMapping() map[string]string {
-	if o == nil {
-		var ret map[string]string
-		return ret
-	}
-	return o.CsrDataMapping
-}
-
-// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSProfileResponse) GetCsrDataMappingOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.CsrDataMapping) {
-		return nil, false
-	}
-	return &o.CsrDataMapping, true
-}
-
-// HasCsrDataMapping returns a boolean if a field has been set.
-func (o *IntunePKCSProfileResponse) HasCsrDataMapping() bool {
-	if o != nil && !utils.IsNil(o.CsrDataMapping) {
-		return true
-	}
-
-	return false
-}
-
-// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
-func (o *IntunePKCSProfileResponse) SetCsrDataMapping(v map[string]string) {
-	o.CsrDataMapping = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSProfileResponse) GetDescription() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSProfileResponse) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *IntunePKCSProfileResponse) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *IntunePKCSProfileResponse) SetDescription(v []LocalizedString) {
-	o.Description = v
-}
-
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSProfileResponse) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSProfileResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *IntunePKCSProfileResponse) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *IntunePKCSProfileResponse) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
-}
-
-// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSProfileResponse) GetDsFlow() []DataSourceFlowEntry {
-	if o == nil {
-		var ret []DataSourceFlowEntry
-		return ret
-	}
-	return o.DsFlow
-}
-
-// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSProfileResponse) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
-	if o == nil || utils.IsNil(o.DsFlow) {
-		return nil, false
-	}
-	return o.DsFlow, true
-}
-
-// HasDsFlow returns a boolean if a field has been set.
-func (o *IntunePKCSProfileResponse) HasDsFlow() bool {
-	if o != nil && !utils.IsNil(o.DsFlow) {
-		return true
-	}
-
-	return false
-}
-
-// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
-func (o *IntunePKCSProfileResponse) SetDsFlow(v []DataSourceFlowEntry) {
-	o.DsFlow = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *IntunePKCSProfileResponse) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *IntunePKCSProfileResponse) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *IntunePKCSProfileResponse) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSProfileResponse) GetGradingPolicies() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.GradingPolicies
-}
-
-// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSProfileResponse) GetGradingPoliciesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.GradingPolicies) {
-		return nil, false
-	}
-	return o.GradingPolicies, true
-}
-
-// HasGradingPolicies returns a boolean if a field has been set.
-func (o *IntunePKCSProfileResponse) HasGradingPolicies() bool {
-	if o != nil && !utils.IsNil(o.GradingPolicies) {
-		return true
-	}
-
-	return false
-}
-
-// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
-func (o *IntunePKCSProfileResponse) SetGradingPolicies(v []string) {
-	o.GradingPolicies = v
-}
-
-// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSProfileResponse) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
-	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
-		var ret MaxCertificatePerHolderPolicy
-		return ret
-	}
-	return *o.MaxCertificatePerHolderPolicy.Get()
-}
-
-// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSProfileResponse) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
-}
-
-// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
-func (o *IntunePKCSProfileResponse) HasMaxCertificatePerHolderPolicy() bool {
-	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
-func (o *IntunePKCSProfileResponse) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
-	o.MaxCertificatePerHolderPolicy.Set(&v)
-}
-
-// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
-func (o *IntunePKCSProfileResponse) SetMaxCertificatePerHolderPolicyNil() {
-	o.MaxCertificatePerHolderPolicy.Set(nil)
-}
-
-// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
-func (o *IntunePKCSProfileResponse) UnsetMaxCertificatePerHolderPolicy() {
-	o.MaxCertificatePerHolderPolicy.Unset()
 }
 
 // GetModule returns the Module field value
@@ -513,6 +153,96 @@ func (o *IntunePKCSProfileResponse) SetName(v string) {
 	o.Name = v
 }
 
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSProfileResponse) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSProfileResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *IntunePKCSProfileResponse) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *IntunePKCSProfileResponse) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSProfileResponse) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSProfileResponse) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *IntunePKCSProfileResponse) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *IntunePKCSProfileResponse) SetDescription(v []LocalizedString) {
+	o.Description = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *IntunePKCSProfileResponse) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *IntunePKCSProfileResponse) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *IntunePKCSProfileResponse) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
 // GetPkiConnector returns the PkiConnector field value
 func (o *IntunePKCSProfileResponse) GetPkiConnector() string {
 	if o == nil {
@@ -537,54 +267,6 @@ func (o *IntunePKCSProfileResponse) SetPkiConnector(v string) {
 	o.PkiConnector = v
 }
 
-// GetRequestsPolicy returns the RequestsPolicy field value
-func (o *IntunePKCSProfileResponse) GetRequestsPolicy() RequestsPolicy {
-	if o == nil {
-		var ret RequestsPolicy
-		return ret
-	}
-
-	return o.RequestsPolicy
-}
-
-// GetRequestsPolicyOk returns a tuple with the RequestsPolicy field value
-// and a boolean to check if the value has been set.
-func (o *IntunePKCSProfileResponse) GetRequestsPolicyOk() (*RequestsPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RequestsPolicy, true
-}
-
-// SetRequestsPolicy sets field value
-func (o *IntunePKCSProfileResponse) SetRequestsPolicy(v RequestsPolicy) {
-	o.RequestsPolicy = v
-}
-
-// GetSelfPermissions returns the SelfPermissions field value
-func (o *IntunePKCSProfileResponse) GetSelfPermissions() CertificateProfileSelfPermissions {
-	if o == nil {
-		var ret CertificateProfileSelfPermissions
-		return ret
-	}
-
-	return o.SelfPermissions
-}
-
-// GetSelfPermissionsOk returns a tuple with the SelfPermissions field value
-// and a boolean to check if the value has been set.
-func (o *IntunePKCSProfileResponse) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SelfPermissions, true
-}
-
-// SetSelfPermissions sets field value
-func (o *IntunePKCSProfileResponse) SetSelfPermissions(v CertificateProfileSelfPermissions) {
-	o.SelfPermissions = v
-}
-
 // GetThirdPartyConnector returns the ThirdPartyConnector field value
 func (o *IntunePKCSProfileResponse) GetThirdPartyConnector() string {
 	if o == nil {
@@ -607,6 +289,149 @@ func (o *IntunePKCSProfileResponse) GetThirdPartyConnectorOk() (*string, bool) {
 // SetThirdPartyConnector sets field value
 func (o *IntunePKCSProfileResponse) SetThirdPartyConnector(v string) {
 	o.ThirdPartyConnector = v
+}
+
+// GetConstraints returns the Constraints field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSProfileResponse) GetConstraints() CertificateRequestConstraints {
+	if o == nil || utils.IsNil(o.Constraints.Get()) {
+		var ret CertificateRequestConstraints
+		return ret
+	}
+	return *o.Constraints.Get()
+}
+
+// GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSProfileResponse) GetConstraintsOk() (*CertificateRequestConstraints, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Constraints.Get(), o.Constraints.IsSet()
+}
+
+// HasConstraints returns a boolean if a field has been set.
+func (o *IntunePKCSProfileResponse) HasConstraints() bool {
+	if o != nil && o.Constraints.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConstraints gets a reference to the given NullableCertificateRequestConstraints and assigns it to the Constraints field.
+func (o *IntunePKCSProfileResponse) SetConstraints(v CertificateRequestConstraints) {
+	o.Constraints.Set(&v)
+}
+
+// SetConstraintsNil sets the value for Constraints to be an explicit nil
+func (o *IntunePKCSProfileResponse) SetConstraintsNil() {
+	o.Constraints.Set(nil)
+}
+
+// UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
+func (o *IntunePKCSProfileResponse) UnsetConstraints() {
+	o.Constraints.Unset()
+}
+
+// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSProfileResponse) GetCsrDataMapping() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.CsrDataMapping
+}
+
+// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSProfileResponse) GetCsrDataMappingOk() (*map[string]string, bool) {
+	if o == nil || utils.IsNil(o.CsrDataMapping) {
+		return nil, false
+	}
+	return &o.CsrDataMapping, true
+}
+
+// HasCsrDataMapping returns a boolean if a field has been set.
+func (o *IntunePKCSProfileResponse) HasCsrDataMapping() bool {
+	if o != nil && !utils.IsNil(o.CsrDataMapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
+func (o *IntunePKCSProfileResponse) SetCsrDataMapping(v map[string]string) {
+	o.CsrDataMapping = v
+}
+
+// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSProfileResponse) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
+	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
+		var ret MaxCertificatePerHolderPolicy
+		return ret
+	}
+	return *o.MaxCertificatePerHolderPolicy.Get()
+}
+
+// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSProfileResponse) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
+}
+
+// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
+func (o *IntunePKCSProfileResponse) HasMaxCertificatePerHolderPolicy() bool {
+	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
+func (o *IntunePKCSProfileResponse) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
+	o.MaxCertificatePerHolderPolicy.Set(&v)
+}
+
+// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
+func (o *IntunePKCSProfileResponse) SetMaxCertificatePerHolderPolicyNil() {
+	o.MaxCertificatePerHolderPolicy.Set(nil)
+}
+
+// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
+func (o *IntunePKCSProfileResponse) UnsetMaxCertificatePerHolderPolicy() {
+	o.MaxCertificatePerHolderPolicy.Unset()
+}
+
+// GetAuthorizationLevels returns the AuthorizationLevels field value
+func (o *IntunePKCSProfileResponse) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
+	if o == nil {
+		var ret CertificateProfileAuthorizationLevels
+		return ret
+	}
+
+	return o.AuthorizationLevels
+}
+
+// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
+// and a boolean to check if the value has been set.
+func (o *IntunePKCSProfileResponse) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizationLevels, true
+}
+
+// SetAuthorizationLevels sets field value
+func (o *IntunePKCSProfileResponse) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
+	o.AuthorizationLevels = v
 }
 
 // GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -652,6 +477,230 @@ func (o *IntunePKCSProfileResponse) UnsetTriggers() {
 	o.Triggers.Unset()
 }
 
+// GetRequestsPolicy returns the RequestsPolicy field value
+func (o *IntunePKCSProfileResponse) GetRequestsPolicy() RequestsPolicy {
+	if o == nil {
+		var ret RequestsPolicy
+		return ret
+	}
+
+	return o.RequestsPolicy
+}
+
+// GetRequestsPolicyOk returns a tuple with the RequestsPolicy field value
+// and a boolean to check if the value has been set.
+func (o *IntunePKCSProfileResponse) GetRequestsPolicyOk() (*RequestsPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RequestsPolicy, true
+}
+
+// SetRequestsPolicy sets field value
+func (o *IntunePKCSProfileResponse) SetRequestsPolicy(v RequestsPolicy) {
+	o.RequestsPolicy = v
+}
+
+// GetCryptoPolicy returns the CryptoPolicy field value
+func (o *IntunePKCSProfileResponse) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
+	if o == nil {
+		var ret ManagedCertificateProfileCryptoPolicy
+		return ret
+	}
+
+	return o.CryptoPolicy
+}
+
+// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
+// and a boolean to check if the value has been set.
+func (o *IntunePKCSProfileResponse) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CryptoPolicy, true
+}
+
+// SetCryptoPolicy sets field value
+func (o *IntunePKCSProfileResponse) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
+	o.CryptoPolicy = v
+}
+
+// GetSelfPermissions returns the SelfPermissions field value
+func (o *IntunePKCSProfileResponse) GetSelfPermissions() CertificateProfileSelfPermissions {
+	if o == nil {
+		var ret CertificateProfileSelfPermissions
+		return ret
+	}
+
+	return o.SelfPermissions
+}
+
+// GetSelfPermissionsOk returns a tuple with the SelfPermissions field value
+// and a boolean to check if the value has been set.
+func (o *IntunePKCSProfileResponse) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SelfPermissions, true
+}
+
+// SetSelfPermissions sets field value
+func (o *IntunePKCSProfileResponse) SetSelfPermissions(v CertificateProfileSelfPermissions) {
+	o.SelfPermissions = v
+}
+
+// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSProfileResponse) GetCertificateTemplate() CertificateTemplate {
+	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
+		var ret CertificateTemplate
+		return ret
+	}
+	return *o.CertificateTemplate.Get()
+}
+
+// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSProfileResponse) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
+}
+
+// HasCertificateTemplate returns a boolean if a field has been set.
+func (o *IntunePKCSProfileResponse) HasCertificateTemplate() bool {
+	if o != nil && o.CertificateTemplate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
+func (o *IntunePKCSProfileResponse) SetCertificateTemplate(v CertificateTemplate) {
+	o.CertificateTemplate.Set(&v)
+}
+
+// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
+func (o *IntunePKCSProfileResponse) SetCertificateTemplateNil() {
+	o.CertificateTemplate.Set(nil)
+}
+
+// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
+func (o *IntunePKCSProfileResponse) UnsetCertificateTemplate() {
+	o.CertificateTemplate.Unset()
+}
+
+// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSProfileResponse) GetGradingPolicies() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.GradingPolicies
+}
+
+// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSProfileResponse) GetGradingPoliciesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.GradingPolicies) {
+		return nil, false
+	}
+	return o.GradingPolicies, true
+}
+
+// HasGradingPolicies returns a boolean if a field has been set.
+func (o *IntunePKCSProfileResponse) HasGradingPolicies() bool {
+	if o != nil && !utils.IsNil(o.GradingPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
+func (o *IntunePKCSProfileResponse) SetGradingPolicies(v []string) {
+	o.GradingPolicies = v
+}
+
+// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSProfileResponse) GetDsFlow() []DataSourceFlowEntry {
+	if o == nil {
+		var ret []DataSourceFlowEntry
+		return ret
+	}
+	return o.DsFlow
+}
+
+// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSProfileResponse) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
+	if o == nil || utils.IsNil(o.DsFlow) {
+		return nil, false
+	}
+	return o.DsFlow, true
+}
+
+// HasDsFlow returns a boolean if a field has been set.
+func (o *IntunePKCSProfileResponse) HasDsFlow() bool {
+	if o != nil && !utils.IsNil(o.DsFlow) {
+		return true
+	}
+
+	return false
+}
+
+// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
+func (o *IntunePKCSProfileResponse) SetDsFlow(v []DataSourceFlowEntry) {
+	o.DsFlow = v
+}
+
+// GetThirdPartyDiscoverySync returns the ThirdPartyDiscoverySync field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSProfileResponse) GetThirdPartyDiscoverySync() bool {
+	if o == nil || utils.IsNil(o.ThirdPartyDiscoverySync.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.ThirdPartyDiscoverySync.Get()
+}
+
+// GetThirdPartyDiscoverySyncOk returns a tuple with the ThirdPartyDiscoverySync field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSProfileResponse) GetThirdPartyDiscoverySyncOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ThirdPartyDiscoverySync.Get(), o.ThirdPartyDiscoverySync.IsSet()
+}
+
+// HasThirdPartyDiscoverySync returns a boolean if a field has been set.
+func (o *IntunePKCSProfileResponse) HasThirdPartyDiscoverySync() bool {
+	if o != nil && o.ThirdPartyDiscoverySync.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetThirdPartyDiscoverySync gets a reference to the given NullableBool and assigns it to the ThirdPartyDiscoverySync field.
+func (o *IntunePKCSProfileResponse) SetThirdPartyDiscoverySync(v bool) {
+	o.ThirdPartyDiscoverySync.Set(&v)
+}
+
+// SetThirdPartyDiscoverySyncNil sets the value for ThirdPartyDiscoverySync to be an explicit nil
+func (o *IntunePKCSProfileResponse) SetThirdPartyDiscoverySyncNil() {
+	o.ThirdPartyDiscoverySync.Set(nil)
+}
+
+// UnsetThirdPartyDiscoverySync ensures that no value is present for ThirdPartyDiscoverySync, not even an explicit nil
+func (o *IntunePKCSProfileResponse) UnsetThirdPartyDiscoverySync() {
+	o.ThirdPartyDiscoverySync.Unset()
+}
+
 func (o IntunePKCSProfileResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -663,41 +712,44 @@ func (o IntunePKCSProfileResponse) MarshalJSON() ([]byte, error) {
 func (o IntunePKCSProfileResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["authorizationLevels"] = o.AuthorizationLevels
-	if o.CertificateTemplate.IsSet() {
-		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
-	}
-	if o.Constraints.IsSet() {
-		toSerialize["constraints"] = o.Constraints.Get()
-	}
-	toSerialize["cryptoPolicy"] = o.CryptoPolicy
-	if o.CsrDataMapping != nil {
-		toSerialize["csrDataMapping"] = o.CsrDataMapping
+	toSerialize["module"] = o.Module
+	toSerialize["name"] = o.Name
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	if o.DsFlow != nil {
-		toSerialize["dsFlow"] = o.DsFlow
-	}
 	toSerialize["enabled"] = o.Enabled
-	if o.GradingPolicies != nil {
-		toSerialize["gradingPolicies"] = o.GradingPolicies
+	toSerialize["pkiConnector"] = o.PkiConnector
+	toSerialize["thirdPartyConnector"] = o.ThirdPartyConnector
+	if o.Constraints.IsSet() {
+		toSerialize["constraints"] = o.Constraints.Get()
+	}
+	if o.CsrDataMapping != nil {
+		toSerialize["csrDataMapping"] = o.CsrDataMapping
 	}
 	if o.MaxCertificatePerHolderPolicy.IsSet() {
 		toSerialize["maxCertificatePerHolderPolicy"] = o.MaxCertificatePerHolderPolicy.Get()
 	}
-	toSerialize["module"] = o.Module
-	toSerialize["name"] = o.Name
-	toSerialize["pkiConnector"] = o.PkiConnector
-	toSerialize["requestsPolicy"] = o.RequestsPolicy
-	toSerialize["selfPermissions"] = o.SelfPermissions
-	toSerialize["thirdPartyConnector"] = o.ThirdPartyConnector
+	toSerialize["authorizationLevels"] = o.AuthorizationLevels
 	if o.Triggers.IsSet() {
 		toSerialize["triggers"] = o.Triggers.Get()
+	}
+	toSerialize["requestsPolicy"] = o.RequestsPolicy
+	toSerialize["cryptoPolicy"] = o.CryptoPolicy
+	toSerialize["selfPermissions"] = o.SelfPermissions
+	if o.CertificateTemplate.IsSet() {
+		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
+	}
+	if o.GradingPolicies != nil {
+		toSerialize["gradingPolicies"] = o.GradingPolicies
+	}
+	if o.DsFlow != nil {
+		toSerialize["dsFlow"] = o.DsFlow
+	}
+	if o.ThirdPartyDiscoverySync.IsSet() {
+		toSerialize["thirdPartyDiscoverySync"] = o.ThirdPartyDiscoverySync.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -713,15 +765,15 @@ func (o *IntunePKCSProfileResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"authorizationLevels",
-		"cryptoPolicy",
-		"enabled",
 		"module",
 		"name",
+		"enabled",
 		"pkiConnector",
-		"requestsPolicy",
-		"selfPermissions",
 		"thirdPartyConnector",
+		"authorizationLevels",
+		"requestsPolicy",
+		"cryptoPolicy",
+		"selfPermissions",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -752,24 +804,25 @@ func (o *IntunePKCSProfileResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "authorizationLevels")
-		delete(additionalProperties, "certificateTemplate")
-		delete(additionalProperties, "constraints")
-		delete(additionalProperties, "cryptoPolicy")
-		delete(additionalProperties, "csrDataMapping")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "dsFlow")
-		delete(additionalProperties, "enabled")
-		delete(additionalProperties, "gradingPolicies")
-		delete(additionalProperties, "maxCertificatePerHolderPolicy")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "pkiConnector")
-		delete(additionalProperties, "requestsPolicy")
-		delete(additionalProperties, "selfPermissions")
 		delete(additionalProperties, "thirdPartyConnector")
+		delete(additionalProperties, "constraints")
+		delete(additionalProperties, "csrDataMapping")
+		delete(additionalProperties, "maxCertificatePerHolderPolicy")
+		delete(additionalProperties, "authorizationLevels")
 		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "requestsPolicy")
+		delete(additionalProperties, "cryptoPolicy")
+		delete(additionalProperties, "selfPermissions")
+		delete(additionalProperties, "certificateTemplate")
+		delete(additionalProperties, "gradingPolicies")
+		delete(additionalProperties, "dsFlow")
+		delete(additionalProperties, "thirdPartyDiscoverySync")
 		o.AdditionalProperties = additionalProperties
 	}
 

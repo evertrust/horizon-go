@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **NullableString** | The description of the role | [optional] 
 **Name** | **string** | The name of the role | 
+**Description** | Pointer to **NullableString** | The description of the role | [optional] 
 **Permissions** | Pointer to [**[]Permission**](Permission.md) | The role&#39;s permissions | [optional] 
 
 ## Methods
@@ -26,6 +26,26 @@ will change when the set of required properties is changed
 NewRoleWithDefaults instantiates a new Role object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetName
+
+`func (o *Role) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *Role) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *Role) SetName(v string)`
+
+SetName sets Name field to given value.
+
 
 ### GetDescription
 
@@ -62,26 +82,6 @@ HasDescription returns a boolean if a field has been set.
 `func (o *Role) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetName
-
-`func (o *Role) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *Role) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *Role) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetPermissions
 
 `func (o *Role) GetPermissions() []Permission`

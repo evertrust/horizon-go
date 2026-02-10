@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &EnforcedIdentityProvider{}
 
 // EnforcedIdentityProvider struct for EnforcedIdentityProvider
 type EnforcedIdentityProvider struct {
-	// The name of the identity provider to be enforced
-	Name string `json:"name"`
 	// The type of identity provider to be enforced
-	Type                 string `json:"type"`
+	Type string `json:"type"`
+	// The name of the identity provider to be enforced
+	Name                 string `json:"name"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,10 +35,10 @@ type _EnforcedIdentityProvider EnforcedIdentityProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEnforcedIdentityProvider(name string, type_ string) *EnforcedIdentityProvider {
+func NewEnforcedIdentityProvider(type_ string, name string) *EnforcedIdentityProvider {
 	this := EnforcedIdentityProvider{}
-	this.Name = name
 	this.Type = type_
+	this.Name = name
 	return &this
 }
 
@@ -48,30 +48,6 @@ func NewEnforcedIdentityProvider(name string, type_ string) *EnforcedIdentityPro
 func NewEnforcedIdentityProviderWithDefaults() *EnforcedIdentityProvider {
 	this := EnforcedIdentityProvider{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *EnforcedIdentityProvider) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *EnforcedIdentityProvider) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *EnforcedIdentityProvider) SetName(v string) {
-	o.Name = v
 }
 
 // GetType returns the Type field value
@@ -98,6 +74,30 @@ func (o *EnforcedIdentityProvider) SetType(v string) {
 	o.Type = v
 }
 
+// GetName returns the Name field value
+func (o *EnforcedIdentityProvider) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *EnforcedIdentityProvider) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *EnforcedIdentityProvider) SetName(v string) {
+	o.Name = v
+}
+
 func (o EnforcedIdentityProvider) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -108,8 +108,8 @@ func (o EnforcedIdentityProvider) MarshalJSON() ([]byte, error) {
 
 func (o EnforcedIdentityProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,8 +123,8 @@ func (o *EnforcedIdentityProvider) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
 		"type",
+		"name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -154,8 +154,8 @@ func (o *EnforcedIdentityProvider) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Domains** | [**[]StaticDomainDictionaryProviderDomainsInner**](StaticDomainDictionaryProviderDomainsInner.md) | The domain dictionaries | 
 **Type** | **string** |  | 
+**Domains** | [**[]StaticDomainDictionaryProviderDomainsInner**](StaticDomainDictionaryProviderDomainsInner.md) | The domain dictionaries | 
 
 ## Methods
 
 ### NewDomainDictionaryProviders
 
-`func NewDomainDictionaryProviders(domains []StaticDomainDictionaryProviderDomainsInner, type_ string, ) *DomainDictionaryProviders`
+`func NewDomainDictionaryProviders(type_ string, domains []StaticDomainDictionaryProviderDomainsInner, ) *DomainDictionaryProviders`
 
 NewDomainDictionaryProviders instantiates a new DomainDictionaryProviders object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewDomainDictionaryProvidersWithDefaults instantiates a new DomainDictionaryProviders object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetDomains
-
-`func (o *DomainDictionaryProviders) GetDomains() []StaticDomainDictionaryProviderDomainsInner`
-
-GetDomains returns the Domains field if non-nil, zero value otherwise.
-
-### GetDomainsOk
-
-`func (o *DomainDictionaryProviders) GetDomainsOk() (*[]StaticDomainDictionaryProviderDomainsInner, bool)`
-
-GetDomainsOk returns a tuple with the Domains field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDomains
-
-`func (o *DomainDictionaryProviders) SetDomains(v []StaticDomainDictionaryProviderDomainsInner)`
-
-SetDomains sets Domains field to given value.
-
 
 ### GetType
 
@@ -64,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *DomainDictionaryProviders) SetType(v string)`
 
 SetType sets Type field to given value.
+
+
+### GetDomains
+
+`func (o *DomainDictionaryProviders) GetDomains() []StaticDomainDictionaryProviderDomainsInner`
+
+GetDomains returns the Domains field if non-nil, zero value otherwise.
+
+### GetDomainsOk
+
+`func (o *DomainDictionaryProviders) GetDomainsOk() (*[]StaticDomainDictionaryProviderDomainsInner, bool)`
+
+GetDomainsOk returns a tuple with the Domains field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomains
+
+`func (o *DomainDictionaryProviders) SetDomains(v []StaticDomainDictionaryProviderDomainsInner)`
+
+SetDomains sets Domains field to given value.
 
 
 

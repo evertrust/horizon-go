@@ -26,12 +26,12 @@ type WebRARevokeRequestOnSubmit struct {
 	CertificateId utils.NullableString `json:"certificateId,omitempty"`
 	// The PEM encoded certificate to revoke
 	CertificatePem utils.NullableString `json:"certificatePem,omitempty"`
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun utils.NullableBool `json:"dryRun,omitempty"`
+	// What this request will do. For a revocation request, this is always `revoke`
+	Workflow string `json:"workflow"`
 	// The user-data that will be used to revoke the certificate
 	Template WebRARevokeRequestTemplate `json:"template"`
-	// What this request will do. For a revocation request, this is always `revoke`
-	Workflow             string `json:"workflow"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,12 +41,12 @@ type _WebRARevokeRequestOnSubmit WebRARevokeRequestOnSubmit
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRARevokeRequestOnSubmit(template WebRARevokeRequestTemplate, workflow string) *WebRARevokeRequestOnSubmit {
+func NewWebRARevokeRequestOnSubmit(workflow string, template WebRARevokeRequestTemplate) *WebRARevokeRequestOnSubmit {
 	this := WebRARevokeRequestOnSubmit{}
+	this.Workflow = workflow
+	this.Template = template
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
-	this.Template = template
-	this.Workflow = workflow
 	return &this
 }
 
@@ -146,6 +146,54 @@ func (o *WebRARevokeRequestOnSubmit) UnsetCertificatePem() {
 	o.CertificatePem.Unset()
 }
 
+// GetWorkflow returns the Workflow field value
+func (o *WebRARevokeRequestOnSubmit) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRARevokeRequestOnSubmit) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRARevokeRequestOnSubmit) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
+// GetTemplate returns the Template field value
+func (o *WebRARevokeRequestOnSubmit) GetTemplate() WebRARevokeRequestTemplate {
+	if o == nil {
+		var ret WebRARevokeRequestTemplate
+		return ret
+	}
+
+	return o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value
+// and a boolean to check if the value has been set.
+func (o *WebRARevokeRequestOnSubmit) GetTemplateOk() (*WebRARevokeRequestTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Template, true
+}
+
+// SetTemplate sets field value
+func (o *WebRARevokeRequestOnSubmit) SetTemplate(v WebRARevokeRequestTemplate) {
+	o.Template = v
+}
+
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRARevokeRequestOnSubmit) GetDryRun() bool {
 	if o == nil || utils.IsNil(o.DryRun.Get()) {
@@ -189,54 +237,6 @@ func (o *WebRARevokeRequestOnSubmit) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
-// GetTemplate returns the Template field value
-func (o *WebRARevokeRequestOnSubmit) GetTemplate() WebRARevokeRequestTemplate {
-	if o == nil {
-		var ret WebRARevokeRequestTemplate
-		return ret
-	}
-
-	return o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value
-// and a boolean to check if the value has been set.
-func (o *WebRARevokeRequestOnSubmit) GetTemplateOk() (*WebRARevokeRequestTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Template, true
-}
-
-// SetTemplate sets field value
-func (o *WebRARevokeRequestOnSubmit) SetTemplate(v WebRARevokeRequestTemplate) {
-	o.Template = v
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRARevokeRequestOnSubmit) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRARevokeRequestOnSubmit) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRARevokeRequestOnSubmit) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
 func (o WebRARevokeRequestOnSubmit) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -253,11 +253,11 @@ func (o WebRARevokeRequestOnSubmit) ToMap() (map[string]interface{}, error) {
 	if o.CertificatePem.IsSet() {
 		toSerialize["certificatePem"] = o.CertificatePem.Get()
 	}
+	toSerialize["workflow"] = o.Workflow
+	toSerialize["template"] = o.Template
 	if o.DryRun.IsSet() {
 		toSerialize["dryRun"] = o.DryRun.Get()
 	}
-	toSerialize["template"] = o.Template
-	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -271,8 +271,8 @@ func (o *WebRARevokeRequestOnSubmit) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"template",
 		"workflow",
+		"template",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -304,9 +304,9 @@ func (o *WebRARevokeRequestOnSubmit) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "certificatePem")
-		delete(additionalProperties, "dryRun")
-		delete(additionalProperties, "template")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "template")
+		delete(additionalProperties, "dryRun")
 		o.AdditionalProperties = additionalProperties
 	}
 

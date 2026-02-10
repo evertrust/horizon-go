@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EnrollFailure** | Pointer to **NullableInt64** |  | [optional] 
 **EnrollSuccess** | Pointer to **NullableInt64** |  | [optional] 
-**RenewFailure** | Pointer to **NullableInt64** |  | [optional] 
+**EnrollFailure** | Pointer to **NullableInt64** |  | [optional] 
 **RenewSuccess** | Pointer to **NullableInt64** |  | [optional] 
-**RevokeFailure** | Pointer to **NullableInt64** |  | [optional] 
+**RenewFailure** | Pointer to **NullableInt64** |  | [optional] 
 **RevokeSuccess** | Pointer to **NullableInt64** |  | [optional] 
+**RevokeFailure** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
 
@@ -30,41 +30,6 @@ NewThirdPartyConnectorSynchronizationResultWithDefaults instantiates a new Third
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetEnrollFailure
-
-`func (o *ThirdPartyConnectorSynchronizationResult) GetEnrollFailure() int64`
-
-GetEnrollFailure returns the EnrollFailure field if non-nil, zero value otherwise.
-
-### GetEnrollFailureOk
-
-`func (o *ThirdPartyConnectorSynchronizationResult) GetEnrollFailureOk() (*int64, bool)`
-
-GetEnrollFailureOk returns a tuple with the EnrollFailure field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnrollFailure
-
-`func (o *ThirdPartyConnectorSynchronizationResult) SetEnrollFailure(v int64)`
-
-SetEnrollFailure sets EnrollFailure field to given value.
-
-### HasEnrollFailure
-
-`func (o *ThirdPartyConnectorSynchronizationResult) HasEnrollFailure() bool`
-
-HasEnrollFailure returns a boolean if a field has been set.
-
-### SetEnrollFailureNil
-
-`func (o *ThirdPartyConnectorSynchronizationResult) SetEnrollFailureNil(b bool)`
-
- SetEnrollFailureNil sets the value for EnrollFailure to be an explicit nil
-
-### UnsetEnrollFailure
-`func (o *ThirdPartyConnectorSynchronizationResult) UnsetEnrollFailure()`
-
-UnsetEnrollFailure ensures that no value is present for EnrollFailure, not even an explicit nil
 ### GetEnrollSuccess
 
 `func (o *ThirdPartyConnectorSynchronizationResult) GetEnrollSuccess() int64`
@@ -100,41 +65,41 @@ HasEnrollSuccess returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectorSynchronizationResult) UnsetEnrollSuccess()`
 
 UnsetEnrollSuccess ensures that no value is present for EnrollSuccess, not even an explicit nil
-### GetRenewFailure
+### GetEnrollFailure
 
-`func (o *ThirdPartyConnectorSynchronizationResult) GetRenewFailure() int64`
+`func (o *ThirdPartyConnectorSynchronizationResult) GetEnrollFailure() int64`
 
-GetRenewFailure returns the RenewFailure field if non-nil, zero value otherwise.
+GetEnrollFailure returns the EnrollFailure field if non-nil, zero value otherwise.
 
-### GetRenewFailureOk
+### GetEnrollFailureOk
 
-`func (o *ThirdPartyConnectorSynchronizationResult) GetRenewFailureOk() (*int64, bool)`
+`func (o *ThirdPartyConnectorSynchronizationResult) GetEnrollFailureOk() (*int64, bool)`
 
-GetRenewFailureOk returns a tuple with the RenewFailure field if it's non-nil, zero value otherwise
+GetEnrollFailureOk returns a tuple with the EnrollFailure field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRenewFailure
+### SetEnrollFailure
 
-`func (o *ThirdPartyConnectorSynchronizationResult) SetRenewFailure(v int64)`
+`func (o *ThirdPartyConnectorSynchronizationResult) SetEnrollFailure(v int64)`
 
-SetRenewFailure sets RenewFailure field to given value.
+SetEnrollFailure sets EnrollFailure field to given value.
 
-### HasRenewFailure
+### HasEnrollFailure
 
-`func (o *ThirdPartyConnectorSynchronizationResult) HasRenewFailure() bool`
+`func (o *ThirdPartyConnectorSynchronizationResult) HasEnrollFailure() bool`
 
-HasRenewFailure returns a boolean if a field has been set.
+HasEnrollFailure returns a boolean if a field has been set.
 
-### SetRenewFailureNil
+### SetEnrollFailureNil
 
-`func (o *ThirdPartyConnectorSynchronizationResult) SetRenewFailureNil(b bool)`
+`func (o *ThirdPartyConnectorSynchronizationResult) SetEnrollFailureNil(b bool)`
 
- SetRenewFailureNil sets the value for RenewFailure to be an explicit nil
+ SetEnrollFailureNil sets the value for EnrollFailure to be an explicit nil
 
-### UnsetRenewFailure
-`func (o *ThirdPartyConnectorSynchronizationResult) UnsetRenewFailure()`
+### UnsetEnrollFailure
+`func (o *ThirdPartyConnectorSynchronizationResult) UnsetEnrollFailure()`
 
-UnsetRenewFailure ensures that no value is present for RenewFailure, not even an explicit nil
+UnsetEnrollFailure ensures that no value is present for EnrollFailure, not even an explicit nil
 ### GetRenewSuccess
 
 `func (o *ThirdPartyConnectorSynchronizationResult) GetRenewSuccess() int64`
@@ -170,41 +135,41 @@ HasRenewSuccess returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectorSynchronizationResult) UnsetRenewSuccess()`
 
 UnsetRenewSuccess ensures that no value is present for RenewSuccess, not even an explicit nil
-### GetRevokeFailure
+### GetRenewFailure
 
-`func (o *ThirdPartyConnectorSynchronizationResult) GetRevokeFailure() int64`
+`func (o *ThirdPartyConnectorSynchronizationResult) GetRenewFailure() int64`
 
-GetRevokeFailure returns the RevokeFailure field if non-nil, zero value otherwise.
+GetRenewFailure returns the RenewFailure field if non-nil, zero value otherwise.
 
-### GetRevokeFailureOk
+### GetRenewFailureOk
 
-`func (o *ThirdPartyConnectorSynchronizationResult) GetRevokeFailureOk() (*int64, bool)`
+`func (o *ThirdPartyConnectorSynchronizationResult) GetRenewFailureOk() (*int64, bool)`
 
-GetRevokeFailureOk returns a tuple with the RevokeFailure field if it's non-nil, zero value otherwise
+GetRenewFailureOk returns a tuple with the RenewFailure field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRevokeFailure
+### SetRenewFailure
 
-`func (o *ThirdPartyConnectorSynchronizationResult) SetRevokeFailure(v int64)`
+`func (o *ThirdPartyConnectorSynchronizationResult) SetRenewFailure(v int64)`
 
-SetRevokeFailure sets RevokeFailure field to given value.
+SetRenewFailure sets RenewFailure field to given value.
 
-### HasRevokeFailure
+### HasRenewFailure
 
-`func (o *ThirdPartyConnectorSynchronizationResult) HasRevokeFailure() bool`
+`func (o *ThirdPartyConnectorSynchronizationResult) HasRenewFailure() bool`
 
-HasRevokeFailure returns a boolean if a field has been set.
+HasRenewFailure returns a boolean if a field has been set.
 
-### SetRevokeFailureNil
+### SetRenewFailureNil
 
-`func (o *ThirdPartyConnectorSynchronizationResult) SetRevokeFailureNil(b bool)`
+`func (o *ThirdPartyConnectorSynchronizationResult) SetRenewFailureNil(b bool)`
 
- SetRevokeFailureNil sets the value for RevokeFailure to be an explicit nil
+ SetRenewFailureNil sets the value for RenewFailure to be an explicit nil
 
-### UnsetRevokeFailure
-`func (o *ThirdPartyConnectorSynchronizationResult) UnsetRevokeFailure()`
+### UnsetRenewFailure
+`func (o *ThirdPartyConnectorSynchronizationResult) UnsetRenewFailure()`
 
-UnsetRevokeFailure ensures that no value is present for RevokeFailure, not even an explicit nil
+UnsetRenewFailure ensures that no value is present for RenewFailure, not even an explicit nil
 ### GetRevokeSuccess
 
 `func (o *ThirdPartyConnectorSynchronizationResult) GetRevokeSuccess() int64`
@@ -240,6 +205,41 @@ HasRevokeSuccess returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectorSynchronizationResult) UnsetRevokeSuccess()`
 
 UnsetRevokeSuccess ensures that no value is present for RevokeSuccess, not even an explicit nil
+### GetRevokeFailure
+
+`func (o *ThirdPartyConnectorSynchronizationResult) GetRevokeFailure() int64`
+
+GetRevokeFailure returns the RevokeFailure field if non-nil, zero value otherwise.
+
+### GetRevokeFailureOk
+
+`func (o *ThirdPartyConnectorSynchronizationResult) GetRevokeFailureOk() (*int64, bool)`
+
+GetRevokeFailureOk returns a tuple with the RevokeFailure field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevokeFailure
+
+`func (o *ThirdPartyConnectorSynchronizationResult) SetRevokeFailure(v int64)`
+
+SetRevokeFailure sets RevokeFailure field to given value.
+
+### HasRevokeFailure
+
+`func (o *ThirdPartyConnectorSynchronizationResult) HasRevokeFailure() bool`
+
+HasRevokeFailure returns a boolean if a field has been set.
+
+### SetRevokeFailureNil
+
+`func (o *ThirdPartyConnectorSynchronizationResult) SetRevokeFailureNil(b bool)`
+
+ SetRevokeFailureNil sets the value for RevokeFailure to be an explicit nil
+
+### UnsetRevokeFailure
+`func (o *ThirdPartyConnectorSynchronizationResult) UnsetRevokeFailure()`
+
+UnsetRevokeFailure ensures that no value is present for RevokeFailure, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

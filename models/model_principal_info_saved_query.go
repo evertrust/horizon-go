@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &PrincipalInfoSavedQuery{}
 
 // PrincipalInfoSavedQuery struct for PrincipalInfoSavedQuery
 type PrincipalInfoSavedQuery struct {
-	// The saved request description
-	Description utils.NullableString `json:"description,omitempty"`
-	// Internal name of the saved request
-	Name string `json:"name"`
+	// The type of the query
+	Type string `json:"type"`
 	// The saved HQL query
 	Query string `json:"query"`
-	// The type of the query
-	Type                 string `json:"type"`
+	// Internal name of the saved request
+	Name string `json:"name"`
+	// The saved request description
+	Description          utils.NullableString `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,11 +39,11 @@ type _PrincipalInfoSavedQuery PrincipalInfoSavedQuery
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrincipalInfoSavedQuery(name string, query string, type_ string) *PrincipalInfoSavedQuery {
+func NewPrincipalInfoSavedQuery(type_ string, query string, name string) *PrincipalInfoSavedQuery {
 	this := PrincipalInfoSavedQuery{}
-	this.Name = name
-	this.Query = query
 	this.Type = type_
+	this.Query = query
+	this.Name = name
 	return &this
 }
 
@@ -53,6 +53,78 @@ func NewPrincipalInfoSavedQuery(name string, query string, type_ string) *Princi
 func NewPrincipalInfoSavedQueryWithDefaults() *PrincipalInfoSavedQuery {
 	this := PrincipalInfoSavedQuery{}
 	return &this
+}
+
+// GetType returns the Type field value
+func (o *PrincipalInfoSavedQuery) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *PrincipalInfoSavedQuery) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *PrincipalInfoSavedQuery) SetType(v string) {
+	o.Type = v
+}
+
+// GetQuery returns the Query field value
+func (o *PrincipalInfoSavedQuery) GetQuery() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Query
+}
+
+// GetQueryOk returns a tuple with the Query field value
+// and a boolean to check if the value has been set.
+func (o *PrincipalInfoSavedQuery) GetQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Query, true
+}
+
+// SetQuery sets field value
+func (o *PrincipalInfoSavedQuery) SetQuery(v string) {
+	o.Query = v
+}
+
+// GetName returns the Name field value
+func (o *PrincipalInfoSavedQuery) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *PrincipalInfoSavedQuery) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *PrincipalInfoSavedQuery) SetName(v string) {
+	o.Name = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -98,78 +170,6 @@ func (o *PrincipalInfoSavedQuery) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetName returns the Name field value
-func (o *PrincipalInfoSavedQuery) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *PrincipalInfoSavedQuery) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *PrincipalInfoSavedQuery) SetName(v string) {
-	o.Name = v
-}
-
-// GetQuery returns the Query field value
-func (o *PrincipalInfoSavedQuery) GetQuery() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Query
-}
-
-// GetQueryOk returns a tuple with the Query field value
-// and a boolean to check if the value has been set.
-func (o *PrincipalInfoSavedQuery) GetQueryOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Query, true
-}
-
-// SetQuery sets field value
-func (o *PrincipalInfoSavedQuery) SetQuery(v string) {
-	o.Query = v
-}
-
-// GetType returns the Type field value
-func (o *PrincipalInfoSavedQuery) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *PrincipalInfoSavedQuery) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *PrincipalInfoSavedQuery) SetType(v string) {
-	o.Type = v
-}
-
 func (o PrincipalInfoSavedQuery) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -180,12 +180,12 @@ func (o PrincipalInfoSavedQuery) MarshalJSON() ([]byte, error) {
 
 func (o PrincipalInfoSavedQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	toSerialize["query"] = o.Query
+	toSerialize["name"] = o.Name
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["query"] = o.Query
-	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -199,9 +199,9 @@ func (o *PrincipalInfoSavedQuery) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
-		"query",
 		"type",
+		"query",
+		"name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -231,10 +231,10 @@ func (o *PrincipalInfoSavedQuery) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "query")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "query")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
 		o.AdditionalProperties = additionalProperties
 	}
 

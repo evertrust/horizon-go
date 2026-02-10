@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &RequestAggregateResultResponse{}
 
 // RequestAggregateResultResponse struct for RequestAggregateResultResponse
 type RequestAggregateResultResponse struct {
-	// The total number of requests matching the query
-	Count utils.NullableInt64 `json:"count,omitempty"`
 	// All the groups in this aggregate
-	Items                []RequestAggregateResultResponseItemsInner `json:"items"`
+	Items []RequestAggregateResultResponseItemsInner `json:"items"`
+	// The total number of requests matching the query
+	Count                utils.NullableInt64 `json:"count,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,6 +47,30 @@ func NewRequestAggregateResultResponse(items []RequestAggregateResultResponseIte
 func NewRequestAggregateResultResponseWithDefaults() *RequestAggregateResultResponse {
 	this := RequestAggregateResultResponse{}
 	return &this
+}
+
+// GetItems returns the Items field value
+func (o *RequestAggregateResultResponse) GetItems() []RequestAggregateResultResponseItemsInner {
+	if o == nil {
+		var ret []RequestAggregateResultResponseItemsInner
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *RequestAggregateResultResponse) GetItemsOk() ([]RequestAggregateResultResponseItemsInner, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *RequestAggregateResultResponse) SetItems(v []RequestAggregateResultResponseItemsInner) {
+	o.Items = v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -92,30 +116,6 @@ func (o *RequestAggregateResultResponse) UnsetCount() {
 	o.Count.Unset()
 }
 
-// GetItems returns the Items field value
-func (o *RequestAggregateResultResponse) GetItems() []RequestAggregateResultResponseItemsInner {
-	if o == nil {
-		var ret []RequestAggregateResultResponseItemsInner
-		return ret
-	}
-
-	return o.Items
-}
-
-// GetItemsOk returns a tuple with the Items field value
-// and a boolean to check if the value has been set.
-func (o *RequestAggregateResultResponse) GetItemsOk() ([]RequestAggregateResultResponseItemsInner, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
-}
-
-// SetItems sets field value
-func (o *RequestAggregateResultResponse) SetItems(v []RequestAggregateResultResponseItemsInner) {
-	o.Items = v
-}
-
 func (o RequestAggregateResultResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -126,10 +126,10 @@ func (o RequestAggregateResultResponse) MarshalJSON() ([]byte, error) {
 
 func (o RequestAggregateResultResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["items"] = o.Items
 	if o.Count.IsSet() {
 		toSerialize["count"] = o.Count.Get()
 	}
-	toSerialize["items"] = o.Items
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -173,8 +173,8 @@ func (o *RequestAggregateResultResponse) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "count")
 		delete(additionalProperties, "items")
+		delete(additionalProperties, "count")
 		o.AdditionalProperties = additionalProperties
 	}
 

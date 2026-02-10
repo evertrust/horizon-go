@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &Role{}
 
 // Role struct for Role
 type Role struct {
-	// The description of the role
-	Description utils.NullableString `json:"description,omitempty"`
 	// The name of the role
 	Name string `json:"name"`
+	// The description of the role
+	Description utils.NullableString `json:"description,omitempty"`
 	// The role's permissions
 	Permissions          []Permission `json:"permissions,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -49,6 +49,30 @@ func NewRole(name string) *Role {
 func NewRoleWithDefaults() *Role {
 	this := Role{}
 	return &this
+}
+
+// GetName returns the Name field value
+func (o *Role) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Role) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *Role) SetName(v string) {
+	o.Name = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -94,30 +118,6 @@ func (o *Role) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetName returns the Name field value
-func (o *Role) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *Role) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *Role) SetName(v string) {
-	o.Name = v
-}
-
 // GetPermissions returns the Permissions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Role) GetPermissions() []Permission {
 	if o == nil {
@@ -161,10 +161,10 @@ func (o Role) MarshalJSON() ([]byte, error) {
 
 func (o Role) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	toSerialize["name"] = o.Name
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions
 	}
@@ -211,8 +211,8 @@ func (o *Role) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "permissions")
 		o.AdditionalProperties = additionalProperties
 	}

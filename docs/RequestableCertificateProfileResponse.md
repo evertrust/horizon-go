@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Capabilities** | [**CertificateProfileCapabilities**](CertificateProfileCapabilities.md) | Crypto information about this profile | 
-**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized description of the profile | [optional] 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the profile | [optional] 
-**Module** | **string** | The module of the profile | 
 **Name** | **string** | The name of the profile | 
+**Module** | **string** | The module of the profile | 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the profile | [optional] 
+**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized description of the profile | [optional] 
 **Workflows** | [**[]RequestableWorkflow**](RequestableWorkflow.md) | The list of workflows on this profile and the principals permission on them | 
+**Capabilities** | [**CertificateProfileCapabilities**](CertificateProfileCapabilities.md) | Crypto information about this profile | 
 
 ## Methods
 
 ### NewRequestableCertificateProfileResponse
 
-`func NewRequestableCertificateProfileResponse(capabilities CertificateProfileCapabilities, module string, name string, workflows []RequestableWorkflow, ) *RequestableCertificateProfileResponse`
+`func NewRequestableCertificateProfileResponse(name string, module string, workflows []RequestableWorkflow, capabilities CertificateProfileCapabilities, ) *RequestableCertificateProfileResponse`
 
 NewRequestableCertificateProfileResponse instantiates a new RequestableCertificateProfileResponse object
 This constructor will assign default values to properties that have it defined,
@@ -30,61 +30,46 @@ NewRequestableCertificateProfileResponseWithDefaults instantiates a new Requesta
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCapabilities
+### GetName
 
-`func (o *RequestableCertificateProfileResponse) GetCapabilities() CertificateProfileCapabilities`
+`func (o *RequestableCertificateProfileResponse) GetName() string`
 
-GetCapabilities returns the Capabilities field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetCapabilitiesOk
+### GetNameOk
 
-`func (o *RequestableCertificateProfileResponse) GetCapabilitiesOk() (*CertificateProfileCapabilities, bool)`
+`func (o *RequestableCertificateProfileResponse) GetNameOk() (*string, bool)`
 
-GetCapabilitiesOk returns a tuple with the Capabilities field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCapabilities
+### SetName
 
-`func (o *RequestableCertificateProfileResponse) SetCapabilities(v CertificateProfileCapabilities)`
+`func (o *RequestableCertificateProfileResponse) SetName(v string)`
 
-SetCapabilities sets Capabilities field to given value.
+SetName sets Name field to given value.
 
 
-### GetDescription
+### GetModule
 
-`func (o *RequestableCertificateProfileResponse) GetDescription() []LocalizedString`
+`func (o *RequestableCertificateProfileResponse) GetModule() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetModule returns the Module field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetModuleOk
 
-`func (o *RequestableCertificateProfileResponse) GetDescriptionOk() (*[]LocalizedString, bool)`
+`func (o *RequestableCertificateProfileResponse) GetModuleOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetModule
 
-`func (o *RequestableCertificateProfileResponse) SetDescription(v []LocalizedString)`
+`func (o *RequestableCertificateProfileResponse) SetModule(v string)`
 
-SetDescription sets Description field to given value.
+SetModule sets Module field to given value.
 
-### HasDescription
 
-`func (o *RequestableCertificateProfileResponse) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescriptionNil
-
-`func (o *RequestableCertificateProfileResponse) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *RequestableCertificateProfileResponse) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetDisplayName
 
 `func (o *RequestableCertificateProfileResponse) GetDisplayName() []LocalizedString`
@@ -120,46 +105,41 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *RequestableCertificateProfileResponse) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetModule
+### GetDescription
 
-`func (o *RequestableCertificateProfileResponse) GetModule() string`
+`func (o *RequestableCertificateProfileResponse) GetDescription() []LocalizedString`
 
-GetModule returns the Module field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetModuleOk
+### GetDescriptionOk
 
-`func (o *RequestableCertificateProfileResponse) GetModuleOk() (*string, bool)`
+`func (o *RequestableCertificateProfileResponse) GetDescriptionOk() (*[]LocalizedString, bool)`
 
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetModule
+### SetDescription
 
-`func (o *RequestableCertificateProfileResponse) SetModule(v string)`
+`func (o *RequestableCertificateProfileResponse) SetDescription(v []LocalizedString)`
 
-SetModule sets Module field to given value.
+SetDescription sets Description field to given value.
 
+### HasDescription
 
-### GetName
+`func (o *RequestableCertificateProfileResponse) HasDescription() bool`
 
-`func (o *RequestableCertificateProfileResponse) GetName() string`
+HasDescription returns a boolean if a field has been set.
 
-GetName returns the Name field if non-nil, zero value otherwise.
+### SetDescriptionNil
 
-### GetNameOk
+`func (o *RequestableCertificateProfileResponse) SetDescriptionNil(b bool)`
 
-`func (o *RequestableCertificateProfileResponse) GetNameOk() (*string, bool)`
+ SetDescriptionNil sets the value for Description to be an explicit nil
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetDescription
+`func (o *RequestableCertificateProfileResponse) UnsetDescription()`
 
-### SetName
-
-`func (o *RequestableCertificateProfileResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetWorkflows
 
 `func (o *RequestableCertificateProfileResponse) GetWorkflows() []RequestableWorkflow`
@@ -178,6 +158,26 @@ and a boolean to check if the value has been set.
 `func (o *RequestableCertificateProfileResponse) SetWorkflows(v []RequestableWorkflow)`
 
 SetWorkflows sets Workflows field to given value.
+
+
+### GetCapabilities
+
+`func (o *RequestableCertificateProfileResponse) GetCapabilities() CertificateProfileCapabilities`
+
+GetCapabilities returns the Capabilities field if non-nil, zero value otherwise.
+
+### GetCapabilitiesOk
+
+`func (o *RequestableCertificateProfileResponse) GetCapabilitiesOk() (*CertificateProfileCapabilities, bool)`
+
+GetCapabilitiesOk returns a tuple with the Capabilities field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCapabilities
+
+`func (o *RequestableCertificateProfileResponse) SetCapabilities(v CertificateProfileCapabilities)`
+
+SetCapabilities sets Capabilities field to given value.
 
 
 

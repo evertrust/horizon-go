@@ -21,14 +21,14 @@ var _ utils.MappedNullable = &PrincipalInfoPreferences{}
 
 // PrincipalInfoPreferences struct for PrincipalInfoPreferences
 type PrincipalInfoPreferences struct {
-	// The user's preferred columns on certificate view
-	CertificateFields []string `json:"certificateFields,omitempty"`
 	// Dark Mode is enabled on UI for this user
 	DarkMode utils.NullableBool `json:"darkMode,omitempty"`
 	// Expert mode is enabled on UI for this user
 	ExpertMode *bool `json:"expertMode,omitempty"`
 	// The preferred language of the user
 	Lang utils.NullableString `json:"lang,omitempty"`
+	// The user's preferred columns on certificate view
+	CertificateFields []string `json:"certificateFields,omitempty"`
 	// The user's preferred columns on request view
 	RequestFields        []string `json:"requestFields,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -59,39 +59,6 @@ func NewPrincipalInfoPreferencesWithDefaults() *PrincipalInfoPreferences {
 	var expertMode bool = false
 	this.ExpertMode = &expertMode
 	return &this
-}
-
-// GetCertificateFields returns the CertificateFields field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoPreferences) GetCertificateFields() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.CertificateFields
-}
-
-// GetCertificateFieldsOk returns a tuple with the CertificateFields field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoPreferences) GetCertificateFieldsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.CertificateFields) {
-		return nil, false
-	}
-	return o.CertificateFields, true
-}
-
-// HasCertificateFields returns a boolean if a field has been set.
-func (o *PrincipalInfoPreferences) HasCertificateFields() bool {
-	if o != nil && !utils.IsNil(o.CertificateFields) {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificateFields gets a reference to the given []string and assigns it to the CertificateFields field.
-func (o *PrincipalInfoPreferences) SetCertificateFields(v []string) {
-	o.CertificateFields = v
 }
 
 // GetDarkMode returns the DarkMode field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -212,6 +179,39 @@ func (o *PrincipalInfoPreferences) UnsetLang() {
 	o.Lang.Unset()
 }
 
+// GetCertificateFields returns the CertificateFields field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoPreferences) GetCertificateFields() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.CertificateFields
+}
+
+// GetCertificateFieldsOk returns a tuple with the CertificateFields field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoPreferences) GetCertificateFieldsOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.CertificateFields) {
+		return nil, false
+	}
+	return o.CertificateFields, true
+}
+
+// HasCertificateFields returns a boolean if a field has been set.
+func (o *PrincipalInfoPreferences) HasCertificateFields() bool {
+	if o != nil && !utils.IsNil(o.CertificateFields) {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateFields gets a reference to the given []string and assigns it to the CertificateFields field.
+func (o *PrincipalInfoPreferences) SetCertificateFields(v []string) {
+	o.CertificateFields = v
+}
+
 // GetRequestFields returns the RequestFields field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PrincipalInfoPreferences) GetRequestFields() []string {
 	if o == nil {
@@ -255,9 +255,6 @@ func (o PrincipalInfoPreferences) MarshalJSON() ([]byte, error) {
 
 func (o PrincipalInfoPreferences) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CertificateFields != nil {
-		toSerialize["certificateFields"] = o.CertificateFields
-	}
 	if o.DarkMode.IsSet() {
 		toSerialize["darkMode"] = o.DarkMode.Get()
 	}
@@ -266,6 +263,9 @@ func (o PrincipalInfoPreferences) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Lang.IsSet() {
 		toSerialize["lang"] = o.Lang.Get()
+	}
+	if o.CertificateFields != nil {
+		toSerialize["certificateFields"] = o.CertificateFields
 	}
 	if o.RequestFields != nil {
 		toSerialize["requestFields"] = o.RequestFields
@@ -292,10 +292,10 @@ func (o *PrincipalInfoPreferences) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "certificateFields")
 		delete(additionalProperties, "darkMode")
 		delete(additionalProperties, "expertMode")
 		delete(additionalProperties, "lang")
+		delete(additionalProperties, "certificateFields")
 		delete(additionalProperties, "requestFields")
 		o.AdditionalProperties = additionalProperties
 	}

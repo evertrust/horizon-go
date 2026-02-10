@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Contact** | Pointer to **NullableString** | The mail of the principal matching the search | [optional] 
 **Identifier** | **string** | The identifier of the principal matching the search | 
-**ProviderName** | **string** | The name of the identity provider on which this user is registered | 
+**Contact** | Pointer to **NullableString** | The mail of the principal matching the search | [optional] 
 **ProviderType** | **string** | The type of the identity provider on which this user is registered | 
+**ProviderName** | **string** | The name of the identity provider on which this user is registered | 
 
 ## Methods
 
 ### NewPrincipalInfoSearchResultResponse
 
-`func NewPrincipalInfoSearchResultResponse(identifier string, providerName string, providerType string, ) *PrincipalInfoSearchResultResponse`
+`func NewPrincipalInfoSearchResultResponse(identifier string, providerType string, providerName string, ) *PrincipalInfoSearchResultResponse`
 
 NewPrincipalInfoSearchResultResponse instantiates a new PrincipalInfoSearchResultResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,26 @@ will change when the set of required properties is changed
 NewPrincipalInfoSearchResultResponseWithDefaults instantiates a new PrincipalInfoSearchResultResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetIdentifier
+
+`func (o *PrincipalInfoSearchResultResponse) GetIdentifier() string`
+
+GetIdentifier returns the Identifier field if non-nil, zero value otherwise.
+
+### GetIdentifierOk
+
+`func (o *PrincipalInfoSearchResultResponse) GetIdentifierOk() (*string, bool)`
+
+GetIdentifierOk returns a tuple with the Identifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdentifier
+
+`func (o *PrincipalInfoSearchResultResponse) SetIdentifier(v string)`
+
+SetIdentifier sets Identifier field to given value.
+
 
 ### GetContact
 
@@ -63,24 +83,24 @@ HasContact returns a boolean if a field has been set.
 `func (o *PrincipalInfoSearchResultResponse) UnsetContact()`
 
 UnsetContact ensures that no value is present for Contact, not even an explicit nil
-### GetIdentifier
+### GetProviderType
 
-`func (o *PrincipalInfoSearchResultResponse) GetIdentifier() string`
+`func (o *PrincipalInfoSearchResultResponse) GetProviderType() string`
 
-GetIdentifier returns the Identifier field if non-nil, zero value otherwise.
+GetProviderType returns the ProviderType field if non-nil, zero value otherwise.
 
-### GetIdentifierOk
+### GetProviderTypeOk
 
-`func (o *PrincipalInfoSearchResultResponse) GetIdentifierOk() (*string, bool)`
+`func (o *PrincipalInfoSearchResultResponse) GetProviderTypeOk() (*string, bool)`
 
-GetIdentifierOk returns a tuple with the Identifier field if it's non-nil, zero value otherwise
+GetProviderTypeOk returns a tuple with the ProviderType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIdentifier
+### SetProviderType
 
-`func (o *PrincipalInfoSearchResultResponse) SetIdentifier(v string)`
+`func (o *PrincipalInfoSearchResultResponse) SetProviderType(v string)`
 
-SetIdentifier sets Identifier field to given value.
+SetProviderType sets ProviderType field to given value.
 
 
 ### GetProviderName
@@ -101,26 +121,6 @@ and a boolean to check if the value has been set.
 `func (o *PrincipalInfoSearchResultResponse) SetProviderName(v string)`
 
 SetProviderName sets ProviderName field to given value.
-
-
-### GetProviderType
-
-`func (o *PrincipalInfoSearchResultResponse) GetProviderType() string`
-
-GetProviderType returns the ProviderType field if non-nil, zero value otherwise.
-
-### GetProviderTypeOk
-
-`func (o *PrincipalInfoSearchResultResponse) GetProviderTypeOk() (*string, bool)`
-
-GetProviderTypeOk returns a tuple with the ProviderType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProviderType
-
-`func (o *PrincipalInfoSearchResultResponse) SetProviderType(v string)`
-
-SetProviderType sets ProviderType field to given value.
 
 
 

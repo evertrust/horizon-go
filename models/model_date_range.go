@@ -22,8 +22,8 @@ var _ utils.MappedNullable = &DateRange{}
 
 // DateRange struct for DateRange
 type DateRange struct {
-	End                  string `json:"end"`
 	Start                string `json:"start"`
+	End                  string `json:"end"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +33,10 @@ type _DateRange DateRange
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDateRange(end string, start string) *DateRange {
+func NewDateRange(start string, end string) *DateRange {
 	this := DateRange{}
-	this.End = end
 	this.Start = start
+	this.End = end
 	return &this
 }
 
@@ -46,30 +46,6 @@ func NewDateRange(end string, start string) *DateRange {
 func NewDateRangeWithDefaults() *DateRange {
 	this := DateRange{}
 	return &this
-}
-
-// GetEnd returns the End field value
-func (o *DateRange) GetEnd() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.End
-}
-
-// GetEndOk returns a tuple with the End field value
-// and a boolean to check if the value has been set.
-func (o *DateRange) GetEndOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.End, true
-}
-
-// SetEnd sets field value
-func (o *DateRange) SetEnd(v string) {
-	o.End = v
 }
 
 // GetStart returns the Start field value
@@ -96,6 +72,30 @@ func (o *DateRange) SetStart(v string) {
 	o.Start = v
 }
 
+// GetEnd returns the End field value
+func (o *DateRange) GetEnd() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.End
+}
+
+// GetEndOk returns a tuple with the End field value
+// and a boolean to check if the value has been set.
+func (o *DateRange) GetEndOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.End, true
+}
+
+// SetEnd sets field value
+func (o *DateRange) SetEnd(v string) {
+	o.End = v
+}
+
 func (o DateRange) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -106,8 +106,8 @@ func (o DateRange) MarshalJSON() ([]byte, error) {
 
 func (o DateRange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["end"] = o.End
 	toSerialize["start"] = o.Start
+	toSerialize["end"] = o.End
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -121,8 +121,8 @@ func (o *DateRange) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"end",
 		"start",
+		"end",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -152,8 +152,8 @@ func (o *DateRange) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "end")
 		delete(additionalProperties, "start")
+		delete(additionalProperties, "end")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -21,10 +21,10 @@ var _ utils.MappedNullable = &DirectoryMeta{}
 
 // DirectoryMeta struct for DirectoryMeta
 type DirectoryMeta struct {
-	CaaIdentities           []string             `json:"caaIdentities,omitempty"`
-	ExternalAccountRequired utils.NullableBool   `json:"externalAccountRequired,omitempty"`
 	TermsOfService          utils.NullableString `json:"termsOfService,omitempty"`
 	Website                 utils.NullableString `json:"website,omitempty"`
+	CaaIdentities           []string             `json:"caaIdentities,omitempty"`
+	ExternalAccountRequired utils.NullableBool   `json:"externalAccountRequired,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -45,82 +45,6 @@ func NewDirectoryMeta() *DirectoryMeta {
 func NewDirectoryMetaWithDefaults() *DirectoryMeta {
 	this := DirectoryMeta{}
 	return &this
-}
-
-// GetCaaIdentities returns the CaaIdentities field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DirectoryMeta) GetCaaIdentities() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.CaaIdentities
-}
-
-// GetCaaIdentitiesOk returns a tuple with the CaaIdentities field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DirectoryMeta) GetCaaIdentitiesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.CaaIdentities) {
-		return nil, false
-	}
-	return o.CaaIdentities, true
-}
-
-// HasCaaIdentities returns a boolean if a field has been set.
-func (o *DirectoryMeta) HasCaaIdentities() bool {
-	if o != nil && !utils.IsNil(o.CaaIdentities) {
-		return true
-	}
-
-	return false
-}
-
-// SetCaaIdentities gets a reference to the given []string and assigns it to the CaaIdentities field.
-func (o *DirectoryMeta) SetCaaIdentities(v []string) {
-	o.CaaIdentities = v
-}
-
-// GetExternalAccountRequired returns the ExternalAccountRequired field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DirectoryMeta) GetExternalAccountRequired() bool {
-	if o == nil || utils.IsNil(o.ExternalAccountRequired.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.ExternalAccountRequired.Get()
-}
-
-// GetExternalAccountRequiredOk returns a tuple with the ExternalAccountRequired field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DirectoryMeta) GetExternalAccountRequiredOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ExternalAccountRequired.Get(), o.ExternalAccountRequired.IsSet()
-}
-
-// HasExternalAccountRequired returns a boolean if a field has been set.
-func (o *DirectoryMeta) HasExternalAccountRequired() bool {
-	if o != nil && o.ExternalAccountRequired.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetExternalAccountRequired gets a reference to the given NullableBool and assigns it to the ExternalAccountRequired field.
-func (o *DirectoryMeta) SetExternalAccountRequired(v bool) {
-	o.ExternalAccountRequired.Set(&v)
-}
-
-// SetExternalAccountRequiredNil sets the value for ExternalAccountRequired to be an explicit nil
-func (o *DirectoryMeta) SetExternalAccountRequiredNil() {
-	o.ExternalAccountRequired.Set(nil)
-}
-
-// UnsetExternalAccountRequired ensures that no value is present for ExternalAccountRequired, not even an explicit nil
-func (o *DirectoryMeta) UnsetExternalAccountRequired() {
-	o.ExternalAccountRequired.Unset()
 }
 
 // GetTermsOfService returns the TermsOfService field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -209,6 +133,82 @@ func (o *DirectoryMeta) UnsetWebsite() {
 	o.Website.Unset()
 }
 
+// GetCaaIdentities returns the CaaIdentities field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DirectoryMeta) GetCaaIdentities() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.CaaIdentities
+}
+
+// GetCaaIdentitiesOk returns a tuple with the CaaIdentities field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DirectoryMeta) GetCaaIdentitiesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.CaaIdentities) {
+		return nil, false
+	}
+	return o.CaaIdentities, true
+}
+
+// HasCaaIdentities returns a boolean if a field has been set.
+func (o *DirectoryMeta) HasCaaIdentities() bool {
+	if o != nil && !utils.IsNil(o.CaaIdentities) {
+		return true
+	}
+
+	return false
+}
+
+// SetCaaIdentities gets a reference to the given []string and assigns it to the CaaIdentities field.
+func (o *DirectoryMeta) SetCaaIdentities(v []string) {
+	o.CaaIdentities = v
+}
+
+// GetExternalAccountRequired returns the ExternalAccountRequired field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DirectoryMeta) GetExternalAccountRequired() bool {
+	if o == nil || utils.IsNil(o.ExternalAccountRequired.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.ExternalAccountRequired.Get()
+}
+
+// GetExternalAccountRequiredOk returns a tuple with the ExternalAccountRequired field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DirectoryMeta) GetExternalAccountRequiredOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExternalAccountRequired.Get(), o.ExternalAccountRequired.IsSet()
+}
+
+// HasExternalAccountRequired returns a boolean if a field has been set.
+func (o *DirectoryMeta) HasExternalAccountRequired() bool {
+	if o != nil && o.ExternalAccountRequired.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalAccountRequired gets a reference to the given NullableBool and assigns it to the ExternalAccountRequired field.
+func (o *DirectoryMeta) SetExternalAccountRequired(v bool) {
+	o.ExternalAccountRequired.Set(&v)
+}
+
+// SetExternalAccountRequiredNil sets the value for ExternalAccountRequired to be an explicit nil
+func (o *DirectoryMeta) SetExternalAccountRequiredNil() {
+	o.ExternalAccountRequired.Set(nil)
+}
+
+// UnsetExternalAccountRequired ensures that no value is present for ExternalAccountRequired, not even an explicit nil
+func (o *DirectoryMeta) UnsetExternalAccountRequired() {
+	o.ExternalAccountRequired.Unset()
+}
+
 func (o DirectoryMeta) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -219,17 +219,17 @@ func (o DirectoryMeta) MarshalJSON() ([]byte, error) {
 
 func (o DirectoryMeta) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CaaIdentities != nil {
-		toSerialize["caaIdentities"] = o.CaaIdentities
-	}
-	if o.ExternalAccountRequired.IsSet() {
-		toSerialize["externalAccountRequired"] = o.ExternalAccountRequired.Get()
-	}
 	if o.TermsOfService.IsSet() {
 		toSerialize["termsOfService"] = o.TermsOfService.Get()
 	}
 	if o.Website.IsSet() {
 		toSerialize["website"] = o.Website.Get()
+	}
+	if o.CaaIdentities != nil {
+		toSerialize["caaIdentities"] = o.CaaIdentities
+	}
+	if o.ExternalAccountRequired.IsSet() {
+		toSerialize["externalAccountRequired"] = o.ExternalAccountRequired.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -253,10 +253,10 @@ func (o *DirectoryMeta) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "caaIdentities")
-		delete(additionalProperties, "externalAccountRequired")
 		delete(additionalProperties, "termsOfService")
 		delete(additionalProperties, "website")
+		delete(additionalProperties, "caaIdentities")
+		delete(additionalProperties, "externalAccountRequired")
 		o.AdditionalProperties = additionalProperties
 	}
 

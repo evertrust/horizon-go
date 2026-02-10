@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-	archives := openapiclient.Archives{CertificateArchive: openapiclient.NewCertificateArchive(false, "Filename_example", "Name_example", "Type_example")} // Archives | Archive to register
+	archives := openapiclient.Archives{CertificateArchive: openapiclient.NewCertificateArchive("Name_example", "Type_example", "Filename_example", false)} // Archives | Archive to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -170,7 +170,7 @@ import (
 )
 
 func main() {
-	archives := openapiclient.Archives{CertificateArchive: openapiclient.NewCertificateArchive(false, "Filename_example", "Name_example", "Type_example")} // Archives | Archive to count
+	archives := openapiclient.Archives{CertificateArchive: openapiclient.NewCertificateArchive("Name_example", "Type_example", "Filename_example", false)} // Archives | Archive to count
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

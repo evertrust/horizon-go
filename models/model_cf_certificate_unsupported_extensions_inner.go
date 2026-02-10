@@ -22,8 +22,8 @@ var _ utils.MappedNullable = &CFCertificateUnsupportedExtensionsInner{}
 
 // CFCertificateUnsupportedExtensionsInner struct for CFCertificateUnsupportedExtensionsInner
 type CFCertificateUnsupportedExtensionsInner struct {
-	Hex                  string `json:"hex"`
 	Oid                  string `json:"oid"`
+	Hex                  string `json:"hex"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -33,10 +33,10 @@ type _CFCertificateUnsupportedExtensionsInner CFCertificateUnsupportedExtensions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCFCertificateUnsupportedExtensionsInner(hex string, oid string) *CFCertificateUnsupportedExtensionsInner {
+func NewCFCertificateUnsupportedExtensionsInner(oid string, hex string) *CFCertificateUnsupportedExtensionsInner {
 	this := CFCertificateUnsupportedExtensionsInner{}
-	this.Hex = hex
 	this.Oid = oid
+	this.Hex = hex
 	return &this
 }
 
@@ -46,30 +46,6 @@ func NewCFCertificateUnsupportedExtensionsInner(hex string, oid string) *CFCerti
 func NewCFCertificateUnsupportedExtensionsInnerWithDefaults() *CFCertificateUnsupportedExtensionsInner {
 	this := CFCertificateUnsupportedExtensionsInner{}
 	return &this
-}
-
-// GetHex returns the Hex field value
-func (o *CFCertificateUnsupportedExtensionsInner) GetHex() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Hex
-}
-
-// GetHexOk returns a tuple with the Hex field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateUnsupportedExtensionsInner) GetHexOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Hex, true
-}
-
-// SetHex sets field value
-func (o *CFCertificateUnsupportedExtensionsInner) SetHex(v string) {
-	o.Hex = v
 }
 
 // GetOid returns the Oid field value
@@ -96,6 +72,30 @@ func (o *CFCertificateUnsupportedExtensionsInner) SetOid(v string) {
 	o.Oid = v
 }
 
+// GetHex returns the Hex field value
+func (o *CFCertificateUnsupportedExtensionsInner) GetHex() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Hex
+}
+
+// GetHexOk returns a tuple with the Hex field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateUnsupportedExtensionsInner) GetHexOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Hex, true
+}
+
+// SetHex sets field value
+func (o *CFCertificateUnsupportedExtensionsInner) SetHex(v string) {
+	o.Hex = v
+}
+
 func (o CFCertificateUnsupportedExtensionsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -106,8 +106,8 @@ func (o CFCertificateUnsupportedExtensionsInner) MarshalJSON() ([]byte, error) {
 
 func (o CFCertificateUnsupportedExtensionsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["hex"] = o.Hex
 	toSerialize["oid"] = o.Oid
+	toSerialize["hex"] = o.Hex
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -121,8 +121,8 @@ func (o *CFCertificateUnsupportedExtensionsInner) UnmarshalJSON(data []byte) (er
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"hex",
 		"oid",
+		"hex",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -152,8 +152,8 @@ func (o *CFCertificateUnsupportedExtensionsInner) UnmarshalJSON(data []byte) (er
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "hex")
 		delete(additionalProperties, "oid")
+		delete(additionalProperties, "hex")
 		o.AdditionalProperties = additionalProperties
 	}
 

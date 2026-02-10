@@ -4,38 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Aias** | Pointer to [**CFCertificateAias**](CFCertificateAias.md) |  | [optional] 
-**AuthorityKeyIdentifier** | Pointer to **string** | The certificate AKI | [optional] 
-**BasicConstraints** | [**CFCertificateBasicConstraints**](CFCertificateBasicConstraints.md) |  | 
-**CertificateSHAOneThumbprint** | **string** | The thumbprint of the certificate using SHAOne algorithm | 
-**CertificateThumbprint** | **string** | The certificate&#39;s thumbprint | 
-**Crldps** | Pointer to **[]string** | The certificate&#39;s CRLDP if any | [optional] 
 **Dn** | **string** | The certificate&#39;s Distinguished Name | 
 **DnElements** | [**[]CFDistinguishedName**](CFDistinguishedName.md) |  | 
-**ExtendedKeyUsages** | **[]string** | The certificate extended key&#39;s usage | 
-**Extensions** | Pointer to [**[]CertificateExtension**](CertificateExtension.md) | The certificate&#39;s extensions | [optional] 
-**IsExtendedKeyUsagesCritical** | **bool** | If the extended key usage are critical | 
-**IsKeyUsagesCritical** | **bool** | If the key usage of the certificate are critical | 
 **IssuerDn** | **string** | The certificate&#39;s issuer Distinguished Name | 
-**KeyType** | **string** | The certificate&#39;s key type | 
-**KeyUsages** | **[]string** | The certificate key&#39;s usage | 
-**NotAfter** | **int64** | The certificate&#39;s expiration date in milliseconds since the epoch | 
-**NotBefore** | **int64** | The certificate&#39;s start date in milliseconds since the epoch | 
-**Pem** | **string** | The certificate&#39;s PEM-encoded content | 
-**Policies** | Pointer to [**[]CFCertificatePoliciesInner**](CFCertificatePoliciesInner.md) |  | [optional] 
-**PublicKeyThumbprint** | **string** | The certificate&#39;s public key thumbprint | 
-**Sans** | Pointer to [**[]SubjectAlternateName**](SubjectAlternateName.md) | The certificate&#39;s SAN | [optional] 
-**SelfSigned** | **bool** | Whether the certificate is self-signed | 
 **Serial** | Pointer to **string** | The certificate&#39;s serial number | [optional] 
+**NotBefore** | **int64** | The certificate&#39;s start date in milliseconds since the epoch | 
+**NotAfter** | **int64** | The certificate&#39;s expiration date in milliseconds since the epoch | 
+**KeyType** | **string** | The certificate&#39;s key type | 
 **SigningAlgorithm** | **string** | The certificate&#39;s signing algorithm | 
+**Pem** | **string** | The certificate&#39;s PEM-encoded content | 
 **SubjectKeyIdentifier** | **string** |  | 
+**CertificateThumbprint** | **string** | The certificate&#39;s thumbprint | 
+**CertificateSHAOneThumbprint** | **string** | The thumbprint of the certificate using SHAOne algorithm | 
+**PublicKeyThumbprint** | **string** | The certificate&#39;s public key thumbprint | 
+**KeyUsages** | **[]string** | The certificate key&#39;s usage | 
+**IsKeyUsagesCritical** | **bool** | If the key usage of the certificate are critical | 
+**ExtendedKeyUsages** | **[]string** | The certificate extended key&#39;s usage | 
+**IsExtendedKeyUsagesCritical** | **bool** | If the extended key usage are critical | 
+**SelfSigned** | **bool** | Whether the certificate is self-signed | 
+**Sans** | Pointer to [**[]SubjectAlternateName**](SubjectAlternateName.md) | The certificate&#39;s SAN | [optional] 
+**BasicConstraints** | [**CFCertificateBasicConstraints**](CFCertificateBasicConstraints.md) |  | 
+**Extensions** | Pointer to [**[]CertificateExtension**](CertificateExtension.md) | The certificate&#39;s extensions | [optional] 
+**Crldps** | Pointer to **[]string** | The certificate&#39;s CRLDP if any | [optional] 
+**Aias** | Pointer to [**CFCertificateAias**](CFCertificateAias.md) |  | [optional] 
+**Policies** | Pointer to [**[]CFCertificatePoliciesInner**](CFCertificatePoliciesInner.md) |  | [optional] 
+**AuthorityKeyIdentifier** | Pointer to **string** | The certificate AKI | [optional] 
 **UnsupportedExtensions** | Pointer to [**[]CFCertificateUnsupportedExtensionsInner**](CFCertificateUnsupportedExtensionsInner.md) |  | [optional] 
 
 ## Methods
 
 ### NewCFCertificate
 
-`func NewCFCertificate(basicConstraints CFCertificateBasicConstraints, certificateSHAOneThumbprint string, certificateThumbprint string, dn string, dnElements []CFDistinguishedName, extendedKeyUsages []string, isExtendedKeyUsagesCritical bool, isKeyUsagesCritical bool, issuerDn string, keyType string, keyUsages []string, notAfter int64, notBefore int64, pem string, publicKeyThumbprint string, selfSigned bool, signingAlgorithm string, subjectKeyIdentifier string, ) *CFCertificate`
+`func NewCFCertificate(dn string, dnElements []CFDistinguishedName, issuerDn string, notBefore int64, notAfter int64, keyType string, signingAlgorithm string, pem string, subjectKeyIdentifier string, certificateThumbprint string, certificateSHAOneThumbprint string, publicKeyThumbprint string, keyUsages []string, isKeyUsagesCritical bool, extendedKeyUsages []string, isExtendedKeyUsagesCritical bool, selfSigned bool, basicConstraints CFCertificateBasicConstraints, ) *CFCertificate`
 
 NewCFCertificate instantiates a new CFCertificate object
 This constructor will assign default values to properties that have it defined,
@@ -49,141 +49,6 @@ will change when the set of required properties is changed
 NewCFCertificateWithDefaults instantiates a new CFCertificate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAias
-
-`func (o *CFCertificate) GetAias() CFCertificateAias`
-
-GetAias returns the Aias field if non-nil, zero value otherwise.
-
-### GetAiasOk
-
-`func (o *CFCertificate) GetAiasOk() (*CFCertificateAias, bool)`
-
-GetAiasOk returns a tuple with the Aias field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAias
-
-`func (o *CFCertificate) SetAias(v CFCertificateAias)`
-
-SetAias sets Aias field to given value.
-
-### HasAias
-
-`func (o *CFCertificate) HasAias() bool`
-
-HasAias returns a boolean if a field has been set.
-
-### GetAuthorityKeyIdentifier
-
-`func (o *CFCertificate) GetAuthorityKeyIdentifier() string`
-
-GetAuthorityKeyIdentifier returns the AuthorityKeyIdentifier field if non-nil, zero value otherwise.
-
-### GetAuthorityKeyIdentifierOk
-
-`func (o *CFCertificate) GetAuthorityKeyIdentifierOk() (*string, bool)`
-
-GetAuthorityKeyIdentifierOk returns a tuple with the AuthorityKeyIdentifier field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthorityKeyIdentifier
-
-`func (o *CFCertificate) SetAuthorityKeyIdentifier(v string)`
-
-SetAuthorityKeyIdentifier sets AuthorityKeyIdentifier field to given value.
-
-### HasAuthorityKeyIdentifier
-
-`func (o *CFCertificate) HasAuthorityKeyIdentifier() bool`
-
-HasAuthorityKeyIdentifier returns a boolean if a field has been set.
-
-### GetBasicConstraints
-
-`func (o *CFCertificate) GetBasicConstraints() CFCertificateBasicConstraints`
-
-GetBasicConstraints returns the BasicConstraints field if non-nil, zero value otherwise.
-
-### GetBasicConstraintsOk
-
-`func (o *CFCertificate) GetBasicConstraintsOk() (*CFCertificateBasicConstraints, bool)`
-
-GetBasicConstraintsOk returns a tuple with the BasicConstraints field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBasicConstraints
-
-`func (o *CFCertificate) SetBasicConstraints(v CFCertificateBasicConstraints)`
-
-SetBasicConstraints sets BasicConstraints field to given value.
-
-
-### GetCertificateSHAOneThumbprint
-
-`func (o *CFCertificate) GetCertificateSHAOneThumbprint() string`
-
-GetCertificateSHAOneThumbprint returns the CertificateSHAOneThumbprint field if non-nil, zero value otherwise.
-
-### GetCertificateSHAOneThumbprintOk
-
-`func (o *CFCertificate) GetCertificateSHAOneThumbprintOk() (*string, bool)`
-
-GetCertificateSHAOneThumbprintOk returns a tuple with the CertificateSHAOneThumbprint field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificateSHAOneThumbprint
-
-`func (o *CFCertificate) SetCertificateSHAOneThumbprint(v string)`
-
-SetCertificateSHAOneThumbprint sets CertificateSHAOneThumbprint field to given value.
-
-
-### GetCertificateThumbprint
-
-`func (o *CFCertificate) GetCertificateThumbprint() string`
-
-GetCertificateThumbprint returns the CertificateThumbprint field if non-nil, zero value otherwise.
-
-### GetCertificateThumbprintOk
-
-`func (o *CFCertificate) GetCertificateThumbprintOk() (*string, bool)`
-
-GetCertificateThumbprintOk returns a tuple with the CertificateThumbprint field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificateThumbprint
-
-`func (o *CFCertificate) SetCertificateThumbprint(v string)`
-
-SetCertificateThumbprint sets CertificateThumbprint field to given value.
-
-
-### GetCrldps
-
-`func (o *CFCertificate) GetCrldps() []string`
-
-GetCrldps returns the Crldps field if non-nil, zero value otherwise.
-
-### GetCrldpsOk
-
-`func (o *CFCertificate) GetCrldpsOk() (*[]string, bool)`
-
-GetCrldpsOk returns a tuple with the Crldps field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCrldps
-
-`func (o *CFCertificate) SetCrldps(v []string)`
-
-SetCrldps sets Crldps field to given value.
-
-### HasCrldps
-
-`func (o *CFCertificate) HasCrldps() bool`
-
-HasCrldps returns a boolean if a field has been set.
 
 ### GetDn
 
@@ -225,6 +90,271 @@ and a boolean to check if the value has been set.
 SetDnElements sets DnElements field to given value.
 
 
+### GetIssuerDn
+
+`func (o *CFCertificate) GetIssuerDn() string`
+
+GetIssuerDn returns the IssuerDn field if non-nil, zero value otherwise.
+
+### GetIssuerDnOk
+
+`func (o *CFCertificate) GetIssuerDnOk() (*string, bool)`
+
+GetIssuerDnOk returns a tuple with the IssuerDn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssuerDn
+
+`func (o *CFCertificate) SetIssuerDn(v string)`
+
+SetIssuerDn sets IssuerDn field to given value.
+
+
+### GetSerial
+
+`func (o *CFCertificate) GetSerial() string`
+
+GetSerial returns the Serial field if non-nil, zero value otherwise.
+
+### GetSerialOk
+
+`func (o *CFCertificate) GetSerialOk() (*string, bool)`
+
+GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSerial
+
+`func (o *CFCertificate) SetSerial(v string)`
+
+SetSerial sets Serial field to given value.
+
+### HasSerial
+
+`func (o *CFCertificate) HasSerial() bool`
+
+HasSerial returns a boolean if a field has been set.
+
+### GetNotBefore
+
+`func (o *CFCertificate) GetNotBefore() int64`
+
+GetNotBefore returns the NotBefore field if non-nil, zero value otherwise.
+
+### GetNotBeforeOk
+
+`func (o *CFCertificate) GetNotBeforeOk() (*int64, bool)`
+
+GetNotBeforeOk returns a tuple with the NotBefore field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotBefore
+
+`func (o *CFCertificate) SetNotBefore(v int64)`
+
+SetNotBefore sets NotBefore field to given value.
+
+
+### GetNotAfter
+
+`func (o *CFCertificate) GetNotAfter() int64`
+
+GetNotAfter returns the NotAfter field if non-nil, zero value otherwise.
+
+### GetNotAfterOk
+
+`func (o *CFCertificate) GetNotAfterOk() (*int64, bool)`
+
+GetNotAfterOk returns a tuple with the NotAfter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotAfter
+
+`func (o *CFCertificate) SetNotAfter(v int64)`
+
+SetNotAfter sets NotAfter field to given value.
+
+
+### GetKeyType
+
+`func (o *CFCertificate) GetKeyType() string`
+
+GetKeyType returns the KeyType field if non-nil, zero value otherwise.
+
+### GetKeyTypeOk
+
+`func (o *CFCertificate) GetKeyTypeOk() (*string, bool)`
+
+GetKeyTypeOk returns a tuple with the KeyType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKeyType
+
+`func (o *CFCertificate) SetKeyType(v string)`
+
+SetKeyType sets KeyType field to given value.
+
+
+### GetSigningAlgorithm
+
+`func (o *CFCertificate) GetSigningAlgorithm() string`
+
+GetSigningAlgorithm returns the SigningAlgorithm field if non-nil, zero value otherwise.
+
+### GetSigningAlgorithmOk
+
+`func (o *CFCertificate) GetSigningAlgorithmOk() (*string, bool)`
+
+GetSigningAlgorithmOk returns a tuple with the SigningAlgorithm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSigningAlgorithm
+
+`func (o *CFCertificate) SetSigningAlgorithm(v string)`
+
+SetSigningAlgorithm sets SigningAlgorithm field to given value.
+
+
+### GetPem
+
+`func (o *CFCertificate) GetPem() string`
+
+GetPem returns the Pem field if non-nil, zero value otherwise.
+
+### GetPemOk
+
+`func (o *CFCertificate) GetPemOk() (*string, bool)`
+
+GetPemOk returns a tuple with the Pem field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPem
+
+`func (o *CFCertificate) SetPem(v string)`
+
+SetPem sets Pem field to given value.
+
+
+### GetSubjectKeyIdentifier
+
+`func (o *CFCertificate) GetSubjectKeyIdentifier() string`
+
+GetSubjectKeyIdentifier returns the SubjectKeyIdentifier field if non-nil, zero value otherwise.
+
+### GetSubjectKeyIdentifierOk
+
+`func (o *CFCertificate) GetSubjectKeyIdentifierOk() (*string, bool)`
+
+GetSubjectKeyIdentifierOk returns a tuple with the SubjectKeyIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubjectKeyIdentifier
+
+`func (o *CFCertificate) SetSubjectKeyIdentifier(v string)`
+
+SetSubjectKeyIdentifier sets SubjectKeyIdentifier field to given value.
+
+
+### GetCertificateThumbprint
+
+`func (o *CFCertificate) GetCertificateThumbprint() string`
+
+GetCertificateThumbprint returns the CertificateThumbprint field if non-nil, zero value otherwise.
+
+### GetCertificateThumbprintOk
+
+`func (o *CFCertificate) GetCertificateThumbprintOk() (*string, bool)`
+
+GetCertificateThumbprintOk returns a tuple with the CertificateThumbprint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateThumbprint
+
+`func (o *CFCertificate) SetCertificateThumbprint(v string)`
+
+SetCertificateThumbprint sets CertificateThumbprint field to given value.
+
+
+### GetCertificateSHAOneThumbprint
+
+`func (o *CFCertificate) GetCertificateSHAOneThumbprint() string`
+
+GetCertificateSHAOneThumbprint returns the CertificateSHAOneThumbprint field if non-nil, zero value otherwise.
+
+### GetCertificateSHAOneThumbprintOk
+
+`func (o *CFCertificate) GetCertificateSHAOneThumbprintOk() (*string, bool)`
+
+GetCertificateSHAOneThumbprintOk returns a tuple with the CertificateSHAOneThumbprint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateSHAOneThumbprint
+
+`func (o *CFCertificate) SetCertificateSHAOneThumbprint(v string)`
+
+SetCertificateSHAOneThumbprint sets CertificateSHAOneThumbprint field to given value.
+
+
+### GetPublicKeyThumbprint
+
+`func (o *CFCertificate) GetPublicKeyThumbprint() string`
+
+GetPublicKeyThumbprint returns the PublicKeyThumbprint field if non-nil, zero value otherwise.
+
+### GetPublicKeyThumbprintOk
+
+`func (o *CFCertificate) GetPublicKeyThumbprintOk() (*string, bool)`
+
+GetPublicKeyThumbprintOk returns a tuple with the PublicKeyThumbprint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublicKeyThumbprint
+
+`func (o *CFCertificate) SetPublicKeyThumbprint(v string)`
+
+SetPublicKeyThumbprint sets PublicKeyThumbprint field to given value.
+
+
+### GetKeyUsages
+
+`func (o *CFCertificate) GetKeyUsages() []string`
+
+GetKeyUsages returns the KeyUsages field if non-nil, zero value otherwise.
+
+### GetKeyUsagesOk
+
+`func (o *CFCertificate) GetKeyUsagesOk() (*[]string, bool)`
+
+GetKeyUsagesOk returns a tuple with the KeyUsages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKeyUsages
+
+`func (o *CFCertificate) SetKeyUsages(v []string)`
+
+SetKeyUsages sets KeyUsages field to given value.
+
+
+### GetIsKeyUsagesCritical
+
+`func (o *CFCertificate) GetIsKeyUsagesCritical() bool`
+
+GetIsKeyUsagesCritical returns the IsKeyUsagesCritical field if non-nil, zero value otherwise.
+
+### GetIsKeyUsagesCriticalOk
+
+`func (o *CFCertificate) GetIsKeyUsagesCriticalOk() (*bool, bool)`
+
+GetIsKeyUsagesCriticalOk returns a tuple with the IsKeyUsagesCritical field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsKeyUsagesCritical
+
+`func (o *CFCertificate) SetIsKeyUsagesCritical(v bool)`
+
+SetIsKeyUsagesCritical sets IsKeyUsagesCritical field to given value.
+
+
 ### GetExtendedKeyUsages
 
 `func (o *CFCertificate) GetExtendedKeyUsages() []string`
@@ -243,6 +373,91 @@ and a boolean to check if the value has been set.
 `func (o *CFCertificate) SetExtendedKeyUsages(v []string)`
 
 SetExtendedKeyUsages sets ExtendedKeyUsages field to given value.
+
+
+### GetIsExtendedKeyUsagesCritical
+
+`func (o *CFCertificate) GetIsExtendedKeyUsagesCritical() bool`
+
+GetIsExtendedKeyUsagesCritical returns the IsExtendedKeyUsagesCritical field if non-nil, zero value otherwise.
+
+### GetIsExtendedKeyUsagesCriticalOk
+
+`func (o *CFCertificate) GetIsExtendedKeyUsagesCriticalOk() (*bool, bool)`
+
+GetIsExtendedKeyUsagesCriticalOk returns a tuple with the IsExtendedKeyUsagesCritical field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsExtendedKeyUsagesCritical
+
+`func (o *CFCertificate) SetIsExtendedKeyUsagesCritical(v bool)`
+
+SetIsExtendedKeyUsagesCritical sets IsExtendedKeyUsagesCritical field to given value.
+
+
+### GetSelfSigned
+
+`func (o *CFCertificate) GetSelfSigned() bool`
+
+GetSelfSigned returns the SelfSigned field if non-nil, zero value otherwise.
+
+### GetSelfSignedOk
+
+`func (o *CFCertificate) GetSelfSignedOk() (*bool, bool)`
+
+GetSelfSignedOk returns a tuple with the SelfSigned field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfSigned
+
+`func (o *CFCertificate) SetSelfSigned(v bool)`
+
+SetSelfSigned sets SelfSigned field to given value.
+
+
+### GetSans
+
+`func (o *CFCertificate) GetSans() []SubjectAlternateName`
+
+GetSans returns the Sans field if non-nil, zero value otherwise.
+
+### GetSansOk
+
+`func (o *CFCertificate) GetSansOk() (*[]SubjectAlternateName, bool)`
+
+GetSansOk returns a tuple with the Sans field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSans
+
+`func (o *CFCertificate) SetSans(v []SubjectAlternateName)`
+
+SetSans sets Sans field to given value.
+
+### HasSans
+
+`func (o *CFCertificate) HasSans() bool`
+
+HasSans returns a boolean if a field has been set.
+
+### GetBasicConstraints
+
+`func (o *CFCertificate) GetBasicConstraints() CFCertificateBasicConstraints`
+
+GetBasicConstraints returns the BasicConstraints field if non-nil, zero value otherwise.
+
+### GetBasicConstraintsOk
+
+`func (o *CFCertificate) GetBasicConstraintsOk() (*CFCertificateBasicConstraints, bool)`
+
+GetBasicConstraintsOk returns a tuple with the BasicConstraints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBasicConstraints
+
+`func (o *CFCertificate) SetBasicConstraints(v CFCertificateBasicConstraints)`
+
+SetBasicConstraints sets BasicConstraints field to given value.
 
 
 ### GetExtensions
@@ -280,165 +495,55 @@ HasExtensions returns a boolean if a field has been set.
 `func (o *CFCertificate) UnsetExtensions()`
 
 UnsetExtensions ensures that no value is present for Extensions, not even an explicit nil
-### GetIsExtendedKeyUsagesCritical
+### GetCrldps
 
-`func (o *CFCertificate) GetIsExtendedKeyUsagesCritical() bool`
+`func (o *CFCertificate) GetCrldps() []string`
 
-GetIsExtendedKeyUsagesCritical returns the IsExtendedKeyUsagesCritical field if non-nil, zero value otherwise.
+GetCrldps returns the Crldps field if non-nil, zero value otherwise.
 
-### GetIsExtendedKeyUsagesCriticalOk
+### GetCrldpsOk
 
-`func (o *CFCertificate) GetIsExtendedKeyUsagesCriticalOk() (*bool, bool)`
+`func (o *CFCertificate) GetCrldpsOk() (*[]string, bool)`
 
-GetIsExtendedKeyUsagesCriticalOk returns a tuple with the IsExtendedKeyUsagesCritical field if it's non-nil, zero value otherwise
+GetCrldpsOk returns a tuple with the Crldps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIsExtendedKeyUsagesCritical
+### SetCrldps
 
-`func (o *CFCertificate) SetIsExtendedKeyUsagesCritical(v bool)`
+`func (o *CFCertificate) SetCrldps(v []string)`
 
-SetIsExtendedKeyUsagesCritical sets IsExtendedKeyUsagesCritical field to given value.
+SetCrldps sets Crldps field to given value.
 
+### HasCrldps
 
-### GetIsKeyUsagesCritical
+`func (o *CFCertificate) HasCrldps() bool`
 
-`func (o *CFCertificate) GetIsKeyUsagesCritical() bool`
+HasCrldps returns a boolean if a field has been set.
 
-GetIsKeyUsagesCritical returns the IsKeyUsagesCritical field if non-nil, zero value otherwise.
+### GetAias
 
-### GetIsKeyUsagesCriticalOk
+`func (o *CFCertificate) GetAias() CFCertificateAias`
 
-`func (o *CFCertificate) GetIsKeyUsagesCriticalOk() (*bool, bool)`
+GetAias returns the Aias field if non-nil, zero value otherwise.
 
-GetIsKeyUsagesCriticalOk returns a tuple with the IsKeyUsagesCritical field if it's non-nil, zero value otherwise
+### GetAiasOk
+
+`func (o *CFCertificate) GetAiasOk() (*CFCertificateAias, bool)`
+
+GetAiasOk returns a tuple with the Aias field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIsKeyUsagesCritical
+### SetAias
 
-`func (o *CFCertificate) SetIsKeyUsagesCritical(v bool)`
+`func (o *CFCertificate) SetAias(v CFCertificateAias)`
 
-SetIsKeyUsagesCritical sets IsKeyUsagesCritical field to given value.
+SetAias sets Aias field to given value.
 
+### HasAias
 
-### GetIssuerDn
+`func (o *CFCertificate) HasAias() bool`
 
-`func (o *CFCertificate) GetIssuerDn() string`
-
-GetIssuerDn returns the IssuerDn field if non-nil, zero value otherwise.
-
-### GetIssuerDnOk
-
-`func (o *CFCertificate) GetIssuerDnOk() (*string, bool)`
-
-GetIssuerDnOk returns a tuple with the IssuerDn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIssuerDn
-
-`func (o *CFCertificate) SetIssuerDn(v string)`
-
-SetIssuerDn sets IssuerDn field to given value.
-
-
-### GetKeyType
-
-`func (o *CFCertificate) GetKeyType() string`
-
-GetKeyType returns the KeyType field if non-nil, zero value otherwise.
-
-### GetKeyTypeOk
-
-`func (o *CFCertificate) GetKeyTypeOk() (*string, bool)`
-
-GetKeyTypeOk returns a tuple with the KeyType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKeyType
-
-`func (o *CFCertificate) SetKeyType(v string)`
-
-SetKeyType sets KeyType field to given value.
-
-
-### GetKeyUsages
-
-`func (o *CFCertificate) GetKeyUsages() []string`
-
-GetKeyUsages returns the KeyUsages field if non-nil, zero value otherwise.
-
-### GetKeyUsagesOk
-
-`func (o *CFCertificate) GetKeyUsagesOk() (*[]string, bool)`
-
-GetKeyUsagesOk returns a tuple with the KeyUsages field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKeyUsages
-
-`func (o *CFCertificate) SetKeyUsages(v []string)`
-
-SetKeyUsages sets KeyUsages field to given value.
-
-
-### GetNotAfter
-
-`func (o *CFCertificate) GetNotAfter() int64`
-
-GetNotAfter returns the NotAfter field if non-nil, zero value otherwise.
-
-### GetNotAfterOk
-
-`func (o *CFCertificate) GetNotAfterOk() (*int64, bool)`
-
-GetNotAfterOk returns a tuple with the NotAfter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNotAfter
-
-`func (o *CFCertificate) SetNotAfter(v int64)`
-
-SetNotAfter sets NotAfter field to given value.
-
-
-### GetNotBefore
-
-`func (o *CFCertificate) GetNotBefore() int64`
-
-GetNotBefore returns the NotBefore field if non-nil, zero value otherwise.
-
-### GetNotBeforeOk
-
-`func (o *CFCertificate) GetNotBeforeOk() (*int64, bool)`
-
-GetNotBeforeOk returns a tuple with the NotBefore field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNotBefore
-
-`func (o *CFCertificate) SetNotBefore(v int64)`
-
-SetNotBefore sets NotBefore field to given value.
-
-
-### GetPem
-
-`func (o *CFCertificate) GetPem() string`
-
-GetPem returns the Pem field if non-nil, zero value otherwise.
-
-### GetPemOk
-
-`func (o *CFCertificate) GetPemOk() (*string, bool)`
-
-GetPemOk returns a tuple with the Pem field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPem
-
-`func (o *CFCertificate) SetPem(v string)`
-
-SetPem sets Pem field to given value.
-
+HasAias returns a boolean if a field has been set.
 
 ### GetPolicies
 
@@ -465,135 +570,30 @@ SetPolicies sets Policies field to given value.
 
 HasPolicies returns a boolean if a field has been set.
 
-### GetPublicKeyThumbprint
+### GetAuthorityKeyIdentifier
 
-`func (o *CFCertificate) GetPublicKeyThumbprint() string`
+`func (o *CFCertificate) GetAuthorityKeyIdentifier() string`
 
-GetPublicKeyThumbprint returns the PublicKeyThumbprint field if non-nil, zero value otherwise.
+GetAuthorityKeyIdentifier returns the AuthorityKeyIdentifier field if non-nil, zero value otherwise.
 
-### GetPublicKeyThumbprintOk
+### GetAuthorityKeyIdentifierOk
 
-`func (o *CFCertificate) GetPublicKeyThumbprintOk() (*string, bool)`
+`func (o *CFCertificate) GetAuthorityKeyIdentifierOk() (*string, bool)`
 
-GetPublicKeyThumbprintOk returns a tuple with the PublicKeyThumbprint field if it's non-nil, zero value otherwise
+GetAuthorityKeyIdentifierOk returns a tuple with the AuthorityKeyIdentifier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPublicKeyThumbprint
+### SetAuthorityKeyIdentifier
 
-`func (o *CFCertificate) SetPublicKeyThumbprint(v string)`
+`func (o *CFCertificate) SetAuthorityKeyIdentifier(v string)`
 
-SetPublicKeyThumbprint sets PublicKeyThumbprint field to given value.
+SetAuthorityKeyIdentifier sets AuthorityKeyIdentifier field to given value.
 
+### HasAuthorityKeyIdentifier
 
-### GetSans
+`func (o *CFCertificate) HasAuthorityKeyIdentifier() bool`
 
-`func (o *CFCertificate) GetSans() []SubjectAlternateName`
-
-GetSans returns the Sans field if non-nil, zero value otherwise.
-
-### GetSansOk
-
-`func (o *CFCertificate) GetSansOk() (*[]SubjectAlternateName, bool)`
-
-GetSansOk returns a tuple with the Sans field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSans
-
-`func (o *CFCertificate) SetSans(v []SubjectAlternateName)`
-
-SetSans sets Sans field to given value.
-
-### HasSans
-
-`func (o *CFCertificate) HasSans() bool`
-
-HasSans returns a boolean if a field has been set.
-
-### GetSelfSigned
-
-`func (o *CFCertificate) GetSelfSigned() bool`
-
-GetSelfSigned returns the SelfSigned field if non-nil, zero value otherwise.
-
-### GetSelfSignedOk
-
-`func (o *CFCertificate) GetSelfSignedOk() (*bool, bool)`
-
-GetSelfSignedOk returns a tuple with the SelfSigned field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSelfSigned
-
-`func (o *CFCertificate) SetSelfSigned(v bool)`
-
-SetSelfSigned sets SelfSigned field to given value.
-
-
-### GetSerial
-
-`func (o *CFCertificate) GetSerial() string`
-
-GetSerial returns the Serial field if non-nil, zero value otherwise.
-
-### GetSerialOk
-
-`func (o *CFCertificate) GetSerialOk() (*string, bool)`
-
-GetSerialOk returns a tuple with the Serial field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSerial
-
-`func (o *CFCertificate) SetSerial(v string)`
-
-SetSerial sets Serial field to given value.
-
-### HasSerial
-
-`func (o *CFCertificate) HasSerial() bool`
-
-HasSerial returns a boolean if a field has been set.
-
-### GetSigningAlgorithm
-
-`func (o *CFCertificate) GetSigningAlgorithm() string`
-
-GetSigningAlgorithm returns the SigningAlgorithm field if non-nil, zero value otherwise.
-
-### GetSigningAlgorithmOk
-
-`func (o *CFCertificate) GetSigningAlgorithmOk() (*string, bool)`
-
-GetSigningAlgorithmOk returns a tuple with the SigningAlgorithm field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSigningAlgorithm
-
-`func (o *CFCertificate) SetSigningAlgorithm(v string)`
-
-SetSigningAlgorithm sets SigningAlgorithm field to given value.
-
-
-### GetSubjectKeyIdentifier
-
-`func (o *CFCertificate) GetSubjectKeyIdentifier() string`
-
-GetSubjectKeyIdentifier returns the SubjectKeyIdentifier field if non-nil, zero value otherwise.
-
-### GetSubjectKeyIdentifierOk
-
-`func (o *CFCertificate) GetSubjectKeyIdentifierOk() (*string, bool)`
-
-GetSubjectKeyIdentifierOk returns a tuple with the SubjectKeyIdentifier field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubjectKeyIdentifier
-
-`func (o *CFCertificate) SetSubjectKeyIdentifier(v string)`
-
-SetSubjectKeyIdentifier sets SubjectKeyIdentifier field to given value.
-
+HasAuthorityKeyIdentifier returns a boolean if a field has been set.
 
 ### GetUnsupportedExtensions
 

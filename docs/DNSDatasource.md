@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** | Description of the datasource | [optional] 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
-**Host** | Pointer to **NullableString** | Ip of the DNS server. If empty, Horizon Server DNS is used | [optional] 
-**Lookup** | **string** | Host to lookup | 
-**Name** | **string** | Name of the datasource | 
-**Port** | Pointer to **NullableInt64** | Port on which to join the DNS server | [optional] [default to 53]
-**RecordTypes** | Pointer to **[]string** | Type of DNS records to fetch. All available record types are fetched if null | [optional] 
-**Timeout** | Pointer to **NullableString** | Timeout for the DNS request | [optional] [default to "10 seconds"]
 **Type** | **string** | Type of datasource | 
+**Name** | **string** | Name of the datasource | 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
+**Description** | Pointer to **string** | Description of the datasource | [optional] 
+**Host** | Pointer to **NullableString** | Ip of the DNS server. If empty, Horizon Server DNS is used | [optional] 
+**Port** | Pointer to **NullableInt64** | Port on which to join the DNS server | [optional] [default to 53]
+**Timeout** | Pointer to **NullableString** | Timeout for the DNS request | [optional] [default to "10 seconds"]
+**RecordTypes** | Pointer to **[]string** | Type of DNS records to fetch. All available record types are fetched if null | [optional] 
+**Lookup** | **string** | Host to lookup | 
 
 ## Methods
 
 ### NewDNSDatasource
 
-`func NewDNSDatasource(lookup string, name string, type_ string, ) *DNSDatasource`
+`func NewDNSDatasource(type_ string, name string, lookup string, ) *DNSDatasource`
 
 NewDNSDatasource instantiates a new DNSDatasource object
 This constructor will assign default values to properties that have it defined,
@@ -33,30 +33,45 @@ NewDNSDatasourceWithDefaults instantiates a new DNSDatasource object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDescription
+### GetType
 
-`func (o *DNSDatasource) GetDescription() string`
+`func (o *DNSDatasource) GetType() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetTypeOk
 
-`func (o *DNSDatasource) GetDescriptionOk() (*string, bool)`
+`func (o *DNSDatasource) GetTypeOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetType
 
-`func (o *DNSDatasource) SetDescription(v string)`
+`func (o *DNSDatasource) SetType(v string)`
 
-SetDescription sets Description field to given value.
+SetType sets Type field to given value.
 
-### HasDescription
 
-`func (o *DNSDatasource) HasDescription() bool`
+### GetName
 
-HasDescription returns a boolean if a field has been set.
+`func (o *DNSDatasource) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *DNSDatasource) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *DNSDatasource) SetName(v string)`
+
+SetName sets Name field to given value.
+
 
 ### GetDisplayName
 
@@ -93,6 +108,31 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *DNSDatasource) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
+### GetDescription
+
+`func (o *DNSDatasource) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *DNSDatasource) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *DNSDatasource) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *DNSDatasource) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
 ### GetHost
 
 `func (o *DNSDatasource) GetHost() string`
@@ -128,46 +168,6 @@ HasHost returns a boolean if a field has been set.
 `func (o *DNSDatasource) UnsetHost()`
 
 UnsetHost ensures that no value is present for Host, not even an explicit nil
-### GetLookup
-
-`func (o *DNSDatasource) GetLookup() string`
-
-GetLookup returns the Lookup field if non-nil, zero value otherwise.
-
-### GetLookupOk
-
-`func (o *DNSDatasource) GetLookupOk() (*string, bool)`
-
-GetLookupOk returns a tuple with the Lookup field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLookup
-
-`func (o *DNSDatasource) SetLookup(v string)`
-
-SetLookup sets Lookup field to given value.
-
-
-### GetName
-
-`func (o *DNSDatasource) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *DNSDatasource) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *DNSDatasource) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetPort
 
 `func (o *DNSDatasource) GetPort() int64`
@@ -203,41 +203,6 @@ HasPort returns a boolean if a field has been set.
 `func (o *DNSDatasource) UnsetPort()`
 
 UnsetPort ensures that no value is present for Port, not even an explicit nil
-### GetRecordTypes
-
-`func (o *DNSDatasource) GetRecordTypes() []string`
-
-GetRecordTypes returns the RecordTypes field if non-nil, zero value otherwise.
-
-### GetRecordTypesOk
-
-`func (o *DNSDatasource) GetRecordTypesOk() (*[]string, bool)`
-
-GetRecordTypesOk returns a tuple with the RecordTypes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRecordTypes
-
-`func (o *DNSDatasource) SetRecordTypes(v []string)`
-
-SetRecordTypes sets RecordTypes field to given value.
-
-### HasRecordTypes
-
-`func (o *DNSDatasource) HasRecordTypes() bool`
-
-HasRecordTypes returns a boolean if a field has been set.
-
-### SetRecordTypesNil
-
-`func (o *DNSDatasource) SetRecordTypesNil(b bool)`
-
- SetRecordTypesNil sets the value for RecordTypes to be an explicit nil
-
-### UnsetRecordTypes
-`func (o *DNSDatasource) UnsetRecordTypes()`
-
-UnsetRecordTypes ensures that no value is present for RecordTypes, not even an explicit nil
 ### GetTimeout
 
 `func (o *DNSDatasource) GetTimeout() string`
@@ -273,24 +238,59 @@ HasTimeout returns a boolean if a field has been set.
 `func (o *DNSDatasource) UnsetTimeout()`
 
 UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
+### GetRecordTypes
 
-`func (o *DNSDatasource) GetType() string`
+`func (o *DNSDatasource) GetRecordTypes() []string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetRecordTypes returns the RecordTypes field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetRecordTypesOk
 
-`func (o *DNSDatasource) GetTypeOk() (*string, bool)`
+`func (o *DNSDatasource) GetRecordTypesOk() (*[]string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetRecordTypesOk returns a tuple with the RecordTypes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetRecordTypes
 
-`func (o *DNSDatasource) SetType(v string)`
+`func (o *DNSDatasource) SetRecordTypes(v []string)`
 
-SetType sets Type field to given value.
+SetRecordTypes sets RecordTypes field to given value.
+
+### HasRecordTypes
+
+`func (o *DNSDatasource) HasRecordTypes() bool`
+
+HasRecordTypes returns a boolean if a field has been set.
+
+### SetRecordTypesNil
+
+`func (o *DNSDatasource) SetRecordTypesNil(b bool)`
+
+ SetRecordTypesNil sets the value for RecordTypes to be an explicit nil
+
+### UnsetRecordTypes
+`func (o *DNSDatasource) UnsetRecordTypes()`
+
+UnsetRecordTypes ensures that no value is present for RecordTypes, not even an explicit nil
+### GetLookup
+
+`func (o *DNSDatasource) GetLookup() string`
+
+GetLookup returns the Lookup field if non-nil, zero value otherwise.
+
+### GetLookupOk
+
+`func (o *DNSDatasource) GetLookupOk() (*string, bool)`
+
+GetLookupOk returns a tuple with the Lookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLookup
+
+`func (o *DNSDatasource) SetLookup(v string)`
+
+SetLookup sets Lookup field to given value.
 
 
 

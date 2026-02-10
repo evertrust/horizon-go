@@ -22,12 +22,12 @@ var _ utils.MappedNullable = &LicenseInfoResponse{}
 
 // LicenseInfoResponse struct for LicenseInfoResponse
 type LicenseInfoResponse struct {
-	BuildTime            int64               `json:"buildTime"`
-	Expiration           utils.NullableInt64 `json:"expiration,omitempty"`
 	IsValid              bool                `json:"isValid"`
-	Libraries            []LibraryInfo       `json:"libraries"`
-	Modules              []ModuleLicenseInfo `json:"modules"`
+	Expiration           utils.NullableInt64 `json:"expiration,omitempty"`
 	Version              string              `json:"version"`
+	BuildTime            int64               `json:"buildTime"`
+	Modules              []ModuleLicenseInfo `json:"modules"`
+	Libraries            []LibraryInfo       `json:"libraries"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,13 +37,13 @@ type _LicenseInfoResponse LicenseInfoResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLicenseInfoResponse(buildTime int64, isValid bool, libraries []LibraryInfo, modules []ModuleLicenseInfo, version string) *LicenseInfoResponse {
+func NewLicenseInfoResponse(isValid bool, version string, buildTime int64, modules []ModuleLicenseInfo, libraries []LibraryInfo) *LicenseInfoResponse {
 	this := LicenseInfoResponse{}
-	this.BuildTime = buildTime
 	this.IsValid = isValid
-	this.Libraries = libraries
-	this.Modules = modules
 	this.Version = version
+	this.BuildTime = buildTime
+	this.Modules = modules
+	this.Libraries = libraries
 	return &this
 }
 
@@ -55,28 +55,28 @@ func NewLicenseInfoResponseWithDefaults() *LicenseInfoResponse {
 	return &this
 }
 
-// GetBuildTime returns the BuildTime field value
-func (o *LicenseInfoResponse) GetBuildTime() int64 {
+// GetIsValid returns the IsValid field value
+func (o *LicenseInfoResponse) GetIsValid() bool {
 	if o == nil {
-		var ret int64
+		var ret bool
 		return ret
 	}
 
-	return o.BuildTime
+	return o.IsValid
 }
 
-// GetBuildTimeOk returns a tuple with the BuildTime field value
+// GetIsValidOk returns a tuple with the IsValid field value
 // and a boolean to check if the value has been set.
-func (o *LicenseInfoResponse) GetBuildTimeOk() (*int64, bool) {
+func (o *LicenseInfoResponse) GetIsValidOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.BuildTime, true
+	return &o.IsValid, true
 }
 
-// SetBuildTime sets field value
-func (o *LicenseInfoResponse) SetBuildTime(v int64) {
-	o.BuildTime = v
+// SetIsValid sets field value
+func (o *LicenseInfoResponse) SetIsValid(v bool) {
+	o.IsValid = v
 }
 
 // GetExpiration returns the Expiration field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -122,52 +122,52 @@ func (o *LicenseInfoResponse) UnsetExpiration() {
 	o.Expiration.Unset()
 }
 
-// GetIsValid returns the IsValid field value
-func (o *LicenseInfoResponse) GetIsValid() bool {
+// GetVersion returns the Version field value
+func (o *LicenseInfoResponse) GetVersion() string {
 	if o == nil {
-		var ret bool
+		var ret string
 		return ret
 	}
 
-	return o.IsValid
+	return o.Version
 }
 
-// GetIsValidOk returns a tuple with the IsValid field value
+// GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-func (o *LicenseInfoResponse) GetIsValidOk() (*bool, bool) {
+func (o *LicenseInfoResponse) GetVersionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.IsValid, true
+	return &o.Version, true
 }
 
-// SetIsValid sets field value
-func (o *LicenseInfoResponse) SetIsValid(v bool) {
-	o.IsValid = v
+// SetVersion sets field value
+func (o *LicenseInfoResponse) SetVersion(v string) {
+	o.Version = v
 }
 
-// GetLibraries returns the Libraries field value
-func (o *LicenseInfoResponse) GetLibraries() []LibraryInfo {
+// GetBuildTime returns the BuildTime field value
+func (o *LicenseInfoResponse) GetBuildTime() int64 {
 	if o == nil {
-		var ret []LibraryInfo
+		var ret int64
 		return ret
 	}
 
-	return o.Libraries
+	return o.BuildTime
 }
 
-// GetLibrariesOk returns a tuple with the Libraries field value
+// GetBuildTimeOk returns a tuple with the BuildTime field value
 // and a boolean to check if the value has been set.
-func (o *LicenseInfoResponse) GetLibrariesOk() ([]LibraryInfo, bool) {
+func (o *LicenseInfoResponse) GetBuildTimeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Libraries, true
+	return &o.BuildTime, true
 }
 
-// SetLibraries sets field value
-func (o *LicenseInfoResponse) SetLibraries(v []LibraryInfo) {
-	o.Libraries = v
+// SetBuildTime sets field value
+func (o *LicenseInfoResponse) SetBuildTime(v int64) {
+	o.BuildTime = v
 }
 
 // GetModules returns the Modules field value
@@ -194,28 +194,28 @@ func (o *LicenseInfoResponse) SetModules(v []ModuleLicenseInfo) {
 	o.Modules = v
 }
 
-// GetVersion returns the Version field value
-func (o *LicenseInfoResponse) GetVersion() string {
+// GetLibraries returns the Libraries field value
+func (o *LicenseInfoResponse) GetLibraries() []LibraryInfo {
 	if o == nil {
-		var ret string
+		var ret []LibraryInfo
 		return ret
 	}
 
-	return o.Version
+	return o.Libraries
 }
 
-// GetVersionOk returns a tuple with the Version field value
+// GetLibrariesOk returns a tuple with the Libraries field value
 // and a boolean to check if the value has been set.
-func (o *LicenseInfoResponse) GetVersionOk() (*string, bool) {
+func (o *LicenseInfoResponse) GetLibrariesOk() ([]LibraryInfo, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Version, true
+	return o.Libraries, true
 }
 
-// SetVersion sets field value
-func (o *LicenseInfoResponse) SetVersion(v string) {
-	o.Version = v
+// SetLibraries sets field value
+func (o *LicenseInfoResponse) SetLibraries(v []LibraryInfo) {
+	o.Libraries = v
 }
 
 func (o LicenseInfoResponse) MarshalJSON() ([]byte, error) {
@@ -228,14 +228,14 @@ func (o LicenseInfoResponse) MarshalJSON() ([]byte, error) {
 
 func (o LicenseInfoResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["buildTime"] = o.BuildTime
+	toSerialize["isValid"] = o.IsValid
 	if o.Expiration.IsSet() {
 		toSerialize["expiration"] = o.Expiration.Get()
 	}
-	toSerialize["isValid"] = o.IsValid
-	toSerialize["libraries"] = o.Libraries
-	toSerialize["modules"] = o.Modules
 	toSerialize["version"] = o.Version
+	toSerialize["buildTime"] = o.BuildTime
+	toSerialize["modules"] = o.Modules
+	toSerialize["libraries"] = o.Libraries
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -249,11 +249,11 @@ func (o *LicenseInfoResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"buildTime",
 		"isValid",
-		"libraries",
-		"modules",
 		"version",
+		"buildTime",
+		"modules",
+		"libraries",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -283,12 +283,12 @@ func (o *LicenseInfoResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "buildTime")
-		delete(additionalProperties, "expiration")
 		delete(additionalProperties, "isValid")
-		delete(additionalProperties, "libraries")
-		delete(additionalProperties, "modules")
+		delete(additionalProperties, "expiration")
 		delete(additionalProperties, "version")
+		delete(additionalProperties, "buildTime")
+		delete(additionalProperties, "modules")
+		delete(additionalProperties, "libraries")
 		o.AdditionalProperties = additionalProperties
 	}
 

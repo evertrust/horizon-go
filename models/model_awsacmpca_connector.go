@@ -22,22 +22,22 @@ var _ utils.MappedNullable = &AWSACMPCAConnector{}
 
 // AWSACMPCAConnector struct for AWSACMPCAConnector
 type AWSACMPCAConnector struct {
+	Name   string `json:"name"`
+	Type   string `json:"type"`
+	Region string `json:"region"`
+	CaArn  string `json:"caArn"`
 	// Name of the `password` [credentials](#tag/security.credentials) containing Access Key Id and Secret Access Key. If not defined, an account present in environment variables can be used.
 	AccessCredentials    utils.NullableString `json:"accessCredentials,omitempty"`
-	CaArn                string               `json:"caArn"`
-	CaPolicyOid          utils.NullableString `json:"caPolicyOid,omitempty"`
+	TemplateArn          utils.NullableString `json:"templateArn,omitempty"`
+	RoleArn              utils.NullableString `json:"roleArn,omitempty"`
+	ValidDays            utils.NullableString `json:"validDays,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	RetryInterval        utils.NullableString `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	SigningHash          utils.NullableString `json:"signingHash,omitempty"`
 	CertificateUsage     utils.NullableString `json:"certificateUsage,omitempty"`
-	Name                 string               `json:"name"`
+	CaPolicyOid          utils.NullableString `json:"caPolicyOid,omitempty"`
+	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	Proxy                utils.NullableString `json:"proxy,omitempty"`
 	Queue                utils.NullableString `json:"queue,omitempty"`
-	Region               string               `json:"region"`
-	RetryInterval        utils.NullableString `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	RoleArn              utils.NullableString `json:"roleArn,omitempty"`
-	SigningHash          utils.NullableString `json:"signingHash,omitempty"`
-	TemplateArn          utils.NullableString `json:"templateArn,omitempty"`
-	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Type                 string               `json:"type"`
-	ValidDays            utils.NullableString `json:"validDays,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,12 +47,12 @@ type _AWSACMPCAConnector AWSACMPCAConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAWSACMPCAConnector(caArn string, name string, region string, type_ string) *AWSACMPCAConnector {
+func NewAWSACMPCAConnector(name string, type_ string, region string, caArn string) *AWSACMPCAConnector {
 	this := AWSACMPCAConnector{}
-	this.CaArn = caArn
 	this.Name = name
-	this.Region = region
 	this.Type = type_
+	this.Region = region
+	this.CaArn = caArn
 	return &this
 }
 
@@ -62,6 +62,102 @@ func NewAWSACMPCAConnector(caArn string, name string, region string, type_ strin
 func NewAWSACMPCAConnectorWithDefaults() *AWSACMPCAConnector {
 	this := AWSACMPCAConnector{}
 	return &this
+}
+
+// GetName returns the Name field value
+func (o *AWSACMPCAConnector) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *AWSACMPCAConnector) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *AWSACMPCAConnector) SetName(v string) {
+	o.Name = v
+}
+
+// GetType returns the Type field value
+func (o *AWSACMPCAConnector) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *AWSACMPCAConnector) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *AWSACMPCAConnector) SetType(v string) {
+	o.Type = v
+}
+
+// GetRegion returns the Region field value
+func (o *AWSACMPCAConnector) GetRegion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value
+// and a boolean to check if the value has been set.
+func (o *AWSACMPCAConnector) GetRegionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Region, true
+}
+
+// SetRegion sets field value
+func (o *AWSACMPCAConnector) SetRegion(v string) {
+	o.Region = v
+}
+
+// GetCaArn returns the CaArn field value
+func (o *AWSACMPCAConnector) GetCaArn() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CaArn
+}
+
+// GetCaArnOk returns a tuple with the CaArn field value
+// and a boolean to check if the value has been set.
+func (o *AWSACMPCAConnector) GetCaArnOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CaArn, true
+}
+
+// SetCaArn sets field value
+func (o *AWSACMPCAConnector) SetCaArn(v string) {
+	o.CaArn = v
 }
 
 // GetAccessCredentials returns the AccessCredentials field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -107,71 +203,219 @@ func (o *AWSACMPCAConnector) UnsetAccessCredentials() {
 	o.AccessCredentials.Unset()
 }
 
-// GetCaArn returns the CaArn field value
-func (o *AWSACMPCAConnector) GetCaArn() string {
-	if o == nil {
+// GetTemplateArn returns the TemplateArn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AWSACMPCAConnector) GetTemplateArn() string {
+	if o == nil || utils.IsNil(o.TemplateArn.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.CaArn
+	return *o.TemplateArn.Get()
 }
 
-// GetCaArnOk returns a tuple with the CaArn field value
-// and a boolean to check if the value has been set.
-func (o *AWSACMPCAConnector) GetCaArnOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CaArn, true
-}
-
-// SetCaArn sets field value
-func (o *AWSACMPCAConnector) SetCaArn(v string) {
-	o.CaArn = v
-}
-
-// GetCaPolicyOid returns the CaPolicyOid field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AWSACMPCAConnector) GetCaPolicyOid() string {
-	if o == nil || utils.IsNil(o.CaPolicyOid.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.CaPolicyOid.Get()
-}
-
-// GetCaPolicyOidOk returns a tuple with the CaPolicyOid field value if set, nil otherwise
+// GetTemplateArnOk returns a tuple with the TemplateArn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AWSACMPCAConnector) GetCaPolicyOidOk() (*string, bool) {
+func (o *AWSACMPCAConnector) GetTemplateArnOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.CaPolicyOid.Get(), o.CaPolicyOid.IsSet()
+	return o.TemplateArn.Get(), o.TemplateArn.IsSet()
 }
 
-// HasCaPolicyOid returns a boolean if a field has been set.
-func (o *AWSACMPCAConnector) HasCaPolicyOid() bool {
-	if o != nil && o.CaPolicyOid.IsSet() {
+// HasTemplateArn returns a boolean if a field has been set.
+func (o *AWSACMPCAConnector) HasTemplateArn() bool {
+	if o != nil && o.TemplateArn.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCaPolicyOid gets a reference to the given NullableString and assigns it to the CaPolicyOid field.
-func (o *AWSACMPCAConnector) SetCaPolicyOid(v string) {
-	o.CaPolicyOid.Set(&v)
+// SetTemplateArn gets a reference to the given NullableString and assigns it to the TemplateArn field.
+func (o *AWSACMPCAConnector) SetTemplateArn(v string) {
+	o.TemplateArn.Set(&v)
 }
 
-// SetCaPolicyOidNil sets the value for CaPolicyOid to be an explicit nil
-func (o *AWSACMPCAConnector) SetCaPolicyOidNil() {
-	o.CaPolicyOid.Set(nil)
+// SetTemplateArnNil sets the value for TemplateArn to be an explicit nil
+func (o *AWSACMPCAConnector) SetTemplateArnNil() {
+	o.TemplateArn.Set(nil)
 }
 
-// UnsetCaPolicyOid ensures that no value is present for CaPolicyOid, not even an explicit nil
-func (o *AWSACMPCAConnector) UnsetCaPolicyOid() {
-	o.CaPolicyOid.Unset()
+// UnsetTemplateArn ensures that no value is present for TemplateArn, not even an explicit nil
+func (o *AWSACMPCAConnector) UnsetTemplateArn() {
+	o.TemplateArn.Unset()
+}
+
+// GetRoleArn returns the RoleArn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AWSACMPCAConnector) GetRoleArn() string {
+	if o == nil || utils.IsNil(o.RoleArn.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RoleArn.Get()
+}
+
+// GetRoleArnOk returns a tuple with the RoleArn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AWSACMPCAConnector) GetRoleArnOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RoleArn.Get(), o.RoleArn.IsSet()
+}
+
+// HasRoleArn returns a boolean if a field has been set.
+func (o *AWSACMPCAConnector) HasRoleArn() bool {
+	if o != nil && o.RoleArn.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRoleArn gets a reference to the given NullableString and assigns it to the RoleArn field.
+func (o *AWSACMPCAConnector) SetRoleArn(v string) {
+	o.RoleArn.Set(&v)
+}
+
+// SetRoleArnNil sets the value for RoleArn to be an explicit nil
+func (o *AWSACMPCAConnector) SetRoleArnNil() {
+	o.RoleArn.Set(nil)
+}
+
+// UnsetRoleArn ensures that no value is present for RoleArn, not even an explicit nil
+func (o *AWSACMPCAConnector) UnsetRoleArn() {
+	o.RoleArn.Unset()
+}
+
+// GetValidDays returns the ValidDays field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AWSACMPCAConnector) GetValidDays() string {
+	if o == nil || utils.IsNil(o.ValidDays.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ValidDays.Get()
+}
+
+// GetValidDaysOk returns a tuple with the ValidDays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AWSACMPCAConnector) GetValidDaysOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ValidDays.Get(), o.ValidDays.IsSet()
+}
+
+// HasValidDays returns a boolean if a field has been set.
+func (o *AWSACMPCAConnector) HasValidDays() bool {
+	if o != nil && o.ValidDays.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValidDays gets a reference to the given NullableString and assigns it to the ValidDays field.
+func (o *AWSACMPCAConnector) SetValidDays(v string) {
+	o.ValidDays.Set(&v)
+}
+
+// SetValidDaysNil sets the value for ValidDays to be an explicit nil
+func (o *AWSACMPCAConnector) SetValidDaysNil() {
+	o.ValidDays.Set(nil)
+}
+
+// UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
+func (o *AWSACMPCAConnector) UnsetValidDays() {
+	o.ValidDays.Unset()
+}
+
+// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AWSACMPCAConnector) GetRetryInterval() string {
+	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RetryInterval.Get()
+}
+
+// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AWSACMPCAConnector) GetRetryIntervalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
+}
+
+// HasRetryInterval returns a boolean if a field has been set.
+func (o *AWSACMPCAConnector) HasRetryInterval() bool {
+	if o != nil && o.RetryInterval.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
+func (o *AWSACMPCAConnector) SetRetryInterval(v string) {
+	o.RetryInterval.Set(&v)
+}
+
+// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+func (o *AWSACMPCAConnector) SetRetryIntervalNil() {
+	o.RetryInterval.Set(nil)
+}
+
+// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
+func (o *AWSACMPCAConnector) UnsetRetryInterval() {
+	o.RetryInterval.Unset()
+}
+
+// GetSigningHash returns the SigningHash field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AWSACMPCAConnector) GetSigningHash() string {
+	if o == nil || utils.IsNil(o.SigningHash.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SigningHash.Get()
+}
+
+// GetSigningHashOk returns a tuple with the SigningHash field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AWSACMPCAConnector) GetSigningHashOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SigningHash.Get(), o.SigningHash.IsSet()
+}
+
+// HasSigningHash returns a boolean if a field has been set.
+func (o *AWSACMPCAConnector) HasSigningHash() bool {
+	if o != nil && o.SigningHash.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSigningHash gets a reference to the given NullableString and assigns it to the SigningHash field.
+func (o *AWSACMPCAConnector) SetSigningHash(v string) {
+	o.SigningHash.Set(&v)
+}
+
+// SetSigningHashNil sets the value for SigningHash to be an explicit nil
+func (o *AWSACMPCAConnector) SetSigningHashNil() {
+	o.SigningHash.Set(nil)
+}
+
+// UnsetSigningHash ensures that no value is present for SigningHash, not even an explicit nil
+func (o *AWSACMPCAConnector) UnsetSigningHash() {
+	o.SigningHash.Unset()
 }
 
 // GetCertificateUsage returns the CertificateUsage field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -217,28 +461,90 @@ func (o *AWSACMPCAConnector) UnsetCertificateUsage() {
 	o.CertificateUsage.Unset()
 }
 
-// GetName returns the Name field value
-func (o *AWSACMPCAConnector) GetName() string {
-	if o == nil {
+// GetCaPolicyOid returns the CaPolicyOid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AWSACMPCAConnector) GetCaPolicyOid() string {
+	if o == nil || utils.IsNil(o.CaPolicyOid.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.CaPolicyOid.Get()
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetCaPolicyOidOk returns a tuple with the CaPolicyOid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSACMPCAConnector) GetNameOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AWSACMPCAConnector) GetCaPolicyOidOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.CaPolicyOid.Get(), o.CaPolicyOid.IsSet()
 }
 
-// SetName sets field value
-func (o *AWSACMPCAConnector) SetName(v string) {
-	o.Name = v
+// HasCaPolicyOid returns a boolean if a field has been set.
+func (o *AWSACMPCAConnector) HasCaPolicyOid() bool {
+	if o != nil && o.CaPolicyOid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCaPolicyOid gets a reference to the given NullableString and assigns it to the CaPolicyOid field.
+func (o *AWSACMPCAConnector) SetCaPolicyOid(v string) {
+	o.CaPolicyOid.Set(&v)
+}
+
+// SetCaPolicyOidNil sets the value for CaPolicyOid to be an explicit nil
+func (o *AWSACMPCAConnector) SetCaPolicyOidNil() {
+	o.CaPolicyOid.Set(nil)
+}
+
+// UnsetCaPolicyOid ensures that no value is present for CaPolicyOid, not even an explicit nil
+func (o *AWSACMPCAConnector) UnsetCaPolicyOid() {
+	o.CaPolicyOid.Unset()
+}
+
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AWSACMPCAConnector) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AWSACMPCAConnector) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *AWSACMPCAConnector) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *AWSACMPCAConnector) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *AWSACMPCAConnector) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *AWSACMPCAConnector) UnsetTimeout() {
+	o.Timeout.Unset()
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -327,312 +633,6 @@ func (o *AWSACMPCAConnector) UnsetQueue() {
 	o.Queue.Unset()
 }
 
-// GetRegion returns the Region field value
-func (o *AWSACMPCAConnector) GetRegion() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Region
-}
-
-// GetRegionOk returns a tuple with the Region field value
-// and a boolean to check if the value has been set.
-func (o *AWSACMPCAConnector) GetRegionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Region, true
-}
-
-// SetRegion sets field value
-func (o *AWSACMPCAConnector) SetRegion(v string) {
-	o.Region = v
-}
-
-// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AWSACMPCAConnector) GetRetryInterval() string {
-	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RetryInterval.Get()
-}
-
-// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AWSACMPCAConnector) GetRetryIntervalOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
-}
-
-// HasRetryInterval returns a boolean if a field has been set.
-func (o *AWSACMPCAConnector) HasRetryInterval() bool {
-	if o != nil && o.RetryInterval.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
-func (o *AWSACMPCAConnector) SetRetryInterval(v string) {
-	o.RetryInterval.Set(&v)
-}
-
-// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
-func (o *AWSACMPCAConnector) SetRetryIntervalNil() {
-	o.RetryInterval.Set(nil)
-}
-
-// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-func (o *AWSACMPCAConnector) UnsetRetryInterval() {
-	o.RetryInterval.Unset()
-}
-
-// GetRoleArn returns the RoleArn field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AWSACMPCAConnector) GetRoleArn() string {
-	if o == nil || utils.IsNil(o.RoleArn.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RoleArn.Get()
-}
-
-// GetRoleArnOk returns a tuple with the RoleArn field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AWSACMPCAConnector) GetRoleArnOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RoleArn.Get(), o.RoleArn.IsSet()
-}
-
-// HasRoleArn returns a boolean if a field has been set.
-func (o *AWSACMPCAConnector) HasRoleArn() bool {
-	if o != nil && o.RoleArn.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRoleArn gets a reference to the given NullableString and assigns it to the RoleArn field.
-func (o *AWSACMPCAConnector) SetRoleArn(v string) {
-	o.RoleArn.Set(&v)
-}
-
-// SetRoleArnNil sets the value for RoleArn to be an explicit nil
-func (o *AWSACMPCAConnector) SetRoleArnNil() {
-	o.RoleArn.Set(nil)
-}
-
-// UnsetRoleArn ensures that no value is present for RoleArn, not even an explicit nil
-func (o *AWSACMPCAConnector) UnsetRoleArn() {
-	o.RoleArn.Unset()
-}
-
-// GetSigningHash returns the SigningHash field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AWSACMPCAConnector) GetSigningHash() string {
-	if o == nil || utils.IsNil(o.SigningHash.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.SigningHash.Get()
-}
-
-// GetSigningHashOk returns a tuple with the SigningHash field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AWSACMPCAConnector) GetSigningHashOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SigningHash.Get(), o.SigningHash.IsSet()
-}
-
-// HasSigningHash returns a boolean if a field has been set.
-func (o *AWSACMPCAConnector) HasSigningHash() bool {
-	if o != nil && o.SigningHash.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSigningHash gets a reference to the given NullableString and assigns it to the SigningHash field.
-func (o *AWSACMPCAConnector) SetSigningHash(v string) {
-	o.SigningHash.Set(&v)
-}
-
-// SetSigningHashNil sets the value for SigningHash to be an explicit nil
-func (o *AWSACMPCAConnector) SetSigningHashNil() {
-	o.SigningHash.Set(nil)
-}
-
-// UnsetSigningHash ensures that no value is present for SigningHash, not even an explicit nil
-func (o *AWSACMPCAConnector) UnsetSigningHash() {
-	o.SigningHash.Unset()
-}
-
-// GetTemplateArn returns the TemplateArn field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AWSACMPCAConnector) GetTemplateArn() string {
-	if o == nil || utils.IsNil(o.TemplateArn.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.TemplateArn.Get()
-}
-
-// GetTemplateArnOk returns a tuple with the TemplateArn field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AWSACMPCAConnector) GetTemplateArnOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.TemplateArn.Get(), o.TemplateArn.IsSet()
-}
-
-// HasTemplateArn returns a boolean if a field has been set.
-func (o *AWSACMPCAConnector) HasTemplateArn() bool {
-	if o != nil && o.TemplateArn.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTemplateArn gets a reference to the given NullableString and assigns it to the TemplateArn field.
-func (o *AWSACMPCAConnector) SetTemplateArn(v string) {
-	o.TemplateArn.Set(&v)
-}
-
-// SetTemplateArnNil sets the value for TemplateArn to be an explicit nil
-func (o *AWSACMPCAConnector) SetTemplateArnNil() {
-	o.TemplateArn.Set(nil)
-}
-
-// UnsetTemplateArn ensures that no value is present for TemplateArn, not even an explicit nil
-func (o *AWSACMPCAConnector) UnsetTemplateArn() {
-	o.TemplateArn.Unset()
-}
-
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AWSACMPCAConnector) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Timeout.Get()
-}
-
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AWSACMPCAConnector) GetTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
-}
-
-// HasTimeout returns a boolean if a field has been set.
-func (o *AWSACMPCAConnector) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *AWSACMPCAConnector) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *AWSACMPCAConnector) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *AWSACMPCAConnector) UnsetTimeout() {
-	o.Timeout.Unset()
-}
-
-// GetType returns the Type field value
-func (o *AWSACMPCAConnector) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *AWSACMPCAConnector) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *AWSACMPCAConnector) SetType(v string) {
-	o.Type = v
-}
-
-// GetValidDays returns the ValidDays field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AWSACMPCAConnector) GetValidDays() string {
-	if o == nil || utils.IsNil(o.ValidDays.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ValidDays.Get()
-}
-
-// GetValidDaysOk returns a tuple with the ValidDays field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AWSACMPCAConnector) GetValidDaysOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ValidDays.Get(), o.ValidDays.IsSet()
-}
-
-// HasValidDays returns a boolean if a field has been set.
-func (o *AWSACMPCAConnector) HasValidDays() bool {
-	if o != nil && o.ValidDays.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetValidDays gets a reference to the given NullableString and assigns it to the ValidDays field.
-func (o *AWSACMPCAConnector) SetValidDays(v string) {
-	o.ValidDays.Set(&v)
-}
-
-// SetValidDaysNil sets the value for ValidDays to be an explicit nil
-func (o *AWSACMPCAConnector) SetValidDaysNil() {
-	o.ValidDays.Set(nil)
-}
-
-// UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
-func (o *AWSACMPCAConnector) UnsetValidDays() {
-	o.ValidDays.Unset()
-}
-
 func (o AWSACMPCAConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -643,42 +643,42 @@ func (o AWSACMPCAConnector) MarshalJSON() ([]byte, error) {
 
 func (o AWSACMPCAConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
+	toSerialize["region"] = o.Region
+	toSerialize["caArn"] = o.CaArn
 	if o.AccessCredentials.IsSet() {
 		toSerialize["accessCredentials"] = o.AccessCredentials.Get()
 	}
-	toSerialize["caArn"] = o.CaArn
-	if o.CaPolicyOid.IsSet() {
-		toSerialize["caPolicyOid"] = o.CaPolicyOid.Get()
+	if o.TemplateArn.IsSet() {
+		toSerialize["templateArn"] = o.TemplateArn.Get()
+	}
+	if o.RoleArn.IsSet() {
+		toSerialize["roleArn"] = o.RoleArn.Get()
+	}
+	if o.ValidDays.IsSet() {
+		toSerialize["validDays"] = o.ValidDays.Get()
+	}
+	if o.RetryInterval.IsSet() {
+		toSerialize["retryInterval"] = o.RetryInterval.Get()
+	}
+	if o.SigningHash.IsSet() {
+		toSerialize["signingHash"] = o.SigningHash.Get()
 	}
 	if o.CertificateUsage.IsSet() {
 		toSerialize["certificateUsage"] = o.CertificateUsage.Get()
 	}
-	toSerialize["name"] = o.Name
+	if o.CaPolicyOid.IsSet() {
+		toSerialize["caPolicyOid"] = o.CaPolicyOid.Get()
+	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	if o.Queue.IsSet() {
 		toSerialize["queue"] = o.Queue.Get()
-	}
-	toSerialize["region"] = o.Region
-	if o.RetryInterval.IsSet() {
-		toSerialize["retryInterval"] = o.RetryInterval.Get()
-	}
-	if o.RoleArn.IsSet() {
-		toSerialize["roleArn"] = o.RoleArn.Get()
-	}
-	if o.SigningHash.IsSet() {
-		toSerialize["signingHash"] = o.SigningHash.Get()
-	}
-	if o.TemplateArn.IsSet() {
-		toSerialize["templateArn"] = o.TemplateArn.Get()
-	}
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
-	toSerialize["type"] = o.Type
-	if o.ValidDays.IsSet() {
-		toSerialize["validDays"] = o.ValidDays.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -693,10 +693,10 @@ func (o *AWSACMPCAConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"caArn",
 		"name",
-		"region",
 		"type",
+		"region",
+		"caArn",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -726,21 +726,21 @@ func (o *AWSACMPCAConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "accessCredentials")
-		delete(additionalProperties, "caArn")
-		delete(additionalProperties, "caPolicyOid")
-		delete(additionalProperties, "certificateUsage")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "caArn")
+		delete(additionalProperties, "accessCredentials")
+		delete(additionalProperties, "templateArn")
+		delete(additionalProperties, "roleArn")
+		delete(additionalProperties, "validDays")
+		delete(additionalProperties, "retryInterval")
+		delete(additionalProperties, "signingHash")
+		delete(additionalProperties, "certificateUsage")
+		delete(additionalProperties, "caPolicyOid")
+		delete(additionalProperties, "timeout")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
-		delete(additionalProperties, "region")
-		delete(additionalProperties, "retryInterval")
-		delete(additionalProperties, "roleArn")
-		delete(additionalProperties, "signingHash")
-		delete(additionalProperties, "templateArn")
-		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "validDays")
 		o.AdditionalProperties = additionalProperties
 	}
 

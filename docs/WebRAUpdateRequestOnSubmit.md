@@ -7,15 +7,15 @@ Name | Type | Description | Notes
 **CertificateId** | Pointer to **NullableString** | The id of the certificate to update | [optional] 
 **CertificatePem** | Pointer to **NullableString** | The PEM encoded certificate to update | [optional] 
 **RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
-**DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
-**Template** | [**WebRAUpdateRequestTemplate**](WebRAUpdateRequestTemplate.md) | The user-data that will be used to update the certificate | 
 **Workflow** | **string** | What this request will do. For an update request, this is always &#x60;update&#x60; | 
+**Template** | [**WebRAUpdateRequestTemplate**](WebRAUpdateRequestTemplate.md) | The user-data that will be used to update the certificate | 
+**DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
 
 ## Methods
 
 ### NewWebRAUpdateRequestOnSubmit
 
-`func NewWebRAUpdateRequestOnSubmit(template WebRAUpdateRequestTemplate, workflow string, ) *WebRAUpdateRequestOnSubmit`
+`func NewWebRAUpdateRequestOnSubmit(workflow string, template WebRAUpdateRequestTemplate, ) *WebRAUpdateRequestOnSubmit`
 
 NewWebRAUpdateRequestOnSubmit instantiates a new WebRAUpdateRequestOnSubmit object
 This constructor will assign default values to properties that have it defined,
@@ -135,6 +135,46 @@ HasRequesterComment returns a boolean if a field has been set.
 `func (o *WebRAUpdateRequestOnSubmit) UnsetRequesterComment()`
 
 UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
+### GetWorkflow
+
+`func (o *WebRAUpdateRequestOnSubmit) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRAUpdateRequestOnSubmit) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRAUpdateRequestOnSubmit) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
+### GetTemplate
+
+`func (o *WebRAUpdateRequestOnSubmit) GetTemplate() WebRAUpdateRequestTemplate`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *WebRAUpdateRequestOnSubmit) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *WebRAUpdateRequestOnSubmit) SetTemplate(v WebRAUpdateRequestTemplate)`
+
+SetTemplate sets Template field to given value.
+
+
 ### GetDryRun
 
 `func (o *WebRAUpdateRequestOnSubmit) GetDryRun() bool`
@@ -170,46 +210,6 @@ HasDryRun returns a boolean if a field has been set.
 `func (o *WebRAUpdateRequestOnSubmit) UnsetDryRun()`
 
 UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
-### GetTemplate
-
-`func (o *WebRAUpdateRequestOnSubmit) GetTemplate() WebRAUpdateRequestTemplate`
-
-GetTemplate returns the Template field if non-nil, zero value otherwise.
-
-### GetTemplateOk
-
-`func (o *WebRAUpdateRequestOnSubmit) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool)`
-
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplate
-
-`func (o *WebRAUpdateRequestOnSubmit) SetTemplate(v WebRAUpdateRequestTemplate)`
-
-SetTemplate sets Template field to given value.
-
-
-### GetWorkflow
-
-`func (o *WebRAUpdateRequestOnSubmit) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRAUpdateRequestOnSubmit) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRAUpdateRequestOnSubmit) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

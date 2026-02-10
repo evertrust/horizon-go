@@ -21,13 +21,13 @@ var _ utils.MappedNullable = &CertificateProfileSelfPermissions{}
 
 // CertificateProfileSelfPermissions struct for CertificateProfileSelfPermissions
 type CertificateProfileSelfPermissions struct {
+	SelfRecover          utils.NullableBool `json:"selfRecover,omitempty"`
+	SelfUpdate           utils.NullableBool `json:"selfUpdate,omitempty"`
+	SelfRevoke           utils.NullableBool `json:"selfRevoke,omitempty"`
+	SelfRenew            utils.NullableBool `json:"selfRenew,omitempty"`
 	SelfPopRenew         utils.NullableBool `json:"selfPopRenew,omitempty"`
 	SelfPopRevoke        utils.NullableBool `json:"selfPopRevoke,omitempty"`
 	SelfPopUpdate        utils.NullableBool `json:"selfPopUpdate,omitempty"`
-	SelfRecover          utils.NullableBool `json:"selfRecover,omitempty"`
-	SelfRenew            utils.NullableBool `json:"selfRenew,omitempty"`
-	SelfRevoke           utils.NullableBool `json:"selfRevoke,omitempty"`
-	SelfUpdate           utils.NullableBool `json:"selfUpdate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,20 +39,20 @@ type _CertificateProfileSelfPermissions CertificateProfileSelfPermissions
 // will change when the set of required properties is changed
 func NewCertificateProfileSelfPermissions() *CertificateProfileSelfPermissions {
 	this := CertificateProfileSelfPermissions{}
+	var selfRecover bool = false
+	this.SelfRecover = *utils.NewNullableBool(&selfRecover)
+	var selfUpdate bool = false
+	this.SelfUpdate = *utils.NewNullableBool(&selfUpdate)
+	var selfRevoke bool = false
+	this.SelfRevoke = *utils.NewNullableBool(&selfRevoke)
+	var selfRenew bool = false
+	this.SelfRenew = *utils.NewNullableBool(&selfRenew)
 	var selfPopRenew bool = false
 	this.SelfPopRenew = *utils.NewNullableBool(&selfPopRenew)
 	var selfPopRevoke bool = false
 	this.SelfPopRevoke = *utils.NewNullableBool(&selfPopRevoke)
 	var selfPopUpdate bool = false
 	this.SelfPopUpdate = *utils.NewNullableBool(&selfPopUpdate)
-	var selfRecover bool = false
-	this.SelfRecover = *utils.NewNullableBool(&selfRecover)
-	var selfRenew bool = false
-	this.SelfRenew = *utils.NewNullableBool(&selfRenew)
-	var selfRevoke bool = false
-	this.SelfRevoke = *utils.NewNullableBool(&selfRevoke)
-	var selfUpdate bool = false
-	this.SelfUpdate = *utils.NewNullableBool(&selfUpdate)
 	return &this
 }
 
@@ -61,21 +61,193 @@ func NewCertificateProfileSelfPermissions() *CertificateProfileSelfPermissions {
 // but it doesn't guarantee that properties required by API are set
 func NewCertificateProfileSelfPermissionsWithDefaults() *CertificateProfileSelfPermissions {
 	this := CertificateProfileSelfPermissions{}
+	var selfRecover bool = false
+	this.SelfRecover = *utils.NewNullableBool(&selfRecover)
+	var selfUpdate bool = false
+	this.SelfUpdate = *utils.NewNullableBool(&selfUpdate)
+	var selfRevoke bool = false
+	this.SelfRevoke = *utils.NewNullableBool(&selfRevoke)
+	var selfRenew bool = false
+	this.SelfRenew = *utils.NewNullableBool(&selfRenew)
 	var selfPopRenew bool = false
 	this.SelfPopRenew = *utils.NewNullableBool(&selfPopRenew)
 	var selfPopRevoke bool = false
 	this.SelfPopRevoke = *utils.NewNullableBool(&selfPopRevoke)
 	var selfPopUpdate bool = false
 	this.SelfPopUpdate = *utils.NewNullableBool(&selfPopUpdate)
-	var selfRecover bool = false
-	this.SelfRecover = *utils.NewNullableBool(&selfRecover)
-	var selfRenew bool = false
-	this.SelfRenew = *utils.NewNullableBool(&selfRenew)
-	var selfRevoke bool = false
-	this.SelfRevoke = *utils.NewNullableBool(&selfRevoke)
-	var selfUpdate bool = false
-	this.SelfUpdate = *utils.NewNullableBool(&selfUpdate)
 	return &this
+}
+
+// GetSelfRecover returns the SelfRecover field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateProfileSelfPermissions) GetSelfRecover() bool {
+	if o == nil || utils.IsNil(o.SelfRecover.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.SelfRecover.Get()
+}
+
+// GetSelfRecoverOk returns a tuple with the SelfRecover field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateProfileSelfPermissions) GetSelfRecoverOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SelfRecover.Get(), o.SelfRecover.IsSet()
+}
+
+// HasSelfRecover returns a boolean if a field has been set.
+func (o *CertificateProfileSelfPermissions) HasSelfRecover() bool {
+	if o != nil && o.SelfRecover.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSelfRecover gets a reference to the given NullableBool and assigns it to the SelfRecover field.
+func (o *CertificateProfileSelfPermissions) SetSelfRecover(v bool) {
+	o.SelfRecover.Set(&v)
+}
+
+// SetSelfRecoverNil sets the value for SelfRecover to be an explicit nil
+func (o *CertificateProfileSelfPermissions) SetSelfRecoverNil() {
+	o.SelfRecover.Set(nil)
+}
+
+// UnsetSelfRecover ensures that no value is present for SelfRecover, not even an explicit nil
+func (o *CertificateProfileSelfPermissions) UnsetSelfRecover() {
+	o.SelfRecover.Unset()
+}
+
+// GetSelfUpdate returns the SelfUpdate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateProfileSelfPermissions) GetSelfUpdate() bool {
+	if o == nil || utils.IsNil(o.SelfUpdate.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.SelfUpdate.Get()
+}
+
+// GetSelfUpdateOk returns a tuple with the SelfUpdate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateProfileSelfPermissions) GetSelfUpdateOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SelfUpdate.Get(), o.SelfUpdate.IsSet()
+}
+
+// HasSelfUpdate returns a boolean if a field has been set.
+func (o *CertificateProfileSelfPermissions) HasSelfUpdate() bool {
+	if o != nil && o.SelfUpdate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSelfUpdate gets a reference to the given NullableBool and assigns it to the SelfUpdate field.
+func (o *CertificateProfileSelfPermissions) SetSelfUpdate(v bool) {
+	o.SelfUpdate.Set(&v)
+}
+
+// SetSelfUpdateNil sets the value for SelfUpdate to be an explicit nil
+func (o *CertificateProfileSelfPermissions) SetSelfUpdateNil() {
+	o.SelfUpdate.Set(nil)
+}
+
+// UnsetSelfUpdate ensures that no value is present for SelfUpdate, not even an explicit nil
+func (o *CertificateProfileSelfPermissions) UnsetSelfUpdate() {
+	o.SelfUpdate.Unset()
+}
+
+// GetSelfRevoke returns the SelfRevoke field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateProfileSelfPermissions) GetSelfRevoke() bool {
+	if o == nil || utils.IsNil(o.SelfRevoke.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.SelfRevoke.Get()
+}
+
+// GetSelfRevokeOk returns a tuple with the SelfRevoke field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateProfileSelfPermissions) GetSelfRevokeOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SelfRevoke.Get(), o.SelfRevoke.IsSet()
+}
+
+// HasSelfRevoke returns a boolean if a field has been set.
+func (o *CertificateProfileSelfPermissions) HasSelfRevoke() bool {
+	if o != nil && o.SelfRevoke.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSelfRevoke gets a reference to the given NullableBool and assigns it to the SelfRevoke field.
+func (o *CertificateProfileSelfPermissions) SetSelfRevoke(v bool) {
+	o.SelfRevoke.Set(&v)
+}
+
+// SetSelfRevokeNil sets the value for SelfRevoke to be an explicit nil
+func (o *CertificateProfileSelfPermissions) SetSelfRevokeNil() {
+	o.SelfRevoke.Set(nil)
+}
+
+// UnsetSelfRevoke ensures that no value is present for SelfRevoke, not even an explicit nil
+func (o *CertificateProfileSelfPermissions) UnsetSelfRevoke() {
+	o.SelfRevoke.Unset()
+}
+
+// GetSelfRenew returns the SelfRenew field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateProfileSelfPermissions) GetSelfRenew() bool {
+	if o == nil || utils.IsNil(o.SelfRenew.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.SelfRenew.Get()
+}
+
+// GetSelfRenewOk returns a tuple with the SelfRenew field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateProfileSelfPermissions) GetSelfRenewOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SelfRenew.Get(), o.SelfRenew.IsSet()
+}
+
+// HasSelfRenew returns a boolean if a field has been set.
+func (o *CertificateProfileSelfPermissions) HasSelfRenew() bool {
+	if o != nil && o.SelfRenew.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSelfRenew gets a reference to the given NullableBool and assigns it to the SelfRenew field.
+func (o *CertificateProfileSelfPermissions) SetSelfRenew(v bool) {
+	o.SelfRenew.Set(&v)
+}
+
+// SetSelfRenewNil sets the value for SelfRenew to be an explicit nil
+func (o *CertificateProfileSelfPermissions) SetSelfRenewNil() {
+	o.SelfRenew.Set(nil)
+}
+
+// UnsetSelfRenew ensures that no value is present for SelfRenew, not even an explicit nil
+func (o *CertificateProfileSelfPermissions) UnsetSelfRenew() {
+	o.SelfRenew.Unset()
 }
 
 // GetSelfPopRenew returns the SelfPopRenew field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -207,178 +379,6 @@ func (o *CertificateProfileSelfPermissions) UnsetSelfPopUpdate() {
 	o.SelfPopUpdate.Unset()
 }
 
-// GetSelfRecover returns the SelfRecover field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateProfileSelfPermissions) GetSelfRecover() bool {
-	if o == nil || utils.IsNil(o.SelfRecover.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.SelfRecover.Get()
-}
-
-// GetSelfRecoverOk returns a tuple with the SelfRecover field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateProfileSelfPermissions) GetSelfRecoverOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SelfRecover.Get(), o.SelfRecover.IsSet()
-}
-
-// HasSelfRecover returns a boolean if a field has been set.
-func (o *CertificateProfileSelfPermissions) HasSelfRecover() bool {
-	if o != nil && o.SelfRecover.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSelfRecover gets a reference to the given NullableBool and assigns it to the SelfRecover field.
-func (o *CertificateProfileSelfPermissions) SetSelfRecover(v bool) {
-	o.SelfRecover.Set(&v)
-}
-
-// SetSelfRecoverNil sets the value for SelfRecover to be an explicit nil
-func (o *CertificateProfileSelfPermissions) SetSelfRecoverNil() {
-	o.SelfRecover.Set(nil)
-}
-
-// UnsetSelfRecover ensures that no value is present for SelfRecover, not even an explicit nil
-func (o *CertificateProfileSelfPermissions) UnsetSelfRecover() {
-	o.SelfRecover.Unset()
-}
-
-// GetSelfRenew returns the SelfRenew field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateProfileSelfPermissions) GetSelfRenew() bool {
-	if o == nil || utils.IsNil(o.SelfRenew.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.SelfRenew.Get()
-}
-
-// GetSelfRenewOk returns a tuple with the SelfRenew field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateProfileSelfPermissions) GetSelfRenewOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SelfRenew.Get(), o.SelfRenew.IsSet()
-}
-
-// HasSelfRenew returns a boolean if a field has been set.
-func (o *CertificateProfileSelfPermissions) HasSelfRenew() bool {
-	if o != nil && o.SelfRenew.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSelfRenew gets a reference to the given NullableBool and assigns it to the SelfRenew field.
-func (o *CertificateProfileSelfPermissions) SetSelfRenew(v bool) {
-	o.SelfRenew.Set(&v)
-}
-
-// SetSelfRenewNil sets the value for SelfRenew to be an explicit nil
-func (o *CertificateProfileSelfPermissions) SetSelfRenewNil() {
-	o.SelfRenew.Set(nil)
-}
-
-// UnsetSelfRenew ensures that no value is present for SelfRenew, not even an explicit nil
-func (o *CertificateProfileSelfPermissions) UnsetSelfRenew() {
-	o.SelfRenew.Unset()
-}
-
-// GetSelfRevoke returns the SelfRevoke field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateProfileSelfPermissions) GetSelfRevoke() bool {
-	if o == nil || utils.IsNil(o.SelfRevoke.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.SelfRevoke.Get()
-}
-
-// GetSelfRevokeOk returns a tuple with the SelfRevoke field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateProfileSelfPermissions) GetSelfRevokeOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SelfRevoke.Get(), o.SelfRevoke.IsSet()
-}
-
-// HasSelfRevoke returns a boolean if a field has been set.
-func (o *CertificateProfileSelfPermissions) HasSelfRevoke() bool {
-	if o != nil && o.SelfRevoke.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSelfRevoke gets a reference to the given NullableBool and assigns it to the SelfRevoke field.
-func (o *CertificateProfileSelfPermissions) SetSelfRevoke(v bool) {
-	o.SelfRevoke.Set(&v)
-}
-
-// SetSelfRevokeNil sets the value for SelfRevoke to be an explicit nil
-func (o *CertificateProfileSelfPermissions) SetSelfRevokeNil() {
-	o.SelfRevoke.Set(nil)
-}
-
-// UnsetSelfRevoke ensures that no value is present for SelfRevoke, not even an explicit nil
-func (o *CertificateProfileSelfPermissions) UnsetSelfRevoke() {
-	o.SelfRevoke.Unset()
-}
-
-// GetSelfUpdate returns the SelfUpdate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateProfileSelfPermissions) GetSelfUpdate() bool {
-	if o == nil || utils.IsNil(o.SelfUpdate.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.SelfUpdate.Get()
-}
-
-// GetSelfUpdateOk returns a tuple with the SelfUpdate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateProfileSelfPermissions) GetSelfUpdateOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SelfUpdate.Get(), o.SelfUpdate.IsSet()
-}
-
-// HasSelfUpdate returns a boolean if a field has been set.
-func (o *CertificateProfileSelfPermissions) HasSelfUpdate() bool {
-	if o != nil && o.SelfUpdate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSelfUpdate gets a reference to the given NullableBool and assigns it to the SelfUpdate field.
-func (o *CertificateProfileSelfPermissions) SetSelfUpdate(v bool) {
-	o.SelfUpdate.Set(&v)
-}
-
-// SetSelfUpdateNil sets the value for SelfUpdate to be an explicit nil
-func (o *CertificateProfileSelfPermissions) SetSelfUpdateNil() {
-	o.SelfUpdate.Set(nil)
-}
-
-// UnsetSelfUpdate ensures that no value is present for SelfUpdate, not even an explicit nil
-func (o *CertificateProfileSelfPermissions) UnsetSelfUpdate() {
-	o.SelfUpdate.Unset()
-}
-
 func (o CertificateProfileSelfPermissions) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -389,6 +389,18 @@ func (o CertificateProfileSelfPermissions) MarshalJSON() ([]byte, error) {
 
 func (o CertificateProfileSelfPermissions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.SelfRecover.IsSet() {
+		toSerialize["selfRecover"] = o.SelfRecover.Get()
+	}
+	if o.SelfUpdate.IsSet() {
+		toSerialize["selfUpdate"] = o.SelfUpdate.Get()
+	}
+	if o.SelfRevoke.IsSet() {
+		toSerialize["selfRevoke"] = o.SelfRevoke.Get()
+	}
+	if o.SelfRenew.IsSet() {
+		toSerialize["selfRenew"] = o.SelfRenew.Get()
+	}
 	if o.SelfPopRenew.IsSet() {
 		toSerialize["selfPopRenew"] = o.SelfPopRenew.Get()
 	}
@@ -397,18 +409,6 @@ func (o CertificateProfileSelfPermissions) ToMap() (map[string]interface{}, erro
 	}
 	if o.SelfPopUpdate.IsSet() {
 		toSerialize["selfPopUpdate"] = o.SelfPopUpdate.Get()
-	}
-	if o.SelfRecover.IsSet() {
-		toSerialize["selfRecover"] = o.SelfRecover.Get()
-	}
-	if o.SelfRenew.IsSet() {
-		toSerialize["selfRenew"] = o.SelfRenew.Get()
-	}
-	if o.SelfRevoke.IsSet() {
-		toSerialize["selfRevoke"] = o.SelfRevoke.Get()
-	}
-	if o.SelfUpdate.IsSet() {
-		toSerialize["selfUpdate"] = o.SelfUpdate.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -432,13 +432,13 @@ func (o *CertificateProfileSelfPermissions) UnmarshalJSON(data []byte) (err erro
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "selfRecover")
+		delete(additionalProperties, "selfUpdate")
+		delete(additionalProperties, "selfRevoke")
+		delete(additionalProperties, "selfRenew")
 		delete(additionalProperties, "selfPopRenew")
 		delete(additionalProperties, "selfPopRevoke")
 		delete(additionalProperties, "selfPopUpdate")
-		delete(additionalProperties, "selfRecover")
-		delete(additionalProperties, "selfRenew")
-		delete(additionalProperties, "selfRevoke")
-		delete(additionalProperties, "selfUpdate")
 		o.AdditionalProperties = additionalProperties
 	}
 

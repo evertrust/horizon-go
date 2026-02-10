@@ -21,12 +21,12 @@ var _ utils.MappedNullable = &ThirdPartyConnectorSynchronizationResult{}
 
 // ThirdPartyConnectorSynchronizationResult struct for ThirdPartyConnectorSynchronizationResult
 type ThirdPartyConnectorSynchronizationResult struct {
-	EnrollFailure        utils.NullableInt64 `json:"enroll_failure,omitempty"`
 	EnrollSuccess        utils.NullableInt64 `json:"enroll_success,omitempty"`
-	RenewFailure         utils.NullableInt64 `json:"renew_failure,omitempty"`
+	EnrollFailure        utils.NullableInt64 `json:"enroll_failure,omitempty"`
 	RenewSuccess         utils.NullableInt64 `json:"renew_success,omitempty"`
-	RevokeFailure        utils.NullableInt64 `json:"revoke_failure,omitempty"`
+	RenewFailure         utils.NullableInt64 `json:"renew_failure,omitempty"`
 	RevokeSuccess        utils.NullableInt64 `json:"revoke_success,omitempty"`
+	RevokeFailure        utils.NullableInt64 `json:"revoke_failure,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,49 +47,6 @@ func NewThirdPartyConnectorSynchronizationResult() *ThirdPartyConnectorSynchroni
 func NewThirdPartyConnectorSynchronizationResultWithDefaults() *ThirdPartyConnectorSynchronizationResult {
 	this := ThirdPartyConnectorSynchronizationResult{}
 	return &this
-}
-
-// GetEnrollFailure returns the EnrollFailure field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ThirdPartyConnectorSynchronizationResult) GetEnrollFailure() int64 {
-	if o == nil || utils.IsNil(o.EnrollFailure.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.EnrollFailure.Get()
-}
-
-// GetEnrollFailureOk returns a tuple with the EnrollFailure field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ThirdPartyConnectorSynchronizationResult) GetEnrollFailureOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.EnrollFailure.Get(), o.EnrollFailure.IsSet()
-}
-
-// HasEnrollFailure returns a boolean if a field has been set.
-func (o *ThirdPartyConnectorSynchronizationResult) HasEnrollFailure() bool {
-	if o != nil && o.EnrollFailure.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEnrollFailure gets a reference to the given NullableInt64 and assigns it to the EnrollFailure field.
-func (o *ThirdPartyConnectorSynchronizationResult) SetEnrollFailure(v int64) {
-	o.EnrollFailure.Set(&v)
-}
-
-// SetEnrollFailureNil sets the value for EnrollFailure to be an explicit nil
-func (o *ThirdPartyConnectorSynchronizationResult) SetEnrollFailureNil() {
-	o.EnrollFailure.Set(nil)
-}
-
-// UnsetEnrollFailure ensures that no value is present for EnrollFailure, not even an explicit nil
-func (o *ThirdPartyConnectorSynchronizationResult) UnsetEnrollFailure() {
-	o.EnrollFailure.Unset()
 }
 
 // GetEnrollSuccess returns the EnrollSuccess field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -135,47 +92,47 @@ func (o *ThirdPartyConnectorSynchronizationResult) UnsetEnrollSuccess() {
 	o.EnrollSuccess.Unset()
 }
 
-// GetRenewFailure returns the RenewFailure field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ThirdPartyConnectorSynchronizationResult) GetRenewFailure() int64 {
-	if o == nil || utils.IsNil(o.RenewFailure.Get()) {
+// GetEnrollFailure returns the EnrollFailure field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ThirdPartyConnectorSynchronizationResult) GetEnrollFailure() int64 {
+	if o == nil || utils.IsNil(o.EnrollFailure.Get()) {
 		var ret int64
 		return ret
 	}
-	return *o.RenewFailure.Get()
+	return *o.EnrollFailure.Get()
 }
 
-// GetRenewFailureOk returns a tuple with the RenewFailure field value if set, nil otherwise
+// GetEnrollFailureOk returns a tuple with the EnrollFailure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ThirdPartyConnectorSynchronizationResult) GetRenewFailureOk() (*int64, bool) {
+func (o *ThirdPartyConnectorSynchronizationResult) GetEnrollFailureOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RenewFailure.Get(), o.RenewFailure.IsSet()
+	return o.EnrollFailure.Get(), o.EnrollFailure.IsSet()
 }
 
-// HasRenewFailure returns a boolean if a field has been set.
-func (o *ThirdPartyConnectorSynchronizationResult) HasRenewFailure() bool {
-	if o != nil && o.RenewFailure.IsSet() {
+// HasEnrollFailure returns a boolean if a field has been set.
+func (o *ThirdPartyConnectorSynchronizationResult) HasEnrollFailure() bool {
+	if o != nil && o.EnrollFailure.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRenewFailure gets a reference to the given NullableInt64 and assigns it to the RenewFailure field.
-func (o *ThirdPartyConnectorSynchronizationResult) SetRenewFailure(v int64) {
-	o.RenewFailure.Set(&v)
+// SetEnrollFailure gets a reference to the given NullableInt64 and assigns it to the EnrollFailure field.
+func (o *ThirdPartyConnectorSynchronizationResult) SetEnrollFailure(v int64) {
+	o.EnrollFailure.Set(&v)
 }
 
-// SetRenewFailureNil sets the value for RenewFailure to be an explicit nil
-func (o *ThirdPartyConnectorSynchronizationResult) SetRenewFailureNil() {
-	o.RenewFailure.Set(nil)
+// SetEnrollFailureNil sets the value for EnrollFailure to be an explicit nil
+func (o *ThirdPartyConnectorSynchronizationResult) SetEnrollFailureNil() {
+	o.EnrollFailure.Set(nil)
 }
 
-// UnsetRenewFailure ensures that no value is present for RenewFailure, not even an explicit nil
-func (o *ThirdPartyConnectorSynchronizationResult) UnsetRenewFailure() {
-	o.RenewFailure.Unset()
+// UnsetEnrollFailure ensures that no value is present for EnrollFailure, not even an explicit nil
+func (o *ThirdPartyConnectorSynchronizationResult) UnsetEnrollFailure() {
+	o.EnrollFailure.Unset()
 }
 
 // GetRenewSuccess returns the RenewSuccess field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -221,47 +178,47 @@ func (o *ThirdPartyConnectorSynchronizationResult) UnsetRenewSuccess() {
 	o.RenewSuccess.Unset()
 }
 
-// GetRevokeFailure returns the RevokeFailure field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ThirdPartyConnectorSynchronizationResult) GetRevokeFailure() int64 {
-	if o == nil || utils.IsNil(o.RevokeFailure.Get()) {
+// GetRenewFailure returns the RenewFailure field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ThirdPartyConnectorSynchronizationResult) GetRenewFailure() int64 {
+	if o == nil || utils.IsNil(o.RenewFailure.Get()) {
 		var ret int64
 		return ret
 	}
-	return *o.RevokeFailure.Get()
+	return *o.RenewFailure.Get()
 }
 
-// GetRevokeFailureOk returns a tuple with the RevokeFailure field value if set, nil otherwise
+// GetRenewFailureOk returns a tuple with the RenewFailure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ThirdPartyConnectorSynchronizationResult) GetRevokeFailureOk() (*int64, bool) {
+func (o *ThirdPartyConnectorSynchronizationResult) GetRenewFailureOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RevokeFailure.Get(), o.RevokeFailure.IsSet()
+	return o.RenewFailure.Get(), o.RenewFailure.IsSet()
 }
 
-// HasRevokeFailure returns a boolean if a field has been set.
-func (o *ThirdPartyConnectorSynchronizationResult) HasRevokeFailure() bool {
-	if o != nil && o.RevokeFailure.IsSet() {
+// HasRenewFailure returns a boolean if a field has been set.
+func (o *ThirdPartyConnectorSynchronizationResult) HasRenewFailure() bool {
+	if o != nil && o.RenewFailure.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRevokeFailure gets a reference to the given NullableInt64 and assigns it to the RevokeFailure field.
-func (o *ThirdPartyConnectorSynchronizationResult) SetRevokeFailure(v int64) {
-	o.RevokeFailure.Set(&v)
+// SetRenewFailure gets a reference to the given NullableInt64 and assigns it to the RenewFailure field.
+func (o *ThirdPartyConnectorSynchronizationResult) SetRenewFailure(v int64) {
+	o.RenewFailure.Set(&v)
 }
 
-// SetRevokeFailureNil sets the value for RevokeFailure to be an explicit nil
-func (o *ThirdPartyConnectorSynchronizationResult) SetRevokeFailureNil() {
-	o.RevokeFailure.Set(nil)
+// SetRenewFailureNil sets the value for RenewFailure to be an explicit nil
+func (o *ThirdPartyConnectorSynchronizationResult) SetRenewFailureNil() {
+	o.RenewFailure.Set(nil)
 }
 
-// UnsetRevokeFailure ensures that no value is present for RevokeFailure, not even an explicit nil
-func (o *ThirdPartyConnectorSynchronizationResult) UnsetRevokeFailure() {
-	o.RevokeFailure.Unset()
+// UnsetRenewFailure ensures that no value is present for RenewFailure, not even an explicit nil
+func (o *ThirdPartyConnectorSynchronizationResult) UnsetRenewFailure() {
+	o.RenewFailure.Unset()
 }
 
 // GetRevokeSuccess returns the RevokeSuccess field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -307,6 +264,49 @@ func (o *ThirdPartyConnectorSynchronizationResult) UnsetRevokeSuccess() {
 	o.RevokeSuccess.Unset()
 }
 
+// GetRevokeFailure returns the RevokeFailure field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ThirdPartyConnectorSynchronizationResult) GetRevokeFailure() int64 {
+	if o == nil || utils.IsNil(o.RevokeFailure.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.RevokeFailure.Get()
+}
+
+// GetRevokeFailureOk returns a tuple with the RevokeFailure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ThirdPartyConnectorSynchronizationResult) GetRevokeFailureOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RevokeFailure.Get(), o.RevokeFailure.IsSet()
+}
+
+// HasRevokeFailure returns a boolean if a field has been set.
+func (o *ThirdPartyConnectorSynchronizationResult) HasRevokeFailure() bool {
+	if o != nil && o.RevokeFailure.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRevokeFailure gets a reference to the given NullableInt64 and assigns it to the RevokeFailure field.
+func (o *ThirdPartyConnectorSynchronizationResult) SetRevokeFailure(v int64) {
+	o.RevokeFailure.Set(&v)
+}
+
+// SetRevokeFailureNil sets the value for RevokeFailure to be an explicit nil
+func (o *ThirdPartyConnectorSynchronizationResult) SetRevokeFailureNil() {
+	o.RevokeFailure.Set(nil)
+}
+
+// UnsetRevokeFailure ensures that no value is present for RevokeFailure, not even an explicit nil
+func (o *ThirdPartyConnectorSynchronizationResult) UnsetRevokeFailure() {
+	o.RevokeFailure.Unset()
+}
+
 func (o ThirdPartyConnectorSynchronizationResult) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -317,23 +317,23 @@ func (o ThirdPartyConnectorSynchronizationResult) MarshalJSON() ([]byte, error) 
 
 func (o ThirdPartyConnectorSynchronizationResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.EnrollFailure.IsSet() {
-		toSerialize["enroll_failure"] = o.EnrollFailure.Get()
-	}
 	if o.EnrollSuccess.IsSet() {
 		toSerialize["enroll_success"] = o.EnrollSuccess.Get()
 	}
-	if o.RenewFailure.IsSet() {
-		toSerialize["renew_failure"] = o.RenewFailure.Get()
+	if o.EnrollFailure.IsSet() {
+		toSerialize["enroll_failure"] = o.EnrollFailure.Get()
 	}
 	if o.RenewSuccess.IsSet() {
 		toSerialize["renew_success"] = o.RenewSuccess.Get()
 	}
-	if o.RevokeFailure.IsSet() {
-		toSerialize["revoke_failure"] = o.RevokeFailure.Get()
+	if o.RenewFailure.IsSet() {
+		toSerialize["renew_failure"] = o.RenewFailure.Get()
 	}
 	if o.RevokeSuccess.IsSet() {
 		toSerialize["revoke_success"] = o.RevokeSuccess.Get()
+	}
+	if o.RevokeFailure.IsSet() {
+		toSerialize["revoke_failure"] = o.RevokeFailure.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -357,12 +357,12 @@ func (o *ThirdPartyConnectorSynchronizationResult) UnmarshalJSON(data []byte) (e
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "enroll_failure")
 		delete(additionalProperties, "enroll_success")
-		delete(additionalProperties, "renew_failure")
+		delete(additionalProperties, "enroll_failure")
 		delete(additionalProperties, "renew_success")
-		delete(additionalProperties, "revoke_failure")
+		delete(additionalProperties, "renew_failure")
 		delete(additionalProperties, "revoke_success")
+		delete(additionalProperties, "revoke_failure")
 		o.AdditionalProperties = additionalProperties
 	}
 

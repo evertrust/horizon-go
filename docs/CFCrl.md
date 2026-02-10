@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Issuer** | **string** |  | 
-**NextUpdate** | **int64** |  | 
 **Number** | Pointer to **string** |  | [optional] 
-**ThisUpdate** | **int64** |  | 
 **Version** | Pointer to **int64** |  | [optional] 
+**Issuer** | **string** |  | 
+**ThisUpdate** | **int64** |  | 
+**NextUpdate** | **int64** |  | 
 
 ## Methods
 
 ### NewCFCrl
 
-`func NewCFCrl(issuer string, nextUpdate int64, thisUpdate int64, ) *CFCrl`
+`func NewCFCrl(issuer string, thisUpdate int64, nextUpdate int64, ) *CFCrl`
 
 NewCFCrl instantiates a new CFCrl object
 This constructor will assign default values to properties that have it defined,
@@ -28,46 +28,6 @@ will change when the set of required properties is changed
 NewCFCrlWithDefaults instantiates a new CFCrl object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetIssuer
-
-`func (o *CFCrl) GetIssuer() string`
-
-GetIssuer returns the Issuer field if non-nil, zero value otherwise.
-
-### GetIssuerOk
-
-`func (o *CFCrl) GetIssuerOk() (*string, bool)`
-
-GetIssuerOk returns a tuple with the Issuer field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIssuer
-
-`func (o *CFCrl) SetIssuer(v string)`
-
-SetIssuer sets Issuer field to given value.
-
-
-### GetNextUpdate
-
-`func (o *CFCrl) GetNextUpdate() int64`
-
-GetNextUpdate returns the NextUpdate field if non-nil, zero value otherwise.
-
-### GetNextUpdateOk
-
-`func (o *CFCrl) GetNextUpdateOk() (*int64, bool)`
-
-GetNextUpdateOk returns a tuple with the NextUpdate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNextUpdate
-
-`func (o *CFCrl) SetNextUpdate(v int64)`
-
-SetNextUpdate sets NextUpdate field to given value.
-
 
 ### GetNumber
 
@@ -94,26 +54,6 @@ SetNumber sets Number field to given value.
 
 HasNumber returns a boolean if a field has been set.
 
-### GetThisUpdate
-
-`func (o *CFCrl) GetThisUpdate() int64`
-
-GetThisUpdate returns the ThisUpdate field if non-nil, zero value otherwise.
-
-### GetThisUpdateOk
-
-`func (o *CFCrl) GetThisUpdateOk() (*int64, bool)`
-
-GetThisUpdateOk returns a tuple with the ThisUpdate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThisUpdate
-
-`func (o *CFCrl) SetThisUpdate(v int64)`
-
-SetThisUpdate sets ThisUpdate field to given value.
-
-
 ### GetVersion
 
 `func (o *CFCrl) GetVersion() int64`
@@ -138,6 +78,66 @@ SetVersion sets Version field to given value.
 `func (o *CFCrl) HasVersion() bool`
 
 HasVersion returns a boolean if a field has been set.
+
+### GetIssuer
+
+`func (o *CFCrl) GetIssuer() string`
+
+GetIssuer returns the Issuer field if non-nil, zero value otherwise.
+
+### GetIssuerOk
+
+`func (o *CFCrl) GetIssuerOk() (*string, bool)`
+
+GetIssuerOk returns a tuple with the Issuer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssuer
+
+`func (o *CFCrl) SetIssuer(v string)`
+
+SetIssuer sets Issuer field to given value.
+
+
+### GetThisUpdate
+
+`func (o *CFCrl) GetThisUpdate() int64`
+
+GetThisUpdate returns the ThisUpdate field if non-nil, zero value otherwise.
+
+### GetThisUpdateOk
+
+`func (o *CFCrl) GetThisUpdateOk() (*int64, bool)`
+
+GetThisUpdateOk returns a tuple with the ThisUpdate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThisUpdate
+
+`func (o *CFCrl) SetThisUpdate(v int64)`
+
+SetThisUpdate sets ThisUpdate field to given value.
+
+
+### GetNextUpdate
+
+`func (o *CFCrl) GetNextUpdate() int64`
+
+GetNextUpdate returns the NextUpdate field if non-nil, zero value otherwise.
+
+### GetNextUpdateOk
+
+`func (o *CFCrl) GetNextUpdateOk() (*int64, bool)`
+
+GetNextUpdateOk returns a tuple with the NextUpdate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextUpdate
+
+`func (o *CFCrl) SetNextUpdate(v int64)`
+
+SetNextUpdate sets NextUpdate field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

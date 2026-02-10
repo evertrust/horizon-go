@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &ReportRecipient{}
 
 // ReportRecipient struct for ReportRecipient
 type ReportRecipient struct {
+	Type                 string               `json:"type"`
 	Email                utils.NullableString `json:"email,omitempty"`
 	Team                 utils.NullableString `json:"team,omitempty"`
-	Type                 string               `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,6 +46,30 @@ func NewReportRecipient(type_ string) *ReportRecipient {
 func NewReportRecipientWithDefaults() *ReportRecipient {
 	this := ReportRecipient{}
 	return &this
+}
+
+// GetType returns the Type field value
+func (o *ReportRecipient) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ReportRecipient) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *ReportRecipient) SetType(v string) {
+	o.Type = v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -134,30 +158,6 @@ func (o *ReportRecipient) UnsetTeam() {
 	o.Team.Unset()
 }
 
-// GetType returns the Type field value
-func (o *ReportRecipient) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *ReportRecipient) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *ReportRecipient) SetType(v string) {
-	o.Type = v
-}
-
 func (o ReportRecipient) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -168,13 +168,13 @@ func (o ReportRecipient) MarshalJSON() ([]byte, error) {
 
 func (o ReportRecipient) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
 	if o.Email.IsSet() {
 		toSerialize["email"] = o.Email.Get()
 	}
 	if o.Team.IsSet() {
 		toSerialize["team"] = o.Team.Get()
 	}
-	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -218,9 +218,9 @@ func (o *ReportRecipient) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "team")
-		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

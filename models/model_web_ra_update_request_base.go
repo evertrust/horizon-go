@@ -21,12 +21,12 @@ var _ utils.MappedNullable = &WebRAUpdateRequestBase{}
 
 // WebRAUpdateRequestBase struct for WebRAUpdateRequestBase
 type WebRAUpdateRequestBase struct {
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun utils.NullableBool `json:"dryRun,omitempty"`
+	// What this request will do. For an update request, this is always `update`
+	Workflow *string `json:"workflow,omitempty"`
 	// The user-data that will be used to update the certificate
 	Template *WebRAUpdateRequestTemplate `json:"template,omitempty"`
-	// What this request will do. For an update request, this is always `update`
-	Workflow             *string `json:"workflow,omitempty"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,6 +51,70 @@ func NewWebRAUpdateRequestBaseWithDefaults() *WebRAUpdateRequestBase {
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
 	return &this
+}
+
+// GetWorkflow returns the Workflow field value if set, zero value otherwise.
+func (o *WebRAUpdateRequestBase) GetWorkflow() string {
+	if o == nil || utils.IsNil(o.Workflow) {
+		var ret string
+		return ret
+	}
+	return *o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestBase) GetWorkflowOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Workflow) {
+		return nil, false
+	}
+	return o.Workflow, true
+}
+
+// HasWorkflow returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestBase) HasWorkflow() bool {
+	if o != nil && !utils.IsNil(o.Workflow) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkflow gets a reference to the given string and assigns it to the Workflow field.
+func (o *WebRAUpdateRequestBase) SetWorkflow(v string) {
+	o.Workflow = &v
+}
+
+// GetTemplate returns the Template field value if set, zero value otherwise.
+func (o *WebRAUpdateRequestBase) GetTemplate() WebRAUpdateRequestTemplate {
+	if o == nil || utils.IsNil(o.Template) {
+		var ret WebRAUpdateRequestTemplate
+		return ret
+	}
+	return *o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestBase) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool) {
+	if o == nil || utils.IsNil(o.Template) {
+		return nil, false
+	}
+	return o.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestBase) HasTemplate() bool {
+	if o != nil && !utils.IsNil(o.Template) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplate gets a reference to the given WebRAUpdateRequestTemplate and assigns it to the Template field.
+func (o *WebRAUpdateRequestBase) SetTemplate(v WebRAUpdateRequestTemplate) {
+	o.Template = &v
 }
 
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -96,70 +160,6 @@ func (o *WebRAUpdateRequestBase) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
-// GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *WebRAUpdateRequestBase) GetTemplate() WebRAUpdateRequestTemplate {
-	if o == nil || utils.IsNil(o.Template) {
-		var ret WebRAUpdateRequestTemplate
-		return ret
-	}
-	return *o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestBase) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool) {
-	if o == nil || utils.IsNil(o.Template) {
-		return nil, false
-	}
-	return o.Template, true
-}
-
-// HasTemplate returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestBase) HasTemplate() bool {
-	if o != nil && !utils.IsNil(o.Template) {
-		return true
-	}
-
-	return false
-}
-
-// SetTemplate gets a reference to the given WebRAUpdateRequestTemplate and assigns it to the Template field.
-func (o *WebRAUpdateRequestBase) SetTemplate(v WebRAUpdateRequestTemplate) {
-	o.Template = &v
-}
-
-// GetWorkflow returns the Workflow field value if set, zero value otherwise.
-func (o *WebRAUpdateRequestBase) GetWorkflow() string {
-	if o == nil || utils.IsNil(o.Workflow) {
-		var ret string
-		return ret
-	}
-	return *o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestBase) GetWorkflowOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Workflow) {
-		return nil, false
-	}
-	return o.Workflow, true
-}
-
-// HasWorkflow returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestBase) HasWorkflow() bool {
-	if o != nil && !utils.IsNil(o.Workflow) {
-		return true
-	}
-
-	return false
-}
-
-// SetWorkflow gets a reference to the given string and assigns it to the Workflow field.
-func (o *WebRAUpdateRequestBase) SetWorkflow(v string) {
-	o.Workflow = &v
-}
-
 func (o WebRAUpdateRequestBase) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -170,14 +170,14 @@ func (o WebRAUpdateRequestBase) MarshalJSON() ([]byte, error) {
 
 func (o WebRAUpdateRequestBase) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.DryRun.IsSet() {
-		toSerialize["dryRun"] = o.DryRun.Get()
+	if !utils.IsNil(o.Workflow) {
+		toSerialize["workflow"] = o.Workflow
 	}
 	if !utils.IsNil(o.Template) {
 		toSerialize["template"] = o.Template
 	}
-	if !utils.IsNil(o.Workflow) {
-		toSerialize["workflow"] = o.Workflow
+	if o.DryRun.IsSet() {
+		toSerialize["dryRun"] = o.DryRun.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -201,9 +201,9 @@ func (o *WebRAUpdateRequestBase) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "dryRun")
-		delete(additionalProperties, "template")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "template")
+		delete(additionalProperties, "dryRun")
 		o.AdditionalProperties = additionalProperties
 	}
 

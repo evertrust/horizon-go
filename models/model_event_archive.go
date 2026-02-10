@@ -22,11 +22,11 @@ var _ utils.MappedNullable = &EventArchive{}
 
 // EventArchive struct for EventArchive
 type EventArchive struct {
+	Name     string `json:"name"`
+	Type     string `json:"type"`
+	Filename string `json:"filename"`
 	// Date before which all events will be archived
-	Before               int64  `json:"before"`
-	Filename             string `json:"filename"`
-	Name                 string `json:"name"`
-	Type                 string `json:"type"`
+	Before               int64 `json:"before"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,12 +36,12 @@ type _EventArchive EventArchive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEventArchive(before int64, filename string, name string, type_ string) *EventArchive {
+func NewEventArchive(name string, type_ string, filename string, before int64) *EventArchive {
 	this := EventArchive{}
-	this.Before = before
-	this.Filename = filename
 	this.Name = name
 	this.Type = type_
+	this.Filename = filename
+	this.Before = before
 	return &this
 }
 
@@ -51,54 +51,6 @@ func NewEventArchive(before int64, filename string, name string, type_ string) *
 func NewEventArchiveWithDefaults() *EventArchive {
 	this := EventArchive{}
 	return &this
-}
-
-// GetBefore returns the Before field value
-func (o *EventArchive) GetBefore() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Before
-}
-
-// GetBeforeOk returns a tuple with the Before field value
-// and a boolean to check if the value has been set.
-func (o *EventArchive) GetBeforeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Before, true
-}
-
-// SetBefore sets field value
-func (o *EventArchive) SetBefore(v int64) {
-	o.Before = v
-}
-
-// GetFilename returns the Filename field value
-func (o *EventArchive) GetFilename() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Filename
-}
-
-// GetFilenameOk returns a tuple with the Filename field value
-// and a boolean to check if the value has been set.
-func (o *EventArchive) GetFilenameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Filename, true
-}
-
-// SetFilename sets field value
-func (o *EventArchive) SetFilename(v string) {
-	o.Filename = v
 }
 
 // GetName returns the Name field value
@@ -149,6 +101,54 @@ func (o *EventArchive) SetType(v string) {
 	o.Type = v
 }
 
+// GetFilename returns the Filename field value
+func (o *EventArchive) GetFilename() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Filename
+}
+
+// GetFilenameOk returns a tuple with the Filename field value
+// and a boolean to check if the value has been set.
+func (o *EventArchive) GetFilenameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Filename, true
+}
+
+// SetFilename sets field value
+func (o *EventArchive) SetFilename(v string) {
+	o.Filename = v
+}
+
+// GetBefore returns the Before field value
+func (o *EventArchive) GetBefore() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.Before
+}
+
+// GetBeforeOk returns a tuple with the Before field value
+// and a boolean to check if the value has been set.
+func (o *EventArchive) GetBeforeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Before, true
+}
+
+// SetBefore sets field value
+func (o *EventArchive) SetBefore(v int64) {
+	o.Before = v
+}
+
 func (o EventArchive) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -159,10 +159,10 @@ func (o EventArchive) MarshalJSON() ([]byte, error) {
 
 func (o EventArchive) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["before"] = o.Before
-	toSerialize["filename"] = o.Filename
 	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
+	toSerialize["filename"] = o.Filename
+	toSerialize["before"] = o.Before
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -176,10 +176,10 @@ func (o *EventArchive) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"before",
-		"filename",
 		"name",
 		"type",
+		"filename",
+		"before",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -209,10 +209,10 @@ func (o *EventArchive) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "before")
-		delete(additionalProperties, "filename")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "filename")
+		delete(additionalProperties, "before")
 		o.AdditionalProperties = additionalProperties
 	}
 

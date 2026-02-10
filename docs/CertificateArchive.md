@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ArchiveKeys** | **bool** |  | 
-**Filename** | **string** |  | 
-**Filter** | Pointer to **NullableString** | An HCQL filter for the archive | [optional] 
 **Name** | **string** |  | 
 **Type** | **string** |  | 
+**Filename** | **string** |  | 
+**ArchiveKeys** | **bool** |  | 
+**Filter** | Pointer to **NullableString** | An HCQL filter for the archive | [optional] 
 
 ## Methods
 
 ### NewCertificateArchive
 
-`func NewCertificateArchive(archiveKeys bool, filename string, name string, type_ string, ) *CertificateArchive`
+`func NewCertificateArchive(name string, type_ string, filename string, archiveKeys bool, ) *CertificateArchive`
 
 NewCertificateArchive instantiates a new CertificateArchive object
 This constructor will assign default values to properties that have it defined,
@@ -29,81 +29,6 @@ NewCertificateArchiveWithDefaults instantiates a new CertificateArchive object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetArchiveKeys
-
-`func (o *CertificateArchive) GetArchiveKeys() bool`
-
-GetArchiveKeys returns the ArchiveKeys field if non-nil, zero value otherwise.
-
-### GetArchiveKeysOk
-
-`func (o *CertificateArchive) GetArchiveKeysOk() (*bool, bool)`
-
-GetArchiveKeysOk returns a tuple with the ArchiveKeys field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetArchiveKeys
-
-`func (o *CertificateArchive) SetArchiveKeys(v bool)`
-
-SetArchiveKeys sets ArchiveKeys field to given value.
-
-
-### GetFilename
-
-`func (o *CertificateArchive) GetFilename() string`
-
-GetFilename returns the Filename field if non-nil, zero value otherwise.
-
-### GetFilenameOk
-
-`func (o *CertificateArchive) GetFilenameOk() (*string, bool)`
-
-GetFilenameOk returns a tuple with the Filename field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilename
-
-`func (o *CertificateArchive) SetFilename(v string)`
-
-SetFilename sets Filename field to given value.
-
-
-### GetFilter
-
-`func (o *CertificateArchive) GetFilter() string`
-
-GetFilter returns the Filter field if non-nil, zero value otherwise.
-
-### GetFilterOk
-
-`func (o *CertificateArchive) GetFilterOk() (*string, bool)`
-
-GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilter
-
-`func (o *CertificateArchive) SetFilter(v string)`
-
-SetFilter sets Filter field to given value.
-
-### HasFilter
-
-`func (o *CertificateArchive) HasFilter() bool`
-
-HasFilter returns a boolean if a field has been set.
-
-### SetFilterNil
-
-`func (o *CertificateArchive) SetFilterNil(b bool)`
-
- SetFilterNil sets the value for Filter to be an explicit nil
-
-### UnsetFilter
-`func (o *CertificateArchive) UnsetFilter()`
-
-UnsetFilter ensures that no value is present for Filter, not even an explicit nil
 ### GetName
 
 `func (o *CertificateArchive) GetName() string`
@@ -144,6 +69,81 @@ and a boolean to check if the value has been set.
 SetType sets Type field to given value.
 
 
+### GetFilename
+
+`func (o *CertificateArchive) GetFilename() string`
+
+GetFilename returns the Filename field if non-nil, zero value otherwise.
+
+### GetFilenameOk
+
+`func (o *CertificateArchive) GetFilenameOk() (*string, bool)`
+
+GetFilenameOk returns a tuple with the Filename field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilename
+
+`func (o *CertificateArchive) SetFilename(v string)`
+
+SetFilename sets Filename field to given value.
+
+
+### GetArchiveKeys
+
+`func (o *CertificateArchive) GetArchiveKeys() bool`
+
+GetArchiveKeys returns the ArchiveKeys field if non-nil, zero value otherwise.
+
+### GetArchiveKeysOk
+
+`func (o *CertificateArchive) GetArchiveKeysOk() (*bool, bool)`
+
+GetArchiveKeysOk returns a tuple with the ArchiveKeys field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetArchiveKeys
+
+`func (o *CertificateArchive) SetArchiveKeys(v bool)`
+
+SetArchiveKeys sets ArchiveKeys field to given value.
+
+
+### GetFilter
+
+`func (o *CertificateArchive) GetFilter() string`
+
+GetFilter returns the Filter field if non-nil, zero value otherwise.
+
+### GetFilterOk
+
+`func (o *CertificateArchive) GetFilterOk() (*string, bool)`
+
+GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilter
+
+`func (o *CertificateArchive) SetFilter(v string)`
+
+SetFilter sets Filter field to given value.
+
+### HasFilter
+
+`func (o *CertificateArchive) HasFilter() bool`
+
+HasFilter returns a boolean if a field has been set.
+
+### SetFilterNil
+
+`func (o *CertificateArchive) SetFilterNil(b bool)`
+
+ SetFilterNil sets the value for Filter to be an explicit nil
+
+### UnsetFilter
+`func (o *CertificateArchive) UnsetFilter()`
+
+UnsetFilter ensures that no value is present for Filter, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

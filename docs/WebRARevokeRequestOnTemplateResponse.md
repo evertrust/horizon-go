@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Workflow** | **string** | The request workflow | 
 **Module** | [**Module**](Module.md) | The module on which the certificate will be revoked. | 
 **Profile** | **string** | The profile for which to return the template. | 
 **Template** | [**WebRARevokeRequestTemplate**](WebRARevokeRequestTemplate.md) | The reason for revoking the certificate | 
-**Workflow** | **string** | The request workflow | 
 
 ## Methods
 
 ### NewWebRARevokeRequestOnTemplateResponse
 
-`func NewWebRARevokeRequestOnTemplateResponse(module Module, profile string, template WebRARevokeRequestTemplate, workflow string, ) *WebRARevokeRequestOnTemplateResponse`
+`func NewWebRARevokeRequestOnTemplateResponse(workflow string, module Module, profile string, template WebRARevokeRequestTemplate, ) *WebRARevokeRequestOnTemplateResponse`
 
 NewWebRARevokeRequestOnTemplateResponse instantiates a new WebRARevokeRequestOnTemplateResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,26 @@ will change when the set of required properties is changed
 NewWebRARevokeRequestOnTemplateResponseWithDefaults instantiates a new WebRARevokeRequestOnTemplateResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetWorkflow
+
+`func (o *WebRARevokeRequestOnTemplateResponse) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRARevokeRequestOnTemplateResponse) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRARevokeRequestOnTemplateResponse) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
 
 ### GetModule
 
@@ -86,26 +106,6 @@ and a boolean to check if the value has been set.
 `func (o *WebRARevokeRequestOnTemplateResponse) SetTemplate(v WebRARevokeRequestTemplate)`
 
 SetTemplate sets Template field to given value.
-
-
-### GetWorkflow
-
-`func (o *WebRARevokeRequestOnTemplateResponse) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRARevokeRequestOnTemplateResponse) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRARevokeRequestOnTemplateResponse) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
 
 
 

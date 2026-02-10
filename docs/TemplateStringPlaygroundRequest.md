@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Dictionary** | Pointer to **map[string]string** |  | [optional] 
 **ComputationRule** | Pointer to **NullableString** | A computation rule that will dynamically generate a string value from the request&#39;s context | [optional] 
 **Csr** | Pointer to **NullableString** |  | [optional] 
-**Dictionary** | Pointer to **map[string]string** |  | [optional] 
 
 ## Methods
 
@@ -27,6 +27,41 @@ NewTemplateStringPlaygroundRequestWithDefaults instantiates a new TemplateString
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetDictionary
+
+`func (o *TemplateStringPlaygroundRequest) GetDictionary() map[string]string`
+
+GetDictionary returns the Dictionary field if non-nil, zero value otherwise.
+
+### GetDictionaryOk
+
+`func (o *TemplateStringPlaygroundRequest) GetDictionaryOk() (*map[string]string, bool)`
+
+GetDictionaryOk returns a tuple with the Dictionary field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDictionary
+
+`func (o *TemplateStringPlaygroundRequest) SetDictionary(v map[string]string)`
+
+SetDictionary sets Dictionary field to given value.
+
+### HasDictionary
+
+`func (o *TemplateStringPlaygroundRequest) HasDictionary() bool`
+
+HasDictionary returns a boolean if a field has been set.
+
+### SetDictionaryNil
+
+`func (o *TemplateStringPlaygroundRequest) SetDictionaryNil(b bool)`
+
+ SetDictionaryNil sets the value for Dictionary to be an explicit nil
+
+### UnsetDictionary
+`func (o *TemplateStringPlaygroundRequest) UnsetDictionary()`
+
+UnsetDictionary ensures that no value is present for Dictionary, not even an explicit nil
 ### GetComputationRule
 
 `func (o *TemplateStringPlaygroundRequest) GetComputationRule() string`
@@ -97,41 +132,6 @@ HasCsr returns a boolean if a field has been set.
 `func (o *TemplateStringPlaygroundRequest) UnsetCsr()`
 
 UnsetCsr ensures that no value is present for Csr, not even an explicit nil
-### GetDictionary
-
-`func (o *TemplateStringPlaygroundRequest) GetDictionary() map[string]string`
-
-GetDictionary returns the Dictionary field if non-nil, zero value otherwise.
-
-### GetDictionaryOk
-
-`func (o *TemplateStringPlaygroundRequest) GetDictionaryOk() (*map[string]string, bool)`
-
-GetDictionaryOk returns a tuple with the Dictionary field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDictionary
-
-`func (o *TemplateStringPlaygroundRequest) SetDictionary(v map[string]string)`
-
-SetDictionary sets Dictionary field to given value.
-
-### HasDictionary
-
-`func (o *TemplateStringPlaygroundRequest) HasDictionary() bool`
-
-HasDictionary returns a boolean if a field has been set.
-
-### SetDictionaryNil
-
-`func (o *TemplateStringPlaygroundRequest) SetDictionaryNil(b bool)`
-
- SetDictionaryNil sets the value for Dictionary to be an explicit nil
-
-### UnsetDictionary
-`func (o *TemplateStringPlaygroundRequest) UnsetDictionary()`
-
-UnsetDictionary ensures that no value is present for Dictionary, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

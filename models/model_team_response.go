@@ -24,18 +24,18 @@ var _ utils.MappedNullable = &TeamResponse{}
 type TeamResponse struct {
 	// Object internal ID
 	Id string `json:"_id"`
-	// The generic contact e-mail of the Team
-	Contact utils.NullableString `json:"contact,omitempty"`
-	// The localized description of the team
-	Description []LocalizedString `json:"description,omitempty"`
-	// The localized display name of the team
-	DisplayName []LocalizedString `json:"displayName,omitempty"`
-	// The identifiers of the team's managers
-	Managers []string `json:"managers"`
 	// The name of the team
 	Name string `json:"name"`
+	// The localized description of the team
+	Description []LocalizedString `json:"description,omitempty"`
+	// The generic contact e-mail of the Team
+	Contact utils.NullableString `json:"contact,omitempty"`
 	// The webhook of the team's corporate channel (Teams, Slack, Mattermost)
-	Webhook              NullableWebhook `json:"webhook,omitempty"`
+	Webhook NullableWebhook `json:"webhook,omitempty"`
+	// The identifiers of the team's managers
+	Managers []string `json:"managers"`
+	// The localized display name of the team
+	DisplayName          []LocalizedString `json:"displayName,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,11 +45,11 @@ type _TeamResponse TeamResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTeamResponse(id string, managers []string, name string) *TeamResponse {
+func NewTeamResponse(id string, name string, managers []string) *TeamResponse {
 	this := TeamResponse{}
 	this.Id = id
-	this.Managers = managers
 	this.Name = name
+	this.Managers = managers
 	return &this
 }
 
@@ -83,6 +83,63 @@ func (o *TeamResponse) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *TeamResponse) SetId(v string) {
 	o.Id = v
+}
+
+// GetName returns the Name field value
+func (o *TeamResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *TeamResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *TeamResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TeamResponse) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TeamResponse) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *TeamResponse) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *TeamResponse) SetDescription(v []LocalizedString) {
+	o.Description = v
 }
 
 // GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -128,120 +185,6 @@ func (o *TeamResponse) UnsetContact() {
 	o.Contact.Unset()
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TeamResponse) GetDescription() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TeamResponse) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *TeamResponse) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *TeamResponse) SetDescription(v []LocalizedString) {
-	o.Description = v
-}
-
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TeamResponse) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TeamResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *TeamResponse) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *TeamResponse) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
-}
-
-// GetManagers returns the Managers field value
-func (o *TeamResponse) GetManagers() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Managers
-}
-
-// GetManagersOk returns a tuple with the Managers field value
-// and a boolean to check if the value has been set.
-func (o *TeamResponse) GetManagersOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Managers, true
-}
-
-// SetManagers sets field value
-func (o *TeamResponse) SetManagers(v []string) {
-	o.Managers = v
-}
-
-// GetName returns the Name field value
-func (o *TeamResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *TeamResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *TeamResponse) SetName(v string) {
-	o.Name = v
-}
-
 // GetWebhook returns the Webhook field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TeamResponse) GetWebhook() Webhook {
 	if o == nil || utils.IsNil(o.Webhook.Get()) {
@@ -285,6 +228,63 @@ func (o *TeamResponse) UnsetWebhook() {
 	o.Webhook.Unset()
 }
 
+// GetManagers returns the Managers field value
+func (o *TeamResponse) GetManagers() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Managers
+}
+
+// GetManagersOk returns a tuple with the Managers field value
+// and a boolean to check if the value has been set.
+func (o *TeamResponse) GetManagersOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Managers, true
+}
+
+// SetManagers sets field value
+func (o *TeamResponse) SetManagers(v []string) {
+	o.Managers = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TeamResponse) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TeamResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *TeamResponse) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *TeamResponse) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
 func (o TeamResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -296,19 +296,19 @@ func (o TeamResponse) MarshalJSON() ([]byte, error) {
 func (o TeamResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	if o.Contact.IsSet() {
-		toSerialize["contact"] = o.Contact.Get()
-	}
+	toSerialize["name"] = o.Name
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
+	if o.Contact.IsSet() {
+		toSerialize["contact"] = o.Contact.Get()
 	}
-	toSerialize["managers"] = o.Managers
-	toSerialize["name"] = o.Name
 	if o.Webhook.IsSet() {
 		toSerialize["webhook"] = o.Webhook.Get()
+	}
+	toSerialize["managers"] = o.Managers
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -324,8 +324,8 @@ func (o *TeamResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"managers",
 		"name",
+		"managers",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -356,12 +356,12 @@ func (o *TeamResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "contact")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "managers")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "contact")
 		delete(additionalProperties, "webhook")
+		delete(additionalProperties, "managers")
+		delete(additionalProperties, "displayName")
 		o.AdditionalProperties = additionalProperties
 	}
 

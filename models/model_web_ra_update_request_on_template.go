@@ -22,8 +22,8 @@ var _ utils.MappedNullable = &WebRAUpdateRequestOnTemplate{}
 
 // WebRAUpdateRequestOnTemplate struct for WebRAUpdateRequestOnTemplate
 type WebRAUpdateRequestOnTemplate struct {
-	Profile  utils.NullableString `json:"profile,omitempty"`
 	Workflow string               `json:"workflow"`
+	Profile  utils.NullableString `json:"profile,omitempty"`
 	// Used to pre-fill the template field with the certificate values.
 	CertificateId utils.NullableString `json:"certificateId,omitempty"`
 	// Used to pre-fill the template field with the certificate values.
@@ -51,6 +51,30 @@ func NewWebRAUpdateRequestOnTemplate(workflow string) *WebRAUpdateRequestOnTempl
 func NewWebRAUpdateRequestOnTemplateWithDefaults() *WebRAUpdateRequestOnTemplate {
 	this := WebRAUpdateRequestOnTemplate{}
 	return &this
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *WebRAUpdateRequestOnTemplate) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnTemplate) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRAUpdateRequestOnTemplate) SetWorkflow(v string) {
+	o.Workflow = v
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -94,30 +118,6 @@ func (o *WebRAUpdateRequestOnTemplate) SetProfileNil() {
 // UnsetProfile ensures that no value is present for Profile, not even an explicit nil
 func (o *WebRAUpdateRequestOnTemplate) UnsetProfile() {
 	o.Profile.Unset()
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRAUpdateRequestOnTemplate) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnTemplate) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRAUpdateRequestOnTemplate) SetWorkflow(v string) {
-	o.Workflow = v
 }
 
 // GetCertificateId returns the CertificateId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -248,10 +248,10 @@ func (o WebRAUpdateRequestOnTemplate) MarshalJSON() ([]byte, error) {
 
 func (o WebRAUpdateRequestOnTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["workflow"] = o.Workflow
 	if o.Profile.IsSet() {
 		toSerialize["profile"] = o.Profile.Get()
 	}
-	toSerialize["workflow"] = o.Workflow
 	if o.CertificateId.IsSet() {
 		toSerialize["certificateId"] = o.CertificateId.Get()
 	}
@@ -304,8 +304,8 @@ func (o *WebRAUpdateRequestOnTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "profile")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "profile")
 		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "certificatePem")
 		delete(additionalProperties, "module")

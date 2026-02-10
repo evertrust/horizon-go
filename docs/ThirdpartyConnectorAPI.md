@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	thirdPartyConnectors := openapiclient.ThirdPartyConnectors{AWSConnector: openapiclient.NewAWSConnector("Name_example", "Region_example", "5 seconds", "Type_example")} // ThirdPartyConnectors | Third party connector to register
+	thirdPartyConnectors := openapiclient.ThirdPartyConnectors{AWSConnector: openapiclient.NewAWSConnector("Type_example", "Name_example", "5 seconds", "Region_example")} // ThirdPartyConnectors | Third party connector to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -374,7 +374,7 @@ import (
 )
 
 func main() {
-	thirdPartyConnectors := openapiclient.ThirdPartyConnectors{AWSConnector: openapiclient.NewAWSConnector("Name_example", "Region_example", "5 seconds", "Type_example")} // ThirdPartyConnectors | Third party connector to update
+	thirdPartyConnectors := openapiclient.ThirdPartyConnectors{AWSConnector: openapiclient.NewAWSConnector("Type_example", "Name_example", "5 seconds", "Region_example")} // ThirdPartyConnectors | Third party connector to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

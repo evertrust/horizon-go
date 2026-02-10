@@ -22,72 +22,72 @@ var _ utils.MappedNullable = &CertificateResponse{}
 
 // CertificateResponse struct for CertificateResponse
 type CertificateResponse struct {
-	// Object internal ID
-	Id string `json:"_id"`
-	// The certificate's PEM-encoded content
-	Certificate string `json:"certificate"`
-	// The certificate's contact email. It will be used to send notifications about the certificate's expiration and revocation
-	ContactEmail utils.NullableString `json:"contactEmail,omitempty"`
-	// Whether the certificate's revocation status is synchronized with a CRL
-	CrlSynchronized utils.NullableBool `json:"crlSynchronized,omitempty"`
-	// If the certificate was discovered and is found to be issued by an existing trusted CA, this field will be set to true. If the certificate was discovered and is not found to be issued by an existing trusted CA, this field will be set to false. If the certificate was not discovered, this field will be null
-	DiscoveredTrusted utils.NullableBool `json:"discoveredTrusted,omitempty"`
-	// A list of metadata containing information on where the certificate was discovered
-	DiscoveryData []HostDiscoveryData `json:"discoveryData,omitempty"`
-	// A list of metadata containing information on how and when the certificate was discovered
-	DiscoveryInfo []DiscoveryInfo `json:"discoveryInfo,omitempty"`
-	// The certificate's Distinguished Name
-	Dn string `json:"dn"`
-	// Whether the certificate is escrowed
-	Escrowed bool `json:"escrowed"`
-	// The certificate's extensions
-	Extensions []CertificateExtension `json:"extensions,omitempty"`
-	// The certificate's grades for the enabled grading policies
-	Grades []GradingPolicyResult `json:"grades,omitempty"`
-	// The certificate's holder ID. This is a computed field that is used to count how many similar certificates are in use simultaneously by the same holder
-	HolderId string `json:"holderId"`
-	// The certificate's issuer Distinguished Name
-	Issuer string `json:"issuer"`
-	// The certificate's key type
-	KeyType string `json:"keyType" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
-	// The certificate's labels
-	Labels []LabelData `json:"labels,omitempty"`
 	// The certificate's technical metadata used internally
 	Metadata []CertificateMetadata `json:"metadata"`
-	// The certificate's module
-	Module string `json:"module"`
 	// The certificate's expiration date in milliseconds since the epoch
 	NotAfter int64 `json:"notAfter"`
-	// The certificate's start date in milliseconds since the epoch
-	NotBefore int64 `json:"notBefore"`
-	// The certificate's owner. This is a reference to a local identity identifier
-	Owner utils.NullableString `json:"owner,omitempty"`
-	// The certificate's profile
-	Profile utils.NullableString `json:"profile,omitempty"`
-	// The certificate's public key thumbprint
-	PublicKeyThumbprint string `json:"publicKeyThumbprint"`
+	// The certificate's thumbprint
+	Thumbprint string `json:"thumbprint"`
 	// The certificate's revocation date in milliseconds since the epoch. This field is only present if the certificate is revoked
 	RevocationDate utils.NullableInt64 `json:"revocationDate,omitempty"`
-	// The certificate's revocation reason
-	RevocationReason utils.NullableString `json:"revocationReason,omitempty"`
+	// The certificate's PEM-encoded content
+	Certificate string `json:"certificate"`
+	// The certificate's Distinguished Name
+	Dn string `json:"dn"`
+	// The certificate's grades for the enabled grading policies
+	Grades []GradingPolicyResult `json:"grades,omitempty"`
 	// Whether the certificate is revoked
 	Revoked bool `json:"revoked"`
+	// Whether the certificate is escrowed
+	Escrowed bool `json:"escrowed"`
+	// The certificate's issuer Distinguished Name
+	Issuer string `json:"issuer"`
+	// The certificate's start date in milliseconds since the epoch
+	NotBefore int64 `json:"notBefore"`
+	// Whether the certificate's revocation status is synchronized with a CRL
+	CrlSynchronized utils.NullableBool `json:"crlSynchronized,omitempty"`
 	// Whether the certificate is self-signed
 	SelfSigned bool `json:"selfSigned"`
+	// If the certificate was discovered and is found to be issued by an existing trusted CA, this field will be set to true. If the certificate was discovered and is not found to be issued by an existing trusted CA, this field will be set to false. If the certificate was not discovered, this field will be null
+	DiscoveredTrusted utils.NullableBool `json:"discoveredTrusted,omitempty"`
+	// The certificate's key type
+	KeyType string `json:"keyType" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
+	// The certificate's information about synchronization with Horizon supported third parties
+	ThirdPartyData []ThirdPartyItem `json:"thirdPartyData,omitempty"`
+	// The certificate's owner. This is a reference to a local identity identifier
+	Owner utils.NullableString `json:"owner,omitempty"`
+	// The certificate's public key thumbprint
+	PublicKeyThumbprint string `json:"publicKeyThumbprint"`
+	// The certificate's contact email. It will be used to send notifications about the certificate's expiration and revocation
+	ContactEmail utils.NullableString `json:"contactEmail,omitempty"`
+	// The certificate's module
+	Module string `json:"module"`
+	// The certificate's profile
+	Profile utils.NullableString `json:"profile,omitempty"`
+	// The certificate's team. This is a reference to a team identifier. It will be used to determine the certificate's permissions and send notifications
+	Team utils.NullableString `json:"team,omitempty"`
+	// The certificate's holder ID. This is a computed field that is used to count how many similar certificates are in use simultaneously by the same holder
+	HolderId string `json:"holderId"`
+	// The certificate's labels
+	Labels []LabelData `json:"labels,omitempty"`
+	// A list of metadata containing information on how and when the certificate was discovered
+	DiscoveryInfo []DiscoveryInfo `json:"discoveryInfo,omitempty"`
+	// The certificate's Subject Alternate Names
+	SubjectAlternateNames []SubjectAlternateName `json:"subjectAlternateNames"`
+	// The result of the execution of triggers on this certificate
+	TriggerResults []TriggerResult `json:"triggerResults,omitempty"`
+	// The certificate's extensions
+	Extensions []CertificateExtension `json:"extensions,omitempty"`
 	// The certificate's serial number
 	Serial string `json:"serial"`
 	// The certificate's signing algorithm
 	SigningAlgorithm string `json:"signingAlgorithm"`
-	// The certificate's Subject Alternate Names
-	SubjectAlternateNames []SubjectAlternateName `json:"subjectAlternateNames"`
-	// The certificate's team. This is a reference to a team identifier. It will be used to determine the certificate's permissions and send notifications
-	Team utils.NullableString `json:"team,omitempty"`
-	// The certificate's information about synchronization with Horizon supported third parties
-	ThirdPartyData []ThirdPartyItem `json:"thirdPartyData,omitempty"`
-	// The certificate's thumbprint
-	Thumbprint string `json:"thumbprint"`
-	// The result of the execution of triggers on this certificate
-	TriggerResults       []TriggerResult `json:"triggerResults,omitempty"`
+	// A list of metadata containing information on where the certificate was discovered
+	DiscoveryData []HostDiscoveryData `json:"discoveryData,omitempty"`
+	// Object internal ID
+	Id string `json:"_id"`
+	// The certificate's revocation reason
+	RevocationReason     utils.NullableString `json:"revocationReason,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -97,26 +97,26 @@ type _CertificateResponse CertificateResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificateResponse(id string, certificate string, dn string, escrowed bool, holderId string, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string) *CertificateResponse {
+func NewCertificateResponse(metadata []CertificateMetadata, notAfter int64, thumbprint string, certificate string, dn string, revoked bool, escrowed bool, issuer string, notBefore int64, selfSigned bool, keyType string, publicKeyThumbprint string, module string, holderId string, subjectAlternateNames []SubjectAlternateName, serial string, signingAlgorithm string, id string) *CertificateResponse {
 	this := CertificateResponse{}
-	this.Id = id
+	this.Metadata = metadata
+	this.NotAfter = notAfter
+	this.Thumbprint = thumbprint
 	this.Certificate = certificate
 	this.Dn = dn
-	this.Escrowed = escrowed
-	this.HolderId = holderId
-	this.Issuer = issuer
-	this.KeyType = keyType
-	this.Metadata = metadata
-	this.Module = module
-	this.NotAfter = notAfter
-	this.NotBefore = notBefore
-	this.PublicKeyThumbprint = publicKeyThumbprint
 	this.Revoked = revoked
+	this.Escrowed = escrowed
+	this.Issuer = issuer
+	this.NotBefore = notBefore
 	this.SelfSigned = selfSigned
+	this.KeyType = keyType
+	this.PublicKeyThumbprint = publicKeyThumbprint
+	this.Module = module
+	this.HolderId = holderId
+	this.SubjectAlternateNames = subjectAlternateNames
 	this.Serial = serial
 	this.SigningAlgorithm = signingAlgorithm
-	this.SubjectAlternateNames = subjectAlternateNames
-	this.Thumbprint = thumbprint
+	this.Id = id
 	return &this
 }
 
@@ -126,467 +126,6 @@ func NewCertificateResponse(id string, certificate string, dn string, escrowed b
 func NewCertificateResponseWithDefaults() *CertificateResponse {
 	this := CertificateResponse{}
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *CertificateResponse) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *CertificateResponse) SetId(v string) {
-	o.Id = v
-}
-
-// GetCertificate returns the Certificate field value
-func (o *CertificateResponse) GetCertificate() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Certificate
-}
-
-// GetCertificateOk returns a tuple with the Certificate field value
-// and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetCertificateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Certificate, true
-}
-
-// SetCertificate sets field value
-func (o *CertificateResponse) SetCertificate(v string) {
-	o.Certificate = v
-}
-
-// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetContactEmail() string {
-	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ContactEmail.Get()
-}
-
-// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetContactEmailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
-}
-
-// HasContactEmail returns a boolean if a field has been set.
-func (o *CertificateResponse) HasContactEmail() bool {
-	if o != nil && o.ContactEmail.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetContactEmail gets a reference to the given NullableString and assigns it to the ContactEmail field.
-func (o *CertificateResponse) SetContactEmail(v string) {
-	o.ContactEmail.Set(&v)
-}
-
-// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
-func (o *CertificateResponse) SetContactEmailNil() {
-	o.ContactEmail.Set(nil)
-}
-
-// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
-func (o *CertificateResponse) UnsetContactEmail() {
-	o.ContactEmail.Unset()
-}
-
-// GetCrlSynchronized returns the CrlSynchronized field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetCrlSynchronized() bool {
-	if o == nil || utils.IsNil(o.CrlSynchronized.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.CrlSynchronized.Get()
-}
-
-// GetCrlSynchronizedOk returns a tuple with the CrlSynchronized field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetCrlSynchronizedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CrlSynchronized.Get(), o.CrlSynchronized.IsSet()
-}
-
-// HasCrlSynchronized returns a boolean if a field has been set.
-func (o *CertificateResponse) HasCrlSynchronized() bool {
-	if o != nil && o.CrlSynchronized.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCrlSynchronized gets a reference to the given NullableBool and assigns it to the CrlSynchronized field.
-func (o *CertificateResponse) SetCrlSynchronized(v bool) {
-	o.CrlSynchronized.Set(&v)
-}
-
-// SetCrlSynchronizedNil sets the value for CrlSynchronized to be an explicit nil
-func (o *CertificateResponse) SetCrlSynchronizedNil() {
-	o.CrlSynchronized.Set(nil)
-}
-
-// UnsetCrlSynchronized ensures that no value is present for CrlSynchronized, not even an explicit nil
-func (o *CertificateResponse) UnsetCrlSynchronized() {
-	o.CrlSynchronized.Unset()
-}
-
-// GetDiscoveredTrusted returns the DiscoveredTrusted field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetDiscoveredTrusted() bool {
-	if o == nil || utils.IsNil(o.DiscoveredTrusted.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.DiscoveredTrusted.Get()
-}
-
-// GetDiscoveredTrustedOk returns a tuple with the DiscoveredTrusted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetDiscoveredTrustedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DiscoveredTrusted.Get(), o.DiscoveredTrusted.IsSet()
-}
-
-// HasDiscoveredTrusted returns a boolean if a field has been set.
-func (o *CertificateResponse) HasDiscoveredTrusted() bool {
-	if o != nil && o.DiscoveredTrusted.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDiscoveredTrusted gets a reference to the given NullableBool and assigns it to the DiscoveredTrusted field.
-func (o *CertificateResponse) SetDiscoveredTrusted(v bool) {
-	o.DiscoveredTrusted.Set(&v)
-}
-
-// SetDiscoveredTrustedNil sets the value for DiscoveredTrusted to be an explicit nil
-func (o *CertificateResponse) SetDiscoveredTrustedNil() {
-	o.DiscoveredTrusted.Set(nil)
-}
-
-// UnsetDiscoveredTrusted ensures that no value is present for DiscoveredTrusted, not even an explicit nil
-func (o *CertificateResponse) UnsetDiscoveredTrusted() {
-	o.DiscoveredTrusted.Unset()
-}
-
-// GetDiscoveryData returns the DiscoveryData field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetDiscoveryData() []HostDiscoveryData {
-	if o == nil {
-		var ret []HostDiscoveryData
-		return ret
-	}
-	return o.DiscoveryData
-}
-
-// GetDiscoveryDataOk returns a tuple with the DiscoveryData field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetDiscoveryDataOk() ([]HostDiscoveryData, bool) {
-	if o == nil || utils.IsNil(o.DiscoveryData) {
-		return nil, false
-	}
-	return o.DiscoveryData, true
-}
-
-// HasDiscoveryData returns a boolean if a field has been set.
-func (o *CertificateResponse) HasDiscoveryData() bool {
-	if o != nil && !utils.IsNil(o.DiscoveryData) {
-		return true
-	}
-
-	return false
-}
-
-// SetDiscoveryData gets a reference to the given []HostDiscoveryData and assigns it to the DiscoveryData field.
-func (o *CertificateResponse) SetDiscoveryData(v []HostDiscoveryData) {
-	o.DiscoveryData = v
-}
-
-// GetDiscoveryInfo returns the DiscoveryInfo field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetDiscoveryInfo() []DiscoveryInfo {
-	if o == nil {
-		var ret []DiscoveryInfo
-		return ret
-	}
-	return o.DiscoveryInfo
-}
-
-// GetDiscoveryInfoOk returns a tuple with the DiscoveryInfo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetDiscoveryInfoOk() ([]DiscoveryInfo, bool) {
-	if o == nil || utils.IsNil(o.DiscoveryInfo) {
-		return nil, false
-	}
-	return o.DiscoveryInfo, true
-}
-
-// HasDiscoveryInfo returns a boolean if a field has been set.
-func (o *CertificateResponse) HasDiscoveryInfo() bool {
-	if o != nil && !utils.IsNil(o.DiscoveryInfo) {
-		return true
-	}
-
-	return false
-}
-
-// SetDiscoveryInfo gets a reference to the given []DiscoveryInfo and assigns it to the DiscoveryInfo field.
-func (o *CertificateResponse) SetDiscoveryInfo(v []DiscoveryInfo) {
-	o.DiscoveryInfo = v
-}
-
-// GetDn returns the Dn field value
-func (o *CertificateResponse) GetDn() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Dn
-}
-
-// GetDnOk returns a tuple with the Dn field value
-// and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetDnOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Dn, true
-}
-
-// SetDn sets field value
-func (o *CertificateResponse) SetDn(v string) {
-	o.Dn = v
-}
-
-// GetEscrowed returns the Escrowed field value
-func (o *CertificateResponse) GetEscrowed() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Escrowed
-}
-
-// GetEscrowedOk returns a tuple with the Escrowed field value
-// and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetEscrowedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Escrowed, true
-}
-
-// SetEscrowed sets field value
-func (o *CertificateResponse) SetEscrowed(v bool) {
-	o.Escrowed = v
-}
-
-// GetExtensions returns the Extensions field value if set, zero value otherwise.
-func (o *CertificateResponse) GetExtensions() []CertificateExtension {
-	if o == nil || utils.IsNil(o.Extensions) {
-		var ret []CertificateExtension
-		return ret
-	}
-	return o.Extensions
-}
-
-// GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetExtensionsOk() ([]CertificateExtension, bool) {
-	if o == nil || utils.IsNil(o.Extensions) {
-		return nil, false
-	}
-	return o.Extensions, true
-}
-
-// HasExtensions returns a boolean if a field has been set.
-func (o *CertificateResponse) HasExtensions() bool {
-	if o != nil && !utils.IsNil(o.Extensions) {
-		return true
-	}
-
-	return false
-}
-
-// SetExtensions gets a reference to the given []CertificateExtension and assigns it to the Extensions field.
-func (o *CertificateResponse) SetExtensions(v []CertificateExtension) {
-	o.Extensions = v
-}
-
-// GetGrades returns the Grades field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetGrades() []GradingPolicyResult {
-	if o == nil {
-		var ret []GradingPolicyResult
-		return ret
-	}
-	return o.Grades
-}
-
-// GetGradesOk returns a tuple with the Grades field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetGradesOk() ([]GradingPolicyResult, bool) {
-	if o == nil || utils.IsNil(o.Grades) {
-		return nil, false
-	}
-	return o.Grades, true
-}
-
-// HasGrades returns a boolean if a field has been set.
-func (o *CertificateResponse) HasGrades() bool {
-	if o != nil && !utils.IsNil(o.Grades) {
-		return true
-	}
-
-	return false
-}
-
-// SetGrades gets a reference to the given []GradingPolicyResult and assigns it to the Grades field.
-func (o *CertificateResponse) SetGrades(v []GradingPolicyResult) {
-	o.Grades = v
-}
-
-// GetHolderId returns the HolderId field value
-func (o *CertificateResponse) GetHolderId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.HolderId
-}
-
-// GetHolderIdOk returns a tuple with the HolderId field value
-// and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetHolderIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.HolderId, true
-}
-
-// SetHolderId sets field value
-func (o *CertificateResponse) SetHolderId(v string) {
-	o.HolderId = v
-}
-
-// GetIssuer returns the Issuer field value
-func (o *CertificateResponse) GetIssuer() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Issuer
-}
-
-// GetIssuerOk returns a tuple with the Issuer field value
-// and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetIssuerOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Issuer, true
-}
-
-// SetIssuer sets field value
-func (o *CertificateResponse) SetIssuer(v string) {
-	o.Issuer = v
-}
-
-// GetKeyType returns the KeyType field value
-func (o *CertificateResponse) GetKeyType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.KeyType
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value
-// and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetKeyTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.KeyType, true
-}
-
-// SetKeyType sets field value
-func (o *CertificateResponse) SetKeyType(v string) {
-	o.KeyType = v
-}
-
-// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetLabels() []LabelData {
-	if o == nil {
-		var ret []LabelData
-		return ret
-	}
-	return o.Labels
-}
-
-// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetLabelsOk() ([]LabelData, bool) {
-	if o == nil || utils.IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
-}
-
-// HasLabels returns a boolean if a field has been set.
-func (o *CertificateResponse) HasLabels() bool {
-	if o != nil && !utils.IsNil(o.Labels) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabels gets a reference to the given []LabelData and assigns it to the Labels field.
-func (o *CertificateResponse) SetLabels(v []LabelData) {
-	o.Labels = v
 }
 
 // GetMetadata returns the Metadata field value
@@ -613,30 +152,6 @@ func (o *CertificateResponse) SetMetadata(v []CertificateMetadata) {
 	o.Metadata = v
 }
 
-// GetModule returns the Module field value
-func (o *CertificateResponse) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *CertificateResponse) SetModule(v string) {
-	o.Module = v
-}
-
 // GetNotAfter returns the NotAfter field value
 func (o *CertificateResponse) GetNotAfter() int64 {
 	if o == nil {
@@ -661,138 +176,28 @@ func (o *CertificateResponse) SetNotAfter(v int64) {
 	o.NotAfter = v
 }
 
-// GetNotBefore returns the NotBefore field value
-func (o *CertificateResponse) GetNotBefore() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.NotBefore
-}
-
-// GetNotBeforeOk returns a tuple with the NotBefore field value
-// and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetNotBeforeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.NotBefore, true
-}
-
-// SetNotBefore sets field value
-func (o *CertificateResponse) SetNotBefore(v int64) {
-	o.NotBefore = v
-}
-
-// GetOwner returns the Owner field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetOwner() string {
-	if o == nil || utils.IsNil(o.Owner.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Owner.Get()
-}
-
-// GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetOwnerOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Owner.Get(), o.Owner.IsSet()
-}
-
-// HasOwner returns a boolean if a field has been set.
-func (o *CertificateResponse) HasOwner() bool {
-	if o != nil && o.Owner.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOwner gets a reference to the given NullableString and assigns it to the Owner field.
-func (o *CertificateResponse) SetOwner(v string) {
-	o.Owner.Set(&v)
-}
-
-// SetOwnerNil sets the value for Owner to be an explicit nil
-func (o *CertificateResponse) SetOwnerNil() {
-	o.Owner.Set(nil)
-}
-
-// UnsetOwner ensures that no value is present for Owner, not even an explicit nil
-func (o *CertificateResponse) UnsetOwner() {
-	o.Owner.Unset()
-}
-
-// GetProfile returns the Profile field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetProfile() string {
-	if o == nil || utils.IsNil(o.Profile.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Profile.Get()
-}
-
-// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Profile.Get(), o.Profile.IsSet()
-}
-
-// HasProfile returns a boolean if a field has been set.
-func (o *CertificateResponse) HasProfile() bool {
-	if o != nil && o.Profile.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProfile gets a reference to the given NullableString and assigns it to the Profile field.
-func (o *CertificateResponse) SetProfile(v string) {
-	o.Profile.Set(&v)
-}
-
-// SetProfileNil sets the value for Profile to be an explicit nil
-func (o *CertificateResponse) SetProfileNil() {
-	o.Profile.Set(nil)
-}
-
-// UnsetProfile ensures that no value is present for Profile, not even an explicit nil
-func (o *CertificateResponse) UnsetProfile() {
-	o.Profile.Unset()
-}
-
-// GetPublicKeyThumbprint returns the PublicKeyThumbprint field value
-func (o *CertificateResponse) GetPublicKeyThumbprint() string {
+// GetThumbprint returns the Thumbprint field value
+func (o *CertificateResponse) GetThumbprint() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.PublicKeyThumbprint
+	return o.Thumbprint
 }
 
-// GetPublicKeyThumbprintOk returns a tuple with the PublicKeyThumbprint field value
+// GetThumbprintOk returns a tuple with the Thumbprint field value
 // and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetPublicKeyThumbprintOk() (*string, bool) {
+func (o *CertificateResponse) GetThumbprintOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PublicKeyThumbprint, true
+	return &o.Thumbprint, true
 }
 
-// SetPublicKeyThumbprint sets field value
-func (o *CertificateResponse) SetPublicKeyThumbprint(v string) {
-	o.PublicKeyThumbprint = v
+// SetThumbprint sets field value
+func (o *CertificateResponse) SetThumbprint(v string) {
+	o.Thumbprint = v
 }
 
 // GetRevocationDate returns the RevocationDate field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -838,47 +243,85 @@ func (o *CertificateResponse) UnsetRevocationDate() {
 	o.RevocationDate.Unset()
 }
 
-// GetRevocationReason returns the RevocationReason field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetRevocationReason() string {
-	if o == nil || utils.IsNil(o.RevocationReason.Get()) {
+// GetCertificate returns the Certificate field value
+func (o *CertificateResponse) GetCertificate() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.RevocationReason.Get()
+
+	return o.Certificate
 }
 
-// GetRevocationReasonOk returns a tuple with the RevocationReason field value if set, nil otherwise
+// GetCertificateOk returns a tuple with the Certificate field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetRevocationReasonOk() (*string, bool) {
+func (o *CertificateResponse) GetCertificateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RevocationReason.Get(), o.RevocationReason.IsSet()
+	return &o.Certificate, true
 }
 
-// HasRevocationReason returns a boolean if a field has been set.
-func (o *CertificateResponse) HasRevocationReason() bool {
-	if o != nil && o.RevocationReason.IsSet() {
+// SetCertificate sets field value
+func (o *CertificateResponse) SetCertificate(v string) {
+	o.Certificate = v
+}
+
+// GetDn returns the Dn field value
+func (o *CertificateResponse) GetDn() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Dn
+}
+
+// GetDnOk returns a tuple with the Dn field value
+// and a boolean to check if the value has been set.
+func (o *CertificateResponse) GetDnOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Dn, true
+}
+
+// SetDn sets field value
+func (o *CertificateResponse) SetDn(v string) {
+	o.Dn = v
+}
+
+// GetGrades returns the Grades field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetGrades() []GradingPolicyResult {
+	if o == nil {
+		var ret []GradingPolicyResult
+		return ret
+	}
+	return o.Grades
+}
+
+// GetGradesOk returns a tuple with the Grades field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateResponse) GetGradesOk() ([]GradingPolicyResult, bool) {
+	if o == nil || utils.IsNil(o.Grades) {
+		return nil, false
+	}
+	return o.Grades, true
+}
+
+// HasGrades returns a boolean if a field has been set.
+func (o *CertificateResponse) HasGrades() bool {
+	if o != nil && !utils.IsNil(o.Grades) {
 		return true
 	}
 
 	return false
 }
 
-// SetRevocationReason gets a reference to the given NullableString and assigns it to the RevocationReason field.
-func (o *CertificateResponse) SetRevocationReason(v string) {
-	o.RevocationReason.Set(&v)
-}
-
-// SetRevocationReasonNil sets the value for RevocationReason to be an explicit nil
-func (o *CertificateResponse) SetRevocationReasonNil() {
-	o.RevocationReason.Set(nil)
-}
-
-// UnsetRevocationReason ensures that no value is present for RevocationReason, not even an explicit nil
-func (o *CertificateResponse) UnsetRevocationReason() {
-	o.RevocationReason.Unset()
+// SetGrades gets a reference to the given []GradingPolicyResult and assigns it to the Grades field.
+func (o *CertificateResponse) SetGrades(v []GradingPolicyResult) {
+	o.Grades = v
 }
 
 // GetRevoked returns the Revoked field value
@@ -905,6 +348,121 @@ func (o *CertificateResponse) SetRevoked(v bool) {
 	o.Revoked = v
 }
 
+// GetEscrowed returns the Escrowed field value
+func (o *CertificateResponse) GetEscrowed() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Escrowed
+}
+
+// GetEscrowedOk returns a tuple with the Escrowed field value
+// and a boolean to check if the value has been set.
+func (o *CertificateResponse) GetEscrowedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Escrowed, true
+}
+
+// SetEscrowed sets field value
+func (o *CertificateResponse) SetEscrowed(v bool) {
+	o.Escrowed = v
+}
+
+// GetIssuer returns the Issuer field value
+func (o *CertificateResponse) GetIssuer() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Issuer
+}
+
+// GetIssuerOk returns a tuple with the Issuer field value
+// and a boolean to check if the value has been set.
+func (o *CertificateResponse) GetIssuerOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Issuer, true
+}
+
+// SetIssuer sets field value
+func (o *CertificateResponse) SetIssuer(v string) {
+	o.Issuer = v
+}
+
+// GetNotBefore returns the NotBefore field value
+func (o *CertificateResponse) GetNotBefore() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.NotBefore
+}
+
+// GetNotBeforeOk returns a tuple with the NotBefore field value
+// and a boolean to check if the value has been set.
+func (o *CertificateResponse) GetNotBeforeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NotBefore, true
+}
+
+// SetNotBefore sets field value
+func (o *CertificateResponse) SetNotBefore(v int64) {
+	o.NotBefore = v
+}
+
+// GetCrlSynchronized returns the CrlSynchronized field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetCrlSynchronized() bool {
+	if o == nil || utils.IsNil(o.CrlSynchronized.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.CrlSynchronized.Get()
+}
+
+// GetCrlSynchronizedOk returns a tuple with the CrlSynchronized field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateResponse) GetCrlSynchronizedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CrlSynchronized.Get(), o.CrlSynchronized.IsSet()
+}
+
+// HasCrlSynchronized returns a boolean if a field has been set.
+func (o *CertificateResponse) HasCrlSynchronized() bool {
+	if o != nil && o.CrlSynchronized.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCrlSynchronized gets a reference to the given NullableBool and assigns it to the CrlSynchronized field.
+func (o *CertificateResponse) SetCrlSynchronized(v bool) {
+	o.CrlSynchronized.Set(&v)
+}
+
+// SetCrlSynchronizedNil sets the value for CrlSynchronized to be an explicit nil
+func (o *CertificateResponse) SetCrlSynchronizedNil() {
+	o.CrlSynchronized.Set(nil)
+}
+
+// UnsetCrlSynchronized ensures that no value is present for CrlSynchronized, not even an explicit nil
+func (o *CertificateResponse) UnsetCrlSynchronized() {
+	o.CrlSynchronized.Unset()
+}
+
 // GetSelfSigned returns the SelfSigned field value
 func (o *CertificateResponse) GetSelfSigned() bool {
 	if o == nil {
@@ -927,6 +485,505 @@ func (o *CertificateResponse) GetSelfSignedOk() (*bool, bool) {
 // SetSelfSigned sets field value
 func (o *CertificateResponse) SetSelfSigned(v bool) {
 	o.SelfSigned = v
+}
+
+// GetDiscoveredTrusted returns the DiscoveredTrusted field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetDiscoveredTrusted() bool {
+	if o == nil || utils.IsNil(o.DiscoveredTrusted.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.DiscoveredTrusted.Get()
+}
+
+// GetDiscoveredTrustedOk returns a tuple with the DiscoveredTrusted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateResponse) GetDiscoveredTrustedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DiscoveredTrusted.Get(), o.DiscoveredTrusted.IsSet()
+}
+
+// HasDiscoveredTrusted returns a boolean if a field has been set.
+func (o *CertificateResponse) HasDiscoveredTrusted() bool {
+	if o != nil && o.DiscoveredTrusted.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscoveredTrusted gets a reference to the given NullableBool and assigns it to the DiscoveredTrusted field.
+func (o *CertificateResponse) SetDiscoveredTrusted(v bool) {
+	o.DiscoveredTrusted.Set(&v)
+}
+
+// SetDiscoveredTrustedNil sets the value for DiscoveredTrusted to be an explicit nil
+func (o *CertificateResponse) SetDiscoveredTrustedNil() {
+	o.DiscoveredTrusted.Set(nil)
+}
+
+// UnsetDiscoveredTrusted ensures that no value is present for DiscoveredTrusted, not even an explicit nil
+func (o *CertificateResponse) UnsetDiscoveredTrusted() {
+	o.DiscoveredTrusted.Unset()
+}
+
+// GetKeyType returns the KeyType field value
+func (o *CertificateResponse) GetKeyType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.KeyType
+}
+
+// GetKeyTypeOk returns a tuple with the KeyType field value
+// and a boolean to check if the value has been set.
+func (o *CertificateResponse) GetKeyTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.KeyType, true
+}
+
+// SetKeyType sets field value
+func (o *CertificateResponse) SetKeyType(v string) {
+	o.KeyType = v
+}
+
+// GetThirdPartyData returns the ThirdPartyData field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetThirdPartyData() []ThirdPartyItem {
+	if o == nil {
+		var ret []ThirdPartyItem
+		return ret
+	}
+	return o.ThirdPartyData
+}
+
+// GetThirdPartyDataOk returns a tuple with the ThirdPartyData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateResponse) GetThirdPartyDataOk() ([]ThirdPartyItem, bool) {
+	if o == nil || utils.IsNil(o.ThirdPartyData) {
+		return nil, false
+	}
+	return o.ThirdPartyData, true
+}
+
+// HasThirdPartyData returns a boolean if a field has been set.
+func (o *CertificateResponse) HasThirdPartyData() bool {
+	if o != nil && !utils.IsNil(o.ThirdPartyData) {
+		return true
+	}
+
+	return false
+}
+
+// SetThirdPartyData gets a reference to the given []ThirdPartyItem and assigns it to the ThirdPartyData field.
+func (o *CertificateResponse) SetThirdPartyData(v []ThirdPartyItem) {
+	o.ThirdPartyData = v
+}
+
+// GetOwner returns the Owner field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetOwner() string {
+	if o == nil || utils.IsNil(o.Owner.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Owner.Get()
+}
+
+// GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateResponse) GetOwnerOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Owner.Get(), o.Owner.IsSet()
+}
+
+// HasOwner returns a boolean if a field has been set.
+func (o *CertificateResponse) HasOwner() bool {
+	if o != nil && o.Owner.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOwner gets a reference to the given NullableString and assigns it to the Owner field.
+func (o *CertificateResponse) SetOwner(v string) {
+	o.Owner.Set(&v)
+}
+
+// SetOwnerNil sets the value for Owner to be an explicit nil
+func (o *CertificateResponse) SetOwnerNil() {
+	o.Owner.Set(nil)
+}
+
+// UnsetOwner ensures that no value is present for Owner, not even an explicit nil
+func (o *CertificateResponse) UnsetOwner() {
+	o.Owner.Unset()
+}
+
+// GetPublicKeyThumbprint returns the PublicKeyThumbprint field value
+func (o *CertificateResponse) GetPublicKeyThumbprint() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PublicKeyThumbprint
+}
+
+// GetPublicKeyThumbprintOk returns a tuple with the PublicKeyThumbprint field value
+// and a boolean to check if the value has been set.
+func (o *CertificateResponse) GetPublicKeyThumbprintOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PublicKeyThumbprint, true
+}
+
+// SetPublicKeyThumbprint sets field value
+func (o *CertificateResponse) SetPublicKeyThumbprint(v string) {
+	o.PublicKeyThumbprint = v
+}
+
+// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetContactEmail() string {
+	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ContactEmail.Get()
+}
+
+// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateResponse) GetContactEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
+}
+
+// HasContactEmail returns a boolean if a field has been set.
+func (o *CertificateResponse) HasContactEmail() bool {
+	if o != nil && o.ContactEmail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContactEmail gets a reference to the given NullableString and assigns it to the ContactEmail field.
+func (o *CertificateResponse) SetContactEmail(v string) {
+	o.ContactEmail.Set(&v)
+}
+
+// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+func (o *CertificateResponse) SetContactEmailNil() {
+	o.ContactEmail.Set(nil)
+}
+
+// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
+func (o *CertificateResponse) UnsetContactEmail() {
+	o.ContactEmail.Unset()
+}
+
+// GetModule returns the Module field value
+func (o *CertificateResponse) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *CertificateResponse) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *CertificateResponse) SetModule(v string) {
+	o.Module = v
+}
+
+// GetProfile returns the Profile field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetProfile() string {
+	if o == nil || utils.IsNil(o.Profile.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Profile.Get()
+}
+
+// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateResponse) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Profile.Get(), o.Profile.IsSet()
+}
+
+// HasProfile returns a boolean if a field has been set.
+func (o *CertificateResponse) HasProfile() bool {
+	if o != nil && o.Profile.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProfile gets a reference to the given NullableString and assigns it to the Profile field.
+func (o *CertificateResponse) SetProfile(v string) {
+	o.Profile.Set(&v)
+}
+
+// SetProfileNil sets the value for Profile to be an explicit nil
+func (o *CertificateResponse) SetProfileNil() {
+	o.Profile.Set(nil)
+}
+
+// UnsetProfile ensures that no value is present for Profile, not even an explicit nil
+func (o *CertificateResponse) UnsetProfile() {
+	o.Profile.Unset()
+}
+
+// GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetTeam() string {
+	if o == nil || utils.IsNil(o.Team.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Team.Get()
+}
+
+// GetTeamOk returns a tuple with the Team field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateResponse) GetTeamOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Team.Get(), o.Team.IsSet()
+}
+
+// HasTeam returns a boolean if a field has been set.
+func (o *CertificateResponse) HasTeam() bool {
+	if o != nil && o.Team.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTeam gets a reference to the given NullableString and assigns it to the Team field.
+func (o *CertificateResponse) SetTeam(v string) {
+	o.Team.Set(&v)
+}
+
+// SetTeamNil sets the value for Team to be an explicit nil
+func (o *CertificateResponse) SetTeamNil() {
+	o.Team.Set(nil)
+}
+
+// UnsetTeam ensures that no value is present for Team, not even an explicit nil
+func (o *CertificateResponse) UnsetTeam() {
+	o.Team.Unset()
+}
+
+// GetHolderId returns the HolderId field value
+func (o *CertificateResponse) GetHolderId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.HolderId
+}
+
+// GetHolderIdOk returns a tuple with the HolderId field value
+// and a boolean to check if the value has been set.
+func (o *CertificateResponse) GetHolderIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HolderId, true
+}
+
+// SetHolderId sets field value
+func (o *CertificateResponse) SetHolderId(v string) {
+	o.HolderId = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetLabels() []LabelData {
+	if o == nil {
+		var ret []LabelData
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateResponse) GetLabelsOk() ([]LabelData, bool) {
+	if o == nil || utils.IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *CertificateResponse) HasLabels() bool {
+	if o != nil && !utils.IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []LabelData and assigns it to the Labels field.
+func (o *CertificateResponse) SetLabels(v []LabelData) {
+	o.Labels = v
+}
+
+// GetDiscoveryInfo returns the DiscoveryInfo field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetDiscoveryInfo() []DiscoveryInfo {
+	if o == nil {
+		var ret []DiscoveryInfo
+		return ret
+	}
+	return o.DiscoveryInfo
+}
+
+// GetDiscoveryInfoOk returns a tuple with the DiscoveryInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateResponse) GetDiscoveryInfoOk() ([]DiscoveryInfo, bool) {
+	if o == nil || utils.IsNil(o.DiscoveryInfo) {
+		return nil, false
+	}
+	return o.DiscoveryInfo, true
+}
+
+// HasDiscoveryInfo returns a boolean if a field has been set.
+func (o *CertificateResponse) HasDiscoveryInfo() bool {
+	if o != nil && !utils.IsNil(o.DiscoveryInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscoveryInfo gets a reference to the given []DiscoveryInfo and assigns it to the DiscoveryInfo field.
+func (o *CertificateResponse) SetDiscoveryInfo(v []DiscoveryInfo) {
+	o.DiscoveryInfo = v
+}
+
+// GetSubjectAlternateNames returns the SubjectAlternateNames field value
+func (o *CertificateResponse) GetSubjectAlternateNames() []SubjectAlternateName {
+	if o == nil {
+		var ret []SubjectAlternateName
+		return ret
+	}
+
+	return o.SubjectAlternateNames
+}
+
+// GetSubjectAlternateNamesOk returns a tuple with the SubjectAlternateNames field value
+// and a boolean to check if the value has been set.
+func (o *CertificateResponse) GetSubjectAlternateNamesOk() ([]SubjectAlternateName, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SubjectAlternateNames, true
+}
+
+// SetSubjectAlternateNames sets field value
+func (o *CertificateResponse) SetSubjectAlternateNames(v []SubjectAlternateName) {
+	o.SubjectAlternateNames = v
+}
+
+// GetTriggerResults returns the TriggerResults field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetTriggerResults() []TriggerResult {
+	if o == nil {
+		var ret []TriggerResult
+		return ret
+	}
+	return o.TriggerResults
+}
+
+// GetTriggerResultsOk returns a tuple with the TriggerResults field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateResponse) GetTriggerResultsOk() ([]TriggerResult, bool) {
+	if o == nil || utils.IsNil(o.TriggerResults) {
+		return nil, false
+	}
+	return o.TriggerResults, true
+}
+
+// HasTriggerResults returns a boolean if a field has been set.
+func (o *CertificateResponse) HasTriggerResults() bool {
+	if o != nil && !utils.IsNil(o.TriggerResults) {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggerResults gets a reference to the given []TriggerResult and assigns it to the TriggerResults field.
+func (o *CertificateResponse) SetTriggerResults(v []TriggerResult) {
+	o.TriggerResults = v
+}
+
+// GetExtensions returns the Extensions field value if set, zero value otherwise.
+func (o *CertificateResponse) GetExtensions() []CertificateExtension {
+	if o == nil || utils.IsNil(o.Extensions) {
+		var ret []CertificateExtension
+		return ret
+	}
+	return o.Extensions
+}
+
+// GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CertificateResponse) GetExtensionsOk() ([]CertificateExtension, bool) {
+	if o == nil || utils.IsNil(o.Extensions) {
+		return nil, false
+	}
+	return o.Extensions, true
+}
+
+// HasExtensions returns a boolean if a field has been set.
+func (o *CertificateResponse) HasExtensions() bool {
+	if o != nil && !utils.IsNil(o.Extensions) {
+		return true
+	}
+
+	return false
+}
+
+// SetExtensions gets a reference to the given []CertificateExtension and assigns it to the Extensions field.
+func (o *CertificateResponse) SetExtensions(v []CertificateExtension) {
+	o.Extensions = v
 }
 
 // GetSerial returns the Serial field value
@@ -977,161 +1034,104 @@ func (o *CertificateResponse) SetSigningAlgorithm(v string) {
 	o.SigningAlgorithm = v
 }
 
-// GetSubjectAlternateNames returns the SubjectAlternateNames field value
-func (o *CertificateResponse) GetSubjectAlternateNames() []SubjectAlternateName {
+// GetDiscoveryData returns the DiscoveryData field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetDiscoveryData() []HostDiscoveryData {
 	if o == nil {
-		var ret []SubjectAlternateName
+		var ret []HostDiscoveryData
 		return ret
 	}
-
-	return o.SubjectAlternateNames
+	return o.DiscoveryData
 }
 
-// GetSubjectAlternateNamesOk returns a tuple with the SubjectAlternateNames field value
-// and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetSubjectAlternateNamesOk() ([]SubjectAlternateName, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SubjectAlternateNames, true
-}
-
-// SetSubjectAlternateNames sets field value
-func (o *CertificateResponse) SetSubjectAlternateNames(v []SubjectAlternateName) {
-	o.SubjectAlternateNames = v
-}
-
-// GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetTeam() string {
-	if o == nil || utils.IsNil(o.Team.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Team.Get()
-}
-
-// GetTeamOk returns a tuple with the Team field value if set, nil otherwise
+// GetDiscoveryDataOk returns a tuple with the DiscoveryData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetTeamOk() (*string, bool) {
-	if o == nil {
+func (o *CertificateResponse) GetDiscoveryDataOk() ([]HostDiscoveryData, bool) {
+	if o == nil || utils.IsNil(o.DiscoveryData) {
 		return nil, false
 	}
-	return o.Team.Get(), o.Team.IsSet()
+	return o.DiscoveryData, true
 }
 
-// HasTeam returns a boolean if a field has been set.
-func (o *CertificateResponse) HasTeam() bool {
-	if o != nil && o.Team.IsSet() {
+// HasDiscoveryData returns a boolean if a field has been set.
+func (o *CertificateResponse) HasDiscoveryData() bool {
+	if o != nil && !utils.IsNil(o.DiscoveryData) {
 		return true
 	}
 
 	return false
 }
 
-// SetTeam gets a reference to the given NullableString and assigns it to the Team field.
-func (o *CertificateResponse) SetTeam(v string) {
-	o.Team.Set(&v)
+// SetDiscoveryData gets a reference to the given []HostDiscoveryData and assigns it to the DiscoveryData field.
+func (o *CertificateResponse) SetDiscoveryData(v []HostDiscoveryData) {
+	o.DiscoveryData = v
 }
 
-// SetTeamNil sets the value for Team to be an explicit nil
-func (o *CertificateResponse) SetTeamNil() {
-	o.Team.Set(nil)
-}
-
-// UnsetTeam ensures that no value is present for Team, not even an explicit nil
-func (o *CertificateResponse) UnsetTeam() {
-	o.Team.Unset()
-}
-
-// GetThirdPartyData returns the ThirdPartyData field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetThirdPartyData() []ThirdPartyItem {
-	if o == nil {
-		var ret []ThirdPartyItem
-		return ret
-	}
-	return o.ThirdPartyData
-}
-
-// GetThirdPartyDataOk returns a tuple with the ThirdPartyData field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetThirdPartyDataOk() ([]ThirdPartyItem, bool) {
-	if o == nil || utils.IsNil(o.ThirdPartyData) {
-		return nil, false
-	}
-	return o.ThirdPartyData, true
-}
-
-// HasThirdPartyData returns a boolean if a field has been set.
-func (o *CertificateResponse) HasThirdPartyData() bool {
-	if o != nil && !utils.IsNil(o.ThirdPartyData) {
-		return true
-	}
-
-	return false
-}
-
-// SetThirdPartyData gets a reference to the given []ThirdPartyItem and assigns it to the ThirdPartyData field.
-func (o *CertificateResponse) SetThirdPartyData(v []ThirdPartyItem) {
-	o.ThirdPartyData = v
-}
-
-// GetThumbprint returns the Thumbprint field value
-func (o *CertificateResponse) GetThumbprint() string {
+// GetId returns the Id field value
+func (o *CertificateResponse) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Thumbprint
+	return o.Id
 }
 
-// GetThumbprintOk returns a tuple with the Thumbprint field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CertificateResponse) GetThumbprintOk() (*string, bool) {
+func (o *CertificateResponse) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Thumbprint, true
+	return &o.Id, true
 }
 
-// SetThumbprint sets field value
-func (o *CertificateResponse) SetThumbprint(v string) {
-	o.Thumbprint = v
+// SetId sets field value
+func (o *CertificateResponse) SetId(v string) {
+	o.Id = v
 }
 
-// GetTriggerResults returns the TriggerResults field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateResponse) GetTriggerResults() []TriggerResult {
-	if o == nil {
-		var ret []TriggerResult
+// GetRevocationReason returns the RevocationReason field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateResponse) GetRevocationReason() string {
+	if o == nil || utils.IsNil(o.RevocationReason.Get()) {
+		var ret string
 		return ret
 	}
-	return o.TriggerResults
+	return *o.RevocationReason.Get()
 }
 
-// GetTriggerResultsOk returns a tuple with the TriggerResults field value if set, nil otherwise
+// GetRevocationReasonOk returns a tuple with the RevocationReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateResponse) GetTriggerResultsOk() ([]TriggerResult, bool) {
-	if o == nil || utils.IsNil(o.TriggerResults) {
+func (o *CertificateResponse) GetRevocationReasonOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.TriggerResults, true
+	return o.RevocationReason.Get(), o.RevocationReason.IsSet()
 }
 
-// HasTriggerResults returns a boolean if a field has been set.
-func (o *CertificateResponse) HasTriggerResults() bool {
-	if o != nil && !utils.IsNil(o.TriggerResults) {
+// HasRevocationReason returns a boolean if a field has been set.
+func (o *CertificateResponse) HasRevocationReason() bool {
+	if o != nil && o.RevocationReason.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTriggerResults gets a reference to the given []TriggerResult and assigns it to the TriggerResults field.
-func (o *CertificateResponse) SetTriggerResults(v []TriggerResult) {
-	o.TriggerResults = v
+// SetRevocationReason gets a reference to the given NullableString and assigns it to the RevocationReason field.
+func (o *CertificateResponse) SetRevocationReason(v string) {
+	o.RevocationReason.Set(&v)
+}
+
+// SetRevocationReasonNil sets the value for RevocationReason to be an explicit nil
+func (o *CertificateResponse) SetRevocationReasonNil() {
+	o.RevocationReason.Set(nil)
+}
+
+// UnsetRevocationReason ensures that no value is present for RevocationReason, not even an explicit nil
+func (o *CertificateResponse) UnsetRevocationReason() {
+	o.RevocationReason.Unset()
 }
 
 func (o CertificateResponse) MarshalJSON() ([]byte, error) {
@@ -1144,68 +1144,68 @@ func (o CertificateResponse) MarshalJSON() ([]byte, error) {
 
 func (o CertificateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["_id"] = o.Id
-	toSerialize["certificate"] = o.Certificate
-	if o.ContactEmail.IsSet() {
-		toSerialize["contactEmail"] = o.ContactEmail.Get()
+	toSerialize["metadata"] = o.Metadata
+	toSerialize["notAfter"] = o.NotAfter
+	toSerialize["thumbprint"] = o.Thumbprint
+	if o.RevocationDate.IsSet() {
+		toSerialize["revocationDate"] = o.RevocationDate.Get()
 	}
+	toSerialize["certificate"] = o.Certificate
+	toSerialize["dn"] = o.Dn
+	if o.Grades != nil {
+		toSerialize["grades"] = o.Grades
+	}
+	toSerialize["revoked"] = o.Revoked
+	toSerialize["escrowed"] = o.Escrowed
+	toSerialize["issuer"] = o.Issuer
+	toSerialize["notBefore"] = o.NotBefore
 	if o.CrlSynchronized.IsSet() {
 		toSerialize["crlSynchronized"] = o.CrlSynchronized.Get()
 	}
+	toSerialize["selfSigned"] = o.SelfSigned
 	if o.DiscoveredTrusted.IsSet() {
 		toSerialize["discoveredTrusted"] = o.DiscoveredTrusted.Get()
 	}
-	if o.DiscoveryData != nil {
-		toSerialize["discoveryData"] = o.DiscoveryData
+	toSerialize["keyType"] = o.KeyType
+	if o.ThirdPartyData != nil {
+		toSerialize["thirdPartyData"] = o.ThirdPartyData
+	}
+	if o.Owner.IsSet() {
+		toSerialize["owner"] = o.Owner.Get()
+	}
+	toSerialize["publicKeyThumbprint"] = o.PublicKeyThumbprint
+	if o.ContactEmail.IsSet() {
+		toSerialize["contactEmail"] = o.ContactEmail.Get()
+	}
+	toSerialize["module"] = o.Module
+	if o.Profile.IsSet() {
+		toSerialize["profile"] = o.Profile.Get()
+	}
+	if o.Team.IsSet() {
+		toSerialize["team"] = o.Team.Get()
+	}
+	toSerialize["holderId"] = o.HolderId
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
 	}
 	if o.DiscoveryInfo != nil {
 		toSerialize["discoveryInfo"] = o.DiscoveryInfo
 	}
-	toSerialize["dn"] = o.Dn
-	toSerialize["escrowed"] = o.Escrowed
+	toSerialize["subjectAlternateNames"] = o.SubjectAlternateNames
+	if o.TriggerResults != nil {
+		toSerialize["triggerResults"] = o.TriggerResults
+	}
 	if !utils.IsNil(o.Extensions) {
 		toSerialize["extensions"] = o.Extensions
 	}
-	if o.Grades != nil {
-		toSerialize["grades"] = o.Grades
-	}
-	toSerialize["holderId"] = o.HolderId
-	toSerialize["issuer"] = o.Issuer
-	toSerialize["keyType"] = o.KeyType
-	if o.Labels != nil {
-		toSerialize["labels"] = o.Labels
-	}
-	toSerialize["metadata"] = o.Metadata
-	toSerialize["module"] = o.Module
-	toSerialize["notAfter"] = o.NotAfter
-	toSerialize["notBefore"] = o.NotBefore
-	if o.Owner.IsSet() {
-		toSerialize["owner"] = o.Owner.Get()
-	}
-	if o.Profile.IsSet() {
-		toSerialize["profile"] = o.Profile.Get()
-	}
-	toSerialize["publicKeyThumbprint"] = o.PublicKeyThumbprint
-	if o.RevocationDate.IsSet() {
-		toSerialize["revocationDate"] = o.RevocationDate.Get()
-	}
-	if o.RevocationReason.IsSet() {
-		toSerialize["revocationReason"] = o.RevocationReason.Get()
-	}
-	toSerialize["revoked"] = o.Revoked
-	toSerialize["selfSigned"] = o.SelfSigned
 	toSerialize["serial"] = o.Serial
 	toSerialize["signingAlgorithm"] = o.SigningAlgorithm
-	toSerialize["subjectAlternateNames"] = o.SubjectAlternateNames
-	if o.Team.IsSet() {
-		toSerialize["team"] = o.Team.Get()
+	if o.DiscoveryData != nil {
+		toSerialize["discoveryData"] = o.DiscoveryData
 	}
-	if o.ThirdPartyData != nil {
-		toSerialize["thirdPartyData"] = o.ThirdPartyData
-	}
-	toSerialize["thumbprint"] = o.Thumbprint
-	if o.TriggerResults != nil {
-		toSerialize["triggerResults"] = o.TriggerResults
+	toSerialize["_id"] = o.Id
+	if o.RevocationReason.IsSet() {
+		toSerialize["revocationReason"] = o.RevocationReason.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -1220,24 +1220,24 @@ func (o *CertificateResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"_id",
+		"metadata",
+		"notAfter",
+		"thumbprint",
 		"certificate",
 		"dn",
-		"escrowed",
-		"holderId",
-		"issuer",
-		"keyType",
-		"metadata",
-		"module",
-		"notAfter",
-		"notBefore",
-		"publicKeyThumbprint",
 		"revoked",
+		"escrowed",
+		"issuer",
+		"notBefore",
 		"selfSigned",
+		"keyType",
+		"publicKeyThumbprint",
+		"module",
+		"holderId",
+		"subjectAlternateNames",
 		"serial",
 		"signingAlgorithm",
-		"subjectAlternateNames",
-		"thumbprint",
+		"_id",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -1267,39 +1267,39 @@ func (o *CertificateResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "_id")
-		delete(additionalProperties, "certificate")
-		delete(additionalProperties, "contactEmail")
-		delete(additionalProperties, "crlSynchronized")
-		delete(additionalProperties, "discoveredTrusted")
-		delete(additionalProperties, "discoveryData")
-		delete(additionalProperties, "discoveryInfo")
-		delete(additionalProperties, "dn")
-		delete(additionalProperties, "escrowed")
-		delete(additionalProperties, "extensions")
-		delete(additionalProperties, "grades")
-		delete(additionalProperties, "holderId")
-		delete(additionalProperties, "issuer")
-		delete(additionalProperties, "keyType")
-		delete(additionalProperties, "labels")
 		delete(additionalProperties, "metadata")
-		delete(additionalProperties, "module")
 		delete(additionalProperties, "notAfter")
-		delete(additionalProperties, "notBefore")
-		delete(additionalProperties, "owner")
-		delete(additionalProperties, "profile")
-		delete(additionalProperties, "publicKeyThumbprint")
+		delete(additionalProperties, "thumbprint")
 		delete(additionalProperties, "revocationDate")
-		delete(additionalProperties, "revocationReason")
+		delete(additionalProperties, "certificate")
+		delete(additionalProperties, "dn")
+		delete(additionalProperties, "grades")
 		delete(additionalProperties, "revoked")
+		delete(additionalProperties, "escrowed")
+		delete(additionalProperties, "issuer")
+		delete(additionalProperties, "notBefore")
+		delete(additionalProperties, "crlSynchronized")
 		delete(additionalProperties, "selfSigned")
+		delete(additionalProperties, "discoveredTrusted")
+		delete(additionalProperties, "keyType")
+		delete(additionalProperties, "thirdPartyData")
+		delete(additionalProperties, "owner")
+		delete(additionalProperties, "publicKeyThumbprint")
+		delete(additionalProperties, "contactEmail")
+		delete(additionalProperties, "module")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "team")
+		delete(additionalProperties, "holderId")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "discoveryInfo")
+		delete(additionalProperties, "subjectAlternateNames")
+		delete(additionalProperties, "triggerResults")
+		delete(additionalProperties, "extensions")
 		delete(additionalProperties, "serial")
 		delete(additionalProperties, "signingAlgorithm")
-		delete(additionalProperties, "subjectAlternateNames")
-		delete(additionalProperties, "team")
-		delete(additionalProperties, "thirdPartyData")
-		delete(additionalProperties, "thumbprint")
-		delete(additionalProperties, "triggerResults")
+		delete(additionalProperties, "discoveryData")
+		delete(additionalProperties, "_id")
+		delete(additionalProperties, "revocationReason")
 		o.AdditionalProperties = additionalProperties
 	}
 

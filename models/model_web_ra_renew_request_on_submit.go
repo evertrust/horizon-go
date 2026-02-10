@@ -22,22 +22,22 @@ var _ utils.MappedNullable = &WebRARenewRequestOnSubmit{}
 
 // WebRARenewRequestOnSubmit struct for WebRARenewRequestOnSubmit
 type WebRARenewRequestOnSubmit struct {
+	// The password to decrypt the PKCS12 file. Must be set if password mode is `manual`
+	Password NullableSecretString `json:"password,omitempty"`
 	// The id of the certificate to renew
 	CertificateId utils.NullableString `json:"certificateId,omitempty"`
 	// The PEM encoded certificate to renew
 	CertificatePem utils.NullableString `json:"certificatePem,omitempty"`
-	// The password to decrypt the PKCS12 file. Must be set if password mode is `manual`
-	Password NullableSecretString `json:"password,omitempty"`
 	// Free-text field editable by the requester to provider more context on the request
 	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun utils.NullableBool `json:"dryRun,omitempty"`
 	// The module that will be used to process this request. For a WebRA request, this is always `webra`
 	Module string `json:"module"`
+	// What this request will do. For a renewal request, this is always `renew`
+	Workflow string `json:"workflow"`
 	// The user-data that will be used to generate the certificate
 	Template *WebRARenewRequestTemplate `json:"template,omitempty"`
-	// What this request will do. For a renewal request, this is always `renew`
-	Workflow             string `json:"workflow"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,10 +49,10 @@ type _WebRARenewRequestOnSubmit WebRARenewRequestOnSubmit
 // will change when the set of required properties is changed
 func NewWebRARenewRequestOnSubmit(module string, workflow string) *WebRARenewRequestOnSubmit {
 	this := WebRARenewRequestOnSubmit{}
-	var dryRun bool = false
-	this.DryRun = *utils.NewNullableBool(&dryRun)
 	this.Module = module
 	this.Workflow = workflow
+	var dryRun bool = false
+	this.DryRun = *utils.NewNullableBool(&dryRun)
 	return &this
 }
 
@@ -64,6 +64,49 @@ func NewWebRARenewRequestOnSubmitWithDefaults() *WebRARenewRequestOnSubmit {
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
 	return &this
+}
+
+// GetPassword returns the Password field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRARenewRequestOnSubmit) GetPassword() SecretString {
+	if o == nil || utils.IsNil(o.Password.Get()) {
+		var ret SecretString
+		return ret
+	}
+	return *o.Password.Get()
+}
+
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRARenewRequestOnSubmit) GetPasswordOk() (*SecretString, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Password.Get(), o.Password.IsSet()
+}
+
+// HasPassword returns a boolean if a field has been set.
+func (o *WebRARenewRequestOnSubmit) HasPassword() bool {
+	if o != nil && o.Password.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given NullableSecretString and assigns it to the Password field.
+func (o *WebRARenewRequestOnSubmit) SetPassword(v SecretString) {
+	o.Password.Set(&v)
+}
+
+// SetPasswordNil sets the value for Password to be an explicit nil
+func (o *WebRARenewRequestOnSubmit) SetPasswordNil() {
+	o.Password.Set(nil)
+}
+
+// UnsetPassword ensures that no value is present for Password, not even an explicit nil
+func (o *WebRARenewRequestOnSubmit) UnsetPassword() {
+	o.Password.Unset()
 }
 
 // GetCertificateId returns the CertificateId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -152,49 +195,6 @@ func (o *WebRARenewRequestOnSubmit) UnsetCertificatePem() {
 	o.CertificatePem.Unset()
 }
 
-// GetPassword returns the Password field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRARenewRequestOnSubmit) GetPassword() SecretString {
-	if o == nil || utils.IsNil(o.Password.Get()) {
-		var ret SecretString
-		return ret
-	}
-	return *o.Password.Get()
-}
-
-// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRARenewRequestOnSubmit) GetPasswordOk() (*SecretString, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Password.Get(), o.Password.IsSet()
-}
-
-// HasPassword returns a boolean if a field has been set.
-func (o *WebRARenewRequestOnSubmit) HasPassword() bool {
-	if o != nil && o.Password.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPassword gets a reference to the given NullableSecretString and assigns it to the Password field.
-func (o *WebRARenewRequestOnSubmit) SetPassword(v SecretString) {
-	o.Password.Set(&v)
-}
-
-// SetPasswordNil sets the value for Password to be an explicit nil
-func (o *WebRARenewRequestOnSubmit) SetPasswordNil() {
-	o.Password.Set(nil)
-}
-
-// UnsetPassword ensures that no value is present for Password, not even an explicit nil
-func (o *WebRARenewRequestOnSubmit) UnsetPassword() {
-	o.Password.Unset()
-}
-
 // GetRequesterComment returns the RequesterComment field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRARenewRequestOnSubmit) GetRequesterComment() string {
 	if o == nil || utils.IsNil(o.RequesterComment.Get()) {
@@ -236,6 +236,86 @@ func (o *WebRARenewRequestOnSubmit) SetRequesterCommentNil() {
 // UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
 func (o *WebRARenewRequestOnSubmit) UnsetRequesterComment() {
 	o.RequesterComment.Unset()
+}
+
+// GetModule returns the Module field value
+func (o *WebRARenewRequestOnSubmit) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *WebRARenewRequestOnSubmit) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *WebRARenewRequestOnSubmit) SetModule(v string) {
+	o.Module = v
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *WebRARenewRequestOnSubmit) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRARenewRequestOnSubmit) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRARenewRequestOnSubmit) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
+// GetTemplate returns the Template field value if set, zero value otherwise.
+func (o *WebRARenewRequestOnSubmit) GetTemplate() WebRARenewRequestTemplate {
+	if o == nil || utils.IsNil(o.Template) {
+		var ret WebRARenewRequestTemplate
+		return ret
+	}
+	return *o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRARenewRequestOnSubmit) GetTemplateOk() (*WebRARenewRequestTemplate, bool) {
+	if o == nil || utils.IsNil(o.Template) {
+		return nil, false
+	}
+	return o.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (o *WebRARenewRequestOnSubmit) HasTemplate() bool {
+	if o != nil && !utils.IsNil(o.Template) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplate gets a reference to the given WebRARenewRequestTemplate and assigns it to the Template field.
+func (o *WebRARenewRequestOnSubmit) SetTemplate(v WebRARenewRequestTemplate) {
+	o.Template = &v
 }
 
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -281,86 +361,6 @@ func (o *WebRARenewRequestOnSubmit) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
-// GetModule returns the Module field value
-func (o *WebRARenewRequestOnSubmit) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *WebRARenewRequestOnSubmit) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *WebRARenewRequestOnSubmit) SetModule(v string) {
-	o.Module = v
-}
-
-// GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *WebRARenewRequestOnSubmit) GetTemplate() WebRARenewRequestTemplate {
-	if o == nil || utils.IsNil(o.Template) {
-		var ret WebRARenewRequestTemplate
-		return ret
-	}
-	return *o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebRARenewRequestOnSubmit) GetTemplateOk() (*WebRARenewRequestTemplate, bool) {
-	if o == nil || utils.IsNil(o.Template) {
-		return nil, false
-	}
-	return o.Template, true
-}
-
-// HasTemplate returns a boolean if a field has been set.
-func (o *WebRARenewRequestOnSubmit) HasTemplate() bool {
-	if o != nil && !utils.IsNil(o.Template) {
-		return true
-	}
-
-	return false
-}
-
-// SetTemplate gets a reference to the given WebRARenewRequestTemplate and assigns it to the Template field.
-func (o *WebRARenewRequestOnSubmit) SetTemplate(v WebRARenewRequestTemplate) {
-	o.Template = &v
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRARenewRequestOnSubmit) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRARenewRequestOnSubmit) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRARenewRequestOnSubmit) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
 func (o WebRARenewRequestOnSubmit) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -371,26 +371,26 @@ func (o WebRARenewRequestOnSubmit) MarshalJSON() ([]byte, error) {
 
 func (o WebRARenewRequestOnSubmit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Password.IsSet() {
+		toSerialize["password"] = o.Password.Get()
+	}
 	if o.CertificateId.IsSet() {
 		toSerialize["certificateId"] = o.CertificateId.Get()
 	}
 	if o.CertificatePem.IsSet() {
 		toSerialize["certificatePem"] = o.CertificatePem.Get()
 	}
-	if o.Password.IsSet() {
-		toSerialize["password"] = o.Password.Get()
-	}
 	if o.RequesterComment.IsSet() {
 		toSerialize["requesterComment"] = o.RequesterComment.Get()
+	}
+	toSerialize["module"] = o.Module
+	toSerialize["workflow"] = o.Workflow
+	if !utils.IsNil(o.Template) {
+		toSerialize["template"] = o.Template
 	}
 	if o.DryRun.IsSet() {
 		toSerialize["dryRun"] = o.DryRun.Get()
 	}
-	toSerialize["module"] = o.Module
-	if !utils.IsNil(o.Template) {
-		toSerialize["template"] = o.Template
-	}
-	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -435,14 +435,14 @@ func (o *WebRARenewRequestOnSubmit) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "password")
 		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "certificatePem")
-		delete(additionalProperties, "password")
 		delete(additionalProperties, "requesterComment")
-		delete(additionalProperties, "dryRun")
 		delete(additionalProperties, "module")
-		delete(additionalProperties, "template")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "template")
+		delete(additionalProperties, "dryRun")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PageIndex** | Pointer to **NullableInt64** |  | [optional] 
-**PageSize** | Pointer to **NullableInt64** |  | [optional] 
 **Query** | Pointer to **NullableString** |  | [optional] 
 **SortedBy** | Pointer to [**[]SortElement**](SortElement.md) |  | [optional] 
+**PageIndex** | Pointer to **NullableInt64** |  | [optional] 
+**PageSize** | Pointer to **NullableInt64** |  | [optional] 
 **WithCount** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
@@ -29,76 +29,6 @@ NewEventSearchQueryWithDefaults instantiates a new EventSearchQuery object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetPageIndex
-
-`func (o *EventSearchQuery) GetPageIndex() int64`
-
-GetPageIndex returns the PageIndex field if non-nil, zero value otherwise.
-
-### GetPageIndexOk
-
-`func (o *EventSearchQuery) GetPageIndexOk() (*int64, bool)`
-
-GetPageIndexOk returns a tuple with the PageIndex field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPageIndex
-
-`func (o *EventSearchQuery) SetPageIndex(v int64)`
-
-SetPageIndex sets PageIndex field to given value.
-
-### HasPageIndex
-
-`func (o *EventSearchQuery) HasPageIndex() bool`
-
-HasPageIndex returns a boolean if a field has been set.
-
-### SetPageIndexNil
-
-`func (o *EventSearchQuery) SetPageIndexNil(b bool)`
-
- SetPageIndexNil sets the value for PageIndex to be an explicit nil
-
-### UnsetPageIndex
-`func (o *EventSearchQuery) UnsetPageIndex()`
-
-UnsetPageIndex ensures that no value is present for PageIndex, not even an explicit nil
-### GetPageSize
-
-`func (o *EventSearchQuery) GetPageSize() int64`
-
-GetPageSize returns the PageSize field if non-nil, zero value otherwise.
-
-### GetPageSizeOk
-
-`func (o *EventSearchQuery) GetPageSizeOk() (*int64, bool)`
-
-GetPageSizeOk returns a tuple with the PageSize field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPageSize
-
-`func (o *EventSearchQuery) SetPageSize(v int64)`
-
-SetPageSize sets PageSize field to given value.
-
-### HasPageSize
-
-`func (o *EventSearchQuery) HasPageSize() bool`
-
-HasPageSize returns a boolean if a field has been set.
-
-### SetPageSizeNil
-
-`func (o *EventSearchQuery) SetPageSizeNil(b bool)`
-
- SetPageSizeNil sets the value for PageSize to be an explicit nil
-
-### UnsetPageSize
-`func (o *EventSearchQuery) UnsetPageSize()`
-
-UnsetPageSize ensures that no value is present for PageSize, not even an explicit nil
 ### GetQuery
 
 `func (o *EventSearchQuery) GetQuery() string`
@@ -169,6 +99,76 @@ HasSortedBy returns a boolean if a field has been set.
 `func (o *EventSearchQuery) UnsetSortedBy()`
 
 UnsetSortedBy ensures that no value is present for SortedBy, not even an explicit nil
+### GetPageIndex
+
+`func (o *EventSearchQuery) GetPageIndex() int64`
+
+GetPageIndex returns the PageIndex field if non-nil, zero value otherwise.
+
+### GetPageIndexOk
+
+`func (o *EventSearchQuery) GetPageIndexOk() (*int64, bool)`
+
+GetPageIndexOk returns a tuple with the PageIndex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPageIndex
+
+`func (o *EventSearchQuery) SetPageIndex(v int64)`
+
+SetPageIndex sets PageIndex field to given value.
+
+### HasPageIndex
+
+`func (o *EventSearchQuery) HasPageIndex() bool`
+
+HasPageIndex returns a boolean if a field has been set.
+
+### SetPageIndexNil
+
+`func (o *EventSearchQuery) SetPageIndexNil(b bool)`
+
+ SetPageIndexNil sets the value for PageIndex to be an explicit nil
+
+### UnsetPageIndex
+`func (o *EventSearchQuery) UnsetPageIndex()`
+
+UnsetPageIndex ensures that no value is present for PageIndex, not even an explicit nil
+### GetPageSize
+
+`func (o *EventSearchQuery) GetPageSize() int64`
+
+GetPageSize returns the PageSize field if non-nil, zero value otherwise.
+
+### GetPageSizeOk
+
+`func (o *EventSearchQuery) GetPageSizeOk() (*int64, bool)`
+
+GetPageSizeOk returns a tuple with the PageSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPageSize
+
+`func (o *EventSearchQuery) SetPageSize(v int64)`
+
+SetPageSize sets PageSize field to given value.
+
+### HasPageSize
+
+`func (o *EventSearchQuery) HasPageSize() bool`
+
+HasPageSize returns a boolean if a field has been set.
+
+### SetPageSizeNil
+
+`func (o *EventSearchQuery) SetPageSizeNil(b bool)`
+
+ SetPageSizeNil sets the value for PageSize to be an explicit nil
+
+### UnsetPageSize
+`func (o *EventSearchQuery) UnsetPageSize()`
+
+UnsetPageSize ensures that no value is present for PageSize, not even an explicit nil
 ### GetWithCount
 
 `func (o *EventSearchQuery) GetWithCount() bool`

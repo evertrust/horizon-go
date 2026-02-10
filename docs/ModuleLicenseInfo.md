@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Module** | **string** |  | 
 **Items** | **int64** |  | 
 **Limit** | Pointer to **NullableInt64** |  | [optional] 
-**Module** | **string** |  | 
 
 ## Methods
 
 ### NewModuleLicenseInfo
 
-`func NewModuleLicenseInfo(items int64, module string, ) *ModuleLicenseInfo`
+`func NewModuleLicenseInfo(module string, items int64, ) *ModuleLicenseInfo`
 
 NewModuleLicenseInfo instantiates a new ModuleLicenseInfo object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +26,26 @@ will change when the set of required properties is changed
 NewModuleLicenseInfoWithDefaults instantiates a new ModuleLicenseInfo object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetModule
+
+`func (o *ModuleLicenseInfo) GetModule() string`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *ModuleLicenseInfo) GetModuleOk() (*string, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *ModuleLicenseInfo) SetModule(v string)`
+
+SetModule sets Module field to given value.
+
 
 ### GetItems
 
@@ -82,26 +102,6 @@ HasLimit returns a boolean if a field has been set.
 `func (o *ModuleLicenseInfo) UnsetLimit()`
 
 UnsetLimit ensures that no value is present for Limit, not even an explicit nil
-### GetModule
-
-`func (o *ModuleLicenseInfo) GetModule() string`
-
-GetModule returns the Module field if non-nil, zero value otherwise.
-
-### GetModuleOk
-
-`func (o *ModuleLicenseInfo) GetModuleOk() (*string, bool)`
-
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModule
-
-`func (o *ModuleLicenseInfo) SetModule(v string)`
-
-SetModule sets Module field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

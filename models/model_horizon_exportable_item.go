@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &HorizonExportableItem{}
 
 // HorizonExportableItem struct for HorizonExportableItem
 type HorizonExportableItem struct {
+	Name                 string                    `json:"name"`
+	DisplayName          []LocalizedStringResponse `json:"displayName,omitempty"`
 	Description          []LocalizedStringResponse `json:"description,omitempty"`
 	Detail               utils.NullableString      `json:"detail,omitempty"`
-	DisplayName          []LocalizedStringResponse `json:"displayName,omitempty"`
-	Name                 string                    `json:"name"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,6 +47,63 @@ func NewHorizonExportableItem(name string) *HorizonExportableItem {
 func NewHorizonExportableItemWithDefaults() *HorizonExportableItem {
 	this := HorizonExportableItem{}
 	return &this
+}
+
+// GetName returns the Name field value
+func (o *HorizonExportableItem) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *HorizonExportableItem) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *HorizonExportableItem) SetName(v string) {
+	o.Name = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HorizonExportableItem) GetDisplayName() []LocalizedStringResponse {
+	if o == nil {
+		var ret []LocalizedStringResponse
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HorizonExportableItem) GetDisplayNameOk() ([]LocalizedStringResponse, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *HorizonExportableItem) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedStringResponse and assigns it to the DisplayName field.
+func (o *HorizonExportableItem) SetDisplayName(v []LocalizedStringResponse) {
+	o.DisplayName = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -125,63 +182,6 @@ func (o *HorizonExportableItem) UnsetDetail() {
 	o.Detail.Unset()
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HorizonExportableItem) GetDisplayName() []LocalizedStringResponse {
-	if o == nil {
-		var ret []LocalizedStringResponse
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HorizonExportableItem) GetDisplayNameOk() ([]LocalizedStringResponse, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *HorizonExportableItem) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedStringResponse and assigns it to the DisplayName field.
-func (o *HorizonExportableItem) SetDisplayName(v []LocalizedStringResponse) {
-	o.DisplayName = v
-}
-
-// GetName returns the Name field value
-func (o *HorizonExportableItem) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *HorizonExportableItem) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *HorizonExportableItem) SetName(v string) {
-	o.Name = v
-}
-
 func (o HorizonExportableItem) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -192,16 +192,16 @@ func (o HorizonExportableItem) MarshalJSON() ([]byte, error) {
 
 func (o HorizonExportableItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
+	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
 	if o.Detail.IsSet() {
 		toSerialize["detail"] = o.Detail.Get()
 	}
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -245,10 +245,10 @@ func (o *HorizonExportableItem) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "detail")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

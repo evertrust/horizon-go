@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **string** |  | 
 **Credentials** | **string** | &#x60;raw&#x60; credentials name to use to authenticate on the Nameshield API | 
 **EndPoint** | **string** | Nameshield API endpoint | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Timeout** | **string** | Timeout when requesting Nameshield API | 
-**Type** | **string** |  | 
 
 ## Methods
 
 ### NewNameshieldDnsChallengeProvider
 
-`func NewNameshieldDnsChallengeProvider(credentials string, endPoint string, timeout string, type_ string, ) *NameshieldDnsChallengeProvider`
+`func NewNameshieldDnsChallengeProvider(type_ string, credentials string, endPoint string, timeout string, ) *NameshieldDnsChallengeProvider`
 
 NewNameshieldDnsChallengeProvider instantiates a new NameshieldDnsChallengeProvider object
 This constructor will assign default values to properties that have it defined,
@@ -28,6 +28,26 @@ will change when the set of required properties is changed
 NewNameshieldDnsChallengeProviderWithDefaults instantiates a new NameshieldDnsChallengeProvider object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *NameshieldDnsChallengeProvider) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *NameshieldDnsChallengeProvider) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *NameshieldDnsChallengeProvider) SetType(v string)`
+
+SetType sets Type field to given value.
+
 
 ### GetCredentials
 
@@ -122,26 +142,6 @@ and a boolean to check if the value has been set.
 `func (o *NameshieldDnsChallengeProvider) SetTimeout(v string)`
 
 SetTimeout sets Timeout field to given value.
-
-
-### GetType
-
-`func (o *NameshieldDnsChallengeProvider) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *NameshieldDnsChallengeProvider) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *NameshieldDnsChallengeProvider) SetType(v string)`
-
-SetType sets Type field to given value.
 
 
 

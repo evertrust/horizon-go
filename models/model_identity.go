@@ -22,18 +22,18 @@ var _ utils.MappedNullable = &Identity{}
 
 // Identity The principal's identity
 type Identity struct {
-	// The principal's certificate (in case of `X509` identity provider)
-	Certificate utils.NullableString `json:"certificate,omitempty"`
-	// The principal's e-mail
-	Email utils.NullableString `json:"email,omitempty"`
 	// The principal's identifier
 	Identifier string `json:"identifier"`
-	// The identity provider's name this principal is registered on
-	IdentityProviderName utils.NullableString `json:"identityProviderName,omitempty"`
+	// The principal's e-mail
+	Email utils.NullableString `json:"email,omitempty"`
+	// The principal's name
+	Name utils.NullableString `json:"name,omitempty"`
 	// The identity provider's type this principal is registered on
 	IdentityProviderType utils.NullableString `json:"identityProviderType,omitempty"`
-	// The principal's name
-	Name                 utils.NullableString `json:"name,omitempty"`
+	// The identity provider's name this principal is registered on
+	IdentityProviderName utils.NullableString `json:"identityProviderName,omitempty"`
+	// The principal's certificate (in case of `X509` identity provider)
+	Certificate          utils.NullableString `json:"certificate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,47 +57,28 @@ func NewIdentityWithDefaults() *Identity {
 	return &this
 }
 
-// GetCertificate returns the Certificate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Identity) GetCertificate() string {
-	if o == nil || utils.IsNil(o.Certificate.Get()) {
+// GetIdentifier returns the Identifier field value
+func (o *Identity) GetIdentifier() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Certificate.Get()
+
+	return o.Identifier
 }
 
-// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
+// GetIdentifierOk returns a tuple with the Identifier field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Identity) GetCertificateOk() (*string, bool) {
+func (o *Identity) GetIdentifierOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Certificate.Get(), o.Certificate.IsSet()
+	return &o.Identifier, true
 }
 
-// HasCertificate returns a boolean if a field has been set.
-func (o *Identity) HasCertificate() bool {
-	if o != nil && o.Certificate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificate gets a reference to the given NullableString and assigns it to the Certificate field.
-func (o *Identity) SetCertificate(v string) {
-	o.Certificate.Set(&v)
-}
-
-// SetCertificateNil sets the value for Certificate to be an explicit nil
-func (o *Identity) SetCertificateNil() {
-	o.Certificate.Set(nil)
-}
-
-// UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
-func (o *Identity) UnsetCertificate() {
-	o.Certificate.Unset()
+// SetIdentifier sets field value
+func (o *Identity) SetIdentifier(v string) {
+	o.Identifier = v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -143,71 +124,47 @@ func (o *Identity) UnsetEmail() {
 	o.Email.Unset()
 }
 
-// GetIdentifier returns the Identifier field value
-func (o *Identity) GetIdentifier() string {
-	if o == nil {
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Identity) GetName() string {
+	if o == nil || utils.IsNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Identifier
+	return *o.Name.Get()
 }
 
-// GetIdentifierOk returns a tuple with the Identifier field value
-// and a boolean to check if the value has been set.
-func (o *Identity) GetIdentifierOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Identifier, true
-}
-
-// SetIdentifier sets field value
-func (o *Identity) SetIdentifier(v string) {
-	o.Identifier = v
-}
-
-// GetIdentityProviderName returns the IdentityProviderName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Identity) GetIdentityProviderName() string {
-	if o == nil || utils.IsNil(o.IdentityProviderName.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.IdentityProviderName.Get()
-}
-
-// GetIdentityProviderNameOk returns a tuple with the IdentityProviderName field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Identity) GetIdentityProviderNameOk() (*string, bool) {
+func (o *Identity) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.IdentityProviderName.Get(), o.IdentityProviderName.IsSet()
+	return o.Name.Get(), o.Name.IsSet()
 }
 
-// HasIdentityProviderName returns a boolean if a field has been set.
-func (o *Identity) HasIdentityProviderName() bool {
-	if o != nil && o.IdentityProviderName.IsSet() {
+// HasName returns a boolean if a field has been set.
+func (o *Identity) HasName() bool {
+	if o != nil && o.Name.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIdentityProviderName gets a reference to the given NullableString and assigns it to the IdentityProviderName field.
-func (o *Identity) SetIdentityProviderName(v string) {
-	o.IdentityProviderName.Set(&v)
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
+func (o *Identity) SetName(v string) {
+	o.Name.Set(&v)
 }
 
-// SetIdentityProviderNameNil sets the value for IdentityProviderName to be an explicit nil
-func (o *Identity) SetIdentityProviderNameNil() {
-	o.IdentityProviderName.Set(nil)
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *Identity) SetNameNil() {
+	o.Name.Set(nil)
 }
 
-// UnsetIdentityProviderName ensures that no value is present for IdentityProviderName, not even an explicit nil
-func (o *Identity) UnsetIdentityProviderName() {
-	o.IdentityProviderName.Unset()
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *Identity) UnsetName() {
+	o.Name.Unset()
 }
 
 // GetIdentityProviderType returns the IdentityProviderType field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -253,47 +210,90 @@ func (o *Identity) UnsetIdentityProviderType() {
 	o.IdentityProviderType.Unset()
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Identity) GetName() string {
-	if o == nil || utils.IsNil(o.Name.Get()) {
+// GetIdentityProviderName returns the IdentityProviderName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Identity) GetIdentityProviderName() string {
+	if o == nil || utils.IsNil(o.IdentityProviderName.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.IdentityProviderName.Get()
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetIdentityProviderNameOk returns a tuple with the IdentityProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Identity) GetNameOk() (*string, bool) {
+func (o *Identity) GetIdentityProviderNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.IdentityProviderName.Get(), o.IdentityProviderName.IsSet()
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *Identity) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+// HasIdentityProviderName returns a boolean if a field has been set.
+func (o *Identity) HasIdentityProviderName() bool {
+	if o != nil && o.IdentityProviderName.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *Identity) SetName(v string) {
-	o.Name.Set(&v)
+// SetIdentityProviderName gets a reference to the given NullableString and assigns it to the IdentityProviderName field.
+func (o *Identity) SetIdentityProviderName(v string) {
+	o.IdentityProviderName.Set(&v)
 }
 
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *Identity) SetNameNil() {
-	o.Name.Set(nil)
+// SetIdentityProviderNameNil sets the value for IdentityProviderName to be an explicit nil
+func (o *Identity) SetIdentityProviderNameNil() {
+	o.IdentityProviderName.Set(nil)
 }
 
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *Identity) UnsetName() {
-	o.Name.Unset()
+// UnsetIdentityProviderName ensures that no value is present for IdentityProviderName, not even an explicit nil
+func (o *Identity) UnsetIdentityProviderName() {
+	o.IdentityProviderName.Unset()
+}
+
+// GetCertificate returns the Certificate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Identity) GetCertificate() string {
+	if o == nil || utils.IsNil(o.Certificate.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Certificate.Get()
+}
+
+// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Identity) GetCertificateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Certificate.Get(), o.Certificate.IsSet()
+}
+
+// HasCertificate returns a boolean if a field has been set.
+func (o *Identity) HasCertificate() bool {
+	if o != nil && o.Certificate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificate gets a reference to the given NullableString and assigns it to the Certificate field.
+func (o *Identity) SetCertificate(v string) {
+	o.Certificate.Set(&v)
+}
+
+// SetCertificateNil sets the value for Certificate to be an explicit nil
+func (o *Identity) SetCertificateNil() {
+	o.Certificate.Set(nil)
+}
+
+// UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
+func (o *Identity) UnsetCertificate() {
+	o.Certificate.Unset()
 }
 
 func (o Identity) MarshalJSON() ([]byte, error) {
@@ -306,21 +306,21 @@ func (o Identity) MarshalJSON() ([]byte, error) {
 
 func (o Identity) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Certificate.IsSet() {
-		toSerialize["certificate"] = o.Certificate.Get()
-	}
+	toSerialize["identifier"] = o.Identifier
 	if o.Email.IsSet() {
 		toSerialize["email"] = o.Email.Get()
 	}
-	toSerialize["identifier"] = o.Identifier
-	if o.IdentityProviderName.IsSet() {
-		toSerialize["identityProviderName"] = o.IdentityProviderName.Get()
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	if o.IdentityProviderType.IsSet() {
 		toSerialize["identityProviderType"] = o.IdentityProviderType.Get()
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if o.IdentityProviderName.IsSet() {
+		toSerialize["identityProviderName"] = o.IdentityProviderName.Get()
+	}
+	if o.Certificate.IsSet() {
+		toSerialize["certificate"] = o.Certificate.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -365,12 +365,12 @@ func (o *Identity) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "certificate")
-		delete(additionalProperties, "email")
 		delete(additionalProperties, "identifier")
-		delete(additionalProperties, "identityProviderName")
-		delete(additionalProperties, "identityProviderType")
+		delete(additionalProperties, "email")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "identityProviderType")
+		delete(additionalProperties, "identityProviderName")
+		delete(additionalProperties, "certificate")
 		o.AdditionalProperties = additionalProperties
 	}
 

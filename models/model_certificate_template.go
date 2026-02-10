@@ -21,14 +21,14 @@ var _ utils.MappedNullable = &CertificateTemplate{}
 
 // CertificateTemplate struct for CertificateTemplate
 type CertificateTemplate struct {
-	ContactEmailPolicy   NullableContactEmailPolicy `json:"contactEmailPolicy,omitempty"`
-	Extensions           []ExtensionElement         `json:"extensions,omitempty"`
-	Labels               []LabelElement             `json:"labels,omitempty"`
-	MetadataPolicies     []MetadataPolicy           `json:"metadataPolicies,omitempty"`
-	OwnerPolicy          NullableOwnerPolicy        `json:"ownerPolicy,omitempty"`
-	Sans                 []SANElement               `json:"sans,omitempty"`
 	Subject              []DNElement                `json:"subject,omitempty"`
+	Sans                 []SANElement               `json:"sans,omitempty"`
+	Extensions           []ExtensionElement         `json:"extensions,omitempty"`
+	OwnerPolicy          NullableOwnerPolicy        `json:"ownerPolicy,omitempty"`
 	TeamPolicy           NullableTeamPolicy         `json:"teamPolicy,omitempty"`
+	MetadataPolicies     []MetadataPolicy           `json:"metadataPolicies,omitempty"`
+	Labels               []LabelElement             `json:"labels,omitempty"`
+	ContactEmailPolicy   NullableContactEmailPolicy `json:"contactEmailPolicy,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,47 +51,70 @@ func NewCertificateTemplateWithDefaults() *CertificateTemplate {
 	return &this
 }
 
-// GetContactEmailPolicy returns the ContactEmailPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateTemplate) GetContactEmailPolicy() ContactEmailPolicy {
-	if o == nil || utils.IsNil(o.ContactEmailPolicy.Get()) {
-		var ret ContactEmailPolicy
+// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateTemplate) GetSubject() []DNElement {
+	if o == nil {
+		var ret []DNElement
 		return ret
 	}
-	return *o.ContactEmailPolicy.Get()
+	return o.Subject
 }
 
-// GetContactEmailPolicyOk returns a tuple with the ContactEmailPolicy field value if set, nil otherwise
+// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateTemplate) GetContactEmailPolicyOk() (*ContactEmailPolicy, bool) {
-	if o == nil {
+func (o *CertificateTemplate) GetSubjectOk() ([]DNElement, bool) {
+	if o == nil || utils.IsNil(o.Subject) {
 		return nil, false
 	}
-	return o.ContactEmailPolicy.Get(), o.ContactEmailPolicy.IsSet()
+	return o.Subject, true
 }
 
-// HasContactEmailPolicy returns a boolean if a field has been set.
-func (o *CertificateTemplate) HasContactEmailPolicy() bool {
-	if o != nil && o.ContactEmailPolicy.IsSet() {
+// HasSubject returns a boolean if a field has been set.
+func (o *CertificateTemplate) HasSubject() bool {
+	if o != nil && !utils.IsNil(o.Subject) {
 		return true
 	}
 
 	return false
 }
 
-// SetContactEmailPolicy gets a reference to the given NullableContactEmailPolicy and assigns it to the ContactEmailPolicy field.
-func (o *CertificateTemplate) SetContactEmailPolicy(v ContactEmailPolicy) {
-	o.ContactEmailPolicy.Set(&v)
+// SetSubject gets a reference to the given []DNElement and assigns it to the Subject field.
+func (o *CertificateTemplate) SetSubject(v []DNElement) {
+	o.Subject = v
 }
 
-// SetContactEmailPolicyNil sets the value for ContactEmailPolicy to be an explicit nil
-func (o *CertificateTemplate) SetContactEmailPolicyNil() {
-	o.ContactEmailPolicy.Set(nil)
+// GetSans returns the Sans field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateTemplate) GetSans() []SANElement {
+	if o == nil {
+		var ret []SANElement
+		return ret
+	}
+	return o.Sans
 }
 
-// UnsetContactEmailPolicy ensures that no value is present for ContactEmailPolicy, not even an explicit nil
-func (o *CertificateTemplate) UnsetContactEmailPolicy() {
-	o.ContactEmailPolicy.Unset()
+// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateTemplate) GetSansOk() ([]SANElement, bool) {
+	if o == nil || utils.IsNil(o.Sans) {
+		return nil, false
+	}
+	return o.Sans, true
+}
+
+// HasSans returns a boolean if a field has been set.
+func (o *CertificateTemplate) HasSans() bool {
+	if o != nil && !utils.IsNil(o.Sans) {
+		return true
+	}
+
+	return false
+}
+
+// SetSans gets a reference to the given []SANElement and assigns it to the Sans field.
+func (o *CertificateTemplate) SetSans(v []SANElement) {
+	o.Sans = v
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -125,72 +148,6 @@ func (o *CertificateTemplate) HasExtensions() bool {
 // SetExtensions gets a reference to the given []ExtensionElement and assigns it to the Extensions field.
 func (o *CertificateTemplate) SetExtensions(v []ExtensionElement) {
 	o.Extensions = v
-}
-
-// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateTemplate) GetLabels() []LabelElement {
-	if o == nil {
-		var ret []LabelElement
-		return ret
-	}
-	return o.Labels
-}
-
-// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateTemplate) GetLabelsOk() ([]LabelElement, bool) {
-	if o == nil || utils.IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
-}
-
-// HasLabels returns a boolean if a field has been set.
-func (o *CertificateTemplate) HasLabels() bool {
-	if o != nil && !utils.IsNil(o.Labels) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabels gets a reference to the given []LabelElement and assigns it to the Labels field.
-func (o *CertificateTemplate) SetLabels(v []LabelElement) {
-	o.Labels = v
-}
-
-// GetMetadataPolicies returns the MetadataPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateTemplate) GetMetadataPolicies() []MetadataPolicy {
-	if o == nil {
-		var ret []MetadataPolicy
-		return ret
-	}
-	return o.MetadataPolicies
-}
-
-// GetMetadataPoliciesOk returns a tuple with the MetadataPolicies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateTemplate) GetMetadataPoliciesOk() ([]MetadataPolicy, bool) {
-	if o == nil || utils.IsNil(o.MetadataPolicies) {
-		return nil, false
-	}
-	return o.MetadataPolicies, true
-}
-
-// HasMetadataPolicies returns a boolean if a field has been set.
-func (o *CertificateTemplate) HasMetadataPolicies() bool {
-	if o != nil && !utils.IsNil(o.MetadataPolicies) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadataPolicies gets a reference to the given []MetadataPolicy and assigns it to the MetadataPolicies field.
-func (o *CertificateTemplate) SetMetadataPolicies(v []MetadataPolicy) {
-	o.MetadataPolicies = v
 }
 
 // GetOwnerPolicy returns the OwnerPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -236,72 +193,6 @@ func (o *CertificateTemplate) UnsetOwnerPolicy() {
 	o.OwnerPolicy.Unset()
 }
 
-// GetSans returns the Sans field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateTemplate) GetSans() []SANElement {
-	if o == nil {
-		var ret []SANElement
-		return ret
-	}
-	return o.Sans
-}
-
-// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateTemplate) GetSansOk() ([]SANElement, bool) {
-	if o == nil || utils.IsNil(o.Sans) {
-		return nil, false
-	}
-	return o.Sans, true
-}
-
-// HasSans returns a boolean if a field has been set.
-func (o *CertificateTemplate) HasSans() bool {
-	if o != nil && !utils.IsNil(o.Sans) {
-		return true
-	}
-
-	return false
-}
-
-// SetSans gets a reference to the given []SANElement and assigns it to the Sans field.
-func (o *CertificateTemplate) SetSans(v []SANElement) {
-	o.Sans = v
-}
-
-// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateTemplate) GetSubject() []DNElement {
-	if o == nil {
-		var ret []DNElement
-		return ret
-	}
-	return o.Subject
-}
-
-// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateTemplate) GetSubjectOk() ([]DNElement, bool) {
-	if o == nil || utils.IsNil(o.Subject) {
-		return nil, false
-	}
-	return o.Subject, true
-}
-
-// HasSubject returns a boolean if a field has been set.
-func (o *CertificateTemplate) HasSubject() bool {
-	if o != nil && !utils.IsNil(o.Subject) {
-		return true
-	}
-
-	return false
-}
-
-// SetSubject gets a reference to the given []DNElement and assigns it to the Subject field.
-func (o *CertificateTemplate) SetSubject(v []DNElement) {
-	o.Subject = v
-}
-
 // GetTeamPolicy returns the TeamPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CertificateTemplate) GetTeamPolicy() TeamPolicy {
 	if o == nil || utils.IsNil(o.TeamPolicy.Get()) {
@@ -345,6 +236,115 @@ func (o *CertificateTemplate) UnsetTeamPolicy() {
 	o.TeamPolicy.Unset()
 }
 
+// GetMetadataPolicies returns the MetadataPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateTemplate) GetMetadataPolicies() []MetadataPolicy {
+	if o == nil {
+		var ret []MetadataPolicy
+		return ret
+	}
+	return o.MetadataPolicies
+}
+
+// GetMetadataPoliciesOk returns a tuple with the MetadataPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateTemplate) GetMetadataPoliciesOk() ([]MetadataPolicy, bool) {
+	if o == nil || utils.IsNil(o.MetadataPolicies) {
+		return nil, false
+	}
+	return o.MetadataPolicies, true
+}
+
+// HasMetadataPolicies returns a boolean if a field has been set.
+func (o *CertificateTemplate) HasMetadataPolicies() bool {
+	if o != nil && !utils.IsNil(o.MetadataPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadataPolicies gets a reference to the given []MetadataPolicy and assigns it to the MetadataPolicies field.
+func (o *CertificateTemplate) SetMetadataPolicies(v []MetadataPolicy) {
+	o.MetadataPolicies = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateTemplate) GetLabels() []LabelElement {
+	if o == nil {
+		var ret []LabelElement
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateTemplate) GetLabelsOk() ([]LabelElement, bool) {
+	if o == nil || utils.IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *CertificateTemplate) HasLabels() bool {
+	if o != nil && !utils.IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []LabelElement and assigns it to the Labels field.
+func (o *CertificateTemplate) SetLabels(v []LabelElement) {
+	o.Labels = v
+}
+
+// GetContactEmailPolicy returns the ContactEmailPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateTemplate) GetContactEmailPolicy() ContactEmailPolicy {
+	if o == nil || utils.IsNil(o.ContactEmailPolicy.Get()) {
+		var ret ContactEmailPolicy
+		return ret
+	}
+	return *o.ContactEmailPolicy.Get()
+}
+
+// GetContactEmailPolicyOk returns a tuple with the ContactEmailPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateTemplate) GetContactEmailPolicyOk() (*ContactEmailPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContactEmailPolicy.Get(), o.ContactEmailPolicy.IsSet()
+}
+
+// HasContactEmailPolicy returns a boolean if a field has been set.
+func (o *CertificateTemplate) HasContactEmailPolicy() bool {
+	if o != nil && o.ContactEmailPolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContactEmailPolicy gets a reference to the given NullableContactEmailPolicy and assigns it to the ContactEmailPolicy field.
+func (o *CertificateTemplate) SetContactEmailPolicy(v ContactEmailPolicy) {
+	o.ContactEmailPolicy.Set(&v)
+}
+
+// SetContactEmailPolicyNil sets the value for ContactEmailPolicy to be an explicit nil
+func (o *CertificateTemplate) SetContactEmailPolicyNil() {
+	o.ContactEmailPolicy.Set(nil)
+}
+
+// UnsetContactEmailPolicy ensures that no value is present for ContactEmailPolicy, not even an explicit nil
+func (o *CertificateTemplate) UnsetContactEmailPolicy() {
+	o.ContactEmailPolicy.Unset()
+}
+
 func (o CertificateTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -355,29 +355,29 @@ func (o CertificateTemplate) MarshalJSON() ([]byte, error) {
 
 func (o CertificateTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ContactEmailPolicy.IsSet() {
-		toSerialize["contactEmailPolicy"] = o.ContactEmailPolicy.Get()
-	}
-	if o.Extensions != nil {
-		toSerialize["extensions"] = o.Extensions
-	}
-	if o.Labels != nil {
-		toSerialize["labels"] = o.Labels
-	}
-	if o.MetadataPolicies != nil {
-		toSerialize["metadataPolicies"] = o.MetadataPolicies
-	}
-	if o.OwnerPolicy.IsSet() {
-		toSerialize["ownerPolicy"] = o.OwnerPolicy.Get()
+	if o.Subject != nil {
+		toSerialize["subject"] = o.Subject
 	}
 	if o.Sans != nil {
 		toSerialize["sans"] = o.Sans
 	}
-	if o.Subject != nil {
-		toSerialize["subject"] = o.Subject
+	if o.Extensions != nil {
+		toSerialize["extensions"] = o.Extensions
+	}
+	if o.OwnerPolicy.IsSet() {
+		toSerialize["ownerPolicy"] = o.OwnerPolicy.Get()
 	}
 	if o.TeamPolicy.IsSet() {
 		toSerialize["teamPolicy"] = o.TeamPolicy.Get()
+	}
+	if o.MetadataPolicies != nil {
+		toSerialize["metadataPolicies"] = o.MetadataPolicies
+	}
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
+	}
+	if o.ContactEmailPolicy.IsSet() {
+		toSerialize["contactEmailPolicy"] = o.ContactEmailPolicy.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -401,14 +401,14 @@ func (o *CertificateTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "contactEmailPolicy")
-		delete(additionalProperties, "extensions")
-		delete(additionalProperties, "labels")
-		delete(additionalProperties, "metadataPolicies")
-		delete(additionalProperties, "ownerPolicy")
-		delete(additionalProperties, "sans")
 		delete(additionalProperties, "subject")
+		delete(additionalProperties, "sans")
+		delete(additionalProperties, "extensions")
+		delete(additionalProperties, "ownerPolicy")
 		delete(additionalProperties, "teamPolicy")
+		delete(additionalProperties, "metadataPolicies")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "contactEmailPolicy")
 		o.AdditionalProperties = additionalProperties
 	}
 

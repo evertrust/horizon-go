@@ -24,30 +24,30 @@ var _ utils.MappedNullable = &PrincipalInfoResponse{}
 type PrincipalInfoResponse struct {
 	// Object internal ID
 	Id string `json:"_id"`
-	// The contact e-mail of the principal
-	Contact utils.NullableString `json:"contact,omitempty"`
-	// The creation date of the principal (UNIX Timestamp in milliseconds)
-	CreationDate int64 `json:"creationDate"`
-	// The custom dashboards of the principal. This is used by UI only. These values should not be manually set but should be copied on update
-	CustomDashboards []Dashboard `json:"customDashboards,omitempty"`
-	// If the principal is allowed to login horizon
-	Enabled bool `json:"enabled"`
 	// The identifier of the principal
 	Identifier string `json:"identifier"`
+	// The contact e-mail of the principal
+	Contact utils.NullableString `json:"contact,omitempty"`
+	// The permissions of the principal
+	Permissions []Permission `json:"permissions,omitempty"`
+	// The roles of the principal
+	Roles []string `json:"roles,omitempty"`
+	// The teams of the principal
+	Teams []string `json:"teams,omitempty"`
+	// The saved HQL queries of the principal. This is used by UI only. These values should not be manually set but should be copied on update
+	SavedQueries []PrincipalInfoSavedQuery `json:"savedQueries,omitempty"`
+	// The custom dashboards of the principal. This is used by UI only. These values should not be manually set but should be copied on update
+	CustomDashboards []Dashboard `json:"customDashboards,omitempty"`
+	// The UI preferences of the principal. This is used by UI only. These values should not be manually set but should be copied on update
+	Preferences NullablePrincipalInfoPreferences `json:"preferences,omitempty"`
+	// The creation date of the principal (UNIX Timestamp in milliseconds)
+	CreationDate int64 `json:"creationDate"`
 	// The last authentication date of the principal (UNIX Timestamp in milliseconds)
 	LastAuthentication utils.NullableInt64 `json:"lastAuthentication,omitempty"`
 	// The last modification date of the principal (UNIX Timestamp in milliseconds)
 	LastModification utils.NullableInt64 `json:"lastModification,omitempty"`
-	// The permissions of the principal
-	Permissions []Permission `json:"permissions,omitempty"`
-	// The UI preferences of the principal. This is used by UI only. These values should not be manually set but should be copied on update
-	Preferences NullablePrincipalInfoPreferences `json:"preferences,omitempty"`
-	// The roles of the principal
-	Roles []string `json:"roles,omitempty"`
-	// The saved HQL queries of the principal. This is used by UI only. These values should not be manually set but should be copied on update
-	SavedQueries []PrincipalInfoSavedQuery `json:"savedQueries,omitempty"`
-	// The teams of the principal
-	Teams                []string `json:"teams,omitempty"`
+	// If the principal is allowed to login horizon
+	Enabled              bool `json:"enabled"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,12 +57,12 @@ type _PrincipalInfoResponse PrincipalInfoResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrincipalInfoResponse(id string, creationDate int64, enabled bool, identifier string) *PrincipalInfoResponse {
+func NewPrincipalInfoResponse(id string, identifier string, creationDate int64, enabled bool) *PrincipalInfoResponse {
 	this := PrincipalInfoResponse{}
 	this.Id = id
+	this.Identifier = identifier
 	this.CreationDate = creationDate
 	this.Enabled = enabled
-	this.Identifier = identifier
 	return &this
 }
 
@@ -96,6 +96,30 @@ func (o *PrincipalInfoResponse) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *PrincipalInfoResponse) SetId(v string) {
 	o.Id = v
+}
+
+// GetIdentifier returns the Identifier field value
+func (o *PrincipalInfoResponse) GetIdentifier() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Identifier
+}
+
+// GetIdentifierOk returns a tuple with the Identifier field value
+// and a boolean to check if the value has been set.
+func (o *PrincipalInfoResponse) GetIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Identifier, true
+}
+
+// SetIdentifier sets field value
+func (o *PrincipalInfoResponse) SetIdentifier(v string) {
+	o.Identifier = v
 }
 
 // GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -141,28 +165,136 @@ func (o *PrincipalInfoResponse) UnsetContact() {
 	o.Contact.Unset()
 }
 
-// GetCreationDate returns the CreationDate field value
-func (o *PrincipalInfoResponse) GetCreationDate() int64 {
+// GetPermissions returns the Permissions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoResponse) GetPermissions() []Permission {
 	if o == nil {
-		var ret int64
+		var ret []Permission
 		return ret
 	}
-
-	return o.CreationDate
+	return o.Permissions
 }
 
-// GetCreationDateOk returns a tuple with the CreationDate field value
+// GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PrincipalInfoResponse) GetCreationDateOk() (*int64, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoResponse) GetPermissionsOk() ([]Permission, bool) {
+	if o == nil || utils.IsNil(o.Permissions) {
 		return nil, false
 	}
-	return &o.CreationDate, true
+	return o.Permissions, true
 }
 
-// SetCreationDate sets field value
-func (o *PrincipalInfoResponse) SetCreationDate(v int64) {
-	o.CreationDate = v
+// HasPermissions returns a boolean if a field has been set.
+func (o *PrincipalInfoResponse) HasPermissions() bool {
+	if o != nil && !utils.IsNil(o.Permissions) {
+		return true
+	}
+
+	return false
+}
+
+// SetPermissions gets a reference to the given []Permission and assigns it to the Permissions field.
+func (o *PrincipalInfoResponse) SetPermissions(v []Permission) {
+	o.Permissions = v
+}
+
+// GetRoles returns the Roles field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoResponse) GetRoles() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoResponse) GetRolesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Roles) {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// HasRoles returns a boolean if a field has been set.
+func (o *PrincipalInfoResponse) HasRoles() bool {
+	if o != nil && !utils.IsNil(o.Roles) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *PrincipalInfoResponse) SetRoles(v []string) {
+	o.Roles = v
+}
+
+// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoResponse) GetTeams() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Teams
+}
+
+// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoResponse) GetTeamsOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Teams) {
+		return nil, false
+	}
+	return o.Teams, true
+}
+
+// HasTeams returns a boolean if a field has been set.
+func (o *PrincipalInfoResponse) HasTeams() bool {
+	if o != nil && !utils.IsNil(o.Teams) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeams gets a reference to the given []string and assigns it to the Teams field.
+func (o *PrincipalInfoResponse) SetTeams(v []string) {
+	o.Teams = v
+}
+
+// GetSavedQueries returns the SavedQueries field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoResponse) GetSavedQueries() []PrincipalInfoSavedQuery {
+	if o == nil {
+		var ret []PrincipalInfoSavedQuery
+		return ret
+	}
+	return o.SavedQueries
+}
+
+// GetSavedQueriesOk returns a tuple with the SavedQueries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoResponse) GetSavedQueriesOk() ([]PrincipalInfoSavedQuery, bool) {
+	if o == nil || utils.IsNil(o.SavedQueries) {
+		return nil, false
+	}
+	return o.SavedQueries, true
+}
+
+// HasSavedQueries returns a boolean if a field has been set.
+func (o *PrincipalInfoResponse) HasSavedQueries() bool {
+	if o != nil && !utils.IsNil(o.SavedQueries) {
+		return true
+	}
+
+	return false
+}
+
+// SetSavedQueries gets a reference to the given []PrincipalInfoSavedQuery and assigns it to the SavedQueries field.
+func (o *PrincipalInfoResponse) SetSavedQueries(v []PrincipalInfoSavedQuery) {
+	o.SavedQueries = v
 }
 
 // GetCustomDashboards returns the CustomDashboards field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -198,52 +330,71 @@ func (o *PrincipalInfoResponse) SetCustomDashboards(v []Dashboard) {
 	o.CustomDashboards = v
 }
 
-// GetEnabled returns the Enabled field value
-func (o *PrincipalInfoResponse) GetEnabled() bool {
-	if o == nil {
-		var ret bool
+// GetPreferences returns the Preferences field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoResponse) GetPreferences() PrincipalInfoPreferences {
+	if o == nil || utils.IsNil(o.Preferences.Get()) {
+		var ret PrincipalInfoPreferences
 		return ret
 	}
-
-	return o.Enabled
+	return *o.Preferences.Get()
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value
+// GetPreferencesOk returns a tuple with the Preferences field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PrincipalInfoResponse) GetEnabledOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoResponse) GetPreferencesOk() (*PrincipalInfoPreferences, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return o.Preferences.Get(), o.Preferences.IsSet()
 }
 
-// SetEnabled sets field value
-func (o *PrincipalInfoResponse) SetEnabled(v bool) {
-	o.Enabled = v
+// HasPreferences returns a boolean if a field has been set.
+func (o *PrincipalInfoResponse) HasPreferences() bool {
+	if o != nil && o.Preferences.IsSet() {
+		return true
+	}
+
+	return false
 }
 
-// GetIdentifier returns the Identifier field value
-func (o *PrincipalInfoResponse) GetIdentifier() string {
+// SetPreferences gets a reference to the given NullablePrincipalInfoPreferences and assigns it to the Preferences field.
+func (o *PrincipalInfoResponse) SetPreferences(v PrincipalInfoPreferences) {
+	o.Preferences.Set(&v)
+}
+
+// SetPreferencesNil sets the value for Preferences to be an explicit nil
+func (o *PrincipalInfoResponse) SetPreferencesNil() {
+	o.Preferences.Set(nil)
+}
+
+// UnsetPreferences ensures that no value is present for Preferences, not even an explicit nil
+func (o *PrincipalInfoResponse) UnsetPreferences() {
+	o.Preferences.Unset()
+}
+
+// GetCreationDate returns the CreationDate field value
+func (o *PrincipalInfoResponse) GetCreationDate() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
-	return o.Identifier
+	return o.CreationDate
 }
 
-// GetIdentifierOk returns a tuple with the Identifier field value
+// GetCreationDateOk returns a tuple with the CreationDate field value
 // and a boolean to check if the value has been set.
-func (o *PrincipalInfoResponse) GetIdentifierOk() (*string, bool) {
+func (o *PrincipalInfoResponse) GetCreationDateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Identifier, true
+	return &o.CreationDate, true
 }
 
-// SetIdentifier sets field value
-func (o *PrincipalInfoResponse) SetIdentifier(v string) {
-	o.Identifier = v
+// SetCreationDate sets field value
+func (o *PrincipalInfoResponse) SetCreationDate(v int64) {
+	o.CreationDate = v
 }
 
 // GetLastAuthentication returns the LastAuthentication field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -332,179 +483,28 @@ func (o *PrincipalInfoResponse) UnsetLastModification() {
 	o.LastModification.Unset()
 }
 
-// GetPermissions returns the Permissions field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoResponse) GetPermissions() []Permission {
+// GetEnabled returns the Enabled field value
+func (o *PrincipalInfoResponse) GetEnabled() bool {
 	if o == nil {
-		var ret []Permission
+		var ret bool
 		return ret
 	}
-	return o.Permissions
+
+	return o.Enabled
 }
 
-// GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
+// GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoResponse) GetPermissionsOk() ([]Permission, bool) {
-	if o == nil || utils.IsNil(o.Permissions) {
-		return nil, false
-	}
-	return o.Permissions, true
-}
-
-// HasPermissions returns a boolean if a field has been set.
-func (o *PrincipalInfoResponse) HasPermissions() bool {
-	if o != nil && !utils.IsNil(o.Permissions) {
-		return true
-	}
-
-	return false
-}
-
-// SetPermissions gets a reference to the given []Permission and assigns it to the Permissions field.
-func (o *PrincipalInfoResponse) SetPermissions(v []Permission) {
-	o.Permissions = v
-}
-
-// GetPreferences returns the Preferences field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoResponse) GetPreferences() PrincipalInfoPreferences {
-	if o == nil || utils.IsNil(o.Preferences.Get()) {
-		var ret PrincipalInfoPreferences
-		return ret
-	}
-	return *o.Preferences.Get()
-}
-
-// GetPreferencesOk returns a tuple with the Preferences field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoResponse) GetPreferencesOk() (*PrincipalInfoPreferences, bool) {
+func (o *PrincipalInfoResponse) GetEnabledOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Preferences.Get(), o.Preferences.IsSet()
+	return &o.Enabled, true
 }
 
-// HasPreferences returns a boolean if a field has been set.
-func (o *PrincipalInfoResponse) HasPreferences() bool {
-	if o != nil && o.Preferences.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPreferences gets a reference to the given NullablePrincipalInfoPreferences and assigns it to the Preferences field.
-func (o *PrincipalInfoResponse) SetPreferences(v PrincipalInfoPreferences) {
-	o.Preferences.Set(&v)
-}
-
-// SetPreferencesNil sets the value for Preferences to be an explicit nil
-func (o *PrincipalInfoResponse) SetPreferencesNil() {
-	o.Preferences.Set(nil)
-}
-
-// UnsetPreferences ensures that no value is present for Preferences, not even an explicit nil
-func (o *PrincipalInfoResponse) UnsetPreferences() {
-	o.Preferences.Unset()
-}
-
-// GetRoles returns the Roles field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoResponse) GetRoles() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Roles
-}
-
-// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoResponse) GetRolesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Roles) {
-		return nil, false
-	}
-	return o.Roles, true
-}
-
-// HasRoles returns a boolean if a field has been set.
-func (o *PrincipalInfoResponse) HasRoles() bool {
-	if o != nil && !utils.IsNil(o.Roles) {
-		return true
-	}
-
-	return false
-}
-
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *PrincipalInfoResponse) SetRoles(v []string) {
-	o.Roles = v
-}
-
-// GetSavedQueries returns the SavedQueries field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoResponse) GetSavedQueries() []PrincipalInfoSavedQuery {
-	if o == nil {
-		var ret []PrincipalInfoSavedQuery
-		return ret
-	}
-	return o.SavedQueries
-}
-
-// GetSavedQueriesOk returns a tuple with the SavedQueries field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoResponse) GetSavedQueriesOk() ([]PrincipalInfoSavedQuery, bool) {
-	if o == nil || utils.IsNil(o.SavedQueries) {
-		return nil, false
-	}
-	return o.SavedQueries, true
-}
-
-// HasSavedQueries returns a boolean if a field has been set.
-func (o *PrincipalInfoResponse) HasSavedQueries() bool {
-	if o != nil && !utils.IsNil(o.SavedQueries) {
-		return true
-	}
-
-	return false
-}
-
-// SetSavedQueries gets a reference to the given []PrincipalInfoSavedQuery and assigns it to the SavedQueries field.
-func (o *PrincipalInfoResponse) SetSavedQueries(v []PrincipalInfoSavedQuery) {
-	o.SavedQueries = v
-}
-
-// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoResponse) GetTeams() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Teams
-}
-
-// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoResponse) GetTeamsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Teams) {
-		return nil, false
-	}
-	return o.Teams, true
-}
-
-// HasTeams returns a boolean if a field has been set.
-func (o *PrincipalInfoResponse) HasTeams() bool {
-	if o != nil && !utils.IsNil(o.Teams) {
-		return true
-	}
-
-	return false
-}
-
-// SetTeams gets a reference to the given []string and assigns it to the Teams field.
-func (o *PrincipalInfoResponse) SetTeams(v []string) {
-	o.Teams = v
+// SetEnabled sets field value
+func (o *PrincipalInfoResponse) SetEnabled(v bool) {
+	o.Enabled = v
 }
 
 func (o PrincipalInfoResponse) MarshalJSON() ([]byte, error) {
@@ -518,36 +518,36 @@ func (o PrincipalInfoResponse) MarshalJSON() ([]byte, error) {
 func (o PrincipalInfoResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
+	toSerialize["identifier"] = o.Identifier
 	if o.Contact.IsSet() {
 		toSerialize["contact"] = o.Contact.Get()
 	}
-	toSerialize["creationDate"] = o.CreationDate
+	if o.Permissions != nil {
+		toSerialize["permissions"] = o.Permissions
+	}
+	if o.Roles != nil {
+		toSerialize["roles"] = o.Roles
+	}
+	if o.Teams != nil {
+		toSerialize["teams"] = o.Teams
+	}
+	if o.SavedQueries != nil {
+		toSerialize["savedQueries"] = o.SavedQueries
+	}
 	if o.CustomDashboards != nil {
 		toSerialize["customDashboards"] = o.CustomDashboards
 	}
-	toSerialize["enabled"] = o.Enabled
-	toSerialize["identifier"] = o.Identifier
+	if o.Preferences.IsSet() {
+		toSerialize["preferences"] = o.Preferences.Get()
+	}
+	toSerialize["creationDate"] = o.CreationDate
 	if o.LastAuthentication.IsSet() {
 		toSerialize["lastAuthentication"] = o.LastAuthentication.Get()
 	}
 	if o.LastModification.IsSet() {
 		toSerialize["lastModification"] = o.LastModification.Get()
 	}
-	if o.Permissions != nil {
-		toSerialize["permissions"] = o.Permissions
-	}
-	if o.Preferences.IsSet() {
-		toSerialize["preferences"] = o.Preferences.Get()
-	}
-	if o.Roles != nil {
-		toSerialize["roles"] = o.Roles
-	}
-	if o.SavedQueries != nil {
-		toSerialize["savedQueries"] = o.SavedQueries
-	}
-	if o.Teams != nil {
-		toSerialize["teams"] = o.Teams
-	}
+	toSerialize["enabled"] = o.Enabled
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -562,9 +562,9 @@ func (o *PrincipalInfoResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
+		"identifier",
 		"creationDate",
 		"enabled",
-		"identifier",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -595,18 +595,18 @@ func (o *PrincipalInfoResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "contact")
-		delete(additionalProperties, "creationDate")
-		delete(additionalProperties, "customDashboards")
-		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "identifier")
+		delete(additionalProperties, "contact")
+		delete(additionalProperties, "permissions")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "teams")
+		delete(additionalProperties, "savedQueries")
+		delete(additionalProperties, "customDashboards")
+		delete(additionalProperties, "preferences")
+		delete(additionalProperties, "creationDate")
 		delete(additionalProperties, "lastAuthentication")
 		delete(additionalProperties, "lastModification")
-		delete(additionalProperties, "permissions")
-		delete(additionalProperties, "preferences")
-		delete(additionalProperties, "roles")
-		delete(additionalProperties, "savedQueries")
-		delete(additionalProperties, "teams")
+		delete(additionalProperties, "enabled")
 		o.AdditionalProperties = additionalProperties
 	}
 

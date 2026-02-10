@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &GradingPolicyResult{}
 
 // GradingPolicyResult struct for GradingPolicyResult
 type GradingPolicyResult struct {
-	// The grade awarded by the grading policy
-	Grade string `json:"grade"`
 	// The name of the grading policy
-	Name                 string `json:"name"`
+	Name string `json:"name"`
+	// The grade awarded by the grading policy
+	Grade                string `json:"grade"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,10 +35,10 @@ type _GradingPolicyResult GradingPolicyResult
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGradingPolicyResult(grade string, name string) *GradingPolicyResult {
+func NewGradingPolicyResult(name string, grade string) *GradingPolicyResult {
 	this := GradingPolicyResult{}
-	this.Grade = grade
 	this.Name = name
+	this.Grade = grade
 	return &this
 }
 
@@ -48,30 +48,6 @@ func NewGradingPolicyResult(grade string, name string) *GradingPolicyResult {
 func NewGradingPolicyResultWithDefaults() *GradingPolicyResult {
 	this := GradingPolicyResult{}
 	return &this
-}
-
-// GetGrade returns the Grade field value
-func (o *GradingPolicyResult) GetGrade() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Grade
-}
-
-// GetGradeOk returns a tuple with the Grade field value
-// and a boolean to check if the value has been set.
-func (o *GradingPolicyResult) GetGradeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Grade, true
-}
-
-// SetGrade sets field value
-func (o *GradingPolicyResult) SetGrade(v string) {
-	o.Grade = v
 }
 
 // GetName returns the Name field value
@@ -98,6 +74,30 @@ func (o *GradingPolicyResult) SetName(v string) {
 	o.Name = v
 }
 
+// GetGrade returns the Grade field value
+func (o *GradingPolicyResult) GetGrade() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Grade
+}
+
+// GetGradeOk returns a tuple with the Grade field value
+// and a boolean to check if the value has been set.
+func (o *GradingPolicyResult) GetGradeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Grade, true
+}
+
+// SetGrade sets field value
+func (o *GradingPolicyResult) SetGrade(v string) {
+	o.Grade = v
+}
+
 func (o GradingPolicyResult) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -108,8 +108,8 @@ func (o GradingPolicyResult) MarshalJSON() ([]byte, error) {
 
 func (o GradingPolicyResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["grade"] = o.Grade
 	toSerialize["name"] = o.Name
+	toSerialize["grade"] = o.Grade
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,8 +123,8 @@ func (o *GradingPolicyResult) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"grade",
 		"name",
+		"grade",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -154,8 +154,8 @@ func (o *GradingPolicyResult) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "grade")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "grade")
 		o.AdditionalProperties = additionalProperties
 	}
 

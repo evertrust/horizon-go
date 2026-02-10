@@ -24,22 +24,22 @@ var _ utils.MappedNullable = &LocalIdentityProviderResponse{}
 type LocalIdentityProviderResponse struct {
 	// The internal ID of the Identity Provider
 	Id string `json:"_id"`
-	// The description of the local identity provider
-	Description []LocalizedString `json:"description,omitempty"`
+	// The internal name of the local identity provider
+	Name string `json:"name"`
 	// The display name of the local identity provider
 	DisplayName []LocalizedString `json:"displayName,omitempty"`
-	// The e-mail template to use for password recovery
-	EmailTemplate NullableEmailTemplate `json:"emailTemplate,omitempty"`
+	// The description of the local identity provider
+	Description []LocalizedString `json:"description,omitempty"`
+	// The type of identity provider
+	Type string `json:"type"`
 	// Whether the local identity provider can be used to identify against Horizon
 	Enabled bool `json:"enabled"`
 	// Whether the local identity provider can be selected on login to the Horizon UI
 	EnabledOnUI bool `json:"enabledOnUI"`
-	// The internal name of the local identity provider
-	Name string `json:"name"`
 	// The password policy to enforce for user passwords on the local identity provider
 	PasswordPolicy utils.NullableString `json:"passwordPolicy,omitempty"`
-	// The type of identity provider
-	Type                 string `json:"type"`
+	// The e-mail template to use for password recovery
+	EmailTemplate        NullableEmailTemplate `json:"emailTemplate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,13 +49,13 @@ type _LocalIdentityProviderResponse LocalIdentityProviderResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLocalIdentityProviderResponse(id string, enabled bool, enabledOnUI bool, name string, type_ string) *LocalIdentityProviderResponse {
+func NewLocalIdentityProviderResponse(id string, name string, type_ string, enabled bool, enabledOnUI bool) *LocalIdentityProviderResponse {
 	this := LocalIdentityProviderResponse{}
 	this.Id = id
-	this.Enabled = enabled
-	this.EnabledOnUI = enabledOnUI
 	this.Name = name
 	this.Type = type_
+	this.Enabled = enabled
+	this.EnabledOnUI = enabledOnUI
 	return &this
 }
 
@@ -91,37 +91,28 @@ func (o *LocalIdentityProviderResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LocalIdentityProviderResponse) GetDescription() []LocalizedString {
+// GetName returns the Name field value
+func (o *LocalIdentityProviderResponse) GetName() string {
 	if o == nil {
-		var ret []LocalizedString
+		var ret string
 		return ret
 	}
-	return o.Description
+
+	return o.Name
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LocalIdentityProviderResponse) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
+func (o *LocalIdentityProviderResponse) GetNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Name, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *LocalIdentityProviderResponse) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *LocalIdentityProviderResponse) SetDescription(v []LocalizedString) {
-	o.Description = v
+// SetName sets field value
+func (o *LocalIdentityProviderResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -157,47 +148,61 @@ func (o *LocalIdentityProviderResponse) SetDisplayName(v []LocalizedString) {
 	o.DisplayName = v
 }
 
-// GetEmailTemplate returns the EmailTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LocalIdentityProviderResponse) GetEmailTemplate() EmailTemplate {
-	if o == nil || utils.IsNil(o.EmailTemplate.Get()) {
-		var ret EmailTemplate
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LocalIdentityProviderResponse) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
 		return ret
 	}
-	return *o.EmailTemplate.Get()
+	return o.Description
 }
 
-// GetEmailTemplateOk returns a tuple with the EmailTemplate field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LocalIdentityProviderResponse) GetEmailTemplateOk() (*EmailTemplate, bool) {
-	if o == nil {
+func (o *LocalIdentityProviderResponse) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
 		return nil, false
 	}
-	return o.EmailTemplate.Get(), o.EmailTemplate.IsSet()
+	return o.Description, true
 }
 
-// HasEmailTemplate returns a boolean if a field has been set.
-func (o *LocalIdentityProviderResponse) HasEmailTemplate() bool {
-	if o != nil && o.EmailTemplate.IsSet() {
+// HasDescription returns a boolean if a field has been set.
+func (o *LocalIdentityProviderResponse) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetEmailTemplate gets a reference to the given NullableEmailTemplate and assigns it to the EmailTemplate field.
-func (o *LocalIdentityProviderResponse) SetEmailTemplate(v EmailTemplate) {
-	o.EmailTemplate.Set(&v)
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *LocalIdentityProviderResponse) SetDescription(v []LocalizedString) {
+	o.Description = v
 }
 
-// SetEmailTemplateNil sets the value for EmailTemplate to be an explicit nil
-func (o *LocalIdentityProviderResponse) SetEmailTemplateNil() {
-	o.EmailTemplate.Set(nil)
+// GetType returns the Type field value
+func (o *LocalIdentityProviderResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
 }
 
-// UnsetEmailTemplate ensures that no value is present for EmailTemplate, not even an explicit nil
-func (o *LocalIdentityProviderResponse) UnsetEmailTemplate() {
-	o.EmailTemplate.Unset()
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *LocalIdentityProviderResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *LocalIdentityProviderResponse) SetType(v string) {
+	o.Type = v
 }
 
 // GetEnabled returns the Enabled field value
@@ -248,30 +253,6 @@ func (o *LocalIdentityProviderResponse) SetEnabledOnUI(v bool) {
 	o.EnabledOnUI = v
 }
 
-// GetName returns the Name field value
-func (o *LocalIdentityProviderResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *LocalIdentityProviderResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *LocalIdentityProviderResponse) SetName(v string) {
-	o.Name = v
-}
-
 // GetPasswordPolicy returns the PasswordPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LocalIdentityProviderResponse) GetPasswordPolicy() string {
 	if o == nil || utils.IsNil(o.PasswordPolicy.Get()) {
@@ -315,28 +296,47 @@ func (o *LocalIdentityProviderResponse) UnsetPasswordPolicy() {
 	o.PasswordPolicy.Unset()
 }
 
-// GetType returns the Type field value
-func (o *LocalIdentityProviderResponse) GetType() string {
-	if o == nil {
-		var ret string
+// GetEmailTemplate returns the EmailTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LocalIdentityProviderResponse) GetEmailTemplate() EmailTemplate {
+	if o == nil || utils.IsNil(o.EmailTemplate.Get()) {
+		var ret EmailTemplate
 		return ret
 	}
-
-	return o.Type
+	return *o.EmailTemplate.Get()
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetEmailTemplateOk returns a tuple with the EmailTemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LocalIdentityProviderResponse) GetTypeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LocalIdentityProviderResponse) GetEmailTemplateOk() (*EmailTemplate, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.EmailTemplate.Get(), o.EmailTemplate.IsSet()
 }
 
-// SetType sets field value
-func (o *LocalIdentityProviderResponse) SetType(v string) {
-	o.Type = v
+// HasEmailTemplate returns a boolean if a field has been set.
+func (o *LocalIdentityProviderResponse) HasEmailTemplate() bool {
+	if o != nil && o.EmailTemplate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEmailTemplate gets a reference to the given NullableEmailTemplate and assigns it to the EmailTemplate field.
+func (o *LocalIdentityProviderResponse) SetEmailTemplate(v EmailTemplate) {
+	o.EmailTemplate.Set(&v)
+}
+
+// SetEmailTemplateNil sets the value for EmailTemplate to be an explicit nil
+func (o *LocalIdentityProviderResponse) SetEmailTemplateNil() {
+	o.EmailTemplate.Set(nil)
+}
+
+// UnsetEmailTemplate ensures that no value is present for EmailTemplate, not even an explicit nil
+func (o *LocalIdentityProviderResponse) UnsetEmailTemplate() {
+	o.EmailTemplate.Unset()
 }
 
 func (o LocalIdentityProviderResponse) MarshalJSON() ([]byte, error) {
@@ -350,22 +350,22 @@ func (o LocalIdentityProviderResponse) MarshalJSON() ([]byte, error) {
 func (o LocalIdentityProviderResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
+	toSerialize["name"] = o.Name
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
+	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
+	toSerialize["type"] = o.Type
+	toSerialize["enabled"] = o.Enabled
+	toSerialize["enabledOnUI"] = o.EnabledOnUI
+	if o.PasswordPolicy.IsSet() {
+		toSerialize["passwordPolicy"] = o.PasswordPolicy.Get()
 	}
 	if o.EmailTemplate.IsSet() {
 		toSerialize["emailTemplate"] = o.EmailTemplate.Get()
 	}
-	toSerialize["enabled"] = o.Enabled
-	toSerialize["enabledOnUI"] = o.EnabledOnUI
-	toSerialize["name"] = o.Name
-	if o.PasswordPolicy.IsSet() {
-		toSerialize["passwordPolicy"] = o.PasswordPolicy.Get()
-	}
-	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -380,10 +380,10 @@ func (o *LocalIdentityProviderResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"enabled",
-		"enabledOnUI",
 		"name",
 		"type",
+		"enabled",
+		"enabledOnUI",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -414,14 +414,14 @@ func (o *LocalIdentityProviderResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "emailTemplate")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "enabledOnUI")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "passwordPolicy")
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "emailTemplate")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
 **Name** | **string** |  | 
+**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
 **Rulesets** | [**[]WeightedGradingRuleset**](WeightedGradingRuleset.md) |  | 
 
 ## Methods
@@ -48,6 +48,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetName
+
+`func (o *GradingPolicyResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *GradingPolicyResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *GradingPolicyResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetDescription
 
 `func (o *GradingPolicyResponse) GetDescription() []LocalizedString`
@@ -83,26 +103,6 @@ HasDescription returns a boolean if a field has been set.
 `func (o *GradingPolicyResponse) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetName
-
-`func (o *GradingPolicyResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *GradingPolicyResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *GradingPolicyResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetRulesets
 
 `func (o *GradingPolicyResponse) GetRulesets() []WeightedGradingRuleset`

@@ -5,57 +5,57 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing login DN and password. | 
+**Type** | **string** |  | 
 **Name** | **string** |  | 
+**ThrottleDuration** | **string** |  | 
+**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Region** | **string** |  | 
-**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
+**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing login DN and password. | 
 **ResourceGroupName** | Pointer to **NullableString** |  | [optional] 
 **RoleArn** | Pointer to **NullableString** |  | [optional] 
 **TagKey** | Pointer to **NullableString** |  | [optional] 
 **TagValue** | Pointer to **NullableString** |  | [optional] 
-**ThrottleDuration** | **string** |  | 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Type** | **string** |  | 
-**BigIPHostname** | **string** |  | 
-**CipherGroup** | Pointer to **NullableString** |  | [optional] 
-**MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
-**Partition** | Pointer to **NullableString** |  | [optional] 
-**Prefix** | Pointer to **NullableString** |  | [optional] 
-**SslParent** | Pointer to **NullableString** |  | [optional] 
 **ThrottleParallelism** | **int64** |  | 
-**TlsInsecure** | Pointer to **NullableBool** | Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended. | [optional] [default to false]
+**MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
+**BigIPHostname** | **string** |  | 
+**Partition** | Pointer to **NullableString** |  | [optional] 
+**SslParent** | Pointer to **NullableString** |  | [optional] 
+**Prefix** | Pointer to **NullableString** |  | [optional] 
+**CipherGroup** | Pointer to **NullableString** |  | [optional] 
 **Version** | Pointer to **NullableString** |  | [optional] 
-**Hostname** | **string** |  | 
+**TlsInsecure** | Pointer to **NullableBool** | Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended. | [optional] [default to false]
 **KeyType** | Pointer to **NullableString** | One of &#x60;rsa-2048&#x60;, &#x60;rsa-3072&#x60;, &#x60;rsa-4096&#x60;, &#x60;rsa-8192&#x60;, &#x60;ec-secp256r1&#x60;, &#x60;ec-secp384r1&#x60;, &#x60;ec-secp521r1&#x60;, &#x60;ed-448&#x60;, &#x60;ed-25519&#x60;, &#x60;mldsa-44&#x60;, &#x60;mldsa-65&#x60;, &#x60;mldsa-87&#x60;, &#x60;slhdsa-sha2-128s&#x60;, &#x60;slhdsa-sha2-128f&#x60;, &#x60;slhdsa-sha2-192s&#x60;, &#x60;slhdsa-sha2-192f&#x60;, &#x60;slhdsa-sha2-256s&#x60;, &#x60;slhdsa-sha2-256f&#x60;, &#x60;slhdsa-sha2-128ssha256&#x60;, &#x60;slhdsa-sha2-128fsha256&#x60;, &#x60;slhdsa-sha2-192ssha512&#x60;, &#x60;slhdsa-sha2-192fsha512&#x60;, &#x60;slhdsa-sha2-256ssha512&#x60;, &#x60;slhdsa-sha2-256fsha512&#x60; or &#x60;&lt;primary key type&gt;+&lt;alternate key type&gt;&#x60; | [optional] 
+**Hostname** | **string** |  | 
 **LoginProvider** | Pointer to **NullableString** |  | [optional] 
 **WithChain** | Pointer to **NullableBool** | Enable the certificate trust chain to be pushed. | [optional] [default to true]
-**IntuneResourceUrl** | Pointer to **NullableString** |  | [optional] 
-**LegacyRevocationMode** | **bool** |  | 
-**OsQueryString** | Pointer to **NullableString** |  | [optional] 
 **Tenant** | **string** |  | 
+**IntuneResourceUrl** | Pointer to **NullableString** |  | [optional] 
+**OsQueryString** | Pointer to **NullableString** |  | [optional] 
+**LegacyRevocationMode** | **bool** |  | 
 **Endpoint** | **string** |  | 
+**Port** | Pointer to **NullableInt64** |  | [optional] 
 **BaseDn** | **string** |  | 
 **Filter** | Pointer to **NullableString** |  | [optional] 
-**Port** | Pointer to **NullableInt64** |  | [optional] 
-**IntendedPurpose** | Pointer to **NullableString** |  | [optional] 
+**PubKey** | **string** |  | 
 **KeyName** | **string** |  | 
 **ProviderName** | Pointer to **NullableString** |  | [optional] 
-**PubKey** | **string** |  | 
+**IntendedPurpose** | Pointer to **NullableString** |  | [optional] 
 **SearchFilter** | Pointer to **NullableString** |  | [optional] 
 **VaultBaseUrl** | **string** |  | 
-**Location** | **string** |  | 
 **Project** | **string** |  | 
+**Location** | **string** |  | 
 **CertAttr** | Pointer to **NullableString** |  | [optional] 
-**CertificateAttribute** | **string** |  | 
 **FollowReferrals** | Pointer to **NullableBool** |  | [optional] 
 **UserIdentifierAttribute** | **string** |  | 
+**CertificateAttribute** | **string** |  | 
 
 ## Methods
 
 ### NewThirdpartyConnectorList200ResponseInner
 
-`func NewThirdpartyConnectorList200ResponseInner(id string, credentials string, name string, region string, throttleDuration string, type_ string, bigIPHostname string, throttleParallelism int64, hostname string, legacyRevocationMode bool, tenant string, endpoint string, baseDn string, keyName string, pubKey string, vaultBaseUrl string, location string, project string, certificateAttribute string, userIdentifierAttribute string, ) *ThirdpartyConnectorList200ResponseInner`
+`func NewThirdpartyConnectorList200ResponseInner(id string, type_ string, name string, throttleDuration string, region string, credentials string, throttleParallelism int64, bigIPHostname string, hostname string, tenant string, legacyRevocationMode bool, endpoint string, baseDn string, pubKey string, keyName string, vaultBaseUrl string, project string, location string, userIdentifierAttribute string, certificateAttribute string, ) *ThirdpartyConnectorList200ResponseInner`
 
 NewThirdpartyConnectorList200ResponseInner instantiates a new ThirdpartyConnectorList200ResponseInner object
 This constructor will assign default values to properties that have it defined,
@@ -90,24 +90,24 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetCredentials
+### GetType
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetCredentials() string`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetType() string`
 
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetCredentialsOk
+### GetTypeOk
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetCredentialsOk() (*string, bool)`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetTypeOk() (*string, bool)`
 
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCredentials
+### SetType
 
-`func (o *ThirdpartyConnectorList200ResponseInner) SetCredentials(v string)`
+`func (o *ThirdpartyConnectorList200ResponseInner) SetType(v string)`
 
-SetCredentials sets Credentials field to given value.
+SetType sets Type field to given value.
 
 
 ### GetName
@@ -130,6 +130,96 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetThrottleDuration
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetThrottleDuration() string`
+
+GetThrottleDuration returns the ThrottleDuration field if non-nil, zero value otherwise.
+
+### GetThrottleDurationOk
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetThrottleDurationOk() (*string, bool)`
+
+GetThrottleDurationOk returns a tuple with the ThrottleDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThrottleDuration
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetThrottleDuration(v string)`
+
+SetThrottleDuration sets ThrottleDuration field to given value.
+
+
+### GetRenewalPeriod
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetRenewalPeriod() string`
+
+GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
+
+### GetRenewalPeriodOk
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetRenewalPeriodOk() (*string, bool)`
+
+GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRenewalPeriod
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetRenewalPeriod(v string)`
+
+SetRenewalPeriod sets RenewalPeriod field to given value.
+
+### HasRenewalPeriod
+
+`func (o *ThirdpartyConnectorList200ResponseInner) HasRenewalPeriod() bool`
+
+HasRenewalPeriod returns a boolean if a field has been set.
+
+### SetRenewalPeriodNil
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetRenewalPeriodNil(b bool)`
+
+ SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
+
+### UnsetRenewalPeriod
+`func (o *ThirdpartyConnectorList200ResponseInner) UnsetRenewalPeriod()`
+
+UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+### GetTimeout
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *ThirdpartyConnectorList200ResponseInner) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *ThirdpartyConnectorList200ResponseInner) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetProxy() string`
@@ -185,41 +275,26 @@ and a boolean to check if the value has been set.
 SetRegion sets Region field to given value.
 
 
-### GetRenewalPeriod
+### GetCredentials
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetRenewalPeriod() string`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetCredentials() string`
 
-GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
 
-### GetRenewalPeriodOk
+### GetCredentialsOk
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetRenewalPeriodOk() (*string, bool)`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetCredentialsOk() (*string, bool)`
 
-GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRenewalPeriod
+### SetCredentials
 
-`func (o *ThirdpartyConnectorList200ResponseInner) SetRenewalPeriod(v string)`
+`func (o *ThirdpartyConnectorList200ResponseInner) SetCredentials(v string)`
 
-SetRenewalPeriod sets RenewalPeriod field to given value.
+SetCredentials sets Credentials field to given value.
 
-### HasRenewalPeriod
 
-`func (o *ThirdpartyConnectorList200ResponseInner) HasRenewalPeriod() bool`
-
-HasRenewalPeriod returns a boolean if a field has been set.
-
-### SetRenewalPeriodNil
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetRenewalPeriodNil(b bool)`
-
- SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-
-### UnsetRenewalPeriod
-`func (o *ThirdpartyConnectorList200ResponseInner) UnsetRenewalPeriod()`
-
-UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
 ### GetResourceGroupName
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetResourceGroupName() string`
@@ -360,136 +435,26 @@ HasTagValue returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetTagValue()`
 
 UnsetTagValue ensures that no value is present for TagValue, not even an explicit nil
-### GetThrottleDuration
+### GetThrottleParallelism
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetThrottleDuration() string`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetThrottleParallelism() int64`
 
-GetThrottleDuration returns the ThrottleDuration field if non-nil, zero value otherwise.
+GetThrottleParallelism returns the ThrottleParallelism field if non-nil, zero value otherwise.
 
-### GetThrottleDurationOk
+### GetThrottleParallelismOk
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetThrottleDurationOk() (*string, bool)`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetThrottleParallelismOk() (*int64, bool)`
 
-GetThrottleDurationOk returns a tuple with the ThrottleDuration field if it's non-nil, zero value otherwise
+GetThrottleParallelismOk returns a tuple with the ThrottleParallelism field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetThrottleDuration
+### SetThrottleParallelism
 
-`func (o *ThirdpartyConnectorList200ResponseInner) SetThrottleDuration(v string)`
+`func (o *ThirdpartyConnectorList200ResponseInner) SetThrottleParallelism(v int64)`
 
-SetThrottleDuration sets ThrottleDuration field to given value.
-
-
-### GetTimeout
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *ThirdpartyConnectorList200ResponseInner) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *ThirdpartyConnectorList200ResponseInner) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetType(v string)`
-
-SetType sets Type field to given value.
+SetThrottleParallelism sets ThrottleParallelism field to given value.
 
 
-### GetBigIPHostname
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetBigIPHostname() string`
-
-GetBigIPHostname returns the BigIPHostname field if non-nil, zero value otherwise.
-
-### GetBigIPHostnameOk
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetBigIPHostnameOk() (*string, bool)`
-
-GetBigIPHostnameOk returns a tuple with the BigIPHostname field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBigIPHostname
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetBigIPHostname(v string)`
-
-SetBigIPHostname sets BigIPHostname field to given value.
-
-
-### GetCipherGroup
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetCipherGroup() string`
-
-GetCipherGroup returns the CipherGroup field if non-nil, zero value otherwise.
-
-### GetCipherGroupOk
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetCipherGroupOk() (*string, bool)`
-
-GetCipherGroupOk returns a tuple with the CipherGroup field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCipherGroup
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetCipherGroup(v string)`
-
-SetCipherGroup sets CipherGroup field to given value.
-
-### HasCipherGroup
-
-`func (o *ThirdpartyConnectorList200ResponseInner) HasCipherGroup() bool`
-
-HasCipherGroup returns a boolean if a field has been set.
-
-### SetCipherGroupNil
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetCipherGroupNil(b bool)`
-
- SetCipherGroupNil sets the value for CipherGroup to be an explicit nil
-
-### UnsetCipherGroup
-`func (o *ThirdpartyConnectorList200ResponseInner) UnsetCipherGroup()`
-
-UnsetCipherGroup ensures that no value is present for CipherGroup, not even an explicit nil
 ### GetMaxStoredCertificatePerHolder
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetMaxStoredCertificatePerHolder() int64`
@@ -525,6 +490,26 @@ HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetMaxStoredCertificatePerHolder()`
 
 UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
+### GetBigIPHostname
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetBigIPHostname() string`
+
+GetBigIPHostname returns the BigIPHostname field if non-nil, zero value otherwise.
+
+### GetBigIPHostnameOk
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetBigIPHostnameOk() (*string, bool)`
+
+GetBigIPHostnameOk returns a tuple with the BigIPHostname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBigIPHostname
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetBigIPHostname(v string)`
+
+SetBigIPHostname sets BigIPHostname field to given value.
+
+
 ### GetPartition
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetPartition() string`
@@ -560,41 +545,6 @@ HasPartition returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetPartition()`
 
 UnsetPartition ensures that no value is present for Partition, not even an explicit nil
-### GetPrefix
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetPrefix() string`
-
-GetPrefix returns the Prefix field if non-nil, zero value otherwise.
-
-### GetPrefixOk
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetPrefixOk() (*string, bool)`
-
-GetPrefixOk returns a tuple with the Prefix field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrefix
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetPrefix(v string)`
-
-SetPrefix sets Prefix field to given value.
-
-### HasPrefix
-
-`func (o *ThirdpartyConnectorList200ResponseInner) HasPrefix() bool`
-
-HasPrefix returns a boolean if a field has been set.
-
-### SetPrefixNil
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetPrefixNil(b bool)`
-
- SetPrefixNil sets the value for Prefix to be an explicit nil
-
-### UnsetPrefix
-`func (o *ThirdpartyConnectorList200ResponseInner) UnsetPrefix()`
-
-UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
 ### GetSslParent
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetSslParent() string`
@@ -630,61 +580,76 @@ HasSslParent returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetSslParent()`
 
 UnsetSslParent ensures that no value is present for SslParent, not even an explicit nil
-### GetThrottleParallelism
+### GetPrefix
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetThrottleParallelism() int64`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetPrefix() string`
 
-GetThrottleParallelism returns the ThrottleParallelism field if non-nil, zero value otherwise.
+GetPrefix returns the Prefix field if non-nil, zero value otherwise.
 
-### GetThrottleParallelismOk
+### GetPrefixOk
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetThrottleParallelismOk() (*int64, bool)`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetPrefixOk() (*string, bool)`
 
-GetThrottleParallelismOk returns a tuple with the ThrottleParallelism field if it's non-nil, zero value otherwise
+GetPrefixOk returns a tuple with the Prefix field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetThrottleParallelism
+### SetPrefix
 
-`func (o *ThirdpartyConnectorList200ResponseInner) SetThrottleParallelism(v int64)`
+`func (o *ThirdpartyConnectorList200ResponseInner) SetPrefix(v string)`
 
-SetThrottleParallelism sets ThrottleParallelism field to given value.
+SetPrefix sets Prefix field to given value.
 
+### HasPrefix
 
-### GetTlsInsecure
+`func (o *ThirdpartyConnectorList200ResponseInner) HasPrefix() bool`
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetTlsInsecure() bool`
+HasPrefix returns a boolean if a field has been set.
 
-GetTlsInsecure returns the TlsInsecure field if non-nil, zero value otherwise.
+### SetPrefixNil
 
-### GetTlsInsecureOk
+`func (o *ThirdpartyConnectorList200ResponseInner) SetPrefixNil(b bool)`
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetTlsInsecureOk() (*bool, bool)`
+ SetPrefixNil sets the value for Prefix to be an explicit nil
 
-GetTlsInsecureOk returns a tuple with the TlsInsecure field if it's non-nil, zero value otherwise
+### UnsetPrefix
+`func (o *ThirdpartyConnectorList200ResponseInner) UnsetPrefix()`
+
+UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
+### GetCipherGroup
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetCipherGroup() string`
+
+GetCipherGroup returns the CipherGroup field if non-nil, zero value otherwise.
+
+### GetCipherGroupOk
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetCipherGroupOk() (*string, bool)`
+
+GetCipherGroupOk returns a tuple with the CipherGroup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTlsInsecure
+### SetCipherGroup
 
-`func (o *ThirdpartyConnectorList200ResponseInner) SetTlsInsecure(v bool)`
+`func (o *ThirdpartyConnectorList200ResponseInner) SetCipherGroup(v string)`
 
-SetTlsInsecure sets TlsInsecure field to given value.
+SetCipherGroup sets CipherGroup field to given value.
 
-### HasTlsInsecure
+### HasCipherGroup
 
-`func (o *ThirdpartyConnectorList200ResponseInner) HasTlsInsecure() bool`
+`func (o *ThirdpartyConnectorList200ResponseInner) HasCipherGroup() bool`
 
-HasTlsInsecure returns a boolean if a field has been set.
+HasCipherGroup returns a boolean if a field has been set.
 
-### SetTlsInsecureNil
+### SetCipherGroupNil
 
-`func (o *ThirdpartyConnectorList200ResponseInner) SetTlsInsecureNil(b bool)`
+`func (o *ThirdpartyConnectorList200ResponseInner) SetCipherGroupNil(b bool)`
 
- SetTlsInsecureNil sets the value for TlsInsecure to be an explicit nil
+ SetCipherGroupNil sets the value for CipherGroup to be an explicit nil
 
-### UnsetTlsInsecure
-`func (o *ThirdpartyConnectorList200ResponseInner) UnsetTlsInsecure()`
+### UnsetCipherGroup
+`func (o *ThirdpartyConnectorList200ResponseInner) UnsetCipherGroup()`
 
-UnsetTlsInsecure ensures that no value is present for TlsInsecure, not even an explicit nil
+UnsetCipherGroup ensures that no value is present for CipherGroup, not even an explicit nil
 ### GetVersion
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetVersion() string`
@@ -720,26 +685,41 @@ HasVersion returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetVersion()`
 
 UnsetVersion ensures that no value is present for Version, not even an explicit nil
-### GetHostname
+### GetTlsInsecure
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetHostname() string`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetTlsInsecure() bool`
 
-GetHostname returns the Hostname field if non-nil, zero value otherwise.
+GetTlsInsecure returns the TlsInsecure field if non-nil, zero value otherwise.
 
-### GetHostnameOk
+### GetTlsInsecureOk
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetHostnameOk() (*string, bool)`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetTlsInsecureOk() (*bool, bool)`
 
-GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
+GetTlsInsecureOk returns a tuple with the TlsInsecure field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHostname
+### SetTlsInsecure
 
-`func (o *ThirdpartyConnectorList200ResponseInner) SetHostname(v string)`
+`func (o *ThirdpartyConnectorList200ResponseInner) SetTlsInsecure(v bool)`
 
-SetHostname sets Hostname field to given value.
+SetTlsInsecure sets TlsInsecure field to given value.
 
+### HasTlsInsecure
 
+`func (o *ThirdpartyConnectorList200ResponseInner) HasTlsInsecure() bool`
+
+HasTlsInsecure returns a boolean if a field has been set.
+
+### SetTlsInsecureNil
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetTlsInsecureNil(b bool)`
+
+ SetTlsInsecureNil sets the value for TlsInsecure to be an explicit nil
+
+### UnsetTlsInsecure
+`func (o *ThirdpartyConnectorList200ResponseInner) UnsetTlsInsecure()`
+
+UnsetTlsInsecure ensures that no value is present for TlsInsecure, not even an explicit nil
 ### GetKeyType
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetKeyType() string`
@@ -775,6 +755,26 @@ HasKeyType returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetKeyType()`
 
 UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
+### GetHostname
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetHostname() string`
+
+GetHostname returns the Hostname field if non-nil, zero value otherwise.
+
+### GetHostnameOk
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetHostnameOk() (*string, bool)`
+
+GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHostname
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetHostname(v string)`
+
+SetHostname sets Hostname field to given value.
+
+
 ### GetLoginProvider
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetLoginProvider() string`
@@ -845,6 +845,26 @@ HasWithChain returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetWithChain()`
 
 UnsetWithChain ensures that no value is present for WithChain, not even an explicit nil
+### GetTenant
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetTenant() string`
+
+GetTenant returns the Tenant field if non-nil, zero value otherwise.
+
+### GetTenantOk
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetTenantOk() (*string, bool)`
+
+GetTenantOk returns a tuple with the Tenant field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTenant
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetTenant(v string)`
+
+SetTenant sets Tenant field to given value.
+
+
 ### GetIntuneResourceUrl
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetIntuneResourceUrl() string`
@@ -880,26 +900,6 @@ HasIntuneResourceUrl returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetIntuneResourceUrl()`
 
 UnsetIntuneResourceUrl ensures that no value is present for IntuneResourceUrl, not even an explicit nil
-### GetLegacyRevocationMode
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetLegacyRevocationMode() bool`
-
-GetLegacyRevocationMode returns the LegacyRevocationMode field if non-nil, zero value otherwise.
-
-### GetLegacyRevocationModeOk
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetLegacyRevocationModeOk() (*bool, bool)`
-
-GetLegacyRevocationModeOk returns a tuple with the LegacyRevocationMode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLegacyRevocationMode
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetLegacyRevocationMode(v bool)`
-
-SetLegacyRevocationMode sets LegacyRevocationMode field to given value.
-
-
 ### GetOsQueryString
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetOsQueryString() string`
@@ -935,24 +935,24 @@ HasOsQueryString returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetOsQueryString()`
 
 UnsetOsQueryString ensures that no value is present for OsQueryString, not even an explicit nil
-### GetTenant
+### GetLegacyRevocationMode
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetTenant() string`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetLegacyRevocationMode() bool`
 
-GetTenant returns the Tenant field if non-nil, zero value otherwise.
+GetLegacyRevocationMode returns the LegacyRevocationMode field if non-nil, zero value otherwise.
 
-### GetTenantOk
+### GetLegacyRevocationModeOk
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetTenantOk() (*string, bool)`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetLegacyRevocationModeOk() (*bool, bool)`
 
-GetTenantOk returns a tuple with the Tenant field if it's non-nil, zero value otherwise
+GetLegacyRevocationModeOk returns a tuple with the LegacyRevocationMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTenant
+### SetLegacyRevocationMode
 
-`func (o *ThirdpartyConnectorList200ResponseInner) SetTenant(v string)`
+`func (o *ThirdpartyConnectorList200ResponseInner) SetLegacyRevocationMode(v bool)`
 
-SetTenant sets Tenant field to given value.
+SetLegacyRevocationMode sets LegacyRevocationMode field to given value.
 
 
 ### GetEndpoint
@@ -975,6 +975,41 @@ and a boolean to check if the value has been set.
 SetEndpoint sets Endpoint field to given value.
 
 
+### GetPort
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetPort() int64`
+
+GetPort returns the Port field if non-nil, zero value otherwise.
+
+### GetPortOk
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetPortOk() (*int64, bool)`
+
+GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPort
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetPort(v int64)`
+
+SetPort sets Port field to given value.
+
+### HasPort
+
+`func (o *ThirdpartyConnectorList200ResponseInner) HasPort() bool`
+
+HasPort returns a boolean if a field has been set.
+
+### SetPortNil
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetPortNil(b bool)`
+
+ SetPortNil sets the value for Port to be an explicit nil
+
+### UnsetPort
+`func (o *ThirdpartyConnectorList200ResponseInner) UnsetPort()`
+
+UnsetPort ensures that no value is present for Port, not even an explicit nil
 ### GetBaseDn
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetBaseDn() string`
@@ -1030,76 +1065,26 @@ HasFilter returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetFilter()`
 
 UnsetFilter ensures that no value is present for Filter, not even an explicit nil
-### GetPort
+### GetPubKey
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetPort() int64`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetPubKey() string`
 
-GetPort returns the Port field if non-nil, zero value otherwise.
+GetPubKey returns the PubKey field if non-nil, zero value otherwise.
 
-### GetPortOk
+### GetPubKeyOk
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetPortOk() (*int64, bool)`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetPubKeyOk() (*string, bool)`
 
-GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
+GetPubKeyOk returns a tuple with the PubKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPort
+### SetPubKey
 
-`func (o *ThirdpartyConnectorList200ResponseInner) SetPort(v int64)`
+`func (o *ThirdpartyConnectorList200ResponseInner) SetPubKey(v string)`
 
-SetPort sets Port field to given value.
+SetPubKey sets PubKey field to given value.
 
-### HasPort
 
-`func (o *ThirdpartyConnectorList200ResponseInner) HasPort() bool`
-
-HasPort returns a boolean if a field has been set.
-
-### SetPortNil
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetPortNil(b bool)`
-
- SetPortNil sets the value for Port to be an explicit nil
-
-### UnsetPort
-`func (o *ThirdpartyConnectorList200ResponseInner) UnsetPort()`
-
-UnsetPort ensures that no value is present for Port, not even an explicit nil
-### GetIntendedPurpose
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetIntendedPurpose() string`
-
-GetIntendedPurpose returns the IntendedPurpose field if non-nil, zero value otherwise.
-
-### GetIntendedPurposeOk
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetIntendedPurposeOk() (*string, bool)`
-
-GetIntendedPurposeOk returns a tuple with the IntendedPurpose field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIntendedPurpose
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetIntendedPurpose(v string)`
-
-SetIntendedPurpose sets IntendedPurpose field to given value.
-
-### HasIntendedPurpose
-
-`func (o *ThirdpartyConnectorList200ResponseInner) HasIntendedPurpose() bool`
-
-HasIntendedPurpose returns a boolean if a field has been set.
-
-### SetIntendedPurposeNil
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetIntendedPurposeNil(b bool)`
-
- SetIntendedPurposeNil sets the value for IntendedPurpose to be an explicit nil
-
-### UnsetIntendedPurpose
-`func (o *ThirdpartyConnectorList200ResponseInner) UnsetIntendedPurpose()`
-
-UnsetIntendedPurpose ensures that no value is present for IntendedPurpose, not even an explicit nil
 ### GetKeyName
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetKeyName() string`
@@ -1155,26 +1140,41 @@ HasProviderName returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetProviderName()`
 
 UnsetProviderName ensures that no value is present for ProviderName, not even an explicit nil
-### GetPubKey
+### GetIntendedPurpose
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetPubKey() string`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetIntendedPurpose() string`
 
-GetPubKey returns the PubKey field if non-nil, zero value otherwise.
+GetIntendedPurpose returns the IntendedPurpose field if non-nil, zero value otherwise.
 
-### GetPubKeyOk
+### GetIntendedPurposeOk
 
-`func (o *ThirdpartyConnectorList200ResponseInner) GetPubKeyOk() (*string, bool)`
+`func (o *ThirdpartyConnectorList200ResponseInner) GetIntendedPurposeOk() (*string, bool)`
 
-GetPubKeyOk returns a tuple with the PubKey field if it's non-nil, zero value otherwise
+GetIntendedPurposeOk returns a tuple with the IntendedPurpose field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPubKey
+### SetIntendedPurpose
 
-`func (o *ThirdpartyConnectorList200ResponseInner) SetPubKey(v string)`
+`func (o *ThirdpartyConnectorList200ResponseInner) SetIntendedPurpose(v string)`
 
-SetPubKey sets PubKey field to given value.
+SetIntendedPurpose sets IntendedPurpose field to given value.
 
+### HasIntendedPurpose
 
+`func (o *ThirdpartyConnectorList200ResponseInner) HasIntendedPurpose() bool`
+
+HasIntendedPurpose returns a boolean if a field has been set.
+
+### SetIntendedPurposeNil
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetIntendedPurposeNil(b bool)`
+
+ SetIntendedPurposeNil sets the value for IntendedPurpose to be an explicit nil
+
+### UnsetIntendedPurpose
+`func (o *ThirdpartyConnectorList200ResponseInner) UnsetIntendedPurpose()`
+
+UnsetIntendedPurpose ensures that no value is present for IntendedPurpose, not even an explicit nil
 ### GetSearchFilter
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetSearchFilter() string`
@@ -1230,26 +1230,6 @@ and a boolean to check if the value has been set.
 SetVaultBaseUrl sets VaultBaseUrl field to given value.
 
 
-### GetLocation
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetLocation() string`
-
-GetLocation returns the Location field if non-nil, zero value otherwise.
-
-### GetLocationOk
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetLocationOk() (*string, bool)`
-
-GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocation
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetLocation(v string)`
-
-SetLocation sets Location field to given value.
-
-
 ### GetProject
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetProject() string`
@@ -1268,6 +1248,26 @@ and a boolean to check if the value has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) SetProject(v string)`
 
 SetProject sets Project field to given value.
+
+
+### GetLocation
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetLocation() string`
+
+GetLocation returns the Location field if non-nil, zero value otherwise.
+
+### GetLocationOk
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetLocationOk() (*string, bool)`
+
+GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocation
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetLocation(v string)`
+
+SetLocation sets Location field to given value.
 
 
 ### GetCertAttr
@@ -1305,26 +1305,6 @@ HasCertAttr returns a boolean if a field has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) UnsetCertAttr()`
 
 UnsetCertAttr ensures that no value is present for CertAttr, not even an explicit nil
-### GetCertificateAttribute
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetCertificateAttribute() string`
-
-GetCertificateAttribute returns the CertificateAttribute field if non-nil, zero value otherwise.
-
-### GetCertificateAttributeOk
-
-`func (o *ThirdpartyConnectorList200ResponseInner) GetCertificateAttributeOk() (*string, bool)`
-
-GetCertificateAttributeOk returns a tuple with the CertificateAttribute field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificateAttribute
-
-`func (o *ThirdpartyConnectorList200ResponseInner) SetCertificateAttribute(v string)`
-
-SetCertificateAttribute sets CertificateAttribute field to given value.
-
-
 ### GetFollowReferrals
 
 `func (o *ThirdpartyConnectorList200ResponseInner) GetFollowReferrals() bool`
@@ -1378,6 +1358,26 @@ and a boolean to check if the value has been set.
 `func (o *ThirdpartyConnectorList200ResponseInner) SetUserIdentifierAttribute(v string)`
 
 SetUserIdentifierAttribute sets UserIdentifierAttribute field to given value.
+
+
+### GetCertificateAttribute
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetCertificateAttribute() string`
+
+GetCertificateAttribute returns the CertificateAttribute field if non-nil, zero value otherwise.
+
+### GetCertificateAttributeOk
+
+`func (o *ThirdpartyConnectorList200ResponseInner) GetCertificateAttributeOk() (*string, bool)`
+
+GetCertificateAttributeOk returns a tuple with the CertificateAttribute field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateAttribute
+
+`func (o *ThirdpartyConnectorList200ResponseInner) SetCertificateAttribute(v string)`
+
+SetCertificateAttribute sets CertificateAttribute field to given value.
 
 
 

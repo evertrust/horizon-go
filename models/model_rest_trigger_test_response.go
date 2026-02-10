@@ -22,22 +22,22 @@ var _ utils.MappedNullable = &RestTriggerTestResponse{}
 
 // RestTriggerTestResponse struct for RestTriggerTestResponse
 type RestTriggerTestResponse struct {
+	// Status of the test
+	Status string `json:"status"`
 	// A message describing the test
 	Message string `json:"message"`
-	// The body from this request
-	RequestBody utils.NullableString `json:"requestBody,omitempty"`
-	// The headers from this request
-	RequestHeaders []RESTHeader `json:"requestHeaders,omitempty"`
-	// The URL requested
-	RequestURL string `json:"requestURL"`
-	// The body from the response to this request
-	ResponseBody utils.NullableString `json:"responseBody,omitempty"`
 	// The response code to this request
 	ResponseCode utils.NullableInt64 `json:"responseCode,omitempty"`
 	// The headers from the response to this request
 	ResponseHeaders []RESTHeader `json:"responseHeaders,omitempty"`
-	// Status of the test
-	Status string `json:"status"`
+	// The body from the response to this request
+	ResponseBody utils.NullableString `json:"responseBody,omitempty"`
+	// The URL requested
+	RequestURL string `json:"requestURL"`
+	// The headers from this request
+	RequestHeaders []RESTHeader `json:"requestHeaders,omitempty"`
+	// The body from this request
+	RequestBody utils.NullableString `json:"requestBody,omitempty"`
 	// The trigger type that was executed
 	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
@@ -49,11 +49,11 @@ type _RestTriggerTestResponse RestTriggerTestResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRestTriggerTestResponse(message string, requestURL string, status string, type_ string) *RestTriggerTestResponse {
+func NewRestTriggerTestResponse(status string, message string, requestURL string, type_ string) *RestTriggerTestResponse {
 	this := RestTriggerTestResponse{}
+	this.Status = status
 	this.Message = message
 	this.RequestURL = requestURL
-	this.Status = status
 	this.Type = type_
 	return &this
 }
@@ -64,6 +64,30 @@ func NewRestTriggerTestResponse(message string, requestURL string, status string
 func NewRestTriggerTestResponseWithDefaults() *RestTriggerTestResponse {
 	this := RestTriggerTestResponse{}
 	return &this
+}
+
+// GetStatus returns the Status field value
+func (o *RestTriggerTestResponse) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *RestTriggerTestResponse) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *RestTriggerTestResponse) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetMessage returns the Message field value
@@ -88,149 +112,6 @@ func (o *RestTriggerTestResponse) GetMessageOk() (*string, bool) {
 // SetMessage sets field value
 func (o *RestTriggerTestResponse) SetMessage(v string) {
 	o.Message = v
-}
-
-// GetRequestBody returns the RequestBody field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RestTriggerTestResponse) GetRequestBody() string {
-	if o == nil || utils.IsNil(o.RequestBody.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RequestBody.Get()
-}
-
-// GetRequestBodyOk returns a tuple with the RequestBody field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RestTriggerTestResponse) GetRequestBodyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RequestBody.Get(), o.RequestBody.IsSet()
-}
-
-// HasRequestBody returns a boolean if a field has been set.
-func (o *RestTriggerTestResponse) HasRequestBody() bool {
-	if o != nil && o.RequestBody.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRequestBody gets a reference to the given NullableString and assigns it to the RequestBody field.
-func (o *RestTriggerTestResponse) SetRequestBody(v string) {
-	o.RequestBody.Set(&v)
-}
-
-// SetRequestBodyNil sets the value for RequestBody to be an explicit nil
-func (o *RestTriggerTestResponse) SetRequestBodyNil() {
-	o.RequestBody.Set(nil)
-}
-
-// UnsetRequestBody ensures that no value is present for RequestBody, not even an explicit nil
-func (o *RestTriggerTestResponse) UnsetRequestBody() {
-	o.RequestBody.Unset()
-}
-
-// GetRequestHeaders returns the RequestHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RestTriggerTestResponse) GetRequestHeaders() []RESTHeader {
-	if o == nil {
-		var ret []RESTHeader
-		return ret
-	}
-	return o.RequestHeaders
-}
-
-// GetRequestHeadersOk returns a tuple with the RequestHeaders field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RestTriggerTestResponse) GetRequestHeadersOk() ([]RESTHeader, bool) {
-	if o == nil || utils.IsNil(o.RequestHeaders) {
-		return nil, false
-	}
-	return o.RequestHeaders, true
-}
-
-// HasRequestHeaders returns a boolean if a field has been set.
-func (o *RestTriggerTestResponse) HasRequestHeaders() bool {
-	if o != nil && !utils.IsNil(o.RequestHeaders) {
-		return true
-	}
-
-	return false
-}
-
-// SetRequestHeaders gets a reference to the given []RESTHeader and assigns it to the RequestHeaders field.
-func (o *RestTriggerTestResponse) SetRequestHeaders(v []RESTHeader) {
-	o.RequestHeaders = v
-}
-
-// GetRequestURL returns the RequestURL field value
-func (o *RestTriggerTestResponse) GetRequestURL() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RequestURL
-}
-
-// GetRequestURLOk returns a tuple with the RequestURL field value
-// and a boolean to check if the value has been set.
-func (o *RestTriggerTestResponse) GetRequestURLOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RequestURL, true
-}
-
-// SetRequestURL sets field value
-func (o *RestTriggerTestResponse) SetRequestURL(v string) {
-	o.RequestURL = v
-}
-
-// GetResponseBody returns the ResponseBody field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RestTriggerTestResponse) GetResponseBody() string {
-	if o == nil || utils.IsNil(o.ResponseBody.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ResponseBody.Get()
-}
-
-// GetResponseBodyOk returns a tuple with the ResponseBody field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RestTriggerTestResponse) GetResponseBodyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResponseBody.Get(), o.ResponseBody.IsSet()
-}
-
-// HasResponseBody returns a boolean if a field has been set.
-func (o *RestTriggerTestResponse) HasResponseBody() bool {
-	if o != nil && o.ResponseBody.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetResponseBody gets a reference to the given NullableString and assigns it to the ResponseBody field.
-func (o *RestTriggerTestResponse) SetResponseBody(v string) {
-	o.ResponseBody.Set(&v)
-}
-
-// SetResponseBodyNil sets the value for ResponseBody to be an explicit nil
-func (o *RestTriggerTestResponse) SetResponseBodyNil() {
-	o.ResponseBody.Set(nil)
-}
-
-// UnsetResponseBody ensures that no value is present for ResponseBody, not even an explicit nil
-func (o *RestTriggerTestResponse) UnsetResponseBody() {
-	o.ResponseBody.Unset()
 }
 
 // GetResponseCode returns the ResponseCode field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -309,28 +190,147 @@ func (o *RestTriggerTestResponse) SetResponseHeaders(v []RESTHeader) {
 	o.ResponseHeaders = v
 }
 
-// GetStatus returns the Status field value
-func (o *RestTriggerTestResponse) GetStatus() string {
+// GetResponseBody returns the ResponseBody field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RestTriggerTestResponse) GetResponseBody() string {
+	if o == nil || utils.IsNil(o.ResponseBody.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ResponseBody.Get()
+}
+
+// GetResponseBodyOk returns a tuple with the ResponseBody field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RestTriggerTestResponse) GetResponseBodyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ResponseBody.Get(), o.ResponseBody.IsSet()
+}
+
+// HasResponseBody returns a boolean if a field has been set.
+func (o *RestTriggerTestResponse) HasResponseBody() bool {
+	if o != nil && o.ResponseBody.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetResponseBody gets a reference to the given NullableString and assigns it to the ResponseBody field.
+func (o *RestTriggerTestResponse) SetResponseBody(v string) {
+	o.ResponseBody.Set(&v)
+}
+
+// SetResponseBodyNil sets the value for ResponseBody to be an explicit nil
+func (o *RestTriggerTestResponse) SetResponseBodyNil() {
+	o.ResponseBody.Set(nil)
+}
+
+// UnsetResponseBody ensures that no value is present for ResponseBody, not even an explicit nil
+func (o *RestTriggerTestResponse) UnsetResponseBody() {
+	o.ResponseBody.Unset()
+}
+
+// GetRequestURL returns the RequestURL field value
+func (o *RestTriggerTestResponse) GetRequestURL() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Status
+	return o.RequestURL
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetRequestURLOk returns a tuple with the RequestURL field value
 // and a boolean to check if the value has been set.
-func (o *RestTriggerTestResponse) GetStatusOk() (*string, bool) {
+func (o *RestTriggerTestResponse) GetRequestURLOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Status, true
+	return &o.RequestURL, true
 }
 
-// SetStatus sets field value
-func (o *RestTriggerTestResponse) SetStatus(v string) {
-	o.Status = v
+// SetRequestURL sets field value
+func (o *RestTriggerTestResponse) SetRequestURL(v string) {
+	o.RequestURL = v
+}
+
+// GetRequestHeaders returns the RequestHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RestTriggerTestResponse) GetRequestHeaders() []RESTHeader {
+	if o == nil {
+		var ret []RESTHeader
+		return ret
+	}
+	return o.RequestHeaders
+}
+
+// GetRequestHeadersOk returns a tuple with the RequestHeaders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RestTriggerTestResponse) GetRequestHeadersOk() ([]RESTHeader, bool) {
+	if o == nil || utils.IsNil(o.RequestHeaders) {
+		return nil, false
+	}
+	return o.RequestHeaders, true
+}
+
+// HasRequestHeaders returns a boolean if a field has been set.
+func (o *RestTriggerTestResponse) HasRequestHeaders() bool {
+	if o != nil && !utils.IsNil(o.RequestHeaders) {
+		return true
+	}
+
+	return false
+}
+
+// SetRequestHeaders gets a reference to the given []RESTHeader and assigns it to the RequestHeaders field.
+func (o *RestTriggerTestResponse) SetRequestHeaders(v []RESTHeader) {
+	o.RequestHeaders = v
+}
+
+// GetRequestBody returns the RequestBody field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RestTriggerTestResponse) GetRequestBody() string {
+	if o == nil || utils.IsNil(o.RequestBody.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RequestBody.Get()
+}
+
+// GetRequestBodyOk returns a tuple with the RequestBody field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RestTriggerTestResponse) GetRequestBodyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RequestBody.Get(), o.RequestBody.IsSet()
+}
+
+// HasRequestBody returns a boolean if a field has been set.
+func (o *RestTriggerTestResponse) HasRequestBody() bool {
+	if o != nil && o.RequestBody.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRequestBody gets a reference to the given NullableString and assigns it to the RequestBody field.
+func (o *RestTriggerTestResponse) SetRequestBody(v string) {
+	o.RequestBody.Set(&v)
+}
+
+// SetRequestBodyNil sets the value for RequestBody to be an explicit nil
+func (o *RestTriggerTestResponse) SetRequestBodyNil() {
+	o.RequestBody.Set(nil)
+}
+
+// UnsetRequestBody ensures that no value is present for RequestBody, not even an explicit nil
+func (o *RestTriggerTestResponse) UnsetRequestBody() {
+	o.RequestBody.Unset()
 }
 
 // GetType returns the Type field value
@@ -367,24 +367,24 @@ func (o RestTriggerTestResponse) MarshalJSON() ([]byte, error) {
 
 func (o RestTriggerTestResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["status"] = o.Status
 	toSerialize["message"] = o.Message
-	if o.RequestBody.IsSet() {
-		toSerialize["requestBody"] = o.RequestBody.Get()
-	}
-	if o.RequestHeaders != nil {
-		toSerialize["requestHeaders"] = o.RequestHeaders
-	}
-	toSerialize["requestURL"] = o.RequestURL
-	if o.ResponseBody.IsSet() {
-		toSerialize["responseBody"] = o.ResponseBody.Get()
-	}
 	if o.ResponseCode.IsSet() {
 		toSerialize["responseCode"] = o.ResponseCode.Get()
 	}
 	if o.ResponseHeaders != nil {
 		toSerialize["responseHeaders"] = o.ResponseHeaders
 	}
-	toSerialize["status"] = o.Status
+	if o.ResponseBody.IsSet() {
+		toSerialize["responseBody"] = o.ResponseBody.Get()
+	}
+	toSerialize["requestURL"] = o.RequestURL
+	if o.RequestHeaders != nil {
+		toSerialize["requestHeaders"] = o.RequestHeaders
+	}
+	if o.RequestBody.IsSet() {
+		toSerialize["requestBody"] = o.RequestBody.Get()
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -399,9 +399,9 @@ func (o *RestTriggerTestResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"status",
 		"message",
 		"requestURL",
-		"status",
 		"type",
 	}
 
@@ -432,14 +432,14 @@ func (o *RestTriggerTestResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "status")
 		delete(additionalProperties, "message")
-		delete(additionalProperties, "requestBody")
-		delete(additionalProperties, "requestHeaders")
-		delete(additionalProperties, "requestURL")
-		delete(additionalProperties, "responseBody")
 		delete(additionalProperties, "responseCode")
 		delete(additionalProperties, "responseHeaders")
-		delete(additionalProperties, "status")
+		delete(additionalProperties, "responseBody")
+		delete(additionalProperties, "requestURL")
+		delete(additionalProperties, "requestHeaders")
+		delete(additionalProperties, "requestBody")
 		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}

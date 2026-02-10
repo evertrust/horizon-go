@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Cron** | **string** | Cron defining when to run internal monitor checks | 
 **Type** | **string** | The type of the configuration entry | 
+**Cron** | **string** | Cron defining when to run internal monitor checks | 
 
 ## Methods
 
 ### NewInternalMonitorConfigurationResponse
 
-`func NewInternalMonitorConfigurationResponse(id string, cron string, type_ string, ) *InternalMonitorConfigurationResponse`
+`func NewInternalMonitorConfigurationResponse(id string, type_ string, cron string, ) *InternalMonitorConfigurationResponse`
 
 NewInternalMonitorConfigurationResponse instantiates a new InternalMonitorConfigurationResponse object
 This constructor will assign default values to properties that have it defined,
@@ -47,26 +47,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetCron
-
-`func (o *InternalMonitorConfigurationResponse) GetCron() string`
-
-GetCron returns the Cron field if non-nil, zero value otherwise.
-
-### GetCronOk
-
-`func (o *InternalMonitorConfigurationResponse) GetCronOk() (*string, bool)`
-
-GetCronOk returns a tuple with the Cron field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCron
-
-`func (o *InternalMonitorConfigurationResponse) SetCron(v string)`
-
-SetCron sets Cron field to given value.
-
-
 ### GetType
 
 `func (o *InternalMonitorConfigurationResponse) GetType() string`
@@ -85,6 +65,26 @@ and a boolean to check if the value has been set.
 `func (o *InternalMonitorConfigurationResponse) SetType(v string)`
 
 SetType sets Type field to given value.
+
+
+### GetCron
+
+`func (o *InternalMonitorConfigurationResponse) GetCron() string`
+
+GetCron returns the Cron field if non-nil, zero value otherwise.
+
+### GetCronOk
+
+`func (o *InternalMonitorConfigurationResponse) GetCronOk() (*string, bool)`
+
+GetCronOk returns a tuple with the Cron field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCron
+
+`func (o *InternalMonitorConfigurationResponse) SetCron(v string)`
+
+SetCron sets Cron field to given value.
 
 
 

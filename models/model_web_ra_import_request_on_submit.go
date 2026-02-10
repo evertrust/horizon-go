@@ -22,22 +22,22 @@ var _ utils.MappedNullable = &WebRAImportRequestOnSubmit{}
 
 // WebRAImportRequestOnSubmit struct for WebRAImportRequestOnSubmit
 type WebRAImportRequestOnSubmit struct {
+	// The profile name on which to import
+	Profile utils.NullableString `json:"profile,omitempty"`
 	// The id of the certificate to import
 	CertificateId utils.NullableString `json:"certificateId,omitempty"`
 	// The PEM encoded certificate to import
 	CertificatePem utils.NullableString `json:"certificatePem,omitempty"`
-	// The profile name on which to import
-	Profile utils.NullableString `json:"profile,omitempty"`
 	// Free-text field editable by the requester to provider more context on the request
 	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun utils.NullableBool `json:"dryRun,omitempty"`
 	// The module that will be used to process this request. For a WebRA request, this is always `webra`
 	Module string `json:"module"`
+	// What this request will do. For an import request, this is always `import`
+	Workflow string `json:"workflow"`
 	// The user-data that will be added on certificate import
 	Template *WebRAImportRequestTemplate `json:"template,omitempty"`
-	// What this request will do. For an import request, this is always `import`
-	Workflow             string `json:"workflow"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,10 +49,10 @@ type _WebRAImportRequestOnSubmit WebRAImportRequestOnSubmit
 // will change when the set of required properties is changed
 func NewWebRAImportRequestOnSubmit(module string, workflow string) *WebRAImportRequestOnSubmit {
 	this := WebRAImportRequestOnSubmit{}
-	var dryRun bool = false
-	this.DryRun = *utils.NewNullableBool(&dryRun)
 	this.Module = module
 	this.Workflow = workflow
+	var dryRun bool = false
+	this.DryRun = *utils.NewNullableBool(&dryRun)
 	return &this
 }
 
@@ -64,6 +64,49 @@ func NewWebRAImportRequestOnSubmitWithDefaults() *WebRAImportRequestOnSubmit {
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
 	return &this
+}
+
+// GetProfile returns the Profile field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAImportRequestOnSubmit) GetProfile() string {
+	if o == nil || utils.IsNil(o.Profile.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Profile.Get()
+}
+
+// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAImportRequestOnSubmit) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Profile.Get(), o.Profile.IsSet()
+}
+
+// HasProfile returns a boolean if a field has been set.
+func (o *WebRAImportRequestOnSubmit) HasProfile() bool {
+	if o != nil && o.Profile.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProfile gets a reference to the given NullableString and assigns it to the Profile field.
+func (o *WebRAImportRequestOnSubmit) SetProfile(v string) {
+	o.Profile.Set(&v)
+}
+
+// SetProfileNil sets the value for Profile to be an explicit nil
+func (o *WebRAImportRequestOnSubmit) SetProfileNil() {
+	o.Profile.Set(nil)
+}
+
+// UnsetProfile ensures that no value is present for Profile, not even an explicit nil
+func (o *WebRAImportRequestOnSubmit) UnsetProfile() {
+	o.Profile.Unset()
 }
 
 // GetCertificateId returns the CertificateId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -152,49 +195,6 @@ func (o *WebRAImportRequestOnSubmit) UnsetCertificatePem() {
 	o.CertificatePem.Unset()
 }
 
-// GetProfile returns the Profile field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAImportRequestOnSubmit) GetProfile() string {
-	if o == nil || utils.IsNil(o.Profile.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Profile.Get()
-}
-
-// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAImportRequestOnSubmit) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Profile.Get(), o.Profile.IsSet()
-}
-
-// HasProfile returns a boolean if a field has been set.
-func (o *WebRAImportRequestOnSubmit) HasProfile() bool {
-	if o != nil && o.Profile.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProfile gets a reference to the given NullableString and assigns it to the Profile field.
-func (o *WebRAImportRequestOnSubmit) SetProfile(v string) {
-	o.Profile.Set(&v)
-}
-
-// SetProfileNil sets the value for Profile to be an explicit nil
-func (o *WebRAImportRequestOnSubmit) SetProfileNil() {
-	o.Profile.Set(nil)
-}
-
-// UnsetProfile ensures that no value is present for Profile, not even an explicit nil
-func (o *WebRAImportRequestOnSubmit) UnsetProfile() {
-	o.Profile.Unset()
-}
-
 // GetRequesterComment returns the RequesterComment field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRAImportRequestOnSubmit) GetRequesterComment() string {
 	if o == nil || utils.IsNil(o.RequesterComment.Get()) {
@@ -236,6 +236,86 @@ func (o *WebRAImportRequestOnSubmit) SetRequesterCommentNil() {
 // UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
 func (o *WebRAImportRequestOnSubmit) UnsetRequesterComment() {
 	o.RequesterComment.Unset()
+}
+
+// GetModule returns the Module field value
+func (o *WebRAImportRequestOnSubmit) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *WebRAImportRequestOnSubmit) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *WebRAImportRequestOnSubmit) SetModule(v string) {
+	o.Module = v
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *WebRAImportRequestOnSubmit) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRAImportRequestOnSubmit) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRAImportRequestOnSubmit) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
+// GetTemplate returns the Template field value if set, zero value otherwise.
+func (o *WebRAImportRequestOnSubmit) GetTemplate() WebRAImportRequestTemplate {
+	if o == nil || utils.IsNil(o.Template) {
+		var ret WebRAImportRequestTemplate
+		return ret
+	}
+	return *o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRAImportRequestOnSubmit) GetTemplateOk() (*WebRAImportRequestTemplate, bool) {
+	if o == nil || utils.IsNil(o.Template) {
+		return nil, false
+	}
+	return o.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (o *WebRAImportRequestOnSubmit) HasTemplate() bool {
+	if o != nil && !utils.IsNil(o.Template) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplate gets a reference to the given WebRAImportRequestTemplate and assigns it to the Template field.
+func (o *WebRAImportRequestOnSubmit) SetTemplate(v WebRAImportRequestTemplate) {
+	o.Template = &v
 }
 
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -281,86 +361,6 @@ func (o *WebRAImportRequestOnSubmit) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
-// GetModule returns the Module field value
-func (o *WebRAImportRequestOnSubmit) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *WebRAImportRequestOnSubmit) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *WebRAImportRequestOnSubmit) SetModule(v string) {
-	o.Module = v
-}
-
-// GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *WebRAImportRequestOnSubmit) GetTemplate() WebRAImportRequestTemplate {
-	if o == nil || utils.IsNil(o.Template) {
-		var ret WebRAImportRequestTemplate
-		return ret
-	}
-	return *o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebRAImportRequestOnSubmit) GetTemplateOk() (*WebRAImportRequestTemplate, bool) {
-	if o == nil || utils.IsNil(o.Template) {
-		return nil, false
-	}
-	return o.Template, true
-}
-
-// HasTemplate returns a boolean if a field has been set.
-func (o *WebRAImportRequestOnSubmit) HasTemplate() bool {
-	if o != nil && !utils.IsNil(o.Template) {
-		return true
-	}
-
-	return false
-}
-
-// SetTemplate gets a reference to the given WebRAImportRequestTemplate and assigns it to the Template field.
-func (o *WebRAImportRequestOnSubmit) SetTemplate(v WebRAImportRequestTemplate) {
-	o.Template = &v
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRAImportRequestOnSubmit) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRAImportRequestOnSubmit) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRAImportRequestOnSubmit) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
 func (o WebRAImportRequestOnSubmit) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -371,26 +371,26 @@ func (o WebRAImportRequestOnSubmit) MarshalJSON() ([]byte, error) {
 
 func (o WebRAImportRequestOnSubmit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Profile.IsSet() {
+		toSerialize["profile"] = o.Profile.Get()
+	}
 	if o.CertificateId.IsSet() {
 		toSerialize["certificateId"] = o.CertificateId.Get()
 	}
 	if o.CertificatePem.IsSet() {
 		toSerialize["certificatePem"] = o.CertificatePem.Get()
 	}
-	if o.Profile.IsSet() {
-		toSerialize["profile"] = o.Profile.Get()
-	}
 	if o.RequesterComment.IsSet() {
 		toSerialize["requesterComment"] = o.RequesterComment.Get()
+	}
+	toSerialize["module"] = o.Module
+	toSerialize["workflow"] = o.Workflow
+	if !utils.IsNil(o.Template) {
+		toSerialize["template"] = o.Template
 	}
 	if o.DryRun.IsSet() {
 		toSerialize["dryRun"] = o.DryRun.Get()
 	}
-	toSerialize["module"] = o.Module
-	if !utils.IsNil(o.Template) {
-		toSerialize["template"] = o.Template
-	}
-	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -435,14 +435,14 @@ func (o *WebRAImportRequestOnSubmit) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "profile")
 		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "certificatePem")
-		delete(additionalProperties, "profile")
 		delete(additionalProperties, "requesterComment")
-		delete(additionalProperties, "dryRun")
 		delete(additionalProperties, "module")
-		delete(additionalProperties, "template")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "template")
+		delete(additionalProperties, "dryRun")
 		o.AdditionalProperties = additionalProperties
 	}
 

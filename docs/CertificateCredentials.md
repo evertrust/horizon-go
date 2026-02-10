@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Store** | [**SecretStoreRequest**](SecretStoreRequest.md) | These credentials certificate | 
 **Type** | **string** |  | 
+**Store** | [**SecretStoreRequest**](SecretStoreRequest.md) | These credentials certificate | 
+**Name** | **string** | These credentials identifying name | 
 **Description** | Pointer to **NullableString** | These credentials description | [optional] 
 **Expires** | Pointer to **NullableInt64** | The expiration date of these credentials | [optional] 
-**Name** | **string** | These credentials identifying name | 
-**Targets** | Pointer to **[]string** | On which configuration the credentials are usable | [optional] 
 **Triggers** | Pointer to [**CredentialsTriggers**](CredentialsTriggers.md) |  | [optional] 
+**Targets** | Pointer to **[]string** | On which configuration the credentials are usable | [optional] 
 
 ## Methods
 
 ### NewCertificateCredentials
 
-`func NewCertificateCredentials(store SecretStoreRequest, type_ string, name string, ) *CertificateCredentials`
+`func NewCertificateCredentials(type_ string, store SecretStoreRequest, name string, ) *CertificateCredentials`
 
 NewCertificateCredentials instantiates a new CertificateCredentials object
 This constructor will assign default values to properties that have it defined,
@@ -30,6 +30,26 @@ will change when the set of required properties is changed
 NewCertificateCredentialsWithDefaults instantiates a new CertificateCredentials object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *CertificateCredentials) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *CertificateCredentials) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *CertificateCredentials) SetType(v string)`
+
+SetType sets Type field to given value.
+
 
 ### GetStore
 
@@ -51,24 +71,24 @@ and a boolean to check if the value has been set.
 SetStore sets Store field to given value.
 
 
-### GetType
+### GetName
 
-`func (o *CertificateCredentials) GetType() string`
+`func (o *CertificateCredentials) GetName() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetNameOk
 
-`func (o *CertificateCredentials) GetTypeOk() (*string, bool)`
+`func (o *CertificateCredentials) GetNameOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetName
 
-`func (o *CertificateCredentials) SetType(v string)`
+`func (o *CertificateCredentials) SetName(v string)`
 
-SetType sets Type field to given value.
+SetName sets Name field to given value.
 
 
 ### GetDescription
@@ -141,25 +161,30 @@ HasExpires returns a boolean if a field has been set.
 `func (o *CertificateCredentials) UnsetExpires()`
 
 UnsetExpires ensures that no value is present for Expires, not even an explicit nil
-### GetName
+### GetTriggers
 
-`func (o *CertificateCredentials) GetName() string`
+`func (o *CertificateCredentials) GetTriggers() CredentialsTriggers`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetTriggers returns the Triggers field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetTriggersOk
 
-`func (o *CertificateCredentials) GetNameOk() (*string, bool)`
+`func (o *CertificateCredentials) GetTriggersOk() (*CredentialsTriggers, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetTriggers
 
-`func (o *CertificateCredentials) SetName(v string)`
+`func (o *CertificateCredentials) SetTriggers(v CredentialsTriggers)`
 
-SetName sets Name field to given value.
+SetTriggers sets Triggers field to given value.
 
+### HasTriggers
+
+`func (o *CertificateCredentials) HasTriggers() bool`
+
+HasTriggers returns a boolean if a field has been set.
 
 ### GetTargets
 
@@ -185,31 +210,6 @@ SetTargets sets Targets field to given value.
 `func (o *CertificateCredentials) HasTargets() bool`
 
 HasTargets returns a boolean if a field has been set.
-
-### GetTriggers
-
-`func (o *CertificateCredentials) GetTriggers() CredentialsTriggers`
-
-GetTriggers returns the Triggers field if non-nil, zero value otherwise.
-
-### GetTriggersOk
-
-`func (o *CertificateCredentials) GetTriggersOk() (*CredentialsTriggers, bool)`
-
-GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTriggers
-
-`func (o *CertificateCredentials) SetTriggers(v CredentialsTriggers)`
-
-SetTriggers sets Triggers field to given value.
-
-### HasTriggers
-
-`func (o *CertificateCredentials) HasTriggers() bool`
-
-HasTriggers returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

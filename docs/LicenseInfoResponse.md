@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BuildTime** | **int64** |  | 
-**Expiration** | Pointer to **NullableInt64** |  | [optional] 
 **IsValid** | **bool** |  | 
-**Libraries** | [**[]LibraryInfo**](LibraryInfo.md) |  | 
-**Modules** | [**[]ModuleLicenseInfo**](ModuleLicenseInfo.md) |  | 
+**Expiration** | Pointer to **NullableInt64** |  | [optional] 
 **Version** | **string** |  | 
+**BuildTime** | **int64** |  | 
+**Modules** | [**[]ModuleLicenseInfo**](ModuleLicenseInfo.md) |  | 
+**Libraries** | [**[]LibraryInfo**](LibraryInfo.md) |  | 
 
 ## Methods
 
 ### NewLicenseInfoResponse
 
-`func NewLicenseInfoResponse(buildTime int64, isValid bool, libraries []LibraryInfo, modules []ModuleLicenseInfo, version string, ) *LicenseInfoResponse`
+`func NewLicenseInfoResponse(isValid bool, version string, buildTime int64, modules []ModuleLicenseInfo, libraries []LibraryInfo, ) *LicenseInfoResponse`
 
 NewLicenseInfoResponse instantiates a new LicenseInfoResponse object
 This constructor will assign default values to properties that have it defined,
@@ -30,24 +30,24 @@ NewLicenseInfoResponseWithDefaults instantiates a new LicenseInfoResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetBuildTime
+### GetIsValid
 
-`func (o *LicenseInfoResponse) GetBuildTime() int64`
+`func (o *LicenseInfoResponse) GetIsValid() bool`
 
-GetBuildTime returns the BuildTime field if non-nil, zero value otherwise.
+GetIsValid returns the IsValid field if non-nil, zero value otherwise.
 
-### GetBuildTimeOk
+### GetIsValidOk
 
-`func (o *LicenseInfoResponse) GetBuildTimeOk() (*int64, bool)`
+`func (o *LicenseInfoResponse) GetIsValidOk() (*bool, bool)`
 
-GetBuildTimeOk returns a tuple with the BuildTime field if it's non-nil, zero value otherwise
+GetIsValidOk returns a tuple with the IsValid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBuildTime
+### SetIsValid
 
-`func (o *LicenseInfoResponse) SetBuildTime(v int64)`
+`func (o *LicenseInfoResponse) SetIsValid(v bool)`
 
-SetBuildTime sets BuildTime field to given value.
+SetIsValid sets IsValid field to given value.
 
 
 ### GetExpiration
@@ -85,44 +85,44 @@ HasExpiration returns a boolean if a field has been set.
 `func (o *LicenseInfoResponse) UnsetExpiration()`
 
 UnsetExpiration ensures that no value is present for Expiration, not even an explicit nil
-### GetIsValid
+### GetVersion
 
-`func (o *LicenseInfoResponse) GetIsValid() bool`
+`func (o *LicenseInfoResponse) GetVersion() string`
 
-GetIsValid returns the IsValid field if non-nil, zero value otherwise.
+GetVersion returns the Version field if non-nil, zero value otherwise.
 
-### GetIsValidOk
+### GetVersionOk
 
-`func (o *LicenseInfoResponse) GetIsValidOk() (*bool, bool)`
+`func (o *LicenseInfoResponse) GetVersionOk() (*string, bool)`
 
-GetIsValidOk returns a tuple with the IsValid field if it's non-nil, zero value otherwise
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIsValid
+### SetVersion
 
-`func (o *LicenseInfoResponse) SetIsValid(v bool)`
+`func (o *LicenseInfoResponse) SetVersion(v string)`
 
-SetIsValid sets IsValid field to given value.
+SetVersion sets Version field to given value.
 
 
-### GetLibraries
+### GetBuildTime
 
-`func (o *LicenseInfoResponse) GetLibraries() []LibraryInfo`
+`func (o *LicenseInfoResponse) GetBuildTime() int64`
 
-GetLibraries returns the Libraries field if non-nil, zero value otherwise.
+GetBuildTime returns the BuildTime field if non-nil, zero value otherwise.
 
-### GetLibrariesOk
+### GetBuildTimeOk
 
-`func (o *LicenseInfoResponse) GetLibrariesOk() (*[]LibraryInfo, bool)`
+`func (o *LicenseInfoResponse) GetBuildTimeOk() (*int64, bool)`
 
-GetLibrariesOk returns a tuple with the Libraries field if it's non-nil, zero value otherwise
+GetBuildTimeOk returns a tuple with the BuildTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLibraries
+### SetBuildTime
 
-`func (o *LicenseInfoResponse) SetLibraries(v []LibraryInfo)`
+`func (o *LicenseInfoResponse) SetBuildTime(v int64)`
 
-SetLibraries sets Libraries field to given value.
+SetBuildTime sets BuildTime field to given value.
 
 
 ### GetModules
@@ -145,24 +145,24 @@ and a boolean to check if the value has been set.
 SetModules sets Modules field to given value.
 
 
-### GetVersion
+### GetLibraries
 
-`func (o *LicenseInfoResponse) GetVersion() string`
+`func (o *LicenseInfoResponse) GetLibraries() []LibraryInfo`
 
-GetVersion returns the Version field if non-nil, zero value otherwise.
+GetLibraries returns the Libraries field if non-nil, zero value otherwise.
 
-### GetVersionOk
+### GetLibrariesOk
 
-`func (o *LicenseInfoResponse) GetVersionOk() (*string, bool)`
+`func (o *LicenseInfoResponse) GetLibrariesOk() (*[]LibraryInfo, bool)`
 
-GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+GetLibrariesOk returns a tuple with the Libraries field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVersion
+### SetLibraries
 
-`func (o *LicenseInfoResponse) SetVersion(v string)`
+`func (o *LicenseInfoResponse) SetLibraries(v []LibraryInfo)`
 
-SetVersion sets Version field to given value.
+SetLibraries sets Libraries field to given value.
 
 
 

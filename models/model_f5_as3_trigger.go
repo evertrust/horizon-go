@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &F5AS3Trigger{}
 
 // F5AS3Trigger struct for F5AS3Trigger
 type F5AS3Trigger struct {
-	Connector            string              `json:"connector"`
 	Name                 string              `json:"name"`
-	Retries              utils.NullableInt64 `json:"retries,omitempty"`
 	Type                 string              `json:"type"`
+	Retries              utils.NullableInt64 `json:"retries,omitempty"`
+	Connector            string              `json:"connector"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,11 +35,11 @@ type _F5AS3Trigger F5AS3Trigger
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewF5AS3Trigger(connector string, name string, type_ string) *F5AS3Trigger {
+func NewF5AS3Trigger(name string, type_ string, connector string) *F5AS3Trigger {
 	this := F5AS3Trigger{}
-	this.Connector = connector
 	this.Name = name
 	this.Type = type_
+	this.Connector = connector
 	return &this
 }
 
@@ -49,30 +49,6 @@ func NewF5AS3Trigger(connector string, name string, type_ string) *F5AS3Trigger 
 func NewF5AS3TriggerWithDefaults() *F5AS3Trigger {
 	this := F5AS3Trigger{}
 	return &this
-}
-
-// GetConnector returns the Connector field value
-func (o *F5AS3Trigger) GetConnector() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Connector
-}
-
-// GetConnectorOk returns a tuple with the Connector field value
-// and a boolean to check if the value has been set.
-func (o *F5AS3Trigger) GetConnectorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Connector, true
-}
-
-// SetConnector sets field value
-func (o *F5AS3Trigger) SetConnector(v string) {
-	o.Connector = v
 }
 
 // GetName returns the Name field value
@@ -97,6 +73,30 @@ func (o *F5AS3Trigger) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *F5AS3Trigger) SetName(v string) {
 	o.Name = v
+}
+
+// GetType returns the Type field value
+func (o *F5AS3Trigger) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *F5AS3Trigger) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *F5AS3Trigger) SetType(v string) {
+	o.Type = v
 }
 
 // GetRetries returns the Retries field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -142,28 +142,28 @@ func (o *F5AS3Trigger) UnsetRetries() {
 	o.Retries.Unset()
 }
 
-// GetType returns the Type field value
-func (o *F5AS3Trigger) GetType() string {
+// GetConnector returns the Connector field value
+func (o *F5AS3Trigger) GetConnector() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.Connector
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetConnectorOk returns a tuple with the Connector field value
 // and a boolean to check if the value has been set.
-func (o *F5AS3Trigger) GetTypeOk() (*string, bool) {
+func (o *F5AS3Trigger) GetConnectorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.Connector, true
 }
 
-// SetType sets field value
-func (o *F5AS3Trigger) SetType(v string) {
-	o.Type = v
+// SetConnector sets field value
+func (o *F5AS3Trigger) SetConnector(v string) {
+	o.Connector = v
 }
 
 func (o F5AS3Trigger) MarshalJSON() ([]byte, error) {
@@ -176,12 +176,12 @@ func (o F5AS3Trigger) MarshalJSON() ([]byte, error) {
 
 func (o F5AS3Trigger) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["connector"] = o.Connector
 	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
 	if o.Retries.IsSet() {
 		toSerialize["retries"] = o.Retries.Get()
 	}
-	toSerialize["type"] = o.Type
+	toSerialize["connector"] = o.Connector
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -195,9 +195,9 @@ func (o *F5AS3Trigger) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"connector",
 		"name",
 		"type",
+		"connector",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -227,10 +227,10 @@ func (o *F5AS3Trigger) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "connector")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "retries")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "retries")
+		delete(additionalProperties, "connector")
 		o.AdditionalProperties = additionalProperties
 	}
 

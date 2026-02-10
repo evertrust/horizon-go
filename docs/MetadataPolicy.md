@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EditableByApprover** | **bool** |  | 
-**EditableByRequester** | **bool** |  | 
 **Metadata** | **string** |  | 
+**EditableByRequester** | **bool** |  | 
+**EditableByApprover** | **bool** |  | 
 
 ## Methods
 
 ### NewMetadataPolicy
 
-`func NewMetadataPolicy(editableByApprover bool, editableByRequester bool, metadata string, ) *MetadataPolicy`
+`func NewMetadataPolicy(metadata string, editableByRequester bool, editableByApprover bool, ) *MetadataPolicy`
 
 NewMetadataPolicy instantiates a new MetadataPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -27,24 +27,24 @@ NewMetadataPolicyWithDefaults instantiates a new MetadataPolicy object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetEditableByApprover
+### GetMetadata
 
-`func (o *MetadataPolicy) GetEditableByApprover() bool`
+`func (o *MetadataPolicy) GetMetadata() string`
 
-GetEditableByApprover returns the EditableByApprover field if non-nil, zero value otherwise.
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
-### GetEditableByApproverOk
+### GetMetadataOk
 
-`func (o *MetadataPolicy) GetEditableByApproverOk() (*bool, bool)`
+`func (o *MetadataPolicy) GetMetadataOk() (*string, bool)`
 
-GetEditableByApproverOk returns a tuple with the EditableByApprover field if it's non-nil, zero value otherwise
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEditableByApprover
+### SetMetadata
 
-`func (o *MetadataPolicy) SetEditableByApprover(v bool)`
+`func (o *MetadataPolicy) SetMetadata(v string)`
 
-SetEditableByApprover sets EditableByApprover field to given value.
+SetMetadata sets Metadata field to given value.
 
 
 ### GetEditableByRequester
@@ -67,24 +67,24 @@ and a boolean to check if the value has been set.
 SetEditableByRequester sets EditableByRequester field to given value.
 
 
-### GetMetadata
+### GetEditableByApprover
 
-`func (o *MetadataPolicy) GetMetadata() string`
+`func (o *MetadataPolicy) GetEditableByApprover() bool`
 
-GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+GetEditableByApprover returns the EditableByApprover field if non-nil, zero value otherwise.
 
-### GetMetadataOk
+### GetEditableByApproverOk
 
-`func (o *MetadataPolicy) GetMetadataOk() (*string, bool)`
+`func (o *MetadataPolicy) GetEditableByApproverOk() (*bool, bool)`
 
-GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+GetEditableByApproverOk returns a tuple with the EditableByApprover field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMetadata
+### SetEditableByApprover
 
-`func (o *MetadataPolicy) SetMetadata(v string)`
+`func (o *MetadataPolicy) SetEditableByApprover(v bool)`
 
-SetMetadata sets Metadata field to given value.
+SetEditableByApprover sets EditableByApprover field to given value.
 
 
 

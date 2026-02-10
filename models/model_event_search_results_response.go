@@ -22,11 +22,11 @@ var _ utils.MappedNullable = &EventSearchResultsResponse{}
 
 // EventSearchResultsResponse struct for EventSearchResultsResponse
 type EventSearchResultsResponse struct {
-	Count                utils.NullableInt64 `json:"count,omitempty"`
-	HasMore              bool                `json:"hasMore"`
+	Results              []EventSearchResult `json:"results"`
 	PageIndex            int64               `json:"pageIndex"`
 	PageSize             int64               `json:"pageSize"`
-	Results              []EventSearchResult `json:"results"`
+	Count                utils.NullableInt64 `json:"count,omitempty"`
+	HasMore              bool                `json:"hasMore"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -36,12 +36,12 @@ type _EventSearchResultsResponse EventSearchResultsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEventSearchResultsResponse(hasMore bool, pageIndex int64, pageSize int64, results []EventSearchResult) *EventSearchResultsResponse {
+func NewEventSearchResultsResponse(results []EventSearchResult, pageIndex int64, pageSize int64, hasMore bool) *EventSearchResultsResponse {
 	this := EventSearchResultsResponse{}
-	this.HasMore = hasMore
+	this.Results = results
 	this.PageIndex = pageIndex
 	this.PageSize = pageSize
-	this.Results = results
+	this.HasMore = hasMore
 	return &this
 }
 
@@ -51,6 +51,78 @@ func NewEventSearchResultsResponse(hasMore bool, pageIndex int64, pageSize int64
 func NewEventSearchResultsResponseWithDefaults() *EventSearchResultsResponse {
 	this := EventSearchResultsResponse{}
 	return &this
+}
+
+// GetResults returns the Results field value
+func (o *EventSearchResultsResponse) GetResults() []EventSearchResult {
+	if o == nil {
+		var ret []EventSearchResult
+		return ret
+	}
+
+	return o.Results
+}
+
+// GetResultsOk returns a tuple with the Results field value
+// and a boolean to check if the value has been set.
+func (o *EventSearchResultsResponse) GetResultsOk() ([]EventSearchResult, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Results, true
+}
+
+// SetResults sets field value
+func (o *EventSearchResultsResponse) SetResults(v []EventSearchResult) {
+	o.Results = v
+}
+
+// GetPageIndex returns the PageIndex field value
+func (o *EventSearchResultsResponse) GetPageIndex() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.PageIndex
+}
+
+// GetPageIndexOk returns a tuple with the PageIndex field value
+// and a boolean to check if the value has been set.
+func (o *EventSearchResultsResponse) GetPageIndexOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PageIndex, true
+}
+
+// SetPageIndex sets field value
+func (o *EventSearchResultsResponse) SetPageIndex(v int64) {
+	o.PageIndex = v
+}
+
+// GetPageSize returns the PageSize field value
+func (o *EventSearchResultsResponse) GetPageSize() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.PageSize
+}
+
+// GetPageSizeOk returns a tuple with the PageSize field value
+// and a boolean to check if the value has been set.
+func (o *EventSearchResultsResponse) GetPageSizeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PageSize, true
+}
+
+// SetPageSize sets field value
+func (o *EventSearchResultsResponse) SetPageSize(v int64) {
+	o.PageSize = v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -120,78 +192,6 @@ func (o *EventSearchResultsResponse) SetHasMore(v bool) {
 	o.HasMore = v
 }
 
-// GetPageIndex returns the PageIndex field value
-func (o *EventSearchResultsResponse) GetPageIndex() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.PageIndex
-}
-
-// GetPageIndexOk returns a tuple with the PageIndex field value
-// and a boolean to check if the value has been set.
-func (o *EventSearchResultsResponse) GetPageIndexOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.PageIndex, true
-}
-
-// SetPageIndex sets field value
-func (o *EventSearchResultsResponse) SetPageIndex(v int64) {
-	o.PageIndex = v
-}
-
-// GetPageSize returns the PageSize field value
-func (o *EventSearchResultsResponse) GetPageSize() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.PageSize
-}
-
-// GetPageSizeOk returns a tuple with the PageSize field value
-// and a boolean to check if the value has been set.
-func (o *EventSearchResultsResponse) GetPageSizeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.PageSize, true
-}
-
-// SetPageSize sets field value
-func (o *EventSearchResultsResponse) SetPageSize(v int64) {
-	o.PageSize = v
-}
-
-// GetResults returns the Results field value
-func (o *EventSearchResultsResponse) GetResults() []EventSearchResult {
-	if o == nil {
-		var ret []EventSearchResult
-		return ret
-	}
-
-	return o.Results
-}
-
-// GetResultsOk returns a tuple with the Results field value
-// and a boolean to check if the value has been set.
-func (o *EventSearchResultsResponse) GetResultsOk() ([]EventSearchResult, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Results, true
-}
-
-// SetResults sets field value
-func (o *EventSearchResultsResponse) SetResults(v []EventSearchResult) {
-	o.Results = v
-}
-
 func (o EventSearchResultsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -202,13 +202,13 @@ func (o EventSearchResultsResponse) MarshalJSON() ([]byte, error) {
 
 func (o EventSearchResultsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["results"] = o.Results
+	toSerialize["pageIndex"] = o.PageIndex
+	toSerialize["pageSize"] = o.PageSize
 	if o.Count.IsSet() {
 		toSerialize["count"] = o.Count.Get()
 	}
 	toSerialize["hasMore"] = o.HasMore
-	toSerialize["pageIndex"] = o.PageIndex
-	toSerialize["pageSize"] = o.PageSize
-	toSerialize["results"] = o.Results
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -222,10 +222,10 @@ func (o *EventSearchResultsResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"hasMore",
+		"results",
 		"pageIndex",
 		"pageSize",
-		"results",
+		"hasMore",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -255,11 +255,11 @@ func (o *EventSearchResultsResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "count")
-		delete(additionalProperties, "hasMore")
+		delete(additionalProperties, "results")
 		delete(additionalProperties, "pageIndex")
 		delete(additionalProperties, "pageSize")
-		delete(additionalProperties, "results")
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "hasMore")
 		o.AdditionalProperties = additionalProperties
 	}
 

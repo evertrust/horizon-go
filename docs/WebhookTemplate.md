@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Body** | Pointer to **NullableString** | The body of the notification. Can contain dynamic attributes. | [optional] 
-**Title** | **string** | The title of the webhook notification (special formatting) | 
 **To** | [**WebhookRecipient**](WebhookRecipient.md) | The target of the webhook | 
+**Title** | **string** | The title of the webhook notification (special formatting) | 
+**Body** | Pointer to **NullableString** | The body of the notification. Can contain dynamic attributes. | [optional] 
 
 ## Methods
 
 ### NewWebhookTemplate
 
-`func NewWebhookTemplate(title string, to WebhookRecipient, ) *WebhookTemplate`
+`func NewWebhookTemplate(to WebhookRecipient, title string, ) *WebhookTemplate`
 
 NewWebhookTemplate instantiates a new WebhookTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +26,46 @@ will change when the set of required properties is changed
 NewWebhookTemplateWithDefaults instantiates a new WebhookTemplate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetTo
+
+`func (o *WebhookTemplate) GetTo() WebhookRecipient`
+
+GetTo returns the To field if non-nil, zero value otherwise.
+
+### GetToOk
+
+`func (o *WebhookTemplate) GetToOk() (*WebhookRecipient, bool)`
+
+GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTo
+
+`func (o *WebhookTemplate) SetTo(v WebhookRecipient)`
+
+SetTo sets To field to given value.
+
+
+### GetTitle
+
+`func (o *WebhookTemplate) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *WebhookTemplate) GetTitleOk() (*string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *WebhookTemplate) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
+
 
 ### GetBody
 
@@ -62,46 +102,6 @@ HasBody returns a boolean if a field has been set.
 `func (o *WebhookTemplate) UnsetBody()`
 
 UnsetBody ensures that no value is present for Body, not even an explicit nil
-### GetTitle
-
-`func (o *WebhookTemplate) GetTitle() string`
-
-GetTitle returns the Title field if non-nil, zero value otherwise.
-
-### GetTitleOk
-
-`func (o *WebhookTemplate) GetTitleOk() (*string, bool)`
-
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTitle
-
-`func (o *WebhookTemplate) SetTitle(v string)`
-
-SetTitle sets Title field to given value.
-
-
-### GetTo
-
-`func (o *WebhookTemplate) GetTo() WebhookRecipient`
-
-GetTo returns the To field if non-nil, zero value otherwise.
-
-### GetToOk
-
-`func (o *WebhookTemplate) GetToOk() (*WebhookRecipient, bool)`
-
-GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTo
-
-`func (o *WebhookTemplate) SetTo(v WebhookRecipient)`
-
-SetTo sets To field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

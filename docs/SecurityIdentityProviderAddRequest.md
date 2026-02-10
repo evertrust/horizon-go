@@ -4,29 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The description of the identity provider | [optional] 
+**Name** | **string** | The internal name of the identity provider | 
 **DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The display name of the identity provider | [optional] 
-**EmailTemplate** | Pointer to [**NullableEmailTemplate**](EmailTemplate.md) | The e-mail template to use for password recovery | [optional] 
+**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The description of the identity provider | [optional] 
+**Type** | **string** | The type of identity provider | 
 **Enabled** | **bool** | Whether the identity provider can be used to identify against Horizon | 
 **EnabledOnUI** | **bool** | Whether the identity provider can be selected on login to the Horizon UI | 
-**Name** | **string** | The internal name of the identity provider | 
 **PasswordPolicy** | Pointer to **NullableString** | The password policy to enforce for user passwords on the local identity provider | [optional] 
-**Type** | **string** | The type of identity provider | 
-**ClientCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the client ID  and secret to use to authenticate Horizon against the identity provider | 
-**EmailClaim** | Pointer to **string** | The OpenID information that will be used as the user&#39;s email in Horizon | [optional] [default to "{{email}}"]
-**IdentifierClaim** | Pointer to **string** | The OpenID information that will be used as the user&#39;s identifier in Horizon | [optional] [default to "{{email}}"]
-**NameClaim** | Pointer to **string** | The OpenID information that will be used as the user&#39;s name in Horizon | [optional] [default to "{{name}}"]
-**ProviderMetadataUrl** | **string** | The URL of the identity provider OpenID callback | 
+**EmailTemplate** | Pointer to [**NullableEmailTemplate**](EmailTemplate.md) | The e-mail template to use for password recovery | [optional] 
 **Proxy** | Pointer to **NullableString** | The name of the proxy to use to reach the identity provider | [optional] 
-**Scope** | **string** | The scope where to retrieve the user data from | 
 **Timeout** | Pointer to **NullableString** | The timeout value to use when connecting to the identity provider (must be a valid finite duration) | [optional] 
+**ProviderMetadataUrl** | **string** | The URL of the identity provider OpenID callback | 
+**ClientCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the client ID  and secret to use to authenticate Horizon against the identity provider | 
+**Scope** | **string** | The scope where to retrieve the user data from | 
 **TrustSystemCAs** | **bool** | Trust AC coming from the system trust store or only trust AC imported in Horizon | [default to true]
+**IdentifierClaim** | Pointer to **string** | The OpenID information that will be used as the user&#39;s identifier in Horizon | [optional] [default to "{{email}}"]
+**EmailClaim** | Pointer to **string** | The OpenID information that will be used as the user&#39;s email in Horizon | [optional] [default to "{{email}}"]
+**NameClaim** | Pointer to **string** | The OpenID information that will be used as the user&#39;s name in Horizon | [optional] [default to "{{name}}"]
 
 ## Methods
 
 ### NewSecurityIdentityProviderAddRequest
 
-`func NewSecurityIdentityProviderAddRequest(enabled bool, enabledOnUI bool, name string, type_ string, clientCredentials string, providerMetadataUrl string, scope string, trustSystemCAs bool, ) *SecurityIdentityProviderAddRequest`
+`func NewSecurityIdentityProviderAddRequest(name string, type_ string, enabled bool, enabledOnUI bool, providerMetadataUrl string, clientCredentials string, scope string, trustSystemCAs bool, ) *SecurityIdentityProviderAddRequest`
 
 NewSecurityIdentityProviderAddRequest instantiates a new SecurityIdentityProviderAddRequest object
 This constructor will assign default values to properties that have it defined,
@@ -41,41 +41,26 @@ NewSecurityIdentityProviderAddRequestWithDefaults instantiates a new SecurityIde
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDescription
+### GetName
 
-`func (o *SecurityIdentityProviderAddRequest) GetDescription() []LocalizedString`
+`func (o *SecurityIdentityProviderAddRequest) GetName() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetNameOk
 
-`func (o *SecurityIdentityProviderAddRequest) GetDescriptionOk() (*[]LocalizedString, bool)`
+`func (o *SecurityIdentityProviderAddRequest) GetNameOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetName
 
-`func (o *SecurityIdentityProviderAddRequest) SetDescription(v []LocalizedString)`
+`func (o *SecurityIdentityProviderAddRequest) SetName(v string)`
 
-SetDescription sets Description field to given value.
+SetName sets Name field to given value.
 
-### HasDescription
 
-`func (o *SecurityIdentityProviderAddRequest) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescriptionNil
-
-`func (o *SecurityIdentityProviderAddRequest) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *SecurityIdentityProviderAddRequest) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetDisplayName
 
 `func (o *SecurityIdentityProviderAddRequest) GetDisplayName() []LocalizedString`
@@ -111,41 +96,61 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *SecurityIdentityProviderAddRequest) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetEmailTemplate
+### GetDescription
 
-`func (o *SecurityIdentityProviderAddRequest) GetEmailTemplate() EmailTemplate`
+`func (o *SecurityIdentityProviderAddRequest) GetDescription() []LocalizedString`
 
-GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetEmailTemplateOk
+### GetDescriptionOk
 
-`func (o *SecurityIdentityProviderAddRequest) GetEmailTemplateOk() (*EmailTemplate, bool)`
+`func (o *SecurityIdentityProviderAddRequest) GetDescriptionOk() (*[]LocalizedString, bool)`
 
-GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEmailTemplate
+### SetDescription
 
-`func (o *SecurityIdentityProviderAddRequest) SetEmailTemplate(v EmailTemplate)`
+`func (o *SecurityIdentityProviderAddRequest) SetDescription(v []LocalizedString)`
 
-SetEmailTemplate sets EmailTemplate field to given value.
+SetDescription sets Description field to given value.
 
-### HasEmailTemplate
+### HasDescription
 
-`func (o *SecurityIdentityProviderAddRequest) HasEmailTemplate() bool`
+`func (o *SecurityIdentityProviderAddRequest) HasDescription() bool`
 
-HasEmailTemplate returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
-### SetEmailTemplateNil
+### SetDescriptionNil
 
-`func (o *SecurityIdentityProviderAddRequest) SetEmailTemplateNil(b bool)`
+`func (o *SecurityIdentityProviderAddRequest) SetDescriptionNil(b bool)`
 
- SetEmailTemplateNil sets the value for EmailTemplate to be an explicit nil
+ SetDescriptionNil sets the value for Description to be an explicit nil
 
-### UnsetEmailTemplate
-`func (o *SecurityIdentityProviderAddRequest) UnsetEmailTemplate()`
+### UnsetDescription
+`func (o *SecurityIdentityProviderAddRequest) UnsetDescription()`
 
-UnsetEmailTemplate ensures that no value is present for EmailTemplate, not even an explicit nil
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetType
+
+`func (o *SecurityIdentityProviderAddRequest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *SecurityIdentityProviderAddRequest) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *SecurityIdentityProviderAddRequest) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 ### GetEnabled
 
 `func (o *SecurityIdentityProviderAddRequest) GetEnabled() bool`
@@ -186,26 +191,6 @@ and a boolean to check if the value has been set.
 SetEnabledOnUI sets EnabledOnUI field to given value.
 
 
-### GetName
-
-`func (o *SecurityIdentityProviderAddRequest) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *SecurityIdentityProviderAddRequest) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *SecurityIdentityProviderAddRequest) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetPasswordPolicy
 
 `func (o *SecurityIdentityProviderAddRequest) GetPasswordPolicy() string`
@@ -241,141 +226,41 @@ HasPasswordPolicy returns a boolean if a field has been set.
 `func (o *SecurityIdentityProviderAddRequest) UnsetPasswordPolicy()`
 
 UnsetPasswordPolicy ensures that no value is present for PasswordPolicy, not even an explicit nil
-### GetType
+### GetEmailTemplate
 
-`func (o *SecurityIdentityProviderAddRequest) GetType() string`
+`func (o *SecurityIdentityProviderAddRequest) GetEmailTemplate() EmailTemplate`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetEmailTemplateOk
 
-`func (o *SecurityIdentityProviderAddRequest) GetTypeOk() (*string, bool)`
+`func (o *SecurityIdentityProviderAddRequest) GetEmailTemplateOk() (*EmailTemplate, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetEmailTemplate
 
-`func (o *SecurityIdentityProviderAddRequest) SetType(v string)`
+`func (o *SecurityIdentityProviderAddRequest) SetEmailTemplate(v EmailTemplate)`
 
-SetType sets Type field to given value.
+SetEmailTemplate sets EmailTemplate field to given value.
 
+### HasEmailTemplate
 
-### GetClientCredentials
+`func (o *SecurityIdentityProviderAddRequest) HasEmailTemplate() bool`
 
-`func (o *SecurityIdentityProviderAddRequest) GetClientCredentials() string`
+HasEmailTemplate returns a boolean if a field has been set.
 
-GetClientCredentials returns the ClientCredentials field if non-nil, zero value otherwise.
+### SetEmailTemplateNil
 
-### GetClientCredentialsOk
+`func (o *SecurityIdentityProviderAddRequest) SetEmailTemplateNil(b bool)`
 
-`func (o *SecurityIdentityProviderAddRequest) GetClientCredentialsOk() (*string, bool)`
+ SetEmailTemplateNil sets the value for EmailTemplate to be an explicit nil
 
-GetClientCredentialsOk returns a tuple with the ClientCredentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetEmailTemplate
+`func (o *SecurityIdentityProviderAddRequest) UnsetEmailTemplate()`
 
-### SetClientCredentials
-
-`func (o *SecurityIdentityProviderAddRequest) SetClientCredentials(v string)`
-
-SetClientCredentials sets ClientCredentials field to given value.
-
-
-### GetEmailClaim
-
-`func (o *SecurityIdentityProviderAddRequest) GetEmailClaim() string`
-
-GetEmailClaim returns the EmailClaim field if non-nil, zero value otherwise.
-
-### GetEmailClaimOk
-
-`func (o *SecurityIdentityProviderAddRequest) GetEmailClaimOk() (*string, bool)`
-
-GetEmailClaimOk returns a tuple with the EmailClaim field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmailClaim
-
-`func (o *SecurityIdentityProviderAddRequest) SetEmailClaim(v string)`
-
-SetEmailClaim sets EmailClaim field to given value.
-
-### HasEmailClaim
-
-`func (o *SecurityIdentityProviderAddRequest) HasEmailClaim() bool`
-
-HasEmailClaim returns a boolean if a field has been set.
-
-### GetIdentifierClaim
-
-`func (o *SecurityIdentityProviderAddRequest) GetIdentifierClaim() string`
-
-GetIdentifierClaim returns the IdentifierClaim field if non-nil, zero value otherwise.
-
-### GetIdentifierClaimOk
-
-`func (o *SecurityIdentityProviderAddRequest) GetIdentifierClaimOk() (*string, bool)`
-
-GetIdentifierClaimOk returns a tuple with the IdentifierClaim field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIdentifierClaim
-
-`func (o *SecurityIdentityProviderAddRequest) SetIdentifierClaim(v string)`
-
-SetIdentifierClaim sets IdentifierClaim field to given value.
-
-### HasIdentifierClaim
-
-`func (o *SecurityIdentityProviderAddRequest) HasIdentifierClaim() bool`
-
-HasIdentifierClaim returns a boolean if a field has been set.
-
-### GetNameClaim
-
-`func (o *SecurityIdentityProviderAddRequest) GetNameClaim() string`
-
-GetNameClaim returns the NameClaim field if non-nil, zero value otherwise.
-
-### GetNameClaimOk
-
-`func (o *SecurityIdentityProviderAddRequest) GetNameClaimOk() (*string, bool)`
-
-GetNameClaimOk returns a tuple with the NameClaim field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNameClaim
-
-`func (o *SecurityIdentityProviderAddRequest) SetNameClaim(v string)`
-
-SetNameClaim sets NameClaim field to given value.
-
-### HasNameClaim
-
-`func (o *SecurityIdentityProviderAddRequest) HasNameClaim() bool`
-
-HasNameClaim returns a boolean if a field has been set.
-
-### GetProviderMetadataUrl
-
-`func (o *SecurityIdentityProviderAddRequest) GetProviderMetadataUrl() string`
-
-GetProviderMetadataUrl returns the ProviderMetadataUrl field if non-nil, zero value otherwise.
-
-### GetProviderMetadataUrlOk
-
-`func (o *SecurityIdentityProviderAddRequest) GetProviderMetadataUrlOk() (*string, bool)`
-
-GetProviderMetadataUrlOk returns a tuple with the ProviderMetadataUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProviderMetadataUrl
-
-`func (o *SecurityIdentityProviderAddRequest) SetProviderMetadataUrl(v string)`
-
-SetProviderMetadataUrl sets ProviderMetadataUrl field to given value.
-
-
+UnsetEmailTemplate ensures that no value is present for EmailTemplate, not even an explicit nil
 ### GetProxy
 
 `func (o *SecurityIdentityProviderAddRequest) GetProxy() string`
@@ -411,26 +296,6 @@ HasProxy returns a boolean if a field has been set.
 `func (o *SecurityIdentityProviderAddRequest) UnsetProxy()`
 
 UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetScope
-
-`func (o *SecurityIdentityProviderAddRequest) GetScope() string`
-
-GetScope returns the Scope field if non-nil, zero value otherwise.
-
-### GetScopeOk
-
-`func (o *SecurityIdentityProviderAddRequest) GetScopeOk() (*string, bool)`
-
-GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetScope
-
-`func (o *SecurityIdentityProviderAddRequest) SetScope(v string)`
-
-SetScope sets Scope field to given value.
-
-
 ### GetTimeout
 
 `func (o *SecurityIdentityProviderAddRequest) GetTimeout() string`
@@ -466,6 +331,66 @@ HasTimeout returns a boolean if a field has been set.
 `func (o *SecurityIdentityProviderAddRequest) UnsetTimeout()`
 
 UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetProviderMetadataUrl
+
+`func (o *SecurityIdentityProviderAddRequest) GetProviderMetadataUrl() string`
+
+GetProviderMetadataUrl returns the ProviderMetadataUrl field if non-nil, zero value otherwise.
+
+### GetProviderMetadataUrlOk
+
+`func (o *SecurityIdentityProviderAddRequest) GetProviderMetadataUrlOk() (*string, bool)`
+
+GetProviderMetadataUrlOk returns a tuple with the ProviderMetadataUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProviderMetadataUrl
+
+`func (o *SecurityIdentityProviderAddRequest) SetProviderMetadataUrl(v string)`
+
+SetProviderMetadataUrl sets ProviderMetadataUrl field to given value.
+
+
+### GetClientCredentials
+
+`func (o *SecurityIdentityProviderAddRequest) GetClientCredentials() string`
+
+GetClientCredentials returns the ClientCredentials field if non-nil, zero value otherwise.
+
+### GetClientCredentialsOk
+
+`func (o *SecurityIdentityProviderAddRequest) GetClientCredentialsOk() (*string, bool)`
+
+GetClientCredentialsOk returns a tuple with the ClientCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientCredentials
+
+`func (o *SecurityIdentityProviderAddRequest) SetClientCredentials(v string)`
+
+SetClientCredentials sets ClientCredentials field to given value.
+
+
+### GetScope
+
+`func (o *SecurityIdentityProviderAddRequest) GetScope() string`
+
+GetScope returns the Scope field if non-nil, zero value otherwise.
+
+### GetScopeOk
+
+`func (o *SecurityIdentityProviderAddRequest) GetScopeOk() (*string, bool)`
+
+GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScope
+
+`func (o *SecurityIdentityProviderAddRequest) SetScope(v string)`
+
+SetScope sets Scope field to given value.
+
+
 ### GetTrustSystemCAs
 
 `func (o *SecurityIdentityProviderAddRequest) GetTrustSystemCAs() bool`
@@ -485,6 +410,81 @@ and a boolean to check if the value has been set.
 
 SetTrustSystemCAs sets TrustSystemCAs field to given value.
 
+
+### GetIdentifierClaim
+
+`func (o *SecurityIdentityProviderAddRequest) GetIdentifierClaim() string`
+
+GetIdentifierClaim returns the IdentifierClaim field if non-nil, zero value otherwise.
+
+### GetIdentifierClaimOk
+
+`func (o *SecurityIdentityProviderAddRequest) GetIdentifierClaimOk() (*string, bool)`
+
+GetIdentifierClaimOk returns a tuple with the IdentifierClaim field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdentifierClaim
+
+`func (o *SecurityIdentityProviderAddRequest) SetIdentifierClaim(v string)`
+
+SetIdentifierClaim sets IdentifierClaim field to given value.
+
+### HasIdentifierClaim
+
+`func (o *SecurityIdentityProviderAddRequest) HasIdentifierClaim() bool`
+
+HasIdentifierClaim returns a boolean if a field has been set.
+
+### GetEmailClaim
+
+`func (o *SecurityIdentityProviderAddRequest) GetEmailClaim() string`
+
+GetEmailClaim returns the EmailClaim field if non-nil, zero value otherwise.
+
+### GetEmailClaimOk
+
+`func (o *SecurityIdentityProviderAddRequest) GetEmailClaimOk() (*string, bool)`
+
+GetEmailClaimOk returns a tuple with the EmailClaim field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmailClaim
+
+`func (o *SecurityIdentityProviderAddRequest) SetEmailClaim(v string)`
+
+SetEmailClaim sets EmailClaim field to given value.
+
+### HasEmailClaim
+
+`func (o *SecurityIdentityProviderAddRequest) HasEmailClaim() bool`
+
+HasEmailClaim returns a boolean if a field has been set.
+
+### GetNameClaim
+
+`func (o *SecurityIdentityProviderAddRequest) GetNameClaim() string`
+
+GetNameClaim returns the NameClaim field if non-nil, zero value otherwise.
+
+### GetNameClaimOk
+
+`func (o *SecurityIdentityProviderAddRequest) GetNameClaimOk() (*string, bool)`
+
+GetNameClaimOk returns a tuple with the NameClaim field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNameClaim
+
+`func (o *SecurityIdentityProviderAddRequest) SetNameClaim(v string)`
+
+SetNameClaim sets NameClaim field to given value.
+
+### HasNameClaim
+
+`func (o *SecurityIdentityProviderAddRequest) HasNameClaim() bool`
+
+HasNameClaim returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -35,7 +35,7 @@ import (
 )
 
 func main() {
-	securityIdentityProviderAddRequest := openapiclient.security_identity_provider_add_request{LocalIdentityProvider: openapiclient.NewLocalIdentityProvider(true, true, "local", "Local")} // SecurityIdentityProviderAddRequest | The identity provider to register
+	securityIdentityProviderAddRequest := openapiclient.security_identity_provider_add_request{LocalIdentityProvider: openapiclient.NewLocalIdentityProvider("local", "Local", true, true)} // SecurityIdentityProviderAddRequest | The identity provider to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -432,7 +432,7 @@ import (
 )
 
 func main() {
-	securityIdentityProviderUpdateRequest := openapiclient.security_identity_provider_update_request{LocalIdentityProvider: openapiclient.NewLocalIdentityProvider(true, true, "local", "Local")} // SecurityIdentityProviderUpdateRequest | Identity provider to update
+	securityIdentityProviderUpdateRequest := openapiclient.security_identity_provider_update_request{LocalIdentityProvider: openapiclient.NewLocalIdentityProvider("local", "Local", true, true)} // SecurityIdentityProviderUpdateRequest | Identity provider to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

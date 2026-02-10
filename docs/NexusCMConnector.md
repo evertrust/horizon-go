@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**Name** | **string** |  | 
+**Type** | **string** |  | 
 **EndPoint** | **string** |  | 
 **EndPointIssuingCA** | **string** |  | 
-**Name** | **string** |  | 
 **Procedure** | **string** |  | 
+**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Type** | **string** |  | 
 
 ## Methods
 
 ### NewNexusCMConnector
 
-`func NewNexusCMConnector(authenticationCredentials string, endPoint string, endPointIssuingCA string, name string, procedure string, type_ string, ) *NexusCMConnector`
+`func NewNexusCMConnector(name string, type_ string, endPoint string, endPointIssuingCA string, procedure string, authenticationCredentials string, ) *NexusCMConnector`
 
 NewNexusCMConnector instantiates a new NexusCMConnector object
 This constructor will assign default values to properties that have it defined,
@@ -33,24 +33,44 @@ NewNexusCMConnectorWithDefaults instantiates a new NexusCMConnector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAuthenticationCredentials
+### GetName
 
-`func (o *NexusCMConnector) GetAuthenticationCredentials() string`
+`func (o *NexusCMConnector) GetName() string`
 
-GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAuthenticationCredentialsOk
+### GetNameOk
 
-`func (o *NexusCMConnector) GetAuthenticationCredentialsOk() (*string, bool)`
+`func (o *NexusCMConnector) GetNameOk() (*string, bool)`
 
-GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationCredentials
+### SetName
 
-`func (o *NexusCMConnector) SetAuthenticationCredentials(v string)`
+`func (o *NexusCMConnector) SetName(v string)`
 
-SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
+SetName sets Name field to given value.
+
+
+### GetType
+
+`func (o *NexusCMConnector) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *NexusCMConnector) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *NexusCMConnector) SetType(v string)`
+
+SetType sets Type field to given value.
 
 
 ### GetEndPoint
@@ -93,26 +113,6 @@ and a boolean to check if the value has been set.
 SetEndPointIssuingCA sets EndPointIssuingCA field to given value.
 
 
-### GetName
-
-`func (o *NexusCMConnector) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *NexusCMConnector) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *NexusCMConnector) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetProcedure
 
 `func (o *NexusCMConnector) GetProcedure() string`
@@ -133,6 +133,61 @@ and a boolean to check if the value has been set.
 SetProcedure sets Procedure field to given value.
 
 
+### GetAuthenticationCredentials
+
+`func (o *NexusCMConnector) GetAuthenticationCredentials() string`
+
+GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
+
+### GetAuthenticationCredentialsOk
+
+`func (o *NexusCMConnector) GetAuthenticationCredentialsOk() (*string, bool)`
+
+GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationCredentials
+
+`func (o *NexusCMConnector) SetAuthenticationCredentials(v string)`
+
+SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
+
+
+### GetTimeout
+
+`func (o *NexusCMConnector) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *NexusCMConnector) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *NexusCMConnector) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *NexusCMConnector) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *NexusCMConnector) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *NexusCMConnector) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *NexusCMConnector) GetProxy() string`
@@ -203,61 +258,6 @@ HasQueue returns a boolean if a field has been set.
 `func (o *NexusCMConnector) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
-### GetTimeout
-
-`func (o *NexusCMConnector) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *NexusCMConnector) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *NexusCMConnector) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *NexusCMConnector) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *NexusCMConnector) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *NexusCMConnector) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
-
-`func (o *NexusCMConnector) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *NexusCMConnector) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *NexusCMConnector) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

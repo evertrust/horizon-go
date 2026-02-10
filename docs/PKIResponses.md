@@ -5,95 +5,95 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
-**Ca** | **string** | Stream&#39;s technical name of the CA on which to enroll | 
-**EndPoint** | **string** | Swiss base endpoint | 
-**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
 **Name** | **string** |  | 
+**Type** | **string** |  | 
+**EndPoint** | **string** | Swiss base endpoint | 
+**Template** | **string** | Stream&#39;s certificate template to use for enrollment | 
+**Ca** | **string** | Stream&#39;s technical name of the CA on which to enroll | 
+**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**Timeout** | **NullableString** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
-**Template** | **string** | Stream&#39;s certificate template to use for enrollment | 
-**Timeout** | **NullableString** |  | 
-**Type** | **string** |  | 
-**AccountEmail** | Pointer to **NullableString** | Email to associate with the account | [optional] 
-**AccountKeyType** | **string** | The key type to use to generate the account key | 
-**AccountUrl** | **string** | Url of the account on the ACME directory | 
-**DnsChallengeProvider** | [**DnsChallengeProviders**](DnsChallengeProviders.md) | DNS Provider configuration to provision the DNS challenge. Available from &#x60;2.7.7&#x60; | 
-**DomainDictionaryProvider** | Pointer to [**NullableDomainDictionaryProviders**](DomainDictionaryProviders.md) | The dictionary provider | [optional] 
 **Eab** | Pointer to **NullableString** | &#x60;password&#x60; credentials name to use for External Account Binding | [optional] 
+**AccountKeyType** | **string** | The key type to use to generate the account key | 
+**AccountEmail** | Pointer to **NullableString** | Email to associate with the account | [optional] 
 **RotateAccount** | Pointer to **NullableBool** | If enable, regenerate the account (does not need to be specified on creation) | [optional] 
+**AccountUrl** | **string** | Url of the account on the ACME directory | 
+**DomainDictionaryProvider** | Pointer to [**NullableDomainDictionaryProviders**](DomainDictionaryProviders.md) | The dictionary provider | [optional] 
+**DnsChallengeProvider** | [**DnsChallengeProviders**](DnsChallengeProviders.md) | DNS Provider configuration to provision the DNS challenge. Available from &#x60;2.7.7&#x60; | 
 **AcmeDirectoryUrl** | **string** | The directory url of the ACME endpoint | 
 **CaConfig** | **string** |  | 
+**Profile** | **string** |  | 
 **Domain** | **string** |  | 
 **EnrollmentCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to enroll on the PKI | 
-**Profile** | **string** |  | 
-**AccessCredentials** | Pointer to **NullableString** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing Access Key Id and Secret Access Key. If not defined, an account present in environment variables can be used. | [optional] 
-**CaArn** | **string** |  | 
-**CaPolicyOid** | Pointer to **NullableString** |  | [optional] 
-**CertificateUsage** | Pointer to **NullableString** |  | [optional] 
 **Region** | **string** |  | 
-**RetryInterval** | Pointer to **NullableString** |  | [optional] 
-**RoleArn** | Pointer to **NullableString** |  | [optional] 
-**SigningHash** | Pointer to **NullableString** |  | [optional] 
+**CaArn** | **string** |  | 
+**AccessCredentials** | Pointer to **NullableString** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing Access Key Id and Secret Access Key. If not defined, an account present in environment variables can be used. | [optional] 
 **TemplateArn** | Pointer to **NullableString** |  | [optional] 
+**RoleArn** | Pointer to **NullableString** |  | [optional] 
 **ValidDays** | Pointer to **NullableString** |  | [optional] 
+**RetryInterval** | Pointer to **NullableString** |  | [optional] 
+**SigningHash** | Pointer to **NullableString** |  | [optional] 
+**CertificateUsage** | Pointer to **NullableString** |  | [optional] 
+**CaPolicyOid** | Pointer to **NullableString** |  | [optional] 
 **OfferId** | **string** |  | 
 **OrganizationId** | **int64** |  | 
 **RevReason** | Pointer to **NullableString** |  | [optional] 
-**CnMap** | Pointer to **NullableString** |  | [optional] 
-**EmailMap** | Pointer to **NullableString** |  | [optional] 
-**IssuerCACert** | **string** |  | 
 **IssuerCADN** | **string** |  | 
+**IssuerCACert** | **string** |  | 
+**SignerCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to sign on the PKI | 
+**EmailMap** | Pointer to **NullableString** |  | [optional] 
+**SanDnsMap** | Pointer to **NullableString** |  | [optional] 
+**CnMap** | Pointer to **NullableString** |  | [optional] 
+**ProfileMap** | Pointer to **NullableString** |  | [optional] 
 **IssuerMap** | Pointer to **NullableString** |  | [optional] 
 **LegacyCMPStyle** | Pointer to **NullableBool** |  | [optional] 
-**ProfileMap** | Pointer to **NullableString** |  | [optional] 
-**SanDnsMap** | Pointer to **NullableString** |  | [optional] 
-**SignerCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to sign on the PKI | 
-**ApiCredentials** | **string** | Name of the &#x60;api-key&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
 **BaseUrl** | **string** | The base URL of the used digicert instance. | 
-**CaCertId** | Pointer to **NullableString** |  | [optional] 
-**CustomConnectorDataMapping** | Pointer to **map[string]string** |  | [optional] 
 **ProductId** | **string** |  | 
+**ApiCredentials** | **string** | Name of the &#x60;api-key&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**CaCertId** | Pointer to **NullableString** |  | [optional] 
 **SkipApproval** | Pointer to **NullableBool** |  | [optional] 
+**CustomConnectorDataMapping** | Pointer to **map[string]string** |  | [optional] 
 **CaName** | **string** |  | 
 **EeProfile** | Pointer to **NullableString** |  | [optional] 
-**CertLifetime** | Pointer to **NullableString** |  | [optional] 
 **CertType** | **NullableString** |  | 
-**ClientId** | Pointer to **NullableInt64** |  | [optional] 
 **RequesterDefaultMail** | **string** |  | 
 **RequesterName** | Pointer to **NullableString** |  | [optional] 
 **RequesterPhone** | Pointer to **NullableString** |  | [optional] 
-**CaCert** | Pointer to **NullableString** |  | [optional] 
+**CertLifetime** | Pointer to **NullableString** |  | [optional] 
+**ClientId** | Pointer to **NullableInt64** |  | [optional] 
 **CaKey** | Pointer to [**NullableSecretString**](SecretString.md) |  | [optional] 
-**CheckPop** | Pointer to **NullableBool** |  | [optional] 
-**CrlLifetime** | Pointer to **NullableString** |  | [optional] 
+**CaCert** | Pointer to **NullableString** |  | [optional] 
 **CrlPath** | Pointer to **NullableString** |  | [optional] 
-**CrtBackDate** | Pointer to **NullableString** |  | [optional] 
-**CrtLifetime** | Pointer to **NullableString** |  | [optional] 
-**CryptoType** | **string** |  | 
+**CrlLifetime** | Pointer to **NullableString** |  | [optional] 
 **SignAlg** | Pointer to **NullableString** |  | [optional] 
-**AuthenticationDomainId** | **int64** |  | 
-**DefaultOwner** | **string** |  | 
-**DeleteOnRevoke** | **bool** |  | 
-**OwnerGroups** | Pointer to **NullableString** |  | [optional] 
+**CrtLifetime** | Pointer to **NullableString** |  | [optional] 
+**CrtBackDate** | Pointer to **NullableString** |  | [optional] 
+**CheckPop** | Pointer to **NullableBool** |  | [optional] 
+**CryptoType** | **string** |  | 
 **TemplateId** | **int64** |  | 
+**DefaultOwner** | **string** |  | 
+**AuthenticationDomainId** | **int64** |  | 
+**OwnerGroups** | Pointer to **NullableString** |  | [optional] 
+**DeleteOnRevoke** | **bool** |  | 
 **HashAlgorithm** | Pointer to **NullableString** |  | [optional] 
+**EndpointType** | **string** |  | 
+**DomainId** | **string** |  | 
 **CertificateValidity** | Pointer to **NullableInt64** |  | [optional] 
 **DefaultEmail** | Pointer to **NullableString** |  | [optional] 
 **DefaultPhone** | Pointer to **NullableString** |  | [optional] 
-**DomainId** | **string** |  | 
-**EndpointType** | **string** |  | 
 **SanEmailMap** | Pointer to **NullableString** |  | [optional] 
 **UidMap** | Pointer to **NullableString** |  | [optional] 
 **Zone** | Pointer to **NullableString** |  | [optional] 
 **ZoneLabel** | Pointer to **NullableString** | The name of the label where the zone value is stored on an enrolled certificate | [optional] 
 **EndPointIssuingCA** | **string** |  | 
-**FormPorteurName** | Pointer to **NullableString** |  | [optional] 
-**ProfilCle** | **NullableString** |  | 
 **Workflow** | **NullableString** |  | 
-**CustomerId** | **string** |  | 
+**ProfilCle** | **NullableString** |  | 
+**FormPorteurName** | Pointer to **NullableString** |  | [optional] 
 **Environment** | **string** | The testing environment will use https://ote-api.nameshield.net endpoint  and the production will use https://api.nameshield.net  | 
+**CustomerId** | **string** |  | 
 **Procedure** | **string** |  | 
 **CustomerUri** | **string** |  | 
 **MpkiCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI.  It should contains the mpkiId as the login and the apiKey as password.  | 
@@ -103,7 +103,7 @@ Name | Type | Description | Notes
 
 ### NewPKIResponses
 
-`func NewPKIResponses(id string, authenticationCredentials string, ca string, endPoint string, loginCredentials string, name string, template string, timeout NullableString, type_ string, accountKeyType string, accountUrl string, dnsChallengeProvider DnsChallengeProviders, acmeDirectoryUrl string, caConfig string, domain string, enrollmentCredentials string, profile string, caArn string, region string, offerId string, organizationId int64, issuerCACert string, issuerCADN string, signerCredentials string, apiCredentials string, baseUrl string, productId string, caName string, certType NullableString, requesterDefaultMail string, cryptoType string, authenticationDomainId int64, defaultOwner string, deleteOnRevoke bool, templateId int64, domainId string, endpointType string, endPointIssuingCA string, profilCle NullableString, workflow NullableString, customerId string, environment string, procedure string, customerUri string, mpkiCredentials string, productUuid string, ) *PKIResponses`
+`func NewPKIResponses(id string, name string, type_ string, endPoint string, template string, ca string, loginCredentials string, authenticationCredentials string, timeout NullableString, accountKeyType string, accountUrl string, dnsChallengeProvider DnsChallengeProviders, acmeDirectoryUrl string, caConfig string, profile string, domain string, enrollmentCredentials string, region string, caArn string, offerId string, organizationId int64, issuerCADN string, issuerCACert string, signerCredentials string, baseUrl string, productId string, apiCredentials string, caName string, certType NullableString, requesterDefaultMail string, cryptoType string, templateId int64, defaultOwner string, authenticationDomainId int64, deleteOnRevoke bool, endpointType string, domainId string, endPointIssuingCA string, workflow NullableString, profilCle NullableString, environment string, customerId string, procedure string, customerUri string, mpkiCredentials string, productUuid string, ) *PKIResponses`
 
 NewPKIResponses instantiates a new PKIResponses object
 This constructor will assign default values to properties that have it defined,
@@ -138,44 +138,44 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetAuthenticationCredentials
+### GetName
 
-`func (o *PKIResponses) GetAuthenticationCredentials() string`
+`func (o *PKIResponses) GetName() string`
 
-GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAuthenticationCredentialsOk
+### GetNameOk
 
-`func (o *PKIResponses) GetAuthenticationCredentialsOk() (*string, bool)`
+`func (o *PKIResponses) GetNameOk() (*string, bool)`
 
-GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationCredentials
+### SetName
 
-`func (o *PKIResponses) SetAuthenticationCredentials(v string)`
+`func (o *PKIResponses) SetName(v string)`
 
-SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
+SetName sets Name field to given value.
 
 
-### GetCa
+### GetType
 
-`func (o *PKIResponses) GetCa() string`
+`func (o *PKIResponses) GetType() string`
 
-GetCa returns the Ca field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetCaOk
+### GetTypeOk
 
-`func (o *PKIResponses) GetCaOk() (*string, bool)`
+`func (o *PKIResponses) GetTypeOk() (*string, bool)`
 
-GetCaOk returns a tuple with the Ca field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCa
+### SetType
 
-`func (o *PKIResponses) SetCa(v string)`
+`func (o *PKIResponses) SetType(v string)`
 
-SetCa sets Ca field to given value.
+SetType sets Type field to given value.
 
 
 ### GetEndPoint
@@ -198,6 +198,46 @@ and a boolean to check if the value has been set.
 SetEndPoint sets EndPoint field to given value.
 
 
+### GetTemplate
+
+`func (o *PKIResponses) GetTemplate() string`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *PKIResponses) GetTemplateOk() (*string, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *PKIResponses) SetTemplate(v string)`
+
+SetTemplate sets Template field to given value.
+
+
+### GetCa
+
+`func (o *PKIResponses) GetCa() string`
+
+GetCa returns the Ca field if non-nil, zero value otherwise.
+
+### GetCaOk
+
+`func (o *PKIResponses) GetCaOk() (*string, bool)`
+
+GetCaOk returns a tuple with the Ca field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCa
+
+`func (o *PKIResponses) SetCa(v string)`
+
+SetCa sets Ca field to given value.
+
+
 ### GetLoginCredentials
 
 `func (o *PKIResponses) GetLoginCredentials() string`
@@ -218,26 +258,56 @@ and a boolean to check if the value has been set.
 SetLoginCredentials sets LoginCredentials field to given value.
 
 
-### GetName
+### GetAuthenticationCredentials
 
-`func (o *PKIResponses) GetName() string`
+`func (o *PKIResponses) GetAuthenticationCredentials() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAuthenticationCredentialsOk
 
-`func (o *PKIResponses) GetNameOk() (*string, bool)`
+`func (o *PKIResponses) GetAuthenticationCredentialsOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetAuthenticationCredentials
 
-`func (o *PKIResponses) SetName(v string)`
+`func (o *PKIResponses) SetAuthenticationCredentials(v string)`
 
-SetName sets Name field to given value.
+SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
 
 
+### GetTimeout
+
+`func (o *PKIResponses) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *PKIResponses) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *PKIResponses) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+
+### SetTimeoutNil
+
+`func (o *PKIResponses) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *PKIResponses) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *PKIResponses) GetProxy() string`
@@ -343,74 +413,59 @@ HasStatus returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
-### GetTemplate
+### GetEab
 
-`func (o *PKIResponses) GetTemplate() string`
+`func (o *PKIResponses) GetEab() string`
 
-GetTemplate returns the Template field if non-nil, zero value otherwise.
+GetEab returns the Eab field if non-nil, zero value otherwise.
 
-### GetTemplateOk
+### GetEabOk
 
-`func (o *PKIResponses) GetTemplateOk() (*string, bool)`
+`func (o *PKIResponses) GetEabOk() (*string, bool)`
 
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+GetEabOk returns a tuple with the Eab field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTemplate
+### SetEab
 
-`func (o *PKIResponses) SetTemplate(v string)`
+`func (o *PKIResponses) SetEab(v string)`
 
-SetTemplate sets Template field to given value.
+SetEab sets Eab field to given value.
 
+### HasEab
 
-### GetTimeout
+`func (o *PKIResponses) HasEab() bool`
 
-`func (o *PKIResponses) GetTimeout() string`
+HasEab returns a boolean if a field has been set.
 
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+### SetEabNil
 
-### GetTimeoutOk
+`func (o *PKIResponses) SetEabNil(b bool)`
 
-`func (o *PKIResponses) GetTimeoutOk() (*string, bool)`
+ SetEabNil sets the value for Eab to be an explicit nil
 
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+### UnsetEab
+`func (o *PKIResponses) UnsetEab()`
+
+UnsetEab ensures that no value is present for Eab, not even an explicit nil
+### GetAccountKeyType
+
+`func (o *PKIResponses) GetAccountKeyType() string`
+
+GetAccountKeyType returns the AccountKeyType field if non-nil, zero value otherwise.
+
+### GetAccountKeyTypeOk
+
+`func (o *PKIResponses) GetAccountKeyTypeOk() (*string, bool)`
+
+GetAccountKeyTypeOk returns a tuple with the AccountKeyType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeout
+### SetAccountKeyType
 
-`func (o *PKIResponses) SetTimeout(v string)`
+`func (o *PKIResponses) SetAccountKeyType(v string)`
 
-SetTimeout sets Timeout field to given value.
-
-
-### SetTimeoutNil
-
-`func (o *PKIResponses) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *PKIResponses) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
-
-`func (o *PKIResponses) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *PKIResponses) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *PKIResponses) SetType(v string)`
-
-SetType sets Type field to given value.
+SetAccountKeyType sets AccountKeyType field to given value.
 
 
 ### GetAccountEmail
@@ -448,26 +503,41 @@ HasAccountEmail returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetAccountEmail()`
 
 UnsetAccountEmail ensures that no value is present for AccountEmail, not even an explicit nil
-### GetAccountKeyType
+### GetRotateAccount
 
-`func (o *PKIResponses) GetAccountKeyType() string`
+`func (o *PKIResponses) GetRotateAccount() bool`
 
-GetAccountKeyType returns the AccountKeyType field if non-nil, zero value otherwise.
+GetRotateAccount returns the RotateAccount field if non-nil, zero value otherwise.
 
-### GetAccountKeyTypeOk
+### GetRotateAccountOk
 
-`func (o *PKIResponses) GetAccountKeyTypeOk() (*string, bool)`
+`func (o *PKIResponses) GetRotateAccountOk() (*bool, bool)`
 
-GetAccountKeyTypeOk returns a tuple with the AccountKeyType field if it's non-nil, zero value otherwise
+GetRotateAccountOk returns a tuple with the RotateAccount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountKeyType
+### SetRotateAccount
 
-`func (o *PKIResponses) SetAccountKeyType(v string)`
+`func (o *PKIResponses) SetRotateAccount(v bool)`
 
-SetAccountKeyType sets AccountKeyType field to given value.
+SetRotateAccount sets RotateAccount field to given value.
 
+### HasRotateAccount
 
+`func (o *PKIResponses) HasRotateAccount() bool`
+
+HasRotateAccount returns a boolean if a field has been set.
+
+### SetRotateAccountNil
+
+`func (o *PKIResponses) SetRotateAccountNil(b bool)`
+
+ SetRotateAccountNil sets the value for RotateAccount to be an explicit nil
+
+### UnsetRotateAccount
+`func (o *PKIResponses) UnsetRotateAccount()`
+
+UnsetRotateAccount ensures that no value is present for RotateAccount, not even an explicit nil
 ### GetAccountUrl
 
 `func (o *PKIResponses) GetAccountUrl() string`
@@ -486,26 +556,6 @@ and a boolean to check if the value has been set.
 `func (o *PKIResponses) SetAccountUrl(v string)`
 
 SetAccountUrl sets AccountUrl field to given value.
-
-
-### GetDnsChallengeProvider
-
-`func (o *PKIResponses) GetDnsChallengeProvider() DnsChallengeProviders`
-
-GetDnsChallengeProvider returns the DnsChallengeProvider field if non-nil, zero value otherwise.
-
-### GetDnsChallengeProviderOk
-
-`func (o *PKIResponses) GetDnsChallengeProviderOk() (*DnsChallengeProviders, bool)`
-
-GetDnsChallengeProviderOk returns a tuple with the DnsChallengeProvider field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDnsChallengeProvider
-
-`func (o *PKIResponses) SetDnsChallengeProvider(v DnsChallengeProviders)`
-
-SetDnsChallengeProvider sets DnsChallengeProvider field to given value.
 
 
 ### GetDomainDictionaryProvider
@@ -543,76 +593,26 @@ HasDomainDictionaryProvider returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetDomainDictionaryProvider()`
 
 UnsetDomainDictionaryProvider ensures that no value is present for DomainDictionaryProvider, not even an explicit nil
-### GetEab
+### GetDnsChallengeProvider
 
-`func (o *PKIResponses) GetEab() string`
+`func (o *PKIResponses) GetDnsChallengeProvider() DnsChallengeProviders`
 
-GetEab returns the Eab field if non-nil, zero value otherwise.
+GetDnsChallengeProvider returns the DnsChallengeProvider field if non-nil, zero value otherwise.
 
-### GetEabOk
+### GetDnsChallengeProviderOk
 
-`func (o *PKIResponses) GetEabOk() (*string, bool)`
+`func (o *PKIResponses) GetDnsChallengeProviderOk() (*DnsChallengeProviders, bool)`
 
-GetEabOk returns a tuple with the Eab field if it's non-nil, zero value otherwise
+GetDnsChallengeProviderOk returns a tuple with the DnsChallengeProvider field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEab
+### SetDnsChallengeProvider
 
-`func (o *PKIResponses) SetEab(v string)`
+`func (o *PKIResponses) SetDnsChallengeProvider(v DnsChallengeProviders)`
 
-SetEab sets Eab field to given value.
+SetDnsChallengeProvider sets DnsChallengeProvider field to given value.
 
-### HasEab
 
-`func (o *PKIResponses) HasEab() bool`
-
-HasEab returns a boolean if a field has been set.
-
-### SetEabNil
-
-`func (o *PKIResponses) SetEabNil(b bool)`
-
- SetEabNil sets the value for Eab to be an explicit nil
-
-### UnsetEab
-`func (o *PKIResponses) UnsetEab()`
-
-UnsetEab ensures that no value is present for Eab, not even an explicit nil
-### GetRotateAccount
-
-`func (o *PKIResponses) GetRotateAccount() bool`
-
-GetRotateAccount returns the RotateAccount field if non-nil, zero value otherwise.
-
-### GetRotateAccountOk
-
-`func (o *PKIResponses) GetRotateAccountOk() (*bool, bool)`
-
-GetRotateAccountOk returns a tuple with the RotateAccount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRotateAccount
-
-`func (o *PKIResponses) SetRotateAccount(v bool)`
-
-SetRotateAccount sets RotateAccount field to given value.
-
-### HasRotateAccount
-
-`func (o *PKIResponses) HasRotateAccount() bool`
-
-HasRotateAccount returns a boolean if a field has been set.
-
-### SetRotateAccountNil
-
-`func (o *PKIResponses) SetRotateAccountNil(b bool)`
-
- SetRotateAccountNil sets the value for RotateAccount to be an explicit nil
-
-### UnsetRotateAccount
-`func (o *PKIResponses) UnsetRotateAccount()`
-
-UnsetRotateAccount ensures that no value is present for RotateAccount, not even an explicit nil
 ### GetAcmeDirectoryUrl
 
 `func (o *PKIResponses) GetAcmeDirectoryUrl() string`
@@ -651,6 +651,26 @@ and a boolean to check if the value has been set.
 `func (o *PKIResponses) SetCaConfig(v string)`
 
 SetCaConfig sets CaConfig field to given value.
+
+
+### GetProfile
+
+`func (o *PKIResponses) GetProfile() string`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *PKIResponses) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *PKIResponses) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
 
 
 ### GetDomain
@@ -693,24 +713,44 @@ and a boolean to check if the value has been set.
 SetEnrollmentCredentials sets EnrollmentCredentials field to given value.
 
 
-### GetProfile
+### GetRegion
 
-`func (o *PKIResponses) GetProfile() string`
+`func (o *PKIResponses) GetRegion() string`
 
-GetProfile returns the Profile field if non-nil, zero value otherwise.
+GetRegion returns the Region field if non-nil, zero value otherwise.
 
-### GetProfileOk
+### GetRegionOk
 
-`func (o *PKIResponses) GetProfileOk() (*string, bool)`
+`func (o *PKIResponses) GetRegionOk() (*string, bool)`
 
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProfile
+### SetRegion
 
-`func (o *PKIResponses) SetProfile(v string)`
+`func (o *PKIResponses) SetRegion(v string)`
 
-SetProfile sets Profile field to given value.
+SetRegion sets Region field to given value.
+
+
+### GetCaArn
+
+`func (o *PKIResponses) GetCaArn() string`
+
+GetCaArn returns the CaArn field if non-nil, zero value otherwise.
+
+### GetCaArnOk
+
+`func (o *PKIResponses) GetCaArnOk() (*string, bool)`
+
+GetCaArnOk returns a tuple with the CaArn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCaArn
+
+`func (o *PKIResponses) SetCaArn(v string)`
+
+SetCaArn sets CaArn field to given value.
 
 
 ### GetAccessCredentials
@@ -748,221 +788,6 @@ HasAccessCredentials returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetAccessCredentials()`
 
 UnsetAccessCredentials ensures that no value is present for AccessCredentials, not even an explicit nil
-### GetCaArn
-
-`func (o *PKIResponses) GetCaArn() string`
-
-GetCaArn returns the CaArn field if non-nil, zero value otherwise.
-
-### GetCaArnOk
-
-`func (o *PKIResponses) GetCaArnOk() (*string, bool)`
-
-GetCaArnOk returns a tuple with the CaArn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCaArn
-
-`func (o *PKIResponses) SetCaArn(v string)`
-
-SetCaArn sets CaArn field to given value.
-
-
-### GetCaPolicyOid
-
-`func (o *PKIResponses) GetCaPolicyOid() string`
-
-GetCaPolicyOid returns the CaPolicyOid field if non-nil, zero value otherwise.
-
-### GetCaPolicyOidOk
-
-`func (o *PKIResponses) GetCaPolicyOidOk() (*string, bool)`
-
-GetCaPolicyOidOk returns a tuple with the CaPolicyOid field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCaPolicyOid
-
-`func (o *PKIResponses) SetCaPolicyOid(v string)`
-
-SetCaPolicyOid sets CaPolicyOid field to given value.
-
-### HasCaPolicyOid
-
-`func (o *PKIResponses) HasCaPolicyOid() bool`
-
-HasCaPolicyOid returns a boolean if a field has been set.
-
-### SetCaPolicyOidNil
-
-`func (o *PKIResponses) SetCaPolicyOidNil(b bool)`
-
- SetCaPolicyOidNil sets the value for CaPolicyOid to be an explicit nil
-
-### UnsetCaPolicyOid
-`func (o *PKIResponses) UnsetCaPolicyOid()`
-
-UnsetCaPolicyOid ensures that no value is present for CaPolicyOid, not even an explicit nil
-### GetCertificateUsage
-
-`func (o *PKIResponses) GetCertificateUsage() string`
-
-GetCertificateUsage returns the CertificateUsage field if non-nil, zero value otherwise.
-
-### GetCertificateUsageOk
-
-`func (o *PKIResponses) GetCertificateUsageOk() (*string, bool)`
-
-GetCertificateUsageOk returns a tuple with the CertificateUsage field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificateUsage
-
-`func (o *PKIResponses) SetCertificateUsage(v string)`
-
-SetCertificateUsage sets CertificateUsage field to given value.
-
-### HasCertificateUsage
-
-`func (o *PKIResponses) HasCertificateUsage() bool`
-
-HasCertificateUsage returns a boolean if a field has been set.
-
-### SetCertificateUsageNil
-
-`func (o *PKIResponses) SetCertificateUsageNil(b bool)`
-
- SetCertificateUsageNil sets the value for CertificateUsage to be an explicit nil
-
-### UnsetCertificateUsage
-`func (o *PKIResponses) UnsetCertificateUsage()`
-
-UnsetCertificateUsage ensures that no value is present for CertificateUsage, not even an explicit nil
-### GetRegion
-
-`func (o *PKIResponses) GetRegion() string`
-
-GetRegion returns the Region field if non-nil, zero value otherwise.
-
-### GetRegionOk
-
-`func (o *PKIResponses) GetRegionOk() (*string, bool)`
-
-GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRegion
-
-`func (o *PKIResponses) SetRegion(v string)`
-
-SetRegion sets Region field to given value.
-
-
-### GetRetryInterval
-
-`func (o *PKIResponses) GetRetryInterval() string`
-
-GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
-
-### GetRetryIntervalOk
-
-`func (o *PKIResponses) GetRetryIntervalOk() (*string, bool)`
-
-GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRetryInterval
-
-`func (o *PKIResponses) SetRetryInterval(v string)`
-
-SetRetryInterval sets RetryInterval field to given value.
-
-### HasRetryInterval
-
-`func (o *PKIResponses) HasRetryInterval() bool`
-
-HasRetryInterval returns a boolean if a field has been set.
-
-### SetRetryIntervalNil
-
-`func (o *PKIResponses) SetRetryIntervalNil(b bool)`
-
- SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
-
-### UnsetRetryInterval
-`func (o *PKIResponses) UnsetRetryInterval()`
-
-UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-### GetRoleArn
-
-`func (o *PKIResponses) GetRoleArn() string`
-
-GetRoleArn returns the RoleArn field if non-nil, zero value otherwise.
-
-### GetRoleArnOk
-
-`func (o *PKIResponses) GetRoleArnOk() (*string, bool)`
-
-GetRoleArnOk returns a tuple with the RoleArn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRoleArn
-
-`func (o *PKIResponses) SetRoleArn(v string)`
-
-SetRoleArn sets RoleArn field to given value.
-
-### HasRoleArn
-
-`func (o *PKIResponses) HasRoleArn() bool`
-
-HasRoleArn returns a boolean if a field has been set.
-
-### SetRoleArnNil
-
-`func (o *PKIResponses) SetRoleArnNil(b bool)`
-
- SetRoleArnNil sets the value for RoleArn to be an explicit nil
-
-### UnsetRoleArn
-`func (o *PKIResponses) UnsetRoleArn()`
-
-UnsetRoleArn ensures that no value is present for RoleArn, not even an explicit nil
-### GetSigningHash
-
-`func (o *PKIResponses) GetSigningHash() string`
-
-GetSigningHash returns the SigningHash field if non-nil, zero value otherwise.
-
-### GetSigningHashOk
-
-`func (o *PKIResponses) GetSigningHashOk() (*string, bool)`
-
-GetSigningHashOk returns a tuple with the SigningHash field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSigningHash
-
-`func (o *PKIResponses) SetSigningHash(v string)`
-
-SetSigningHash sets SigningHash field to given value.
-
-### HasSigningHash
-
-`func (o *PKIResponses) HasSigningHash() bool`
-
-HasSigningHash returns a boolean if a field has been set.
-
-### SetSigningHashNil
-
-`func (o *PKIResponses) SetSigningHashNil(b bool)`
-
- SetSigningHashNil sets the value for SigningHash to be an explicit nil
-
-### UnsetSigningHash
-`func (o *PKIResponses) UnsetSigningHash()`
-
-UnsetSigningHash ensures that no value is present for SigningHash, not even an explicit nil
 ### GetTemplateArn
 
 `func (o *PKIResponses) GetTemplateArn() string`
@@ -998,6 +823,41 @@ HasTemplateArn returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetTemplateArn()`
 
 UnsetTemplateArn ensures that no value is present for TemplateArn, not even an explicit nil
+### GetRoleArn
+
+`func (o *PKIResponses) GetRoleArn() string`
+
+GetRoleArn returns the RoleArn field if non-nil, zero value otherwise.
+
+### GetRoleArnOk
+
+`func (o *PKIResponses) GetRoleArnOk() (*string, bool)`
+
+GetRoleArnOk returns a tuple with the RoleArn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRoleArn
+
+`func (o *PKIResponses) SetRoleArn(v string)`
+
+SetRoleArn sets RoleArn field to given value.
+
+### HasRoleArn
+
+`func (o *PKIResponses) HasRoleArn() bool`
+
+HasRoleArn returns a boolean if a field has been set.
+
+### SetRoleArnNil
+
+`func (o *PKIResponses) SetRoleArnNil(b bool)`
+
+ SetRoleArnNil sets the value for RoleArn to be an explicit nil
+
+### UnsetRoleArn
+`func (o *PKIResponses) UnsetRoleArn()`
+
+UnsetRoleArn ensures that no value is present for RoleArn, not even an explicit nil
 ### GetValidDays
 
 `func (o *PKIResponses) GetValidDays() string`
@@ -1033,6 +893,146 @@ HasValidDays returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetValidDays()`
 
 UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
+### GetRetryInterval
+
+`func (o *PKIResponses) GetRetryInterval() string`
+
+GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
+
+### GetRetryIntervalOk
+
+`func (o *PKIResponses) GetRetryIntervalOk() (*string, bool)`
+
+GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryInterval
+
+`func (o *PKIResponses) SetRetryInterval(v string)`
+
+SetRetryInterval sets RetryInterval field to given value.
+
+### HasRetryInterval
+
+`func (o *PKIResponses) HasRetryInterval() bool`
+
+HasRetryInterval returns a boolean if a field has been set.
+
+### SetRetryIntervalNil
+
+`func (o *PKIResponses) SetRetryIntervalNil(b bool)`
+
+ SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+
+### UnsetRetryInterval
+`func (o *PKIResponses) UnsetRetryInterval()`
+
+UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
+### GetSigningHash
+
+`func (o *PKIResponses) GetSigningHash() string`
+
+GetSigningHash returns the SigningHash field if non-nil, zero value otherwise.
+
+### GetSigningHashOk
+
+`func (o *PKIResponses) GetSigningHashOk() (*string, bool)`
+
+GetSigningHashOk returns a tuple with the SigningHash field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSigningHash
+
+`func (o *PKIResponses) SetSigningHash(v string)`
+
+SetSigningHash sets SigningHash field to given value.
+
+### HasSigningHash
+
+`func (o *PKIResponses) HasSigningHash() bool`
+
+HasSigningHash returns a boolean if a field has been set.
+
+### SetSigningHashNil
+
+`func (o *PKIResponses) SetSigningHashNil(b bool)`
+
+ SetSigningHashNil sets the value for SigningHash to be an explicit nil
+
+### UnsetSigningHash
+`func (o *PKIResponses) UnsetSigningHash()`
+
+UnsetSigningHash ensures that no value is present for SigningHash, not even an explicit nil
+### GetCertificateUsage
+
+`func (o *PKIResponses) GetCertificateUsage() string`
+
+GetCertificateUsage returns the CertificateUsage field if non-nil, zero value otherwise.
+
+### GetCertificateUsageOk
+
+`func (o *PKIResponses) GetCertificateUsageOk() (*string, bool)`
+
+GetCertificateUsageOk returns a tuple with the CertificateUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateUsage
+
+`func (o *PKIResponses) SetCertificateUsage(v string)`
+
+SetCertificateUsage sets CertificateUsage field to given value.
+
+### HasCertificateUsage
+
+`func (o *PKIResponses) HasCertificateUsage() bool`
+
+HasCertificateUsage returns a boolean if a field has been set.
+
+### SetCertificateUsageNil
+
+`func (o *PKIResponses) SetCertificateUsageNil(b bool)`
+
+ SetCertificateUsageNil sets the value for CertificateUsage to be an explicit nil
+
+### UnsetCertificateUsage
+`func (o *PKIResponses) UnsetCertificateUsage()`
+
+UnsetCertificateUsage ensures that no value is present for CertificateUsage, not even an explicit nil
+### GetCaPolicyOid
+
+`func (o *PKIResponses) GetCaPolicyOid() string`
+
+GetCaPolicyOid returns the CaPolicyOid field if non-nil, zero value otherwise.
+
+### GetCaPolicyOidOk
+
+`func (o *PKIResponses) GetCaPolicyOidOk() (*string, bool)`
+
+GetCaPolicyOidOk returns a tuple with the CaPolicyOid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCaPolicyOid
+
+`func (o *PKIResponses) SetCaPolicyOid(v string)`
+
+SetCaPolicyOid sets CaPolicyOid field to given value.
+
+### HasCaPolicyOid
+
+`func (o *PKIResponses) HasCaPolicyOid() bool`
+
+HasCaPolicyOid returns a boolean if a field has been set.
+
+### SetCaPolicyOidNil
+
+`func (o *PKIResponses) SetCaPolicyOidNil(b bool)`
+
+ SetCaPolicyOidNil sets the value for CaPolicyOid to be an explicit nil
+
+### UnsetCaPolicyOid
+`func (o *PKIResponses) UnsetCaPolicyOid()`
+
+UnsetCaPolicyOid ensures that no value is present for CaPolicyOid, not even an explicit nil
 ### GetOfferId
 
 `func (o *PKIResponses) GetOfferId() string`
@@ -1108,41 +1108,66 @@ HasRevReason returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetRevReason()`
 
 UnsetRevReason ensures that no value is present for RevReason, not even an explicit nil
-### GetCnMap
+### GetIssuerCADN
 
-`func (o *PKIResponses) GetCnMap() string`
+`func (o *PKIResponses) GetIssuerCADN() string`
 
-GetCnMap returns the CnMap field if non-nil, zero value otherwise.
+GetIssuerCADN returns the IssuerCADN field if non-nil, zero value otherwise.
 
-### GetCnMapOk
+### GetIssuerCADNOk
 
-`func (o *PKIResponses) GetCnMapOk() (*string, bool)`
+`func (o *PKIResponses) GetIssuerCADNOk() (*string, bool)`
 
-GetCnMapOk returns a tuple with the CnMap field if it's non-nil, zero value otherwise
+GetIssuerCADNOk returns a tuple with the IssuerCADN field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCnMap
+### SetIssuerCADN
 
-`func (o *PKIResponses) SetCnMap(v string)`
+`func (o *PKIResponses) SetIssuerCADN(v string)`
 
-SetCnMap sets CnMap field to given value.
+SetIssuerCADN sets IssuerCADN field to given value.
 
-### HasCnMap
 
-`func (o *PKIResponses) HasCnMap() bool`
+### GetIssuerCACert
 
-HasCnMap returns a boolean if a field has been set.
+`func (o *PKIResponses) GetIssuerCACert() string`
 
-### SetCnMapNil
+GetIssuerCACert returns the IssuerCACert field if non-nil, zero value otherwise.
 
-`func (o *PKIResponses) SetCnMapNil(b bool)`
+### GetIssuerCACertOk
 
- SetCnMapNil sets the value for CnMap to be an explicit nil
+`func (o *PKIResponses) GetIssuerCACertOk() (*string, bool)`
 
-### UnsetCnMap
-`func (o *PKIResponses) UnsetCnMap()`
+GetIssuerCACertOk returns a tuple with the IssuerCACert field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetCnMap ensures that no value is present for CnMap, not even an explicit nil
+### SetIssuerCACert
+
+`func (o *PKIResponses) SetIssuerCACert(v string)`
+
+SetIssuerCACert sets IssuerCACert field to given value.
+
+
+### GetSignerCredentials
+
+`func (o *PKIResponses) GetSignerCredentials() string`
+
+GetSignerCredentials returns the SignerCredentials field if non-nil, zero value otherwise.
+
+### GetSignerCredentialsOk
+
+`func (o *PKIResponses) GetSignerCredentialsOk() (*string, bool)`
+
+GetSignerCredentialsOk returns a tuple with the SignerCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSignerCredentials
+
+`func (o *PKIResponses) SetSignerCredentials(v string)`
+
+SetSignerCredentials sets SignerCredentials field to given value.
+
+
 ### GetEmailMap
 
 `func (o *PKIResponses) GetEmailMap() string`
@@ -1178,46 +1203,111 @@ HasEmailMap returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetEmailMap()`
 
 UnsetEmailMap ensures that no value is present for EmailMap, not even an explicit nil
-### GetIssuerCACert
+### GetSanDnsMap
 
-`func (o *PKIResponses) GetIssuerCACert() string`
+`func (o *PKIResponses) GetSanDnsMap() string`
 
-GetIssuerCACert returns the IssuerCACert field if non-nil, zero value otherwise.
+GetSanDnsMap returns the SanDnsMap field if non-nil, zero value otherwise.
 
-### GetIssuerCACertOk
+### GetSanDnsMapOk
 
-`func (o *PKIResponses) GetIssuerCACertOk() (*string, bool)`
+`func (o *PKIResponses) GetSanDnsMapOk() (*string, bool)`
 
-GetIssuerCACertOk returns a tuple with the IssuerCACert field if it's non-nil, zero value otherwise
+GetSanDnsMapOk returns a tuple with the SanDnsMap field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIssuerCACert
+### SetSanDnsMap
 
-`func (o *PKIResponses) SetIssuerCACert(v string)`
+`func (o *PKIResponses) SetSanDnsMap(v string)`
 
-SetIssuerCACert sets IssuerCACert field to given value.
+SetSanDnsMap sets SanDnsMap field to given value.
 
+### HasSanDnsMap
 
-### GetIssuerCADN
+`func (o *PKIResponses) HasSanDnsMap() bool`
 
-`func (o *PKIResponses) GetIssuerCADN() string`
+HasSanDnsMap returns a boolean if a field has been set.
 
-GetIssuerCADN returns the IssuerCADN field if non-nil, zero value otherwise.
+### SetSanDnsMapNil
 
-### GetIssuerCADNOk
+`func (o *PKIResponses) SetSanDnsMapNil(b bool)`
 
-`func (o *PKIResponses) GetIssuerCADNOk() (*string, bool)`
+ SetSanDnsMapNil sets the value for SanDnsMap to be an explicit nil
 
-GetIssuerCADNOk returns a tuple with the IssuerCADN field if it's non-nil, zero value otherwise
+### UnsetSanDnsMap
+`func (o *PKIResponses) UnsetSanDnsMap()`
+
+UnsetSanDnsMap ensures that no value is present for SanDnsMap, not even an explicit nil
+### GetCnMap
+
+`func (o *PKIResponses) GetCnMap() string`
+
+GetCnMap returns the CnMap field if non-nil, zero value otherwise.
+
+### GetCnMapOk
+
+`func (o *PKIResponses) GetCnMapOk() (*string, bool)`
+
+GetCnMapOk returns a tuple with the CnMap field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIssuerCADN
+### SetCnMap
 
-`func (o *PKIResponses) SetIssuerCADN(v string)`
+`func (o *PKIResponses) SetCnMap(v string)`
 
-SetIssuerCADN sets IssuerCADN field to given value.
+SetCnMap sets CnMap field to given value.
 
+### HasCnMap
 
+`func (o *PKIResponses) HasCnMap() bool`
+
+HasCnMap returns a boolean if a field has been set.
+
+### SetCnMapNil
+
+`func (o *PKIResponses) SetCnMapNil(b bool)`
+
+ SetCnMapNil sets the value for CnMap to be an explicit nil
+
+### UnsetCnMap
+`func (o *PKIResponses) UnsetCnMap()`
+
+UnsetCnMap ensures that no value is present for CnMap, not even an explicit nil
+### GetProfileMap
+
+`func (o *PKIResponses) GetProfileMap() string`
+
+GetProfileMap returns the ProfileMap field if non-nil, zero value otherwise.
+
+### GetProfileMapOk
+
+`func (o *PKIResponses) GetProfileMapOk() (*string, bool)`
+
+GetProfileMapOk returns a tuple with the ProfileMap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfileMap
+
+`func (o *PKIResponses) SetProfileMap(v string)`
+
+SetProfileMap sets ProfileMap field to given value.
+
+### HasProfileMap
+
+`func (o *PKIResponses) HasProfileMap() bool`
+
+HasProfileMap returns a boolean if a field has been set.
+
+### SetProfileMapNil
+
+`func (o *PKIResponses) SetProfileMapNil(b bool)`
+
+ SetProfileMapNil sets the value for ProfileMap to be an explicit nil
+
+### UnsetProfileMap
+`func (o *PKIResponses) UnsetProfileMap()`
+
+UnsetProfileMap ensures that no value is present for ProfileMap, not even an explicit nil
 ### GetIssuerMap
 
 `func (o *PKIResponses) GetIssuerMap() string`
@@ -1288,94 +1378,44 @@ HasLegacyCMPStyle returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetLegacyCMPStyle()`
 
 UnsetLegacyCMPStyle ensures that no value is present for LegacyCMPStyle, not even an explicit nil
-### GetProfileMap
+### GetBaseUrl
 
-`func (o *PKIResponses) GetProfileMap() string`
+`func (o *PKIResponses) GetBaseUrl() string`
 
-GetProfileMap returns the ProfileMap field if non-nil, zero value otherwise.
+GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
 
-### GetProfileMapOk
+### GetBaseUrlOk
 
-`func (o *PKIResponses) GetProfileMapOk() (*string, bool)`
+`func (o *PKIResponses) GetBaseUrlOk() (*string, bool)`
 
-GetProfileMapOk returns a tuple with the ProfileMap field if it's non-nil, zero value otherwise
+GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProfileMap
+### SetBaseUrl
 
-`func (o *PKIResponses) SetProfileMap(v string)`
+`func (o *PKIResponses) SetBaseUrl(v string)`
 
-SetProfileMap sets ProfileMap field to given value.
+SetBaseUrl sets BaseUrl field to given value.
 
-### HasProfileMap
 
-`func (o *PKIResponses) HasProfileMap() bool`
+### GetProductId
 
-HasProfileMap returns a boolean if a field has been set.
+`func (o *PKIResponses) GetProductId() string`
 
-### SetProfileMapNil
+GetProductId returns the ProductId field if non-nil, zero value otherwise.
 
-`func (o *PKIResponses) SetProfileMapNil(b bool)`
+### GetProductIdOk
 
- SetProfileMapNil sets the value for ProfileMap to be an explicit nil
+`func (o *PKIResponses) GetProductIdOk() (*string, bool)`
 
-### UnsetProfileMap
-`func (o *PKIResponses) UnsetProfileMap()`
-
-UnsetProfileMap ensures that no value is present for ProfileMap, not even an explicit nil
-### GetSanDnsMap
-
-`func (o *PKIResponses) GetSanDnsMap() string`
-
-GetSanDnsMap returns the SanDnsMap field if non-nil, zero value otherwise.
-
-### GetSanDnsMapOk
-
-`func (o *PKIResponses) GetSanDnsMapOk() (*string, bool)`
-
-GetSanDnsMapOk returns a tuple with the SanDnsMap field if it's non-nil, zero value otherwise
+GetProductIdOk returns a tuple with the ProductId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSanDnsMap
+### SetProductId
 
-`func (o *PKIResponses) SetSanDnsMap(v string)`
+`func (o *PKIResponses) SetProductId(v string)`
 
-SetSanDnsMap sets SanDnsMap field to given value.
-
-### HasSanDnsMap
-
-`func (o *PKIResponses) HasSanDnsMap() bool`
-
-HasSanDnsMap returns a boolean if a field has been set.
-
-### SetSanDnsMapNil
-
-`func (o *PKIResponses) SetSanDnsMapNil(b bool)`
-
- SetSanDnsMapNil sets the value for SanDnsMap to be an explicit nil
-
-### UnsetSanDnsMap
-`func (o *PKIResponses) UnsetSanDnsMap()`
-
-UnsetSanDnsMap ensures that no value is present for SanDnsMap, not even an explicit nil
-### GetSignerCredentials
-
-`func (o *PKIResponses) GetSignerCredentials() string`
-
-GetSignerCredentials returns the SignerCredentials field if non-nil, zero value otherwise.
-
-### GetSignerCredentialsOk
-
-`func (o *PKIResponses) GetSignerCredentialsOk() (*string, bool)`
-
-GetSignerCredentialsOk returns a tuple with the SignerCredentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSignerCredentials
-
-`func (o *PKIResponses) SetSignerCredentials(v string)`
-
-SetSignerCredentials sets SignerCredentials field to given value.
+SetProductId sets ProductId field to given value.
 
 
 ### GetApiCredentials
@@ -1396,26 +1436,6 @@ and a boolean to check if the value has been set.
 `func (o *PKIResponses) SetApiCredentials(v string)`
 
 SetApiCredentials sets ApiCredentials field to given value.
-
-
-### GetBaseUrl
-
-`func (o *PKIResponses) GetBaseUrl() string`
-
-GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
-
-### GetBaseUrlOk
-
-`func (o *PKIResponses) GetBaseUrlOk() (*string, bool)`
-
-GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBaseUrl
-
-`func (o *PKIResponses) SetBaseUrl(v string)`
-
-SetBaseUrl sets BaseUrl field to given value.
 
 
 ### GetCaCertId
@@ -1453,61 +1473,6 @@ HasCaCertId returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetCaCertId()`
 
 UnsetCaCertId ensures that no value is present for CaCertId, not even an explicit nil
-### GetCustomConnectorDataMapping
-
-`func (o *PKIResponses) GetCustomConnectorDataMapping() map[string]string`
-
-GetCustomConnectorDataMapping returns the CustomConnectorDataMapping field if non-nil, zero value otherwise.
-
-### GetCustomConnectorDataMappingOk
-
-`func (o *PKIResponses) GetCustomConnectorDataMappingOk() (*map[string]string, bool)`
-
-GetCustomConnectorDataMappingOk returns a tuple with the CustomConnectorDataMapping field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCustomConnectorDataMapping
-
-`func (o *PKIResponses) SetCustomConnectorDataMapping(v map[string]string)`
-
-SetCustomConnectorDataMapping sets CustomConnectorDataMapping field to given value.
-
-### HasCustomConnectorDataMapping
-
-`func (o *PKIResponses) HasCustomConnectorDataMapping() bool`
-
-HasCustomConnectorDataMapping returns a boolean if a field has been set.
-
-### SetCustomConnectorDataMappingNil
-
-`func (o *PKIResponses) SetCustomConnectorDataMappingNil(b bool)`
-
- SetCustomConnectorDataMappingNil sets the value for CustomConnectorDataMapping to be an explicit nil
-
-### UnsetCustomConnectorDataMapping
-`func (o *PKIResponses) UnsetCustomConnectorDataMapping()`
-
-UnsetCustomConnectorDataMapping ensures that no value is present for CustomConnectorDataMapping, not even an explicit nil
-### GetProductId
-
-`func (o *PKIResponses) GetProductId() string`
-
-GetProductId returns the ProductId field if non-nil, zero value otherwise.
-
-### GetProductIdOk
-
-`func (o *PKIResponses) GetProductIdOk() (*string, bool)`
-
-GetProductIdOk returns a tuple with the ProductId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProductId
-
-`func (o *PKIResponses) SetProductId(v string)`
-
-SetProductId sets ProductId field to given value.
-
-
 ### GetSkipApproval
 
 `func (o *PKIResponses) GetSkipApproval() bool`
@@ -1543,6 +1508,41 @@ HasSkipApproval returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetSkipApproval()`
 
 UnsetSkipApproval ensures that no value is present for SkipApproval, not even an explicit nil
+### GetCustomConnectorDataMapping
+
+`func (o *PKIResponses) GetCustomConnectorDataMapping() map[string]string`
+
+GetCustomConnectorDataMapping returns the CustomConnectorDataMapping field if non-nil, zero value otherwise.
+
+### GetCustomConnectorDataMappingOk
+
+`func (o *PKIResponses) GetCustomConnectorDataMappingOk() (*map[string]string, bool)`
+
+GetCustomConnectorDataMappingOk returns a tuple with the CustomConnectorDataMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomConnectorDataMapping
+
+`func (o *PKIResponses) SetCustomConnectorDataMapping(v map[string]string)`
+
+SetCustomConnectorDataMapping sets CustomConnectorDataMapping field to given value.
+
+### HasCustomConnectorDataMapping
+
+`func (o *PKIResponses) HasCustomConnectorDataMapping() bool`
+
+HasCustomConnectorDataMapping returns a boolean if a field has been set.
+
+### SetCustomConnectorDataMappingNil
+
+`func (o *PKIResponses) SetCustomConnectorDataMappingNil(b bool)`
+
+ SetCustomConnectorDataMappingNil sets the value for CustomConnectorDataMapping to be an explicit nil
+
+### UnsetCustomConnectorDataMapping
+`func (o *PKIResponses) UnsetCustomConnectorDataMapping()`
+
+UnsetCustomConnectorDataMapping ensures that no value is present for CustomConnectorDataMapping, not even an explicit nil
 ### GetCaName
 
 `func (o *PKIResponses) GetCaName() string`
@@ -1598,41 +1598,6 @@ HasEeProfile returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetEeProfile()`
 
 UnsetEeProfile ensures that no value is present for EeProfile, not even an explicit nil
-### GetCertLifetime
-
-`func (o *PKIResponses) GetCertLifetime() string`
-
-GetCertLifetime returns the CertLifetime field if non-nil, zero value otherwise.
-
-### GetCertLifetimeOk
-
-`func (o *PKIResponses) GetCertLifetimeOk() (*string, bool)`
-
-GetCertLifetimeOk returns a tuple with the CertLifetime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertLifetime
-
-`func (o *PKIResponses) SetCertLifetime(v string)`
-
-SetCertLifetime sets CertLifetime field to given value.
-
-### HasCertLifetime
-
-`func (o *PKIResponses) HasCertLifetime() bool`
-
-HasCertLifetime returns a boolean if a field has been set.
-
-### SetCertLifetimeNil
-
-`func (o *PKIResponses) SetCertLifetimeNil(b bool)`
-
- SetCertLifetimeNil sets the value for CertLifetime to be an explicit nil
-
-### UnsetCertLifetime
-`func (o *PKIResponses) UnsetCertLifetime()`
-
-UnsetCertLifetime ensures that no value is present for CertLifetime, not even an explicit nil
 ### GetCertType
 
 `func (o *PKIResponses) GetCertType() string`
@@ -1663,41 +1628,6 @@ SetCertType sets CertType field to given value.
 `func (o *PKIResponses) UnsetCertType()`
 
 UnsetCertType ensures that no value is present for CertType, not even an explicit nil
-### GetClientId
-
-`func (o *PKIResponses) GetClientId() int64`
-
-GetClientId returns the ClientId field if non-nil, zero value otherwise.
-
-### GetClientIdOk
-
-`func (o *PKIResponses) GetClientIdOk() (*int64, bool)`
-
-GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClientId
-
-`func (o *PKIResponses) SetClientId(v int64)`
-
-SetClientId sets ClientId field to given value.
-
-### HasClientId
-
-`func (o *PKIResponses) HasClientId() bool`
-
-HasClientId returns a boolean if a field has been set.
-
-### SetClientIdNil
-
-`func (o *PKIResponses) SetClientIdNil(b bool)`
-
- SetClientIdNil sets the value for ClientId to be an explicit nil
-
-### UnsetClientId
-`func (o *PKIResponses) UnsetClientId()`
-
-UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
 ### GetRequesterDefaultMail
 
 `func (o *PKIResponses) GetRequesterDefaultMail() string`
@@ -1788,41 +1718,76 @@ HasRequesterPhone returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetRequesterPhone()`
 
 UnsetRequesterPhone ensures that no value is present for RequesterPhone, not even an explicit nil
-### GetCaCert
+### GetCertLifetime
 
-`func (o *PKIResponses) GetCaCert() string`
+`func (o *PKIResponses) GetCertLifetime() string`
 
-GetCaCert returns the CaCert field if non-nil, zero value otherwise.
+GetCertLifetime returns the CertLifetime field if non-nil, zero value otherwise.
 
-### GetCaCertOk
+### GetCertLifetimeOk
 
-`func (o *PKIResponses) GetCaCertOk() (*string, bool)`
+`func (o *PKIResponses) GetCertLifetimeOk() (*string, bool)`
 
-GetCaCertOk returns a tuple with the CaCert field if it's non-nil, zero value otherwise
+GetCertLifetimeOk returns a tuple with the CertLifetime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCaCert
+### SetCertLifetime
 
-`func (o *PKIResponses) SetCaCert(v string)`
+`func (o *PKIResponses) SetCertLifetime(v string)`
 
-SetCaCert sets CaCert field to given value.
+SetCertLifetime sets CertLifetime field to given value.
 
-### HasCaCert
+### HasCertLifetime
 
-`func (o *PKIResponses) HasCaCert() bool`
+`func (o *PKIResponses) HasCertLifetime() bool`
 
-HasCaCert returns a boolean if a field has been set.
+HasCertLifetime returns a boolean if a field has been set.
 
-### SetCaCertNil
+### SetCertLifetimeNil
 
-`func (o *PKIResponses) SetCaCertNil(b bool)`
+`func (o *PKIResponses) SetCertLifetimeNil(b bool)`
 
- SetCaCertNil sets the value for CaCert to be an explicit nil
+ SetCertLifetimeNil sets the value for CertLifetime to be an explicit nil
 
-### UnsetCaCert
-`func (o *PKIResponses) UnsetCaCert()`
+### UnsetCertLifetime
+`func (o *PKIResponses) UnsetCertLifetime()`
 
-UnsetCaCert ensures that no value is present for CaCert, not even an explicit nil
+UnsetCertLifetime ensures that no value is present for CertLifetime, not even an explicit nil
+### GetClientId
+
+`func (o *PKIResponses) GetClientId() int64`
+
+GetClientId returns the ClientId field if non-nil, zero value otherwise.
+
+### GetClientIdOk
+
+`func (o *PKIResponses) GetClientIdOk() (*int64, bool)`
+
+GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientId
+
+`func (o *PKIResponses) SetClientId(v int64)`
+
+SetClientId sets ClientId field to given value.
+
+### HasClientId
+
+`func (o *PKIResponses) HasClientId() bool`
+
+HasClientId returns a boolean if a field has been set.
+
+### SetClientIdNil
+
+`func (o *PKIResponses) SetClientIdNil(b bool)`
+
+ SetClientIdNil sets the value for ClientId to be an explicit nil
+
+### UnsetClientId
+`func (o *PKIResponses) UnsetClientId()`
+
+UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
 ### GetCaKey
 
 `func (o *PKIResponses) GetCaKey() SecretString`
@@ -1858,76 +1823,41 @@ HasCaKey returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetCaKey()`
 
 UnsetCaKey ensures that no value is present for CaKey, not even an explicit nil
-### GetCheckPop
+### GetCaCert
 
-`func (o *PKIResponses) GetCheckPop() bool`
+`func (o *PKIResponses) GetCaCert() string`
 
-GetCheckPop returns the CheckPop field if non-nil, zero value otherwise.
+GetCaCert returns the CaCert field if non-nil, zero value otherwise.
 
-### GetCheckPopOk
+### GetCaCertOk
 
-`func (o *PKIResponses) GetCheckPopOk() (*bool, bool)`
+`func (o *PKIResponses) GetCaCertOk() (*string, bool)`
 
-GetCheckPopOk returns a tuple with the CheckPop field if it's non-nil, zero value otherwise
+GetCaCertOk returns a tuple with the CaCert field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCheckPop
+### SetCaCert
 
-`func (o *PKIResponses) SetCheckPop(v bool)`
+`func (o *PKIResponses) SetCaCert(v string)`
 
-SetCheckPop sets CheckPop field to given value.
+SetCaCert sets CaCert field to given value.
 
-### HasCheckPop
+### HasCaCert
 
-`func (o *PKIResponses) HasCheckPop() bool`
+`func (o *PKIResponses) HasCaCert() bool`
 
-HasCheckPop returns a boolean if a field has been set.
+HasCaCert returns a boolean if a field has been set.
 
-### SetCheckPopNil
+### SetCaCertNil
 
-`func (o *PKIResponses) SetCheckPopNil(b bool)`
+`func (o *PKIResponses) SetCaCertNil(b bool)`
 
- SetCheckPopNil sets the value for CheckPop to be an explicit nil
+ SetCaCertNil sets the value for CaCert to be an explicit nil
 
-### UnsetCheckPop
-`func (o *PKIResponses) UnsetCheckPop()`
+### UnsetCaCert
+`func (o *PKIResponses) UnsetCaCert()`
 
-UnsetCheckPop ensures that no value is present for CheckPop, not even an explicit nil
-### GetCrlLifetime
-
-`func (o *PKIResponses) GetCrlLifetime() string`
-
-GetCrlLifetime returns the CrlLifetime field if non-nil, zero value otherwise.
-
-### GetCrlLifetimeOk
-
-`func (o *PKIResponses) GetCrlLifetimeOk() (*string, bool)`
-
-GetCrlLifetimeOk returns a tuple with the CrlLifetime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCrlLifetime
-
-`func (o *PKIResponses) SetCrlLifetime(v string)`
-
-SetCrlLifetime sets CrlLifetime field to given value.
-
-### HasCrlLifetime
-
-`func (o *PKIResponses) HasCrlLifetime() bool`
-
-HasCrlLifetime returns a boolean if a field has been set.
-
-### SetCrlLifetimeNil
-
-`func (o *PKIResponses) SetCrlLifetimeNil(b bool)`
-
- SetCrlLifetimeNil sets the value for CrlLifetime to be an explicit nil
-
-### UnsetCrlLifetime
-`func (o *PKIResponses) UnsetCrlLifetime()`
-
-UnsetCrlLifetime ensures that no value is present for CrlLifetime, not even an explicit nil
+UnsetCaCert ensures that no value is present for CaCert, not even an explicit nil
 ### GetCrlPath
 
 `func (o *PKIResponses) GetCrlPath() string`
@@ -1963,96 +1893,41 @@ HasCrlPath returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetCrlPath()`
 
 UnsetCrlPath ensures that no value is present for CrlPath, not even an explicit nil
-### GetCrtBackDate
+### GetCrlLifetime
 
-`func (o *PKIResponses) GetCrtBackDate() string`
+`func (o *PKIResponses) GetCrlLifetime() string`
 
-GetCrtBackDate returns the CrtBackDate field if non-nil, zero value otherwise.
+GetCrlLifetime returns the CrlLifetime field if non-nil, zero value otherwise.
 
-### GetCrtBackDateOk
+### GetCrlLifetimeOk
 
-`func (o *PKIResponses) GetCrtBackDateOk() (*string, bool)`
+`func (o *PKIResponses) GetCrlLifetimeOk() (*string, bool)`
 
-GetCrtBackDateOk returns a tuple with the CrtBackDate field if it's non-nil, zero value otherwise
+GetCrlLifetimeOk returns a tuple with the CrlLifetime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCrtBackDate
+### SetCrlLifetime
 
-`func (o *PKIResponses) SetCrtBackDate(v string)`
+`func (o *PKIResponses) SetCrlLifetime(v string)`
 
-SetCrtBackDate sets CrtBackDate field to given value.
+SetCrlLifetime sets CrlLifetime field to given value.
 
-### HasCrtBackDate
+### HasCrlLifetime
 
-`func (o *PKIResponses) HasCrtBackDate() bool`
+`func (o *PKIResponses) HasCrlLifetime() bool`
 
-HasCrtBackDate returns a boolean if a field has been set.
+HasCrlLifetime returns a boolean if a field has been set.
 
-### SetCrtBackDateNil
+### SetCrlLifetimeNil
 
-`func (o *PKIResponses) SetCrtBackDateNil(b bool)`
+`func (o *PKIResponses) SetCrlLifetimeNil(b bool)`
 
- SetCrtBackDateNil sets the value for CrtBackDate to be an explicit nil
+ SetCrlLifetimeNil sets the value for CrlLifetime to be an explicit nil
 
-### UnsetCrtBackDate
-`func (o *PKIResponses) UnsetCrtBackDate()`
+### UnsetCrlLifetime
+`func (o *PKIResponses) UnsetCrlLifetime()`
 
-UnsetCrtBackDate ensures that no value is present for CrtBackDate, not even an explicit nil
-### GetCrtLifetime
-
-`func (o *PKIResponses) GetCrtLifetime() string`
-
-GetCrtLifetime returns the CrtLifetime field if non-nil, zero value otherwise.
-
-### GetCrtLifetimeOk
-
-`func (o *PKIResponses) GetCrtLifetimeOk() (*string, bool)`
-
-GetCrtLifetimeOk returns a tuple with the CrtLifetime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCrtLifetime
-
-`func (o *PKIResponses) SetCrtLifetime(v string)`
-
-SetCrtLifetime sets CrtLifetime field to given value.
-
-### HasCrtLifetime
-
-`func (o *PKIResponses) HasCrtLifetime() bool`
-
-HasCrtLifetime returns a boolean if a field has been set.
-
-### SetCrtLifetimeNil
-
-`func (o *PKIResponses) SetCrtLifetimeNil(b bool)`
-
- SetCrtLifetimeNil sets the value for CrtLifetime to be an explicit nil
-
-### UnsetCrtLifetime
-`func (o *PKIResponses) UnsetCrtLifetime()`
-
-UnsetCrtLifetime ensures that no value is present for CrtLifetime, not even an explicit nil
-### GetCryptoType
-
-`func (o *PKIResponses) GetCryptoType() string`
-
-GetCryptoType returns the CryptoType field if non-nil, zero value otherwise.
-
-### GetCryptoTypeOk
-
-`func (o *PKIResponses) GetCryptoTypeOk() (*string, bool)`
-
-GetCryptoTypeOk returns a tuple with the CryptoType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCryptoType
-
-`func (o *PKIResponses) SetCryptoType(v string)`
-
-SetCryptoType sets CryptoType field to given value.
-
-
+UnsetCrlLifetime ensures that no value is present for CrlLifetime, not even an explicit nil
 ### GetSignAlg
 
 `func (o *PKIResponses) GetSignAlg() string`
@@ -2088,24 +1963,149 @@ HasSignAlg returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetSignAlg()`
 
 UnsetSignAlg ensures that no value is present for SignAlg, not even an explicit nil
-### GetAuthenticationDomainId
+### GetCrtLifetime
 
-`func (o *PKIResponses) GetAuthenticationDomainId() int64`
+`func (o *PKIResponses) GetCrtLifetime() string`
 
-GetAuthenticationDomainId returns the AuthenticationDomainId field if non-nil, zero value otherwise.
+GetCrtLifetime returns the CrtLifetime field if non-nil, zero value otherwise.
 
-### GetAuthenticationDomainIdOk
+### GetCrtLifetimeOk
 
-`func (o *PKIResponses) GetAuthenticationDomainIdOk() (*int64, bool)`
+`func (o *PKIResponses) GetCrtLifetimeOk() (*string, bool)`
 
-GetAuthenticationDomainIdOk returns a tuple with the AuthenticationDomainId field if it's non-nil, zero value otherwise
+GetCrtLifetimeOk returns a tuple with the CrtLifetime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationDomainId
+### SetCrtLifetime
 
-`func (o *PKIResponses) SetAuthenticationDomainId(v int64)`
+`func (o *PKIResponses) SetCrtLifetime(v string)`
 
-SetAuthenticationDomainId sets AuthenticationDomainId field to given value.
+SetCrtLifetime sets CrtLifetime field to given value.
+
+### HasCrtLifetime
+
+`func (o *PKIResponses) HasCrtLifetime() bool`
+
+HasCrtLifetime returns a boolean if a field has been set.
+
+### SetCrtLifetimeNil
+
+`func (o *PKIResponses) SetCrtLifetimeNil(b bool)`
+
+ SetCrtLifetimeNil sets the value for CrtLifetime to be an explicit nil
+
+### UnsetCrtLifetime
+`func (o *PKIResponses) UnsetCrtLifetime()`
+
+UnsetCrtLifetime ensures that no value is present for CrtLifetime, not even an explicit nil
+### GetCrtBackDate
+
+`func (o *PKIResponses) GetCrtBackDate() string`
+
+GetCrtBackDate returns the CrtBackDate field if non-nil, zero value otherwise.
+
+### GetCrtBackDateOk
+
+`func (o *PKIResponses) GetCrtBackDateOk() (*string, bool)`
+
+GetCrtBackDateOk returns a tuple with the CrtBackDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCrtBackDate
+
+`func (o *PKIResponses) SetCrtBackDate(v string)`
+
+SetCrtBackDate sets CrtBackDate field to given value.
+
+### HasCrtBackDate
+
+`func (o *PKIResponses) HasCrtBackDate() bool`
+
+HasCrtBackDate returns a boolean if a field has been set.
+
+### SetCrtBackDateNil
+
+`func (o *PKIResponses) SetCrtBackDateNil(b bool)`
+
+ SetCrtBackDateNil sets the value for CrtBackDate to be an explicit nil
+
+### UnsetCrtBackDate
+`func (o *PKIResponses) UnsetCrtBackDate()`
+
+UnsetCrtBackDate ensures that no value is present for CrtBackDate, not even an explicit nil
+### GetCheckPop
+
+`func (o *PKIResponses) GetCheckPop() bool`
+
+GetCheckPop returns the CheckPop field if non-nil, zero value otherwise.
+
+### GetCheckPopOk
+
+`func (o *PKIResponses) GetCheckPopOk() (*bool, bool)`
+
+GetCheckPopOk returns a tuple with the CheckPop field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCheckPop
+
+`func (o *PKIResponses) SetCheckPop(v bool)`
+
+SetCheckPop sets CheckPop field to given value.
+
+### HasCheckPop
+
+`func (o *PKIResponses) HasCheckPop() bool`
+
+HasCheckPop returns a boolean if a field has been set.
+
+### SetCheckPopNil
+
+`func (o *PKIResponses) SetCheckPopNil(b bool)`
+
+ SetCheckPopNil sets the value for CheckPop to be an explicit nil
+
+### UnsetCheckPop
+`func (o *PKIResponses) UnsetCheckPop()`
+
+UnsetCheckPop ensures that no value is present for CheckPop, not even an explicit nil
+### GetCryptoType
+
+`func (o *PKIResponses) GetCryptoType() string`
+
+GetCryptoType returns the CryptoType field if non-nil, zero value otherwise.
+
+### GetCryptoTypeOk
+
+`func (o *PKIResponses) GetCryptoTypeOk() (*string, bool)`
+
+GetCryptoTypeOk returns a tuple with the CryptoType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCryptoType
+
+`func (o *PKIResponses) SetCryptoType(v string)`
+
+SetCryptoType sets CryptoType field to given value.
+
+
+### GetTemplateId
+
+`func (o *PKIResponses) GetTemplateId() int64`
+
+GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+
+### GetTemplateIdOk
+
+`func (o *PKIResponses) GetTemplateIdOk() (*int64, bool)`
+
+GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplateId
+
+`func (o *PKIResponses) SetTemplateId(v int64)`
+
+SetTemplateId sets TemplateId field to given value.
 
 
 ### GetDefaultOwner
@@ -2128,24 +2128,24 @@ and a boolean to check if the value has been set.
 SetDefaultOwner sets DefaultOwner field to given value.
 
 
-### GetDeleteOnRevoke
+### GetAuthenticationDomainId
 
-`func (o *PKIResponses) GetDeleteOnRevoke() bool`
+`func (o *PKIResponses) GetAuthenticationDomainId() int64`
 
-GetDeleteOnRevoke returns the DeleteOnRevoke field if non-nil, zero value otherwise.
+GetAuthenticationDomainId returns the AuthenticationDomainId field if non-nil, zero value otherwise.
 
-### GetDeleteOnRevokeOk
+### GetAuthenticationDomainIdOk
 
-`func (o *PKIResponses) GetDeleteOnRevokeOk() (*bool, bool)`
+`func (o *PKIResponses) GetAuthenticationDomainIdOk() (*int64, bool)`
 
-GetDeleteOnRevokeOk returns a tuple with the DeleteOnRevoke field if it's non-nil, zero value otherwise
+GetAuthenticationDomainIdOk returns a tuple with the AuthenticationDomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeleteOnRevoke
+### SetAuthenticationDomainId
 
-`func (o *PKIResponses) SetDeleteOnRevoke(v bool)`
+`func (o *PKIResponses) SetAuthenticationDomainId(v int64)`
 
-SetDeleteOnRevoke sets DeleteOnRevoke field to given value.
+SetAuthenticationDomainId sets AuthenticationDomainId field to given value.
 
 
 ### GetOwnerGroups
@@ -2183,24 +2183,24 @@ HasOwnerGroups returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetOwnerGroups()`
 
 UnsetOwnerGroups ensures that no value is present for OwnerGroups, not even an explicit nil
-### GetTemplateId
+### GetDeleteOnRevoke
 
-`func (o *PKIResponses) GetTemplateId() int64`
+`func (o *PKIResponses) GetDeleteOnRevoke() bool`
 
-GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+GetDeleteOnRevoke returns the DeleteOnRevoke field if non-nil, zero value otherwise.
 
-### GetTemplateIdOk
+### GetDeleteOnRevokeOk
 
-`func (o *PKIResponses) GetTemplateIdOk() (*int64, bool)`
+`func (o *PKIResponses) GetDeleteOnRevokeOk() (*bool, bool)`
 
-GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+GetDeleteOnRevokeOk returns a tuple with the DeleteOnRevoke field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTemplateId
+### SetDeleteOnRevoke
 
-`func (o *PKIResponses) SetTemplateId(v int64)`
+`func (o *PKIResponses) SetDeleteOnRevoke(v bool)`
 
-SetTemplateId sets TemplateId field to given value.
+SetDeleteOnRevoke sets DeleteOnRevoke field to given value.
 
 
 ### GetHashAlgorithm
@@ -2238,6 +2238,46 @@ HasHashAlgorithm returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetHashAlgorithm()`
 
 UnsetHashAlgorithm ensures that no value is present for HashAlgorithm, not even an explicit nil
+### GetEndpointType
+
+`func (o *PKIResponses) GetEndpointType() string`
+
+GetEndpointType returns the EndpointType field if non-nil, zero value otherwise.
+
+### GetEndpointTypeOk
+
+`func (o *PKIResponses) GetEndpointTypeOk() (*string, bool)`
+
+GetEndpointTypeOk returns a tuple with the EndpointType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndpointType
+
+`func (o *PKIResponses) SetEndpointType(v string)`
+
+SetEndpointType sets EndpointType field to given value.
+
+
+### GetDomainId
+
+`func (o *PKIResponses) GetDomainId() string`
+
+GetDomainId returns the DomainId field if non-nil, zero value otherwise.
+
+### GetDomainIdOk
+
+`func (o *PKIResponses) GetDomainIdOk() (*string, bool)`
+
+GetDomainIdOk returns a tuple with the DomainId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomainId
+
+`func (o *PKIResponses) SetDomainId(v string)`
+
+SetDomainId sets DomainId field to given value.
+
+
 ### GetCertificateValidity
 
 `func (o *PKIResponses) GetCertificateValidity() int64`
@@ -2343,46 +2383,6 @@ HasDefaultPhone returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetDefaultPhone()`
 
 UnsetDefaultPhone ensures that no value is present for DefaultPhone, not even an explicit nil
-### GetDomainId
-
-`func (o *PKIResponses) GetDomainId() string`
-
-GetDomainId returns the DomainId field if non-nil, zero value otherwise.
-
-### GetDomainIdOk
-
-`func (o *PKIResponses) GetDomainIdOk() (*string, bool)`
-
-GetDomainIdOk returns a tuple with the DomainId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDomainId
-
-`func (o *PKIResponses) SetDomainId(v string)`
-
-SetDomainId sets DomainId field to given value.
-
-
-### GetEndpointType
-
-`func (o *PKIResponses) GetEndpointType() string`
-
-GetEndpointType returns the EndpointType field if non-nil, zero value otherwise.
-
-### GetEndpointTypeOk
-
-`func (o *PKIResponses) GetEndpointTypeOk() (*string, bool)`
-
-GetEndpointTypeOk returns a tuple with the EndpointType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEndpointType
-
-`func (o *PKIResponses) SetEndpointType(v string)`
-
-SetEndpointType sets EndpointType field to given value.
-
-
 ### GetSanEmailMap
 
 `func (o *PKIResponses) GetSanEmailMap() string`
@@ -2543,6 +2543,66 @@ and a boolean to check if the value has been set.
 SetEndPointIssuingCA sets EndPointIssuingCA field to given value.
 
 
+### GetWorkflow
+
+`func (o *PKIResponses) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *PKIResponses) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *PKIResponses) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
+### SetWorkflowNil
+
+`func (o *PKIResponses) SetWorkflowNil(b bool)`
+
+ SetWorkflowNil sets the value for Workflow to be an explicit nil
+
+### UnsetWorkflow
+`func (o *PKIResponses) UnsetWorkflow()`
+
+UnsetWorkflow ensures that no value is present for Workflow, not even an explicit nil
+### GetProfilCle
+
+`func (o *PKIResponses) GetProfilCle() string`
+
+GetProfilCle returns the ProfilCle field if non-nil, zero value otherwise.
+
+### GetProfilCleOk
+
+`func (o *PKIResponses) GetProfilCleOk() (*string, bool)`
+
+GetProfilCleOk returns a tuple with the ProfilCle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfilCle
+
+`func (o *PKIResponses) SetProfilCle(v string)`
+
+SetProfilCle sets ProfilCle field to given value.
+
+
+### SetProfilCleNil
+
+`func (o *PKIResponses) SetProfilCleNil(b bool)`
+
+ SetProfilCleNil sets the value for ProfilCle to be an explicit nil
+
+### UnsetProfilCle
+`func (o *PKIResponses) UnsetProfilCle()`
+
+UnsetProfilCle ensures that no value is present for ProfilCle, not even an explicit nil
 ### GetFormPorteurName
 
 `func (o *PKIResponses) GetFormPorteurName() string`
@@ -2578,86 +2638,6 @@ HasFormPorteurName returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetFormPorteurName()`
 
 UnsetFormPorteurName ensures that no value is present for FormPorteurName, not even an explicit nil
-### GetProfilCle
-
-`func (o *PKIResponses) GetProfilCle() string`
-
-GetProfilCle returns the ProfilCle field if non-nil, zero value otherwise.
-
-### GetProfilCleOk
-
-`func (o *PKIResponses) GetProfilCleOk() (*string, bool)`
-
-GetProfilCleOk returns a tuple with the ProfilCle field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfilCle
-
-`func (o *PKIResponses) SetProfilCle(v string)`
-
-SetProfilCle sets ProfilCle field to given value.
-
-
-### SetProfilCleNil
-
-`func (o *PKIResponses) SetProfilCleNil(b bool)`
-
- SetProfilCleNil sets the value for ProfilCle to be an explicit nil
-
-### UnsetProfilCle
-`func (o *PKIResponses) UnsetProfilCle()`
-
-UnsetProfilCle ensures that no value is present for ProfilCle, not even an explicit nil
-### GetWorkflow
-
-`func (o *PKIResponses) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *PKIResponses) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *PKIResponses) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-
-### SetWorkflowNil
-
-`func (o *PKIResponses) SetWorkflowNil(b bool)`
-
- SetWorkflowNil sets the value for Workflow to be an explicit nil
-
-### UnsetWorkflow
-`func (o *PKIResponses) UnsetWorkflow()`
-
-UnsetWorkflow ensures that no value is present for Workflow, not even an explicit nil
-### GetCustomerId
-
-`func (o *PKIResponses) GetCustomerId() string`
-
-GetCustomerId returns the CustomerId field if non-nil, zero value otherwise.
-
-### GetCustomerIdOk
-
-`func (o *PKIResponses) GetCustomerIdOk() (*string, bool)`
-
-GetCustomerIdOk returns a tuple with the CustomerId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCustomerId
-
-`func (o *PKIResponses) SetCustomerId(v string)`
-
-SetCustomerId sets CustomerId field to given value.
-
-
 ### GetEnvironment
 
 `func (o *PKIResponses) GetEnvironment() string`
@@ -2676,6 +2656,26 @@ and a boolean to check if the value has been set.
 `func (o *PKIResponses) SetEnvironment(v string)`
 
 SetEnvironment sets Environment field to given value.
+
+
+### GetCustomerId
+
+`func (o *PKIResponses) GetCustomerId() string`
+
+GetCustomerId returns the CustomerId field if non-nil, zero value otherwise.
+
+### GetCustomerIdOk
+
+`func (o *PKIResponses) GetCustomerIdOk() (*string, bool)`
+
+GetCustomerIdOk returns a tuple with the CustomerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomerId
+
+`func (o *PKIResponses) SetCustomerId(v string)`
+
+SetCustomerId sets CustomerId field to given value.
 
 
 ### GetProcedure

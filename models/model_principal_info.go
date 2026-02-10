@@ -22,24 +22,24 @@ var _ utils.MappedNullable = &PrincipalInfo{}
 
 // PrincipalInfo struct for PrincipalInfo
 type PrincipalInfo struct {
-	// The contact e-mail of the principal
-	Contact utils.NullableString `json:"contact,omitempty"`
-	// The custom dashboards of the principal. This is used by UI only. These values should not be manually set but should be copied on update
-	CustomDashboards []Dashboard `json:"customDashboards,omitempty"`
-	// If the principal is allowed to login horizon
-	Enabled bool `json:"enabled"`
 	// The identifier of the principal
 	Identifier string `json:"identifier"`
+	// The contact e-mail of the principal
+	Contact utils.NullableString `json:"contact,omitempty"`
 	// The permissions of the principal
 	Permissions []Permission `json:"permissions,omitempty"`
-	// The UI preferences of the principal. This is used by UI only. These values should not be manually set but should be copied on update
-	Preferences NullablePrincipalInfoPreferences `json:"preferences,omitempty"`
 	// The roles of the principal
 	Roles []string `json:"roles,omitempty"`
+	// The teams of the principal
+	Teams []string `json:"teams,omitempty"`
 	// The saved HQL queries of the principal. This is used by UI only. These values should not be manually set but should be copied on update
 	SavedQueries []PrincipalInfoSavedQuery `json:"savedQueries,omitempty"`
-	// The teams of the principal
-	Teams                []string `json:"teams,omitempty"`
+	// The custom dashboards of the principal. This is used by UI only. These values should not be manually set but should be copied on update
+	CustomDashboards []Dashboard `json:"customDashboards,omitempty"`
+	// The UI preferences of the principal. This is used by UI only. These values should not be manually set but should be copied on update
+	Preferences NullablePrincipalInfoPreferences `json:"preferences,omitempty"`
+	// If the principal is allowed to login horizon
+	Enabled              bool `json:"enabled"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,10 +49,10 @@ type _PrincipalInfo PrincipalInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrincipalInfo(enabled bool, identifier string) *PrincipalInfo {
+func NewPrincipalInfo(identifier string, enabled bool) *PrincipalInfo {
 	this := PrincipalInfo{}
-	this.Enabled = enabled
 	this.Identifier = identifier
+	this.Enabled = enabled
 	return &this
 }
 
@@ -62,6 +62,30 @@ func NewPrincipalInfo(enabled bool, identifier string) *PrincipalInfo {
 func NewPrincipalInfoWithDefaults() *PrincipalInfo {
 	this := PrincipalInfo{}
 	return &this
+}
+
+// GetIdentifier returns the Identifier field value
+func (o *PrincipalInfo) GetIdentifier() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Identifier
+}
+
+// GetIdentifierOk returns a tuple with the Identifier field value
+// and a boolean to check if the value has been set.
+func (o *PrincipalInfo) GetIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Identifier, true
+}
+
+// SetIdentifier sets field value
+func (o *PrincipalInfo) SetIdentifier(v string) {
+	o.Identifier = v
 }
 
 // GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -107,87 +131,6 @@ func (o *PrincipalInfo) UnsetContact() {
 	o.Contact.Unset()
 }
 
-// GetCustomDashboards returns the CustomDashboards field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfo) GetCustomDashboards() []Dashboard {
-	if o == nil {
-		var ret []Dashboard
-		return ret
-	}
-	return o.CustomDashboards
-}
-
-// GetCustomDashboardsOk returns a tuple with the CustomDashboards field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfo) GetCustomDashboardsOk() ([]Dashboard, bool) {
-	if o == nil || utils.IsNil(o.CustomDashboards) {
-		return nil, false
-	}
-	return o.CustomDashboards, true
-}
-
-// HasCustomDashboards returns a boolean if a field has been set.
-func (o *PrincipalInfo) HasCustomDashboards() bool {
-	if o != nil && !utils.IsNil(o.CustomDashboards) {
-		return true
-	}
-
-	return false
-}
-
-// SetCustomDashboards gets a reference to the given []Dashboard and assigns it to the CustomDashboards field.
-func (o *PrincipalInfo) SetCustomDashboards(v []Dashboard) {
-	o.CustomDashboards = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *PrincipalInfo) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *PrincipalInfo) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *PrincipalInfo) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetIdentifier returns the Identifier field value
-func (o *PrincipalInfo) GetIdentifier() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Identifier
-}
-
-// GetIdentifierOk returns a tuple with the Identifier field value
-// and a boolean to check if the value has been set.
-func (o *PrincipalInfo) GetIdentifierOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Identifier, true
-}
-
-// SetIdentifier sets field value
-func (o *PrincipalInfo) SetIdentifier(v string) {
-	o.Identifier = v
-}
-
 // GetPermissions returns the Permissions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PrincipalInfo) GetPermissions() []Permission {
 	if o == nil {
@@ -219,6 +162,138 @@ func (o *PrincipalInfo) HasPermissions() bool {
 // SetPermissions gets a reference to the given []Permission and assigns it to the Permissions field.
 func (o *PrincipalInfo) SetPermissions(v []Permission) {
 	o.Permissions = v
+}
+
+// GetRoles returns the Roles field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfo) GetRoles() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfo) GetRolesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Roles) {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// HasRoles returns a boolean if a field has been set.
+func (o *PrincipalInfo) HasRoles() bool {
+	if o != nil && !utils.IsNil(o.Roles) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *PrincipalInfo) SetRoles(v []string) {
+	o.Roles = v
+}
+
+// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfo) GetTeams() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Teams
+}
+
+// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfo) GetTeamsOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Teams) {
+		return nil, false
+	}
+	return o.Teams, true
+}
+
+// HasTeams returns a boolean if a field has been set.
+func (o *PrincipalInfo) HasTeams() bool {
+	if o != nil && !utils.IsNil(o.Teams) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeams gets a reference to the given []string and assigns it to the Teams field.
+func (o *PrincipalInfo) SetTeams(v []string) {
+	o.Teams = v
+}
+
+// GetSavedQueries returns the SavedQueries field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfo) GetSavedQueries() []PrincipalInfoSavedQuery {
+	if o == nil {
+		var ret []PrincipalInfoSavedQuery
+		return ret
+	}
+	return o.SavedQueries
+}
+
+// GetSavedQueriesOk returns a tuple with the SavedQueries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfo) GetSavedQueriesOk() ([]PrincipalInfoSavedQuery, bool) {
+	if o == nil || utils.IsNil(o.SavedQueries) {
+		return nil, false
+	}
+	return o.SavedQueries, true
+}
+
+// HasSavedQueries returns a boolean if a field has been set.
+func (o *PrincipalInfo) HasSavedQueries() bool {
+	if o != nil && !utils.IsNil(o.SavedQueries) {
+		return true
+	}
+
+	return false
+}
+
+// SetSavedQueries gets a reference to the given []PrincipalInfoSavedQuery and assigns it to the SavedQueries field.
+func (o *PrincipalInfo) SetSavedQueries(v []PrincipalInfoSavedQuery) {
+	o.SavedQueries = v
+}
+
+// GetCustomDashboards returns the CustomDashboards field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfo) GetCustomDashboards() []Dashboard {
+	if o == nil {
+		var ret []Dashboard
+		return ret
+	}
+	return o.CustomDashboards
+}
+
+// GetCustomDashboardsOk returns a tuple with the CustomDashboards field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfo) GetCustomDashboardsOk() ([]Dashboard, bool) {
+	if o == nil || utils.IsNil(o.CustomDashboards) {
+		return nil, false
+	}
+	return o.CustomDashboards, true
+}
+
+// HasCustomDashboards returns a boolean if a field has been set.
+func (o *PrincipalInfo) HasCustomDashboards() bool {
+	if o != nil && !utils.IsNil(o.CustomDashboards) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomDashboards gets a reference to the given []Dashboard and assigns it to the CustomDashboards field.
+func (o *PrincipalInfo) SetCustomDashboards(v []Dashboard) {
+	o.CustomDashboards = v
 }
 
 // GetPreferences returns the Preferences field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -264,103 +339,28 @@ func (o *PrincipalInfo) UnsetPreferences() {
 	o.Preferences.Unset()
 }
 
-// GetRoles returns the Roles field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfo) GetRoles() []string {
+// GetEnabled returns the Enabled field value
+func (o *PrincipalInfo) GetEnabled() bool {
 	if o == nil {
-		var ret []string
+		var ret bool
 		return ret
 	}
-	return o.Roles
+
+	return o.Enabled
 }
 
-// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfo) GetRolesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Roles) {
-		return nil, false
-	}
-	return o.Roles, true
-}
-
-// HasRoles returns a boolean if a field has been set.
-func (o *PrincipalInfo) HasRoles() bool {
-	if o != nil && !utils.IsNil(o.Roles) {
-		return true
-	}
-
-	return false
-}
-
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *PrincipalInfo) SetRoles(v []string) {
-	o.Roles = v
-}
-
-// GetSavedQueries returns the SavedQueries field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfo) GetSavedQueries() []PrincipalInfoSavedQuery {
+func (o *PrincipalInfo) GetEnabledOk() (*bool, bool) {
 	if o == nil {
-		var ret []PrincipalInfoSavedQuery
-		return ret
-	}
-	return o.SavedQueries
-}
-
-// GetSavedQueriesOk returns a tuple with the SavedQueries field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfo) GetSavedQueriesOk() ([]PrincipalInfoSavedQuery, bool) {
-	if o == nil || utils.IsNil(o.SavedQueries) {
 		return nil, false
 	}
-	return o.SavedQueries, true
+	return &o.Enabled, true
 }
 
-// HasSavedQueries returns a boolean if a field has been set.
-func (o *PrincipalInfo) HasSavedQueries() bool {
-	if o != nil && !utils.IsNil(o.SavedQueries) {
-		return true
-	}
-
-	return false
-}
-
-// SetSavedQueries gets a reference to the given []PrincipalInfoSavedQuery and assigns it to the SavedQueries field.
-func (o *PrincipalInfo) SetSavedQueries(v []PrincipalInfoSavedQuery) {
-	o.SavedQueries = v
-}
-
-// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfo) GetTeams() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Teams
-}
-
-// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfo) GetTeamsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Teams) {
-		return nil, false
-	}
-	return o.Teams, true
-}
-
-// HasTeams returns a boolean if a field has been set.
-func (o *PrincipalInfo) HasTeams() bool {
-	if o != nil && !utils.IsNil(o.Teams) {
-		return true
-	}
-
-	return false
-}
-
-// SetTeams gets a reference to the given []string and assigns it to the Teams field.
-func (o *PrincipalInfo) SetTeams(v []string) {
-	o.Teams = v
+// SetEnabled sets field value
+func (o *PrincipalInfo) SetEnabled(v bool) {
+	o.Enabled = v
 }
 
 func (o PrincipalInfo) MarshalJSON() ([]byte, error) {
@@ -373,29 +373,29 @@ func (o PrincipalInfo) MarshalJSON() ([]byte, error) {
 
 func (o PrincipalInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["identifier"] = o.Identifier
 	if o.Contact.IsSet() {
 		toSerialize["contact"] = o.Contact.Get()
 	}
-	if o.CustomDashboards != nil {
-		toSerialize["customDashboards"] = o.CustomDashboards
-	}
-	toSerialize["enabled"] = o.Enabled
-	toSerialize["identifier"] = o.Identifier
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions
-	}
-	if o.Preferences.IsSet() {
-		toSerialize["preferences"] = o.Preferences.Get()
 	}
 	if o.Roles != nil {
 		toSerialize["roles"] = o.Roles
 	}
-	if o.SavedQueries != nil {
-		toSerialize["savedQueries"] = o.SavedQueries
-	}
 	if o.Teams != nil {
 		toSerialize["teams"] = o.Teams
 	}
+	if o.SavedQueries != nil {
+		toSerialize["savedQueries"] = o.SavedQueries
+	}
+	if o.CustomDashboards != nil {
+		toSerialize["customDashboards"] = o.CustomDashboards
+	}
+	if o.Preferences.IsSet() {
+		toSerialize["preferences"] = o.Preferences.Get()
+	}
+	toSerialize["enabled"] = o.Enabled
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -409,8 +409,8 @@ func (o *PrincipalInfo) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"enabled",
 		"identifier",
+		"enabled",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -440,15 +440,15 @@ func (o *PrincipalInfo) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "contact")
-		delete(additionalProperties, "customDashboards")
-		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "identifier")
+		delete(additionalProperties, "contact")
 		delete(additionalProperties, "permissions")
-		delete(additionalProperties, "preferences")
 		delete(additionalProperties, "roles")
-		delete(additionalProperties, "savedQueries")
 		delete(additionalProperties, "teams")
+		delete(additionalProperties, "savedQueries")
+		delete(additionalProperties, "customDashboards")
+		delete(additionalProperties, "preferences")
+		delete(additionalProperties, "enabled")
 		o.AdditionalProperties = additionalProperties
 	}
 

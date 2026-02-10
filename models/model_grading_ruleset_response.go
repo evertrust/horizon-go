@@ -24,10 +24,10 @@ var _ utils.MappedNullable = &GradingRulesetResponse{}
 type GradingRulesetResponse struct {
 	// Object internal ID
 	Id                   string               `json:"_id"`
-	Description          []LocalizedString    `json:"description,omitempty"`
 	Name                 string               `json:"name"`
-	Rules                []GradingRule        `json:"rules"`
+	Description          []LocalizedString    `json:"description,omitempty"`
 	Scope                utils.NullableString `json:"scope,omitempty"`
+	Rules                []GradingRule        `json:"rules"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -77,6 +77,30 @@ func (o *GradingRulesetResponse) SetId(v string) {
 	o.Id = v
 }
 
+// GetName returns the Name field value
+func (o *GradingRulesetResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GradingRulesetResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *GradingRulesetResponse) SetName(v string) {
+	o.Name = v
+}
+
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GradingRulesetResponse) GetDescription() []LocalizedString {
 	if o == nil {
@@ -108,54 +132,6 @@ func (o *GradingRulesetResponse) HasDescription() bool {
 // SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
 func (o *GradingRulesetResponse) SetDescription(v []LocalizedString) {
 	o.Description = v
-}
-
-// GetName returns the Name field value
-func (o *GradingRulesetResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *GradingRulesetResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *GradingRulesetResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetRules returns the Rules field value
-func (o *GradingRulesetResponse) GetRules() []GradingRule {
-	if o == nil {
-		var ret []GradingRule
-		return ret
-	}
-
-	return o.Rules
-}
-
-// GetRulesOk returns a tuple with the Rules field value
-// and a boolean to check if the value has been set.
-func (o *GradingRulesetResponse) GetRulesOk() ([]GradingRule, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Rules, true
-}
-
-// SetRules sets field value
-func (o *GradingRulesetResponse) SetRules(v []GradingRule) {
-	o.Rules = v
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -201,6 +177,30 @@ func (o *GradingRulesetResponse) UnsetScope() {
 	o.Scope.Unset()
 }
 
+// GetRules returns the Rules field value
+func (o *GradingRulesetResponse) GetRules() []GradingRule {
+	if o == nil {
+		var ret []GradingRule
+		return ret
+	}
+
+	return o.Rules
+}
+
+// GetRulesOk returns a tuple with the Rules field value
+// and a boolean to check if the value has been set.
+func (o *GradingRulesetResponse) GetRulesOk() ([]GradingRule, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Rules, true
+}
+
+// SetRules sets field value
+func (o *GradingRulesetResponse) SetRules(v []GradingRule) {
+	o.Rules = v
+}
+
 func (o GradingRulesetResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -212,14 +212,14 @@ func (o GradingRulesetResponse) MarshalJSON() ([]byte, error) {
 func (o GradingRulesetResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
+	toSerialize["name"] = o.Name
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["rules"] = o.Rules
 	if o.Scope.IsSet() {
 		toSerialize["scope"] = o.Scope.Get()
 	}
+	toSerialize["rules"] = o.Rules
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -266,10 +266,10 @@ func (o *GradingRulesetResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "rules")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "scope")
+		delete(additionalProperties, "rules")
 		o.AdditionalProperties = additionalProperties
 	}
 

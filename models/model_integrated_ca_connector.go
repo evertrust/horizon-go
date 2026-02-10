@@ -22,19 +22,19 @@ var _ utils.MappedNullable = &IntegratedCAConnector{}
 
 // IntegratedCAConnector struct for IntegratedCAConnector
 type IntegratedCAConnector struct {
-	CaCert               utils.NullableString `json:"caCert,omitempty"`
-	CaKey                NullableSecretString `json:"caKey,omitempty"`
-	CertType             utils.NullableString `json:"certType,omitempty"`
-	CheckPop             utils.NullableBool   `json:"checkPop,omitempty"`
-	CrlLifetime          utils.NullableString `json:"crlLifetime,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	CrlPath              utils.NullableString `json:"crlPath,omitempty"`
-	CrtBackDate          utils.NullableString `json:"crtBackDate,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	CrtLifetime          utils.NullableString `json:"crtLifetime,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	CryptoType           string               `json:"cryptoType"`
 	Name                 string               `json:"name"`
-	Queue                utils.NullableString `json:"queue,omitempty"`
-	SignAlg              utils.NullableString `json:"signAlg,omitempty"`
 	Type                 string               `json:"type"`
+	CaKey                NullableSecretString `json:"caKey,omitempty"`
+	CaCert               utils.NullableString `json:"caCert,omitempty"`
+	CrlPath              utils.NullableString `json:"crlPath,omitempty"`
+	CrlLifetime          utils.NullableString `json:"crlLifetime,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	CertType             utils.NullableString `json:"certType,omitempty"`
+	SignAlg              utils.NullableString `json:"signAlg,omitempty"`
+	CrtLifetime          utils.NullableString `json:"crtLifetime,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	CrtBackDate          utils.NullableString `json:"crtBackDate,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	CheckPop             utils.NullableBool   `json:"checkPop,omitempty"`
+	Queue                utils.NullableString `json:"queue,omitempty"`
+	CryptoType           string               `json:"cryptoType"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,11 +44,11 @@ type _IntegratedCAConnector IntegratedCAConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntegratedCAConnector(cryptoType string, name string, type_ string) *IntegratedCAConnector {
+func NewIntegratedCAConnector(name string, type_ string, cryptoType string) *IntegratedCAConnector {
 	this := IntegratedCAConnector{}
-	this.CryptoType = cryptoType
 	this.Name = name
 	this.Type = type_
+	this.CryptoType = cryptoType
 	return &this
 }
 
@@ -60,47 +60,52 @@ func NewIntegratedCAConnectorWithDefaults() *IntegratedCAConnector {
 	return &this
 }
 
-// GetCaCert returns the CaCert field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntegratedCAConnector) GetCaCert() string {
-	if o == nil || utils.IsNil(o.CaCert.Get()) {
+// GetName returns the Name field value
+func (o *IntegratedCAConnector) GetName() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.CaCert.Get()
+
+	return o.Name
 }
 
-// GetCaCertOk returns a tuple with the CaCert field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntegratedCAConnector) GetCaCertOk() (*string, bool) {
+func (o *IntegratedCAConnector) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.CaCert.Get(), o.CaCert.IsSet()
+	return &o.Name, true
 }
 
-// HasCaCert returns a boolean if a field has been set.
-func (o *IntegratedCAConnector) HasCaCert() bool {
-	if o != nil && o.CaCert.IsSet() {
-		return true
+// SetName sets field value
+func (o *IntegratedCAConnector) SetName(v string) {
+	o.Name = v
+}
+
+// GetType returns the Type field value
+func (o *IntegratedCAConnector) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Type
 }
 
-// SetCaCert gets a reference to the given NullableString and assigns it to the CaCert field.
-func (o *IntegratedCAConnector) SetCaCert(v string) {
-	o.CaCert.Set(&v)
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *IntegratedCAConnector) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
-// SetCaCertNil sets the value for CaCert to be an explicit nil
-func (o *IntegratedCAConnector) SetCaCertNil() {
-	o.CaCert.Set(nil)
-}
-
-// UnsetCaCert ensures that no value is present for CaCert, not even an explicit nil
-func (o *IntegratedCAConnector) UnsetCaCert() {
-	o.CaCert.Unset()
+// SetType sets field value
+func (o *IntegratedCAConnector) SetType(v string) {
+	o.Type = v
 }
 
 // GetCaKey returns the CaKey field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -146,133 +151,47 @@ func (o *IntegratedCAConnector) UnsetCaKey() {
 	o.CaKey.Unset()
 }
 
-// GetCertType returns the CertType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntegratedCAConnector) GetCertType() string {
-	if o == nil || utils.IsNil(o.CertType.Get()) {
+// GetCaCert returns the CaCert field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntegratedCAConnector) GetCaCert() string {
+	if o == nil || utils.IsNil(o.CaCert.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.CertType.Get()
+	return *o.CaCert.Get()
 }
 
-// GetCertTypeOk returns a tuple with the CertType field value if set, nil otherwise
+// GetCaCertOk returns a tuple with the CaCert field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntegratedCAConnector) GetCertTypeOk() (*string, bool) {
+func (o *IntegratedCAConnector) GetCaCertOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.CertType.Get(), o.CertType.IsSet()
+	return o.CaCert.Get(), o.CaCert.IsSet()
 }
 
-// HasCertType returns a boolean if a field has been set.
-func (o *IntegratedCAConnector) HasCertType() bool {
-	if o != nil && o.CertType.IsSet() {
+// HasCaCert returns a boolean if a field has been set.
+func (o *IntegratedCAConnector) HasCaCert() bool {
+	if o != nil && o.CaCert.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCertType gets a reference to the given NullableString and assigns it to the CertType field.
-func (o *IntegratedCAConnector) SetCertType(v string) {
-	o.CertType.Set(&v)
+// SetCaCert gets a reference to the given NullableString and assigns it to the CaCert field.
+func (o *IntegratedCAConnector) SetCaCert(v string) {
+	o.CaCert.Set(&v)
 }
 
-// SetCertTypeNil sets the value for CertType to be an explicit nil
-func (o *IntegratedCAConnector) SetCertTypeNil() {
-	o.CertType.Set(nil)
+// SetCaCertNil sets the value for CaCert to be an explicit nil
+func (o *IntegratedCAConnector) SetCaCertNil() {
+	o.CaCert.Set(nil)
 }
 
-// UnsetCertType ensures that no value is present for CertType, not even an explicit nil
-func (o *IntegratedCAConnector) UnsetCertType() {
-	o.CertType.Unset()
-}
-
-// GetCheckPop returns the CheckPop field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntegratedCAConnector) GetCheckPop() bool {
-	if o == nil || utils.IsNil(o.CheckPop.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.CheckPop.Get()
-}
-
-// GetCheckPopOk returns a tuple with the CheckPop field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntegratedCAConnector) GetCheckPopOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CheckPop.Get(), o.CheckPop.IsSet()
-}
-
-// HasCheckPop returns a boolean if a field has been set.
-func (o *IntegratedCAConnector) HasCheckPop() bool {
-	if o != nil && o.CheckPop.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCheckPop gets a reference to the given NullableBool and assigns it to the CheckPop field.
-func (o *IntegratedCAConnector) SetCheckPop(v bool) {
-	o.CheckPop.Set(&v)
-}
-
-// SetCheckPopNil sets the value for CheckPop to be an explicit nil
-func (o *IntegratedCAConnector) SetCheckPopNil() {
-	o.CheckPop.Set(nil)
-}
-
-// UnsetCheckPop ensures that no value is present for CheckPop, not even an explicit nil
-func (o *IntegratedCAConnector) UnsetCheckPop() {
-	o.CheckPop.Unset()
-}
-
-// GetCrlLifetime returns the CrlLifetime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntegratedCAConnector) GetCrlLifetime() string {
-	if o == nil || utils.IsNil(o.CrlLifetime.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.CrlLifetime.Get()
-}
-
-// GetCrlLifetimeOk returns a tuple with the CrlLifetime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntegratedCAConnector) GetCrlLifetimeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CrlLifetime.Get(), o.CrlLifetime.IsSet()
-}
-
-// HasCrlLifetime returns a boolean if a field has been set.
-func (o *IntegratedCAConnector) HasCrlLifetime() bool {
-	if o != nil && o.CrlLifetime.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCrlLifetime gets a reference to the given NullableString and assigns it to the CrlLifetime field.
-func (o *IntegratedCAConnector) SetCrlLifetime(v string) {
-	o.CrlLifetime.Set(&v)
-}
-
-// SetCrlLifetimeNil sets the value for CrlLifetime to be an explicit nil
-func (o *IntegratedCAConnector) SetCrlLifetimeNil() {
-	o.CrlLifetime.Set(nil)
-}
-
-// UnsetCrlLifetime ensures that no value is present for CrlLifetime, not even an explicit nil
-func (o *IntegratedCAConnector) UnsetCrlLifetime() {
-	o.CrlLifetime.Unset()
+// UnsetCaCert ensures that no value is present for CaCert, not even an explicit nil
+func (o *IntegratedCAConnector) UnsetCaCert() {
+	o.CaCert.Unset()
 }
 
 // GetCrlPath returns the CrlPath field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -318,181 +237,90 @@ func (o *IntegratedCAConnector) UnsetCrlPath() {
 	o.CrlPath.Unset()
 }
 
-// GetCrtBackDate returns the CrtBackDate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntegratedCAConnector) GetCrtBackDate() string {
-	if o == nil || utils.IsNil(o.CrtBackDate.Get()) {
+// GetCrlLifetime returns the CrlLifetime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntegratedCAConnector) GetCrlLifetime() string {
+	if o == nil || utils.IsNil(o.CrlLifetime.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.CrtBackDate.Get()
+	return *o.CrlLifetime.Get()
 }
 
-// GetCrtBackDateOk returns a tuple with the CrtBackDate field value if set, nil otherwise
+// GetCrlLifetimeOk returns a tuple with the CrlLifetime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntegratedCAConnector) GetCrtBackDateOk() (*string, bool) {
+func (o *IntegratedCAConnector) GetCrlLifetimeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.CrtBackDate.Get(), o.CrtBackDate.IsSet()
+	return o.CrlLifetime.Get(), o.CrlLifetime.IsSet()
 }
 
-// HasCrtBackDate returns a boolean if a field has been set.
-func (o *IntegratedCAConnector) HasCrtBackDate() bool {
-	if o != nil && o.CrtBackDate.IsSet() {
+// HasCrlLifetime returns a boolean if a field has been set.
+func (o *IntegratedCAConnector) HasCrlLifetime() bool {
+	if o != nil && o.CrlLifetime.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCrtBackDate gets a reference to the given NullableString and assigns it to the CrtBackDate field.
-func (o *IntegratedCAConnector) SetCrtBackDate(v string) {
-	o.CrtBackDate.Set(&v)
+// SetCrlLifetime gets a reference to the given NullableString and assigns it to the CrlLifetime field.
+func (o *IntegratedCAConnector) SetCrlLifetime(v string) {
+	o.CrlLifetime.Set(&v)
 }
 
-// SetCrtBackDateNil sets the value for CrtBackDate to be an explicit nil
-func (o *IntegratedCAConnector) SetCrtBackDateNil() {
-	o.CrtBackDate.Set(nil)
+// SetCrlLifetimeNil sets the value for CrlLifetime to be an explicit nil
+func (o *IntegratedCAConnector) SetCrlLifetimeNil() {
+	o.CrlLifetime.Set(nil)
 }
 
-// UnsetCrtBackDate ensures that no value is present for CrtBackDate, not even an explicit nil
-func (o *IntegratedCAConnector) UnsetCrtBackDate() {
-	o.CrtBackDate.Unset()
+// UnsetCrlLifetime ensures that no value is present for CrlLifetime, not even an explicit nil
+func (o *IntegratedCAConnector) UnsetCrlLifetime() {
+	o.CrlLifetime.Unset()
 }
 
-// GetCrtLifetime returns the CrtLifetime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntegratedCAConnector) GetCrtLifetime() string {
-	if o == nil || utils.IsNil(o.CrtLifetime.Get()) {
+// GetCertType returns the CertType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntegratedCAConnector) GetCertType() string {
+	if o == nil || utils.IsNil(o.CertType.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.CrtLifetime.Get()
+	return *o.CertType.Get()
 }
 
-// GetCrtLifetimeOk returns a tuple with the CrtLifetime field value if set, nil otherwise
+// GetCertTypeOk returns a tuple with the CertType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntegratedCAConnector) GetCrtLifetimeOk() (*string, bool) {
+func (o *IntegratedCAConnector) GetCertTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.CrtLifetime.Get(), o.CrtLifetime.IsSet()
+	return o.CertType.Get(), o.CertType.IsSet()
 }
 
-// HasCrtLifetime returns a boolean if a field has been set.
-func (o *IntegratedCAConnector) HasCrtLifetime() bool {
-	if o != nil && o.CrtLifetime.IsSet() {
+// HasCertType returns a boolean if a field has been set.
+func (o *IntegratedCAConnector) HasCertType() bool {
+	if o != nil && o.CertType.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCrtLifetime gets a reference to the given NullableString and assigns it to the CrtLifetime field.
-func (o *IntegratedCAConnector) SetCrtLifetime(v string) {
-	o.CrtLifetime.Set(&v)
+// SetCertType gets a reference to the given NullableString and assigns it to the CertType field.
+func (o *IntegratedCAConnector) SetCertType(v string) {
+	o.CertType.Set(&v)
 }
 
-// SetCrtLifetimeNil sets the value for CrtLifetime to be an explicit nil
-func (o *IntegratedCAConnector) SetCrtLifetimeNil() {
-	o.CrtLifetime.Set(nil)
+// SetCertTypeNil sets the value for CertType to be an explicit nil
+func (o *IntegratedCAConnector) SetCertTypeNil() {
+	o.CertType.Set(nil)
 }
 
-// UnsetCrtLifetime ensures that no value is present for CrtLifetime, not even an explicit nil
-func (o *IntegratedCAConnector) UnsetCrtLifetime() {
-	o.CrtLifetime.Unset()
-}
-
-// GetCryptoType returns the CryptoType field value
-func (o *IntegratedCAConnector) GetCryptoType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CryptoType
-}
-
-// GetCryptoTypeOk returns a tuple with the CryptoType field value
-// and a boolean to check if the value has been set.
-func (o *IntegratedCAConnector) GetCryptoTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CryptoType, true
-}
-
-// SetCryptoType sets field value
-func (o *IntegratedCAConnector) SetCryptoType(v string) {
-	o.CryptoType = v
-}
-
-// GetName returns the Name field value
-func (o *IntegratedCAConnector) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *IntegratedCAConnector) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *IntegratedCAConnector) SetName(v string) {
-	o.Name = v
-}
-
-// GetQueue returns the Queue field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntegratedCAConnector) GetQueue() string {
-	if o == nil || utils.IsNil(o.Queue.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Queue.Get()
-}
-
-// GetQueueOk returns a tuple with the Queue field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntegratedCAConnector) GetQueueOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Queue.Get(), o.Queue.IsSet()
-}
-
-// HasQueue returns a boolean if a field has been set.
-func (o *IntegratedCAConnector) HasQueue() bool {
-	if o != nil && o.Queue.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQueue gets a reference to the given NullableString and assigns it to the Queue field.
-func (o *IntegratedCAConnector) SetQueue(v string) {
-	o.Queue.Set(&v)
-}
-
-// SetQueueNil sets the value for Queue to be an explicit nil
-func (o *IntegratedCAConnector) SetQueueNil() {
-	o.Queue.Set(nil)
-}
-
-// UnsetQueue ensures that no value is present for Queue, not even an explicit nil
-func (o *IntegratedCAConnector) UnsetQueue() {
-	o.Queue.Unset()
+// UnsetCertType ensures that no value is present for CertType, not even an explicit nil
+func (o *IntegratedCAConnector) UnsetCertType() {
+	o.CertType.Unset()
 }
 
 // GetSignAlg returns the SignAlg field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -538,28 +366,200 @@ func (o *IntegratedCAConnector) UnsetSignAlg() {
 	o.SignAlg.Unset()
 }
 
-// GetType returns the Type field value
-func (o *IntegratedCAConnector) GetType() string {
+// GetCrtLifetime returns the CrtLifetime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntegratedCAConnector) GetCrtLifetime() string {
+	if o == nil || utils.IsNil(o.CrtLifetime.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CrtLifetime.Get()
+}
+
+// GetCrtLifetimeOk returns a tuple with the CrtLifetime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntegratedCAConnector) GetCrtLifetimeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CrtLifetime.Get(), o.CrtLifetime.IsSet()
+}
+
+// HasCrtLifetime returns a boolean if a field has been set.
+func (o *IntegratedCAConnector) HasCrtLifetime() bool {
+	if o != nil && o.CrtLifetime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCrtLifetime gets a reference to the given NullableString and assigns it to the CrtLifetime field.
+func (o *IntegratedCAConnector) SetCrtLifetime(v string) {
+	o.CrtLifetime.Set(&v)
+}
+
+// SetCrtLifetimeNil sets the value for CrtLifetime to be an explicit nil
+func (o *IntegratedCAConnector) SetCrtLifetimeNil() {
+	o.CrtLifetime.Set(nil)
+}
+
+// UnsetCrtLifetime ensures that no value is present for CrtLifetime, not even an explicit nil
+func (o *IntegratedCAConnector) UnsetCrtLifetime() {
+	o.CrtLifetime.Unset()
+}
+
+// GetCrtBackDate returns the CrtBackDate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntegratedCAConnector) GetCrtBackDate() string {
+	if o == nil || utils.IsNil(o.CrtBackDate.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CrtBackDate.Get()
+}
+
+// GetCrtBackDateOk returns a tuple with the CrtBackDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntegratedCAConnector) GetCrtBackDateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CrtBackDate.Get(), o.CrtBackDate.IsSet()
+}
+
+// HasCrtBackDate returns a boolean if a field has been set.
+func (o *IntegratedCAConnector) HasCrtBackDate() bool {
+	if o != nil && o.CrtBackDate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCrtBackDate gets a reference to the given NullableString and assigns it to the CrtBackDate field.
+func (o *IntegratedCAConnector) SetCrtBackDate(v string) {
+	o.CrtBackDate.Set(&v)
+}
+
+// SetCrtBackDateNil sets the value for CrtBackDate to be an explicit nil
+func (o *IntegratedCAConnector) SetCrtBackDateNil() {
+	o.CrtBackDate.Set(nil)
+}
+
+// UnsetCrtBackDate ensures that no value is present for CrtBackDate, not even an explicit nil
+func (o *IntegratedCAConnector) UnsetCrtBackDate() {
+	o.CrtBackDate.Unset()
+}
+
+// GetCheckPop returns the CheckPop field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntegratedCAConnector) GetCheckPop() bool {
+	if o == nil || utils.IsNil(o.CheckPop.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.CheckPop.Get()
+}
+
+// GetCheckPopOk returns a tuple with the CheckPop field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntegratedCAConnector) GetCheckPopOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CheckPop.Get(), o.CheckPop.IsSet()
+}
+
+// HasCheckPop returns a boolean if a field has been set.
+func (o *IntegratedCAConnector) HasCheckPop() bool {
+	if o != nil && o.CheckPop.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckPop gets a reference to the given NullableBool and assigns it to the CheckPop field.
+func (o *IntegratedCAConnector) SetCheckPop(v bool) {
+	o.CheckPop.Set(&v)
+}
+
+// SetCheckPopNil sets the value for CheckPop to be an explicit nil
+func (o *IntegratedCAConnector) SetCheckPopNil() {
+	o.CheckPop.Set(nil)
+}
+
+// UnsetCheckPop ensures that no value is present for CheckPop, not even an explicit nil
+func (o *IntegratedCAConnector) UnsetCheckPop() {
+	o.CheckPop.Unset()
+}
+
+// GetQueue returns the Queue field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntegratedCAConnector) GetQueue() string {
+	if o == nil || utils.IsNil(o.Queue.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Queue.Get()
+}
+
+// GetQueueOk returns a tuple with the Queue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntegratedCAConnector) GetQueueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Queue.Get(), o.Queue.IsSet()
+}
+
+// HasQueue returns a boolean if a field has been set.
+func (o *IntegratedCAConnector) HasQueue() bool {
+	if o != nil && o.Queue.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetQueue gets a reference to the given NullableString and assigns it to the Queue field.
+func (o *IntegratedCAConnector) SetQueue(v string) {
+	o.Queue.Set(&v)
+}
+
+// SetQueueNil sets the value for Queue to be an explicit nil
+func (o *IntegratedCAConnector) SetQueueNil() {
+	o.Queue.Set(nil)
+}
+
+// UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+func (o *IntegratedCAConnector) UnsetQueue() {
+	o.Queue.Unset()
+}
+
+// GetCryptoType returns the CryptoType field value
+func (o *IntegratedCAConnector) GetCryptoType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.CryptoType
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetCryptoTypeOk returns a tuple with the CryptoType field value
 // and a boolean to check if the value has been set.
-func (o *IntegratedCAConnector) GetTypeOk() (*string, bool) {
+func (o *IntegratedCAConnector) GetCryptoTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.CryptoType, true
 }
 
-// SetType sets field value
-func (o *IntegratedCAConnector) SetType(v string) {
-	o.Type = v
+// SetCryptoType sets field value
+func (o *IntegratedCAConnector) SetCryptoType(v string) {
+	o.CryptoType = v
 }
 
 func (o IntegratedCAConnector) MarshalJSON() ([]byte, error) {
@@ -572,39 +572,39 @@ func (o IntegratedCAConnector) MarshalJSON() ([]byte, error) {
 
 func (o IntegratedCAConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CaCert.IsSet() {
-		toSerialize["caCert"] = o.CaCert.Get()
-	}
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
 	if o.CaKey.IsSet() {
 		toSerialize["caKey"] = o.CaKey.Get()
 	}
-	if o.CertType.IsSet() {
-		toSerialize["certType"] = o.CertType.Get()
-	}
-	if o.CheckPop.IsSet() {
-		toSerialize["checkPop"] = o.CheckPop.Get()
-	}
-	if o.CrlLifetime.IsSet() {
-		toSerialize["crlLifetime"] = o.CrlLifetime.Get()
+	if o.CaCert.IsSet() {
+		toSerialize["caCert"] = o.CaCert.Get()
 	}
 	if o.CrlPath.IsSet() {
 		toSerialize["crlPath"] = o.CrlPath.Get()
 	}
-	if o.CrtBackDate.IsSet() {
-		toSerialize["crtBackDate"] = o.CrtBackDate.Get()
+	if o.CrlLifetime.IsSet() {
+		toSerialize["crlLifetime"] = o.CrlLifetime.Get()
 	}
-	if o.CrtLifetime.IsSet() {
-		toSerialize["crtLifetime"] = o.CrtLifetime.Get()
-	}
-	toSerialize["cryptoType"] = o.CryptoType
-	toSerialize["name"] = o.Name
-	if o.Queue.IsSet() {
-		toSerialize["queue"] = o.Queue.Get()
+	if o.CertType.IsSet() {
+		toSerialize["certType"] = o.CertType.Get()
 	}
 	if o.SignAlg.IsSet() {
 		toSerialize["signAlg"] = o.SignAlg.Get()
 	}
-	toSerialize["type"] = o.Type
+	if o.CrtLifetime.IsSet() {
+		toSerialize["crtLifetime"] = o.CrtLifetime.Get()
+	}
+	if o.CrtBackDate.IsSet() {
+		toSerialize["crtBackDate"] = o.CrtBackDate.Get()
+	}
+	if o.CheckPop.IsSet() {
+		toSerialize["checkPop"] = o.CheckPop.Get()
+	}
+	if o.Queue.IsSet() {
+		toSerialize["queue"] = o.Queue.Get()
+	}
+	toSerialize["cryptoType"] = o.CryptoType
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -618,9 +618,9 @@ func (o *IntegratedCAConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"cryptoType",
 		"name",
 		"type",
+		"cryptoType",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -650,19 +650,19 @@ func (o *IntegratedCAConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "caCert")
-		delete(additionalProperties, "caKey")
-		delete(additionalProperties, "certType")
-		delete(additionalProperties, "checkPop")
-		delete(additionalProperties, "crlLifetime")
-		delete(additionalProperties, "crlPath")
-		delete(additionalProperties, "crtBackDate")
-		delete(additionalProperties, "crtLifetime")
-		delete(additionalProperties, "cryptoType")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "queue")
-		delete(additionalProperties, "signAlg")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "caKey")
+		delete(additionalProperties, "caCert")
+		delete(additionalProperties, "crlPath")
+		delete(additionalProperties, "crlLifetime")
+		delete(additionalProperties, "certType")
+		delete(additionalProperties, "signAlg")
+		delete(additionalProperties, "crtLifetime")
+		delete(additionalProperties, "crtBackDate")
+		delete(additionalProperties, "checkPop")
+		delete(additionalProperties, "queue")
+		delete(additionalProperties, "cryptoType")
 		o.AdditionalProperties = additionalProperties
 	}
 

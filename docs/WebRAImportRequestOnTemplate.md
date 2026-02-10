@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Template** | Pointer to **map[string]interface{}** | Test whether the private key can be imported on the certificate | [optional] 
 **Workflow** | **string** |  | 
+**Template** | Pointer to **map[string]interface{}** | Test whether the private key can be imported on the certificate | [optional] 
 **CertificateId** | Pointer to **NullableString** | Used to pre-fill the template field with the certificate values. | [optional] 
 **CertificatePem** | Pointer to **NullableString** | Used to pre-fill the template field with the certificate values. | [optional] 
 **Module** | Pointer to **string** | The request module | [optional] 
@@ -29,6 +29,26 @@ will change when the set of required properties is changed
 NewWebRAImportRequestOnTemplateWithDefaults instantiates a new WebRAImportRequestOnTemplate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetWorkflow
+
+`func (o *WebRAImportRequestOnTemplate) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRAImportRequestOnTemplate) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRAImportRequestOnTemplate) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
 
 ### GetTemplate
 
@@ -54,26 +74,6 @@ SetTemplate sets Template field to given value.
 `func (o *WebRAImportRequestOnTemplate) HasTemplate() bool`
 
 HasTemplate returns a boolean if a field has been set.
-
-### GetWorkflow
-
-`func (o *WebRAImportRequestOnTemplate) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRAImportRequestOnTemplate) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRAImportRequestOnTemplate) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
 
 ### GetCertificateId
 

@@ -22,26 +22,26 @@ var _ utils.MappedNullable = &LDAPConnector{}
 
 // LDAPConnector struct for LDAPConnector
 type LDAPConnector struct {
-	BaseDn               string               `json:"baseDn"`
-	CertAttr             utils.NullableString `json:"certAttr,omitempty"`
-	CertificateAttribute string               `json:"certificateAttribute"`
+	Type                    string               `json:"type"`
+	Name                    string               `json:"name"`
+	Hostname                string               `json:"hostname"`
+	Port                    utils.NullableInt64  `json:"port,omitempty"`
+	BaseDn                  string               `json:"baseDn"`
+	Filter                  utils.NullableString `json:"filter,omitempty"`
+	CertAttr                utils.NullableString `json:"certAttr,omitempty"`
+	FollowReferrals         utils.NullableBool   `json:"followReferrals,omitempty"`
+	UserIdentifierAttribute string               `json:"userIdentifierAttribute"`
+	CertificateAttribute    string               `json:"certificateAttribute"`
+	ThrottleDuration        string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	ThrottleParallelism     *int64               `json:"throttleParallelism,omitempty"`
+	Timeout                 utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Proxy                   utils.NullableString `json:"proxy,omitempty"`
 	// Name of the `password` [credentials](#tag/security.credentials) containing login DN and password.
-	Credentials                   string               `json:"credentials"`
-	Filter                        utils.NullableString `json:"filter,omitempty"`
-	FollowReferrals               utils.NullableBool   `json:"followReferrals,omitempty"`
-	Hostname                      string               `json:"hostname"`
-	MaxStoredCertificatePerHolder utils.NullableInt64  `json:"maxStoredCertificatePerHolder,omitempty"`
-	Name                          string               `json:"name"`
-	Port                          utils.NullableInt64  `json:"port,omitempty"`
-	Proxy                         utils.NullableString `json:"proxy,omitempty"`
-	ThrottleDuration              string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	ThrottleParallelism           *int64               `json:"throttleParallelism,omitempty"`
-	Timeout                       utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Credentials                   string              `json:"credentials"`
+	MaxStoredCertificatePerHolder utils.NullableInt64 `json:"maxStoredCertificatePerHolder,omitempty"`
 	// Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended.
-	TlsInsecure             utils.NullableBool `json:"tlsInsecure,omitempty"`
-	Type                    string             `json:"type"`
-	UserIdentifierAttribute string             `json:"userIdentifierAttribute"`
-	AdditionalProperties    map[string]interface{}
+	TlsInsecure          utils.NullableBool `json:"tlsInsecure,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LDAPConnector LDAPConnector
@@ -50,18 +50,18 @@ type _LDAPConnector LDAPConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLDAPConnector(baseDn string, certificateAttribute string, credentials string, hostname string, name string, throttleDuration string, type_ string, userIdentifierAttribute string) *LDAPConnector {
+func NewLDAPConnector(type_ string, name string, hostname string, baseDn string, userIdentifierAttribute string, certificateAttribute string, throttleDuration string, credentials string) *LDAPConnector {
 	this := LDAPConnector{}
-	this.BaseDn = baseDn
-	this.CertificateAttribute = certificateAttribute
-	this.Credentials = credentials
-	this.Hostname = hostname
+	this.Type = type_
 	this.Name = name
+	this.Hostname = hostname
+	this.BaseDn = baseDn
+	this.UserIdentifierAttribute = userIdentifierAttribute
+	this.CertificateAttribute = certificateAttribute
 	this.ThrottleDuration = throttleDuration
+	this.Credentials = credentials
 	var tlsInsecure bool = false
 	this.TlsInsecure = *utils.NewNullableBool(&tlsInsecure)
-	this.Type = type_
-	this.UserIdentifierAttribute = userIdentifierAttribute
 	return &this
 }
 
@@ -75,272 +75,28 @@ func NewLDAPConnectorWithDefaults() *LDAPConnector {
 	return &this
 }
 
-// GetBaseDn returns the BaseDn field value
-func (o *LDAPConnector) GetBaseDn() string {
+// GetType returns the Type field value
+func (o *LDAPConnector) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.BaseDn
+	return o.Type
 }
 
-// GetBaseDnOk returns a tuple with the BaseDn field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *LDAPConnector) GetBaseDnOk() (*string, bool) {
+func (o *LDAPConnector) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.BaseDn, true
+	return &o.Type, true
 }
 
-// SetBaseDn sets field value
-func (o *LDAPConnector) SetBaseDn(v string) {
-	o.BaseDn = v
-}
-
-// GetCertAttr returns the CertAttr field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LDAPConnector) GetCertAttr() string {
-	if o == nil || utils.IsNil(o.CertAttr.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.CertAttr.Get()
-}
-
-// GetCertAttrOk returns a tuple with the CertAttr field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LDAPConnector) GetCertAttrOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CertAttr.Get(), o.CertAttr.IsSet()
-}
-
-// HasCertAttr returns a boolean if a field has been set.
-func (o *LDAPConnector) HasCertAttr() bool {
-	if o != nil && o.CertAttr.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertAttr gets a reference to the given NullableString and assigns it to the CertAttr field.
-func (o *LDAPConnector) SetCertAttr(v string) {
-	o.CertAttr.Set(&v)
-}
-
-// SetCertAttrNil sets the value for CertAttr to be an explicit nil
-func (o *LDAPConnector) SetCertAttrNil() {
-	o.CertAttr.Set(nil)
-}
-
-// UnsetCertAttr ensures that no value is present for CertAttr, not even an explicit nil
-func (o *LDAPConnector) UnsetCertAttr() {
-	o.CertAttr.Unset()
-}
-
-// GetCertificateAttribute returns the CertificateAttribute field value
-func (o *LDAPConnector) GetCertificateAttribute() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CertificateAttribute
-}
-
-// GetCertificateAttributeOk returns a tuple with the CertificateAttribute field value
-// and a boolean to check if the value has been set.
-func (o *LDAPConnector) GetCertificateAttributeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CertificateAttribute, true
-}
-
-// SetCertificateAttribute sets field value
-func (o *LDAPConnector) SetCertificateAttribute(v string) {
-	o.CertificateAttribute = v
-}
-
-// GetCredentials returns the Credentials field value
-func (o *LDAPConnector) GetCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Credentials
-}
-
-// GetCredentialsOk returns a tuple with the Credentials field value
-// and a boolean to check if the value has been set.
-func (o *LDAPConnector) GetCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Credentials, true
-}
-
-// SetCredentials sets field value
-func (o *LDAPConnector) SetCredentials(v string) {
-	o.Credentials = v
-}
-
-// GetFilter returns the Filter field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LDAPConnector) GetFilter() string {
-	if o == nil || utils.IsNil(o.Filter.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Filter.Get()
-}
-
-// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LDAPConnector) GetFilterOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Filter.Get(), o.Filter.IsSet()
-}
-
-// HasFilter returns a boolean if a field has been set.
-func (o *LDAPConnector) HasFilter() bool {
-	if o != nil && o.Filter.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetFilter gets a reference to the given NullableString and assigns it to the Filter field.
-func (o *LDAPConnector) SetFilter(v string) {
-	o.Filter.Set(&v)
-}
-
-// SetFilterNil sets the value for Filter to be an explicit nil
-func (o *LDAPConnector) SetFilterNil() {
-	o.Filter.Set(nil)
-}
-
-// UnsetFilter ensures that no value is present for Filter, not even an explicit nil
-func (o *LDAPConnector) UnsetFilter() {
-	o.Filter.Unset()
-}
-
-// GetFollowReferrals returns the FollowReferrals field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LDAPConnector) GetFollowReferrals() bool {
-	if o == nil || utils.IsNil(o.FollowReferrals.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.FollowReferrals.Get()
-}
-
-// GetFollowReferralsOk returns a tuple with the FollowReferrals field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LDAPConnector) GetFollowReferralsOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.FollowReferrals.Get(), o.FollowReferrals.IsSet()
-}
-
-// HasFollowReferrals returns a boolean if a field has been set.
-func (o *LDAPConnector) HasFollowReferrals() bool {
-	if o != nil && o.FollowReferrals.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetFollowReferrals gets a reference to the given NullableBool and assigns it to the FollowReferrals field.
-func (o *LDAPConnector) SetFollowReferrals(v bool) {
-	o.FollowReferrals.Set(&v)
-}
-
-// SetFollowReferralsNil sets the value for FollowReferrals to be an explicit nil
-func (o *LDAPConnector) SetFollowReferralsNil() {
-	o.FollowReferrals.Set(nil)
-}
-
-// UnsetFollowReferrals ensures that no value is present for FollowReferrals, not even an explicit nil
-func (o *LDAPConnector) UnsetFollowReferrals() {
-	o.FollowReferrals.Unset()
-}
-
-// GetHostname returns the Hostname field value
-func (o *LDAPConnector) GetHostname() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Hostname
-}
-
-// GetHostnameOk returns a tuple with the Hostname field value
-// and a boolean to check if the value has been set.
-func (o *LDAPConnector) GetHostnameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Hostname, true
-}
-
-// SetHostname sets field value
-func (o *LDAPConnector) SetHostname(v string) {
-	o.Hostname = v
-}
-
-// GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LDAPConnector) GetMaxStoredCertificatePerHolder() int64 {
-	if o == nil || utils.IsNil(o.MaxStoredCertificatePerHolder.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.MaxStoredCertificatePerHolder.Get()
-}
-
-// GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LDAPConnector) GetMaxStoredCertificatePerHolderOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxStoredCertificatePerHolder.Get(), o.MaxStoredCertificatePerHolder.IsSet()
-}
-
-// HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
-func (o *LDAPConnector) HasMaxStoredCertificatePerHolder() bool {
-	if o != nil && o.MaxStoredCertificatePerHolder.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxStoredCertificatePerHolder gets a reference to the given NullableInt64 and assigns it to the MaxStoredCertificatePerHolder field.
-func (o *LDAPConnector) SetMaxStoredCertificatePerHolder(v int64) {
-	o.MaxStoredCertificatePerHolder.Set(&v)
-}
-
-// SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
-func (o *LDAPConnector) SetMaxStoredCertificatePerHolderNil() {
-	o.MaxStoredCertificatePerHolder.Set(nil)
-}
-
-// UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
-func (o *LDAPConnector) UnsetMaxStoredCertificatePerHolder() {
-	o.MaxStoredCertificatePerHolder.Unset()
+// SetType sets field value
+func (o *LDAPConnector) SetType(v string) {
+	o.Type = v
 }
 
 // GetName returns the Name field value
@@ -365,6 +121,30 @@ func (o *LDAPConnector) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *LDAPConnector) SetName(v string) {
 	o.Name = v
+}
+
+// GetHostname returns the Hostname field value
+func (o *LDAPConnector) GetHostname() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Hostname
+}
+
+// GetHostnameOk returns a tuple with the Hostname field value
+// and a boolean to check if the value has been set.
+func (o *LDAPConnector) GetHostnameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Hostname, true
+}
+
+// SetHostname sets field value
+func (o *LDAPConnector) SetHostname(v string) {
+	o.Hostname = v
 }
 
 // GetPort returns the Port field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -410,47 +190,205 @@ func (o *LDAPConnector) UnsetPort() {
 	o.Port.Unset()
 }
 
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LDAPConnector) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
+// GetBaseDn returns the BaseDn field value
+func (o *LDAPConnector) GetBaseDn() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Proxy.Get()
+
+	return o.BaseDn
 }
 
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// GetBaseDnOk returns a tuple with the BaseDn field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LDAPConnector) GetProxyOk() (*string, bool) {
+func (o *LDAPConnector) GetBaseDnOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
+	return &o.BaseDn, true
 }
 
-// HasProxy returns a boolean if a field has been set.
-func (o *LDAPConnector) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
+// SetBaseDn sets field value
+func (o *LDAPConnector) SetBaseDn(v string) {
+	o.BaseDn = v
+}
+
+// GetFilter returns the Filter field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LDAPConnector) GetFilter() string {
+	if o == nil || utils.IsNil(o.Filter.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Filter.Get()
+}
+
+// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LDAPConnector) GetFilterOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Filter.Get(), o.Filter.IsSet()
+}
+
+// HasFilter returns a boolean if a field has been set.
+func (o *LDAPConnector) HasFilter() bool {
+	if o != nil && o.Filter.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *LDAPConnector) SetProxy(v string) {
-	o.Proxy.Set(&v)
+// SetFilter gets a reference to the given NullableString and assigns it to the Filter field.
+func (o *LDAPConnector) SetFilter(v string) {
+	o.Filter.Set(&v)
 }
 
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *LDAPConnector) SetProxyNil() {
-	o.Proxy.Set(nil)
+// SetFilterNil sets the value for Filter to be an explicit nil
+func (o *LDAPConnector) SetFilterNil() {
+	o.Filter.Set(nil)
 }
 
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *LDAPConnector) UnsetProxy() {
-	o.Proxy.Unset()
+// UnsetFilter ensures that no value is present for Filter, not even an explicit nil
+func (o *LDAPConnector) UnsetFilter() {
+	o.Filter.Unset()
+}
+
+// GetCertAttr returns the CertAttr field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LDAPConnector) GetCertAttr() string {
+	if o == nil || utils.IsNil(o.CertAttr.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CertAttr.Get()
+}
+
+// GetCertAttrOk returns a tuple with the CertAttr field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LDAPConnector) GetCertAttrOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertAttr.Get(), o.CertAttr.IsSet()
+}
+
+// HasCertAttr returns a boolean if a field has been set.
+func (o *LDAPConnector) HasCertAttr() bool {
+	if o != nil && o.CertAttr.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertAttr gets a reference to the given NullableString and assigns it to the CertAttr field.
+func (o *LDAPConnector) SetCertAttr(v string) {
+	o.CertAttr.Set(&v)
+}
+
+// SetCertAttrNil sets the value for CertAttr to be an explicit nil
+func (o *LDAPConnector) SetCertAttrNil() {
+	o.CertAttr.Set(nil)
+}
+
+// UnsetCertAttr ensures that no value is present for CertAttr, not even an explicit nil
+func (o *LDAPConnector) UnsetCertAttr() {
+	o.CertAttr.Unset()
+}
+
+// GetFollowReferrals returns the FollowReferrals field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LDAPConnector) GetFollowReferrals() bool {
+	if o == nil || utils.IsNil(o.FollowReferrals.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.FollowReferrals.Get()
+}
+
+// GetFollowReferralsOk returns a tuple with the FollowReferrals field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LDAPConnector) GetFollowReferralsOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FollowReferrals.Get(), o.FollowReferrals.IsSet()
+}
+
+// HasFollowReferrals returns a boolean if a field has been set.
+func (o *LDAPConnector) HasFollowReferrals() bool {
+	if o != nil && o.FollowReferrals.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowReferrals gets a reference to the given NullableBool and assigns it to the FollowReferrals field.
+func (o *LDAPConnector) SetFollowReferrals(v bool) {
+	o.FollowReferrals.Set(&v)
+}
+
+// SetFollowReferralsNil sets the value for FollowReferrals to be an explicit nil
+func (o *LDAPConnector) SetFollowReferralsNil() {
+	o.FollowReferrals.Set(nil)
+}
+
+// UnsetFollowReferrals ensures that no value is present for FollowReferrals, not even an explicit nil
+func (o *LDAPConnector) UnsetFollowReferrals() {
+	o.FollowReferrals.Unset()
+}
+
+// GetUserIdentifierAttribute returns the UserIdentifierAttribute field value
+func (o *LDAPConnector) GetUserIdentifierAttribute() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.UserIdentifierAttribute
+}
+
+// GetUserIdentifierAttributeOk returns a tuple with the UserIdentifierAttribute field value
+// and a boolean to check if the value has been set.
+func (o *LDAPConnector) GetUserIdentifierAttributeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserIdentifierAttribute, true
+}
+
+// SetUserIdentifierAttribute sets field value
+func (o *LDAPConnector) SetUserIdentifierAttribute(v string) {
+	o.UserIdentifierAttribute = v
+}
+
+// GetCertificateAttribute returns the CertificateAttribute field value
+func (o *LDAPConnector) GetCertificateAttribute() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CertificateAttribute
+}
+
+// GetCertificateAttributeOk returns a tuple with the CertificateAttribute field value
+// and a boolean to check if the value has been set.
+func (o *LDAPConnector) GetCertificateAttributeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CertificateAttribute, true
+}
+
+// SetCertificateAttribute sets field value
+func (o *LDAPConnector) SetCertificateAttribute(v string) {
+	o.CertificateAttribute = v
 }
 
 // GetThrottleDuration returns the ThrottleDuration field value
@@ -552,6 +490,116 @@ func (o *LDAPConnector) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LDAPConnector) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Proxy.Get()
+}
+
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LDAPConnector) GetProxyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Proxy.Get(), o.Proxy.IsSet()
+}
+
+// HasProxy returns a boolean if a field has been set.
+func (o *LDAPConnector) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *LDAPConnector) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *LDAPConnector) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *LDAPConnector) UnsetProxy() {
+	o.Proxy.Unset()
+}
+
+// GetCredentials returns the Credentials field value
+func (o *LDAPConnector) GetCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Credentials
+}
+
+// GetCredentialsOk returns a tuple with the Credentials field value
+// and a boolean to check if the value has been set.
+func (o *LDAPConnector) GetCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Credentials, true
+}
+
+// SetCredentials sets field value
+func (o *LDAPConnector) SetCredentials(v string) {
+	o.Credentials = v
+}
+
+// GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LDAPConnector) GetMaxStoredCertificatePerHolder() int64 {
+	if o == nil || utils.IsNil(o.MaxStoredCertificatePerHolder.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.MaxStoredCertificatePerHolder.Get()
+}
+
+// GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LDAPConnector) GetMaxStoredCertificatePerHolderOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxStoredCertificatePerHolder.Get(), o.MaxStoredCertificatePerHolder.IsSet()
+}
+
+// HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
+func (o *LDAPConnector) HasMaxStoredCertificatePerHolder() bool {
+	if o != nil && o.MaxStoredCertificatePerHolder.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxStoredCertificatePerHolder gets a reference to the given NullableInt64 and assigns it to the MaxStoredCertificatePerHolder field.
+func (o *LDAPConnector) SetMaxStoredCertificatePerHolder(v int64) {
+	o.MaxStoredCertificatePerHolder.Set(&v)
+}
+
+// SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
+func (o *LDAPConnector) SetMaxStoredCertificatePerHolderNil() {
+	o.MaxStoredCertificatePerHolder.Set(nil)
+}
+
+// UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
+func (o *LDAPConnector) UnsetMaxStoredCertificatePerHolder() {
+	o.MaxStoredCertificatePerHolder.Unset()
+}
+
 // GetTlsInsecure returns the TlsInsecure field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LDAPConnector) GetTlsInsecure() bool {
 	if o == nil || utils.IsNil(o.TlsInsecure.Get()) {
@@ -595,54 +643,6 @@ func (o *LDAPConnector) UnsetTlsInsecure() {
 	o.TlsInsecure.Unset()
 }
 
-// GetType returns the Type field value
-func (o *LDAPConnector) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *LDAPConnector) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *LDAPConnector) SetType(v string) {
-	o.Type = v
-}
-
-// GetUserIdentifierAttribute returns the UserIdentifierAttribute field value
-func (o *LDAPConnector) GetUserIdentifierAttribute() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UserIdentifierAttribute
-}
-
-// GetUserIdentifierAttributeOk returns a tuple with the UserIdentifierAttribute field value
-// and a boolean to check if the value has been set.
-func (o *LDAPConnector) GetUserIdentifierAttributeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UserIdentifierAttribute, true
-}
-
-// SetUserIdentifierAttribute sets field value
-func (o *LDAPConnector) SetUserIdentifierAttribute(v string) {
-	o.UserIdentifierAttribute = v
-}
-
 func (o LDAPConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -653,29 +653,24 @@ func (o LDAPConnector) MarshalJSON() ([]byte, error) {
 
 func (o LDAPConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["baseDn"] = o.BaseDn
-	if o.CertAttr.IsSet() {
-		toSerialize["certAttr"] = o.CertAttr.Get()
+	toSerialize["type"] = o.Type
+	toSerialize["name"] = o.Name
+	toSerialize["hostname"] = o.Hostname
+	if o.Port.IsSet() {
+		toSerialize["port"] = o.Port.Get()
 	}
-	toSerialize["certificateAttribute"] = o.CertificateAttribute
-	toSerialize["credentials"] = o.Credentials
+	toSerialize["baseDn"] = o.BaseDn
 	if o.Filter.IsSet() {
 		toSerialize["filter"] = o.Filter.Get()
+	}
+	if o.CertAttr.IsSet() {
+		toSerialize["certAttr"] = o.CertAttr.Get()
 	}
 	if o.FollowReferrals.IsSet() {
 		toSerialize["followReferrals"] = o.FollowReferrals.Get()
 	}
-	toSerialize["hostname"] = o.Hostname
-	if o.MaxStoredCertificatePerHolder.IsSet() {
-		toSerialize["maxStoredCertificatePerHolder"] = o.MaxStoredCertificatePerHolder.Get()
-	}
-	toSerialize["name"] = o.Name
-	if o.Port.IsSet() {
-		toSerialize["port"] = o.Port.Get()
-	}
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
+	toSerialize["userIdentifierAttribute"] = o.UserIdentifierAttribute
+	toSerialize["certificateAttribute"] = o.CertificateAttribute
 	toSerialize["throttleDuration"] = o.ThrottleDuration
 	if !utils.IsNil(o.ThrottleParallelism) {
 		toSerialize["throttleParallelism"] = o.ThrottleParallelism
@@ -683,11 +678,16 @@ func (o LDAPConnector) ToMap() (map[string]interface{}, error) {
 	if o.Timeout.IsSet() {
 		toSerialize["timeout"] = o.Timeout.Get()
 	}
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
+	toSerialize["credentials"] = o.Credentials
+	if o.MaxStoredCertificatePerHolder.IsSet() {
+		toSerialize["maxStoredCertificatePerHolder"] = o.MaxStoredCertificatePerHolder.Get()
+	}
 	if o.TlsInsecure.IsSet() {
 		toSerialize["tlsInsecure"] = o.TlsInsecure.Get()
 	}
-	toSerialize["type"] = o.Type
-	toSerialize["userIdentifierAttribute"] = o.UserIdentifierAttribute
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -701,14 +701,14 @@ func (o *LDAPConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"baseDn",
-		"certificateAttribute",
-		"credentials",
-		"hostname",
-		"name",
-		"throttleDuration",
 		"type",
+		"name",
+		"hostname",
+		"baseDn",
 		"userIdentifierAttribute",
+		"certificateAttribute",
+		"throttleDuration",
+		"credentials",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -738,23 +738,23 @@ func (o *LDAPConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "baseDn")
-		delete(additionalProperties, "certAttr")
-		delete(additionalProperties, "certificateAttribute")
-		delete(additionalProperties, "credentials")
-		delete(additionalProperties, "filter")
-		delete(additionalProperties, "followReferrals")
-		delete(additionalProperties, "hostname")
-		delete(additionalProperties, "maxStoredCertificatePerHolder")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "hostname")
 		delete(additionalProperties, "port")
-		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "baseDn")
+		delete(additionalProperties, "filter")
+		delete(additionalProperties, "certAttr")
+		delete(additionalProperties, "followReferrals")
+		delete(additionalProperties, "userIdentifierAttribute")
+		delete(additionalProperties, "certificateAttribute")
 		delete(additionalProperties, "throttleDuration")
 		delete(additionalProperties, "throttleParallelism")
 		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "maxStoredCertificatePerHolder")
 		delete(additionalProperties, "tlsInsecure")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "userIdentifierAttribute")
 		o.AdditionalProperties = additionalProperties
 	}
 

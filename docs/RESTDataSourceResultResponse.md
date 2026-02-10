@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ComputedHeaders** | Pointer to **[]map[string]interface{}** | Headers that were sent | [optional] 
-**ComputedPayload** | Pointer to **NullableString** | Url that was requested | [optional] 
+**Type** | **string** |  | 
 **ComputedUrl** | Pointer to **NullableString** | Url that was requested | [optional] 
-**ResponseBody** | Pointer to **NullableString** | Received response body | [optional] 
+**ComputedPayload** | Pointer to **NullableString** | Url that was requested | [optional] 
+**ComputedHeaders** | Pointer to **[]map[string]interface{}** | Headers that were sent | [optional] 
 **ResponseCode** | Pointer to **NullableInt64** | Received response code | [optional] 
 **ResponseHeaders** | Pointer to **[]map[string]interface{}** | Headers that were received | [optional] 
-**Type** | **string** |  | 
-**Dictionary** | [**[]MapEntry**](MapEntry.md) | Data fetched from the datasource | 
-**Error** | Pointer to **NullableString** | If &#x60;status&#x60; is &#x60;failure&#x60;, the error message | [optional] 
+**ResponseBody** | Pointer to **NullableString** | Received response body | [optional] 
 **Name** | **string** | Name of the executed datasource | 
 **Status** | **string** | Status of the execution. &#x60;success&#x60; if the datasource data was fetched correctly, &#x60;failure&#x60; if an error occured and &#x60;ignored&#x60; if inputs were not all filled, resulting in no request being sent | 
+**Dictionary** | [**[]MapEntry**](MapEntry.md) | Data fetched from the datasource | 
+**Error** | Pointer to **NullableString** | If &#x60;status&#x60; is &#x60;failure&#x60;, the error message | [optional] 
 
 ## Methods
 
 ### NewRESTDataSourceResultResponse
 
-`func NewRESTDataSourceResultResponse(type_ string, dictionary []MapEntry, name string, status string, ) *RESTDataSourceResultResponse`
+`func NewRESTDataSourceResultResponse(type_ string, name string, status string, dictionary []MapEntry, ) *RESTDataSourceResultResponse`
 
 NewRESTDataSourceResultResponse instantiates a new RESTDataSourceResultResponse object
 This constructor will assign default values to properties that have it defined,
@@ -35,76 +35,26 @@ NewRESTDataSourceResultResponseWithDefaults instantiates a new RESTDataSourceRes
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetComputedHeaders
+### GetType
 
-`func (o *RESTDataSourceResultResponse) GetComputedHeaders() []map[string]interface{}`
+`func (o *RESTDataSourceResultResponse) GetType() string`
 
-GetComputedHeaders returns the ComputedHeaders field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetComputedHeadersOk
+### GetTypeOk
 
-`func (o *RESTDataSourceResultResponse) GetComputedHeadersOk() (*[]map[string]interface{}, bool)`
+`func (o *RESTDataSourceResultResponse) GetTypeOk() (*string, bool)`
 
-GetComputedHeadersOk returns a tuple with the ComputedHeaders field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetComputedHeaders
+### SetType
 
-`func (o *RESTDataSourceResultResponse) SetComputedHeaders(v []map[string]interface{})`
+`func (o *RESTDataSourceResultResponse) SetType(v string)`
 
-SetComputedHeaders sets ComputedHeaders field to given value.
+SetType sets Type field to given value.
 
-### HasComputedHeaders
 
-`func (o *RESTDataSourceResultResponse) HasComputedHeaders() bool`
-
-HasComputedHeaders returns a boolean if a field has been set.
-
-### SetComputedHeadersNil
-
-`func (o *RESTDataSourceResultResponse) SetComputedHeadersNil(b bool)`
-
- SetComputedHeadersNil sets the value for ComputedHeaders to be an explicit nil
-
-### UnsetComputedHeaders
-`func (o *RESTDataSourceResultResponse) UnsetComputedHeaders()`
-
-UnsetComputedHeaders ensures that no value is present for ComputedHeaders, not even an explicit nil
-### GetComputedPayload
-
-`func (o *RESTDataSourceResultResponse) GetComputedPayload() string`
-
-GetComputedPayload returns the ComputedPayload field if non-nil, zero value otherwise.
-
-### GetComputedPayloadOk
-
-`func (o *RESTDataSourceResultResponse) GetComputedPayloadOk() (*string, bool)`
-
-GetComputedPayloadOk returns a tuple with the ComputedPayload field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetComputedPayload
-
-`func (o *RESTDataSourceResultResponse) SetComputedPayload(v string)`
-
-SetComputedPayload sets ComputedPayload field to given value.
-
-### HasComputedPayload
-
-`func (o *RESTDataSourceResultResponse) HasComputedPayload() bool`
-
-HasComputedPayload returns a boolean if a field has been set.
-
-### SetComputedPayloadNil
-
-`func (o *RESTDataSourceResultResponse) SetComputedPayloadNil(b bool)`
-
- SetComputedPayloadNil sets the value for ComputedPayload to be an explicit nil
-
-### UnsetComputedPayload
-`func (o *RESTDataSourceResultResponse) UnsetComputedPayload()`
-
-UnsetComputedPayload ensures that no value is present for ComputedPayload, not even an explicit nil
 ### GetComputedUrl
 
 `func (o *RESTDataSourceResultResponse) GetComputedUrl() string`
@@ -140,41 +90,76 @@ HasComputedUrl returns a boolean if a field has been set.
 `func (o *RESTDataSourceResultResponse) UnsetComputedUrl()`
 
 UnsetComputedUrl ensures that no value is present for ComputedUrl, not even an explicit nil
-### GetResponseBody
+### GetComputedPayload
 
-`func (o *RESTDataSourceResultResponse) GetResponseBody() string`
+`func (o *RESTDataSourceResultResponse) GetComputedPayload() string`
 
-GetResponseBody returns the ResponseBody field if non-nil, zero value otherwise.
+GetComputedPayload returns the ComputedPayload field if non-nil, zero value otherwise.
 
-### GetResponseBodyOk
+### GetComputedPayloadOk
 
-`func (o *RESTDataSourceResultResponse) GetResponseBodyOk() (*string, bool)`
+`func (o *RESTDataSourceResultResponse) GetComputedPayloadOk() (*string, bool)`
 
-GetResponseBodyOk returns a tuple with the ResponseBody field if it's non-nil, zero value otherwise
+GetComputedPayloadOk returns a tuple with the ComputedPayload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetResponseBody
+### SetComputedPayload
 
-`func (o *RESTDataSourceResultResponse) SetResponseBody(v string)`
+`func (o *RESTDataSourceResultResponse) SetComputedPayload(v string)`
 
-SetResponseBody sets ResponseBody field to given value.
+SetComputedPayload sets ComputedPayload field to given value.
 
-### HasResponseBody
+### HasComputedPayload
 
-`func (o *RESTDataSourceResultResponse) HasResponseBody() bool`
+`func (o *RESTDataSourceResultResponse) HasComputedPayload() bool`
 
-HasResponseBody returns a boolean if a field has been set.
+HasComputedPayload returns a boolean if a field has been set.
 
-### SetResponseBodyNil
+### SetComputedPayloadNil
 
-`func (o *RESTDataSourceResultResponse) SetResponseBodyNil(b bool)`
+`func (o *RESTDataSourceResultResponse) SetComputedPayloadNil(b bool)`
 
- SetResponseBodyNil sets the value for ResponseBody to be an explicit nil
+ SetComputedPayloadNil sets the value for ComputedPayload to be an explicit nil
 
-### UnsetResponseBody
-`func (o *RESTDataSourceResultResponse) UnsetResponseBody()`
+### UnsetComputedPayload
+`func (o *RESTDataSourceResultResponse) UnsetComputedPayload()`
 
-UnsetResponseBody ensures that no value is present for ResponseBody, not even an explicit nil
+UnsetComputedPayload ensures that no value is present for ComputedPayload, not even an explicit nil
+### GetComputedHeaders
+
+`func (o *RESTDataSourceResultResponse) GetComputedHeaders() []map[string]interface{}`
+
+GetComputedHeaders returns the ComputedHeaders field if non-nil, zero value otherwise.
+
+### GetComputedHeadersOk
+
+`func (o *RESTDataSourceResultResponse) GetComputedHeadersOk() (*[]map[string]interface{}, bool)`
+
+GetComputedHeadersOk returns a tuple with the ComputedHeaders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetComputedHeaders
+
+`func (o *RESTDataSourceResultResponse) SetComputedHeaders(v []map[string]interface{})`
+
+SetComputedHeaders sets ComputedHeaders field to given value.
+
+### HasComputedHeaders
+
+`func (o *RESTDataSourceResultResponse) HasComputedHeaders() bool`
+
+HasComputedHeaders returns a boolean if a field has been set.
+
+### SetComputedHeadersNil
+
+`func (o *RESTDataSourceResultResponse) SetComputedHeadersNil(b bool)`
+
+ SetComputedHeadersNil sets the value for ComputedHeaders to be an explicit nil
+
+### UnsetComputedHeaders
+`func (o *RESTDataSourceResultResponse) UnsetComputedHeaders()`
+
+UnsetComputedHeaders ensures that no value is present for ComputedHeaders, not even an explicit nil
 ### GetResponseCode
 
 `func (o *RESTDataSourceResultResponse) GetResponseCode() int64`
@@ -245,24 +230,79 @@ HasResponseHeaders returns a boolean if a field has been set.
 `func (o *RESTDataSourceResultResponse) UnsetResponseHeaders()`
 
 UnsetResponseHeaders ensures that no value is present for ResponseHeaders, not even an explicit nil
-### GetType
+### GetResponseBody
 
-`func (o *RESTDataSourceResultResponse) GetType() string`
+`func (o *RESTDataSourceResultResponse) GetResponseBody() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetResponseBody returns the ResponseBody field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetResponseBodyOk
 
-`func (o *RESTDataSourceResultResponse) GetTypeOk() (*string, bool)`
+`func (o *RESTDataSourceResultResponse) GetResponseBodyOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetResponseBodyOk returns a tuple with the ResponseBody field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetResponseBody
 
-`func (o *RESTDataSourceResultResponse) SetType(v string)`
+`func (o *RESTDataSourceResultResponse) SetResponseBody(v string)`
 
-SetType sets Type field to given value.
+SetResponseBody sets ResponseBody field to given value.
+
+### HasResponseBody
+
+`func (o *RESTDataSourceResultResponse) HasResponseBody() bool`
+
+HasResponseBody returns a boolean if a field has been set.
+
+### SetResponseBodyNil
+
+`func (o *RESTDataSourceResultResponse) SetResponseBodyNil(b bool)`
+
+ SetResponseBodyNil sets the value for ResponseBody to be an explicit nil
+
+### UnsetResponseBody
+`func (o *RESTDataSourceResultResponse) UnsetResponseBody()`
+
+UnsetResponseBody ensures that no value is present for ResponseBody, not even an explicit nil
+### GetName
+
+`func (o *RESTDataSourceResultResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *RESTDataSourceResultResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *RESTDataSourceResultResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetStatus
+
+`func (o *RESTDataSourceResultResponse) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *RESTDataSourceResultResponse) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *RESTDataSourceResultResponse) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 
 ### GetDictionary
@@ -320,46 +360,6 @@ HasError returns a boolean if a field has been set.
 `func (o *RESTDataSourceResultResponse) UnsetError()`
 
 UnsetError ensures that no value is present for Error, not even an explicit nil
-### GetName
-
-`func (o *RESTDataSourceResultResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *RESTDataSourceResultResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *RESTDataSourceResultResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetStatus
-
-`func (o *RESTDataSourceResultResponse) GetStatus() string`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *RESTDataSourceResultResponse) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *RESTDataSourceResultResponse) SetStatus(v string)`
-
-SetStatus sets Status field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

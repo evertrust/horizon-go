@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CertificateId** | Pointer to **NullableString** | The id of the certificate to revoke | [optional] 
 **CertificatePem** | Pointer to **NullableString** | The PEM encoded certificate to revoke | [optional] 
-**DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
-**Template** | [**WebRARevokeRequestTemplate**](WebRARevokeRequestTemplate.md) | The user-data that will be used to revoke the certificate | 
 **Workflow** | **string** | What this request will do. For a revocation request, this is always &#x60;revoke&#x60; | 
+**Template** | [**WebRARevokeRequestTemplate**](WebRARevokeRequestTemplate.md) | The user-data that will be used to revoke the certificate | 
+**DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
 
 ## Methods
 
 ### NewWebRARevokeRequestOnSubmit
 
-`func NewWebRARevokeRequestOnSubmit(template WebRARevokeRequestTemplate, workflow string, ) *WebRARevokeRequestOnSubmit`
+`func NewWebRARevokeRequestOnSubmit(workflow string, template WebRARevokeRequestTemplate, ) *WebRARevokeRequestOnSubmit`
 
 NewWebRARevokeRequestOnSubmit instantiates a new WebRARevokeRequestOnSubmit object
 This constructor will assign default values to properties that have it defined,
@@ -99,6 +99,46 @@ HasCertificatePem returns a boolean if a field has been set.
 `func (o *WebRARevokeRequestOnSubmit) UnsetCertificatePem()`
 
 UnsetCertificatePem ensures that no value is present for CertificatePem, not even an explicit nil
+### GetWorkflow
+
+`func (o *WebRARevokeRequestOnSubmit) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRARevokeRequestOnSubmit) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRARevokeRequestOnSubmit) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
+### GetTemplate
+
+`func (o *WebRARevokeRequestOnSubmit) GetTemplate() WebRARevokeRequestTemplate`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *WebRARevokeRequestOnSubmit) GetTemplateOk() (*WebRARevokeRequestTemplate, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *WebRARevokeRequestOnSubmit) SetTemplate(v WebRARevokeRequestTemplate)`
+
+SetTemplate sets Template field to given value.
+
+
 ### GetDryRun
 
 `func (o *WebRARevokeRequestOnSubmit) GetDryRun() bool`
@@ -134,46 +174,6 @@ HasDryRun returns a boolean if a field has been set.
 `func (o *WebRARevokeRequestOnSubmit) UnsetDryRun()`
 
 UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
-### GetTemplate
-
-`func (o *WebRARevokeRequestOnSubmit) GetTemplate() WebRARevokeRequestTemplate`
-
-GetTemplate returns the Template field if non-nil, zero value otherwise.
-
-### GetTemplateOk
-
-`func (o *WebRARevokeRequestOnSubmit) GetTemplateOk() (*WebRARevokeRequestTemplate, bool)`
-
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplate
-
-`func (o *WebRARevokeRequestOnSubmit) SetTemplate(v WebRARevokeRequestTemplate)`
-
-SetTemplate sets Template field to given value.
-
-
-### GetWorkflow
-
-`func (o *WebRARevokeRequestOnSubmit) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRARevokeRequestOnSubmit) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRARevokeRequestOnSubmit) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized description of the label | [optional] 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the label | [optional] 
 **Name** | **string** | The technical name of the label | 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the label | [optional] 
+**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized description of the label | [optional] 
 
 ## Methods
 
@@ -27,41 +27,26 @@ NewCertificateLabelSearchDictionaryLocalizedEntryWithDefaults instantiates a new
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDescription
+### GetName
 
-`func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetDescription() []LocalizedString`
+`func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetName() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetNameOk
 
-`func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetDescriptionOk() (*[]LocalizedString, bool)`
+`func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetName
 
-`func (o *CertificateLabelSearchDictionaryLocalizedEntry) SetDescription(v []LocalizedString)`
+`func (o *CertificateLabelSearchDictionaryLocalizedEntry) SetName(v string)`
 
-SetDescription sets Description field to given value.
+SetName sets Name field to given value.
 
-### HasDescription
 
-`func (o *CertificateLabelSearchDictionaryLocalizedEntry) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescriptionNil
-
-`func (o *CertificateLabelSearchDictionaryLocalizedEntry) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *CertificateLabelSearchDictionaryLocalizedEntry) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetDisplayName
 
 `func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetDisplayName() []LocalizedString`
@@ -97,26 +82,41 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *CertificateLabelSearchDictionaryLocalizedEntry) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetName
+### GetDescription
 
-`func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetName() string`
+`func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetDescription() []LocalizedString`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetDescriptionOk
 
-`func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool)`
+`func (o *CertificateLabelSearchDictionaryLocalizedEntry) GetDescriptionOk() (*[]LocalizedString, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetDescription
 
-`func (o *CertificateLabelSearchDictionaryLocalizedEntry) SetName(v string)`
+`func (o *CertificateLabelSearchDictionaryLocalizedEntry) SetDescription(v []LocalizedString)`
 
-SetName sets Name field to given value.
+SetDescription sets Description field to given value.
 
+### HasDescription
 
+`func (o *CertificateLabelSearchDictionaryLocalizedEntry) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescriptionNil
+
+`func (o *CertificateLabelSearchDictionaryLocalizedEntry) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *CertificateLabelSearchDictionaryLocalizedEntry) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

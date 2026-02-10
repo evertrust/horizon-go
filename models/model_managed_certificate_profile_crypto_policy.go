@@ -21,35 +21,35 @@ var _ utils.MappedNullable = &ManagedCertificateProfileCryptoPolicy{}
 
 // ManagedCertificateProfileCryptoPolicy struct for ManagedCertificateProfileCryptoPolicy
 type ManagedCertificateProfileCryptoPolicy struct {
-	// List of authorized key types for enrollment
-	AuthorizedKeyTypes []string `json:"authorizedKeyTypes,omitempty"`
 	// Whether this profile supports centralized enrollment
 	Centralized utils.NullableBool `json:"centralized,omitempty"`
 	// Whether this profile supports decentralized enrollment
 	Decentralized utils.NullableBool `json:"decentralized,omitempty"`
 	// Default key type used for centralized enrollment
 	DefaultKeyType utils.NullableString `json:"defaultKeyType,omitempty" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
-	// Whether this profile will escrow the certificate private keys
-	Escrow utils.NullableBool `json:"escrow,omitempty"`
-	// Availability of the key in the requests (enroll, recover), as well as time during which a non-escrowed key is available for trigger retries
-	KeyAvailability utils.NullableString `json:"keyAvailability,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	// Whether the user will be required to input their PKCS#12 password upon enrollment
-	P12passwordMode utils.NullableString `json:"p12passwordMode,omitempty"`
-	// Password policy for the P12 file
-	P12passwordPolicy utils.NullableString `json:"p12passwordPolicy,omitempty"`
-	// Encryption type for the P12 file
-	P12storeEncryptionType utils.NullableString `json:"p12storeEncryptionType,omitempty"`
+	// List of authorized key types for enrollment
+	AuthorizedKeyTypes []string `json:"authorizedKeyTypes,omitempty"`
 	// If both centralized and decentralized enrollment are supported, this is the preferred mode
 	PreferredEnrollmentMode utils.NullableString `json:"preferredEnrollmentMode,omitempty"`
-	// Whether the PKCS#12 file will be displayed to the user upon enrollment
-	ShowP12OnEnroll utils.NullableBool `json:"showP12OnEnroll,omitempty"`
-	// Whether the PKCS#12 file will be displayed to the user upon recovery
-	ShowP12OnRecover utils.NullableBool `json:"showP12OnRecover,omitempty"`
+	// Whether this profile will escrow the certificate private keys
+	Escrow utils.NullableBool `json:"escrow,omitempty"`
+	// Password policy for the P12 file
+	P12passwordPolicy utils.NullableString `json:"p12passwordPolicy,omitempty"`
+	// Whether the user will be required to input their PKCS#12 password upon enrollment
+	P12passwordMode utils.NullableString `json:"p12passwordMode,omitempty"`
+	// Encryption type for the P12 file
+	P12storeEncryptionType utils.NullableString `json:"p12storeEncryptionType,omitempty"`
 	// Whether the PKCS#12 password will be displayed to the user upon enrollment
 	ShowP12PasswordOnEnroll utils.NullableBool `json:"showP12PasswordOnEnroll,omitempty"`
+	// Whether the PKCS#12 file will be displayed to the user upon enrollment
+	ShowP12OnEnroll utils.NullableBool `json:"showP12OnEnroll,omitempty"`
 	// Whether the PKCS#12 password will be displayed to the user upon recovery
 	ShowP12PasswordOnRecover utils.NullableBool `json:"showP12PasswordOnRecover,omitempty"`
-	AdditionalProperties     map[string]interface{}
+	// Whether the PKCS#12 file will be displayed to the user upon recovery
+	ShowP12OnRecover utils.NullableBool `json:"showP12OnRecover,omitempty"`
+	// Availability of the key in the requests (enroll, recover), as well as time during which a non-escrowed key is available for trigger retries
+	KeyAvailability      utils.NullableString `json:"keyAvailability,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ManagedCertificateProfileCryptoPolicy ManagedCertificateProfileCryptoPolicy
@@ -81,39 +81,6 @@ func NewManagedCertificateProfileCryptoPolicyWithDefaults() *ManagedCertificateP
 	var escrow bool = false
 	this.Escrow = *utils.NewNullableBool(&escrow)
 	return &this
-}
-
-// GetAuthorizedKeyTypes returns the AuthorizedKeyTypes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ManagedCertificateProfileCryptoPolicy) GetAuthorizedKeyTypes() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.AuthorizedKeyTypes
-}
-
-// GetAuthorizedKeyTypesOk returns a tuple with the AuthorizedKeyTypes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ManagedCertificateProfileCryptoPolicy) GetAuthorizedKeyTypesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.AuthorizedKeyTypes) {
-		return nil, false
-	}
-	return o.AuthorizedKeyTypes, true
-}
-
-// HasAuthorizedKeyTypes returns a boolean if a field has been set.
-func (o *ManagedCertificateProfileCryptoPolicy) HasAuthorizedKeyTypes() bool {
-	if o != nil && !utils.IsNil(o.AuthorizedKeyTypes) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthorizedKeyTypes gets a reference to the given []string and assigns it to the AuthorizedKeyTypes field.
-func (o *ManagedCertificateProfileCryptoPolicy) SetAuthorizedKeyTypes(v []string) {
-	o.AuthorizedKeyTypes = v
 }
 
 // GetCentralized returns the Centralized field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -245,219 +212,37 @@ func (o *ManagedCertificateProfileCryptoPolicy) UnsetDefaultKeyType() {
 	o.DefaultKeyType.Unset()
 }
 
-// GetEscrow returns the Escrow field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ManagedCertificateProfileCryptoPolicy) GetEscrow() bool {
-	if o == nil || utils.IsNil(o.Escrow.Get()) {
-		var ret bool
+// GetAuthorizedKeyTypes returns the AuthorizedKeyTypes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManagedCertificateProfileCryptoPolicy) GetAuthorizedKeyTypes() []string {
+	if o == nil {
+		var ret []string
 		return ret
 	}
-	return *o.Escrow.Get()
+	return o.AuthorizedKeyTypes
 }
 
-// GetEscrowOk returns a tuple with the Escrow field value if set, nil otherwise
+// GetAuthorizedKeyTypesOk returns a tuple with the AuthorizedKeyTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ManagedCertificateProfileCryptoPolicy) GetEscrowOk() (*bool, bool) {
-	if o == nil {
+func (o *ManagedCertificateProfileCryptoPolicy) GetAuthorizedKeyTypesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.AuthorizedKeyTypes) {
 		return nil, false
 	}
-	return o.Escrow.Get(), o.Escrow.IsSet()
+	return o.AuthorizedKeyTypes, true
 }
 
-// HasEscrow returns a boolean if a field has been set.
-func (o *ManagedCertificateProfileCryptoPolicy) HasEscrow() bool {
-	if o != nil && o.Escrow.IsSet() {
+// HasAuthorizedKeyTypes returns a boolean if a field has been set.
+func (o *ManagedCertificateProfileCryptoPolicy) HasAuthorizedKeyTypes() bool {
+	if o != nil && !utils.IsNil(o.AuthorizedKeyTypes) {
 		return true
 	}
 
 	return false
 }
 
-// SetEscrow gets a reference to the given NullableBool and assigns it to the Escrow field.
-func (o *ManagedCertificateProfileCryptoPolicy) SetEscrow(v bool) {
-	o.Escrow.Set(&v)
-}
-
-// SetEscrowNil sets the value for Escrow to be an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) SetEscrowNil() {
-	o.Escrow.Set(nil)
-}
-
-// UnsetEscrow ensures that no value is present for Escrow, not even an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) UnsetEscrow() {
-	o.Escrow.Unset()
-}
-
-// GetKeyAvailability returns the KeyAvailability field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ManagedCertificateProfileCryptoPolicy) GetKeyAvailability() string {
-	if o == nil || utils.IsNil(o.KeyAvailability.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.KeyAvailability.Get()
-}
-
-// GetKeyAvailabilityOk returns a tuple with the KeyAvailability field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ManagedCertificateProfileCryptoPolicy) GetKeyAvailabilityOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyAvailability.Get(), o.KeyAvailability.IsSet()
-}
-
-// HasKeyAvailability returns a boolean if a field has been set.
-func (o *ManagedCertificateProfileCryptoPolicy) HasKeyAvailability() bool {
-	if o != nil && o.KeyAvailability.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetKeyAvailability gets a reference to the given NullableString and assigns it to the KeyAvailability field.
-func (o *ManagedCertificateProfileCryptoPolicy) SetKeyAvailability(v string) {
-	o.KeyAvailability.Set(&v)
-}
-
-// SetKeyAvailabilityNil sets the value for KeyAvailability to be an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) SetKeyAvailabilityNil() {
-	o.KeyAvailability.Set(nil)
-}
-
-// UnsetKeyAvailability ensures that no value is present for KeyAvailability, not even an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) UnsetKeyAvailability() {
-	o.KeyAvailability.Unset()
-}
-
-// GetP12passwordMode returns the P12passwordMode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ManagedCertificateProfileCryptoPolicy) GetP12passwordMode() string {
-	if o == nil || utils.IsNil(o.P12passwordMode.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.P12passwordMode.Get()
-}
-
-// GetP12passwordModeOk returns a tuple with the P12passwordMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ManagedCertificateProfileCryptoPolicy) GetP12passwordModeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.P12passwordMode.Get(), o.P12passwordMode.IsSet()
-}
-
-// HasP12passwordMode returns a boolean if a field has been set.
-func (o *ManagedCertificateProfileCryptoPolicy) HasP12passwordMode() bool {
-	if o != nil && o.P12passwordMode.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetP12passwordMode gets a reference to the given NullableString and assigns it to the P12passwordMode field.
-func (o *ManagedCertificateProfileCryptoPolicy) SetP12passwordMode(v string) {
-	o.P12passwordMode.Set(&v)
-}
-
-// SetP12passwordModeNil sets the value for P12passwordMode to be an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) SetP12passwordModeNil() {
-	o.P12passwordMode.Set(nil)
-}
-
-// UnsetP12passwordMode ensures that no value is present for P12passwordMode, not even an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) UnsetP12passwordMode() {
-	o.P12passwordMode.Unset()
-}
-
-// GetP12passwordPolicy returns the P12passwordPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ManagedCertificateProfileCryptoPolicy) GetP12passwordPolicy() string {
-	if o == nil || utils.IsNil(o.P12passwordPolicy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.P12passwordPolicy.Get()
-}
-
-// GetP12passwordPolicyOk returns a tuple with the P12passwordPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ManagedCertificateProfileCryptoPolicy) GetP12passwordPolicyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.P12passwordPolicy.Get(), o.P12passwordPolicy.IsSet()
-}
-
-// HasP12passwordPolicy returns a boolean if a field has been set.
-func (o *ManagedCertificateProfileCryptoPolicy) HasP12passwordPolicy() bool {
-	if o != nil && o.P12passwordPolicy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetP12passwordPolicy gets a reference to the given NullableString and assigns it to the P12passwordPolicy field.
-func (o *ManagedCertificateProfileCryptoPolicy) SetP12passwordPolicy(v string) {
-	o.P12passwordPolicy.Set(&v)
-}
-
-// SetP12passwordPolicyNil sets the value for P12passwordPolicy to be an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) SetP12passwordPolicyNil() {
-	o.P12passwordPolicy.Set(nil)
-}
-
-// UnsetP12passwordPolicy ensures that no value is present for P12passwordPolicy, not even an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) UnsetP12passwordPolicy() {
-	o.P12passwordPolicy.Unset()
-}
-
-// GetP12storeEncryptionType returns the P12storeEncryptionType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ManagedCertificateProfileCryptoPolicy) GetP12storeEncryptionType() string {
-	if o == nil || utils.IsNil(o.P12storeEncryptionType.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.P12storeEncryptionType.Get()
-}
-
-// GetP12storeEncryptionTypeOk returns a tuple with the P12storeEncryptionType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ManagedCertificateProfileCryptoPolicy) GetP12storeEncryptionTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.P12storeEncryptionType.Get(), o.P12storeEncryptionType.IsSet()
-}
-
-// HasP12storeEncryptionType returns a boolean if a field has been set.
-func (o *ManagedCertificateProfileCryptoPolicy) HasP12storeEncryptionType() bool {
-	if o != nil && o.P12storeEncryptionType.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetP12storeEncryptionType gets a reference to the given NullableString and assigns it to the P12storeEncryptionType field.
-func (o *ManagedCertificateProfileCryptoPolicy) SetP12storeEncryptionType(v string) {
-	o.P12storeEncryptionType.Set(&v)
-}
-
-// SetP12storeEncryptionTypeNil sets the value for P12storeEncryptionType to be an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) SetP12storeEncryptionTypeNil() {
-	o.P12storeEncryptionType.Set(nil)
-}
-
-// UnsetP12storeEncryptionType ensures that no value is present for P12storeEncryptionType, not even an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) UnsetP12storeEncryptionType() {
-	o.P12storeEncryptionType.Unset()
+// SetAuthorizedKeyTypes gets a reference to the given []string and assigns it to the AuthorizedKeyTypes field.
+func (o *ManagedCertificateProfileCryptoPolicy) SetAuthorizedKeyTypes(v []string) {
+	o.AuthorizedKeyTypes = v
 }
 
 // GetPreferredEnrollmentMode returns the PreferredEnrollmentMode field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -503,90 +288,176 @@ func (o *ManagedCertificateProfileCryptoPolicy) UnsetPreferredEnrollmentMode() {
 	o.PreferredEnrollmentMode.Unset()
 }
 
-// GetShowP12OnEnroll returns the ShowP12OnEnroll field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ManagedCertificateProfileCryptoPolicy) GetShowP12OnEnroll() bool {
-	if o == nil || utils.IsNil(o.ShowP12OnEnroll.Get()) {
+// GetEscrow returns the Escrow field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManagedCertificateProfileCryptoPolicy) GetEscrow() bool {
+	if o == nil || utils.IsNil(o.Escrow.Get()) {
 		var ret bool
 		return ret
 	}
-	return *o.ShowP12OnEnroll.Get()
+	return *o.Escrow.Get()
 }
 
-// GetShowP12OnEnrollOk returns a tuple with the ShowP12OnEnroll field value if set, nil otherwise
+// GetEscrowOk returns a tuple with the Escrow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ManagedCertificateProfileCryptoPolicy) GetShowP12OnEnrollOk() (*bool, bool) {
+func (o *ManagedCertificateProfileCryptoPolicy) GetEscrowOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ShowP12OnEnroll.Get(), o.ShowP12OnEnroll.IsSet()
+	return o.Escrow.Get(), o.Escrow.IsSet()
 }
 
-// HasShowP12OnEnroll returns a boolean if a field has been set.
-func (o *ManagedCertificateProfileCryptoPolicy) HasShowP12OnEnroll() bool {
-	if o != nil && o.ShowP12OnEnroll.IsSet() {
+// HasEscrow returns a boolean if a field has been set.
+func (o *ManagedCertificateProfileCryptoPolicy) HasEscrow() bool {
+	if o != nil && o.Escrow.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetShowP12OnEnroll gets a reference to the given NullableBool and assigns it to the ShowP12OnEnroll field.
-func (o *ManagedCertificateProfileCryptoPolicy) SetShowP12OnEnroll(v bool) {
-	o.ShowP12OnEnroll.Set(&v)
+// SetEscrow gets a reference to the given NullableBool and assigns it to the Escrow field.
+func (o *ManagedCertificateProfileCryptoPolicy) SetEscrow(v bool) {
+	o.Escrow.Set(&v)
 }
 
-// SetShowP12OnEnrollNil sets the value for ShowP12OnEnroll to be an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) SetShowP12OnEnrollNil() {
-	o.ShowP12OnEnroll.Set(nil)
+// SetEscrowNil sets the value for Escrow to be an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) SetEscrowNil() {
+	o.Escrow.Set(nil)
 }
 
-// UnsetShowP12OnEnroll ensures that no value is present for ShowP12OnEnroll, not even an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) UnsetShowP12OnEnroll() {
-	o.ShowP12OnEnroll.Unset()
+// UnsetEscrow ensures that no value is present for Escrow, not even an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) UnsetEscrow() {
+	o.Escrow.Unset()
 }
 
-// GetShowP12OnRecover returns the ShowP12OnRecover field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ManagedCertificateProfileCryptoPolicy) GetShowP12OnRecover() bool {
-	if o == nil || utils.IsNil(o.ShowP12OnRecover.Get()) {
-		var ret bool
+// GetP12passwordPolicy returns the P12passwordPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManagedCertificateProfileCryptoPolicy) GetP12passwordPolicy() string {
+	if o == nil || utils.IsNil(o.P12passwordPolicy.Get()) {
+		var ret string
 		return ret
 	}
-	return *o.ShowP12OnRecover.Get()
+	return *o.P12passwordPolicy.Get()
 }
 
-// GetShowP12OnRecoverOk returns a tuple with the ShowP12OnRecover field value if set, nil otherwise
+// GetP12passwordPolicyOk returns a tuple with the P12passwordPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ManagedCertificateProfileCryptoPolicy) GetShowP12OnRecoverOk() (*bool, bool) {
+func (o *ManagedCertificateProfileCryptoPolicy) GetP12passwordPolicyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ShowP12OnRecover.Get(), o.ShowP12OnRecover.IsSet()
+	return o.P12passwordPolicy.Get(), o.P12passwordPolicy.IsSet()
 }
 
-// HasShowP12OnRecover returns a boolean if a field has been set.
-func (o *ManagedCertificateProfileCryptoPolicy) HasShowP12OnRecover() bool {
-	if o != nil && o.ShowP12OnRecover.IsSet() {
+// HasP12passwordPolicy returns a boolean if a field has been set.
+func (o *ManagedCertificateProfileCryptoPolicy) HasP12passwordPolicy() bool {
+	if o != nil && o.P12passwordPolicy.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetShowP12OnRecover gets a reference to the given NullableBool and assigns it to the ShowP12OnRecover field.
-func (o *ManagedCertificateProfileCryptoPolicy) SetShowP12OnRecover(v bool) {
-	o.ShowP12OnRecover.Set(&v)
+// SetP12passwordPolicy gets a reference to the given NullableString and assigns it to the P12passwordPolicy field.
+func (o *ManagedCertificateProfileCryptoPolicy) SetP12passwordPolicy(v string) {
+	o.P12passwordPolicy.Set(&v)
 }
 
-// SetShowP12OnRecoverNil sets the value for ShowP12OnRecover to be an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) SetShowP12OnRecoverNil() {
-	o.ShowP12OnRecover.Set(nil)
+// SetP12passwordPolicyNil sets the value for P12passwordPolicy to be an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) SetP12passwordPolicyNil() {
+	o.P12passwordPolicy.Set(nil)
 }
 
-// UnsetShowP12OnRecover ensures that no value is present for ShowP12OnRecover, not even an explicit nil
-func (o *ManagedCertificateProfileCryptoPolicy) UnsetShowP12OnRecover() {
-	o.ShowP12OnRecover.Unset()
+// UnsetP12passwordPolicy ensures that no value is present for P12passwordPolicy, not even an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) UnsetP12passwordPolicy() {
+	o.P12passwordPolicy.Unset()
+}
+
+// GetP12passwordMode returns the P12passwordMode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManagedCertificateProfileCryptoPolicy) GetP12passwordMode() string {
+	if o == nil || utils.IsNil(o.P12passwordMode.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.P12passwordMode.Get()
+}
+
+// GetP12passwordModeOk returns a tuple with the P12passwordMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ManagedCertificateProfileCryptoPolicy) GetP12passwordModeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.P12passwordMode.Get(), o.P12passwordMode.IsSet()
+}
+
+// HasP12passwordMode returns a boolean if a field has been set.
+func (o *ManagedCertificateProfileCryptoPolicy) HasP12passwordMode() bool {
+	if o != nil && o.P12passwordMode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetP12passwordMode gets a reference to the given NullableString and assigns it to the P12passwordMode field.
+func (o *ManagedCertificateProfileCryptoPolicy) SetP12passwordMode(v string) {
+	o.P12passwordMode.Set(&v)
+}
+
+// SetP12passwordModeNil sets the value for P12passwordMode to be an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) SetP12passwordModeNil() {
+	o.P12passwordMode.Set(nil)
+}
+
+// UnsetP12passwordMode ensures that no value is present for P12passwordMode, not even an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) UnsetP12passwordMode() {
+	o.P12passwordMode.Unset()
+}
+
+// GetP12storeEncryptionType returns the P12storeEncryptionType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManagedCertificateProfileCryptoPolicy) GetP12storeEncryptionType() string {
+	if o == nil || utils.IsNil(o.P12storeEncryptionType.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.P12storeEncryptionType.Get()
+}
+
+// GetP12storeEncryptionTypeOk returns a tuple with the P12storeEncryptionType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ManagedCertificateProfileCryptoPolicy) GetP12storeEncryptionTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.P12storeEncryptionType.Get(), o.P12storeEncryptionType.IsSet()
+}
+
+// HasP12storeEncryptionType returns a boolean if a field has been set.
+func (o *ManagedCertificateProfileCryptoPolicy) HasP12storeEncryptionType() bool {
+	if o != nil && o.P12storeEncryptionType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetP12storeEncryptionType gets a reference to the given NullableString and assigns it to the P12storeEncryptionType field.
+func (o *ManagedCertificateProfileCryptoPolicy) SetP12storeEncryptionType(v string) {
+	o.P12storeEncryptionType.Set(&v)
+}
+
+// SetP12storeEncryptionTypeNil sets the value for P12storeEncryptionType to be an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) SetP12storeEncryptionTypeNil() {
+	o.P12storeEncryptionType.Set(nil)
+}
+
+// UnsetP12storeEncryptionType ensures that no value is present for P12storeEncryptionType, not even an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) UnsetP12storeEncryptionType() {
+	o.P12storeEncryptionType.Unset()
 }
 
 // GetShowP12PasswordOnEnroll returns the ShowP12PasswordOnEnroll field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -632,6 +503,49 @@ func (o *ManagedCertificateProfileCryptoPolicy) UnsetShowP12PasswordOnEnroll() {
 	o.ShowP12PasswordOnEnroll.Unset()
 }
 
+// GetShowP12OnEnroll returns the ShowP12OnEnroll field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManagedCertificateProfileCryptoPolicy) GetShowP12OnEnroll() bool {
+	if o == nil || utils.IsNil(o.ShowP12OnEnroll.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.ShowP12OnEnroll.Get()
+}
+
+// GetShowP12OnEnrollOk returns a tuple with the ShowP12OnEnroll field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ManagedCertificateProfileCryptoPolicy) GetShowP12OnEnrollOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ShowP12OnEnroll.Get(), o.ShowP12OnEnroll.IsSet()
+}
+
+// HasShowP12OnEnroll returns a boolean if a field has been set.
+func (o *ManagedCertificateProfileCryptoPolicy) HasShowP12OnEnroll() bool {
+	if o != nil && o.ShowP12OnEnroll.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShowP12OnEnroll gets a reference to the given NullableBool and assigns it to the ShowP12OnEnroll field.
+func (o *ManagedCertificateProfileCryptoPolicy) SetShowP12OnEnroll(v bool) {
+	o.ShowP12OnEnroll.Set(&v)
+}
+
+// SetShowP12OnEnrollNil sets the value for ShowP12OnEnroll to be an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) SetShowP12OnEnrollNil() {
+	o.ShowP12OnEnroll.Set(nil)
+}
+
+// UnsetShowP12OnEnroll ensures that no value is present for ShowP12OnEnroll, not even an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) UnsetShowP12OnEnroll() {
+	o.ShowP12OnEnroll.Unset()
+}
+
 // GetShowP12PasswordOnRecover returns the ShowP12PasswordOnRecover field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ManagedCertificateProfileCryptoPolicy) GetShowP12PasswordOnRecover() bool {
 	if o == nil || utils.IsNil(o.ShowP12PasswordOnRecover.Get()) {
@@ -675,6 +589,92 @@ func (o *ManagedCertificateProfileCryptoPolicy) UnsetShowP12PasswordOnRecover() 
 	o.ShowP12PasswordOnRecover.Unset()
 }
 
+// GetShowP12OnRecover returns the ShowP12OnRecover field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManagedCertificateProfileCryptoPolicy) GetShowP12OnRecover() bool {
+	if o == nil || utils.IsNil(o.ShowP12OnRecover.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.ShowP12OnRecover.Get()
+}
+
+// GetShowP12OnRecoverOk returns a tuple with the ShowP12OnRecover field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ManagedCertificateProfileCryptoPolicy) GetShowP12OnRecoverOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ShowP12OnRecover.Get(), o.ShowP12OnRecover.IsSet()
+}
+
+// HasShowP12OnRecover returns a boolean if a field has been set.
+func (o *ManagedCertificateProfileCryptoPolicy) HasShowP12OnRecover() bool {
+	if o != nil && o.ShowP12OnRecover.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetShowP12OnRecover gets a reference to the given NullableBool and assigns it to the ShowP12OnRecover field.
+func (o *ManagedCertificateProfileCryptoPolicy) SetShowP12OnRecover(v bool) {
+	o.ShowP12OnRecover.Set(&v)
+}
+
+// SetShowP12OnRecoverNil sets the value for ShowP12OnRecover to be an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) SetShowP12OnRecoverNil() {
+	o.ShowP12OnRecover.Set(nil)
+}
+
+// UnsetShowP12OnRecover ensures that no value is present for ShowP12OnRecover, not even an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) UnsetShowP12OnRecover() {
+	o.ShowP12OnRecover.Unset()
+}
+
+// GetKeyAvailability returns the KeyAvailability field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ManagedCertificateProfileCryptoPolicy) GetKeyAvailability() string {
+	if o == nil || utils.IsNil(o.KeyAvailability.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.KeyAvailability.Get()
+}
+
+// GetKeyAvailabilityOk returns a tuple with the KeyAvailability field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ManagedCertificateProfileCryptoPolicy) GetKeyAvailabilityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KeyAvailability.Get(), o.KeyAvailability.IsSet()
+}
+
+// HasKeyAvailability returns a boolean if a field has been set.
+func (o *ManagedCertificateProfileCryptoPolicy) HasKeyAvailability() bool {
+	if o != nil && o.KeyAvailability.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyAvailability gets a reference to the given NullableString and assigns it to the KeyAvailability field.
+func (o *ManagedCertificateProfileCryptoPolicy) SetKeyAvailability(v string) {
+	o.KeyAvailability.Set(&v)
+}
+
+// SetKeyAvailabilityNil sets the value for KeyAvailability to be an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) SetKeyAvailabilityNil() {
+	o.KeyAvailability.Set(nil)
+}
+
+// UnsetKeyAvailability ensures that no value is present for KeyAvailability, not even an explicit nil
+func (o *ManagedCertificateProfileCryptoPolicy) UnsetKeyAvailability() {
+	o.KeyAvailability.Unset()
+}
+
 func (o ManagedCertificateProfileCryptoPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -685,9 +685,6 @@ func (o ManagedCertificateProfileCryptoPolicy) MarshalJSON() ([]byte, error) {
 
 func (o ManagedCertificateProfileCryptoPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AuthorizedKeyTypes != nil {
-		toSerialize["authorizedKeyTypes"] = o.AuthorizedKeyTypes
-	}
 	if o.Centralized.IsSet() {
 		toSerialize["centralized"] = o.Centralized.Get()
 	}
@@ -697,35 +694,38 @@ func (o ManagedCertificateProfileCryptoPolicy) ToMap() (map[string]interface{}, 
 	if o.DefaultKeyType.IsSet() {
 		toSerialize["defaultKeyType"] = o.DefaultKeyType.Get()
 	}
-	if o.Escrow.IsSet() {
-		toSerialize["escrow"] = o.Escrow.Get()
-	}
-	if o.KeyAvailability.IsSet() {
-		toSerialize["keyAvailability"] = o.KeyAvailability.Get()
-	}
-	if o.P12passwordMode.IsSet() {
-		toSerialize["p12passwordMode"] = o.P12passwordMode.Get()
-	}
-	if o.P12passwordPolicy.IsSet() {
-		toSerialize["p12passwordPolicy"] = o.P12passwordPolicy.Get()
-	}
-	if o.P12storeEncryptionType.IsSet() {
-		toSerialize["p12storeEncryptionType"] = o.P12storeEncryptionType.Get()
+	if o.AuthorizedKeyTypes != nil {
+		toSerialize["authorizedKeyTypes"] = o.AuthorizedKeyTypes
 	}
 	if o.PreferredEnrollmentMode.IsSet() {
 		toSerialize["preferredEnrollmentMode"] = o.PreferredEnrollmentMode.Get()
 	}
-	if o.ShowP12OnEnroll.IsSet() {
-		toSerialize["showP12OnEnroll"] = o.ShowP12OnEnroll.Get()
+	if o.Escrow.IsSet() {
+		toSerialize["escrow"] = o.Escrow.Get()
 	}
-	if o.ShowP12OnRecover.IsSet() {
-		toSerialize["showP12OnRecover"] = o.ShowP12OnRecover.Get()
+	if o.P12passwordPolicy.IsSet() {
+		toSerialize["p12passwordPolicy"] = o.P12passwordPolicy.Get()
+	}
+	if o.P12passwordMode.IsSet() {
+		toSerialize["p12passwordMode"] = o.P12passwordMode.Get()
+	}
+	if o.P12storeEncryptionType.IsSet() {
+		toSerialize["p12storeEncryptionType"] = o.P12storeEncryptionType.Get()
 	}
 	if o.ShowP12PasswordOnEnroll.IsSet() {
 		toSerialize["showP12PasswordOnEnroll"] = o.ShowP12PasswordOnEnroll.Get()
 	}
+	if o.ShowP12OnEnroll.IsSet() {
+		toSerialize["showP12OnEnroll"] = o.ShowP12OnEnroll.Get()
+	}
 	if o.ShowP12PasswordOnRecover.IsSet() {
 		toSerialize["showP12PasswordOnRecover"] = o.ShowP12PasswordOnRecover.Get()
+	}
+	if o.ShowP12OnRecover.IsSet() {
+		toSerialize["showP12OnRecover"] = o.ShowP12OnRecover.Get()
+	}
+	if o.KeyAvailability.IsSet() {
+		toSerialize["keyAvailability"] = o.KeyAvailability.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -749,20 +749,20 @@ func (o *ManagedCertificateProfileCryptoPolicy) UnmarshalJSON(data []byte) (err 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "authorizedKeyTypes")
 		delete(additionalProperties, "centralized")
 		delete(additionalProperties, "decentralized")
 		delete(additionalProperties, "defaultKeyType")
-		delete(additionalProperties, "escrow")
-		delete(additionalProperties, "keyAvailability")
-		delete(additionalProperties, "p12passwordMode")
-		delete(additionalProperties, "p12passwordPolicy")
-		delete(additionalProperties, "p12storeEncryptionType")
+		delete(additionalProperties, "authorizedKeyTypes")
 		delete(additionalProperties, "preferredEnrollmentMode")
-		delete(additionalProperties, "showP12OnEnroll")
-		delete(additionalProperties, "showP12OnRecover")
+		delete(additionalProperties, "escrow")
+		delete(additionalProperties, "p12passwordPolicy")
+		delete(additionalProperties, "p12passwordMode")
+		delete(additionalProperties, "p12storeEncryptionType")
 		delete(additionalProperties, "showP12PasswordOnEnroll")
+		delete(additionalProperties, "showP12OnEnroll")
 		delete(additionalProperties, "showP12PasswordOnRecover")
+		delete(additionalProperties, "showP12OnRecover")
+		delete(additionalProperties, "keyAvailability")
 		o.AdditionalProperties = additionalProperties
 	}
 

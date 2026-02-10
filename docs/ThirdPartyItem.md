@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Connector** | **string** | The third party connector name on which this certificate is synchronized | 
-**Fingerprint** | Pointer to **NullableString** | The fingerprint of this certificate on the third party | [optional] 
 **Id** | **string** | The Id of this certificate on the third party | 
+**Fingerprint** | Pointer to **NullableString** | The fingerprint of this certificate on the third party | [optional] 
 **PushDate** | Pointer to **NullableInt64** | The date when the certificate was pushed to this third party | [optional] 
 **RemoveDate** | Pointer to **NullableInt64** | The date when the certificate was removed from this third party (in case of revocation) | [optional] 
 
@@ -49,6 +49,26 @@ and a boolean to check if the value has been set.
 SetConnector sets Connector field to given value.
 
 
+### GetId
+
+`func (o *ThirdPartyItem) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ThirdPartyItem) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ThirdPartyItem) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
 ### GetFingerprint
 
 `func (o *ThirdPartyItem) GetFingerprint() string`
@@ -84,26 +104,6 @@ HasFingerprint returns a boolean if a field has been set.
 `func (o *ThirdPartyItem) UnsetFingerprint()`
 
 UnsetFingerprint ensures that no value is present for Fingerprint, not even an explicit nil
-### GetId
-
-`func (o *ThirdPartyItem) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *ThirdPartyItem) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *ThirdPartyItem) SetId(v string)`
-
-SetId sets Id field to given value.
-
-
 ### GetPushDate
 
 `func (o *ThirdPartyItem) GetPushDate() int64`

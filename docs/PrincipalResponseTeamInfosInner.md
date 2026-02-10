@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to [**[]LocalizedStringResponse**](LocalizedStringResponse.md) |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **DisplayName** | Pointer to [**[]LocalizedStringResponse**](LocalizedStringResponse.md) |  | [optional] 
+**Description** | Pointer to [**[]LocalizedStringResponse**](LocalizedStringResponse.md) |  | [optional] 
 **ExternallyManaged** | Pointer to **bool** | &#x60;true&#x60; if this team is externally managed (SCIM,...) | [optional] 
 **Manager** | Pointer to **bool** | &#x60;true&#x60; if the principal is a manager of this team | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -29,30 +29,30 @@ NewPrincipalResponseTeamInfosInnerWithDefaults instantiates a new PrincipalRespo
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDescription
+### GetName
 
-`func (o *PrincipalResponseTeamInfosInner) GetDescription() []LocalizedStringResponse`
+`func (o *PrincipalResponseTeamInfosInner) GetName() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetNameOk
 
-`func (o *PrincipalResponseTeamInfosInner) GetDescriptionOk() (*[]LocalizedStringResponse, bool)`
+`func (o *PrincipalResponseTeamInfosInner) GetNameOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetName
 
-`func (o *PrincipalResponseTeamInfosInner) SetDescription(v []LocalizedStringResponse)`
+`func (o *PrincipalResponseTeamInfosInner) SetName(v string)`
 
-SetDescription sets Description field to given value.
+SetName sets Name field to given value.
 
-### HasDescription
+### HasName
 
-`func (o *PrincipalResponseTeamInfosInner) HasDescription() bool`
+`func (o *PrincipalResponseTeamInfosInner) HasName() bool`
 
-HasDescription returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -78,6 +78,31 @@ SetDisplayName sets DisplayName field to given value.
 `func (o *PrincipalResponseTeamInfosInner) HasDisplayName() bool`
 
 HasDisplayName returns a boolean if a field has been set.
+
+### GetDescription
+
+`func (o *PrincipalResponseTeamInfosInner) GetDescription() []LocalizedStringResponse`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *PrincipalResponseTeamInfosInner) GetDescriptionOk() (*[]LocalizedStringResponse, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *PrincipalResponseTeamInfosInner) SetDescription(v []LocalizedStringResponse)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *PrincipalResponseTeamInfosInner) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetExternallyManaged
 
@@ -128,31 +153,6 @@ SetManager sets Manager field to given value.
 `func (o *PrincipalResponseTeamInfosInner) HasManager() bool`
 
 HasManager returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *PrincipalResponseTeamInfosInner) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *PrincipalResponseTeamInfosInner) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *PrincipalResponseTeamInfosInner) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *PrincipalResponseTeamInfosInner) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

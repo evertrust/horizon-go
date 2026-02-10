@@ -22,15 +22,15 @@ var _ utils.MappedNullable = &ContactEmailPolicy{}
 
 // ContactEmailPolicy struct for ContactEmailPolicy
 type ContactEmailPolicy struct {
+	Value utils.NullableString `json:"value,omitempty"`
 	// A computation rule that will dynamically generate a string value from the request's context
 	ComputationRule      utils.NullableString `json:"computationRule,omitempty"`
-	Description          []LocalizedString    `json:"description,omitempty"`
-	EditableByApprover   utils.NullableBool   `json:"editableByApprover,omitempty"`
-	EditableByRequester  utils.NullableBool   `json:"editableByRequester,omitempty"`
 	Mandatory            bool                 `json:"mandatory"`
+	EditableByRequester  utils.NullableBool   `json:"editableByRequester,omitempty"`
+	EditableByApprover   utils.NullableBool   `json:"editableByApprover,omitempty"`
 	Regex                utils.NullableString `json:"regex,omitempty"`
-	Value                utils.NullableString `json:"value,omitempty"`
 	Whitelist            []string             `json:"whitelist,omitempty"`
+	Description          []LocalizedString    `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -52,235 +52,6 @@ func NewContactEmailPolicy(mandatory bool) *ContactEmailPolicy {
 func NewContactEmailPolicyWithDefaults() *ContactEmailPolicy {
 	this := ContactEmailPolicy{}
 	return &this
-}
-
-// GetComputationRule returns the ComputationRule field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContactEmailPolicy) GetComputationRule() string {
-	if o == nil || utils.IsNil(o.ComputationRule.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ComputationRule.Get()
-}
-
-// GetComputationRuleOk returns a tuple with the ComputationRule field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContactEmailPolicy) GetComputationRuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ComputationRule.Get(), o.ComputationRule.IsSet()
-}
-
-// HasComputationRule returns a boolean if a field has been set.
-func (o *ContactEmailPolicy) HasComputationRule() bool {
-	if o != nil && o.ComputationRule.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetComputationRule gets a reference to the given NullableString and assigns it to the ComputationRule field.
-func (o *ContactEmailPolicy) SetComputationRule(v string) {
-	o.ComputationRule.Set(&v)
-}
-
-// SetComputationRuleNil sets the value for ComputationRule to be an explicit nil
-func (o *ContactEmailPolicy) SetComputationRuleNil() {
-	o.ComputationRule.Set(nil)
-}
-
-// UnsetComputationRule ensures that no value is present for ComputationRule, not even an explicit nil
-func (o *ContactEmailPolicy) UnsetComputationRule() {
-	o.ComputationRule.Unset()
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContactEmailPolicy) GetDescription() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContactEmailPolicy) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *ContactEmailPolicy) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *ContactEmailPolicy) SetDescription(v []LocalizedString) {
-	o.Description = v
-}
-
-// GetEditableByApprover returns the EditableByApprover field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContactEmailPolicy) GetEditableByApprover() bool {
-	if o == nil || utils.IsNil(o.EditableByApprover.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.EditableByApprover.Get()
-}
-
-// GetEditableByApproverOk returns a tuple with the EditableByApprover field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContactEmailPolicy) GetEditableByApproverOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.EditableByApprover.Get(), o.EditableByApprover.IsSet()
-}
-
-// HasEditableByApprover returns a boolean if a field has been set.
-func (o *ContactEmailPolicy) HasEditableByApprover() bool {
-	if o != nil && o.EditableByApprover.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEditableByApprover gets a reference to the given NullableBool and assigns it to the EditableByApprover field.
-func (o *ContactEmailPolicy) SetEditableByApprover(v bool) {
-	o.EditableByApprover.Set(&v)
-}
-
-// SetEditableByApproverNil sets the value for EditableByApprover to be an explicit nil
-func (o *ContactEmailPolicy) SetEditableByApproverNil() {
-	o.EditableByApprover.Set(nil)
-}
-
-// UnsetEditableByApprover ensures that no value is present for EditableByApprover, not even an explicit nil
-func (o *ContactEmailPolicy) UnsetEditableByApprover() {
-	o.EditableByApprover.Unset()
-}
-
-// GetEditableByRequester returns the EditableByRequester field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContactEmailPolicy) GetEditableByRequester() bool {
-	if o == nil || utils.IsNil(o.EditableByRequester.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.EditableByRequester.Get()
-}
-
-// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContactEmailPolicy) GetEditableByRequesterOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.EditableByRequester.Get(), o.EditableByRequester.IsSet()
-}
-
-// HasEditableByRequester returns a boolean if a field has been set.
-func (o *ContactEmailPolicy) HasEditableByRequester() bool {
-	if o != nil && o.EditableByRequester.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEditableByRequester gets a reference to the given NullableBool and assigns it to the EditableByRequester field.
-func (o *ContactEmailPolicy) SetEditableByRequester(v bool) {
-	o.EditableByRequester.Set(&v)
-}
-
-// SetEditableByRequesterNil sets the value for EditableByRequester to be an explicit nil
-func (o *ContactEmailPolicy) SetEditableByRequesterNil() {
-	o.EditableByRequester.Set(nil)
-}
-
-// UnsetEditableByRequester ensures that no value is present for EditableByRequester, not even an explicit nil
-func (o *ContactEmailPolicy) UnsetEditableByRequester() {
-	o.EditableByRequester.Unset()
-}
-
-// GetMandatory returns the Mandatory field value
-func (o *ContactEmailPolicy) GetMandatory() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Mandatory
-}
-
-// GetMandatoryOk returns a tuple with the Mandatory field value
-// and a boolean to check if the value has been set.
-func (o *ContactEmailPolicy) GetMandatoryOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Mandatory, true
-}
-
-// SetMandatory sets field value
-func (o *ContactEmailPolicy) SetMandatory(v bool) {
-	o.Mandatory = v
-}
-
-// GetRegex returns the Regex field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ContactEmailPolicy) GetRegex() string {
-	if o == nil || utils.IsNil(o.Regex.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Regex.Get()
-}
-
-// GetRegexOk returns a tuple with the Regex field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ContactEmailPolicy) GetRegexOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Regex.Get(), o.Regex.IsSet()
-}
-
-// HasRegex returns a boolean if a field has been set.
-func (o *ContactEmailPolicy) HasRegex() bool {
-	if o != nil && o.Regex.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRegex gets a reference to the given NullableString and assigns it to the Regex field.
-func (o *ContactEmailPolicy) SetRegex(v string) {
-	o.Regex.Set(&v)
-}
-
-// SetRegexNil sets the value for Regex to be an explicit nil
-func (o *ContactEmailPolicy) SetRegexNil() {
-	o.Regex.Set(nil)
-}
-
-// UnsetRegex ensures that no value is present for Regex, not even an explicit nil
-func (o *ContactEmailPolicy) UnsetRegex() {
-	o.Regex.Unset()
 }
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -326,6 +97,202 @@ func (o *ContactEmailPolicy) UnsetValue() {
 	o.Value.Unset()
 }
 
+// GetComputationRule returns the ComputationRule field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContactEmailPolicy) GetComputationRule() string {
+	if o == nil || utils.IsNil(o.ComputationRule.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ComputationRule.Get()
+}
+
+// GetComputationRuleOk returns a tuple with the ComputationRule field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ContactEmailPolicy) GetComputationRuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ComputationRule.Get(), o.ComputationRule.IsSet()
+}
+
+// HasComputationRule returns a boolean if a field has been set.
+func (o *ContactEmailPolicy) HasComputationRule() bool {
+	if o != nil && o.ComputationRule.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetComputationRule gets a reference to the given NullableString and assigns it to the ComputationRule field.
+func (o *ContactEmailPolicy) SetComputationRule(v string) {
+	o.ComputationRule.Set(&v)
+}
+
+// SetComputationRuleNil sets the value for ComputationRule to be an explicit nil
+func (o *ContactEmailPolicy) SetComputationRuleNil() {
+	o.ComputationRule.Set(nil)
+}
+
+// UnsetComputationRule ensures that no value is present for ComputationRule, not even an explicit nil
+func (o *ContactEmailPolicy) UnsetComputationRule() {
+	o.ComputationRule.Unset()
+}
+
+// GetMandatory returns the Mandatory field value
+func (o *ContactEmailPolicy) GetMandatory() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Mandatory
+}
+
+// GetMandatoryOk returns a tuple with the Mandatory field value
+// and a boolean to check if the value has been set.
+func (o *ContactEmailPolicy) GetMandatoryOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Mandatory, true
+}
+
+// SetMandatory sets field value
+func (o *ContactEmailPolicy) SetMandatory(v bool) {
+	o.Mandatory = v
+}
+
+// GetEditableByRequester returns the EditableByRequester field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContactEmailPolicy) GetEditableByRequester() bool {
+	if o == nil || utils.IsNil(o.EditableByRequester.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.EditableByRequester.Get()
+}
+
+// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ContactEmailPolicy) GetEditableByRequesterOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EditableByRequester.Get(), o.EditableByRequester.IsSet()
+}
+
+// HasEditableByRequester returns a boolean if a field has been set.
+func (o *ContactEmailPolicy) HasEditableByRequester() bool {
+	if o != nil && o.EditableByRequester.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEditableByRequester gets a reference to the given NullableBool and assigns it to the EditableByRequester field.
+func (o *ContactEmailPolicy) SetEditableByRequester(v bool) {
+	o.EditableByRequester.Set(&v)
+}
+
+// SetEditableByRequesterNil sets the value for EditableByRequester to be an explicit nil
+func (o *ContactEmailPolicy) SetEditableByRequesterNil() {
+	o.EditableByRequester.Set(nil)
+}
+
+// UnsetEditableByRequester ensures that no value is present for EditableByRequester, not even an explicit nil
+func (o *ContactEmailPolicy) UnsetEditableByRequester() {
+	o.EditableByRequester.Unset()
+}
+
+// GetEditableByApprover returns the EditableByApprover field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContactEmailPolicy) GetEditableByApprover() bool {
+	if o == nil || utils.IsNil(o.EditableByApprover.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.EditableByApprover.Get()
+}
+
+// GetEditableByApproverOk returns a tuple with the EditableByApprover field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ContactEmailPolicy) GetEditableByApproverOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EditableByApprover.Get(), o.EditableByApprover.IsSet()
+}
+
+// HasEditableByApprover returns a boolean if a field has been set.
+func (o *ContactEmailPolicy) HasEditableByApprover() bool {
+	if o != nil && o.EditableByApprover.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEditableByApprover gets a reference to the given NullableBool and assigns it to the EditableByApprover field.
+func (o *ContactEmailPolicy) SetEditableByApprover(v bool) {
+	o.EditableByApprover.Set(&v)
+}
+
+// SetEditableByApproverNil sets the value for EditableByApprover to be an explicit nil
+func (o *ContactEmailPolicy) SetEditableByApproverNil() {
+	o.EditableByApprover.Set(nil)
+}
+
+// UnsetEditableByApprover ensures that no value is present for EditableByApprover, not even an explicit nil
+func (o *ContactEmailPolicy) UnsetEditableByApprover() {
+	o.EditableByApprover.Unset()
+}
+
+// GetRegex returns the Regex field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContactEmailPolicy) GetRegex() string {
+	if o == nil || utils.IsNil(o.Regex.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Regex.Get()
+}
+
+// GetRegexOk returns a tuple with the Regex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ContactEmailPolicy) GetRegexOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Regex.Get(), o.Regex.IsSet()
+}
+
+// HasRegex returns a boolean if a field has been set.
+func (o *ContactEmailPolicy) HasRegex() bool {
+	if o != nil && o.Regex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRegex gets a reference to the given NullableString and assigns it to the Regex field.
+func (o *ContactEmailPolicy) SetRegex(v string) {
+	o.Regex.Set(&v)
+}
+
+// SetRegexNil sets the value for Regex to be an explicit nil
+func (o *ContactEmailPolicy) SetRegexNil() {
+	o.Regex.Set(nil)
+}
+
+// UnsetRegex ensures that no value is present for Regex, not even an explicit nil
+func (o *ContactEmailPolicy) UnsetRegex() {
+	o.Regex.Unset()
+}
+
 // GetWhitelist returns the Whitelist field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContactEmailPolicy) GetWhitelist() []string {
 	if o == nil {
@@ -359,6 +326,39 @@ func (o *ContactEmailPolicy) SetWhitelist(v []string) {
 	o.Whitelist = v
 }
 
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ContactEmailPolicy) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ContactEmailPolicy) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *ContactEmailPolicy) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *ContactEmailPolicy) SetDescription(v []LocalizedString) {
+	o.Description = v
+}
+
 func (o ContactEmailPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -369,27 +369,27 @@ func (o ContactEmailPolicy) MarshalJSON() ([]byte, error) {
 
 func (o ContactEmailPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Value.IsSet() {
+		toSerialize["value"] = o.Value.Get()
+	}
 	if o.ComputationRule.IsSet() {
 		toSerialize["computationRule"] = o.ComputationRule.Get()
 	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
+	toSerialize["mandatory"] = o.Mandatory
+	if o.EditableByRequester.IsSet() {
+		toSerialize["editableByRequester"] = o.EditableByRequester.Get()
 	}
 	if o.EditableByApprover.IsSet() {
 		toSerialize["editableByApprover"] = o.EditableByApprover.Get()
 	}
-	if o.EditableByRequester.IsSet() {
-		toSerialize["editableByRequester"] = o.EditableByRequester.Get()
-	}
-	toSerialize["mandatory"] = o.Mandatory
 	if o.Regex.IsSet() {
 		toSerialize["regex"] = o.Regex.Get()
 	}
-	if o.Value.IsSet() {
-		toSerialize["value"] = o.Value.Get()
-	}
 	if o.Whitelist != nil {
 		toSerialize["whitelist"] = o.Whitelist
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -434,14 +434,14 @@ func (o *ContactEmailPolicy) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "computationRule")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "editableByApprover")
-		delete(additionalProperties, "editableByRequester")
-		delete(additionalProperties, "mandatory")
-		delete(additionalProperties, "regex")
 		delete(additionalProperties, "value")
+		delete(additionalProperties, "computationRule")
+		delete(additionalProperties, "mandatory")
+		delete(additionalProperties, "editableByRequester")
+		delete(additionalProperties, "editableByApprover")
+		delete(additionalProperties, "regex")
 		delete(additionalProperties, "whitelist")
+		delete(additionalProperties, "description")
 		o.AdditionalProperties = additionalProperties
 	}
 

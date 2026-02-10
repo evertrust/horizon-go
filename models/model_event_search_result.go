@@ -26,10 +26,10 @@ type EventSearchResult struct {
 	Details              []EventDetail        `json:"details,omitempty"`
 	Module               NullableEventModule  `json:"module,omitempty"`
 	Node                 utils.NullableString `json:"node,omitempty"`
+	Timestamp            utils.NullableInt64  `json:"timestamp,omitempty"`
 	RemoveAt             utils.NullableInt64  `json:"removeAt,omitempty"`
 	Seal                 utils.NullableString `json:"seal,omitempty"`
 	Status               utils.NullableString `json:"status,omitempty"`
-	Timestamp            utils.NullableInt64  `json:"timestamp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -257,6 +257,49 @@ func (o *EventSearchResult) UnsetNode() {
 	o.Node.Unset()
 }
 
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EventSearchResult) GetTimestamp() int64 {
+	if o == nil || utils.IsNil(o.Timestamp.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Timestamp.Get()
+}
+
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EventSearchResult) GetTimestampOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timestamp.Get(), o.Timestamp.IsSet()
+}
+
+// HasTimestamp returns a boolean if a field has been set.
+func (o *EventSearchResult) HasTimestamp() bool {
+	if o != nil && o.Timestamp.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given NullableInt64 and assigns it to the Timestamp field.
+func (o *EventSearchResult) SetTimestamp(v int64) {
+	o.Timestamp.Set(&v)
+}
+
+// SetTimestampNil sets the value for Timestamp to be an explicit nil
+func (o *EventSearchResult) SetTimestampNil() {
+	o.Timestamp.Set(nil)
+}
+
+// UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
+func (o *EventSearchResult) UnsetTimestamp() {
+	o.Timestamp.Unset()
+}
+
 // GetRemoveAt returns the RemoveAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EventSearchResult) GetRemoveAt() int64 {
 	if o == nil || utils.IsNil(o.RemoveAt.Get()) {
@@ -386,49 +429,6 @@ func (o *EventSearchResult) UnsetStatus() {
 	o.Status.Unset()
 }
 
-// GetTimestamp returns the Timestamp field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EventSearchResult) GetTimestamp() int64 {
-	if o == nil || utils.IsNil(o.Timestamp.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.Timestamp.Get()
-}
-
-// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EventSearchResult) GetTimestampOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timestamp.Get(), o.Timestamp.IsSet()
-}
-
-// HasTimestamp returns a boolean if a field has been set.
-func (o *EventSearchResult) HasTimestamp() bool {
-	if o != nil && o.Timestamp.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimestamp gets a reference to the given NullableInt64 and assigns it to the Timestamp field.
-func (o *EventSearchResult) SetTimestamp(v int64) {
-	o.Timestamp.Set(&v)
-}
-
-// SetTimestampNil sets the value for Timestamp to be an explicit nil
-func (o *EventSearchResult) SetTimestampNil() {
-	o.Timestamp.Set(nil)
-}
-
-// UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
-func (o *EventSearchResult) UnsetTimestamp() {
-	o.Timestamp.Unset()
-}
-
 func (o EventSearchResult) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -454,6 +454,9 @@ func (o EventSearchResult) ToMap() (map[string]interface{}, error) {
 	if o.Node.IsSet() {
 		toSerialize["node"] = o.Node.Get()
 	}
+	if o.Timestamp.IsSet() {
+		toSerialize["timestamp"] = o.Timestamp.Get()
+	}
 	if o.RemoveAt.IsSet() {
 		toSerialize["removeAt"] = o.RemoveAt.Get()
 	}
@@ -462,9 +465,6 @@ func (o EventSearchResult) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
-	}
-	if o.Timestamp.IsSet() {
-		toSerialize["timestamp"] = o.Timestamp.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -493,10 +493,10 @@ func (o *EventSearchResult) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "details")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "node")
+		delete(additionalProperties, "timestamp")
 		delete(additionalProperties, "removeAt")
 		delete(additionalProperties, "seal")
 		delete(additionalProperties, "status")
-		delete(additionalProperties, "timestamp")
 		o.AdditionalProperties = additionalProperties
 	}
 

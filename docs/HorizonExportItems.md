@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Automations** | Pointer to [**[]AutomationPolicyResponse**](AutomationPolicyResponse.md) |  | [optional] 
 **Cas** | Pointer to [**[]CertificateAuthorityExportResponse**](CertificateAuthorityExportResponse.md) |  | [optional] 
+**PkiQueues** | Pointer to [**[]PKIQueueResponse**](PKIQueueResponse.md) |  | [optional] 
+**PkiConnectors** | Pointer to [**[]PKIResponses**](PKIResponses.md) |  | [optional] 
+**Roles** | Pointer to [**[]RoleResponse**](RoleResponse.md) |  | [optional] 
+**Teams** | Pointer to [**[]TeamResponse**](TeamResponse.md) |  | [optional] 
+**PasswordPolicies** | Pointer to [**[]PasswordPolicyResponse**](PasswordPolicyResponse.md) |  | [optional] 
+**ScimProfiles** | Pointer to [**[]ScimProfileResponse**](ScimProfileResponse.md) |  | [optional] 
+**Notifications** | Pointer to [**[]HorizonExportItemsNotificationsInner**](HorizonExportItemsNotificationsInner.md) |  | [optional] 
 **Datasources** | Pointer to [**[]HorizonExportItemsDatasourcesInner**](HorizonExportItemsDatasourcesInner.md) |  | [optional] 
 **DiscoveryCampaigns** | Pointer to [**[]DiscoveryCampaignResponse**](DiscoveryCampaignResponse.md) |  | [optional] 
+**ThirdParties** | Pointer to [**[]ThirdPartyConnectorResponses**](ThirdPartyConnectorResponses.md) |  | [optional] 
+**Reports** | Pointer to [**[]ReportScheduledTaskResponse**](ReportScheduledTaskResponse.md) |  | [optional] 
+**Triggers** | Pointer to [**[]HorizonExportItemsTriggersInner**](HorizonExportItemsTriggersInner.md) |  | [optional] 
+**Automations** | Pointer to [**[]AutomationPolicyResponse**](AutomationPolicyResponse.md) |  | [optional] 
 **Executions** | Pointer to [**[]ExecutionPolicyResponse**](ExecutionPolicyResponse.md) |  | [optional] 
+**Profiles** | Pointer to [**[]CertificateProfileResponses**](CertificateProfileResponses.md) |  | [optional] 
 **ForestMappings** | Pointer to [**[]WcceForestMappingResponse**](WcceForestMappingResponse.md) |  | [optional] 
 **Labels** | Pointer to [**[]LabelResponse**](LabelResponse.md) |  | [optional] 
-**Notifications** | Pointer to [**[]HorizonExportItemsNotificationsInner**](HorizonExportItemsNotificationsInner.md) |  | [optional] 
-**PasswordPolicies** | Pointer to [**[]PasswordPolicyResponse**](PasswordPolicyResponse.md) |  | [optional] 
-**PkiConnectors** | Pointer to [**[]PKIResponses**](PKIResponses.md) |  | [optional] 
-**PkiQueues** | Pointer to [**[]PKIQueueResponse**](PKIQueueResponse.md) |  | [optional] 
-**Profiles** | Pointer to [**[]CertificateProfileResponses**](CertificateProfileResponses.md) |  | [optional] 
 **Proxies** | Pointer to [**[]HttpProxyResponse**](HttpProxyResponse.md) |  | [optional] 
-**Reports** | Pointer to [**[]ReportScheduledTaskResponse**](ReportScheduledTaskResponse.md) |  | [optional] 
-**Roles** | Pointer to [**[]RoleResponse**](RoleResponse.md) |  | [optional] 
-**ScimProfiles** | Pointer to [**[]ScimProfileResponse**](ScimProfileResponse.md) |  | [optional] 
-**Teams** | Pointer to [**[]TeamResponse**](TeamResponse.md) |  | [optional] 
-**ThirdParties** | Pointer to [**[]ThirdPartyConnectorResponses**](ThirdPartyConnectorResponses.md) |  | [optional] 
-**Triggers** | Pointer to [**[]HorizonExportItemsTriggersInner**](HorizonExportItemsTriggersInner.md) |  | [optional] 
 
 ## Methods
 
@@ -42,31 +42,6 @@ will change when the set of required properties is changed
 NewHorizonExportItemsWithDefaults instantiates a new HorizonExportItems object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAutomations
-
-`func (o *HorizonExportItems) GetAutomations() []AutomationPolicyResponse`
-
-GetAutomations returns the Automations field if non-nil, zero value otherwise.
-
-### GetAutomationsOk
-
-`func (o *HorizonExportItems) GetAutomationsOk() (*[]AutomationPolicyResponse, bool)`
-
-GetAutomationsOk returns a tuple with the Automations field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAutomations
-
-`func (o *HorizonExportItems) SetAutomations(v []AutomationPolicyResponse)`
-
-SetAutomations sets Automations field to given value.
-
-### HasAutomations
-
-`func (o *HorizonExportItems) HasAutomations() bool`
-
-HasAutomations returns a boolean if a field has been set.
 
 ### GetCas
 
@@ -92,6 +67,181 @@ SetCas sets Cas field to given value.
 `func (o *HorizonExportItems) HasCas() bool`
 
 HasCas returns a boolean if a field has been set.
+
+### GetPkiQueues
+
+`func (o *HorizonExportItems) GetPkiQueues() []PKIQueueResponse`
+
+GetPkiQueues returns the PkiQueues field if non-nil, zero value otherwise.
+
+### GetPkiQueuesOk
+
+`func (o *HorizonExportItems) GetPkiQueuesOk() (*[]PKIQueueResponse, bool)`
+
+GetPkiQueuesOk returns a tuple with the PkiQueues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkiQueues
+
+`func (o *HorizonExportItems) SetPkiQueues(v []PKIQueueResponse)`
+
+SetPkiQueues sets PkiQueues field to given value.
+
+### HasPkiQueues
+
+`func (o *HorizonExportItems) HasPkiQueues() bool`
+
+HasPkiQueues returns a boolean if a field has been set.
+
+### GetPkiConnectors
+
+`func (o *HorizonExportItems) GetPkiConnectors() []PKIResponses`
+
+GetPkiConnectors returns the PkiConnectors field if non-nil, zero value otherwise.
+
+### GetPkiConnectorsOk
+
+`func (o *HorizonExportItems) GetPkiConnectorsOk() (*[]PKIResponses, bool)`
+
+GetPkiConnectorsOk returns a tuple with the PkiConnectors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkiConnectors
+
+`func (o *HorizonExportItems) SetPkiConnectors(v []PKIResponses)`
+
+SetPkiConnectors sets PkiConnectors field to given value.
+
+### HasPkiConnectors
+
+`func (o *HorizonExportItems) HasPkiConnectors() bool`
+
+HasPkiConnectors returns a boolean if a field has been set.
+
+### GetRoles
+
+`func (o *HorizonExportItems) GetRoles() []RoleResponse`
+
+GetRoles returns the Roles field if non-nil, zero value otherwise.
+
+### GetRolesOk
+
+`func (o *HorizonExportItems) GetRolesOk() (*[]RoleResponse, bool)`
+
+GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRoles
+
+`func (o *HorizonExportItems) SetRoles(v []RoleResponse)`
+
+SetRoles sets Roles field to given value.
+
+### HasRoles
+
+`func (o *HorizonExportItems) HasRoles() bool`
+
+HasRoles returns a boolean if a field has been set.
+
+### GetTeams
+
+`func (o *HorizonExportItems) GetTeams() []TeamResponse`
+
+GetTeams returns the Teams field if non-nil, zero value otherwise.
+
+### GetTeamsOk
+
+`func (o *HorizonExportItems) GetTeamsOk() (*[]TeamResponse, bool)`
+
+GetTeamsOk returns a tuple with the Teams field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeams
+
+`func (o *HorizonExportItems) SetTeams(v []TeamResponse)`
+
+SetTeams sets Teams field to given value.
+
+### HasTeams
+
+`func (o *HorizonExportItems) HasTeams() bool`
+
+HasTeams returns a boolean if a field has been set.
+
+### GetPasswordPolicies
+
+`func (o *HorizonExportItems) GetPasswordPolicies() []PasswordPolicyResponse`
+
+GetPasswordPolicies returns the PasswordPolicies field if non-nil, zero value otherwise.
+
+### GetPasswordPoliciesOk
+
+`func (o *HorizonExportItems) GetPasswordPoliciesOk() (*[]PasswordPolicyResponse, bool)`
+
+GetPasswordPoliciesOk returns a tuple with the PasswordPolicies field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPasswordPolicies
+
+`func (o *HorizonExportItems) SetPasswordPolicies(v []PasswordPolicyResponse)`
+
+SetPasswordPolicies sets PasswordPolicies field to given value.
+
+### HasPasswordPolicies
+
+`func (o *HorizonExportItems) HasPasswordPolicies() bool`
+
+HasPasswordPolicies returns a boolean if a field has been set.
+
+### GetScimProfiles
+
+`func (o *HorizonExportItems) GetScimProfiles() []ScimProfileResponse`
+
+GetScimProfiles returns the ScimProfiles field if non-nil, zero value otherwise.
+
+### GetScimProfilesOk
+
+`func (o *HorizonExportItems) GetScimProfilesOk() (*[]ScimProfileResponse, bool)`
+
+GetScimProfilesOk returns a tuple with the ScimProfiles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScimProfiles
+
+`func (o *HorizonExportItems) SetScimProfiles(v []ScimProfileResponse)`
+
+SetScimProfiles sets ScimProfiles field to given value.
+
+### HasScimProfiles
+
+`func (o *HorizonExportItems) HasScimProfiles() bool`
+
+HasScimProfiles returns a boolean if a field has been set.
+
+### GetNotifications
+
+`func (o *HorizonExportItems) GetNotifications() []HorizonExportItemsNotificationsInner`
+
+GetNotifications returns the Notifications field if non-nil, zero value otherwise.
+
+### GetNotificationsOk
+
+`func (o *HorizonExportItems) GetNotificationsOk() (*[]HorizonExportItemsNotificationsInner, bool)`
+
+GetNotificationsOk returns a tuple with the Notifications field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotifications
+
+`func (o *HorizonExportItems) SetNotifications(v []HorizonExportItemsNotificationsInner)`
+
+SetNotifications sets Notifications field to given value.
+
+### HasNotifications
+
+`func (o *HorizonExportItems) HasNotifications() bool`
+
+HasNotifications returns a boolean if a field has been set.
 
 ### GetDatasources
 
@@ -143,6 +293,106 @@ SetDiscoveryCampaigns sets DiscoveryCampaigns field to given value.
 
 HasDiscoveryCampaigns returns a boolean if a field has been set.
 
+### GetThirdParties
+
+`func (o *HorizonExportItems) GetThirdParties() []ThirdPartyConnectorResponses`
+
+GetThirdParties returns the ThirdParties field if non-nil, zero value otherwise.
+
+### GetThirdPartiesOk
+
+`func (o *HorizonExportItems) GetThirdPartiesOk() (*[]ThirdPartyConnectorResponses, bool)`
+
+GetThirdPartiesOk returns a tuple with the ThirdParties field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThirdParties
+
+`func (o *HorizonExportItems) SetThirdParties(v []ThirdPartyConnectorResponses)`
+
+SetThirdParties sets ThirdParties field to given value.
+
+### HasThirdParties
+
+`func (o *HorizonExportItems) HasThirdParties() bool`
+
+HasThirdParties returns a boolean if a field has been set.
+
+### GetReports
+
+`func (o *HorizonExportItems) GetReports() []ReportScheduledTaskResponse`
+
+GetReports returns the Reports field if non-nil, zero value otherwise.
+
+### GetReportsOk
+
+`func (o *HorizonExportItems) GetReportsOk() (*[]ReportScheduledTaskResponse, bool)`
+
+GetReportsOk returns a tuple with the Reports field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReports
+
+`func (o *HorizonExportItems) SetReports(v []ReportScheduledTaskResponse)`
+
+SetReports sets Reports field to given value.
+
+### HasReports
+
+`func (o *HorizonExportItems) HasReports() bool`
+
+HasReports returns a boolean if a field has been set.
+
+### GetTriggers
+
+`func (o *HorizonExportItems) GetTriggers() []HorizonExportItemsTriggersInner`
+
+GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+
+### GetTriggersOk
+
+`func (o *HorizonExportItems) GetTriggersOk() (*[]HorizonExportItemsTriggersInner, bool)`
+
+GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggers
+
+`func (o *HorizonExportItems) SetTriggers(v []HorizonExportItemsTriggersInner)`
+
+SetTriggers sets Triggers field to given value.
+
+### HasTriggers
+
+`func (o *HorizonExportItems) HasTriggers() bool`
+
+HasTriggers returns a boolean if a field has been set.
+
+### GetAutomations
+
+`func (o *HorizonExportItems) GetAutomations() []AutomationPolicyResponse`
+
+GetAutomations returns the Automations field if non-nil, zero value otherwise.
+
+### GetAutomationsOk
+
+`func (o *HorizonExportItems) GetAutomationsOk() (*[]AutomationPolicyResponse, bool)`
+
+GetAutomationsOk returns a tuple with the Automations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutomations
+
+`func (o *HorizonExportItems) SetAutomations(v []AutomationPolicyResponse)`
+
+SetAutomations sets Automations field to given value.
+
+### HasAutomations
+
+`func (o *HorizonExportItems) HasAutomations() bool`
+
+HasAutomations returns a boolean if a field has been set.
+
 ### GetExecutions
 
 `func (o *HorizonExportItems) GetExecutions() []ExecutionPolicyResponse`
@@ -167,6 +417,31 @@ SetExecutions sets Executions field to given value.
 `func (o *HorizonExportItems) HasExecutions() bool`
 
 HasExecutions returns a boolean if a field has been set.
+
+### GetProfiles
+
+`func (o *HorizonExportItems) GetProfiles() []CertificateProfileResponses`
+
+GetProfiles returns the Profiles field if non-nil, zero value otherwise.
+
+### GetProfilesOk
+
+`func (o *HorizonExportItems) GetProfilesOk() (*[]CertificateProfileResponses, bool)`
+
+GetProfilesOk returns a tuple with the Profiles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfiles
+
+`func (o *HorizonExportItems) SetProfiles(v []CertificateProfileResponses)`
+
+SetProfiles sets Profiles field to given value.
+
+### HasProfiles
+
+`func (o *HorizonExportItems) HasProfiles() bool`
+
+HasProfiles returns a boolean if a field has been set.
 
 ### GetForestMappings
 
@@ -218,131 +493,6 @@ SetLabels sets Labels field to given value.
 
 HasLabels returns a boolean if a field has been set.
 
-### GetNotifications
-
-`func (o *HorizonExportItems) GetNotifications() []HorizonExportItemsNotificationsInner`
-
-GetNotifications returns the Notifications field if non-nil, zero value otherwise.
-
-### GetNotificationsOk
-
-`func (o *HorizonExportItems) GetNotificationsOk() (*[]HorizonExportItemsNotificationsInner, bool)`
-
-GetNotificationsOk returns a tuple with the Notifications field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNotifications
-
-`func (o *HorizonExportItems) SetNotifications(v []HorizonExportItemsNotificationsInner)`
-
-SetNotifications sets Notifications field to given value.
-
-### HasNotifications
-
-`func (o *HorizonExportItems) HasNotifications() bool`
-
-HasNotifications returns a boolean if a field has been set.
-
-### GetPasswordPolicies
-
-`func (o *HorizonExportItems) GetPasswordPolicies() []PasswordPolicyResponse`
-
-GetPasswordPolicies returns the PasswordPolicies field if non-nil, zero value otherwise.
-
-### GetPasswordPoliciesOk
-
-`func (o *HorizonExportItems) GetPasswordPoliciesOk() (*[]PasswordPolicyResponse, bool)`
-
-GetPasswordPoliciesOk returns a tuple with the PasswordPolicies field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPasswordPolicies
-
-`func (o *HorizonExportItems) SetPasswordPolicies(v []PasswordPolicyResponse)`
-
-SetPasswordPolicies sets PasswordPolicies field to given value.
-
-### HasPasswordPolicies
-
-`func (o *HorizonExportItems) HasPasswordPolicies() bool`
-
-HasPasswordPolicies returns a boolean if a field has been set.
-
-### GetPkiConnectors
-
-`func (o *HorizonExportItems) GetPkiConnectors() []PKIResponses`
-
-GetPkiConnectors returns the PkiConnectors field if non-nil, zero value otherwise.
-
-### GetPkiConnectorsOk
-
-`func (o *HorizonExportItems) GetPkiConnectorsOk() (*[]PKIResponses, bool)`
-
-GetPkiConnectorsOk returns a tuple with the PkiConnectors field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPkiConnectors
-
-`func (o *HorizonExportItems) SetPkiConnectors(v []PKIResponses)`
-
-SetPkiConnectors sets PkiConnectors field to given value.
-
-### HasPkiConnectors
-
-`func (o *HorizonExportItems) HasPkiConnectors() bool`
-
-HasPkiConnectors returns a boolean if a field has been set.
-
-### GetPkiQueues
-
-`func (o *HorizonExportItems) GetPkiQueues() []PKIQueueResponse`
-
-GetPkiQueues returns the PkiQueues field if non-nil, zero value otherwise.
-
-### GetPkiQueuesOk
-
-`func (o *HorizonExportItems) GetPkiQueuesOk() (*[]PKIQueueResponse, bool)`
-
-GetPkiQueuesOk returns a tuple with the PkiQueues field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPkiQueues
-
-`func (o *HorizonExportItems) SetPkiQueues(v []PKIQueueResponse)`
-
-SetPkiQueues sets PkiQueues field to given value.
-
-### HasPkiQueues
-
-`func (o *HorizonExportItems) HasPkiQueues() bool`
-
-HasPkiQueues returns a boolean if a field has been set.
-
-### GetProfiles
-
-`func (o *HorizonExportItems) GetProfiles() []CertificateProfileResponses`
-
-GetProfiles returns the Profiles field if non-nil, zero value otherwise.
-
-### GetProfilesOk
-
-`func (o *HorizonExportItems) GetProfilesOk() (*[]CertificateProfileResponses, bool)`
-
-GetProfilesOk returns a tuple with the Profiles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfiles
-
-`func (o *HorizonExportItems) SetProfiles(v []CertificateProfileResponses)`
-
-SetProfiles sets Profiles field to given value.
-
-### HasProfiles
-
-`func (o *HorizonExportItems) HasProfiles() bool`
-
-HasProfiles returns a boolean if a field has been set.
-
 ### GetProxies
 
 `func (o *HorizonExportItems) GetProxies() []HttpProxyResponse`
@@ -367,156 +517,6 @@ SetProxies sets Proxies field to given value.
 `func (o *HorizonExportItems) HasProxies() bool`
 
 HasProxies returns a boolean if a field has been set.
-
-### GetReports
-
-`func (o *HorizonExportItems) GetReports() []ReportScheduledTaskResponse`
-
-GetReports returns the Reports field if non-nil, zero value otherwise.
-
-### GetReportsOk
-
-`func (o *HorizonExportItems) GetReportsOk() (*[]ReportScheduledTaskResponse, bool)`
-
-GetReportsOk returns a tuple with the Reports field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReports
-
-`func (o *HorizonExportItems) SetReports(v []ReportScheduledTaskResponse)`
-
-SetReports sets Reports field to given value.
-
-### HasReports
-
-`func (o *HorizonExportItems) HasReports() bool`
-
-HasReports returns a boolean if a field has been set.
-
-### GetRoles
-
-`func (o *HorizonExportItems) GetRoles() []RoleResponse`
-
-GetRoles returns the Roles field if non-nil, zero value otherwise.
-
-### GetRolesOk
-
-`func (o *HorizonExportItems) GetRolesOk() (*[]RoleResponse, bool)`
-
-GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRoles
-
-`func (o *HorizonExportItems) SetRoles(v []RoleResponse)`
-
-SetRoles sets Roles field to given value.
-
-### HasRoles
-
-`func (o *HorizonExportItems) HasRoles() bool`
-
-HasRoles returns a boolean if a field has been set.
-
-### GetScimProfiles
-
-`func (o *HorizonExportItems) GetScimProfiles() []ScimProfileResponse`
-
-GetScimProfiles returns the ScimProfiles field if non-nil, zero value otherwise.
-
-### GetScimProfilesOk
-
-`func (o *HorizonExportItems) GetScimProfilesOk() (*[]ScimProfileResponse, bool)`
-
-GetScimProfilesOk returns a tuple with the ScimProfiles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetScimProfiles
-
-`func (o *HorizonExportItems) SetScimProfiles(v []ScimProfileResponse)`
-
-SetScimProfiles sets ScimProfiles field to given value.
-
-### HasScimProfiles
-
-`func (o *HorizonExportItems) HasScimProfiles() bool`
-
-HasScimProfiles returns a boolean if a field has been set.
-
-### GetTeams
-
-`func (o *HorizonExportItems) GetTeams() []TeamResponse`
-
-GetTeams returns the Teams field if non-nil, zero value otherwise.
-
-### GetTeamsOk
-
-`func (o *HorizonExportItems) GetTeamsOk() (*[]TeamResponse, bool)`
-
-GetTeamsOk returns a tuple with the Teams field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTeams
-
-`func (o *HorizonExportItems) SetTeams(v []TeamResponse)`
-
-SetTeams sets Teams field to given value.
-
-### HasTeams
-
-`func (o *HorizonExportItems) HasTeams() bool`
-
-HasTeams returns a boolean if a field has been set.
-
-### GetThirdParties
-
-`func (o *HorizonExportItems) GetThirdParties() []ThirdPartyConnectorResponses`
-
-GetThirdParties returns the ThirdParties field if non-nil, zero value otherwise.
-
-### GetThirdPartiesOk
-
-`func (o *HorizonExportItems) GetThirdPartiesOk() (*[]ThirdPartyConnectorResponses, bool)`
-
-GetThirdPartiesOk returns a tuple with the ThirdParties field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThirdParties
-
-`func (o *HorizonExportItems) SetThirdParties(v []ThirdPartyConnectorResponses)`
-
-SetThirdParties sets ThirdParties field to given value.
-
-### HasThirdParties
-
-`func (o *HorizonExportItems) HasThirdParties() bool`
-
-HasThirdParties returns a boolean if a field has been set.
-
-### GetTriggers
-
-`func (o *HorizonExportItems) GetTriggers() []HorizonExportItemsTriggersInner`
-
-GetTriggers returns the Triggers field if non-nil, zero value otherwise.
-
-### GetTriggersOk
-
-`func (o *HorizonExportItems) GetTriggersOk() (*[]HorizonExportItemsTriggersInner, bool)`
-
-GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTriggers
-
-`func (o *HorizonExportItems) SetTriggers(v []HorizonExportItemsTriggersInner)`
-
-SetTriggers sets Triggers field to given value.
-
-### HasTriggers
-
-`func (o *HorizonExportItems) HasTriggers() bool`
-
-HasTriggers returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

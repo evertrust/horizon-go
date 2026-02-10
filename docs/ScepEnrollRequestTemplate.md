@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | Information about the certificate&#39;s contact email and how to edit it | [optional] 
+**Subject** | Pointer to [**[]IndexedDNElement**](IndexedDNElement.md) | List of DN elements that will be used to build the certificate&#39;s Distinguished Name | [optional] 
+**Sans** | Pointer to [**[]ListSANElement**](ListSANElement.md) | List of SAN elements that will be used to build the certificate&#39;s Subject Alternative Name | [optional] 
 **Extensions** | Pointer to [**[]CertificateExtensionElement**](CertificateExtensionElement.md) | Information about the certificate&#39;s extensions and how to edit them | [optional] 
 **Labels** | Pointer to [**[]RequestLabelElement**](RequestLabelElement.md) | List of labels used internally to tag and group certificates | [optional] 
+**ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | Information about the certificate&#39;s contact email and how to edit it | [optional] 
 **Owner** | Pointer to [**NullableCertificateOwnerElement**](CertificateOwnerElement.md) | Information about the certificate&#39;s owner and how to edit it | [optional] 
-**Sans** | Pointer to [**[]ListSANElement**](ListSANElement.md) | List of SAN elements that will be used to build the certificate&#39;s Subject Alternative Name | [optional] 
-**Subject** | Pointer to [**[]IndexedDNElement**](IndexedDNElement.md) | List of DN elements that will be used to build the certificate&#39;s Distinguished Name | [optional] 
 **Team** | Pointer to [**NullableCertificateTeamElement**](CertificateTeamElement.md) | Information about the certificate&#39;s team and how to edit it | [optional] 
 
 ## Methods
@@ -31,41 +31,76 @@ NewScepEnrollRequestTemplateWithDefaults instantiates a new ScepEnrollRequestTem
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetContactEmail
+### GetSubject
 
-`func (o *ScepEnrollRequestTemplate) GetContactEmail() CertificateContactEmailElement`
+`func (o *ScepEnrollRequestTemplate) GetSubject() []IndexedDNElement`
 
-GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
+GetSubject returns the Subject field if non-nil, zero value otherwise.
 
-### GetContactEmailOk
+### GetSubjectOk
 
-`func (o *ScepEnrollRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool)`
+`func (o *ScepEnrollRequestTemplate) GetSubjectOk() (*[]IndexedDNElement, bool)`
 
-GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
+GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetContactEmail
+### SetSubject
 
-`func (o *ScepEnrollRequestTemplate) SetContactEmail(v CertificateContactEmailElement)`
+`func (o *ScepEnrollRequestTemplate) SetSubject(v []IndexedDNElement)`
 
-SetContactEmail sets ContactEmail field to given value.
+SetSubject sets Subject field to given value.
 
-### HasContactEmail
+### HasSubject
 
-`func (o *ScepEnrollRequestTemplate) HasContactEmail() bool`
+`func (o *ScepEnrollRequestTemplate) HasSubject() bool`
 
-HasContactEmail returns a boolean if a field has been set.
+HasSubject returns a boolean if a field has been set.
 
-### SetContactEmailNil
+### SetSubjectNil
 
-`func (o *ScepEnrollRequestTemplate) SetContactEmailNil(b bool)`
+`func (o *ScepEnrollRequestTemplate) SetSubjectNil(b bool)`
 
- SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+ SetSubjectNil sets the value for Subject to be an explicit nil
 
-### UnsetContactEmail
-`func (o *ScepEnrollRequestTemplate) UnsetContactEmail()`
+### UnsetSubject
+`func (o *ScepEnrollRequestTemplate) UnsetSubject()`
 
-UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
+UnsetSubject ensures that no value is present for Subject, not even an explicit nil
+### GetSans
+
+`func (o *ScepEnrollRequestTemplate) GetSans() []ListSANElement`
+
+GetSans returns the Sans field if non-nil, zero value otherwise.
+
+### GetSansOk
+
+`func (o *ScepEnrollRequestTemplate) GetSansOk() (*[]ListSANElement, bool)`
+
+GetSansOk returns a tuple with the Sans field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSans
+
+`func (o *ScepEnrollRequestTemplate) SetSans(v []ListSANElement)`
+
+SetSans sets Sans field to given value.
+
+### HasSans
+
+`func (o *ScepEnrollRequestTemplate) HasSans() bool`
+
+HasSans returns a boolean if a field has been set.
+
+### SetSansNil
+
+`func (o *ScepEnrollRequestTemplate) SetSansNil(b bool)`
+
+ SetSansNil sets the value for Sans to be an explicit nil
+
+### UnsetSans
+`func (o *ScepEnrollRequestTemplate) UnsetSans()`
+
+UnsetSans ensures that no value is present for Sans, not even an explicit nil
 ### GetExtensions
 
 `func (o *ScepEnrollRequestTemplate) GetExtensions() []CertificateExtensionElement`
@@ -136,6 +171,41 @@ HasLabels returns a boolean if a field has been set.
 `func (o *ScepEnrollRequestTemplate) UnsetLabels()`
 
 UnsetLabels ensures that no value is present for Labels, not even an explicit nil
+### GetContactEmail
+
+`func (o *ScepEnrollRequestTemplate) GetContactEmail() CertificateContactEmailElement`
+
+GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
+
+### GetContactEmailOk
+
+`func (o *ScepEnrollRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool)`
+
+GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContactEmail
+
+`func (o *ScepEnrollRequestTemplate) SetContactEmail(v CertificateContactEmailElement)`
+
+SetContactEmail sets ContactEmail field to given value.
+
+### HasContactEmail
+
+`func (o *ScepEnrollRequestTemplate) HasContactEmail() bool`
+
+HasContactEmail returns a boolean if a field has been set.
+
+### SetContactEmailNil
+
+`func (o *ScepEnrollRequestTemplate) SetContactEmailNil(b bool)`
+
+ SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+
+### UnsetContactEmail
+`func (o *ScepEnrollRequestTemplate) UnsetContactEmail()`
+
+UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
 ### GetOwner
 
 `func (o *ScepEnrollRequestTemplate) GetOwner() CertificateOwnerElement`
@@ -171,76 +241,6 @@ HasOwner returns a boolean if a field has been set.
 `func (o *ScepEnrollRequestTemplate) UnsetOwner()`
 
 UnsetOwner ensures that no value is present for Owner, not even an explicit nil
-### GetSans
-
-`func (o *ScepEnrollRequestTemplate) GetSans() []ListSANElement`
-
-GetSans returns the Sans field if non-nil, zero value otherwise.
-
-### GetSansOk
-
-`func (o *ScepEnrollRequestTemplate) GetSansOk() (*[]ListSANElement, bool)`
-
-GetSansOk returns a tuple with the Sans field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSans
-
-`func (o *ScepEnrollRequestTemplate) SetSans(v []ListSANElement)`
-
-SetSans sets Sans field to given value.
-
-### HasSans
-
-`func (o *ScepEnrollRequestTemplate) HasSans() bool`
-
-HasSans returns a boolean if a field has been set.
-
-### SetSansNil
-
-`func (o *ScepEnrollRequestTemplate) SetSansNil(b bool)`
-
- SetSansNil sets the value for Sans to be an explicit nil
-
-### UnsetSans
-`func (o *ScepEnrollRequestTemplate) UnsetSans()`
-
-UnsetSans ensures that no value is present for Sans, not even an explicit nil
-### GetSubject
-
-`func (o *ScepEnrollRequestTemplate) GetSubject() []IndexedDNElement`
-
-GetSubject returns the Subject field if non-nil, zero value otherwise.
-
-### GetSubjectOk
-
-`func (o *ScepEnrollRequestTemplate) GetSubjectOk() (*[]IndexedDNElement, bool)`
-
-GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubject
-
-`func (o *ScepEnrollRequestTemplate) SetSubject(v []IndexedDNElement)`
-
-SetSubject sets Subject field to given value.
-
-### HasSubject
-
-`func (o *ScepEnrollRequestTemplate) HasSubject() bool`
-
-HasSubject returns a boolean if a field has been set.
-
-### SetSubjectNil
-
-`func (o *ScepEnrollRequestTemplate) SetSubjectNil(b bool)`
-
- SetSubjectNil sets the value for Subject to be an explicit nil
-
-### UnsetSubject
-`func (o *ScepEnrollRequestTemplate) UnsetSubject()`
-
-UnsetSubject ensures that no value is present for Subject, not even an explicit nil
 ### GetTeam
 
 `func (o *ScepEnrollRequestTemplate) GetTeam() CertificateTeamElement`

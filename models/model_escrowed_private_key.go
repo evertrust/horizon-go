@@ -23,9 +23,9 @@ var _ utils.MappedNullable = &EscrowedPrivateKey{}
 // EscrowedPrivateKey struct for EscrowedPrivateKey
 type EscrowedPrivateKey struct {
 	HorizonKey           string               `json:"horizonKey"`
-	Transient            utils.NullableBool   `json:"transient,omitempty"`
 	Value                utils.NullableString `json:"value,omitempty"`
 	VaultKey             utils.NullableString `json:"vaultKey,omitempty"`
+	Transient            utils.NullableBool   `json:"transient,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -71,49 +71,6 @@ func (o *EscrowedPrivateKey) GetHorizonKeyOk() (*string, bool) {
 // SetHorizonKey sets field value
 func (o *EscrowedPrivateKey) SetHorizonKey(v string) {
 	o.HorizonKey = v
-}
-
-// GetTransient returns the Transient field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EscrowedPrivateKey) GetTransient() bool {
-	if o == nil || utils.IsNil(o.Transient.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.Transient.Get()
-}
-
-// GetTransientOk returns a tuple with the Transient field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EscrowedPrivateKey) GetTransientOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Transient.Get(), o.Transient.IsSet()
-}
-
-// HasTransient returns a boolean if a field has been set.
-func (o *EscrowedPrivateKey) HasTransient() bool {
-	if o != nil && o.Transient.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTransient gets a reference to the given NullableBool and assigns it to the Transient field.
-func (o *EscrowedPrivateKey) SetTransient(v bool) {
-	o.Transient.Set(&v)
-}
-
-// SetTransientNil sets the value for Transient to be an explicit nil
-func (o *EscrowedPrivateKey) SetTransientNil() {
-	o.Transient.Set(nil)
-}
-
-// UnsetTransient ensures that no value is present for Transient, not even an explicit nil
-func (o *EscrowedPrivateKey) UnsetTransient() {
-	o.Transient.Unset()
 }
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -202,6 +159,49 @@ func (o *EscrowedPrivateKey) UnsetVaultKey() {
 	o.VaultKey.Unset()
 }
 
+// GetTransient returns the Transient field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EscrowedPrivateKey) GetTransient() bool {
+	if o == nil || utils.IsNil(o.Transient.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.Transient.Get()
+}
+
+// GetTransientOk returns a tuple with the Transient field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EscrowedPrivateKey) GetTransientOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Transient.Get(), o.Transient.IsSet()
+}
+
+// HasTransient returns a boolean if a field has been set.
+func (o *EscrowedPrivateKey) HasTransient() bool {
+	if o != nil && o.Transient.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTransient gets a reference to the given NullableBool and assigns it to the Transient field.
+func (o *EscrowedPrivateKey) SetTransient(v bool) {
+	o.Transient.Set(&v)
+}
+
+// SetTransientNil sets the value for Transient to be an explicit nil
+func (o *EscrowedPrivateKey) SetTransientNil() {
+	o.Transient.Set(nil)
+}
+
+// UnsetTransient ensures that no value is present for Transient, not even an explicit nil
+func (o *EscrowedPrivateKey) UnsetTransient() {
+	o.Transient.Unset()
+}
+
 func (o EscrowedPrivateKey) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -213,14 +213,14 @@ func (o EscrowedPrivateKey) MarshalJSON() ([]byte, error) {
 func (o EscrowedPrivateKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["horizonKey"] = o.HorizonKey
-	if o.Transient.IsSet() {
-		toSerialize["transient"] = o.Transient.Get()
-	}
 	if o.Value.IsSet() {
 		toSerialize["value"] = o.Value.Get()
 	}
 	if o.VaultKey.IsSet() {
 		toSerialize["vaultKey"] = o.VaultKey.Get()
+	}
+	if o.Transient.IsSet() {
+		toSerialize["transient"] = o.Transient.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -266,9 +266,9 @@ func (o *EscrowedPrivateKey) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "horizonKey")
-		delete(additionalProperties, "transient")
 		delete(additionalProperties, "value")
 		delete(additionalProperties, "vaultKey")
+		delete(additionalProperties, "transient")
 		o.AdditionalProperties = additionalProperties
 	}
 

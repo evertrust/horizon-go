@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &StaticDomainDictionaryProvider{}
 
 // StaticDomainDictionaryProvider Retrieve a domain dictionary based on a static configuration
 type StaticDomainDictionaryProvider struct {
+	Type string `json:"type"`
 	// The domain dictionaries
 	Domains              []StaticDomainDictionaryProviderDomainsInner `json:"domains"`
-	Type                 string                                       `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +34,10 @@ type _StaticDomainDictionaryProvider StaticDomainDictionaryProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStaticDomainDictionaryProvider(domains []StaticDomainDictionaryProviderDomainsInner, type_ string) *StaticDomainDictionaryProvider {
+func NewStaticDomainDictionaryProvider(type_ string, domains []StaticDomainDictionaryProviderDomainsInner) *StaticDomainDictionaryProvider {
 	this := StaticDomainDictionaryProvider{}
-	this.Domains = domains
 	this.Type = type_
+	this.Domains = domains
 	return &this
 }
 
@@ -47,30 +47,6 @@ func NewStaticDomainDictionaryProvider(domains []StaticDomainDictionaryProviderD
 func NewStaticDomainDictionaryProviderWithDefaults() *StaticDomainDictionaryProvider {
 	this := StaticDomainDictionaryProvider{}
 	return &this
-}
-
-// GetDomains returns the Domains field value
-func (o *StaticDomainDictionaryProvider) GetDomains() []StaticDomainDictionaryProviderDomainsInner {
-	if o == nil {
-		var ret []StaticDomainDictionaryProviderDomainsInner
-		return ret
-	}
-
-	return o.Domains
-}
-
-// GetDomainsOk returns a tuple with the Domains field value
-// and a boolean to check if the value has been set.
-func (o *StaticDomainDictionaryProvider) GetDomainsOk() ([]StaticDomainDictionaryProviderDomainsInner, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Domains, true
-}
-
-// SetDomains sets field value
-func (o *StaticDomainDictionaryProvider) SetDomains(v []StaticDomainDictionaryProviderDomainsInner) {
-	o.Domains = v
 }
 
 // GetType returns the Type field value
@@ -97,6 +73,30 @@ func (o *StaticDomainDictionaryProvider) SetType(v string) {
 	o.Type = v
 }
 
+// GetDomains returns the Domains field value
+func (o *StaticDomainDictionaryProvider) GetDomains() []StaticDomainDictionaryProviderDomainsInner {
+	if o == nil {
+		var ret []StaticDomainDictionaryProviderDomainsInner
+		return ret
+	}
+
+	return o.Domains
+}
+
+// GetDomainsOk returns a tuple with the Domains field value
+// and a boolean to check if the value has been set.
+func (o *StaticDomainDictionaryProvider) GetDomainsOk() ([]StaticDomainDictionaryProviderDomainsInner, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Domains, true
+}
+
+// SetDomains sets field value
+func (o *StaticDomainDictionaryProvider) SetDomains(v []StaticDomainDictionaryProviderDomainsInner) {
+	o.Domains = v
+}
+
 func (o StaticDomainDictionaryProvider) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -107,8 +107,8 @@ func (o StaticDomainDictionaryProvider) MarshalJSON() ([]byte, error) {
 
 func (o StaticDomainDictionaryProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["domains"] = o.Domains
 	toSerialize["type"] = o.Type
+	toSerialize["domains"] = o.Domains
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -122,8 +122,8 @@ func (o *StaticDomainDictionaryProvider) UnmarshalJSON(data []byte) (err error) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"domains",
 		"type",
+		"domains",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -153,8 +153,8 @@ func (o *StaticDomainDictionaryProvider) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "domains")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "domains")
 		o.AdditionalProperties = additionalProperties
 	}
 

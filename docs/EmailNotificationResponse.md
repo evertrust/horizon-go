@@ -5,27 +5,27 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**AttachDerCertificate** | Pointer to **NullableBool** | Attach the certificate in DER format if available | [optional] 
-**AttachPemBundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PEM format if available | [optional] 
+**Type** | **string** |  | 
+**EmailTemplate** | [**EmailTemplate**](EmailTemplate.md) |  | 
+**IfPkcs12** | Pointer to **NullableBool** | On events triggering an enrollment, select if mail is sent: - **Always**: set the value to &#x60;null&#x60;  - **Only when a PKCS#12 is available in the request**: set the value to &#x60;true&#x60;  - **Only when a PKCS#12 is not in the request**: set the value to &#x60;false&#x60;  | [optional] 
 **AttachPemCertificate** | Pointer to **NullableBool** | Attach the certificate in PEM format if available | [optional] 
+**AttachPemBundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PEM format if available | [optional] 
+**AttachDerCertificate** | Pointer to **NullableBool** | Attach the certificate in DER format if available | [optional] 
 **AttachPkcs7** | Pointer to **NullableBool** | Attach the certificate in PKCS7 format if available | [optional] 
 **AttachPkcs7Bundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PKCS7 format if available | [optional] 
 **AttachPkcs12** | Pointer to **NullableBool** | Attach the certificate in PKCS#12 format if available | [optional] 
-**EmailTemplate** | [**EmailTemplate**](EmailTemplate.md) |  | 
-**IfPkcs12** | Pointer to **NullableBool** | On events triggering an enrollment, select if mail is sent: - **Always**: set the value to &#x60;null&#x60;  - **Only when a PKCS#12 is available in the request**: set the value to &#x60;true&#x60;  - **Only when a PKCS#12 is not in the request**: set the value to &#x60;false&#x60;  | [optional] 
-**Type** | **string** |  | 
-**Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
-**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
 **Name** | **string** | Name of the notification | 
 **Retries** | Pointer to **NullableInt64** | Number of retries when the notification fails | [optional] 
-**RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
 **RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
+**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
+**RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
 
 ## Methods
 
 ### NewEmailNotificationResponse
 
-`func NewEmailNotificationResponse(id string, emailTemplate EmailTemplate, type_ string, events []string, name string, ) *EmailNotificationResponse`
+`func NewEmailNotificationResponse(id string, type_ string, emailTemplate EmailTemplate, name string, events []string, ) *EmailNotificationResponse`
 
 NewEmailNotificationResponse instantiates a new EmailNotificationResponse object
 This constructor will assign default values to properties that have it defined,
@@ -60,76 +60,81 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetAttachDerCertificate
+### GetType
 
-`func (o *EmailNotificationResponse) GetAttachDerCertificate() bool`
+`func (o *EmailNotificationResponse) GetType() string`
 
-GetAttachDerCertificate returns the AttachDerCertificate field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetAttachDerCertificateOk
+### GetTypeOk
 
-`func (o *EmailNotificationResponse) GetAttachDerCertificateOk() (*bool, bool)`
+`func (o *EmailNotificationResponse) GetTypeOk() (*string, bool)`
 
-GetAttachDerCertificateOk returns a tuple with the AttachDerCertificate field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttachDerCertificate
+### SetType
 
-`func (o *EmailNotificationResponse) SetAttachDerCertificate(v bool)`
+`func (o *EmailNotificationResponse) SetType(v string)`
 
-SetAttachDerCertificate sets AttachDerCertificate field to given value.
+SetType sets Type field to given value.
 
-### HasAttachDerCertificate
 
-`func (o *EmailNotificationResponse) HasAttachDerCertificate() bool`
+### GetEmailTemplate
 
-HasAttachDerCertificate returns a boolean if a field has been set.
+`func (o *EmailNotificationResponse) GetEmailTemplate() EmailTemplate`
 
-### SetAttachDerCertificateNil
+GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
 
-`func (o *EmailNotificationResponse) SetAttachDerCertificateNil(b bool)`
+### GetEmailTemplateOk
 
- SetAttachDerCertificateNil sets the value for AttachDerCertificate to be an explicit nil
+`func (o *EmailNotificationResponse) GetEmailTemplateOk() (*EmailTemplate, bool)`
 
-### UnsetAttachDerCertificate
-`func (o *EmailNotificationResponse) UnsetAttachDerCertificate()`
-
-UnsetAttachDerCertificate ensures that no value is present for AttachDerCertificate, not even an explicit nil
-### GetAttachPemBundle
-
-`func (o *EmailNotificationResponse) GetAttachPemBundle() bool`
-
-GetAttachPemBundle returns the AttachPemBundle field if non-nil, zero value otherwise.
-
-### GetAttachPemBundleOk
-
-`func (o *EmailNotificationResponse) GetAttachPemBundleOk() (*bool, bool)`
-
-GetAttachPemBundleOk returns a tuple with the AttachPemBundle field if it's non-nil, zero value otherwise
+GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttachPemBundle
+### SetEmailTemplate
 
-`func (o *EmailNotificationResponse) SetAttachPemBundle(v bool)`
+`func (o *EmailNotificationResponse) SetEmailTemplate(v EmailTemplate)`
 
-SetAttachPemBundle sets AttachPemBundle field to given value.
+SetEmailTemplate sets EmailTemplate field to given value.
 
-### HasAttachPemBundle
 
-`func (o *EmailNotificationResponse) HasAttachPemBundle() bool`
+### GetIfPkcs12
 
-HasAttachPemBundle returns a boolean if a field has been set.
+`func (o *EmailNotificationResponse) GetIfPkcs12() bool`
 
-### SetAttachPemBundleNil
+GetIfPkcs12 returns the IfPkcs12 field if non-nil, zero value otherwise.
 
-`func (o *EmailNotificationResponse) SetAttachPemBundleNil(b bool)`
+### GetIfPkcs12Ok
 
- SetAttachPemBundleNil sets the value for AttachPemBundle to be an explicit nil
+`func (o *EmailNotificationResponse) GetIfPkcs12Ok() (*bool, bool)`
 
-### UnsetAttachPemBundle
-`func (o *EmailNotificationResponse) UnsetAttachPemBundle()`
+GetIfPkcs12Ok returns a tuple with the IfPkcs12 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetAttachPemBundle ensures that no value is present for AttachPemBundle, not even an explicit nil
+### SetIfPkcs12
+
+`func (o *EmailNotificationResponse) SetIfPkcs12(v bool)`
+
+SetIfPkcs12 sets IfPkcs12 field to given value.
+
+### HasIfPkcs12
+
+`func (o *EmailNotificationResponse) HasIfPkcs12() bool`
+
+HasIfPkcs12 returns a boolean if a field has been set.
+
+### SetIfPkcs12Nil
+
+`func (o *EmailNotificationResponse) SetIfPkcs12Nil(b bool)`
+
+ SetIfPkcs12Nil sets the value for IfPkcs12 to be an explicit nil
+
+### UnsetIfPkcs12
+`func (o *EmailNotificationResponse) UnsetIfPkcs12()`
+
+UnsetIfPkcs12 ensures that no value is present for IfPkcs12, not even an explicit nil
 ### GetAttachPemCertificate
 
 `func (o *EmailNotificationResponse) GetAttachPemCertificate() bool`
@@ -165,6 +170,76 @@ HasAttachPemCertificate returns a boolean if a field has been set.
 `func (o *EmailNotificationResponse) UnsetAttachPemCertificate()`
 
 UnsetAttachPemCertificate ensures that no value is present for AttachPemCertificate, not even an explicit nil
+### GetAttachPemBundle
+
+`func (o *EmailNotificationResponse) GetAttachPemBundle() bool`
+
+GetAttachPemBundle returns the AttachPemBundle field if non-nil, zero value otherwise.
+
+### GetAttachPemBundleOk
+
+`func (o *EmailNotificationResponse) GetAttachPemBundleOk() (*bool, bool)`
+
+GetAttachPemBundleOk returns a tuple with the AttachPemBundle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttachPemBundle
+
+`func (o *EmailNotificationResponse) SetAttachPemBundle(v bool)`
+
+SetAttachPemBundle sets AttachPemBundle field to given value.
+
+### HasAttachPemBundle
+
+`func (o *EmailNotificationResponse) HasAttachPemBundle() bool`
+
+HasAttachPemBundle returns a boolean if a field has been set.
+
+### SetAttachPemBundleNil
+
+`func (o *EmailNotificationResponse) SetAttachPemBundleNil(b bool)`
+
+ SetAttachPemBundleNil sets the value for AttachPemBundle to be an explicit nil
+
+### UnsetAttachPemBundle
+`func (o *EmailNotificationResponse) UnsetAttachPemBundle()`
+
+UnsetAttachPemBundle ensures that no value is present for AttachPemBundle, not even an explicit nil
+### GetAttachDerCertificate
+
+`func (o *EmailNotificationResponse) GetAttachDerCertificate() bool`
+
+GetAttachDerCertificate returns the AttachDerCertificate field if non-nil, zero value otherwise.
+
+### GetAttachDerCertificateOk
+
+`func (o *EmailNotificationResponse) GetAttachDerCertificateOk() (*bool, bool)`
+
+GetAttachDerCertificateOk returns a tuple with the AttachDerCertificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttachDerCertificate
+
+`func (o *EmailNotificationResponse) SetAttachDerCertificate(v bool)`
+
+SetAttachDerCertificate sets AttachDerCertificate field to given value.
+
+### HasAttachDerCertificate
+
+`func (o *EmailNotificationResponse) HasAttachDerCertificate() bool`
+
+HasAttachDerCertificate returns a boolean if a field has been set.
+
+### SetAttachDerCertificateNil
+
+`func (o *EmailNotificationResponse) SetAttachDerCertificateNil(b bool)`
+
+ SetAttachDerCertificateNil sets the value for AttachDerCertificate to be an explicit nil
+
+### UnsetAttachDerCertificate
+`func (o *EmailNotificationResponse) UnsetAttachDerCertificate()`
+
+UnsetAttachDerCertificate ensures that no value is present for AttachDerCertificate, not even an explicit nil
 ### GetAttachPkcs7
 
 `func (o *EmailNotificationResponse) GetAttachPkcs7() bool`
@@ -270,136 +345,6 @@ HasAttachPkcs12 returns a boolean if a field has been set.
 `func (o *EmailNotificationResponse) UnsetAttachPkcs12()`
 
 UnsetAttachPkcs12 ensures that no value is present for AttachPkcs12, not even an explicit nil
-### GetEmailTemplate
-
-`func (o *EmailNotificationResponse) GetEmailTemplate() EmailTemplate`
-
-GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
-
-### GetEmailTemplateOk
-
-`func (o *EmailNotificationResponse) GetEmailTemplateOk() (*EmailTemplate, bool)`
-
-GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmailTemplate
-
-`func (o *EmailNotificationResponse) SetEmailTemplate(v EmailTemplate)`
-
-SetEmailTemplate sets EmailTemplate field to given value.
-
-
-### GetIfPkcs12
-
-`func (o *EmailNotificationResponse) GetIfPkcs12() bool`
-
-GetIfPkcs12 returns the IfPkcs12 field if non-nil, zero value otherwise.
-
-### GetIfPkcs12Ok
-
-`func (o *EmailNotificationResponse) GetIfPkcs12Ok() (*bool, bool)`
-
-GetIfPkcs12Ok returns a tuple with the IfPkcs12 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIfPkcs12
-
-`func (o *EmailNotificationResponse) SetIfPkcs12(v bool)`
-
-SetIfPkcs12 sets IfPkcs12 field to given value.
-
-### HasIfPkcs12
-
-`func (o *EmailNotificationResponse) HasIfPkcs12() bool`
-
-HasIfPkcs12 returns a boolean if a field has been set.
-
-### SetIfPkcs12Nil
-
-`func (o *EmailNotificationResponse) SetIfPkcs12Nil(b bool)`
-
- SetIfPkcs12Nil sets the value for IfPkcs12 to be an explicit nil
-
-### UnsetIfPkcs12
-`func (o *EmailNotificationResponse) UnsetIfPkcs12()`
-
-UnsetIfPkcs12 ensures that no value is present for IfPkcs12, not even an explicit nil
-### GetType
-
-`func (o *EmailNotificationResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *EmailNotificationResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *EmailNotificationResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetEvents
-
-`func (o *EmailNotificationResponse) GetEvents() []string`
-
-GetEvents returns the Events field if non-nil, zero value otherwise.
-
-### GetEventsOk
-
-`func (o *EmailNotificationResponse) GetEventsOk() (*[]string, bool)`
-
-GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEvents
-
-`func (o *EmailNotificationResponse) SetEvents(v []string)`
-
-SetEvents sets Events field to given value.
-
-
-### GetLicenseUsagePercent
-
-`func (o *EmailNotificationResponse) GetLicenseUsagePercent() int64`
-
-GetLicenseUsagePercent returns the LicenseUsagePercent field if non-nil, zero value otherwise.
-
-### GetLicenseUsagePercentOk
-
-`func (o *EmailNotificationResponse) GetLicenseUsagePercentOk() (*int64, bool)`
-
-GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLicenseUsagePercent
-
-`func (o *EmailNotificationResponse) SetLicenseUsagePercent(v int64)`
-
-SetLicenseUsagePercent sets LicenseUsagePercent field to given value.
-
-### HasLicenseUsagePercent
-
-`func (o *EmailNotificationResponse) HasLicenseUsagePercent() bool`
-
-HasLicenseUsagePercent returns a boolean if a field has been set.
-
-### SetLicenseUsagePercentNil
-
-`func (o *EmailNotificationResponse) SetLicenseUsagePercentNil(b bool)`
-
- SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
-
-### UnsetLicenseUsagePercent
-`func (o *EmailNotificationResponse) UnsetLicenseUsagePercent()`
-
-UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
 ### GetName
 
 `func (o *EmailNotificationResponse) GetName() string`
@@ -455,41 +400,6 @@ HasRetries returns a boolean if a field has been set.
 `func (o *EmailNotificationResponse) UnsetRetries()`
 
 UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetRunOnRenewed
-
-`func (o *EmailNotificationResponse) GetRunOnRenewed() bool`
-
-GetRunOnRenewed returns the RunOnRenewed field if non-nil, zero value otherwise.
-
-### GetRunOnRenewedOk
-
-`func (o *EmailNotificationResponse) GetRunOnRenewedOk() (*bool, bool)`
-
-GetRunOnRenewedOk returns a tuple with the RunOnRenewed field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRunOnRenewed
-
-`func (o *EmailNotificationResponse) SetRunOnRenewed(v bool)`
-
-SetRunOnRenewed sets RunOnRenewed field to given value.
-
-### HasRunOnRenewed
-
-`func (o *EmailNotificationResponse) HasRunOnRenewed() bool`
-
-HasRunOnRenewed returns a boolean if a field has been set.
-
-### SetRunOnRenewedNil
-
-`func (o *EmailNotificationResponse) SetRunOnRenewedNil(b bool)`
-
- SetRunOnRenewedNil sets the value for RunOnRenewed to be an explicit nil
-
-### UnsetRunOnRenewed
-`func (o *EmailNotificationResponse) UnsetRunOnRenewed()`
-
-UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
 ### GetRunPeriod
 
 `func (o *EmailNotificationResponse) GetRunPeriod() string`
@@ -525,6 +435,96 @@ HasRunPeriod returns a boolean if a field has been set.
 `func (o *EmailNotificationResponse) UnsetRunPeriod()`
 
 UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
+### GetLicenseUsagePercent
+
+`func (o *EmailNotificationResponse) GetLicenseUsagePercent() int64`
+
+GetLicenseUsagePercent returns the LicenseUsagePercent field if non-nil, zero value otherwise.
+
+### GetLicenseUsagePercentOk
+
+`func (o *EmailNotificationResponse) GetLicenseUsagePercentOk() (*int64, bool)`
+
+GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLicenseUsagePercent
+
+`func (o *EmailNotificationResponse) SetLicenseUsagePercent(v int64)`
+
+SetLicenseUsagePercent sets LicenseUsagePercent field to given value.
+
+### HasLicenseUsagePercent
+
+`func (o *EmailNotificationResponse) HasLicenseUsagePercent() bool`
+
+HasLicenseUsagePercent returns a boolean if a field has been set.
+
+### SetLicenseUsagePercentNil
+
+`func (o *EmailNotificationResponse) SetLicenseUsagePercentNil(b bool)`
+
+ SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
+
+### UnsetLicenseUsagePercent
+`func (o *EmailNotificationResponse) UnsetLicenseUsagePercent()`
+
+UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
+### GetEvents
+
+`func (o *EmailNotificationResponse) GetEvents() []string`
+
+GetEvents returns the Events field if non-nil, zero value otherwise.
+
+### GetEventsOk
+
+`func (o *EmailNotificationResponse) GetEventsOk() (*[]string, bool)`
+
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvents
+
+`func (o *EmailNotificationResponse) SetEvents(v []string)`
+
+SetEvents sets Events field to given value.
+
+
+### GetRunOnRenewed
+
+`func (o *EmailNotificationResponse) GetRunOnRenewed() bool`
+
+GetRunOnRenewed returns the RunOnRenewed field if non-nil, zero value otherwise.
+
+### GetRunOnRenewedOk
+
+`func (o *EmailNotificationResponse) GetRunOnRenewedOk() (*bool, bool)`
+
+GetRunOnRenewedOk returns a tuple with the RunOnRenewed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRunOnRenewed
+
+`func (o *EmailNotificationResponse) SetRunOnRenewed(v bool)`
+
+SetRunOnRenewed sets RunOnRenewed field to given value.
+
+### HasRunOnRenewed
+
+`func (o *EmailNotificationResponse) HasRunOnRenewed() bool`
+
+HasRunOnRenewed returns a boolean if a field has been set.
+
+### SetRunOnRenewedNil
+
+`func (o *EmailNotificationResponse) SetRunOnRenewedNil(b bool)`
+
+ SetRunOnRenewedNil sets the value for RunOnRenewed to be an explicit nil
+
+### UnsetRunOnRenewed
+`func (o *EmailNotificationResponse) UnsetRunOnRenewed()`
+
+UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

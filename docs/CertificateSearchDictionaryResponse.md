@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Profiles** | Pointer to [**[]CertificateProfileSearchDictionaryLocalizedEntry**](CertificateProfileSearchDictionaryLocalizedEntry.md) | The list of profiles the principal is authorized to search on | [optional] 
 **Campaigns** | Pointer to **[]string** | The list of discovery campaign the principal is authorized to search on | [optional] 
-**GradingPolicies** | Pointer to **[]string** | The list of available grading policies on Horizon | [optional] 
+**Teams** | Pointer to [**[]TeamSearchDictionaryLocalizedEntry**](TeamSearchDictionaryLocalizedEntry.md) | The list of available teams on this Horizon instance | [optional] 
 **Labels** | Pointer to [**[]CertificateLabelSearchDictionaryLocalizedEntry**](CertificateLabelSearchDictionaryLocalizedEntry.md) | The list of labels the principal is authorized to search on | [optional] 
 **Metadata** | **[]string** | The list of available metadata in Horizon | 
 **Modules** | Pointer to **[]string** | The list of Horizon modules available on this instance | [optional] 
-**Profiles** | Pointer to [**[]CertificateProfileSearchDictionaryLocalizedEntry**](CertificateProfileSearchDictionaryLocalizedEntry.md) | The list of profiles the principal is authorized to search on | [optional] 
-**Teams** | Pointer to [**[]TeamSearchDictionaryLocalizedEntry**](TeamSearchDictionaryLocalizedEntry.md) | The list of available teams on this Horizon instance | [optional] 
+**GradingPolicies** | Pointer to **[]string** | The list of available grading policies on Horizon | [optional] 
 
 ## Methods
 
@@ -31,6 +31,41 @@ NewCertificateSearchDictionaryResponseWithDefaults instantiates a new Certificat
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetProfiles
+
+`func (o *CertificateSearchDictionaryResponse) GetProfiles() []CertificateProfileSearchDictionaryLocalizedEntry`
+
+GetProfiles returns the Profiles field if non-nil, zero value otherwise.
+
+### GetProfilesOk
+
+`func (o *CertificateSearchDictionaryResponse) GetProfilesOk() (*[]CertificateProfileSearchDictionaryLocalizedEntry, bool)`
+
+GetProfilesOk returns a tuple with the Profiles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfiles
+
+`func (o *CertificateSearchDictionaryResponse) SetProfiles(v []CertificateProfileSearchDictionaryLocalizedEntry)`
+
+SetProfiles sets Profiles field to given value.
+
+### HasProfiles
+
+`func (o *CertificateSearchDictionaryResponse) HasProfiles() bool`
+
+HasProfiles returns a boolean if a field has been set.
+
+### SetProfilesNil
+
+`func (o *CertificateSearchDictionaryResponse) SetProfilesNil(b bool)`
+
+ SetProfilesNil sets the value for Profiles to be an explicit nil
+
+### UnsetProfiles
+`func (o *CertificateSearchDictionaryResponse) UnsetProfiles()`
+
+UnsetProfiles ensures that no value is present for Profiles, not even an explicit nil
 ### GetCampaigns
 
 `func (o *CertificateSearchDictionaryResponse) GetCampaigns() []string`
@@ -66,41 +101,41 @@ HasCampaigns returns a boolean if a field has been set.
 `func (o *CertificateSearchDictionaryResponse) UnsetCampaigns()`
 
 UnsetCampaigns ensures that no value is present for Campaigns, not even an explicit nil
-### GetGradingPolicies
+### GetTeams
 
-`func (o *CertificateSearchDictionaryResponse) GetGradingPolicies() []string`
+`func (o *CertificateSearchDictionaryResponse) GetTeams() []TeamSearchDictionaryLocalizedEntry`
 
-GetGradingPolicies returns the GradingPolicies field if non-nil, zero value otherwise.
+GetTeams returns the Teams field if non-nil, zero value otherwise.
 
-### GetGradingPoliciesOk
+### GetTeamsOk
 
-`func (o *CertificateSearchDictionaryResponse) GetGradingPoliciesOk() (*[]string, bool)`
+`func (o *CertificateSearchDictionaryResponse) GetTeamsOk() (*[]TeamSearchDictionaryLocalizedEntry, bool)`
 
-GetGradingPoliciesOk returns a tuple with the GradingPolicies field if it's non-nil, zero value otherwise
+GetTeamsOk returns a tuple with the Teams field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGradingPolicies
+### SetTeams
 
-`func (o *CertificateSearchDictionaryResponse) SetGradingPolicies(v []string)`
+`func (o *CertificateSearchDictionaryResponse) SetTeams(v []TeamSearchDictionaryLocalizedEntry)`
 
-SetGradingPolicies sets GradingPolicies field to given value.
+SetTeams sets Teams field to given value.
 
-### HasGradingPolicies
+### HasTeams
 
-`func (o *CertificateSearchDictionaryResponse) HasGradingPolicies() bool`
+`func (o *CertificateSearchDictionaryResponse) HasTeams() bool`
 
-HasGradingPolicies returns a boolean if a field has been set.
+HasTeams returns a boolean if a field has been set.
 
-### SetGradingPoliciesNil
+### SetTeamsNil
 
-`func (o *CertificateSearchDictionaryResponse) SetGradingPoliciesNil(b bool)`
+`func (o *CertificateSearchDictionaryResponse) SetTeamsNil(b bool)`
 
- SetGradingPoliciesNil sets the value for GradingPolicies to be an explicit nil
+ SetTeamsNil sets the value for Teams to be an explicit nil
 
-### UnsetGradingPolicies
-`func (o *CertificateSearchDictionaryResponse) UnsetGradingPolicies()`
+### UnsetTeams
+`func (o *CertificateSearchDictionaryResponse) UnsetTeams()`
 
-UnsetGradingPolicies ensures that no value is present for GradingPolicies, not even an explicit nil
+UnsetTeams ensures that no value is present for Teams, not even an explicit nil
 ### GetLabels
 
 `func (o *CertificateSearchDictionaryResponse) GetLabels() []CertificateLabelSearchDictionaryLocalizedEntry`
@@ -191,76 +226,41 @@ HasModules returns a boolean if a field has been set.
 `func (o *CertificateSearchDictionaryResponse) UnsetModules()`
 
 UnsetModules ensures that no value is present for Modules, not even an explicit nil
-### GetProfiles
+### GetGradingPolicies
 
-`func (o *CertificateSearchDictionaryResponse) GetProfiles() []CertificateProfileSearchDictionaryLocalizedEntry`
+`func (o *CertificateSearchDictionaryResponse) GetGradingPolicies() []string`
 
-GetProfiles returns the Profiles field if non-nil, zero value otherwise.
+GetGradingPolicies returns the GradingPolicies field if non-nil, zero value otherwise.
 
-### GetProfilesOk
+### GetGradingPoliciesOk
 
-`func (o *CertificateSearchDictionaryResponse) GetProfilesOk() (*[]CertificateProfileSearchDictionaryLocalizedEntry, bool)`
+`func (o *CertificateSearchDictionaryResponse) GetGradingPoliciesOk() (*[]string, bool)`
 
-GetProfilesOk returns a tuple with the Profiles field if it's non-nil, zero value otherwise
+GetGradingPoliciesOk returns a tuple with the GradingPolicies field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProfiles
+### SetGradingPolicies
 
-`func (o *CertificateSearchDictionaryResponse) SetProfiles(v []CertificateProfileSearchDictionaryLocalizedEntry)`
+`func (o *CertificateSearchDictionaryResponse) SetGradingPolicies(v []string)`
 
-SetProfiles sets Profiles field to given value.
+SetGradingPolicies sets GradingPolicies field to given value.
 
-### HasProfiles
+### HasGradingPolicies
 
-`func (o *CertificateSearchDictionaryResponse) HasProfiles() bool`
+`func (o *CertificateSearchDictionaryResponse) HasGradingPolicies() bool`
 
-HasProfiles returns a boolean if a field has been set.
+HasGradingPolicies returns a boolean if a field has been set.
 
-### SetProfilesNil
+### SetGradingPoliciesNil
 
-`func (o *CertificateSearchDictionaryResponse) SetProfilesNil(b bool)`
+`func (o *CertificateSearchDictionaryResponse) SetGradingPoliciesNil(b bool)`
 
- SetProfilesNil sets the value for Profiles to be an explicit nil
+ SetGradingPoliciesNil sets the value for GradingPolicies to be an explicit nil
 
-### UnsetProfiles
-`func (o *CertificateSearchDictionaryResponse) UnsetProfiles()`
+### UnsetGradingPolicies
+`func (o *CertificateSearchDictionaryResponse) UnsetGradingPolicies()`
 
-UnsetProfiles ensures that no value is present for Profiles, not even an explicit nil
-### GetTeams
-
-`func (o *CertificateSearchDictionaryResponse) GetTeams() []TeamSearchDictionaryLocalizedEntry`
-
-GetTeams returns the Teams field if non-nil, zero value otherwise.
-
-### GetTeamsOk
-
-`func (o *CertificateSearchDictionaryResponse) GetTeamsOk() (*[]TeamSearchDictionaryLocalizedEntry, bool)`
-
-GetTeamsOk returns a tuple with the Teams field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTeams
-
-`func (o *CertificateSearchDictionaryResponse) SetTeams(v []TeamSearchDictionaryLocalizedEntry)`
-
-SetTeams sets Teams field to given value.
-
-### HasTeams
-
-`func (o *CertificateSearchDictionaryResponse) HasTeams() bool`
-
-HasTeams returns a boolean if a field has been set.
-
-### SetTeamsNil
-
-`func (o *CertificateSearchDictionaryResponse) SetTeamsNil(b bool)`
-
- SetTeamsNil sets the value for Teams to be an explicit nil
-
-### UnsetTeams
-`func (o *CertificateSearchDictionaryResponse) UnsetTeams()`
-
-UnsetTeams ensures that no value is present for Teams, not even an explicit nil
+UnsetGradingPolicies ensures that no value is present for GradingPolicies, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

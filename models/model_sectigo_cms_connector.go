@@ -22,19 +22,19 @@ var _ utils.MappedNullable = &SectigoCMSConnector{}
 
 // SectigoCMSConnector struct for SectigoCMSConnector
 type SectigoCMSConnector struct {
-	CustomerUri  string  `json:"customerUri"`
-	EndpointType *string `json:"endpointType,omitempty"`
+	Name string `json:"name"`
+	Type string `json:"type"`
 	// Name of the `password` [credentials](#tag/security.credentials) to use to authenticate on the PKI
 	LoginCredentials     string               `json:"loginCredentials"`
-	Name                 string               `json:"name"`
+	CustomerUri          string               `json:"customerUri"`
 	OrganizationId       int64                `json:"organizationId"`
 	Profile              string               `json:"profile"`
+	RetryInterval        utils.NullableString `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	ValidDays            utils.NullableString `json:"validDays,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	EndpointType         *string              `json:"endpointType,omitempty"`
+	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	Proxy                utils.NullableString `json:"proxy,omitempty"`
 	Queue                utils.NullableString `json:"queue,omitempty"`
-	RetryInterval        utils.NullableString `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Type                 string               `json:"type"`
-	ValidDays            utils.NullableString `json:"validDays,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,14 +44,14 @@ type _SectigoCMSConnector SectigoCMSConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSectigoCMSConnector(customerUri string, loginCredentials string, name string, organizationId int64, profile string, type_ string) *SectigoCMSConnector {
+func NewSectigoCMSConnector(name string, type_ string, loginCredentials string, customerUri string, organizationId int64, profile string) *SectigoCMSConnector {
 	this := SectigoCMSConnector{}
-	this.CustomerUri = customerUri
-	this.LoginCredentials = loginCredentials
 	this.Name = name
+	this.Type = type_
+	this.LoginCredentials = loginCredentials
+	this.CustomerUri = customerUri
 	this.OrganizationId = organizationId
 	this.Profile = profile
-	this.Type = type_
 	return &this
 }
 
@@ -63,60 +63,52 @@ func NewSectigoCMSConnectorWithDefaults() *SectigoCMSConnector {
 	return &this
 }
 
-// GetCustomerUri returns the CustomerUri field value
-func (o *SectigoCMSConnector) GetCustomerUri() string {
+// GetName returns the Name field value
+func (o *SectigoCMSConnector) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.CustomerUri
+	return o.Name
 }
 
-// GetCustomerUriOk returns a tuple with the CustomerUri field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *SectigoCMSConnector) GetCustomerUriOk() (*string, bool) {
+func (o *SectigoCMSConnector) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CustomerUri, true
+	return &o.Name, true
 }
 
-// SetCustomerUri sets field value
-func (o *SectigoCMSConnector) SetCustomerUri(v string) {
-	o.CustomerUri = v
+// SetName sets field value
+func (o *SectigoCMSConnector) SetName(v string) {
+	o.Name = v
 }
 
-// GetEndpointType returns the EndpointType field value if set, zero value otherwise.
-func (o *SectigoCMSConnector) GetEndpointType() string {
-	if o == nil || utils.IsNil(o.EndpointType) {
+// GetType returns the Type field value
+func (o *SectigoCMSConnector) GetType() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.EndpointType
+
+	return o.Type
 }
 
-// GetEndpointTypeOk returns a tuple with the EndpointType field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *SectigoCMSConnector) GetEndpointTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.EndpointType) {
+func (o *SectigoCMSConnector) GetTypeOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.EndpointType, true
+	return &o.Type, true
 }
 
-// HasEndpointType returns a boolean if a field has been set.
-func (o *SectigoCMSConnector) HasEndpointType() bool {
-	if o != nil && !utils.IsNil(o.EndpointType) {
-		return true
-	}
-
-	return false
-}
-
-// SetEndpointType gets a reference to the given string and assigns it to the EndpointType field.
-func (o *SectigoCMSConnector) SetEndpointType(v string) {
-	o.EndpointType = &v
+// SetType sets field value
+func (o *SectigoCMSConnector) SetType(v string) {
+	o.Type = v
 }
 
 // GetLoginCredentials returns the LoginCredentials field value
@@ -143,28 +135,28 @@ func (o *SectigoCMSConnector) SetLoginCredentials(v string) {
 	o.LoginCredentials = v
 }
 
-// GetName returns the Name field value
-func (o *SectigoCMSConnector) GetName() string {
+// GetCustomerUri returns the CustomerUri field value
+func (o *SectigoCMSConnector) GetCustomerUri() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.CustomerUri
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetCustomerUriOk returns a tuple with the CustomerUri field value
 // and a boolean to check if the value has been set.
-func (o *SectigoCMSConnector) GetNameOk() (*string, bool) {
+func (o *SectigoCMSConnector) GetCustomerUriOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.CustomerUri, true
 }
 
-// SetName sets field value
-func (o *SectigoCMSConnector) SetName(v string) {
-	o.Name = v
+// SetCustomerUri sets field value
+func (o *SectigoCMSConnector) SetCustomerUri(v string) {
+	o.CustomerUri = v
 }
 
 // GetOrganizationId returns the OrganizationId field value
@@ -213,6 +205,167 @@ func (o *SectigoCMSConnector) GetProfileOk() (*string, bool) {
 // SetProfile sets field value
 func (o *SectigoCMSConnector) SetProfile(v string) {
 	o.Profile = v
+}
+
+// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SectigoCMSConnector) GetRetryInterval() string {
+	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RetryInterval.Get()
+}
+
+// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SectigoCMSConnector) GetRetryIntervalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
+}
+
+// HasRetryInterval returns a boolean if a field has been set.
+func (o *SectigoCMSConnector) HasRetryInterval() bool {
+	if o != nil && o.RetryInterval.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
+func (o *SectigoCMSConnector) SetRetryInterval(v string) {
+	o.RetryInterval.Set(&v)
+}
+
+// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+func (o *SectigoCMSConnector) SetRetryIntervalNil() {
+	o.RetryInterval.Set(nil)
+}
+
+// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
+func (o *SectigoCMSConnector) UnsetRetryInterval() {
+	o.RetryInterval.Unset()
+}
+
+// GetValidDays returns the ValidDays field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SectigoCMSConnector) GetValidDays() string {
+	if o == nil || utils.IsNil(o.ValidDays.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ValidDays.Get()
+}
+
+// GetValidDaysOk returns a tuple with the ValidDays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SectigoCMSConnector) GetValidDaysOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ValidDays.Get(), o.ValidDays.IsSet()
+}
+
+// HasValidDays returns a boolean if a field has been set.
+func (o *SectigoCMSConnector) HasValidDays() bool {
+	if o != nil && o.ValidDays.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValidDays gets a reference to the given NullableString and assigns it to the ValidDays field.
+func (o *SectigoCMSConnector) SetValidDays(v string) {
+	o.ValidDays.Set(&v)
+}
+
+// SetValidDaysNil sets the value for ValidDays to be an explicit nil
+func (o *SectigoCMSConnector) SetValidDaysNil() {
+	o.ValidDays.Set(nil)
+}
+
+// UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
+func (o *SectigoCMSConnector) UnsetValidDays() {
+	o.ValidDays.Unset()
+}
+
+// GetEndpointType returns the EndpointType field value if set, zero value otherwise.
+func (o *SectigoCMSConnector) GetEndpointType() string {
+	if o == nil || utils.IsNil(o.EndpointType) {
+		var ret string
+		return ret
+	}
+	return *o.EndpointType
+}
+
+// GetEndpointTypeOk returns a tuple with the EndpointType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SectigoCMSConnector) GetEndpointTypeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.EndpointType) {
+		return nil, false
+	}
+	return o.EndpointType, true
+}
+
+// HasEndpointType returns a boolean if a field has been set.
+func (o *SectigoCMSConnector) HasEndpointType() bool {
+	if o != nil && !utils.IsNil(o.EndpointType) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndpointType gets a reference to the given string and assigns it to the EndpointType field.
+func (o *SectigoCMSConnector) SetEndpointType(v string) {
+	o.EndpointType = &v
+}
+
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SectigoCMSConnector) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SectigoCMSConnector) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *SectigoCMSConnector) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *SectigoCMSConnector) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *SectigoCMSConnector) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *SectigoCMSConnector) UnsetTimeout() {
+	o.Timeout.Unset()
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -301,159 +454,6 @@ func (o *SectigoCMSConnector) UnsetQueue() {
 	o.Queue.Unset()
 }
 
-// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SectigoCMSConnector) GetRetryInterval() string {
-	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RetryInterval.Get()
-}
-
-// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SectigoCMSConnector) GetRetryIntervalOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
-}
-
-// HasRetryInterval returns a boolean if a field has been set.
-func (o *SectigoCMSConnector) HasRetryInterval() bool {
-	if o != nil && o.RetryInterval.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
-func (o *SectigoCMSConnector) SetRetryInterval(v string) {
-	o.RetryInterval.Set(&v)
-}
-
-// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
-func (o *SectigoCMSConnector) SetRetryIntervalNil() {
-	o.RetryInterval.Set(nil)
-}
-
-// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-func (o *SectigoCMSConnector) UnsetRetryInterval() {
-	o.RetryInterval.Unset()
-}
-
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SectigoCMSConnector) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Timeout.Get()
-}
-
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SectigoCMSConnector) GetTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
-}
-
-// HasTimeout returns a boolean if a field has been set.
-func (o *SectigoCMSConnector) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *SectigoCMSConnector) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *SectigoCMSConnector) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *SectigoCMSConnector) UnsetTimeout() {
-	o.Timeout.Unset()
-}
-
-// GetType returns the Type field value
-func (o *SectigoCMSConnector) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *SectigoCMSConnector) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *SectigoCMSConnector) SetType(v string) {
-	o.Type = v
-}
-
-// GetValidDays returns the ValidDays field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SectigoCMSConnector) GetValidDays() string {
-	if o == nil || utils.IsNil(o.ValidDays.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ValidDays.Get()
-}
-
-// GetValidDaysOk returns a tuple with the ValidDays field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SectigoCMSConnector) GetValidDaysOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ValidDays.Get(), o.ValidDays.IsSet()
-}
-
-// HasValidDays returns a boolean if a field has been set.
-func (o *SectigoCMSConnector) HasValidDays() bool {
-	if o != nil && o.ValidDays.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetValidDays gets a reference to the given NullableString and assigns it to the ValidDays field.
-func (o *SectigoCMSConnector) SetValidDays(v string) {
-	o.ValidDays.Set(&v)
-}
-
-// SetValidDaysNil sets the value for ValidDays to be an explicit nil
-func (o *SectigoCMSConnector) SetValidDaysNil() {
-	o.ValidDays.Set(nil)
-}
-
-// UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
-func (o *SectigoCMSConnector) UnsetValidDays() {
-	o.ValidDays.Unset()
-}
-
 func (o SectigoCMSConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -464,29 +464,29 @@ func (o SectigoCMSConnector) MarshalJSON() ([]byte, error) {
 
 func (o SectigoCMSConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
+	toSerialize["loginCredentials"] = o.LoginCredentials
 	toSerialize["customerUri"] = o.CustomerUri
+	toSerialize["organizationId"] = o.OrganizationId
+	toSerialize["profile"] = o.Profile
+	if o.RetryInterval.IsSet() {
+		toSerialize["retryInterval"] = o.RetryInterval.Get()
+	}
+	if o.ValidDays.IsSet() {
+		toSerialize["validDays"] = o.ValidDays.Get()
+	}
 	if !utils.IsNil(o.EndpointType) {
 		toSerialize["endpointType"] = o.EndpointType
 	}
-	toSerialize["loginCredentials"] = o.LoginCredentials
-	toSerialize["name"] = o.Name
-	toSerialize["organizationId"] = o.OrganizationId
-	toSerialize["profile"] = o.Profile
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	if o.Queue.IsSet() {
 		toSerialize["queue"] = o.Queue.Get()
-	}
-	if o.RetryInterval.IsSet() {
-		toSerialize["retryInterval"] = o.RetryInterval.Get()
-	}
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
-	toSerialize["type"] = o.Type
-	if o.ValidDays.IsSet() {
-		toSerialize["validDays"] = o.ValidDays.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -501,12 +501,12 @@ func (o *SectigoCMSConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"customerUri",
-		"loginCredentials",
 		"name",
+		"type",
+		"loginCredentials",
+		"customerUri",
 		"organizationId",
 		"profile",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -536,18 +536,18 @@ func (o *SectigoCMSConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "customerUri")
-		delete(additionalProperties, "endpointType")
-		delete(additionalProperties, "loginCredentials")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "loginCredentials")
+		delete(additionalProperties, "customerUri")
 		delete(additionalProperties, "organizationId")
 		delete(additionalProperties, "profile")
+		delete(additionalProperties, "retryInterval")
+		delete(additionalProperties, "validDays")
+		delete(additionalProperties, "endpointType")
+		delete(additionalProperties, "timeout")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
-		delete(additionalProperties, "retryInterval")
-		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "validDays")
 		o.AdditionalProperties = additionalProperties
 	}
 

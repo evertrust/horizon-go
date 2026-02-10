@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**HeaderEnd** | Pointer to **NullableString** | The HTML color code for the right side of the banner gradient | [optional] 
-**HeaderStart** | Pointer to **NullableString** | The HTML color code for the left side of the banner gradient | [optional] 
-**Logo** | Pointer to **NullableString** | A logo to display on the product, base64 encoded | [optional] 
 **Type** | **string** | The type of the configuration entry | 
+**Logo** | Pointer to **NullableString** | A logo to display on the product, base64 encoded | [optional] 
+**HeaderStart** | Pointer to **NullableString** | The HTML color code for the left side of the banner gradient | [optional] 
+**HeaderEnd** | Pointer to **NullableString** | The HTML color code for the right side of the banner gradient | [optional] 
 
 ## Methods
 
@@ -49,76 +49,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetHeaderEnd
+### GetType
 
-`func (o *InterfaceCustomizationConfigurationResponse) GetHeaderEnd() string`
+`func (o *InterfaceCustomizationConfigurationResponse) GetType() string`
 
-GetHeaderEnd returns the HeaderEnd field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetHeaderEndOk
+### GetTypeOk
 
-`func (o *InterfaceCustomizationConfigurationResponse) GetHeaderEndOk() (*string, bool)`
+`func (o *InterfaceCustomizationConfigurationResponse) GetTypeOk() (*string, bool)`
 
-GetHeaderEndOk returns a tuple with the HeaderEnd field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHeaderEnd
+### SetType
 
-`func (o *InterfaceCustomizationConfigurationResponse) SetHeaderEnd(v string)`
+`func (o *InterfaceCustomizationConfigurationResponse) SetType(v string)`
 
-SetHeaderEnd sets HeaderEnd field to given value.
+SetType sets Type field to given value.
 
-### HasHeaderEnd
 
-`func (o *InterfaceCustomizationConfigurationResponse) HasHeaderEnd() bool`
-
-HasHeaderEnd returns a boolean if a field has been set.
-
-### SetHeaderEndNil
-
-`func (o *InterfaceCustomizationConfigurationResponse) SetHeaderEndNil(b bool)`
-
- SetHeaderEndNil sets the value for HeaderEnd to be an explicit nil
-
-### UnsetHeaderEnd
-`func (o *InterfaceCustomizationConfigurationResponse) UnsetHeaderEnd()`
-
-UnsetHeaderEnd ensures that no value is present for HeaderEnd, not even an explicit nil
-### GetHeaderStart
-
-`func (o *InterfaceCustomizationConfigurationResponse) GetHeaderStart() string`
-
-GetHeaderStart returns the HeaderStart field if non-nil, zero value otherwise.
-
-### GetHeaderStartOk
-
-`func (o *InterfaceCustomizationConfigurationResponse) GetHeaderStartOk() (*string, bool)`
-
-GetHeaderStartOk returns a tuple with the HeaderStart field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHeaderStart
-
-`func (o *InterfaceCustomizationConfigurationResponse) SetHeaderStart(v string)`
-
-SetHeaderStart sets HeaderStart field to given value.
-
-### HasHeaderStart
-
-`func (o *InterfaceCustomizationConfigurationResponse) HasHeaderStart() bool`
-
-HasHeaderStart returns a boolean if a field has been set.
-
-### SetHeaderStartNil
-
-`func (o *InterfaceCustomizationConfigurationResponse) SetHeaderStartNil(b bool)`
-
- SetHeaderStartNil sets the value for HeaderStart to be an explicit nil
-
-### UnsetHeaderStart
-`func (o *InterfaceCustomizationConfigurationResponse) UnsetHeaderStart()`
-
-UnsetHeaderStart ensures that no value is present for HeaderStart, not even an explicit nil
 ### GetLogo
 
 `func (o *InterfaceCustomizationConfigurationResponse) GetLogo() string`
@@ -154,26 +104,76 @@ HasLogo returns a boolean if a field has been set.
 `func (o *InterfaceCustomizationConfigurationResponse) UnsetLogo()`
 
 UnsetLogo ensures that no value is present for Logo, not even an explicit nil
-### GetType
+### GetHeaderStart
 
-`func (o *InterfaceCustomizationConfigurationResponse) GetType() string`
+`func (o *InterfaceCustomizationConfigurationResponse) GetHeaderStart() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetHeaderStart returns the HeaderStart field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetHeaderStartOk
 
-`func (o *InterfaceCustomizationConfigurationResponse) GetTypeOk() (*string, bool)`
+`func (o *InterfaceCustomizationConfigurationResponse) GetHeaderStartOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetHeaderStartOk returns a tuple with the HeaderStart field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetHeaderStart
 
-`func (o *InterfaceCustomizationConfigurationResponse) SetType(v string)`
+`func (o *InterfaceCustomizationConfigurationResponse) SetHeaderStart(v string)`
 
-SetType sets Type field to given value.
+SetHeaderStart sets HeaderStart field to given value.
 
+### HasHeaderStart
 
+`func (o *InterfaceCustomizationConfigurationResponse) HasHeaderStart() bool`
+
+HasHeaderStart returns a boolean if a field has been set.
+
+### SetHeaderStartNil
+
+`func (o *InterfaceCustomizationConfigurationResponse) SetHeaderStartNil(b bool)`
+
+ SetHeaderStartNil sets the value for HeaderStart to be an explicit nil
+
+### UnsetHeaderStart
+`func (o *InterfaceCustomizationConfigurationResponse) UnsetHeaderStart()`
+
+UnsetHeaderStart ensures that no value is present for HeaderStart, not even an explicit nil
+### GetHeaderEnd
+
+`func (o *InterfaceCustomizationConfigurationResponse) GetHeaderEnd() string`
+
+GetHeaderEnd returns the HeaderEnd field if non-nil, zero value otherwise.
+
+### GetHeaderEndOk
+
+`func (o *InterfaceCustomizationConfigurationResponse) GetHeaderEndOk() (*string, bool)`
+
+GetHeaderEndOk returns a tuple with the HeaderEnd field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHeaderEnd
+
+`func (o *InterfaceCustomizationConfigurationResponse) SetHeaderEnd(v string)`
+
+SetHeaderEnd sets HeaderEnd field to given value.
+
+### HasHeaderEnd
+
+`func (o *InterfaceCustomizationConfigurationResponse) HasHeaderEnd() bool`
+
+HasHeaderEnd returns a boolean if a field has been set.
+
+### SetHeaderEndNil
+
+`func (o *InterfaceCustomizationConfigurationResponse) SetHeaderEndNil(b bool)`
+
+ SetHeaderEndNil sets the value for HeaderEnd to be an explicit nil
+
+### UnsetHeaderEnd
+`func (o *InterfaceCustomizationConfigurationResponse) UnsetHeaderEnd()`
+
+UnsetHeaderEnd ensures that no value is present for HeaderEnd, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

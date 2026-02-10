@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** | Description of the datasource | [optional] 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
-**Host** | Pointer to **NullableString** | Ip of the DNS server. If empty, Horizon Server DNS is used | [optional] 
-**Lookup** | **string** | Host to lookup | 
-**Name** | **string** | Name of the datasource | 
-**Port** | Pointer to **NullableInt64** | Port on which to join the LDAP server | [optional] [default to 389]
-**RecordTypes** | Pointer to **[]string** | Type of DNS records to fetch. All available record types are fetched if null | [optional] 
-**Timeout** | **string** | Timeout for the HTTP request. | 
 **Type** | **string** | Type of datasource | 
-**Attributes** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of attributes to fetch for this datasource | [optional] 
-**BaseDn** | **string** | LDAP Base DN | 
+**Name** | **string** | Name of the datasource | 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
+**Description** | Pointer to **string** | Description of the datasource | [optional] 
+**Host** | Pointer to **NullableString** | Ip of the DNS server. If empty, Horizon Server DNS is used | [optional] 
+**Port** | Pointer to **NullableInt64** | Port on which to join the LDAP server | [optional] [default to 389]
+**Timeout** | **string** | Timeout for the HTTP request. | 
+**RecordTypes** | Pointer to **[]string** | Type of DNS records to fetch. All available record types are fetched if null | [optional] 
+**Lookup** | **string** | Host to lookup | 
 **Credentials** | **string** | Name of the [credentials](#tag/security.credentials) to use for authentication | 
-**DisableHostnameValidation** | Pointer to **NullableBool** | Disable hostname validation for the LDAP connection | [optional] [default to false]
-**Filter** | **string** | LDAP Filter | 
 **Hostname** | **string** | Hostname of the LDAP server | 
 **Proxy** | Pointer to **NullableString** | Name of a Proxy to use while making the request | [optional] 
 **Secure** | **bool** | Use secure LDAP connection | 
-**AuthenticationType** | **string** | The authentication type to use while making the REST call. Is linked to &#x60;credentials&#x60;. | 
-**ExpectedHttpCodes** | **[]int64** | The success HTTP codes for the request. If the return code is not in this list, the request will be considered failed. | 
-**Headers** | Pointer to [**[]Header**](Header.md) | The headers of the request | [optional] 
+**DisableHostnameValidation** | Pointer to **NullableBool** | Disable hostname validation for the LDAP connection | [optional] [default to false]
+**BaseDn** | **string** | LDAP Base DN | 
+**Filter** | **string** | LDAP Filter | 
+**Attributes** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of attributes to fetch for this datasource | [optional] 
 **Method** | **string** | The HTTP method to use for the request | 
-**Payload** | Pointer to **NullableString** | The body of the request | [optional] 
-**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
 **Url** | **string** | The URL to request | 
+**AuthenticationType** | **string** | The authentication type to use while making the REST call. Is linked to &#x60;credentials&#x60;. | 
+**Headers** | Pointer to [**[]Header**](Header.md) | The headers of the request | [optional] 
+**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
+**Payload** | Pointer to **NullableString** | The body of the request | [optional] 
+**ExpectedHttpCodes** | **[]int64** | The success HTTP codes for the request. If the return code is not in this list, the request will be considered failed. | 
 
 ## Methods
 
 ### NewDataSourceTestRequestDs
 
-`func NewDataSourceTestRequestDs(lookup string, name string, timeout string, type_ string, baseDn string, credentials string, filter string, hostname string, secure bool, authenticationType string, expectedHttpCodes []int64, method string, url string, ) *DataSourceTestRequestDs`
+`func NewDataSourceTestRequestDs(type_ string, name string, timeout string, lookup string, credentials string, hostname string, secure bool, baseDn string, filter string, method string, url string, authenticationType string, expectedHttpCodes []int64, ) *DataSourceTestRequestDs`
 
 NewDataSourceTestRequestDs instantiates a new DataSourceTestRequestDs object
 This constructor will assign default values to properties that have it defined,
@@ -48,30 +48,45 @@ NewDataSourceTestRequestDsWithDefaults instantiates a new DataSourceTestRequestD
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDescription
+### GetType
 
-`func (o *DataSourceTestRequestDs) GetDescription() string`
+`func (o *DataSourceTestRequestDs) GetType() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetTypeOk
 
-`func (o *DataSourceTestRequestDs) GetDescriptionOk() (*string, bool)`
+`func (o *DataSourceTestRequestDs) GetTypeOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetType
 
-`func (o *DataSourceTestRequestDs) SetDescription(v string)`
+`func (o *DataSourceTestRequestDs) SetType(v string)`
 
-SetDescription sets Description field to given value.
+SetType sets Type field to given value.
 
-### HasDescription
 
-`func (o *DataSourceTestRequestDs) HasDescription() bool`
+### GetName
 
-HasDescription returns a boolean if a field has been set.
+`func (o *DataSourceTestRequestDs) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *DataSourceTestRequestDs) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *DataSourceTestRequestDs) SetName(v string)`
+
+SetName sets Name field to given value.
+
 
 ### GetDisplayName
 
@@ -108,6 +123,31 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *DataSourceTestRequestDs) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
+### GetDescription
+
+`func (o *DataSourceTestRequestDs) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *DataSourceTestRequestDs) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *DataSourceTestRequestDs) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *DataSourceTestRequestDs) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
 ### GetHost
 
 `func (o *DataSourceTestRequestDs) GetHost() string`
@@ -143,46 +183,6 @@ HasHost returns a boolean if a field has been set.
 `func (o *DataSourceTestRequestDs) UnsetHost()`
 
 UnsetHost ensures that no value is present for Host, not even an explicit nil
-### GetLookup
-
-`func (o *DataSourceTestRequestDs) GetLookup() string`
-
-GetLookup returns the Lookup field if non-nil, zero value otherwise.
-
-### GetLookupOk
-
-`func (o *DataSourceTestRequestDs) GetLookupOk() (*string, bool)`
-
-GetLookupOk returns a tuple with the Lookup field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLookup
-
-`func (o *DataSourceTestRequestDs) SetLookup(v string)`
-
-SetLookup sets Lookup field to given value.
-
-
-### GetName
-
-`func (o *DataSourceTestRequestDs) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *DataSourceTestRequestDs) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *DataSourceTestRequestDs) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetPort
 
 `func (o *DataSourceTestRequestDs) GetPort() int64`
@@ -218,6 +218,26 @@ HasPort returns a boolean if a field has been set.
 `func (o *DataSourceTestRequestDs) UnsetPort()`
 
 UnsetPort ensures that no value is present for Port, not even an explicit nil
+### GetTimeout
+
+`func (o *DataSourceTestRequestDs) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *DataSourceTestRequestDs) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *DataSourceTestRequestDs) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+
 ### GetRecordTypes
 
 `func (o *DataSourceTestRequestDs) GetRecordTypes() []string`
@@ -253,99 +273,24 @@ HasRecordTypes returns a boolean if a field has been set.
 `func (o *DataSourceTestRequestDs) UnsetRecordTypes()`
 
 UnsetRecordTypes ensures that no value is present for RecordTypes, not even an explicit nil
-### GetTimeout
+### GetLookup
 
-`func (o *DataSourceTestRequestDs) GetTimeout() string`
+`func (o *DataSourceTestRequestDs) GetLookup() string`
 
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+GetLookup returns the Lookup field if non-nil, zero value otherwise.
 
-### GetTimeoutOk
+### GetLookupOk
 
-`func (o *DataSourceTestRequestDs) GetTimeoutOk() (*string, bool)`
+`func (o *DataSourceTestRequestDs) GetLookupOk() (*string, bool)`
 
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+GetLookupOk returns a tuple with the Lookup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeout
+### SetLookup
 
-`func (o *DataSourceTestRequestDs) SetTimeout(v string)`
+`func (o *DataSourceTestRequestDs) SetLookup(v string)`
 
-SetTimeout sets Timeout field to given value.
-
-
-### GetType
-
-`func (o *DataSourceTestRequestDs) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *DataSourceTestRequestDs) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *DataSourceTestRequestDs) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetAttributes
-
-`func (o *DataSourceTestRequestDs) GetAttributes() []DataSourceOutput`
-
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
-
-### GetAttributesOk
-
-`func (o *DataSourceTestRequestDs) GetAttributesOk() (*[]DataSourceOutput, bool)`
-
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAttributes
-
-`func (o *DataSourceTestRequestDs) SetAttributes(v []DataSourceOutput)`
-
-SetAttributes sets Attributes field to given value.
-
-### HasAttributes
-
-`func (o *DataSourceTestRequestDs) HasAttributes() bool`
-
-HasAttributes returns a boolean if a field has been set.
-
-### SetAttributesNil
-
-`func (o *DataSourceTestRequestDs) SetAttributesNil(b bool)`
-
- SetAttributesNil sets the value for Attributes to be an explicit nil
-
-### UnsetAttributes
-`func (o *DataSourceTestRequestDs) UnsetAttributes()`
-
-UnsetAttributes ensures that no value is present for Attributes, not even an explicit nil
-### GetBaseDn
-
-`func (o *DataSourceTestRequestDs) GetBaseDn() string`
-
-GetBaseDn returns the BaseDn field if non-nil, zero value otherwise.
-
-### GetBaseDnOk
-
-`func (o *DataSourceTestRequestDs) GetBaseDnOk() (*string, bool)`
-
-GetBaseDnOk returns a tuple with the BaseDn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBaseDn
-
-`func (o *DataSourceTestRequestDs) SetBaseDn(v string)`
-
-SetBaseDn sets BaseDn field to given value.
+SetLookup sets Lookup field to given value.
 
 
 ### GetCredentials
@@ -366,61 +311,6 @@ and a boolean to check if the value has been set.
 `func (o *DataSourceTestRequestDs) SetCredentials(v string)`
 
 SetCredentials sets Credentials field to given value.
-
-
-### GetDisableHostnameValidation
-
-`func (o *DataSourceTestRequestDs) GetDisableHostnameValidation() bool`
-
-GetDisableHostnameValidation returns the DisableHostnameValidation field if non-nil, zero value otherwise.
-
-### GetDisableHostnameValidationOk
-
-`func (o *DataSourceTestRequestDs) GetDisableHostnameValidationOk() (*bool, bool)`
-
-GetDisableHostnameValidationOk returns a tuple with the DisableHostnameValidation field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDisableHostnameValidation
-
-`func (o *DataSourceTestRequestDs) SetDisableHostnameValidation(v bool)`
-
-SetDisableHostnameValidation sets DisableHostnameValidation field to given value.
-
-### HasDisableHostnameValidation
-
-`func (o *DataSourceTestRequestDs) HasDisableHostnameValidation() bool`
-
-HasDisableHostnameValidation returns a boolean if a field has been set.
-
-### SetDisableHostnameValidationNil
-
-`func (o *DataSourceTestRequestDs) SetDisableHostnameValidationNil(b bool)`
-
- SetDisableHostnameValidationNil sets the value for DisableHostnameValidation to be an explicit nil
-
-### UnsetDisableHostnameValidation
-`func (o *DataSourceTestRequestDs) UnsetDisableHostnameValidation()`
-
-UnsetDisableHostnameValidation ensures that no value is present for DisableHostnameValidation, not even an explicit nil
-### GetFilter
-
-`func (o *DataSourceTestRequestDs) GetFilter() string`
-
-GetFilter returns the Filter field if non-nil, zero value otherwise.
-
-### GetFilterOk
-
-`func (o *DataSourceTestRequestDs) GetFilterOk() (*string, bool)`
-
-GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilter
-
-`func (o *DataSourceTestRequestDs) SetFilter(v string)`
-
-SetFilter sets Filter field to given value.
 
 
 ### GetHostname
@@ -498,6 +388,156 @@ and a boolean to check if the value has been set.
 SetSecure sets Secure field to given value.
 
 
+### GetDisableHostnameValidation
+
+`func (o *DataSourceTestRequestDs) GetDisableHostnameValidation() bool`
+
+GetDisableHostnameValidation returns the DisableHostnameValidation field if non-nil, zero value otherwise.
+
+### GetDisableHostnameValidationOk
+
+`func (o *DataSourceTestRequestDs) GetDisableHostnameValidationOk() (*bool, bool)`
+
+GetDisableHostnameValidationOk returns a tuple with the DisableHostnameValidation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableHostnameValidation
+
+`func (o *DataSourceTestRequestDs) SetDisableHostnameValidation(v bool)`
+
+SetDisableHostnameValidation sets DisableHostnameValidation field to given value.
+
+### HasDisableHostnameValidation
+
+`func (o *DataSourceTestRequestDs) HasDisableHostnameValidation() bool`
+
+HasDisableHostnameValidation returns a boolean if a field has been set.
+
+### SetDisableHostnameValidationNil
+
+`func (o *DataSourceTestRequestDs) SetDisableHostnameValidationNil(b bool)`
+
+ SetDisableHostnameValidationNil sets the value for DisableHostnameValidation to be an explicit nil
+
+### UnsetDisableHostnameValidation
+`func (o *DataSourceTestRequestDs) UnsetDisableHostnameValidation()`
+
+UnsetDisableHostnameValidation ensures that no value is present for DisableHostnameValidation, not even an explicit nil
+### GetBaseDn
+
+`func (o *DataSourceTestRequestDs) GetBaseDn() string`
+
+GetBaseDn returns the BaseDn field if non-nil, zero value otherwise.
+
+### GetBaseDnOk
+
+`func (o *DataSourceTestRequestDs) GetBaseDnOk() (*string, bool)`
+
+GetBaseDnOk returns a tuple with the BaseDn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBaseDn
+
+`func (o *DataSourceTestRequestDs) SetBaseDn(v string)`
+
+SetBaseDn sets BaseDn field to given value.
+
+
+### GetFilter
+
+`func (o *DataSourceTestRequestDs) GetFilter() string`
+
+GetFilter returns the Filter field if non-nil, zero value otherwise.
+
+### GetFilterOk
+
+`func (o *DataSourceTestRequestDs) GetFilterOk() (*string, bool)`
+
+GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilter
+
+`func (o *DataSourceTestRequestDs) SetFilter(v string)`
+
+SetFilter sets Filter field to given value.
+
+
+### GetAttributes
+
+`func (o *DataSourceTestRequestDs) GetAttributes() []DataSourceOutput`
+
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+
+### GetAttributesOk
+
+`func (o *DataSourceTestRequestDs) GetAttributesOk() (*[]DataSourceOutput, bool)`
+
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttributes
+
+`func (o *DataSourceTestRequestDs) SetAttributes(v []DataSourceOutput)`
+
+SetAttributes sets Attributes field to given value.
+
+### HasAttributes
+
+`func (o *DataSourceTestRequestDs) HasAttributes() bool`
+
+HasAttributes returns a boolean if a field has been set.
+
+### SetAttributesNil
+
+`func (o *DataSourceTestRequestDs) SetAttributesNil(b bool)`
+
+ SetAttributesNil sets the value for Attributes to be an explicit nil
+
+### UnsetAttributes
+`func (o *DataSourceTestRequestDs) UnsetAttributes()`
+
+UnsetAttributes ensures that no value is present for Attributes, not even an explicit nil
+### GetMethod
+
+`func (o *DataSourceTestRequestDs) GetMethod() string`
+
+GetMethod returns the Method field if non-nil, zero value otherwise.
+
+### GetMethodOk
+
+`func (o *DataSourceTestRequestDs) GetMethodOk() (*string, bool)`
+
+GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMethod
+
+`func (o *DataSourceTestRequestDs) SetMethod(v string)`
+
+SetMethod sets Method field to given value.
+
+
+### GetUrl
+
+`func (o *DataSourceTestRequestDs) GetUrl() string`
+
+GetUrl returns the Url field if non-nil, zero value otherwise.
+
+### GetUrlOk
+
+`func (o *DataSourceTestRequestDs) GetUrlOk() (*string, bool)`
+
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUrl
+
+`func (o *DataSourceTestRequestDs) SetUrl(v string)`
+
+SetUrl sets Url field to given value.
+
+
 ### GetAuthenticationType
 
 `func (o *DataSourceTestRequestDs) GetAuthenticationType() string`
@@ -516,26 +556,6 @@ and a boolean to check if the value has been set.
 `func (o *DataSourceTestRequestDs) SetAuthenticationType(v string)`
 
 SetAuthenticationType sets AuthenticationType field to given value.
-
-
-### GetExpectedHttpCodes
-
-`func (o *DataSourceTestRequestDs) GetExpectedHttpCodes() []int64`
-
-GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
-
-### GetExpectedHttpCodesOk
-
-`func (o *DataSourceTestRequestDs) GetExpectedHttpCodesOk() (*[]int64, bool)`
-
-GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExpectedHttpCodes
-
-`func (o *DataSourceTestRequestDs) SetExpectedHttpCodes(v []int64)`
-
-SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
 
 
 ### GetHeaders
@@ -573,61 +593,6 @@ HasHeaders returns a boolean if a field has been set.
 `func (o *DataSourceTestRequestDs) UnsetHeaders()`
 
 UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
-### GetMethod
-
-`func (o *DataSourceTestRequestDs) GetMethod() string`
-
-GetMethod returns the Method field if non-nil, zero value otherwise.
-
-### GetMethodOk
-
-`func (o *DataSourceTestRequestDs) GetMethodOk() (*string, bool)`
-
-GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMethod
-
-`func (o *DataSourceTestRequestDs) SetMethod(v string)`
-
-SetMethod sets Method field to given value.
-
-
-### GetPayload
-
-`func (o *DataSourceTestRequestDs) GetPayload() string`
-
-GetPayload returns the Payload field if non-nil, zero value otherwise.
-
-### GetPayloadOk
-
-`func (o *DataSourceTestRequestDs) GetPayloadOk() (*string, bool)`
-
-GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPayload
-
-`func (o *DataSourceTestRequestDs) SetPayload(v string)`
-
-SetPayload sets Payload field to given value.
-
-### HasPayload
-
-`func (o *DataSourceTestRequestDs) HasPayload() bool`
-
-HasPayload returns a boolean if a field has been set.
-
-### SetPayloadNil
-
-`func (o *DataSourceTestRequestDs) SetPayloadNil(b bool)`
-
- SetPayloadNil sets the value for Payload to be an explicit nil
-
-### UnsetPayload
-`func (o *DataSourceTestRequestDs) UnsetPayload()`
-
-UnsetPayload ensures that no value is present for Payload, not even an explicit nil
 ### GetPayloadType
 
 `func (o *DataSourceTestRequestDs) GetPayloadType() string`
@@ -663,24 +628,59 @@ HasPayloadType returns a boolean if a field has been set.
 `func (o *DataSourceTestRequestDs) UnsetPayloadType()`
 
 UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
-### GetUrl
+### GetPayload
 
-`func (o *DataSourceTestRequestDs) GetUrl() string`
+`func (o *DataSourceTestRequestDs) GetPayload() string`
 
-GetUrl returns the Url field if non-nil, zero value otherwise.
+GetPayload returns the Payload field if non-nil, zero value otherwise.
 
-### GetUrlOk
+### GetPayloadOk
 
-`func (o *DataSourceTestRequestDs) GetUrlOk() (*string, bool)`
+`func (o *DataSourceTestRequestDs) GetPayloadOk() (*string, bool)`
 
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUrl
+### SetPayload
 
-`func (o *DataSourceTestRequestDs) SetUrl(v string)`
+`func (o *DataSourceTestRequestDs) SetPayload(v string)`
 
-SetUrl sets Url field to given value.
+SetPayload sets Payload field to given value.
+
+### HasPayload
+
+`func (o *DataSourceTestRequestDs) HasPayload() bool`
+
+HasPayload returns a boolean if a field has been set.
+
+### SetPayloadNil
+
+`func (o *DataSourceTestRequestDs) SetPayloadNil(b bool)`
+
+ SetPayloadNil sets the value for Payload to be an explicit nil
+
+### UnsetPayload
+`func (o *DataSourceTestRequestDs) UnsetPayload()`
+
+UnsetPayload ensures that no value is present for Payload, not even an explicit nil
+### GetExpectedHttpCodes
+
+`func (o *DataSourceTestRequestDs) GetExpectedHttpCodes() []int64`
+
+GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
+
+### GetExpectedHttpCodesOk
+
+`func (o *DataSourceTestRequestDs) GetExpectedHttpCodesOk() (*[]int64, bool)`
+
+GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpectedHttpCodes
+
+`func (o *DataSourceTestRequestDs) SetExpectedHttpCodes(v []int64)`
+
+SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
 
 
 

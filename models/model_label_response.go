@@ -24,12 +24,12 @@ var _ utils.MappedNullable = &LabelResponse{}
 type LabelResponse struct {
 	// Object internal ID
 	Id string `json:"_id"`
-	// Localized descriptions of the label
-	Description []LocalizedString `json:"description,omitempty"`
+	// Technical name of the label
+	Name string `json:"name"`
 	// Display names of the label
 	DisplayName []LocalizedString `json:"displayName,omitempty"`
-	// Technical name of the label
-	Name                 string `json:"name"`
+	// Localized descriptions of the label
+	Description          []LocalizedString `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,37 +78,28 @@ func (o *LabelResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LabelResponse) GetDescription() []LocalizedString {
+// GetName returns the Name field value
+func (o *LabelResponse) GetName() string {
 	if o == nil {
-		var ret []LocalizedString
+		var ret string
 		return ret
 	}
-	return o.Description
+
+	return o.Name
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LabelResponse) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
+func (o *LabelResponse) GetNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Name, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *LabelResponse) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *LabelResponse) SetDescription(v []LocalizedString) {
-	o.Description = v
+// SetName sets field value
+func (o *LabelResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -144,28 +135,37 @@ func (o *LabelResponse) SetDisplayName(v []LocalizedString) {
 	o.DisplayName = v
 }
 
-// GetName returns the Name field value
-func (o *LabelResponse) GetName() string {
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LabelResponse) GetDescription() []LocalizedString {
 	if o == nil {
-		var ret string
+		var ret []LocalizedString
 		return ret
 	}
-
-	return o.Name
+	return o.Description
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LabelResponse) GetNameOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LabelResponse) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Description, true
 }
 
-// SetName sets field value
-func (o *LabelResponse) SetName(v string) {
-	o.Name = v
+// HasDescription returns a boolean if a field has been set.
+func (o *LabelResponse) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *LabelResponse) SetDescription(v []LocalizedString) {
+	o.Description = v
 }
 
 func (o LabelResponse) MarshalJSON() ([]byte, error) {
@@ -179,13 +179,13 @@ func (o LabelResponse) MarshalJSON() ([]byte, error) {
 func (o LabelResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
+	toSerialize["name"] = o.Name
 	if o.DisplayName != nil {
 		toSerialize["displayName"] = o.DisplayName
 	}
-	toSerialize["name"] = o.Name
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -231,9 +231,9 @@ func (o *LabelResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "description")
 		o.AdditionalProperties = additionalProperties
 	}
 

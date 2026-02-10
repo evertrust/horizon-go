@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &EstEnrollRequestOnTemplateResponse{}
 
 // EstEnrollRequestOnTemplateResponse struct for EstEnrollRequestOnTemplateResponse
 type EstEnrollRequestOnTemplateResponse struct {
-	Module string `json:"module"`
+	Workflow string `json:"workflow"`
+	Module   string `json:"module"`
 	// The template with the constraint set on the profile
 	Template EstEnrollRequestTemplateResponse `json:"template"`
-	Workflow string                           `json:"workflow"`
 	// The profile for which to return the template.
 	Profile              string `json:"profile"`
 	AdditionalProperties map[string]interface{}
@@ -37,11 +37,11 @@ type _EstEnrollRequestOnTemplateResponse EstEnrollRequestOnTemplateResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEstEnrollRequestOnTemplateResponse(module string, template EstEnrollRequestTemplateResponse, workflow string, profile string) *EstEnrollRequestOnTemplateResponse {
+func NewEstEnrollRequestOnTemplateResponse(workflow string, module string, template EstEnrollRequestTemplateResponse, profile string) *EstEnrollRequestOnTemplateResponse {
 	this := EstEnrollRequestOnTemplateResponse{}
 	this.Module = module
-	this.Profile = profile
 	this.Workflow = workflow
+	this.Profile = profile
 	return &this
 }
 
@@ -51,6 +51,30 @@ func NewEstEnrollRequestOnTemplateResponse(module string, template EstEnrollRequ
 func NewEstEnrollRequestOnTemplateResponseWithDefaults() *EstEnrollRequestOnTemplateResponse {
 	this := EstEnrollRequestOnTemplateResponse{}
 	return &this
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *EstEnrollRequestOnTemplateResponse) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *EstEnrollRequestOnTemplateResponse) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *EstEnrollRequestOnTemplateResponse) SetWorkflow(v string) {
+	o.Workflow = v
 }
 
 // GetModule returns the Module field value
@@ -101,30 +125,6 @@ func (o *EstEnrollRequestOnTemplateResponse) SetTemplate(v EstEnrollRequestTempl
 	o.Template = v
 }
 
-// GetWorkflow returns the Workflow field value
-func (o *EstEnrollRequestOnTemplateResponse) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *EstEnrollRequestOnTemplateResponse) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *EstEnrollRequestOnTemplateResponse) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
 // GetProfile returns the Profile field value
 func (o *EstEnrollRequestOnTemplateResponse) GetProfile() string {
 	if o == nil {
@@ -159,9 +159,9 @@ func (o EstEnrollRequestOnTemplateResponse) MarshalJSON() ([]byte, error) {
 
 func (o EstEnrollRequestOnTemplateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["workflow"] = o.Workflow
 	toSerialize["module"] = o.Module
 	toSerialize["template"] = o.Template
-	toSerialize["workflow"] = o.Workflow
 	toSerialize["profile"] = o.Profile
 
 	for key, value := range o.AdditionalProperties {
@@ -176,9 +176,9 @@ func (o *EstEnrollRequestOnTemplateResponse) UnmarshalJSON(data []byte) (err err
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"workflow",
 		"module",
 		"template",
-		"workflow",
 		"profile",
 	}
 
@@ -209,9 +209,9 @@ func (o *EstEnrollRequestOnTemplateResponse) UnmarshalJSON(data []byte) (err err
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "template")
-		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "profile")
 		o.AdditionalProperties = additionalProperties
 	}

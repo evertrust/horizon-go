@@ -21,10 +21,10 @@ var _ utils.MappedNullable = &DatasourceFlow{}
 
 // DatasourceFlow Datasource Flow
 type DatasourceFlow struct {
-	// Input values for the flow
-	Context []MapEntry `json:"context,omitempty"`
 	// Representation of a datasource execution flow
-	DsFlow               []DataSourceFlowEntry `json:"dsFlow,omitempty"`
+	DsFlow []DataSourceFlowEntry `json:"dsFlow,omitempty"`
+	// Input values for the flow
+	Context              []MapEntry `json:"context,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,6 +45,38 @@ func NewDatasourceFlow() *DatasourceFlow {
 func NewDatasourceFlowWithDefaults() *DatasourceFlow {
 	this := DatasourceFlow{}
 	return &this
+}
+
+// GetDsFlow returns the DsFlow field value if set, zero value otherwise.
+func (o *DatasourceFlow) GetDsFlow() []DataSourceFlowEntry {
+	if o == nil || utils.IsNil(o.DsFlow) {
+		var ret []DataSourceFlowEntry
+		return ret
+	}
+	return o.DsFlow
+}
+
+// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DatasourceFlow) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
+	if o == nil || utils.IsNil(o.DsFlow) {
+		return nil, false
+	}
+	return o.DsFlow, true
+}
+
+// HasDsFlow returns a boolean if a field has been set.
+func (o *DatasourceFlow) HasDsFlow() bool {
+	if o != nil && !utils.IsNil(o.DsFlow) {
+		return true
+	}
+
+	return false
+}
+
+// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
+func (o *DatasourceFlow) SetDsFlow(v []DataSourceFlowEntry) {
+	o.DsFlow = v
 }
 
 // GetContext returns the Context field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -80,38 +112,6 @@ func (o *DatasourceFlow) SetContext(v []MapEntry) {
 	o.Context = v
 }
 
-// GetDsFlow returns the DsFlow field value if set, zero value otherwise.
-func (o *DatasourceFlow) GetDsFlow() []DataSourceFlowEntry {
-	if o == nil || utils.IsNil(o.DsFlow) {
-		var ret []DataSourceFlowEntry
-		return ret
-	}
-	return o.DsFlow
-}
-
-// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DatasourceFlow) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
-	if o == nil || utils.IsNil(o.DsFlow) {
-		return nil, false
-	}
-	return o.DsFlow, true
-}
-
-// HasDsFlow returns a boolean if a field has been set.
-func (o *DatasourceFlow) HasDsFlow() bool {
-	if o != nil && !utils.IsNil(o.DsFlow) {
-		return true
-	}
-
-	return false
-}
-
-// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
-func (o *DatasourceFlow) SetDsFlow(v []DataSourceFlowEntry) {
-	o.DsFlow = v
-}
-
 func (o DatasourceFlow) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -122,11 +122,11 @@ func (o DatasourceFlow) MarshalJSON() ([]byte, error) {
 
 func (o DatasourceFlow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Context != nil {
-		toSerialize["context"] = o.Context
-	}
 	if !utils.IsNil(o.DsFlow) {
 		toSerialize["dsFlow"] = o.DsFlow
+	}
+	if o.Context != nil {
+		toSerialize["context"] = o.Context
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -150,8 +150,8 @@ func (o *DatasourceFlow) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "context")
 		delete(additionalProperties, "dsFlow")
+		delete(additionalProperties, "context")
 		o.AdditionalProperties = additionalProperties
 	}
 

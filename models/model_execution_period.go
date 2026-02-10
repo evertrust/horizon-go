@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &ExecutionPeriod{}
 // ExecutionPeriod struct for ExecutionPeriod
 type ExecutionPeriod struct {
 	DateRange            NullableDateRange    `json:"dateRange,omitempty"`
-	TimeRange            utils.NullableString `json:"timeRange,omitempty" validate:"regexp=^([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$"`
-	WeekDays             []string             `json:"weekDays,omitempty"`
 	Weeks                []int64              `json:"weeks,omitempty"`
+	WeekDays             []string             `json:"weekDays,omitempty"`
+	TimeRange            utils.NullableString `json:"timeRange,omitempty" validate:"regexp=^([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -90,6 +90,72 @@ func (o *ExecutionPeriod) UnsetDateRange() {
 	o.DateRange.Unset()
 }
 
+// GetWeeks returns the Weeks field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExecutionPeriod) GetWeeks() []int64 {
+	if o == nil {
+		var ret []int64
+		return ret
+	}
+	return o.Weeks
+}
+
+// GetWeeksOk returns a tuple with the Weeks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExecutionPeriod) GetWeeksOk() ([]int64, bool) {
+	if o == nil || utils.IsNil(o.Weeks) {
+		return nil, false
+	}
+	return o.Weeks, true
+}
+
+// HasWeeks returns a boolean if a field has been set.
+func (o *ExecutionPeriod) HasWeeks() bool {
+	if o != nil && !utils.IsNil(o.Weeks) {
+		return true
+	}
+
+	return false
+}
+
+// SetWeeks gets a reference to the given []int64 and assigns it to the Weeks field.
+func (o *ExecutionPeriod) SetWeeks(v []int64) {
+	o.Weeks = v
+}
+
+// GetWeekDays returns the WeekDays field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExecutionPeriod) GetWeekDays() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.WeekDays
+}
+
+// GetWeekDaysOk returns a tuple with the WeekDays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExecutionPeriod) GetWeekDaysOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.WeekDays) {
+		return nil, false
+	}
+	return o.WeekDays, true
+}
+
+// HasWeekDays returns a boolean if a field has been set.
+func (o *ExecutionPeriod) HasWeekDays() bool {
+	if o != nil && !utils.IsNil(o.WeekDays) {
+		return true
+	}
+
+	return false
+}
+
+// SetWeekDays gets a reference to the given []string and assigns it to the WeekDays field.
+func (o *ExecutionPeriod) SetWeekDays(v []string) {
+	o.WeekDays = v
+}
+
 // GetTimeRange returns the TimeRange field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ExecutionPeriod) GetTimeRange() string {
 	if o == nil || utils.IsNil(o.TimeRange.Get()) {
@@ -133,72 +199,6 @@ func (o *ExecutionPeriod) UnsetTimeRange() {
 	o.TimeRange.Unset()
 }
 
-// GetWeekDays returns the WeekDays field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExecutionPeriod) GetWeekDays() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.WeekDays
-}
-
-// GetWeekDaysOk returns a tuple with the WeekDays field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExecutionPeriod) GetWeekDaysOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.WeekDays) {
-		return nil, false
-	}
-	return o.WeekDays, true
-}
-
-// HasWeekDays returns a boolean if a field has been set.
-func (o *ExecutionPeriod) HasWeekDays() bool {
-	if o != nil && !utils.IsNil(o.WeekDays) {
-		return true
-	}
-
-	return false
-}
-
-// SetWeekDays gets a reference to the given []string and assigns it to the WeekDays field.
-func (o *ExecutionPeriod) SetWeekDays(v []string) {
-	o.WeekDays = v
-}
-
-// GetWeeks returns the Weeks field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExecutionPeriod) GetWeeks() []int64 {
-	if o == nil {
-		var ret []int64
-		return ret
-	}
-	return o.Weeks
-}
-
-// GetWeeksOk returns a tuple with the Weeks field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExecutionPeriod) GetWeeksOk() ([]int64, bool) {
-	if o == nil || utils.IsNil(o.Weeks) {
-		return nil, false
-	}
-	return o.Weeks, true
-}
-
-// HasWeeks returns a boolean if a field has been set.
-func (o *ExecutionPeriod) HasWeeks() bool {
-	if o != nil && !utils.IsNil(o.Weeks) {
-		return true
-	}
-
-	return false
-}
-
-// SetWeeks gets a reference to the given []int64 and assigns it to the Weeks field.
-func (o *ExecutionPeriod) SetWeeks(v []int64) {
-	o.Weeks = v
-}
-
 func (o ExecutionPeriod) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -212,14 +212,14 @@ func (o ExecutionPeriod) ToMap() (map[string]interface{}, error) {
 	if o.DateRange.IsSet() {
 		toSerialize["dateRange"] = o.DateRange.Get()
 	}
-	if o.TimeRange.IsSet() {
-		toSerialize["timeRange"] = o.TimeRange.Get()
+	if o.Weeks != nil {
+		toSerialize["weeks"] = o.Weeks
 	}
 	if o.WeekDays != nil {
 		toSerialize["weekDays"] = o.WeekDays
 	}
-	if o.Weeks != nil {
-		toSerialize["weeks"] = o.Weeks
+	if o.TimeRange.IsSet() {
+		toSerialize["timeRange"] = o.TimeRange.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -244,9 +244,9 @@ func (o *ExecutionPeriod) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "dateRange")
-		delete(additionalProperties, "timeRange")
-		delete(additionalProperties, "weekDays")
 		delete(additionalProperties, "weeks")
+		delete(additionalProperties, "weekDays")
+		delete(additionalProperties, "timeRange")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Detail** | Pointer to **NullableString** | A human-readable explanation specific to this occurrence of the problem. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | [optional] 
 **Error** | **string** | The error code of the problem | 
 **Message** | **string** | A short, human-readable summary of the problem type | 
+**Detail** | Pointer to **NullableString** | A human-readable explanation specific to this occurrence of the problem. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | [optional] 
 **Status** | **int64** | The http status code of the error. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | 
 **Title** | **string** | A short, human-readable summary of the problem type. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | 
 
@@ -29,41 +29,6 @@ NewBasicErrorWithDefaults instantiates a new BasicError object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDetail
-
-`func (o *BasicError) GetDetail() string`
-
-GetDetail returns the Detail field if non-nil, zero value otherwise.
-
-### GetDetailOk
-
-`func (o *BasicError) GetDetailOk() (*string, bool)`
-
-GetDetailOk returns a tuple with the Detail field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDetail
-
-`func (o *BasicError) SetDetail(v string)`
-
-SetDetail sets Detail field to given value.
-
-### HasDetail
-
-`func (o *BasicError) HasDetail() bool`
-
-HasDetail returns a boolean if a field has been set.
-
-### SetDetailNil
-
-`func (o *BasicError) SetDetailNil(b bool)`
-
- SetDetailNil sets the value for Detail to be an explicit nil
-
-### UnsetDetail
-`func (o *BasicError) UnsetDetail()`
-
-UnsetDetail ensures that no value is present for Detail, not even an explicit nil
 ### GetError
 
 `func (o *BasicError) GetError() string`
@@ -104,6 +69,41 @@ and a boolean to check if the value has been set.
 SetMessage sets Message field to given value.
 
 
+### GetDetail
+
+`func (o *BasicError) GetDetail() string`
+
+GetDetail returns the Detail field if non-nil, zero value otherwise.
+
+### GetDetailOk
+
+`func (o *BasicError) GetDetailOk() (*string, bool)`
+
+GetDetailOk returns a tuple with the Detail field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDetail
+
+`func (o *BasicError) SetDetail(v string)`
+
+SetDetail sets Detail field to given value.
+
+### HasDetail
+
+`func (o *BasicError) HasDetail() bool`
+
+HasDetail returns a boolean if a field has been set.
+
+### SetDetailNil
+
+`func (o *BasicError) SetDetailNil(b bool)`
+
+ SetDetailNil sets the value for Detail to be an explicit nil
+
+### UnsetDetail
+`func (o *BasicError) UnsetDetail()`
+
+UnsetDetail ensures that no value is present for Detail, not even an explicit nil
 ### GetStatus
 
 `func (o *BasicError) GetStatus() int64`

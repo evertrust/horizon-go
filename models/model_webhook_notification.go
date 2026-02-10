@@ -22,24 +22,24 @@ var _ utils.MappedNullable = &WebhookNotification{}
 
 // WebhookNotification struct for WebhookNotification
 type WebhookNotification struct {
+	Type string `json:"type"`
+	// Number of retries when the notification fails (non 200 return code)
+	Retries         interface{}     `json:"retries,omitempty"`
+	WebhookTemplate WebhookTemplate `json:"webhookTemplate"`
 	// Name of a Proxy to use while sending the webhook
 	Proxy utils.NullableString `json:"proxy,omitempty"`
-	// Number of retries when the notification fails (non 200 return code)
-	Retries interface{} `json:"retries,omitempty"`
 	// Timeout for the webhook request
-	Timeout         *string         `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Type            string          `json:"type"`
-	WebhookTemplate WebhookTemplate `json:"webhookTemplate"`
-	// Event on which the notification runs. This MUST contain only one value.
-	Events []string `json:"events"`
-	// License usage at which the notification needs to run (between 0 and 100). Must be defined on `on_license_usage` event and must NOT be defined otherwise.
-	LicenseUsagePercent utils.NullableInt64 `json:"licenseUsagePercent,omitempty"`
+	Timeout *string `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	// Name of the notification
 	Name string `json:"name"`
-	// Must be defined on `on_expire` event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed.
-	RunOnRenewed utils.NullableBool `json:"runOnRenewed,omitempty"`
 	// Time period at which the notification needs to run. Can only be defined on expiration and pending events.
-	RunPeriod            utils.NullableString `json:"runPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	RunPeriod utils.NullableString `json:"runPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	// License usage at which the notification needs to run (between 0 and 100). Must be defined on `on_license_usage` event and must NOT be defined otherwise.
+	LicenseUsagePercent utils.NullableInt64 `json:"licenseUsagePercent,omitempty"`
+	// Event on which the notification runs. This MUST contain only one value.
+	Events []string `json:"events"`
+	// Must be defined on `on_expire` event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed.
+	RunOnRenewed         utils.NullableBool `json:"runOnRenewed,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,11 +49,11 @@ type _WebhookNotification WebhookNotification
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhookNotification(type_ string, webhookTemplate WebhookTemplate, events []string, name string) *WebhookNotification {
+func NewWebhookNotification(type_ string, webhookTemplate WebhookTemplate, name string, events []string) *WebhookNotification {
 	this := WebhookNotification{}
-	this.Events = events
 	this.Name = name
 	this.Type = type_
+	this.Events = events
 	return &this
 }
 
@@ -63,6 +63,87 @@ func NewWebhookNotification(type_ string, webhookTemplate WebhookTemplate, event
 func NewWebhookNotificationWithDefaults() *WebhookNotification {
 	this := WebhookNotification{}
 	return &this
+}
+
+// GetType returns the Type field value
+func (o *WebhookNotification) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *WebhookNotification) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *WebhookNotification) SetType(v string) {
+	o.Type = v
+}
+
+// GetRetries returns the Retries field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebhookNotification) GetRetries() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Retries
+}
+
+// GetRetriesOk returns a tuple with the Retries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebhookNotification) GetRetriesOk() (*interface{}, bool) {
+	if o == nil || utils.IsNil(o.Retries) {
+		return nil, false
+	}
+	return &o.Retries, true
+}
+
+// HasRetries returns a boolean if a field has been set.
+func (o *WebhookNotification) HasRetries() bool {
+	if o != nil && !utils.IsNil(o.Retries) {
+		return true
+	}
+
+	return false
+}
+
+// SetRetries gets a reference to the given interface{} and assigns it to the Retries field.
+func (o *WebhookNotification) SetRetries(v interface{}) {
+	o.Retries = v
+}
+
+// GetWebhookTemplate returns the WebhookTemplate field value
+func (o *WebhookNotification) GetWebhookTemplate() WebhookTemplate {
+	if o == nil {
+		var ret WebhookTemplate
+		return ret
+	}
+
+	return o.WebhookTemplate
+}
+
+// GetWebhookTemplateOk returns a tuple with the WebhookTemplate field value
+// and a boolean to check if the value has been set.
+func (o *WebhookNotification) GetWebhookTemplateOk() (*WebhookTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.WebhookTemplate, true
+}
+
+// SetWebhookTemplate sets field value
+func (o *WebhookNotification) SetWebhookTemplate(v WebhookTemplate) {
+	o.WebhookTemplate = v
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -108,39 +189,6 @@ func (o *WebhookNotification) UnsetProxy() {
 	o.Proxy.Unset()
 }
 
-// GetRetries returns the Retries field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebhookNotification) GetRetries() interface{} {
-	if o == nil {
-		var ret interface{}
-		return ret
-	}
-	return o.Retries
-}
-
-// GetRetriesOk returns a tuple with the Retries field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebhookNotification) GetRetriesOk() (*interface{}, bool) {
-	if o == nil || utils.IsNil(o.Retries) {
-		return nil, false
-	}
-	return &o.Retries, true
-}
-
-// HasRetries returns a boolean if a field has been set.
-func (o *WebhookNotification) HasRetries() bool {
-	if o != nil && !utils.IsNil(o.Retries) {
-		return true
-	}
-
-	return false
-}
-
-// SetRetries gets a reference to the given interface{} and assigns it to the Retries field.
-func (o *WebhookNotification) SetRetries(v interface{}) {
-	o.Retries = v
-}
-
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
 func (o *WebhookNotification) GetTimeout() string {
 	if o == nil || utils.IsNil(o.Timeout) {
@@ -173,121 +221,6 @@ func (o *WebhookNotification) SetTimeout(v string) {
 	o.Timeout = &v
 }
 
-// GetType returns the Type field value
-func (o *WebhookNotification) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *WebhookNotification) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *WebhookNotification) SetType(v string) {
-	o.Type = v
-}
-
-// GetWebhookTemplate returns the WebhookTemplate field value
-func (o *WebhookNotification) GetWebhookTemplate() WebhookTemplate {
-	if o == nil {
-		var ret WebhookTemplate
-		return ret
-	}
-
-	return o.WebhookTemplate
-}
-
-// GetWebhookTemplateOk returns a tuple with the WebhookTemplate field value
-// and a boolean to check if the value has been set.
-func (o *WebhookNotification) GetWebhookTemplateOk() (*WebhookTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.WebhookTemplate, true
-}
-
-// SetWebhookTemplate sets field value
-func (o *WebhookNotification) SetWebhookTemplate(v WebhookTemplate) {
-	o.WebhookTemplate = v
-}
-
-// GetEvents returns the Events field value
-func (o *WebhookNotification) GetEvents() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Events
-}
-
-// GetEventsOk returns a tuple with the Events field value
-// and a boolean to check if the value has been set.
-func (o *WebhookNotification) GetEventsOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Events, true
-}
-
-// SetEvents sets field value
-func (o *WebhookNotification) SetEvents(v []string) {
-	o.Events = v
-}
-
-// GetLicenseUsagePercent returns the LicenseUsagePercent field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebhookNotification) GetLicenseUsagePercent() int64 {
-	if o == nil || utils.IsNil(o.LicenseUsagePercent.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.LicenseUsagePercent.Get()
-}
-
-// GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebhookNotification) GetLicenseUsagePercentOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LicenseUsagePercent.Get(), o.LicenseUsagePercent.IsSet()
-}
-
-// HasLicenseUsagePercent returns a boolean if a field has been set.
-func (o *WebhookNotification) HasLicenseUsagePercent() bool {
-	if o != nil && o.LicenseUsagePercent.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLicenseUsagePercent gets a reference to the given NullableInt64 and assigns it to the LicenseUsagePercent field.
-func (o *WebhookNotification) SetLicenseUsagePercent(v int64) {
-	o.LicenseUsagePercent.Set(&v)
-}
-
-// SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
-func (o *WebhookNotification) SetLicenseUsagePercentNil() {
-	o.LicenseUsagePercent.Set(nil)
-}
-
-// UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
-func (o *WebhookNotification) UnsetLicenseUsagePercent() {
-	o.LicenseUsagePercent.Unset()
-}
-
 // GetName returns the Name field value
 func (o *WebhookNotification) GetName() string {
 	if o == nil {
@@ -310,49 +243,6 @@ func (o *WebhookNotification) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *WebhookNotification) SetName(v string) {
 	o.Name = v
-}
-
-// GetRunOnRenewed returns the RunOnRenewed field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebhookNotification) GetRunOnRenewed() bool {
-	if o == nil || utils.IsNil(o.RunOnRenewed.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.RunOnRenewed.Get()
-}
-
-// GetRunOnRenewedOk returns a tuple with the RunOnRenewed field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebhookNotification) GetRunOnRenewedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RunOnRenewed.Get(), o.RunOnRenewed.IsSet()
-}
-
-// HasRunOnRenewed returns a boolean if a field has been set.
-func (o *WebhookNotification) HasRunOnRenewed() bool {
-	if o != nil && o.RunOnRenewed.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRunOnRenewed gets a reference to the given NullableBool and assigns it to the RunOnRenewed field.
-func (o *WebhookNotification) SetRunOnRenewed(v bool) {
-	o.RunOnRenewed.Set(&v)
-}
-
-// SetRunOnRenewedNil sets the value for RunOnRenewed to be an explicit nil
-func (o *WebhookNotification) SetRunOnRenewedNil() {
-	o.RunOnRenewed.Set(nil)
-}
-
-// UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
-func (o *WebhookNotification) UnsetRunOnRenewed() {
-	o.RunOnRenewed.Unset()
 }
 
 // GetRunPeriod returns the RunPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -398,6 +288,116 @@ func (o *WebhookNotification) UnsetRunPeriod() {
 	o.RunPeriod.Unset()
 }
 
+// GetLicenseUsagePercent returns the LicenseUsagePercent field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebhookNotification) GetLicenseUsagePercent() int64 {
+	if o == nil || utils.IsNil(o.LicenseUsagePercent.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.LicenseUsagePercent.Get()
+}
+
+// GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebhookNotification) GetLicenseUsagePercentOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LicenseUsagePercent.Get(), o.LicenseUsagePercent.IsSet()
+}
+
+// HasLicenseUsagePercent returns a boolean if a field has been set.
+func (o *WebhookNotification) HasLicenseUsagePercent() bool {
+	if o != nil && o.LicenseUsagePercent.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLicenseUsagePercent gets a reference to the given NullableInt64 and assigns it to the LicenseUsagePercent field.
+func (o *WebhookNotification) SetLicenseUsagePercent(v int64) {
+	o.LicenseUsagePercent.Set(&v)
+}
+
+// SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
+func (o *WebhookNotification) SetLicenseUsagePercentNil() {
+	o.LicenseUsagePercent.Set(nil)
+}
+
+// UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
+func (o *WebhookNotification) UnsetLicenseUsagePercent() {
+	o.LicenseUsagePercent.Unset()
+}
+
+// GetEvents returns the Events field value
+func (o *WebhookNotification) GetEvents() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Events
+}
+
+// GetEventsOk returns a tuple with the Events field value
+// and a boolean to check if the value has been set.
+func (o *WebhookNotification) GetEventsOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Events, true
+}
+
+// SetEvents sets field value
+func (o *WebhookNotification) SetEvents(v []string) {
+	o.Events = v
+}
+
+// GetRunOnRenewed returns the RunOnRenewed field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebhookNotification) GetRunOnRenewed() bool {
+	if o == nil || utils.IsNil(o.RunOnRenewed.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.RunOnRenewed.Get()
+}
+
+// GetRunOnRenewedOk returns a tuple with the RunOnRenewed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebhookNotification) GetRunOnRenewedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RunOnRenewed.Get(), o.RunOnRenewed.IsSet()
+}
+
+// HasRunOnRenewed returns a boolean if a field has been set.
+func (o *WebhookNotification) HasRunOnRenewed() bool {
+	if o != nil && o.RunOnRenewed.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRunOnRenewed gets a reference to the given NullableBool and assigns it to the RunOnRenewed field.
+func (o *WebhookNotification) SetRunOnRenewed(v bool) {
+	o.RunOnRenewed.Set(&v)
+}
+
+// SetRunOnRenewedNil sets the value for RunOnRenewed to be an explicit nil
+func (o *WebhookNotification) SetRunOnRenewedNil() {
+	o.RunOnRenewed.Set(nil)
+}
+
+// UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
+func (o *WebhookNotification) UnsetRunOnRenewed() {
+	o.RunOnRenewed.Unset()
+}
+
 func (o WebhookNotification) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -408,27 +408,27 @@ func (o WebhookNotification) MarshalJSON() ([]byte, error) {
 
 func (o WebhookNotification) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
+	toSerialize["type"] = o.Type
 	if o.Retries != nil {
 		toSerialize["retries"] = o.Retries
+	}
+	toSerialize["webhookTemplate"] = o.WebhookTemplate
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	if !utils.IsNil(o.Timeout) {
 		toSerialize["timeout"] = o.Timeout
 	}
-	toSerialize["type"] = o.Type
-	toSerialize["webhookTemplate"] = o.WebhookTemplate
-	toSerialize["events"] = o.Events
+	toSerialize["name"] = o.Name
+	if o.RunPeriod.IsSet() {
+		toSerialize["runPeriod"] = o.RunPeriod.Get()
+	}
 	if o.LicenseUsagePercent.IsSet() {
 		toSerialize["licenseUsagePercent"] = o.LicenseUsagePercent.Get()
 	}
-	toSerialize["name"] = o.Name
+	toSerialize["events"] = o.Events
 	if o.RunOnRenewed.IsSet() {
 		toSerialize["runOnRenewed"] = o.RunOnRenewed.Get()
-	}
-	if o.RunPeriod.IsSet() {
-		toSerialize["runPeriod"] = o.RunPeriod.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -445,8 +445,8 @@ func (o *WebhookNotification) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"type",
 		"webhookTemplate",
-		"events",
 		"name",
+		"events",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -476,16 +476,16 @@ func (o *WebhookNotification) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "retries")
-		delete(additionalProperties, "timeout")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "retries")
 		delete(additionalProperties, "webhookTemplate")
-		delete(additionalProperties, "events")
-		delete(additionalProperties, "licenseUsagePercent")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "timeout")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "runOnRenewed")
 		delete(additionalProperties, "runPeriod")
+		delete(additionalProperties, "licenseUsagePercent")
+		delete(additionalProperties, "events")
+		delete(additionalProperties, "runOnRenewed")
 		o.AdditionalProperties = additionalProperties
 	}
 

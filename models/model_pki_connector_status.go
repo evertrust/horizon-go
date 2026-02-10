@@ -24,10 +24,10 @@ var _ utils.MappedNullable = &PKIConnectorStatus{}
 type PKIConnectorStatus struct {
 	// The date, in milliseconds since the epoch, of the last time the pki connector health check was ran.
 	LastCheck int64 `json:"lastCheck"`
-	// A meaningful message about the result of the health check (in case of error)
-	Message utils.NullableString `json:"message,omitempty"`
 	// The status of the pki connector connection.  The 'unknown' status means that the healthcheck is not available.
-	Status               string `json:"status"`
+	Status string `json:"status"`
+	// A meaningful message about the result of the health check (in case of error)
+	Message              utils.NullableString `json:"message,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -76,6 +76,30 @@ func (o *PKIConnectorStatus) SetLastCheck(v int64) {
 	o.LastCheck = v
 }
 
+// GetStatus returns the Status field value
+func (o *PKIConnectorStatus) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *PKIConnectorStatus) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *PKIConnectorStatus) SetStatus(v string) {
+	o.Status = v
+}
+
 // GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PKIConnectorStatus) GetMessage() string {
 	if o == nil || utils.IsNil(o.Message.Get()) {
@@ -119,30 +143,6 @@ func (o *PKIConnectorStatus) UnsetMessage() {
 	o.Message.Unset()
 }
 
-// GetStatus returns the Status field value
-func (o *PKIConnectorStatus) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *PKIConnectorStatus) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *PKIConnectorStatus) SetStatus(v string) {
-	o.Status = v
-}
-
 func (o PKIConnectorStatus) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -154,10 +154,10 @@ func (o PKIConnectorStatus) MarshalJSON() ([]byte, error) {
 func (o PKIConnectorStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["lastCheck"] = o.LastCheck
+	toSerialize["status"] = o.Status
 	if o.Message.IsSet() {
 		toSerialize["message"] = o.Message.Get()
 	}
-	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -203,8 +203,8 @@ func (o *PKIConnectorStatus) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "lastCheck")
-		delete(additionalProperties, "message")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "message")
 		o.AdditionalProperties = additionalProperties
 	}
 

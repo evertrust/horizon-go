@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &CertificateProfileSearchDictionaryLocalizedEntry{}
 
 // CertificateProfileSearchDictionaryLocalizedEntry struct for CertificateProfileSearchDictionaryLocalizedEntry
 type CertificateProfileSearchDictionaryLocalizedEntry struct {
-	// The localized description of the profile
-	Description []LocalizedString `json:"description,omitempty"`
-	// The localized name of the profile
-	DisplayName []LocalizedString `json:"displayName,omitempty"`
+	// The technical name of the profile
+	Name string `json:"name"`
 	// The module on which the profile belongs
 	Module string `json:"module"`
-	// The technical name of the profile
-	Name                 string `json:"name"`
+	// The localized name of the profile
+	DisplayName []LocalizedString `json:"displayName,omitempty"`
+	// The localized description of the profile
+	Description          []LocalizedString `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,10 +39,10 @@ type _CertificateProfileSearchDictionaryLocalizedEntry CertificateProfileSearchD
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificateProfileSearchDictionaryLocalizedEntry(module string, name string) *CertificateProfileSearchDictionaryLocalizedEntry {
+func NewCertificateProfileSearchDictionaryLocalizedEntry(name string, module string) *CertificateProfileSearchDictionaryLocalizedEntry {
 	this := CertificateProfileSearchDictionaryLocalizedEntry{}
-	this.Module = module
 	this.Name = name
+	this.Module = module
 	return &this
 }
 
@@ -54,37 +54,52 @@ func NewCertificateProfileSearchDictionaryLocalizedEntryWithDefaults() *Certific
 	return &this
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDescription() []LocalizedString {
+// GetName returns the Name field value
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetName() string {
 	if o == nil {
-		var ret []LocalizedString
+		var ret string
 		return ret
 	}
-	return o.Description
+
+	return o.Name
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Name, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
+// SetName sets field value
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetName(v string) {
+	o.Name = v
+}
+
+// GetModule returns the Module field value
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Module
 }
 
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetDescription(v []LocalizedString) {
-	o.Description = v
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetModule(v string) {
+	o.Module = v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -120,52 +135,37 @@ func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetDisplayName(v []Lo
 	o.DisplayName = v
 }
 
-// GetModule returns the Module field value
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModule() string {
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDescription() []LocalizedString {
 	if o == nil {
-		var ret string
+		var ret []LocalizedString
 		return ret
 	}
-
-	return o.Module
+	return o.Description
 }
 
-// GetModuleOk returns a tuple with the Module field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModuleOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Module, true
+	return o.Description, true
 }
 
-// SetModule sets field value
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetModule(v string) {
-	o.Module = v
-}
-
-// GetName returns the Name field value
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
+// HasDescription returns a boolean if a field has been set.
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
 	}
 
-	return o.Name
+	return false
 }
 
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetName(v string) {
-	o.Name = v
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetDescription(v []LocalizedString) {
+	o.Description = v
 }
 
 func (o CertificateProfileSearchDictionaryLocalizedEntry) MarshalJSON() ([]byte, error) {
@@ -178,14 +178,14 @@ func (o CertificateProfileSearchDictionaryLocalizedEntry) MarshalJSON() ([]byte,
 
 func (o CertificateProfileSearchDictionaryLocalizedEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
+	toSerialize["name"] = o.Name
+	toSerialize["module"] = o.Module
 	if o.DisplayName != nil {
 		toSerialize["displayName"] = o.DisplayName
 	}
-	toSerialize["module"] = o.Module
-	toSerialize["name"] = o.Name
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -199,8 +199,8 @@ func (o *CertificateProfileSearchDictionaryLocalizedEntry) UnmarshalJSON(data []
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"module",
 		"name",
+		"module",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -230,10 +230,10 @@ func (o *CertificateProfileSearchDictionaryLocalizedEntry) UnmarshalJSON(data []
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "module")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "module")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "description")
 		o.AdditionalProperties = additionalProperties
 	}
 

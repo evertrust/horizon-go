@@ -23,25 +23,25 @@ var _ utils.MappedNullable = &DigiCertConnectorResponse{}
 // DigiCertConnectorResponse struct for DigiCertConnectorResponse
 type DigiCertConnectorResponse struct {
 	// Object internal ID
-	Id string `json:"_id"`
-	// Name of the `raw` [credentials](#tag/security.credentials) containing the API key to authenticate on the PKI
-	ApiCredentials string `json:"apiCredentials"`
+	Id   string `json:"_id"`
+	Name string `json:"name"`
+	Type string `json:"type"`
 	// The base URL of the used digicert instance.
-	BaseUrl                    string               `json:"baseUrl"`
-	CaCertId                   utils.NullableString `json:"caCertId,omitempty"`
-	CustomConnectorDataMapping map[string]string    `json:"customConnectorDataMapping,omitempty"`
-	Name                       string               `json:"name"`
-	OrganizationId             int64                `json:"organizationId"`
+	BaseUrl string `json:"baseUrl"`
 	// One of the DigiCert product identifier an exhaustive list can be found here: https://dev.digicert.com/en/certcentral-apis/services-api/glossary.html#product-identifiers
-	ProductId            *string                    `json:"productId,omitempty"`
-	Proxy                utils.NullableString       `json:"proxy,omitempty"`
-	Queue                utils.NullableString       `json:"queue,omitempty"`
-	RetryInterval        utils.NullableString       `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	SkipApproval         utils.NullableBool         `json:"skipApproval,omitempty"`
-	Status               NullablePKIConnectorStatus `json:"status,omitempty"`
-	Timeout              utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Type                 string                     `json:"type"`
-	AdditionalProperties map[string]interface{}
+	ProductId *string `json:"productId,omitempty"`
+	// Name of the `raw` [credentials](#tag/security.credentials) containing the API key to authenticate on the PKI
+	ApiCredentials             string                     `json:"apiCredentials"`
+	OrganizationId             int64                      `json:"organizationId"`
+	CaCertId                   utils.NullableString       `json:"caCertId,omitempty"`
+	RetryInterval              utils.NullableString       `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	SkipApproval               utils.NullableBool         `json:"skipApproval,omitempty"`
+	CustomConnectorDataMapping map[string]string          `json:"customConnectorDataMapping,omitempty"`
+	Timeout                    utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Proxy                      utils.NullableString       `json:"proxy,omitempty"`
+	Queue                      utils.NullableString       `json:"queue,omitempty"`
+	Status                     NullablePKIConnectorStatus `json:"status,omitempty"`
+	AdditionalProperties       map[string]interface{}
 }
 
 type _DigiCertConnectorResponse DigiCertConnectorResponse
@@ -50,14 +50,14 @@ type _DigiCertConnectorResponse DigiCertConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDigiCertConnectorResponse(id string, apiCredentials string, baseUrl string, name string, organizationId int64, type_ string) *DigiCertConnectorResponse {
+func NewDigiCertConnectorResponse(id string, name string, type_ string, baseUrl string, apiCredentials string, organizationId int64) *DigiCertConnectorResponse {
 	this := DigiCertConnectorResponse{}
 	this.Id = id
-	this.ApiCredentials = apiCredentials
-	this.BaseUrl = baseUrl
 	this.Name = name
-	this.OrganizationId = organizationId
 	this.Type = type_
+	this.BaseUrl = baseUrl
+	this.ApiCredentials = apiCredentials
+	this.OrganizationId = organizationId
 	return &this
 }
 
@@ -93,28 +93,52 @@ func (o *DigiCertConnectorResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetApiCredentials returns the ApiCredentials field value
-func (o *DigiCertConnectorResponse) GetApiCredentials() string {
+// GetName returns the Name field value
+func (o *DigiCertConnectorResponse) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ApiCredentials
+	return o.Name
 }
 
-// GetApiCredentialsOk returns a tuple with the ApiCredentials field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *DigiCertConnectorResponse) GetApiCredentialsOk() (*string, bool) {
+func (o *DigiCertConnectorResponse) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ApiCredentials, true
+	return &o.Name, true
 }
 
-// SetApiCredentials sets field value
-func (o *DigiCertConnectorResponse) SetApiCredentials(v string) {
-	o.ApiCredentials = v
+// SetName sets field value
+func (o *DigiCertConnectorResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetType returns the Type field value
+func (o *DigiCertConnectorResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertConnectorResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *DigiCertConnectorResponse) SetType(v string) {
+	o.Type = v
 }
 
 // GetBaseUrl returns the BaseUrl field value
@@ -139,6 +163,86 @@ func (o *DigiCertConnectorResponse) GetBaseUrlOk() (*string, bool) {
 // SetBaseUrl sets field value
 func (o *DigiCertConnectorResponse) SetBaseUrl(v string) {
 	o.BaseUrl = v
+}
+
+// GetProductId returns the ProductId field value if set, zero value otherwise.
+func (o *DigiCertConnectorResponse) GetProductId() string {
+	if o == nil || utils.IsNil(o.ProductId) {
+		var ret string
+		return ret
+	}
+	return *o.ProductId
+}
+
+// GetProductIdOk returns a tuple with the ProductId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DigiCertConnectorResponse) GetProductIdOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.ProductId) {
+		return nil, false
+	}
+	return o.ProductId, true
+}
+
+// HasProductId returns a boolean if a field has been set.
+func (o *DigiCertConnectorResponse) HasProductId() bool {
+	if o != nil && !utils.IsNil(o.ProductId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProductId gets a reference to the given string and assigns it to the ProductId field.
+func (o *DigiCertConnectorResponse) SetProductId(v string) {
+	o.ProductId = &v
+}
+
+// GetApiCredentials returns the ApiCredentials field value
+func (o *DigiCertConnectorResponse) GetApiCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ApiCredentials
+}
+
+// GetApiCredentialsOk returns a tuple with the ApiCredentials field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertConnectorResponse) GetApiCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApiCredentials, true
+}
+
+// SetApiCredentials sets field value
+func (o *DigiCertConnectorResponse) SetApiCredentials(v string) {
+	o.ApiCredentials = v
+}
+
+// GetOrganizationId returns the OrganizationId field value
+func (o *DigiCertConnectorResponse) GetOrganizationId() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.OrganizationId
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertConnectorResponse) GetOrganizationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.OrganizationId, true
+}
+
+// SetOrganizationId sets field value
+func (o *DigiCertConnectorResponse) SetOrganizationId(v int64) {
+	o.OrganizationId = v
 }
 
 // GetCaCertId returns the CaCertId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -182,205 +286,6 @@ func (o *DigiCertConnectorResponse) SetCaCertIdNil() {
 // UnsetCaCertId ensures that no value is present for CaCertId, not even an explicit nil
 func (o *DigiCertConnectorResponse) UnsetCaCertId() {
 	o.CaCertId.Unset()
-}
-
-// GetCustomConnectorDataMapping returns the CustomConnectorDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DigiCertConnectorResponse) GetCustomConnectorDataMapping() map[string]string {
-	if o == nil {
-		var ret map[string]string
-		return ret
-	}
-	return o.CustomConnectorDataMapping
-}
-
-// GetCustomConnectorDataMappingOk returns a tuple with the CustomConnectorDataMapping field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DigiCertConnectorResponse) GetCustomConnectorDataMappingOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.CustomConnectorDataMapping) {
-		return nil, false
-	}
-	return &o.CustomConnectorDataMapping, true
-}
-
-// HasCustomConnectorDataMapping returns a boolean if a field has been set.
-func (o *DigiCertConnectorResponse) HasCustomConnectorDataMapping() bool {
-	if o != nil && !utils.IsNil(o.CustomConnectorDataMapping) {
-		return true
-	}
-
-	return false
-}
-
-// SetCustomConnectorDataMapping gets a reference to the given map[string]string and assigns it to the CustomConnectorDataMapping field.
-func (o *DigiCertConnectorResponse) SetCustomConnectorDataMapping(v map[string]string) {
-	o.CustomConnectorDataMapping = v
-}
-
-// GetName returns the Name field value
-func (o *DigiCertConnectorResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *DigiCertConnectorResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *DigiCertConnectorResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetOrganizationId returns the OrganizationId field value
-func (o *DigiCertConnectorResponse) GetOrganizationId() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.OrganizationId
-}
-
-// GetOrganizationIdOk returns a tuple with the OrganizationId field value
-// and a boolean to check if the value has been set.
-func (o *DigiCertConnectorResponse) GetOrganizationIdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.OrganizationId, true
-}
-
-// SetOrganizationId sets field value
-func (o *DigiCertConnectorResponse) SetOrganizationId(v int64) {
-	o.OrganizationId = v
-}
-
-// GetProductId returns the ProductId field value if set, zero value otherwise.
-func (o *DigiCertConnectorResponse) GetProductId() string {
-	if o == nil || utils.IsNil(o.ProductId) {
-		var ret string
-		return ret
-	}
-	return *o.ProductId
-}
-
-// GetProductIdOk returns a tuple with the ProductId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DigiCertConnectorResponse) GetProductIdOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.ProductId) {
-		return nil, false
-	}
-	return o.ProductId, true
-}
-
-// HasProductId returns a boolean if a field has been set.
-func (o *DigiCertConnectorResponse) HasProductId() bool {
-	if o != nil && !utils.IsNil(o.ProductId) {
-		return true
-	}
-
-	return false
-}
-
-// SetProductId gets a reference to the given string and assigns it to the ProductId field.
-func (o *DigiCertConnectorResponse) SetProductId(v string) {
-	o.ProductId = &v
-}
-
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DigiCertConnectorResponse) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Proxy.Get()
-}
-
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DigiCertConnectorResponse) GetProxyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
-}
-
-// HasProxy returns a boolean if a field has been set.
-func (o *DigiCertConnectorResponse) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *DigiCertConnectorResponse) SetProxy(v string) {
-	o.Proxy.Set(&v)
-}
-
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *DigiCertConnectorResponse) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *DigiCertConnectorResponse) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetQueue returns the Queue field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DigiCertConnectorResponse) GetQueue() string {
-	if o == nil || utils.IsNil(o.Queue.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Queue.Get()
-}
-
-// GetQueueOk returns a tuple with the Queue field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DigiCertConnectorResponse) GetQueueOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Queue.Get(), o.Queue.IsSet()
-}
-
-// HasQueue returns a boolean if a field has been set.
-func (o *DigiCertConnectorResponse) HasQueue() bool {
-	if o != nil && o.Queue.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQueue gets a reference to the given NullableString and assigns it to the Queue field.
-func (o *DigiCertConnectorResponse) SetQueue(v string) {
-	o.Queue.Set(&v)
-}
-
-// SetQueueNil sets the value for Queue to be an explicit nil
-func (o *DigiCertConnectorResponse) SetQueueNil() {
-	o.Queue.Set(nil)
-}
-
-// UnsetQueue ensures that no value is present for Queue, not even an explicit nil
-func (o *DigiCertConnectorResponse) UnsetQueue() {
-	o.Queue.Unset()
 }
 
 // GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -469,47 +374,37 @@ func (o *DigiCertConnectorResponse) UnsetSkipApproval() {
 	o.SkipApproval.Unset()
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DigiCertConnectorResponse) GetStatus() PKIConnectorStatus {
-	if o == nil || utils.IsNil(o.Status.Get()) {
-		var ret PKIConnectorStatus
+// GetCustomConnectorDataMapping returns the CustomConnectorDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DigiCertConnectorResponse) GetCustomConnectorDataMapping() map[string]string {
+	if o == nil {
+		var ret map[string]string
 		return ret
 	}
-	return *o.Status.Get()
+	return o.CustomConnectorDataMapping
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetCustomConnectorDataMappingOk returns a tuple with the CustomConnectorDataMapping field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DigiCertConnectorResponse) GetStatusOk() (*PKIConnectorStatus, bool) {
-	if o == nil {
+func (o *DigiCertConnectorResponse) GetCustomConnectorDataMappingOk() (*map[string]string, bool) {
+	if o == nil || utils.IsNil(o.CustomConnectorDataMapping) {
 		return nil, false
 	}
-	return o.Status.Get(), o.Status.IsSet()
+	return &o.CustomConnectorDataMapping, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *DigiCertConnectorResponse) HasStatus() bool {
-	if o != nil && o.Status.IsSet() {
+// HasCustomConnectorDataMapping returns a boolean if a field has been set.
+func (o *DigiCertConnectorResponse) HasCustomConnectorDataMapping() bool {
+	if o != nil && !utils.IsNil(o.CustomConnectorDataMapping) {
 		return true
 	}
 
 	return false
 }
 
-// SetStatus gets a reference to the given NullablePKIConnectorStatus and assigns it to the Status field.
-func (o *DigiCertConnectorResponse) SetStatus(v PKIConnectorStatus) {
-	o.Status.Set(&v)
-}
-
-// SetStatusNil sets the value for Status to be an explicit nil
-func (o *DigiCertConnectorResponse) SetStatusNil() {
-	o.Status.Set(nil)
-}
-
-// UnsetStatus ensures that no value is present for Status, not even an explicit nil
-func (o *DigiCertConnectorResponse) UnsetStatus() {
-	o.Status.Unset()
+// SetCustomConnectorDataMapping gets a reference to the given map[string]string and assigns it to the CustomConnectorDataMapping field.
+func (o *DigiCertConnectorResponse) SetCustomConnectorDataMapping(v map[string]string) {
+	o.CustomConnectorDataMapping = v
 }
 
 // GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -555,28 +450,133 @@ func (o *DigiCertConnectorResponse) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
-// GetType returns the Type field value
-func (o *DigiCertConnectorResponse) GetType() string {
-	if o == nil {
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DigiCertConnectorResponse) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Proxy.Get()
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DigiCertConnectorResponse) GetTypeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DigiCertConnectorResponse) GetProxyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Proxy.Get(), o.Proxy.IsSet()
 }
 
-// SetType sets field value
-func (o *DigiCertConnectorResponse) SetType(v string) {
-	o.Type = v
+// HasProxy returns a boolean if a field has been set.
+func (o *DigiCertConnectorResponse) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *DigiCertConnectorResponse) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *DigiCertConnectorResponse) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *DigiCertConnectorResponse) UnsetProxy() {
+	o.Proxy.Unset()
+}
+
+// GetQueue returns the Queue field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DigiCertConnectorResponse) GetQueue() string {
+	if o == nil || utils.IsNil(o.Queue.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Queue.Get()
+}
+
+// GetQueueOk returns a tuple with the Queue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DigiCertConnectorResponse) GetQueueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Queue.Get(), o.Queue.IsSet()
+}
+
+// HasQueue returns a boolean if a field has been set.
+func (o *DigiCertConnectorResponse) HasQueue() bool {
+	if o != nil && o.Queue.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetQueue gets a reference to the given NullableString and assigns it to the Queue field.
+func (o *DigiCertConnectorResponse) SetQueue(v string) {
+	o.Queue.Set(&v)
+}
+
+// SetQueueNil sets the value for Queue to be an explicit nil
+func (o *DigiCertConnectorResponse) SetQueueNil() {
+	o.Queue.Set(nil)
+}
+
+// UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+func (o *DigiCertConnectorResponse) UnsetQueue() {
+	o.Queue.Unset()
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DigiCertConnectorResponse) GetStatus() PKIConnectorStatus {
+	if o == nil || utils.IsNil(o.Status.Get()) {
+		var ret PKIConnectorStatus
+		return ret
+	}
+	return *o.Status.Get()
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DigiCertConnectorResponse) GetStatusOk() (*PKIConnectorStatus, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Status.Get(), o.Status.IsSet()
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *DigiCertConnectorResponse) HasStatus() bool {
+	if o != nil && o.Status.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given NullablePKIConnectorStatus and assigns it to the Status field.
+func (o *DigiCertConnectorResponse) SetStatus(v PKIConnectorStatus) {
+	o.Status.Set(&v)
+}
+
+// SetStatusNil sets the value for Status to be an explicit nil
+func (o *DigiCertConnectorResponse) SetStatusNil() {
+	o.Status.Set(nil)
+}
+
+// UnsetStatus ensures that no value is present for Status, not even an explicit nil
+func (o *DigiCertConnectorResponse) UnsetStatus() {
+	o.Status.Unset()
 }
 
 func (o DigiCertConnectorResponse) MarshalJSON() ([]byte, error) {
@@ -590,24 +590,16 @@ func (o DigiCertConnectorResponse) MarshalJSON() ([]byte, error) {
 func (o DigiCertConnectorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["apiCredentials"] = o.ApiCredentials
-	toSerialize["baseUrl"] = o.BaseUrl
-	if o.CaCertId.IsSet() {
-		toSerialize["caCertId"] = o.CaCertId.Get()
-	}
-	if o.CustomConnectorDataMapping != nil {
-		toSerialize["customConnectorDataMapping"] = o.CustomConnectorDataMapping
-	}
 	toSerialize["name"] = o.Name
-	toSerialize["organizationId"] = o.OrganizationId
+	toSerialize["type"] = o.Type
+	toSerialize["baseUrl"] = o.BaseUrl
 	if !utils.IsNil(o.ProductId) {
 		toSerialize["productId"] = o.ProductId
 	}
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
-	if o.Queue.IsSet() {
-		toSerialize["queue"] = o.Queue.Get()
+	toSerialize["apiCredentials"] = o.ApiCredentials
+	toSerialize["organizationId"] = o.OrganizationId
+	if o.CaCertId.IsSet() {
+		toSerialize["caCertId"] = o.CaCertId.Get()
 	}
 	if o.RetryInterval.IsSet() {
 		toSerialize["retryInterval"] = o.RetryInterval.Get()
@@ -615,13 +607,21 @@ func (o DigiCertConnectorResponse) ToMap() (map[string]interface{}, error) {
 	if o.SkipApproval.IsSet() {
 		toSerialize["skipApproval"] = o.SkipApproval.Get()
 	}
-	if o.Status.IsSet() {
-		toSerialize["status"] = o.Status.Get()
+	if o.CustomConnectorDataMapping != nil {
+		toSerialize["customConnectorDataMapping"] = o.CustomConnectorDataMapping
 	}
 	if o.Timeout.IsSet() {
 		toSerialize["timeout"] = o.Timeout.Get()
 	}
-	toSerialize["type"] = o.Type
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
+	if o.Queue.IsSet() {
+		toSerialize["queue"] = o.Queue.Get()
+	}
+	if o.Status.IsSet() {
+		toSerialize["status"] = o.Status.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -636,11 +636,11 @@ func (o *DigiCertConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"apiCredentials",
-		"baseUrl",
 		"name",
-		"organizationId",
 		"type",
+		"baseUrl",
+		"apiCredentials",
+		"organizationId",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -671,20 +671,20 @@ func (o *DigiCertConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "apiCredentials")
-		delete(additionalProperties, "baseUrl")
-		delete(additionalProperties, "caCertId")
-		delete(additionalProperties, "customConnectorDataMapping")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "baseUrl")
 		delete(additionalProperties, "productId")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "queue")
+		delete(additionalProperties, "apiCredentials")
+		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "caCertId")
 		delete(additionalProperties, "retryInterval")
 		delete(additionalProperties, "skipApproval")
-		delete(additionalProperties, "status")
+		delete(additionalProperties, "customConnectorDataMapping")
 		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "queue")
+		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}
 

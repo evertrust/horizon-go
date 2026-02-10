@@ -21,10 +21,10 @@ var _ utils.MappedNullable = &DiscoveryEventSearchQuery{}
 
 // DiscoveryEventSearchQuery struct for DiscoveryEventSearchQuery
 type DiscoveryEventSearchQuery struct {
-	PageIndex            utils.NullableInt64  `json:"pageIndex,omitempty"`
-	PageSize             utils.NullableInt64  `json:"pageSize,omitempty"`
 	Query                utils.NullableString `json:"query,omitempty"`
 	SortedBy             []SortElement        `json:"sortedBy,omitempty"`
+	PageIndex            utils.NullableInt64  `json:"pageIndex,omitempty"`
+	PageSize             utils.NullableInt64  `json:"pageSize,omitempty"`
 	WithCount            utils.NullableBool   `json:"withCount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -46,6 +46,82 @@ func NewDiscoveryEventSearchQuery() *DiscoveryEventSearchQuery {
 func NewDiscoveryEventSearchQueryWithDefaults() *DiscoveryEventSearchQuery {
 	this := DiscoveryEventSearchQuery{}
 	return &this
+}
+
+// GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryEventSearchQuery) GetQuery() string {
+	if o == nil || utils.IsNil(o.Query.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Query.Get()
+}
+
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DiscoveryEventSearchQuery) GetQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Query.Get(), o.Query.IsSet()
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (o *DiscoveryEventSearchQuery) HasQuery() bool {
+	if o != nil && o.Query.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery gets a reference to the given NullableString and assigns it to the Query field.
+func (o *DiscoveryEventSearchQuery) SetQuery(v string) {
+	o.Query.Set(&v)
+}
+
+// SetQueryNil sets the value for Query to be an explicit nil
+func (o *DiscoveryEventSearchQuery) SetQueryNil() {
+	o.Query.Set(nil)
+}
+
+// UnsetQuery ensures that no value is present for Query, not even an explicit nil
+func (o *DiscoveryEventSearchQuery) UnsetQuery() {
+	o.Query.Unset()
+}
+
+// GetSortedBy returns the SortedBy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryEventSearchQuery) GetSortedBy() []SortElement {
+	if o == nil {
+		var ret []SortElement
+		return ret
+	}
+	return o.SortedBy
+}
+
+// GetSortedByOk returns a tuple with the SortedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DiscoveryEventSearchQuery) GetSortedByOk() ([]SortElement, bool) {
+	if o == nil || utils.IsNil(o.SortedBy) {
+		return nil, false
+	}
+	return o.SortedBy, true
+}
+
+// HasSortedBy returns a boolean if a field has been set.
+func (o *DiscoveryEventSearchQuery) HasSortedBy() bool {
+	if o != nil && !utils.IsNil(o.SortedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetSortedBy gets a reference to the given []SortElement and assigns it to the SortedBy field.
+func (o *DiscoveryEventSearchQuery) SetSortedBy(v []SortElement) {
+	o.SortedBy = v
 }
 
 // GetPageIndex returns the PageIndex field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -134,82 +210,6 @@ func (o *DiscoveryEventSearchQuery) UnsetPageSize() {
 	o.PageSize.Unset()
 }
 
-// GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryEventSearchQuery) GetQuery() string {
-	if o == nil || utils.IsNil(o.Query.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Query.Get()
-}
-
-// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryEventSearchQuery) GetQueryOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Query.Get(), o.Query.IsSet()
-}
-
-// HasQuery returns a boolean if a field has been set.
-func (o *DiscoveryEventSearchQuery) HasQuery() bool {
-	if o != nil && o.Query.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQuery gets a reference to the given NullableString and assigns it to the Query field.
-func (o *DiscoveryEventSearchQuery) SetQuery(v string) {
-	o.Query.Set(&v)
-}
-
-// SetQueryNil sets the value for Query to be an explicit nil
-func (o *DiscoveryEventSearchQuery) SetQueryNil() {
-	o.Query.Set(nil)
-}
-
-// UnsetQuery ensures that no value is present for Query, not even an explicit nil
-func (o *DiscoveryEventSearchQuery) UnsetQuery() {
-	o.Query.Unset()
-}
-
-// GetSortedBy returns the SortedBy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryEventSearchQuery) GetSortedBy() []SortElement {
-	if o == nil {
-		var ret []SortElement
-		return ret
-	}
-	return o.SortedBy
-}
-
-// GetSortedByOk returns a tuple with the SortedBy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryEventSearchQuery) GetSortedByOk() ([]SortElement, bool) {
-	if o == nil || utils.IsNil(o.SortedBy) {
-		return nil, false
-	}
-	return o.SortedBy, true
-}
-
-// HasSortedBy returns a boolean if a field has been set.
-func (o *DiscoveryEventSearchQuery) HasSortedBy() bool {
-	if o != nil && !utils.IsNil(o.SortedBy) {
-		return true
-	}
-
-	return false
-}
-
-// SetSortedBy gets a reference to the given []SortElement and assigns it to the SortedBy field.
-func (o *DiscoveryEventSearchQuery) SetSortedBy(v []SortElement) {
-	o.SortedBy = v
-}
-
 // GetWithCount returns the WithCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DiscoveryEventSearchQuery) GetWithCount() bool {
 	if o == nil || utils.IsNil(o.WithCount.Get()) {
@@ -263,17 +263,17 @@ func (o DiscoveryEventSearchQuery) MarshalJSON() ([]byte, error) {
 
 func (o DiscoveryEventSearchQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.PageIndex.IsSet() {
-		toSerialize["pageIndex"] = o.PageIndex.Get()
-	}
-	if o.PageSize.IsSet() {
-		toSerialize["pageSize"] = o.PageSize.Get()
-	}
 	if o.Query.IsSet() {
 		toSerialize["query"] = o.Query.Get()
 	}
 	if o.SortedBy != nil {
 		toSerialize["sortedBy"] = o.SortedBy
+	}
+	if o.PageIndex.IsSet() {
+		toSerialize["pageIndex"] = o.PageIndex.Get()
+	}
+	if o.PageSize.IsSet() {
+		toSerialize["pageSize"] = o.PageSize.Get()
 	}
 	if o.WithCount.IsSet() {
 		toSerialize["withCount"] = o.WithCount.Get()
@@ -300,10 +300,10 @@ func (o *DiscoveryEventSearchQuery) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "pageIndex")
-		delete(additionalProperties, "pageSize")
 		delete(additionalProperties, "query")
 		delete(additionalProperties, "sortedBy")
+		delete(additionalProperties, "pageIndex")
+		delete(additionalProperties, "pageSize")
 		delete(additionalProperties, "withCount")
 		o.AdditionalProperties = additionalProperties
 	}

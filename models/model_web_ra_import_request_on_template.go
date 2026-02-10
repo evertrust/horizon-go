@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &WebRAImportRequestOnTemplate{}
 
 // WebRAImportRequestOnTemplate struct for WebRAImportRequestOnTemplate
 type WebRAImportRequestOnTemplate struct {
+	Workflow string `json:"workflow"`
 	// Test whether the private key can be imported on the certificate
 	Template *map[string]interface{} `json:"template,omitempty"`
-	Workflow string                  `json:"workflow"`
 	// Used to pre-fill the template field with the certificate values.
 	CertificateId utils.NullableString `json:"certificateId,omitempty"`
 	// Used to pre-fill the template field with the certificate values.
@@ -44,8 +44,8 @@ type _WebRAImportRequestOnTemplate WebRAImportRequestOnTemplate
 // will change when the set of required properties is changed
 func NewWebRAImportRequestOnTemplate(workflow string, profile string) *WebRAImportRequestOnTemplate {
 	this := WebRAImportRequestOnTemplate{}
-	this.Profile = profile
 	this.Workflow = workflow
+	this.Profile = profile
 	return &this
 }
 
@@ -55,6 +55,30 @@ func NewWebRAImportRequestOnTemplate(workflow string, profile string) *WebRAImpo
 func NewWebRAImportRequestOnTemplateWithDefaults() *WebRAImportRequestOnTemplate {
 	this := WebRAImportRequestOnTemplate{}
 	return &this
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *WebRAImportRequestOnTemplate) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRAImportRequestOnTemplate) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRAImportRequestOnTemplate) SetWorkflow(v string) {
+	o.Workflow = v
 }
 
 // GetTemplate returns the Template field value if set, zero value otherwise.
@@ -87,30 +111,6 @@ func (o *WebRAImportRequestOnTemplate) HasTemplate() bool {
 // SetTemplate gets a reference to the given map[string]interface{} and assigns it to the Template field.
 func (o *WebRAImportRequestOnTemplate) SetTemplate(v map[string]interface{}) {
 	o.Template = &v
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRAImportRequestOnTemplate) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRAImportRequestOnTemplate) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRAImportRequestOnTemplate) SetWorkflow(v string) {
-	o.Workflow = v
 }
 
 // GetCertificateId returns the CertificateId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -265,10 +265,10 @@ func (o WebRAImportRequestOnTemplate) MarshalJSON() ([]byte, error) {
 
 func (o WebRAImportRequestOnTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["workflow"] = o.Workflow
 	if !utils.IsNil(o.Template) {
 		toSerialize["template"] = o.Template
 	}
-	toSerialize["workflow"] = o.Workflow
 	if o.CertificateId.IsSet() {
 		toSerialize["certificateId"] = o.CertificateId.Get()
 	}
@@ -323,8 +323,8 @@ func (o *WebRAImportRequestOnTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "template")
 		delete(additionalProperties, "workflow")
+		delete(additionalProperties, "template")
 		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "certificatePem")
 		delete(additionalProperties, "module")

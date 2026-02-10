@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SetTriggers** | [**[]AcmeRestRequest**](AcmeRestRequest.md) | The triggers that will set the DNS challenge on the provider. | 
 **Type** | **string** |  | 
+**SetTriggers** | [**[]AcmeRestRequest**](AcmeRestRequest.md) | The triggers that will set the DNS challenge on the provider. | 
 **UnsetTriggers** | Pointer to [**[]AcmeRestRequest**](AcmeRestRequest.md) | The triggers that will unset the DNS challenge on the provider. | [optional] 
 **Credentials** | **string** | &#x60;raw&#x60; credentials name to use to authenticate on the Nameshield API | 
 **EndPoint** | **string** | Nameshield API endpoint | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewDnsChallengeProviders
 
-`func NewDnsChallengeProviders(setTriggers []AcmeRestRequest, type_ string, credentials string, endPoint string, timeout string, ) *DnsChallengeProviders`
+`func NewDnsChallengeProviders(type_ string, setTriggers []AcmeRestRequest, credentials string, endPoint string, timeout string, ) *DnsChallengeProviders`
 
 NewDnsChallengeProviders instantiates a new DnsChallengeProviders object
 This constructor will assign default values to properties that have it defined,
@@ -30,26 +30,6 @@ will change when the set of required properties is changed
 NewDnsChallengeProvidersWithDefaults instantiates a new DnsChallengeProviders object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetSetTriggers
-
-`func (o *DnsChallengeProviders) GetSetTriggers() []AcmeRestRequest`
-
-GetSetTriggers returns the SetTriggers field if non-nil, zero value otherwise.
-
-### GetSetTriggersOk
-
-`func (o *DnsChallengeProviders) GetSetTriggersOk() (*[]AcmeRestRequest, bool)`
-
-GetSetTriggersOk returns a tuple with the SetTriggers field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSetTriggers
-
-`func (o *DnsChallengeProviders) SetSetTriggers(v []AcmeRestRequest)`
-
-SetSetTriggers sets SetTriggers field to given value.
-
 
 ### GetType
 
@@ -69,6 +49,26 @@ and a boolean to check if the value has been set.
 `func (o *DnsChallengeProviders) SetType(v string)`
 
 SetType sets Type field to given value.
+
+
+### GetSetTriggers
+
+`func (o *DnsChallengeProviders) GetSetTriggers() []AcmeRestRequest`
+
+GetSetTriggers returns the SetTriggers field if non-nil, zero value otherwise.
+
+### GetSetTriggersOk
+
+`func (o *DnsChallengeProviders) GetSetTriggersOk() (*[]AcmeRestRequest, bool)`
+
+GetSetTriggersOk returns a tuple with the SetTriggers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSetTriggers
+
+`func (o *DnsChallengeProviders) SetSetTriggers(v []AcmeRestRequest)`
+
+SetSetTriggers sets SetTriggers field to given value.
 
 
 ### GetUnsetTriggers

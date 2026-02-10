@@ -22,21 +22,21 @@ var _ utils.MappedNullable = &CertificateProfileCapabilities{}
 
 // CertificateProfileCapabilities struct for CertificateProfileCapabilities
 type CertificateProfileCapabilities struct {
-	// The list of key types that are authorized for enrollment. A null value means all keys are allowed
-	AuthorizedKeyTypes []string `json:"authorizedKeyTypes,omitempty"`
 	// Centralized enrollment is enabled on this profile
 	Centralized bool `json:"centralized"`
 	// Decentralized enrollment is enabled on this profile
 	Decentralized bool `json:"decentralized"`
 	// Key type used when no keyType has been chosen
 	DefaultKeyType utils.NullableString `json:"defaultKeyType,omitempty" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
-	// A `manual` password mode means the password for the PKCS#12 must be set in the request. A `random` password will be generated on Horizon
-	P12passwordMode utils.NullableString `json:"p12passwordMode,omitempty"`
-	// The selected password policy for this profile. If none is defined and the password mode is `manual`, there is no constraint on the password. In `random` mode, the `Horizon-Default` policy is used
-	PasswordPolicy NullablePasswordPolicy `json:"passwordPolicy,omitempty"`
+	// The list of key types that are authorized for enrollment. A null value means all keys are allowed
+	AuthorizedKeyTypes []string `json:"authorizedKeyTypes,omitempty"`
 	// The enrollment mode that should be prioritized when both are defined
 	PreferredEnrollmentMode utils.NullableString `json:"preferredEnrollmentMode,omitempty"`
-	AdditionalProperties    map[string]interface{}
+	// The selected password policy for this profile. If none is defined and the password mode is `manual`, there is no constraint on the password. In `random` mode, the `Horizon-Default` policy is used
+	PasswordPolicy NullablePasswordPolicy `json:"passwordPolicy,omitempty"`
+	// A `manual` password mode means the password for the PKCS#12 must be set in the request. A `random` password will be generated on Horizon
+	P12passwordMode      utils.NullableString `json:"p12passwordMode,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CertificateProfileCapabilities CertificateProfileCapabilities
@@ -58,39 +58,6 @@ func NewCertificateProfileCapabilities(centralized bool, decentralized bool) *Ce
 func NewCertificateProfileCapabilitiesWithDefaults() *CertificateProfileCapabilities {
 	this := CertificateProfileCapabilities{}
 	return &this
-}
-
-// GetAuthorizedKeyTypes returns the AuthorizedKeyTypes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateProfileCapabilities) GetAuthorizedKeyTypes() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.AuthorizedKeyTypes
-}
-
-// GetAuthorizedKeyTypesOk returns a tuple with the AuthorizedKeyTypes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateProfileCapabilities) GetAuthorizedKeyTypesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.AuthorizedKeyTypes) {
-		return nil, false
-	}
-	return o.AuthorizedKeyTypes, true
-}
-
-// HasAuthorizedKeyTypes returns a boolean if a field has been set.
-func (o *CertificateProfileCapabilities) HasAuthorizedKeyTypes() bool {
-	if o != nil && !utils.IsNil(o.AuthorizedKeyTypes) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthorizedKeyTypes gets a reference to the given []string and assigns it to the AuthorizedKeyTypes field.
-func (o *CertificateProfileCapabilities) SetAuthorizedKeyTypes(v []string) {
-	o.AuthorizedKeyTypes = v
 }
 
 // GetCentralized returns the Centralized field value
@@ -184,90 +151,37 @@ func (o *CertificateProfileCapabilities) UnsetDefaultKeyType() {
 	o.DefaultKeyType.Unset()
 }
 
-// GetP12passwordMode returns the P12passwordMode field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateProfileCapabilities) GetP12passwordMode() string {
-	if o == nil || utils.IsNil(o.P12passwordMode.Get()) {
-		var ret string
+// GetAuthorizedKeyTypes returns the AuthorizedKeyTypes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateProfileCapabilities) GetAuthorizedKeyTypes() []string {
+	if o == nil {
+		var ret []string
 		return ret
 	}
-	return *o.P12passwordMode.Get()
+	return o.AuthorizedKeyTypes
 }
 
-// GetP12passwordModeOk returns a tuple with the P12passwordMode field value if set, nil otherwise
+// GetAuthorizedKeyTypesOk returns a tuple with the AuthorizedKeyTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateProfileCapabilities) GetP12passwordModeOk() (*string, bool) {
-	if o == nil {
+func (o *CertificateProfileCapabilities) GetAuthorizedKeyTypesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.AuthorizedKeyTypes) {
 		return nil, false
 	}
-	return o.P12passwordMode.Get(), o.P12passwordMode.IsSet()
+	return o.AuthorizedKeyTypes, true
 }
 
-// HasP12passwordMode returns a boolean if a field has been set.
-func (o *CertificateProfileCapabilities) HasP12passwordMode() bool {
-	if o != nil && o.P12passwordMode.IsSet() {
+// HasAuthorizedKeyTypes returns a boolean if a field has been set.
+func (o *CertificateProfileCapabilities) HasAuthorizedKeyTypes() bool {
+	if o != nil && !utils.IsNil(o.AuthorizedKeyTypes) {
 		return true
 	}
 
 	return false
 }
 
-// SetP12passwordMode gets a reference to the given NullableString and assigns it to the P12passwordMode field.
-func (o *CertificateProfileCapabilities) SetP12passwordMode(v string) {
-	o.P12passwordMode.Set(&v)
-}
-
-// SetP12passwordModeNil sets the value for P12passwordMode to be an explicit nil
-func (o *CertificateProfileCapabilities) SetP12passwordModeNil() {
-	o.P12passwordMode.Set(nil)
-}
-
-// UnsetP12passwordMode ensures that no value is present for P12passwordMode, not even an explicit nil
-func (o *CertificateProfileCapabilities) UnsetP12passwordMode() {
-	o.P12passwordMode.Unset()
-}
-
-// GetPasswordPolicy returns the PasswordPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateProfileCapabilities) GetPasswordPolicy() PasswordPolicy {
-	if o == nil || utils.IsNil(o.PasswordPolicy.Get()) {
-		var ret PasswordPolicy
-		return ret
-	}
-	return *o.PasswordPolicy.Get()
-}
-
-// GetPasswordPolicyOk returns a tuple with the PasswordPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateProfileCapabilities) GetPasswordPolicyOk() (*PasswordPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PasswordPolicy.Get(), o.PasswordPolicy.IsSet()
-}
-
-// HasPasswordPolicy returns a boolean if a field has been set.
-func (o *CertificateProfileCapabilities) HasPasswordPolicy() bool {
-	if o != nil && o.PasswordPolicy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPasswordPolicy gets a reference to the given NullablePasswordPolicy and assigns it to the PasswordPolicy field.
-func (o *CertificateProfileCapabilities) SetPasswordPolicy(v PasswordPolicy) {
-	o.PasswordPolicy.Set(&v)
-}
-
-// SetPasswordPolicyNil sets the value for PasswordPolicy to be an explicit nil
-func (o *CertificateProfileCapabilities) SetPasswordPolicyNil() {
-	o.PasswordPolicy.Set(nil)
-}
-
-// UnsetPasswordPolicy ensures that no value is present for PasswordPolicy, not even an explicit nil
-func (o *CertificateProfileCapabilities) UnsetPasswordPolicy() {
-	o.PasswordPolicy.Unset()
+// SetAuthorizedKeyTypes gets a reference to the given []string and assigns it to the AuthorizedKeyTypes field.
+func (o *CertificateProfileCapabilities) SetAuthorizedKeyTypes(v []string) {
+	o.AuthorizedKeyTypes = v
 }
 
 // GetPreferredEnrollmentMode returns the PreferredEnrollmentMode field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -313,6 +227,92 @@ func (o *CertificateProfileCapabilities) UnsetPreferredEnrollmentMode() {
 	o.PreferredEnrollmentMode.Unset()
 }
 
+// GetPasswordPolicy returns the PasswordPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateProfileCapabilities) GetPasswordPolicy() PasswordPolicy {
+	if o == nil || utils.IsNil(o.PasswordPolicy.Get()) {
+		var ret PasswordPolicy
+		return ret
+	}
+	return *o.PasswordPolicy.Get()
+}
+
+// GetPasswordPolicyOk returns a tuple with the PasswordPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateProfileCapabilities) GetPasswordPolicyOk() (*PasswordPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PasswordPolicy.Get(), o.PasswordPolicy.IsSet()
+}
+
+// HasPasswordPolicy returns a boolean if a field has been set.
+func (o *CertificateProfileCapabilities) HasPasswordPolicy() bool {
+	if o != nil && o.PasswordPolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPasswordPolicy gets a reference to the given NullablePasswordPolicy and assigns it to the PasswordPolicy field.
+func (o *CertificateProfileCapabilities) SetPasswordPolicy(v PasswordPolicy) {
+	o.PasswordPolicy.Set(&v)
+}
+
+// SetPasswordPolicyNil sets the value for PasswordPolicy to be an explicit nil
+func (o *CertificateProfileCapabilities) SetPasswordPolicyNil() {
+	o.PasswordPolicy.Set(nil)
+}
+
+// UnsetPasswordPolicy ensures that no value is present for PasswordPolicy, not even an explicit nil
+func (o *CertificateProfileCapabilities) UnsetPasswordPolicy() {
+	o.PasswordPolicy.Unset()
+}
+
+// GetP12passwordMode returns the P12passwordMode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateProfileCapabilities) GetP12passwordMode() string {
+	if o == nil || utils.IsNil(o.P12passwordMode.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.P12passwordMode.Get()
+}
+
+// GetP12passwordModeOk returns a tuple with the P12passwordMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateProfileCapabilities) GetP12passwordModeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.P12passwordMode.Get(), o.P12passwordMode.IsSet()
+}
+
+// HasP12passwordMode returns a boolean if a field has been set.
+func (o *CertificateProfileCapabilities) HasP12passwordMode() bool {
+	if o != nil && o.P12passwordMode.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetP12passwordMode gets a reference to the given NullableString and assigns it to the P12passwordMode field.
+func (o *CertificateProfileCapabilities) SetP12passwordMode(v string) {
+	o.P12passwordMode.Set(&v)
+}
+
+// SetP12passwordModeNil sets the value for P12passwordMode to be an explicit nil
+func (o *CertificateProfileCapabilities) SetP12passwordModeNil() {
+	o.P12passwordMode.Set(nil)
+}
+
+// UnsetP12passwordMode ensures that no value is present for P12passwordMode, not even an explicit nil
+func (o *CertificateProfileCapabilities) UnsetP12passwordMode() {
+	o.P12passwordMode.Unset()
+}
+
 func (o CertificateProfileCapabilities) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -323,22 +323,22 @@ func (o CertificateProfileCapabilities) MarshalJSON() ([]byte, error) {
 
 func (o CertificateProfileCapabilities) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AuthorizedKeyTypes != nil {
-		toSerialize["authorizedKeyTypes"] = o.AuthorizedKeyTypes
-	}
 	toSerialize["centralized"] = o.Centralized
 	toSerialize["decentralized"] = o.Decentralized
 	if o.DefaultKeyType.IsSet() {
 		toSerialize["defaultKeyType"] = o.DefaultKeyType.Get()
 	}
-	if o.P12passwordMode.IsSet() {
-		toSerialize["p12passwordMode"] = o.P12passwordMode.Get()
+	if o.AuthorizedKeyTypes != nil {
+		toSerialize["authorizedKeyTypes"] = o.AuthorizedKeyTypes
+	}
+	if o.PreferredEnrollmentMode.IsSet() {
+		toSerialize["preferredEnrollmentMode"] = o.PreferredEnrollmentMode.Get()
 	}
 	if o.PasswordPolicy.IsSet() {
 		toSerialize["passwordPolicy"] = o.PasswordPolicy.Get()
 	}
-	if o.PreferredEnrollmentMode.IsSet() {
-		toSerialize["preferredEnrollmentMode"] = o.PreferredEnrollmentMode.Get()
+	if o.P12passwordMode.IsSet() {
+		toSerialize["p12passwordMode"] = o.P12passwordMode.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -384,13 +384,13 @@ func (o *CertificateProfileCapabilities) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "authorizedKeyTypes")
 		delete(additionalProperties, "centralized")
 		delete(additionalProperties, "decentralized")
 		delete(additionalProperties, "defaultKeyType")
-		delete(additionalProperties, "p12passwordMode")
-		delete(additionalProperties, "passwordPolicy")
+		delete(additionalProperties, "authorizedKeyTypes")
 		delete(additionalProperties, "preferredEnrollmentMode")
+		delete(additionalProperties, "passwordPolicy")
+		delete(additionalProperties, "p12passwordMode")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -4,44 +4,44 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Connector** | **string** |  | 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**DryRun** | **bool** |  | 
-**Enroll** | **bool** |  | 
+**Type** | **string** |  | 
 **Module** | **string** |  | 
 **Profile** | **string** |  | 
-**Renew** | **bool** |  | 
-**Results** | Pointer to [**NullableThirdPartyConnectorSynchronizationResult**](ThirdPartyConnectorSynchronizationResult.md) |  | [optional] 
+**Connector** | **string** |  | 
+**Enroll** | **bool** |  | 
 **Revoke** | **bool** |  | 
-**Type** | **string** |  | 
+**Renew** | **bool** |  | 
+**DryRun** | **bool** |  | 
+**Results** | Pointer to [**NullableThirdPartyConnectorSynchronizationResult**](ThirdPartyConnectorSynchronizationResult.md) |  | [optional] 
+**Description** | Pointer to **NullableString** |  | [optional] 
 **Cron** | **string** |  | 
-**Detail** | Pointer to **NullableString** |  | [optional] 
-**Enabled** | **bool** |  | 
-**ExecutionId** | Pointer to **NullableString** |  | [optional] 
 **Host** | Pointer to **NullableString** |  | [optional] 
-**LastCompletionDate** | Pointer to **NullableInt64** |  | [optional] 
-**LastExecutionDate** | Pointer to **NullableInt64** |  | [optional] 
 **Status** | Pointer to **NullableString** |  | [optional] 
-**ReportType** | **string** |  | 
+**LastExecutionDate** | Pointer to **NullableInt64** |  | [optional] 
+**LastCompletionDate** | Pointer to **NullableInt64** |  | [optional] 
+**Detail** | Pointer to **NullableString** |  | [optional] 
+**ExecutionId** | Pointer to **NullableString** |  | [optional] 
+**Enabled** | **bool** |  | 
 **RetentionPeriod** | **string** | Indicates the duration during which the report can be downloaded | 
-**Body** | Pointer to **NullableString** |  | [optional] 
-**FileName** | Pointer to **NullableString** |  | [optional] 
-**From** | **string** |  | 
-**HqlFields** | Pointer to **[]string** |  | [optional] 
-**HqlQuery** | Pointer to **NullableString** |  | [optional] 
-**HqlSortedBy** | Pointer to [**[]SortElement**](SortElement.md) |  | [optional] 
-**HqlType** | **string** |  | 
-**IsHtml** | **bool** |  | 
+**ReportType** | **string** |  | 
 **Name** | **string** |  | 
+**FileName** | Pointer to **NullableString** |  | [optional] 
 **Recipients** | [**[]ReportRecipient**](ReportRecipient.md) |  | 
+**From** | **string** |  | 
 **Title** | **string** |  | 
+**Body** | Pointer to **NullableString** |  | [optional] 
+**IsHtml** | **bool** |  | 
+**HqlType** | **string** |  | 
+**HqlQuery** | Pointer to **NullableString** |  | [optional] 
+**HqlFields** | Pointer to **[]string** |  | [optional] 
+**HqlSortedBy** | Pointer to [**[]SortElement**](SortElement.md) |  | [optional] 
 **CompressCsv** | Pointer to **bool** | Should the report be compressed using GZ | [optional] 
 
 ## Methods
 
 ### NewScheduledTasks
 
-`func NewScheduledTasks(connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool, reportType string, retentionPeriod string, from string, hqlType string, isHtml bool, name string, recipients []ReportRecipient, title string, ) *ScheduledTasks`
+`func NewScheduledTasks(type_ string, module string, profile string, connector string, enroll bool, revoke bool, renew bool, dryRun bool, cron string, enabled bool, retentionPeriod string, reportType string, name string, recipients []ReportRecipient, from string, title string, isHtml bool, hqlType string, ) *ScheduledTasks`
 
 NewScheduledTasks instantiates a new ScheduledTasks object
 This constructor will assign default values to properties that have it defined,
@@ -56,99 +56,24 @@ NewScheduledTasksWithDefaults instantiates a new ScheduledTasks object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetConnector
+### GetType
 
-`func (o *ScheduledTasks) GetConnector() string`
+`func (o *ScheduledTasks) GetType() string`
 
-GetConnector returns the Connector field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetConnectorOk
+### GetTypeOk
 
-`func (o *ScheduledTasks) GetConnectorOk() (*string, bool)`
+`func (o *ScheduledTasks) GetTypeOk() (*string, bool)`
 
-GetConnectorOk returns a tuple with the Connector field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConnector
+### SetType
 
-`func (o *ScheduledTasks) SetConnector(v string)`
+`func (o *ScheduledTasks) SetType(v string)`
 
-SetConnector sets Connector field to given value.
-
-
-### GetDescription
-
-`func (o *ScheduledTasks) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *ScheduledTasks) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *ScheduledTasks) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *ScheduledTasks) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescriptionNil
-
-`func (o *ScheduledTasks) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *ScheduledTasks) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetDryRun
-
-`func (o *ScheduledTasks) GetDryRun() bool`
-
-GetDryRun returns the DryRun field if non-nil, zero value otherwise.
-
-### GetDryRunOk
-
-`func (o *ScheduledTasks) GetDryRunOk() (*bool, bool)`
-
-GetDryRunOk returns a tuple with the DryRun field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDryRun
-
-`func (o *ScheduledTasks) SetDryRun(v bool)`
-
-SetDryRun sets DryRun field to given value.
-
-
-### GetEnroll
-
-`func (o *ScheduledTasks) GetEnroll() bool`
-
-GetEnroll returns the Enroll field if non-nil, zero value otherwise.
-
-### GetEnrollOk
-
-`func (o *ScheduledTasks) GetEnrollOk() (*bool, bool)`
-
-GetEnrollOk returns a tuple with the Enroll field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnroll
-
-`func (o *ScheduledTasks) SetEnroll(v bool)`
-
-SetEnroll sets Enroll field to given value.
+SetType sets Type field to given value.
 
 
 ### GetModule
@@ -191,6 +116,66 @@ and a boolean to check if the value has been set.
 SetProfile sets Profile field to given value.
 
 
+### GetConnector
+
+`func (o *ScheduledTasks) GetConnector() string`
+
+GetConnector returns the Connector field if non-nil, zero value otherwise.
+
+### GetConnectorOk
+
+`func (o *ScheduledTasks) GetConnectorOk() (*string, bool)`
+
+GetConnectorOk returns a tuple with the Connector field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConnector
+
+`func (o *ScheduledTasks) SetConnector(v string)`
+
+SetConnector sets Connector field to given value.
+
+
+### GetEnroll
+
+`func (o *ScheduledTasks) GetEnroll() bool`
+
+GetEnroll returns the Enroll field if non-nil, zero value otherwise.
+
+### GetEnrollOk
+
+`func (o *ScheduledTasks) GetEnrollOk() (*bool, bool)`
+
+GetEnrollOk returns a tuple with the Enroll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnroll
+
+`func (o *ScheduledTasks) SetEnroll(v bool)`
+
+SetEnroll sets Enroll field to given value.
+
+
+### GetRevoke
+
+`func (o *ScheduledTasks) GetRevoke() bool`
+
+GetRevoke returns the Revoke field if non-nil, zero value otherwise.
+
+### GetRevokeOk
+
+`func (o *ScheduledTasks) GetRevokeOk() (*bool, bool)`
+
+GetRevokeOk returns a tuple with the Revoke field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevoke
+
+`func (o *ScheduledTasks) SetRevoke(v bool)`
+
+SetRevoke sets Revoke field to given value.
+
+
 ### GetRenew
 
 `func (o *ScheduledTasks) GetRenew() bool`
@@ -209,6 +194,26 @@ and a boolean to check if the value has been set.
 `func (o *ScheduledTasks) SetRenew(v bool)`
 
 SetRenew sets Renew field to given value.
+
+
+### GetDryRun
+
+`func (o *ScheduledTasks) GetDryRun() bool`
+
+GetDryRun returns the DryRun field if non-nil, zero value otherwise.
+
+### GetDryRunOk
+
+`func (o *ScheduledTasks) GetDryRunOk() (*bool, bool)`
+
+GetDryRunOk returns a tuple with the DryRun field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDryRun
+
+`func (o *ScheduledTasks) SetDryRun(v bool)`
+
+SetDryRun sets DryRun field to given value.
 
 
 ### GetResults
@@ -246,46 +251,41 @@ HasResults returns a boolean if a field has been set.
 `func (o *ScheduledTasks) UnsetResults()`
 
 UnsetResults ensures that no value is present for Results, not even an explicit nil
-### GetRevoke
+### GetDescription
 
-`func (o *ScheduledTasks) GetRevoke() bool`
+`func (o *ScheduledTasks) GetDescription() string`
 
-GetRevoke returns the Revoke field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetRevokeOk
+### GetDescriptionOk
 
-`func (o *ScheduledTasks) GetRevokeOk() (*bool, bool)`
+`func (o *ScheduledTasks) GetDescriptionOk() (*string, bool)`
 
-GetRevokeOk returns a tuple with the Revoke field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRevoke
+### SetDescription
 
-`func (o *ScheduledTasks) SetRevoke(v bool)`
+`func (o *ScheduledTasks) SetDescription(v string)`
 
-SetRevoke sets Revoke field to given value.
+SetDescription sets Description field to given value.
 
+### HasDescription
 
-### GetType
+`func (o *ScheduledTasks) HasDescription() bool`
 
-`func (o *ScheduledTasks) GetType() string`
+HasDescription returns a boolean if a field has been set.
 
-GetType returns the Type field if non-nil, zero value otherwise.
+### SetDescriptionNil
 
-### GetTypeOk
+`func (o *ScheduledTasks) SetDescriptionNil(b bool)`
 
-`func (o *ScheduledTasks) GetTypeOk() (*string, bool)`
+ SetDescriptionNil sets the value for Description to be an explicit nil
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetDescription
+`func (o *ScheduledTasks) UnsetDescription()`
 
-### SetType
-
-`func (o *ScheduledTasks) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetCron
 
 `func (o *ScheduledTasks) GetCron() string`
@@ -306,96 +306,6 @@ and a boolean to check if the value has been set.
 SetCron sets Cron field to given value.
 
 
-### GetDetail
-
-`func (o *ScheduledTasks) GetDetail() string`
-
-GetDetail returns the Detail field if non-nil, zero value otherwise.
-
-### GetDetailOk
-
-`func (o *ScheduledTasks) GetDetailOk() (*string, bool)`
-
-GetDetailOk returns a tuple with the Detail field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDetail
-
-`func (o *ScheduledTasks) SetDetail(v string)`
-
-SetDetail sets Detail field to given value.
-
-### HasDetail
-
-`func (o *ScheduledTasks) HasDetail() bool`
-
-HasDetail returns a boolean if a field has been set.
-
-### SetDetailNil
-
-`func (o *ScheduledTasks) SetDetailNil(b bool)`
-
- SetDetailNil sets the value for Detail to be an explicit nil
-
-### UnsetDetail
-`func (o *ScheduledTasks) UnsetDetail()`
-
-UnsetDetail ensures that no value is present for Detail, not even an explicit nil
-### GetEnabled
-
-`func (o *ScheduledTasks) GetEnabled() bool`
-
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
-
-### GetEnabledOk
-
-`func (o *ScheduledTasks) GetEnabledOk() (*bool, bool)`
-
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnabled
-
-`func (o *ScheduledTasks) SetEnabled(v bool)`
-
-SetEnabled sets Enabled field to given value.
-
-
-### GetExecutionId
-
-`func (o *ScheduledTasks) GetExecutionId() string`
-
-GetExecutionId returns the ExecutionId field if non-nil, zero value otherwise.
-
-### GetExecutionIdOk
-
-`func (o *ScheduledTasks) GetExecutionIdOk() (*string, bool)`
-
-GetExecutionIdOk returns a tuple with the ExecutionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExecutionId
-
-`func (o *ScheduledTasks) SetExecutionId(v string)`
-
-SetExecutionId sets ExecutionId field to given value.
-
-### HasExecutionId
-
-`func (o *ScheduledTasks) HasExecutionId() bool`
-
-HasExecutionId returns a boolean if a field has been set.
-
-### SetExecutionIdNil
-
-`func (o *ScheduledTasks) SetExecutionIdNil(b bool)`
-
- SetExecutionIdNil sets the value for ExecutionId to be an explicit nil
-
-### UnsetExecutionId
-`func (o *ScheduledTasks) UnsetExecutionId()`
-
-UnsetExecutionId ensures that no value is present for ExecutionId, not even an explicit nil
 ### GetHost
 
 `func (o *ScheduledTasks) GetHost() string`
@@ -431,76 +341,6 @@ HasHost returns a boolean if a field has been set.
 `func (o *ScheduledTasks) UnsetHost()`
 
 UnsetHost ensures that no value is present for Host, not even an explicit nil
-### GetLastCompletionDate
-
-`func (o *ScheduledTasks) GetLastCompletionDate() int64`
-
-GetLastCompletionDate returns the LastCompletionDate field if non-nil, zero value otherwise.
-
-### GetLastCompletionDateOk
-
-`func (o *ScheduledTasks) GetLastCompletionDateOk() (*int64, bool)`
-
-GetLastCompletionDateOk returns a tuple with the LastCompletionDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastCompletionDate
-
-`func (o *ScheduledTasks) SetLastCompletionDate(v int64)`
-
-SetLastCompletionDate sets LastCompletionDate field to given value.
-
-### HasLastCompletionDate
-
-`func (o *ScheduledTasks) HasLastCompletionDate() bool`
-
-HasLastCompletionDate returns a boolean if a field has been set.
-
-### SetLastCompletionDateNil
-
-`func (o *ScheduledTasks) SetLastCompletionDateNil(b bool)`
-
- SetLastCompletionDateNil sets the value for LastCompletionDate to be an explicit nil
-
-### UnsetLastCompletionDate
-`func (o *ScheduledTasks) UnsetLastCompletionDate()`
-
-UnsetLastCompletionDate ensures that no value is present for LastCompletionDate, not even an explicit nil
-### GetLastExecutionDate
-
-`func (o *ScheduledTasks) GetLastExecutionDate() int64`
-
-GetLastExecutionDate returns the LastExecutionDate field if non-nil, zero value otherwise.
-
-### GetLastExecutionDateOk
-
-`func (o *ScheduledTasks) GetLastExecutionDateOk() (*int64, bool)`
-
-GetLastExecutionDateOk returns a tuple with the LastExecutionDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastExecutionDate
-
-`func (o *ScheduledTasks) SetLastExecutionDate(v int64)`
-
-SetLastExecutionDate sets LastExecutionDate field to given value.
-
-### HasLastExecutionDate
-
-`func (o *ScheduledTasks) HasLastExecutionDate() bool`
-
-HasLastExecutionDate returns a boolean if a field has been set.
-
-### SetLastExecutionDateNil
-
-`func (o *ScheduledTasks) SetLastExecutionDateNil(b bool)`
-
- SetLastExecutionDateNil sets the value for LastExecutionDate to be an explicit nil
-
-### UnsetLastExecutionDate
-`func (o *ScheduledTasks) UnsetLastExecutionDate()`
-
-UnsetLastExecutionDate ensures that no value is present for LastExecutionDate, not even an explicit nil
 ### GetStatus
 
 `func (o *ScheduledTasks) GetStatus() string`
@@ -536,24 +376,164 @@ HasStatus returns a boolean if a field has been set.
 `func (o *ScheduledTasks) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
-### GetReportType
+### GetLastExecutionDate
 
-`func (o *ScheduledTasks) GetReportType() string`
+`func (o *ScheduledTasks) GetLastExecutionDate() int64`
 
-GetReportType returns the ReportType field if non-nil, zero value otherwise.
+GetLastExecutionDate returns the LastExecutionDate field if non-nil, zero value otherwise.
 
-### GetReportTypeOk
+### GetLastExecutionDateOk
 
-`func (o *ScheduledTasks) GetReportTypeOk() (*string, bool)`
+`func (o *ScheduledTasks) GetLastExecutionDateOk() (*int64, bool)`
 
-GetReportTypeOk returns a tuple with the ReportType field if it's non-nil, zero value otherwise
+GetLastExecutionDateOk returns a tuple with the LastExecutionDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReportType
+### SetLastExecutionDate
 
-`func (o *ScheduledTasks) SetReportType(v string)`
+`func (o *ScheduledTasks) SetLastExecutionDate(v int64)`
 
-SetReportType sets ReportType field to given value.
+SetLastExecutionDate sets LastExecutionDate field to given value.
+
+### HasLastExecutionDate
+
+`func (o *ScheduledTasks) HasLastExecutionDate() bool`
+
+HasLastExecutionDate returns a boolean if a field has been set.
+
+### SetLastExecutionDateNil
+
+`func (o *ScheduledTasks) SetLastExecutionDateNil(b bool)`
+
+ SetLastExecutionDateNil sets the value for LastExecutionDate to be an explicit nil
+
+### UnsetLastExecutionDate
+`func (o *ScheduledTasks) UnsetLastExecutionDate()`
+
+UnsetLastExecutionDate ensures that no value is present for LastExecutionDate, not even an explicit nil
+### GetLastCompletionDate
+
+`func (o *ScheduledTasks) GetLastCompletionDate() int64`
+
+GetLastCompletionDate returns the LastCompletionDate field if non-nil, zero value otherwise.
+
+### GetLastCompletionDateOk
+
+`func (o *ScheduledTasks) GetLastCompletionDateOk() (*int64, bool)`
+
+GetLastCompletionDateOk returns a tuple with the LastCompletionDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastCompletionDate
+
+`func (o *ScheduledTasks) SetLastCompletionDate(v int64)`
+
+SetLastCompletionDate sets LastCompletionDate field to given value.
+
+### HasLastCompletionDate
+
+`func (o *ScheduledTasks) HasLastCompletionDate() bool`
+
+HasLastCompletionDate returns a boolean if a field has been set.
+
+### SetLastCompletionDateNil
+
+`func (o *ScheduledTasks) SetLastCompletionDateNil(b bool)`
+
+ SetLastCompletionDateNil sets the value for LastCompletionDate to be an explicit nil
+
+### UnsetLastCompletionDate
+`func (o *ScheduledTasks) UnsetLastCompletionDate()`
+
+UnsetLastCompletionDate ensures that no value is present for LastCompletionDate, not even an explicit nil
+### GetDetail
+
+`func (o *ScheduledTasks) GetDetail() string`
+
+GetDetail returns the Detail field if non-nil, zero value otherwise.
+
+### GetDetailOk
+
+`func (o *ScheduledTasks) GetDetailOk() (*string, bool)`
+
+GetDetailOk returns a tuple with the Detail field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDetail
+
+`func (o *ScheduledTasks) SetDetail(v string)`
+
+SetDetail sets Detail field to given value.
+
+### HasDetail
+
+`func (o *ScheduledTasks) HasDetail() bool`
+
+HasDetail returns a boolean if a field has been set.
+
+### SetDetailNil
+
+`func (o *ScheduledTasks) SetDetailNil(b bool)`
+
+ SetDetailNil sets the value for Detail to be an explicit nil
+
+### UnsetDetail
+`func (o *ScheduledTasks) UnsetDetail()`
+
+UnsetDetail ensures that no value is present for Detail, not even an explicit nil
+### GetExecutionId
+
+`func (o *ScheduledTasks) GetExecutionId() string`
+
+GetExecutionId returns the ExecutionId field if non-nil, zero value otherwise.
+
+### GetExecutionIdOk
+
+`func (o *ScheduledTasks) GetExecutionIdOk() (*string, bool)`
+
+GetExecutionIdOk returns a tuple with the ExecutionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExecutionId
+
+`func (o *ScheduledTasks) SetExecutionId(v string)`
+
+SetExecutionId sets ExecutionId field to given value.
+
+### HasExecutionId
+
+`func (o *ScheduledTasks) HasExecutionId() bool`
+
+HasExecutionId returns a boolean if a field has been set.
+
+### SetExecutionIdNil
+
+`func (o *ScheduledTasks) SetExecutionIdNil(b bool)`
+
+ SetExecutionIdNil sets the value for ExecutionId to be an explicit nil
+
+### UnsetExecutionId
+`func (o *ScheduledTasks) UnsetExecutionId()`
+
+UnsetExecutionId ensures that no value is present for ExecutionId, not even an explicit nil
+### GetEnabled
+
+`func (o *ScheduledTasks) GetEnabled() bool`
+
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+
+### GetEnabledOk
+
+`func (o *ScheduledTasks) GetEnabledOk() (*bool, bool)`
+
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnabled
+
+`func (o *ScheduledTasks) SetEnabled(v bool)`
+
+SetEnabled sets Enabled field to given value.
 
 
 ### GetRetentionPeriod
@@ -574,6 +554,141 @@ and a boolean to check if the value has been set.
 `func (o *ScheduledTasks) SetRetentionPeriod(v string)`
 
 SetRetentionPeriod sets RetentionPeriod field to given value.
+
+
+### GetReportType
+
+`func (o *ScheduledTasks) GetReportType() string`
+
+GetReportType returns the ReportType field if non-nil, zero value otherwise.
+
+### GetReportTypeOk
+
+`func (o *ScheduledTasks) GetReportTypeOk() (*string, bool)`
+
+GetReportTypeOk returns a tuple with the ReportType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReportType
+
+`func (o *ScheduledTasks) SetReportType(v string)`
+
+SetReportType sets ReportType field to given value.
+
+
+### GetName
+
+`func (o *ScheduledTasks) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ScheduledTasks) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ScheduledTasks) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetFileName
+
+`func (o *ScheduledTasks) GetFileName() string`
+
+GetFileName returns the FileName field if non-nil, zero value otherwise.
+
+### GetFileNameOk
+
+`func (o *ScheduledTasks) GetFileNameOk() (*string, bool)`
+
+GetFileNameOk returns a tuple with the FileName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFileName
+
+`func (o *ScheduledTasks) SetFileName(v string)`
+
+SetFileName sets FileName field to given value.
+
+### HasFileName
+
+`func (o *ScheduledTasks) HasFileName() bool`
+
+HasFileName returns a boolean if a field has been set.
+
+### SetFileNameNil
+
+`func (o *ScheduledTasks) SetFileNameNil(b bool)`
+
+ SetFileNameNil sets the value for FileName to be an explicit nil
+
+### UnsetFileName
+`func (o *ScheduledTasks) UnsetFileName()`
+
+UnsetFileName ensures that no value is present for FileName, not even an explicit nil
+### GetRecipients
+
+`func (o *ScheduledTasks) GetRecipients() []ReportRecipient`
+
+GetRecipients returns the Recipients field if non-nil, zero value otherwise.
+
+### GetRecipientsOk
+
+`func (o *ScheduledTasks) GetRecipientsOk() (*[]ReportRecipient, bool)`
+
+GetRecipientsOk returns a tuple with the Recipients field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRecipients
+
+`func (o *ScheduledTasks) SetRecipients(v []ReportRecipient)`
+
+SetRecipients sets Recipients field to given value.
+
+
+### GetFrom
+
+`func (o *ScheduledTasks) GetFrom() string`
+
+GetFrom returns the From field if non-nil, zero value otherwise.
+
+### GetFromOk
+
+`func (o *ScheduledTasks) GetFromOk() (*string, bool)`
+
+GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFrom
+
+`func (o *ScheduledTasks) SetFrom(v string)`
+
+SetFrom sets From field to given value.
+
+
+### GetTitle
+
+`func (o *ScheduledTasks) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *ScheduledTasks) GetTitleOk() (*string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *ScheduledTasks) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
 
 
 ### GetBody
@@ -611,96 +726,46 @@ HasBody returns a boolean if a field has been set.
 `func (o *ScheduledTasks) UnsetBody()`
 
 UnsetBody ensures that no value is present for Body, not even an explicit nil
-### GetFileName
+### GetIsHtml
 
-`func (o *ScheduledTasks) GetFileName() string`
+`func (o *ScheduledTasks) GetIsHtml() bool`
 
-GetFileName returns the FileName field if non-nil, zero value otherwise.
+GetIsHtml returns the IsHtml field if non-nil, zero value otherwise.
 
-### GetFileNameOk
+### GetIsHtmlOk
 
-`func (o *ScheduledTasks) GetFileNameOk() (*string, bool)`
+`func (o *ScheduledTasks) GetIsHtmlOk() (*bool, bool)`
 
-GetFileNameOk returns a tuple with the FileName field if it's non-nil, zero value otherwise
+GetIsHtmlOk returns a tuple with the IsHtml field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFileName
+### SetIsHtml
 
-`func (o *ScheduledTasks) SetFileName(v string)`
+`func (o *ScheduledTasks) SetIsHtml(v bool)`
 
-SetFileName sets FileName field to given value.
+SetIsHtml sets IsHtml field to given value.
 
-### HasFileName
 
-`func (o *ScheduledTasks) HasFileName() bool`
+### GetHqlType
 
-HasFileName returns a boolean if a field has been set.
+`func (o *ScheduledTasks) GetHqlType() string`
 
-### SetFileNameNil
+GetHqlType returns the HqlType field if non-nil, zero value otherwise.
 
-`func (o *ScheduledTasks) SetFileNameNil(b bool)`
+### GetHqlTypeOk
 
- SetFileNameNil sets the value for FileName to be an explicit nil
+`func (o *ScheduledTasks) GetHqlTypeOk() (*string, bool)`
 
-### UnsetFileName
-`func (o *ScheduledTasks) UnsetFileName()`
-
-UnsetFileName ensures that no value is present for FileName, not even an explicit nil
-### GetFrom
-
-`func (o *ScheduledTasks) GetFrom() string`
-
-GetFrom returns the From field if non-nil, zero value otherwise.
-
-### GetFromOk
-
-`func (o *ScheduledTasks) GetFromOk() (*string, bool)`
-
-GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
+GetHqlTypeOk returns a tuple with the HqlType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFrom
+### SetHqlType
 
-`func (o *ScheduledTasks) SetFrom(v string)`
+`func (o *ScheduledTasks) SetHqlType(v string)`
 
-SetFrom sets From field to given value.
+SetHqlType sets HqlType field to given value.
 
 
-### GetHqlFields
-
-`func (o *ScheduledTasks) GetHqlFields() []string`
-
-GetHqlFields returns the HqlFields field if non-nil, zero value otherwise.
-
-### GetHqlFieldsOk
-
-`func (o *ScheduledTasks) GetHqlFieldsOk() (*[]string, bool)`
-
-GetHqlFieldsOk returns a tuple with the HqlFields field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHqlFields
-
-`func (o *ScheduledTasks) SetHqlFields(v []string)`
-
-SetHqlFields sets HqlFields field to given value.
-
-### HasHqlFields
-
-`func (o *ScheduledTasks) HasHqlFields() bool`
-
-HasHqlFields returns a boolean if a field has been set.
-
-### SetHqlFieldsNil
-
-`func (o *ScheduledTasks) SetHqlFieldsNil(b bool)`
-
- SetHqlFieldsNil sets the value for HqlFields to be an explicit nil
-
-### UnsetHqlFields
-`func (o *ScheduledTasks) UnsetHqlFields()`
-
-UnsetHqlFields ensures that no value is present for HqlFields, not even an explicit nil
 ### GetHqlQuery
 
 `func (o *ScheduledTasks) GetHqlQuery() string`
@@ -736,6 +801,41 @@ HasHqlQuery returns a boolean if a field has been set.
 `func (o *ScheduledTasks) UnsetHqlQuery()`
 
 UnsetHqlQuery ensures that no value is present for HqlQuery, not even an explicit nil
+### GetHqlFields
+
+`func (o *ScheduledTasks) GetHqlFields() []string`
+
+GetHqlFields returns the HqlFields field if non-nil, zero value otherwise.
+
+### GetHqlFieldsOk
+
+`func (o *ScheduledTasks) GetHqlFieldsOk() (*[]string, bool)`
+
+GetHqlFieldsOk returns a tuple with the HqlFields field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHqlFields
+
+`func (o *ScheduledTasks) SetHqlFields(v []string)`
+
+SetHqlFields sets HqlFields field to given value.
+
+### HasHqlFields
+
+`func (o *ScheduledTasks) HasHqlFields() bool`
+
+HasHqlFields returns a boolean if a field has been set.
+
+### SetHqlFieldsNil
+
+`func (o *ScheduledTasks) SetHqlFieldsNil(b bool)`
+
+ SetHqlFieldsNil sets the value for HqlFields to be an explicit nil
+
+### UnsetHqlFields
+`func (o *ScheduledTasks) UnsetHqlFields()`
+
+UnsetHqlFields ensures that no value is present for HqlFields, not even an explicit nil
 ### GetHqlSortedBy
 
 `func (o *ScheduledTasks) GetHqlSortedBy() []SortElement`
@@ -771,106 +871,6 @@ HasHqlSortedBy returns a boolean if a field has been set.
 `func (o *ScheduledTasks) UnsetHqlSortedBy()`
 
 UnsetHqlSortedBy ensures that no value is present for HqlSortedBy, not even an explicit nil
-### GetHqlType
-
-`func (o *ScheduledTasks) GetHqlType() string`
-
-GetHqlType returns the HqlType field if non-nil, zero value otherwise.
-
-### GetHqlTypeOk
-
-`func (o *ScheduledTasks) GetHqlTypeOk() (*string, bool)`
-
-GetHqlTypeOk returns a tuple with the HqlType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHqlType
-
-`func (o *ScheduledTasks) SetHqlType(v string)`
-
-SetHqlType sets HqlType field to given value.
-
-
-### GetIsHtml
-
-`func (o *ScheduledTasks) GetIsHtml() bool`
-
-GetIsHtml returns the IsHtml field if non-nil, zero value otherwise.
-
-### GetIsHtmlOk
-
-`func (o *ScheduledTasks) GetIsHtmlOk() (*bool, bool)`
-
-GetIsHtmlOk returns a tuple with the IsHtml field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsHtml
-
-`func (o *ScheduledTasks) SetIsHtml(v bool)`
-
-SetIsHtml sets IsHtml field to given value.
-
-
-### GetName
-
-`func (o *ScheduledTasks) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ScheduledTasks) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ScheduledTasks) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetRecipients
-
-`func (o *ScheduledTasks) GetRecipients() []ReportRecipient`
-
-GetRecipients returns the Recipients field if non-nil, zero value otherwise.
-
-### GetRecipientsOk
-
-`func (o *ScheduledTasks) GetRecipientsOk() (*[]ReportRecipient, bool)`
-
-GetRecipientsOk returns a tuple with the Recipients field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRecipients
-
-`func (o *ScheduledTasks) SetRecipients(v []ReportRecipient)`
-
-SetRecipients sets Recipients field to given value.
-
-
-### GetTitle
-
-`func (o *ScheduledTasks) GetTitle() string`
-
-GetTitle returns the Title field if non-nil, zero value otherwise.
-
-### GetTitleOk
-
-`func (o *ScheduledTasks) GetTitleOk() (*string, bool)`
-
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTitle
-
-`func (o *ScheduledTasks) SetTitle(v string)`
-
-SetTitle sets Title field to given value.
-
-
 ### GetCompressCsv
 
 `func (o *ScheduledTasks) GetCompressCsv() bool`

@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	certificateProfiles := openapiclient.CertificateProfiles{AcmeExternalProfile: openapiclient.NewAcmeExternalProfile(*openapiclient.NewCertificateProfileAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), []string{"AuthorizationMethods_example"}, []string{"AuthorizedCas_example"}, *openapiclient.NewManagedCertificateProfileCryptoPolicy(), false, "Module_example", "Name_example", "PkiConnector_example", *openapiclient.NewRequestsPolicy(), false, *openapiclient.NewCertificateProfileSelfPermissions())} // CertificateProfiles | Certificate profile to register
+	certificateProfiles := openapiclient.CertificateProfiles{AcmeExternalProfile: openapiclient.NewAcmeExternalProfile("Module_example", "Name_example", false, []string{"AuthorizationMethods_example"}, "PkiConnector_example", false, []string{"AuthorizedCas_example"}, *openapiclient.NewCertificateProfileAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), *openapiclient.NewRequestsPolicy(), *openapiclient.NewCertificateProfileSelfPermissions(), *openapiclient.NewManagedCertificateProfileCryptoPolicy())} // CertificateProfiles | Certificate profile to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -303,7 +303,7 @@ import (
 )
 
 func main() {
-	certificateProfiles := openapiclient.CertificateProfiles{AcmeExternalProfile: openapiclient.NewAcmeExternalProfile(*openapiclient.NewCertificateProfileAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), []string{"AuthorizationMethods_example"}, []string{"AuthorizedCas_example"}, *openapiclient.NewManagedCertificateProfileCryptoPolicy(), false, "Module_example", "Name_example", "PkiConnector_example", *openapiclient.NewRequestsPolicy(), false, *openapiclient.NewCertificateProfileSelfPermissions())} // CertificateProfiles | Certificate profile to update
+	certificateProfiles := openapiclient.CertificateProfiles{AcmeExternalProfile: openapiclient.NewAcmeExternalProfile("Module_example", "Name_example", false, []string{"AuthorizationMethods_example"}, "PkiConnector_example", false, []string{"AuthorizedCas_example"}, *openapiclient.NewCertificateProfileAuthorizationLevels(*openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated"), *openapiclient.NewAuthorizationLevel("authenticated")), *openapiclient.NewRequestsPolicy(), *openapiclient.NewCertificateProfileSelfPermissions(), *openapiclient.NewManagedCertificateProfileCryptoPolicy())} // CertificateProfiles | Certificate profile to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

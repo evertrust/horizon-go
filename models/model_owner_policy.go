@@ -22,12 +22,12 @@ var _ utils.MappedNullable = &OwnerPolicy{}
 
 // OwnerPolicy struct for OwnerPolicy
 type OwnerPolicy struct {
+	EditableByRequester bool `json:"editableByRequester"`
+	EditableByApprover  bool `json:"editableByApprover"`
 	// A computation rule that will dynamically generate a string value from the request's context
 	ComputationRule      utils.NullableString `json:"computationRule,omitempty"`
-	Description          []LocalizedString    `json:"description,omitempty"`
-	EditableByApprover   bool                 `json:"editableByApprover"`
-	EditableByRequester  bool                 `json:"editableByRequester"`
 	Mandatory            bool                 `json:"mandatory"`
+	Description          []LocalizedString    `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,10 +37,10 @@ type _OwnerPolicy OwnerPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOwnerPolicy(editableByApprover bool, editableByRequester bool, mandatory bool) *OwnerPolicy {
+func NewOwnerPolicy(editableByRequester bool, editableByApprover bool, mandatory bool) *OwnerPolicy {
 	this := OwnerPolicy{}
-	this.EditableByApprover = editableByApprover
 	this.EditableByRequester = editableByRequester
+	this.EditableByApprover = editableByApprover
 	this.Mandatory = mandatory
 	return &this
 }
@@ -51,6 +51,54 @@ func NewOwnerPolicy(editableByApprover bool, editableByRequester bool, mandatory
 func NewOwnerPolicyWithDefaults() *OwnerPolicy {
 	this := OwnerPolicy{}
 	return &this
+}
+
+// GetEditableByRequester returns the EditableByRequester field value
+func (o *OwnerPolicy) GetEditableByRequester() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.EditableByRequester
+}
+
+// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value
+// and a boolean to check if the value has been set.
+func (o *OwnerPolicy) GetEditableByRequesterOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EditableByRequester, true
+}
+
+// SetEditableByRequester sets field value
+func (o *OwnerPolicy) SetEditableByRequester(v bool) {
+	o.EditableByRequester = v
+}
+
+// GetEditableByApprover returns the EditableByApprover field value
+func (o *OwnerPolicy) GetEditableByApprover() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.EditableByApprover
+}
+
+// GetEditableByApproverOk returns a tuple with the EditableByApprover field value
+// and a boolean to check if the value has been set.
+func (o *OwnerPolicy) GetEditableByApproverOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EditableByApprover, true
+}
+
+// SetEditableByApprover sets field value
+func (o *OwnerPolicy) SetEditableByApprover(v bool) {
+	o.EditableByApprover = v
 }
 
 // GetComputationRule returns the ComputationRule field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -96,6 +144,30 @@ func (o *OwnerPolicy) UnsetComputationRule() {
 	o.ComputationRule.Unset()
 }
 
+// GetMandatory returns the Mandatory field value
+func (o *OwnerPolicy) GetMandatory() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Mandatory
+}
+
+// GetMandatoryOk returns a tuple with the Mandatory field value
+// and a boolean to check if the value has been set.
+func (o *OwnerPolicy) GetMandatoryOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Mandatory, true
+}
+
+// SetMandatory sets field value
+func (o *OwnerPolicy) SetMandatory(v bool) {
+	o.Mandatory = v
+}
+
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OwnerPolicy) GetDescription() []LocalizedString {
 	if o == nil {
@@ -129,78 +201,6 @@ func (o *OwnerPolicy) SetDescription(v []LocalizedString) {
 	o.Description = v
 }
 
-// GetEditableByApprover returns the EditableByApprover field value
-func (o *OwnerPolicy) GetEditableByApprover() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.EditableByApprover
-}
-
-// GetEditableByApproverOk returns a tuple with the EditableByApprover field value
-// and a boolean to check if the value has been set.
-func (o *OwnerPolicy) GetEditableByApproverOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EditableByApprover, true
-}
-
-// SetEditableByApprover sets field value
-func (o *OwnerPolicy) SetEditableByApprover(v bool) {
-	o.EditableByApprover = v
-}
-
-// GetEditableByRequester returns the EditableByRequester field value
-func (o *OwnerPolicy) GetEditableByRequester() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.EditableByRequester
-}
-
-// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value
-// and a boolean to check if the value has been set.
-func (o *OwnerPolicy) GetEditableByRequesterOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EditableByRequester, true
-}
-
-// SetEditableByRequester sets field value
-func (o *OwnerPolicy) SetEditableByRequester(v bool) {
-	o.EditableByRequester = v
-}
-
-// GetMandatory returns the Mandatory field value
-func (o *OwnerPolicy) GetMandatory() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Mandatory
-}
-
-// GetMandatoryOk returns a tuple with the Mandatory field value
-// and a boolean to check if the value has been set.
-func (o *OwnerPolicy) GetMandatoryOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Mandatory, true
-}
-
-// SetMandatory sets field value
-func (o *OwnerPolicy) SetMandatory(v bool) {
-	o.Mandatory = v
-}
-
 func (o OwnerPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -211,15 +211,15 @@ func (o OwnerPolicy) MarshalJSON() ([]byte, error) {
 
 func (o OwnerPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["editableByRequester"] = o.EditableByRequester
+	toSerialize["editableByApprover"] = o.EditableByApprover
 	if o.ComputationRule.IsSet() {
 		toSerialize["computationRule"] = o.ComputationRule.Get()
 	}
+	toSerialize["mandatory"] = o.Mandatory
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["editableByApprover"] = o.EditableByApprover
-	toSerialize["editableByRequester"] = o.EditableByRequester
-	toSerialize["mandatory"] = o.Mandatory
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -233,8 +233,8 @@ func (o *OwnerPolicy) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"editableByApprover",
 		"editableByRequester",
+		"editableByApprover",
 		"mandatory",
 	}
 
@@ -265,11 +265,11 @@ func (o *OwnerPolicy) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "computationRule")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "editableByApprover")
 		delete(additionalProperties, "editableByRequester")
+		delete(additionalProperties, "editableByApprover")
+		delete(additionalProperties, "computationRule")
 		delete(additionalProperties, "mandatory")
+		delete(additionalProperties, "description")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -22,12 +22,12 @@ var _ utils.MappedNullable = &WebhookTemplate{}
 
 // WebhookTemplate Where and what to send in the webhook
 type WebhookTemplate struct {
-	// The body of the notification. Can contain dynamic attributes.
-	Body utils.NullableString `json:"body,omitempty"`
+	// The target of the webhook
+	To WebhookRecipient `json:"to"`
 	// The title of the webhook notification (special formatting)
 	Title string `json:"title"`
-	// The target of the webhook
-	To                   WebhookRecipient `json:"to"`
+	// The body of the notification. Can contain dynamic attributes.
+	Body                 utils.NullableString `json:"body,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,10 +37,10 @@ type _WebhookTemplate WebhookTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhookTemplate(title string, to WebhookRecipient) *WebhookTemplate {
+func NewWebhookTemplate(to WebhookRecipient, title string) *WebhookTemplate {
 	this := WebhookTemplate{}
-	this.Title = title
 	this.To = to
+	this.Title = title
 	return &this
 }
 
@@ -50,6 +50,54 @@ func NewWebhookTemplate(title string, to WebhookRecipient) *WebhookTemplate {
 func NewWebhookTemplateWithDefaults() *WebhookTemplate {
 	this := WebhookTemplate{}
 	return &this
+}
+
+// GetTo returns the To field value
+func (o *WebhookTemplate) GetTo() WebhookRecipient {
+	if o == nil {
+		var ret WebhookRecipient
+		return ret
+	}
+
+	return o.To
+}
+
+// GetToOk returns a tuple with the To field value
+// and a boolean to check if the value has been set.
+func (o *WebhookTemplate) GetToOk() (*WebhookRecipient, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.To, true
+}
+
+// SetTo sets field value
+func (o *WebhookTemplate) SetTo(v WebhookRecipient) {
+	o.To = v
+}
+
+// GetTitle returns the Title field value
+func (o *WebhookTemplate) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *WebhookTemplate) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *WebhookTemplate) SetTitle(v string) {
+	o.Title = v
 }
 
 // GetBody returns the Body field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -95,54 +143,6 @@ func (o *WebhookTemplate) UnsetBody() {
 	o.Body.Unset()
 }
 
-// GetTitle returns the Title field value
-func (o *WebhookTemplate) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *WebhookTemplate) GetTitleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *WebhookTemplate) SetTitle(v string) {
-	o.Title = v
-}
-
-// GetTo returns the To field value
-func (o *WebhookTemplate) GetTo() WebhookRecipient {
-	if o == nil {
-		var ret WebhookRecipient
-		return ret
-	}
-
-	return o.To
-}
-
-// GetToOk returns a tuple with the To field value
-// and a boolean to check if the value has been set.
-func (o *WebhookTemplate) GetToOk() (*WebhookRecipient, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.To, true
-}
-
-// SetTo sets field value
-func (o *WebhookTemplate) SetTo(v WebhookRecipient) {
-	o.To = v
-}
-
 func (o WebhookTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -153,11 +153,11 @@ func (o WebhookTemplate) MarshalJSON() ([]byte, error) {
 
 func (o WebhookTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["to"] = o.To
+	toSerialize["title"] = o.Title
 	if o.Body.IsSet() {
 		toSerialize["body"] = o.Body.Get()
 	}
-	toSerialize["title"] = o.Title
-	toSerialize["to"] = o.To
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -171,8 +171,8 @@ func (o *WebhookTemplate) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"title",
 		"to",
+		"title",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -202,9 +202,9 @@ func (o *WebhookTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "body")
-		delete(additionalProperties, "title")
 		delete(additionalProperties, "to")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "body")
 		o.AdditionalProperties = additionalProperties
 	}
 

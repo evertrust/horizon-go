@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SetTriggers** | [**[]AcmeRestRequest**](AcmeRestRequest.md) | The triggers that will set the DNS challenge on the provider. | 
 **Type** | **string** |  | 
+**SetTriggers** | [**[]AcmeRestRequest**](AcmeRestRequest.md) | The triggers that will set the DNS challenge on the provider. | 
 **UnsetTriggers** | Pointer to [**[]AcmeRestRequest**](AcmeRestRequest.md) | The triggers that will unset the DNS challenge on the provider. | [optional] 
 
 ## Methods
 
 ### NewManualDnsChallengeProvider
 
-`func NewManualDnsChallengeProvider(setTriggers []AcmeRestRequest, type_ string, ) *ManualDnsChallengeProvider`
+`func NewManualDnsChallengeProvider(type_ string, setTriggers []AcmeRestRequest, ) *ManualDnsChallengeProvider`
 
 NewManualDnsChallengeProvider instantiates a new ManualDnsChallengeProvider object
 This constructor will assign default values to properties that have it defined,
@@ -26,26 +26,6 @@ will change when the set of required properties is changed
 NewManualDnsChallengeProviderWithDefaults instantiates a new ManualDnsChallengeProvider object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetSetTriggers
-
-`func (o *ManualDnsChallengeProvider) GetSetTriggers() []AcmeRestRequest`
-
-GetSetTriggers returns the SetTriggers field if non-nil, zero value otherwise.
-
-### GetSetTriggersOk
-
-`func (o *ManualDnsChallengeProvider) GetSetTriggersOk() (*[]AcmeRestRequest, bool)`
-
-GetSetTriggersOk returns a tuple with the SetTriggers field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSetTriggers
-
-`func (o *ManualDnsChallengeProvider) SetSetTriggers(v []AcmeRestRequest)`
-
-SetSetTriggers sets SetTriggers field to given value.
-
 
 ### GetType
 
@@ -65,6 +45,26 @@ and a boolean to check if the value has been set.
 `func (o *ManualDnsChallengeProvider) SetType(v string)`
 
 SetType sets Type field to given value.
+
+
+### GetSetTriggers
+
+`func (o *ManualDnsChallengeProvider) GetSetTriggers() []AcmeRestRequest`
+
+GetSetTriggers returns the SetTriggers field if non-nil, zero value otherwise.
+
+### GetSetTriggersOk
+
+`func (o *ManualDnsChallengeProvider) GetSetTriggersOk() (*[]AcmeRestRequest, bool)`
+
+GetSetTriggersOk returns a tuple with the SetTriggers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSetTriggers
+
+`func (o *ManualDnsChallengeProvider) SetSetTriggers(v []AcmeRestRequest)`
+
+SetSetTriggers sets SetTriggers field to given value.
 
 
 ### GetUnsetTriggers

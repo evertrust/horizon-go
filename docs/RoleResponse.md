@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Description** | Pointer to **NullableString** | The description of the role | [optional] 
 **Name** | **string** | The name of the role | 
+**Description** | Pointer to **NullableString** | The description of the role | [optional] 
 **Permissions** | Pointer to [**[]Permission**](Permission.md) | The role&#39;s permissions | [optional] 
 
 ## Methods
@@ -48,6 +48,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetName
+
+`func (o *RoleResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *RoleResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *RoleResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetDescription
 
 `func (o *RoleResponse) GetDescription() string`
@@ -83,26 +103,6 @@ HasDescription returns a boolean if a field has been set.
 `func (o *RoleResponse) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetName
-
-`func (o *RoleResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *RoleResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *RoleResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetPermissions
 
 `func (o *RoleResponse) GetPermissions() []Permission`

@@ -22,18 +22,18 @@ var _ utils.MappedNullable = &CertificateCredentials{}
 
 // CertificateCredentials struct for CertificateCredentials
 type CertificateCredentials struct {
+	Type string `json:"type"`
 	// These credentials certificate
 	Store SecretStoreRequest `json:"store"`
-	Type  string             `json:"type"`
+	// These credentials identifying name
+	Name string `json:"name"`
 	// These credentials description
 	Description utils.NullableString `json:"description,omitempty"`
 	// The expiration date of these credentials
-	Expires utils.NullableInt64 `json:"expires,omitempty"`
-	// These credentials identifying name
-	Name string `json:"name"`
+	Expires  utils.NullableInt64  `json:"expires,omitempty"`
+	Triggers *CredentialsTriggers `json:"triggers,omitempty"`
 	// On which configuration the credentials are usable
-	Targets              []string             `json:"targets,omitempty"`
-	Triggers             *CredentialsTriggers `json:"triggers,omitempty"`
+	Targets              []string `json:"targets,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,7 +43,7 @@ type _CertificateCredentials CertificateCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificateCredentials(store SecretStoreRequest, type_ string, name string) *CertificateCredentials {
+func NewCertificateCredentials(type_ string, store SecretStoreRequest, name string) *CertificateCredentials {
 	this := CertificateCredentials{}
 	this.Name = name
 	this.Type = type_
@@ -56,6 +56,30 @@ func NewCertificateCredentials(store SecretStoreRequest, type_ string, name stri
 func NewCertificateCredentialsWithDefaults() *CertificateCredentials {
 	this := CertificateCredentials{}
 	return &this
+}
+
+// GetType returns the Type field value
+func (o *CertificateCredentials) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *CertificateCredentials) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *CertificateCredentials) SetType(v string) {
+	o.Type = v
 }
 
 // GetStore returns the Store field value
@@ -82,28 +106,28 @@ func (o *CertificateCredentials) SetStore(v SecretStoreRequest) {
 	o.Store = v
 }
 
-// GetType returns the Type field value
-func (o *CertificateCredentials) GetType() string {
+// GetName returns the Name field value
+func (o *CertificateCredentials) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.Name
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CertificateCredentials) GetTypeOk() (*string, bool) {
+func (o *CertificateCredentials) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.Name, true
 }
 
-// SetType sets field value
-func (o *CertificateCredentials) SetType(v string) {
-	o.Type = v
+// SetName sets field value
+func (o *CertificateCredentials) SetName(v string) {
+	o.Name = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -192,28 +216,36 @@ func (o *CertificateCredentials) UnsetExpires() {
 	o.Expires.Unset()
 }
 
-// GetName returns the Name field value
-func (o *CertificateCredentials) GetName() string {
-	if o == nil {
-		var ret string
+// GetTriggers returns the Triggers field value if set, zero value otherwise.
+func (o *CertificateCredentials) GetTriggers() CredentialsTriggers {
+	if o == nil || utils.IsNil(o.Triggers) {
+		var ret CredentialsTriggers
 		return ret
 	}
-
-	return o.Name
+	return *o.Triggers
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CertificateCredentials) GetNameOk() (*string, bool) {
-	if o == nil {
+func (o *CertificateCredentials) GetTriggersOk() (*CredentialsTriggers, bool) {
+	if o == nil || utils.IsNil(o.Triggers) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Triggers, true
 }
 
-// SetName sets field value
-func (o *CertificateCredentials) SetName(v string) {
-	o.Name = v
+// HasTriggers returns a boolean if a field has been set.
+func (o *CertificateCredentials) HasTriggers() bool {
+	if o != nil && !utils.IsNil(o.Triggers) {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggers gets a reference to the given CredentialsTriggers and assigns it to the Triggers field.
+func (o *CertificateCredentials) SetTriggers(v CredentialsTriggers) {
+	o.Triggers = &v
 }
 
 // GetTargets returns the Targets field value if set, zero value otherwise.
@@ -248,38 +280,6 @@ func (o *CertificateCredentials) SetTargets(v []string) {
 	o.Targets = v
 }
 
-// GetTriggers returns the Triggers field value if set, zero value otherwise.
-func (o *CertificateCredentials) GetTriggers() CredentialsTriggers {
-	if o == nil || utils.IsNil(o.Triggers) {
-		var ret CredentialsTriggers
-		return ret
-	}
-	return *o.Triggers
-}
-
-// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CertificateCredentials) GetTriggersOk() (*CredentialsTriggers, bool) {
-	if o == nil || utils.IsNil(o.Triggers) {
-		return nil, false
-	}
-	return o.Triggers, true
-}
-
-// HasTriggers returns a boolean if a field has been set.
-func (o *CertificateCredentials) HasTriggers() bool {
-	if o != nil && !utils.IsNil(o.Triggers) {
-		return true
-	}
-
-	return false
-}
-
-// SetTriggers gets a reference to the given CredentialsTriggers and assigns it to the Triggers field.
-func (o *CertificateCredentials) SetTriggers(v CredentialsTriggers) {
-	o.Triggers = &v
-}
-
 func (o CertificateCredentials) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -290,20 +290,20 @@ func (o CertificateCredentials) MarshalJSON() ([]byte, error) {
 
 func (o CertificateCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["store"] = o.Store
 	toSerialize["type"] = o.Type
+	toSerialize["store"] = o.Store
+	toSerialize["name"] = o.Name
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
 	if o.Expires.IsSet() {
 		toSerialize["expires"] = o.Expires.Get()
 	}
-	toSerialize["name"] = o.Name
-	if !utils.IsNil(o.Targets) {
-		toSerialize["targets"] = o.Targets
-	}
 	if !utils.IsNil(o.Triggers) {
 		toSerialize["triggers"] = o.Triggers
+	}
+	if !utils.IsNil(o.Targets) {
+		toSerialize["targets"] = o.Targets
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -318,8 +318,8 @@ func (o *CertificateCredentials) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"store",
 		"type",
+		"store",
 		"name",
 	}
 
@@ -350,13 +350,13 @@ func (o *CertificateCredentials) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "store")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "store")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "expires")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "targets")
 		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "targets")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Contact** | Pointer to **NullableString** | The contact e-mail of the principal to search for | [optional] 
 **Identifier** | Pointer to **NullableString** | The identifier of the principal to search for | [optional] 
+**Contact** | Pointer to **NullableString** | The contact e-mail of the principal to search for | [optional] 
 
 ## Methods
 
@@ -26,41 +26,6 @@ NewPrincipalInfoSearchRequestWithDefaults instantiates a new PrincipalInfoSearch
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetContact
-
-`func (o *PrincipalInfoSearchRequest) GetContact() string`
-
-GetContact returns the Contact field if non-nil, zero value otherwise.
-
-### GetContactOk
-
-`func (o *PrincipalInfoSearchRequest) GetContactOk() (*string, bool)`
-
-GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContact
-
-`func (o *PrincipalInfoSearchRequest) SetContact(v string)`
-
-SetContact sets Contact field to given value.
-
-### HasContact
-
-`func (o *PrincipalInfoSearchRequest) HasContact() bool`
-
-HasContact returns a boolean if a field has been set.
-
-### SetContactNil
-
-`func (o *PrincipalInfoSearchRequest) SetContactNil(b bool)`
-
- SetContactNil sets the value for Contact to be an explicit nil
-
-### UnsetContact
-`func (o *PrincipalInfoSearchRequest) UnsetContact()`
-
-UnsetContact ensures that no value is present for Contact, not even an explicit nil
 ### GetIdentifier
 
 `func (o *PrincipalInfoSearchRequest) GetIdentifier() string`
@@ -96,6 +61,41 @@ HasIdentifier returns a boolean if a field has been set.
 `func (o *PrincipalInfoSearchRequest) UnsetIdentifier()`
 
 UnsetIdentifier ensures that no value is present for Identifier, not even an explicit nil
+### GetContact
+
+`func (o *PrincipalInfoSearchRequest) GetContact() string`
+
+GetContact returns the Contact field if non-nil, zero value otherwise.
+
+### GetContactOk
+
+`func (o *PrincipalInfoSearchRequest) GetContactOk() (*string, bool)`
+
+GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContact
+
+`func (o *PrincipalInfoSearchRequest) SetContact(v string)`
+
+SetContact sets Contact field to given value.
+
+### HasContact
+
+`func (o *PrincipalInfoSearchRequest) HasContact() bool`
+
+HasContact returns a boolean if a field has been set.
+
+### SetContactNil
+
+`func (o *PrincipalInfoSearchRequest) SetContactNil(b bool)`
+
+ SetContactNil sets the value for Contact to be an explicit nil
+
+### UnsetContact
+`func (o *PrincipalInfoSearchRequest) UnsetContact()`
+
+UnsetContact ensures that no value is present for Contact, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

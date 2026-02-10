@@ -23,19 +23,19 @@ var _ utils.MappedNullable = &IntuneConnectorResponse{}
 // IntuneConnectorResponse struct for IntuneConnectorResponse
 type IntuneConnectorResponse struct {
 	// Object internal ID
-	Id string `json:"_id"`
+	Id                  string               `json:"_id"`
+	Type                string               `json:"type"`
+	Name                string               `json:"name"`
+	ThrottleDuration    string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	ThrottleParallelism int64                `json:"throttleParallelism"`
+	Timeout             utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Proxy               utils.NullableString `json:"proxy,omitempty"`
+	Tenant              string               `json:"tenant"`
 	// Name of the `password` [credentials](#tag/security.credentials) containing the App ID and Key to authenticate on Intune
 	Credentials          string               `json:"credentials"`
 	IntuneResourceUrl    utils.NullableString `json:"intuneResourceUrl,omitempty"`
-	LegacyRevocationMode bool                 `json:"legacyRevocationMode"`
-	Name                 string               `json:"name"`
 	OsQueryString        utils.NullableString `json:"osQueryString,omitempty"`
-	Proxy                utils.NullableString `json:"proxy,omitempty"`
-	Tenant               string               `json:"tenant"`
-	ThrottleDuration     string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	ThrottleParallelism  int64                `json:"throttleParallelism"`
-	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Type                 string               `json:"type"`
+	LegacyRevocationMode bool                 `json:"legacyRevocationMode"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,16 +45,16 @@ type _IntuneConnectorResponse IntuneConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntuneConnectorResponse(id string, credentials string, legacyRevocationMode bool, name string, tenant string, throttleDuration string, throttleParallelism int64, type_ string) *IntuneConnectorResponse {
+func NewIntuneConnectorResponse(id string, type_ string, name string, throttleDuration string, throttleParallelism int64, tenant string, credentials string, legacyRevocationMode bool) *IntuneConnectorResponse {
 	this := IntuneConnectorResponse{}
 	this.Id = id
-	this.Credentials = credentials
-	this.LegacyRevocationMode = legacyRevocationMode
+	this.Type = type_
 	this.Name = name
-	this.Tenant = tenant
 	this.ThrottleDuration = throttleDuration
 	this.ThrottleParallelism = throttleParallelism
-	this.Type = type_
+	this.Tenant = tenant
+	this.Credentials = credentials
+	this.LegacyRevocationMode = legacyRevocationMode
 	return &this
 }
 
@@ -90,95 +90,28 @@ func (o *IntuneConnectorResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetCredentials returns the Credentials field value
-func (o *IntuneConnectorResponse) GetCredentials() string {
+// GetType returns the Type field value
+func (o *IntuneConnectorResponse) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Credentials
+	return o.Type
 }
 
-// GetCredentialsOk returns a tuple with the Credentials field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *IntuneConnectorResponse) GetCredentialsOk() (*string, bool) {
+func (o *IntuneConnectorResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Credentials, true
+	return &o.Type, true
 }
 
-// SetCredentials sets field value
-func (o *IntuneConnectorResponse) SetCredentials(v string) {
-	o.Credentials = v
-}
-
-// GetIntuneResourceUrl returns the IntuneResourceUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntuneConnectorResponse) GetIntuneResourceUrl() string {
-	if o == nil || utils.IsNil(o.IntuneResourceUrl.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.IntuneResourceUrl.Get()
-}
-
-// GetIntuneResourceUrlOk returns a tuple with the IntuneResourceUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntuneConnectorResponse) GetIntuneResourceUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.IntuneResourceUrl.Get(), o.IntuneResourceUrl.IsSet()
-}
-
-// HasIntuneResourceUrl returns a boolean if a field has been set.
-func (o *IntuneConnectorResponse) HasIntuneResourceUrl() bool {
-	if o != nil && o.IntuneResourceUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIntuneResourceUrl gets a reference to the given NullableString and assigns it to the IntuneResourceUrl field.
-func (o *IntuneConnectorResponse) SetIntuneResourceUrl(v string) {
-	o.IntuneResourceUrl.Set(&v)
-}
-
-// SetIntuneResourceUrlNil sets the value for IntuneResourceUrl to be an explicit nil
-func (o *IntuneConnectorResponse) SetIntuneResourceUrlNil() {
-	o.IntuneResourceUrl.Set(nil)
-}
-
-// UnsetIntuneResourceUrl ensures that no value is present for IntuneResourceUrl, not even an explicit nil
-func (o *IntuneConnectorResponse) UnsetIntuneResourceUrl() {
-	o.IntuneResourceUrl.Unset()
-}
-
-// GetLegacyRevocationMode returns the LegacyRevocationMode field value
-func (o *IntuneConnectorResponse) GetLegacyRevocationMode() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.LegacyRevocationMode
-}
-
-// GetLegacyRevocationModeOk returns a tuple with the LegacyRevocationMode field value
-// and a boolean to check if the value has been set.
-func (o *IntuneConnectorResponse) GetLegacyRevocationModeOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LegacyRevocationMode, true
-}
-
-// SetLegacyRevocationMode sets field value
-func (o *IntuneConnectorResponse) SetLegacyRevocationMode(v bool) {
-	o.LegacyRevocationMode = v
+// SetType sets field value
+func (o *IntuneConnectorResponse) SetType(v string) {
+	o.Type = v
 }
 
 // GetName returns the Name field value
@@ -203,116 +136,6 @@ func (o *IntuneConnectorResponse) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *IntuneConnectorResponse) SetName(v string) {
 	o.Name = v
-}
-
-// GetOsQueryString returns the OsQueryString field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntuneConnectorResponse) GetOsQueryString() string {
-	if o == nil || utils.IsNil(o.OsQueryString.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.OsQueryString.Get()
-}
-
-// GetOsQueryStringOk returns a tuple with the OsQueryString field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntuneConnectorResponse) GetOsQueryStringOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OsQueryString.Get(), o.OsQueryString.IsSet()
-}
-
-// HasOsQueryString returns a boolean if a field has been set.
-func (o *IntuneConnectorResponse) HasOsQueryString() bool {
-	if o != nil && o.OsQueryString.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetOsQueryString gets a reference to the given NullableString and assigns it to the OsQueryString field.
-func (o *IntuneConnectorResponse) SetOsQueryString(v string) {
-	o.OsQueryString.Set(&v)
-}
-
-// SetOsQueryStringNil sets the value for OsQueryString to be an explicit nil
-func (o *IntuneConnectorResponse) SetOsQueryStringNil() {
-	o.OsQueryString.Set(nil)
-}
-
-// UnsetOsQueryString ensures that no value is present for OsQueryString, not even an explicit nil
-func (o *IntuneConnectorResponse) UnsetOsQueryString() {
-	o.OsQueryString.Unset()
-}
-
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntuneConnectorResponse) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Proxy.Get()
-}
-
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntuneConnectorResponse) GetProxyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
-}
-
-// HasProxy returns a boolean if a field has been set.
-func (o *IntuneConnectorResponse) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *IntuneConnectorResponse) SetProxy(v string) {
-	o.Proxy.Set(&v)
-}
-
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *IntuneConnectorResponse) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *IntuneConnectorResponse) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetTenant returns the Tenant field value
-func (o *IntuneConnectorResponse) GetTenant() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Tenant
-}
-
-// GetTenantOk returns a tuple with the Tenant field value
-// and a boolean to check if the value has been set.
-func (o *IntuneConnectorResponse) GetTenantOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Tenant, true
-}
-
-// SetTenant sets field value
-func (o *IntuneConnectorResponse) SetTenant(v string) {
-	o.Tenant = v
 }
 
 // GetThrottleDuration returns the ThrottleDuration field value
@@ -406,28 +229,205 @@ func (o *IntuneConnectorResponse) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
-// GetType returns the Type field value
-func (o *IntuneConnectorResponse) GetType() string {
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntuneConnectorResponse) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Proxy.Get()
+}
+
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntuneConnectorResponse) GetProxyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Proxy.Get(), o.Proxy.IsSet()
+}
+
+// HasProxy returns a boolean if a field has been set.
+func (o *IntuneConnectorResponse) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *IntuneConnectorResponse) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *IntuneConnectorResponse) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *IntuneConnectorResponse) UnsetProxy() {
+	o.Proxy.Unset()
+}
+
+// GetTenant returns the Tenant field value
+func (o *IntuneConnectorResponse) GetTenant() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.Tenant
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTenantOk returns a tuple with the Tenant field value
 // and a boolean to check if the value has been set.
-func (o *IntuneConnectorResponse) GetTypeOk() (*string, bool) {
+func (o *IntuneConnectorResponse) GetTenantOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.Tenant, true
 }
 
-// SetType sets field value
-func (o *IntuneConnectorResponse) SetType(v string) {
-	o.Type = v
+// SetTenant sets field value
+func (o *IntuneConnectorResponse) SetTenant(v string) {
+	o.Tenant = v
+}
+
+// GetCredentials returns the Credentials field value
+func (o *IntuneConnectorResponse) GetCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Credentials
+}
+
+// GetCredentialsOk returns a tuple with the Credentials field value
+// and a boolean to check if the value has been set.
+func (o *IntuneConnectorResponse) GetCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Credentials, true
+}
+
+// SetCredentials sets field value
+func (o *IntuneConnectorResponse) SetCredentials(v string) {
+	o.Credentials = v
+}
+
+// GetIntuneResourceUrl returns the IntuneResourceUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntuneConnectorResponse) GetIntuneResourceUrl() string {
+	if o == nil || utils.IsNil(o.IntuneResourceUrl.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.IntuneResourceUrl.Get()
+}
+
+// GetIntuneResourceUrlOk returns a tuple with the IntuneResourceUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntuneConnectorResponse) GetIntuneResourceUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IntuneResourceUrl.Get(), o.IntuneResourceUrl.IsSet()
+}
+
+// HasIntuneResourceUrl returns a boolean if a field has been set.
+func (o *IntuneConnectorResponse) HasIntuneResourceUrl() bool {
+	if o != nil && o.IntuneResourceUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIntuneResourceUrl gets a reference to the given NullableString and assigns it to the IntuneResourceUrl field.
+func (o *IntuneConnectorResponse) SetIntuneResourceUrl(v string) {
+	o.IntuneResourceUrl.Set(&v)
+}
+
+// SetIntuneResourceUrlNil sets the value for IntuneResourceUrl to be an explicit nil
+func (o *IntuneConnectorResponse) SetIntuneResourceUrlNil() {
+	o.IntuneResourceUrl.Set(nil)
+}
+
+// UnsetIntuneResourceUrl ensures that no value is present for IntuneResourceUrl, not even an explicit nil
+func (o *IntuneConnectorResponse) UnsetIntuneResourceUrl() {
+	o.IntuneResourceUrl.Unset()
+}
+
+// GetOsQueryString returns the OsQueryString field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntuneConnectorResponse) GetOsQueryString() string {
+	if o == nil || utils.IsNil(o.OsQueryString.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.OsQueryString.Get()
+}
+
+// GetOsQueryStringOk returns a tuple with the OsQueryString field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntuneConnectorResponse) GetOsQueryStringOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.OsQueryString.Get(), o.OsQueryString.IsSet()
+}
+
+// HasOsQueryString returns a boolean if a field has been set.
+func (o *IntuneConnectorResponse) HasOsQueryString() bool {
+	if o != nil && o.OsQueryString.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOsQueryString gets a reference to the given NullableString and assigns it to the OsQueryString field.
+func (o *IntuneConnectorResponse) SetOsQueryString(v string) {
+	o.OsQueryString.Set(&v)
+}
+
+// SetOsQueryStringNil sets the value for OsQueryString to be an explicit nil
+func (o *IntuneConnectorResponse) SetOsQueryStringNil() {
+	o.OsQueryString.Set(nil)
+}
+
+// UnsetOsQueryString ensures that no value is present for OsQueryString, not even an explicit nil
+func (o *IntuneConnectorResponse) UnsetOsQueryString() {
+	o.OsQueryString.Unset()
+}
+
+// GetLegacyRevocationMode returns the LegacyRevocationMode field value
+func (o *IntuneConnectorResponse) GetLegacyRevocationMode() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.LegacyRevocationMode
+}
+
+// GetLegacyRevocationModeOk returns a tuple with the LegacyRevocationMode field value
+// and a boolean to check if the value has been set.
+func (o *IntuneConnectorResponse) GetLegacyRevocationModeOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LegacyRevocationMode, true
+}
+
+// SetLegacyRevocationMode sets field value
+func (o *IntuneConnectorResponse) SetLegacyRevocationMode(v bool) {
+	o.LegacyRevocationMode = v
 }
 
 func (o IntuneConnectorResponse) MarshalJSON() ([]byte, error) {
@@ -441,25 +441,25 @@ func (o IntuneConnectorResponse) MarshalJSON() ([]byte, error) {
 func (o IntuneConnectorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["credentials"] = o.Credentials
-	if o.IntuneResourceUrl.IsSet() {
-		toSerialize["intuneResourceUrl"] = o.IntuneResourceUrl.Get()
-	}
-	toSerialize["legacyRevocationMode"] = o.LegacyRevocationMode
+	toSerialize["type"] = o.Type
 	toSerialize["name"] = o.Name
-	if o.OsQueryString.IsSet() {
-		toSerialize["osQueryString"] = o.OsQueryString.Get()
-	}
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
-	toSerialize["tenant"] = o.Tenant
 	toSerialize["throttleDuration"] = o.ThrottleDuration
 	toSerialize["throttleParallelism"] = o.ThrottleParallelism
 	if o.Timeout.IsSet() {
 		toSerialize["timeout"] = o.Timeout.Get()
 	}
-	toSerialize["type"] = o.Type
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
+	toSerialize["tenant"] = o.Tenant
+	toSerialize["credentials"] = o.Credentials
+	if o.IntuneResourceUrl.IsSet() {
+		toSerialize["intuneResourceUrl"] = o.IntuneResourceUrl.Get()
+	}
+	if o.OsQueryString.IsSet() {
+		toSerialize["osQueryString"] = o.OsQueryString.Get()
+	}
+	toSerialize["legacyRevocationMode"] = o.LegacyRevocationMode
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -474,13 +474,13 @@ func (o *IntuneConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"credentials",
-		"legacyRevocationMode",
+		"type",
 		"name",
-		"tenant",
 		"throttleDuration",
 		"throttleParallelism",
-		"type",
+		"tenant",
+		"credentials",
+		"legacyRevocationMode",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -511,17 +511,17 @@ func (o *IntuneConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "credentials")
-		delete(additionalProperties, "intuneResourceUrl")
-		delete(additionalProperties, "legacyRevocationMode")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "osQueryString")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "tenant")
 		delete(additionalProperties, "throttleDuration")
 		delete(additionalProperties, "throttleParallelism")
 		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "tenant")
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "intuneResourceUrl")
+		delete(additionalProperties, "osQueryString")
+		delete(additionalProperties, "legacyRevocationMode")
 		o.AdditionalProperties = additionalProperties
 	}
 

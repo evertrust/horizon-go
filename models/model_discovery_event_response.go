@@ -24,38 +24,38 @@ var _ utils.MappedNullable = &DiscoveryEventResponse{}
 type DiscoveryEventResponse struct {
 	// Object internal ID
 	Id string `json:"_id"`
-	// The identifier of the principal that was used when the event was raised
-	ActorId utils.NullableString `json:"actorId,omitempty"`
-	// The name of the discovery campaign concerned by the event
-	Campaign string `json:"campaign"`
-	// The ID of the certificate concerned by the event (in Horizon)
-	CertificateId utils.NullableString `json:"certificateId,omitempty"`
-	ClientId      utils.NullableString `json:"clientId,omitempty"`
-	// The IP of the machine where the Horizon client is running from
-	ClientIp utils.NullableString `json:"clientIp,omitempty"`
-	// The version of the discovery client that raised the event
-	ClientVersion utils.NullableString `json:"clientVersion,omitempty"`
 	// The code of the event to raise in the discovery events
 	Code string `json:"code"`
+	// The name of the discovery campaign concerned by the event
+	Campaign string `json:"campaign"`
+	// The ID of the discovery feed session
+	SessionId utils.NullableString `json:"sessionId,omitempty"`
+	// The type of event to raise
+	Status string `json:"status"`
 	// The error code of the event
 	ErrorCode utils.NullableString `json:"errorCode,omitempty"`
 	// The error message of the event
 	ErrorMessage utils.NullableString `json:"errorMessage,omitempty"`
+	// When did the event occur (Unix timestamp in milliseconds)
+	Timestamp utils.NullableInt64 `json:"timestamp,omitempty"`
+	RemoveAt  utils.NullableInt64 `json:"removeAt,omitempty"`
+	// The version of the discovery client that raised the event
+	ClientVersion utils.NullableString `json:"clientVersion,omitempty"`
+	// The IP of the machine where the Horizon client is running from
+	ClientIp utils.NullableString `json:"clientIp,omitempty"`
+	ClientId utils.NullableString `json:"clientId,omitempty"`
+	// The identifier of the principal that was used when the event was raised
+	ActorId utils.NullableString `json:"actorId,omitempty"`
+	// The ID of the certificate concerned by the event (in Horizon)
+	CertificateId utils.NullableString `json:"certificateId,omitempty"`
 	// The hostname concerned by the event
 	Hostname utils.NullableString `json:"hostname,omitempty"`
 	// The IP address concerned by the event
 	Ip utils.NullableString `json:"ip,omitempty"`
 	// The TCP port concerned by the event
-	Port     utils.NullableInt64 `json:"port,omitempty"`
-	RemoveAt utils.NullableInt64 `json:"removeAt,omitempty"`
-	// The ID of the discovery feed session
-	SessionId utils.NullableString `json:"sessionId,omitempty"`
+	Port utils.NullableInt64 `json:"port,omitempty"`
 	// The type of discovery that raised the event
-	Source utils.NullableString `json:"source,omitempty"`
-	// The type of event to raise
-	Status string `json:"status"`
-	// When did the event occur (Unix timestamp in milliseconds)
-	Timestamp            utils.NullableInt64 `json:"timestamp,omitempty"`
+	Source               utils.NullableString `json:"source,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -65,11 +65,11 @@ type _DiscoveryEventResponse DiscoveryEventResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDiscoveryEventResponse(id string, campaign string, code string, status string) *DiscoveryEventResponse {
+func NewDiscoveryEventResponse(id string, code string, campaign string, status string) *DiscoveryEventResponse {
 	this := DiscoveryEventResponse{}
 	this.Id = id
-	this.Campaign = campaign
 	this.Code = code
+	this.Campaign = campaign
 	this.Status = status
 	return &this
 }
@@ -106,47 +106,28 @@ func (o *DiscoveryEventResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetActorId returns the ActorId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryEventResponse) GetActorId() string {
-	if o == nil || utils.IsNil(o.ActorId.Get()) {
+// GetCode returns the Code field value
+func (o *DiscoveryEventResponse) GetCode() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ActorId.Get()
+
+	return o.Code
 }
 
-// GetActorIdOk returns a tuple with the ActorId field value if set, nil otherwise
+// GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryEventResponse) GetActorIdOk() (*string, bool) {
+func (o *DiscoveryEventResponse) GetCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ActorId.Get(), o.ActorId.IsSet()
+	return &o.Code, true
 }
 
-// HasActorId returns a boolean if a field has been set.
-func (o *DiscoveryEventResponse) HasActorId() bool {
-	if o != nil && o.ActorId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetActorId gets a reference to the given NullableString and assigns it to the ActorId field.
-func (o *DiscoveryEventResponse) SetActorId(v string) {
-	o.ActorId.Set(&v)
-}
-
-// SetActorIdNil sets the value for ActorId to be an explicit nil
-func (o *DiscoveryEventResponse) SetActorIdNil() {
-	o.ActorId.Set(nil)
-}
-
-// UnsetActorId ensures that no value is present for ActorId, not even an explicit nil
-func (o *DiscoveryEventResponse) UnsetActorId() {
-	o.ActorId.Unset()
+// SetCode sets field value
+func (o *DiscoveryEventResponse) SetCode(v string) {
+	o.Code = v
 }
 
 // GetCampaign returns the Campaign field value
@@ -173,200 +154,71 @@ func (o *DiscoveryEventResponse) SetCampaign(v string) {
 	o.Campaign = v
 }
 
-// GetCertificateId returns the CertificateId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryEventResponse) GetCertificateId() string {
-	if o == nil || utils.IsNil(o.CertificateId.Get()) {
+// GetSessionId returns the SessionId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryEventResponse) GetSessionId() string {
+	if o == nil || utils.IsNil(o.SessionId.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.CertificateId.Get()
+	return *o.SessionId.Get()
 }
 
-// GetCertificateIdOk returns a tuple with the CertificateId field value if set, nil otherwise
+// GetSessionIdOk returns a tuple with the SessionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryEventResponse) GetCertificateIdOk() (*string, bool) {
+func (o *DiscoveryEventResponse) GetSessionIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.CertificateId.Get(), o.CertificateId.IsSet()
+	return o.SessionId.Get(), o.SessionId.IsSet()
 }
 
-// HasCertificateId returns a boolean if a field has been set.
-func (o *DiscoveryEventResponse) HasCertificateId() bool {
-	if o != nil && o.CertificateId.IsSet() {
+// HasSessionId returns a boolean if a field has been set.
+func (o *DiscoveryEventResponse) HasSessionId() bool {
+	if o != nil && o.SessionId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCertificateId gets a reference to the given NullableString and assigns it to the CertificateId field.
-func (o *DiscoveryEventResponse) SetCertificateId(v string) {
-	o.CertificateId.Set(&v)
+// SetSessionId gets a reference to the given NullableString and assigns it to the SessionId field.
+func (o *DiscoveryEventResponse) SetSessionId(v string) {
+	o.SessionId.Set(&v)
 }
 
-// SetCertificateIdNil sets the value for CertificateId to be an explicit nil
-func (o *DiscoveryEventResponse) SetCertificateIdNil() {
-	o.CertificateId.Set(nil)
+// SetSessionIdNil sets the value for SessionId to be an explicit nil
+func (o *DiscoveryEventResponse) SetSessionIdNil() {
+	o.SessionId.Set(nil)
 }
 
-// UnsetCertificateId ensures that no value is present for CertificateId, not even an explicit nil
-func (o *DiscoveryEventResponse) UnsetCertificateId() {
-	o.CertificateId.Unset()
+// UnsetSessionId ensures that no value is present for SessionId, not even an explicit nil
+func (o *DiscoveryEventResponse) UnsetSessionId() {
+	o.SessionId.Unset()
 }
 
-// GetClientId returns the ClientId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryEventResponse) GetClientId() string {
-	if o == nil || utils.IsNil(o.ClientId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ClientId.Get()
-}
-
-// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryEventResponse) GetClientIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ClientId.Get(), o.ClientId.IsSet()
-}
-
-// HasClientId returns a boolean if a field has been set.
-func (o *DiscoveryEventResponse) HasClientId() bool {
-	if o != nil && o.ClientId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetClientId gets a reference to the given NullableString and assigns it to the ClientId field.
-func (o *DiscoveryEventResponse) SetClientId(v string) {
-	o.ClientId.Set(&v)
-}
-
-// SetClientIdNil sets the value for ClientId to be an explicit nil
-func (o *DiscoveryEventResponse) SetClientIdNil() {
-	o.ClientId.Set(nil)
-}
-
-// UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
-func (o *DiscoveryEventResponse) UnsetClientId() {
-	o.ClientId.Unset()
-}
-
-// GetClientIp returns the ClientIp field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryEventResponse) GetClientIp() string {
-	if o == nil || utils.IsNil(o.ClientIp.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ClientIp.Get()
-}
-
-// GetClientIpOk returns a tuple with the ClientIp field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryEventResponse) GetClientIpOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ClientIp.Get(), o.ClientIp.IsSet()
-}
-
-// HasClientIp returns a boolean if a field has been set.
-func (o *DiscoveryEventResponse) HasClientIp() bool {
-	if o != nil && o.ClientIp.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetClientIp gets a reference to the given NullableString and assigns it to the ClientIp field.
-func (o *DiscoveryEventResponse) SetClientIp(v string) {
-	o.ClientIp.Set(&v)
-}
-
-// SetClientIpNil sets the value for ClientIp to be an explicit nil
-func (o *DiscoveryEventResponse) SetClientIpNil() {
-	o.ClientIp.Set(nil)
-}
-
-// UnsetClientIp ensures that no value is present for ClientIp, not even an explicit nil
-func (o *DiscoveryEventResponse) UnsetClientIp() {
-	o.ClientIp.Unset()
-}
-
-// GetClientVersion returns the ClientVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryEventResponse) GetClientVersion() string {
-	if o == nil || utils.IsNil(o.ClientVersion.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ClientVersion.Get()
-}
-
-// GetClientVersionOk returns a tuple with the ClientVersion field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryEventResponse) GetClientVersionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ClientVersion.Get(), o.ClientVersion.IsSet()
-}
-
-// HasClientVersion returns a boolean if a field has been set.
-func (o *DiscoveryEventResponse) HasClientVersion() bool {
-	if o != nil && o.ClientVersion.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetClientVersion gets a reference to the given NullableString and assigns it to the ClientVersion field.
-func (o *DiscoveryEventResponse) SetClientVersion(v string) {
-	o.ClientVersion.Set(&v)
-}
-
-// SetClientVersionNil sets the value for ClientVersion to be an explicit nil
-func (o *DiscoveryEventResponse) SetClientVersionNil() {
-	o.ClientVersion.Set(nil)
-}
-
-// UnsetClientVersion ensures that no value is present for ClientVersion, not even an explicit nil
-func (o *DiscoveryEventResponse) UnsetClientVersion() {
-	o.ClientVersion.Unset()
-}
-
-// GetCode returns the Code field value
-func (o *DiscoveryEventResponse) GetCode() string {
+// GetStatus returns the Status field value
+func (o *DiscoveryEventResponse) GetStatus() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Code
+	return o.Status
 }
 
-// GetCodeOk returns a tuple with the Code field value
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *DiscoveryEventResponse) GetCodeOk() (*string, bool) {
+func (o *DiscoveryEventResponse) GetStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Code, true
+	return &o.Status, true
 }
 
-// SetCode sets field value
-func (o *DiscoveryEventResponse) SetCode(v string) {
-	o.Code = v
+// SetStatus sets field value
+func (o *DiscoveryEventResponse) SetStatus(v string) {
+	o.Status = v
 }
 
 // GetErrorCode returns the ErrorCode field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -453,6 +305,307 @@ func (o *DiscoveryEventResponse) SetErrorMessageNil() {
 // UnsetErrorMessage ensures that no value is present for ErrorMessage, not even an explicit nil
 func (o *DiscoveryEventResponse) UnsetErrorMessage() {
 	o.ErrorMessage.Unset()
+}
+
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryEventResponse) GetTimestamp() int64 {
+	if o == nil || utils.IsNil(o.Timestamp.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Timestamp.Get()
+}
+
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DiscoveryEventResponse) GetTimestampOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timestamp.Get(), o.Timestamp.IsSet()
+}
+
+// HasTimestamp returns a boolean if a field has been set.
+func (o *DiscoveryEventResponse) HasTimestamp() bool {
+	if o != nil && o.Timestamp.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given NullableInt64 and assigns it to the Timestamp field.
+func (o *DiscoveryEventResponse) SetTimestamp(v int64) {
+	o.Timestamp.Set(&v)
+}
+
+// SetTimestampNil sets the value for Timestamp to be an explicit nil
+func (o *DiscoveryEventResponse) SetTimestampNil() {
+	o.Timestamp.Set(nil)
+}
+
+// UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
+func (o *DiscoveryEventResponse) UnsetTimestamp() {
+	o.Timestamp.Unset()
+}
+
+// GetRemoveAt returns the RemoveAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryEventResponse) GetRemoveAt() int64 {
+	if o == nil || utils.IsNil(o.RemoveAt.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.RemoveAt.Get()
+}
+
+// GetRemoveAtOk returns a tuple with the RemoveAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DiscoveryEventResponse) GetRemoveAtOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RemoveAt.Get(), o.RemoveAt.IsSet()
+}
+
+// HasRemoveAt returns a boolean if a field has been set.
+func (o *DiscoveryEventResponse) HasRemoveAt() bool {
+	if o != nil && o.RemoveAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoveAt gets a reference to the given NullableInt64 and assigns it to the RemoveAt field.
+func (o *DiscoveryEventResponse) SetRemoveAt(v int64) {
+	o.RemoveAt.Set(&v)
+}
+
+// SetRemoveAtNil sets the value for RemoveAt to be an explicit nil
+func (o *DiscoveryEventResponse) SetRemoveAtNil() {
+	o.RemoveAt.Set(nil)
+}
+
+// UnsetRemoveAt ensures that no value is present for RemoveAt, not even an explicit nil
+func (o *DiscoveryEventResponse) UnsetRemoveAt() {
+	o.RemoveAt.Unset()
+}
+
+// GetClientVersion returns the ClientVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryEventResponse) GetClientVersion() string {
+	if o == nil || utils.IsNil(o.ClientVersion.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ClientVersion.Get()
+}
+
+// GetClientVersionOk returns a tuple with the ClientVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DiscoveryEventResponse) GetClientVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ClientVersion.Get(), o.ClientVersion.IsSet()
+}
+
+// HasClientVersion returns a boolean if a field has been set.
+func (o *DiscoveryEventResponse) HasClientVersion() bool {
+	if o != nil && o.ClientVersion.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetClientVersion gets a reference to the given NullableString and assigns it to the ClientVersion field.
+func (o *DiscoveryEventResponse) SetClientVersion(v string) {
+	o.ClientVersion.Set(&v)
+}
+
+// SetClientVersionNil sets the value for ClientVersion to be an explicit nil
+func (o *DiscoveryEventResponse) SetClientVersionNil() {
+	o.ClientVersion.Set(nil)
+}
+
+// UnsetClientVersion ensures that no value is present for ClientVersion, not even an explicit nil
+func (o *DiscoveryEventResponse) UnsetClientVersion() {
+	o.ClientVersion.Unset()
+}
+
+// GetClientIp returns the ClientIp field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryEventResponse) GetClientIp() string {
+	if o == nil || utils.IsNil(o.ClientIp.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ClientIp.Get()
+}
+
+// GetClientIpOk returns a tuple with the ClientIp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DiscoveryEventResponse) GetClientIpOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ClientIp.Get(), o.ClientIp.IsSet()
+}
+
+// HasClientIp returns a boolean if a field has been set.
+func (o *DiscoveryEventResponse) HasClientIp() bool {
+	if o != nil && o.ClientIp.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetClientIp gets a reference to the given NullableString and assigns it to the ClientIp field.
+func (o *DiscoveryEventResponse) SetClientIp(v string) {
+	o.ClientIp.Set(&v)
+}
+
+// SetClientIpNil sets the value for ClientIp to be an explicit nil
+func (o *DiscoveryEventResponse) SetClientIpNil() {
+	o.ClientIp.Set(nil)
+}
+
+// UnsetClientIp ensures that no value is present for ClientIp, not even an explicit nil
+func (o *DiscoveryEventResponse) UnsetClientIp() {
+	o.ClientIp.Unset()
+}
+
+// GetClientId returns the ClientId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryEventResponse) GetClientId() string {
+	if o == nil || utils.IsNil(o.ClientId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ClientId.Get()
+}
+
+// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DiscoveryEventResponse) GetClientIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ClientId.Get(), o.ClientId.IsSet()
+}
+
+// HasClientId returns a boolean if a field has been set.
+func (o *DiscoveryEventResponse) HasClientId() bool {
+	if o != nil && o.ClientId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetClientId gets a reference to the given NullableString and assigns it to the ClientId field.
+func (o *DiscoveryEventResponse) SetClientId(v string) {
+	o.ClientId.Set(&v)
+}
+
+// SetClientIdNil sets the value for ClientId to be an explicit nil
+func (o *DiscoveryEventResponse) SetClientIdNil() {
+	o.ClientId.Set(nil)
+}
+
+// UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
+func (o *DiscoveryEventResponse) UnsetClientId() {
+	o.ClientId.Unset()
+}
+
+// GetActorId returns the ActorId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryEventResponse) GetActorId() string {
+	if o == nil || utils.IsNil(o.ActorId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ActorId.Get()
+}
+
+// GetActorIdOk returns a tuple with the ActorId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DiscoveryEventResponse) GetActorIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ActorId.Get(), o.ActorId.IsSet()
+}
+
+// HasActorId returns a boolean if a field has been set.
+func (o *DiscoveryEventResponse) HasActorId() bool {
+	if o != nil && o.ActorId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetActorId gets a reference to the given NullableString and assigns it to the ActorId field.
+func (o *DiscoveryEventResponse) SetActorId(v string) {
+	o.ActorId.Set(&v)
+}
+
+// SetActorIdNil sets the value for ActorId to be an explicit nil
+func (o *DiscoveryEventResponse) SetActorIdNil() {
+	o.ActorId.Set(nil)
+}
+
+// UnsetActorId ensures that no value is present for ActorId, not even an explicit nil
+func (o *DiscoveryEventResponse) UnsetActorId() {
+	o.ActorId.Unset()
+}
+
+// GetCertificateId returns the CertificateId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryEventResponse) GetCertificateId() string {
+	if o == nil || utils.IsNil(o.CertificateId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CertificateId.Get()
+}
+
+// GetCertificateIdOk returns a tuple with the CertificateId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DiscoveryEventResponse) GetCertificateIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertificateId.Get(), o.CertificateId.IsSet()
+}
+
+// HasCertificateId returns a boolean if a field has been set.
+func (o *DiscoveryEventResponse) HasCertificateId() bool {
+	if o != nil && o.CertificateId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateId gets a reference to the given NullableString and assigns it to the CertificateId field.
+func (o *DiscoveryEventResponse) SetCertificateId(v string) {
+	o.CertificateId.Set(&v)
+}
+
+// SetCertificateIdNil sets the value for CertificateId to be an explicit nil
+func (o *DiscoveryEventResponse) SetCertificateIdNil() {
+	o.CertificateId.Set(nil)
+}
+
+// UnsetCertificateId ensures that no value is present for CertificateId, not even an explicit nil
+func (o *DiscoveryEventResponse) UnsetCertificateId() {
+	o.CertificateId.Unset()
 }
 
 // GetHostname returns the Hostname field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -584,92 +737,6 @@ func (o *DiscoveryEventResponse) UnsetPort() {
 	o.Port.Unset()
 }
 
-// GetRemoveAt returns the RemoveAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryEventResponse) GetRemoveAt() int64 {
-	if o == nil || utils.IsNil(o.RemoveAt.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.RemoveAt.Get()
-}
-
-// GetRemoveAtOk returns a tuple with the RemoveAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryEventResponse) GetRemoveAtOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RemoveAt.Get(), o.RemoveAt.IsSet()
-}
-
-// HasRemoveAt returns a boolean if a field has been set.
-func (o *DiscoveryEventResponse) HasRemoveAt() bool {
-	if o != nil && o.RemoveAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoveAt gets a reference to the given NullableInt64 and assigns it to the RemoveAt field.
-func (o *DiscoveryEventResponse) SetRemoveAt(v int64) {
-	o.RemoveAt.Set(&v)
-}
-
-// SetRemoveAtNil sets the value for RemoveAt to be an explicit nil
-func (o *DiscoveryEventResponse) SetRemoveAtNil() {
-	o.RemoveAt.Set(nil)
-}
-
-// UnsetRemoveAt ensures that no value is present for RemoveAt, not even an explicit nil
-func (o *DiscoveryEventResponse) UnsetRemoveAt() {
-	o.RemoveAt.Unset()
-}
-
-// GetSessionId returns the SessionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryEventResponse) GetSessionId() string {
-	if o == nil || utils.IsNil(o.SessionId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.SessionId.Get()
-}
-
-// GetSessionIdOk returns a tuple with the SessionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryEventResponse) GetSessionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SessionId.Get(), o.SessionId.IsSet()
-}
-
-// HasSessionId returns a boolean if a field has been set.
-func (o *DiscoveryEventResponse) HasSessionId() bool {
-	if o != nil && o.SessionId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSessionId gets a reference to the given NullableString and assigns it to the SessionId field.
-func (o *DiscoveryEventResponse) SetSessionId(v string) {
-	o.SessionId.Set(&v)
-}
-
-// SetSessionIdNil sets the value for SessionId to be an explicit nil
-func (o *DiscoveryEventResponse) SetSessionIdNil() {
-	o.SessionId.Set(nil)
-}
-
-// UnsetSessionId ensures that no value is present for SessionId, not even an explicit nil
-func (o *DiscoveryEventResponse) UnsetSessionId() {
-	o.SessionId.Unset()
-}
-
 // GetSource returns the Source field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DiscoveryEventResponse) GetSource() string {
 	if o == nil || utils.IsNil(o.Source.Get()) {
@@ -713,73 +780,6 @@ func (o *DiscoveryEventResponse) UnsetSource() {
 	o.Source.Unset()
 }
 
-// GetStatus returns the Status field value
-func (o *DiscoveryEventResponse) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *DiscoveryEventResponse) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *DiscoveryEventResponse) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetTimestamp returns the Timestamp field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryEventResponse) GetTimestamp() int64 {
-	if o == nil || utils.IsNil(o.Timestamp.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.Timestamp.Get()
-}
-
-// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryEventResponse) GetTimestampOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timestamp.Get(), o.Timestamp.IsSet()
-}
-
-// HasTimestamp returns a boolean if a field has been set.
-func (o *DiscoveryEventResponse) HasTimestamp() bool {
-	if o != nil && o.Timestamp.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimestamp gets a reference to the given NullableInt64 and assigns it to the Timestamp field.
-func (o *DiscoveryEventResponse) SetTimestamp(v int64) {
-	o.Timestamp.Set(&v)
-}
-
-// SetTimestampNil sets the value for Timestamp to be an explicit nil
-func (o *DiscoveryEventResponse) SetTimestampNil() {
-	o.Timestamp.Set(nil)
-}
-
-// UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
-func (o *DiscoveryEventResponse) UnsetTimestamp() {
-	o.Timestamp.Unset()
-}
-
 func (o DiscoveryEventResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -791,28 +791,38 @@ func (o DiscoveryEventResponse) MarshalJSON() ([]byte, error) {
 func (o DiscoveryEventResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	if o.ActorId.IsSet() {
-		toSerialize["actorId"] = o.ActorId.Get()
-	}
-	toSerialize["campaign"] = o.Campaign
-	if o.CertificateId.IsSet() {
-		toSerialize["certificateId"] = o.CertificateId.Get()
-	}
-	if o.ClientId.IsSet() {
-		toSerialize["clientId"] = o.ClientId.Get()
-	}
-	if o.ClientIp.IsSet() {
-		toSerialize["clientIp"] = o.ClientIp.Get()
-	}
-	if o.ClientVersion.IsSet() {
-		toSerialize["clientVersion"] = o.ClientVersion.Get()
-	}
 	toSerialize["code"] = o.Code
+	toSerialize["campaign"] = o.Campaign
+	if o.SessionId.IsSet() {
+		toSerialize["sessionId"] = o.SessionId.Get()
+	}
+	toSerialize["status"] = o.Status
 	if o.ErrorCode.IsSet() {
 		toSerialize["errorCode"] = o.ErrorCode.Get()
 	}
 	if o.ErrorMessage.IsSet() {
 		toSerialize["errorMessage"] = o.ErrorMessage.Get()
+	}
+	if o.Timestamp.IsSet() {
+		toSerialize["timestamp"] = o.Timestamp.Get()
+	}
+	if o.RemoveAt.IsSet() {
+		toSerialize["removeAt"] = o.RemoveAt.Get()
+	}
+	if o.ClientVersion.IsSet() {
+		toSerialize["clientVersion"] = o.ClientVersion.Get()
+	}
+	if o.ClientIp.IsSet() {
+		toSerialize["clientIp"] = o.ClientIp.Get()
+	}
+	if o.ClientId.IsSet() {
+		toSerialize["clientId"] = o.ClientId.Get()
+	}
+	if o.ActorId.IsSet() {
+		toSerialize["actorId"] = o.ActorId.Get()
+	}
+	if o.CertificateId.IsSet() {
+		toSerialize["certificateId"] = o.CertificateId.Get()
 	}
 	if o.Hostname.IsSet() {
 		toSerialize["hostname"] = o.Hostname.Get()
@@ -823,18 +833,8 @@ func (o DiscoveryEventResponse) ToMap() (map[string]interface{}, error) {
 	if o.Port.IsSet() {
 		toSerialize["port"] = o.Port.Get()
 	}
-	if o.RemoveAt.IsSet() {
-		toSerialize["removeAt"] = o.RemoveAt.Get()
-	}
-	if o.SessionId.IsSet() {
-		toSerialize["sessionId"] = o.SessionId.Get()
-	}
 	if o.Source.IsSet() {
 		toSerialize["source"] = o.Source.Get()
-	}
-	toSerialize["status"] = o.Status
-	if o.Timestamp.IsSet() {
-		toSerialize["timestamp"] = o.Timestamp.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -850,8 +850,8 @@ func (o *DiscoveryEventResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"campaign",
 		"code",
+		"campaign",
 		"status",
 	}
 
@@ -883,23 +883,23 @@ func (o *DiscoveryEventResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "actorId")
-		delete(additionalProperties, "campaign")
-		delete(additionalProperties, "certificateId")
-		delete(additionalProperties, "clientId")
-		delete(additionalProperties, "clientIp")
-		delete(additionalProperties, "clientVersion")
 		delete(additionalProperties, "code")
+		delete(additionalProperties, "campaign")
+		delete(additionalProperties, "sessionId")
+		delete(additionalProperties, "status")
 		delete(additionalProperties, "errorCode")
 		delete(additionalProperties, "errorMessage")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "removeAt")
+		delete(additionalProperties, "clientVersion")
+		delete(additionalProperties, "clientIp")
+		delete(additionalProperties, "clientId")
+		delete(additionalProperties, "actorId")
+		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "hostname")
 		delete(additionalProperties, "ip")
 		delete(additionalProperties, "port")
-		delete(additionalProperties, "removeAt")
-		delete(additionalProperties, "sessionId")
 		delete(additionalProperties, "source")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "timestamp")
 		o.AdditionalProperties = additionalProperties
 	}
 

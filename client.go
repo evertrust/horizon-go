@@ -56,6 +56,8 @@ type APIClient struct {
 
 	AutomationExecutionAPI *AutomationExecutionAPIService
 
+	AutomationLifecycleAPI *AutomationLifecycleAPIService
+
 	AutomationPolicyAPI *AutomationPolicyAPIService
 
 	CaAPI *CaAPIService
@@ -160,6 +162,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AdocAPI = (*AdocAPIService)(&c.common)
 	c.ArchiveAPI = (*ArchiveAPIService)(&c.common)
 	c.AutomationExecutionAPI = (*AutomationExecutionAPIService)(&c.common)
+	c.AutomationLifecycleAPI = (*AutomationLifecycleAPIService)(&c.common)
 	c.AutomationPolicyAPI = (*AutomationPolicyAPIService)(&c.common)
 	c.CaAPI = (*CaAPIService)(&c.common)
 	c.CacheAPI = (*CacheAPIService)(&c.common)

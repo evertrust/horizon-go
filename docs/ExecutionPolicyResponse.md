@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**AuthorizedPeriods** | Pointer to [**[]ExecutionPeriod**](ExecutionPeriod.md) |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
-**ForbiddenPeriods** | Pointer to [**[]ExecutionPeriod**](ExecutionPeriod.md) |  | [optional] 
 **Name** | **string** |  | 
+**Description** | Pointer to **NullableString** |  | [optional] 
+**AuthorizedPeriods** | Pointer to [**[]ExecutionPeriod**](ExecutionPeriod.md) |  | [optional] 
+**ForbiddenPeriods** | Pointer to [**[]ExecutionPeriod**](ExecutionPeriod.md) |  | [optional] 
 
 ## Methods
 
@@ -49,41 +49,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetAuthorizedPeriods
+### GetName
 
-`func (o *ExecutionPolicyResponse) GetAuthorizedPeriods() []ExecutionPeriod`
+`func (o *ExecutionPolicyResponse) GetName() string`
 
-GetAuthorizedPeriods returns the AuthorizedPeriods field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAuthorizedPeriodsOk
+### GetNameOk
 
-`func (o *ExecutionPolicyResponse) GetAuthorizedPeriodsOk() (*[]ExecutionPeriod, bool)`
+`func (o *ExecutionPolicyResponse) GetNameOk() (*string, bool)`
 
-GetAuthorizedPeriodsOk returns a tuple with the AuthorizedPeriods field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthorizedPeriods
+### SetName
 
-`func (o *ExecutionPolicyResponse) SetAuthorizedPeriods(v []ExecutionPeriod)`
+`func (o *ExecutionPolicyResponse) SetName(v string)`
 
-SetAuthorizedPeriods sets AuthorizedPeriods field to given value.
+SetName sets Name field to given value.
 
-### HasAuthorizedPeriods
 
-`func (o *ExecutionPolicyResponse) HasAuthorizedPeriods() bool`
-
-HasAuthorizedPeriods returns a boolean if a field has been set.
-
-### SetAuthorizedPeriodsNil
-
-`func (o *ExecutionPolicyResponse) SetAuthorizedPeriodsNil(b bool)`
-
- SetAuthorizedPeriodsNil sets the value for AuthorizedPeriods to be an explicit nil
-
-### UnsetAuthorizedPeriods
-`func (o *ExecutionPolicyResponse) UnsetAuthorizedPeriods()`
-
-UnsetAuthorizedPeriods ensures that no value is present for AuthorizedPeriods, not even an explicit nil
 ### GetDescription
 
 `func (o *ExecutionPolicyResponse) GetDescription() string`
@@ -119,6 +104,41 @@ HasDescription returns a boolean if a field has been set.
 `func (o *ExecutionPolicyResponse) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetAuthorizedPeriods
+
+`func (o *ExecutionPolicyResponse) GetAuthorizedPeriods() []ExecutionPeriod`
+
+GetAuthorizedPeriods returns the AuthorizedPeriods field if non-nil, zero value otherwise.
+
+### GetAuthorizedPeriodsOk
+
+`func (o *ExecutionPolicyResponse) GetAuthorizedPeriodsOk() (*[]ExecutionPeriod, bool)`
+
+GetAuthorizedPeriodsOk returns a tuple with the AuthorizedPeriods field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthorizedPeriods
+
+`func (o *ExecutionPolicyResponse) SetAuthorizedPeriods(v []ExecutionPeriod)`
+
+SetAuthorizedPeriods sets AuthorizedPeriods field to given value.
+
+### HasAuthorizedPeriods
+
+`func (o *ExecutionPolicyResponse) HasAuthorizedPeriods() bool`
+
+HasAuthorizedPeriods returns a boolean if a field has been set.
+
+### SetAuthorizedPeriodsNil
+
+`func (o *ExecutionPolicyResponse) SetAuthorizedPeriodsNil(b bool)`
+
+ SetAuthorizedPeriodsNil sets the value for AuthorizedPeriods to be an explicit nil
+
+### UnsetAuthorizedPeriods
+`func (o *ExecutionPolicyResponse) UnsetAuthorizedPeriods()`
+
+UnsetAuthorizedPeriods ensures that no value is present for AuthorizedPeriods, not even an explicit nil
 ### GetForbiddenPeriods
 
 `func (o *ExecutionPolicyResponse) GetForbiddenPeriods() []ExecutionPeriod`
@@ -154,26 +174,6 @@ HasForbiddenPeriods returns a boolean if a field has been set.
 `func (o *ExecutionPolicyResponse) UnsetForbiddenPeriods()`
 
 UnsetForbiddenPeriods ensures that no value is present for ForbiddenPeriods, not even an explicit nil
-### GetName
-
-`func (o *ExecutionPolicyResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ExecutionPolicyResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ExecutionPolicyResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

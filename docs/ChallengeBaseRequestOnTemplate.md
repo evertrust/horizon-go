@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Module** | Pointer to **string** | The request module | [optional] 
-**Profile** | Pointer to **string** | The profile for which to return the template. | [optional] 
 **Workflow** | Pointer to **string** | The workflow for which to return the template. | [optional] 
+**Profile** | Pointer to **string** | The profile for which to return the template. | [optional] 
 
 ## Methods
 
@@ -52,31 +52,6 @@ SetModule sets Module field to given value.
 
 HasModule returns a boolean if a field has been set.
 
-### GetProfile
-
-`func (o *ChallengeBaseRequestOnTemplate) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *ChallengeBaseRequestOnTemplate) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *ChallengeBaseRequestOnTemplate) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-### HasProfile
-
-`func (o *ChallengeBaseRequestOnTemplate) HasProfile() bool`
-
-HasProfile returns a boolean if a field has been set.
-
 ### GetWorkflow
 
 `func (o *ChallengeBaseRequestOnTemplate) GetWorkflow() string`
@@ -101,6 +76,31 @@ SetWorkflow sets Workflow field to given value.
 `func (o *ChallengeBaseRequestOnTemplate) HasWorkflow() bool`
 
 HasWorkflow returns a boolean if a field has been set.
+
+### GetProfile
+
+`func (o *ChallengeBaseRequestOnTemplate) GetProfile() string`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *ChallengeBaseRequestOnTemplate) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *ChallengeBaseRequestOnTemplate) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
+
+### HasProfile
+
+`func (o *ChallengeBaseRequestOnTemplate) HasProfile() bool`
+
+HasProfile returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

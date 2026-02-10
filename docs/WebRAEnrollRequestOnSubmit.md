@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Password** | Pointer to [**SecretString**](SecretString.md) | The password to decrypt the PKCS12 file. Must be set if password mode is &#x60;manual&#x60; | [optional] 
 **Profile** | **string** | The WebRA profile name | 
+**Password** | Pointer to [**SecretString**](SecretString.md) | The password to decrypt the PKCS12 file. Must be set if password mode is &#x60;manual&#x60; | [optional] 
 **RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
-**DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
 **Module** | **string** | The module that will be used to process this request. For a WebRA request, this is always &#x60;webra&#x60; | 
-**Template** | [**WebRAEnrollRequestTemplate**](WebRAEnrollRequestTemplate.md) | The user-data that will be used to generate the certificate | 
 **Workflow** | **string** | What this request will do. For an enrollment request, this is always &#x60;enroll&#x60; | 
+**Template** | [**WebRAEnrollRequestTemplate**](WebRAEnrollRequestTemplate.md) | The user-data that will be used to generate the certificate | 
+**DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
 
 ## Methods
 
 ### NewWebRAEnrollRequestOnSubmit
 
-`func NewWebRAEnrollRequestOnSubmit(profile string, module string, template WebRAEnrollRequestTemplate, workflow string, ) *WebRAEnrollRequestOnSubmit`
+`func NewWebRAEnrollRequestOnSubmit(profile string, module string, workflow string, template WebRAEnrollRequestTemplate, ) *WebRAEnrollRequestOnSubmit`
 
 NewWebRAEnrollRequestOnSubmit instantiates a new WebRAEnrollRequestOnSubmit object
 This constructor will assign default values to properties that have it defined,
@@ -30,6 +30,26 @@ will change when the set of required properties is changed
 NewWebRAEnrollRequestOnSubmitWithDefaults instantiates a new WebRAEnrollRequestOnSubmit object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetProfile
+
+`func (o *WebRAEnrollRequestOnSubmit) GetProfile() string`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *WebRAEnrollRequestOnSubmit) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *WebRAEnrollRequestOnSubmit) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
+
 
 ### GetPassword
 
@@ -55,26 +75,6 @@ SetPassword sets Password field to given value.
 `func (o *WebRAEnrollRequestOnSubmit) HasPassword() bool`
 
 HasPassword returns a boolean if a field has been set.
-
-### GetProfile
-
-`func (o *WebRAEnrollRequestOnSubmit) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *WebRAEnrollRequestOnSubmit) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *WebRAEnrollRequestOnSubmit) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
 
 ### GetRequesterComment
 
@@ -111,6 +111,66 @@ HasRequesterComment returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestOnSubmit) UnsetRequesterComment()`
 
 UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
+### GetModule
+
+`func (o *WebRAEnrollRequestOnSubmit) GetModule() string`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *WebRAEnrollRequestOnSubmit) GetModuleOk() (*string, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *WebRAEnrollRequestOnSubmit) SetModule(v string)`
+
+SetModule sets Module field to given value.
+
+
+### GetWorkflow
+
+`func (o *WebRAEnrollRequestOnSubmit) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRAEnrollRequestOnSubmit) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRAEnrollRequestOnSubmit) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
+### GetTemplate
+
+`func (o *WebRAEnrollRequestOnSubmit) GetTemplate() WebRAEnrollRequestTemplate`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *WebRAEnrollRequestOnSubmit) GetTemplateOk() (*WebRAEnrollRequestTemplate, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *WebRAEnrollRequestOnSubmit) SetTemplate(v WebRAEnrollRequestTemplate)`
+
+SetTemplate sets Template field to given value.
+
+
 ### GetDryRun
 
 `func (o *WebRAEnrollRequestOnSubmit) GetDryRun() bool`
@@ -146,66 +206,6 @@ HasDryRun returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestOnSubmit) UnsetDryRun()`
 
 UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
-### GetModule
-
-`func (o *WebRAEnrollRequestOnSubmit) GetModule() string`
-
-GetModule returns the Module field if non-nil, zero value otherwise.
-
-### GetModuleOk
-
-`func (o *WebRAEnrollRequestOnSubmit) GetModuleOk() (*string, bool)`
-
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModule
-
-`func (o *WebRAEnrollRequestOnSubmit) SetModule(v string)`
-
-SetModule sets Module field to given value.
-
-
-### GetTemplate
-
-`func (o *WebRAEnrollRequestOnSubmit) GetTemplate() WebRAEnrollRequestTemplate`
-
-GetTemplate returns the Template field if non-nil, zero value otherwise.
-
-### GetTemplateOk
-
-`func (o *WebRAEnrollRequestOnSubmit) GetTemplateOk() (*WebRAEnrollRequestTemplate, bool)`
-
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplate
-
-`func (o *WebRAEnrollRequestOnSubmit) SetTemplate(v WebRAEnrollRequestTemplate)`
-
-SetTemplate sets Template field to given value.
-
-
-### GetWorkflow
-
-`func (o *WebRAEnrollRequestOnSubmit) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRAEnrollRequestOnSubmit) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRAEnrollRequestOnSubmit) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

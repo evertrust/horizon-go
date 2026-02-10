@@ -23,19 +23,19 @@ var _ utils.MappedNullable = &CertificateAuthorityRequest{}
 // CertificateAuthorityRequest struct for CertificateAuthorityRequest
 type CertificateAuthorityRequest struct {
 	Certificate                    string               `json:"certificate"`
-	CacheTimeToIdle                utils.NullableString `json:"cacheTimeToIdle,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	CrlUrl                         utils.NullableString `json:"crlUrl,omitempty"`
-	Downloadable                   *bool                `json:"downloadable,omitempty"`
 	Name                           string               `json:"name"`
-	OutdatedRevocationStatusPolicy string               `json:"outdatedRevocationStatusPolicy"`
-	Proxy                          utils.NullableString `json:"proxy,omitempty"`
-	Public                         bool                 `json:"public"`
-	Refresh                        utils.NullableString `json:"refresh,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	ResponderUrl                   utils.NullableString `json:"responderUrl,omitempty"`
 	SubjectKeyIdentifier           utils.NullableString `json:"subjectKeyIdentifier,omitempty"`
-	Timeout                        utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	ResponderUrl                   utils.NullableString `json:"responderUrl,omitempty"`
+	CrlUrl                         utils.NullableString `json:"crlUrl,omitempty"`
+	Refresh                        utils.NullableString `json:"refresh,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	TrustedForClientAuthentication bool                 `json:"trustedForClientAuthentication"`
 	TrustedForServerAuthentication bool                 `json:"trustedForServerAuthentication"`
+	OutdatedRevocationStatusPolicy string               `json:"outdatedRevocationStatusPolicy"`
+	Timeout                        utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Proxy                          utils.NullableString `json:"proxy,omitempty"`
+	CacheTimeToIdle                utils.NullableString `json:"cacheTimeToIdle,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Public                         bool                 `json:"public"`
+	Downloadable                   *bool                `json:"downloadable,omitempty"`
 	AdditionalProperties           map[string]interface{}
 }
 
@@ -45,13 +45,13 @@ type _CertificateAuthorityRequest CertificateAuthorityRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificateAuthorityRequest(certificate string, name string, outdatedRevocationStatusPolicy string, public bool, trustedForClientAuthentication bool, trustedForServerAuthentication bool) *CertificateAuthorityRequest {
+func NewCertificateAuthorityRequest(certificate string, name string, trustedForClientAuthentication bool, trustedForServerAuthentication bool, outdatedRevocationStatusPolicy string, public bool) *CertificateAuthorityRequest {
 	this := CertificateAuthorityRequest{}
 	this.Name = name
-	this.OutdatedRevocationStatusPolicy = outdatedRevocationStatusPolicy
-	this.Public = public
 	this.TrustedForClientAuthentication = trustedForClientAuthentication
 	this.TrustedForServerAuthentication = trustedForServerAuthentication
+	this.OutdatedRevocationStatusPolicy = outdatedRevocationStatusPolicy
+	this.Public = public
 	return &this
 }
 
@@ -87,124 +87,6 @@ func (o *CertificateAuthorityRequest) SetCertificate(v string) {
 	o.Certificate = v
 }
 
-// GetCacheTimeToIdle returns the CacheTimeToIdle field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateAuthorityRequest) GetCacheTimeToIdle() string {
-	if o == nil || utils.IsNil(o.CacheTimeToIdle.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.CacheTimeToIdle.Get()
-}
-
-// GetCacheTimeToIdleOk returns a tuple with the CacheTimeToIdle field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateAuthorityRequest) GetCacheTimeToIdleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CacheTimeToIdle.Get(), o.CacheTimeToIdle.IsSet()
-}
-
-// HasCacheTimeToIdle returns a boolean if a field has been set.
-func (o *CertificateAuthorityRequest) HasCacheTimeToIdle() bool {
-	if o != nil && o.CacheTimeToIdle.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCacheTimeToIdle gets a reference to the given NullableString and assigns it to the CacheTimeToIdle field.
-func (o *CertificateAuthorityRequest) SetCacheTimeToIdle(v string) {
-	o.CacheTimeToIdle.Set(&v)
-}
-
-// SetCacheTimeToIdleNil sets the value for CacheTimeToIdle to be an explicit nil
-func (o *CertificateAuthorityRequest) SetCacheTimeToIdleNil() {
-	o.CacheTimeToIdle.Set(nil)
-}
-
-// UnsetCacheTimeToIdle ensures that no value is present for CacheTimeToIdle, not even an explicit nil
-func (o *CertificateAuthorityRequest) UnsetCacheTimeToIdle() {
-	o.CacheTimeToIdle.Unset()
-}
-
-// GetCrlUrl returns the CrlUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateAuthorityRequest) GetCrlUrl() string {
-	if o == nil || utils.IsNil(o.CrlUrl.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.CrlUrl.Get()
-}
-
-// GetCrlUrlOk returns a tuple with the CrlUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateAuthorityRequest) GetCrlUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CrlUrl.Get(), o.CrlUrl.IsSet()
-}
-
-// HasCrlUrl returns a boolean if a field has been set.
-func (o *CertificateAuthorityRequest) HasCrlUrl() bool {
-	if o != nil && o.CrlUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCrlUrl gets a reference to the given NullableString and assigns it to the CrlUrl field.
-func (o *CertificateAuthorityRequest) SetCrlUrl(v string) {
-	o.CrlUrl.Set(&v)
-}
-
-// SetCrlUrlNil sets the value for CrlUrl to be an explicit nil
-func (o *CertificateAuthorityRequest) SetCrlUrlNil() {
-	o.CrlUrl.Set(nil)
-}
-
-// UnsetCrlUrl ensures that no value is present for CrlUrl, not even an explicit nil
-func (o *CertificateAuthorityRequest) UnsetCrlUrl() {
-	o.CrlUrl.Unset()
-}
-
-// GetDownloadable returns the Downloadable field value if set, zero value otherwise.
-func (o *CertificateAuthorityRequest) GetDownloadable() bool {
-	if o == nil || utils.IsNil(o.Downloadable) {
-		var ret bool
-		return ret
-	}
-	return *o.Downloadable
-}
-
-// GetDownloadableOk returns a tuple with the Downloadable field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CertificateAuthorityRequest) GetDownloadableOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.Downloadable) {
-		return nil, false
-	}
-	return o.Downloadable, true
-}
-
-// HasDownloadable returns a boolean if a field has been set.
-func (o *CertificateAuthorityRequest) HasDownloadable() bool {
-	if o != nil && !utils.IsNil(o.Downloadable) {
-		return true
-	}
-
-	return false
-}
-
-// SetDownloadable gets a reference to the given bool and assigns it to the Downloadable field.
-func (o *CertificateAuthorityRequest) SetDownloadable(v bool) {
-	o.Downloadable = &v
-}
-
 // GetName returns the Name field value
 func (o *CertificateAuthorityRequest) GetName() string {
 	if o == nil {
@@ -227,183 +109,6 @@ func (o *CertificateAuthorityRequest) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *CertificateAuthorityRequest) SetName(v string) {
 	o.Name = v
-}
-
-// GetOutdatedRevocationStatusPolicy returns the OutdatedRevocationStatusPolicy field value
-func (o *CertificateAuthorityRequest) GetOutdatedRevocationStatusPolicy() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.OutdatedRevocationStatusPolicy
-}
-
-// GetOutdatedRevocationStatusPolicyOk returns a tuple with the OutdatedRevocationStatusPolicy field value
-// and a boolean to check if the value has been set.
-func (o *CertificateAuthorityRequest) GetOutdatedRevocationStatusPolicyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.OutdatedRevocationStatusPolicy, true
-}
-
-// SetOutdatedRevocationStatusPolicy sets field value
-func (o *CertificateAuthorityRequest) SetOutdatedRevocationStatusPolicy(v string) {
-	o.OutdatedRevocationStatusPolicy = v
-}
-
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateAuthorityRequest) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Proxy.Get()
-}
-
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateAuthorityRequest) GetProxyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
-}
-
-// HasProxy returns a boolean if a field has been set.
-func (o *CertificateAuthorityRequest) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *CertificateAuthorityRequest) SetProxy(v string) {
-	o.Proxy.Set(&v)
-}
-
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *CertificateAuthorityRequest) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *CertificateAuthorityRequest) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetPublic returns the Public field value
-func (o *CertificateAuthorityRequest) GetPublic() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Public
-}
-
-// GetPublicOk returns a tuple with the Public field value
-// and a boolean to check if the value has been set.
-func (o *CertificateAuthorityRequest) GetPublicOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Public, true
-}
-
-// SetPublic sets field value
-func (o *CertificateAuthorityRequest) SetPublic(v bool) {
-	o.Public = v
-}
-
-// GetRefresh returns the Refresh field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateAuthorityRequest) GetRefresh() string {
-	if o == nil || utils.IsNil(o.Refresh.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Refresh.Get()
-}
-
-// GetRefreshOk returns a tuple with the Refresh field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateAuthorityRequest) GetRefreshOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Refresh.Get(), o.Refresh.IsSet()
-}
-
-// HasRefresh returns a boolean if a field has been set.
-func (o *CertificateAuthorityRequest) HasRefresh() bool {
-	if o != nil && o.Refresh.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRefresh gets a reference to the given NullableString and assigns it to the Refresh field.
-func (o *CertificateAuthorityRequest) SetRefresh(v string) {
-	o.Refresh.Set(&v)
-}
-
-// SetRefreshNil sets the value for Refresh to be an explicit nil
-func (o *CertificateAuthorityRequest) SetRefreshNil() {
-	o.Refresh.Set(nil)
-}
-
-// UnsetRefresh ensures that no value is present for Refresh, not even an explicit nil
-func (o *CertificateAuthorityRequest) UnsetRefresh() {
-	o.Refresh.Unset()
-}
-
-// GetResponderUrl returns the ResponderUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateAuthorityRequest) GetResponderUrl() string {
-	if o == nil || utils.IsNil(o.ResponderUrl.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ResponderUrl.Get()
-}
-
-// GetResponderUrlOk returns a tuple with the ResponderUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateAuthorityRequest) GetResponderUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResponderUrl.Get(), o.ResponderUrl.IsSet()
-}
-
-// HasResponderUrl returns a boolean if a field has been set.
-func (o *CertificateAuthorityRequest) HasResponderUrl() bool {
-	if o != nil && o.ResponderUrl.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetResponderUrl gets a reference to the given NullableString and assigns it to the ResponderUrl field.
-func (o *CertificateAuthorityRequest) SetResponderUrl(v string) {
-	o.ResponderUrl.Set(&v)
-}
-
-// SetResponderUrlNil sets the value for ResponderUrl to be an explicit nil
-func (o *CertificateAuthorityRequest) SetResponderUrlNil() {
-	o.ResponderUrl.Set(nil)
-}
-
-// UnsetResponderUrl ensures that no value is present for ResponderUrl, not even an explicit nil
-func (o *CertificateAuthorityRequest) UnsetResponderUrl() {
-	o.ResponderUrl.Unset()
 }
 
 // GetSubjectKeyIdentifier returns the SubjectKeyIdentifier field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -449,47 +154,133 @@ func (o *CertificateAuthorityRequest) UnsetSubjectKeyIdentifier() {
 	o.SubjectKeyIdentifier.Unset()
 }
 
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateAuthorityRequest) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
+// GetResponderUrl returns the ResponderUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateAuthorityRequest) GetResponderUrl() string {
+	if o == nil || utils.IsNil(o.ResponderUrl.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Timeout.Get()
+	return *o.ResponderUrl.Get()
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// GetResponderUrlOk returns a tuple with the ResponderUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateAuthorityRequest) GetTimeoutOk() (*string, bool) {
+func (o *CertificateAuthorityRequest) GetResponderUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
+	return o.ResponderUrl.Get(), o.ResponderUrl.IsSet()
 }
 
-// HasTimeout returns a boolean if a field has been set.
-func (o *CertificateAuthorityRequest) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
+// HasResponderUrl returns a boolean if a field has been set.
+func (o *CertificateAuthorityRequest) HasResponderUrl() bool {
+	if o != nil && o.ResponderUrl.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *CertificateAuthorityRequest) SetTimeout(v string) {
-	o.Timeout.Set(&v)
+// SetResponderUrl gets a reference to the given NullableString and assigns it to the ResponderUrl field.
+func (o *CertificateAuthorityRequest) SetResponderUrl(v string) {
+	o.ResponderUrl.Set(&v)
 }
 
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *CertificateAuthorityRequest) SetTimeoutNil() {
-	o.Timeout.Set(nil)
+// SetResponderUrlNil sets the value for ResponderUrl to be an explicit nil
+func (o *CertificateAuthorityRequest) SetResponderUrlNil() {
+	o.ResponderUrl.Set(nil)
 }
 
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *CertificateAuthorityRequest) UnsetTimeout() {
-	o.Timeout.Unset()
+// UnsetResponderUrl ensures that no value is present for ResponderUrl, not even an explicit nil
+func (o *CertificateAuthorityRequest) UnsetResponderUrl() {
+	o.ResponderUrl.Unset()
+}
+
+// GetCrlUrl returns the CrlUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateAuthorityRequest) GetCrlUrl() string {
+	if o == nil || utils.IsNil(o.CrlUrl.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CrlUrl.Get()
+}
+
+// GetCrlUrlOk returns a tuple with the CrlUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateAuthorityRequest) GetCrlUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CrlUrl.Get(), o.CrlUrl.IsSet()
+}
+
+// HasCrlUrl returns a boolean if a field has been set.
+func (o *CertificateAuthorityRequest) HasCrlUrl() bool {
+	if o != nil && o.CrlUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCrlUrl gets a reference to the given NullableString and assigns it to the CrlUrl field.
+func (o *CertificateAuthorityRequest) SetCrlUrl(v string) {
+	o.CrlUrl.Set(&v)
+}
+
+// SetCrlUrlNil sets the value for CrlUrl to be an explicit nil
+func (o *CertificateAuthorityRequest) SetCrlUrlNil() {
+	o.CrlUrl.Set(nil)
+}
+
+// UnsetCrlUrl ensures that no value is present for CrlUrl, not even an explicit nil
+func (o *CertificateAuthorityRequest) UnsetCrlUrl() {
+	o.CrlUrl.Unset()
+}
+
+// GetRefresh returns the Refresh field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateAuthorityRequest) GetRefresh() string {
+	if o == nil || utils.IsNil(o.Refresh.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Refresh.Get()
+}
+
+// GetRefreshOk returns a tuple with the Refresh field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateAuthorityRequest) GetRefreshOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Refresh.Get(), o.Refresh.IsSet()
+}
+
+// HasRefresh returns a boolean if a field has been set.
+func (o *CertificateAuthorityRequest) HasRefresh() bool {
+	if o != nil && o.Refresh.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRefresh gets a reference to the given NullableString and assigns it to the Refresh field.
+func (o *CertificateAuthorityRequest) SetRefresh(v string) {
+	o.Refresh.Set(&v)
+}
+
+// SetRefreshNil sets the value for Refresh to be an explicit nil
+func (o *CertificateAuthorityRequest) SetRefreshNil() {
+	o.Refresh.Set(nil)
+}
+
+// UnsetRefresh ensures that no value is present for Refresh, not even an explicit nil
+func (o *CertificateAuthorityRequest) UnsetRefresh() {
+	o.Refresh.Unset()
 }
 
 // GetTrustedForClientAuthentication returns the TrustedForClientAuthentication field value
@@ -540,6 +331,215 @@ func (o *CertificateAuthorityRequest) SetTrustedForServerAuthentication(v bool) 
 	o.TrustedForServerAuthentication = v
 }
 
+// GetOutdatedRevocationStatusPolicy returns the OutdatedRevocationStatusPolicy field value
+func (o *CertificateAuthorityRequest) GetOutdatedRevocationStatusPolicy() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OutdatedRevocationStatusPolicy
+}
+
+// GetOutdatedRevocationStatusPolicyOk returns a tuple with the OutdatedRevocationStatusPolicy field value
+// and a boolean to check if the value has been set.
+func (o *CertificateAuthorityRequest) GetOutdatedRevocationStatusPolicyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.OutdatedRevocationStatusPolicy, true
+}
+
+// SetOutdatedRevocationStatusPolicy sets field value
+func (o *CertificateAuthorityRequest) SetOutdatedRevocationStatusPolicy(v string) {
+	o.OutdatedRevocationStatusPolicy = v
+}
+
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateAuthorityRequest) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateAuthorityRequest) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *CertificateAuthorityRequest) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *CertificateAuthorityRequest) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *CertificateAuthorityRequest) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *CertificateAuthorityRequest) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateAuthorityRequest) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Proxy.Get()
+}
+
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateAuthorityRequest) GetProxyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Proxy.Get(), o.Proxy.IsSet()
+}
+
+// HasProxy returns a boolean if a field has been set.
+func (o *CertificateAuthorityRequest) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *CertificateAuthorityRequest) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *CertificateAuthorityRequest) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *CertificateAuthorityRequest) UnsetProxy() {
+	o.Proxy.Unset()
+}
+
+// GetCacheTimeToIdle returns the CacheTimeToIdle field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateAuthorityRequest) GetCacheTimeToIdle() string {
+	if o == nil || utils.IsNil(o.CacheTimeToIdle.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CacheTimeToIdle.Get()
+}
+
+// GetCacheTimeToIdleOk returns a tuple with the CacheTimeToIdle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateAuthorityRequest) GetCacheTimeToIdleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CacheTimeToIdle.Get(), o.CacheTimeToIdle.IsSet()
+}
+
+// HasCacheTimeToIdle returns a boolean if a field has been set.
+func (o *CertificateAuthorityRequest) HasCacheTimeToIdle() bool {
+	if o != nil && o.CacheTimeToIdle.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCacheTimeToIdle gets a reference to the given NullableString and assigns it to the CacheTimeToIdle field.
+func (o *CertificateAuthorityRequest) SetCacheTimeToIdle(v string) {
+	o.CacheTimeToIdle.Set(&v)
+}
+
+// SetCacheTimeToIdleNil sets the value for CacheTimeToIdle to be an explicit nil
+func (o *CertificateAuthorityRequest) SetCacheTimeToIdleNil() {
+	o.CacheTimeToIdle.Set(nil)
+}
+
+// UnsetCacheTimeToIdle ensures that no value is present for CacheTimeToIdle, not even an explicit nil
+func (o *CertificateAuthorityRequest) UnsetCacheTimeToIdle() {
+	o.CacheTimeToIdle.Unset()
+}
+
+// GetPublic returns the Public field value
+func (o *CertificateAuthorityRequest) GetPublic() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Public
+}
+
+// GetPublicOk returns a tuple with the Public field value
+// and a boolean to check if the value has been set.
+func (o *CertificateAuthorityRequest) GetPublicOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Public, true
+}
+
+// SetPublic sets field value
+func (o *CertificateAuthorityRequest) SetPublic(v bool) {
+	o.Public = v
+}
+
+// GetDownloadable returns the Downloadable field value if set, zero value otherwise.
+func (o *CertificateAuthorityRequest) GetDownloadable() bool {
+	if o == nil || utils.IsNil(o.Downloadable) {
+		var ret bool
+		return ret
+	}
+	return *o.Downloadable
+}
+
+// GetDownloadableOk returns a tuple with the Downloadable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CertificateAuthorityRequest) GetDownloadableOk() (*bool, bool) {
+	if o == nil || utils.IsNil(o.Downloadable) {
+		return nil, false
+	}
+	return o.Downloadable, true
+}
+
+// HasDownloadable returns a boolean if a field has been set.
+func (o *CertificateAuthorityRequest) HasDownloadable() bool {
+	if o != nil && !utils.IsNil(o.Downloadable) {
+		return true
+	}
+
+	return false
+}
+
+// SetDownloadable gets a reference to the given bool and assigns it to the Downloadable field.
+func (o *CertificateAuthorityRequest) SetDownloadable(v bool) {
+	o.Downloadable = &v
+}
+
 func (o CertificateAuthorityRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -551,35 +551,35 @@ func (o CertificateAuthorityRequest) MarshalJSON() ([]byte, error) {
 func (o CertificateAuthorityRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["certificate"] = o.Certificate
-	if o.CacheTimeToIdle.IsSet() {
-		toSerialize["cacheTimeToIdle"] = o.CacheTimeToIdle.Get()
-	}
-	if o.CrlUrl.IsSet() {
-		toSerialize["crlUrl"] = o.CrlUrl.Get()
-	}
-	if !utils.IsNil(o.Downloadable) {
-		toSerialize["downloadable"] = o.Downloadable
-	}
 	toSerialize["name"] = o.Name
-	toSerialize["outdatedRevocationStatusPolicy"] = o.OutdatedRevocationStatusPolicy
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
-	toSerialize["public"] = o.Public
-	if o.Refresh.IsSet() {
-		toSerialize["refresh"] = o.Refresh.Get()
+	if o.SubjectKeyIdentifier.IsSet() {
+		toSerialize["subjectKeyIdentifier"] = o.SubjectKeyIdentifier.Get()
 	}
 	if o.ResponderUrl.IsSet() {
 		toSerialize["responderUrl"] = o.ResponderUrl.Get()
 	}
-	if o.SubjectKeyIdentifier.IsSet() {
-		toSerialize["subjectKeyIdentifier"] = o.SubjectKeyIdentifier.Get()
+	if o.CrlUrl.IsSet() {
+		toSerialize["crlUrl"] = o.CrlUrl.Get()
 	}
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
+	if o.Refresh.IsSet() {
+		toSerialize["refresh"] = o.Refresh.Get()
 	}
 	toSerialize["trustedForClientAuthentication"] = o.TrustedForClientAuthentication
 	toSerialize["trustedForServerAuthentication"] = o.TrustedForServerAuthentication
+	toSerialize["outdatedRevocationStatusPolicy"] = o.OutdatedRevocationStatusPolicy
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
+	if o.CacheTimeToIdle.IsSet() {
+		toSerialize["cacheTimeToIdle"] = o.CacheTimeToIdle.Get()
+	}
+	toSerialize["public"] = o.Public
+	if !utils.IsNil(o.Downloadable) {
+		toSerialize["downloadable"] = o.Downloadable
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -595,10 +595,10 @@ func (o *CertificateAuthorityRequest) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"certificate",
 		"name",
-		"outdatedRevocationStatusPolicy",
-		"public",
 		"trustedForClientAuthentication",
 		"trustedForServerAuthentication",
+		"outdatedRevocationStatusPolicy",
+		"public",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -629,19 +629,19 @@ func (o *CertificateAuthorityRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "certificate")
-		delete(additionalProperties, "cacheTimeToIdle")
-		delete(additionalProperties, "crlUrl")
-		delete(additionalProperties, "downloadable")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "outdatedRevocationStatusPolicy")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "public")
-		delete(additionalProperties, "refresh")
-		delete(additionalProperties, "responderUrl")
 		delete(additionalProperties, "subjectKeyIdentifier")
-		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "responderUrl")
+		delete(additionalProperties, "crlUrl")
+		delete(additionalProperties, "refresh")
 		delete(additionalProperties, "trustedForClientAuthentication")
 		delete(additionalProperties, "trustedForServerAuthentication")
+		delete(additionalProperties, "outdatedRevocationStatusPolicy")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "cacheTimeToIdle")
+		delete(additionalProperties, "public")
+		delete(additionalProperties, "downloadable")
 		o.AdditionalProperties = additionalProperties
 	}
 

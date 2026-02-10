@@ -23,25 +23,25 @@ var _ utils.MappedNullable = &OTPKIConnectorResponse{}
 // OTPKIConnectorResponse struct for OTPKIConnectorResponse
 type OTPKIConnectorResponse struct {
 	// Object internal ID
-	Id string `json:"_id"`
+	Id          string               `json:"_id"`
+	Name        string               `json:"name"`
+	Type        string               `json:"type"`
+	EndPoint    string               `json:"endPoint"`
+	Profile     string               `json:"profile"`
+	EmailMap    utils.NullableString `json:"emailMap,omitempty"`
+	SanDnsMap   utils.NullableString `json:"sanDnsMap,omitempty"`
+	SanEmailMap utils.NullableString `json:"sanEmailMap,omitempty"`
+	UidMap      utils.NullableString `json:"uidMap,omitempty"`
+	Zone        utils.NullableString `json:"zone,omitempty"`
+	// The name of the label where the zone value is stored on an enrolled certificate
+	ZoneLabel utils.NullableString `json:"zoneLabel,omitempty"`
 	// Name of the `certificate` [credentials](#tag/security.credentials) to use to authenticate on the PKI
 	AuthenticationCredentials string                     `json:"authenticationCredentials"`
-	EmailMap                  utils.NullableString       `json:"emailMap,omitempty"`
-	EndPoint                  string                     `json:"endPoint"`
-	Name                      string                     `json:"name"`
-	Profile                   string                     `json:"profile"`
+	Timeout                   utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	Proxy                     utils.NullableString       `json:"proxy,omitempty"`
 	Queue                     utils.NullableString       `json:"queue,omitempty"`
-	SanDnsMap                 utils.NullableString       `json:"sanDnsMap,omitempty"`
-	SanEmailMap               utils.NullableString       `json:"sanEmailMap,omitempty"`
 	Status                    NullablePKIConnectorStatus `json:"status,omitempty"`
-	Timeout                   utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Type                      string                     `json:"type"`
-	UidMap                    utils.NullableString       `json:"uidMap,omitempty"`
-	Zone                      utils.NullableString       `json:"zone,omitempty"`
-	// The name of the label where the zone value is stored on an enrolled certificate
-	ZoneLabel            utils.NullableString `json:"zoneLabel,omitempty"`
-	AdditionalProperties map[string]interface{}
+	AdditionalProperties      map[string]interface{}
 }
 
 type _OTPKIConnectorResponse OTPKIConnectorResponse
@@ -50,14 +50,14 @@ type _OTPKIConnectorResponse OTPKIConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOTPKIConnectorResponse(id string, authenticationCredentials string, endPoint string, name string, profile string, type_ string) *OTPKIConnectorResponse {
+func NewOTPKIConnectorResponse(id string, name string, type_ string, endPoint string, profile string, authenticationCredentials string) *OTPKIConnectorResponse {
 	this := OTPKIConnectorResponse{}
 	this.Id = id
-	this.AuthenticationCredentials = authenticationCredentials
-	this.EndPoint = endPoint
 	this.Name = name
-	this.Profile = profile
 	this.Type = type_
+	this.EndPoint = endPoint
+	this.Profile = profile
+	this.AuthenticationCredentials = authenticationCredentials
 	return &this
 }
 
@@ -93,28 +93,100 @@ func (o *OTPKIConnectorResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetAuthenticationCredentials returns the AuthenticationCredentials field value
-func (o *OTPKIConnectorResponse) GetAuthenticationCredentials() string {
+// GetName returns the Name field value
+func (o *OTPKIConnectorResponse) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.AuthenticationCredentials
+	return o.Name
 }
 
-// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *OTPKIConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool) {
+func (o *OTPKIConnectorResponse) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AuthenticationCredentials, true
+	return &o.Name, true
 }
 
-// SetAuthenticationCredentials sets field value
-func (o *OTPKIConnectorResponse) SetAuthenticationCredentials(v string) {
-	o.AuthenticationCredentials = v
+// SetName sets field value
+func (o *OTPKIConnectorResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetType returns the Type field value
+func (o *OTPKIConnectorResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *OTPKIConnectorResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *OTPKIConnectorResponse) SetType(v string) {
+	o.Type = v
+}
+
+// GetEndPoint returns the EndPoint field value
+func (o *OTPKIConnectorResponse) GetEndPoint() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndPoint
+}
+
+// GetEndPointOk returns a tuple with the EndPoint field value
+// and a boolean to check if the value has been set.
+func (o *OTPKIConnectorResponse) GetEndPointOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EndPoint, true
+}
+
+// SetEndPoint sets field value
+func (o *OTPKIConnectorResponse) SetEndPoint(v string) {
+	o.EndPoint = v
+}
+
+// GetProfile returns the Profile field value
+func (o *OTPKIConnectorResponse) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *OTPKIConnectorResponse) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *OTPKIConnectorResponse) SetProfile(v string) {
+	o.Profile = v
 }
 
 // GetEmailMap returns the EmailMap field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -158,164 +230,6 @@ func (o *OTPKIConnectorResponse) SetEmailMapNil() {
 // UnsetEmailMap ensures that no value is present for EmailMap, not even an explicit nil
 func (o *OTPKIConnectorResponse) UnsetEmailMap() {
 	o.EmailMap.Unset()
-}
-
-// GetEndPoint returns the EndPoint field value
-func (o *OTPKIConnectorResponse) GetEndPoint() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.EndPoint
-}
-
-// GetEndPointOk returns a tuple with the EndPoint field value
-// and a boolean to check if the value has been set.
-func (o *OTPKIConnectorResponse) GetEndPointOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EndPoint, true
-}
-
-// SetEndPoint sets field value
-func (o *OTPKIConnectorResponse) SetEndPoint(v string) {
-	o.EndPoint = v
-}
-
-// GetName returns the Name field value
-func (o *OTPKIConnectorResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *OTPKIConnectorResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *OTPKIConnectorResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetProfile returns the Profile field value
-func (o *OTPKIConnectorResponse) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *OTPKIConnectorResponse) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *OTPKIConnectorResponse) SetProfile(v string) {
-	o.Profile = v
-}
-
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *OTPKIConnectorResponse) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Proxy.Get()
-}
-
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *OTPKIConnectorResponse) GetProxyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
-}
-
-// HasProxy returns a boolean if a field has been set.
-func (o *OTPKIConnectorResponse) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *OTPKIConnectorResponse) SetProxy(v string) {
-	o.Proxy.Set(&v)
-}
-
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *OTPKIConnectorResponse) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *OTPKIConnectorResponse) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetQueue returns the Queue field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *OTPKIConnectorResponse) GetQueue() string {
-	if o == nil || utils.IsNil(o.Queue.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Queue.Get()
-}
-
-// GetQueueOk returns a tuple with the Queue field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *OTPKIConnectorResponse) GetQueueOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Queue.Get(), o.Queue.IsSet()
-}
-
-// HasQueue returns a boolean if a field has been set.
-func (o *OTPKIConnectorResponse) HasQueue() bool {
-	if o != nil && o.Queue.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQueue gets a reference to the given NullableString and assigns it to the Queue field.
-func (o *OTPKIConnectorResponse) SetQueue(v string) {
-	o.Queue.Set(&v)
-}
-
-// SetQueueNil sets the value for Queue to be an explicit nil
-func (o *OTPKIConnectorResponse) SetQueueNil() {
-	o.Queue.Set(nil)
-}
-
-// UnsetQueue ensures that no value is present for Queue, not even an explicit nil
-func (o *OTPKIConnectorResponse) UnsetQueue() {
-	o.Queue.Unset()
 }
 
 // GetSanDnsMap returns the SanDnsMap field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -402,116 +316,6 @@ func (o *OTPKIConnectorResponse) SetSanEmailMapNil() {
 // UnsetSanEmailMap ensures that no value is present for SanEmailMap, not even an explicit nil
 func (o *OTPKIConnectorResponse) UnsetSanEmailMap() {
 	o.SanEmailMap.Unset()
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *OTPKIConnectorResponse) GetStatus() PKIConnectorStatus {
-	if o == nil || utils.IsNil(o.Status.Get()) {
-		var ret PKIConnectorStatus
-		return ret
-	}
-	return *o.Status.Get()
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *OTPKIConnectorResponse) GetStatusOk() (*PKIConnectorStatus, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Status.Get(), o.Status.IsSet()
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *OTPKIConnectorResponse) HasStatus() bool {
-	if o != nil && o.Status.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given NullablePKIConnectorStatus and assigns it to the Status field.
-func (o *OTPKIConnectorResponse) SetStatus(v PKIConnectorStatus) {
-	o.Status.Set(&v)
-}
-
-// SetStatusNil sets the value for Status to be an explicit nil
-func (o *OTPKIConnectorResponse) SetStatusNil() {
-	o.Status.Set(nil)
-}
-
-// UnsetStatus ensures that no value is present for Status, not even an explicit nil
-func (o *OTPKIConnectorResponse) UnsetStatus() {
-	o.Status.Unset()
-}
-
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *OTPKIConnectorResponse) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Timeout.Get()
-}
-
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *OTPKIConnectorResponse) GetTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
-}
-
-// HasTimeout returns a boolean if a field has been set.
-func (o *OTPKIConnectorResponse) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *OTPKIConnectorResponse) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *OTPKIConnectorResponse) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *OTPKIConnectorResponse) UnsetTimeout() {
-	o.Timeout.Unset()
-}
-
-// GetType returns the Type field value
-func (o *OTPKIConnectorResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *OTPKIConnectorResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *OTPKIConnectorResponse) SetType(v string) {
-	o.Type = v
 }
 
 // GetUidMap returns the UidMap field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -643,6 +447,202 @@ func (o *OTPKIConnectorResponse) UnsetZoneLabel() {
 	o.ZoneLabel.Unset()
 }
 
+// GetAuthenticationCredentials returns the AuthenticationCredentials field value
+func (o *OTPKIConnectorResponse) GetAuthenticationCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AuthenticationCredentials
+}
+
+// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value
+// and a boolean to check if the value has been set.
+func (o *OTPKIConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthenticationCredentials, true
+}
+
+// SetAuthenticationCredentials sets field value
+func (o *OTPKIConnectorResponse) SetAuthenticationCredentials(v string) {
+	o.AuthenticationCredentials = v
+}
+
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OTPKIConnectorResponse) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OTPKIConnectorResponse) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *OTPKIConnectorResponse) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *OTPKIConnectorResponse) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *OTPKIConnectorResponse) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *OTPKIConnectorResponse) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OTPKIConnectorResponse) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Proxy.Get()
+}
+
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OTPKIConnectorResponse) GetProxyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Proxy.Get(), o.Proxy.IsSet()
+}
+
+// HasProxy returns a boolean if a field has been set.
+func (o *OTPKIConnectorResponse) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *OTPKIConnectorResponse) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *OTPKIConnectorResponse) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *OTPKIConnectorResponse) UnsetProxy() {
+	o.Proxy.Unset()
+}
+
+// GetQueue returns the Queue field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OTPKIConnectorResponse) GetQueue() string {
+	if o == nil || utils.IsNil(o.Queue.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Queue.Get()
+}
+
+// GetQueueOk returns a tuple with the Queue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OTPKIConnectorResponse) GetQueueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Queue.Get(), o.Queue.IsSet()
+}
+
+// HasQueue returns a boolean if a field has been set.
+func (o *OTPKIConnectorResponse) HasQueue() bool {
+	if o != nil && o.Queue.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetQueue gets a reference to the given NullableString and assigns it to the Queue field.
+func (o *OTPKIConnectorResponse) SetQueue(v string) {
+	o.Queue.Set(&v)
+}
+
+// SetQueueNil sets the value for Queue to be an explicit nil
+func (o *OTPKIConnectorResponse) SetQueueNil() {
+	o.Queue.Set(nil)
+}
+
+// UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+func (o *OTPKIConnectorResponse) UnsetQueue() {
+	o.Queue.Unset()
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OTPKIConnectorResponse) GetStatus() PKIConnectorStatus {
+	if o == nil || utils.IsNil(o.Status.Get()) {
+		var ret PKIConnectorStatus
+		return ret
+	}
+	return *o.Status.Get()
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OTPKIConnectorResponse) GetStatusOk() (*PKIConnectorStatus, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Status.Get(), o.Status.IsSet()
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *OTPKIConnectorResponse) HasStatus() bool {
+	if o != nil && o.Status.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given NullablePKIConnectorStatus and assigns it to the Status field.
+func (o *OTPKIConnectorResponse) SetStatus(v PKIConnectorStatus) {
+	o.Status.Set(&v)
+}
+
+// SetStatusNil sets the value for Status to be an explicit nil
+func (o *OTPKIConnectorResponse) SetStatusNil() {
+	o.Status.Set(nil)
+}
+
+// UnsetStatus ensures that no value is present for Status, not even an explicit nil
+func (o *OTPKIConnectorResponse) UnsetStatus() {
+	o.Status.Unset()
+}
+
 func (o OTPKIConnectorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -654,18 +654,12 @@ func (o OTPKIConnectorResponse) MarshalJSON() ([]byte, error) {
 func (o OTPKIConnectorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["authenticationCredentials"] = o.AuthenticationCredentials
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
+	toSerialize["endPoint"] = o.EndPoint
+	toSerialize["profile"] = o.Profile
 	if o.EmailMap.IsSet() {
 		toSerialize["emailMap"] = o.EmailMap.Get()
-	}
-	toSerialize["endPoint"] = o.EndPoint
-	toSerialize["name"] = o.Name
-	toSerialize["profile"] = o.Profile
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
-	if o.Queue.IsSet() {
-		toSerialize["queue"] = o.Queue.Get()
 	}
 	if o.SanDnsMap.IsSet() {
 		toSerialize["sanDnsMap"] = o.SanDnsMap.Get()
@@ -673,13 +667,6 @@ func (o OTPKIConnectorResponse) ToMap() (map[string]interface{}, error) {
 	if o.SanEmailMap.IsSet() {
 		toSerialize["sanEmailMap"] = o.SanEmailMap.Get()
 	}
-	if o.Status.IsSet() {
-		toSerialize["status"] = o.Status.Get()
-	}
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
-	toSerialize["type"] = o.Type
 	if o.UidMap.IsSet() {
 		toSerialize["uidMap"] = o.UidMap.Get()
 	}
@@ -688,6 +675,19 @@ func (o OTPKIConnectorResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if o.ZoneLabel.IsSet() {
 		toSerialize["zoneLabel"] = o.ZoneLabel.Get()
+	}
+	toSerialize["authenticationCredentials"] = o.AuthenticationCredentials
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
+	if o.Queue.IsSet() {
+		toSerialize["queue"] = o.Queue.Get()
+	}
+	if o.Status.IsSet() {
+		toSerialize["status"] = o.Status.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -703,11 +703,11 @@ func (o *OTPKIConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"authenticationCredentials",
-		"endPoint",
 		"name",
-		"profile",
 		"type",
+		"endPoint",
+		"profile",
+		"authenticationCredentials",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -738,21 +738,21 @@ func (o *OTPKIConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "authenticationCredentials")
-		delete(additionalProperties, "emailMap")
-		delete(additionalProperties, "endPoint")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "endPoint")
 		delete(additionalProperties, "profile")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "queue")
+		delete(additionalProperties, "emailMap")
 		delete(additionalProperties, "sanDnsMap")
 		delete(additionalProperties, "sanEmailMap")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "uidMap")
 		delete(additionalProperties, "zone")
 		delete(additionalProperties, "zoneLabel")
+		delete(additionalProperties, "authenticationCredentials")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "queue")
+		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}
 

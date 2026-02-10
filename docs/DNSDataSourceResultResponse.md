@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ComputedLookupValues** | Pointer to **[]string** | Lookup values that were requested on the datasource | [optional] 
 **Type** | **string** |  | 
-**Dictionary** | [**[]MapEntry**](MapEntry.md) | Data fetched from the datasource | 
-**Error** | Pointer to **NullableString** | If &#x60;status&#x60; is &#x60;failure&#x60;, the error message | [optional] 
+**ComputedLookupValues** | Pointer to **[]string** | Lookup values that were requested on the datasource | [optional] 
 **Name** | **string** | Name of the executed datasource | 
 **Status** | **string** | Status of the execution. &#x60;success&#x60; if the datasource data was fetched correctly, &#x60;failure&#x60; if an error occured and &#x60;ignored&#x60; if inputs were not all filled, resulting in no request being sent | 
+**Dictionary** | [**[]MapEntry**](MapEntry.md) | Data fetched from the datasource | 
+**Error** | Pointer to **NullableString** | If &#x60;status&#x60; is &#x60;failure&#x60;, the error message | [optional] 
 
 ## Methods
 
 ### NewDNSDataSourceResultResponse
 
-`func NewDNSDataSourceResultResponse(type_ string, dictionary []MapEntry, name string, status string, ) *DNSDataSourceResultResponse`
+`func NewDNSDataSourceResultResponse(type_ string, name string, status string, dictionary []MapEntry, ) *DNSDataSourceResultResponse`
 
 NewDNSDataSourceResultResponse instantiates a new DNSDataSourceResultResponse object
 This constructor will assign default values to properties that have it defined,
@@ -29,6 +29,26 @@ will change when the set of required properties is changed
 NewDNSDataSourceResultResponseWithDefaults instantiates a new DNSDataSourceResultResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *DNSDataSourceResultResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *DNSDataSourceResultResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *DNSDataSourceResultResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
 
 ### GetComputedLookupValues
 
@@ -65,24 +85,44 @@ HasComputedLookupValues returns a boolean if a field has been set.
 `func (o *DNSDataSourceResultResponse) UnsetComputedLookupValues()`
 
 UnsetComputedLookupValues ensures that no value is present for ComputedLookupValues, not even an explicit nil
-### GetType
+### GetName
 
-`func (o *DNSDataSourceResultResponse) GetType() string`
+`func (o *DNSDataSourceResultResponse) GetName() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetNameOk
 
-`func (o *DNSDataSourceResultResponse) GetTypeOk() (*string, bool)`
+`func (o *DNSDataSourceResultResponse) GetNameOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetName
 
-`func (o *DNSDataSourceResultResponse) SetType(v string)`
+`func (o *DNSDataSourceResultResponse) SetName(v string)`
 
-SetType sets Type field to given value.
+SetName sets Name field to given value.
+
+
+### GetStatus
+
+`func (o *DNSDataSourceResultResponse) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *DNSDataSourceResultResponse) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *DNSDataSourceResultResponse) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 
 ### GetDictionary
@@ -140,46 +180,6 @@ HasError returns a boolean if a field has been set.
 `func (o *DNSDataSourceResultResponse) UnsetError()`
 
 UnsetError ensures that no value is present for Error, not even an explicit nil
-### GetName
-
-`func (o *DNSDataSourceResultResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *DNSDataSourceResultResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *DNSDataSourceResultResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetStatus
-
-`func (o *DNSDataSourceResultResponse) GetStatus() string`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *DNSDataSourceResultResponse) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *DNSDataSourceResultResponse) SetStatus(v string)`
-
-SetStatus sets Status field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &HttpProxy{}
 
 // HttpProxy struct for HttpProxy
 type HttpProxy struct {
-	// Name of the `password` [credentials](#tag/security.credentials) to use for Proxy Basic Authentication
-	Credentials utils.NullableString `json:"credentials,omitempty"`
-	// Hostname of the proxy
-	Host string `json:"host"`
 	// Name of the proxy
 	Name string `json:"name"`
+	// Hostname of the proxy
+	Host string `json:"host"`
 	// Port of the proxy
-	Port                 int64 `json:"port"`
+	Port int64 `json:"port"`
+	// Name of the `password` [credentials](#tag/security.credentials) to use for Proxy Basic Authentication
+	Credentials          utils.NullableString `json:"credentials,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,10 +39,10 @@ type _HttpProxy HttpProxy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHttpProxy(host string, name string, port int64) *HttpProxy {
+func NewHttpProxy(name string, host string, port int64) *HttpProxy {
 	this := HttpProxy{}
-	this.Host = host
 	this.Name = name
+	this.Host = host
 	this.Port = port
 	return &this
 }
@@ -53,6 +53,78 @@ func NewHttpProxy(host string, name string, port int64) *HttpProxy {
 func NewHttpProxyWithDefaults() *HttpProxy {
 	this := HttpProxy{}
 	return &this
+}
+
+// GetName returns the Name field value
+func (o *HttpProxy) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *HttpProxy) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *HttpProxy) SetName(v string) {
+	o.Name = v
+}
+
+// GetHost returns the Host field value
+func (o *HttpProxy) GetHost() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Host
+}
+
+// GetHostOk returns a tuple with the Host field value
+// and a boolean to check if the value has been set.
+func (o *HttpProxy) GetHostOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Host, true
+}
+
+// SetHost sets field value
+func (o *HttpProxy) SetHost(v string) {
+	o.Host = v
+}
+
+// GetPort returns the Port field value
+func (o *HttpProxy) GetPort() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.Port
+}
+
+// GetPortOk returns a tuple with the Port field value
+// and a boolean to check if the value has been set.
+func (o *HttpProxy) GetPortOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Port, true
+}
+
+// SetPort sets field value
+func (o *HttpProxy) SetPort(v int64) {
+	o.Port = v
 }
 
 // GetCredentials returns the Credentials field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -98,78 +170,6 @@ func (o *HttpProxy) UnsetCredentials() {
 	o.Credentials.Unset()
 }
 
-// GetHost returns the Host field value
-func (o *HttpProxy) GetHost() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Host
-}
-
-// GetHostOk returns a tuple with the Host field value
-// and a boolean to check if the value has been set.
-func (o *HttpProxy) GetHostOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Host, true
-}
-
-// SetHost sets field value
-func (o *HttpProxy) SetHost(v string) {
-	o.Host = v
-}
-
-// GetName returns the Name field value
-func (o *HttpProxy) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *HttpProxy) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *HttpProxy) SetName(v string) {
-	o.Name = v
-}
-
-// GetPort returns the Port field value
-func (o *HttpProxy) GetPort() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Port
-}
-
-// GetPortOk returns a tuple with the Port field value
-// and a boolean to check if the value has been set.
-func (o *HttpProxy) GetPortOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Port, true
-}
-
-// SetPort sets field value
-func (o *HttpProxy) SetPort(v int64) {
-	o.Port = v
-}
-
 func (o HttpProxy) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -180,12 +180,12 @@ func (o HttpProxy) MarshalJSON() ([]byte, error) {
 
 func (o HttpProxy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["host"] = o.Host
+	toSerialize["port"] = o.Port
 	if o.Credentials.IsSet() {
 		toSerialize["credentials"] = o.Credentials.Get()
 	}
-	toSerialize["host"] = o.Host
-	toSerialize["name"] = o.Name
-	toSerialize["port"] = o.Port
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -199,8 +199,8 @@ func (o *HttpProxy) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"host",
 		"name",
+		"host",
 		"port",
 	}
 
@@ -231,10 +231,10 @@ func (o *HttpProxy) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "credentials")
-		delete(additionalProperties, "host")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "host")
 		delete(additionalProperties, "port")
+		delete(additionalProperties, "credentials")
 		o.AdditionalProperties = additionalProperties
 	}
 

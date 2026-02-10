@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The ID of the request to deny | 
-**ApproverComment** | Pointer to **string** | Free-text field editable by the approver to provider more context on the denial | [optional] 
 **Module** | [**Module**](Module.md) |  | 
 **Workflow** | [**Workflow**](Workflow.md) |  | 
+**ApproverComment** | Pointer to **string** | Free-text field editable by the approver to provider more context on the denial | [optional] 
 
 ## Methods
 
@@ -48,31 +48,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetApproverComment
-
-`func (o *RequestDenyRequest) GetApproverComment() string`
-
-GetApproverComment returns the ApproverComment field if non-nil, zero value otherwise.
-
-### GetApproverCommentOk
-
-`func (o *RequestDenyRequest) GetApproverCommentOk() (*string, bool)`
-
-GetApproverCommentOk returns a tuple with the ApproverComment field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApproverComment
-
-`func (o *RequestDenyRequest) SetApproverComment(v string)`
-
-SetApproverComment sets ApproverComment field to given value.
-
-### HasApproverComment
-
-`func (o *RequestDenyRequest) HasApproverComment() bool`
-
-HasApproverComment returns a boolean if a field has been set.
-
 ### GetModule
 
 `func (o *RequestDenyRequest) GetModule() Module`
@@ -112,6 +87,31 @@ and a boolean to check if the value has been set.
 
 SetWorkflow sets Workflow field to given value.
 
+
+### GetApproverComment
+
+`func (o *RequestDenyRequest) GetApproverComment() string`
+
+GetApproverComment returns the ApproverComment field if non-nil, zero value otherwise.
+
+### GetApproverCommentOk
+
+`func (o *RequestDenyRequest) GetApproverCommentOk() (*string, bool)`
+
+GetApproverCommentOk returns a tuple with the ApproverComment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApproverComment
+
+`func (o *RequestDenyRequest) SetApproverComment(v string)`
+
+SetApproverComment sets ApproverComment field to given value.
+
+### HasApproverComment
+
+`func (o *RequestDenyRequest) HasApproverComment() bool`
+
+HasApproverComment returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

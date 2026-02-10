@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Certificate** | [**CFCertificate**](CFCertificate.md) |  | 
 **Name** | **string** |  | 
+**Certificate** | [**CFCertificate**](CFCertificate.md) |  | 
 **Subordinates** | Pointer to [**[]TrustChainAnchor**](TrustChainAnchor.md) |  | [optional] 
 
 ## Methods
 
 ### NewTrustChainAnchor
 
-`func NewTrustChainAnchor(certificate CFCertificate, name string, ) *TrustChainAnchor`
+`func NewTrustChainAnchor(name string, certificate CFCertificate, ) *TrustChainAnchor`
 
 NewTrustChainAnchor instantiates a new TrustChainAnchor object
 This constructor will assign default values to properties that have it defined,
@@ -26,26 +26,6 @@ will change when the set of required properties is changed
 NewTrustChainAnchorWithDefaults instantiates a new TrustChainAnchor object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetCertificate
-
-`func (o *TrustChainAnchor) GetCertificate() CFCertificate`
-
-GetCertificate returns the Certificate field if non-nil, zero value otherwise.
-
-### GetCertificateOk
-
-`func (o *TrustChainAnchor) GetCertificateOk() (*CFCertificate, bool)`
-
-GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificate
-
-`func (o *TrustChainAnchor) SetCertificate(v CFCertificate)`
-
-SetCertificate sets Certificate field to given value.
-
 
 ### GetName
 
@@ -65,6 +45,26 @@ and a boolean to check if the value has been set.
 `func (o *TrustChainAnchor) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetCertificate
+
+`func (o *TrustChainAnchor) GetCertificate() CFCertificate`
+
+GetCertificate returns the Certificate field if non-nil, zero value otherwise.
+
+### GetCertificateOk
+
+`func (o *TrustChainAnchor) GetCertificateOk() (*CFCertificate, bool)`
+
+GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificate
+
+`func (o *TrustChainAnchor) SetCertificate(v CFCertificate)`
+
+SetCertificate sets Certificate field to given value.
 
 
 ### GetSubordinates

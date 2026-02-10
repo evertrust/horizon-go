@@ -5,19 +5,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Expires** | **interface{}** | The expiration date of these credentials. Automatically set to the expiration date of the certificate | 
-**Store** | [**SecretStoreResponse**](SecretStoreResponse.md) | These credentials certificate | 
 **Type** | **string** |  | 
+**Store** | [**SecretStoreResponse**](SecretStoreResponse.md) | These credentials certificate | 
 **Id** | **string** | Object internal ID | 
-**Description** | Pointer to **NullableString** | These credentials description | [optional] 
 **Name** | **string** | These credentials identifying name | 
-**Targets** | Pointer to **[]string** | On which configuration the credentials are usable | [optional] 
+**Description** | Pointer to **NullableString** | These credentials description | [optional] 
 **Triggers** | Pointer to [**CredentialsTriggers**](CredentialsTriggers.md) |  | [optional] 
+**Targets** | Pointer to **[]string** | On which configuration the credentials are usable | [optional] 
 
 ## Methods
 
 ### NewCertificateCredentialsResponse
 
-`func NewCertificateCredentialsResponse(expires interface{}, store SecretStoreResponse, type_ string, id string, name string, ) *CertificateCredentialsResponse`
+`func NewCertificateCredentialsResponse(expires interface{}, type_ string, store SecretStoreResponse, id string, name string, ) *CertificateCredentialsResponse`
 
 NewCertificateCredentialsResponse instantiates a new CertificateCredentialsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -62,26 +62,6 @@ SetExpires sets Expires field to given value.
 `func (o *CertificateCredentialsResponse) UnsetExpires()`
 
 UnsetExpires ensures that no value is present for Expires, not even an explicit nil
-### GetStore
-
-`func (o *CertificateCredentialsResponse) GetStore() SecretStoreResponse`
-
-GetStore returns the Store field if non-nil, zero value otherwise.
-
-### GetStoreOk
-
-`func (o *CertificateCredentialsResponse) GetStoreOk() (*SecretStoreResponse, bool)`
-
-GetStoreOk returns a tuple with the Store field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStore
-
-`func (o *CertificateCredentialsResponse) SetStore(v SecretStoreResponse)`
-
-SetStore sets Store field to given value.
-
-
 ### GetType
 
 `func (o *CertificateCredentialsResponse) GetType() string`
@@ -102,6 +82,26 @@ and a boolean to check if the value has been set.
 SetType sets Type field to given value.
 
 
+### GetStore
+
+`func (o *CertificateCredentialsResponse) GetStore() SecretStoreResponse`
+
+GetStore returns the Store field if non-nil, zero value otherwise.
+
+### GetStoreOk
+
+`func (o *CertificateCredentialsResponse) GetStoreOk() (*SecretStoreResponse, bool)`
+
+GetStoreOk returns a tuple with the Store field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStore
+
+`func (o *CertificateCredentialsResponse) SetStore(v SecretStoreResponse)`
+
+SetStore sets Store field to given value.
+
+
 ### GetId
 
 `func (o *CertificateCredentialsResponse) GetId() string`
@@ -120,6 +120,26 @@ and a boolean to check if the value has been set.
 `func (o *CertificateCredentialsResponse) SetId(v string)`
 
 SetId sets Id field to given value.
+
+
+### GetName
+
+`func (o *CertificateCredentialsResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *CertificateCredentialsResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *CertificateCredentialsResponse) SetName(v string)`
+
+SetName sets Name field to given value.
 
 
 ### GetDescription
@@ -157,25 +177,30 @@ HasDescription returns a boolean if a field has been set.
 `func (o *CertificateCredentialsResponse) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetName
+### GetTriggers
 
-`func (o *CertificateCredentialsResponse) GetName() string`
+`func (o *CertificateCredentialsResponse) GetTriggers() CredentialsTriggers`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetTriggers returns the Triggers field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetTriggersOk
 
-`func (o *CertificateCredentialsResponse) GetNameOk() (*string, bool)`
+`func (o *CertificateCredentialsResponse) GetTriggersOk() (*CredentialsTriggers, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetTriggers
 
-`func (o *CertificateCredentialsResponse) SetName(v string)`
+`func (o *CertificateCredentialsResponse) SetTriggers(v CredentialsTriggers)`
 
-SetName sets Name field to given value.
+SetTriggers sets Triggers field to given value.
 
+### HasTriggers
+
+`func (o *CertificateCredentialsResponse) HasTriggers() bool`
+
+HasTriggers returns a boolean if a field has been set.
 
 ### GetTargets
 
@@ -201,31 +226,6 @@ SetTargets sets Targets field to given value.
 `func (o *CertificateCredentialsResponse) HasTargets() bool`
 
 HasTargets returns a boolean if a field has been set.
-
-### GetTriggers
-
-`func (o *CertificateCredentialsResponse) GetTriggers() CredentialsTriggers`
-
-GetTriggers returns the Triggers field if non-nil, zero value otherwise.
-
-### GetTriggersOk
-
-`func (o *CertificateCredentialsResponse) GetTriggersOk() (*CredentialsTriggers, bool)`
-
-GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTriggers
-
-`func (o *CertificateCredentialsResponse) SetTriggers(v CredentialsTriggers)`
-
-SetTriggers sets Triggers field to given value.
-
-### HasTriggers
-
-`func (o *CertificateCredentialsResponse) HasTriggers() bool`
-
-HasTriggers returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

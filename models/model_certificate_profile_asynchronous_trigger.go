@@ -22,8 +22,8 @@ var _ utils.MappedNullable = &CertificateProfileAsynchronousTrigger{}
 
 // CertificateProfileAsynchronousTrigger struct for CertificateProfileAsynchronousTrigger
 type CertificateProfileAsynchronousTrigger struct {
-	ActivationDate       utils.NullableInt64 `json:"activationDate,omitempty"`
 	Name                 string              `json:"name"`
+	ActivationDate       utils.NullableInt64 `json:"activationDate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,6 +45,30 @@ func NewCertificateProfileAsynchronousTrigger(name string) *CertificateProfileAs
 func NewCertificateProfileAsynchronousTriggerWithDefaults() *CertificateProfileAsynchronousTrigger {
 	this := CertificateProfileAsynchronousTrigger{}
 	return &this
+}
+
+// GetName returns the Name field value
+func (o *CertificateProfileAsynchronousTrigger) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CertificateProfileAsynchronousTrigger) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *CertificateProfileAsynchronousTrigger) SetName(v string) {
+	o.Name = v
 }
 
 // GetActivationDate returns the ActivationDate field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -90,30 +114,6 @@ func (o *CertificateProfileAsynchronousTrigger) UnsetActivationDate() {
 	o.ActivationDate.Unset()
 }
 
-// GetName returns the Name field value
-func (o *CertificateProfileAsynchronousTrigger) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *CertificateProfileAsynchronousTrigger) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *CertificateProfileAsynchronousTrigger) SetName(v string) {
-	o.Name = v
-}
-
 func (o CertificateProfileAsynchronousTrigger) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -124,10 +124,10 @@ func (o CertificateProfileAsynchronousTrigger) MarshalJSON() ([]byte, error) {
 
 func (o CertificateProfileAsynchronousTrigger) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
 	if o.ActivationDate.IsSet() {
 		toSerialize["activationDate"] = o.ActivationDate.Get()
 	}
-	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -171,8 +171,8 @@ func (o *CertificateProfileAsynchronousTrigger) UnmarshalJSON(data []byte) (err 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "activationDate")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "activationDate")
 		o.AdditionalProperties = additionalProperties
 	}
 

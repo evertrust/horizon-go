@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | Object internal ID | [optional] 
+**Name** | Pointer to **string** | These credentials identifying name | [optional] 
+**Type** | Pointer to **string** | These credentials type | [optional] 
 **Description** | Pointer to **NullableString** | These credentials description | [optional] 
 **Expires** | Pointer to **NullableInt64** | The expiration date of these credentials | [optional] 
-**Name** | Pointer to **string** | These credentials identifying name | [optional] 
-**Targets** | Pointer to **[]string** | On which configuration the credentials are usable | [optional] 
 **Triggers** | Pointer to [**CredentialsTriggers**](CredentialsTriggers.md) |  | [optional] 
-**Type** | Pointer to **string** | These credentials type | [optional] 
+**Targets** | Pointer to **[]string** | On which configuration the credentials are usable | [optional] 
 
 ## Methods
 
@@ -55,6 +55,56 @@ SetId sets Id field to given value.
 `func (o *CredentialsResponse) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *CredentialsResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *CredentialsResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *CredentialsResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *CredentialsResponse) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *CredentialsResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *CredentialsResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *CredentialsResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *CredentialsResponse) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -126,56 +176,6 @@ HasExpires returns a boolean if a field has been set.
 `func (o *CredentialsResponse) UnsetExpires()`
 
 UnsetExpires ensures that no value is present for Expires, not even an explicit nil
-### GetName
-
-`func (o *CredentialsResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *CredentialsResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *CredentialsResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *CredentialsResponse) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### GetTargets
-
-`func (o *CredentialsResponse) GetTargets() []string`
-
-GetTargets returns the Targets field if non-nil, zero value otherwise.
-
-### GetTargetsOk
-
-`func (o *CredentialsResponse) GetTargetsOk() (*[]string, bool)`
-
-GetTargetsOk returns a tuple with the Targets field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTargets
-
-`func (o *CredentialsResponse) SetTargets(v []string)`
-
-SetTargets sets Targets field to given value.
-
-### HasTargets
-
-`func (o *CredentialsResponse) HasTargets() bool`
-
-HasTargets returns a boolean if a field has been set.
-
 ### GetTriggers
 
 `func (o *CredentialsResponse) GetTriggers() CredentialsTriggers`
@@ -201,30 +201,30 @@ SetTriggers sets Triggers field to given value.
 
 HasTriggers returns a boolean if a field has been set.
 
-### GetType
+### GetTargets
 
-`func (o *CredentialsResponse) GetType() string`
+`func (o *CredentialsResponse) GetTargets() []string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetTargets returns the Targets field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetTargetsOk
 
-`func (o *CredentialsResponse) GetTypeOk() (*string, bool)`
+`func (o *CredentialsResponse) GetTargetsOk() (*[]string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetTargetsOk returns a tuple with the Targets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetTargets
 
-`func (o *CredentialsResponse) SetType(v string)`
+`func (o *CredentialsResponse) SetTargets(v []string)`
 
-SetType sets Type field to given value.
+SetTargets sets Targets field to given value.
 
-### HasType
+### HasTargets
 
-`func (o *CredentialsResponse) HasType() bool`
+`func (o *CredentialsResponse) HasTargets() bool`
 
-HasType returns a boolean if a field has been set.
+HasTargets returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

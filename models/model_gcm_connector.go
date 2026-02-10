@@ -22,18 +22,18 @@ var _ utils.MappedNullable = &GCMConnector{}
 
 // GCMConnector struct for GCMConnector
 type GCMConnector struct {
+	Type             string               `json:"type"`
+	Name             string               `json:"name"`
+	ThrottleDuration string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	RenewalPeriod    utils.NullableString `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Timeout          utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Proxy            utils.NullableString `json:"proxy,omitempty"`
+	Project          string               `json:"project"`
+	Location         string               `json:"location"`
 	// Name of the `raw` [credentials](#tag/security.credentials) containing User Account credentials.
 	Credentials          string               `json:"credentials"`
-	Location             string               `json:"location"`
-	Name                 string               `json:"name"`
-	Project              string               `json:"project"`
-	Proxy                utils.NullableString `json:"proxy,omitempty"`
-	RenewalPeriod        utils.NullableString `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	TagKey               utils.NullableString `json:"tagKey,omitempty"`
 	TagValue             utils.NullableString `json:"tagValue,omitempty"`
-	ThrottleDuration     string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Type                 string               `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,14 +43,14 @@ type _GCMConnector GCMConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGCMConnector(credentials string, location string, name string, project string, throttleDuration string, type_ string) *GCMConnector {
+func NewGCMConnector(type_ string, name string, throttleDuration string, project string, location string, credentials string) *GCMConnector {
 	this := GCMConnector{}
-	this.Credentials = credentials
-	this.Location = location
-	this.Name = name
-	this.Project = project
-	this.ThrottleDuration = throttleDuration
 	this.Type = type_
+	this.Name = name
+	this.ThrottleDuration = throttleDuration
+	this.Project = project
+	this.Location = location
+	this.Credentials = credentials
 	return &this
 }
 
@@ -62,52 +62,28 @@ func NewGCMConnectorWithDefaults() *GCMConnector {
 	return &this
 }
 
-// GetCredentials returns the Credentials field value
-func (o *GCMConnector) GetCredentials() string {
+// GetType returns the Type field value
+func (o *GCMConnector) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Credentials
+	return o.Type
 }
 
-// GetCredentialsOk returns a tuple with the Credentials field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *GCMConnector) GetCredentialsOk() (*string, bool) {
+func (o *GCMConnector) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Credentials, true
+	return &o.Type, true
 }
 
-// SetCredentials sets field value
-func (o *GCMConnector) SetCredentials(v string) {
-	o.Credentials = v
-}
-
-// GetLocation returns the Location field value
-func (o *GCMConnector) GetLocation() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Location
-}
-
-// GetLocationOk returns a tuple with the Location field value
-// and a boolean to check if the value has been set.
-func (o *GCMConnector) GetLocationOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Location, true
-}
-
-// SetLocation sets field value
-func (o *GCMConnector) SetLocation(v string) {
-	o.Location = v
+// SetType sets field value
+func (o *GCMConnector) SetType(v string) {
+	o.Type = v
 }
 
 // GetName returns the Name field value
@@ -134,28 +110,114 @@ func (o *GCMConnector) SetName(v string) {
 	o.Name = v
 }
 
-// GetProject returns the Project field value
-func (o *GCMConnector) GetProject() string {
+// GetThrottleDuration returns the ThrottleDuration field value
+func (o *GCMConnector) GetThrottleDuration() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Project
+	return o.ThrottleDuration
 }
 
-// GetProjectOk returns a tuple with the Project field value
+// GetThrottleDurationOk returns a tuple with the ThrottleDuration field value
 // and a boolean to check if the value has been set.
-func (o *GCMConnector) GetProjectOk() (*string, bool) {
+func (o *GCMConnector) GetThrottleDurationOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Project, true
+	return &o.ThrottleDuration, true
 }
 
-// SetProject sets field value
-func (o *GCMConnector) SetProject(v string) {
-	o.Project = v
+// SetThrottleDuration sets field value
+func (o *GCMConnector) SetThrottleDuration(v string) {
+	o.ThrottleDuration = v
+}
+
+// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GCMConnector) GetRenewalPeriod() string {
+	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RenewalPeriod.Get()
+}
+
+// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GCMConnector) GetRenewalPeriodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
+}
+
+// HasRenewalPeriod returns a boolean if a field has been set.
+func (o *GCMConnector) HasRenewalPeriod() bool {
+	if o != nil && o.RenewalPeriod.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
+func (o *GCMConnector) SetRenewalPeriod(v string) {
+	o.RenewalPeriod.Set(&v)
+}
+
+// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
+func (o *GCMConnector) SetRenewalPeriodNil() {
+	o.RenewalPeriod.Set(nil)
+}
+
+// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+func (o *GCMConnector) UnsetRenewalPeriod() {
+	o.RenewalPeriod.Unset()
+}
+
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GCMConnector) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GCMConnector) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *GCMConnector) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *GCMConnector) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *GCMConnector) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *GCMConnector) UnsetTimeout() {
+	o.Timeout.Unset()
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -201,47 +263,76 @@ func (o *GCMConnector) UnsetProxy() {
 	o.Proxy.Unset()
 }
 
-// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GCMConnector) GetRenewalPeriod() string {
-	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
+// GetProject returns the Project field value
+func (o *GCMConnector) GetProject() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.RenewalPeriod.Get()
+
+	return o.Project
 }
 
-// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
+// GetProjectOk returns a tuple with the Project field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GCMConnector) GetRenewalPeriodOk() (*string, bool) {
+func (o *GCMConnector) GetProjectOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
+	return &o.Project, true
 }
 
-// HasRenewalPeriod returns a boolean if a field has been set.
-func (o *GCMConnector) HasRenewalPeriod() bool {
-	if o != nil && o.RenewalPeriod.IsSet() {
-		return true
+// SetProject sets field value
+func (o *GCMConnector) SetProject(v string) {
+	o.Project = v
+}
+
+// GetLocation returns the Location field value
+func (o *GCMConnector) GetLocation() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Location
 }
 
-// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
-func (o *GCMConnector) SetRenewalPeriod(v string) {
-	o.RenewalPeriod.Set(&v)
+// GetLocationOk returns a tuple with the Location field value
+// and a boolean to check if the value has been set.
+func (o *GCMConnector) GetLocationOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Location, true
 }
 
-// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-func (o *GCMConnector) SetRenewalPeriodNil() {
-	o.RenewalPeriod.Set(nil)
+// SetLocation sets field value
+func (o *GCMConnector) SetLocation(v string) {
+	o.Location = v
 }
 
-// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
-func (o *GCMConnector) UnsetRenewalPeriod() {
-	o.RenewalPeriod.Unset()
+// GetCredentials returns the Credentials field value
+func (o *GCMConnector) GetCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Credentials
+}
+
+// GetCredentialsOk returns a tuple with the Credentials field value
+// and a boolean to check if the value has been set.
+func (o *GCMConnector) GetCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Credentials, true
+}
+
+// SetCredentials sets field value
+func (o *GCMConnector) SetCredentials(v string) {
+	o.Credentials = v
 }
 
 // GetTagKey returns the TagKey field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -330,97 +421,6 @@ func (o *GCMConnector) UnsetTagValue() {
 	o.TagValue.Unset()
 }
 
-// GetThrottleDuration returns the ThrottleDuration field value
-func (o *GCMConnector) GetThrottleDuration() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ThrottleDuration
-}
-
-// GetThrottleDurationOk returns a tuple with the ThrottleDuration field value
-// and a boolean to check if the value has been set.
-func (o *GCMConnector) GetThrottleDurationOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ThrottleDuration, true
-}
-
-// SetThrottleDuration sets field value
-func (o *GCMConnector) SetThrottleDuration(v string) {
-	o.ThrottleDuration = v
-}
-
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GCMConnector) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Timeout.Get()
-}
-
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GCMConnector) GetTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
-}
-
-// HasTimeout returns a boolean if a field has been set.
-func (o *GCMConnector) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *GCMConnector) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *GCMConnector) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *GCMConnector) UnsetTimeout() {
-	o.Timeout.Unset()
-}
-
-// GetType returns the Type field value
-func (o *GCMConnector) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *GCMConnector) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *GCMConnector) SetType(v string) {
-	o.Type = v
-}
-
 func (o GCMConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -431,27 +431,27 @@ func (o GCMConnector) MarshalJSON() ([]byte, error) {
 
 func (o GCMConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["credentials"] = o.Credentials
-	toSerialize["location"] = o.Location
+	toSerialize["type"] = o.Type
 	toSerialize["name"] = o.Name
-	toSerialize["project"] = o.Project
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
+	toSerialize["throttleDuration"] = o.ThrottleDuration
 	if o.RenewalPeriod.IsSet() {
 		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
 	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
+	toSerialize["project"] = o.Project
+	toSerialize["location"] = o.Location
+	toSerialize["credentials"] = o.Credentials
 	if o.TagKey.IsSet() {
 		toSerialize["tagKey"] = o.TagKey.Get()
 	}
 	if o.TagValue.IsSet() {
 		toSerialize["tagValue"] = o.TagValue.Get()
 	}
-	toSerialize["throttleDuration"] = o.ThrottleDuration
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
-	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -465,12 +465,12 @@ func (o *GCMConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"credentials",
-		"location",
-		"name",
-		"project",
-		"throttleDuration",
 		"type",
+		"name",
+		"throttleDuration",
+		"project",
+		"location",
+		"credentials",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -500,17 +500,17 @@ func (o *GCMConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "credentials")
-		delete(additionalProperties, "location")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "project")
-		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "throttleDuration")
 		delete(additionalProperties, "renewalPeriod")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "location")
+		delete(additionalProperties, "credentials")
 		delete(additionalProperties, "tagKey")
 		delete(additionalProperties, "tagValue")
-		delete(additionalProperties, "throttleDuration")
-		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
-**CertificateUsage** | Pointer to **NullableString** |  | [optional] 
-**HashAlgorithm** | Pointer to **NullableString** |  | [optional] 
-**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for technical account on the PKI | 
 **Name** | **string** |  | 
+**Type** | **string** |  | 
+**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for technical account on the PKI | 
+**HashAlgorithm** | Pointer to **NullableString** |  | [optional] 
+**CertificateUsage** | Pointer to **NullableString** |  | [optional] 
+**RetryInterval** | Pointer to **NullableString** |  | [optional] 
+**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
-**RetryInterval** | Pointer to **NullableString** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Type** | **string** |  | 
 
 ## Methods
 
 ### NewGSAtlasConnector
 
-`func NewGSAtlasConnector(authenticationCredentials string, loginCredentials string, name string, type_ string, ) *GSAtlasConnector`
+`func NewGSAtlasConnector(name string, type_ string, loginCredentials string, authenticationCredentials string, ) *GSAtlasConnector`
 
 NewGSAtlasConnector instantiates a new GSAtlasConnector object
 This constructor will assign default values to properties that have it defined,
@@ -34,61 +34,66 @@ NewGSAtlasConnectorWithDefaults instantiates a new GSAtlasConnector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAuthenticationCredentials
+### GetName
 
-`func (o *GSAtlasConnector) GetAuthenticationCredentials() string`
+`func (o *GSAtlasConnector) GetName() string`
 
-GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAuthenticationCredentialsOk
+### GetNameOk
 
-`func (o *GSAtlasConnector) GetAuthenticationCredentialsOk() (*string, bool)`
+`func (o *GSAtlasConnector) GetNameOk() (*string, bool)`
 
-GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationCredentials
+### SetName
 
-`func (o *GSAtlasConnector) SetAuthenticationCredentials(v string)`
+`func (o *GSAtlasConnector) SetName(v string)`
 
-SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
+SetName sets Name field to given value.
 
 
-### GetCertificateUsage
+### GetType
 
-`func (o *GSAtlasConnector) GetCertificateUsage() string`
+`func (o *GSAtlasConnector) GetType() string`
 
-GetCertificateUsage returns the CertificateUsage field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetCertificateUsageOk
+### GetTypeOk
 
-`func (o *GSAtlasConnector) GetCertificateUsageOk() (*string, bool)`
+`func (o *GSAtlasConnector) GetTypeOk() (*string, bool)`
 
-GetCertificateUsageOk returns a tuple with the CertificateUsage field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCertificateUsage
+### SetType
 
-`func (o *GSAtlasConnector) SetCertificateUsage(v string)`
+`func (o *GSAtlasConnector) SetType(v string)`
 
-SetCertificateUsage sets CertificateUsage field to given value.
+SetType sets Type field to given value.
 
-### HasCertificateUsage
 
-`func (o *GSAtlasConnector) HasCertificateUsage() bool`
+### GetLoginCredentials
 
-HasCertificateUsage returns a boolean if a field has been set.
+`func (o *GSAtlasConnector) GetLoginCredentials() string`
 
-### SetCertificateUsageNil
+GetLoginCredentials returns the LoginCredentials field if non-nil, zero value otherwise.
 
-`func (o *GSAtlasConnector) SetCertificateUsageNil(b bool)`
+### GetLoginCredentialsOk
 
- SetCertificateUsageNil sets the value for CertificateUsage to be an explicit nil
+`func (o *GSAtlasConnector) GetLoginCredentialsOk() (*string, bool)`
 
-### UnsetCertificateUsage
-`func (o *GSAtlasConnector) UnsetCertificateUsage()`
+GetLoginCredentialsOk returns a tuple with the LoginCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetCertificateUsage ensures that no value is present for CertificateUsage, not even an explicit nil
+### SetLoginCredentials
+
+`func (o *GSAtlasConnector) SetLoginCredentials(v string)`
+
+SetLoginCredentials sets LoginCredentials field to given value.
+
+
 ### GetHashAlgorithm
 
 `func (o *GSAtlasConnector) GetHashAlgorithm() string`
@@ -124,46 +129,131 @@ HasHashAlgorithm returns a boolean if a field has been set.
 `func (o *GSAtlasConnector) UnsetHashAlgorithm()`
 
 UnsetHashAlgorithm ensures that no value is present for HashAlgorithm, not even an explicit nil
-### GetLoginCredentials
+### GetCertificateUsage
 
-`func (o *GSAtlasConnector) GetLoginCredentials() string`
+`func (o *GSAtlasConnector) GetCertificateUsage() string`
 
-GetLoginCredentials returns the LoginCredentials field if non-nil, zero value otherwise.
+GetCertificateUsage returns the CertificateUsage field if non-nil, zero value otherwise.
 
-### GetLoginCredentialsOk
+### GetCertificateUsageOk
 
-`func (o *GSAtlasConnector) GetLoginCredentialsOk() (*string, bool)`
+`func (o *GSAtlasConnector) GetCertificateUsageOk() (*string, bool)`
 
-GetLoginCredentialsOk returns a tuple with the LoginCredentials field if it's non-nil, zero value otherwise
+GetCertificateUsageOk returns a tuple with the CertificateUsage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLoginCredentials
+### SetCertificateUsage
 
-`func (o *GSAtlasConnector) SetLoginCredentials(v string)`
+`func (o *GSAtlasConnector) SetCertificateUsage(v string)`
 
-SetLoginCredentials sets LoginCredentials field to given value.
+SetCertificateUsage sets CertificateUsage field to given value.
 
+### HasCertificateUsage
 
-### GetName
+`func (o *GSAtlasConnector) HasCertificateUsage() bool`
 
-`func (o *GSAtlasConnector) GetName() string`
+HasCertificateUsage returns a boolean if a field has been set.
 
-GetName returns the Name field if non-nil, zero value otherwise.
+### SetCertificateUsageNil
 
-### GetNameOk
+`func (o *GSAtlasConnector) SetCertificateUsageNil(b bool)`
 
-`func (o *GSAtlasConnector) GetNameOk() (*string, bool)`
+ SetCertificateUsageNil sets the value for CertificateUsage to be an explicit nil
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+### UnsetCertificateUsage
+`func (o *GSAtlasConnector) UnsetCertificateUsage()`
+
+UnsetCertificateUsage ensures that no value is present for CertificateUsage, not even an explicit nil
+### GetRetryInterval
+
+`func (o *GSAtlasConnector) GetRetryInterval() string`
+
+GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
+
+### GetRetryIntervalOk
+
+`func (o *GSAtlasConnector) GetRetryIntervalOk() (*string, bool)`
+
+GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetRetryInterval
 
-`func (o *GSAtlasConnector) SetName(v string)`
+`func (o *GSAtlasConnector) SetRetryInterval(v string)`
 
-SetName sets Name field to given value.
+SetRetryInterval sets RetryInterval field to given value.
+
+### HasRetryInterval
+
+`func (o *GSAtlasConnector) HasRetryInterval() bool`
+
+HasRetryInterval returns a boolean if a field has been set.
+
+### SetRetryIntervalNil
+
+`func (o *GSAtlasConnector) SetRetryIntervalNil(b bool)`
+
+ SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+
+### UnsetRetryInterval
+`func (o *GSAtlasConnector) UnsetRetryInterval()`
+
+UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
+### GetAuthenticationCredentials
+
+`func (o *GSAtlasConnector) GetAuthenticationCredentials() string`
+
+GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
+
+### GetAuthenticationCredentialsOk
+
+`func (o *GSAtlasConnector) GetAuthenticationCredentialsOk() (*string, bool)`
+
+GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationCredentials
+
+`func (o *GSAtlasConnector) SetAuthenticationCredentials(v string)`
+
+SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
 
 
+### GetTimeout
+
+`func (o *GSAtlasConnector) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *GSAtlasConnector) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *GSAtlasConnector) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *GSAtlasConnector) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *GSAtlasConnector) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *GSAtlasConnector) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *GSAtlasConnector) GetProxy() string`
@@ -234,96 +324,6 @@ HasQueue returns a boolean if a field has been set.
 `func (o *GSAtlasConnector) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
-### GetRetryInterval
-
-`func (o *GSAtlasConnector) GetRetryInterval() string`
-
-GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
-
-### GetRetryIntervalOk
-
-`func (o *GSAtlasConnector) GetRetryIntervalOk() (*string, bool)`
-
-GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRetryInterval
-
-`func (o *GSAtlasConnector) SetRetryInterval(v string)`
-
-SetRetryInterval sets RetryInterval field to given value.
-
-### HasRetryInterval
-
-`func (o *GSAtlasConnector) HasRetryInterval() bool`
-
-HasRetryInterval returns a boolean if a field has been set.
-
-### SetRetryIntervalNil
-
-`func (o *GSAtlasConnector) SetRetryIntervalNil(b bool)`
-
- SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
-
-### UnsetRetryInterval
-`func (o *GSAtlasConnector) UnsetRetryInterval()`
-
-UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-### GetTimeout
-
-`func (o *GSAtlasConnector) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *GSAtlasConnector) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *GSAtlasConnector) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *GSAtlasConnector) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *GSAtlasConnector) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *GSAtlasConnector) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetType
-
-`func (o *GSAtlasConnector) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *GSAtlasConnector) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *GSAtlasConnector) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

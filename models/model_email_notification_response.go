@@ -23,35 +23,35 @@ var _ utils.MappedNullable = &EmailNotificationResponse{}
 // EmailNotificationResponse struct for EmailNotificationResponse
 type EmailNotificationResponse struct {
 	// Object internal ID
-	Id string `json:"_id"`
-	// Attach the certificate in DER format if available
-	AttachDerCertificate utils.NullableBool `json:"attachDerCertificate,omitempty"`
-	// Attach the certificate and its trust chain (bundle) in PEM format if available
-	AttachPemBundle utils.NullableBool `json:"attachPemBundle,omitempty"`
+	Id            string        `json:"_id"`
+	Type          string        `json:"type"`
+	EmailTemplate EmailTemplate `json:"emailTemplate"`
+	// On events triggering an enrollment, select if mail is sent: - **Always**: set the value to `null`  - **Only when a PKCS#12 is available in the request**: set the value to `true`  - **Only when a PKCS#12 is not in the request**: set the value to `false`
+	IfPkcs12 utils.NullableBool `json:"ifPkcs12,omitempty"`
 	// Attach the certificate in PEM format if available
 	AttachPemCertificate utils.NullableBool `json:"attachPemCertificate,omitempty"`
+	// Attach the certificate and its trust chain (bundle) in PEM format if available
+	AttachPemBundle utils.NullableBool `json:"attachPemBundle,omitempty"`
+	// Attach the certificate in DER format if available
+	AttachDerCertificate utils.NullableBool `json:"attachDerCertificate,omitempty"`
 	// Attach the certificate in PKCS7 format if available
 	AttachPkcs7 utils.NullableBool `json:"attachPkcs7,omitempty"`
 	// Attach the certificate and its trust chain (bundle) in PKCS7 format if available
 	AttachPkcs7Bundle utils.NullableBool `json:"attachPkcs7Bundle,omitempty"`
 	// Attach the certificate in PKCS#12 format if available
-	AttachPkcs12  utils.NullableBool `json:"attachPkcs12,omitempty"`
-	EmailTemplate EmailTemplate      `json:"emailTemplate"`
-	// On events triggering an enrollment, select if mail is sent: - **Always**: set the value to `null`  - **Only when a PKCS#12 is available in the request**: set the value to `true`  - **Only when a PKCS#12 is not in the request**: set the value to `false`
-	IfPkcs12 utils.NullableBool `json:"ifPkcs12,omitempty"`
-	Type     string             `json:"type"`
-	// Event on which the notification runs. This MUST contain only one value.
-	Events []string `json:"events"`
-	// License usage at which the notification needs to run (between 0 and 100). Must be defined on `on_license_usage` event and must NOT be defined otherwise.
-	LicenseUsagePercent utils.NullableInt64 `json:"licenseUsagePercent,omitempty"`
+	AttachPkcs12 utils.NullableBool `json:"attachPkcs12,omitempty"`
 	// Name of the notification
 	Name string `json:"name"`
 	// Number of retries when the notification fails
 	Retries utils.NullableInt64 `json:"retries,omitempty"`
-	// Must be defined on `on_expire` event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed.
-	RunOnRenewed utils.NullableBool `json:"runOnRenewed,omitempty"`
 	// Time period at which the notification needs to run. Can only be defined on expiration and pending events.
-	RunPeriod            utils.NullableString `json:"runPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	RunPeriod utils.NullableString `json:"runPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	// License usage at which the notification needs to run (between 0 and 100). Must be defined on `on_license_usage` event and must NOT be defined otherwise.
+	LicenseUsagePercent utils.NullableInt64 `json:"licenseUsagePercent,omitempty"`
+	// Event on which the notification runs. This MUST contain only one value.
+	Events []string `json:"events"`
+	// Must be defined on `on_expire` event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed.
+	RunOnRenewed         utils.NullableBool `json:"runOnRenewed,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,11 +61,11 @@ type _EmailNotificationResponse EmailNotificationResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEmailNotificationResponse(id string, emailTemplate EmailTemplate, type_ string, events []string, name string) *EmailNotificationResponse {
+func NewEmailNotificationResponse(id string, type_ string, emailTemplate EmailTemplate, name string, events []string) *EmailNotificationResponse {
 	this := EmailNotificationResponse{}
-	this.Events = events
 	this.Name = name
 	this.Type = type_
+	this.Events = events
 	return &this
 }
 
@@ -101,47 +101,138 @@ func (o *EmailNotificationResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetAttachDerCertificate returns the AttachDerCertificate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EmailNotificationResponse) GetAttachDerCertificate() bool {
-	if o == nil || utils.IsNil(o.AttachDerCertificate.Get()) {
-		var ret bool
+// GetType returns the Type field value
+func (o *EmailNotificationResponse) GetType() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.AttachDerCertificate.Get()
+
+	return o.Type
 }
 
-// GetAttachDerCertificateOk returns a tuple with the AttachDerCertificate field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EmailNotificationResponse) GetAttachDerCertificateOk() (*bool, bool) {
+func (o *EmailNotificationResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.AttachDerCertificate.Get(), o.AttachDerCertificate.IsSet()
+	return &o.Type, true
 }
 
-// HasAttachDerCertificate returns a boolean if a field has been set.
-func (o *EmailNotificationResponse) HasAttachDerCertificate() bool {
-	if o != nil && o.AttachDerCertificate.IsSet() {
+// SetType sets field value
+func (o *EmailNotificationResponse) SetType(v string) {
+	o.Type = v
+}
+
+// GetEmailTemplate returns the EmailTemplate field value
+func (o *EmailNotificationResponse) GetEmailTemplate() EmailTemplate {
+	if o == nil {
+		var ret EmailTemplate
+		return ret
+	}
+
+	return o.EmailTemplate
+}
+
+// GetEmailTemplateOk returns a tuple with the EmailTemplate field value
+// and a boolean to check if the value has been set.
+func (o *EmailNotificationResponse) GetEmailTemplateOk() (*EmailTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EmailTemplate, true
+}
+
+// SetEmailTemplate sets field value
+func (o *EmailNotificationResponse) SetEmailTemplate(v EmailTemplate) {
+	o.EmailTemplate = v
+}
+
+// GetIfPkcs12 returns the IfPkcs12 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EmailNotificationResponse) GetIfPkcs12() bool {
+	if o == nil || utils.IsNil(o.IfPkcs12.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.IfPkcs12.Get()
+}
+
+// GetIfPkcs12Ok returns a tuple with the IfPkcs12 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EmailNotificationResponse) GetIfPkcs12Ok() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IfPkcs12.Get(), o.IfPkcs12.IsSet()
+}
+
+// HasIfPkcs12 returns a boolean if a field has been set.
+func (o *EmailNotificationResponse) HasIfPkcs12() bool {
+	if o != nil && o.IfPkcs12.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAttachDerCertificate gets a reference to the given NullableBool and assigns it to the AttachDerCertificate field.
-func (o *EmailNotificationResponse) SetAttachDerCertificate(v bool) {
-	o.AttachDerCertificate.Set(&v)
+// SetIfPkcs12 gets a reference to the given NullableBool and assigns it to the IfPkcs12 field.
+func (o *EmailNotificationResponse) SetIfPkcs12(v bool) {
+	o.IfPkcs12.Set(&v)
 }
 
-// SetAttachDerCertificateNil sets the value for AttachDerCertificate to be an explicit nil
-func (o *EmailNotificationResponse) SetAttachDerCertificateNil() {
-	o.AttachDerCertificate.Set(nil)
+// SetIfPkcs12Nil sets the value for IfPkcs12 to be an explicit nil
+func (o *EmailNotificationResponse) SetIfPkcs12Nil() {
+	o.IfPkcs12.Set(nil)
 }
 
-// UnsetAttachDerCertificate ensures that no value is present for AttachDerCertificate, not even an explicit nil
-func (o *EmailNotificationResponse) UnsetAttachDerCertificate() {
-	o.AttachDerCertificate.Unset()
+// UnsetIfPkcs12 ensures that no value is present for IfPkcs12, not even an explicit nil
+func (o *EmailNotificationResponse) UnsetIfPkcs12() {
+	o.IfPkcs12.Unset()
+}
+
+// GetAttachPemCertificate returns the AttachPemCertificate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EmailNotificationResponse) GetAttachPemCertificate() bool {
+	if o == nil || utils.IsNil(o.AttachPemCertificate.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.AttachPemCertificate.Get()
+}
+
+// GetAttachPemCertificateOk returns a tuple with the AttachPemCertificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EmailNotificationResponse) GetAttachPemCertificateOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AttachPemCertificate.Get(), o.AttachPemCertificate.IsSet()
+}
+
+// HasAttachPemCertificate returns a boolean if a field has been set.
+func (o *EmailNotificationResponse) HasAttachPemCertificate() bool {
+	if o != nil && o.AttachPemCertificate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAttachPemCertificate gets a reference to the given NullableBool and assigns it to the AttachPemCertificate field.
+func (o *EmailNotificationResponse) SetAttachPemCertificate(v bool) {
+	o.AttachPemCertificate.Set(&v)
+}
+
+// SetAttachPemCertificateNil sets the value for AttachPemCertificate to be an explicit nil
+func (o *EmailNotificationResponse) SetAttachPemCertificateNil() {
+	o.AttachPemCertificate.Set(nil)
+}
+
+// UnsetAttachPemCertificate ensures that no value is present for AttachPemCertificate, not even an explicit nil
+func (o *EmailNotificationResponse) UnsetAttachPemCertificate() {
+	o.AttachPemCertificate.Unset()
 }
 
 // GetAttachPemBundle returns the AttachPemBundle field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -187,47 +278,47 @@ func (o *EmailNotificationResponse) UnsetAttachPemBundle() {
 	o.AttachPemBundle.Unset()
 }
 
-// GetAttachPemCertificate returns the AttachPemCertificate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EmailNotificationResponse) GetAttachPemCertificate() bool {
-	if o == nil || utils.IsNil(o.AttachPemCertificate.Get()) {
+// GetAttachDerCertificate returns the AttachDerCertificate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EmailNotificationResponse) GetAttachDerCertificate() bool {
+	if o == nil || utils.IsNil(o.AttachDerCertificate.Get()) {
 		var ret bool
 		return ret
 	}
-	return *o.AttachPemCertificate.Get()
+	return *o.AttachDerCertificate.Get()
 }
 
-// GetAttachPemCertificateOk returns a tuple with the AttachPemCertificate field value if set, nil otherwise
+// GetAttachDerCertificateOk returns a tuple with the AttachDerCertificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EmailNotificationResponse) GetAttachPemCertificateOk() (*bool, bool) {
+func (o *EmailNotificationResponse) GetAttachDerCertificateOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.AttachPemCertificate.Get(), o.AttachPemCertificate.IsSet()
+	return o.AttachDerCertificate.Get(), o.AttachDerCertificate.IsSet()
 }
 
-// HasAttachPemCertificate returns a boolean if a field has been set.
-func (o *EmailNotificationResponse) HasAttachPemCertificate() bool {
-	if o != nil && o.AttachPemCertificate.IsSet() {
+// HasAttachDerCertificate returns a boolean if a field has been set.
+func (o *EmailNotificationResponse) HasAttachDerCertificate() bool {
+	if o != nil && o.AttachDerCertificate.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAttachPemCertificate gets a reference to the given NullableBool and assigns it to the AttachPemCertificate field.
-func (o *EmailNotificationResponse) SetAttachPemCertificate(v bool) {
-	o.AttachPemCertificate.Set(&v)
+// SetAttachDerCertificate gets a reference to the given NullableBool and assigns it to the AttachDerCertificate field.
+func (o *EmailNotificationResponse) SetAttachDerCertificate(v bool) {
+	o.AttachDerCertificate.Set(&v)
 }
 
-// SetAttachPemCertificateNil sets the value for AttachPemCertificate to be an explicit nil
-func (o *EmailNotificationResponse) SetAttachPemCertificateNil() {
-	o.AttachPemCertificate.Set(nil)
+// SetAttachDerCertificateNil sets the value for AttachDerCertificate to be an explicit nil
+func (o *EmailNotificationResponse) SetAttachDerCertificateNil() {
+	o.AttachDerCertificate.Set(nil)
 }
 
-// UnsetAttachPemCertificate ensures that no value is present for AttachPemCertificate, not even an explicit nil
-func (o *EmailNotificationResponse) UnsetAttachPemCertificate() {
-	o.AttachPemCertificate.Unset()
+// UnsetAttachDerCertificate ensures that no value is present for AttachDerCertificate, not even an explicit nil
+func (o *EmailNotificationResponse) UnsetAttachDerCertificate() {
+	o.AttachDerCertificate.Unset()
 }
 
 // GetAttachPkcs7 returns the AttachPkcs7 field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -359,164 +450,6 @@ func (o *EmailNotificationResponse) UnsetAttachPkcs12() {
 	o.AttachPkcs12.Unset()
 }
 
-// GetEmailTemplate returns the EmailTemplate field value
-func (o *EmailNotificationResponse) GetEmailTemplate() EmailTemplate {
-	if o == nil {
-		var ret EmailTemplate
-		return ret
-	}
-
-	return o.EmailTemplate
-}
-
-// GetEmailTemplateOk returns a tuple with the EmailTemplate field value
-// and a boolean to check if the value has been set.
-func (o *EmailNotificationResponse) GetEmailTemplateOk() (*EmailTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EmailTemplate, true
-}
-
-// SetEmailTemplate sets field value
-func (o *EmailNotificationResponse) SetEmailTemplate(v EmailTemplate) {
-	o.EmailTemplate = v
-}
-
-// GetIfPkcs12 returns the IfPkcs12 field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EmailNotificationResponse) GetIfPkcs12() bool {
-	if o == nil || utils.IsNil(o.IfPkcs12.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.IfPkcs12.Get()
-}
-
-// GetIfPkcs12Ok returns a tuple with the IfPkcs12 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EmailNotificationResponse) GetIfPkcs12Ok() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.IfPkcs12.Get(), o.IfPkcs12.IsSet()
-}
-
-// HasIfPkcs12 returns a boolean if a field has been set.
-func (o *EmailNotificationResponse) HasIfPkcs12() bool {
-	if o != nil && o.IfPkcs12.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIfPkcs12 gets a reference to the given NullableBool and assigns it to the IfPkcs12 field.
-func (o *EmailNotificationResponse) SetIfPkcs12(v bool) {
-	o.IfPkcs12.Set(&v)
-}
-
-// SetIfPkcs12Nil sets the value for IfPkcs12 to be an explicit nil
-func (o *EmailNotificationResponse) SetIfPkcs12Nil() {
-	o.IfPkcs12.Set(nil)
-}
-
-// UnsetIfPkcs12 ensures that no value is present for IfPkcs12, not even an explicit nil
-func (o *EmailNotificationResponse) UnsetIfPkcs12() {
-	o.IfPkcs12.Unset()
-}
-
-// GetType returns the Type field value
-func (o *EmailNotificationResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *EmailNotificationResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *EmailNotificationResponse) SetType(v string) {
-	o.Type = v
-}
-
-// GetEvents returns the Events field value
-func (o *EmailNotificationResponse) GetEvents() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Events
-}
-
-// GetEventsOk returns a tuple with the Events field value
-// and a boolean to check if the value has been set.
-func (o *EmailNotificationResponse) GetEventsOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Events, true
-}
-
-// SetEvents sets field value
-func (o *EmailNotificationResponse) SetEvents(v []string) {
-	o.Events = v
-}
-
-// GetLicenseUsagePercent returns the LicenseUsagePercent field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EmailNotificationResponse) GetLicenseUsagePercent() int64 {
-	if o == nil || utils.IsNil(o.LicenseUsagePercent.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.LicenseUsagePercent.Get()
-}
-
-// GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EmailNotificationResponse) GetLicenseUsagePercentOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LicenseUsagePercent.Get(), o.LicenseUsagePercent.IsSet()
-}
-
-// HasLicenseUsagePercent returns a boolean if a field has been set.
-func (o *EmailNotificationResponse) HasLicenseUsagePercent() bool {
-	if o != nil && o.LicenseUsagePercent.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLicenseUsagePercent gets a reference to the given NullableInt64 and assigns it to the LicenseUsagePercent field.
-func (o *EmailNotificationResponse) SetLicenseUsagePercent(v int64) {
-	o.LicenseUsagePercent.Set(&v)
-}
-
-// SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
-func (o *EmailNotificationResponse) SetLicenseUsagePercentNil() {
-	o.LicenseUsagePercent.Set(nil)
-}
-
-// UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
-func (o *EmailNotificationResponse) UnsetLicenseUsagePercent() {
-	o.LicenseUsagePercent.Unset()
-}
-
 // GetName returns the Name field value
 func (o *EmailNotificationResponse) GetName() string {
 	if o == nil {
@@ -584,49 +517,6 @@ func (o *EmailNotificationResponse) UnsetRetries() {
 	o.Retries.Unset()
 }
 
-// GetRunOnRenewed returns the RunOnRenewed field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EmailNotificationResponse) GetRunOnRenewed() bool {
-	if o == nil || utils.IsNil(o.RunOnRenewed.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.RunOnRenewed.Get()
-}
-
-// GetRunOnRenewedOk returns a tuple with the RunOnRenewed field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EmailNotificationResponse) GetRunOnRenewedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RunOnRenewed.Get(), o.RunOnRenewed.IsSet()
-}
-
-// HasRunOnRenewed returns a boolean if a field has been set.
-func (o *EmailNotificationResponse) HasRunOnRenewed() bool {
-	if o != nil && o.RunOnRenewed.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRunOnRenewed gets a reference to the given NullableBool and assigns it to the RunOnRenewed field.
-func (o *EmailNotificationResponse) SetRunOnRenewed(v bool) {
-	o.RunOnRenewed.Set(&v)
-}
-
-// SetRunOnRenewedNil sets the value for RunOnRenewed to be an explicit nil
-func (o *EmailNotificationResponse) SetRunOnRenewedNil() {
-	o.RunOnRenewed.Set(nil)
-}
-
-// UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
-func (o *EmailNotificationResponse) UnsetRunOnRenewed() {
-	o.RunOnRenewed.Unset()
-}
-
 // GetRunPeriod returns the RunPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EmailNotificationResponse) GetRunPeriod() string {
 	if o == nil || utils.IsNil(o.RunPeriod.Get()) {
@@ -670,6 +560,116 @@ func (o *EmailNotificationResponse) UnsetRunPeriod() {
 	o.RunPeriod.Unset()
 }
 
+// GetLicenseUsagePercent returns the LicenseUsagePercent field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EmailNotificationResponse) GetLicenseUsagePercent() int64 {
+	if o == nil || utils.IsNil(o.LicenseUsagePercent.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.LicenseUsagePercent.Get()
+}
+
+// GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EmailNotificationResponse) GetLicenseUsagePercentOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LicenseUsagePercent.Get(), o.LicenseUsagePercent.IsSet()
+}
+
+// HasLicenseUsagePercent returns a boolean if a field has been set.
+func (o *EmailNotificationResponse) HasLicenseUsagePercent() bool {
+	if o != nil && o.LicenseUsagePercent.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLicenseUsagePercent gets a reference to the given NullableInt64 and assigns it to the LicenseUsagePercent field.
+func (o *EmailNotificationResponse) SetLicenseUsagePercent(v int64) {
+	o.LicenseUsagePercent.Set(&v)
+}
+
+// SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
+func (o *EmailNotificationResponse) SetLicenseUsagePercentNil() {
+	o.LicenseUsagePercent.Set(nil)
+}
+
+// UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
+func (o *EmailNotificationResponse) UnsetLicenseUsagePercent() {
+	o.LicenseUsagePercent.Unset()
+}
+
+// GetEvents returns the Events field value
+func (o *EmailNotificationResponse) GetEvents() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Events
+}
+
+// GetEventsOk returns a tuple with the Events field value
+// and a boolean to check if the value has been set.
+func (o *EmailNotificationResponse) GetEventsOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Events, true
+}
+
+// SetEvents sets field value
+func (o *EmailNotificationResponse) SetEvents(v []string) {
+	o.Events = v
+}
+
+// GetRunOnRenewed returns the RunOnRenewed field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EmailNotificationResponse) GetRunOnRenewed() bool {
+	if o == nil || utils.IsNil(o.RunOnRenewed.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.RunOnRenewed.Get()
+}
+
+// GetRunOnRenewedOk returns a tuple with the RunOnRenewed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EmailNotificationResponse) GetRunOnRenewedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RunOnRenewed.Get(), o.RunOnRenewed.IsSet()
+}
+
+// HasRunOnRenewed returns a boolean if a field has been set.
+func (o *EmailNotificationResponse) HasRunOnRenewed() bool {
+	if o != nil && o.RunOnRenewed.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRunOnRenewed gets a reference to the given NullableBool and assigns it to the RunOnRenewed field.
+func (o *EmailNotificationResponse) SetRunOnRenewed(v bool) {
+	o.RunOnRenewed.Set(&v)
+}
+
+// SetRunOnRenewedNil sets the value for RunOnRenewed to be an explicit nil
+func (o *EmailNotificationResponse) SetRunOnRenewedNil() {
+	o.RunOnRenewed.Set(nil)
+}
+
+// UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
+func (o *EmailNotificationResponse) UnsetRunOnRenewed() {
+	o.RunOnRenewed.Unset()
+}
+
 func (o EmailNotificationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -681,14 +681,19 @@ func (o EmailNotificationResponse) MarshalJSON() ([]byte, error) {
 func (o EmailNotificationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	if o.AttachDerCertificate.IsSet() {
-		toSerialize["attachDerCertificate"] = o.AttachDerCertificate.Get()
+	toSerialize["type"] = o.Type
+	toSerialize["emailTemplate"] = o.EmailTemplate
+	if o.IfPkcs12.IsSet() {
+		toSerialize["ifPkcs12"] = o.IfPkcs12.Get()
+	}
+	if o.AttachPemCertificate.IsSet() {
+		toSerialize["attachPemCertificate"] = o.AttachPemCertificate.Get()
 	}
 	if o.AttachPemBundle.IsSet() {
 		toSerialize["attachPemBundle"] = o.AttachPemBundle.Get()
 	}
-	if o.AttachPemCertificate.IsSet() {
-		toSerialize["attachPemCertificate"] = o.AttachPemCertificate.Get()
+	if o.AttachDerCertificate.IsSet() {
+		toSerialize["attachDerCertificate"] = o.AttachDerCertificate.Get()
 	}
 	if o.AttachPkcs7.IsSet() {
 		toSerialize["attachPkcs7"] = o.AttachPkcs7.Get()
@@ -699,24 +704,19 @@ func (o EmailNotificationResponse) ToMap() (map[string]interface{}, error) {
 	if o.AttachPkcs12.IsSet() {
 		toSerialize["attachPkcs12"] = o.AttachPkcs12.Get()
 	}
-	toSerialize["emailTemplate"] = o.EmailTemplate
-	if o.IfPkcs12.IsSet() {
-		toSerialize["ifPkcs12"] = o.IfPkcs12.Get()
-	}
-	toSerialize["type"] = o.Type
-	toSerialize["events"] = o.Events
-	if o.LicenseUsagePercent.IsSet() {
-		toSerialize["licenseUsagePercent"] = o.LicenseUsagePercent.Get()
-	}
 	toSerialize["name"] = o.Name
 	if o.Retries.IsSet() {
 		toSerialize["retries"] = o.Retries.Get()
 	}
-	if o.RunOnRenewed.IsSet() {
-		toSerialize["runOnRenewed"] = o.RunOnRenewed.Get()
-	}
 	if o.RunPeriod.IsSet() {
 		toSerialize["runPeriod"] = o.RunPeriod.Get()
+	}
+	if o.LicenseUsagePercent.IsSet() {
+		toSerialize["licenseUsagePercent"] = o.LicenseUsagePercent.Get()
+	}
+	toSerialize["events"] = o.Events
+	if o.RunOnRenewed.IsSet() {
+		toSerialize["runOnRenewed"] = o.RunOnRenewed.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -732,10 +732,10 @@ func (o *EmailNotificationResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"emailTemplate",
 		"type",
-		"events",
+		"emailTemplate",
 		"name",
+		"events",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -766,21 +766,21 @@ func (o *EmailNotificationResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "attachDerCertificate")
-		delete(additionalProperties, "attachPemBundle")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "emailTemplate")
+		delete(additionalProperties, "ifPkcs12")
 		delete(additionalProperties, "attachPemCertificate")
+		delete(additionalProperties, "attachPemBundle")
+		delete(additionalProperties, "attachDerCertificate")
 		delete(additionalProperties, "attachPkcs7")
 		delete(additionalProperties, "attachPkcs7Bundle")
 		delete(additionalProperties, "attachPkcs12")
-		delete(additionalProperties, "emailTemplate")
-		delete(additionalProperties, "ifPkcs12")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "events")
-		delete(additionalProperties, "licenseUsagePercent")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "retries")
-		delete(additionalProperties, "runOnRenewed")
 		delete(additionalProperties, "runPeriod")
+		delete(additionalProperties, "licenseUsagePercent")
+		delete(additionalProperties, "events")
+		delete(additionalProperties, "runOnRenewed")
 		o.AdditionalProperties = additionalProperties
 	}
 

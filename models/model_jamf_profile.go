@@ -22,34 +22,36 @@ var _ utils.MappedNullable = &JamfProfile{}
 
 // JamfProfile struct for JamfProfile
 type JamfProfile struct {
-	AuthorizationLevels CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
-	Caps                []string                              `json:"caps"`
-	CertificateTemplate NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
-	Constraints         NullableCertificateRequestConstraints `json:"constraints,omitempty"`
-	CryptoPolicy        ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
-	CsrDataMapping      map[string]string                     `json:"csrDataMapping,omitempty"`
-	Description         []LocalizedString                     `json:"description,omitempty"`
-	DeviceIdField       utils.NullableString                  `json:"deviceIdField,omitempty"`
-	DisplayName         []LocalizedString                     `json:"displayName,omitempty"`
-	// Representation of a datasource execution flow
-	DsFlow                        []DataSourceFlowEntry                 `json:"dsFlow,omitempty"`
-	Enabled                       bool                                  `json:"enabled"`
-	EncryptionAlgorithm           string                                `json:"encryptionAlgorithm"`
-	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
-	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
-	Mode                          string                                `json:"mode"`
 	Module                        string                                `json:"module"`
 	Name                          string                                `json:"name"`
-	PasswordPolicy                utils.NullableString                  `json:"passwordPolicy,omitempty"`
-	PkiConnector                  string                                `json:"pkiConnector"`
-	PostPKIOperation              utils.NullableBool                    `json:"postPKIOperation,omitempty"`
-	RenewalPeriod                 utils.NullableString                  `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
-	ScepRA                        string                                `json:"scepRA"`
-	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
+	DisplayName                   []LocalizedString                     `json:"displayName,omitempty"`
+	Description                   []LocalizedString                     `json:"description,omitempty"`
+	Enabled                       bool                                  `json:"enabled"`
+	Mode                          string                                `json:"mode"`
 	ThirdPartyConnector           string                                `json:"thirdPartyConnector"`
+	PkiConnector                  string                                `json:"pkiConnector"`
+	RenewalPeriod                 utils.NullableString                  `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Constraints                   NullableCertificateRequestConstraints `json:"constraints,omitempty"`
+	CsrDataMapping                map[string]string                     `json:"csrDataMapping,omitempty"`
+	ScepRA                        string                                `json:"scepRA"`
+	Caps                          []string                              `json:"caps"`
+	PostPKIOperation              utils.NullableBool                    `json:"postPKIOperation,omitempty"`
+	EncryptionAlgorithm           string                                `json:"encryptionAlgorithm"`
+	DeviceIdField                 utils.NullableString                  `json:"deviceIdField,omitempty"`
+	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
+	AuthorizationLevels           CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
 	Triggers                      NullableCertificateProfileTriggers    `json:"triggers,omitempty"`
-	AdditionalProperties          map[string]interface{}
+	PasswordPolicy                utils.NullableString                  `json:"passwordPolicy,omitempty"`
+	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
+	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
+	CertificateTemplate           NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
+	CryptoPolicy                  ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
+	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
+	// Representation of a datasource execution flow
+	DsFlow []DataSourceFlowEntry `json:"dsFlow,omitempty"`
+	// Available from `2.8.2`
+	ThirdPartyDiscoverySync utils.NullableBool `json:"thirdPartyDiscoverySync,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _JamfProfile JamfProfile
@@ -58,21 +60,23 @@ type _JamfProfile JamfProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJamfProfile(authorizationLevels CertificateProfileAuthorizationLevels, caps []string, cryptoPolicy ManagedCertificateProfileCryptoPolicy, enabled bool, encryptionAlgorithm string, mode string, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, scepRA string, selfPermissions CertificateProfileSelfPermissions, thirdPartyConnector string) *JamfProfile {
+func NewJamfProfile(module string, name string, enabled bool, mode string, thirdPartyConnector string, pkiConnector string, scepRA string, caps []string, encryptionAlgorithm string, authorizationLevels CertificateProfileAuthorizationLevels, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions, cryptoPolicy ManagedCertificateProfileCryptoPolicy) *JamfProfile {
 	this := JamfProfile{}
-	this.AuthorizationLevels = authorizationLevels
-	this.Caps = caps
-	this.CryptoPolicy = cryptoPolicy
-	this.Enabled = enabled
-	this.EncryptionAlgorithm = encryptionAlgorithm
-	this.Mode = mode
 	this.Module = module
 	this.Name = name
-	this.PkiConnector = pkiConnector
-	this.RequestsPolicy = requestsPolicy
-	this.ScepRA = scepRA
-	this.SelfPermissions = selfPermissions
+	this.Enabled = enabled
+	this.Mode = mode
 	this.ThirdPartyConnector = thirdPartyConnector
+	this.PkiConnector = pkiConnector
+	this.ScepRA = scepRA
+	this.Caps = caps
+	this.EncryptionAlgorithm = encryptionAlgorithm
+	this.AuthorizationLevels = authorizationLevels
+	this.RequestsPolicy = requestsPolicy
+	this.SelfPermissions = selfPermissions
+	this.CryptoPolicy = cryptoPolicy
+	var thirdPartyDiscoverySync bool = false
+	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
 }
 
@@ -81,488 +85,9 @@ func NewJamfProfile(authorizationLevels CertificateProfileAuthorizationLevels, c
 // but it doesn't guarantee that properties required by API are set
 func NewJamfProfileWithDefaults() *JamfProfile {
 	this := JamfProfile{}
+	var thirdPartyDiscoverySync bool = false
+	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
-}
-
-// GetAuthorizationLevels returns the AuthorizationLevels field value
-func (o *JamfProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
-	if o == nil {
-		var ret CertificateProfileAuthorizationLevels
-		return ret
-	}
-
-	return o.AuthorizationLevels
-}
-
-// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
-// and a boolean to check if the value has been set.
-func (o *JamfProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthorizationLevels, true
-}
-
-// SetAuthorizationLevels sets field value
-func (o *JamfProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
-	o.AuthorizationLevels = v
-}
-
-// GetCaps returns the Caps field value
-func (o *JamfProfile) GetCaps() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Caps
-}
-
-// GetCapsOk returns a tuple with the Caps field value
-// and a boolean to check if the value has been set.
-func (o *JamfProfile) GetCapsOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Caps, true
-}
-
-// SetCaps sets field value
-func (o *JamfProfile) SetCaps(v []string) {
-	o.Caps = v
-}
-
-// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfProfile) GetCertificateTemplate() CertificateTemplate {
-	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
-		var ret CertificateTemplate
-		return ret
-	}
-	return *o.CertificateTemplate.Get()
-}
-
-// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
-}
-
-// HasCertificateTemplate returns a boolean if a field has been set.
-func (o *JamfProfile) HasCertificateTemplate() bool {
-	if o != nil && o.CertificateTemplate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
-func (o *JamfProfile) SetCertificateTemplate(v CertificateTemplate) {
-	o.CertificateTemplate.Set(&v)
-}
-
-// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-func (o *JamfProfile) SetCertificateTemplateNil() {
-	o.CertificateTemplate.Set(nil)
-}
-
-// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
-func (o *JamfProfile) UnsetCertificateTemplate() {
-	o.CertificateTemplate.Unset()
-}
-
-// GetConstraints returns the Constraints field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfProfile) GetConstraints() CertificateRequestConstraints {
-	if o == nil || utils.IsNil(o.Constraints.Get()) {
-		var ret CertificateRequestConstraints
-		return ret
-	}
-	return *o.Constraints.Get()
-}
-
-// GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfProfile) GetConstraintsOk() (*CertificateRequestConstraints, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Constraints.Get(), o.Constraints.IsSet()
-}
-
-// HasConstraints returns a boolean if a field has been set.
-func (o *JamfProfile) HasConstraints() bool {
-	if o != nil && o.Constraints.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetConstraints gets a reference to the given NullableCertificateRequestConstraints and assigns it to the Constraints field.
-func (o *JamfProfile) SetConstraints(v CertificateRequestConstraints) {
-	o.Constraints.Set(&v)
-}
-
-// SetConstraintsNil sets the value for Constraints to be an explicit nil
-func (o *JamfProfile) SetConstraintsNil() {
-	o.Constraints.Set(nil)
-}
-
-// UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
-func (o *JamfProfile) UnsetConstraints() {
-	o.Constraints.Unset()
-}
-
-// GetCryptoPolicy returns the CryptoPolicy field value
-func (o *JamfProfile) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
-	if o == nil {
-		var ret ManagedCertificateProfileCryptoPolicy
-		return ret
-	}
-
-	return o.CryptoPolicy
-}
-
-// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
-// and a boolean to check if the value has been set.
-func (o *JamfProfile) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CryptoPolicy, true
-}
-
-// SetCryptoPolicy sets field value
-func (o *JamfProfile) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
-	o.CryptoPolicy = v
-}
-
-// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfProfile) GetCsrDataMapping() map[string]string {
-	if o == nil {
-		var ret map[string]string
-		return ret
-	}
-	return o.CsrDataMapping
-}
-
-// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfProfile) GetCsrDataMappingOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.CsrDataMapping) {
-		return nil, false
-	}
-	return &o.CsrDataMapping, true
-}
-
-// HasCsrDataMapping returns a boolean if a field has been set.
-func (o *JamfProfile) HasCsrDataMapping() bool {
-	if o != nil && !utils.IsNil(o.CsrDataMapping) {
-		return true
-	}
-
-	return false
-}
-
-// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
-func (o *JamfProfile) SetCsrDataMapping(v map[string]string) {
-	o.CsrDataMapping = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfProfile) GetDescription() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfProfile) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *JamfProfile) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *JamfProfile) SetDescription(v []LocalizedString) {
-	o.Description = v
-}
-
-// GetDeviceIdField returns the DeviceIdField field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfProfile) GetDeviceIdField() string {
-	if o == nil || utils.IsNil(o.DeviceIdField.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.DeviceIdField.Get()
-}
-
-// GetDeviceIdFieldOk returns a tuple with the DeviceIdField field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfProfile) GetDeviceIdFieldOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DeviceIdField.Get(), o.DeviceIdField.IsSet()
-}
-
-// HasDeviceIdField returns a boolean if a field has been set.
-func (o *JamfProfile) HasDeviceIdField() bool {
-	if o != nil && o.DeviceIdField.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDeviceIdField gets a reference to the given NullableString and assigns it to the DeviceIdField field.
-func (o *JamfProfile) SetDeviceIdField(v string) {
-	o.DeviceIdField.Set(&v)
-}
-
-// SetDeviceIdFieldNil sets the value for DeviceIdField to be an explicit nil
-func (o *JamfProfile) SetDeviceIdFieldNil() {
-	o.DeviceIdField.Set(nil)
-}
-
-// UnsetDeviceIdField ensures that no value is present for DeviceIdField, not even an explicit nil
-func (o *JamfProfile) UnsetDeviceIdField() {
-	o.DeviceIdField.Unset()
-}
-
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfProfile) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *JamfProfile) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *JamfProfile) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
-}
-
-// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfProfile) GetDsFlow() []DataSourceFlowEntry {
-	if o == nil {
-		var ret []DataSourceFlowEntry
-		return ret
-	}
-	return o.DsFlow
-}
-
-// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfProfile) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
-	if o == nil || utils.IsNil(o.DsFlow) {
-		return nil, false
-	}
-	return o.DsFlow, true
-}
-
-// HasDsFlow returns a boolean if a field has been set.
-func (o *JamfProfile) HasDsFlow() bool {
-	if o != nil && !utils.IsNil(o.DsFlow) {
-		return true
-	}
-
-	return false
-}
-
-// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
-func (o *JamfProfile) SetDsFlow(v []DataSourceFlowEntry) {
-	o.DsFlow = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *JamfProfile) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *JamfProfile) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *JamfProfile) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetEncryptionAlgorithm returns the EncryptionAlgorithm field value
-func (o *JamfProfile) GetEncryptionAlgorithm() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.EncryptionAlgorithm
-}
-
-// GetEncryptionAlgorithmOk returns a tuple with the EncryptionAlgorithm field value
-// and a boolean to check if the value has been set.
-func (o *JamfProfile) GetEncryptionAlgorithmOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EncryptionAlgorithm, true
-}
-
-// SetEncryptionAlgorithm sets field value
-func (o *JamfProfile) SetEncryptionAlgorithm(v string) {
-	o.EncryptionAlgorithm = v
-}
-
-// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfProfile) GetGradingPolicies() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.GradingPolicies
-}
-
-// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfProfile) GetGradingPoliciesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.GradingPolicies) {
-		return nil, false
-	}
-	return o.GradingPolicies, true
-}
-
-// HasGradingPolicies returns a boolean if a field has been set.
-func (o *JamfProfile) HasGradingPolicies() bool {
-	if o != nil && !utils.IsNil(o.GradingPolicies) {
-		return true
-	}
-
-	return false
-}
-
-// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
-func (o *JamfProfile) SetGradingPolicies(v []string) {
-	o.GradingPolicies = v
-}
-
-// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfProfile) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
-	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
-		var ret MaxCertificatePerHolderPolicy
-		return ret
-	}
-	return *o.MaxCertificatePerHolderPolicy.Get()
-}
-
-// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfProfile) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
-}
-
-// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
-func (o *JamfProfile) HasMaxCertificatePerHolderPolicy() bool {
-	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
-func (o *JamfProfile) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
-	o.MaxCertificatePerHolderPolicy.Set(&v)
-}
-
-// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
-func (o *JamfProfile) SetMaxCertificatePerHolderPolicyNil() {
-	o.MaxCertificatePerHolderPolicy.Set(nil)
-}
-
-// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
-func (o *JamfProfile) UnsetMaxCertificatePerHolderPolicy() {
-	o.MaxCertificatePerHolderPolicy.Unset()
-}
-
-// GetMode returns the Mode field value
-func (o *JamfProfile) GetMode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Mode
-}
-
-// GetModeOk returns a tuple with the Mode field value
-// and a boolean to check if the value has been set.
-func (o *JamfProfile) GetModeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Mode, true
-}
-
-// SetMode sets field value
-func (o *JamfProfile) SetMode(v string) {
-	o.Mode = v
 }
 
 // GetModule returns the Module field value
@@ -613,47 +138,142 @@ func (o *JamfProfile) SetName(v string) {
 	o.Name = v
 }
 
-// GetPasswordPolicy returns the PasswordPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfProfile) GetPasswordPolicy() string {
-	if o == nil || utils.IsNil(o.PasswordPolicy.Get()) {
-		var ret string
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
 		return ret
 	}
-	return *o.PasswordPolicy.Get()
+	return o.DisplayName
 }
 
-// GetPasswordPolicyOk returns a tuple with the PasswordPolicy field value if set, nil otherwise
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfProfile) GetPasswordPolicyOk() (*string, bool) {
-	if o == nil {
+func (o *JamfProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
 		return nil, false
 	}
-	return o.PasswordPolicy.Get(), o.PasswordPolicy.IsSet()
+	return o.DisplayName, true
 }
 
-// HasPasswordPolicy returns a boolean if a field has been set.
-func (o *JamfProfile) HasPasswordPolicy() bool {
-	if o != nil && o.PasswordPolicy.IsSet() {
+// HasDisplayName returns a boolean if a field has been set.
+func (o *JamfProfile) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
 		return true
 	}
 
 	return false
 }
 
-// SetPasswordPolicy gets a reference to the given NullableString and assigns it to the PasswordPolicy field.
-func (o *JamfProfile) SetPasswordPolicy(v string) {
-	o.PasswordPolicy.Set(&v)
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *JamfProfile) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
 }
 
-// SetPasswordPolicyNil sets the value for PasswordPolicy to be an explicit nil
-func (o *JamfProfile) SetPasswordPolicyNil() {
-	o.PasswordPolicy.Set(nil)
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.Description
 }
 
-// UnsetPasswordPolicy ensures that no value is present for PasswordPolicy, not even an explicit nil
-func (o *JamfProfile) UnsetPasswordPolicy() {
-	o.PasswordPolicy.Unset()
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfProfile) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *JamfProfile) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *JamfProfile) SetDescription(v []LocalizedString) {
+	o.Description = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *JamfProfile) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *JamfProfile) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *JamfProfile) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetMode returns the Mode field value
+func (o *JamfProfile) GetMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Mode
+}
+
+// GetModeOk returns a tuple with the Mode field value
+// and a boolean to check if the value has been set.
+func (o *JamfProfile) GetModeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Mode, true
+}
+
+// SetMode sets field value
+func (o *JamfProfile) SetMode(v string) {
+	o.Mode = v
+}
+
+// GetThirdPartyConnector returns the ThirdPartyConnector field value
+func (o *JamfProfile) GetThirdPartyConnector() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ThirdPartyConnector
+}
+
+// GetThirdPartyConnectorOk returns a tuple with the ThirdPartyConnector field value
+// and a boolean to check if the value has been set.
+func (o *JamfProfile) GetThirdPartyConnectorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ThirdPartyConnector, true
+}
+
+// SetThirdPartyConnector sets field value
+func (o *JamfProfile) SetThirdPartyConnector(v string) {
+	o.ThirdPartyConnector = v
 }
 
 // GetPkiConnector returns the PkiConnector field value
@@ -678,49 +298,6 @@ func (o *JamfProfile) GetPkiConnectorOk() (*string, bool) {
 // SetPkiConnector sets field value
 func (o *JamfProfile) SetPkiConnector(v string) {
 	o.PkiConnector = v
-}
-
-// GetPostPKIOperation returns the PostPKIOperation field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfProfile) GetPostPKIOperation() bool {
-	if o == nil || utils.IsNil(o.PostPKIOperation.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.PostPKIOperation.Get()
-}
-
-// GetPostPKIOperationOk returns a tuple with the PostPKIOperation field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfProfile) GetPostPKIOperationOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PostPKIOperation.Get(), o.PostPKIOperation.IsSet()
-}
-
-// HasPostPKIOperation returns a boolean if a field has been set.
-func (o *JamfProfile) HasPostPKIOperation() bool {
-	if o != nil && o.PostPKIOperation.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPostPKIOperation gets a reference to the given NullableBool and assigns it to the PostPKIOperation field.
-func (o *JamfProfile) SetPostPKIOperation(v bool) {
-	o.PostPKIOperation.Set(&v)
-}
-
-// SetPostPKIOperationNil sets the value for PostPKIOperation to be an explicit nil
-func (o *JamfProfile) SetPostPKIOperationNil() {
-	o.PostPKIOperation.Set(nil)
-}
-
-// UnsetPostPKIOperation ensures that no value is present for PostPKIOperation, not even an explicit nil
-func (o *JamfProfile) UnsetPostPKIOperation() {
-	o.PostPKIOperation.Unset()
 }
 
 // GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -766,28 +343,80 @@ func (o *JamfProfile) UnsetRenewalPeriod() {
 	o.RenewalPeriod.Unset()
 }
 
-// GetRequestsPolicy returns the RequestsPolicy field value
-func (o *JamfProfile) GetRequestsPolicy() RequestsPolicy {
-	if o == nil {
-		var ret RequestsPolicy
+// GetConstraints returns the Constraints field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetConstraints() CertificateRequestConstraints {
+	if o == nil || utils.IsNil(o.Constraints.Get()) {
+		var ret CertificateRequestConstraints
 		return ret
 	}
-
-	return o.RequestsPolicy
+	return *o.Constraints.Get()
 }
 
-// GetRequestsPolicyOk returns a tuple with the RequestsPolicy field value
+// GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *JamfProfile) GetRequestsPolicyOk() (*RequestsPolicy, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfProfile) GetConstraintsOk() (*CertificateRequestConstraints, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.RequestsPolicy, true
+	return o.Constraints.Get(), o.Constraints.IsSet()
 }
 
-// SetRequestsPolicy sets field value
-func (o *JamfProfile) SetRequestsPolicy(v RequestsPolicy) {
-	o.RequestsPolicy = v
+// HasConstraints returns a boolean if a field has been set.
+func (o *JamfProfile) HasConstraints() bool {
+	if o != nil && o.Constraints.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConstraints gets a reference to the given NullableCertificateRequestConstraints and assigns it to the Constraints field.
+func (o *JamfProfile) SetConstraints(v CertificateRequestConstraints) {
+	o.Constraints.Set(&v)
+}
+
+// SetConstraintsNil sets the value for Constraints to be an explicit nil
+func (o *JamfProfile) SetConstraintsNil() {
+	o.Constraints.Set(nil)
+}
+
+// UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
+func (o *JamfProfile) UnsetConstraints() {
+	o.Constraints.Unset()
+}
+
+// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetCsrDataMapping() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.CsrDataMapping
+}
+
+// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfProfile) GetCsrDataMappingOk() (*map[string]string, bool) {
+	if o == nil || utils.IsNil(o.CsrDataMapping) {
+		return nil, false
+	}
+	return &o.CsrDataMapping, true
+}
+
+// HasCsrDataMapping returns a boolean if a field has been set.
+func (o *JamfProfile) HasCsrDataMapping() bool {
+	if o != nil && !utils.IsNil(o.CsrDataMapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
+func (o *JamfProfile) SetCsrDataMapping(v map[string]string) {
+	o.CsrDataMapping = v
 }
 
 // GetScepRA returns the ScepRA field value
@@ -814,52 +443,205 @@ func (o *JamfProfile) SetScepRA(v string) {
 	o.ScepRA = v
 }
 
-// GetSelfPermissions returns the SelfPermissions field value
-func (o *JamfProfile) GetSelfPermissions() CertificateProfileSelfPermissions {
+// GetCaps returns the Caps field value
+func (o *JamfProfile) GetCaps() []string {
 	if o == nil {
-		var ret CertificateProfileSelfPermissions
+		var ret []string
 		return ret
 	}
 
-	return o.SelfPermissions
+	return o.Caps
 }
 
-// GetSelfPermissionsOk returns a tuple with the SelfPermissions field value
+// GetCapsOk returns a tuple with the Caps field value
 // and a boolean to check if the value has been set.
-func (o *JamfProfile) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool) {
+func (o *JamfProfile) GetCapsOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SelfPermissions, true
+	return o.Caps, true
 }
 
-// SetSelfPermissions sets field value
-func (o *JamfProfile) SetSelfPermissions(v CertificateProfileSelfPermissions) {
-	o.SelfPermissions = v
+// SetCaps sets field value
+func (o *JamfProfile) SetCaps(v []string) {
+	o.Caps = v
 }
 
-// GetThirdPartyConnector returns the ThirdPartyConnector field value
-func (o *JamfProfile) GetThirdPartyConnector() string {
+// GetPostPKIOperation returns the PostPKIOperation field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetPostPKIOperation() bool {
+	if o == nil || utils.IsNil(o.PostPKIOperation.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.PostPKIOperation.Get()
+}
+
+// GetPostPKIOperationOk returns a tuple with the PostPKIOperation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfProfile) GetPostPKIOperationOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PostPKIOperation.Get(), o.PostPKIOperation.IsSet()
+}
+
+// HasPostPKIOperation returns a boolean if a field has been set.
+func (o *JamfProfile) HasPostPKIOperation() bool {
+	if o != nil && o.PostPKIOperation.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPostPKIOperation gets a reference to the given NullableBool and assigns it to the PostPKIOperation field.
+func (o *JamfProfile) SetPostPKIOperation(v bool) {
+	o.PostPKIOperation.Set(&v)
+}
+
+// SetPostPKIOperationNil sets the value for PostPKIOperation to be an explicit nil
+func (o *JamfProfile) SetPostPKIOperationNil() {
+	o.PostPKIOperation.Set(nil)
+}
+
+// UnsetPostPKIOperation ensures that no value is present for PostPKIOperation, not even an explicit nil
+func (o *JamfProfile) UnsetPostPKIOperation() {
+	o.PostPKIOperation.Unset()
+}
+
+// GetEncryptionAlgorithm returns the EncryptionAlgorithm field value
+func (o *JamfProfile) GetEncryptionAlgorithm() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ThirdPartyConnector
+	return o.EncryptionAlgorithm
 }
 
-// GetThirdPartyConnectorOk returns a tuple with the ThirdPartyConnector field value
+// GetEncryptionAlgorithmOk returns a tuple with the EncryptionAlgorithm field value
 // and a boolean to check if the value has been set.
-func (o *JamfProfile) GetThirdPartyConnectorOk() (*string, bool) {
+func (o *JamfProfile) GetEncryptionAlgorithmOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ThirdPartyConnector, true
+	return &o.EncryptionAlgorithm, true
 }
 
-// SetThirdPartyConnector sets field value
-func (o *JamfProfile) SetThirdPartyConnector(v string) {
-	o.ThirdPartyConnector = v
+// SetEncryptionAlgorithm sets field value
+func (o *JamfProfile) SetEncryptionAlgorithm(v string) {
+	o.EncryptionAlgorithm = v
+}
+
+// GetDeviceIdField returns the DeviceIdField field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetDeviceIdField() string {
+	if o == nil || utils.IsNil(o.DeviceIdField.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DeviceIdField.Get()
+}
+
+// GetDeviceIdFieldOk returns a tuple with the DeviceIdField field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfProfile) GetDeviceIdFieldOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeviceIdField.Get(), o.DeviceIdField.IsSet()
+}
+
+// HasDeviceIdField returns a boolean if a field has been set.
+func (o *JamfProfile) HasDeviceIdField() bool {
+	if o != nil && o.DeviceIdField.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceIdField gets a reference to the given NullableString and assigns it to the DeviceIdField field.
+func (o *JamfProfile) SetDeviceIdField(v string) {
+	o.DeviceIdField.Set(&v)
+}
+
+// SetDeviceIdFieldNil sets the value for DeviceIdField to be an explicit nil
+func (o *JamfProfile) SetDeviceIdFieldNil() {
+	o.DeviceIdField.Set(nil)
+}
+
+// UnsetDeviceIdField ensures that no value is present for DeviceIdField, not even an explicit nil
+func (o *JamfProfile) UnsetDeviceIdField() {
+	o.DeviceIdField.Unset()
+}
+
+// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
+	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
+		var ret MaxCertificatePerHolderPolicy
+		return ret
+	}
+	return *o.MaxCertificatePerHolderPolicy.Get()
+}
+
+// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfProfile) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
+}
+
+// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
+func (o *JamfProfile) HasMaxCertificatePerHolderPolicy() bool {
+	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
+func (o *JamfProfile) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
+	o.MaxCertificatePerHolderPolicy.Set(&v)
+}
+
+// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
+func (o *JamfProfile) SetMaxCertificatePerHolderPolicyNil() {
+	o.MaxCertificatePerHolderPolicy.Set(nil)
+}
+
+// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
+func (o *JamfProfile) UnsetMaxCertificatePerHolderPolicy() {
+	o.MaxCertificatePerHolderPolicy.Unset()
+}
+
+// GetAuthorizationLevels returns the AuthorizationLevels field value
+func (o *JamfProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
+	if o == nil {
+		var ret CertificateProfileAuthorizationLevels
+		return ret
+	}
+
+	return o.AuthorizationLevels
+}
+
+// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
+// and a boolean to check if the value has been set.
+func (o *JamfProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizationLevels, true
+}
+
+// SetAuthorizationLevels sets field value
+func (o *JamfProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
+	o.AuthorizationLevels = v
 }
 
 // GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -905,6 +687,273 @@ func (o *JamfProfile) UnsetTriggers() {
 	o.Triggers.Unset()
 }
 
+// GetPasswordPolicy returns the PasswordPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetPasswordPolicy() string {
+	if o == nil || utils.IsNil(o.PasswordPolicy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.PasswordPolicy.Get()
+}
+
+// GetPasswordPolicyOk returns a tuple with the PasswordPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfProfile) GetPasswordPolicyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PasswordPolicy.Get(), o.PasswordPolicy.IsSet()
+}
+
+// HasPasswordPolicy returns a boolean if a field has been set.
+func (o *JamfProfile) HasPasswordPolicy() bool {
+	if o != nil && o.PasswordPolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPasswordPolicy gets a reference to the given NullableString and assigns it to the PasswordPolicy field.
+func (o *JamfProfile) SetPasswordPolicy(v string) {
+	o.PasswordPolicy.Set(&v)
+}
+
+// SetPasswordPolicyNil sets the value for PasswordPolicy to be an explicit nil
+func (o *JamfProfile) SetPasswordPolicyNil() {
+	o.PasswordPolicy.Set(nil)
+}
+
+// UnsetPasswordPolicy ensures that no value is present for PasswordPolicy, not even an explicit nil
+func (o *JamfProfile) UnsetPasswordPolicy() {
+	o.PasswordPolicy.Unset()
+}
+
+// GetRequestsPolicy returns the RequestsPolicy field value
+func (o *JamfProfile) GetRequestsPolicy() RequestsPolicy {
+	if o == nil {
+		var ret RequestsPolicy
+		return ret
+	}
+
+	return o.RequestsPolicy
+}
+
+// GetRequestsPolicyOk returns a tuple with the RequestsPolicy field value
+// and a boolean to check if the value has been set.
+func (o *JamfProfile) GetRequestsPolicyOk() (*RequestsPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RequestsPolicy, true
+}
+
+// SetRequestsPolicy sets field value
+func (o *JamfProfile) SetRequestsPolicy(v RequestsPolicy) {
+	o.RequestsPolicy = v
+}
+
+// GetSelfPermissions returns the SelfPermissions field value
+func (o *JamfProfile) GetSelfPermissions() CertificateProfileSelfPermissions {
+	if o == nil {
+		var ret CertificateProfileSelfPermissions
+		return ret
+	}
+
+	return o.SelfPermissions
+}
+
+// GetSelfPermissionsOk returns a tuple with the SelfPermissions field value
+// and a boolean to check if the value has been set.
+func (o *JamfProfile) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SelfPermissions, true
+}
+
+// SetSelfPermissions sets field value
+func (o *JamfProfile) SetSelfPermissions(v CertificateProfileSelfPermissions) {
+	o.SelfPermissions = v
+}
+
+// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetCertificateTemplate() CertificateTemplate {
+	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
+		var ret CertificateTemplate
+		return ret
+	}
+	return *o.CertificateTemplate.Get()
+}
+
+// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
+}
+
+// HasCertificateTemplate returns a boolean if a field has been set.
+func (o *JamfProfile) HasCertificateTemplate() bool {
+	if o != nil && o.CertificateTemplate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
+func (o *JamfProfile) SetCertificateTemplate(v CertificateTemplate) {
+	o.CertificateTemplate.Set(&v)
+}
+
+// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
+func (o *JamfProfile) SetCertificateTemplateNil() {
+	o.CertificateTemplate.Set(nil)
+}
+
+// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
+func (o *JamfProfile) UnsetCertificateTemplate() {
+	o.CertificateTemplate.Unset()
+}
+
+// GetCryptoPolicy returns the CryptoPolicy field value
+func (o *JamfProfile) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
+	if o == nil {
+		var ret ManagedCertificateProfileCryptoPolicy
+		return ret
+	}
+
+	return o.CryptoPolicy
+}
+
+// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
+// and a boolean to check if the value has been set.
+func (o *JamfProfile) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CryptoPolicy, true
+}
+
+// SetCryptoPolicy sets field value
+func (o *JamfProfile) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
+	o.CryptoPolicy = v
+}
+
+// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetGradingPolicies() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.GradingPolicies
+}
+
+// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfProfile) GetGradingPoliciesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.GradingPolicies) {
+		return nil, false
+	}
+	return o.GradingPolicies, true
+}
+
+// HasGradingPolicies returns a boolean if a field has been set.
+func (o *JamfProfile) HasGradingPolicies() bool {
+	if o != nil && !utils.IsNil(o.GradingPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
+func (o *JamfProfile) SetGradingPolicies(v []string) {
+	o.GradingPolicies = v
+}
+
+// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetDsFlow() []DataSourceFlowEntry {
+	if o == nil {
+		var ret []DataSourceFlowEntry
+		return ret
+	}
+	return o.DsFlow
+}
+
+// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfProfile) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
+	if o == nil || utils.IsNil(o.DsFlow) {
+		return nil, false
+	}
+	return o.DsFlow, true
+}
+
+// HasDsFlow returns a boolean if a field has been set.
+func (o *JamfProfile) HasDsFlow() bool {
+	if o != nil && !utils.IsNil(o.DsFlow) {
+		return true
+	}
+
+	return false
+}
+
+// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
+func (o *JamfProfile) SetDsFlow(v []DataSourceFlowEntry) {
+	o.DsFlow = v
+}
+
+// GetThirdPartyDiscoverySync returns the ThirdPartyDiscoverySync field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfProfile) GetThirdPartyDiscoverySync() bool {
+	if o == nil || utils.IsNil(o.ThirdPartyDiscoverySync.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.ThirdPartyDiscoverySync.Get()
+}
+
+// GetThirdPartyDiscoverySyncOk returns a tuple with the ThirdPartyDiscoverySync field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfProfile) GetThirdPartyDiscoverySyncOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ThirdPartyDiscoverySync.Get(), o.ThirdPartyDiscoverySync.IsSet()
+}
+
+// HasThirdPartyDiscoverySync returns a boolean if a field has been set.
+func (o *JamfProfile) HasThirdPartyDiscoverySync() bool {
+	if o != nil && o.ThirdPartyDiscoverySync.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetThirdPartyDiscoverySync gets a reference to the given NullableBool and assigns it to the ThirdPartyDiscoverySync field.
+func (o *JamfProfile) SetThirdPartyDiscoverySync(v bool) {
+	o.ThirdPartyDiscoverySync.Set(&v)
+}
+
+// SetThirdPartyDiscoverySyncNil sets the value for ThirdPartyDiscoverySync to be an explicit nil
+func (o *JamfProfile) SetThirdPartyDiscoverySyncNil() {
+	o.ThirdPartyDiscoverySync.Set(nil)
+}
+
+// UnsetThirdPartyDiscoverySync ensures that no value is present for ThirdPartyDiscoverySync, not even an explicit nil
+func (o *JamfProfile) UnsetThirdPartyDiscoverySync() {
+	o.ThirdPartyDiscoverySync.Unset()
+}
+
 func (o JamfProfile) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -915,57 +964,60 @@ func (o JamfProfile) MarshalJSON() ([]byte, error) {
 
 func (o JamfProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authorizationLevels"] = o.AuthorizationLevels
-	toSerialize["caps"] = o.Caps
-	if o.CertificateTemplate.IsSet() {
-		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
-	}
-	if o.Constraints.IsSet() {
-		toSerialize["constraints"] = o.Constraints.Get()
-	}
-	toSerialize["cryptoPolicy"] = o.CryptoPolicy
-	if o.CsrDataMapping != nil {
-		toSerialize["csrDataMapping"] = o.CsrDataMapping
+	toSerialize["module"] = o.Module
+	toSerialize["name"] = o.Name
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	toSerialize["enabled"] = o.Enabled
+	toSerialize["mode"] = o.Mode
+	toSerialize["thirdPartyConnector"] = o.ThirdPartyConnector
+	toSerialize["pkiConnector"] = o.PkiConnector
+	if o.RenewalPeriod.IsSet() {
+		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
+	}
+	if o.Constraints.IsSet() {
+		toSerialize["constraints"] = o.Constraints.Get()
+	}
+	if o.CsrDataMapping != nil {
+		toSerialize["csrDataMapping"] = o.CsrDataMapping
+	}
+	toSerialize["scepRA"] = o.ScepRA
+	toSerialize["caps"] = o.Caps
+	if o.PostPKIOperation.IsSet() {
+		toSerialize["postPKIOperation"] = o.PostPKIOperation.Get()
+	}
+	toSerialize["encryptionAlgorithm"] = o.EncryptionAlgorithm
 	if o.DeviceIdField.IsSet() {
 		toSerialize["deviceIdField"] = o.DeviceIdField.Get()
-	}
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	if o.DsFlow != nil {
-		toSerialize["dsFlow"] = o.DsFlow
-	}
-	toSerialize["enabled"] = o.Enabled
-	toSerialize["encryptionAlgorithm"] = o.EncryptionAlgorithm
-	if o.GradingPolicies != nil {
-		toSerialize["gradingPolicies"] = o.GradingPolicies
 	}
 	if o.MaxCertificatePerHolderPolicy.IsSet() {
 		toSerialize["maxCertificatePerHolderPolicy"] = o.MaxCertificatePerHolderPolicy.Get()
 	}
-	toSerialize["mode"] = o.Mode
-	toSerialize["module"] = o.Module
-	toSerialize["name"] = o.Name
+	toSerialize["authorizationLevels"] = o.AuthorizationLevels
+	if o.Triggers.IsSet() {
+		toSerialize["triggers"] = o.Triggers.Get()
+	}
 	if o.PasswordPolicy.IsSet() {
 		toSerialize["passwordPolicy"] = o.PasswordPolicy.Get()
 	}
-	toSerialize["pkiConnector"] = o.PkiConnector
-	if o.PostPKIOperation.IsSet() {
-		toSerialize["postPKIOperation"] = o.PostPKIOperation.Get()
-	}
-	if o.RenewalPeriod.IsSet() {
-		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
-	}
 	toSerialize["requestsPolicy"] = o.RequestsPolicy
-	toSerialize["scepRA"] = o.ScepRA
 	toSerialize["selfPermissions"] = o.SelfPermissions
-	toSerialize["thirdPartyConnector"] = o.ThirdPartyConnector
-	if o.Triggers.IsSet() {
-		toSerialize["triggers"] = o.Triggers.Get()
+	if o.CertificateTemplate.IsSet() {
+		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
+	}
+	toSerialize["cryptoPolicy"] = o.CryptoPolicy
+	if o.GradingPolicies != nil {
+		toSerialize["gradingPolicies"] = o.GradingPolicies
+	}
+	if o.DsFlow != nil {
+		toSerialize["dsFlow"] = o.DsFlow
+	}
+	if o.ThirdPartyDiscoverySync.IsSet() {
+		toSerialize["thirdPartyDiscoverySync"] = o.ThirdPartyDiscoverySync.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -980,19 +1032,19 @@ func (o *JamfProfile) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"authorizationLevels",
-		"caps",
-		"cryptoPolicy",
-		"enabled",
-		"encryptionAlgorithm",
-		"mode",
 		"module",
 		"name",
-		"pkiConnector",
-		"requestsPolicy",
-		"scepRA",
-		"selfPermissions",
+		"enabled",
+		"mode",
 		"thirdPartyConnector",
+		"pkiConnector",
+		"scepRA",
+		"caps",
+		"encryptionAlgorithm",
+		"authorizationLevels",
+		"requestsPolicy",
+		"selfPermissions",
+		"cryptoPolicy",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -1022,32 +1074,33 @@ func (o *JamfProfile) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "authorizationLevels")
-		delete(additionalProperties, "caps")
-		delete(additionalProperties, "certificateTemplate")
-		delete(additionalProperties, "constraints")
-		delete(additionalProperties, "cryptoPolicy")
-		delete(additionalProperties, "csrDataMapping")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "deviceIdField")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "dsFlow")
-		delete(additionalProperties, "enabled")
-		delete(additionalProperties, "encryptionAlgorithm")
-		delete(additionalProperties, "gradingPolicies")
-		delete(additionalProperties, "maxCertificatePerHolderPolicy")
-		delete(additionalProperties, "mode")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "passwordPolicy")
-		delete(additionalProperties, "pkiConnector")
-		delete(additionalProperties, "postPKIOperation")
-		delete(additionalProperties, "renewalPeriod")
-		delete(additionalProperties, "requestsPolicy")
-		delete(additionalProperties, "scepRA")
-		delete(additionalProperties, "selfPermissions")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "mode")
 		delete(additionalProperties, "thirdPartyConnector")
+		delete(additionalProperties, "pkiConnector")
+		delete(additionalProperties, "renewalPeriod")
+		delete(additionalProperties, "constraints")
+		delete(additionalProperties, "csrDataMapping")
+		delete(additionalProperties, "scepRA")
+		delete(additionalProperties, "caps")
+		delete(additionalProperties, "postPKIOperation")
+		delete(additionalProperties, "encryptionAlgorithm")
+		delete(additionalProperties, "deviceIdField")
+		delete(additionalProperties, "maxCertificatePerHolderPolicy")
+		delete(additionalProperties, "authorizationLevels")
 		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "passwordPolicy")
+		delete(additionalProperties, "requestsPolicy")
+		delete(additionalProperties, "selfPermissions")
+		delete(additionalProperties, "certificateTemplate")
+		delete(additionalProperties, "cryptoPolicy")
+		delete(additionalProperties, "gradingPolicies")
+		delete(additionalProperties, "dsFlow")
+		delete(additionalProperties, "thirdPartyDiscoverySync")
 		o.AdditionalProperties = additionalProperties
 	}
 

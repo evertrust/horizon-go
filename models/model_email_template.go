@@ -22,16 +22,16 @@ var _ utils.MappedNullable = &EmailTemplate{}
 
 // EmailTemplate Where and what to send in the email
 type EmailTemplate struct {
-	// The body of the e-mail
-	Body utils.NullableString `json:"body,omitempty"`
+	// The recipient(s) of the e-mail
+	To []EmailRecipient `json:"to"`
 	// The sender name of the e-mail
 	From string `json:"from"`
-	// Whether the e-mail contains HTML code
-	IsHtml bool `json:"isHtml"`
 	// The title of the e-mail
 	Title string `json:"title"`
-	// The recipient(s) of the e-mail
-	To                   []EmailRecipient `json:"to"`
+	// The body of the e-mail
+	Body utils.NullableString `json:"body,omitempty"`
+	// Whether the e-mail contains HTML code
+	IsHtml               bool `json:"isHtml"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,12 +41,12 @@ type _EmailTemplate EmailTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEmailTemplate(from string, isHtml bool, title string, to []EmailRecipient) *EmailTemplate {
+func NewEmailTemplate(to []EmailRecipient, from string, title string, isHtml bool) *EmailTemplate {
 	this := EmailTemplate{}
-	this.From = from
-	this.IsHtml = isHtml
-	this.Title = title
 	this.To = to
+	this.From = from
+	this.Title = title
+	this.IsHtml = isHtml
 	return &this
 }
 
@@ -56,6 +56,78 @@ func NewEmailTemplate(from string, isHtml bool, title string, to []EmailRecipien
 func NewEmailTemplateWithDefaults() *EmailTemplate {
 	this := EmailTemplate{}
 	return &this
+}
+
+// GetTo returns the To field value
+func (o *EmailTemplate) GetTo() []EmailRecipient {
+	if o == nil {
+		var ret []EmailRecipient
+		return ret
+	}
+
+	return o.To
+}
+
+// GetToOk returns a tuple with the To field value
+// and a boolean to check if the value has been set.
+func (o *EmailTemplate) GetToOk() ([]EmailRecipient, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.To, true
+}
+
+// SetTo sets field value
+func (o *EmailTemplate) SetTo(v []EmailRecipient) {
+	o.To = v
+}
+
+// GetFrom returns the From field value
+func (o *EmailTemplate) GetFrom() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.From
+}
+
+// GetFromOk returns a tuple with the From field value
+// and a boolean to check if the value has been set.
+func (o *EmailTemplate) GetFromOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.From, true
+}
+
+// SetFrom sets field value
+func (o *EmailTemplate) SetFrom(v string) {
+	o.From = v
+}
+
+// GetTitle returns the Title field value
+func (o *EmailTemplate) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *EmailTemplate) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *EmailTemplate) SetTitle(v string) {
+	o.Title = v
 }
 
 // GetBody returns the Body field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -101,30 +173,6 @@ func (o *EmailTemplate) UnsetBody() {
 	o.Body.Unset()
 }
 
-// GetFrom returns the From field value
-func (o *EmailTemplate) GetFrom() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.From
-}
-
-// GetFromOk returns a tuple with the From field value
-// and a boolean to check if the value has been set.
-func (o *EmailTemplate) GetFromOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.From, true
-}
-
-// SetFrom sets field value
-func (o *EmailTemplate) SetFrom(v string) {
-	o.From = v
-}
-
 // GetIsHtml returns the IsHtml field value
 func (o *EmailTemplate) GetIsHtml() bool {
 	if o == nil {
@@ -149,54 +197,6 @@ func (o *EmailTemplate) SetIsHtml(v bool) {
 	o.IsHtml = v
 }
 
-// GetTitle returns the Title field value
-func (o *EmailTemplate) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *EmailTemplate) GetTitleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *EmailTemplate) SetTitle(v string) {
-	o.Title = v
-}
-
-// GetTo returns the To field value
-func (o *EmailTemplate) GetTo() []EmailRecipient {
-	if o == nil {
-		var ret []EmailRecipient
-		return ret
-	}
-
-	return o.To
-}
-
-// GetToOk returns a tuple with the To field value
-// and a boolean to check if the value has been set.
-func (o *EmailTemplate) GetToOk() ([]EmailRecipient, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.To, true
-}
-
-// SetTo sets field value
-func (o *EmailTemplate) SetTo(v []EmailRecipient) {
-	o.To = v
-}
-
 func (o EmailTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -207,13 +207,13 @@ func (o EmailTemplate) MarshalJSON() ([]byte, error) {
 
 func (o EmailTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["to"] = o.To
+	toSerialize["from"] = o.From
+	toSerialize["title"] = o.Title
 	if o.Body.IsSet() {
 		toSerialize["body"] = o.Body.Get()
 	}
-	toSerialize["from"] = o.From
 	toSerialize["isHtml"] = o.IsHtml
-	toSerialize["title"] = o.Title
-	toSerialize["to"] = o.To
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -227,10 +227,10 @@ func (o *EmailTemplate) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"from",
-		"isHtml",
-		"title",
 		"to",
+		"from",
+		"title",
+		"isHtml",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -260,11 +260,11 @@ func (o *EmailTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "body")
-		delete(additionalProperties, "from")
-		delete(additionalProperties, "isHtml")
-		delete(additionalProperties, "title")
 		delete(additionalProperties, "to")
+		delete(additionalProperties, "from")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "body")
+		delete(additionalProperties, "isHtml")
 		o.AdditionalProperties = additionalProperties
 	}
 

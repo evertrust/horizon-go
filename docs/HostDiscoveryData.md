@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Hostnames** | Pointer to **[]string** | The certificate&#39;s host hostnames (netscan only) | [optional] 
 **Ip** | Pointer to **NullableString** | The certificate&#39;s host ip | [optional] 
+**Sources** | Pointer to **[]string** | Information on the type of discovery that discovered this certificate | [optional] 
+**Hostnames** | Pointer to **[]string** | The certificate&#39;s host hostnames (netscan only) | [optional] 
 **OperatingSystems** | Pointer to **[]string** | The certificate&#39;s host operating system (localscan only) | [optional] 
 **Paths** | Pointer to **[]string** | The path to the certificate on the host machine (localscan only) | [optional] 
-**Sources** | Pointer to **[]string** | Information on the type of discovery that discovered this certificate | [optional] 
-**TlsPorts** | Pointer to [**[]TlsPort**](TlsPort.md) | The ports on which the certificate is exposed for https connexion | [optional] 
 **Usages** | Pointer to **[]string** | The path of the configuration files that were used to find the certificates | [optional] 
+**TlsPorts** | Pointer to [**[]TlsPort**](TlsPort.md) | The ports on which the certificate is exposed for https connexion | [optional] 
 
 ## Methods
 
@@ -31,41 +31,6 @@ NewHostDiscoveryDataWithDefaults instantiates a new HostDiscoveryData object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetHostnames
-
-`func (o *HostDiscoveryData) GetHostnames() []string`
-
-GetHostnames returns the Hostnames field if non-nil, zero value otherwise.
-
-### GetHostnamesOk
-
-`func (o *HostDiscoveryData) GetHostnamesOk() (*[]string, bool)`
-
-GetHostnamesOk returns a tuple with the Hostnames field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHostnames
-
-`func (o *HostDiscoveryData) SetHostnames(v []string)`
-
-SetHostnames sets Hostnames field to given value.
-
-### HasHostnames
-
-`func (o *HostDiscoveryData) HasHostnames() bool`
-
-HasHostnames returns a boolean if a field has been set.
-
-### SetHostnamesNil
-
-`func (o *HostDiscoveryData) SetHostnamesNil(b bool)`
-
- SetHostnamesNil sets the value for Hostnames to be an explicit nil
-
-### UnsetHostnames
-`func (o *HostDiscoveryData) UnsetHostnames()`
-
-UnsetHostnames ensures that no value is present for Hostnames, not even an explicit nil
 ### GetIp
 
 `func (o *HostDiscoveryData) GetIp() string`
@@ -101,6 +66,76 @@ HasIp returns a boolean if a field has been set.
 `func (o *HostDiscoveryData) UnsetIp()`
 
 UnsetIp ensures that no value is present for Ip, not even an explicit nil
+### GetSources
+
+`func (o *HostDiscoveryData) GetSources() []string`
+
+GetSources returns the Sources field if non-nil, zero value otherwise.
+
+### GetSourcesOk
+
+`func (o *HostDiscoveryData) GetSourcesOk() (*[]string, bool)`
+
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSources
+
+`func (o *HostDiscoveryData) SetSources(v []string)`
+
+SetSources sets Sources field to given value.
+
+### HasSources
+
+`func (o *HostDiscoveryData) HasSources() bool`
+
+HasSources returns a boolean if a field has been set.
+
+### SetSourcesNil
+
+`func (o *HostDiscoveryData) SetSourcesNil(b bool)`
+
+ SetSourcesNil sets the value for Sources to be an explicit nil
+
+### UnsetSources
+`func (o *HostDiscoveryData) UnsetSources()`
+
+UnsetSources ensures that no value is present for Sources, not even an explicit nil
+### GetHostnames
+
+`func (o *HostDiscoveryData) GetHostnames() []string`
+
+GetHostnames returns the Hostnames field if non-nil, zero value otherwise.
+
+### GetHostnamesOk
+
+`func (o *HostDiscoveryData) GetHostnamesOk() (*[]string, bool)`
+
+GetHostnamesOk returns a tuple with the Hostnames field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHostnames
+
+`func (o *HostDiscoveryData) SetHostnames(v []string)`
+
+SetHostnames sets Hostnames field to given value.
+
+### HasHostnames
+
+`func (o *HostDiscoveryData) HasHostnames() bool`
+
+HasHostnames returns a boolean if a field has been set.
+
+### SetHostnamesNil
+
+`func (o *HostDiscoveryData) SetHostnamesNil(b bool)`
+
+ SetHostnamesNil sets the value for Hostnames to be an explicit nil
+
+### UnsetHostnames
+`func (o *HostDiscoveryData) UnsetHostnames()`
+
+UnsetHostnames ensures that no value is present for Hostnames, not even an explicit nil
 ### GetOperatingSystems
 
 `func (o *HostDiscoveryData) GetOperatingSystems() []string`
@@ -171,76 +206,6 @@ HasPaths returns a boolean if a field has been set.
 `func (o *HostDiscoveryData) UnsetPaths()`
 
 UnsetPaths ensures that no value is present for Paths, not even an explicit nil
-### GetSources
-
-`func (o *HostDiscoveryData) GetSources() []string`
-
-GetSources returns the Sources field if non-nil, zero value otherwise.
-
-### GetSourcesOk
-
-`func (o *HostDiscoveryData) GetSourcesOk() (*[]string, bool)`
-
-GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSources
-
-`func (o *HostDiscoveryData) SetSources(v []string)`
-
-SetSources sets Sources field to given value.
-
-### HasSources
-
-`func (o *HostDiscoveryData) HasSources() bool`
-
-HasSources returns a boolean if a field has been set.
-
-### SetSourcesNil
-
-`func (o *HostDiscoveryData) SetSourcesNil(b bool)`
-
- SetSourcesNil sets the value for Sources to be an explicit nil
-
-### UnsetSources
-`func (o *HostDiscoveryData) UnsetSources()`
-
-UnsetSources ensures that no value is present for Sources, not even an explicit nil
-### GetTlsPorts
-
-`func (o *HostDiscoveryData) GetTlsPorts() []TlsPort`
-
-GetTlsPorts returns the TlsPorts field if non-nil, zero value otherwise.
-
-### GetTlsPortsOk
-
-`func (o *HostDiscoveryData) GetTlsPortsOk() (*[]TlsPort, bool)`
-
-GetTlsPortsOk returns a tuple with the TlsPorts field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTlsPorts
-
-`func (o *HostDiscoveryData) SetTlsPorts(v []TlsPort)`
-
-SetTlsPorts sets TlsPorts field to given value.
-
-### HasTlsPorts
-
-`func (o *HostDiscoveryData) HasTlsPorts() bool`
-
-HasTlsPorts returns a boolean if a field has been set.
-
-### SetTlsPortsNil
-
-`func (o *HostDiscoveryData) SetTlsPortsNil(b bool)`
-
- SetTlsPortsNil sets the value for TlsPorts to be an explicit nil
-
-### UnsetTlsPorts
-`func (o *HostDiscoveryData) UnsetTlsPorts()`
-
-UnsetTlsPorts ensures that no value is present for TlsPorts, not even an explicit nil
 ### GetUsages
 
 `func (o *HostDiscoveryData) GetUsages() []string`
@@ -276,6 +241,41 @@ HasUsages returns a boolean if a field has been set.
 `func (o *HostDiscoveryData) UnsetUsages()`
 
 UnsetUsages ensures that no value is present for Usages, not even an explicit nil
+### GetTlsPorts
+
+`func (o *HostDiscoveryData) GetTlsPorts() []TlsPort`
+
+GetTlsPorts returns the TlsPorts field if non-nil, zero value otherwise.
+
+### GetTlsPortsOk
+
+`func (o *HostDiscoveryData) GetTlsPortsOk() (*[]TlsPort, bool)`
+
+GetTlsPortsOk returns a tuple with the TlsPorts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTlsPorts
+
+`func (o *HostDiscoveryData) SetTlsPorts(v []TlsPort)`
+
+SetTlsPorts sets TlsPorts field to given value.
+
+### HasTlsPorts
+
+`func (o *HostDiscoveryData) HasTlsPorts() bool`
+
+HasTlsPorts returns a boolean if a field has been set.
+
+### SetTlsPortsNil
+
+`func (o *HostDiscoveryData) SetTlsPortsNil(b bool)`
+
+ SetTlsPortsNil sets the value for TlsPorts to be an explicit nil
+
+### UnsetTlsPorts
+`func (o *HostDiscoveryData) UnsetTlsPorts()`
+
+UnsetTlsPorts ensures that no value is present for TlsPorts, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

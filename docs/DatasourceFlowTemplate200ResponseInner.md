@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **NullableString** | Description of the datasource | [optional] 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | Display name of the datasource | [optional] 
-**Inputs** | Pointer to [**[]DataSourceInput**](DataSourceInput.md) | List of inputs to use for this datasource | [optional] 
 **Name** | Pointer to **string** | Name of the datasource | [optional] 
-**Outputs** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of outputs for this datasource | [optional] 
-**StopOnSuccess** | Pointer to **bool** | Stop the execution if this datasource&#39;s execution is successful | [optional] [default to false]
 **Type** | Pointer to [**DataSourceType**](DataSourceType.md) |  | [optional] 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | Display name of the datasource | [optional] 
+**Description** | Pointer to **NullableString** | Description of the datasource | [optional] 
+**Inputs** | Pointer to [**[]DataSourceInput**](DataSourceInput.md) | List of inputs to use for this datasource | [optional] 
+**StopOnSuccess** | Pointer to **bool** | Stop the execution if this datasource&#39;s execution is successful | [optional] [default to false]
+**Outputs** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of outputs for this datasource | [optional] 
 
 ## Methods
 
@@ -31,41 +31,56 @@ NewDatasourceFlowTemplate200ResponseInnerWithDefaults instantiates a new Datasou
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDescription
+### GetName
 
-`func (o *DatasourceFlowTemplate200ResponseInner) GetDescription() string`
+`func (o *DatasourceFlowTemplate200ResponseInner) GetName() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetNameOk
 
-`func (o *DatasourceFlowTemplate200ResponseInner) GetDescriptionOk() (*string, bool)`
+`func (o *DatasourceFlowTemplate200ResponseInner) GetNameOk() (*string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetName
 
-`func (o *DatasourceFlowTemplate200ResponseInner) SetDescription(v string)`
+`func (o *DatasourceFlowTemplate200ResponseInner) SetName(v string)`
 
-SetDescription sets Description field to given value.
+SetName sets Name field to given value.
 
-### HasDescription
+### HasName
 
-`func (o *DatasourceFlowTemplate200ResponseInner) HasDescription() bool`
+`func (o *DatasourceFlowTemplate200ResponseInner) HasName() bool`
 
-HasDescription returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### SetDescriptionNil
+### GetType
 
-`func (o *DatasourceFlowTemplate200ResponseInner) SetDescriptionNil(b bool)`
+`func (o *DatasourceFlowTemplate200ResponseInner) GetType() DataSourceType`
 
- SetDescriptionNil sets the value for Description to be an explicit nil
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### UnsetDescription
-`func (o *DatasourceFlowTemplate200ResponseInner) UnsetDescription()`
+### GetTypeOk
 
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
+`func (o *DatasourceFlowTemplate200ResponseInner) GetTypeOk() (*DataSourceType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *DatasourceFlowTemplate200ResponseInner) SetType(v DataSourceType)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *DatasourceFlowTemplate200ResponseInner) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
 ### GetDisplayName
 
 `func (o *DatasourceFlowTemplate200ResponseInner) GetDisplayName() []LocalizedString`
@@ -101,6 +116,41 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *DatasourceFlowTemplate200ResponseInner) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
+### GetDescription
+
+`func (o *DatasourceFlowTemplate200ResponseInner) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *DatasourceFlowTemplate200ResponseInner) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *DatasourceFlowTemplate200ResponseInner) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *DatasourceFlowTemplate200ResponseInner) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescriptionNil
+
+`func (o *DatasourceFlowTemplate200ResponseInner) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *DatasourceFlowTemplate200ResponseInner) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetInputs
 
 `func (o *DatasourceFlowTemplate200ResponseInner) GetInputs() []DataSourceInput`
@@ -136,30 +186,30 @@ HasInputs returns a boolean if a field has been set.
 `func (o *DatasourceFlowTemplate200ResponseInner) UnsetInputs()`
 
 UnsetInputs ensures that no value is present for Inputs, not even an explicit nil
-### GetName
+### GetStopOnSuccess
 
-`func (o *DatasourceFlowTemplate200ResponseInner) GetName() string`
+`func (o *DatasourceFlowTemplate200ResponseInner) GetStopOnSuccess() bool`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetStopOnSuccess returns the StopOnSuccess field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetStopOnSuccessOk
 
-`func (o *DatasourceFlowTemplate200ResponseInner) GetNameOk() (*string, bool)`
+`func (o *DatasourceFlowTemplate200ResponseInner) GetStopOnSuccessOk() (*bool, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetStopOnSuccessOk returns a tuple with the StopOnSuccess field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetStopOnSuccess
 
-`func (o *DatasourceFlowTemplate200ResponseInner) SetName(v string)`
+`func (o *DatasourceFlowTemplate200ResponseInner) SetStopOnSuccess(v bool)`
 
-SetName sets Name field to given value.
+SetStopOnSuccess sets StopOnSuccess field to given value.
 
-### HasName
+### HasStopOnSuccess
 
-`func (o *DatasourceFlowTemplate200ResponseInner) HasName() bool`
+`func (o *DatasourceFlowTemplate200ResponseInner) HasStopOnSuccess() bool`
 
-HasName returns a boolean if a field has been set.
+HasStopOnSuccess returns a boolean if a field has been set.
 
 ### GetOutputs
 
@@ -196,56 +246,6 @@ HasOutputs returns a boolean if a field has been set.
 `func (o *DatasourceFlowTemplate200ResponseInner) UnsetOutputs()`
 
 UnsetOutputs ensures that no value is present for Outputs, not even an explicit nil
-### GetStopOnSuccess
-
-`func (o *DatasourceFlowTemplate200ResponseInner) GetStopOnSuccess() bool`
-
-GetStopOnSuccess returns the StopOnSuccess field if non-nil, zero value otherwise.
-
-### GetStopOnSuccessOk
-
-`func (o *DatasourceFlowTemplate200ResponseInner) GetStopOnSuccessOk() (*bool, bool)`
-
-GetStopOnSuccessOk returns a tuple with the StopOnSuccess field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStopOnSuccess
-
-`func (o *DatasourceFlowTemplate200ResponseInner) SetStopOnSuccess(v bool)`
-
-SetStopOnSuccess sets StopOnSuccess field to given value.
-
-### HasStopOnSuccess
-
-`func (o *DatasourceFlowTemplate200ResponseInner) HasStopOnSuccess() bool`
-
-HasStopOnSuccess returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *DatasourceFlowTemplate200ResponseInner) GetType() DataSourceType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *DatasourceFlowTemplate200ResponseInner) GetTypeOk() (*DataSourceType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *DatasourceFlowTemplate200ResponseInner) SetType(v DataSourceType)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *DatasourceFlowTemplate200ResponseInner) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

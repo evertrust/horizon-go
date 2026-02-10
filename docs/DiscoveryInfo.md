@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Campaign** | **string** | The discovery campaign&#39;s name | 
-**Identifier** | Pointer to **NullableString** | Identifier of the user that discovered this certificate | [optional] 
 **LastDiscoveryDate** | **int64** | When this certificate was discovered for the last time | 
+**Identifier** | Pointer to **NullableString** | Identifier of the user that discovered this certificate | [optional] 
 
 ## Methods
 
@@ -47,6 +47,26 @@ and a boolean to check if the value has been set.
 SetCampaign sets Campaign field to given value.
 
 
+### GetLastDiscoveryDate
+
+`func (o *DiscoveryInfo) GetLastDiscoveryDate() int64`
+
+GetLastDiscoveryDate returns the LastDiscoveryDate field if non-nil, zero value otherwise.
+
+### GetLastDiscoveryDateOk
+
+`func (o *DiscoveryInfo) GetLastDiscoveryDateOk() (*int64, bool)`
+
+GetLastDiscoveryDateOk returns a tuple with the LastDiscoveryDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastDiscoveryDate
+
+`func (o *DiscoveryInfo) SetLastDiscoveryDate(v int64)`
+
+SetLastDiscoveryDate sets LastDiscoveryDate field to given value.
+
+
 ### GetIdentifier
 
 `func (o *DiscoveryInfo) GetIdentifier() string`
@@ -82,26 +102,6 @@ HasIdentifier returns a boolean if a field has been set.
 `func (o *DiscoveryInfo) UnsetIdentifier()`
 
 UnsetIdentifier ensures that no value is present for Identifier, not even an explicit nil
-### GetLastDiscoveryDate
-
-`func (o *DiscoveryInfo) GetLastDiscoveryDate() int64`
-
-GetLastDiscoveryDate returns the LastDiscoveryDate field if non-nil, zero value otherwise.
-
-### GetLastDiscoveryDateOk
-
-`func (o *DiscoveryInfo) GetLastDiscoveryDateOk() (*int64, bool)`
-
-GetLastDiscoveryDateOk returns a tuple with the LastDiscoveryDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastDiscoveryDate
-
-`func (o *DiscoveryInfo) SetLastDiscoveryDate(v int64)`
-
-SetLastDiscoveryDate sets LastDiscoveryDate field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

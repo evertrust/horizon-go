@@ -21,20 +21,20 @@ var _ utils.MappedNullable = &Base{}
 
 // Base struct for Base
 type Base struct {
-	// Event on which the notification runs. This MUST contain only one value.
-	Events []string `json:"events,omitempty"`
-	// License usage at which the notification needs to run (between 0 and 100). Must be defined on `on_license_usage` event and must NOT be defined otherwise.
-	LicenseUsagePercent utils.NullableInt64 `json:"licenseUsagePercent,omitempty"`
 	// Name of the notification
 	Name *string `json:"name,omitempty"`
+	// The type of notification
+	Type *string `json:"type,omitempty"`
 	// Number of retries when the notification fails
 	Retries utils.NullableInt64 `json:"retries,omitempty"`
-	// Must be defined on `on_expire` event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed.
-	RunOnRenewed utils.NullableBool `json:"runOnRenewed,omitempty"`
 	// Time period at which the notification needs to run. Can only be defined on expiration and pending events.
 	RunPeriod utils.NullableString `json:"runPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	// The type of notification
-	Type                 *string `json:"type,omitempty"`
+	// License usage at which the notification needs to run (between 0 and 100). Must be defined on `on_license_usage` event and must NOT be defined otherwise.
+	LicenseUsagePercent utils.NullableInt64 `json:"licenseUsagePercent,omitempty"`
+	// Event on which the notification runs. This MUST contain only one value.
+	Events []string `json:"events,omitempty"`
+	// Must be defined on `on_expire` event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed.
+	RunOnRenewed         utils.NullableBool `json:"runOnRenewed,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -55,81 +55,6 @@ func NewBase() *Base {
 func NewBaseWithDefaults() *Base {
 	this := Base{}
 	return &this
-}
-
-// GetEvents returns the Events field value if set, zero value otherwise.
-func (o *Base) GetEvents() []string {
-	if o == nil || utils.IsNil(o.Events) {
-		var ret []string
-		return ret
-	}
-	return o.Events
-}
-
-// GetEventsOk returns a tuple with the Events field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Base) GetEventsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Events) {
-		return nil, false
-	}
-	return o.Events, true
-}
-
-// HasEvents returns a boolean if a field has been set.
-func (o *Base) HasEvents() bool {
-	if o != nil && !utils.IsNil(o.Events) {
-		return true
-	}
-
-	return false
-}
-
-// SetEvents gets a reference to the given []string and assigns it to the Events field.
-func (o *Base) SetEvents(v []string) {
-	o.Events = v
-}
-
-// GetLicenseUsagePercent returns the LicenseUsagePercent field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Base) GetLicenseUsagePercent() int64 {
-	if o == nil || utils.IsNil(o.LicenseUsagePercent.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.LicenseUsagePercent.Get()
-}
-
-// GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Base) GetLicenseUsagePercentOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LicenseUsagePercent.Get(), o.LicenseUsagePercent.IsSet()
-}
-
-// HasLicenseUsagePercent returns a boolean if a field has been set.
-func (o *Base) HasLicenseUsagePercent() bool {
-	if o != nil && o.LicenseUsagePercent.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLicenseUsagePercent gets a reference to the given NullableInt64 and assigns it to the LicenseUsagePercent field.
-func (o *Base) SetLicenseUsagePercent(v int64) {
-	o.LicenseUsagePercent.Set(&v)
-}
-
-// SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
-func (o *Base) SetLicenseUsagePercentNil() {
-	o.LicenseUsagePercent.Set(nil)
-}
-
-// UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
-func (o *Base) UnsetLicenseUsagePercent() {
-	o.LicenseUsagePercent.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -162,6 +87,38 @@ func (o *Base) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *Base) SetName(v string) {
 	o.Name = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Base) GetType() string {
+	if o == nil || utils.IsNil(o.Type) {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Base) GetTypeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Base) HasType() bool {
+	if o != nil && !utils.IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *Base) SetType(v string) {
+	o.Type = &v
 }
 
 // GetRetries returns the Retries field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -207,49 +164,6 @@ func (o *Base) UnsetRetries() {
 	o.Retries.Unset()
 }
 
-// GetRunOnRenewed returns the RunOnRenewed field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Base) GetRunOnRenewed() bool {
-	if o == nil || utils.IsNil(o.RunOnRenewed.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.RunOnRenewed.Get()
-}
-
-// GetRunOnRenewedOk returns a tuple with the RunOnRenewed field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Base) GetRunOnRenewedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RunOnRenewed.Get(), o.RunOnRenewed.IsSet()
-}
-
-// HasRunOnRenewed returns a boolean if a field has been set.
-func (o *Base) HasRunOnRenewed() bool {
-	if o != nil && o.RunOnRenewed.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRunOnRenewed gets a reference to the given NullableBool and assigns it to the RunOnRenewed field.
-func (o *Base) SetRunOnRenewed(v bool) {
-	o.RunOnRenewed.Set(&v)
-}
-
-// SetRunOnRenewedNil sets the value for RunOnRenewed to be an explicit nil
-func (o *Base) SetRunOnRenewedNil() {
-	o.RunOnRenewed.Set(nil)
-}
-
-// UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
-func (o *Base) UnsetRunOnRenewed() {
-	o.RunOnRenewed.Unset()
-}
-
 // GetRunPeriod returns the RunPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Base) GetRunPeriod() string {
 	if o == nil || utils.IsNil(o.RunPeriod.Get()) {
@@ -293,36 +207,122 @@ func (o *Base) UnsetRunPeriod() {
 	o.RunPeriod.Unset()
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *Base) GetType() string {
-	if o == nil || utils.IsNil(o.Type) {
-		var ret string
+// GetLicenseUsagePercent returns the LicenseUsagePercent field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Base) GetLicenseUsagePercent() int64 {
+	if o == nil || utils.IsNil(o.LicenseUsagePercent.Get()) {
+		var ret int64
 		return ret
 	}
-	return *o.Type
+	return *o.LicenseUsagePercent.Get()
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Base) GetTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Type) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Base) GetLicenseUsagePercentOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return o.LicenseUsagePercent.Get(), o.LicenseUsagePercent.IsSet()
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *Base) HasType() bool {
-	if o != nil && !utils.IsNil(o.Type) {
+// HasLicenseUsagePercent returns a boolean if a field has been set.
+func (o *Base) HasLicenseUsagePercent() bool {
+	if o != nil && o.LicenseUsagePercent.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Base) SetType(v string) {
-	o.Type = &v
+// SetLicenseUsagePercent gets a reference to the given NullableInt64 and assigns it to the LicenseUsagePercent field.
+func (o *Base) SetLicenseUsagePercent(v int64) {
+	o.LicenseUsagePercent.Set(&v)
+}
+
+// SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
+func (o *Base) SetLicenseUsagePercentNil() {
+	o.LicenseUsagePercent.Set(nil)
+}
+
+// UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
+func (o *Base) UnsetLicenseUsagePercent() {
+	o.LicenseUsagePercent.Unset()
+}
+
+// GetEvents returns the Events field value if set, zero value otherwise.
+func (o *Base) GetEvents() []string {
+	if o == nil || utils.IsNil(o.Events) {
+		var ret []string
+		return ret
+	}
+	return o.Events
+}
+
+// GetEventsOk returns a tuple with the Events field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Base) GetEventsOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Events) {
+		return nil, false
+	}
+	return o.Events, true
+}
+
+// HasEvents returns a boolean if a field has been set.
+func (o *Base) HasEvents() bool {
+	if o != nil && !utils.IsNil(o.Events) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvents gets a reference to the given []string and assigns it to the Events field.
+func (o *Base) SetEvents(v []string) {
+	o.Events = v
+}
+
+// GetRunOnRenewed returns the RunOnRenewed field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Base) GetRunOnRenewed() bool {
+	if o == nil || utils.IsNil(o.RunOnRenewed.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.RunOnRenewed.Get()
+}
+
+// GetRunOnRenewedOk returns a tuple with the RunOnRenewed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Base) GetRunOnRenewedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RunOnRenewed.Get(), o.RunOnRenewed.IsSet()
+}
+
+// HasRunOnRenewed returns a boolean if a field has been set.
+func (o *Base) HasRunOnRenewed() bool {
+	if o != nil && o.RunOnRenewed.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRunOnRenewed gets a reference to the given NullableBool and assigns it to the RunOnRenewed field.
+func (o *Base) SetRunOnRenewed(v bool) {
+	o.RunOnRenewed.Set(&v)
+}
+
+// SetRunOnRenewedNil sets the value for RunOnRenewed to be an explicit nil
+func (o *Base) SetRunOnRenewedNil() {
+	o.RunOnRenewed.Set(nil)
+}
+
+// UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
+func (o *Base) UnsetRunOnRenewed() {
+	o.RunOnRenewed.Unset()
 }
 
 func (o Base) MarshalJSON() ([]byte, error) {
@@ -335,26 +335,26 @@ func (o Base) MarshalJSON() ([]byte, error) {
 
 func (o Base) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.Events) {
-		toSerialize["events"] = o.Events
-	}
-	if o.LicenseUsagePercent.IsSet() {
-		toSerialize["licenseUsagePercent"] = o.LicenseUsagePercent.Get()
-	}
 	if !utils.IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	if o.Retries.IsSet() {
 		toSerialize["retries"] = o.Retries.Get()
 	}
-	if o.RunOnRenewed.IsSet() {
-		toSerialize["runOnRenewed"] = o.RunOnRenewed.Get()
-	}
 	if o.RunPeriod.IsSet() {
 		toSerialize["runPeriod"] = o.RunPeriod.Get()
 	}
-	if !utils.IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+	if o.LicenseUsagePercent.IsSet() {
+		toSerialize["licenseUsagePercent"] = o.LicenseUsagePercent.Get()
+	}
+	if !utils.IsNil(o.Events) {
+		toSerialize["events"] = o.Events
+	}
+	if o.RunOnRenewed.IsSet() {
+		toSerialize["runOnRenewed"] = o.RunOnRenewed.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -378,13 +378,13 @@ func (o *Base) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "events")
-		delete(additionalProperties, "licenseUsagePercent")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "retries")
-		delete(additionalProperties, "runOnRenewed")
-		delete(additionalProperties, "runPeriod")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "retries")
+		delete(additionalProperties, "runPeriod")
+		delete(additionalProperties, "licenseUsagePercent")
+		delete(additionalProperties, "events")
+		delete(additionalProperties, "runOnRenewed")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -5,29 +5,29 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**ActorId** | Pointer to **NullableString** | The identifier of the principal that was used when the event was raised | [optional] 
-**Campaign** | **string** | The name of the discovery campaign concerned by the event | 
-**CertificateId** | Pointer to **NullableString** | The ID of the certificate concerned by the event (in Horizon) | [optional] 
-**ClientId** | Pointer to **NullableString** |  | [optional] 
-**ClientIp** | Pointer to **NullableString** | The IP of the machine where the Horizon client is running from | [optional] 
-**ClientVersion** | Pointer to **NullableString** | The version of the discovery client that raised the event | [optional] 
 **Code** | **string** | The code of the event to raise in the discovery events | 
+**Campaign** | **string** | The name of the discovery campaign concerned by the event | 
+**SessionId** | Pointer to **NullableString** | The ID of the discovery feed session | [optional] 
+**Status** | **string** | The type of event to raise | 
 **ErrorCode** | Pointer to **NullableString** | The error code of the event | [optional] 
 **ErrorMessage** | Pointer to **NullableString** | The error message of the event | [optional] 
+**Timestamp** | Pointer to **NullableInt64** | When did the event occur (Unix timestamp in milliseconds) | [optional] 
+**RemoveAt** | Pointer to **NullableInt64** |  | [optional] 
+**ClientVersion** | Pointer to **NullableString** | The version of the discovery client that raised the event | [optional] 
+**ClientIp** | Pointer to **NullableString** | The IP of the machine where the Horizon client is running from | [optional] 
+**ClientId** | Pointer to **NullableString** |  | [optional] 
+**ActorId** | Pointer to **NullableString** | The identifier of the principal that was used when the event was raised | [optional] 
+**CertificateId** | Pointer to **NullableString** | The ID of the certificate concerned by the event (in Horizon) | [optional] 
 **Hostname** | Pointer to **NullableString** | The hostname concerned by the event | [optional] 
 **Ip** | Pointer to **NullableString** | The IP address concerned by the event | [optional] 
 **Port** | Pointer to **NullableInt64** | The TCP port concerned by the event | [optional] 
-**RemoveAt** | Pointer to **NullableInt64** |  | [optional] 
-**SessionId** | Pointer to **NullableString** | The ID of the discovery feed session | [optional] 
 **Source** | Pointer to **NullableString** | The type of discovery that raised the event | [optional] 
-**Status** | **string** | The type of event to raise | 
-**Timestamp** | Pointer to **NullableInt64** | When did the event occur (Unix timestamp in milliseconds) | [optional] 
 
 ## Methods
 
 ### NewDiscoveryEventResponse
 
-`func NewDiscoveryEventResponse(id string, campaign string, code string, status string, ) *DiscoveryEventResponse`
+`func NewDiscoveryEventResponse(id string, code string, campaign string, status string, ) *DiscoveryEventResponse`
 
 NewDiscoveryEventResponse instantiates a new DiscoveryEventResponse object
 This constructor will assign default values to properties that have it defined,
@@ -62,41 +62,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetActorId
+### GetCode
 
-`func (o *DiscoveryEventResponse) GetActorId() string`
+`func (o *DiscoveryEventResponse) GetCode() string`
 
-GetActorId returns the ActorId field if non-nil, zero value otherwise.
+GetCode returns the Code field if non-nil, zero value otherwise.
 
-### GetActorIdOk
+### GetCodeOk
 
-`func (o *DiscoveryEventResponse) GetActorIdOk() (*string, bool)`
+`func (o *DiscoveryEventResponse) GetCodeOk() (*string, bool)`
 
-GetActorIdOk returns a tuple with the ActorId field if it's non-nil, zero value otherwise
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetActorId
+### SetCode
 
-`func (o *DiscoveryEventResponse) SetActorId(v string)`
+`func (o *DiscoveryEventResponse) SetCode(v string)`
 
-SetActorId sets ActorId field to given value.
+SetCode sets Code field to given value.
 
-### HasActorId
 
-`func (o *DiscoveryEventResponse) HasActorId() bool`
-
-HasActorId returns a boolean if a field has been set.
-
-### SetActorIdNil
-
-`func (o *DiscoveryEventResponse) SetActorIdNil(b bool)`
-
- SetActorIdNil sets the value for ActorId to be an explicit nil
-
-### UnsetActorId
-`func (o *DiscoveryEventResponse) UnsetActorId()`
-
-UnsetActorId ensures that no value is present for ActorId, not even an explicit nil
 ### GetCampaign
 
 `func (o *DiscoveryEventResponse) GetCampaign() string`
@@ -117,164 +102,59 @@ and a boolean to check if the value has been set.
 SetCampaign sets Campaign field to given value.
 
 
-### GetCertificateId
+### GetSessionId
 
-`func (o *DiscoveryEventResponse) GetCertificateId() string`
+`func (o *DiscoveryEventResponse) GetSessionId() string`
 
-GetCertificateId returns the CertificateId field if non-nil, zero value otherwise.
+GetSessionId returns the SessionId field if non-nil, zero value otherwise.
 
-### GetCertificateIdOk
+### GetSessionIdOk
 
-`func (o *DiscoveryEventResponse) GetCertificateIdOk() (*string, bool)`
+`func (o *DiscoveryEventResponse) GetSessionIdOk() (*string, bool)`
 
-GetCertificateIdOk returns a tuple with the CertificateId field if it's non-nil, zero value otherwise
+GetSessionIdOk returns a tuple with the SessionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCertificateId
+### SetSessionId
 
-`func (o *DiscoveryEventResponse) SetCertificateId(v string)`
+`func (o *DiscoveryEventResponse) SetSessionId(v string)`
 
-SetCertificateId sets CertificateId field to given value.
+SetSessionId sets SessionId field to given value.
 
-### HasCertificateId
+### HasSessionId
 
-`func (o *DiscoveryEventResponse) HasCertificateId() bool`
+`func (o *DiscoveryEventResponse) HasSessionId() bool`
 
-HasCertificateId returns a boolean if a field has been set.
+HasSessionId returns a boolean if a field has been set.
 
-### SetCertificateIdNil
+### SetSessionIdNil
 
-`func (o *DiscoveryEventResponse) SetCertificateIdNil(b bool)`
+`func (o *DiscoveryEventResponse) SetSessionIdNil(b bool)`
 
- SetCertificateIdNil sets the value for CertificateId to be an explicit nil
+ SetSessionIdNil sets the value for SessionId to be an explicit nil
 
-### UnsetCertificateId
-`func (o *DiscoveryEventResponse) UnsetCertificateId()`
+### UnsetSessionId
+`func (o *DiscoveryEventResponse) UnsetSessionId()`
 
-UnsetCertificateId ensures that no value is present for CertificateId, not even an explicit nil
-### GetClientId
+UnsetSessionId ensures that no value is present for SessionId, not even an explicit nil
+### GetStatus
 
-`func (o *DiscoveryEventResponse) GetClientId() string`
+`func (o *DiscoveryEventResponse) GetStatus() string`
 
-GetClientId returns the ClientId field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetClientIdOk
+### GetStatusOk
 
-`func (o *DiscoveryEventResponse) GetClientIdOk() (*string, bool)`
+`func (o *DiscoveryEventResponse) GetStatusOk() (*string, bool)`
 
-GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClientId
+### SetStatus
 
-`func (o *DiscoveryEventResponse) SetClientId(v string)`
+`func (o *DiscoveryEventResponse) SetStatus(v string)`
 
-SetClientId sets ClientId field to given value.
-
-### HasClientId
-
-`func (o *DiscoveryEventResponse) HasClientId() bool`
-
-HasClientId returns a boolean if a field has been set.
-
-### SetClientIdNil
-
-`func (o *DiscoveryEventResponse) SetClientIdNil(b bool)`
-
- SetClientIdNil sets the value for ClientId to be an explicit nil
-
-### UnsetClientId
-`func (o *DiscoveryEventResponse) UnsetClientId()`
-
-UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
-### GetClientIp
-
-`func (o *DiscoveryEventResponse) GetClientIp() string`
-
-GetClientIp returns the ClientIp field if non-nil, zero value otherwise.
-
-### GetClientIpOk
-
-`func (o *DiscoveryEventResponse) GetClientIpOk() (*string, bool)`
-
-GetClientIpOk returns a tuple with the ClientIp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClientIp
-
-`func (o *DiscoveryEventResponse) SetClientIp(v string)`
-
-SetClientIp sets ClientIp field to given value.
-
-### HasClientIp
-
-`func (o *DiscoveryEventResponse) HasClientIp() bool`
-
-HasClientIp returns a boolean if a field has been set.
-
-### SetClientIpNil
-
-`func (o *DiscoveryEventResponse) SetClientIpNil(b bool)`
-
- SetClientIpNil sets the value for ClientIp to be an explicit nil
-
-### UnsetClientIp
-`func (o *DiscoveryEventResponse) UnsetClientIp()`
-
-UnsetClientIp ensures that no value is present for ClientIp, not even an explicit nil
-### GetClientVersion
-
-`func (o *DiscoveryEventResponse) GetClientVersion() string`
-
-GetClientVersion returns the ClientVersion field if non-nil, zero value otherwise.
-
-### GetClientVersionOk
-
-`func (o *DiscoveryEventResponse) GetClientVersionOk() (*string, bool)`
-
-GetClientVersionOk returns a tuple with the ClientVersion field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetClientVersion
-
-`func (o *DiscoveryEventResponse) SetClientVersion(v string)`
-
-SetClientVersion sets ClientVersion field to given value.
-
-### HasClientVersion
-
-`func (o *DiscoveryEventResponse) HasClientVersion() bool`
-
-HasClientVersion returns a boolean if a field has been set.
-
-### SetClientVersionNil
-
-`func (o *DiscoveryEventResponse) SetClientVersionNil(b bool)`
-
- SetClientVersionNil sets the value for ClientVersion to be an explicit nil
-
-### UnsetClientVersion
-`func (o *DiscoveryEventResponse) UnsetClientVersion()`
-
-UnsetClientVersion ensures that no value is present for ClientVersion, not even an explicit nil
-### GetCode
-
-`func (o *DiscoveryEventResponse) GetCode() string`
-
-GetCode returns the Code field if non-nil, zero value otherwise.
-
-### GetCodeOk
-
-`func (o *DiscoveryEventResponse) GetCodeOk() (*string, bool)`
-
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCode
-
-`func (o *DiscoveryEventResponse) SetCode(v string)`
-
-SetCode sets Code field to given value.
+SetStatus sets Status field to given value.
 
 
 ### GetErrorCode
@@ -347,6 +227,251 @@ HasErrorMessage returns a boolean if a field has been set.
 `func (o *DiscoveryEventResponse) UnsetErrorMessage()`
 
 UnsetErrorMessage ensures that no value is present for ErrorMessage, not even an explicit nil
+### GetTimestamp
+
+`func (o *DiscoveryEventResponse) GetTimestamp() int64`
+
+GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
+
+### GetTimestampOk
+
+`func (o *DiscoveryEventResponse) GetTimestampOk() (*int64, bool)`
+
+GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimestamp
+
+`func (o *DiscoveryEventResponse) SetTimestamp(v int64)`
+
+SetTimestamp sets Timestamp field to given value.
+
+### HasTimestamp
+
+`func (o *DiscoveryEventResponse) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
+
+### SetTimestampNil
+
+`func (o *DiscoveryEventResponse) SetTimestampNil(b bool)`
+
+ SetTimestampNil sets the value for Timestamp to be an explicit nil
+
+### UnsetTimestamp
+`func (o *DiscoveryEventResponse) UnsetTimestamp()`
+
+UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
+### GetRemoveAt
+
+`func (o *DiscoveryEventResponse) GetRemoveAt() int64`
+
+GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
+
+### GetRemoveAtOk
+
+`func (o *DiscoveryEventResponse) GetRemoveAtOk() (*int64, bool)`
+
+GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveAt
+
+`func (o *DiscoveryEventResponse) SetRemoveAt(v int64)`
+
+SetRemoveAt sets RemoveAt field to given value.
+
+### HasRemoveAt
+
+`func (o *DiscoveryEventResponse) HasRemoveAt() bool`
+
+HasRemoveAt returns a boolean if a field has been set.
+
+### SetRemoveAtNil
+
+`func (o *DiscoveryEventResponse) SetRemoveAtNil(b bool)`
+
+ SetRemoveAtNil sets the value for RemoveAt to be an explicit nil
+
+### UnsetRemoveAt
+`func (o *DiscoveryEventResponse) UnsetRemoveAt()`
+
+UnsetRemoveAt ensures that no value is present for RemoveAt, not even an explicit nil
+### GetClientVersion
+
+`func (o *DiscoveryEventResponse) GetClientVersion() string`
+
+GetClientVersion returns the ClientVersion field if non-nil, zero value otherwise.
+
+### GetClientVersionOk
+
+`func (o *DiscoveryEventResponse) GetClientVersionOk() (*string, bool)`
+
+GetClientVersionOk returns a tuple with the ClientVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientVersion
+
+`func (o *DiscoveryEventResponse) SetClientVersion(v string)`
+
+SetClientVersion sets ClientVersion field to given value.
+
+### HasClientVersion
+
+`func (o *DiscoveryEventResponse) HasClientVersion() bool`
+
+HasClientVersion returns a boolean if a field has been set.
+
+### SetClientVersionNil
+
+`func (o *DiscoveryEventResponse) SetClientVersionNil(b bool)`
+
+ SetClientVersionNil sets the value for ClientVersion to be an explicit nil
+
+### UnsetClientVersion
+`func (o *DiscoveryEventResponse) UnsetClientVersion()`
+
+UnsetClientVersion ensures that no value is present for ClientVersion, not even an explicit nil
+### GetClientIp
+
+`func (o *DiscoveryEventResponse) GetClientIp() string`
+
+GetClientIp returns the ClientIp field if non-nil, zero value otherwise.
+
+### GetClientIpOk
+
+`func (o *DiscoveryEventResponse) GetClientIpOk() (*string, bool)`
+
+GetClientIpOk returns a tuple with the ClientIp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientIp
+
+`func (o *DiscoveryEventResponse) SetClientIp(v string)`
+
+SetClientIp sets ClientIp field to given value.
+
+### HasClientIp
+
+`func (o *DiscoveryEventResponse) HasClientIp() bool`
+
+HasClientIp returns a boolean if a field has been set.
+
+### SetClientIpNil
+
+`func (o *DiscoveryEventResponse) SetClientIpNil(b bool)`
+
+ SetClientIpNil sets the value for ClientIp to be an explicit nil
+
+### UnsetClientIp
+`func (o *DiscoveryEventResponse) UnsetClientIp()`
+
+UnsetClientIp ensures that no value is present for ClientIp, not even an explicit nil
+### GetClientId
+
+`func (o *DiscoveryEventResponse) GetClientId() string`
+
+GetClientId returns the ClientId field if non-nil, zero value otherwise.
+
+### GetClientIdOk
+
+`func (o *DiscoveryEventResponse) GetClientIdOk() (*string, bool)`
+
+GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientId
+
+`func (o *DiscoveryEventResponse) SetClientId(v string)`
+
+SetClientId sets ClientId field to given value.
+
+### HasClientId
+
+`func (o *DiscoveryEventResponse) HasClientId() bool`
+
+HasClientId returns a boolean if a field has been set.
+
+### SetClientIdNil
+
+`func (o *DiscoveryEventResponse) SetClientIdNil(b bool)`
+
+ SetClientIdNil sets the value for ClientId to be an explicit nil
+
+### UnsetClientId
+`func (o *DiscoveryEventResponse) UnsetClientId()`
+
+UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
+### GetActorId
+
+`func (o *DiscoveryEventResponse) GetActorId() string`
+
+GetActorId returns the ActorId field if non-nil, zero value otherwise.
+
+### GetActorIdOk
+
+`func (o *DiscoveryEventResponse) GetActorIdOk() (*string, bool)`
+
+GetActorIdOk returns a tuple with the ActorId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActorId
+
+`func (o *DiscoveryEventResponse) SetActorId(v string)`
+
+SetActorId sets ActorId field to given value.
+
+### HasActorId
+
+`func (o *DiscoveryEventResponse) HasActorId() bool`
+
+HasActorId returns a boolean if a field has been set.
+
+### SetActorIdNil
+
+`func (o *DiscoveryEventResponse) SetActorIdNil(b bool)`
+
+ SetActorIdNil sets the value for ActorId to be an explicit nil
+
+### UnsetActorId
+`func (o *DiscoveryEventResponse) UnsetActorId()`
+
+UnsetActorId ensures that no value is present for ActorId, not even an explicit nil
+### GetCertificateId
+
+`func (o *DiscoveryEventResponse) GetCertificateId() string`
+
+GetCertificateId returns the CertificateId field if non-nil, zero value otherwise.
+
+### GetCertificateIdOk
+
+`func (o *DiscoveryEventResponse) GetCertificateIdOk() (*string, bool)`
+
+GetCertificateIdOk returns a tuple with the CertificateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateId
+
+`func (o *DiscoveryEventResponse) SetCertificateId(v string)`
+
+SetCertificateId sets CertificateId field to given value.
+
+### HasCertificateId
+
+`func (o *DiscoveryEventResponse) HasCertificateId() bool`
+
+HasCertificateId returns a boolean if a field has been set.
+
+### SetCertificateIdNil
+
+`func (o *DiscoveryEventResponse) SetCertificateIdNil(b bool)`
+
+ SetCertificateIdNil sets the value for CertificateId to be an explicit nil
+
+### UnsetCertificateId
+`func (o *DiscoveryEventResponse) UnsetCertificateId()`
+
+UnsetCertificateId ensures that no value is present for CertificateId, not even an explicit nil
 ### GetHostname
 
 `func (o *DiscoveryEventResponse) GetHostname() string`
@@ -452,76 +577,6 @@ HasPort returns a boolean if a field has been set.
 `func (o *DiscoveryEventResponse) UnsetPort()`
 
 UnsetPort ensures that no value is present for Port, not even an explicit nil
-### GetRemoveAt
-
-`func (o *DiscoveryEventResponse) GetRemoveAt() int64`
-
-GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
-
-### GetRemoveAtOk
-
-`func (o *DiscoveryEventResponse) GetRemoveAtOk() (*int64, bool)`
-
-GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoveAt
-
-`func (o *DiscoveryEventResponse) SetRemoveAt(v int64)`
-
-SetRemoveAt sets RemoveAt field to given value.
-
-### HasRemoveAt
-
-`func (o *DiscoveryEventResponse) HasRemoveAt() bool`
-
-HasRemoveAt returns a boolean if a field has been set.
-
-### SetRemoveAtNil
-
-`func (o *DiscoveryEventResponse) SetRemoveAtNil(b bool)`
-
- SetRemoveAtNil sets the value for RemoveAt to be an explicit nil
-
-### UnsetRemoveAt
-`func (o *DiscoveryEventResponse) UnsetRemoveAt()`
-
-UnsetRemoveAt ensures that no value is present for RemoveAt, not even an explicit nil
-### GetSessionId
-
-`func (o *DiscoveryEventResponse) GetSessionId() string`
-
-GetSessionId returns the SessionId field if non-nil, zero value otherwise.
-
-### GetSessionIdOk
-
-`func (o *DiscoveryEventResponse) GetSessionIdOk() (*string, bool)`
-
-GetSessionIdOk returns a tuple with the SessionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSessionId
-
-`func (o *DiscoveryEventResponse) SetSessionId(v string)`
-
-SetSessionId sets SessionId field to given value.
-
-### HasSessionId
-
-`func (o *DiscoveryEventResponse) HasSessionId() bool`
-
-HasSessionId returns a boolean if a field has been set.
-
-### SetSessionIdNil
-
-`func (o *DiscoveryEventResponse) SetSessionIdNil(b bool)`
-
- SetSessionIdNil sets the value for SessionId to be an explicit nil
-
-### UnsetSessionId
-`func (o *DiscoveryEventResponse) UnsetSessionId()`
-
-UnsetSessionId ensures that no value is present for SessionId, not even an explicit nil
 ### GetSource
 
 `func (o *DiscoveryEventResponse) GetSource() string`
@@ -557,61 +612,6 @@ HasSource returns a boolean if a field has been set.
 `func (o *DiscoveryEventResponse) UnsetSource()`
 
 UnsetSource ensures that no value is present for Source, not even an explicit nil
-### GetStatus
-
-`func (o *DiscoveryEventResponse) GetStatus() string`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *DiscoveryEventResponse) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *DiscoveryEventResponse) SetStatus(v string)`
-
-SetStatus sets Status field to given value.
-
-
-### GetTimestamp
-
-`func (o *DiscoveryEventResponse) GetTimestamp() int64`
-
-GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
-
-### GetTimestampOk
-
-`func (o *DiscoveryEventResponse) GetTimestampOk() (*int64, bool)`
-
-GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimestamp
-
-`func (o *DiscoveryEventResponse) SetTimestamp(v int64)`
-
-SetTimestamp sets Timestamp field to given value.
-
-### HasTimestamp
-
-`func (o *DiscoveryEventResponse) HasTimestamp() bool`
-
-HasTimestamp returns a boolean if a field has been set.
-
-### SetTimestampNil
-
-`func (o *DiscoveryEventResponse) SetTimestampNil(b bool)`
-
- SetTimestampNil sets the value for Timestamp to be an explicit nil
-
-### UnsetTimestamp
-`func (o *DiscoveryEventResponse) UnsetTimestamp()`
-
-UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

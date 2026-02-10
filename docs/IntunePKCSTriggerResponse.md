@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Connector** | **string** |  | 
 **Name** | **string** |  | 
-**Retries** | Pointer to **NullableInt64** |  | [optional] 
 **Type** | **string** |  | 
+**Retries** | Pointer to **NullableInt64** |  | [optional] 
+**Connector** | **string** |  | 
 
 ## Methods
 
 ### NewIntunePKCSTriggerResponse
 
-`func NewIntunePKCSTriggerResponse(id string, connector string, name string, type_ string, ) *IntunePKCSTriggerResponse`
+`func NewIntunePKCSTriggerResponse(id string, name string, type_ string, connector string, ) *IntunePKCSTriggerResponse`
 
 NewIntunePKCSTriggerResponse instantiates a new IntunePKCSTriggerResponse object
 This constructor will assign default values to properties that have it defined,
@@ -49,26 +49,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetConnector
-
-`func (o *IntunePKCSTriggerResponse) GetConnector() string`
-
-GetConnector returns the Connector field if non-nil, zero value otherwise.
-
-### GetConnectorOk
-
-`func (o *IntunePKCSTriggerResponse) GetConnectorOk() (*string, bool)`
-
-GetConnectorOk returns a tuple with the Connector field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConnector
-
-`func (o *IntunePKCSTriggerResponse) SetConnector(v string)`
-
-SetConnector sets Connector field to given value.
-
-
 ### GetName
 
 `func (o *IntunePKCSTriggerResponse) GetName() string`
@@ -87,6 +67,26 @@ and a boolean to check if the value has been set.
 `func (o *IntunePKCSTriggerResponse) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetType
+
+`func (o *IntunePKCSTriggerResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *IntunePKCSTriggerResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *IntunePKCSTriggerResponse) SetType(v string)`
+
+SetType sets Type field to given value.
 
 
 ### GetRetries
@@ -124,24 +124,24 @@ HasRetries returns a boolean if a field has been set.
 `func (o *IntunePKCSTriggerResponse) UnsetRetries()`
 
 UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetType
+### GetConnector
 
-`func (o *IntunePKCSTriggerResponse) GetType() string`
+`func (o *IntunePKCSTriggerResponse) GetConnector() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetConnector returns the Connector field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetConnectorOk
 
-`func (o *IntunePKCSTriggerResponse) GetTypeOk() (*string, bool)`
+`func (o *IntunePKCSTriggerResponse) GetConnectorOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetConnectorOk returns a tuple with the Connector field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetConnector
 
-`func (o *IntunePKCSTriggerResponse) SetType(v string)`
+`func (o *IntunePKCSTriggerResponse) SetConnector(v string)`
 
-SetType sets Type field to given value.
+SetConnector sets Connector field to given value.
 
 
 
