@@ -23,29 +23,29 @@ var _ utils.MappedNullable = &AcmeEnrollConnectorResponse{}
 // AcmeEnrollConnectorResponse Used to enroll certificate using the ACME protocol with DNS challenge on compatible public PKI
 type AcmeEnrollConnectorResponse struct {
 	// Object internal ID
-	Id   string `json:"_id"`
-	Name string `json:"name"`
-	Type string `json:"type"`
-	// The directory url of the ACME endpoint
-	EndPoint string               `json:"endPoint"`
-	Timeout  utils.NullableString `json:"timeout" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Proxy    utils.NullableString `json:"proxy,omitempty"`
-	Queue    utils.NullableString `json:"queue,omitempty"`
-	// `password` credentials name to use for External Account Binding
-	Eab utils.NullableString `json:"eab,omitempty"`
-	// The key type to use to generate the account key
-	AccountKeyType string `json:"accountKeyType" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
+	Id string `json:"_id"`
 	// Email to associate with the account
 	AccountEmail utils.NullableString `json:"accountEmail,omitempty"`
-	// If enable, regenerate the account (does not need to be specified on creation)
-	RotateAccount utils.NullableBool         `json:"rotateAccount,omitempty"`
-	Status        NullablePKIConnectorStatus `json:"status,omitempty"`
+	// The key type to use to generate the account key
+	AccountKeyType string `json:"accountKeyType" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
 	// Url of the account on the ACME directory
 	AccountUrl string `json:"accountUrl"`
-	// The dictionary provider
-	DomainDictionaryProvider NullableDomainDictionaryProviders `json:"domainDictionaryProvider,omitempty"`
 	// DNS Provider configuration to provision the DNS challenge. Available from `2.7.7`
 	DnsChallengeProvider DnsChallengeProviders `json:"dnsChallengeProvider"`
+	// The dictionary provider
+	DomainDictionaryProvider NullableDomainDictionaryProviders `json:"domainDictionaryProvider,omitempty"`
+	// `password` credentials name to use for External Account Binding
+	Eab utils.NullableString `json:"eab,omitempty"`
+	// The directory url of the ACME endpoint
+	EndPoint string               `json:"endPoint"`
+	Name     string               `json:"name"`
+	Proxy    utils.NullableString `json:"proxy,omitempty"`
+	Queue    utils.NullableString `json:"queue,omitempty"`
+	// If enable, regenerate the account (does not need to be specified on creation)
+	RotateAccount        utils.NullableBool         `json:"rotateAccount,omitempty"`
+	Status               NullablePKIConnectorStatus `json:"status,omitempty"`
+	Timeout              utils.NullableString       `json:"timeout" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string                     `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -55,16 +55,16 @@ type _AcmeEnrollConnectorResponse AcmeEnrollConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAcmeEnrollConnectorResponse(id string, name string, type_ string, endPoint string, timeout utils.NullableString, accountKeyType string, accountUrl string, dnsChallengeProvider DnsChallengeProviders) *AcmeEnrollConnectorResponse {
+func NewAcmeEnrollConnectorResponse(id string, accountKeyType string, accountUrl string, dnsChallengeProvider DnsChallengeProviders, endPoint string, name string, timeout utils.NullableString, type_ string) *AcmeEnrollConnectorResponse {
 	this := AcmeEnrollConnectorResponse{}
 	this.Id = id
-	this.Name = name
-	this.Type = type_
-	this.EndPoint = endPoint
-	this.Timeout = timeout
 	this.AccountKeyType = accountKeyType
 	this.AccountUrl = accountUrl
 	this.DnsChallengeProvider = dnsChallengeProvider
+	this.EndPoint = endPoint
+	this.Name = name
+	this.Timeout = timeout
+	this.Type = type_
 	return &this
 }
 
@@ -100,52 +100,205 @@ func (o *AcmeEnrollConnectorResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetName returns the Name field value
-func (o *AcmeEnrollConnectorResponse) GetName() string {
+// GetAccountEmail returns the AccountEmail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeEnrollConnectorResponse) GetAccountEmail() string {
+	if o == nil || utils.IsNil(o.AccountEmail.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.AccountEmail.Get()
+}
+
+// GetAccountEmailOk returns a tuple with the AccountEmail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeEnrollConnectorResponse) GetAccountEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AccountEmail.Get(), o.AccountEmail.IsSet()
+}
+
+// HasAccountEmail returns a boolean if a field has been set.
+func (o *AcmeEnrollConnectorResponse) HasAccountEmail() bool {
+	if o != nil && o.AccountEmail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountEmail gets a reference to the given NullableString and assigns it to the AccountEmail field.
+func (o *AcmeEnrollConnectorResponse) SetAccountEmail(v string) {
+	o.AccountEmail.Set(&v)
+}
+
+// SetAccountEmailNil sets the value for AccountEmail to be an explicit nil
+func (o *AcmeEnrollConnectorResponse) SetAccountEmailNil() {
+	o.AccountEmail.Set(nil)
+}
+
+// UnsetAccountEmail ensures that no value is present for AccountEmail, not even an explicit nil
+func (o *AcmeEnrollConnectorResponse) UnsetAccountEmail() {
+	o.AccountEmail.Unset()
+}
+
+// GetAccountKeyType returns the AccountKeyType field value
+func (o *AcmeEnrollConnectorResponse) GetAccountKeyType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.AccountKeyType
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetAccountKeyTypeOk returns a tuple with the AccountKeyType field value
 // and a boolean to check if the value has been set.
-func (o *AcmeEnrollConnectorResponse) GetNameOk() (*string, bool) {
+func (o *AcmeEnrollConnectorResponse) GetAccountKeyTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.AccountKeyType, true
 }
 
-// SetName sets field value
-func (o *AcmeEnrollConnectorResponse) SetName(v string) {
-	o.Name = v
+// SetAccountKeyType sets field value
+func (o *AcmeEnrollConnectorResponse) SetAccountKeyType(v string) {
+	o.AccountKeyType = v
 }
 
-// GetType returns the Type field value
-func (o *AcmeEnrollConnectorResponse) GetType() string {
+// GetAccountUrl returns the AccountUrl field value
+func (o *AcmeEnrollConnectorResponse) GetAccountUrl() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.AccountUrl
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetAccountUrlOk returns a tuple with the AccountUrl field value
 // and a boolean to check if the value has been set.
-func (o *AcmeEnrollConnectorResponse) GetTypeOk() (*string, bool) {
+func (o *AcmeEnrollConnectorResponse) GetAccountUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.AccountUrl, true
 }
 
-// SetType sets field value
-func (o *AcmeEnrollConnectorResponse) SetType(v string) {
-	o.Type = v
+// SetAccountUrl sets field value
+func (o *AcmeEnrollConnectorResponse) SetAccountUrl(v string) {
+	o.AccountUrl = v
+}
+
+// GetDnsChallengeProvider returns the DnsChallengeProvider field value
+func (o *AcmeEnrollConnectorResponse) GetDnsChallengeProvider() DnsChallengeProviders {
+	if o == nil {
+		var ret DnsChallengeProviders
+		return ret
+	}
+
+	return o.DnsChallengeProvider
+}
+
+// GetDnsChallengeProviderOk returns a tuple with the DnsChallengeProvider field value
+// and a boolean to check if the value has been set.
+func (o *AcmeEnrollConnectorResponse) GetDnsChallengeProviderOk() (*DnsChallengeProviders, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DnsChallengeProvider, true
+}
+
+// SetDnsChallengeProvider sets field value
+func (o *AcmeEnrollConnectorResponse) SetDnsChallengeProvider(v DnsChallengeProviders) {
+	o.DnsChallengeProvider = v
+}
+
+// GetDomainDictionaryProvider returns the DomainDictionaryProvider field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeEnrollConnectorResponse) GetDomainDictionaryProvider() DomainDictionaryProviders {
+	if o == nil || utils.IsNil(o.DomainDictionaryProvider.Get()) {
+		var ret DomainDictionaryProviders
+		return ret
+	}
+	return *o.DomainDictionaryProvider.Get()
+}
+
+// GetDomainDictionaryProviderOk returns a tuple with the DomainDictionaryProvider field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeEnrollConnectorResponse) GetDomainDictionaryProviderOk() (*DomainDictionaryProviders, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DomainDictionaryProvider.Get(), o.DomainDictionaryProvider.IsSet()
+}
+
+// HasDomainDictionaryProvider returns a boolean if a field has been set.
+func (o *AcmeEnrollConnectorResponse) HasDomainDictionaryProvider() bool {
+	if o != nil && o.DomainDictionaryProvider.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDomainDictionaryProvider gets a reference to the given NullableDomainDictionaryProviders and assigns it to the DomainDictionaryProvider field.
+func (o *AcmeEnrollConnectorResponse) SetDomainDictionaryProvider(v DomainDictionaryProviders) {
+	o.DomainDictionaryProvider.Set(&v)
+}
+
+// SetDomainDictionaryProviderNil sets the value for DomainDictionaryProvider to be an explicit nil
+func (o *AcmeEnrollConnectorResponse) SetDomainDictionaryProviderNil() {
+	o.DomainDictionaryProvider.Set(nil)
+}
+
+// UnsetDomainDictionaryProvider ensures that no value is present for DomainDictionaryProvider, not even an explicit nil
+func (o *AcmeEnrollConnectorResponse) UnsetDomainDictionaryProvider() {
+	o.DomainDictionaryProvider.Unset()
+}
+
+// GetEab returns the Eab field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeEnrollConnectorResponse) GetEab() string {
+	if o == nil || utils.IsNil(o.Eab.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Eab.Get()
+}
+
+// GetEabOk returns a tuple with the Eab field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeEnrollConnectorResponse) GetEabOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Eab.Get(), o.Eab.IsSet()
+}
+
+// HasEab returns a boolean if a field has been set.
+func (o *AcmeEnrollConnectorResponse) HasEab() bool {
+	if o != nil && o.Eab.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEab gets a reference to the given NullableString and assigns it to the Eab field.
+func (o *AcmeEnrollConnectorResponse) SetEab(v string) {
+	o.Eab.Set(&v)
+}
+
+// SetEabNil sets the value for Eab to be an explicit nil
+func (o *AcmeEnrollConnectorResponse) SetEabNil() {
+	o.Eab.Set(nil)
+}
+
+// UnsetEab ensures that no value is present for Eab, not even an explicit nil
+func (o *AcmeEnrollConnectorResponse) UnsetEab() {
+	o.Eab.Unset()
 }
 
 // GetEndPoint returns the EndPoint field value
@@ -172,30 +325,28 @@ func (o *AcmeEnrollConnectorResponse) SetEndPoint(v string) {
 	o.EndPoint = v
 }
 
-// GetTimeout returns the Timeout field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *AcmeEnrollConnectorResponse) GetTimeout() string {
-	if o == nil || o.Timeout.Get() == nil {
+// GetName returns the Name field value
+func (o *AcmeEnrollConnectorResponse) GetName() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.Timeout.Get()
+	return o.Name
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeEnrollConnectorResponse) GetTimeoutOk() (*string, bool) {
+func (o *AcmeEnrollConnectorResponse) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
+	return &o.Name, true
 }
 
-// SetTimeout sets field value
-func (o *AcmeEnrollConnectorResponse) SetTimeout(v string) {
-	o.Timeout.Set(&v)
+// SetName sets field value
+func (o *AcmeEnrollConnectorResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -284,116 +435,6 @@ func (o *AcmeEnrollConnectorResponse) UnsetQueue() {
 	o.Queue.Unset()
 }
 
-// GetEab returns the Eab field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeEnrollConnectorResponse) GetEab() string {
-	if o == nil || utils.IsNil(o.Eab.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Eab.Get()
-}
-
-// GetEabOk returns a tuple with the Eab field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeEnrollConnectorResponse) GetEabOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Eab.Get(), o.Eab.IsSet()
-}
-
-// HasEab returns a boolean if a field has been set.
-func (o *AcmeEnrollConnectorResponse) HasEab() bool {
-	if o != nil && o.Eab.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEab gets a reference to the given NullableString and assigns it to the Eab field.
-func (o *AcmeEnrollConnectorResponse) SetEab(v string) {
-	o.Eab.Set(&v)
-}
-
-// SetEabNil sets the value for Eab to be an explicit nil
-func (o *AcmeEnrollConnectorResponse) SetEabNil() {
-	o.Eab.Set(nil)
-}
-
-// UnsetEab ensures that no value is present for Eab, not even an explicit nil
-func (o *AcmeEnrollConnectorResponse) UnsetEab() {
-	o.Eab.Unset()
-}
-
-// GetAccountKeyType returns the AccountKeyType field value
-func (o *AcmeEnrollConnectorResponse) GetAccountKeyType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.AccountKeyType
-}
-
-// GetAccountKeyTypeOk returns a tuple with the AccountKeyType field value
-// and a boolean to check if the value has been set.
-func (o *AcmeEnrollConnectorResponse) GetAccountKeyTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AccountKeyType, true
-}
-
-// SetAccountKeyType sets field value
-func (o *AcmeEnrollConnectorResponse) SetAccountKeyType(v string) {
-	o.AccountKeyType = v
-}
-
-// GetAccountEmail returns the AccountEmail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeEnrollConnectorResponse) GetAccountEmail() string {
-	if o == nil || utils.IsNil(o.AccountEmail.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.AccountEmail.Get()
-}
-
-// GetAccountEmailOk returns a tuple with the AccountEmail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeEnrollConnectorResponse) GetAccountEmailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AccountEmail.Get(), o.AccountEmail.IsSet()
-}
-
-// HasAccountEmail returns a boolean if a field has been set.
-func (o *AcmeEnrollConnectorResponse) HasAccountEmail() bool {
-	if o != nil && o.AccountEmail.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAccountEmail gets a reference to the given NullableString and assigns it to the AccountEmail field.
-func (o *AcmeEnrollConnectorResponse) SetAccountEmail(v string) {
-	o.AccountEmail.Set(&v)
-}
-
-// SetAccountEmailNil sets the value for AccountEmail to be an explicit nil
-func (o *AcmeEnrollConnectorResponse) SetAccountEmailNil() {
-	o.AccountEmail.Set(nil)
-}
-
-// UnsetAccountEmail ensures that no value is present for AccountEmail, not even an explicit nil
-func (o *AcmeEnrollConnectorResponse) UnsetAccountEmail() {
-	o.AccountEmail.Unset()
-}
-
 // GetRotateAccount returns the RotateAccount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AcmeEnrollConnectorResponse) GetRotateAccount() bool {
 	if o == nil || utils.IsNil(o.RotateAccount.Get()) {
@@ -480,95 +521,54 @@ func (o *AcmeEnrollConnectorResponse) UnsetStatus() {
 	o.Status.Unset()
 }
 
-// GetAccountUrl returns the AccountUrl field value
-func (o *AcmeEnrollConnectorResponse) GetAccountUrl() string {
+// GetTimeout returns the Timeout field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *AcmeEnrollConnectorResponse) GetTimeout() string {
+	if o == nil || o.Timeout.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeEnrollConnectorResponse) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// SetTimeout sets field value
+func (o *AcmeEnrollConnectorResponse) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// GetType returns the Type field value
+func (o *AcmeEnrollConnectorResponse) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.AccountUrl
+	return o.Type
 }
 
-// GetAccountUrlOk returns a tuple with the AccountUrl field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *AcmeEnrollConnectorResponse) GetAccountUrlOk() (*string, bool) {
+func (o *AcmeEnrollConnectorResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AccountUrl, true
+	return &o.Type, true
 }
 
-// SetAccountUrl sets field value
-func (o *AcmeEnrollConnectorResponse) SetAccountUrl(v string) {
-	o.AccountUrl = v
-}
-
-// GetDomainDictionaryProvider returns the DomainDictionaryProvider field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeEnrollConnectorResponse) GetDomainDictionaryProvider() DomainDictionaryProviders {
-	if o == nil || utils.IsNil(o.DomainDictionaryProvider.Get()) {
-		var ret DomainDictionaryProviders
-		return ret
-	}
-	return *o.DomainDictionaryProvider.Get()
-}
-
-// GetDomainDictionaryProviderOk returns a tuple with the DomainDictionaryProvider field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeEnrollConnectorResponse) GetDomainDictionaryProviderOk() (*DomainDictionaryProviders, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DomainDictionaryProvider.Get(), o.DomainDictionaryProvider.IsSet()
-}
-
-// HasDomainDictionaryProvider returns a boolean if a field has been set.
-func (o *AcmeEnrollConnectorResponse) HasDomainDictionaryProvider() bool {
-	if o != nil && o.DomainDictionaryProvider.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDomainDictionaryProvider gets a reference to the given NullableDomainDictionaryProviders and assigns it to the DomainDictionaryProvider field.
-func (o *AcmeEnrollConnectorResponse) SetDomainDictionaryProvider(v DomainDictionaryProviders) {
-	o.DomainDictionaryProvider.Set(&v)
-}
-
-// SetDomainDictionaryProviderNil sets the value for DomainDictionaryProvider to be an explicit nil
-func (o *AcmeEnrollConnectorResponse) SetDomainDictionaryProviderNil() {
-	o.DomainDictionaryProvider.Set(nil)
-}
-
-// UnsetDomainDictionaryProvider ensures that no value is present for DomainDictionaryProvider, not even an explicit nil
-func (o *AcmeEnrollConnectorResponse) UnsetDomainDictionaryProvider() {
-	o.DomainDictionaryProvider.Unset()
-}
-
-// GetDnsChallengeProvider returns the DnsChallengeProvider field value
-func (o *AcmeEnrollConnectorResponse) GetDnsChallengeProvider() DnsChallengeProviders {
-	if o == nil {
-		var ret DnsChallengeProviders
-		return ret
-	}
-
-	return o.DnsChallengeProvider
-}
-
-// GetDnsChallengeProviderOk returns a tuple with the DnsChallengeProvider field value
-// and a boolean to check if the value has been set.
-func (o *AcmeEnrollConnectorResponse) GetDnsChallengeProviderOk() (*DnsChallengeProviders, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DnsChallengeProvider, true
-}
-
-// SetDnsChallengeProvider sets field value
-func (o *AcmeEnrollConnectorResponse) SetDnsChallengeProvider(v DnsChallengeProviders) {
-	o.DnsChallengeProvider = v
+// SetType sets field value
+func (o *AcmeEnrollConnectorResponse) SetType(v string) {
+	o.Type = v
 }
 
 func (o AcmeEnrollConnectorResponse) MarshalJSON() ([]byte, error) {
@@ -582,22 +582,25 @@ func (o AcmeEnrollConnectorResponse) MarshalJSON() ([]byte, error) {
 func (o AcmeEnrollConnectorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
+	if o.AccountEmail.IsSet() {
+		toSerialize["accountEmail"] = o.AccountEmail.Get()
+	}
+	toSerialize["accountKeyType"] = o.AccountKeyType
+	toSerialize["accountUrl"] = o.AccountUrl
+	toSerialize["dnsChallengeProvider"] = o.DnsChallengeProvider
+	if o.DomainDictionaryProvider.IsSet() {
+		toSerialize["domainDictionaryProvider"] = o.DomainDictionaryProvider.Get()
+	}
+	if o.Eab.IsSet() {
+		toSerialize["eab"] = o.Eab.Get()
+	}
 	toSerialize["endPoint"] = o.EndPoint
-	toSerialize["timeout"] = o.Timeout.Get()
+	toSerialize["name"] = o.Name
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	if o.Queue.IsSet() {
 		toSerialize["queue"] = o.Queue.Get()
-	}
-	if o.Eab.IsSet() {
-		toSerialize["eab"] = o.Eab.Get()
-	}
-	toSerialize["accountKeyType"] = o.AccountKeyType
-	if o.AccountEmail.IsSet() {
-		toSerialize["accountEmail"] = o.AccountEmail.Get()
 	}
 	if o.RotateAccount.IsSet() {
 		toSerialize["rotateAccount"] = o.RotateAccount.Get()
@@ -605,11 +608,8 @@ func (o AcmeEnrollConnectorResponse) ToMap() (map[string]interface{}, error) {
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
 	}
-	toSerialize["accountUrl"] = o.AccountUrl
-	if o.DomainDictionaryProvider.IsSet() {
-		toSerialize["domainDictionaryProvider"] = o.DomainDictionaryProvider.Get()
-	}
-	toSerialize["dnsChallengeProvider"] = o.DnsChallengeProvider
+	toSerialize["timeout"] = o.Timeout.Get()
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -624,13 +624,13 @@ func (o *AcmeEnrollConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"name",
-		"type",
-		"endPoint",
-		"timeout",
 		"accountKeyType",
 		"accountUrl",
 		"dnsChallengeProvider",
+		"endPoint",
+		"name",
+		"timeout",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -661,20 +661,20 @@ func (o *AcmeEnrollConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "accountEmail")
+		delete(additionalProperties, "accountKeyType")
+		delete(additionalProperties, "accountUrl")
+		delete(additionalProperties, "dnsChallengeProvider")
+		delete(additionalProperties, "domainDictionaryProvider")
+		delete(additionalProperties, "eab")
 		delete(additionalProperties, "endPoint")
-		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
-		delete(additionalProperties, "eab")
-		delete(additionalProperties, "accountKeyType")
-		delete(additionalProperties, "accountEmail")
 		delete(additionalProperties, "rotateAccount")
 		delete(additionalProperties, "status")
-		delete(additionalProperties, "accountUrl")
-		delete(additionalProperties, "domainDictionaryProvider")
-		delete(additionalProperties, "dnsChallengeProvider")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

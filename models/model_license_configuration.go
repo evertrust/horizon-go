@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &LicenseConfiguration{}
 
 // LicenseConfiguration struct for LicenseConfiguration
 type LicenseConfiguration struct {
-	// The type of the configuration entry
-	Type string `json:"type"`
 	// Triggers to execute on license events
-	Triggers             NullableLicenseTriggers `json:"triggers,omitempty"`
+	Triggers NullableLicenseTriggers `json:"triggers,omitempty"`
+	// The type of the configuration entry
+	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,30 +47,6 @@ func NewLicenseConfiguration(type_ string) *LicenseConfiguration {
 func NewLicenseConfigurationWithDefaults() *LicenseConfiguration {
 	this := LicenseConfiguration{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *LicenseConfiguration) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *LicenseConfiguration) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *LicenseConfiguration) SetType(v string) {
-	o.Type = v
 }
 
 // GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -116,6 +92,30 @@ func (o *LicenseConfiguration) UnsetTriggers() {
 	o.Triggers.Unset()
 }
 
+// GetType returns the Type field value
+func (o *LicenseConfiguration) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *LicenseConfiguration) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *LicenseConfiguration) SetType(v string) {
+	o.Type = v
+}
+
 func (o LicenseConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -126,10 +126,10 @@ func (o LicenseConfiguration) MarshalJSON() ([]byte, error) {
 
 func (o LicenseConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
 	if o.Triggers.IsSet() {
 		toSerialize["triggers"] = o.Triggers.Get()
 	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -173,8 +173,8 @@ func (o *LicenseConfiguration) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

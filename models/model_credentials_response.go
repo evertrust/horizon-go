@@ -23,17 +23,17 @@ var _ utils.MappedNullable = &CredentialsResponse{}
 type CredentialsResponse struct {
 	// Object internal ID
 	Id *string `json:"_id,omitempty"`
-	// These credentials identifying name
-	Name *string `json:"name,omitempty"`
-	// These credentials type
-	Type *string `json:"type,omitempty"`
 	// These credentials description
 	Description utils.NullableString `json:"description,omitempty"`
 	// The expiration date of these credentials
-	Expires  utils.NullableInt64  `json:"expires,omitempty"`
-	Triggers *CredentialsTriggers `json:"triggers,omitempty"`
+	Expires utils.NullableInt64 `json:"expires,omitempty"`
+	// These credentials identifying name
+	Name *string `json:"name,omitempty"`
 	// On which configuration the credentials are usable
-	Targets              []string `json:"targets,omitempty"`
+	Targets  []string             `json:"targets,omitempty"`
+	Triggers *CredentialsTriggers `json:"triggers,omitempty"`
+	// These credentials type
+	Type                 *string `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -86,70 +86,6 @@ func (o *CredentialsResponse) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *CredentialsResponse) SetId(v string) {
 	o.Id = &v
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *CredentialsResponse) GetName() string {
-	if o == nil || utils.IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CredentialsResponse) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *CredentialsResponse) HasName() bool {
-	if o != nil && !utils.IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *CredentialsResponse) SetName(v string) {
-	o.Name = &v
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *CredentialsResponse) GetType() string {
-	if o == nil || utils.IsNil(o.Type) {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CredentialsResponse) GetTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *CredentialsResponse) HasType() bool {
-	if o != nil && !utils.IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *CredentialsResponse) SetType(v string) {
-	o.Type = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -238,36 +174,36 @@ func (o *CredentialsResponse) UnsetExpires() {
 	o.Expires.Unset()
 }
 
-// GetTriggers returns the Triggers field value if set, zero value otherwise.
-func (o *CredentialsResponse) GetTriggers() CredentialsTriggers {
-	if o == nil || utils.IsNil(o.Triggers) {
-		var ret CredentialsTriggers
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *CredentialsResponse) GetName() string {
+	if o == nil || utils.IsNil(o.Name) {
+		var ret string
 		return ret
 	}
-	return *o.Triggers
+	return *o.Name
 }
 
-// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CredentialsResponse) GetTriggersOk() (*CredentialsTriggers, bool) {
-	if o == nil || utils.IsNil(o.Triggers) {
+func (o *CredentialsResponse) GetNameOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Triggers, true
+	return o.Name, true
 }
 
-// HasTriggers returns a boolean if a field has been set.
-func (o *CredentialsResponse) HasTriggers() bool {
-	if o != nil && !utils.IsNil(o.Triggers) {
+// HasName returns a boolean if a field has been set.
+func (o *CredentialsResponse) HasName() bool {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetTriggers gets a reference to the given CredentialsTriggers and assigns it to the Triggers field.
-func (o *CredentialsResponse) SetTriggers(v CredentialsTriggers) {
-	o.Triggers = &v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *CredentialsResponse) SetName(v string) {
+	o.Name = &v
 }
 
 // GetTargets returns the Targets field value if set, zero value otherwise.
@@ -302,6 +238,70 @@ func (o *CredentialsResponse) SetTargets(v []string) {
 	o.Targets = v
 }
 
+// GetTriggers returns the Triggers field value if set, zero value otherwise.
+func (o *CredentialsResponse) GetTriggers() CredentialsTriggers {
+	if o == nil || utils.IsNil(o.Triggers) {
+		var ret CredentialsTriggers
+		return ret
+	}
+	return *o.Triggers
+}
+
+// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CredentialsResponse) GetTriggersOk() (*CredentialsTriggers, bool) {
+	if o == nil || utils.IsNil(o.Triggers) {
+		return nil, false
+	}
+	return o.Triggers, true
+}
+
+// HasTriggers returns a boolean if a field has been set.
+func (o *CredentialsResponse) HasTriggers() bool {
+	if o != nil && !utils.IsNil(o.Triggers) {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggers gets a reference to the given CredentialsTriggers and assigns it to the Triggers field.
+func (o *CredentialsResponse) SetTriggers(v CredentialsTriggers) {
+	o.Triggers = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *CredentialsResponse) GetType() string {
+	if o == nil || utils.IsNil(o.Type) {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CredentialsResponse) GetTypeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *CredentialsResponse) HasType() bool {
+	if o != nil && !utils.IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *CredentialsResponse) SetType(v string) {
+	o.Type = &v
+}
+
 func (o CredentialsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -315,23 +315,23 @@ func (o CredentialsResponse) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.Id) {
 		toSerialize["_id"] = o.Id
 	}
-	if !utils.IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !utils.IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
 	if o.Expires.IsSet() {
 		toSerialize["expires"] = o.Expires.Get()
 	}
-	if !utils.IsNil(o.Triggers) {
-		toSerialize["triggers"] = o.Triggers
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	if !utils.IsNil(o.Targets) {
 		toSerialize["targets"] = o.Targets
+	}
+	if !utils.IsNil(o.Triggers) {
+		toSerialize["triggers"] = o.Triggers
+	}
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -356,12 +356,12 @@ func (o *CredentialsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "expires")
-		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "targets")
+		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

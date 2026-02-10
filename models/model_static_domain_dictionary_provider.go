@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &StaticDomainDictionaryProvider{}
 
 // StaticDomainDictionaryProvider Retrieve a domain dictionary based on a static configuration
 type StaticDomainDictionaryProvider struct {
-	Type string `json:"type"`
 	// The domain dictionaries
 	Domains              []StaticDomainDictionaryProviderDomainsInner `json:"domains"`
+	Type                 string                                       `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +34,10 @@ type _StaticDomainDictionaryProvider StaticDomainDictionaryProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStaticDomainDictionaryProvider(type_ string, domains []StaticDomainDictionaryProviderDomainsInner) *StaticDomainDictionaryProvider {
+func NewStaticDomainDictionaryProvider(domains []StaticDomainDictionaryProviderDomainsInner, type_ string) *StaticDomainDictionaryProvider {
 	this := StaticDomainDictionaryProvider{}
-	this.Type = type_
 	this.Domains = domains
+	this.Type = type_
 	return &this
 }
 
@@ -47,30 +47,6 @@ func NewStaticDomainDictionaryProvider(type_ string, domains []StaticDomainDicti
 func NewStaticDomainDictionaryProviderWithDefaults() *StaticDomainDictionaryProvider {
 	this := StaticDomainDictionaryProvider{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *StaticDomainDictionaryProvider) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *StaticDomainDictionaryProvider) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *StaticDomainDictionaryProvider) SetType(v string) {
-	o.Type = v
 }
 
 // GetDomains returns the Domains field value
@@ -97,6 +73,30 @@ func (o *StaticDomainDictionaryProvider) SetDomains(v []StaticDomainDictionaryPr
 	o.Domains = v
 }
 
+// GetType returns the Type field value
+func (o *StaticDomainDictionaryProvider) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *StaticDomainDictionaryProvider) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *StaticDomainDictionaryProvider) SetType(v string) {
+	o.Type = v
+}
+
 func (o StaticDomainDictionaryProvider) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -107,8 +107,8 @@ func (o StaticDomainDictionaryProvider) MarshalJSON() ([]byte, error) {
 
 func (o StaticDomainDictionaryProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
 	toSerialize["domains"] = o.Domains
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -122,8 +122,8 @@ func (o *StaticDomainDictionaryProvider) UnmarshalJSON(data []byte) (err error) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
 		"domains",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -153,8 +153,8 @@ func (o *StaticDomainDictionaryProvider) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "domains")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

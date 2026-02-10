@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &AnalyticsStatus{}
 
 // AnalyticsStatus struct for AnalyticsStatus
 type AnalyticsStatus struct {
-	// If the certificate analytics is ready to use
-	Ready bool `json:"ready"`
 	// The number of certificate synchronized
 	Count int64 `json:"count"`
+	// If an error happened during the synchronization process
+	Error utils.NullableString `json:"error,omitempty"`
 	// The last modification date synchronized
 	MaxLastModification utils.NullableInt64 `json:"maxLastModification,omitempty"`
-	// If an error happened during the synchronization process
-	Error                utils.NullableString `json:"error,omitempty"`
+	// If the certificate analytics is ready to use
+	Ready                bool `json:"ready"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,10 +39,10 @@ type _AnalyticsStatus AnalyticsStatus
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAnalyticsStatus(ready bool, count int64) *AnalyticsStatus {
+func NewAnalyticsStatus(count int64, ready bool) *AnalyticsStatus {
 	this := AnalyticsStatus{}
-	this.Ready = ready
 	this.Count = count
+	this.Ready = ready
 	return &this
 }
 
@@ -52,30 +52,6 @@ func NewAnalyticsStatus(ready bool, count int64) *AnalyticsStatus {
 func NewAnalyticsStatusWithDefaults() *AnalyticsStatus {
 	this := AnalyticsStatus{}
 	return &this
-}
-
-// GetReady returns the Ready field value
-func (o *AnalyticsStatus) GetReady() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Ready
-}
-
-// GetReadyOk returns a tuple with the Ready field value
-// and a boolean to check if the value has been set.
-func (o *AnalyticsStatus) GetReadyOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Ready, true
-}
-
-// SetReady sets field value
-func (o *AnalyticsStatus) SetReady(v bool) {
-	o.Ready = v
 }
 
 // GetCount returns the Count field value
@@ -100,49 +76,6 @@ func (o *AnalyticsStatus) GetCountOk() (*int64, bool) {
 // SetCount sets field value
 func (o *AnalyticsStatus) SetCount(v int64) {
 	o.Count = v
-}
-
-// GetMaxLastModification returns the MaxLastModification field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AnalyticsStatus) GetMaxLastModification() int64 {
-	if o == nil || utils.IsNil(o.MaxLastModification.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.MaxLastModification.Get()
-}
-
-// GetMaxLastModificationOk returns a tuple with the MaxLastModification field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AnalyticsStatus) GetMaxLastModificationOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxLastModification.Get(), o.MaxLastModification.IsSet()
-}
-
-// HasMaxLastModification returns a boolean if a field has been set.
-func (o *AnalyticsStatus) HasMaxLastModification() bool {
-	if o != nil && o.MaxLastModification.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxLastModification gets a reference to the given NullableInt64 and assigns it to the MaxLastModification field.
-func (o *AnalyticsStatus) SetMaxLastModification(v int64) {
-	o.MaxLastModification.Set(&v)
-}
-
-// SetMaxLastModificationNil sets the value for MaxLastModification to be an explicit nil
-func (o *AnalyticsStatus) SetMaxLastModificationNil() {
-	o.MaxLastModification.Set(nil)
-}
-
-// UnsetMaxLastModification ensures that no value is present for MaxLastModification, not even an explicit nil
-func (o *AnalyticsStatus) UnsetMaxLastModification() {
-	o.MaxLastModification.Unset()
 }
 
 // GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -188,6 +121,73 @@ func (o *AnalyticsStatus) UnsetError() {
 	o.Error.Unset()
 }
 
+// GetMaxLastModification returns the MaxLastModification field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AnalyticsStatus) GetMaxLastModification() int64 {
+	if o == nil || utils.IsNil(o.MaxLastModification.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.MaxLastModification.Get()
+}
+
+// GetMaxLastModificationOk returns a tuple with the MaxLastModification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AnalyticsStatus) GetMaxLastModificationOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxLastModification.Get(), o.MaxLastModification.IsSet()
+}
+
+// HasMaxLastModification returns a boolean if a field has been set.
+func (o *AnalyticsStatus) HasMaxLastModification() bool {
+	if o != nil && o.MaxLastModification.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxLastModification gets a reference to the given NullableInt64 and assigns it to the MaxLastModification field.
+func (o *AnalyticsStatus) SetMaxLastModification(v int64) {
+	o.MaxLastModification.Set(&v)
+}
+
+// SetMaxLastModificationNil sets the value for MaxLastModification to be an explicit nil
+func (o *AnalyticsStatus) SetMaxLastModificationNil() {
+	o.MaxLastModification.Set(nil)
+}
+
+// UnsetMaxLastModification ensures that no value is present for MaxLastModification, not even an explicit nil
+func (o *AnalyticsStatus) UnsetMaxLastModification() {
+	o.MaxLastModification.Unset()
+}
+
+// GetReady returns the Ready field value
+func (o *AnalyticsStatus) GetReady() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Ready
+}
+
+// GetReadyOk returns a tuple with the Ready field value
+// and a boolean to check if the value has been set.
+func (o *AnalyticsStatus) GetReadyOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ready, true
+}
+
+// SetReady sets field value
+func (o *AnalyticsStatus) SetReady(v bool) {
+	o.Ready = v
+}
+
 func (o AnalyticsStatus) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -198,14 +198,14 @@ func (o AnalyticsStatus) MarshalJSON() ([]byte, error) {
 
 func (o AnalyticsStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["ready"] = o.Ready
 	toSerialize["count"] = o.Count
-	if o.MaxLastModification.IsSet() {
-		toSerialize["maxLastModification"] = o.MaxLastModification.Get()
-	}
 	if o.Error.IsSet() {
 		toSerialize["error"] = o.Error.Get()
 	}
+	if o.MaxLastModification.IsSet() {
+		toSerialize["maxLastModification"] = o.MaxLastModification.Get()
+	}
+	toSerialize["ready"] = o.Ready
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -219,8 +219,8 @@ func (o *AnalyticsStatus) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"ready",
 		"count",
+		"ready",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -250,10 +250,10 @@ func (o *AnalyticsStatus) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "ready")
 		delete(additionalProperties, "count")
-		delete(additionalProperties, "maxLastModification")
 		delete(additionalProperties, "error")
+		delete(additionalProperties, "maxLastModification")
+		delete(additionalProperties, "ready")
 		o.AdditionalProperties = additionalProperties
 	}
 

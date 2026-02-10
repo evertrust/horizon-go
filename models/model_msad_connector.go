@@ -22,21 +22,21 @@ var _ utils.MappedNullable = &MSADConnector{}
 
 // MSADConnector struct for MSADConnector
 type MSADConnector struct {
-	Type                          string               `json:"type"`
+	BaseDn string `json:"baseDn"`
+	// Name of the `password` [credentials](#tag/security.credentials) containing the DN and password to authenticate on Active Directory
+	Credentials                   string               `json:"credentials"`
+	Filter                        utils.NullableString `json:"filter,omitempty"`
+	Hostname                      string               `json:"hostname"`
+	MaxStoredCertificatePerHolder utils.NullableInt64  `json:"maxStoredCertificatePerHolder,omitempty"`
 	Name                          string               `json:"name"`
+	Port                          utils.NullableInt64  `json:"port,omitempty"`
+	Proxy                         utils.NullableString `json:"proxy,omitempty"`
 	ThrottleDuration              string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	ThrottleParallelism           int64                `json:"throttleParallelism"`
 	Timeout                       utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	MaxStoredCertificatePerHolder utils.NullableInt64  `json:"maxStoredCertificatePerHolder,omitempty"`
-	Proxy                         utils.NullableString `json:"proxy,omitempty"`
-	Hostname                      string               `json:"hostname"`
-	Port                          utils.NullableInt64  `json:"port,omitempty"`
-	// Name of the `password` [credentials](#tag/security.credentials) containing the DN and password to authenticate on Active Directory
-	Credentials string               `json:"credentials"`
-	BaseDn      string               `json:"baseDn"`
-	Filter      utils.NullableString `json:"filter,omitempty"`
 	// Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended.
 	TlsInsecure          utils.NullableBool `json:"tlsInsecure,omitempty"`
+	Type                 string             `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,17 +46,17 @@ type _MSADConnector MSADConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMSADConnector(type_ string, name string, throttleDuration string, throttleParallelism int64, hostname string, credentials string, baseDn string) *MSADConnector {
+func NewMSADConnector(baseDn string, credentials string, hostname string, name string, throttleDuration string, throttleParallelism int64, type_ string) *MSADConnector {
 	this := MSADConnector{}
-	this.Type = type_
+	this.BaseDn = baseDn
+	this.Credentials = credentials
+	this.Hostname = hostname
 	this.Name = name
 	this.ThrottleDuration = throttleDuration
 	this.ThrottleParallelism = throttleParallelism
-	this.Hostname = hostname
-	this.Credentials = credentials
-	this.BaseDn = baseDn
 	var tlsInsecure bool = false
 	this.TlsInsecure = *utils.NewNullableBool(&tlsInsecure)
+	this.Type = type_
 	return &this
 }
 
@@ -70,28 +70,162 @@ func NewMSADConnectorWithDefaults() *MSADConnector {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *MSADConnector) GetType() string {
+// GetBaseDn returns the BaseDn field value
+func (o *MSADConnector) GetBaseDn() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.BaseDn
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetBaseDnOk returns a tuple with the BaseDn field value
 // and a boolean to check if the value has been set.
-func (o *MSADConnector) GetTypeOk() (*string, bool) {
+func (o *MSADConnector) GetBaseDnOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.BaseDn, true
 }
 
-// SetType sets field value
-func (o *MSADConnector) SetType(v string) {
-	o.Type = v
+// SetBaseDn sets field value
+func (o *MSADConnector) SetBaseDn(v string) {
+	o.BaseDn = v
+}
+
+// GetCredentials returns the Credentials field value
+func (o *MSADConnector) GetCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Credentials
+}
+
+// GetCredentialsOk returns a tuple with the Credentials field value
+// and a boolean to check if the value has been set.
+func (o *MSADConnector) GetCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Credentials, true
+}
+
+// SetCredentials sets field value
+func (o *MSADConnector) SetCredentials(v string) {
+	o.Credentials = v
+}
+
+// GetFilter returns the Filter field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MSADConnector) GetFilter() string {
+	if o == nil || utils.IsNil(o.Filter.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Filter.Get()
+}
+
+// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MSADConnector) GetFilterOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Filter.Get(), o.Filter.IsSet()
+}
+
+// HasFilter returns a boolean if a field has been set.
+func (o *MSADConnector) HasFilter() bool {
+	if o != nil && o.Filter.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFilter gets a reference to the given NullableString and assigns it to the Filter field.
+func (o *MSADConnector) SetFilter(v string) {
+	o.Filter.Set(&v)
+}
+
+// SetFilterNil sets the value for Filter to be an explicit nil
+func (o *MSADConnector) SetFilterNil() {
+	o.Filter.Set(nil)
+}
+
+// UnsetFilter ensures that no value is present for Filter, not even an explicit nil
+func (o *MSADConnector) UnsetFilter() {
+	o.Filter.Unset()
+}
+
+// GetHostname returns the Hostname field value
+func (o *MSADConnector) GetHostname() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Hostname
+}
+
+// GetHostnameOk returns a tuple with the Hostname field value
+// and a boolean to check if the value has been set.
+func (o *MSADConnector) GetHostnameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Hostname, true
+}
+
+// SetHostname sets field value
+func (o *MSADConnector) SetHostname(v string) {
+	o.Hostname = v
+}
+
+// GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MSADConnector) GetMaxStoredCertificatePerHolder() int64 {
+	if o == nil || utils.IsNil(o.MaxStoredCertificatePerHolder.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.MaxStoredCertificatePerHolder.Get()
+}
+
+// GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MSADConnector) GetMaxStoredCertificatePerHolderOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxStoredCertificatePerHolder.Get(), o.MaxStoredCertificatePerHolder.IsSet()
+}
+
+// HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
+func (o *MSADConnector) HasMaxStoredCertificatePerHolder() bool {
+	if o != nil && o.MaxStoredCertificatePerHolder.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxStoredCertificatePerHolder gets a reference to the given NullableInt64 and assigns it to the MaxStoredCertificatePerHolder field.
+func (o *MSADConnector) SetMaxStoredCertificatePerHolder(v int64) {
+	o.MaxStoredCertificatePerHolder.Set(&v)
+}
+
+// SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
+func (o *MSADConnector) SetMaxStoredCertificatePerHolderNil() {
+	o.MaxStoredCertificatePerHolder.Set(nil)
+}
+
+// UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
+func (o *MSADConnector) UnsetMaxStoredCertificatePerHolder() {
+	o.MaxStoredCertificatePerHolder.Unset()
 }
 
 // GetName returns the Name field value
@@ -116,6 +250,92 @@ func (o *MSADConnector) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *MSADConnector) SetName(v string) {
 	o.Name = v
+}
+
+// GetPort returns the Port field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MSADConnector) GetPort() int64 {
+	if o == nil || utils.IsNil(o.Port.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Port.Get()
+}
+
+// GetPortOk returns a tuple with the Port field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MSADConnector) GetPortOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Port.Get(), o.Port.IsSet()
+}
+
+// HasPort returns a boolean if a field has been set.
+func (o *MSADConnector) HasPort() bool {
+	if o != nil && o.Port.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPort gets a reference to the given NullableInt64 and assigns it to the Port field.
+func (o *MSADConnector) SetPort(v int64) {
+	o.Port.Set(&v)
+}
+
+// SetPortNil sets the value for Port to be an explicit nil
+func (o *MSADConnector) SetPortNil() {
+	o.Port.Set(nil)
+}
+
+// UnsetPort ensures that no value is present for Port, not even an explicit nil
+func (o *MSADConnector) UnsetPort() {
+	o.Port.Unset()
+}
+
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MSADConnector) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Proxy.Get()
+}
+
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MSADConnector) GetProxyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Proxy.Get(), o.Proxy.IsSet()
+}
+
+// HasProxy returns a boolean if a field has been set.
+func (o *MSADConnector) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *MSADConnector) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *MSADConnector) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *MSADConnector) UnsetProxy() {
+	o.Proxy.Unset()
 }
 
 // GetThrottleDuration returns the ThrottleDuration field value
@@ -209,250 +429,6 @@ func (o *MSADConnector) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
-// GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MSADConnector) GetMaxStoredCertificatePerHolder() int64 {
-	if o == nil || utils.IsNil(o.MaxStoredCertificatePerHolder.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.MaxStoredCertificatePerHolder.Get()
-}
-
-// GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MSADConnector) GetMaxStoredCertificatePerHolderOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxStoredCertificatePerHolder.Get(), o.MaxStoredCertificatePerHolder.IsSet()
-}
-
-// HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
-func (o *MSADConnector) HasMaxStoredCertificatePerHolder() bool {
-	if o != nil && o.MaxStoredCertificatePerHolder.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxStoredCertificatePerHolder gets a reference to the given NullableInt64 and assigns it to the MaxStoredCertificatePerHolder field.
-func (o *MSADConnector) SetMaxStoredCertificatePerHolder(v int64) {
-	o.MaxStoredCertificatePerHolder.Set(&v)
-}
-
-// SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
-func (o *MSADConnector) SetMaxStoredCertificatePerHolderNil() {
-	o.MaxStoredCertificatePerHolder.Set(nil)
-}
-
-// UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
-func (o *MSADConnector) UnsetMaxStoredCertificatePerHolder() {
-	o.MaxStoredCertificatePerHolder.Unset()
-}
-
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MSADConnector) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Proxy.Get()
-}
-
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MSADConnector) GetProxyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
-}
-
-// HasProxy returns a boolean if a field has been set.
-func (o *MSADConnector) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *MSADConnector) SetProxy(v string) {
-	o.Proxy.Set(&v)
-}
-
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *MSADConnector) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *MSADConnector) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetHostname returns the Hostname field value
-func (o *MSADConnector) GetHostname() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Hostname
-}
-
-// GetHostnameOk returns a tuple with the Hostname field value
-// and a boolean to check if the value has been set.
-func (o *MSADConnector) GetHostnameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Hostname, true
-}
-
-// SetHostname sets field value
-func (o *MSADConnector) SetHostname(v string) {
-	o.Hostname = v
-}
-
-// GetPort returns the Port field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MSADConnector) GetPort() int64 {
-	if o == nil || utils.IsNil(o.Port.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.Port.Get()
-}
-
-// GetPortOk returns a tuple with the Port field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MSADConnector) GetPortOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Port.Get(), o.Port.IsSet()
-}
-
-// HasPort returns a boolean if a field has been set.
-func (o *MSADConnector) HasPort() bool {
-	if o != nil && o.Port.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPort gets a reference to the given NullableInt64 and assigns it to the Port field.
-func (o *MSADConnector) SetPort(v int64) {
-	o.Port.Set(&v)
-}
-
-// SetPortNil sets the value for Port to be an explicit nil
-func (o *MSADConnector) SetPortNil() {
-	o.Port.Set(nil)
-}
-
-// UnsetPort ensures that no value is present for Port, not even an explicit nil
-func (o *MSADConnector) UnsetPort() {
-	o.Port.Unset()
-}
-
-// GetCredentials returns the Credentials field value
-func (o *MSADConnector) GetCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Credentials
-}
-
-// GetCredentialsOk returns a tuple with the Credentials field value
-// and a boolean to check if the value has been set.
-func (o *MSADConnector) GetCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Credentials, true
-}
-
-// SetCredentials sets field value
-func (o *MSADConnector) SetCredentials(v string) {
-	o.Credentials = v
-}
-
-// GetBaseDn returns the BaseDn field value
-func (o *MSADConnector) GetBaseDn() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BaseDn
-}
-
-// GetBaseDnOk returns a tuple with the BaseDn field value
-// and a boolean to check if the value has been set.
-func (o *MSADConnector) GetBaseDnOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BaseDn, true
-}
-
-// SetBaseDn sets field value
-func (o *MSADConnector) SetBaseDn(v string) {
-	o.BaseDn = v
-}
-
-// GetFilter returns the Filter field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MSADConnector) GetFilter() string {
-	if o == nil || utils.IsNil(o.Filter.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Filter.Get()
-}
-
-// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MSADConnector) GetFilterOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Filter.Get(), o.Filter.IsSet()
-}
-
-// HasFilter returns a boolean if a field has been set.
-func (o *MSADConnector) HasFilter() bool {
-	if o != nil && o.Filter.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetFilter gets a reference to the given NullableString and assigns it to the Filter field.
-func (o *MSADConnector) SetFilter(v string) {
-	o.Filter.Set(&v)
-}
-
-// SetFilterNil sets the value for Filter to be an explicit nil
-func (o *MSADConnector) SetFilterNil() {
-	o.Filter.Set(nil)
-}
-
-// UnsetFilter ensures that no value is present for Filter, not even an explicit nil
-func (o *MSADConnector) UnsetFilter() {
-	o.Filter.Unset()
-}
-
 // GetTlsInsecure returns the TlsInsecure field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MSADConnector) GetTlsInsecure() bool {
 	if o == nil || utils.IsNil(o.TlsInsecure.Get()) {
@@ -496,6 +472,30 @@ func (o *MSADConnector) UnsetTlsInsecure() {
 	o.TlsInsecure.Unset()
 }
 
+// GetType returns the Type field value
+func (o *MSADConnector) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *MSADConnector) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *MSADConnector) SetType(v string) {
+	o.Type = v
+}
+
 func (o MSADConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -506,31 +506,31 @@ func (o MSADConnector) MarshalJSON() ([]byte, error) {
 
 func (o MSADConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
+	toSerialize["baseDn"] = o.BaseDn
+	toSerialize["credentials"] = o.Credentials
+	if o.Filter.IsSet() {
+		toSerialize["filter"] = o.Filter.Get()
+	}
+	toSerialize["hostname"] = o.Hostname
+	if o.MaxStoredCertificatePerHolder.IsSet() {
+		toSerialize["maxStoredCertificatePerHolder"] = o.MaxStoredCertificatePerHolder.Get()
+	}
 	toSerialize["name"] = o.Name
+	if o.Port.IsSet() {
+		toSerialize["port"] = o.Port.Get()
+	}
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
 	toSerialize["throttleDuration"] = o.ThrottleDuration
 	toSerialize["throttleParallelism"] = o.ThrottleParallelism
 	if o.Timeout.IsSet() {
 		toSerialize["timeout"] = o.Timeout.Get()
 	}
-	if o.MaxStoredCertificatePerHolder.IsSet() {
-		toSerialize["maxStoredCertificatePerHolder"] = o.MaxStoredCertificatePerHolder.Get()
-	}
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
-	toSerialize["hostname"] = o.Hostname
-	if o.Port.IsSet() {
-		toSerialize["port"] = o.Port.Get()
-	}
-	toSerialize["credentials"] = o.Credentials
-	toSerialize["baseDn"] = o.BaseDn
-	if o.Filter.IsSet() {
-		toSerialize["filter"] = o.Filter.Get()
-	}
 	if o.TlsInsecure.IsSet() {
 		toSerialize["tlsInsecure"] = o.TlsInsecure.Get()
 	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -544,13 +544,13 @@ func (o *MSADConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
+		"baseDn",
+		"credentials",
+		"hostname",
 		"name",
 		"throttleDuration",
 		"throttleParallelism",
-		"hostname",
-		"credentials",
-		"baseDn",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -580,19 +580,19 @@ func (o *MSADConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "baseDn")
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "filter")
+		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "maxStoredCertificatePerHolder")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "throttleDuration")
 		delete(additionalProperties, "throttleParallelism")
 		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "maxStoredCertificatePerHolder")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "hostname")
-		delete(additionalProperties, "port")
-		delete(additionalProperties, "credentials")
-		delete(additionalProperties, "baseDn")
-		delete(additionalProperties, "filter")
 		delete(additionalProperties, "tlsInsecure")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

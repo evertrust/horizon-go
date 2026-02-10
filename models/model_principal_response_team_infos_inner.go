@@ -21,13 +21,13 @@ var _ utils.MappedNullable = &PrincipalResponseTeamInfosInner{}
 
 // PrincipalResponseTeamInfosInner The team information
 type PrincipalResponseTeamInfosInner struct {
-	Name        *string                   `json:"name,omitempty"`
-	DisplayName []LocalizedStringResponse `json:"displayName,omitempty"`
 	Description []LocalizedStringResponse `json:"description,omitempty"`
+	DisplayName []LocalizedStringResponse `json:"displayName,omitempty"`
 	// `true` if this team is externally managed (SCIM,...)
 	ExternallyManaged *bool `json:"externallyManaged,omitempty"`
 	// `true` if the principal is a manager of this team
-	Manager              *bool `json:"manager,omitempty"`
+	Manager              *bool   `json:"manager,omitempty"`
+	Name                 *string `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,70 +48,6 @@ func NewPrincipalResponseTeamInfosInner() *PrincipalResponseTeamInfosInner {
 func NewPrincipalResponseTeamInfosInnerWithDefaults() *PrincipalResponseTeamInfosInner {
 	this := PrincipalResponseTeamInfosInner{}
 	return &this
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *PrincipalResponseTeamInfosInner) GetName() string {
-	if o == nil || utils.IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PrincipalResponseTeamInfosInner) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *PrincipalResponseTeamInfosInner) HasName() bool {
-	if o != nil && !utils.IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PrincipalResponseTeamInfosInner) SetName(v string) {
-	o.Name = &v
-}
-
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *PrincipalResponseTeamInfosInner) GetDisplayName() []LocalizedStringResponse {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		var ret []LocalizedStringResponse
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PrincipalResponseTeamInfosInner) GetDisplayNameOk() ([]LocalizedStringResponse, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *PrincipalResponseTeamInfosInner) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedStringResponse and assigns it to the DisplayName field.
-func (o *PrincipalResponseTeamInfosInner) SetDisplayName(v []LocalizedStringResponse) {
-	o.DisplayName = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -144,6 +80,38 @@ func (o *PrincipalResponseTeamInfosInner) HasDescription() bool {
 // SetDescription gets a reference to the given []LocalizedStringResponse and assigns it to the Description field.
 func (o *PrincipalResponseTeamInfosInner) SetDescription(v []LocalizedStringResponse) {
 	o.Description = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *PrincipalResponseTeamInfosInner) GetDisplayName() []LocalizedStringResponse {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		var ret []LocalizedStringResponse
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PrincipalResponseTeamInfosInner) GetDisplayNameOk() ([]LocalizedStringResponse, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *PrincipalResponseTeamInfosInner) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedStringResponse and assigns it to the DisplayName field.
+func (o *PrincipalResponseTeamInfosInner) SetDisplayName(v []LocalizedStringResponse) {
+	o.DisplayName = v
 }
 
 // GetExternallyManaged returns the ExternallyManaged field value if set, zero value otherwise.
@@ -210,6 +178,38 @@ func (o *PrincipalResponseTeamInfosInner) SetManager(v bool) {
 	o.Manager = &v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PrincipalResponseTeamInfosInner) GetName() string {
+	if o == nil || utils.IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PrincipalResponseTeamInfosInner) GetNameOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *PrincipalResponseTeamInfosInner) HasName() bool {
+	if o != nil && !utils.IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PrincipalResponseTeamInfosInner) SetName(v string) {
+	o.Name = &v
+}
+
 func (o PrincipalResponseTeamInfosInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -220,20 +220,20 @@ func (o PrincipalResponseTeamInfosInner) MarshalJSON() ([]byte, error) {
 
 func (o PrincipalResponseTeamInfosInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if !utils.IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
 	if !utils.IsNil(o.DisplayName) {
 		toSerialize["displayName"] = o.DisplayName
-	}
-	if !utils.IsNil(o.Description) {
-		toSerialize["description"] = o.Description
 	}
 	if !utils.IsNil(o.ExternallyManaged) {
 		toSerialize["externallyManaged"] = o.ExternallyManaged
 	}
 	if !utils.IsNil(o.Manager) {
 		toSerialize["manager"] = o.Manager
+	}
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -257,11 +257,11 @@ func (o *PrincipalResponseTeamInfosInner) UnmarshalJSON(data []byte) (err error)
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "externallyManaged")
 		delete(additionalProperties, "manager")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

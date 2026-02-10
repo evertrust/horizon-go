@@ -23,21 +23,21 @@ var _ utils.MappedNullable = &GSAtlasConnectorResponse{}
 // GSAtlasConnectorResponse struct for GSAtlasConnectorResponse
 type GSAtlasConnectorResponse struct {
 	// Object internal ID
-	Id   string `json:"_id"`
-	Name string `json:"name"`
-	Type string `json:"type"`
-	// Name of the `password` [credentials](#tag/security.credentials) to use for technical account on the PKI
-	LoginCredentials string               `json:"loginCredentials"`
-	HashAlgorithm    utils.NullableString `json:"hashAlgorithm,omitempty"`
-	CertificateUsage utils.NullableString `json:"certificateUsage,omitempty"`
-	RetryInterval    utils.NullableString `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Id string `json:"_id"`
 	// Name of the `certificate` [credentials](#tag/security.credentials) to use to authenticate on the PKI
-	AuthenticationCredentials string                     `json:"authenticationCredentials"`
-	Timeout                   utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Proxy                     utils.NullableString       `json:"proxy,omitempty"`
-	Queue                     utils.NullableString       `json:"queue,omitempty"`
-	Status                    NullablePKIConnectorStatus `json:"status,omitempty"`
-	AdditionalProperties      map[string]interface{}
+	AuthenticationCredentials string               `json:"authenticationCredentials"`
+	CertificateUsage          utils.NullableString `json:"certificateUsage,omitempty"`
+	HashAlgorithm             utils.NullableString `json:"hashAlgorithm,omitempty"`
+	// Name of the `password` [credentials](#tag/security.credentials) to use for technical account on the PKI
+	LoginCredentials     string                     `json:"loginCredentials"`
+	Name                 string                     `json:"name"`
+	Proxy                utils.NullableString       `json:"proxy,omitempty"`
+	Queue                utils.NullableString       `json:"queue,omitempty"`
+	RetryInterval        utils.NullableString       `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Status               NullablePKIConnectorStatus `json:"status,omitempty"`
+	Timeout              utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string                     `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GSAtlasConnectorResponse GSAtlasConnectorResponse
@@ -46,13 +46,13 @@ type _GSAtlasConnectorResponse GSAtlasConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGSAtlasConnectorResponse(id string, name string, type_ string, loginCredentials string, authenticationCredentials string) *GSAtlasConnectorResponse {
+func NewGSAtlasConnectorResponse(id string, authenticationCredentials string, loginCredentials string, name string, type_ string) *GSAtlasConnectorResponse {
 	this := GSAtlasConnectorResponse{}
 	this.Id = id
+	this.AuthenticationCredentials = authenticationCredentials
+	this.LoginCredentials = loginCredentials
 	this.Name = name
 	this.Type = type_
-	this.LoginCredentials = loginCredentials
-	this.AuthenticationCredentials = authenticationCredentials
 	return &this
 }
 
@@ -88,119 +88,28 @@ func (o *GSAtlasConnectorResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetName returns the Name field value
-func (o *GSAtlasConnectorResponse) GetName() string {
+// GetAuthenticationCredentials returns the AuthenticationCredentials field value
+func (o *GSAtlasConnectorResponse) GetAuthenticationCredentials() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.AuthenticationCredentials
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value
 // and a boolean to check if the value has been set.
-func (o *GSAtlasConnectorResponse) GetNameOk() (*string, bool) {
+func (o *GSAtlasConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.AuthenticationCredentials, true
 }
 
-// SetName sets field value
-func (o *GSAtlasConnectorResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetType returns the Type field value
-func (o *GSAtlasConnectorResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *GSAtlasConnectorResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *GSAtlasConnectorResponse) SetType(v string) {
-	o.Type = v
-}
-
-// GetLoginCredentials returns the LoginCredentials field value
-func (o *GSAtlasConnectorResponse) GetLoginCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LoginCredentials
-}
-
-// GetLoginCredentialsOk returns a tuple with the LoginCredentials field value
-// and a boolean to check if the value has been set.
-func (o *GSAtlasConnectorResponse) GetLoginCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LoginCredentials, true
-}
-
-// SetLoginCredentials sets field value
-func (o *GSAtlasConnectorResponse) SetLoginCredentials(v string) {
-	o.LoginCredentials = v
-}
-
-// GetHashAlgorithm returns the HashAlgorithm field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GSAtlasConnectorResponse) GetHashAlgorithm() string {
-	if o == nil || utils.IsNil(o.HashAlgorithm.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.HashAlgorithm.Get()
-}
-
-// GetHashAlgorithmOk returns a tuple with the HashAlgorithm field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GSAtlasConnectorResponse) GetHashAlgorithmOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.HashAlgorithm.Get(), o.HashAlgorithm.IsSet()
-}
-
-// HasHashAlgorithm returns a boolean if a field has been set.
-func (o *GSAtlasConnectorResponse) HasHashAlgorithm() bool {
-	if o != nil && o.HashAlgorithm.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHashAlgorithm gets a reference to the given NullableString and assigns it to the HashAlgorithm field.
-func (o *GSAtlasConnectorResponse) SetHashAlgorithm(v string) {
-	o.HashAlgorithm.Set(&v)
-}
-
-// SetHashAlgorithmNil sets the value for HashAlgorithm to be an explicit nil
-func (o *GSAtlasConnectorResponse) SetHashAlgorithmNil() {
-	o.HashAlgorithm.Set(nil)
-}
-
-// UnsetHashAlgorithm ensures that no value is present for HashAlgorithm, not even an explicit nil
-func (o *GSAtlasConnectorResponse) UnsetHashAlgorithm() {
-	o.HashAlgorithm.Unset()
+// SetAuthenticationCredentials sets field value
+func (o *GSAtlasConnectorResponse) SetAuthenticationCredentials(v string) {
+	o.AuthenticationCredentials = v
 }
 
 // GetCertificateUsage returns the CertificateUsage field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -246,114 +155,95 @@ func (o *GSAtlasConnectorResponse) UnsetCertificateUsage() {
 	o.CertificateUsage.Unset()
 }
 
-// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GSAtlasConnectorResponse) GetRetryInterval() string {
-	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
+// GetHashAlgorithm returns the HashAlgorithm field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GSAtlasConnectorResponse) GetHashAlgorithm() string {
+	if o == nil || utils.IsNil(o.HashAlgorithm.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.RetryInterval.Get()
+	return *o.HashAlgorithm.Get()
 }
 
-// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
+// GetHashAlgorithmOk returns a tuple with the HashAlgorithm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GSAtlasConnectorResponse) GetRetryIntervalOk() (*string, bool) {
+func (o *GSAtlasConnectorResponse) GetHashAlgorithmOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
+	return o.HashAlgorithm.Get(), o.HashAlgorithm.IsSet()
 }
 
-// HasRetryInterval returns a boolean if a field has been set.
-func (o *GSAtlasConnectorResponse) HasRetryInterval() bool {
-	if o != nil && o.RetryInterval.IsSet() {
+// HasHashAlgorithm returns a boolean if a field has been set.
+func (o *GSAtlasConnectorResponse) HasHashAlgorithm() bool {
+	if o != nil && o.HashAlgorithm.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
-func (o *GSAtlasConnectorResponse) SetRetryInterval(v string) {
-	o.RetryInterval.Set(&v)
+// SetHashAlgorithm gets a reference to the given NullableString and assigns it to the HashAlgorithm field.
+func (o *GSAtlasConnectorResponse) SetHashAlgorithm(v string) {
+	o.HashAlgorithm.Set(&v)
 }
 
-// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
-func (o *GSAtlasConnectorResponse) SetRetryIntervalNil() {
-	o.RetryInterval.Set(nil)
+// SetHashAlgorithmNil sets the value for HashAlgorithm to be an explicit nil
+func (o *GSAtlasConnectorResponse) SetHashAlgorithmNil() {
+	o.HashAlgorithm.Set(nil)
 }
 
-// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-func (o *GSAtlasConnectorResponse) UnsetRetryInterval() {
-	o.RetryInterval.Unset()
+// UnsetHashAlgorithm ensures that no value is present for HashAlgorithm, not even an explicit nil
+func (o *GSAtlasConnectorResponse) UnsetHashAlgorithm() {
+	o.HashAlgorithm.Unset()
 }
 
-// GetAuthenticationCredentials returns the AuthenticationCredentials field value
-func (o *GSAtlasConnectorResponse) GetAuthenticationCredentials() string {
+// GetLoginCredentials returns the LoginCredentials field value
+func (o *GSAtlasConnectorResponse) GetLoginCredentials() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.AuthenticationCredentials
+	return o.LoginCredentials
 }
 
-// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value
+// GetLoginCredentialsOk returns a tuple with the LoginCredentials field value
 // and a boolean to check if the value has been set.
-func (o *GSAtlasConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool) {
+func (o *GSAtlasConnectorResponse) GetLoginCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AuthenticationCredentials, true
+	return &o.LoginCredentials, true
 }
 
-// SetAuthenticationCredentials sets field value
-func (o *GSAtlasConnectorResponse) SetAuthenticationCredentials(v string) {
-	o.AuthenticationCredentials = v
+// SetLoginCredentials sets field value
+func (o *GSAtlasConnectorResponse) SetLoginCredentials(v string) {
+	o.LoginCredentials = v
 }
 
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GSAtlasConnectorResponse) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
+// GetName returns the Name field value
+func (o *GSAtlasConnectorResponse) GetName() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Timeout.Get()
+
+	return o.Name
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GSAtlasConnectorResponse) GetTimeoutOk() (*string, bool) {
+func (o *GSAtlasConnectorResponse) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
+	return &o.Name, true
 }
 
-// HasTimeout returns a boolean if a field has been set.
-func (o *GSAtlasConnectorResponse) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *GSAtlasConnectorResponse) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *GSAtlasConnectorResponse) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *GSAtlasConnectorResponse) UnsetTimeout() {
-	o.Timeout.Unset()
+// SetName sets field value
+func (o *GSAtlasConnectorResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -442,6 +332,49 @@ func (o *GSAtlasConnectorResponse) UnsetQueue() {
 	o.Queue.Unset()
 }
 
+// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GSAtlasConnectorResponse) GetRetryInterval() string {
+	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RetryInterval.Get()
+}
+
+// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GSAtlasConnectorResponse) GetRetryIntervalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
+}
+
+// HasRetryInterval returns a boolean if a field has been set.
+func (o *GSAtlasConnectorResponse) HasRetryInterval() bool {
+	if o != nil && o.RetryInterval.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
+func (o *GSAtlasConnectorResponse) SetRetryInterval(v string) {
+	o.RetryInterval.Set(&v)
+}
+
+// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+func (o *GSAtlasConnectorResponse) SetRetryIntervalNil() {
+	o.RetryInterval.Set(nil)
+}
+
+// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
+func (o *GSAtlasConnectorResponse) UnsetRetryInterval() {
+	o.RetryInterval.Unset()
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GSAtlasConnectorResponse) GetStatus() PKIConnectorStatus {
 	if o == nil || utils.IsNil(o.Status.Get()) {
@@ -485,6 +418,73 @@ func (o *GSAtlasConnectorResponse) UnsetStatus() {
 	o.Status.Unset()
 }
 
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GSAtlasConnectorResponse) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GSAtlasConnectorResponse) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *GSAtlasConnectorResponse) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *GSAtlasConnectorResponse) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *GSAtlasConnectorResponse) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *GSAtlasConnectorResponse) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetType returns the Type field value
+func (o *GSAtlasConnectorResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *GSAtlasConnectorResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *GSAtlasConnectorResponse) SetType(v string) {
+	o.Type = v
+}
+
 func (o GSAtlasConnectorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -496,31 +496,31 @@ func (o GSAtlasConnectorResponse) MarshalJSON() ([]byte, error) {
 func (o GSAtlasConnectorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
-	toSerialize["loginCredentials"] = o.LoginCredentials
-	if o.HashAlgorithm.IsSet() {
-		toSerialize["hashAlgorithm"] = o.HashAlgorithm.Get()
-	}
+	toSerialize["authenticationCredentials"] = o.AuthenticationCredentials
 	if o.CertificateUsage.IsSet() {
 		toSerialize["certificateUsage"] = o.CertificateUsage.Get()
 	}
-	if o.RetryInterval.IsSet() {
-		toSerialize["retryInterval"] = o.RetryInterval.Get()
+	if o.HashAlgorithm.IsSet() {
+		toSerialize["hashAlgorithm"] = o.HashAlgorithm.Get()
 	}
-	toSerialize["authenticationCredentials"] = o.AuthenticationCredentials
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
+	toSerialize["loginCredentials"] = o.LoginCredentials
+	toSerialize["name"] = o.Name
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	if o.Queue.IsSet() {
 		toSerialize["queue"] = o.Queue.Get()
 	}
+	if o.RetryInterval.IsSet() {
+		toSerialize["retryInterval"] = o.RetryInterval.Get()
+	}
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
 	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -535,10 +535,10 @@ func (o *GSAtlasConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
+		"authenticationCredentials",
+		"loginCredentials",
 		"name",
 		"type",
-		"loginCredentials",
-		"authenticationCredentials",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -569,17 +569,17 @@ func (o *GSAtlasConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "loginCredentials")
-		delete(additionalProperties, "hashAlgorithm")
-		delete(additionalProperties, "certificateUsage")
-		delete(additionalProperties, "retryInterval")
 		delete(additionalProperties, "authenticationCredentials")
-		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "certificateUsage")
+		delete(additionalProperties, "hashAlgorithm")
+		delete(additionalProperties, "loginCredentials")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
+		delete(additionalProperties, "retryInterval")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

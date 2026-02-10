@@ -21,20 +21,20 @@ var _ utils.MappedNullable = &RequestSearchQuery{}
 
 // RequestSearchQuery struct for RequestSearchQuery
 type RequestSearchQuery struct {
-	// The HRQL query to use for the search, represents the way to filter requests. Filters nothing if not specified
-	Query utils.NullableString `json:"query,omitempty"`
 	// The fields to be returned by the search. If this parameter is not specified, everything is returned by default. If this parameter is equal to an empty array, only the `_id` field is returned
 	Fields []string `json:"fields,omitempty"`
-	// The way to sort the search results
-	SortedBy []SortElement `json:"sortedBy,omitempty"`
 	// The index of the page to retrieve
 	PageIndex utils.NullableInt64 `json:"pageIndex,omitempty"`
 	// The maximum number of items to retrieve for one page
 	PageSize utils.NullableInt64 `json:"pageSize,omitempty"`
-	// Whether to return the total count of requests matching the HRQL query
-	WithCount utils.NullableBool `json:"withCount,omitempty"`
+	// The HRQL query to use for the search, represents the way to filter requests. Filters nothing if not specified
+	Query utils.NullableString `json:"query,omitempty"`
 	// The scope of the search. `manage` only searches among requests that the currently logged in user has the rights to manage. `search` searches among all visible requests to the logged in user. `self` searches among requests that the currently logged in user or its team has issued
-	Scope                utils.NullableString `json:"scope,omitempty"`
+	Scope utils.NullableString `json:"scope,omitempty"`
+	// The way to sort the search results
+	SortedBy []SortElement `json:"sortedBy,omitempty"`
+	// Whether to return the total count of requests matching the HRQL query
+	WithCount            utils.NullableBool `json:"withCount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -69,49 +69,6 @@ func NewRequestSearchQueryWithDefaults() *RequestSearchQuery {
 	return &this
 }
 
-// GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestSearchQuery) GetQuery() string {
-	if o == nil || utils.IsNil(o.Query.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Query.Get()
-}
-
-// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestSearchQuery) GetQueryOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Query.Get(), o.Query.IsSet()
-}
-
-// HasQuery returns a boolean if a field has been set.
-func (o *RequestSearchQuery) HasQuery() bool {
-	if o != nil && o.Query.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQuery gets a reference to the given NullableString and assigns it to the Query field.
-func (o *RequestSearchQuery) SetQuery(v string) {
-	o.Query.Set(&v)
-}
-
-// SetQueryNil sets the value for Query to be an explicit nil
-func (o *RequestSearchQuery) SetQueryNil() {
-	o.Query.Set(nil)
-}
-
-// UnsetQuery ensures that no value is present for Query, not even an explicit nil
-func (o *RequestSearchQuery) UnsetQuery() {
-	o.Query.Unset()
-}
-
 // GetFields returns the Fields field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RequestSearchQuery) GetFields() []string {
 	if o == nil {
@@ -143,39 +100,6 @@ func (o *RequestSearchQuery) HasFields() bool {
 // SetFields gets a reference to the given []string and assigns it to the Fields field.
 func (o *RequestSearchQuery) SetFields(v []string) {
 	o.Fields = v
-}
-
-// GetSortedBy returns the SortedBy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestSearchQuery) GetSortedBy() []SortElement {
-	if o == nil {
-		var ret []SortElement
-		return ret
-	}
-	return o.SortedBy
-}
-
-// GetSortedByOk returns a tuple with the SortedBy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestSearchQuery) GetSortedByOk() ([]SortElement, bool) {
-	if o == nil || utils.IsNil(o.SortedBy) {
-		return nil, false
-	}
-	return o.SortedBy, true
-}
-
-// HasSortedBy returns a boolean if a field has been set.
-func (o *RequestSearchQuery) HasSortedBy() bool {
-	if o != nil && !utils.IsNil(o.SortedBy) {
-		return true
-	}
-
-	return false
-}
-
-// SetSortedBy gets a reference to the given []SortElement and assigns it to the SortedBy field.
-func (o *RequestSearchQuery) SetSortedBy(v []SortElement) {
-	o.SortedBy = v
 }
 
 // GetPageIndex returns the PageIndex field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -264,47 +188,47 @@ func (o *RequestSearchQuery) UnsetPageSize() {
 	o.PageSize.Unset()
 }
 
-// GetWithCount returns the WithCount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestSearchQuery) GetWithCount() bool {
-	if o == nil || utils.IsNil(o.WithCount.Get()) {
-		var ret bool
+// GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestSearchQuery) GetQuery() string {
+	if o == nil || utils.IsNil(o.Query.Get()) {
+		var ret string
 		return ret
 	}
-	return *o.WithCount.Get()
+	return *o.Query.Get()
 }
 
-// GetWithCountOk returns a tuple with the WithCount field value if set, nil otherwise
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestSearchQuery) GetWithCountOk() (*bool, bool) {
+func (o *RequestSearchQuery) GetQueryOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.WithCount.Get(), o.WithCount.IsSet()
+	return o.Query.Get(), o.Query.IsSet()
 }
 
-// HasWithCount returns a boolean if a field has been set.
-func (o *RequestSearchQuery) HasWithCount() bool {
-	if o != nil && o.WithCount.IsSet() {
+// HasQuery returns a boolean if a field has been set.
+func (o *RequestSearchQuery) HasQuery() bool {
+	if o != nil && o.Query.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetWithCount gets a reference to the given NullableBool and assigns it to the WithCount field.
-func (o *RequestSearchQuery) SetWithCount(v bool) {
-	o.WithCount.Set(&v)
+// SetQuery gets a reference to the given NullableString and assigns it to the Query field.
+func (o *RequestSearchQuery) SetQuery(v string) {
+	o.Query.Set(&v)
 }
 
-// SetWithCountNil sets the value for WithCount to be an explicit nil
-func (o *RequestSearchQuery) SetWithCountNil() {
-	o.WithCount.Set(nil)
+// SetQueryNil sets the value for Query to be an explicit nil
+func (o *RequestSearchQuery) SetQueryNil() {
+	o.Query.Set(nil)
 }
 
-// UnsetWithCount ensures that no value is present for WithCount, not even an explicit nil
-func (o *RequestSearchQuery) UnsetWithCount() {
-	o.WithCount.Unset()
+// UnsetQuery ensures that no value is present for Query, not even an explicit nil
+func (o *RequestSearchQuery) UnsetQuery() {
+	o.Query.Unset()
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -350,6 +274,82 @@ func (o *RequestSearchQuery) UnsetScope() {
 	o.Scope.Unset()
 }
 
+// GetSortedBy returns the SortedBy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestSearchQuery) GetSortedBy() []SortElement {
+	if o == nil {
+		var ret []SortElement
+		return ret
+	}
+	return o.SortedBy
+}
+
+// GetSortedByOk returns a tuple with the SortedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestSearchQuery) GetSortedByOk() ([]SortElement, bool) {
+	if o == nil || utils.IsNil(o.SortedBy) {
+		return nil, false
+	}
+	return o.SortedBy, true
+}
+
+// HasSortedBy returns a boolean if a field has been set.
+func (o *RequestSearchQuery) HasSortedBy() bool {
+	if o != nil && !utils.IsNil(o.SortedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetSortedBy gets a reference to the given []SortElement and assigns it to the SortedBy field.
+func (o *RequestSearchQuery) SetSortedBy(v []SortElement) {
+	o.SortedBy = v
+}
+
+// GetWithCount returns the WithCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestSearchQuery) GetWithCount() bool {
+	if o == nil || utils.IsNil(o.WithCount.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.WithCount.Get()
+}
+
+// GetWithCountOk returns a tuple with the WithCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestSearchQuery) GetWithCountOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.WithCount.Get(), o.WithCount.IsSet()
+}
+
+// HasWithCount returns a boolean if a field has been set.
+func (o *RequestSearchQuery) HasWithCount() bool {
+	if o != nil && o.WithCount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWithCount gets a reference to the given NullableBool and assigns it to the WithCount field.
+func (o *RequestSearchQuery) SetWithCount(v bool) {
+	o.WithCount.Set(&v)
+}
+
+// SetWithCountNil sets the value for WithCount to be an explicit nil
+func (o *RequestSearchQuery) SetWithCountNil() {
+	o.WithCount.Set(nil)
+}
+
+// UnsetWithCount ensures that no value is present for WithCount, not even an explicit nil
+func (o *RequestSearchQuery) UnsetWithCount() {
+	o.WithCount.Unset()
+}
+
 func (o RequestSearchQuery) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -360,14 +360,8 @@ func (o RequestSearchQuery) MarshalJSON() ([]byte, error) {
 
 func (o RequestSearchQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Query.IsSet() {
-		toSerialize["query"] = o.Query.Get()
-	}
 	if o.Fields != nil {
 		toSerialize["fields"] = o.Fields
-	}
-	if o.SortedBy != nil {
-		toSerialize["sortedBy"] = o.SortedBy
 	}
 	if o.PageIndex.IsSet() {
 		toSerialize["pageIndex"] = o.PageIndex.Get()
@@ -375,11 +369,17 @@ func (o RequestSearchQuery) ToMap() (map[string]interface{}, error) {
 	if o.PageSize.IsSet() {
 		toSerialize["pageSize"] = o.PageSize.Get()
 	}
-	if o.WithCount.IsSet() {
-		toSerialize["withCount"] = o.WithCount.Get()
+	if o.Query.IsSet() {
+		toSerialize["query"] = o.Query.Get()
 	}
 	if o.Scope.IsSet() {
 		toSerialize["scope"] = o.Scope.Get()
+	}
+	if o.SortedBy != nil {
+		toSerialize["sortedBy"] = o.SortedBy
+	}
+	if o.WithCount.IsSet() {
+		toSerialize["withCount"] = o.WithCount.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -403,13 +403,13 @@ func (o *RequestSearchQuery) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "query")
 		delete(additionalProperties, "fields")
-		delete(additionalProperties, "sortedBy")
 		delete(additionalProperties, "pageIndex")
 		delete(additionalProperties, "pageSize")
-		delete(additionalProperties, "withCount")
+		delete(additionalProperties, "query")
 		delete(additionalProperties, "scope")
+		delete(additionalProperties, "sortedBy")
+		delete(additionalProperties, "withCount")
 		o.AdditionalProperties = additionalProperties
 	}
 

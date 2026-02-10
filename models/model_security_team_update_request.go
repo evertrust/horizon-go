@@ -23,18 +23,18 @@ var _ utils.MappedNullable = &SecurityTeamUpdateRequest{}
 // SecurityTeamUpdateRequest struct for SecurityTeamUpdateRequest
 type SecurityTeamUpdateRequest struct {
 	Id interface{} `json:"_id,omitempty"`
-	// The name of the team
-	Name string `json:"name"`
-	// The localized description of the team
-	Description []LocalizedString `json:"description,omitempty"`
 	// The generic contact e-mail of the Team
 	Contact utils.NullableString `json:"contact,omitempty"`
-	// The webhook of the team's corporate channel (Teams, Slack, Mattermost)
-	Webhook NullableWebhook `json:"webhook,omitempty"`
+	// The localized description of the team
+	Description []LocalizedString `json:"description,omitempty"`
+	// The localized display name of the team
+	DisplayName []LocalizedString `json:"displayName,omitempty"`
 	// The identifiers of the team's managers
 	Managers []string `json:"managers,omitempty"`
-	// The localized display name of the team
-	DisplayName          []LocalizedString `json:"displayName,omitempty"`
+	// The name of the team
+	Name string `json:"name"`
+	// The webhook of the team's corporate channel (Teams, Slack, Mattermost)
+	Webhook              NullableWebhook `json:"webhook,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -91,63 +91,6 @@ func (o *SecurityTeamUpdateRequest) SetId(v interface{}) {
 	o.Id = v
 }
 
-// GetName returns the Name field value
-func (o *SecurityTeamUpdateRequest) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *SecurityTeamUpdateRequest) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *SecurityTeamUpdateRequest) SetName(v string) {
-	o.Name = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SecurityTeamUpdateRequest) GetDescription() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SecurityTeamUpdateRequest) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *SecurityTeamUpdateRequest) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *SecurityTeamUpdateRequest) SetDescription(v []LocalizedString) {
-	o.Description = v
-}
-
 // GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SecurityTeamUpdateRequest) GetContact() string {
 	if o == nil || utils.IsNil(o.Contact.Get()) {
@@ -189,6 +132,129 @@ func (o *SecurityTeamUpdateRequest) SetContactNil() {
 // UnsetContact ensures that no value is present for Contact, not even an explicit nil
 func (o *SecurityTeamUpdateRequest) UnsetContact() {
 	o.Contact.Unset()
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SecurityTeamUpdateRequest) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SecurityTeamUpdateRequest) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *SecurityTeamUpdateRequest) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *SecurityTeamUpdateRequest) SetDescription(v []LocalizedString) {
+	o.Description = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SecurityTeamUpdateRequest) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SecurityTeamUpdateRequest) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *SecurityTeamUpdateRequest) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *SecurityTeamUpdateRequest) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
+// GetManagers returns the Managers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SecurityTeamUpdateRequest) GetManagers() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Managers
+}
+
+// GetManagersOk returns a tuple with the Managers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SecurityTeamUpdateRequest) GetManagersOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Managers) {
+		return nil, false
+	}
+	return o.Managers, true
+}
+
+// HasManagers returns a boolean if a field has been set.
+func (o *SecurityTeamUpdateRequest) HasManagers() bool {
+	if o != nil && !utils.IsNil(o.Managers) {
+		return true
+	}
+
+	return false
+}
+
+// SetManagers gets a reference to the given []string and assigns it to the Managers field.
+func (o *SecurityTeamUpdateRequest) SetManagers(v []string) {
+	o.Managers = v
+}
+
+// GetName returns the Name field value
+func (o *SecurityTeamUpdateRequest) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SecurityTeamUpdateRequest) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *SecurityTeamUpdateRequest) SetName(v string) {
+	o.Name = v
 }
 
 // GetWebhook returns the Webhook field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -234,72 +300,6 @@ func (o *SecurityTeamUpdateRequest) UnsetWebhook() {
 	o.Webhook.Unset()
 }
 
-// GetManagers returns the Managers field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SecurityTeamUpdateRequest) GetManagers() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Managers
-}
-
-// GetManagersOk returns a tuple with the Managers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SecurityTeamUpdateRequest) GetManagersOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Managers) {
-		return nil, false
-	}
-	return o.Managers, true
-}
-
-// HasManagers returns a boolean if a field has been set.
-func (o *SecurityTeamUpdateRequest) HasManagers() bool {
-	if o != nil && !utils.IsNil(o.Managers) {
-		return true
-	}
-
-	return false
-}
-
-// SetManagers gets a reference to the given []string and assigns it to the Managers field.
-func (o *SecurityTeamUpdateRequest) SetManagers(v []string) {
-	o.Managers = v
-}
-
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SecurityTeamUpdateRequest) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SecurityTeamUpdateRequest) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *SecurityTeamUpdateRequest) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *SecurityTeamUpdateRequest) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
-}
-
 func (o SecurityTeamUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -313,21 +313,21 @@ func (o SecurityTeamUpdateRequest) ToMap() (map[string]interface{}, error) {
 	if o.Id != nil {
 		toSerialize["_id"] = o.Id
 	}
-	toSerialize["name"] = o.Name
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
 	if o.Contact.IsSet() {
 		toSerialize["contact"] = o.Contact.Get()
 	}
-	if o.Webhook.IsSet() {
-		toSerialize["webhook"] = o.Webhook.Get()
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
 	}
 	if o.Managers != nil {
 		toSerialize["managers"] = o.Managers
 	}
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
+	toSerialize["name"] = o.Name
+	if o.Webhook.IsSet() {
+		toSerialize["webhook"] = o.Webhook.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -373,12 +373,12 @@ func (o *SecurityTeamUpdateRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "contact")
-		delete(additionalProperties, "webhook")
-		delete(additionalProperties, "managers")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "managers")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "webhook")
 		o.AdditionalProperties = additionalProperties
 	}
 

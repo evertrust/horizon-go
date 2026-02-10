@@ -21,16 +21,16 @@ var _ utils.MappedNullable = &DataSourceResult{}
 
 // DataSourceResult struct for DataSourceResult
 type DataSourceResult struct {
-	// Name of the executed datasource
-	Name *string `json:"name,omitempty"`
-	// Type of the datasource executed
-	Type *string `json:"type,omitempty"`
-	// Status of the execution. `success` if the datasource data was fetched correctly, `failure` if an error occured and `ignored` if inputs were not all filled, resulting in no request being sent
-	Status *string `json:"status,omitempty"`
 	// Data fetched from the datasource
 	Dictionary []MapEntry `json:"dictionary,omitempty"`
 	// If `status` is `failure`, the error message
-	Error                utils.NullableString `json:"error,omitempty"`
+	Error utils.NullableString `json:"error,omitempty"`
+	// Name of the executed datasource
+	Name *string `json:"name,omitempty"`
+	// Status of the execution. `success` if the datasource data was fetched correctly, `failure` if an error occured and `ignored` if inputs were not all filled, resulting in no request being sent
+	Status *string `json:"status,omitempty"`
+	// Type of the datasource executed
+	Type                 *string `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,102 +51,6 @@ func NewDataSourceResult() *DataSourceResult {
 func NewDataSourceResultWithDefaults() *DataSourceResult {
 	this := DataSourceResult{}
 	return &this
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *DataSourceResult) GetName() string {
-	if o == nil || utils.IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DataSourceResult) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *DataSourceResult) HasName() bool {
-	if o != nil && !utils.IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *DataSourceResult) SetName(v string) {
-	o.Name = &v
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *DataSourceResult) GetType() string {
-	if o == nil || utils.IsNil(o.Type) {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DataSourceResult) GetTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *DataSourceResult) HasType() bool {
-	if o != nil && !utils.IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *DataSourceResult) SetType(v string) {
-	o.Type = &v
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *DataSourceResult) GetStatus() string {
-	if o == nil || utils.IsNil(o.Status) {
-		var ret string
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DataSourceResult) GetStatusOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *DataSourceResult) HasStatus() bool {
-	if o != nil && !utils.IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *DataSourceResult) SetStatus(v string) {
-	o.Status = &v
 }
 
 // GetDictionary returns the Dictionary field value if set, zero value otherwise.
@@ -224,6 +128,102 @@ func (o *DataSourceResult) UnsetError() {
 	o.Error.Unset()
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *DataSourceResult) GetName() string {
+	if o == nil || utils.IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataSourceResult) GetNameOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *DataSourceResult) HasName() bool {
+	if o != nil && !utils.IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *DataSourceResult) SetName(v string) {
+	o.Name = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *DataSourceResult) GetStatus() string {
+	if o == nil || utils.IsNil(o.Status) {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataSourceResult) GetStatusOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *DataSourceResult) HasStatus() bool {
+	if o != nil && !utils.IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *DataSourceResult) SetStatus(v string) {
+	o.Status = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *DataSourceResult) GetType() string {
+	if o == nil || utils.IsNil(o.Type) {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataSourceResult) GetTypeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *DataSourceResult) HasType() bool {
+	if o != nil && !utils.IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *DataSourceResult) SetType(v string) {
+	o.Type = &v
+}
+
 func (o DataSourceResult) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -234,20 +234,20 @@ func (o DataSourceResult) MarshalJSON() ([]byte, error) {
 
 func (o DataSourceResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !utils.IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !utils.IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
 	if !utils.IsNil(o.Dictionary) {
 		toSerialize["dictionary"] = o.Dictionary
 	}
 	if o.Error.IsSet() {
 		toSerialize["error"] = o.Error.Get()
+	}
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !utils.IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -271,11 +271,11 @@ func (o *DataSourceResult) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "status")
 		delete(additionalProperties, "dictionary")
 		delete(additionalProperties, "error")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

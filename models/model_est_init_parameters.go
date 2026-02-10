@@ -22,18 +22,18 @@ var _ utils.MappedNullable = &EstInitParameters{}
 
 // EstInitParameters struct for EstInitParameters
 type EstInitParameters struct {
+	// The authorization mode for EST.
+	AuthorizationMode *string `json:"authorizationMode,omitempty"`
+	// Indicates whether CSR info is ignored for EST.
+	CsrInfoIgnored *bool `json:"csrInfoIgnored,omitempty"`
+	// The enrollment mode for EST.
+	EnrollmentMode *string `json:"enrollmentMode,omitempty"`
+	// The key type used for EST.
+	KeyType *string `json:"keyType,omitempty"`
 	// The module of the initialization parameters.
 	Module string `json:"module"`
 	// The profile used for EST.
-	Profile string `json:"profile"`
-	// The key type used for EST.
-	KeyType *string `json:"keyType,omitempty"`
-	// The authorization mode for EST.
-	AuthorizationMode *string `json:"authorizationMode,omitempty"`
-	// The enrollment mode for EST.
-	EnrollmentMode *string `json:"enrollmentMode,omitempty"`
-	// Indicates whether CSR info is ignored for EST.
-	CsrInfoIgnored       *bool `json:"csrInfoIgnored,omitempty"`
+	Profile              string `json:"profile"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,6 +56,134 @@ func NewEstInitParameters(module string, profile string) *EstInitParameters {
 func NewEstInitParametersWithDefaults() *EstInitParameters {
 	this := EstInitParameters{}
 	return &this
+}
+
+// GetAuthorizationMode returns the AuthorizationMode field value if set, zero value otherwise.
+func (o *EstInitParameters) GetAuthorizationMode() string {
+	if o == nil || utils.IsNil(o.AuthorizationMode) {
+		var ret string
+		return ret
+	}
+	return *o.AuthorizationMode
+}
+
+// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EstInitParameters) GetAuthorizationModeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.AuthorizationMode) {
+		return nil, false
+	}
+	return o.AuthorizationMode, true
+}
+
+// HasAuthorizationMode returns a boolean if a field has been set.
+func (o *EstInitParameters) HasAuthorizationMode() bool {
+	if o != nil && !utils.IsNil(o.AuthorizationMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthorizationMode gets a reference to the given string and assigns it to the AuthorizationMode field.
+func (o *EstInitParameters) SetAuthorizationMode(v string) {
+	o.AuthorizationMode = &v
+}
+
+// GetCsrInfoIgnored returns the CsrInfoIgnored field value if set, zero value otherwise.
+func (o *EstInitParameters) GetCsrInfoIgnored() bool {
+	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
+		var ret bool
+		return ret
+	}
+	return *o.CsrInfoIgnored
+}
+
+// GetCsrInfoIgnoredOk returns a tuple with the CsrInfoIgnored field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EstInitParameters) GetCsrInfoIgnoredOk() (*bool, bool) {
+	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
+		return nil, false
+	}
+	return o.CsrInfoIgnored, true
+}
+
+// HasCsrInfoIgnored returns a boolean if a field has been set.
+func (o *EstInitParameters) HasCsrInfoIgnored() bool {
+	if o != nil && !utils.IsNil(o.CsrInfoIgnored) {
+		return true
+	}
+
+	return false
+}
+
+// SetCsrInfoIgnored gets a reference to the given bool and assigns it to the CsrInfoIgnored field.
+func (o *EstInitParameters) SetCsrInfoIgnored(v bool) {
+	o.CsrInfoIgnored = &v
+}
+
+// GetEnrollmentMode returns the EnrollmentMode field value if set, zero value otherwise.
+func (o *EstInitParameters) GetEnrollmentMode() string {
+	if o == nil || utils.IsNil(o.EnrollmentMode) {
+		var ret string
+		return ret
+	}
+	return *o.EnrollmentMode
+}
+
+// GetEnrollmentModeOk returns a tuple with the EnrollmentMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EstInitParameters) GetEnrollmentModeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.EnrollmentMode) {
+		return nil, false
+	}
+	return o.EnrollmentMode, true
+}
+
+// HasEnrollmentMode returns a boolean if a field has been set.
+func (o *EstInitParameters) HasEnrollmentMode() bool {
+	if o != nil && !utils.IsNil(o.EnrollmentMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnrollmentMode gets a reference to the given string and assigns it to the EnrollmentMode field.
+func (o *EstInitParameters) SetEnrollmentMode(v string) {
+	o.EnrollmentMode = &v
+}
+
+// GetKeyType returns the KeyType field value if set, zero value otherwise.
+func (o *EstInitParameters) GetKeyType() string {
+	if o == nil || utils.IsNil(o.KeyType) {
+		var ret string
+		return ret
+	}
+	return *o.KeyType
+}
+
+// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EstInitParameters) GetKeyTypeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.KeyType) {
+		return nil, false
+	}
+	return o.KeyType, true
+}
+
+// HasKeyType returns a boolean if a field has been set.
+func (o *EstInitParameters) HasKeyType() bool {
+	if o != nil && !utils.IsNil(o.KeyType) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
+func (o *EstInitParameters) SetKeyType(v string) {
+	o.KeyType = &v
 }
 
 // GetModule returns the Module field value
@@ -106,134 +234,6 @@ func (o *EstInitParameters) SetProfile(v string) {
 	o.Profile = v
 }
 
-// GetKeyType returns the KeyType field value if set, zero value otherwise.
-func (o *EstInitParameters) GetKeyType() string {
-	if o == nil || utils.IsNil(o.KeyType) {
-		var ret string
-		return ret
-	}
-	return *o.KeyType
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EstInitParameters) GetKeyTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.KeyType) {
-		return nil, false
-	}
-	return o.KeyType, true
-}
-
-// HasKeyType returns a boolean if a field has been set.
-func (o *EstInitParameters) HasKeyType() bool {
-	if o != nil && !utils.IsNil(o.KeyType) {
-		return true
-	}
-
-	return false
-}
-
-// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
-func (o *EstInitParameters) SetKeyType(v string) {
-	o.KeyType = &v
-}
-
-// GetAuthorizationMode returns the AuthorizationMode field value if set, zero value otherwise.
-func (o *EstInitParameters) GetAuthorizationMode() string {
-	if o == nil || utils.IsNil(o.AuthorizationMode) {
-		var ret string
-		return ret
-	}
-	return *o.AuthorizationMode
-}
-
-// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EstInitParameters) GetAuthorizationModeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.AuthorizationMode) {
-		return nil, false
-	}
-	return o.AuthorizationMode, true
-}
-
-// HasAuthorizationMode returns a boolean if a field has been set.
-func (o *EstInitParameters) HasAuthorizationMode() bool {
-	if o != nil && !utils.IsNil(o.AuthorizationMode) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthorizationMode gets a reference to the given string and assigns it to the AuthorizationMode field.
-func (o *EstInitParameters) SetAuthorizationMode(v string) {
-	o.AuthorizationMode = &v
-}
-
-// GetEnrollmentMode returns the EnrollmentMode field value if set, zero value otherwise.
-func (o *EstInitParameters) GetEnrollmentMode() string {
-	if o == nil || utils.IsNil(o.EnrollmentMode) {
-		var ret string
-		return ret
-	}
-	return *o.EnrollmentMode
-}
-
-// GetEnrollmentModeOk returns a tuple with the EnrollmentMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EstInitParameters) GetEnrollmentModeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.EnrollmentMode) {
-		return nil, false
-	}
-	return o.EnrollmentMode, true
-}
-
-// HasEnrollmentMode returns a boolean if a field has been set.
-func (o *EstInitParameters) HasEnrollmentMode() bool {
-	if o != nil && !utils.IsNil(o.EnrollmentMode) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnrollmentMode gets a reference to the given string and assigns it to the EnrollmentMode field.
-func (o *EstInitParameters) SetEnrollmentMode(v string) {
-	o.EnrollmentMode = &v
-}
-
-// GetCsrInfoIgnored returns the CsrInfoIgnored field value if set, zero value otherwise.
-func (o *EstInitParameters) GetCsrInfoIgnored() bool {
-	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
-		var ret bool
-		return ret
-	}
-	return *o.CsrInfoIgnored
-}
-
-// GetCsrInfoIgnoredOk returns a tuple with the CsrInfoIgnored field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EstInitParameters) GetCsrInfoIgnoredOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
-		return nil, false
-	}
-	return o.CsrInfoIgnored, true
-}
-
-// HasCsrInfoIgnored returns a boolean if a field has been set.
-func (o *EstInitParameters) HasCsrInfoIgnored() bool {
-	if o != nil && !utils.IsNil(o.CsrInfoIgnored) {
-		return true
-	}
-
-	return false
-}
-
-// SetCsrInfoIgnored gets a reference to the given bool and assigns it to the CsrInfoIgnored field.
-func (o *EstInitParameters) SetCsrInfoIgnored(v bool) {
-	o.CsrInfoIgnored = &v
-}
-
 func (o EstInitParameters) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -244,20 +244,20 @@ func (o EstInitParameters) MarshalJSON() ([]byte, error) {
 
 func (o EstInitParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
-	toSerialize["profile"] = o.Profile
-	if !utils.IsNil(o.KeyType) {
-		toSerialize["keyType"] = o.KeyType
-	}
 	if !utils.IsNil(o.AuthorizationMode) {
 		toSerialize["authorizationMode"] = o.AuthorizationMode
-	}
-	if !utils.IsNil(o.EnrollmentMode) {
-		toSerialize["enrollmentMode"] = o.EnrollmentMode
 	}
 	if !utils.IsNil(o.CsrInfoIgnored) {
 		toSerialize["csrInfoIgnored"] = o.CsrInfoIgnored
 	}
+	if !utils.IsNil(o.EnrollmentMode) {
+		toSerialize["enrollmentMode"] = o.EnrollmentMode
+	}
+	if !utils.IsNil(o.KeyType) {
+		toSerialize["keyType"] = o.KeyType
+	}
+	toSerialize["module"] = o.Module
+	toSerialize["profile"] = o.Profile
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -302,12 +302,12 @@ func (o *EstInitParameters) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorizationMode")
+		delete(additionalProperties, "csrInfoIgnored")
+		delete(additionalProperties, "enrollmentMode")
+		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "profile")
-		delete(additionalProperties, "keyType")
-		delete(additionalProperties, "authorizationMode")
-		delete(additionalProperties, "enrollmentMode")
-		delete(additionalProperties, "csrInfoIgnored")
 		o.AdditionalProperties = additionalProperties
 	}
 

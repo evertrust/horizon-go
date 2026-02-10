@@ -22,18 +22,18 @@ var _ utils.MappedNullable = &RequestableCertificateProfileResponse{}
 
 // RequestableCertificateProfileResponse struct for RequestableCertificateProfileResponse
 type RequestableCertificateProfileResponse struct {
-	// The name of the profile
-	Name string `json:"name"`
-	// The module of the profile
-	Module string `json:"module"`
-	// The localized name of the profile
-	DisplayName []LocalizedString `json:"displayName,omitempty"`
+	// Crypto information about this profile
+	Capabilities CertificateProfileCapabilities `json:"capabilities"`
 	// The localized description of the profile
 	Description []LocalizedString `json:"description,omitempty"`
+	// The localized name of the profile
+	DisplayName []LocalizedString `json:"displayName,omitempty"`
+	// The module of the profile
+	Module string `json:"module"`
+	// The name of the profile
+	Name string `json:"name"`
 	// The list of workflows on this profile and the principals permission on them
-	Workflows []RequestableWorkflow `json:"workflows"`
-	// Crypto information about this profile
-	Capabilities         CertificateProfileCapabilities `json:"capabilities"`
+	Workflows            []RequestableWorkflow `json:"workflows"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,12 +43,12 @@ type _RequestableCertificateProfileResponse RequestableCertificateProfileRespons
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRequestableCertificateProfileResponse(name string, module string, workflows []RequestableWorkflow, capabilities CertificateProfileCapabilities) *RequestableCertificateProfileResponse {
+func NewRequestableCertificateProfileResponse(capabilities CertificateProfileCapabilities, module string, name string, workflows []RequestableWorkflow) *RequestableCertificateProfileResponse {
 	this := RequestableCertificateProfileResponse{}
-	this.Name = name
-	this.Module = module
-	this.Workflows = workflows
 	this.Capabilities = capabilities
+	this.Module = module
+	this.Name = name
+	this.Workflows = workflows
 	return &this
 }
 
@@ -60,85 +60,28 @@ func NewRequestableCertificateProfileResponseWithDefaults() *RequestableCertific
 	return &this
 }
 
-// GetName returns the Name field value
-func (o *RequestableCertificateProfileResponse) GetName() string {
+// GetCapabilities returns the Capabilities field value
+func (o *RequestableCertificateProfileResponse) GetCapabilities() CertificateProfileCapabilities {
 	if o == nil {
-		var ret string
+		var ret CertificateProfileCapabilities
 		return ret
 	}
 
-	return o.Name
+	return o.Capabilities
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetCapabilitiesOk returns a tuple with the Capabilities field value
 // and a boolean to check if the value has been set.
-func (o *RequestableCertificateProfileResponse) GetNameOk() (*string, bool) {
+func (o *RequestableCertificateProfileResponse) GetCapabilitiesOk() (*CertificateProfileCapabilities, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.Capabilities, true
 }
 
-// SetName sets field value
-func (o *RequestableCertificateProfileResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetModule returns the Module field value
-func (o *RequestableCertificateProfileResponse) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *RequestableCertificateProfileResponse) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *RequestableCertificateProfileResponse) SetModule(v string) {
-	o.Module = v
-}
-
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestableCertificateProfileResponse) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestableCertificateProfileResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *RequestableCertificateProfileResponse) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *RequestableCertificateProfileResponse) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
+// SetCapabilities sets field value
+func (o *RequestableCertificateProfileResponse) SetCapabilities(v CertificateProfileCapabilities) {
+	o.Capabilities = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -174,6 +117,87 @@ func (o *RequestableCertificateProfileResponse) SetDescription(v []LocalizedStri
 	o.Description = v
 }
 
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestableCertificateProfileResponse) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestableCertificateProfileResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *RequestableCertificateProfileResponse) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *RequestableCertificateProfileResponse) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
+// GetModule returns the Module field value
+func (o *RequestableCertificateProfileResponse) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *RequestableCertificateProfileResponse) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *RequestableCertificateProfileResponse) SetModule(v string) {
+	o.Module = v
+}
+
+// GetName returns the Name field value
+func (o *RequestableCertificateProfileResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *RequestableCertificateProfileResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *RequestableCertificateProfileResponse) SetName(v string) {
+	o.Name = v
+}
+
 // GetWorkflows returns the Workflows field value
 func (o *RequestableCertificateProfileResponse) GetWorkflows() []RequestableWorkflow {
 	if o == nil {
@@ -198,30 +222,6 @@ func (o *RequestableCertificateProfileResponse) SetWorkflows(v []RequestableWork
 	o.Workflows = v
 }
 
-// GetCapabilities returns the Capabilities field value
-func (o *RequestableCertificateProfileResponse) GetCapabilities() CertificateProfileCapabilities {
-	if o == nil {
-		var ret CertificateProfileCapabilities
-		return ret
-	}
-
-	return o.Capabilities
-}
-
-// GetCapabilitiesOk returns a tuple with the Capabilities field value
-// and a boolean to check if the value has been set.
-func (o *RequestableCertificateProfileResponse) GetCapabilitiesOk() (*CertificateProfileCapabilities, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Capabilities, true
-}
-
-// SetCapabilities sets field value
-func (o *RequestableCertificateProfileResponse) SetCapabilities(v CertificateProfileCapabilities) {
-	o.Capabilities = v
-}
-
 func (o RequestableCertificateProfileResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -232,16 +232,16 @@ func (o RequestableCertificateProfileResponse) MarshalJSON() ([]byte, error) {
 
 func (o RequestableCertificateProfileResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["module"] = o.Module
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
-	}
+	toSerialize["capabilities"] = o.Capabilities
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	toSerialize["module"] = o.Module
+	toSerialize["name"] = o.Name
 	toSerialize["workflows"] = o.Workflows
-	toSerialize["capabilities"] = o.Capabilities
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -255,10 +255,10 @@ func (o *RequestableCertificateProfileResponse) UnmarshalJSON(data []byte) (err 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
-		"module",
-		"workflows",
 		"capabilities",
+		"module",
+		"name",
+		"workflows",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -288,12 +288,12 @@ func (o *RequestableCertificateProfileResponse) UnmarshalJSON(data []byte) (err 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "module")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "workflows")
 		delete(additionalProperties, "capabilities")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "module")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "workflows")
 		o.AdditionalProperties = additionalProperties
 	}
 

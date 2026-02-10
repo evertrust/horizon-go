@@ -22,12 +22,12 @@ var _ utils.MappedNullable = &CertificateArchive{}
 
 // CertificateArchive struct for CertificateArchive
 type CertificateArchive struct {
-	Name        string `json:"name"`
-	Type        string `json:"type"`
-	Filename    string `json:"filename"`
 	ArchiveKeys bool   `json:"archiveKeys"`
+	Filename    string `json:"filename"`
 	// An HCQL filter for the archive
 	Filter               utils.NullableString `json:"filter,omitempty"`
+	Name                 string               `json:"name"`
+	Type                 string               `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,12 +37,12 @@ type _CertificateArchive CertificateArchive
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificateArchive(name string, type_ string, filename string, archiveKeys bool) *CertificateArchive {
+func NewCertificateArchive(archiveKeys bool, filename string, name string, type_ string) *CertificateArchive {
 	this := CertificateArchive{}
+	this.ArchiveKeys = archiveKeys
+	this.Filename = filename
 	this.Name = name
 	this.Type = type_
-	this.Filename = filename
-	this.ArchiveKeys = archiveKeys
 	return &this
 }
 
@@ -52,6 +52,97 @@ func NewCertificateArchive(name string, type_ string, filename string, archiveKe
 func NewCertificateArchiveWithDefaults() *CertificateArchive {
 	this := CertificateArchive{}
 	return &this
+}
+
+// GetArchiveKeys returns the ArchiveKeys field value
+func (o *CertificateArchive) GetArchiveKeys() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ArchiveKeys
+}
+
+// GetArchiveKeysOk returns a tuple with the ArchiveKeys field value
+// and a boolean to check if the value has been set.
+func (o *CertificateArchive) GetArchiveKeysOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ArchiveKeys, true
+}
+
+// SetArchiveKeys sets field value
+func (o *CertificateArchive) SetArchiveKeys(v bool) {
+	o.ArchiveKeys = v
+}
+
+// GetFilename returns the Filename field value
+func (o *CertificateArchive) GetFilename() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Filename
+}
+
+// GetFilenameOk returns a tuple with the Filename field value
+// and a boolean to check if the value has been set.
+func (o *CertificateArchive) GetFilenameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Filename, true
+}
+
+// SetFilename sets field value
+func (o *CertificateArchive) SetFilename(v string) {
+	o.Filename = v
+}
+
+// GetFilter returns the Filter field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateArchive) GetFilter() string {
+	if o == nil || utils.IsNil(o.Filter.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Filter.Get()
+}
+
+// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateArchive) GetFilterOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Filter.Get(), o.Filter.IsSet()
+}
+
+// HasFilter returns a boolean if a field has been set.
+func (o *CertificateArchive) HasFilter() bool {
+	if o != nil && o.Filter.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFilter gets a reference to the given NullableString and assigns it to the Filter field.
+func (o *CertificateArchive) SetFilter(v string) {
+	o.Filter.Set(&v)
+}
+
+// SetFilterNil sets the value for Filter to be an explicit nil
+func (o *CertificateArchive) SetFilterNil() {
+	o.Filter.Set(nil)
+}
+
+// UnsetFilter ensures that no value is present for Filter, not even an explicit nil
+func (o *CertificateArchive) UnsetFilter() {
+	o.Filter.Unset()
 }
 
 // GetName returns the Name field value
@@ -102,97 +193,6 @@ func (o *CertificateArchive) SetType(v string) {
 	o.Type = v
 }
 
-// GetFilename returns the Filename field value
-func (o *CertificateArchive) GetFilename() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Filename
-}
-
-// GetFilenameOk returns a tuple with the Filename field value
-// and a boolean to check if the value has been set.
-func (o *CertificateArchive) GetFilenameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Filename, true
-}
-
-// SetFilename sets field value
-func (o *CertificateArchive) SetFilename(v string) {
-	o.Filename = v
-}
-
-// GetArchiveKeys returns the ArchiveKeys field value
-func (o *CertificateArchive) GetArchiveKeys() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.ArchiveKeys
-}
-
-// GetArchiveKeysOk returns a tuple with the ArchiveKeys field value
-// and a boolean to check if the value has been set.
-func (o *CertificateArchive) GetArchiveKeysOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ArchiveKeys, true
-}
-
-// SetArchiveKeys sets field value
-func (o *CertificateArchive) SetArchiveKeys(v bool) {
-	o.ArchiveKeys = v
-}
-
-// GetFilter returns the Filter field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateArchive) GetFilter() string {
-	if o == nil || utils.IsNil(o.Filter.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Filter.Get()
-}
-
-// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateArchive) GetFilterOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Filter.Get(), o.Filter.IsSet()
-}
-
-// HasFilter returns a boolean if a field has been set.
-func (o *CertificateArchive) HasFilter() bool {
-	if o != nil && o.Filter.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetFilter gets a reference to the given NullableString and assigns it to the Filter field.
-func (o *CertificateArchive) SetFilter(v string) {
-	o.Filter.Set(&v)
-}
-
-// SetFilterNil sets the value for Filter to be an explicit nil
-func (o *CertificateArchive) SetFilterNil() {
-	o.Filter.Set(nil)
-}
-
-// UnsetFilter ensures that no value is present for Filter, not even an explicit nil
-func (o *CertificateArchive) UnsetFilter() {
-	o.Filter.Unset()
-}
-
 func (o CertificateArchive) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -203,13 +203,13 @@ func (o CertificateArchive) MarshalJSON() ([]byte, error) {
 
 func (o CertificateArchive) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
-	toSerialize["filename"] = o.Filename
 	toSerialize["archiveKeys"] = o.ArchiveKeys
+	toSerialize["filename"] = o.Filename
 	if o.Filter.IsSet() {
 		toSerialize["filter"] = o.Filter.Get()
 	}
+	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -223,10 +223,10 @@ func (o *CertificateArchive) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"archiveKeys",
+		"filename",
 		"name",
 		"type",
-		"filename",
-		"archiveKeys",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -256,11 +256,11 @@ func (o *CertificateArchive) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "archiveKeys")
+		delete(additionalProperties, "filename")
+		delete(additionalProperties, "filter")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "type")
-		delete(additionalProperties, "filename")
-		delete(additionalProperties, "archiveKeys")
-		delete(additionalProperties, "filter")
 		o.AdditionalProperties = additionalProperties
 	}
 

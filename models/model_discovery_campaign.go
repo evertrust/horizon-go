@@ -22,26 +22,26 @@ var _ utils.MappedNullable = &DiscoveryCampaign{}
 
 // DiscoveryCampaign struct for DiscoveryCampaign
 type DiscoveryCampaign struct {
-	// The name of the discovery campaign
-	Name string `json:"name"`
-	// The description of the discovery campaign
-	Description utils.NullableString `json:"description,omitempty"`
 	// The authorization levels of the discovery campaign
 	AuthorizationLevels DiscoveryCampaignAuthorizationLevels `json:"authorizationLevels"`
+	// The description of the discovery campaign
+	Description utils.NullableString `json:"description,omitempty"`
+	// Whether the discovery campaign is enabled, i.e. whether it can be fed
+	Enabled bool `json:"enabled"`
+	// Whether to log a Horizon event in case of failure
+	EventOnFailure bool `json:"eventOnFailure"`
 	// Whether to log a Horizon event in case of success
 	EventOnSuccess bool `json:"eventOnSuccess"`
 	// Whether to log a Horizon event in case of warning
 	EventOnWarning bool `json:"eventOnWarning"`
-	// Whether to log a Horizon event in case of failure
-	EventOnFailure bool `json:"eventOnFailure"`
+	// The grading policies to apply to grade the discovered certificates on this campaign
+	GradingPolicies []string `json:"gradingPolicies,omitempty"`
 	// The hosts to be scanned by the discovery campaign
 	Hosts []string `json:"hosts,omitempty"`
+	// The name of the discovery campaign
+	Name string `json:"name"`
 	// The ports to be scanned by the discovery campaign
-	Ports []string `json:"ports,omitempty"`
-	// Whether the discovery campaign is enabled, i.e. whether it can be fed
-	Enabled bool `json:"enabled"`
-	// The grading policies to apply to grade the discovered certificates on this campaign
-	GradingPolicies      []string `json:"gradingPolicies,omitempty"`
+	Ports                []string `json:"ports,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,14 +51,14 @@ type _DiscoveryCampaign DiscoveryCampaign
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDiscoveryCampaign(name string, authorizationLevels DiscoveryCampaignAuthorizationLevels, eventOnSuccess bool, eventOnWarning bool, eventOnFailure bool, enabled bool) *DiscoveryCampaign {
+func NewDiscoveryCampaign(authorizationLevels DiscoveryCampaignAuthorizationLevels, enabled bool, eventOnFailure bool, eventOnSuccess bool, eventOnWarning bool, name string) *DiscoveryCampaign {
 	this := DiscoveryCampaign{}
-	this.Name = name
 	this.AuthorizationLevels = authorizationLevels
+	this.Enabled = enabled
+	this.EventOnFailure = eventOnFailure
 	this.EventOnSuccess = eventOnSuccess
 	this.EventOnWarning = eventOnWarning
-	this.EventOnFailure = eventOnFailure
-	this.Enabled = enabled
+	this.Name = name
 	return &this
 }
 
@@ -70,28 +70,28 @@ func NewDiscoveryCampaignWithDefaults() *DiscoveryCampaign {
 	return &this
 }
 
-// GetName returns the Name field value
-func (o *DiscoveryCampaign) GetName() string {
+// GetAuthorizationLevels returns the AuthorizationLevels field value
+func (o *DiscoveryCampaign) GetAuthorizationLevels() DiscoveryCampaignAuthorizationLevels {
 	if o == nil {
-		var ret string
+		var ret DiscoveryCampaignAuthorizationLevels
 		return ret
 	}
 
-	return o.Name
+	return o.AuthorizationLevels
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
 // and a boolean to check if the value has been set.
-func (o *DiscoveryCampaign) GetNameOk() (*string, bool) {
+func (o *DiscoveryCampaign) GetAuthorizationLevelsOk() (*DiscoveryCampaignAuthorizationLevels, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.AuthorizationLevels, true
 }
 
-// SetName sets field value
-func (o *DiscoveryCampaign) SetName(v string) {
-	o.Name = v
+// SetAuthorizationLevels sets field value
+func (o *DiscoveryCampaign) SetAuthorizationLevels(v DiscoveryCampaignAuthorizationLevels) {
+	o.AuthorizationLevels = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -137,28 +137,52 @@ func (o *DiscoveryCampaign) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetAuthorizationLevels returns the AuthorizationLevels field value
-func (o *DiscoveryCampaign) GetAuthorizationLevels() DiscoveryCampaignAuthorizationLevels {
+// GetEnabled returns the Enabled field value
+func (o *DiscoveryCampaign) GetEnabled() bool {
 	if o == nil {
-		var ret DiscoveryCampaignAuthorizationLevels
+		var ret bool
 		return ret
 	}
 
-	return o.AuthorizationLevels
+	return o.Enabled
 }
 
-// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
+// GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-func (o *DiscoveryCampaign) GetAuthorizationLevelsOk() (*DiscoveryCampaignAuthorizationLevels, bool) {
+func (o *DiscoveryCampaign) GetEnabledOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AuthorizationLevels, true
+	return &o.Enabled, true
 }
 
-// SetAuthorizationLevels sets field value
-func (o *DiscoveryCampaign) SetAuthorizationLevels(v DiscoveryCampaignAuthorizationLevels) {
-	o.AuthorizationLevels = v
+// SetEnabled sets field value
+func (o *DiscoveryCampaign) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetEventOnFailure returns the EventOnFailure field value
+func (o *DiscoveryCampaign) GetEventOnFailure() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.EventOnFailure
+}
+
+// GetEventOnFailureOk returns a tuple with the EventOnFailure field value
+// and a boolean to check if the value has been set.
+func (o *DiscoveryCampaign) GetEventOnFailureOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EventOnFailure, true
+}
+
+// SetEventOnFailure sets field value
+func (o *DiscoveryCampaign) SetEventOnFailure(v bool) {
+	o.EventOnFailure = v
 }
 
 // GetEventOnSuccess returns the EventOnSuccess field value
@@ -209,28 +233,37 @@ func (o *DiscoveryCampaign) SetEventOnWarning(v bool) {
 	o.EventOnWarning = v
 }
 
-// GetEventOnFailure returns the EventOnFailure field value
-func (o *DiscoveryCampaign) GetEventOnFailure() bool {
+// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DiscoveryCampaign) GetGradingPolicies() []string {
 	if o == nil {
-		var ret bool
+		var ret []string
 		return ret
 	}
-
-	return o.EventOnFailure
+	return o.GradingPolicies
 }
 
-// GetEventOnFailureOk returns a tuple with the EventOnFailure field value
+// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DiscoveryCampaign) GetEventOnFailureOk() (*bool, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DiscoveryCampaign) GetGradingPoliciesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.GradingPolicies) {
 		return nil, false
 	}
-	return &o.EventOnFailure, true
+	return o.GradingPolicies, true
 }
 
-// SetEventOnFailure sets field value
-func (o *DiscoveryCampaign) SetEventOnFailure(v bool) {
-	o.EventOnFailure = v
+// HasGradingPolicies returns a boolean if a field has been set.
+func (o *DiscoveryCampaign) HasGradingPolicies() bool {
+	if o != nil && !utils.IsNil(o.GradingPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
+func (o *DiscoveryCampaign) SetGradingPolicies(v []string) {
+	o.GradingPolicies = v
 }
 
 // GetHosts returns the Hosts field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -266,6 +299,30 @@ func (o *DiscoveryCampaign) SetHosts(v []string) {
 	o.Hosts = v
 }
 
+// GetName returns the Name field value
+func (o *DiscoveryCampaign) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *DiscoveryCampaign) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *DiscoveryCampaign) SetName(v string) {
+	o.Name = v
+}
+
 // GetPorts returns the Ports field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DiscoveryCampaign) GetPorts() []string {
 	if o == nil {
@@ -299,63 +356,6 @@ func (o *DiscoveryCampaign) SetPorts(v []string) {
 	o.Ports = v
 }
 
-// GetEnabled returns the Enabled field value
-func (o *DiscoveryCampaign) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *DiscoveryCampaign) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *DiscoveryCampaign) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DiscoveryCampaign) GetGradingPolicies() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.GradingPolicies
-}
-
-// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DiscoveryCampaign) GetGradingPoliciesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.GradingPolicies) {
-		return nil, false
-	}
-	return o.GradingPolicies, true
-}
-
-// HasGradingPolicies returns a boolean if a field has been set.
-func (o *DiscoveryCampaign) HasGradingPolicies() bool {
-	if o != nil && !utils.IsNil(o.GradingPolicies) {
-		return true
-	}
-
-	return false
-}
-
-// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
-func (o *DiscoveryCampaign) SetGradingPolicies(v []string) {
-	o.GradingPolicies = v
-}
-
 func (o DiscoveryCampaign) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -366,23 +366,23 @@ func (o DiscoveryCampaign) MarshalJSON() ([]byte, error) {
 
 func (o DiscoveryCampaign) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
+	toSerialize["authorizationLevels"] = o.AuthorizationLevels
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	toSerialize["authorizationLevels"] = o.AuthorizationLevels
+	toSerialize["enabled"] = o.Enabled
+	toSerialize["eventOnFailure"] = o.EventOnFailure
 	toSerialize["eventOnSuccess"] = o.EventOnSuccess
 	toSerialize["eventOnWarning"] = o.EventOnWarning
-	toSerialize["eventOnFailure"] = o.EventOnFailure
+	if o.GradingPolicies != nil {
+		toSerialize["gradingPolicies"] = o.GradingPolicies
+	}
 	if o.Hosts != nil {
 		toSerialize["hosts"] = o.Hosts
 	}
+	toSerialize["name"] = o.Name
 	if o.Ports != nil {
 		toSerialize["ports"] = o.Ports
-	}
-	toSerialize["enabled"] = o.Enabled
-	if o.GradingPolicies != nil {
-		toSerialize["gradingPolicies"] = o.GradingPolicies
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -397,12 +397,12 @@ func (o *DiscoveryCampaign) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
 		"authorizationLevels",
+		"enabled",
+		"eventOnFailure",
 		"eventOnSuccess",
 		"eventOnWarning",
-		"eventOnFailure",
-		"enabled",
+		"name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -432,16 +432,16 @@ func (o *DiscoveryCampaign) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "authorizationLevels")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "eventOnFailure")
 		delete(additionalProperties, "eventOnSuccess")
 		delete(additionalProperties, "eventOnWarning")
-		delete(additionalProperties, "eventOnFailure")
-		delete(additionalProperties, "hosts")
-		delete(additionalProperties, "ports")
-		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "gradingPolicies")
+		delete(additionalProperties, "hosts")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "ports")
 		o.AdditionalProperties = additionalProperties
 	}
 

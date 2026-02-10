@@ -21,8 +21,8 @@ var _ utils.MappedNullable = &CompliancePolicy{}
 
 // CompliancePolicy struct for CompliancePolicy
 type CompliancePolicy struct {
-	AuthorizedSigningAlgorithms []string `json:"authorizedSigningAlgorithms,omitempty"`
 	AuthorizedCas               []string `json:"authorizedCas,omitempty"`
+	AuthorizedSigningAlgorithms []string `json:"authorizedSigningAlgorithms,omitempty"`
 	AdditionalProperties        map[string]interface{}
 }
 
@@ -43,39 +43,6 @@ func NewCompliancePolicy() *CompliancePolicy {
 func NewCompliancePolicyWithDefaults() *CompliancePolicy {
 	this := CompliancePolicy{}
 	return &this
-}
-
-// GetAuthorizedSigningAlgorithms returns the AuthorizedSigningAlgorithms field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CompliancePolicy) GetAuthorizedSigningAlgorithms() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.AuthorizedSigningAlgorithms
-}
-
-// GetAuthorizedSigningAlgorithmsOk returns a tuple with the AuthorizedSigningAlgorithms field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CompliancePolicy) GetAuthorizedSigningAlgorithmsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.AuthorizedSigningAlgorithms) {
-		return nil, false
-	}
-	return o.AuthorizedSigningAlgorithms, true
-}
-
-// HasAuthorizedSigningAlgorithms returns a boolean if a field has been set.
-func (o *CompliancePolicy) HasAuthorizedSigningAlgorithms() bool {
-	if o != nil && !utils.IsNil(o.AuthorizedSigningAlgorithms) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthorizedSigningAlgorithms gets a reference to the given []string and assigns it to the AuthorizedSigningAlgorithms field.
-func (o *CompliancePolicy) SetAuthorizedSigningAlgorithms(v []string) {
-	o.AuthorizedSigningAlgorithms = v
 }
 
 // GetAuthorizedCas returns the AuthorizedCas field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -111,6 +78,39 @@ func (o *CompliancePolicy) SetAuthorizedCas(v []string) {
 	o.AuthorizedCas = v
 }
 
+// GetAuthorizedSigningAlgorithms returns the AuthorizedSigningAlgorithms field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CompliancePolicy) GetAuthorizedSigningAlgorithms() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.AuthorizedSigningAlgorithms
+}
+
+// GetAuthorizedSigningAlgorithmsOk returns a tuple with the AuthorizedSigningAlgorithms field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CompliancePolicy) GetAuthorizedSigningAlgorithmsOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.AuthorizedSigningAlgorithms) {
+		return nil, false
+	}
+	return o.AuthorizedSigningAlgorithms, true
+}
+
+// HasAuthorizedSigningAlgorithms returns a boolean if a field has been set.
+func (o *CompliancePolicy) HasAuthorizedSigningAlgorithms() bool {
+	if o != nil && !utils.IsNil(o.AuthorizedSigningAlgorithms) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthorizedSigningAlgorithms gets a reference to the given []string and assigns it to the AuthorizedSigningAlgorithms field.
+func (o *CompliancePolicy) SetAuthorizedSigningAlgorithms(v []string) {
+	o.AuthorizedSigningAlgorithms = v
+}
+
 func (o CompliancePolicy) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -121,11 +121,11 @@ func (o CompliancePolicy) MarshalJSON() ([]byte, error) {
 
 func (o CompliancePolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AuthorizedSigningAlgorithms != nil {
-		toSerialize["authorizedSigningAlgorithms"] = o.AuthorizedSigningAlgorithms
-	}
 	if o.AuthorizedCas != nil {
 		toSerialize["authorizedCas"] = o.AuthorizedCas
+	}
+	if o.AuthorizedSigningAlgorithms != nil {
+		toSerialize["authorizedSigningAlgorithms"] = o.AuthorizedSigningAlgorithms
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -149,8 +149,8 @@ func (o *CompliancePolicy) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "authorizedSigningAlgorithms")
 		delete(additionalProperties, "authorizedCas")
+		delete(additionalProperties, "authorizedSigningAlgorithms")
 		o.AdditionalProperties = additionalProperties
 	}
 

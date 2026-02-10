@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Workflow** | **string** |  | 
 **Profile** | Pointer to **NullableString** |  | [optional] 
+**Workflow** | **string** |  | 
 **CertificateId** | Pointer to **NullableString** | Used to pre-fill the template field with the certificate values. | [optional] 
 **CertificatePem** | Pointer to **NullableString** | Used to pre-fill the template field with the certificate values. | [optional] 
 **Module** | Pointer to **string** | The request module | [optional] 
@@ -28,26 +28,6 @@ will change when the set of required properties is changed
 NewWebRAUpdateRequestOnTemplateWithDefaults instantiates a new WebRAUpdateRequestOnTemplate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetWorkflow
-
-`func (o *WebRAUpdateRequestOnTemplate) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRAUpdateRequestOnTemplate) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRAUpdateRequestOnTemplate) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
 
 ### GetProfile
 
@@ -84,6 +64,26 @@ HasProfile returns a boolean if a field has been set.
 `func (o *WebRAUpdateRequestOnTemplate) UnsetProfile()`
 
 UnsetProfile ensures that no value is present for Profile, not even an explicit nil
+### GetWorkflow
+
+`func (o *WebRAUpdateRequestOnTemplate) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRAUpdateRequestOnTemplate) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRAUpdateRequestOnTemplate) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
 ### GetCertificateId
 
 `func (o *WebRAUpdateRequestOnTemplate) GetCertificateId() string`

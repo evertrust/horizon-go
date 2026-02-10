@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &AzureKeyVaultTrigger{}
 
 // AzureKeyVaultTrigger struct for AzureKeyVaultTrigger
 type AzureKeyVaultTrigger struct {
-	Name                 string              `json:"name"`
-	Type                 string              `json:"type"`
-	Retries              utils.NullableInt64 `json:"retries,omitempty"`
 	Connector            string              `json:"connector"`
+	Name                 string              `json:"name"`
+	Retries              utils.NullableInt64 `json:"retries,omitempty"`
+	Type                 string              `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,11 +35,11 @@ type _AzureKeyVaultTrigger AzureKeyVaultTrigger
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAzureKeyVaultTrigger(name string, type_ string, connector string) *AzureKeyVaultTrigger {
+func NewAzureKeyVaultTrigger(connector string, name string, type_ string) *AzureKeyVaultTrigger {
 	this := AzureKeyVaultTrigger{}
+	this.Connector = connector
 	this.Name = name
 	this.Type = type_
-	this.Connector = connector
 	return &this
 }
 
@@ -49,6 +49,30 @@ func NewAzureKeyVaultTrigger(name string, type_ string, connector string) *Azure
 func NewAzureKeyVaultTriggerWithDefaults() *AzureKeyVaultTrigger {
 	this := AzureKeyVaultTrigger{}
 	return &this
+}
+
+// GetConnector returns the Connector field value
+func (o *AzureKeyVaultTrigger) GetConnector() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Connector
+}
+
+// GetConnectorOk returns a tuple with the Connector field value
+// and a boolean to check if the value has been set.
+func (o *AzureKeyVaultTrigger) GetConnectorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Connector, true
+}
+
+// SetConnector sets field value
+func (o *AzureKeyVaultTrigger) SetConnector(v string) {
+	o.Connector = v
 }
 
 // GetName returns the Name field value
@@ -73,30 +97,6 @@ func (o *AzureKeyVaultTrigger) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *AzureKeyVaultTrigger) SetName(v string) {
 	o.Name = v
-}
-
-// GetType returns the Type field value
-func (o *AzureKeyVaultTrigger) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *AzureKeyVaultTrigger) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *AzureKeyVaultTrigger) SetType(v string) {
-	o.Type = v
 }
 
 // GetRetries returns the Retries field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -142,28 +142,28 @@ func (o *AzureKeyVaultTrigger) UnsetRetries() {
 	o.Retries.Unset()
 }
 
-// GetConnector returns the Connector field value
-func (o *AzureKeyVaultTrigger) GetConnector() string {
+// GetType returns the Type field value
+func (o *AzureKeyVaultTrigger) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Connector
+	return o.Type
 }
 
-// GetConnectorOk returns a tuple with the Connector field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *AzureKeyVaultTrigger) GetConnectorOk() (*string, bool) {
+func (o *AzureKeyVaultTrigger) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Connector, true
+	return &o.Type, true
 }
 
-// SetConnector sets field value
-func (o *AzureKeyVaultTrigger) SetConnector(v string) {
-	o.Connector = v
+// SetType sets field value
+func (o *AzureKeyVaultTrigger) SetType(v string) {
+	o.Type = v
 }
 
 func (o AzureKeyVaultTrigger) MarshalJSON() ([]byte, error) {
@@ -176,12 +176,12 @@ func (o AzureKeyVaultTrigger) MarshalJSON() ([]byte, error) {
 
 func (o AzureKeyVaultTrigger) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["connector"] = o.Connector
 	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
 	if o.Retries.IsSet() {
 		toSerialize["retries"] = o.Retries.Get()
 	}
-	toSerialize["connector"] = o.Connector
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -195,9 +195,9 @@ func (o *AzureKeyVaultTrigger) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"connector",
 		"name",
 		"type",
-		"connector",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -227,10 +227,10 @@ func (o *AzureKeyVaultTrigger) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "retries")
 		delete(additionalProperties, "connector")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "retries")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

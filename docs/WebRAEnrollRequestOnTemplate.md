@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Workflow** | **string** |  | 
 **Module** | **string** | The module for which to return the template. | 
 **Profile** | Pointer to **NullableString** |  | [optional] 
 **Template** | Pointer to **map[string]interface{}** | An optional CSR can be given to pre-fill the template | [optional] 
+**Workflow** | **string** |  | 
 **CertificateId** | Pointer to **NullableString** | Used to pre-fill the template field with the certificate values. | [optional] 
 **CertificatePem** | Pointer to **NullableString** | Used to pre-fill the template field with the certificate values. | [optional] 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewWebRAEnrollRequestOnTemplate
 
-`func NewWebRAEnrollRequestOnTemplate(workflow string, module string, ) *WebRAEnrollRequestOnTemplate`
+`func NewWebRAEnrollRequestOnTemplate(module string, workflow string, ) *WebRAEnrollRequestOnTemplate`
 
 NewWebRAEnrollRequestOnTemplate instantiates a new WebRAEnrollRequestOnTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -29,26 +29,6 @@ will change when the set of required properties is changed
 NewWebRAEnrollRequestOnTemplateWithDefaults instantiates a new WebRAEnrollRequestOnTemplate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetWorkflow
-
-`func (o *WebRAEnrollRequestOnTemplate) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRAEnrollRequestOnTemplate) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRAEnrollRequestOnTemplate) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
 
 ### GetModule
 
@@ -129,6 +109,26 @@ SetTemplate sets Template field to given value.
 `func (o *WebRAEnrollRequestOnTemplate) HasTemplate() bool`
 
 HasTemplate returns a boolean if a field has been set.
+
+### GetWorkflow
+
+`func (o *WebRAEnrollRequestOnTemplate) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRAEnrollRequestOnTemplate) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRAEnrollRequestOnTemplate) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
 
 ### GetCertificateId
 

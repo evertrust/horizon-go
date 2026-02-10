@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	pKIQueue := *openapiclient.NewPKIQueue("Name_example", false, int64(123)) // PKIQueue | The pki queue to register
+	pKIQueue := *openapiclient.NewPKIQueue(false, "Name_example", int64(123)) // PKIQueue | The pki queue to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -298,7 +298,7 @@ import (
 )
 
 func main() {
-	pKIQueue := *openapiclient.NewPKIQueue("Name_example", false, int64(123)) // PKIQueue | The pki queue to update
+	pKIQueue := *openapiclient.NewPKIQueue(false, "Name_example", int64(123)) // PKIQueue | The pki queue to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

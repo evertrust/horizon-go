@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Query** | Pointer to **NullableString** | The HRQL query to use for the search, represents the way to filter requests. Filters nothing if not specified | [optional] 
 **Fields** | Pointer to **[]string** | The fields to be returned by the search. If this parameter is not specified, everything is returned by default. If this parameter is equal to an empty array, only the &#x60;_id&#x60; field is returned | [optional] 
-**SortedBy** | Pointer to [**[]SortElement**](SortElement.md) | The way to sort the search results | [optional] 
 **PageIndex** | Pointer to **NullableInt64** | The index of the page to retrieve | [optional] [default to 1]
 **PageSize** | Pointer to **NullableInt64** | The maximum number of items to retrieve for one page | [optional] [default to 50]
-**WithCount** | Pointer to **NullableBool** | Whether to return the total count of requests matching the HRQL query | [optional] [default to false]
+**Query** | Pointer to **NullableString** | The HRQL query to use for the search, represents the way to filter requests. Filters nothing if not specified | [optional] 
 **Scope** | Pointer to **NullableString** | The scope of the search. &#x60;manage&#x60; only searches among requests that the currently logged in user has the rights to manage. &#x60;search&#x60; searches among all visible requests to the logged in user. &#x60;self&#x60; searches among requests that the currently logged in user or its team has issued | [optional] 
+**SortedBy** | Pointer to [**[]SortElement**](SortElement.md) | The way to sort the search results | [optional] 
+**WithCount** | Pointer to **NullableBool** | Whether to return the total count of requests matching the HRQL query | [optional] [default to false]
 
 ## Methods
 
@@ -31,41 +31,6 @@ NewRequestSearchQueryWithDefaults instantiates a new RequestSearchQuery object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetQuery
-
-`func (o *RequestSearchQuery) GetQuery() string`
-
-GetQuery returns the Query field if non-nil, zero value otherwise.
-
-### GetQueryOk
-
-`func (o *RequestSearchQuery) GetQueryOk() (*string, bool)`
-
-GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQuery
-
-`func (o *RequestSearchQuery) SetQuery(v string)`
-
-SetQuery sets Query field to given value.
-
-### HasQuery
-
-`func (o *RequestSearchQuery) HasQuery() bool`
-
-HasQuery returns a boolean if a field has been set.
-
-### SetQueryNil
-
-`func (o *RequestSearchQuery) SetQueryNil(b bool)`
-
- SetQueryNil sets the value for Query to be an explicit nil
-
-### UnsetQuery
-`func (o *RequestSearchQuery) UnsetQuery()`
-
-UnsetQuery ensures that no value is present for Query, not even an explicit nil
 ### GetFields
 
 `func (o *RequestSearchQuery) GetFields() []string`
@@ -101,41 +66,6 @@ HasFields returns a boolean if a field has been set.
 `func (o *RequestSearchQuery) UnsetFields()`
 
 UnsetFields ensures that no value is present for Fields, not even an explicit nil
-### GetSortedBy
-
-`func (o *RequestSearchQuery) GetSortedBy() []SortElement`
-
-GetSortedBy returns the SortedBy field if non-nil, zero value otherwise.
-
-### GetSortedByOk
-
-`func (o *RequestSearchQuery) GetSortedByOk() (*[]SortElement, bool)`
-
-GetSortedByOk returns a tuple with the SortedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSortedBy
-
-`func (o *RequestSearchQuery) SetSortedBy(v []SortElement)`
-
-SetSortedBy sets SortedBy field to given value.
-
-### HasSortedBy
-
-`func (o *RequestSearchQuery) HasSortedBy() bool`
-
-HasSortedBy returns a boolean if a field has been set.
-
-### SetSortedByNil
-
-`func (o *RequestSearchQuery) SetSortedByNil(b bool)`
-
- SetSortedByNil sets the value for SortedBy to be an explicit nil
-
-### UnsetSortedBy
-`func (o *RequestSearchQuery) UnsetSortedBy()`
-
-UnsetSortedBy ensures that no value is present for SortedBy, not even an explicit nil
 ### GetPageIndex
 
 `func (o *RequestSearchQuery) GetPageIndex() int64`
@@ -206,41 +136,41 @@ HasPageSize returns a boolean if a field has been set.
 `func (o *RequestSearchQuery) UnsetPageSize()`
 
 UnsetPageSize ensures that no value is present for PageSize, not even an explicit nil
-### GetWithCount
+### GetQuery
 
-`func (o *RequestSearchQuery) GetWithCount() bool`
+`func (o *RequestSearchQuery) GetQuery() string`
 
-GetWithCount returns the WithCount field if non-nil, zero value otherwise.
+GetQuery returns the Query field if non-nil, zero value otherwise.
 
-### GetWithCountOk
+### GetQueryOk
 
-`func (o *RequestSearchQuery) GetWithCountOk() (*bool, bool)`
+`func (o *RequestSearchQuery) GetQueryOk() (*string, bool)`
 
-GetWithCountOk returns a tuple with the WithCount field if it's non-nil, zero value otherwise
+GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWithCount
+### SetQuery
 
-`func (o *RequestSearchQuery) SetWithCount(v bool)`
+`func (o *RequestSearchQuery) SetQuery(v string)`
 
-SetWithCount sets WithCount field to given value.
+SetQuery sets Query field to given value.
 
-### HasWithCount
+### HasQuery
 
-`func (o *RequestSearchQuery) HasWithCount() bool`
+`func (o *RequestSearchQuery) HasQuery() bool`
 
-HasWithCount returns a boolean if a field has been set.
+HasQuery returns a boolean if a field has been set.
 
-### SetWithCountNil
+### SetQueryNil
 
-`func (o *RequestSearchQuery) SetWithCountNil(b bool)`
+`func (o *RequestSearchQuery) SetQueryNil(b bool)`
 
- SetWithCountNil sets the value for WithCount to be an explicit nil
+ SetQueryNil sets the value for Query to be an explicit nil
 
-### UnsetWithCount
-`func (o *RequestSearchQuery) UnsetWithCount()`
+### UnsetQuery
+`func (o *RequestSearchQuery) UnsetQuery()`
 
-UnsetWithCount ensures that no value is present for WithCount, not even an explicit nil
+UnsetQuery ensures that no value is present for Query, not even an explicit nil
 ### GetScope
 
 `func (o *RequestSearchQuery) GetScope() string`
@@ -276,6 +206,76 @@ HasScope returns a boolean if a field has been set.
 `func (o *RequestSearchQuery) UnsetScope()`
 
 UnsetScope ensures that no value is present for Scope, not even an explicit nil
+### GetSortedBy
+
+`func (o *RequestSearchQuery) GetSortedBy() []SortElement`
+
+GetSortedBy returns the SortedBy field if non-nil, zero value otherwise.
+
+### GetSortedByOk
+
+`func (o *RequestSearchQuery) GetSortedByOk() (*[]SortElement, bool)`
+
+GetSortedByOk returns a tuple with the SortedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSortedBy
+
+`func (o *RequestSearchQuery) SetSortedBy(v []SortElement)`
+
+SetSortedBy sets SortedBy field to given value.
+
+### HasSortedBy
+
+`func (o *RequestSearchQuery) HasSortedBy() bool`
+
+HasSortedBy returns a boolean if a field has been set.
+
+### SetSortedByNil
+
+`func (o *RequestSearchQuery) SetSortedByNil(b bool)`
+
+ SetSortedByNil sets the value for SortedBy to be an explicit nil
+
+### UnsetSortedBy
+`func (o *RequestSearchQuery) UnsetSortedBy()`
+
+UnsetSortedBy ensures that no value is present for SortedBy, not even an explicit nil
+### GetWithCount
+
+`func (o *RequestSearchQuery) GetWithCount() bool`
+
+GetWithCount returns the WithCount field if non-nil, zero value otherwise.
+
+### GetWithCountOk
+
+`func (o *RequestSearchQuery) GetWithCountOk() (*bool, bool)`
+
+GetWithCountOk returns a tuple with the WithCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWithCount
+
+`func (o *RequestSearchQuery) SetWithCount(v bool)`
+
+SetWithCount sets WithCount field to given value.
+
+### HasWithCount
+
+`func (o *RequestSearchQuery) HasWithCount() bool`
+
+HasWithCount returns a boolean if a field has been set.
+
+### SetWithCountNil
+
+`func (o *RequestSearchQuery) SetWithCountNil(b bool)`
+
+ SetWithCountNil sets the value for WithCount to be an explicit nil
+
+### UnsetWithCount
+`func (o *RequestSearchQuery) UnsetWithCount()`
+
+UnsetWithCount ensures that no value is present for WithCount, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

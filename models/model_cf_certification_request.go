@@ -23,12 +23,12 @@ var _ utils.MappedNullable = &CFCertificationRequest{}
 // CFCertificationRequest Certification request
 type CFCertificationRequest struct {
 	// Distinguished name
-	Dn         string                 `json:"dn"`
-	Sans       []SubjectAlternateName `json:"sans,omitempty"`
-	DnElements []CFDistinguishedName  `json:"dnElements"`
+	Dn         string                `json:"dn"`
+	DnElements []CFDistinguishedName `json:"dnElements"`
 	// One of `rsa-2048`, `rsa-3072`, `rsa-4096`, `rsa-8192`, `ec-secp256r1`, `ec-secp384r1`, `ec-secp521r1`, `ed-448`, `ed-25519`, `mldsa-44`, `mldsa-65`, `mldsa-87`, `slhdsa-sha2-128s`, `slhdsa-sha2-128f`, `slhdsa-sha2-192s`, `slhdsa-sha2-192f`, `slhdsa-sha2-256s`, `slhdsa-sha2-256f`, `slhdsa-sha2-128ssha256`, `slhdsa-sha2-128fsha256`, `slhdsa-sha2-192ssha512`, `slhdsa-sha2-192fsha512`, `slhdsa-sha2-256ssha512`, `slhdsa-sha2-256fsha512` or `<primary key type>+<alternate key type>`
-	KeyType              string `json:"keyType" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
-	Pem                  string `json:"pem"`
+	KeyType              string                 `json:"keyType" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
+	Pem                  string                 `json:"pem"`
+	Sans                 []SubjectAlternateName `json:"sans,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -77,38 +77,6 @@ func (o *CFCertificationRequest) GetDnOk() (*string, bool) {
 // SetDn sets field value
 func (o *CFCertificationRequest) SetDn(v string) {
 	o.Dn = v
-}
-
-// GetSans returns the Sans field value if set, zero value otherwise.
-func (o *CFCertificationRequest) GetSans() []SubjectAlternateName {
-	if o == nil || utils.IsNil(o.Sans) {
-		var ret []SubjectAlternateName
-		return ret
-	}
-	return o.Sans
-}
-
-// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CFCertificationRequest) GetSansOk() ([]SubjectAlternateName, bool) {
-	if o == nil || utils.IsNil(o.Sans) {
-		return nil, false
-	}
-	return o.Sans, true
-}
-
-// HasSans returns a boolean if a field has been set.
-func (o *CFCertificationRequest) HasSans() bool {
-	if o != nil && !utils.IsNil(o.Sans) {
-		return true
-	}
-
-	return false
-}
-
-// SetSans gets a reference to the given []SubjectAlternateName and assigns it to the Sans field.
-func (o *CFCertificationRequest) SetSans(v []SubjectAlternateName) {
-	o.Sans = v
 }
 
 // GetDnElements returns the DnElements field value
@@ -183,6 +151,38 @@ func (o *CFCertificationRequest) SetPem(v string) {
 	o.Pem = v
 }
 
+// GetSans returns the Sans field value if set, zero value otherwise.
+func (o *CFCertificationRequest) GetSans() []SubjectAlternateName {
+	if o == nil || utils.IsNil(o.Sans) {
+		var ret []SubjectAlternateName
+		return ret
+	}
+	return o.Sans
+}
+
+// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CFCertificationRequest) GetSansOk() ([]SubjectAlternateName, bool) {
+	if o == nil || utils.IsNil(o.Sans) {
+		return nil, false
+	}
+	return o.Sans, true
+}
+
+// HasSans returns a boolean if a field has been set.
+func (o *CFCertificationRequest) HasSans() bool {
+	if o != nil && !utils.IsNil(o.Sans) {
+		return true
+	}
+
+	return false
+}
+
+// SetSans gets a reference to the given []SubjectAlternateName and assigns it to the Sans field.
+func (o *CFCertificationRequest) SetSans(v []SubjectAlternateName) {
+	o.Sans = v
+}
+
 func (o CFCertificationRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -194,12 +194,12 @@ func (o CFCertificationRequest) MarshalJSON() ([]byte, error) {
 func (o CFCertificationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["dn"] = o.Dn
-	if !utils.IsNil(o.Sans) {
-		toSerialize["sans"] = o.Sans
-	}
 	toSerialize["dnElements"] = o.DnElements
 	toSerialize["keyType"] = o.KeyType
 	toSerialize["pem"] = o.Pem
+	if !utils.IsNil(o.Sans) {
+		toSerialize["sans"] = o.Sans
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -247,10 +247,10 @@ func (o *CFCertificationRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "dn")
-		delete(additionalProperties, "sans")
 		delete(additionalProperties, "dnElements")
 		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "pem")
+		delete(additionalProperties, "sans")
 		o.AdditionalProperties = additionalProperties
 	}
 

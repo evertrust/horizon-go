@@ -24,16 +24,16 @@ var _ utils.MappedNullable = &EventArchiveResponse{}
 type EventArchiveResponse struct {
 	// Object internal ID
 	Id        string               `json:"_id"`
+	Count     utils.NullableInt64  `json:"count,omitempty"`
 	CreatedAt utils.NullableInt64  `json:"createdAt,omitempty"`
+	Error     utils.NullableString `json:"error,omitempty"`
 	PurgeAt   utils.NullableInt64  `json:"purgeAt,omitempty"`
 	Status    ArchiveStatus        `json:"status"`
-	Count     utils.NullableInt64  `json:"count,omitempty"`
-	Error     utils.NullableString `json:"error,omitempty"`
-	Name      string               `json:"name"`
-	Type      string               `json:"type"`
-	Filename  string               `json:"filename"`
 	// Date before which all events will be archived
-	Before               int64 `json:"before"`
+	Before               int64  `json:"before"`
+	Filename             string `json:"filename"`
+	Name                 string `json:"name"`
+	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,12 +43,12 @@ type _EventArchiveResponse EventArchiveResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEventArchiveResponse(id string, status ArchiveStatus, name string, type_ string, filename string, before int64) *EventArchiveResponse {
+func NewEventArchiveResponse(id string, status ArchiveStatus, before int64, filename string, name string, type_ string) *EventArchiveResponse {
 	this := EventArchiveResponse{}
+	this.Before = before
+	this.Filename = filename
 	this.Name = name
 	this.Type = type_
-	this.Filename = filename
-	this.Before = before
 	return &this
 }
 
@@ -82,6 +82,49 @@ func (o *EventArchiveResponse) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *EventArchiveResponse) SetId(v string) {
 	o.Id = v
+}
+
+// GetCount returns the Count field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EventArchiveResponse) GetCount() int64 {
+	if o == nil || utils.IsNil(o.Count.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Count.Get()
+}
+
+// GetCountOk returns a tuple with the Count field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EventArchiveResponse) GetCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Count.Get(), o.Count.IsSet()
+}
+
+// HasCount returns a boolean if a field has been set.
+func (o *EventArchiveResponse) HasCount() bool {
+	if o != nil && o.Count.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCount gets a reference to the given NullableInt64 and assigns it to the Count field.
+func (o *EventArchiveResponse) SetCount(v int64) {
+	o.Count.Set(&v)
+}
+
+// SetCountNil sets the value for Count to be an explicit nil
+func (o *EventArchiveResponse) SetCountNil() {
+	o.Count.Set(nil)
+}
+
+// UnsetCount ensures that no value is present for Count, not even an explicit nil
+func (o *EventArchiveResponse) UnsetCount() {
+	o.Count.Unset()
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -125,6 +168,49 @@ func (o *EventArchiveResponse) SetCreatedAtNil() {
 // UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 func (o *EventArchiveResponse) UnsetCreatedAt() {
 	o.CreatedAt.Unset()
+}
+
+// GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EventArchiveResponse) GetError() string {
+	if o == nil || utils.IsNil(o.Error.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Error.Get()
+}
+
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EventArchiveResponse) GetErrorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Error.Get(), o.Error.IsSet()
+}
+
+// HasError returns a boolean if a field has been set.
+func (o *EventArchiveResponse) HasError() bool {
+	if o != nil && o.Error.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetError gets a reference to the given NullableString and assigns it to the Error field.
+func (o *EventArchiveResponse) SetError(v string) {
+	o.Error.Set(&v)
+}
+
+// SetErrorNil sets the value for Error to be an explicit nil
+func (o *EventArchiveResponse) SetErrorNil() {
+	o.Error.Set(nil)
+}
+
+// UnsetError ensures that no value is present for Error, not even an explicit nil
+func (o *EventArchiveResponse) UnsetError() {
+	o.Error.Unset()
 }
 
 // GetPurgeAt returns the PurgeAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -194,90 +280,52 @@ func (o *EventArchiveResponse) SetStatus(v ArchiveStatus) {
 	o.Status = v
 }
 
-// GetCount returns the Count field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EventArchiveResponse) GetCount() int64 {
-	if o == nil || utils.IsNil(o.Count.Get()) {
+// GetBefore returns the Before field value
+func (o *EventArchiveResponse) GetBefore() int64 {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Count.Get()
+
+	return o.Before
 }
 
-// GetCountOk returns a tuple with the Count field value if set, nil otherwise
+// GetBeforeOk returns a tuple with the Before field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EventArchiveResponse) GetCountOk() (*int64, bool) {
+func (o *EventArchiveResponse) GetBeforeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Count.Get(), o.Count.IsSet()
+	return &o.Before, true
 }
 
-// HasCount returns a boolean if a field has been set.
-func (o *EventArchiveResponse) HasCount() bool {
-	if o != nil && o.Count.IsSet() {
-		return true
-	}
-
-	return false
+// SetBefore sets field value
+func (o *EventArchiveResponse) SetBefore(v int64) {
+	o.Before = v
 }
 
-// SetCount gets a reference to the given NullableInt64 and assigns it to the Count field.
-func (o *EventArchiveResponse) SetCount(v int64) {
-	o.Count.Set(&v)
-}
-
-// SetCountNil sets the value for Count to be an explicit nil
-func (o *EventArchiveResponse) SetCountNil() {
-	o.Count.Set(nil)
-}
-
-// UnsetCount ensures that no value is present for Count, not even an explicit nil
-func (o *EventArchiveResponse) UnsetCount() {
-	o.Count.Unset()
-}
-
-// GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EventArchiveResponse) GetError() string {
-	if o == nil || utils.IsNil(o.Error.Get()) {
+// GetFilename returns the Filename field value
+func (o *EventArchiveResponse) GetFilename() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Error.Get()
+
+	return o.Filename
 }
 
-// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// GetFilenameOk returns a tuple with the Filename field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EventArchiveResponse) GetErrorOk() (*string, bool) {
+func (o *EventArchiveResponse) GetFilenameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Error.Get(), o.Error.IsSet()
+	return &o.Filename, true
 }
 
-// HasError returns a boolean if a field has been set.
-func (o *EventArchiveResponse) HasError() bool {
-	if o != nil && o.Error.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetError gets a reference to the given NullableString and assigns it to the Error field.
-func (o *EventArchiveResponse) SetError(v string) {
-	o.Error.Set(&v)
-}
-
-// SetErrorNil sets the value for Error to be an explicit nil
-func (o *EventArchiveResponse) SetErrorNil() {
-	o.Error.Set(nil)
-}
-
-// UnsetError ensures that no value is present for Error, not even an explicit nil
-func (o *EventArchiveResponse) UnsetError() {
-	o.Error.Unset()
+// SetFilename sets field value
+func (o *EventArchiveResponse) SetFilename(v string) {
+	o.Filename = v
 }
 
 // GetName returns the Name field value
@@ -328,54 +376,6 @@ func (o *EventArchiveResponse) SetType(v string) {
 	o.Type = v
 }
 
-// GetFilename returns the Filename field value
-func (o *EventArchiveResponse) GetFilename() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Filename
-}
-
-// GetFilenameOk returns a tuple with the Filename field value
-// and a boolean to check if the value has been set.
-func (o *EventArchiveResponse) GetFilenameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Filename, true
-}
-
-// SetFilename sets field value
-func (o *EventArchiveResponse) SetFilename(v string) {
-	o.Filename = v
-}
-
-// GetBefore returns the Before field value
-func (o *EventArchiveResponse) GetBefore() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Before
-}
-
-// GetBeforeOk returns a tuple with the Before field value
-// and a boolean to check if the value has been set.
-func (o *EventArchiveResponse) GetBeforeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Before, true
-}
-
-// SetBefore sets field value
-func (o *EventArchiveResponse) SetBefore(v int64) {
-	o.Before = v
-}
-
 func (o EventArchiveResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -387,23 +387,23 @@ func (o EventArchiveResponse) MarshalJSON() ([]byte, error) {
 func (o EventArchiveResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
+	if o.Count.IsSet() {
+		toSerialize["count"] = o.Count.Get()
+	}
 	if o.CreatedAt.IsSet() {
 		toSerialize["createdAt"] = o.CreatedAt.Get()
+	}
+	if o.Error.IsSet() {
+		toSerialize["error"] = o.Error.Get()
 	}
 	if o.PurgeAt.IsSet() {
 		toSerialize["purgeAt"] = o.PurgeAt.Get()
 	}
 	toSerialize["status"] = o.Status
-	if o.Count.IsSet() {
-		toSerialize["count"] = o.Count.Get()
-	}
-	if o.Error.IsSet() {
-		toSerialize["error"] = o.Error.Get()
-	}
+	toSerialize["before"] = o.Before
+	toSerialize["filename"] = o.Filename
 	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
-	toSerialize["filename"] = o.Filename
-	toSerialize["before"] = o.Before
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -419,10 +419,10 @@ func (o *EventArchiveResponse) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"_id",
 		"status",
+		"before",
+		"filename",
 		"name",
 		"type",
-		"filename",
-		"before",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -453,15 +453,15 @@ func (o *EventArchiveResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
+		delete(additionalProperties, "count")
 		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "error")
 		delete(additionalProperties, "purgeAt")
 		delete(additionalProperties, "status")
-		delete(additionalProperties, "count")
-		delete(additionalProperties, "error")
+		delete(additionalProperties, "before")
+		delete(additionalProperties, "filename")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "type")
-		delete(additionalProperties, "filename")
-		delete(additionalProperties, "before")
 		o.AdditionalProperties = additionalProperties
 	}
 

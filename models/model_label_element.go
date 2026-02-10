@@ -22,24 +22,24 @@ var _ utils.MappedNullable = &LabelElement{}
 
 // LabelElement struct for LabelElement
 type LabelElement struct {
-	// The name of the label
-	Label string `json:"label"`
-	// The default value of the label element
-	Value utils.NullableString `json:"value,omitempty"`
 	// The computation rule of the label element
 	ComputationRule utils.NullableString `json:"computationRule,omitempty"`
-	// Whether the label element is mandatory to submit a request
-	Mandatory utils.NullableBool `json:"mandatory,omitempty"`
-	// Whether the label element is editable by the requester
-	EditableByRequester utils.NullableBool `json:"editableByRequester,omitempty"`
 	// Whether the label element is editable by the approver
 	EditableByApprover utils.NullableBool `json:"editableByApprover,omitempty"`
-	// The regex used to validate the label element
-	Regex utils.NullableString `json:"regex,omitempty"`
+	// Whether the label element is editable by the requester
+	EditableByRequester utils.NullableBool `json:"editableByRequester,omitempty"`
 	// The whitelist used to validate the label element
 	Enum []string `json:"enum,omitempty"`
+	// The name of the label
+	Label string `json:"label"`
+	// Whether the label element is mandatory to submit a request
+	Mandatory utils.NullableBool `json:"mandatory,omitempty"`
+	// The regex used to validate the label element
+	Regex utils.NullableString `json:"regex,omitempty"`
 	// The suggestions used to recommend the label element values
-	Suggestions          []string `json:"suggestions,omitempty"`
+	Suggestions []string `json:"suggestions,omitempty"`
+	// The default value of the label element
+	Value                utils.NullableString `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,73 +61,6 @@ func NewLabelElement(label string) *LabelElement {
 func NewLabelElementWithDefaults() *LabelElement {
 	this := LabelElement{}
 	return &this
-}
-
-// GetLabel returns the Label field value
-func (o *LabelElement) GetLabel() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Label
-}
-
-// GetLabelOk returns a tuple with the Label field value
-// and a boolean to check if the value has been set.
-func (o *LabelElement) GetLabelOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Label, true
-}
-
-// SetLabel sets field value
-func (o *LabelElement) SetLabel(v string) {
-	o.Label = v
-}
-
-// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LabelElement) GetValue() string {
-	if o == nil || utils.IsNil(o.Value.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Value.Get()
-}
-
-// GetValueOk returns a tuple with the Value field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LabelElement) GetValueOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Value.Get(), o.Value.IsSet()
-}
-
-// HasValue returns a boolean if a field has been set.
-func (o *LabelElement) HasValue() bool {
-	if o != nil && o.Value.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetValue gets a reference to the given NullableString and assigns it to the Value field.
-func (o *LabelElement) SetValue(v string) {
-	o.Value.Set(&v)
-}
-
-// SetValueNil sets the value for Value to be an explicit nil
-func (o *LabelElement) SetValueNil() {
-	o.Value.Set(nil)
-}
-
-// UnsetValue ensures that no value is present for Value, not even an explicit nil
-func (o *LabelElement) UnsetValue() {
-	o.Value.Unset()
 }
 
 // GetComputationRule returns the ComputationRule field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -173,47 +106,47 @@ func (o *LabelElement) UnsetComputationRule() {
 	o.ComputationRule.Unset()
 }
 
-// GetMandatory returns the Mandatory field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LabelElement) GetMandatory() bool {
-	if o == nil || utils.IsNil(o.Mandatory.Get()) {
+// GetEditableByApprover returns the EditableByApprover field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LabelElement) GetEditableByApprover() bool {
+	if o == nil || utils.IsNil(o.EditableByApprover.Get()) {
 		var ret bool
 		return ret
 	}
-	return *o.Mandatory.Get()
+	return *o.EditableByApprover.Get()
 }
 
-// GetMandatoryOk returns a tuple with the Mandatory field value if set, nil otherwise
+// GetEditableByApproverOk returns a tuple with the EditableByApprover field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LabelElement) GetMandatoryOk() (*bool, bool) {
+func (o *LabelElement) GetEditableByApproverOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Mandatory.Get(), o.Mandatory.IsSet()
+	return o.EditableByApprover.Get(), o.EditableByApprover.IsSet()
 }
 
-// HasMandatory returns a boolean if a field has been set.
-func (o *LabelElement) HasMandatory() bool {
-	if o != nil && o.Mandatory.IsSet() {
+// HasEditableByApprover returns a boolean if a field has been set.
+func (o *LabelElement) HasEditableByApprover() bool {
+	if o != nil && o.EditableByApprover.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMandatory gets a reference to the given NullableBool and assigns it to the Mandatory field.
-func (o *LabelElement) SetMandatory(v bool) {
-	o.Mandatory.Set(&v)
+// SetEditableByApprover gets a reference to the given NullableBool and assigns it to the EditableByApprover field.
+func (o *LabelElement) SetEditableByApprover(v bool) {
+	o.EditableByApprover.Set(&v)
 }
 
-// SetMandatoryNil sets the value for Mandatory to be an explicit nil
-func (o *LabelElement) SetMandatoryNil() {
-	o.Mandatory.Set(nil)
+// SetEditableByApproverNil sets the value for EditableByApprover to be an explicit nil
+func (o *LabelElement) SetEditableByApproverNil() {
+	o.EditableByApprover.Set(nil)
 }
 
-// UnsetMandatory ensures that no value is present for Mandatory, not even an explicit nil
-func (o *LabelElement) UnsetMandatory() {
-	o.Mandatory.Unset()
+// UnsetEditableByApprover ensures that no value is present for EditableByApprover, not even an explicit nil
+func (o *LabelElement) UnsetEditableByApprover() {
+	o.EditableByApprover.Unset()
 }
 
 // GetEditableByRequester returns the EditableByRequester field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -259,47 +192,104 @@ func (o *LabelElement) UnsetEditableByRequester() {
 	o.EditableByRequester.Unset()
 }
 
-// GetEditableByApprover returns the EditableByApprover field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LabelElement) GetEditableByApprover() bool {
-	if o == nil || utils.IsNil(o.EditableByApprover.Get()) {
-		var ret bool
+// GetEnum returns the Enum field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LabelElement) GetEnum() []string {
+	if o == nil {
+		var ret []string
 		return ret
 	}
-	return *o.EditableByApprover.Get()
+	return o.Enum
 }
 
-// GetEditableByApproverOk returns a tuple with the EditableByApprover field value if set, nil otherwise
+// GetEnumOk returns a tuple with the Enum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LabelElement) GetEditableByApproverOk() (*bool, bool) {
-	if o == nil {
+func (o *LabelElement) GetEnumOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Enum) {
 		return nil, false
 	}
-	return o.EditableByApprover.Get(), o.EditableByApprover.IsSet()
+	return o.Enum, true
 }
 
-// HasEditableByApprover returns a boolean if a field has been set.
-func (o *LabelElement) HasEditableByApprover() bool {
-	if o != nil && o.EditableByApprover.IsSet() {
+// HasEnum returns a boolean if a field has been set.
+func (o *LabelElement) HasEnum() bool {
+	if o != nil && !utils.IsNil(o.Enum) {
 		return true
 	}
 
 	return false
 }
 
-// SetEditableByApprover gets a reference to the given NullableBool and assigns it to the EditableByApprover field.
-func (o *LabelElement) SetEditableByApprover(v bool) {
-	o.EditableByApprover.Set(&v)
+// SetEnum gets a reference to the given []string and assigns it to the Enum field.
+func (o *LabelElement) SetEnum(v []string) {
+	o.Enum = v
 }
 
-// SetEditableByApproverNil sets the value for EditableByApprover to be an explicit nil
-func (o *LabelElement) SetEditableByApproverNil() {
-	o.EditableByApprover.Set(nil)
+// GetLabel returns the Label field value
+func (o *LabelElement) GetLabel() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Label
 }
 
-// UnsetEditableByApprover ensures that no value is present for EditableByApprover, not even an explicit nil
-func (o *LabelElement) UnsetEditableByApprover() {
-	o.EditableByApprover.Unset()
+// GetLabelOk returns a tuple with the Label field value
+// and a boolean to check if the value has been set.
+func (o *LabelElement) GetLabelOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Label, true
+}
+
+// SetLabel sets field value
+func (o *LabelElement) SetLabel(v string) {
+	o.Label = v
+}
+
+// GetMandatory returns the Mandatory field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LabelElement) GetMandatory() bool {
+	if o == nil || utils.IsNil(o.Mandatory.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.Mandatory.Get()
+}
+
+// GetMandatoryOk returns a tuple with the Mandatory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LabelElement) GetMandatoryOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Mandatory.Get(), o.Mandatory.IsSet()
+}
+
+// HasMandatory returns a boolean if a field has been set.
+func (o *LabelElement) HasMandatory() bool {
+	if o != nil && o.Mandatory.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMandatory gets a reference to the given NullableBool and assigns it to the Mandatory field.
+func (o *LabelElement) SetMandatory(v bool) {
+	o.Mandatory.Set(&v)
+}
+
+// SetMandatoryNil sets the value for Mandatory to be an explicit nil
+func (o *LabelElement) SetMandatoryNil() {
+	o.Mandatory.Set(nil)
+}
+
+// UnsetMandatory ensures that no value is present for Mandatory, not even an explicit nil
+func (o *LabelElement) UnsetMandatory() {
+	o.Mandatory.Unset()
 }
 
 // GetRegex returns the Regex field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -345,39 +335,6 @@ func (o *LabelElement) UnsetRegex() {
 	o.Regex.Unset()
 }
 
-// GetEnum returns the Enum field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LabelElement) GetEnum() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Enum
-}
-
-// GetEnumOk returns a tuple with the Enum field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LabelElement) GetEnumOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Enum) {
-		return nil, false
-	}
-	return o.Enum, true
-}
-
-// HasEnum returns a boolean if a field has been set.
-func (o *LabelElement) HasEnum() bool {
-	if o != nil && !utils.IsNil(o.Enum) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnum gets a reference to the given []string and assigns it to the Enum field.
-func (o *LabelElement) SetEnum(v []string) {
-	o.Enum = v
-}
-
 // GetSuggestions returns the Suggestions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LabelElement) GetSuggestions() []string {
 	if o == nil {
@@ -411,6 +368,49 @@ func (o *LabelElement) SetSuggestions(v []string) {
 	o.Suggestions = v
 }
 
+// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LabelElement) GetValue() string {
+	if o == nil || utils.IsNil(o.Value.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Value.Get()
+}
+
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LabelElement) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Value.Get(), o.Value.IsSet()
+}
+
+// HasValue returns a boolean if a field has been set.
+func (o *LabelElement) HasValue() bool {
+	if o != nil && o.Value.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given NullableString and assigns it to the Value field.
+func (o *LabelElement) SetValue(v string) {
+	o.Value.Set(&v)
+}
+
+// SetValueNil sets the value for Value to be an explicit nil
+func (o *LabelElement) SetValueNil() {
+	o.Value.Set(nil)
+}
+
+// UnsetValue ensures that no value is present for Value, not even an explicit nil
+func (o *LabelElement) UnsetValue() {
+	o.Value.Unset()
+}
+
 func (o LabelElement) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -421,30 +421,30 @@ func (o LabelElement) MarshalJSON() ([]byte, error) {
 
 func (o LabelElement) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["label"] = o.Label
-	if o.Value.IsSet() {
-		toSerialize["value"] = o.Value.Get()
-	}
 	if o.ComputationRule.IsSet() {
 		toSerialize["computationRule"] = o.ComputationRule.Get()
-	}
-	if o.Mandatory.IsSet() {
-		toSerialize["mandatory"] = o.Mandatory.Get()
-	}
-	if o.EditableByRequester.IsSet() {
-		toSerialize["editableByRequester"] = o.EditableByRequester.Get()
 	}
 	if o.EditableByApprover.IsSet() {
 		toSerialize["editableByApprover"] = o.EditableByApprover.Get()
 	}
-	if o.Regex.IsSet() {
-		toSerialize["regex"] = o.Regex.Get()
+	if o.EditableByRequester.IsSet() {
+		toSerialize["editableByRequester"] = o.EditableByRequester.Get()
 	}
 	if o.Enum != nil {
 		toSerialize["enum"] = o.Enum
 	}
+	toSerialize["label"] = o.Label
+	if o.Mandatory.IsSet() {
+		toSerialize["mandatory"] = o.Mandatory.Get()
+	}
+	if o.Regex.IsSet() {
+		toSerialize["regex"] = o.Regex.Get()
+	}
 	if o.Suggestions != nil {
 		toSerialize["suggestions"] = o.Suggestions
+	}
+	if o.Value.IsSet() {
+		toSerialize["value"] = o.Value.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -489,15 +489,15 @@ func (o *LabelElement) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "label")
-		delete(additionalProperties, "value")
 		delete(additionalProperties, "computationRule")
-		delete(additionalProperties, "mandatory")
-		delete(additionalProperties, "editableByRequester")
 		delete(additionalProperties, "editableByApprover")
-		delete(additionalProperties, "regex")
+		delete(additionalProperties, "editableByRequester")
 		delete(additionalProperties, "enum")
+		delete(additionalProperties, "label")
+		delete(additionalProperties, "mandatory")
+		delete(additionalProperties, "regex")
 		delete(additionalProperties, "suggestions")
+		delete(additionalProperties, "value")
 		o.AdditionalProperties = additionalProperties
 	}
 

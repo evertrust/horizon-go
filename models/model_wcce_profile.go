@@ -22,27 +22,27 @@ var _ utils.MappedNullable = &WcceProfile{}
 
 // WcceProfile struct for WcceProfile
 type WcceProfile struct {
+	AuthorizationLevels CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
+	CertificateTemplate NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
+	Constraints         NullableCertificateRequestConstraints `json:"constraints,omitempty"`
+	CryptoPolicy        ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
+	CsrDataMapping      map[string]string                     `json:"csrDataMapping,omitempty"`
+	Description         []LocalizedString                     `json:"description,omitempty"`
+	DisplayName         []LocalizedString                     `json:"displayName,omitempty"`
+	// Representation of a datasource execution flow
+	DsFlow                        []DataSourceFlowEntry                 `json:"dsFlow,omitempty"`
+	Enabled                       bool                                  `json:"enabled"`
+	ExchangeCertificate           utils.NullableString                  `json:"exchangeCertificate,omitempty"`
+	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
+	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
 	Module                        string                                `json:"module"`
 	Name                          string                                `json:"name"`
-	DisplayName                   []LocalizedString                     `json:"displayName,omitempty"`
-	Description                   []LocalizedString                     `json:"description,omitempty"`
-	Enabled                       bool                                  `json:"enabled"`
 	PkiConnector                  string                                `json:"pkiConnector"`
-	Constraints                   NullableCertificateRequestConstraints `json:"constraints,omitempty"`
-	CsrDataMapping                map[string]string                     `json:"csrDataMapping,omitempty"`
-	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
-	AuthorizationLevels           CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
-	Triggers                      NullableCertificateProfileTriggers    `json:"triggers,omitempty"`
 	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
 	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
-	CertificateTemplate           NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
-	CryptoPolicy                  ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
-	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
-	ExchangeCertificate           utils.NullableString                  `json:"exchangeCertificate,omitempty"`
-	// Representation of a datasource execution flow
-	DsFlow []DataSourceFlowEntry `json:"dsFlow,omitempty"`
 	// Available from `2.8.2`
-	ThirdPartyDiscoverySync utils.NullableBool `json:"thirdPartyDiscoverySync,omitempty"`
+	ThirdPartyDiscoverySync utils.NullableBool                 `json:"thirdPartyDiscoverySync,omitempty"`
+	Triggers                NullableCertificateProfileTriggers `json:"triggers,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -52,16 +52,16 @@ type _WcceProfile WcceProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWcceProfile(module string, name string, enabled bool, pkiConnector string, authorizationLevels CertificateProfileAuthorizationLevels, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions, cryptoPolicy ManagedCertificateProfileCryptoPolicy) *WcceProfile {
+func NewWcceProfile(authorizationLevels CertificateProfileAuthorizationLevels, cryptoPolicy ManagedCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions) *WcceProfile {
 	this := WcceProfile{}
+	this.AuthorizationLevels = authorizationLevels
+	this.CryptoPolicy = cryptoPolicy
+	this.Enabled = enabled
 	this.Module = module
 	this.Name = name
-	this.Enabled = enabled
 	this.PkiConnector = pkiConnector
-	this.AuthorizationLevels = authorizationLevels
 	this.RequestsPolicy = requestsPolicy
 	this.SelfPermissions = selfPermissions
-	this.CryptoPolicy = cryptoPolicy
 	var thirdPartyDiscoverySync bool = false
 	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
@@ -75,6 +75,415 @@ func NewWcceProfileWithDefaults() *WcceProfile {
 	var thirdPartyDiscoverySync bool = false
 	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
+}
+
+// GetAuthorizationLevels returns the AuthorizationLevels field value
+func (o *WcceProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
+	if o == nil {
+		var ret CertificateProfileAuthorizationLevels
+		return ret
+	}
+
+	return o.AuthorizationLevels
+}
+
+// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
+// and a boolean to check if the value has been set.
+func (o *WcceProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizationLevels, true
+}
+
+// SetAuthorizationLevels sets field value
+func (o *WcceProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
+	o.AuthorizationLevels = v
+}
+
+// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WcceProfile) GetCertificateTemplate() CertificateTemplate {
+	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
+		var ret CertificateTemplate
+		return ret
+	}
+	return *o.CertificateTemplate.Get()
+}
+
+// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WcceProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
+}
+
+// HasCertificateTemplate returns a boolean if a field has been set.
+func (o *WcceProfile) HasCertificateTemplate() bool {
+	if o != nil && o.CertificateTemplate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
+func (o *WcceProfile) SetCertificateTemplate(v CertificateTemplate) {
+	o.CertificateTemplate.Set(&v)
+}
+
+// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
+func (o *WcceProfile) SetCertificateTemplateNil() {
+	o.CertificateTemplate.Set(nil)
+}
+
+// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
+func (o *WcceProfile) UnsetCertificateTemplate() {
+	o.CertificateTemplate.Unset()
+}
+
+// GetConstraints returns the Constraints field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WcceProfile) GetConstraints() CertificateRequestConstraints {
+	if o == nil || utils.IsNil(o.Constraints.Get()) {
+		var ret CertificateRequestConstraints
+		return ret
+	}
+	return *o.Constraints.Get()
+}
+
+// GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WcceProfile) GetConstraintsOk() (*CertificateRequestConstraints, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Constraints.Get(), o.Constraints.IsSet()
+}
+
+// HasConstraints returns a boolean if a field has been set.
+func (o *WcceProfile) HasConstraints() bool {
+	if o != nil && o.Constraints.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConstraints gets a reference to the given NullableCertificateRequestConstraints and assigns it to the Constraints field.
+func (o *WcceProfile) SetConstraints(v CertificateRequestConstraints) {
+	o.Constraints.Set(&v)
+}
+
+// SetConstraintsNil sets the value for Constraints to be an explicit nil
+func (o *WcceProfile) SetConstraintsNil() {
+	o.Constraints.Set(nil)
+}
+
+// UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
+func (o *WcceProfile) UnsetConstraints() {
+	o.Constraints.Unset()
+}
+
+// GetCryptoPolicy returns the CryptoPolicy field value
+func (o *WcceProfile) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
+	if o == nil {
+		var ret ManagedCertificateProfileCryptoPolicy
+		return ret
+	}
+
+	return o.CryptoPolicy
+}
+
+// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
+// and a boolean to check if the value has been set.
+func (o *WcceProfile) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CryptoPolicy, true
+}
+
+// SetCryptoPolicy sets field value
+func (o *WcceProfile) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
+	o.CryptoPolicy = v
+}
+
+// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WcceProfile) GetCsrDataMapping() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.CsrDataMapping
+}
+
+// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WcceProfile) GetCsrDataMappingOk() (*map[string]string, bool) {
+	if o == nil || utils.IsNil(o.CsrDataMapping) {
+		return nil, false
+	}
+	return &o.CsrDataMapping, true
+}
+
+// HasCsrDataMapping returns a boolean if a field has been set.
+func (o *WcceProfile) HasCsrDataMapping() bool {
+	if o != nil && !utils.IsNil(o.CsrDataMapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
+func (o *WcceProfile) SetCsrDataMapping(v map[string]string) {
+	o.CsrDataMapping = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WcceProfile) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WcceProfile) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *WcceProfile) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *WcceProfile) SetDescription(v []LocalizedString) {
+	o.Description = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WcceProfile) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WcceProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *WcceProfile) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *WcceProfile) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
+// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WcceProfile) GetDsFlow() []DataSourceFlowEntry {
+	if o == nil {
+		var ret []DataSourceFlowEntry
+		return ret
+	}
+	return o.DsFlow
+}
+
+// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WcceProfile) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
+	if o == nil || utils.IsNil(o.DsFlow) {
+		return nil, false
+	}
+	return o.DsFlow, true
+}
+
+// HasDsFlow returns a boolean if a field has been set.
+func (o *WcceProfile) HasDsFlow() bool {
+	if o != nil && !utils.IsNil(o.DsFlow) {
+		return true
+	}
+
+	return false
+}
+
+// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
+func (o *WcceProfile) SetDsFlow(v []DataSourceFlowEntry) {
+	o.DsFlow = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *WcceProfile) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *WcceProfile) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *WcceProfile) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetExchangeCertificate returns the ExchangeCertificate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WcceProfile) GetExchangeCertificate() string {
+	if o == nil || utils.IsNil(o.ExchangeCertificate.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ExchangeCertificate.Get()
+}
+
+// GetExchangeCertificateOk returns a tuple with the ExchangeCertificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WcceProfile) GetExchangeCertificateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExchangeCertificate.Get(), o.ExchangeCertificate.IsSet()
+}
+
+// HasExchangeCertificate returns a boolean if a field has been set.
+func (o *WcceProfile) HasExchangeCertificate() bool {
+	if o != nil && o.ExchangeCertificate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExchangeCertificate gets a reference to the given NullableString and assigns it to the ExchangeCertificate field.
+func (o *WcceProfile) SetExchangeCertificate(v string) {
+	o.ExchangeCertificate.Set(&v)
+}
+
+// SetExchangeCertificateNil sets the value for ExchangeCertificate to be an explicit nil
+func (o *WcceProfile) SetExchangeCertificateNil() {
+	o.ExchangeCertificate.Set(nil)
+}
+
+// UnsetExchangeCertificate ensures that no value is present for ExchangeCertificate, not even an explicit nil
+func (o *WcceProfile) UnsetExchangeCertificate() {
+	o.ExchangeCertificate.Unset()
+}
+
+// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WcceProfile) GetGradingPolicies() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.GradingPolicies
+}
+
+// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WcceProfile) GetGradingPoliciesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.GradingPolicies) {
+		return nil, false
+	}
+	return o.GradingPolicies, true
+}
+
+// HasGradingPolicies returns a boolean if a field has been set.
+func (o *WcceProfile) HasGradingPolicies() bool {
+	if o != nil && !utils.IsNil(o.GradingPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
+func (o *WcceProfile) SetGradingPolicies(v []string) {
+	o.GradingPolicies = v
+}
+
+// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WcceProfile) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
+	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
+		var ret MaxCertificatePerHolderPolicy
+		return ret
+	}
+	return *o.MaxCertificatePerHolderPolicy.Get()
+}
+
+// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WcceProfile) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
+}
+
+// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
+func (o *WcceProfile) HasMaxCertificatePerHolderPolicy() bool {
+	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
+func (o *WcceProfile) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
+	o.MaxCertificatePerHolderPolicy.Set(&v)
+}
+
+// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
+func (o *WcceProfile) SetMaxCertificatePerHolderPolicyNil() {
+	o.MaxCertificatePerHolderPolicy.Set(nil)
+}
+
+// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
+func (o *WcceProfile) UnsetMaxCertificatePerHolderPolicy() {
+	o.MaxCertificatePerHolderPolicy.Unset()
 }
 
 // GetModule returns the Module field value
@@ -125,96 +534,6 @@ func (o *WcceProfile) SetName(v string) {
 	o.Name = v
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WcceProfile) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WcceProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *WcceProfile) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *WcceProfile) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WcceProfile) GetDescription() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WcceProfile) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *WcceProfile) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *WcceProfile) SetDescription(v []LocalizedString) {
-	o.Description = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *WcceProfile) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *WcceProfile) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *WcceProfile) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
 // GetPkiConnector returns the PkiConnector field value
 func (o *WcceProfile) GetPkiConnector() string {
 	if o == nil {
@@ -237,192 +556,6 @@ func (o *WcceProfile) GetPkiConnectorOk() (*string, bool) {
 // SetPkiConnector sets field value
 func (o *WcceProfile) SetPkiConnector(v string) {
 	o.PkiConnector = v
-}
-
-// GetConstraints returns the Constraints field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WcceProfile) GetConstraints() CertificateRequestConstraints {
-	if o == nil || utils.IsNil(o.Constraints.Get()) {
-		var ret CertificateRequestConstraints
-		return ret
-	}
-	return *o.Constraints.Get()
-}
-
-// GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WcceProfile) GetConstraintsOk() (*CertificateRequestConstraints, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Constraints.Get(), o.Constraints.IsSet()
-}
-
-// HasConstraints returns a boolean if a field has been set.
-func (o *WcceProfile) HasConstraints() bool {
-	if o != nil && o.Constraints.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetConstraints gets a reference to the given NullableCertificateRequestConstraints and assigns it to the Constraints field.
-func (o *WcceProfile) SetConstraints(v CertificateRequestConstraints) {
-	o.Constraints.Set(&v)
-}
-
-// SetConstraintsNil sets the value for Constraints to be an explicit nil
-func (o *WcceProfile) SetConstraintsNil() {
-	o.Constraints.Set(nil)
-}
-
-// UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
-func (o *WcceProfile) UnsetConstraints() {
-	o.Constraints.Unset()
-}
-
-// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WcceProfile) GetCsrDataMapping() map[string]string {
-	if o == nil {
-		var ret map[string]string
-		return ret
-	}
-	return o.CsrDataMapping
-}
-
-// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WcceProfile) GetCsrDataMappingOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.CsrDataMapping) {
-		return nil, false
-	}
-	return &o.CsrDataMapping, true
-}
-
-// HasCsrDataMapping returns a boolean if a field has been set.
-func (o *WcceProfile) HasCsrDataMapping() bool {
-	if o != nil && !utils.IsNil(o.CsrDataMapping) {
-		return true
-	}
-
-	return false
-}
-
-// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
-func (o *WcceProfile) SetCsrDataMapping(v map[string]string) {
-	o.CsrDataMapping = v
-}
-
-// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WcceProfile) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
-	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
-		var ret MaxCertificatePerHolderPolicy
-		return ret
-	}
-	return *o.MaxCertificatePerHolderPolicy.Get()
-}
-
-// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WcceProfile) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
-}
-
-// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
-func (o *WcceProfile) HasMaxCertificatePerHolderPolicy() bool {
-	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
-func (o *WcceProfile) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
-	o.MaxCertificatePerHolderPolicy.Set(&v)
-}
-
-// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
-func (o *WcceProfile) SetMaxCertificatePerHolderPolicyNil() {
-	o.MaxCertificatePerHolderPolicy.Set(nil)
-}
-
-// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
-func (o *WcceProfile) UnsetMaxCertificatePerHolderPolicy() {
-	o.MaxCertificatePerHolderPolicy.Unset()
-}
-
-// GetAuthorizationLevels returns the AuthorizationLevels field value
-func (o *WcceProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
-	if o == nil {
-		var ret CertificateProfileAuthorizationLevels
-		return ret
-	}
-
-	return o.AuthorizationLevels
-}
-
-// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
-// and a boolean to check if the value has been set.
-func (o *WcceProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthorizationLevels, true
-}
-
-// SetAuthorizationLevels sets field value
-func (o *WcceProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
-	o.AuthorizationLevels = v
-}
-
-// GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WcceProfile) GetTriggers() CertificateProfileTriggers {
-	if o == nil || utils.IsNil(o.Triggers.Get()) {
-		var ret CertificateProfileTriggers
-		return ret
-	}
-	return *o.Triggers.Get()
-}
-
-// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WcceProfile) GetTriggersOk() (*CertificateProfileTriggers, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Triggers.Get(), o.Triggers.IsSet()
-}
-
-// HasTriggers returns a boolean if a field has been set.
-func (o *WcceProfile) HasTriggers() bool {
-	if o != nil && o.Triggers.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTriggers gets a reference to the given NullableCertificateProfileTriggers and assigns it to the Triggers field.
-func (o *WcceProfile) SetTriggers(v CertificateProfileTriggers) {
-	o.Triggers.Set(&v)
-}
-
-// SetTriggersNil sets the value for Triggers to be an explicit nil
-func (o *WcceProfile) SetTriggersNil() {
-	o.Triggers.Set(nil)
-}
-
-// UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
-func (o *WcceProfile) UnsetTriggers() {
-	o.Triggers.Unset()
 }
 
 // GetRequestsPolicy returns the RequestsPolicy field value
@@ -473,182 +606,6 @@ func (o *WcceProfile) SetSelfPermissions(v CertificateProfileSelfPermissions) {
 	o.SelfPermissions = v
 }
 
-// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WcceProfile) GetCertificateTemplate() CertificateTemplate {
-	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
-		var ret CertificateTemplate
-		return ret
-	}
-	return *o.CertificateTemplate.Get()
-}
-
-// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WcceProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
-}
-
-// HasCertificateTemplate returns a boolean if a field has been set.
-func (o *WcceProfile) HasCertificateTemplate() bool {
-	if o != nil && o.CertificateTemplate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
-func (o *WcceProfile) SetCertificateTemplate(v CertificateTemplate) {
-	o.CertificateTemplate.Set(&v)
-}
-
-// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-func (o *WcceProfile) SetCertificateTemplateNil() {
-	o.CertificateTemplate.Set(nil)
-}
-
-// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
-func (o *WcceProfile) UnsetCertificateTemplate() {
-	o.CertificateTemplate.Unset()
-}
-
-// GetCryptoPolicy returns the CryptoPolicy field value
-func (o *WcceProfile) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
-	if o == nil {
-		var ret ManagedCertificateProfileCryptoPolicy
-		return ret
-	}
-
-	return o.CryptoPolicy
-}
-
-// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
-// and a boolean to check if the value has been set.
-func (o *WcceProfile) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CryptoPolicy, true
-}
-
-// SetCryptoPolicy sets field value
-func (o *WcceProfile) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
-	o.CryptoPolicy = v
-}
-
-// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WcceProfile) GetGradingPolicies() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.GradingPolicies
-}
-
-// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WcceProfile) GetGradingPoliciesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.GradingPolicies) {
-		return nil, false
-	}
-	return o.GradingPolicies, true
-}
-
-// HasGradingPolicies returns a boolean if a field has been set.
-func (o *WcceProfile) HasGradingPolicies() bool {
-	if o != nil && !utils.IsNil(o.GradingPolicies) {
-		return true
-	}
-
-	return false
-}
-
-// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
-func (o *WcceProfile) SetGradingPolicies(v []string) {
-	o.GradingPolicies = v
-}
-
-// GetExchangeCertificate returns the ExchangeCertificate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WcceProfile) GetExchangeCertificate() string {
-	if o == nil || utils.IsNil(o.ExchangeCertificate.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ExchangeCertificate.Get()
-}
-
-// GetExchangeCertificateOk returns a tuple with the ExchangeCertificate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WcceProfile) GetExchangeCertificateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ExchangeCertificate.Get(), o.ExchangeCertificate.IsSet()
-}
-
-// HasExchangeCertificate returns a boolean if a field has been set.
-func (o *WcceProfile) HasExchangeCertificate() bool {
-	if o != nil && o.ExchangeCertificate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetExchangeCertificate gets a reference to the given NullableString and assigns it to the ExchangeCertificate field.
-func (o *WcceProfile) SetExchangeCertificate(v string) {
-	o.ExchangeCertificate.Set(&v)
-}
-
-// SetExchangeCertificateNil sets the value for ExchangeCertificate to be an explicit nil
-func (o *WcceProfile) SetExchangeCertificateNil() {
-	o.ExchangeCertificate.Set(nil)
-}
-
-// UnsetExchangeCertificate ensures that no value is present for ExchangeCertificate, not even an explicit nil
-func (o *WcceProfile) UnsetExchangeCertificate() {
-	o.ExchangeCertificate.Unset()
-}
-
-// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WcceProfile) GetDsFlow() []DataSourceFlowEntry {
-	if o == nil {
-		var ret []DataSourceFlowEntry
-		return ret
-	}
-	return o.DsFlow
-}
-
-// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WcceProfile) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
-	if o == nil || utils.IsNil(o.DsFlow) {
-		return nil, false
-	}
-	return o.DsFlow, true
-}
-
-// HasDsFlow returns a boolean if a field has been set.
-func (o *WcceProfile) HasDsFlow() bool {
-	if o != nil && !utils.IsNil(o.DsFlow) {
-		return true
-	}
-
-	return false
-}
-
-// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
-func (o *WcceProfile) SetDsFlow(v []DataSourceFlowEntry) {
-	o.DsFlow = v
-}
-
 // GetThirdPartyDiscoverySync returns the ThirdPartyDiscoverySync field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WcceProfile) GetThirdPartyDiscoverySync() bool {
 	if o == nil || utils.IsNil(o.ThirdPartyDiscoverySync.Get()) {
@@ -692,6 +649,49 @@ func (o *WcceProfile) UnsetThirdPartyDiscoverySync() {
 	o.ThirdPartyDiscoverySync.Unset()
 }
 
+// GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WcceProfile) GetTriggers() CertificateProfileTriggers {
+	if o == nil || utils.IsNil(o.Triggers.Get()) {
+		var ret CertificateProfileTriggers
+		return ret
+	}
+	return *o.Triggers.Get()
+}
+
+// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WcceProfile) GetTriggersOk() (*CertificateProfileTriggers, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Triggers.Get(), o.Triggers.IsSet()
+}
+
+// HasTriggers returns a boolean if a field has been set.
+func (o *WcceProfile) HasTriggers() bool {
+	if o != nil && o.Triggers.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggers gets a reference to the given NullableCertificateProfileTriggers and assigns it to the Triggers field.
+func (o *WcceProfile) SetTriggers(v CertificateProfileTriggers) {
+	o.Triggers.Set(&v)
+}
+
+// SetTriggersNil sets the value for Triggers to be an explicit nil
+func (o *WcceProfile) SetTriggersNil() {
+	o.Triggers.Set(nil)
+}
+
+// UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
+func (o *WcceProfile) UnsetTriggers() {
+	o.Triggers.Unset()
+}
+
 func (o WcceProfile) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -702,46 +702,46 @@ func (o WcceProfile) MarshalJSON() ([]byte, error) {
 
 func (o WcceProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
-	toSerialize["name"] = o.Name
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
+	toSerialize["authorizationLevels"] = o.AuthorizationLevels
+	if o.CertificateTemplate.IsSet() {
+		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
+	}
+	if o.Constraints.IsSet() {
+		toSerialize["constraints"] = o.Constraints.Get()
+	}
+	toSerialize["cryptoPolicy"] = o.CryptoPolicy
+	if o.CsrDataMapping != nil {
+		toSerialize["csrDataMapping"] = o.CsrDataMapping
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["enabled"] = o.Enabled
-	toSerialize["pkiConnector"] = o.PkiConnector
-	if o.Constraints.IsSet() {
-		toSerialize["constraints"] = o.Constraints.Get()
-	}
-	if o.CsrDataMapping != nil {
-		toSerialize["csrDataMapping"] = o.CsrDataMapping
-	}
-	if o.MaxCertificatePerHolderPolicy.IsSet() {
-		toSerialize["maxCertificatePerHolderPolicy"] = o.MaxCertificatePerHolderPolicy.Get()
-	}
-	toSerialize["authorizationLevels"] = o.AuthorizationLevels
-	if o.Triggers.IsSet() {
-		toSerialize["triggers"] = o.Triggers.Get()
-	}
-	toSerialize["requestsPolicy"] = o.RequestsPolicy
-	toSerialize["selfPermissions"] = o.SelfPermissions
-	if o.CertificateTemplate.IsSet() {
-		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
-	}
-	toSerialize["cryptoPolicy"] = o.CryptoPolicy
-	if o.GradingPolicies != nil {
-		toSerialize["gradingPolicies"] = o.GradingPolicies
-	}
-	if o.ExchangeCertificate.IsSet() {
-		toSerialize["exchangeCertificate"] = o.ExchangeCertificate.Get()
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
 	}
 	if o.DsFlow != nil {
 		toSerialize["dsFlow"] = o.DsFlow
 	}
+	toSerialize["enabled"] = o.Enabled
+	if o.ExchangeCertificate.IsSet() {
+		toSerialize["exchangeCertificate"] = o.ExchangeCertificate.Get()
+	}
+	if o.GradingPolicies != nil {
+		toSerialize["gradingPolicies"] = o.GradingPolicies
+	}
+	if o.MaxCertificatePerHolderPolicy.IsSet() {
+		toSerialize["maxCertificatePerHolderPolicy"] = o.MaxCertificatePerHolderPolicy.Get()
+	}
+	toSerialize["module"] = o.Module
+	toSerialize["name"] = o.Name
+	toSerialize["pkiConnector"] = o.PkiConnector
+	toSerialize["requestsPolicy"] = o.RequestsPolicy
+	toSerialize["selfPermissions"] = o.SelfPermissions
 	if o.ThirdPartyDiscoverySync.IsSet() {
 		toSerialize["thirdPartyDiscoverySync"] = o.ThirdPartyDiscoverySync.Get()
+	}
+	if o.Triggers.IsSet() {
+		toSerialize["triggers"] = o.Triggers.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -756,14 +756,14 @@ func (o *WcceProfile) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"authorizationLevels",
+		"cryptoPolicy",
+		"enabled",
 		"module",
 		"name",
-		"enabled",
 		"pkiConnector",
-		"authorizationLevels",
 		"requestsPolicy",
 		"selfPermissions",
-		"cryptoPolicy",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -793,25 +793,25 @@ func (o *WcceProfile) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorizationLevels")
+		delete(additionalProperties, "certificateTemplate")
+		delete(additionalProperties, "constraints")
+		delete(additionalProperties, "cryptoPolicy")
+		delete(additionalProperties, "csrDataMapping")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "dsFlow")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "exchangeCertificate")
+		delete(additionalProperties, "gradingPolicies")
+		delete(additionalProperties, "maxCertificatePerHolderPolicy")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "pkiConnector")
-		delete(additionalProperties, "constraints")
-		delete(additionalProperties, "csrDataMapping")
-		delete(additionalProperties, "maxCertificatePerHolderPolicy")
-		delete(additionalProperties, "authorizationLevels")
-		delete(additionalProperties, "triggers")
 		delete(additionalProperties, "requestsPolicy")
 		delete(additionalProperties, "selfPermissions")
-		delete(additionalProperties, "certificateTemplate")
-		delete(additionalProperties, "cryptoPolicy")
-		delete(additionalProperties, "gradingPolicies")
-		delete(additionalProperties, "exchangeCertificate")
-		delete(additionalProperties, "dsFlow")
 		delete(additionalProperties, "thirdPartyDiscoverySync")
+		delete(additionalProperties, "triggers")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -21,26 +21,26 @@ var _ utils.MappedNullable = &WebRAEnrollRequestTemplate{}
 
 // WebRAEnrollRequestTemplate struct for WebRAEnrollRequestTemplate
 type WebRAEnrollRequestTemplate struct {
-	// The type of key that will be used to generate the certificate, if in centralized mode
-	KeyType utils.NullableString `json:"keyType,omitempty" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
 	// If decentralized enrollment is enabled, this field will contain the CSR that will be used to generate the certificate
 	Csr utils.NullableString `json:"csr,omitempty"`
-	// List of DN elements that will be used to build the certificate's Distinguished Name
-	Subject []IndexedDNElement `json:"subject,omitempty"`
-	// List of SAN elements that will be used to build the certificate's Subject Alternative Name
-	Sans []ListSANElement `json:"sans,omitempty"`
+	// The type of key that will be used to generate the certificate, if in centralized mode
+	KeyType utils.NullableString `json:"keyType,omitempty" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
+	// Information about the certificate's contact email and how to edit it
+	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
 	// Information about the certificate's extensions and how to edit them
 	Extensions []CertificateExtensionElement `json:"extensions,omitempty"`
 	// List of labels used internally to tag and group certificates
 	Labels []RequestLabelElement `json:"labels,omitempty"`
-	// Information about the certificate's contact email and how to edit it
-	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
+	// The technical metadata for this certificate
+	Metadata []CertificateMetadataElement `json:"metadata,omitempty"`
 	// Information about the certificate's owner and how to edit it
 	Owner NullableCertificateOwnerElement `json:"owner,omitempty"`
+	// List of SAN elements that will be used to build the certificate's Subject Alternative Name
+	Sans []ListSANElement `json:"sans,omitempty"`
+	// List of DN elements that will be used to build the certificate's Distinguished Name
+	Subject []IndexedDNElement `json:"subject,omitempty"`
 	// Information about the certificate's team and how to edit it
-	Team NullableCertificateTeamElement `json:"team,omitempty"`
-	// The technical metadata for this certificate
-	Metadata             []CertificateMetadataElement `json:"metadata,omitempty"`
+	Team                 NullableCertificateTeamElement `json:"team,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,49 +61,6 @@ func NewWebRAEnrollRequestTemplate() *WebRAEnrollRequestTemplate {
 func NewWebRAEnrollRequestTemplateWithDefaults() *WebRAEnrollRequestTemplate {
 	this := WebRAEnrollRequestTemplate{}
 	return &this
-}
-
-// GetKeyType returns the KeyType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAEnrollRequestTemplate) GetKeyType() string {
-	if o == nil || utils.IsNil(o.KeyType.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.KeyType.Get()
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAEnrollRequestTemplate) GetKeyTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyType.Get(), o.KeyType.IsSet()
-}
-
-// HasKeyType returns a boolean if a field has been set.
-func (o *WebRAEnrollRequestTemplate) HasKeyType() bool {
-	if o != nil && o.KeyType.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetKeyType gets a reference to the given NullableString and assigns it to the KeyType field.
-func (o *WebRAEnrollRequestTemplate) SetKeyType(v string) {
-	o.KeyType.Set(&v)
-}
-
-// SetKeyTypeNil sets the value for KeyType to be an explicit nil
-func (o *WebRAEnrollRequestTemplate) SetKeyTypeNil() {
-	o.KeyType.Set(nil)
-}
-
-// UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
-func (o *WebRAEnrollRequestTemplate) UnsetKeyType() {
-	o.KeyType.Unset()
 }
 
 // GetCsr returns the Csr field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -149,70 +106,90 @@ func (o *WebRAEnrollRequestTemplate) UnsetCsr() {
 	o.Csr.Unset()
 }
 
-// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAEnrollRequestTemplate) GetSubject() []IndexedDNElement {
-	if o == nil {
-		var ret []IndexedDNElement
+// GetKeyType returns the KeyType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAEnrollRequestTemplate) GetKeyType() string {
+	if o == nil || utils.IsNil(o.KeyType.Get()) {
+		var ret string
 		return ret
 	}
-	return o.Subject
+	return *o.KeyType.Get()
 }
 
-// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
+// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAEnrollRequestTemplate) GetSubjectOk() ([]IndexedDNElement, bool) {
-	if o == nil || utils.IsNil(o.Subject) {
+func (o *WebRAEnrollRequestTemplate) GetKeyTypeOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Subject, true
+	return o.KeyType.Get(), o.KeyType.IsSet()
 }
 
-// HasSubject returns a boolean if a field has been set.
-func (o *WebRAEnrollRequestTemplate) HasSubject() bool {
-	if o != nil && !utils.IsNil(o.Subject) {
+// HasKeyType returns a boolean if a field has been set.
+func (o *WebRAEnrollRequestTemplate) HasKeyType() bool {
+	if o != nil && o.KeyType.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSubject gets a reference to the given []IndexedDNElement and assigns it to the Subject field.
-func (o *WebRAEnrollRequestTemplate) SetSubject(v []IndexedDNElement) {
-	o.Subject = v
+// SetKeyType gets a reference to the given NullableString and assigns it to the KeyType field.
+func (o *WebRAEnrollRequestTemplate) SetKeyType(v string) {
+	o.KeyType.Set(&v)
 }
 
-// GetSans returns the Sans field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAEnrollRequestTemplate) GetSans() []ListSANElement {
-	if o == nil {
-		var ret []ListSANElement
+// SetKeyTypeNil sets the value for KeyType to be an explicit nil
+func (o *WebRAEnrollRequestTemplate) SetKeyTypeNil() {
+	o.KeyType.Set(nil)
+}
+
+// UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
+func (o *WebRAEnrollRequestTemplate) UnsetKeyType() {
+	o.KeyType.Unset()
+}
+
+// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAEnrollRequestTemplate) GetContactEmail() CertificateContactEmailElement {
+	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
+		var ret CertificateContactEmailElement
 		return ret
 	}
-	return o.Sans
+	return *o.ContactEmail.Get()
 }
 
-// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
+// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAEnrollRequestTemplate) GetSansOk() ([]ListSANElement, bool) {
-	if o == nil || utils.IsNil(o.Sans) {
+func (o *WebRAEnrollRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Sans, true
+	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
 }
 
-// HasSans returns a boolean if a field has been set.
-func (o *WebRAEnrollRequestTemplate) HasSans() bool {
-	if o != nil && !utils.IsNil(o.Sans) {
+// HasContactEmail returns a boolean if a field has been set.
+func (o *WebRAEnrollRequestTemplate) HasContactEmail() bool {
+	if o != nil && o.ContactEmail.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSans gets a reference to the given []ListSANElement and assigns it to the Sans field.
-func (o *WebRAEnrollRequestTemplate) SetSans(v []ListSANElement) {
-	o.Sans = v
+// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
+func (o *WebRAEnrollRequestTemplate) SetContactEmail(v CertificateContactEmailElement) {
+	o.ContactEmail.Set(&v)
+}
+
+// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+func (o *WebRAEnrollRequestTemplate) SetContactEmailNil() {
+	o.ContactEmail.Set(nil)
+}
+
+// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
+func (o *WebRAEnrollRequestTemplate) UnsetContactEmail() {
+	o.ContactEmail.Unset()
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -281,47 +258,37 @@ func (o *WebRAEnrollRequestTemplate) SetLabels(v []RequestLabelElement) {
 	o.Labels = v
 }
 
-// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAEnrollRequestTemplate) GetContactEmail() CertificateContactEmailElement {
-	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
-		var ret CertificateContactEmailElement
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAEnrollRequestTemplate) GetMetadata() []CertificateMetadataElement {
+	if o == nil {
+		var ret []CertificateMetadataElement
 		return ret
 	}
-	return *o.ContactEmail.Get()
+	return o.Metadata
 }
 
-// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAEnrollRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
-	if o == nil {
+func (o *WebRAEnrollRequestTemplate) GetMetadataOk() ([]CertificateMetadataElement, bool) {
+	if o == nil || utils.IsNil(o.Metadata) {
 		return nil, false
 	}
-	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
+	return o.Metadata, true
 }
 
-// HasContactEmail returns a boolean if a field has been set.
-func (o *WebRAEnrollRequestTemplate) HasContactEmail() bool {
-	if o != nil && o.ContactEmail.IsSet() {
+// HasMetadata returns a boolean if a field has been set.
+func (o *WebRAEnrollRequestTemplate) HasMetadata() bool {
+	if o != nil && !utils.IsNil(o.Metadata) {
 		return true
 	}
 
 	return false
 }
 
-// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
-func (o *WebRAEnrollRequestTemplate) SetContactEmail(v CertificateContactEmailElement) {
-	o.ContactEmail.Set(&v)
-}
-
-// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
-func (o *WebRAEnrollRequestTemplate) SetContactEmailNil() {
-	o.ContactEmail.Set(nil)
-}
-
-// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
-func (o *WebRAEnrollRequestTemplate) UnsetContactEmail() {
-	o.ContactEmail.Unset()
+// SetMetadata gets a reference to the given []CertificateMetadataElement and assigns it to the Metadata field.
+func (o *WebRAEnrollRequestTemplate) SetMetadata(v []CertificateMetadataElement) {
+	o.Metadata = v
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -367,6 +334,72 @@ func (o *WebRAEnrollRequestTemplate) UnsetOwner() {
 	o.Owner.Unset()
 }
 
+// GetSans returns the Sans field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAEnrollRequestTemplate) GetSans() []ListSANElement {
+	if o == nil {
+		var ret []ListSANElement
+		return ret
+	}
+	return o.Sans
+}
+
+// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAEnrollRequestTemplate) GetSansOk() ([]ListSANElement, bool) {
+	if o == nil || utils.IsNil(o.Sans) {
+		return nil, false
+	}
+	return o.Sans, true
+}
+
+// HasSans returns a boolean if a field has been set.
+func (o *WebRAEnrollRequestTemplate) HasSans() bool {
+	if o != nil && !utils.IsNil(o.Sans) {
+		return true
+	}
+
+	return false
+}
+
+// SetSans gets a reference to the given []ListSANElement and assigns it to the Sans field.
+func (o *WebRAEnrollRequestTemplate) SetSans(v []ListSANElement) {
+	o.Sans = v
+}
+
+// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAEnrollRequestTemplate) GetSubject() []IndexedDNElement {
+	if o == nil {
+		var ret []IndexedDNElement
+		return ret
+	}
+	return o.Subject
+}
+
+// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAEnrollRequestTemplate) GetSubjectOk() ([]IndexedDNElement, bool) {
+	if o == nil || utils.IsNil(o.Subject) {
+		return nil, false
+	}
+	return o.Subject, true
+}
+
+// HasSubject returns a boolean if a field has been set.
+func (o *WebRAEnrollRequestTemplate) HasSubject() bool {
+	if o != nil && !utils.IsNil(o.Subject) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubject gets a reference to the given []IndexedDNElement and assigns it to the Subject field.
+func (o *WebRAEnrollRequestTemplate) SetSubject(v []IndexedDNElement) {
+	o.Subject = v
+}
+
 // GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRAEnrollRequestTemplate) GetTeam() CertificateTeamElement {
 	if o == nil || utils.IsNil(o.Team.Get()) {
@@ -410,39 +443,6 @@ func (o *WebRAEnrollRequestTemplate) UnsetTeam() {
 	o.Team.Unset()
 }
 
-// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAEnrollRequestTemplate) GetMetadata() []CertificateMetadataElement {
-	if o == nil {
-		var ret []CertificateMetadataElement
-		return ret
-	}
-	return o.Metadata
-}
-
-// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAEnrollRequestTemplate) GetMetadataOk() ([]CertificateMetadataElement, bool) {
-	if o == nil || utils.IsNil(o.Metadata) {
-		return nil, false
-	}
-	return o.Metadata, true
-}
-
-// HasMetadata returns a boolean if a field has been set.
-func (o *WebRAEnrollRequestTemplate) HasMetadata() bool {
-	if o != nil && !utils.IsNil(o.Metadata) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadata gets a reference to the given []CertificateMetadataElement and assigns it to the Metadata field.
-func (o *WebRAEnrollRequestTemplate) SetMetadata(v []CertificateMetadataElement) {
-	o.Metadata = v
-}
-
 func (o WebRAEnrollRequestTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -453,17 +453,14 @@ func (o WebRAEnrollRequestTemplate) MarshalJSON() ([]byte, error) {
 
 func (o WebRAEnrollRequestTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.KeyType.IsSet() {
-		toSerialize["keyType"] = o.KeyType.Get()
-	}
 	if o.Csr.IsSet() {
 		toSerialize["csr"] = o.Csr.Get()
 	}
-	if o.Subject != nil {
-		toSerialize["subject"] = o.Subject
+	if o.KeyType.IsSet() {
+		toSerialize["keyType"] = o.KeyType.Get()
 	}
-	if o.Sans != nil {
-		toSerialize["sans"] = o.Sans
+	if o.ContactEmail.IsSet() {
+		toSerialize["contactEmail"] = o.ContactEmail.Get()
 	}
 	if o.Extensions != nil {
 		toSerialize["extensions"] = o.Extensions
@@ -471,17 +468,20 @@ func (o WebRAEnrollRequestTemplate) ToMap() (map[string]interface{}, error) {
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
-	if o.ContactEmail.IsSet() {
-		toSerialize["contactEmail"] = o.ContactEmail.Get()
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if o.Owner.IsSet() {
 		toSerialize["owner"] = o.Owner.Get()
 	}
+	if o.Sans != nil {
+		toSerialize["sans"] = o.Sans
+	}
+	if o.Subject != nil {
+		toSerialize["subject"] = o.Subject
+	}
 	if o.Team.IsSet() {
 		toSerialize["team"] = o.Team.Get()
-	}
-	if o.Metadata != nil {
-		toSerialize["metadata"] = o.Metadata
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -505,16 +505,16 @@ func (o *WebRAEnrollRequestTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "csr")
-		delete(additionalProperties, "subject")
-		delete(additionalProperties, "sans")
+		delete(additionalProperties, "keyType")
+		delete(additionalProperties, "contactEmail")
 		delete(additionalProperties, "extensions")
 		delete(additionalProperties, "labels")
-		delete(additionalProperties, "contactEmail")
-		delete(additionalProperties, "owner")
-		delete(additionalProperties, "team")
 		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "owner")
+		delete(additionalProperties, "sans")
+		delete(additionalProperties, "subject")
+		delete(additionalProperties, "team")
 		o.AdditionalProperties = additionalProperties
 	}
 

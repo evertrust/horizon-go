@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &ScepEnrollRequestOnTemplateResponse{}
 
 // ScepEnrollRequestOnTemplateResponse struct for ScepEnrollRequestOnTemplateResponse
 type ScepEnrollRequestOnTemplateResponse struct {
-	Workflow string `json:"workflow"`
-	Module   string `json:"module"`
+	Module string `json:"module"`
 	// The template with the constraint set on the profile
 	Template ScepEnrollRequestTemplateResponse `json:"template"`
+	Workflow string                            `json:"workflow"`
 	// The profile for which to return the template.
 	Profile              string `json:"profile"`
 	AdditionalProperties map[string]interface{}
@@ -37,11 +37,11 @@ type _ScepEnrollRequestOnTemplateResponse ScepEnrollRequestOnTemplateResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScepEnrollRequestOnTemplateResponse(workflow string, module string, template ScepEnrollRequestTemplateResponse, profile string) *ScepEnrollRequestOnTemplateResponse {
+func NewScepEnrollRequestOnTemplateResponse(module string, template ScepEnrollRequestTemplateResponse, workflow string, profile string) *ScepEnrollRequestOnTemplateResponse {
 	this := ScepEnrollRequestOnTemplateResponse{}
 	this.Module = module
-	this.Workflow = workflow
 	this.Profile = profile
+	this.Workflow = workflow
 	return &this
 }
 
@@ -51,30 +51,6 @@ func NewScepEnrollRequestOnTemplateResponse(workflow string, module string, temp
 func NewScepEnrollRequestOnTemplateResponseWithDefaults() *ScepEnrollRequestOnTemplateResponse {
 	this := ScepEnrollRequestOnTemplateResponse{}
 	return &this
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *ScepEnrollRequestOnTemplateResponse) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *ScepEnrollRequestOnTemplateResponse) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *ScepEnrollRequestOnTemplateResponse) SetWorkflow(v string) {
-	o.Workflow = v
 }
 
 // GetModule returns the Module field value
@@ -125,6 +101,30 @@ func (o *ScepEnrollRequestOnTemplateResponse) SetTemplate(v ScepEnrollRequestTem
 	o.Template = v
 }
 
+// GetWorkflow returns the Workflow field value
+func (o *ScepEnrollRequestOnTemplateResponse) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *ScepEnrollRequestOnTemplateResponse) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *ScepEnrollRequestOnTemplateResponse) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
 // GetProfile returns the Profile field value
 func (o *ScepEnrollRequestOnTemplateResponse) GetProfile() string {
 	if o == nil {
@@ -159,9 +159,9 @@ func (o ScepEnrollRequestOnTemplateResponse) MarshalJSON() ([]byte, error) {
 
 func (o ScepEnrollRequestOnTemplateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["workflow"] = o.Workflow
 	toSerialize["module"] = o.Module
 	toSerialize["template"] = o.Template
+	toSerialize["workflow"] = o.Workflow
 	toSerialize["profile"] = o.Profile
 
 	for key, value := range o.AdditionalProperties {
@@ -176,9 +176,9 @@ func (o *ScepEnrollRequestOnTemplateResponse) UnmarshalJSON(data []byte) (err er
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"workflow",
 		"module",
 		"template",
+		"workflow",
 		"profile",
 	}
 
@@ -209,9 +209,9 @@ func (o *ScepEnrollRequestOnTemplateResponse) UnmarshalJSON(data []byte) (err er
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "template")
+		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "profile")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &DiscoveryCampaignAuthorizationLevels{}
 
 // DiscoveryCampaignAuthorizationLevels struct for DiscoveryCampaignAuthorizationLevels
 type DiscoveryCampaignAuthorizationLevels struct {
-	// The authorization level required to search the discovered certificates of this campaign
-	Search AuthorizationLevel `json:"search"`
 	// The authorization level required to feed certificates into this discovery campaign
-	Feed                 AuthorizationLevel `json:"feed"`
+	Feed AuthorizationLevel `json:"feed"`
+	// The authorization level required to search the discovered certificates of this campaign
+	Search               AuthorizationLevel `json:"search"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,10 +35,10 @@ type _DiscoveryCampaignAuthorizationLevels DiscoveryCampaignAuthorizationLevels
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDiscoveryCampaignAuthorizationLevels(search AuthorizationLevel, feed AuthorizationLevel) *DiscoveryCampaignAuthorizationLevels {
+func NewDiscoveryCampaignAuthorizationLevels(feed AuthorizationLevel, search AuthorizationLevel) *DiscoveryCampaignAuthorizationLevels {
 	this := DiscoveryCampaignAuthorizationLevels{}
-	this.Search = search
 	this.Feed = feed
+	this.Search = search
 	return &this
 }
 
@@ -48,30 +48,6 @@ func NewDiscoveryCampaignAuthorizationLevels(search AuthorizationLevel, feed Aut
 func NewDiscoveryCampaignAuthorizationLevelsWithDefaults() *DiscoveryCampaignAuthorizationLevels {
 	this := DiscoveryCampaignAuthorizationLevels{}
 	return &this
-}
-
-// GetSearch returns the Search field value
-func (o *DiscoveryCampaignAuthorizationLevels) GetSearch() AuthorizationLevel {
-	if o == nil {
-		var ret AuthorizationLevel
-		return ret
-	}
-
-	return o.Search
-}
-
-// GetSearchOk returns a tuple with the Search field value
-// and a boolean to check if the value has been set.
-func (o *DiscoveryCampaignAuthorizationLevels) GetSearchOk() (*AuthorizationLevel, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Search, true
-}
-
-// SetSearch sets field value
-func (o *DiscoveryCampaignAuthorizationLevels) SetSearch(v AuthorizationLevel) {
-	o.Search = v
 }
 
 // GetFeed returns the Feed field value
@@ -98,6 +74,30 @@ func (o *DiscoveryCampaignAuthorizationLevels) SetFeed(v AuthorizationLevel) {
 	o.Feed = v
 }
 
+// GetSearch returns the Search field value
+func (o *DiscoveryCampaignAuthorizationLevels) GetSearch() AuthorizationLevel {
+	if o == nil {
+		var ret AuthorizationLevel
+		return ret
+	}
+
+	return o.Search
+}
+
+// GetSearchOk returns a tuple with the Search field value
+// and a boolean to check if the value has been set.
+func (o *DiscoveryCampaignAuthorizationLevels) GetSearchOk() (*AuthorizationLevel, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Search, true
+}
+
+// SetSearch sets field value
+func (o *DiscoveryCampaignAuthorizationLevels) SetSearch(v AuthorizationLevel) {
+	o.Search = v
+}
+
 func (o DiscoveryCampaignAuthorizationLevels) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -108,8 +108,8 @@ func (o DiscoveryCampaignAuthorizationLevels) MarshalJSON() ([]byte, error) {
 
 func (o DiscoveryCampaignAuthorizationLevels) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["search"] = o.Search
 	toSerialize["feed"] = o.Feed
+	toSerialize["search"] = o.Search
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,8 +123,8 @@ func (o *DiscoveryCampaignAuthorizationLevels) UnmarshalJSON(data []byte) (err e
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"search",
 		"feed",
+		"search",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -154,8 +154,8 @@ func (o *DiscoveryCampaignAuthorizationLevels) UnmarshalJSON(data []byte) (err e
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "search")
 		delete(additionalProperties, "feed")
+		delete(additionalProperties, "search")
 		o.AdditionalProperties = additionalProperties
 	}
 

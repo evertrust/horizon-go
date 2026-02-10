@@ -21,9 +21,9 @@ var _ utils.MappedNullable = &CertificateRequestConstraints{}
 
 // CertificateRequestConstraints struct for CertificateRequestConstraints
 type CertificateRequestConstraints struct {
+	AllowedDnsDomains    utils.NullableString `json:"allowedDnsDomains,omitempty"`
 	AllowedDomains       utils.NullableString `json:"allowedDomains,omitempty"`
 	AllowedEmailDomains  utils.NullableString `json:"allowedEmailDomains,omitempty"`
-	AllowedDnsDomains    utils.NullableString `json:"allowedDnsDomains,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,6 +44,49 @@ func NewCertificateRequestConstraints() *CertificateRequestConstraints {
 func NewCertificateRequestConstraintsWithDefaults() *CertificateRequestConstraints {
 	this := CertificateRequestConstraints{}
 	return &this
+}
+
+// GetAllowedDnsDomains returns the AllowedDnsDomains field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateRequestConstraints) GetAllowedDnsDomains() string {
+	if o == nil || utils.IsNil(o.AllowedDnsDomains.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.AllowedDnsDomains.Get()
+}
+
+// GetAllowedDnsDomainsOk returns a tuple with the AllowedDnsDomains field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateRequestConstraints) GetAllowedDnsDomainsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AllowedDnsDomains.Get(), o.AllowedDnsDomains.IsSet()
+}
+
+// HasAllowedDnsDomains returns a boolean if a field has been set.
+func (o *CertificateRequestConstraints) HasAllowedDnsDomains() bool {
+	if o != nil && o.AllowedDnsDomains.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowedDnsDomains gets a reference to the given NullableString and assigns it to the AllowedDnsDomains field.
+func (o *CertificateRequestConstraints) SetAllowedDnsDomains(v string) {
+	o.AllowedDnsDomains.Set(&v)
+}
+
+// SetAllowedDnsDomainsNil sets the value for AllowedDnsDomains to be an explicit nil
+func (o *CertificateRequestConstraints) SetAllowedDnsDomainsNil() {
+	o.AllowedDnsDomains.Set(nil)
+}
+
+// UnsetAllowedDnsDomains ensures that no value is present for AllowedDnsDomains, not even an explicit nil
+func (o *CertificateRequestConstraints) UnsetAllowedDnsDomains() {
+	o.AllowedDnsDomains.Unset()
 }
 
 // GetAllowedDomains returns the AllowedDomains field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -132,49 +175,6 @@ func (o *CertificateRequestConstraints) UnsetAllowedEmailDomains() {
 	o.AllowedEmailDomains.Unset()
 }
 
-// GetAllowedDnsDomains returns the AllowedDnsDomains field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateRequestConstraints) GetAllowedDnsDomains() string {
-	if o == nil || utils.IsNil(o.AllowedDnsDomains.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.AllowedDnsDomains.Get()
-}
-
-// GetAllowedDnsDomainsOk returns a tuple with the AllowedDnsDomains field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateRequestConstraints) GetAllowedDnsDomainsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AllowedDnsDomains.Get(), o.AllowedDnsDomains.IsSet()
-}
-
-// HasAllowedDnsDomains returns a boolean if a field has been set.
-func (o *CertificateRequestConstraints) HasAllowedDnsDomains() bool {
-	if o != nil && o.AllowedDnsDomains.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAllowedDnsDomains gets a reference to the given NullableString and assigns it to the AllowedDnsDomains field.
-func (o *CertificateRequestConstraints) SetAllowedDnsDomains(v string) {
-	o.AllowedDnsDomains.Set(&v)
-}
-
-// SetAllowedDnsDomainsNil sets the value for AllowedDnsDomains to be an explicit nil
-func (o *CertificateRequestConstraints) SetAllowedDnsDomainsNil() {
-	o.AllowedDnsDomains.Set(nil)
-}
-
-// UnsetAllowedDnsDomains ensures that no value is present for AllowedDnsDomains, not even an explicit nil
-func (o *CertificateRequestConstraints) UnsetAllowedDnsDomains() {
-	o.AllowedDnsDomains.Unset()
-}
-
 func (o CertificateRequestConstraints) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -185,14 +185,14 @@ func (o CertificateRequestConstraints) MarshalJSON() ([]byte, error) {
 
 func (o CertificateRequestConstraints) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AllowedDnsDomains.IsSet() {
+		toSerialize["allowedDnsDomains"] = o.AllowedDnsDomains.Get()
+	}
 	if o.AllowedDomains.IsSet() {
 		toSerialize["allowedDomains"] = o.AllowedDomains.Get()
 	}
 	if o.AllowedEmailDomains.IsSet() {
 		toSerialize["allowedEmailDomains"] = o.AllowedEmailDomains.Get()
-	}
-	if o.AllowedDnsDomains.IsSet() {
-		toSerialize["allowedDnsDomains"] = o.AllowedDnsDomains.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -216,9 +216,9 @@ func (o *CertificateRequestConstraints) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowedDnsDomains")
 		delete(additionalProperties, "allowedDomains")
 		delete(additionalProperties, "allowedEmailDomains")
-		delete(additionalProperties, "allowedDnsDomains")
 		o.AdditionalProperties = additionalProperties
 	}
 

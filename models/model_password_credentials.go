@@ -22,20 +22,20 @@ var _ utils.MappedNullable = &PasswordCredentials{}
 
 // PasswordCredentials struct for PasswordCredentials
 type PasswordCredentials struct {
-	Type string `json:"type"`
 	// These credentials login
 	Login string `json:"login"`
 	// These credentials password
 	Password SecretString `json:"password"`
-	// These credentials identifying name
-	Name string `json:"name"`
+	Type     string       `json:"type"`
 	// These credentials description
 	Description utils.NullableString `json:"description,omitempty"`
 	// The expiration date of these credentials
-	Expires  utils.NullableInt64  `json:"expires,omitempty"`
-	Triggers *CredentialsTriggers `json:"triggers,omitempty"`
+	Expires utils.NullableInt64 `json:"expires,omitempty"`
+	// These credentials identifying name
+	Name string `json:"name"`
 	// On which configuration the credentials are usable
-	Targets              []string `json:"targets,omitempty"`
+	Targets              []string             `json:"targets,omitempty"`
+	Triggers             *CredentialsTriggers `json:"triggers,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,7 +45,7 @@ type _PasswordCredentials PasswordCredentials
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPasswordCredentials(type_ string, login string, password SecretString, name string) *PasswordCredentials {
+func NewPasswordCredentials(login string, password SecretString, type_ string, name string) *PasswordCredentials {
 	this := PasswordCredentials{}
 	this.Name = name
 	this.Type = type_
@@ -58,30 +58,6 @@ func NewPasswordCredentials(type_ string, login string, password SecretString, n
 func NewPasswordCredentialsWithDefaults() *PasswordCredentials {
 	this := PasswordCredentials{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *PasswordCredentials) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *PasswordCredentials) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *PasswordCredentials) SetType(v string) {
-	o.Type = v
 }
 
 // GetLogin returns the Login field value
@@ -132,28 +108,28 @@ func (o *PasswordCredentials) SetPassword(v SecretString) {
 	o.Password = v
 }
 
-// GetName returns the Name field value
-func (o *PasswordCredentials) GetName() string {
+// GetType returns the Type field value
+func (o *PasswordCredentials) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.Type
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *PasswordCredentials) GetNameOk() (*string, bool) {
+func (o *PasswordCredentials) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.Type, true
 }
 
-// SetName sets field value
-func (o *PasswordCredentials) SetName(v string) {
-	o.Name = v
+// SetType sets field value
+func (o *PasswordCredentials) SetType(v string) {
+	o.Type = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -242,36 +218,28 @@ func (o *PasswordCredentials) UnsetExpires() {
 	o.Expires.Unset()
 }
 
-// GetTriggers returns the Triggers field value if set, zero value otherwise.
-func (o *PasswordCredentials) GetTriggers() CredentialsTriggers {
-	if o == nil || utils.IsNil(o.Triggers) {
-		var ret CredentialsTriggers
+// GetName returns the Name field value
+func (o *PasswordCredentials) GetName() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.Triggers
+
+	return o.Name
 }
 
-// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *PasswordCredentials) GetTriggersOk() (*CredentialsTriggers, bool) {
-	if o == nil || utils.IsNil(o.Triggers) {
+func (o *PasswordCredentials) GetNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Triggers, true
+	return &o.Name, true
 }
 
-// HasTriggers returns a boolean if a field has been set.
-func (o *PasswordCredentials) HasTriggers() bool {
-	if o != nil && !utils.IsNil(o.Triggers) {
-		return true
-	}
-
-	return false
-}
-
-// SetTriggers gets a reference to the given CredentialsTriggers and assigns it to the Triggers field.
-func (o *PasswordCredentials) SetTriggers(v CredentialsTriggers) {
-	o.Triggers = &v
+// SetName sets field value
+func (o *PasswordCredentials) SetName(v string) {
+	o.Name = v
 }
 
 // GetTargets returns the Targets field value if set, zero value otherwise.
@@ -306,6 +274,38 @@ func (o *PasswordCredentials) SetTargets(v []string) {
 	o.Targets = v
 }
 
+// GetTriggers returns the Triggers field value if set, zero value otherwise.
+func (o *PasswordCredentials) GetTriggers() CredentialsTriggers {
+	if o == nil || utils.IsNil(o.Triggers) {
+		var ret CredentialsTriggers
+		return ret
+	}
+	return *o.Triggers
+}
+
+// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PasswordCredentials) GetTriggersOk() (*CredentialsTriggers, bool) {
+	if o == nil || utils.IsNil(o.Triggers) {
+		return nil, false
+	}
+	return o.Triggers, true
+}
+
+// HasTriggers returns a boolean if a field has been set.
+func (o *PasswordCredentials) HasTriggers() bool {
+	if o != nil && !utils.IsNil(o.Triggers) {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggers gets a reference to the given CredentialsTriggers and assigns it to the Triggers field.
+func (o *PasswordCredentials) SetTriggers(v CredentialsTriggers) {
+	o.Triggers = &v
+}
+
 func (o PasswordCredentials) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -316,21 +316,21 @@ func (o PasswordCredentials) MarshalJSON() ([]byte, error) {
 
 func (o PasswordCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
 	toSerialize["login"] = o.Login
 	toSerialize["password"] = o.Password
-	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
 	if o.Expires.IsSet() {
 		toSerialize["expires"] = o.Expires.Get()
 	}
-	if !utils.IsNil(o.Triggers) {
-		toSerialize["triggers"] = o.Triggers
-	}
+	toSerialize["name"] = o.Name
 	if !utils.IsNil(o.Targets) {
 		toSerialize["targets"] = o.Targets
+	}
+	if !utils.IsNil(o.Triggers) {
+		toSerialize["triggers"] = o.Triggers
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -345,9 +345,9 @@ func (o *PasswordCredentials) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
 		"login",
 		"password",
+		"type",
 		"name",
 	}
 
@@ -378,14 +378,14 @@ func (o *PasswordCredentials) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "login")
 		delete(additionalProperties, "password")
-		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "expires")
-		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "targets")
+		delete(additionalProperties, "triggers")
 		o.AdditionalProperties = additionalProperties
 	}
 

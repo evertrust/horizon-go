@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uuid** | **string** | The unique identifier of the report CSV. With that UUID, it is possible to download the CSV | 
 **RemoveAt** | **int64** | Indicates when the report CSV will be deleted from database | 
 **ReportId** | **string** | Id of the report that generated this CSV | 
 **ReportName** | **string** | Name of the report that generated this CSV | 
+**Uuid** | **string** | The unique identifier of the report CSV. With that UUID, it is possible to download the CSV | 
 
 ## Methods
 
 ### NewReportCSVMetadata
 
-`func NewReportCSVMetadata(uuid string, removeAt int64, reportId string, reportName string, ) *ReportCSVMetadata`
+`func NewReportCSVMetadata(removeAt int64, reportId string, reportName string, uuid string, ) *ReportCSVMetadata`
 
 NewReportCSVMetadata instantiates a new ReportCSVMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -27,26 +27,6 @@ will change when the set of required properties is changed
 NewReportCSVMetadataWithDefaults instantiates a new ReportCSVMetadata object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetUuid
-
-`func (o *ReportCSVMetadata) GetUuid() string`
-
-GetUuid returns the Uuid field if non-nil, zero value otherwise.
-
-### GetUuidOk
-
-`func (o *ReportCSVMetadata) GetUuidOk() (*string, bool)`
-
-GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUuid
-
-`func (o *ReportCSVMetadata) SetUuid(v string)`
-
-SetUuid sets Uuid field to given value.
-
 
 ### GetRemoveAt
 
@@ -106,6 +86,26 @@ and a boolean to check if the value has been set.
 `func (o *ReportCSVMetadata) SetReportName(v string)`
 
 SetReportName sets ReportName field to given value.
+
+
+### GetUuid
+
+`func (o *ReportCSVMetadata) GetUuid() string`
+
+GetUuid returns the Uuid field if non-nil, zero value otherwise.
+
+### GetUuidOk
+
+`func (o *ReportCSVMetadata) GetUuidOk() (*string, bool)`
+
+GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUuid
+
+`func (o *ReportCSVMetadata) SetUuid(v string)`
+
+SetUuid sets Uuid field to given value.
 
 
 

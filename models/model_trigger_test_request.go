@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &TriggerTestRequest{}
 
 // TriggerTestRequest struct for TriggerTestRequest
 type TriggerTestRequest struct {
-	Trigger TriggerTestRequestTrigger `json:"trigger"`
 	// Dictionary that will be interpreted by the trigger
-	Dictionary           []MapEntry `json:"dictionary,omitempty"`
+	Dictionary           []MapEntry                `json:"dictionary,omitempty"`
+	Trigger              TriggerTestRequestTrigger `json:"trigger"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,30 +46,6 @@ func NewTriggerTestRequest(trigger TriggerTestRequestTrigger) *TriggerTestReques
 func NewTriggerTestRequestWithDefaults() *TriggerTestRequest {
 	this := TriggerTestRequest{}
 	return &this
-}
-
-// GetTrigger returns the Trigger field value
-func (o *TriggerTestRequest) GetTrigger() TriggerTestRequestTrigger {
-	if o == nil {
-		var ret TriggerTestRequestTrigger
-		return ret
-	}
-
-	return o.Trigger
-}
-
-// GetTriggerOk returns a tuple with the Trigger field value
-// and a boolean to check if the value has been set.
-func (o *TriggerTestRequest) GetTriggerOk() (*TriggerTestRequestTrigger, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Trigger, true
-}
-
-// SetTrigger sets field value
-func (o *TriggerTestRequest) SetTrigger(v TriggerTestRequestTrigger) {
-	o.Trigger = v
 }
 
 // GetDictionary returns the Dictionary field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -105,6 +81,30 @@ func (o *TriggerTestRequest) SetDictionary(v []MapEntry) {
 	o.Dictionary = v
 }
 
+// GetTrigger returns the Trigger field value
+func (o *TriggerTestRequest) GetTrigger() TriggerTestRequestTrigger {
+	if o == nil {
+		var ret TriggerTestRequestTrigger
+		return ret
+	}
+
+	return o.Trigger
+}
+
+// GetTriggerOk returns a tuple with the Trigger field value
+// and a boolean to check if the value has been set.
+func (o *TriggerTestRequest) GetTriggerOk() (*TriggerTestRequestTrigger, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Trigger, true
+}
+
+// SetTrigger sets field value
+func (o *TriggerTestRequest) SetTrigger(v TriggerTestRequestTrigger) {
+	o.Trigger = v
+}
+
 func (o TriggerTestRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -115,10 +115,10 @@ func (o TriggerTestRequest) MarshalJSON() ([]byte, error) {
 
 func (o TriggerTestRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["trigger"] = o.Trigger
 	if o.Dictionary != nil {
 		toSerialize["dictionary"] = o.Dictionary
 	}
+	toSerialize["trigger"] = o.Trigger
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -162,8 +162,8 @@ func (o *TriggerTestRequest) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "trigger")
 		delete(additionalProperties, "dictionary")
+		delete(additionalProperties, "trigger")
 		o.AdditionalProperties = additionalProperties
 	}
 

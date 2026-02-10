@@ -21,10 +21,10 @@ var _ utils.MappedNullable = &PrincipalInfoSearchRequest{}
 
 // PrincipalInfoSearchRequest struct for PrincipalInfoSearchRequest
 type PrincipalInfoSearchRequest struct {
-	// The identifier of the principal to search for
-	Identifier utils.NullableString `json:"identifier,omitempty"`
 	// The contact e-mail of the principal to search for
-	Contact              utils.NullableString `json:"contact,omitempty"`
+	Contact utils.NullableString `json:"contact,omitempty"`
+	// The identifier of the principal to search for
+	Identifier           utils.NullableString `json:"identifier,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,49 +45,6 @@ func NewPrincipalInfoSearchRequest() *PrincipalInfoSearchRequest {
 func NewPrincipalInfoSearchRequestWithDefaults() *PrincipalInfoSearchRequest {
 	this := PrincipalInfoSearchRequest{}
 	return &this
-}
-
-// GetIdentifier returns the Identifier field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalInfoSearchRequest) GetIdentifier() string {
-	if o == nil || utils.IsNil(o.Identifier.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Identifier.Get()
-}
-
-// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalInfoSearchRequest) GetIdentifierOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Identifier.Get(), o.Identifier.IsSet()
-}
-
-// HasIdentifier returns a boolean if a field has been set.
-func (o *PrincipalInfoSearchRequest) HasIdentifier() bool {
-	if o != nil && o.Identifier.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIdentifier gets a reference to the given NullableString and assigns it to the Identifier field.
-func (o *PrincipalInfoSearchRequest) SetIdentifier(v string) {
-	o.Identifier.Set(&v)
-}
-
-// SetIdentifierNil sets the value for Identifier to be an explicit nil
-func (o *PrincipalInfoSearchRequest) SetIdentifierNil() {
-	o.Identifier.Set(nil)
-}
-
-// UnsetIdentifier ensures that no value is present for Identifier, not even an explicit nil
-func (o *PrincipalInfoSearchRequest) UnsetIdentifier() {
-	o.Identifier.Unset()
 }
 
 // GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -133,6 +90,49 @@ func (o *PrincipalInfoSearchRequest) UnsetContact() {
 	o.Contact.Unset()
 }
 
+// GetIdentifier returns the Identifier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalInfoSearchRequest) GetIdentifier() string {
+	if o == nil || utils.IsNil(o.Identifier.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Identifier.Get()
+}
+
+// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalInfoSearchRequest) GetIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Identifier.Get(), o.Identifier.IsSet()
+}
+
+// HasIdentifier returns a boolean if a field has been set.
+func (o *PrincipalInfoSearchRequest) HasIdentifier() bool {
+	if o != nil && o.Identifier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIdentifier gets a reference to the given NullableString and assigns it to the Identifier field.
+func (o *PrincipalInfoSearchRequest) SetIdentifier(v string) {
+	o.Identifier.Set(&v)
+}
+
+// SetIdentifierNil sets the value for Identifier to be an explicit nil
+func (o *PrincipalInfoSearchRequest) SetIdentifierNil() {
+	o.Identifier.Set(nil)
+}
+
+// UnsetIdentifier ensures that no value is present for Identifier, not even an explicit nil
+func (o *PrincipalInfoSearchRequest) UnsetIdentifier() {
+	o.Identifier.Unset()
+}
+
 func (o PrincipalInfoSearchRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -143,11 +143,11 @@ func (o PrincipalInfoSearchRequest) MarshalJSON() ([]byte, error) {
 
 func (o PrincipalInfoSearchRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Identifier.IsSet() {
-		toSerialize["identifier"] = o.Identifier.Get()
-	}
 	if o.Contact.IsSet() {
 		toSerialize["contact"] = o.Contact.Get()
+	}
+	if o.Identifier.IsSet() {
+		toSerialize["identifier"] = o.Identifier.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -171,8 +171,8 @@ func (o *PrincipalInfoSearchRequest) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "identifier")
 		delete(additionalProperties, "contact")
+		delete(additionalProperties, "identifier")
 		o.AdditionalProperties = additionalProperties
 	}
 

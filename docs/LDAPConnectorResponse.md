@@ -5,29 +5,29 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Type** | **string** |  | 
-**Name** | **string** |  | 
-**Hostname** | **string** |  | 
-**Port** | Pointer to **NullableInt64** |  | [optional] 
 **BaseDn** | **string** |  | 
-**Filter** | Pointer to **NullableString** |  | [optional] 
 **CertAttr** | Pointer to **NullableString** |  | [optional] 
-**FollowReferrals** | Pointer to **NullableBool** |  | [optional] 
-**UserIdentifierAttribute** | **string** |  | 
 **CertificateAttribute** | **string** |  | 
+**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing login DN and password. | 
+**Filter** | Pointer to **NullableString** |  | [optional] 
+**FollowReferrals** | Pointer to **NullableBool** |  | [optional] 
+**Hostname** | **string** |  | 
+**MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
+**Name** | **string** |  | 
+**Port** | Pointer to **NullableInt64** |  | [optional] 
+**Proxy** | Pointer to **NullableString** |  | [optional] 
 **ThrottleDuration** | **string** |  | 
 **ThrottleParallelism** | Pointer to **int64** |  | [optional] 
 **Timeout** | Pointer to **NullableString** |  | [optional] 
-**Proxy** | Pointer to **NullableString** |  | [optional] 
-**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing login DN and password. | 
-**MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
 **TlsInsecure** | Pointer to **NullableBool** | Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended. | [optional] [default to false]
+**Type** | **string** |  | 
+**UserIdentifierAttribute** | **string** |  | 
 
 ## Methods
 
 ### NewLDAPConnectorResponse
 
-`func NewLDAPConnectorResponse(id string, type_ string, name string, hostname string, baseDn string, userIdentifierAttribute string, certificateAttribute string, throttleDuration string, credentials string, ) *LDAPConnectorResponse`
+`func NewLDAPConnectorResponse(id string, baseDn string, certificateAttribute string, credentials string, hostname string, name string, throttleDuration string, type_ string, userIdentifierAttribute string, ) *LDAPConnectorResponse`
 
 NewLDAPConnectorResponse instantiates a new LDAPConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -62,101 +62,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetType
-
-`func (o *LDAPConnectorResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *LDAPConnectorResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *LDAPConnectorResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetName
-
-`func (o *LDAPConnectorResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *LDAPConnectorResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *LDAPConnectorResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetHostname
-
-`func (o *LDAPConnectorResponse) GetHostname() string`
-
-GetHostname returns the Hostname field if non-nil, zero value otherwise.
-
-### GetHostnameOk
-
-`func (o *LDAPConnectorResponse) GetHostnameOk() (*string, bool)`
-
-GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHostname
-
-`func (o *LDAPConnectorResponse) SetHostname(v string)`
-
-SetHostname sets Hostname field to given value.
-
-
-### GetPort
-
-`func (o *LDAPConnectorResponse) GetPort() int64`
-
-GetPort returns the Port field if non-nil, zero value otherwise.
-
-### GetPortOk
-
-`func (o *LDAPConnectorResponse) GetPortOk() (*int64, bool)`
-
-GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPort
-
-`func (o *LDAPConnectorResponse) SetPort(v int64)`
-
-SetPort sets Port field to given value.
-
-### HasPort
-
-`func (o *LDAPConnectorResponse) HasPort() bool`
-
-HasPort returns a boolean if a field has been set.
-
-### SetPortNil
-
-`func (o *LDAPConnectorResponse) SetPortNil(b bool)`
-
- SetPortNil sets the value for Port to be an explicit nil
-
-### UnsetPort
-`func (o *LDAPConnectorResponse) UnsetPort()`
-
-UnsetPort ensures that no value is present for Port, not even an explicit nil
 ### GetBaseDn
 
 `func (o *LDAPConnectorResponse) GetBaseDn() string`
@@ -175,6 +80,81 @@ and a boolean to check if the value has been set.
 `func (o *LDAPConnectorResponse) SetBaseDn(v string)`
 
 SetBaseDn sets BaseDn field to given value.
+
+
+### GetCertAttr
+
+`func (o *LDAPConnectorResponse) GetCertAttr() string`
+
+GetCertAttr returns the CertAttr field if non-nil, zero value otherwise.
+
+### GetCertAttrOk
+
+`func (o *LDAPConnectorResponse) GetCertAttrOk() (*string, bool)`
+
+GetCertAttrOk returns a tuple with the CertAttr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertAttr
+
+`func (o *LDAPConnectorResponse) SetCertAttr(v string)`
+
+SetCertAttr sets CertAttr field to given value.
+
+### HasCertAttr
+
+`func (o *LDAPConnectorResponse) HasCertAttr() bool`
+
+HasCertAttr returns a boolean if a field has been set.
+
+### SetCertAttrNil
+
+`func (o *LDAPConnectorResponse) SetCertAttrNil(b bool)`
+
+ SetCertAttrNil sets the value for CertAttr to be an explicit nil
+
+### UnsetCertAttr
+`func (o *LDAPConnectorResponse) UnsetCertAttr()`
+
+UnsetCertAttr ensures that no value is present for CertAttr, not even an explicit nil
+### GetCertificateAttribute
+
+`func (o *LDAPConnectorResponse) GetCertificateAttribute() string`
+
+GetCertificateAttribute returns the CertificateAttribute field if non-nil, zero value otherwise.
+
+### GetCertificateAttributeOk
+
+`func (o *LDAPConnectorResponse) GetCertificateAttributeOk() (*string, bool)`
+
+GetCertificateAttributeOk returns a tuple with the CertificateAttribute field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateAttribute
+
+`func (o *LDAPConnectorResponse) SetCertificateAttribute(v string)`
+
+SetCertificateAttribute sets CertificateAttribute field to given value.
+
+
+### GetCredentials
+
+`func (o *LDAPConnectorResponse) GetCredentials() string`
+
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
+
+### GetCredentialsOk
+
+`func (o *LDAPConnectorResponse) GetCredentialsOk() (*string, bool)`
+
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCredentials
+
+`func (o *LDAPConnectorResponse) SetCredentials(v string)`
+
+SetCredentials sets Credentials field to given value.
 
 
 ### GetFilter
@@ -212,41 +192,6 @@ HasFilter returns a boolean if a field has been set.
 `func (o *LDAPConnectorResponse) UnsetFilter()`
 
 UnsetFilter ensures that no value is present for Filter, not even an explicit nil
-### GetCertAttr
-
-`func (o *LDAPConnectorResponse) GetCertAttr() string`
-
-GetCertAttr returns the CertAttr field if non-nil, zero value otherwise.
-
-### GetCertAttrOk
-
-`func (o *LDAPConnectorResponse) GetCertAttrOk() (*string, bool)`
-
-GetCertAttrOk returns a tuple with the CertAttr field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertAttr
-
-`func (o *LDAPConnectorResponse) SetCertAttr(v string)`
-
-SetCertAttr sets CertAttr field to given value.
-
-### HasCertAttr
-
-`func (o *LDAPConnectorResponse) HasCertAttr() bool`
-
-HasCertAttr returns a boolean if a field has been set.
-
-### SetCertAttrNil
-
-`func (o *LDAPConnectorResponse) SetCertAttrNil(b bool)`
-
- SetCertAttrNil sets the value for CertAttr to be an explicit nil
-
-### UnsetCertAttr
-`func (o *LDAPConnectorResponse) UnsetCertAttr()`
-
-UnsetCertAttr ensures that no value is present for CertAttr, not even an explicit nil
 ### GetFollowReferrals
 
 `func (o *LDAPConnectorResponse) GetFollowReferrals() bool`
@@ -282,46 +227,151 @@ HasFollowReferrals returns a boolean if a field has been set.
 `func (o *LDAPConnectorResponse) UnsetFollowReferrals()`
 
 UnsetFollowReferrals ensures that no value is present for FollowReferrals, not even an explicit nil
-### GetUserIdentifierAttribute
+### GetHostname
 
-`func (o *LDAPConnectorResponse) GetUserIdentifierAttribute() string`
+`func (o *LDAPConnectorResponse) GetHostname() string`
 
-GetUserIdentifierAttribute returns the UserIdentifierAttribute field if non-nil, zero value otherwise.
+GetHostname returns the Hostname field if non-nil, zero value otherwise.
 
-### GetUserIdentifierAttributeOk
+### GetHostnameOk
 
-`func (o *LDAPConnectorResponse) GetUserIdentifierAttributeOk() (*string, bool)`
+`func (o *LDAPConnectorResponse) GetHostnameOk() (*string, bool)`
 
-GetUserIdentifierAttributeOk returns a tuple with the UserIdentifierAttribute field if it's non-nil, zero value otherwise
+GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUserIdentifierAttribute
+### SetHostname
 
-`func (o *LDAPConnectorResponse) SetUserIdentifierAttribute(v string)`
+`func (o *LDAPConnectorResponse) SetHostname(v string)`
 
-SetUserIdentifierAttribute sets UserIdentifierAttribute field to given value.
+SetHostname sets Hostname field to given value.
 
 
-### GetCertificateAttribute
+### GetMaxStoredCertificatePerHolder
 
-`func (o *LDAPConnectorResponse) GetCertificateAttribute() string`
+`func (o *LDAPConnectorResponse) GetMaxStoredCertificatePerHolder() int64`
 
-GetCertificateAttribute returns the CertificateAttribute field if non-nil, zero value otherwise.
+GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field if non-nil, zero value otherwise.
 
-### GetCertificateAttributeOk
+### GetMaxStoredCertificatePerHolderOk
 
-`func (o *LDAPConnectorResponse) GetCertificateAttributeOk() (*string, bool)`
+`func (o *LDAPConnectorResponse) GetMaxStoredCertificatePerHolderOk() (*int64, bool)`
 
-GetCertificateAttributeOk returns a tuple with the CertificateAttribute field if it's non-nil, zero value otherwise
+GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCertificateAttribute
+### SetMaxStoredCertificatePerHolder
 
-`func (o *LDAPConnectorResponse) SetCertificateAttribute(v string)`
+`func (o *LDAPConnectorResponse) SetMaxStoredCertificatePerHolder(v int64)`
 
-SetCertificateAttribute sets CertificateAttribute field to given value.
+SetMaxStoredCertificatePerHolder sets MaxStoredCertificatePerHolder field to given value.
+
+### HasMaxStoredCertificatePerHolder
+
+`func (o *LDAPConnectorResponse) HasMaxStoredCertificatePerHolder() bool`
+
+HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
+
+### SetMaxStoredCertificatePerHolderNil
+
+`func (o *LDAPConnectorResponse) SetMaxStoredCertificatePerHolderNil(b bool)`
+
+ SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
+
+### UnsetMaxStoredCertificatePerHolder
+`func (o *LDAPConnectorResponse) UnsetMaxStoredCertificatePerHolder()`
+
+UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
+### GetName
+
+`func (o *LDAPConnectorResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *LDAPConnectorResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *LDAPConnectorResponse) SetName(v string)`
+
+SetName sets Name field to given value.
 
 
+### GetPort
+
+`func (o *LDAPConnectorResponse) GetPort() int64`
+
+GetPort returns the Port field if non-nil, zero value otherwise.
+
+### GetPortOk
+
+`func (o *LDAPConnectorResponse) GetPortOk() (*int64, bool)`
+
+GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPort
+
+`func (o *LDAPConnectorResponse) SetPort(v int64)`
+
+SetPort sets Port field to given value.
+
+### HasPort
+
+`func (o *LDAPConnectorResponse) HasPort() bool`
+
+HasPort returns a boolean if a field has been set.
+
+### SetPortNil
+
+`func (o *LDAPConnectorResponse) SetPortNil(b bool)`
+
+ SetPortNil sets the value for Port to be an explicit nil
+
+### UnsetPort
+`func (o *LDAPConnectorResponse) UnsetPort()`
+
+UnsetPort ensures that no value is present for Port, not even an explicit nil
+### GetProxy
+
+`func (o *LDAPConnectorResponse) GetProxy() string`
+
+GetProxy returns the Proxy field if non-nil, zero value otherwise.
+
+### GetProxyOk
+
+`func (o *LDAPConnectorResponse) GetProxyOk() (*string, bool)`
+
+GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxy
+
+`func (o *LDAPConnectorResponse) SetProxy(v string)`
+
+SetProxy sets Proxy field to given value.
+
+### HasProxy
+
+`func (o *LDAPConnectorResponse) HasProxy() bool`
+
+HasProxy returns a boolean if a field has been set.
+
+### SetProxyNil
+
+`func (o *LDAPConnectorResponse) SetProxyNil(b bool)`
+
+ SetProxyNil sets the value for Proxy to be an explicit nil
+
+### UnsetProxy
+`func (o *LDAPConnectorResponse) UnsetProxy()`
+
+UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
 ### GetThrottleDuration
 
 `func (o *LDAPConnectorResponse) GetThrottleDuration() string`
@@ -402,96 +452,6 @@ HasTimeout returns a boolean if a field has been set.
 `func (o *LDAPConnectorResponse) UnsetTimeout()`
 
 UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetProxy
-
-`func (o *LDAPConnectorResponse) GetProxy() string`
-
-GetProxy returns the Proxy field if non-nil, zero value otherwise.
-
-### GetProxyOk
-
-`func (o *LDAPConnectorResponse) GetProxyOk() (*string, bool)`
-
-GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProxy
-
-`func (o *LDAPConnectorResponse) SetProxy(v string)`
-
-SetProxy sets Proxy field to given value.
-
-### HasProxy
-
-`func (o *LDAPConnectorResponse) HasProxy() bool`
-
-HasProxy returns a boolean if a field has been set.
-
-### SetProxyNil
-
-`func (o *LDAPConnectorResponse) SetProxyNil(b bool)`
-
- SetProxyNil sets the value for Proxy to be an explicit nil
-
-### UnsetProxy
-`func (o *LDAPConnectorResponse) UnsetProxy()`
-
-UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetCredentials
-
-`func (o *LDAPConnectorResponse) GetCredentials() string`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *LDAPConnectorResponse) GetCredentialsOk() (*string, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *LDAPConnectorResponse) SetCredentials(v string)`
-
-SetCredentials sets Credentials field to given value.
-
-
-### GetMaxStoredCertificatePerHolder
-
-`func (o *LDAPConnectorResponse) GetMaxStoredCertificatePerHolder() int64`
-
-GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field if non-nil, zero value otherwise.
-
-### GetMaxStoredCertificatePerHolderOk
-
-`func (o *LDAPConnectorResponse) GetMaxStoredCertificatePerHolderOk() (*int64, bool)`
-
-GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMaxStoredCertificatePerHolder
-
-`func (o *LDAPConnectorResponse) SetMaxStoredCertificatePerHolder(v int64)`
-
-SetMaxStoredCertificatePerHolder sets MaxStoredCertificatePerHolder field to given value.
-
-### HasMaxStoredCertificatePerHolder
-
-`func (o *LDAPConnectorResponse) HasMaxStoredCertificatePerHolder() bool`
-
-HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
-
-### SetMaxStoredCertificatePerHolderNil
-
-`func (o *LDAPConnectorResponse) SetMaxStoredCertificatePerHolderNil(b bool)`
-
- SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
-
-### UnsetMaxStoredCertificatePerHolder
-`func (o *LDAPConnectorResponse) UnsetMaxStoredCertificatePerHolder()`
-
-UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
 ### GetTlsInsecure
 
 `func (o *LDAPConnectorResponse) GetTlsInsecure() bool`
@@ -527,6 +487,46 @@ HasTlsInsecure returns a boolean if a field has been set.
 `func (o *LDAPConnectorResponse) UnsetTlsInsecure()`
 
 UnsetTlsInsecure ensures that no value is present for TlsInsecure, not even an explicit nil
+### GetType
+
+`func (o *LDAPConnectorResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *LDAPConnectorResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LDAPConnectorResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
+### GetUserIdentifierAttribute
+
+`func (o *LDAPConnectorResponse) GetUserIdentifierAttribute() string`
+
+GetUserIdentifierAttribute returns the UserIdentifierAttribute field if non-nil, zero value otherwise.
+
+### GetUserIdentifierAttributeOk
+
+`func (o *LDAPConnectorResponse) GetUserIdentifierAttributeOk() (*string, bool)`
+
+GetUserIdentifierAttributeOk returns a tuple with the UserIdentifierAttribute field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUserIdentifierAttribute
+
+`func (o *LDAPConnectorResponse) SetUserIdentifierAttribute(v string)`
+
+SetUserIdentifierAttribute sets UserIdentifierAttribute field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

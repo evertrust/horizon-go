@@ -22,53 +22,53 @@ var _ utils.MappedNullable = &WebRAUpdateRequestOnApproveResponse{}
 
 // WebRAUpdateRequestOnApproveResponse struct for WebRAUpdateRequestOnApproveResponse
 type WebRAUpdateRequestOnApproveResponse struct {
-	Module   string `json:"module"`
-	Workflow string `json:"workflow"`
-	// The user-data that will be used to generate the certificate
-	Template WebRAUpdateRequestTemplate `json:"template"`
 	// The certificate that was updated for this request. This is only available after the request has been approved
 	Certificate NullableCertificate `json:"certificate,omitempty"`
+	Module      string              `json:"module"`
+	// The user-data that will be used to generate the certificate
+	Template WebRAUpdateRequestTemplate `json:"template"`
+	Workflow string                     `json:"workflow"`
 	// Object internal ID
-	Id     string        `json:"_id"`
-	Status RequestStatus `json:"status"`
-	// The associated profile name
-	Profile string `json:"profile"`
-	// Certificate's Distinguished Name
-	Dn *string `json:"dn,omitempty"`
-	// The requester's principal identifier
-	Requester utils.NullableString `json:"requester,omitempty"`
-	// The team that will be assigned to this certificate. Teams are used to link certificates to people and to assign permissions to them
-	Team utils.NullableString `json:"team,omitempty"`
+	Id string `json:"_id"`
 	// The approver's principal identifier
 	Approver utils.NullableString `json:"approver,omitempty"`
-	// The request's contact email
-	Contact utils.NullableString `json:"contact,omitempty"`
-	// Free-text field editable by the requester to provider more context on the request
-	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
 	// Free-text field editable by the approver to provider more context on the request
 	ApproverComment utils.NullableString `json:"approverComment,omitempty"`
-	// The date the request was created. This is set by the system
-	RegistrationDate int64 `json:"registrationDate"`
-	// The date the request was last modified. This is set by the system
-	LastModificationDate int64 `json:"lastModificationDate"`
+	// The request's contact email
+	Contact utils.NullableString `json:"contact,omitempty"`
+	// Certificate's Distinguished Name
+	Dn *string `json:"dn,omitempty"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun utils.NullableBool `json:"dryRun,omitempty"`
 	// The date the request will expire. This is set by the system
 	ExpirationDate *int64 `json:"expirationDate,omitempty"`
-	// The date the requested will be deleted. This is set by the system
-	RemoveAt int64 `json:"removeAt"`
-	// The result of the execution of triggers on this request
-	TriggerResults []TriggerResult `json:"triggerResults,omitempty"`
-	// The computed holderID for this request. This is set by the system based on DN and SANs
-	HolderId string `json:"holderId"`
 	// The number of certificates that are currently valid and have the same DN and SANs in the Horizon database
 	GlobalHolderIdCount utils.NullableInt64 `json:"globalHolderIdCount,omitempty"`
-	// The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile
-	ProfileHolderIdCount utils.NullableInt64 `json:"profileHolderIdCount,omitempty"`
+	// The computed holderID for this request. This is set by the system based on DN and SANs
+	HolderId string `json:"holderId"`
 	// The labels set in this request
 	Labels []LabelData `json:"labels,omitempty"`
+	// The date the request was last modified. This is set by the system
+	LastModificationDate int64 `json:"lastModificationDate"`
 	// The metadata set in this request
 	Metadata []CertificateMetadata `json:"metadata,omitempty"`
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
+	// The associated profile name
+	Profile string `json:"profile"`
+	// The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile
+	ProfileHolderIdCount utils.NullableInt64 `json:"profileHolderIdCount,omitempty"`
+	// The date the request was created. This is set by the system
+	RegistrationDate int64 `json:"registrationDate"`
+	// The date the requested will be deleted. This is set by the system
+	RemoveAt int64 `json:"removeAt"`
+	// The requester's principal identifier
+	Requester utils.NullableString `json:"requester,omitempty"`
+	// Free-text field editable by the requester to provider more context on the request
+	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
+	Status           RequestStatus        `json:"status"`
+	// The team that will be assigned to this certificate. Teams are used to link certificates to people and to assign permissions to them
+	Team utils.NullableString `json:"team,omitempty"`
+	// The result of the execution of triggers on this request
+	TriggerResults       []TriggerResult `json:"triggerResults,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -78,20 +78,20 @@ type _WebRAUpdateRequestOnApproveResponse WebRAUpdateRequestOnApproveResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAUpdateRequestOnApproveResponse(module string, workflow string, template WebRAUpdateRequestTemplate, id string, status RequestStatus, profile string, registrationDate int64, lastModificationDate int64, removeAt int64, holderId string) *WebRAUpdateRequestOnApproveResponse {
+func NewWebRAUpdateRequestOnApproveResponse(module string, template WebRAUpdateRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus) *WebRAUpdateRequestOnApproveResponse {
 	this := WebRAUpdateRequestOnApproveResponse{}
 	this.Module = module
-	this.Workflow = workflow
 	this.Template = template
+	this.Workflow = workflow
 	this.Id = id
-	this.Status = status
-	this.Profile = profile
-	this.RegistrationDate = registrationDate
-	this.LastModificationDate = lastModificationDate
-	this.RemoveAt = removeAt
-	this.HolderId = holderId
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
+	this.HolderId = holderId
+	this.LastModificationDate = lastModificationDate
+	this.Profile = profile
+	this.RegistrationDate = registrationDate
+	this.RemoveAt = removeAt
+	this.Status = status
 	return &this
 }
 
@@ -103,78 +103,6 @@ func NewWebRAUpdateRequestOnApproveResponseWithDefaults() *WebRAUpdateRequestOnA
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
 	return &this
-}
-
-// GetModule returns the Module field value
-func (o *WebRAUpdateRequestOnApproveResponse) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *WebRAUpdateRequestOnApproveResponse) SetModule(v string) {
-	o.Module = v
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRAUpdateRequestOnApproveResponse) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRAUpdateRequestOnApproveResponse) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
-// GetTemplate returns the Template field value
-func (o *WebRAUpdateRequestOnApproveResponse) GetTemplate() WebRAUpdateRequestTemplate {
-	if o == nil {
-		var ret WebRAUpdateRequestTemplate
-		return ret
-	}
-
-	return o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Template, true
-}
-
-// SetTemplate sets field value
-func (o *WebRAUpdateRequestOnApproveResponse) SetTemplate(v WebRAUpdateRequestTemplate) {
-	o.Template = v
 }
 
 // GetCertificate returns the Certificate field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -220,6 +148,78 @@ func (o *WebRAUpdateRequestOnApproveResponse) UnsetCertificate() {
 	o.Certificate.Unset()
 }
 
+// GetModule returns the Module field value
+func (o *WebRAUpdateRequestOnApproveResponse) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *WebRAUpdateRequestOnApproveResponse) SetModule(v string) {
+	o.Module = v
+}
+
+// GetTemplate returns the Template field value
+func (o *WebRAUpdateRequestOnApproveResponse) GetTemplate() WebRAUpdateRequestTemplate {
+	if o == nil {
+		var ret WebRAUpdateRequestTemplate
+		return ret
+	}
+
+	return o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Template, true
+}
+
+// SetTemplate sets field value
+func (o *WebRAUpdateRequestOnApproveResponse) SetTemplate(v WebRAUpdateRequestTemplate) {
+	o.Template = v
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *WebRAUpdateRequestOnApproveResponse) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRAUpdateRequestOnApproveResponse) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
 // GetId returns the Id field value
 func (o *WebRAUpdateRequestOnApproveResponse) GetId() string {
 	if o == nil {
@@ -242,172 +242,6 @@ func (o *WebRAUpdateRequestOnApproveResponse) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *WebRAUpdateRequestOnApproveResponse) SetId(v string) {
 	o.Id = v
-}
-
-// GetStatus returns the Status field value
-func (o *WebRAUpdateRequestOnApproveResponse) GetStatus() RequestStatus {
-	if o == nil {
-		var ret RequestStatus
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) GetStatusOk() (*RequestStatus, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *WebRAUpdateRequestOnApproveResponse) SetStatus(v RequestStatus) {
-	o.Status = v
-}
-
-// GetProfile returns the Profile field value
-func (o *WebRAUpdateRequestOnApproveResponse) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *WebRAUpdateRequestOnApproveResponse) SetProfile(v string) {
-	o.Profile = v
-}
-
-// GetDn returns the Dn field value if set, zero value otherwise.
-func (o *WebRAUpdateRequestOnApproveResponse) GetDn() string {
-	if o == nil || utils.IsNil(o.Dn) {
-		var ret string
-		return ret
-	}
-	return *o.Dn
-}
-
-// GetDnOk returns a tuple with the Dn field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) GetDnOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Dn) {
-		return nil, false
-	}
-	return o.Dn, true
-}
-
-// HasDn returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) HasDn() bool {
-	if o != nil && !utils.IsNil(o.Dn) {
-		return true
-	}
-
-	return false
-}
-
-// SetDn gets a reference to the given string and assigns it to the Dn field.
-func (o *WebRAUpdateRequestOnApproveResponse) SetDn(v string) {
-	o.Dn = &v
-}
-
-// GetRequester returns the Requester field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAUpdateRequestOnApproveResponse) GetRequester() string {
-	if o == nil || utils.IsNil(o.Requester.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Requester.Get()
-}
-
-// GetRequesterOk returns a tuple with the Requester field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAUpdateRequestOnApproveResponse) GetRequesterOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Requester.Get(), o.Requester.IsSet()
-}
-
-// HasRequester returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) HasRequester() bool {
-	if o != nil && o.Requester.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRequester gets a reference to the given NullableString and assigns it to the Requester field.
-func (o *WebRAUpdateRequestOnApproveResponse) SetRequester(v string) {
-	o.Requester.Set(&v)
-}
-
-// SetRequesterNil sets the value for Requester to be an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) SetRequesterNil() {
-	o.Requester.Set(nil)
-}
-
-// UnsetRequester ensures that no value is present for Requester, not even an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) UnsetRequester() {
-	o.Requester.Unset()
-}
-
-// GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAUpdateRequestOnApproveResponse) GetTeam() string {
-	if o == nil || utils.IsNil(o.Team.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Team.Get()
-}
-
-// GetTeamOk returns a tuple with the Team field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAUpdateRequestOnApproveResponse) GetTeamOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Team.Get(), o.Team.IsSet()
-}
-
-// HasTeam returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) HasTeam() bool {
-	if o != nil && o.Team.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTeam gets a reference to the given NullableString and assigns it to the Team field.
-func (o *WebRAUpdateRequestOnApproveResponse) SetTeam(v string) {
-	o.Team.Set(&v)
-}
-
-// SetTeamNil sets the value for Team to be an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) SetTeamNil() {
-	o.Team.Set(nil)
-}
-
-// UnsetTeam ensures that no value is present for Team, not even an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) UnsetTeam() {
-	o.Team.Unset()
 }
 
 // GetApprover returns the Approver field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -453,92 +287,6 @@ func (o *WebRAUpdateRequestOnApproveResponse) UnsetApprover() {
 	o.Approver.Unset()
 }
 
-// GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAUpdateRequestOnApproveResponse) GetContact() string {
-	if o == nil || utils.IsNil(o.Contact.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Contact.Get()
-}
-
-// GetContactOk returns a tuple with the Contact field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAUpdateRequestOnApproveResponse) GetContactOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Contact.Get(), o.Contact.IsSet()
-}
-
-// HasContact returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) HasContact() bool {
-	if o != nil && o.Contact.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetContact gets a reference to the given NullableString and assigns it to the Contact field.
-func (o *WebRAUpdateRequestOnApproveResponse) SetContact(v string) {
-	o.Contact.Set(&v)
-}
-
-// SetContactNil sets the value for Contact to be an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) SetContactNil() {
-	o.Contact.Set(nil)
-}
-
-// UnsetContact ensures that no value is present for Contact, not even an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) UnsetContact() {
-	o.Contact.Unset()
-}
-
-// GetRequesterComment returns the RequesterComment field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAUpdateRequestOnApproveResponse) GetRequesterComment() string {
-	if o == nil || utils.IsNil(o.RequesterComment.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RequesterComment.Get()
-}
-
-// GetRequesterCommentOk returns a tuple with the RequesterComment field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAUpdateRequestOnApproveResponse) GetRequesterCommentOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RequesterComment.Get(), o.RequesterComment.IsSet()
-}
-
-// HasRequesterComment returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) HasRequesterComment() bool {
-	if o != nil && o.RequesterComment.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRequesterComment gets a reference to the given NullableString and assigns it to the RequesterComment field.
-func (o *WebRAUpdateRequestOnApproveResponse) SetRequesterComment(v string) {
-	o.RequesterComment.Set(&v)
-}
-
-// SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) SetRequesterCommentNil() {
-	o.RequesterComment.Set(nil)
-}
-
-// UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) UnsetRequesterComment() {
-	o.RequesterComment.Unset()
-}
-
 // GetApproverComment returns the ApproverComment field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRAUpdateRequestOnApproveResponse) GetApproverComment() string {
 	if o == nil || utils.IsNil(o.ApproverComment.Get()) {
@@ -582,317 +330,79 @@ func (o *WebRAUpdateRequestOnApproveResponse) UnsetApproverComment() {
 	o.ApproverComment.Unset()
 }
 
-// GetRegistrationDate returns the RegistrationDate field value
-func (o *WebRAUpdateRequestOnApproveResponse) GetRegistrationDate() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.RegistrationDate
-}
-
-// GetRegistrationDateOk returns a tuple with the RegistrationDate field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) GetRegistrationDateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RegistrationDate, true
-}
-
-// SetRegistrationDate sets field value
-func (o *WebRAUpdateRequestOnApproveResponse) SetRegistrationDate(v int64) {
-	o.RegistrationDate = v
-}
-
-// GetLastModificationDate returns the LastModificationDate field value
-func (o *WebRAUpdateRequestOnApproveResponse) GetLastModificationDate() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.LastModificationDate
-}
-
-// GetLastModificationDateOk returns a tuple with the LastModificationDate field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) GetLastModificationDateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastModificationDate, true
-}
-
-// SetLastModificationDate sets field value
-func (o *WebRAUpdateRequestOnApproveResponse) SetLastModificationDate(v int64) {
-	o.LastModificationDate = v
-}
-
-// GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
-func (o *WebRAUpdateRequestOnApproveResponse) GetExpirationDate() int64 {
-	if o == nil || utils.IsNil(o.ExpirationDate) {
-		var ret int64
-		return ret
-	}
-	return *o.ExpirationDate
-}
-
-// GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) GetExpirationDateOk() (*int64, bool) {
-	if o == nil || utils.IsNil(o.ExpirationDate) {
-		return nil, false
-	}
-	return o.ExpirationDate, true
-}
-
-// HasExpirationDate returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) HasExpirationDate() bool {
-	if o != nil && !utils.IsNil(o.ExpirationDate) {
-		return true
-	}
-
-	return false
-}
-
-// SetExpirationDate gets a reference to the given int64 and assigns it to the ExpirationDate field.
-func (o *WebRAUpdateRequestOnApproveResponse) SetExpirationDate(v int64) {
-	o.ExpirationDate = &v
-}
-
-// GetRemoveAt returns the RemoveAt field value
-func (o *WebRAUpdateRequestOnApproveResponse) GetRemoveAt() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.RemoveAt
-}
-
-// GetRemoveAtOk returns a tuple with the RemoveAt field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) GetRemoveAtOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RemoveAt, true
-}
-
-// SetRemoveAt sets field value
-func (o *WebRAUpdateRequestOnApproveResponse) SetRemoveAt(v int64) {
-	o.RemoveAt = v
-}
-
-// GetTriggerResults returns the TriggerResults field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAUpdateRequestOnApproveResponse) GetTriggerResults() []TriggerResult {
-	if o == nil {
-		var ret []TriggerResult
-		return ret
-	}
-	return o.TriggerResults
-}
-
-// GetTriggerResultsOk returns a tuple with the TriggerResults field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAUpdateRequestOnApproveResponse) GetTriggerResultsOk() ([]TriggerResult, bool) {
-	if o == nil || utils.IsNil(o.TriggerResults) {
-		return nil, false
-	}
-	return o.TriggerResults, true
-}
-
-// HasTriggerResults returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) HasTriggerResults() bool {
-	if o != nil && !utils.IsNil(o.TriggerResults) {
-		return true
-	}
-
-	return false
-}
-
-// SetTriggerResults gets a reference to the given []TriggerResult and assigns it to the TriggerResults field.
-func (o *WebRAUpdateRequestOnApproveResponse) SetTriggerResults(v []TriggerResult) {
-	o.TriggerResults = v
-}
-
-// GetHolderId returns the HolderId field value
-func (o *WebRAUpdateRequestOnApproveResponse) GetHolderId() string {
-	if o == nil {
+// GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAUpdateRequestOnApproveResponse) GetContact() string {
+	if o == nil || utils.IsNil(o.Contact.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.HolderId
+	return *o.Contact.Get()
 }
 
-// GetHolderIdOk returns a tuple with the HolderId field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) GetHolderIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.HolderId, true
-}
-
-// SetHolderId sets field value
-func (o *WebRAUpdateRequestOnApproveResponse) SetHolderId(v string) {
-	o.HolderId = v
-}
-
-// GetGlobalHolderIdCount returns the GlobalHolderIdCount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAUpdateRequestOnApproveResponse) GetGlobalHolderIdCount() int64 {
-	if o == nil || utils.IsNil(o.GlobalHolderIdCount.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.GlobalHolderIdCount.Get()
-}
-
-// GetGlobalHolderIdCountOk returns a tuple with the GlobalHolderIdCount field value if set, nil otherwise
+// GetContactOk returns a tuple with the Contact field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAUpdateRequestOnApproveResponse) GetGlobalHolderIdCountOk() (*int64, bool) {
+func (o *WebRAUpdateRequestOnApproveResponse) GetContactOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.GlobalHolderIdCount.Get(), o.GlobalHolderIdCount.IsSet()
+	return o.Contact.Get(), o.Contact.IsSet()
 }
 
-// HasGlobalHolderIdCount returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) HasGlobalHolderIdCount() bool {
-	if o != nil && o.GlobalHolderIdCount.IsSet() {
+// HasContact returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) HasContact() bool {
+	if o != nil && o.Contact.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetGlobalHolderIdCount gets a reference to the given NullableInt64 and assigns it to the GlobalHolderIdCount field.
-func (o *WebRAUpdateRequestOnApproveResponse) SetGlobalHolderIdCount(v int64) {
-	o.GlobalHolderIdCount.Set(&v)
+// SetContact gets a reference to the given NullableString and assigns it to the Contact field.
+func (o *WebRAUpdateRequestOnApproveResponse) SetContact(v string) {
+	o.Contact.Set(&v)
 }
 
-// SetGlobalHolderIdCountNil sets the value for GlobalHolderIdCount to be an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) SetGlobalHolderIdCountNil() {
-	o.GlobalHolderIdCount.Set(nil)
+// SetContactNil sets the value for Contact to be an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) SetContactNil() {
+	o.Contact.Set(nil)
 }
 
-// UnsetGlobalHolderIdCount ensures that no value is present for GlobalHolderIdCount, not even an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) UnsetGlobalHolderIdCount() {
-	o.GlobalHolderIdCount.Unset()
+// UnsetContact ensures that no value is present for Contact, not even an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) UnsetContact() {
+	o.Contact.Unset()
 }
 
-// GetProfileHolderIdCount returns the ProfileHolderIdCount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAUpdateRequestOnApproveResponse) GetProfileHolderIdCount() int64 {
-	if o == nil || utils.IsNil(o.ProfileHolderIdCount.Get()) {
-		var ret int64
+// GetDn returns the Dn field value if set, zero value otherwise.
+func (o *WebRAUpdateRequestOnApproveResponse) GetDn() string {
+	if o == nil || utils.IsNil(o.Dn) {
+		var ret string
 		return ret
 	}
-	return *o.ProfileHolderIdCount.Get()
+	return *o.Dn
 }
 
-// GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field value if set, nil otherwise
+// GetDnOk returns a tuple with the Dn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAUpdateRequestOnApproveResponse) GetProfileHolderIdCountOk() (*int64, bool) {
-	if o == nil {
+func (o *WebRAUpdateRequestOnApproveResponse) GetDnOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Dn) {
 		return nil, false
 	}
-	return o.ProfileHolderIdCount.Get(), o.ProfileHolderIdCount.IsSet()
+	return o.Dn, true
 }
 
-// HasProfileHolderIdCount returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) HasProfileHolderIdCount() bool {
-	if o != nil && o.ProfileHolderIdCount.IsSet() {
+// HasDn returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) HasDn() bool {
+	if o != nil && !utils.IsNil(o.Dn) {
 		return true
 	}
 
 	return false
 }
 
-// SetProfileHolderIdCount gets a reference to the given NullableInt64 and assigns it to the ProfileHolderIdCount field.
-func (o *WebRAUpdateRequestOnApproveResponse) SetProfileHolderIdCount(v int64) {
-	o.ProfileHolderIdCount.Set(&v)
-}
-
-// SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) SetProfileHolderIdCountNil() {
-	o.ProfileHolderIdCount.Set(nil)
-}
-
-// UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
-func (o *WebRAUpdateRequestOnApproveResponse) UnsetProfileHolderIdCount() {
-	o.ProfileHolderIdCount.Unset()
-}
-
-// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAUpdateRequestOnApproveResponse) GetLabels() []LabelData {
-	if o == nil {
-		var ret []LabelData
-		return ret
-	}
-	return o.Labels
-}
-
-// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAUpdateRequestOnApproveResponse) GetLabelsOk() ([]LabelData, bool) {
-	if o == nil || utils.IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
-}
-
-// HasLabels returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) HasLabels() bool {
-	if o != nil && !utils.IsNil(o.Labels) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabels gets a reference to the given []LabelData and assigns it to the Labels field.
-func (o *WebRAUpdateRequestOnApproveResponse) SetLabels(v []LabelData) {
-	o.Labels = v
-}
-
-// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAUpdateRequestOnApproveResponse) GetMetadata() []CertificateMetadata {
-	if o == nil {
-		var ret []CertificateMetadata
-		return ret
-	}
-	return o.Metadata
-}
-
-// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAUpdateRequestOnApproveResponse) GetMetadataOk() ([]CertificateMetadata, bool) {
-	if o == nil || utils.IsNil(o.Metadata) {
-		return nil, false
-	}
-	return o.Metadata, true
-}
-
-// HasMetadata returns a boolean if a field has been set.
-func (o *WebRAUpdateRequestOnApproveResponse) HasMetadata() bool {
-	if o != nil && !utils.IsNil(o.Metadata) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadata gets a reference to the given []CertificateMetadata and assigns it to the Metadata field.
-func (o *WebRAUpdateRequestOnApproveResponse) SetMetadata(v []CertificateMetadata) {
-	o.Metadata = v
+// SetDn gets a reference to the given string and assigns it to the Dn field.
+func (o *WebRAUpdateRequestOnApproveResponse) SetDn(v string) {
+	o.Dn = &v
 }
 
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -938,6 +448,496 @@ func (o *WebRAUpdateRequestOnApproveResponse) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
+// GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
+func (o *WebRAUpdateRequestOnApproveResponse) GetExpirationDate() int64 {
+	if o == nil || utils.IsNil(o.ExpirationDate) {
+		var ret int64
+		return ret
+	}
+	return *o.ExpirationDate
+}
+
+// GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) GetExpirationDateOk() (*int64, bool) {
+	if o == nil || utils.IsNil(o.ExpirationDate) {
+		return nil, false
+	}
+	return o.ExpirationDate, true
+}
+
+// HasExpirationDate returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) HasExpirationDate() bool {
+	if o != nil && !utils.IsNil(o.ExpirationDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpirationDate gets a reference to the given int64 and assigns it to the ExpirationDate field.
+func (o *WebRAUpdateRequestOnApproveResponse) SetExpirationDate(v int64) {
+	o.ExpirationDate = &v
+}
+
+// GetGlobalHolderIdCount returns the GlobalHolderIdCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAUpdateRequestOnApproveResponse) GetGlobalHolderIdCount() int64 {
+	if o == nil || utils.IsNil(o.GlobalHolderIdCount.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.GlobalHolderIdCount.Get()
+}
+
+// GetGlobalHolderIdCountOk returns a tuple with the GlobalHolderIdCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAUpdateRequestOnApproveResponse) GetGlobalHolderIdCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.GlobalHolderIdCount.Get(), o.GlobalHolderIdCount.IsSet()
+}
+
+// HasGlobalHolderIdCount returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) HasGlobalHolderIdCount() bool {
+	if o != nil && o.GlobalHolderIdCount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetGlobalHolderIdCount gets a reference to the given NullableInt64 and assigns it to the GlobalHolderIdCount field.
+func (o *WebRAUpdateRequestOnApproveResponse) SetGlobalHolderIdCount(v int64) {
+	o.GlobalHolderIdCount.Set(&v)
+}
+
+// SetGlobalHolderIdCountNil sets the value for GlobalHolderIdCount to be an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) SetGlobalHolderIdCountNil() {
+	o.GlobalHolderIdCount.Set(nil)
+}
+
+// UnsetGlobalHolderIdCount ensures that no value is present for GlobalHolderIdCount, not even an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) UnsetGlobalHolderIdCount() {
+	o.GlobalHolderIdCount.Unset()
+}
+
+// GetHolderId returns the HolderId field value
+func (o *WebRAUpdateRequestOnApproveResponse) GetHolderId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.HolderId
+}
+
+// GetHolderIdOk returns a tuple with the HolderId field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) GetHolderIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HolderId, true
+}
+
+// SetHolderId sets field value
+func (o *WebRAUpdateRequestOnApproveResponse) SetHolderId(v string) {
+	o.HolderId = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAUpdateRequestOnApproveResponse) GetLabels() []LabelData {
+	if o == nil {
+		var ret []LabelData
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAUpdateRequestOnApproveResponse) GetLabelsOk() ([]LabelData, bool) {
+	if o == nil || utils.IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) HasLabels() bool {
+	if o != nil && !utils.IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []LabelData and assigns it to the Labels field.
+func (o *WebRAUpdateRequestOnApproveResponse) SetLabels(v []LabelData) {
+	o.Labels = v
+}
+
+// GetLastModificationDate returns the LastModificationDate field value
+func (o *WebRAUpdateRequestOnApproveResponse) GetLastModificationDate() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.LastModificationDate
+}
+
+// GetLastModificationDateOk returns a tuple with the LastModificationDate field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) GetLastModificationDateOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastModificationDate, true
+}
+
+// SetLastModificationDate sets field value
+func (o *WebRAUpdateRequestOnApproveResponse) SetLastModificationDate(v int64) {
+	o.LastModificationDate = v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAUpdateRequestOnApproveResponse) GetMetadata() []CertificateMetadata {
+	if o == nil {
+		var ret []CertificateMetadata
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAUpdateRequestOnApproveResponse) GetMetadataOk() ([]CertificateMetadata, bool) {
+	if o == nil || utils.IsNil(o.Metadata) {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) HasMetadata() bool {
+	if o != nil && !utils.IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given []CertificateMetadata and assigns it to the Metadata field.
+func (o *WebRAUpdateRequestOnApproveResponse) SetMetadata(v []CertificateMetadata) {
+	o.Metadata = v
+}
+
+// GetProfile returns the Profile field value
+func (o *WebRAUpdateRequestOnApproveResponse) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *WebRAUpdateRequestOnApproveResponse) SetProfile(v string) {
+	o.Profile = v
+}
+
+// GetProfileHolderIdCount returns the ProfileHolderIdCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAUpdateRequestOnApproveResponse) GetProfileHolderIdCount() int64 {
+	if o == nil || utils.IsNil(o.ProfileHolderIdCount.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.ProfileHolderIdCount.Get()
+}
+
+// GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAUpdateRequestOnApproveResponse) GetProfileHolderIdCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ProfileHolderIdCount.Get(), o.ProfileHolderIdCount.IsSet()
+}
+
+// HasProfileHolderIdCount returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) HasProfileHolderIdCount() bool {
+	if o != nil && o.ProfileHolderIdCount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProfileHolderIdCount gets a reference to the given NullableInt64 and assigns it to the ProfileHolderIdCount field.
+func (o *WebRAUpdateRequestOnApproveResponse) SetProfileHolderIdCount(v int64) {
+	o.ProfileHolderIdCount.Set(&v)
+}
+
+// SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) SetProfileHolderIdCountNil() {
+	o.ProfileHolderIdCount.Set(nil)
+}
+
+// UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) UnsetProfileHolderIdCount() {
+	o.ProfileHolderIdCount.Unset()
+}
+
+// GetRegistrationDate returns the RegistrationDate field value
+func (o *WebRAUpdateRequestOnApproveResponse) GetRegistrationDate() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.RegistrationDate
+}
+
+// GetRegistrationDateOk returns a tuple with the RegistrationDate field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) GetRegistrationDateOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RegistrationDate, true
+}
+
+// SetRegistrationDate sets field value
+func (o *WebRAUpdateRequestOnApproveResponse) SetRegistrationDate(v int64) {
+	o.RegistrationDate = v
+}
+
+// GetRemoveAt returns the RemoveAt field value
+func (o *WebRAUpdateRequestOnApproveResponse) GetRemoveAt() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.RemoveAt
+}
+
+// GetRemoveAtOk returns a tuple with the RemoveAt field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) GetRemoveAtOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RemoveAt, true
+}
+
+// SetRemoveAt sets field value
+func (o *WebRAUpdateRequestOnApproveResponse) SetRemoveAt(v int64) {
+	o.RemoveAt = v
+}
+
+// GetRequester returns the Requester field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAUpdateRequestOnApproveResponse) GetRequester() string {
+	if o == nil || utils.IsNil(o.Requester.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Requester.Get()
+}
+
+// GetRequesterOk returns a tuple with the Requester field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAUpdateRequestOnApproveResponse) GetRequesterOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Requester.Get(), o.Requester.IsSet()
+}
+
+// HasRequester returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) HasRequester() bool {
+	if o != nil && o.Requester.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRequester gets a reference to the given NullableString and assigns it to the Requester field.
+func (o *WebRAUpdateRequestOnApproveResponse) SetRequester(v string) {
+	o.Requester.Set(&v)
+}
+
+// SetRequesterNil sets the value for Requester to be an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) SetRequesterNil() {
+	o.Requester.Set(nil)
+}
+
+// UnsetRequester ensures that no value is present for Requester, not even an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) UnsetRequester() {
+	o.Requester.Unset()
+}
+
+// GetRequesterComment returns the RequesterComment field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAUpdateRequestOnApproveResponse) GetRequesterComment() string {
+	if o == nil || utils.IsNil(o.RequesterComment.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RequesterComment.Get()
+}
+
+// GetRequesterCommentOk returns a tuple with the RequesterComment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAUpdateRequestOnApproveResponse) GetRequesterCommentOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RequesterComment.Get(), o.RequesterComment.IsSet()
+}
+
+// HasRequesterComment returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) HasRequesterComment() bool {
+	if o != nil && o.RequesterComment.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRequesterComment gets a reference to the given NullableString and assigns it to the RequesterComment field.
+func (o *WebRAUpdateRequestOnApproveResponse) SetRequesterComment(v string) {
+	o.RequesterComment.Set(&v)
+}
+
+// SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) SetRequesterCommentNil() {
+	o.RequesterComment.Set(nil)
+}
+
+// UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) UnsetRequesterComment() {
+	o.RequesterComment.Unset()
+}
+
+// GetStatus returns the Status field value
+func (o *WebRAUpdateRequestOnApproveResponse) GetStatus() RequestStatus {
+	if o == nil {
+		var ret RequestStatus
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) GetStatusOk() (*RequestStatus, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *WebRAUpdateRequestOnApproveResponse) SetStatus(v RequestStatus) {
+	o.Status = v
+}
+
+// GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAUpdateRequestOnApproveResponse) GetTeam() string {
+	if o == nil || utils.IsNil(o.Team.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Team.Get()
+}
+
+// GetTeamOk returns a tuple with the Team field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAUpdateRequestOnApproveResponse) GetTeamOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Team.Get(), o.Team.IsSet()
+}
+
+// HasTeam returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) HasTeam() bool {
+	if o != nil && o.Team.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTeam gets a reference to the given NullableString and assigns it to the Team field.
+func (o *WebRAUpdateRequestOnApproveResponse) SetTeam(v string) {
+	o.Team.Set(&v)
+}
+
+// SetTeamNil sets the value for Team to be an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) SetTeamNil() {
+	o.Team.Set(nil)
+}
+
+// UnsetTeam ensures that no value is present for Team, not even an explicit nil
+func (o *WebRAUpdateRequestOnApproveResponse) UnsetTeam() {
+	o.Team.Unset()
+}
+
+// GetTriggerResults returns the TriggerResults field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAUpdateRequestOnApproveResponse) GetTriggerResults() []TriggerResult {
+	if o == nil {
+		var ret []TriggerResult
+		return ret
+	}
+	return o.TriggerResults
+}
+
+// GetTriggerResultsOk returns a tuple with the TriggerResults field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAUpdateRequestOnApproveResponse) GetTriggerResultsOk() ([]TriggerResult, bool) {
+	if o == nil || utils.IsNil(o.TriggerResults) {
+		return nil, false
+	}
+	return o.TriggerResults, true
+}
+
+// HasTriggerResults returns a boolean if a field has been set.
+func (o *WebRAUpdateRequestOnApproveResponse) HasTriggerResults() bool {
+	if o != nil && !utils.IsNil(o.TriggerResults) {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggerResults gets a reference to the given []TriggerResult and assigns it to the TriggerResults field.
+func (o *WebRAUpdateRequestOnApproveResponse) SetTriggerResults(v []TriggerResult) {
+	o.TriggerResults = v
+}
+
 func (o WebRAUpdateRequestOnApproveResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -948,60 +948,60 @@ func (o WebRAUpdateRequestOnApproveResponse) MarshalJSON() ([]byte, error) {
 
 func (o WebRAUpdateRequestOnApproveResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
-	toSerialize["workflow"] = o.Workflow
-	toSerialize["template"] = o.Template
 	if o.Certificate.IsSet() {
 		toSerialize["certificate"] = o.Certificate.Get()
 	}
+	toSerialize["module"] = o.Module
+	toSerialize["template"] = o.Template
+	toSerialize["workflow"] = o.Workflow
 	toSerialize["_id"] = o.Id
-	toSerialize["status"] = o.Status
-	toSerialize["profile"] = o.Profile
-	if !utils.IsNil(o.Dn) {
-		toSerialize["dn"] = o.Dn
-	}
-	if o.Requester.IsSet() {
-		toSerialize["requester"] = o.Requester.Get()
-	}
-	if o.Team.IsSet() {
-		toSerialize["team"] = o.Team.Get()
-	}
 	if o.Approver.IsSet() {
 		toSerialize["approver"] = o.Approver.Get()
-	}
-	if o.Contact.IsSet() {
-		toSerialize["contact"] = o.Contact.Get()
-	}
-	if o.RequesterComment.IsSet() {
-		toSerialize["requesterComment"] = o.RequesterComment.Get()
 	}
 	if o.ApproverComment.IsSet() {
 		toSerialize["approverComment"] = o.ApproverComment.Get()
 	}
-	toSerialize["registrationDate"] = o.RegistrationDate
-	toSerialize["lastModificationDate"] = o.LastModificationDate
-	if !utils.IsNil(o.ExpirationDate) {
-		toSerialize["expirationDate"] = o.ExpirationDate
+	if o.Contact.IsSet() {
+		toSerialize["contact"] = o.Contact.Get()
 	}
-	toSerialize["removeAt"] = o.RemoveAt
-	if o.TriggerResults != nil {
-		toSerialize["triggerResults"] = o.TriggerResults
-	}
-	toSerialize["holderId"] = o.HolderId
-	if o.GlobalHolderIdCount.IsSet() {
-		toSerialize["globalHolderIdCount"] = o.GlobalHolderIdCount.Get()
-	}
-	if o.ProfileHolderIdCount.IsSet() {
-		toSerialize["profileHolderIdCount"] = o.ProfileHolderIdCount.Get()
-	}
-	if o.Labels != nil {
-		toSerialize["labels"] = o.Labels
-	}
-	if o.Metadata != nil {
-		toSerialize["metadata"] = o.Metadata
+	if !utils.IsNil(o.Dn) {
+		toSerialize["dn"] = o.Dn
 	}
 	if o.DryRun.IsSet() {
 		toSerialize["dryRun"] = o.DryRun.Get()
+	}
+	if !utils.IsNil(o.ExpirationDate) {
+		toSerialize["expirationDate"] = o.ExpirationDate
+	}
+	if o.GlobalHolderIdCount.IsSet() {
+		toSerialize["globalHolderIdCount"] = o.GlobalHolderIdCount.Get()
+	}
+	toSerialize["holderId"] = o.HolderId
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
+	}
+	toSerialize["lastModificationDate"] = o.LastModificationDate
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
+	}
+	toSerialize["profile"] = o.Profile
+	if o.ProfileHolderIdCount.IsSet() {
+		toSerialize["profileHolderIdCount"] = o.ProfileHolderIdCount.Get()
+	}
+	toSerialize["registrationDate"] = o.RegistrationDate
+	toSerialize["removeAt"] = o.RemoveAt
+	if o.Requester.IsSet() {
+		toSerialize["requester"] = o.Requester.Get()
+	}
+	if o.RequesterComment.IsSet() {
+		toSerialize["requesterComment"] = o.RequesterComment.Get()
+	}
+	toSerialize["status"] = o.Status
+	if o.Team.IsSet() {
+		toSerialize["team"] = o.Team.Get()
+	}
+	if o.TriggerResults != nil {
+		toSerialize["triggerResults"] = o.TriggerResults
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -1017,15 +1017,15 @@ func (o *WebRAUpdateRequestOnApproveResponse) UnmarshalJSON(data []byte) (err er
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"module",
-		"workflow",
 		"template",
+		"workflow",
 		"_id",
-		"status",
+		"holderId",
+		"lastModificationDate",
 		"profile",
 		"registrationDate",
-		"lastModificationDate",
 		"removeAt",
-		"holderId",
+		"status",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -1055,31 +1055,31 @@ func (o *WebRAUpdateRequestOnApproveResponse) UnmarshalJSON(data []byte) (err er
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "module")
-		delete(additionalProperties, "workflow")
-		delete(additionalProperties, "template")
 		delete(additionalProperties, "certificate")
+		delete(additionalProperties, "module")
+		delete(additionalProperties, "template")
+		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "profile")
-		delete(additionalProperties, "dn")
-		delete(additionalProperties, "requester")
-		delete(additionalProperties, "team")
 		delete(additionalProperties, "approver")
-		delete(additionalProperties, "contact")
-		delete(additionalProperties, "requesterComment")
 		delete(additionalProperties, "approverComment")
-		delete(additionalProperties, "registrationDate")
-		delete(additionalProperties, "lastModificationDate")
-		delete(additionalProperties, "expirationDate")
-		delete(additionalProperties, "removeAt")
-		delete(additionalProperties, "triggerResults")
-		delete(additionalProperties, "holderId")
-		delete(additionalProperties, "globalHolderIdCount")
-		delete(additionalProperties, "profileHolderIdCount")
-		delete(additionalProperties, "labels")
-		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "contact")
+		delete(additionalProperties, "dn")
 		delete(additionalProperties, "dryRun")
+		delete(additionalProperties, "expirationDate")
+		delete(additionalProperties, "globalHolderIdCount")
+		delete(additionalProperties, "holderId")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "lastModificationDate")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "profileHolderIdCount")
+		delete(additionalProperties, "registrationDate")
+		delete(additionalProperties, "removeAt")
+		delete(additionalProperties, "requester")
+		delete(additionalProperties, "requesterComment")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "team")
+		delete(additionalProperties, "triggerResults")
 		o.AdditionalProperties = additionalProperties
 	}
 

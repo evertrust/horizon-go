@@ -22,22 +22,22 @@ var _ utils.MappedNullable = &ScepEnrollRequestOnSubmit{}
 
 // ScepEnrollRequestOnSubmit struct for ScepEnrollRequestOnSubmit
 type ScepEnrollRequestOnSubmit struct {
-	// The SCEP profile name
-	Profile interface{} `json:"profile"`
 	// Fill the DN if DN whitelist is enabled. Contains the DN of the challenge
 	Dn interface{} `json:"dn,omitempty"`
 	// The password of the challenge. Must be set if password mode is `manual`
 	Password *SecretString `json:"password,omitempty"`
+	// The SCEP profile name
+	Profile interface{} `json:"profile"`
 	// Free-text field editable by the requester to provider more context on the request
 	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun utils.NullableBool `json:"dryRun,omitempty"`
 	// The module that will be used to process this request. For a SCEP request, this is always `scep`
 	Module string `json:"module"`
-	// What this request will do. For an enrollment request, this is always `enroll`
-	Workflow string `json:"workflow"`
 	// The user-data that will be used to generate the challenge
 	Template *ScepEnrollRequestTemplate `json:"template,omitempty"`
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
+	// What this request will do. For an enrollment request, this is always `enroll`
+	Workflow             string `json:"workflow"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,10 +49,10 @@ type _ScepEnrollRequestOnSubmit ScepEnrollRequestOnSubmit
 // will change when the set of required properties is changed
 func NewScepEnrollRequestOnSubmit(profile interface{}, module string, workflow string) *ScepEnrollRequestOnSubmit {
 	this := ScepEnrollRequestOnSubmit{}
-	this.Module = module
-	this.Workflow = workflow
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
+	this.Module = module
+	this.Workflow = workflow
 	return &this
 }
 
@@ -64,32 +64,6 @@ func NewScepEnrollRequestOnSubmitWithDefaults() *ScepEnrollRequestOnSubmit {
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
 	return &this
-}
-
-// GetProfile returns the Profile field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *ScepEnrollRequestOnSubmit) GetProfile() interface{} {
-	if o == nil {
-		var ret interface{}
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ScepEnrollRequestOnSubmit) GetProfileOk() (*interface{}, bool) {
-	if o == nil || utils.IsNil(o.Profile) {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *ScepEnrollRequestOnSubmit) SetProfile(v interface{}) {
-	o.Profile = v
 }
 
 // GetDn returns the Dn field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -157,6 +131,32 @@ func (o *ScepEnrollRequestOnSubmit) SetPassword(v SecretString) {
 	o.Password = &v
 }
 
+// GetProfile returns the Profile field value
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ScepEnrollRequestOnSubmit) GetProfile() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ScepEnrollRequestOnSubmit) GetProfileOk() (*interface{}, bool) {
+	if o == nil || utils.IsNil(o.Profile) {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *ScepEnrollRequestOnSubmit) SetProfile(v interface{}) {
+	o.Profile = v
+}
+
 // GetRequesterComment returns the RequesterComment field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ScepEnrollRequestOnSubmit) GetRequesterComment() string {
 	if o == nil || utils.IsNil(o.RequesterComment.Get()) {
@@ -198,86 +198,6 @@ func (o *ScepEnrollRequestOnSubmit) SetRequesterCommentNil() {
 // UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
 func (o *ScepEnrollRequestOnSubmit) UnsetRequesterComment() {
 	o.RequesterComment.Unset()
-}
-
-// GetModule returns the Module field value
-func (o *ScepEnrollRequestOnSubmit) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *ScepEnrollRequestOnSubmit) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *ScepEnrollRequestOnSubmit) SetModule(v string) {
-	o.Module = v
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *ScepEnrollRequestOnSubmit) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *ScepEnrollRequestOnSubmit) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *ScepEnrollRequestOnSubmit) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
-// GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *ScepEnrollRequestOnSubmit) GetTemplate() ScepEnrollRequestTemplate {
-	if o == nil || utils.IsNil(o.Template) {
-		var ret ScepEnrollRequestTemplate
-		return ret
-	}
-	return *o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ScepEnrollRequestOnSubmit) GetTemplateOk() (*ScepEnrollRequestTemplate, bool) {
-	if o == nil || utils.IsNil(o.Template) {
-		return nil, false
-	}
-	return o.Template, true
-}
-
-// HasTemplate returns a boolean if a field has been set.
-func (o *ScepEnrollRequestOnSubmit) HasTemplate() bool {
-	if o != nil && !utils.IsNil(o.Template) {
-		return true
-	}
-
-	return false
-}
-
-// SetTemplate gets a reference to the given ScepEnrollRequestTemplate and assigns it to the Template field.
-func (o *ScepEnrollRequestOnSubmit) SetTemplate(v ScepEnrollRequestTemplate) {
-	o.Template = &v
 }
 
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -323,6 +243,86 @@ func (o *ScepEnrollRequestOnSubmit) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
+// GetModule returns the Module field value
+func (o *ScepEnrollRequestOnSubmit) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *ScepEnrollRequestOnSubmit) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *ScepEnrollRequestOnSubmit) SetModule(v string) {
+	o.Module = v
+}
+
+// GetTemplate returns the Template field value if set, zero value otherwise.
+func (o *ScepEnrollRequestOnSubmit) GetTemplate() ScepEnrollRequestTemplate {
+	if o == nil || utils.IsNil(o.Template) {
+		var ret ScepEnrollRequestTemplate
+		return ret
+	}
+	return *o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScepEnrollRequestOnSubmit) GetTemplateOk() (*ScepEnrollRequestTemplate, bool) {
+	if o == nil || utils.IsNil(o.Template) {
+		return nil, false
+	}
+	return o.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (o *ScepEnrollRequestOnSubmit) HasTemplate() bool {
+	if o != nil && !utils.IsNil(o.Template) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplate gets a reference to the given ScepEnrollRequestTemplate and assigns it to the Template field.
+func (o *ScepEnrollRequestOnSubmit) SetTemplate(v ScepEnrollRequestTemplate) {
+	o.Template = &v
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *ScepEnrollRequestOnSubmit) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *ScepEnrollRequestOnSubmit) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *ScepEnrollRequestOnSubmit) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
 func (o ScepEnrollRequestOnSubmit) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -333,26 +333,26 @@ func (o ScepEnrollRequestOnSubmit) MarshalJSON() ([]byte, error) {
 
 func (o ScepEnrollRequestOnSubmit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Profile != nil {
-		toSerialize["profile"] = o.Profile
-	}
 	if o.Dn != nil {
 		toSerialize["dn"] = o.Dn
 	}
 	if !utils.IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
+	if o.Profile != nil {
+		toSerialize["profile"] = o.Profile
+	}
 	if o.RequesterComment.IsSet() {
 		toSerialize["requesterComment"] = o.RequesterComment.Get()
-	}
-	toSerialize["module"] = o.Module
-	toSerialize["workflow"] = o.Workflow
-	if !utils.IsNil(o.Template) {
-		toSerialize["template"] = o.Template
 	}
 	if o.DryRun.IsSet() {
 		toSerialize["dryRun"] = o.DryRun.Get()
 	}
+	toSerialize["module"] = o.Module
+	if !utils.IsNil(o.Template) {
+		toSerialize["template"] = o.Template
+	}
+	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -398,14 +398,14 @@ func (o *ScepEnrollRequestOnSubmit) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "profile")
 		delete(additionalProperties, "dn")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "profile")
 		delete(additionalProperties, "requesterComment")
-		delete(additionalProperties, "module")
-		delete(additionalProperties, "workflow")
-		delete(additionalProperties, "template")
 		delete(additionalProperties, "dryRun")
+		delete(additionalProperties, "module")
+		delete(additionalProperties, "template")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

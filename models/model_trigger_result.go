@@ -22,26 +22,26 @@ var _ utils.MappedNullable = &TriggerResult{}
 
 // TriggerResult struct for TriggerResult
 type TriggerResult struct {
-	// The name of the trigger that was executed
-	Name string `json:"name"`
-	// The event that triggered the trigger
-	Event string `json:"event"`
-	// The type of the trigger
-	TriggerType string `json:"triggerType"`
-	// The last time this trigger was executed for this certificate and this event
-	LastExecutionDate int64 `json:"lastExecutionDate"`
-	// The status of the trigger after its execution
-	Status string `json:"status"`
-	// The number of remaining tries before the trigger is abandoned
-	Retries utils.NullableInt64 `json:"retries,omitempty"`
-	// The next scheduled execution time for this trigger
-	NextExecutionDate utils.NullableInt64 `json:"nextExecutionDate,omitempty"`
-	// Time that will be waited between the next and the next+1 execution of this trigger
-	NextDelay utils.NullableString `json:"nextDelay,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	// Contains details on this trigger's execution
 	Detail utils.NullableString `json:"detail,omitempty"`
+	// The event that triggered the trigger
+	Event string `json:"event"`
+	// The last time this trigger was executed for this certificate and this event
+	LastExecutionDate int64 `json:"lastExecutionDate"`
+	// The name of the trigger that was executed
+	Name string `json:"name"`
+	// Time that will be waited between the next and the next+1 execution of this trigger
+	NextDelay utils.NullableString `json:"nextDelay,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	// The next scheduled execution time for this trigger
+	NextExecutionDate utils.NullableInt64 `json:"nextExecutionDate,omitempty"`
+	// The number of remaining tries before the trigger is abandoned
+	Retries utils.NullableInt64 `json:"retries,omitempty"`
 	// Is this trigger manually retryable (can be [run](#tag/certificate/operation/certificate.run))
-	Retryable            bool `json:"retryable"`
+	Retryable bool `json:"retryable"`
+	// The status of the trigger after its execution
+	Status string `json:"status"`
+	// The type of the trigger
+	TriggerType          string `json:"triggerType"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,14 +51,14 @@ type _TriggerResult TriggerResult
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTriggerResult(name string, event string, triggerType string, lastExecutionDate int64, status string, retryable bool) *TriggerResult {
+func NewTriggerResult(event string, lastExecutionDate int64, name string, retryable bool, status string, triggerType string) *TriggerResult {
 	this := TriggerResult{}
-	this.Name = name
 	this.Event = event
-	this.TriggerType = triggerType
 	this.LastExecutionDate = lastExecutionDate
-	this.Status = status
+	this.Name = name
 	this.Retryable = retryable
+	this.Status = status
+	this.TriggerType = triggerType
 	return &this
 }
 
@@ -68,255 +68,6 @@ func NewTriggerResult(name string, event string, triggerType string, lastExecuti
 func NewTriggerResultWithDefaults() *TriggerResult {
 	this := TriggerResult{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *TriggerResult) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *TriggerResult) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *TriggerResult) SetName(v string) {
-	o.Name = v
-}
-
-// GetEvent returns the Event field value
-func (o *TriggerResult) GetEvent() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Event
-}
-
-// GetEventOk returns a tuple with the Event field value
-// and a boolean to check if the value has been set.
-func (o *TriggerResult) GetEventOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Event, true
-}
-
-// SetEvent sets field value
-func (o *TriggerResult) SetEvent(v string) {
-	o.Event = v
-}
-
-// GetTriggerType returns the TriggerType field value
-func (o *TriggerResult) GetTriggerType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.TriggerType
-}
-
-// GetTriggerTypeOk returns a tuple with the TriggerType field value
-// and a boolean to check if the value has been set.
-func (o *TriggerResult) GetTriggerTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.TriggerType, true
-}
-
-// SetTriggerType sets field value
-func (o *TriggerResult) SetTriggerType(v string) {
-	o.TriggerType = v
-}
-
-// GetLastExecutionDate returns the LastExecutionDate field value
-func (o *TriggerResult) GetLastExecutionDate() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.LastExecutionDate
-}
-
-// GetLastExecutionDateOk returns a tuple with the LastExecutionDate field value
-// and a boolean to check if the value has been set.
-func (o *TriggerResult) GetLastExecutionDateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastExecutionDate, true
-}
-
-// SetLastExecutionDate sets field value
-func (o *TriggerResult) SetLastExecutionDate(v int64) {
-	o.LastExecutionDate = v
-}
-
-// GetStatus returns the Status field value
-func (o *TriggerResult) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *TriggerResult) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *TriggerResult) SetStatus(v string) {
-	o.Status = v
-}
-
-// GetRetries returns the Retries field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TriggerResult) GetRetries() int64 {
-	if o == nil || utils.IsNil(o.Retries.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.Retries.Get()
-}
-
-// GetRetriesOk returns a tuple with the Retries field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TriggerResult) GetRetriesOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Retries.Get(), o.Retries.IsSet()
-}
-
-// HasRetries returns a boolean if a field has been set.
-func (o *TriggerResult) HasRetries() bool {
-	if o != nil && o.Retries.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRetries gets a reference to the given NullableInt64 and assigns it to the Retries field.
-func (o *TriggerResult) SetRetries(v int64) {
-	o.Retries.Set(&v)
-}
-
-// SetRetriesNil sets the value for Retries to be an explicit nil
-func (o *TriggerResult) SetRetriesNil() {
-	o.Retries.Set(nil)
-}
-
-// UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-func (o *TriggerResult) UnsetRetries() {
-	o.Retries.Unset()
-}
-
-// GetNextExecutionDate returns the NextExecutionDate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TriggerResult) GetNextExecutionDate() int64 {
-	if o == nil || utils.IsNil(o.NextExecutionDate.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.NextExecutionDate.Get()
-}
-
-// GetNextExecutionDateOk returns a tuple with the NextExecutionDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TriggerResult) GetNextExecutionDateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.NextExecutionDate.Get(), o.NextExecutionDate.IsSet()
-}
-
-// HasNextExecutionDate returns a boolean if a field has been set.
-func (o *TriggerResult) HasNextExecutionDate() bool {
-	if o != nil && o.NextExecutionDate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNextExecutionDate gets a reference to the given NullableInt64 and assigns it to the NextExecutionDate field.
-func (o *TriggerResult) SetNextExecutionDate(v int64) {
-	o.NextExecutionDate.Set(&v)
-}
-
-// SetNextExecutionDateNil sets the value for NextExecutionDate to be an explicit nil
-func (o *TriggerResult) SetNextExecutionDateNil() {
-	o.NextExecutionDate.Set(nil)
-}
-
-// UnsetNextExecutionDate ensures that no value is present for NextExecutionDate, not even an explicit nil
-func (o *TriggerResult) UnsetNextExecutionDate() {
-	o.NextExecutionDate.Unset()
-}
-
-// GetNextDelay returns the NextDelay field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TriggerResult) GetNextDelay() string {
-	if o == nil || utils.IsNil(o.NextDelay.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.NextDelay.Get()
-}
-
-// GetNextDelayOk returns a tuple with the NextDelay field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TriggerResult) GetNextDelayOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.NextDelay.Get(), o.NextDelay.IsSet()
-}
-
-// HasNextDelay returns a boolean if a field has been set.
-func (o *TriggerResult) HasNextDelay() bool {
-	if o != nil && o.NextDelay.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNextDelay gets a reference to the given NullableString and assigns it to the NextDelay field.
-func (o *TriggerResult) SetNextDelay(v string) {
-	o.NextDelay.Set(&v)
-}
-
-// SetNextDelayNil sets the value for NextDelay to be an explicit nil
-func (o *TriggerResult) SetNextDelayNil() {
-	o.NextDelay.Set(nil)
-}
-
-// UnsetNextDelay ensures that no value is present for NextDelay, not even an explicit nil
-func (o *TriggerResult) UnsetNextDelay() {
-	o.NextDelay.Unset()
 }
 
 // GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -362,6 +113,207 @@ func (o *TriggerResult) UnsetDetail() {
 	o.Detail.Unset()
 }
 
+// GetEvent returns the Event field value
+func (o *TriggerResult) GetEvent() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Event
+}
+
+// GetEventOk returns a tuple with the Event field value
+// and a boolean to check if the value has been set.
+func (o *TriggerResult) GetEventOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Event, true
+}
+
+// SetEvent sets field value
+func (o *TriggerResult) SetEvent(v string) {
+	o.Event = v
+}
+
+// GetLastExecutionDate returns the LastExecutionDate field value
+func (o *TriggerResult) GetLastExecutionDate() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.LastExecutionDate
+}
+
+// GetLastExecutionDateOk returns a tuple with the LastExecutionDate field value
+// and a boolean to check if the value has been set.
+func (o *TriggerResult) GetLastExecutionDateOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastExecutionDate, true
+}
+
+// SetLastExecutionDate sets field value
+func (o *TriggerResult) SetLastExecutionDate(v int64) {
+	o.LastExecutionDate = v
+}
+
+// GetName returns the Name field value
+func (o *TriggerResult) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *TriggerResult) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *TriggerResult) SetName(v string) {
+	o.Name = v
+}
+
+// GetNextDelay returns the NextDelay field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TriggerResult) GetNextDelay() string {
+	if o == nil || utils.IsNil(o.NextDelay.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.NextDelay.Get()
+}
+
+// GetNextDelayOk returns a tuple with the NextDelay field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TriggerResult) GetNextDelayOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NextDelay.Get(), o.NextDelay.IsSet()
+}
+
+// HasNextDelay returns a boolean if a field has been set.
+func (o *TriggerResult) HasNextDelay() bool {
+	if o != nil && o.NextDelay.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNextDelay gets a reference to the given NullableString and assigns it to the NextDelay field.
+func (o *TriggerResult) SetNextDelay(v string) {
+	o.NextDelay.Set(&v)
+}
+
+// SetNextDelayNil sets the value for NextDelay to be an explicit nil
+func (o *TriggerResult) SetNextDelayNil() {
+	o.NextDelay.Set(nil)
+}
+
+// UnsetNextDelay ensures that no value is present for NextDelay, not even an explicit nil
+func (o *TriggerResult) UnsetNextDelay() {
+	o.NextDelay.Unset()
+}
+
+// GetNextExecutionDate returns the NextExecutionDate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TriggerResult) GetNextExecutionDate() int64 {
+	if o == nil || utils.IsNil(o.NextExecutionDate.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.NextExecutionDate.Get()
+}
+
+// GetNextExecutionDateOk returns a tuple with the NextExecutionDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TriggerResult) GetNextExecutionDateOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NextExecutionDate.Get(), o.NextExecutionDate.IsSet()
+}
+
+// HasNextExecutionDate returns a boolean if a field has been set.
+func (o *TriggerResult) HasNextExecutionDate() bool {
+	if o != nil && o.NextExecutionDate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNextExecutionDate gets a reference to the given NullableInt64 and assigns it to the NextExecutionDate field.
+func (o *TriggerResult) SetNextExecutionDate(v int64) {
+	o.NextExecutionDate.Set(&v)
+}
+
+// SetNextExecutionDateNil sets the value for NextExecutionDate to be an explicit nil
+func (o *TriggerResult) SetNextExecutionDateNil() {
+	o.NextExecutionDate.Set(nil)
+}
+
+// UnsetNextExecutionDate ensures that no value is present for NextExecutionDate, not even an explicit nil
+func (o *TriggerResult) UnsetNextExecutionDate() {
+	o.NextExecutionDate.Unset()
+}
+
+// GetRetries returns the Retries field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TriggerResult) GetRetries() int64 {
+	if o == nil || utils.IsNil(o.Retries.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Retries.Get()
+}
+
+// GetRetriesOk returns a tuple with the Retries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TriggerResult) GetRetriesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Retries.Get(), o.Retries.IsSet()
+}
+
+// HasRetries returns a boolean if a field has been set.
+func (o *TriggerResult) HasRetries() bool {
+	if o != nil && o.Retries.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetries gets a reference to the given NullableInt64 and assigns it to the Retries field.
+func (o *TriggerResult) SetRetries(v int64) {
+	o.Retries.Set(&v)
+}
+
+// SetRetriesNil sets the value for Retries to be an explicit nil
+func (o *TriggerResult) SetRetriesNil() {
+	o.Retries.Set(nil)
+}
+
+// UnsetRetries ensures that no value is present for Retries, not even an explicit nil
+func (o *TriggerResult) UnsetRetries() {
+	o.Retries.Unset()
+}
+
 // GetRetryable returns the Retryable field value
 func (o *TriggerResult) GetRetryable() bool {
 	if o == nil {
@@ -386,6 +338,54 @@ func (o *TriggerResult) SetRetryable(v bool) {
 	o.Retryable = v
 }
 
+// GetStatus returns the Status field value
+func (o *TriggerResult) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *TriggerResult) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *TriggerResult) SetStatus(v string) {
+	o.Status = v
+}
+
+// GetTriggerType returns the TriggerType field value
+func (o *TriggerResult) GetTriggerType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TriggerType
+}
+
+// GetTriggerTypeOk returns a tuple with the TriggerType field value
+// and a boolean to check if the value has been set.
+func (o *TriggerResult) GetTriggerTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TriggerType, true
+}
+
+// SetTriggerType sets field value
+func (o *TriggerResult) SetTriggerType(v string) {
+	o.TriggerType = v
+}
+
 func (o TriggerResult) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -396,24 +396,24 @@ func (o TriggerResult) MarshalJSON() ([]byte, error) {
 
 func (o TriggerResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
+	if o.Detail.IsSet() {
+		toSerialize["detail"] = o.Detail.Get()
+	}
 	toSerialize["event"] = o.Event
-	toSerialize["triggerType"] = o.TriggerType
 	toSerialize["lastExecutionDate"] = o.LastExecutionDate
-	toSerialize["status"] = o.Status
-	if o.Retries.IsSet() {
-		toSerialize["retries"] = o.Retries.Get()
+	toSerialize["name"] = o.Name
+	if o.NextDelay.IsSet() {
+		toSerialize["nextDelay"] = o.NextDelay.Get()
 	}
 	if o.NextExecutionDate.IsSet() {
 		toSerialize["nextExecutionDate"] = o.NextExecutionDate.Get()
 	}
-	if o.NextDelay.IsSet() {
-		toSerialize["nextDelay"] = o.NextDelay.Get()
-	}
-	if o.Detail.IsSet() {
-		toSerialize["detail"] = o.Detail.Get()
+	if o.Retries.IsSet() {
+		toSerialize["retries"] = o.Retries.Get()
 	}
 	toSerialize["retryable"] = o.Retryable
+	toSerialize["status"] = o.Status
+	toSerialize["triggerType"] = o.TriggerType
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -427,12 +427,12 @@ func (o *TriggerResult) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
 		"event",
-		"triggerType",
 		"lastExecutionDate",
-		"status",
+		"name",
 		"retryable",
+		"status",
+		"triggerType",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -462,16 +462,16 @@ func (o *TriggerResult) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "event")
-		delete(additionalProperties, "triggerType")
-		delete(additionalProperties, "lastExecutionDate")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "retries")
-		delete(additionalProperties, "nextExecutionDate")
-		delete(additionalProperties, "nextDelay")
 		delete(additionalProperties, "detail")
+		delete(additionalProperties, "event")
+		delete(additionalProperties, "lastExecutionDate")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "nextDelay")
+		delete(additionalProperties, "nextExecutionDate")
+		delete(additionalProperties, "retries")
 		delete(additionalProperties, "retryable")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "triggerType")
 		o.AdditionalProperties = additionalProperties
 	}
 

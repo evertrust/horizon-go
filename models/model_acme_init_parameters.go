@@ -22,16 +22,16 @@ var _ utils.MappedNullable = &AcmeInitParameters{}
 
 // AcmeInitParameters struct for AcmeInitParameters
 type AcmeInitParameters struct {
+	// The HTTP-01 port for ACME.
+	Http01Port *int64 `json:"http01Port,omitempty"`
+	// The key type used for ACME.
+	KeyType *string `json:"keyType,omitempty"`
 	// The module of the initialization parameters.
 	Module string `json:"module"`
 	// The profile used for ACME.
 	Profile string `json:"profile"`
-	// The key type used for ACME.
-	KeyType *string `json:"keyType,omitempty"`
 	// The TLS-ALPN-01 port for ACME.
-	TlsAlpn01Port *int64 `json:"tlsAlpn01Port,omitempty"`
-	// The HTTP-01 port for ACME.
-	Http01Port           *int64 `json:"http01Port,omitempty"`
+	TlsAlpn01Port        *int64 `json:"tlsAlpn01Port,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,6 +54,70 @@ func NewAcmeInitParameters(module string, profile string) *AcmeInitParameters {
 func NewAcmeInitParametersWithDefaults() *AcmeInitParameters {
 	this := AcmeInitParameters{}
 	return &this
+}
+
+// GetHttp01Port returns the Http01Port field value if set, zero value otherwise.
+func (o *AcmeInitParameters) GetHttp01Port() int64 {
+	if o == nil || utils.IsNil(o.Http01Port) {
+		var ret int64
+		return ret
+	}
+	return *o.Http01Port
+}
+
+// GetHttp01PortOk returns a tuple with the Http01Port field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AcmeInitParameters) GetHttp01PortOk() (*int64, bool) {
+	if o == nil || utils.IsNil(o.Http01Port) {
+		return nil, false
+	}
+	return o.Http01Port, true
+}
+
+// HasHttp01Port returns a boolean if a field has been set.
+func (o *AcmeInitParameters) HasHttp01Port() bool {
+	if o != nil && !utils.IsNil(o.Http01Port) {
+		return true
+	}
+
+	return false
+}
+
+// SetHttp01Port gets a reference to the given int64 and assigns it to the Http01Port field.
+func (o *AcmeInitParameters) SetHttp01Port(v int64) {
+	o.Http01Port = &v
+}
+
+// GetKeyType returns the KeyType field value if set, zero value otherwise.
+func (o *AcmeInitParameters) GetKeyType() string {
+	if o == nil || utils.IsNil(o.KeyType) {
+		var ret string
+		return ret
+	}
+	return *o.KeyType
+}
+
+// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AcmeInitParameters) GetKeyTypeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.KeyType) {
+		return nil, false
+	}
+	return o.KeyType, true
+}
+
+// HasKeyType returns a boolean if a field has been set.
+func (o *AcmeInitParameters) HasKeyType() bool {
+	if o != nil && !utils.IsNil(o.KeyType) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
+func (o *AcmeInitParameters) SetKeyType(v string) {
+	o.KeyType = &v
 }
 
 // GetModule returns the Module field value
@@ -104,38 +168,6 @@ func (o *AcmeInitParameters) SetProfile(v string) {
 	o.Profile = v
 }
 
-// GetKeyType returns the KeyType field value if set, zero value otherwise.
-func (o *AcmeInitParameters) GetKeyType() string {
-	if o == nil || utils.IsNil(o.KeyType) {
-		var ret string
-		return ret
-	}
-	return *o.KeyType
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AcmeInitParameters) GetKeyTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.KeyType) {
-		return nil, false
-	}
-	return o.KeyType, true
-}
-
-// HasKeyType returns a boolean if a field has been set.
-func (o *AcmeInitParameters) HasKeyType() bool {
-	if o != nil && !utils.IsNil(o.KeyType) {
-		return true
-	}
-
-	return false
-}
-
-// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
-func (o *AcmeInitParameters) SetKeyType(v string) {
-	o.KeyType = &v
-}
-
 // GetTlsAlpn01Port returns the TlsAlpn01Port field value if set, zero value otherwise.
 func (o *AcmeInitParameters) GetTlsAlpn01Port() int64 {
 	if o == nil || utils.IsNil(o.TlsAlpn01Port) {
@@ -168,38 +200,6 @@ func (o *AcmeInitParameters) SetTlsAlpn01Port(v int64) {
 	o.TlsAlpn01Port = &v
 }
 
-// GetHttp01Port returns the Http01Port field value if set, zero value otherwise.
-func (o *AcmeInitParameters) GetHttp01Port() int64 {
-	if o == nil || utils.IsNil(o.Http01Port) {
-		var ret int64
-		return ret
-	}
-	return *o.Http01Port
-}
-
-// GetHttp01PortOk returns a tuple with the Http01Port field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AcmeInitParameters) GetHttp01PortOk() (*int64, bool) {
-	if o == nil || utils.IsNil(o.Http01Port) {
-		return nil, false
-	}
-	return o.Http01Port, true
-}
-
-// HasHttp01Port returns a boolean if a field has been set.
-func (o *AcmeInitParameters) HasHttp01Port() bool {
-	if o != nil && !utils.IsNil(o.Http01Port) {
-		return true
-	}
-
-	return false
-}
-
-// SetHttp01Port gets a reference to the given int64 and assigns it to the Http01Port field.
-func (o *AcmeInitParameters) SetHttp01Port(v int64) {
-	o.Http01Port = &v
-}
-
 func (o AcmeInitParameters) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -210,16 +210,16 @@ func (o AcmeInitParameters) MarshalJSON() ([]byte, error) {
 
 func (o AcmeInitParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
-	toSerialize["profile"] = o.Profile
+	if !utils.IsNil(o.Http01Port) {
+		toSerialize["http01Port"] = o.Http01Port
+	}
 	if !utils.IsNil(o.KeyType) {
 		toSerialize["keyType"] = o.KeyType
 	}
+	toSerialize["module"] = o.Module
+	toSerialize["profile"] = o.Profile
 	if !utils.IsNil(o.TlsAlpn01Port) {
 		toSerialize["tlsAlpn01Port"] = o.TlsAlpn01Port
-	}
-	if !utils.IsNil(o.Http01Port) {
-		toSerialize["http01Port"] = o.Http01Port
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -265,11 +265,11 @@ func (o *AcmeInitParameters) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "http01Port")
+		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "profile")
-		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "tlsAlpn01Port")
-		delete(additionalProperties, "http01Port")
 		o.AdditionalProperties = additionalProperties
 	}
 

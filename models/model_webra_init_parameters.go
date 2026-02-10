@@ -22,18 +22,18 @@ var _ utils.MappedNullable = &WebraInitParameters{}
 
 // WebraInitParameters struct for WebraInitParameters
 type WebraInitParameters struct {
-	// The module of the initialization parameters.
-	Module string `json:"module"`
-	// The profile used for WebRA.
-	Profile string `json:"profile"`
-	// The key type used for WebRA.
-	KeyType *string `json:"keyType,omitempty"`
 	// The authorization mode for WebRA.
 	AuthorizationMode *string `json:"authorizationMode,omitempty"`
 	// The enrollment mode for WebRA.
 	EnrollmentMode *string `json:"enrollmentMode,omitempty"`
+	// The key type used for WebRA.
+	KeyType *string `json:"keyType,omitempty"`
+	// The module of the initialization parameters.
+	Module string `json:"module"`
 	// The password policy for WebRA.
-	PasswordPolicy       *PasswordPolicy `json:"passwordPolicy,omitempty"`
+	PasswordPolicy *PasswordPolicy `json:"passwordPolicy,omitempty"`
+	// The profile used for WebRA.
+	Profile              string `json:"profile"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,86 +56,6 @@ func NewWebraInitParameters(module string, profile string) *WebraInitParameters 
 func NewWebraInitParametersWithDefaults() *WebraInitParameters {
 	this := WebraInitParameters{}
 	return &this
-}
-
-// GetModule returns the Module field value
-func (o *WebraInitParameters) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *WebraInitParameters) SetModule(v string) {
-	o.Module = v
-}
-
-// GetProfile returns the Profile field value
-func (o *WebraInitParameters) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *WebraInitParameters) SetProfile(v string) {
-	o.Profile = v
-}
-
-// GetKeyType returns the KeyType field value if set, zero value otherwise.
-func (o *WebraInitParameters) GetKeyType() string {
-	if o == nil || utils.IsNil(o.KeyType) {
-		var ret string
-		return ret
-	}
-	return *o.KeyType
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetKeyTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.KeyType) {
-		return nil, false
-	}
-	return o.KeyType, true
-}
-
-// HasKeyType returns a boolean if a field has been set.
-func (o *WebraInitParameters) HasKeyType() bool {
-	if o != nil && !utils.IsNil(o.KeyType) {
-		return true
-	}
-
-	return false
-}
-
-// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
-func (o *WebraInitParameters) SetKeyType(v string) {
-	o.KeyType = &v
 }
 
 // GetAuthorizationMode returns the AuthorizationMode field value if set, zero value otherwise.
@@ -202,6 +122,62 @@ func (o *WebraInitParameters) SetEnrollmentMode(v string) {
 	o.EnrollmentMode = &v
 }
 
+// GetKeyType returns the KeyType field value if set, zero value otherwise.
+func (o *WebraInitParameters) GetKeyType() string {
+	if o == nil || utils.IsNil(o.KeyType) {
+		var ret string
+		return ret
+	}
+	return *o.KeyType
+}
+
+// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebraInitParameters) GetKeyTypeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.KeyType) {
+		return nil, false
+	}
+	return o.KeyType, true
+}
+
+// HasKeyType returns a boolean if a field has been set.
+func (o *WebraInitParameters) HasKeyType() bool {
+	if o != nil && !utils.IsNil(o.KeyType) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
+func (o *WebraInitParameters) SetKeyType(v string) {
+	o.KeyType = &v
+}
+
+// GetModule returns the Module field value
+func (o *WebraInitParameters) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *WebraInitParameters) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *WebraInitParameters) SetModule(v string) {
+	o.Module = v
+}
+
 // GetPasswordPolicy returns the PasswordPolicy field value if set, zero value otherwise.
 func (o *WebraInitParameters) GetPasswordPolicy() PasswordPolicy {
 	if o == nil || utils.IsNil(o.PasswordPolicy) {
@@ -234,6 +210,30 @@ func (o *WebraInitParameters) SetPasswordPolicy(v PasswordPolicy) {
 	o.PasswordPolicy = &v
 }
 
+// GetProfile returns the Profile field value
+func (o *WebraInitParameters) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *WebraInitParameters) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *WebraInitParameters) SetProfile(v string) {
+	o.Profile = v
+}
+
 func (o WebraInitParameters) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -244,20 +244,20 @@ func (o WebraInitParameters) MarshalJSON() ([]byte, error) {
 
 func (o WebraInitParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
-	toSerialize["profile"] = o.Profile
-	if !utils.IsNil(o.KeyType) {
-		toSerialize["keyType"] = o.KeyType
-	}
 	if !utils.IsNil(o.AuthorizationMode) {
 		toSerialize["authorizationMode"] = o.AuthorizationMode
 	}
 	if !utils.IsNil(o.EnrollmentMode) {
 		toSerialize["enrollmentMode"] = o.EnrollmentMode
 	}
+	if !utils.IsNil(o.KeyType) {
+		toSerialize["keyType"] = o.KeyType
+	}
+	toSerialize["module"] = o.Module
 	if !utils.IsNil(o.PasswordPolicy) {
 		toSerialize["passwordPolicy"] = o.PasswordPolicy
 	}
+	toSerialize["profile"] = o.Profile
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -302,12 +302,12 @@ func (o *WebraInitParameters) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "module")
-		delete(additionalProperties, "profile")
-		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "authorizationMode")
 		delete(additionalProperties, "enrollmentMode")
+		delete(additionalProperties, "keyType")
+		delete(additionalProperties, "module")
 		delete(additionalProperties, "passwordPolicy")
+		delete(additionalProperties, "profile")
 		o.AdditionalProperties = additionalProperties
 	}
 

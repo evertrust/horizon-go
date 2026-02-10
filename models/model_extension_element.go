@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &ExtensionElement{}
 
 // ExtensionElement struct for ExtensionElement
 type ExtensionElement struct {
-	Type  string               `json:"type"`
-	Value utils.NullableString `json:"value,omitempty"`
 	// A computation rule that will dynamically generate a string value from the request's context
 	ComputationRule      utils.NullableString `json:"computationRule,omitempty"`
-	Mandatory            bool                 `json:"mandatory"`
-	EditableByRequester  utils.NullableBool   `json:"editableByRequester,omitempty"`
 	EditableByApprover   utils.NullableBool   `json:"editableByApprover,omitempty"`
+	EditableByRequester  utils.NullableBool   `json:"editableByRequester,omitempty"`
+	Mandatory            bool                 `json:"mandatory"`
 	Regex                utils.NullableString `json:"regex,omitempty"`
+	Type                 string               `json:"type"`
+	Value                utils.NullableString `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,10 +39,10 @@ type _ExtensionElement ExtensionElement
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExtensionElement(type_ string, mandatory bool) *ExtensionElement {
+func NewExtensionElement(mandatory bool, type_ string) *ExtensionElement {
 	this := ExtensionElement{}
-	this.Type = type_
 	this.Mandatory = mandatory
+	this.Type = type_
 	return &this
 }
 
@@ -52,6 +52,202 @@ func NewExtensionElement(type_ string, mandatory bool) *ExtensionElement {
 func NewExtensionElementWithDefaults() *ExtensionElement {
 	this := ExtensionElement{}
 	return &this
+}
+
+// GetComputationRule returns the ComputationRule field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExtensionElement) GetComputationRule() string {
+	if o == nil || utils.IsNil(o.ComputationRule.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ComputationRule.Get()
+}
+
+// GetComputationRuleOk returns a tuple with the ComputationRule field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExtensionElement) GetComputationRuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ComputationRule.Get(), o.ComputationRule.IsSet()
+}
+
+// HasComputationRule returns a boolean if a field has been set.
+func (o *ExtensionElement) HasComputationRule() bool {
+	if o != nil && o.ComputationRule.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetComputationRule gets a reference to the given NullableString and assigns it to the ComputationRule field.
+func (o *ExtensionElement) SetComputationRule(v string) {
+	o.ComputationRule.Set(&v)
+}
+
+// SetComputationRuleNil sets the value for ComputationRule to be an explicit nil
+func (o *ExtensionElement) SetComputationRuleNil() {
+	o.ComputationRule.Set(nil)
+}
+
+// UnsetComputationRule ensures that no value is present for ComputationRule, not even an explicit nil
+func (o *ExtensionElement) UnsetComputationRule() {
+	o.ComputationRule.Unset()
+}
+
+// GetEditableByApprover returns the EditableByApprover field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExtensionElement) GetEditableByApprover() bool {
+	if o == nil || utils.IsNil(o.EditableByApprover.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.EditableByApprover.Get()
+}
+
+// GetEditableByApproverOk returns a tuple with the EditableByApprover field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExtensionElement) GetEditableByApproverOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EditableByApprover.Get(), o.EditableByApprover.IsSet()
+}
+
+// HasEditableByApprover returns a boolean if a field has been set.
+func (o *ExtensionElement) HasEditableByApprover() bool {
+	if o != nil && o.EditableByApprover.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEditableByApprover gets a reference to the given NullableBool and assigns it to the EditableByApprover field.
+func (o *ExtensionElement) SetEditableByApprover(v bool) {
+	o.EditableByApprover.Set(&v)
+}
+
+// SetEditableByApproverNil sets the value for EditableByApprover to be an explicit nil
+func (o *ExtensionElement) SetEditableByApproverNil() {
+	o.EditableByApprover.Set(nil)
+}
+
+// UnsetEditableByApprover ensures that no value is present for EditableByApprover, not even an explicit nil
+func (o *ExtensionElement) UnsetEditableByApprover() {
+	o.EditableByApprover.Unset()
+}
+
+// GetEditableByRequester returns the EditableByRequester field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExtensionElement) GetEditableByRequester() bool {
+	if o == nil || utils.IsNil(o.EditableByRequester.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.EditableByRequester.Get()
+}
+
+// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExtensionElement) GetEditableByRequesterOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EditableByRequester.Get(), o.EditableByRequester.IsSet()
+}
+
+// HasEditableByRequester returns a boolean if a field has been set.
+func (o *ExtensionElement) HasEditableByRequester() bool {
+	if o != nil && o.EditableByRequester.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEditableByRequester gets a reference to the given NullableBool and assigns it to the EditableByRequester field.
+func (o *ExtensionElement) SetEditableByRequester(v bool) {
+	o.EditableByRequester.Set(&v)
+}
+
+// SetEditableByRequesterNil sets the value for EditableByRequester to be an explicit nil
+func (o *ExtensionElement) SetEditableByRequesterNil() {
+	o.EditableByRequester.Set(nil)
+}
+
+// UnsetEditableByRequester ensures that no value is present for EditableByRequester, not even an explicit nil
+func (o *ExtensionElement) UnsetEditableByRequester() {
+	o.EditableByRequester.Unset()
+}
+
+// GetMandatory returns the Mandatory field value
+func (o *ExtensionElement) GetMandatory() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Mandatory
+}
+
+// GetMandatoryOk returns a tuple with the Mandatory field value
+// and a boolean to check if the value has been set.
+func (o *ExtensionElement) GetMandatoryOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Mandatory, true
+}
+
+// SetMandatory sets field value
+func (o *ExtensionElement) SetMandatory(v bool) {
+	o.Mandatory = v
+}
+
+// GetRegex returns the Regex field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExtensionElement) GetRegex() string {
+	if o == nil || utils.IsNil(o.Regex.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Regex.Get()
+}
+
+// GetRegexOk returns a tuple with the Regex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExtensionElement) GetRegexOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Regex.Get(), o.Regex.IsSet()
+}
+
+// HasRegex returns a boolean if a field has been set.
+func (o *ExtensionElement) HasRegex() bool {
+	if o != nil && o.Regex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRegex gets a reference to the given NullableString and assigns it to the Regex field.
+func (o *ExtensionElement) SetRegex(v string) {
+	o.Regex.Set(&v)
+}
+
+// SetRegexNil sets the value for Regex to be an explicit nil
+func (o *ExtensionElement) SetRegexNil() {
+	o.Regex.Set(nil)
+}
+
+// UnsetRegex ensures that no value is present for Regex, not even an explicit nil
+func (o *ExtensionElement) UnsetRegex() {
+	o.Regex.Unset()
 }
 
 // GetType returns the Type field value
@@ -121,202 +317,6 @@ func (o *ExtensionElement) UnsetValue() {
 	o.Value.Unset()
 }
 
-// GetComputationRule returns the ComputationRule field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExtensionElement) GetComputationRule() string {
-	if o == nil || utils.IsNil(o.ComputationRule.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ComputationRule.Get()
-}
-
-// GetComputationRuleOk returns a tuple with the ComputationRule field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExtensionElement) GetComputationRuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ComputationRule.Get(), o.ComputationRule.IsSet()
-}
-
-// HasComputationRule returns a boolean if a field has been set.
-func (o *ExtensionElement) HasComputationRule() bool {
-	if o != nil && o.ComputationRule.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetComputationRule gets a reference to the given NullableString and assigns it to the ComputationRule field.
-func (o *ExtensionElement) SetComputationRule(v string) {
-	o.ComputationRule.Set(&v)
-}
-
-// SetComputationRuleNil sets the value for ComputationRule to be an explicit nil
-func (o *ExtensionElement) SetComputationRuleNil() {
-	o.ComputationRule.Set(nil)
-}
-
-// UnsetComputationRule ensures that no value is present for ComputationRule, not even an explicit nil
-func (o *ExtensionElement) UnsetComputationRule() {
-	o.ComputationRule.Unset()
-}
-
-// GetMandatory returns the Mandatory field value
-func (o *ExtensionElement) GetMandatory() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Mandatory
-}
-
-// GetMandatoryOk returns a tuple with the Mandatory field value
-// and a boolean to check if the value has been set.
-func (o *ExtensionElement) GetMandatoryOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Mandatory, true
-}
-
-// SetMandatory sets field value
-func (o *ExtensionElement) SetMandatory(v bool) {
-	o.Mandatory = v
-}
-
-// GetEditableByRequester returns the EditableByRequester field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExtensionElement) GetEditableByRequester() bool {
-	if o == nil || utils.IsNil(o.EditableByRequester.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.EditableByRequester.Get()
-}
-
-// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExtensionElement) GetEditableByRequesterOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.EditableByRequester.Get(), o.EditableByRequester.IsSet()
-}
-
-// HasEditableByRequester returns a boolean if a field has been set.
-func (o *ExtensionElement) HasEditableByRequester() bool {
-	if o != nil && o.EditableByRequester.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEditableByRequester gets a reference to the given NullableBool and assigns it to the EditableByRequester field.
-func (o *ExtensionElement) SetEditableByRequester(v bool) {
-	o.EditableByRequester.Set(&v)
-}
-
-// SetEditableByRequesterNil sets the value for EditableByRequester to be an explicit nil
-func (o *ExtensionElement) SetEditableByRequesterNil() {
-	o.EditableByRequester.Set(nil)
-}
-
-// UnsetEditableByRequester ensures that no value is present for EditableByRequester, not even an explicit nil
-func (o *ExtensionElement) UnsetEditableByRequester() {
-	o.EditableByRequester.Unset()
-}
-
-// GetEditableByApprover returns the EditableByApprover field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExtensionElement) GetEditableByApprover() bool {
-	if o == nil || utils.IsNil(o.EditableByApprover.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.EditableByApprover.Get()
-}
-
-// GetEditableByApproverOk returns a tuple with the EditableByApprover field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExtensionElement) GetEditableByApproverOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.EditableByApprover.Get(), o.EditableByApprover.IsSet()
-}
-
-// HasEditableByApprover returns a boolean if a field has been set.
-func (o *ExtensionElement) HasEditableByApprover() bool {
-	if o != nil && o.EditableByApprover.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEditableByApprover gets a reference to the given NullableBool and assigns it to the EditableByApprover field.
-func (o *ExtensionElement) SetEditableByApprover(v bool) {
-	o.EditableByApprover.Set(&v)
-}
-
-// SetEditableByApproverNil sets the value for EditableByApprover to be an explicit nil
-func (o *ExtensionElement) SetEditableByApproverNil() {
-	o.EditableByApprover.Set(nil)
-}
-
-// UnsetEditableByApprover ensures that no value is present for EditableByApprover, not even an explicit nil
-func (o *ExtensionElement) UnsetEditableByApprover() {
-	o.EditableByApprover.Unset()
-}
-
-// GetRegex returns the Regex field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExtensionElement) GetRegex() string {
-	if o == nil || utils.IsNil(o.Regex.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Regex.Get()
-}
-
-// GetRegexOk returns a tuple with the Regex field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExtensionElement) GetRegexOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Regex.Get(), o.Regex.IsSet()
-}
-
-// HasRegex returns a boolean if a field has been set.
-func (o *ExtensionElement) HasRegex() bool {
-	if o != nil && o.Regex.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRegex gets a reference to the given NullableString and assigns it to the Regex field.
-func (o *ExtensionElement) SetRegex(v string) {
-	o.Regex.Set(&v)
-}
-
-// SetRegexNil sets the value for Regex to be an explicit nil
-func (o *ExtensionElement) SetRegexNil() {
-	o.Regex.Set(nil)
-}
-
-// UnsetRegex ensures that no value is present for Regex, not even an explicit nil
-func (o *ExtensionElement) UnsetRegex() {
-	o.Regex.Unset()
-}
-
 func (o ExtensionElement) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -327,22 +327,22 @@ func (o ExtensionElement) MarshalJSON() ([]byte, error) {
 
 func (o ExtensionElement) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	if o.Value.IsSet() {
-		toSerialize["value"] = o.Value.Get()
-	}
 	if o.ComputationRule.IsSet() {
 		toSerialize["computationRule"] = o.ComputationRule.Get()
-	}
-	toSerialize["mandatory"] = o.Mandatory
-	if o.EditableByRequester.IsSet() {
-		toSerialize["editableByRequester"] = o.EditableByRequester.Get()
 	}
 	if o.EditableByApprover.IsSet() {
 		toSerialize["editableByApprover"] = o.EditableByApprover.Get()
 	}
+	if o.EditableByRequester.IsSet() {
+		toSerialize["editableByRequester"] = o.EditableByRequester.Get()
+	}
+	toSerialize["mandatory"] = o.Mandatory
 	if o.Regex.IsSet() {
 		toSerialize["regex"] = o.Regex.Get()
+	}
+	toSerialize["type"] = o.Type
+	if o.Value.IsSet() {
+		toSerialize["value"] = o.Value.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -357,8 +357,8 @@ func (o *ExtensionElement) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
 		"mandatory",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -388,13 +388,13 @@ func (o *ExtensionElement) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "computationRule")
+		delete(additionalProperties, "editableByApprover")
+		delete(additionalProperties, "editableByRequester")
+		delete(additionalProperties, "mandatory")
+		delete(additionalProperties, "regex")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "value")
-		delete(additionalProperties, "computationRule")
-		delete(additionalProperties, "mandatory")
-		delete(additionalProperties, "editableByRequester")
-		delete(additionalProperties, "editableByApprover")
-		delete(additionalProperties, "regex")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -24,34 +24,34 @@ var _ utils.MappedNullable = &LDAPDatasourceResponse{}
 type LDAPDatasourceResponse struct {
 	// Object internal ID
 	Id string `json:"_id"`
-	// Type of datasource
-	Type string `json:"type"`
-	// Name of the datasource
-	Name string `json:"name"`
-	// The localized name of the datasource
-	DisplayName []LocalizedString `json:"displayName,omitempty"`
-	// Description of the datasource
-	Description *string `json:"description,omitempty"`
+	// List of attributes to fetch for this datasource
+	Attributes []DataSourceOutput `json:"attributes,omitempty"`
+	// LDAP Base DN
+	BaseDn string `json:"baseDn"`
 	// Name of the `password` [credentials](#tag/security.credentials) to use for LDAP Authentication
 	Credentials string `json:"credentials"`
+	// Description of the datasource
+	Description *string `json:"description,omitempty"`
+	// Disable hostname validation for the LDAP connection
+	DisableHostnameValidation utils.NullableBool `json:"disableHostnameValidation,omitempty"`
+	// The localized name of the datasource
+	DisplayName []LocalizedString `json:"displayName,omitempty"`
+	// LDAP Filter
+	Filter string `json:"filter"`
 	// Hostname of the LDAP server
 	Hostname string `json:"hostname"`
+	// Name of the datasource
+	Name string `json:"name"`
 	// Port on which to join the LDAP server
 	Port utils.NullableInt64 `json:"port,omitempty"`
 	// Name of the proxy to use to reach the LDAP server
 	Proxy utils.NullableString `json:"proxy,omitempty"`
-	// Timeout for the LDAP request
-	Timeout string `json:"timeout" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	// Use secure LDAP connection
 	Secure bool `json:"secure"`
-	// Disable hostname validation for the LDAP connection
-	DisableHostnameValidation utils.NullableBool `json:"disableHostnameValidation,omitempty"`
-	// LDAP Base DN
-	BaseDn string `json:"baseDn"`
-	// LDAP Filter
-	Filter string `json:"filter"`
-	// List of attributes to fetch for this datasource
-	Attributes           []DataSourceOutput `json:"attributes,omitempty"`
+	// Timeout for the LDAP request
+	Timeout string `json:"timeout" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	// Type of datasource
+	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -61,21 +61,21 @@ type _LDAPDatasourceResponse LDAPDatasourceResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLDAPDatasourceResponse(id string, type_ string, name string, credentials string, hostname string, timeout string, secure bool, baseDn string, filter string) *LDAPDatasourceResponse {
+func NewLDAPDatasourceResponse(id string, baseDn string, credentials string, filter string, hostname string, name string, secure bool, timeout string, type_ string) *LDAPDatasourceResponse {
 	this := LDAPDatasourceResponse{}
 	this.Id = id
-	this.Type = type_
-	this.Name = name
+	this.BaseDn = baseDn
 	this.Credentials = credentials
-	this.Hostname = hostname
-	var port int64 = 389
-	this.Port = *utils.NewNullableInt64(&port)
-	this.Timeout = timeout
-	this.Secure = secure
 	var disableHostnameValidation bool = false
 	this.DisableHostnameValidation = *utils.NewNullableBool(&disableHostnameValidation)
-	this.BaseDn = baseDn
 	this.Filter = filter
+	this.Hostname = hostname
+	this.Name = name
+	var port int64 = 389
+	this.Port = *utils.NewNullableInt64(&port)
+	this.Secure = secure
+	this.Timeout = timeout
+	this.Type = type_
 	return &this
 }
 
@@ -84,10 +84,10 @@ func NewLDAPDatasourceResponse(id string, type_ string, name string, credentials
 // but it doesn't guarantee that properties required by API are set
 func NewLDAPDatasourceResponseWithDefaults() *LDAPDatasourceResponse {
 	this := LDAPDatasourceResponse{}
-	var port int64 = 389
-	this.Port = *utils.NewNullableInt64(&port)
 	var disableHostnameValidation bool = false
 	this.DisableHostnameValidation = *utils.NewNullableBool(&disableHostnameValidation)
+	var port int64 = 389
+	this.Port = *utils.NewNullableInt64(&port)
 	return &this
 }
 
@@ -115,52 +115,160 @@ func (o *LDAPDatasourceResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
-func (o *LDAPDatasourceResponse) GetType() string {
+// GetAttributes returns the Attributes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LDAPDatasourceResponse) GetAttributes() []DataSourceOutput {
+	if o == nil {
+		var ret []DataSourceOutput
+		return ret
+	}
+	return o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LDAPDatasourceResponse) GetAttributesOk() ([]DataSourceOutput, bool) {
+	if o == nil || utils.IsNil(o.Attributes) {
+		return nil, false
+	}
+	return o.Attributes, true
+}
+
+// HasAttributes returns a boolean if a field has been set.
+func (o *LDAPDatasourceResponse) HasAttributes() bool {
+	if o != nil && !utils.IsNil(o.Attributes) {
+		return true
+	}
+
+	return false
+}
+
+// SetAttributes gets a reference to the given []DataSourceOutput and assigns it to the Attributes field.
+func (o *LDAPDatasourceResponse) SetAttributes(v []DataSourceOutput) {
+	o.Attributes = v
+}
+
+// GetBaseDn returns the BaseDn field value
+func (o *LDAPDatasourceResponse) GetBaseDn() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.BaseDn
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetBaseDnOk returns a tuple with the BaseDn field value
 // and a boolean to check if the value has been set.
-func (o *LDAPDatasourceResponse) GetTypeOk() (*string, bool) {
+func (o *LDAPDatasourceResponse) GetBaseDnOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.BaseDn, true
 }
 
-// SetType sets field value
-func (o *LDAPDatasourceResponse) SetType(v string) {
-	o.Type = v
+// SetBaseDn sets field value
+func (o *LDAPDatasourceResponse) SetBaseDn(v string) {
+	o.BaseDn = v
 }
 
-// GetName returns the Name field value
-func (o *LDAPDatasourceResponse) GetName() string {
+// GetCredentials returns the Credentials field value
+func (o *LDAPDatasourceResponse) GetCredentials() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.Credentials
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
-func (o *LDAPDatasourceResponse) GetNameOk() (*string, bool) {
+func (o *LDAPDatasourceResponse) GetCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.Credentials, true
 }
 
-// SetName sets field value
-func (o *LDAPDatasourceResponse) SetName(v string) {
-	o.Name = v
+// SetCredentials sets field value
+func (o *LDAPDatasourceResponse) SetCredentials(v string) {
+	o.Credentials = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *LDAPDatasourceResponse) GetDescription() string {
+	if o == nil || utils.IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LDAPDatasourceResponse) GetDescriptionOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *LDAPDatasourceResponse) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *LDAPDatasourceResponse) SetDescription(v string) {
+	o.Description = &v
+}
+
+// GetDisableHostnameValidation returns the DisableHostnameValidation field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LDAPDatasourceResponse) GetDisableHostnameValidation() bool {
+	if o == nil || utils.IsNil(o.DisableHostnameValidation.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.DisableHostnameValidation.Get()
+}
+
+// GetDisableHostnameValidationOk returns a tuple with the DisableHostnameValidation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LDAPDatasourceResponse) GetDisableHostnameValidationOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DisableHostnameValidation.Get(), o.DisableHostnameValidation.IsSet()
+}
+
+// HasDisableHostnameValidation returns a boolean if a field has been set.
+func (o *LDAPDatasourceResponse) HasDisableHostnameValidation() bool {
+	if o != nil && o.DisableHostnameValidation.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDisableHostnameValidation gets a reference to the given NullableBool and assigns it to the DisableHostnameValidation field.
+func (o *LDAPDatasourceResponse) SetDisableHostnameValidation(v bool) {
+	o.DisableHostnameValidation.Set(&v)
+}
+
+// SetDisableHostnameValidationNil sets the value for DisableHostnameValidation to be an explicit nil
+func (o *LDAPDatasourceResponse) SetDisableHostnameValidationNil() {
+	o.DisableHostnameValidation.Set(nil)
+}
+
+// UnsetDisableHostnameValidation ensures that no value is present for DisableHostnameValidation, not even an explicit nil
+func (o *LDAPDatasourceResponse) UnsetDisableHostnameValidation() {
+	o.DisableHostnameValidation.Unset()
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -196,60 +304,28 @@ func (o *LDAPDatasourceResponse) SetDisplayName(v []LocalizedString) {
 	o.DisplayName = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *LDAPDatasourceResponse) GetDescription() string {
-	if o == nil || utils.IsNil(o.Description) {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *LDAPDatasourceResponse) GetDescriptionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *LDAPDatasourceResponse) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *LDAPDatasourceResponse) SetDescription(v string) {
-	o.Description = &v
-}
-
-// GetCredentials returns the Credentials field value
-func (o *LDAPDatasourceResponse) GetCredentials() string {
+// GetFilter returns the Filter field value
+func (o *LDAPDatasourceResponse) GetFilter() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Credentials
+	return o.Filter
 }
 
-// GetCredentialsOk returns a tuple with the Credentials field value
+// GetFilterOk returns a tuple with the Filter field value
 // and a boolean to check if the value has been set.
-func (o *LDAPDatasourceResponse) GetCredentialsOk() (*string, bool) {
+func (o *LDAPDatasourceResponse) GetFilterOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Credentials, true
+	return &o.Filter, true
 }
 
-// SetCredentials sets field value
-func (o *LDAPDatasourceResponse) SetCredentials(v string) {
-	o.Credentials = v
+// SetFilter sets field value
+func (o *LDAPDatasourceResponse) SetFilter(v string) {
+	o.Filter = v
 }
 
 // GetHostname returns the Hostname field value
@@ -274,6 +350,30 @@ func (o *LDAPDatasourceResponse) GetHostnameOk() (*string, bool) {
 // SetHostname sets field value
 func (o *LDAPDatasourceResponse) SetHostname(v string) {
 	o.Hostname = v
+}
+
+// GetName returns the Name field value
+func (o *LDAPDatasourceResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *LDAPDatasourceResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *LDAPDatasourceResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetPort returns the Port field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -362,30 +462,6 @@ func (o *LDAPDatasourceResponse) UnsetProxy() {
 	o.Proxy.Unset()
 }
 
-// GetTimeout returns the Timeout field value
-func (o *LDAPDatasourceResponse) GetTimeout() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Timeout
-}
-
-// GetTimeoutOk returns a tuple with the Timeout field value
-// and a boolean to check if the value has been set.
-func (o *LDAPDatasourceResponse) GetTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Timeout, true
-}
-
-// SetTimeout sets field value
-func (o *LDAPDatasourceResponse) SetTimeout(v string) {
-	o.Timeout = v
-}
-
 // GetSecure returns the Secure field value
 func (o *LDAPDatasourceResponse) GetSecure() bool {
 	if o == nil {
@@ -410,128 +486,52 @@ func (o *LDAPDatasourceResponse) SetSecure(v bool) {
 	o.Secure = v
 }
 
-// GetDisableHostnameValidation returns the DisableHostnameValidation field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LDAPDatasourceResponse) GetDisableHostnameValidation() bool {
-	if o == nil || utils.IsNil(o.DisableHostnameValidation.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.DisableHostnameValidation.Get()
-}
-
-// GetDisableHostnameValidationOk returns a tuple with the DisableHostnameValidation field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LDAPDatasourceResponse) GetDisableHostnameValidationOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DisableHostnameValidation.Get(), o.DisableHostnameValidation.IsSet()
-}
-
-// HasDisableHostnameValidation returns a boolean if a field has been set.
-func (o *LDAPDatasourceResponse) HasDisableHostnameValidation() bool {
-	if o != nil && o.DisableHostnameValidation.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDisableHostnameValidation gets a reference to the given NullableBool and assigns it to the DisableHostnameValidation field.
-func (o *LDAPDatasourceResponse) SetDisableHostnameValidation(v bool) {
-	o.DisableHostnameValidation.Set(&v)
-}
-
-// SetDisableHostnameValidationNil sets the value for DisableHostnameValidation to be an explicit nil
-func (o *LDAPDatasourceResponse) SetDisableHostnameValidationNil() {
-	o.DisableHostnameValidation.Set(nil)
-}
-
-// UnsetDisableHostnameValidation ensures that no value is present for DisableHostnameValidation, not even an explicit nil
-func (o *LDAPDatasourceResponse) UnsetDisableHostnameValidation() {
-	o.DisableHostnameValidation.Unset()
-}
-
-// GetBaseDn returns the BaseDn field value
-func (o *LDAPDatasourceResponse) GetBaseDn() string {
+// GetTimeout returns the Timeout field value
+func (o *LDAPDatasourceResponse) GetTimeout() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.BaseDn
+	return o.Timeout
 }
 
-// GetBaseDnOk returns a tuple with the BaseDn field value
+// GetTimeoutOk returns a tuple with the Timeout field value
 // and a boolean to check if the value has been set.
-func (o *LDAPDatasourceResponse) GetBaseDnOk() (*string, bool) {
+func (o *LDAPDatasourceResponse) GetTimeoutOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.BaseDn, true
+	return &o.Timeout, true
 }
 
-// SetBaseDn sets field value
-func (o *LDAPDatasourceResponse) SetBaseDn(v string) {
-	o.BaseDn = v
+// SetTimeout sets field value
+func (o *LDAPDatasourceResponse) SetTimeout(v string) {
+	o.Timeout = v
 }
 
-// GetFilter returns the Filter field value
-func (o *LDAPDatasourceResponse) GetFilter() string {
+// GetType returns the Type field value
+func (o *LDAPDatasourceResponse) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Filter
+	return o.Type
 }
 
-// GetFilterOk returns a tuple with the Filter field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *LDAPDatasourceResponse) GetFilterOk() (*string, bool) {
+func (o *LDAPDatasourceResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Filter, true
+	return &o.Type, true
 }
 
-// SetFilter sets field value
-func (o *LDAPDatasourceResponse) SetFilter(v string) {
-	o.Filter = v
-}
-
-// GetAttributes returns the Attributes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LDAPDatasourceResponse) GetAttributes() []DataSourceOutput {
-	if o == nil {
-		var ret []DataSourceOutput
-		return ret
-	}
-	return o.Attributes
-}
-
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LDAPDatasourceResponse) GetAttributesOk() ([]DataSourceOutput, bool) {
-	if o == nil || utils.IsNil(o.Attributes) {
-		return nil, false
-	}
-	return o.Attributes, true
-}
-
-// HasAttributes returns a boolean if a field has been set.
-func (o *LDAPDatasourceResponse) HasAttributes() bool {
-	if o != nil && !utils.IsNil(o.Attributes) {
-		return true
-	}
-
-	return false
-}
-
-// SetAttributes gets a reference to the given []DataSourceOutput and assigns it to the Attributes field.
-func (o *LDAPDatasourceResponse) SetAttributes(v []DataSourceOutput) {
-	o.Attributes = v
+// SetType sets field value
+func (o *LDAPDatasourceResponse) SetType(v string) {
+	o.Type = v
 }
 
 func (o LDAPDatasourceResponse) MarshalJSON() ([]byte, error) {
@@ -545,32 +545,32 @@ func (o LDAPDatasourceResponse) MarshalJSON() ([]byte, error) {
 func (o LDAPDatasourceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["type"] = o.Type
-	toSerialize["name"] = o.Name
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
 	}
+	toSerialize["baseDn"] = o.BaseDn
+	toSerialize["credentials"] = o.Credentials
 	if !utils.IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["credentials"] = o.Credentials
+	if o.DisableHostnameValidation.IsSet() {
+		toSerialize["disableHostnameValidation"] = o.DisableHostnameValidation.Get()
+	}
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	toSerialize["filter"] = o.Filter
 	toSerialize["hostname"] = o.Hostname
+	toSerialize["name"] = o.Name
 	if o.Port.IsSet() {
 		toSerialize["port"] = o.Port.Get()
 	}
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
-	toSerialize["timeout"] = o.Timeout
 	toSerialize["secure"] = o.Secure
-	if o.DisableHostnameValidation.IsSet() {
-		toSerialize["disableHostnameValidation"] = o.DisableHostnameValidation.Get()
-	}
-	toSerialize["baseDn"] = o.BaseDn
-	toSerialize["filter"] = o.Filter
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
-	}
+	toSerialize["timeout"] = o.Timeout
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -585,14 +585,14 @@ func (o *LDAPDatasourceResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"type",
-		"name",
-		"credentials",
-		"hostname",
-		"timeout",
-		"secure",
 		"baseDn",
+		"credentials",
 		"filter",
+		"hostname",
+		"name",
+		"secure",
+		"timeout",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -623,20 +623,20 @@ func (o *LDAPDatasourceResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "description")
+		delete(additionalProperties, "attributes")
+		delete(additionalProperties, "baseDn")
 		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "disableHostnameValidation")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "filter")
 		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "port")
 		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "timeout")
 		delete(additionalProperties, "secure")
-		delete(additionalProperties, "disableHostnameValidation")
-		delete(additionalProperties, "baseDn")
-		delete(additionalProperties, "filter")
-		delete(additionalProperties, "attributes")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

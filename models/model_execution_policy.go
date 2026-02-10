@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &ExecutionPolicy{}
 
 // ExecutionPolicy struct for ExecutionPolicy
 type ExecutionPolicy struct {
-	Name                 string               `json:"name"`
-	Description          utils.NullableString `json:"description,omitempty"`
 	AuthorizedPeriods    []ExecutionPeriod    `json:"authorizedPeriods,omitempty"`
+	Description          utils.NullableString `json:"description,omitempty"`
 	ForbiddenPeriods     []ExecutionPeriod    `json:"forbiddenPeriods,omitempty"`
+	Name                 string               `json:"name"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,28 +49,37 @@ func NewExecutionPolicyWithDefaults() *ExecutionPolicy {
 	return &this
 }
 
-// GetName returns the Name field value
-func (o *ExecutionPolicy) GetName() string {
+// GetAuthorizedPeriods returns the AuthorizedPeriods field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExecutionPolicy) GetAuthorizedPeriods() []ExecutionPeriod {
 	if o == nil {
-		var ret string
+		var ret []ExecutionPeriod
 		return ret
 	}
-
-	return o.Name
+	return o.AuthorizedPeriods
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetAuthorizedPeriodsOk returns a tuple with the AuthorizedPeriods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecutionPolicy) GetNameOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExecutionPolicy) GetAuthorizedPeriodsOk() ([]ExecutionPeriod, bool) {
+	if o == nil || utils.IsNil(o.AuthorizedPeriods) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.AuthorizedPeriods, true
 }
 
-// SetName sets field value
-func (o *ExecutionPolicy) SetName(v string) {
-	o.Name = v
+// HasAuthorizedPeriods returns a boolean if a field has been set.
+func (o *ExecutionPolicy) HasAuthorizedPeriods() bool {
+	if o != nil && !utils.IsNil(o.AuthorizedPeriods) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthorizedPeriods gets a reference to the given []ExecutionPeriod and assigns it to the AuthorizedPeriods field.
+func (o *ExecutionPolicy) SetAuthorizedPeriods(v []ExecutionPeriod) {
+	o.AuthorizedPeriods = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -116,39 +125,6 @@ func (o *ExecutionPolicy) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetAuthorizedPeriods returns the AuthorizedPeriods field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExecutionPolicy) GetAuthorizedPeriods() []ExecutionPeriod {
-	if o == nil {
-		var ret []ExecutionPeriod
-		return ret
-	}
-	return o.AuthorizedPeriods
-}
-
-// GetAuthorizedPeriodsOk returns a tuple with the AuthorizedPeriods field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExecutionPolicy) GetAuthorizedPeriodsOk() ([]ExecutionPeriod, bool) {
-	if o == nil || utils.IsNil(o.AuthorizedPeriods) {
-		return nil, false
-	}
-	return o.AuthorizedPeriods, true
-}
-
-// HasAuthorizedPeriods returns a boolean if a field has been set.
-func (o *ExecutionPolicy) HasAuthorizedPeriods() bool {
-	if o != nil && !utils.IsNil(o.AuthorizedPeriods) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthorizedPeriods gets a reference to the given []ExecutionPeriod and assigns it to the AuthorizedPeriods field.
-func (o *ExecutionPolicy) SetAuthorizedPeriods(v []ExecutionPeriod) {
-	o.AuthorizedPeriods = v
-}
-
 // GetForbiddenPeriods returns the ForbiddenPeriods field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ExecutionPolicy) GetForbiddenPeriods() []ExecutionPeriod {
 	if o == nil {
@@ -182,6 +158,30 @@ func (o *ExecutionPolicy) SetForbiddenPeriods(v []ExecutionPeriod) {
 	o.ForbiddenPeriods = v
 }
 
+// GetName returns the Name field value
+func (o *ExecutionPolicy) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ExecutionPolicy) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ExecutionPolicy) SetName(v string) {
+	o.Name = v
+}
+
 func (o ExecutionPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -192,16 +192,16 @@ func (o ExecutionPolicy) MarshalJSON() ([]byte, error) {
 
 func (o ExecutionPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
-	}
 	if o.AuthorizedPeriods != nil {
 		toSerialize["authorizedPeriods"] = o.AuthorizedPeriods
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
 	}
 	if o.ForbiddenPeriods != nil {
 		toSerialize["forbiddenPeriods"] = o.ForbiddenPeriods
 	}
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -245,10 +245,10 @@ func (o *ExecutionPolicy) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "authorizedPeriods")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "forbiddenPeriods")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

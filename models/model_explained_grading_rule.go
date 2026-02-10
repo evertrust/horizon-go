@@ -22,13 +22,13 @@ var _ utils.MappedNullable = &ExplainedGradingRule{}
 
 // ExplainedGradingRule struct for ExplainedGradingRule
 type ExplainedGradingRule struct {
+	Apply                bool                 `json:"apply"`
+	Condition            string               `json:"condition"`
 	Description          []LocalizedString    `json:"description"`
-	Score                utils.NullableInt64  `json:"score,omitempty"`
+	Eval                 utils.NullableBool   `json:"eval,omitempty"`
 	Obtained             utils.NullableInt64  `json:"obtained,omitempty"`
 	Scope                utils.NullableString `json:"scope,omitempty"`
-	Condition            string               `json:"condition"`
-	Apply                bool                 `json:"apply"`
-	Eval                 utils.NullableBool   `json:"eval,omitempty"`
+	Score                utils.NullableInt64  `json:"score,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,11 +38,11 @@ type _ExplainedGradingRule ExplainedGradingRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExplainedGradingRule(description []LocalizedString, condition string, apply bool) *ExplainedGradingRule {
+func NewExplainedGradingRule(apply bool, condition string, description []LocalizedString) *ExplainedGradingRule {
 	this := ExplainedGradingRule{}
-	this.Description = description
-	this.Condition = condition
 	this.Apply = apply
+	this.Condition = condition
+	this.Description = description
 	return &this
 }
 
@@ -52,6 +52,54 @@ func NewExplainedGradingRule(description []LocalizedString, condition string, ap
 func NewExplainedGradingRuleWithDefaults() *ExplainedGradingRule {
 	this := ExplainedGradingRule{}
 	return &this
+}
+
+// GetApply returns the Apply field value
+func (o *ExplainedGradingRule) GetApply() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Apply
+}
+
+// GetApplyOk returns a tuple with the Apply field value
+// and a boolean to check if the value has been set.
+func (o *ExplainedGradingRule) GetApplyOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Apply, true
+}
+
+// SetApply sets field value
+func (o *ExplainedGradingRule) SetApply(v bool) {
+	o.Apply = v
+}
+
+// GetCondition returns the Condition field value
+func (o *ExplainedGradingRule) GetCondition() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Condition
+}
+
+// GetConditionOk returns a tuple with the Condition field value
+// and a boolean to check if the value has been set.
+func (o *ExplainedGradingRule) GetConditionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Condition, true
+}
+
+// SetCondition sets field value
+func (o *ExplainedGradingRule) SetCondition(v string) {
+	o.Condition = v
 }
 
 // GetDescription returns the Description field value
@@ -78,47 +126,47 @@ func (o *ExplainedGradingRule) SetDescription(v []LocalizedString) {
 	o.Description = v
 }
 
-// GetScore returns the Score field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExplainedGradingRule) GetScore() int64 {
-	if o == nil || utils.IsNil(o.Score.Get()) {
-		var ret int64
+// GetEval returns the Eval field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExplainedGradingRule) GetEval() bool {
+	if o == nil || utils.IsNil(o.Eval.Get()) {
+		var ret bool
 		return ret
 	}
-	return *o.Score.Get()
+	return *o.Eval.Get()
 }
 
-// GetScoreOk returns a tuple with the Score field value if set, nil otherwise
+// GetEvalOk returns a tuple with the Eval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExplainedGradingRule) GetScoreOk() (*int64, bool) {
+func (o *ExplainedGradingRule) GetEvalOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Score.Get(), o.Score.IsSet()
+	return o.Eval.Get(), o.Eval.IsSet()
 }
 
-// HasScore returns a boolean if a field has been set.
-func (o *ExplainedGradingRule) HasScore() bool {
-	if o != nil && o.Score.IsSet() {
+// HasEval returns a boolean if a field has been set.
+func (o *ExplainedGradingRule) HasEval() bool {
+	if o != nil && o.Eval.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetScore gets a reference to the given NullableInt64 and assigns it to the Score field.
-func (o *ExplainedGradingRule) SetScore(v int64) {
-	o.Score.Set(&v)
+// SetEval gets a reference to the given NullableBool and assigns it to the Eval field.
+func (o *ExplainedGradingRule) SetEval(v bool) {
+	o.Eval.Set(&v)
 }
 
-// SetScoreNil sets the value for Score to be an explicit nil
-func (o *ExplainedGradingRule) SetScoreNil() {
-	o.Score.Set(nil)
+// SetEvalNil sets the value for Eval to be an explicit nil
+func (o *ExplainedGradingRule) SetEvalNil() {
+	o.Eval.Set(nil)
 }
 
-// UnsetScore ensures that no value is present for Score, not even an explicit nil
-func (o *ExplainedGradingRule) UnsetScore() {
-	o.Score.Unset()
+// UnsetEval ensures that no value is present for Eval, not even an explicit nil
+func (o *ExplainedGradingRule) UnsetEval() {
+	o.Eval.Unset()
 }
 
 // GetObtained returns the Obtained field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -207,95 +255,47 @@ func (o *ExplainedGradingRule) UnsetScope() {
 	o.Scope.Unset()
 }
 
-// GetCondition returns the Condition field value
-func (o *ExplainedGradingRule) GetCondition() string {
-	if o == nil {
-		var ret string
+// GetScore returns the Score field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ExplainedGradingRule) GetScore() int64 {
+	if o == nil || utils.IsNil(o.Score.Get()) {
+		var ret int64
 		return ret
 	}
-
-	return o.Condition
+	return *o.Score.Get()
 }
 
-// GetConditionOk returns a tuple with the Condition field value
-// and a boolean to check if the value has been set.
-func (o *ExplainedGradingRule) GetConditionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Condition, true
-}
-
-// SetCondition sets field value
-func (o *ExplainedGradingRule) SetCondition(v string) {
-	o.Condition = v
-}
-
-// GetApply returns the Apply field value
-func (o *ExplainedGradingRule) GetApply() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Apply
-}
-
-// GetApplyOk returns a tuple with the Apply field value
-// and a boolean to check if the value has been set.
-func (o *ExplainedGradingRule) GetApplyOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Apply, true
-}
-
-// SetApply sets field value
-func (o *ExplainedGradingRule) SetApply(v bool) {
-	o.Apply = v
-}
-
-// GetEval returns the Eval field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ExplainedGradingRule) GetEval() bool {
-	if o == nil || utils.IsNil(o.Eval.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.Eval.Get()
-}
-
-// GetEvalOk returns a tuple with the Eval field value if set, nil otherwise
+// GetScoreOk returns a tuple with the Score field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ExplainedGradingRule) GetEvalOk() (*bool, bool) {
+func (o *ExplainedGradingRule) GetScoreOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Eval.Get(), o.Eval.IsSet()
+	return o.Score.Get(), o.Score.IsSet()
 }
 
-// HasEval returns a boolean if a field has been set.
-func (o *ExplainedGradingRule) HasEval() bool {
-	if o != nil && o.Eval.IsSet() {
+// HasScore returns a boolean if a field has been set.
+func (o *ExplainedGradingRule) HasScore() bool {
+	if o != nil && o.Score.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetEval gets a reference to the given NullableBool and assigns it to the Eval field.
-func (o *ExplainedGradingRule) SetEval(v bool) {
-	o.Eval.Set(&v)
+// SetScore gets a reference to the given NullableInt64 and assigns it to the Score field.
+func (o *ExplainedGradingRule) SetScore(v int64) {
+	o.Score.Set(&v)
 }
 
-// SetEvalNil sets the value for Eval to be an explicit nil
-func (o *ExplainedGradingRule) SetEvalNil() {
-	o.Eval.Set(nil)
+// SetScoreNil sets the value for Score to be an explicit nil
+func (o *ExplainedGradingRule) SetScoreNil() {
+	o.Score.Set(nil)
 }
 
-// UnsetEval ensures that no value is present for Eval, not even an explicit nil
-func (o *ExplainedGradingRule) UnsetEval() {
-	o.Eval.Unset()
+// UnsetScore ensures that no value is present for Score, not even an explicit nil
+func (o *ExplainedGradingRule) UnsetScore() {
+	o.Score.Unset()
 }
 
 func (o ExplainedGradingRule) MarshalJSON() ([]byte, error) {
@@ -308,9 +308,11 @@ func (o ExplainedGradingRule) MarshalJSON() ([]byte, error) {
 
 func (o ExplainedGradingRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["apply"] = o.Apply
+	toSerialize["condition"] = o.Condition
 	toSerialize["description"] = o.Description
-	if o.Score.IsSet() {
-		toSerialize["score"] = o.Score.Get()
+	if o.Eval.IsSet() {
+		toSerialize["eval"] = o.Eval.Get()
 	}
 	if o.Obtained.IsSet() {
 		toSerialize["obtained"] = o.Obtained.Get()
@@ -318,10 +320,8 @@ func (o ExplainedGradingRule) ToMap() (map[string]interface{}, error) {
 	if o.Scope.IsSet() {
 		toSerialize["scope"] = o.Scope.Get()
 	}
-	toSerialize["condition"] = o.Condition
-	toSerialize["apply"] = o.Apply
-	if o.Eval.IsSet() {
-		toSerialize["eval"] = o.Eval.Get()
+	if o.Score.IsSet() {
+		toSerialize["score"] = o.Score.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -336,9 +336,9 @@ func (o *ExplainedGradingRule) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"description",
-		"condition",
 		"apply",
+		"condition",
+		"description",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -368,13 +368,13 @@ func (o *ExplainedGradingRule) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "apply")
+		delete(additionalProperties, "condition")
 		delete(additionalProperties, "description")
-		delete(additionalProperties, "score")
+		delete(additionalProperties, "eval")
 		delete(additionalProperties, "obtained")
 		delete(additionalProperties, "scope")
-		delete(additionalProperties, "condition")
-		delete(additionalProperties, "apply")
-		delete(additionalProperties, "eval")
+		delete(additionalProperties, "score")
 		o.AdditionalProperties = additionalProperties
 	}
 

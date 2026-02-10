@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | These credentials type | 
 **Store** | [**SecretStoreRequest**](SecretStoreRequest.md) | These credentials certificate | 
-**Name** | **string** | These credentials identifying name | 
+**Type** | **string** | These credentials type | 
 **Description** | Pointer to **NullableString** | These credentials description | [optional] 
 **Expires** | Pointer to **NullableInt64** | The expiration date of these credentials | [optional] 
-**Triggers** | Pointer to [**CredentialsTriggers**](CredentialsTriggers.md) |  | [optional] 
+**Name** | **string** | These credentials identifying name | 
 **Targets** | Pointer to **[]string** | On which configuration the credentials are usable | [optional] 
+**Triggers** | Pointer to [**CredentialsTriggers**](CredentialsTriggers.md) |  | [optional] 
 **Login** | **string** | These credentials login | 
 **Password** | [**SecretString**](SecretString.md) | These credentials password | 
 **Secret** | [**SecretString**](SecretString.md) | These credentials secret | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewSecurityCredentialsUpdateRequest
 
-`func NewSecurityCredentialsUpdateRequest(type_ string, store SecretStoreRequest, name string, login string, password SecretString, secret SecretString, ) *SecurityCredentialsUpdateRequest`
+`func NewSecurityCredentialsUpdateRequest(store SecretStoreRequest, type_ string, name string, login string, password SecretString, secret SecretString, ) *SecurityCredentialsUpdateRequest`
 
 NewSecurityCredentialsUpdateRequest instantiates a new SecurityCredentialsUpdateRequest object
 This constructor will assign default values to properties that have it defined,
@@ -33,26 +33,6 @@ will change when the set of required properties is changed
 NewSecurityCredentialsUpdateRequestWithDefaults instantiates a new SecurityCredentialsUpdateRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetType
-
-`func (o *SecurityCredentialsUpdateRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *SecurityCredentialsUpdateRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *SecurityCredentialsUpdateRequest) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetStore
 
@@ -74,24 +54,24 @@ and a boolean to check if the value has been set.
 SetStore sets Store field to given value.
 
 
-### GetName
+### GetType
 
-`func (o *SecurityCredentialsUpdateRequest) GetName() string`
+`func (o *SecurityCredentialsUpdateRequest) GetType() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetTypeOk
 
-`func (o *SecurityCredentialsUpdateRequest) GetNameOk() (*string, bool)`
+`func (o *SecurityCredentialsUpdateRequest) GetTypeOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetType
 
-`func (o *SecurityCredentialsUpdateRequest) SetName(v string)`
+`func (o *SecurityCredentialsUpdateRequest) SetType(v string)`
 
-SetName sets Name field to given value.
+SetType sets Type field to given value.
 
 
 ### GetDescription
@@ -164,30 +144,25 @@ HasExpires returns a boolean if a field has been set.
 `func (o *SecurityCredentialsUpdateRequest) UnsetExpires()`
 
 UnsetExpires ensures that no value is present for Expires, not even an explicit nil
-### GetTriggers
+### GetName
 
-`func (o *SecurityCredentialsUpdateRequest) GetTriggers() CredentialsTriggers`
+`func (o *SecurityCredentialsUpdateRequest) GetName() string`
 
-GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTriggersOk
+### GetNameOk
 
-`func (o *SecurityCredentialsUpdateRequest) GetTriggersOk() (*CredentialsTriggers, bool)`
+`func (o *SecurityCredentialsUpdateRequest) GetNameOk() (*string, bool)`
 
-GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTriggers
+### SetName
 
-`func (o *SecurityCredentialsUpdateRequest) SetTriggers(v CredentialsTriggers)`
+`func (o *SecurityCredentialsUpdateRequest) SetName(v string)`
 
-SetTriggers sets Triggers field to given value.
+SetName sets Name field to given value.
 
-### HasTriggers
-
-`func (o *SecurityCredentialsUpdateRequest) HasTriggers() bool`
-
-HasTriggers returns a boolean if a field has been set.
 
 ### GetTargets
 
@@ -213,6 +188,31 @@ SetTargets sets Targets field to given value.
 `func (o *SecurityCredentialsUpdateRequest) HasTargets() bool`
 
 HasTargets returns a boolean if a field has been set.
+
+### GetTriggers
+
+`func (o *SecurityCredentialsUpdateRequest) GetTriggers() CredentialsTriggers`
+
+GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+
+### GetTriggersOk
+
+`func (o *SecurityCredentialsUpdateRequest) GetTriggersOk() (*CredentialsTriggers, bool)`
+
+GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggers
+
+`func (o *SecurityCredentialsUpdateRequest) SetTriggers(v CredentialsTriggers)`
+
+SetTriggers sets Triggers field to given value.
+
+### HasTriggers
+
+`func (o *SecurityCredentialsUpdateRequest) HasTriggers() bool`
+
+HasTriggers returns a boolean if a field has been set.
 
 ### GetLogin
 

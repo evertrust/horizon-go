@@ -24,10 +24,10 @@ var _ utils.MappedNullable = &RoleResponse{}
 type RoleResponse struct {
 	// Object internal ID
 	Id string `json:"_id"`
-	// The name of the role
-	Name string `json:"name"`
 	// The description of the role
 	Description utils.NullableString `json:"description,omitempty"`
+	// The name of the role
+	Name string `json:"name"`
 	// The role's permissions
 	Permissions          []Permission `json:"permissions,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -78,30 +78,6 @@ func (o *RoleResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetName returns the Name field value
-func (o *RoleResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *RoleResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *RoleResponse) SetName(v string) {
-	o.Name = v
-}
-
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *RoleResponse) GetDescription() string {
 	if o == nil || utils.IsNil(o.Description.Get()) {
@@ -143,6 +119,30 @@ func (o *RoleResponse) SetDescriptionNil() {
 // UnsetDescription ensures that no value is present for Description, not even an explicit nil
 func (o *RoleResponse) UnsetDescription() {
 	o.Description.Unset()
+}
+
+// GetName returns the Name field value
+func (o *RoleResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *RoleResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *RoleResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetPermissions returns the Permissions field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -189,10 +189,10 @@ func (o RoleResponse) MarshalJSON() ([]byte, error) {
 func (o RoleResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["name"] = o.Name
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
+	toSerialize["name"] = o.Name
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions
 	}
@@ -241,8 +241,8 @@ func (o *RoleResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "permissions")
 		o.AdditionalProperties = additionalProperties
 	}

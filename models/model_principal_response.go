@@ -22,18 +22,18 @@ var _ utils.MappedNullable = &PrincipalResponse{}
 
 // PrincipalResponse struct for PrincipalResponse
 type PrincipalResponse struct {
-	Identity Identity `json:"identity"`
+	// The custom dashboards of the principal
+	CustomDashboards []Dashboard `json:"customDashboards,omitempty"`
+	Identity         Identity    `json:"identity"`
 	// The permissions of the principal
 	Permissions []Permission `json:"permissions,omitempty"`
-	// The roles of the principal
-	Roles []string `json:"roles,omitempty"`
-	// The teams of the principal
-	Teams     []string                          `json:"teams,omitempty"`
-	TeamInfos []PrincipalResponseTeamInfosInner `json:"teamInfos,omitempty"`
 	// The UI preferences of the principal
 	Preferences NullablePrincipalInfoPreferences `json:"preferences,omitempty"`
-	// The custom dashboards of the principal
-	CustomDashboards     []Dashboard `json:"customDashboards,omitempty"`
+	// The roles of the principal
+	Roles     []string                          `json:"roles,omitempty"`
+	TeamInfos []PrincipalResponseTeamInfosInner `json:"teamInfos,omitempty"`
+	// The teams of the principal
+	Teams                []string `json:"teams,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -55,6 +55,39 @@ func NewPrincipalResponse(identity Identity) *PrincipalResponse {
 func NewPrincipalResponseWithDefaults() *PrincipalResponse {
 	this := PrincipalResponse{}
 	return &this
+}
+
+// GetCustomDashboards returns the CustomDashboards field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalResponse) GetCustomDashboards() []Dashboard {
+	if o == nil {
+		var ret []Dashboard
+		return ret
+	}
+	return o.CustomDashboards
+}
+
+// GetCustomDashboardsOk returns a tuple with the CustomDashboards field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalResponse) GetCustomDashboardsOk() ([]Dashboard, bool) {
+	if o == nil || utils.IsNil(o.CustomDashboards) {
+		return nil, false
+	}
+	return o.CustomDashboards, true
+}
+
+// HasCustomDashboards returns a boolean if a field has been set.
+func (o *PrincipalResponse) HasCustomDashboards() bool {
+	if o != nil && !utils.IsNil(o.CustomDashboards) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomDashboards gets a reference to the given []Dashboard and assigns it to the CustomDashboards field.
+func (o *PrincipalResponse) SetCustomDashboards(v []Dashboard) {
+	o.CustomDashboards = v
 }
 
 // GetIdentity returns the Identity field value
@@ -114,105 +147,6 @@ func (o *PrincipalResponse) SetPermissions(v []Permission) {
 	o.Permissions = v
 }
 
-// GetRoles returns the Roles field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalResponse) GetRoles() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Roles
-}
-
-// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalResponse) GetRolesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Roles) {
-		return nil, false
-	}
-	return o.Roles, true
-}
-
-// HasRoles returns a boolean if a field has been set.
-func (o *PrincipalResponse) HasRoles() bool {
-	if o != nil && !utils.IsNil(o.Roles) {
-		return true
-	}
-
-	return false
-}
-
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *PrincipalResponse) SetRoles(v []string) {
-	o.Roles = v
-}
-
-// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalResponse) GetTeams() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Teams
-}
-
-// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalResponse) GetTeamsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Teams) {
-		return nil, false
-	}
-	return o.Teams, true
-}
-
-// HasTeams returns a boolean if a field has been set.
-func (o *PrincipalResponse) HasTeams() bool {
-	if o != nil && !utils.IsNil(o.Teams) {
-		return true
-	}
-
-	return false
-}
-
-// SetTeams gets a reference to the given []string and assigns it to the Teams field.
-func (o *PrincipalResponse) SetTeams(v []string) {
-	o.Teams = v
-}
-
-// GetTeamInfos returns the TeamInfos field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalResponse) GetTeamInfos() []PrincipalResponseTeamInfosInner {
-	if o == nil {
-		var ret []PrincipalResponseTeamInfosInner
-		return ret
-	}
-	return o.TeamInfos
-}
-
-// GetTeamInfosOk returns a tuple with the TeamInfos field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalResponse) GetTeamInfosOk() ([]PrincipalResponseTeamInfosInner, bool) {
-	if o == nil || utils.IsNil(o.TeamInfos) {
-		return nil, false
-	}
-	return o.TeamInfos, true
-}
-
-// HasTeamInfos returns a boolean if a field has been set.
-func (o *PrincipalResponse) HasTeamInfos() bool {
-	if o != nil && !utils.IsNil(o.TeamInfos) {
-		return true
-	}
-
-	return false
-}
-
-// SetTeamInfos gets a reference to the given []PrincipalResponseTeamInfosInner and assigns it to the TeamInfos field.
-func (o *PrincipalResponse) SetTeamInfos(v []PrincipalResponseTeamInfosInner) {
-	o.TeamInfos = v
-}
-
 // GetPreferences returns the Preferences field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PrincipalResponse) GetPreferences() PrincipalInfoPreferences {
 	if o == nil || utils.IsNil(o.Preferences.Get()) {
@@ -256,37 +190,103 @@ func (o *PrincipalResponse) UnsetPreferences() {
 	o.Preferences.Unset()
 }
 
-// GetCustomDashboards returns the CustomDashboards field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalResponse) GetCustomDashboards() []Dashboard {
+// GetRoles returns the Roles field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalResponse) GetRoles() []string {
 	if o == nil {
-		var ret []Dashboard
+		var ret []string
 		return ret
 	}
-	return o.CustomDashboards
+	return o.Roles
 }
 
-// GetCustomDashboardsOk returns a tuple with the CustomDashboards field value if set, nil otherwise
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalResponse) GetCustomDashboardsOk() ([]Dashboard, bool) {
-	if o == nil || utils.IsNil(o.CustomDashboards) {
+func (o *PrincipalResponse) GetRolesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Roles) {
 		return nil, false
 	}
-	return o.CustomDashboards, true
+	return o.Roles, true
 }
 
-// HasCustomDashboards returns a boolean if a field has been set.
-func (o *PrincipalResponse) HasCustomDashboards() bool {
-	if o != nil && !utils.IsNil(o.CustomDashboards) {
+// HasRoles returns a boolean if a field has been set.
+func (o *PrincipalResponse) HasRoles() bool {
+	if o != nil && !utils.IsNil(o.Roles) {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomDashboards gets a reference to the given []Dashboard and assigns it to the CustomDashboards field.
-func (o *PrincipalResponse) SetCustomDashboards(v []Dashboard) {
-	o.CustomDashboards = v
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *PrincipalResponse) SetRoles(v []string) {
+	o.Roles = v
+}
+
+// GetTeamInfos returns the TeamInfos field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalResponse) GetTeamInfos() []PrincipalResponseTeamInfosInner {
+	if o == nil {
+		var ret []PrincipalResponseTeamInfosInner
+		return ret
+	}
+	return o.TeamInfos
+}
+
+// GetTeamInfosOk returns a tuple with the TeamInfos field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalResponse) GetTeamInfosOk() ([]PrincipalResponseTeamInfosInner, bool) {
+	if o == nil || utils.IsNil(o.TeamInfos) {
+		return nil, false
+	}
+	return o.TeamInfos, true
+}
+
+// HasTeamInfos returns a boolean if a field has been set.
+func (o *PrincipalResponse) HasTeamInfos() bool {
+	if o != nil && !utils.IsNil(o.TeamInfos) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeamInfos gets a reference to the given []PrincipalResponseTeamInfosInner and assigns it to the TeamInfos field.
+func (o *PrincipalResponse) SetTeamInfos(v []PrincipalResponseTeamInfosInner) {
+	o.TeamInfos = v
+}
+
+// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalResponse) GetTeams() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Teams
+}
+
+// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalResponse) GetTeamsOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Teams) {
+		return nil, false
+	}
+	return o.Teams, true
+}
+
+// HasTeams returns a boolean if a field has been set.
+func (o *PrincipalResponse) HasTeams() bool {
+	if o != nil && !utils.IsNil(o.Teams) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeams gets a reference to the given []string and assigns it to the Teams field.
+func (o *PrincipalResponse) SetTeams(v []string) {
+	o.Teams = v
 }
 
 func (o PrincipalResponse) MarshalJSON() ([]byte, error) {
@@ -299,24 +299,24 @@ func (o PrincipalResponse) MarshalJSON() ([]byte, error) {
 
 func (o PrincipalResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.CustomDashboards != nil {
+		toSerialize["customDashboards"] = o.CustomDashboards
+	}
 	toSerialize["identity"] = o.Identity
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions
 	}
+	if o.Preferences.IsSet() {
+		toSerialize["preferences"] = o.Preferences.Get()
+	}
 	if o.Roles != nil {
 		toSerialize["roles"] = o.Roles
-	}
-	if o.Teams != nil {
-		toSerialize["teams"] = o.Teams
 	}
 	if o.TeamInfos != nil {
 		toSerialize["teamInfos"] = o.TeamInfos
 	}
-	if o.Preferences.IsSet() {
-		toSerialize["preferences"] = o.Preferences.Get()
-	}
-	if o.CustomDashboards != nil {
-		toSerialize["customDashboards"] = o.CustomDashboards
+	if o.Teams != nil {
+		toSerialize["teams"] = o.Teams
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -361,13 +361,13 @@ func (o *PrincipalResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "customDashboards")
 		delete(additionalProperties, "identity")
 		delete(additionalProperties, "permissions")
-		delete(additionalProperties, "roles")
-		delete(additionalProperties, "teams")
-		delete(additionalProperties, "teamInfos")
 		delete(additionalProperties, "preferences")
-		delete(additionalProperties, "customDashboards")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "teamInfos")
+		delete(additionalProperties, "teams")
 		o.AdditionalProperties = additionalProperties
 	}
 

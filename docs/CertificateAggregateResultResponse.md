@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | [**[]CertificateAggregateResultResponseItemsInner**](CertificateAggregateResultResponseItemsInner.md) | All the groups in this aggregate | 
 **Count** | Pointer to **NullableInt64** | The total number of certificates matching the query | [optional] 
+**Items** | [**[]CertificateAggregateResultResponseItemsInner**](CertificateAggregateResultResponseItemsInner.md) | All the groups in this aggregate | 
 
 ## Methods
 
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewCertificateAggregateResultResponseWithDefaults instantiates a new CertificateAggregateResultResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetItems
-
-`func (o *CertificateAggregateResultResponse) GetItems() []CertificateAggregateResultResponseItemsInner`
-
-GetItems returns the Items field if non-nil, zero value otherwise.
-
-### GetItemsOk
-
-`func (o *CertificateAggregateResultResponse) GetItemsOk() (*[]CertificateAggregateResultResponseItemsInner, bool)`
-
-GetItemsOk returns a tuple with the Items field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetItems
-
-`func (o *CertificateAggregateResultResponse) SetItems(v []CertificateAggregateResultResponseItemsInner)`
-
-SetItems sets Items field to given value.
-
 
 ### GetCount
 
@@ -81,6 +61,26 @@ HasCount returns a boolean if a field has been set.
 `func (o *CertificateAggregateResultResponse) UnsetCount()`
 
 UnsetCount ensures that no value is present for Count, not even an explicit nil
+### GetItems
+
+`func (o *CertificateAggregateResultResponse) GetItems() []CertificateAggregateResultResponseItemsInner`
+
+GetItems returns the Items field if non-nil, zero value otherwise.
+
+### GetItemsOk
+
+`func (o *CertificateAggregateResultResponse) GetItemsOk() (*[]CertificateAggregateResultResponseItemsInner, bool)`
+
+GetItemsOk returns a tuple with the Items field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetItems
+
+`func (o *CertificateAggregateResultResponse) SetItems(v []CertificateAggregateResultResponseItemsInner)`
+
+SetItems sets Items field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

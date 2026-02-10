@@ -22,12 +22,12 @@ var _ utils.MappedNullable = &RequestableWorkflow{}
 
 // RequestableWorkflow struct for RequestableWorkflow
 type RequestableWorkflow struct {
-	// A possible workflow on this profile
-	Workflow string `json:"workflow"`
+	// The principal can perform this workflow without validation
+	Perform bool `json:"perform"`
 	// The principal has the ability to create a request for this workflow
 	Request bool `json:"request"`
-	// The principal can perform this workflow without validation
-	Perform              bool `json:"perform"`
+	// A possible workflow on this profile
+	Workflow             string `json:"workflow"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,11 +37,11 @@ type _RequestableWorkflow RequestableWorkflow
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRequestableWorkflow(workflow string, request bool, perform bool) *RequestableWorkflow {
+func NewRequestableWorkflow(perform bool, request bool, workflow string) *RequestableWorkflow {
 	this := RequestableWorkflow{}
-	this.Workflow = workflow
-	this.Request = request
 	this.Perform = perform
+	this.Request = request
+	this.Workflow = workflow
 	return &this
 }
 
@@ -51,54 +51,6 @@ func NewRequestableWorkflow(workflow string, request bool, perform bool) *Reques
 func NewRequestableWorkflowWithDefaults() *RequestableWorkflow {
 	this := RequestableWorkflow{}
 	return &this
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *RequestableWorkflow) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *RequestableWorkflow) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *RequestableWorkflow) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
-// GetRequest returns the Request field value
-func (o *RequestableWorkflow) GetRequest() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Request
-}
-
-// GetRequestOk returns a tuple with the Request field value
-// and a boolean to check if the value has been set.
-func (o *RequestableWorkflow) GetRequestOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Request, true
-}
-
-// SetRequest sets field value
-func (o *RequestableWorkflow) SetRequest(v bool) {
-	o.Request = v
 }
 
 // GetPerform returns the Perform field value
@@ -125,6 +77,54 @@ func (o *RequestableWorkflow) SetPerform(v bool) {
 	o.Perform = v
 }
 
+// GetRequest returns the Request field value
+func (o *RequestableWorkflow) GetRequest() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Request
+}
+
+// GetRequestOk returns a tuple with the Request field value
+// and a boolean to check if the value has been set.
+func (o *RequestableWorkflow) GetRequestOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Request, true
+}
+
+// SetRequest sets field value
+func (o *RequestableWorkflow) SetRequest(v bool) {
+	o.Request = v
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *RequestableWorkflow) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *RequestableWorkflow) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *RequestableWorkflow) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
 func (o RequestableWorkflow) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -135,9 +135,9 @@ func (o RequestableWorkflow) MarshalJSON() ([]byte, error) {
 
 func (o RequestableWorkflow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["workflow"] = o.Workflow
-	toSerialize["request"] = o.Request
 	toSerialize["perform"] = o.Perform
+	toSerialize["request"] = o.Request
+	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -151,9 +151,9 @@ func (o *RequestableWorkflow) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"workflow",
-		"request",
 		"perform",
+		"request",
+		"workflow",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -183,9 +183,9 @@ func (o *RequestableWorkflow) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "workflow")
-		delete(additionalProperties, "request")
 		delete(additionalProperties, "perform")
+		delete(additionalProperties, "request")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

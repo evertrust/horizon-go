@@ -22,7 +22,6 @@ var _ utils.MappedNullable = &NameshieldDnsChallengeProvider{}
 
 // NameshieldDnsChallengeProvider Configure DNS challenge provider to use Nameshield
 type NameshieldDnsChallengeProvider struct {
-	Type string `json:"type"`
 	// `raw` credentials name to use to authenticate on the Nameshield API
 	Credentials string `json:"credentials"`
 	// Nameshield API endpoint
@@ -30,6 +29,7 @@ type NameshieldDnsChallengeProvider struct {
 	Proxy    utils.NullableString `json:"proxy,omitempty"`
 	// Timeout when requesting Nameshield API
 	Timeout              string `json:"timeout" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,12 +39,12 @@ type _NameshieldDnsChallengeProvider NameshieldDnsChallengeProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNameshieldDnsChallengeProvider(type_ string, credentials string, endPoint string, timeout string) *NameshieldDnsChallengeProvider {
+func NewNameshieldDnsChallengeProvider(credentials string, endPoint string, timeout string, type_ string) *NameshieldDnsChallengeProvider {
 	this := NameshieldDnsChallengeProvider{}
-	this.Type = type_
 	this.Credentials = credentials
 	this.EndPoint = endPoint
 	this.Timeout = timeout
+	this.Type = type_
 	return &this
 }
 
@@ -54,30 +54,6 @@ func NewNameshieldDnsChallengeProvider(type_ string, credentials string, endPoin
 func NewNameshieldDnsChallengeProviderWithDefaults() *NameshieldDnsChallengeProvider {
 	this := NameshieldDnsChallengeProvider{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *NameshieldDnsChallengeProvider) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *NameshieldDnsChallengeProvider) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *NameshieldDnsChallengeProvider) SetType(v string) {
-	o.Type = v
 }
 
 // GetCredentials returns the Credentials field value
@@ -195,6 +171,30 @@ func (o *NameshieldDnsChallengeProvider) SetTimeout(v string) {
 	o.Timeout = v
 }
 
+// GetType returns the Type field value
+func (o *NameshieldDnsChallengeProvider) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *NameshieldDnsChallengeProvider) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *NameshieldDnsChallengeProvider) SetType(v string) {
+	o.Type = v
+}
+
 func (o NameshieldDnsChallengeProvider) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -205,13 +205,13 @@ func (o NameshieldDnsChallengeProvider) MarshalJSON() ([]byte, error) {
 
 func (o NameshieldDnsChallengeProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
 	toSerialize["credentials"] = o.Credentials
 	toSerialize["endPoint"] = o.EndPoint
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	toSerialize["timeout"] = o.Timeout
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -225,10 +225,10 @@ func (o *NameshieldDnsChallengeProvider) UnmarshalJSON(data []byte) (err error) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
 		"credentials",
 		"endPoint",
 		"timeout",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -258,11 +258,11 @@ func (o *NameshieldDnsChallengeProvider) UnmarshalJSON(data []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "credentials")
 		delete(additionalProperties, "endPoint")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

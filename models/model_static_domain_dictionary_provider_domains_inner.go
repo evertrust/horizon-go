@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &StaticDomainDictionaryProviderDomainsInner{}
 
 // StaticDomainDictionaryProviderDomainsInner struct for StaticDomainDictionaryProviderDomainsInner
 type StaticDomainDictionaryProviderDomainsInner struct {
+	Dictionary []MapEntry `json:"dictionary"`
 	// Top level domain name
-	Domain               string     `json:"domain"`
-	Dictionary           []MapEntry `json:"dictionary"`
+	Domain               string `json:"domain"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +34,10 @@ type _StaticDomainDictionaryProviderDomainsInner StaticDomainDictionaryProviderD
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStaticDomainDictionaryProviderDomainsInner(domain string, dictionary []MapEntry) *StaticDomainDictionaryProviderDomainsInner {
+func NewStaticDomainDictionaryProviderDomainsInner(dictionary []MapEntry, domain string) *StaticDomainDictionaryProviderDomainsInner {
 	this := StaticDomainDictionaryProviderDomainsInner{}
-	this.Domain = domain
 	this.Dictionary = dictionary
+	this.Domain = domain
 	return &this
 }
 
@@ -47,30 +47,6 @@ func NewStaticDomainDictionaryProviderDomainsInner(domain string, dictionary []M
 func NewStaticDomainDictionaryProviderDomainsInnerWithDefaults() *StaticDomainDictionaryProviderDomainsInner {
 	this := StaticDomainDictionaryProviderDomainsInner{}
 	return &this
-}
-
-// GetDomain returns the Domain field value
-func (o *StaticDomainDictionaryProviderDomainsInner) GetDomain() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Domain
-}
-
-// GetDomainOk returns a tuple with the Domain field value
-// and a boolean to check if the value has been set.
-func (o *StaticDomainDictionaryProviderDomainsInner) GetDomainOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Domain, true
-}
-
-// SetDomain sets field value
-func (o *StaticDomainDictionaryProviderDomainsInner) SetDomain(v string) {
-	o.Domain = v
 }
 
 // GetDictionary returns the Dictionary field value
@@ -97,6 +73,30 @@ func (o *StaticDomainDictionaryProviderDomainsInner) SetDictionary(v []MapEntry)
 	o.Dictionary = v
 }
 
+// GetDomain returns the Domain field value
+func (o *StaticDomainDictionaryProviderDomainsInner) GetDomain() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Domain
+}
+
+// GetDomainOk returns a tuple with the Domain field value
+// and a boolean to check if the value has been set.
+func (o *StaticDomainDictionaryProviderDomainsInner) GetDomainOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Domain, true
+}
+
+// SetDomain sets field value
+func (o *StaticDomainDictionaryProviderDomainsInner) SetDomain(v string) {
+	o.Domain = v
+}
+
 func (o StaticDomainDictionaryProviderDomainsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -107,8 +107,8 @@ func (o StaticDomainDictionaryProviderDomainsInner) MarshalJSON() ([]byte, error
 
 func (o StaticDomainDictionaryProviderDomainsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["domain"] = o.Domain
 	toSerialize["dictionary"] = o.Dictionary
+	toSerialize["domain"] = o.Domain
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -122,8 +122,8 @@ func (o *StaticDomainDictionaryProviderDomainsInner) UnmarshalJSON(data []byte) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"domain",
 		"dictionary",
+		"domain",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -153,8 +153,8 @@ func (o *StaticDomainDictionaryProviderDomainsInner) UnmarshalJSON(data []byte) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "domain")
 		delete(additionalProperties, "dictionary")
+		delete(additionalProperties, "domain")
 		o.AdditionalProperties = additionalProperties
 	}
 

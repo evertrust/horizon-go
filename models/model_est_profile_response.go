@@ -23,35 +23,35 @@ var _ utils.MappedNullable = &EstProfileResponse{}
 // EstProfileResponse struct for EstProfileResponse
 type EstProfileResponse struct {
 	// Object internal ID
-	Id                            string                                `json:"_id"`
+	Id                  string                                `json:"_id"`
+	AuthorizationLevels CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
+	AuthorizationMode   string                                `json:"authorizationMode"`
+	Ca                  string                                `json:"ca"`
+	CertificateTemplate NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
+	Constraints         NullableCertificateRequestConstraints `json:"constraints,omitempty"`
+	CryptoPolicy        ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
+	CsrDataMapping      map[string]string                     `json:"csrDataMapping,omitempty"`
+	Description         []LocalizedString                     `json:"description,omitempty"`
+	DisplayName         []LocalizedString                     `json:"displayName,omitempty"`
+	DnWhitelist         bool                                  `json:"dnWhitelist"`
+	// Representation of a datasource execution flow
+	DsFlow                        []DataSourceFlowEntry                 `json:"dsFlow,omitempty"`
+	Enabled                       bool                                  `json:"enabled"`
+	EnrollAuthorizedCas           []string                              `json:"enrollAuthorizedCas,omitempty"`
+	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
+	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
 	Module                        string                                `json:"module"`
 	Name                          string                                `json:"name"`
-	DisplayName                   []LocalizedString                     `json:"displayName,omitempty"`
-	Description                   []LocalizedString                     `json:"description,omitempty"`
-	Enabled                       bool                                  `json:"enabled"`
-	Ca                            string                                `json:"ca"`
-	Constraints                   NullableCertificateRequestConstraints `json:"constraints,omitempty"`
+	PasswordPolicy                utils.NullableString                  `json:"passwordPolicy,omitempty"`
 	PkiConnector                  string                                `json:"pkiConnector"`
-	CsrDataMapping                map[string]string                     `json:"csrDataMapping,omitempty"`
-	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
-	AuthorizationMode             string                                `json:"authorizationMode"`
-	DnWhitelist                   bool                                  `json:"dnWhitelist"`
-	EnrollAuthorizedCas           []string                              `json:"enrollAuthorizedCas,omitempty"`
 	RenewalAuthorizedCas          []string                              `json:"renewalAuthorizedCas,omitempty"`
 	RenewalPeriod                 utils.NullableString                  `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	AuthorizationLevels           CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
-	Triggers                      NullableCertificateProfileTriggers    `json:"triggers,omitempty"`
 	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
-	PasswordPolicy                utils.NullableString                  `json:"passwordPolicy,omitempty"`
-	CryptoPolicy                  ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
 	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
-	CertificateTemplate           NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
-	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
-	ValidationRuleset             NullableValidationRuleset             `json:"validationRuleset,omitempty"`
-	// Representation of a datasource execution flow
-	DsFlow []DataSourceFlowEntry `json:"dsFlow,omitempty"`
 	// Available from `2.8.2`
-	ThirdPartyDiscoverySync utils.NullableBool `json:"thirdPartyDiscoverySync,omitempty"`
+	ThirdPartyDiscoverySync utils.NullableBool                 `json:"thirdPartyDiscoverySync,omitempty"`
+	Triggers                NullableCertificateProfileTriggers `json:"triggers,omitempty"`
+	ValidationRuleset       NullableValidationRuleset          `json:"validationRuleset,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -61,19 +61,19 @@ type _EstProfileResponse EstProfileResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEstProfileResponse(id string, module string, name string, enabled bool, ca string, pkiConnector string, authorizationMode string, dnWhitelist bool, authorizationLevels CertificateProfileAuthorizationLevels, requestsPolicy RequestsPolicy, cryptoPolicy ManagedCertificateProfileCryptoPolicy, selfPermissions CertificateProfileSelfPermissions) *EstProfileResponse {
+func NewEstProfileResponse(id string, authorizationLevels CertificateProfileAuthorizationLevels, authorizationMode string, ca string, cryptoPolicy ManagedCertificateProfileCryptoPolicy, dnWhitelist bool, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions) *EstProfileResponse {
 	this := EstProfileResponse{}
 	this.Id = id
+	this.AuthorizationLevels = authorizationLevels
+	this.AuthorizationMode = authorizationMode
+	this.Ca = ca
+	this.CryptoPolicy = cryptoPolicy
+	this.DnWhitelist = dnWhitelist
+	this.Enabled = enabled
 	this.Module = module
 	this.Name = name
-	this.Enabled = enabled
-	this.Ca = ca
 	this.PkiConnector = pkiConnector
-	this.AuthorizationMode = authorizationMode
-	this.DnWhitelist = dnWhitelist
-	this.AuthorizationLevels = authorizationLevels
 	this.RequestsPolicy = requestsPolicy
-	this.CryptoPolicy = cryptoPolicy
 	this.SelfPermissions = selfPermissions
 	var thirdPartyDiscoverySync bool = false
 	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
@@ -112,6 +112,477 @@ func (o *EstProfileResponse) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *EstProfileResponse) SetId(v string) {
 	o.Id = v
+}
+
+// GetAuthorizationLevels returns the AuthorizationLevels field value
+func (o *EstProfileResponse) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
+	if o == nil {
+		var ret CertificateProfileAuthorizationLevels
+		return ret
+	}
+
+	return o.AuthorizationLevels
+}
+
+// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
+// and a boolean to check if the value has been set.
+func (o *EstProfileResponse) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizationLevels, true
+}
+
+// SetAuthorizationLevels sets field value
+func (o *EstProfileResponse) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
+	o.AuthorizationLevels = v
+}
+
+// GetAuthorizationMode returns the AuthorizationMode field value
+func (o *EstProfileResponse) GetAuthorizationMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AuthorizationMode
+}
+
+// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value
+// and a boolean to check if the value has been set.
+func (o *EstProfileResponse) GetAuthorizationModeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizationMode, true
+}
+
+// SetAuthorizationMode sets field value
+func (o *EstProfileResponse) SetAuthorizationMode(v string) {
+	o.AuthorizationMode = v
+}
+
+// GetCa returns the Ca field value
+func (o *EstProfileResponse) GetCa() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Ca
+}
+
+// GetCaOk returns a tuple with the Ca field value
+// and a boolean to check if the value has been set.
+func (o *EstProfileResponse) GetCaOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ca, true
+}
+
+// SetCa sets field value
+func (o *EstProfileResponse) SetCa(v string) {
+	o.Ca = v
+}
+
+// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetCertificateTemplate() CertificateTemplate {
+	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
+		var ret CertificateTemplate
+		return ret
+	}
+	return *o.CertificateTemplate.Get()
+}
+
+// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstProfileResponse) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
+}
+
+// HasCertificateTemplate returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasCertificateTemplate() bool {
+	if o != nil && o.CertificateTemplate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
+func (o *EstProfileResponse) SetCertificateTemplate(v CertificateTemplate) {
+	o.CertificateTemplate.Set(&v)
+}
+
+// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
+func (o *EstProfileResponse) SetCertificateTemplateNil() {
+	o.CertificateTemplate.Set(nil)
+}
+
+// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
+func (o *EstProfileResponse) UnsetCertificateTemplate() {
+	o.CertificateTemplate.Unset()
+}
+
+// GetConstraints returns the Constraints field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetConstraints() CertificateRequestConstraints {
+	if o == nil || utils.IsNil(o.Constraints.Get()) {
+		var ret CertificateRequestConstraints
+		return ret
+	}
+	return *o.Constraints.Get()
+}
+
+// GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstProfileResponse) GetConstraintsOk() (*CertificateRequestConstraints, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Constraints.Get(), o.Constraints.IsSet()
+}
+
+// HasConstraints returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasConstraints() bool {
+	if o != nil && o.Constraints.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConstraints gets a reference to the given NullableCertificateRequestConstraints and assigns it to the Constraints field.
+func (o *EstProfileResponse) SetConstraints(v CertificateRequestConstraints) {
+	o.Constraints.Set(&v)
+}
+
+// SetConstraintsNil sets the value for Constraints to be an explicit nil
+func (o *EstProfileResponse) SetConstraintsNil() {
+	o.Constraints.Set(nil)
+}
+
+// UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
+func (o *EstProfileResponse) UnsetConstraints() {
+	o.Constraints.Unset()
+}
+
+// GetCryptoPolicy returns the CryptoPolicy field value
+func (o *EstProfileResponse) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
+	if o == nil {
+		var ret ManagedCertificateProfileCryptoPolicy
+		return ret
+	}
+
+	return o.CryptoPolicy
+}
+
+// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
+// and a boolean to check if the value has been set.
+func (o *EstProfileResponse) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CryptoPolicy, true
+}
+
+// SetCryptoPolicy sets field value
+func (o *EstProfileResponse) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
+	o.CryptoPolicy = v
+}
+
+// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetCsrDataMapping() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.CsrDataMapping
+}
+
+// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstProfileResponse) GetCsrDataMappingOk() (*map[string]string, bool) {
+	if o == nil || utils.IsNil(o.CsrDataMapping) {
+		return nil, false
+	}
+	return &o.CsrDataMapping, true
+}
+
+// HasCsrDataMapping returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasCsrDataMapping() bool {
+	if o != nil && !utils.IsNil(o.CsrDataMapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
+func (o *EstProfileResponse) SetCsrDataMapping(v map[string]string) {
+	o.CsrDataMapping = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstProfileResponse) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *EstProfileResponse) SetDescription(v []LocalizedString) {
+	o.Description = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstProfileResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *EstProfileResponse) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
+// GetDnWhitelist returns the DnWhitelist field value
+func (o *EstProfileResponse) GetDnWhitelist() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.DnWhitelist
+}
+
+// GetDnWhitelistOk returns a tuple with the DnWhitelist field value
+// and a boolean to check if the value has been set.
+func (o *EstProfileResponse) GetDnWhitelistOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DnWhitelist, true
+}
+
+// SetDnWhitelist sets field value
+func (o *EstProfileResponse) SetDnWhitelist(v bool) {
+	o.DnWhitelist = v
+}
+
+// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetDsFlow() []DataSourceFlowEntry {
+	if o == nil {
+		var ret []DataSourceFlowEntry
+		return ret
+	}
+	return o.DsFlow
+}
+
+// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstProfileResponse) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
+	if o == nil || utils.IsNil(o.DsFlow) {
+		return nil, false
+	}
+	return o.DsFlow, true
+}
+
+// HasDsFlow returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasDsFlow() bool {
+	if o != nil && !utils.IsNil(o.DsFlow) {
+		return true
+	}
+
+	return false
+}
+
+// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
+func (o *EstProfileResponse) SetDsFlow(v []DataSourceFlowEntry) {
+	o.DsFlow = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *EstProfileResponse) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *EstProfileResponse) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *EstProfileResponse) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetEnrollAuthorizedCas returns the EnrollAuthorizedCas field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetEnrollAuthorizedCas() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.EnrollAuthorizedCas
+}
+
+// GetEnrollAuthorizedCasOk returns a tuple with the EnrollAuthorizedCas field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstProfileResponse) GetEnrollAuthorizedCasOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.EnrollAuthorizedCas) {
+		return nil, false
+	}
+	return o.EnrollAuthorizedCas, true
+}
+
+// HasEnrollAuthorizedCas returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasEnrollAuthorizedCas() bool {
+	if o != nil && !utils.IsNil(o.EnrollAuthorizedCas) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnrollAuthorizedCas gets a reference to the given []string and assigns it to the EnrollAuthorizedCas field.
+func (o *EstProfileResponse) SetEnrollAuthorizedCas(v []string) {
+	o.EnrollAuthorizedCas = v
+}
+
+// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetGradingPolicies() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.GradingPolicies
+}
+
+// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstProfileResponse) GetGradingPoliciesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.GradingPolicies) {
+		return nil, false
+	}
+	return o.GradingPolicies, true
+}
+
+// HasGradingPolicies returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasGradingPolicies() bool {
+	if o != nil && !utils.IsNil(o.GradingPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
+func (o *EstProfileResponse) SetGradingPolicies(v []string) {
+	o.GradingPolicies = v
+}
+
+// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
+	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
+		var ret MaxCertificatePerHolderPolicy
+		return ret
+	}
+	return *o.MaxCertificatePerHolderPolicy.Get()
+}
+
+// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstProfileResponse) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
+}
+
+// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasMaxCertificatePerHolderPolicy() bool {
+	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
+func (o *EstProfileResponse) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
+	o.MaxCertificatePerHolderPolicy.Set(&v)
+}
+
+// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
+func (o *EstProfileResponse) SetMaxCertificatePerHolderPolicyNil() {
+	o.MaxCertificatePerHolderPolicy.Set(nil)
+}
+
+// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
+func (o *EstProfileResponse) UnsetMaxCertificatePerHolderPolicy() {
+	o.MaxCertificatePerHolderPolicy.Unset()
 }
 
 // GetModule returns the Module field value
@@ -162,161 +633,47 @@ func (o *EstProfileResponse) SetName(v string) {
 	o.Name = v
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *EstProfileResponse) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetDescription() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *EstProfileResponse) SetDescription(v []LocalizedString) {
-	o.Description = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *EstProfileResponse) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *EstProfileResponse) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *EstProfileResponse) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetCa returns the Ca field value
-func (o *EstProfileResponse) GetCa() string {
-	if o == nil {
+// GetPasswordPolicy returns the PasswordPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetPasswordPolicy() string {
+	if o == nil || utils.IsNil(o.PasswordPolicy.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Ca
+	return *o.PasswordPolicy.Get()
 }
 
-// GetCaOk returns a tuple with the Ca field value
-// and a boolean to check if the value has been set.
-func (o *EstProfileResponse) GetCaOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Ca, true
-}
-
-// SetCa sets field value
-func (o *EstProfileResponse) SetCa(v string) {
-	o.Ca = v
-}
-
-// GetConstraints returns the Constraints field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetConstraints() CertificateRequestConstraints {
-	if o == nil || utils.IsNil(o.Constraints.Get()) {
-		var ret CertificateRequestConstraints
-		return ret
-	}
-	return *o.Constraints.Get()
-}
-
-// GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
+// GetPasswordPolicyOk returns a tuple with the PasswordPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetConstraintsOk() (*CertificateRequestConstraints, bool) {
+func (o *EstProfileResponse) GetPasswordPolicyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Constraints.Get(), o.Constraints.IsSet()
+	return o.PasswordPolicy.Get(), o.PasswordPolicy.IsSet()
 }
 
-// HasConstraints returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasConstraints() bool {
-	if o != nil && o.Constraints.IsSet() {
+// HasPasswordPolicy returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasPasswordPolicy() bool {
+	if o != nil && o.PasswordPolicy.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetConstraints gets a reference to the given NullableCertificateRequestConstraints and assigns it to the Constraints field.
-func (o *EstProfileResponse) SetConstraints(v CertificateRequestConstraints) {
-	o.Constraints.Set(&v)
+// SetPasswordPolicy gets a reference to the given NullableString and assigns it to the PasswordPolicy field.
+func (o *EstProfileResponse) SetPasswordPolicy(v string) {
+	o.PasswordPolicy.Set(&v)
 }
 
-// SetConstraintsNil sets the value for Constraints to be an explicit nil
-func (o *EstProfileResponse) SetConstraintsNil() {
-	o.Constraints.Set(nil)
+// SetPasswordPolicyNil sets the value for PasswordPolicy to be an explicit nil
+func (o *EstProfileResponse) SetPasswordPolicyNil() {
+	o.PasswordPolicy.Set(nil)
 }
 
-// UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
-func (o *EstProfileResponse) UnsetConstraints() {
-	o.Constraints.Unset()
+// UnsetPasswordPolicy ensures that no value is present for PasswordPolicy, not even an explicit nil
+func (o *EstProfileResponse) UnsetPasswordPolicy() {
+	o.PasswordPolicy.Unset()
 }
 
 // GetPkiConnector returns the PkiConnector field value
@@ -341,163 +698,6 @@ func (o *EstProfileResponse) GetPkiConnectorOk() (*string, bool) {
 // SetPkiConnector sets field value
 func (o *EstProfileResponse) SetPkiConnector(v string) {
 	o.PkiConnector = v
-}
-
-// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetCsrDataMapping() map[string]string {
-	if o == nil {
-		var ret map[string]string
-		return ret
-	}
-	return o.CsrDataMapping
-}
-
-// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetCsrDataMappingOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.CsrDataMapping) {
-		return nil, false
-	}
-	return &o.CsrDataMapping, true
-}
-
-// HasCsrDataMapping returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasCsrDataMapping() bool {
-	if o != nil && !utils.IsNil(o.CsrDataMapping) {
-		return true
-	}
-
-	return false
-}
-
-// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
-func (o *EstProfileResponse) SetCsrDataMapping(v map[string]string) {
-	o.CsrDataMapping = v
-}
-
-// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
-	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
-		var ret MaxCertificatePerHolderPolicy
-		return ret
-	}
-	return *o.MaxCertificatePerHolderPolicy.Get()
-}
-
-// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
-}
-
-// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasMaxCertificatePerHolderPolicy() bool {
-	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
-func (o *EstProfileResponse) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
-	o.MaxCertificatePerHolderPolicy.Set(&v)
-}
-
-// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
-func (o *EstProfileResponse) SetMaxCertificatePerHolderPolicyNil() {
-	o.MaxCertificatePerHolderPolicy.Set(nil)
-}
-
-// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
-func (o *EstProfileResponse) UnsetMaxCertificatePerHolderPolicy() {
-	o.MaxCertificatePerHolderPolicy.Unset()
-}
-
-// GetAuthorizationMode returns the AuthorizationMode field value
-func (o *EstProfileResponse) GetAuthorizationMode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.AuthorizationMode
-}
-
-// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value
-// and a boolean to check if the value has been set.
-func (o *EstProfileResponse) GetAuthorizationModeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthorizationMode, true
-}
-
-// SetAuthorizationMode sets field value
-func (o *EstProfileResponse) SetAuthorizationMode(v string) {
-	o.AuthorizationMode = v
-}
-
-// GetDnWhitelist returns the DnWhitelist field value
-func (o *EstProfileResponse) GetDnWhitelist() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.DnWhitelist
-}
-
-// GetDnWhitelistOk returns a tuple with the DnWhitelist field value
-// and a boolean to check if the value has been set.
-func (o *EstProfileResponse) GetDnWhitelistOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DnWhitelist, true
-}
-
-// SetDnWhitelist sets field value
-func (o *EstProfileResponse) SetDnWhitelist(v bool) {
-	o.DnWhitelist = v
-}
-
-// GetEnrollAuthorizedCas returns the EnrollAuthorizedCas field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetEnrollAuthorizedCas() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.EnrollAuthorizedCas
-}
-
-// GetEnrollAuthorizedCasOk returns a tuple with the EnrollAuthorizedCas field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetEnrollAuthorizedCasOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.EnrollAuthorizedCas) {
-		return nil, false
-	}
-	return o.EnrollAuthorizedCas, true
-}
-
-// HasEnrollAuthorizedCas returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasEnrollAuthorizedCas() bool {
-	if o != nil && !utils.IsNil(o.EnrollAuthorizedCas) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnrollAuthorizedCas gets a reference to the given []string and assigns it to the EnrollAuthorizedCas field.
-func (o *EstProfileResponse) SetEnrollAuthorizedCas(v []string) {
-	o.EnrollAuthorizedCas = v
 }
 
 // GetRenewalAuthorizedCas returns the RenewalAuthorizedCas field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -576,73 +776,6 @@ func (o *EstProfileResponse) UnsetRenewalPeriod() {
 	o.RenewalPeriod.Unset()
 }
 
-// GetAuthorizationLevels returns the AuthorizationLevels field value
-func (o *EstProfileResponse) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
-	if o == nil {
-		var ret CertificateProfileAuthorizationLevels
-		return ret
-	}
-
-	return o.AuthorizationLevels
-}
-
-// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
-// and a boolean to check if the value has been set.
-func (o *EstProfileResponse) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthorizationLevels, true
-}
-
-// SetAuthorizationLevels sets field value
-func (o *EstProfileResponse) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
-	o.AuthorizationLevels = v
-}
-
-// GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetTriggers() CertificateProfileTriggers {
-	if o == nil || utils.IsNil(o.Triggers.Get()) {
-		var ret CertificateProfileTriggers
-		return ret
-	}
-	return *o.Triggers.Get()
-}
-
-// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetTriggersOk() (*CertificateProfileTriggers, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Triggers.Get(), o.Triggers.IsSet()
-}
-
-// HasTriggers returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasTriggers() bool {
-	if o != nil && o.Triggers.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTriggers gets a reference to the given NullableCertificateProfileTriggers and assigns it to the Triggers field.
-func (o *EstProfileResponse) SetTriggers(v CertificateProfileTriggers) {
-	o.Triggers.Set(&v)
-}
-
-// SetTriggersNil sets the value for Triggers to be an explicit nil
-func (o *EstProfileResponse) SetTriggersNil() {
-	o.Triggers.Set(nil)
-}
-
-// UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
-func (o *EstProfileResponse) UnsetTriggers() {
-	o.Triggers.Unset()
-}
-
 // GetRequestsPolicy returns the RequestsPolicy field value
 func (o *EstProfileResponse) GetRequestsPolicy() RequestsPolicy {
 	if o == nil {
@@ -667,73 +800,6 @@ func (o *EstProfileResponse) SetRequestsPolicy(v RequestsPolicy) {
 	o.RequestsPolicy = v
 }
 
-// GetPasswordPolicy returns the PasswordPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetPasswordPolicy() string {
-	if o == nil || utils.IsNil(o.PasswordPolicy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.PasswordPolicy.Get()
-}
-
-// GetPasswordPolicyOk returns a tuple with the PasswordPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetPasswordPolicyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PasswordPolicy.Get(), o.PasswordPolicy.IsSet()
-}
-
-// HasPasswordPolicy returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasPasswordPolicy() bool {
-	if o != nil && o.PasswordPolicy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPasswordPolicy gets a reference to the given NullableString and assigns it to the PasswordPolicy field.
-func (o *EstProfileResponse) SetPasswordPolicy(v string) {
-	o.PasswordPolicy.Set(&v)
-}
-
-// SetPasswordPolicyNil sets the value for PasswordPolicy to be an explicit nil
-func (o *EstProfileResponse) SetPasswordPolicyNil() {
-	o.PasswordPolicy.Set(nil)
-}
-
-// UnsetPasswordPolicy ensures that no value is present for PasswordPolicy, not even an explicit nil
-func (o *EstProfileResponse) UnsetPasswordPolicy() {
-	o.PasswordPolicy.Unset()
-}
-
-// GetCryptoPolicy returns the CryptoPolicy field value
-func (o *EstProfileResponse) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
-	if o == nil {
-		var ret ManagedCertificateProfileCryptoPolicy
-		return ret
-	}
-
-	return o.CryptoPolicy
-}
-
-// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
-// and a boolean to check if the value has been set.
-func (o *EstProfileResponse) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CryptoPolicy, true
-}
-
-// SetCryptoPolicy sets field value
-func (o *EstProfileResponse) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
-	o.CryptoPolicy = v
-}
-
 // GetSelfPermissions returns the SelfPermissions field value
 func (o *EstProfileResponse) GetSelfPermissions() CertificateProfileSelfPermissions {
 	if o == nil {
@@ -756,158 +822,6 @@ func (o *EstProfileResponse) GetSelfPermissionsOk() (*CertificateProfileSelfPerm
 // SetSelfPermissions sets field value
 func (o *EstProfileResponse) SetSelfPermissions(v CertificateProfileSelfPermissions) {
 	o.SelfPermissions = v
-}
-
-// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetCertificateTemplate() CertificateTemplate {
-	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
-		var ret CertificateTemplate
-		return ret
-	}
-	return *o.CertificateTemplate.Get()
-}
-
-// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
-}
-
-// HasCertificateTemplate returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasCertificateTemplate() bool {
-	if o != nil && o.CertificateTemplate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
-func (o *EstProfileResponse) SetCertificateTemplate(v CertificateTemplate) {
-	o.CertificateTemplate.Set(&v)
-}
-
-// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-func (o *EstProfileResponse) SetCertificateTemplateNil() {
-	o.CertificateTemplate.Set(nil)
-}
-
-// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
-func (o *EstProfileResponse) UnsetCertificateTemplate() {
-	o.CertificateTemplate.Unset()
-}
-
-// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetGradingPolicies() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.GradingPolicies
-}
-
-// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetGradingPoliciesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.GradingPolicies) {
-		return nil, false
-	}
-	return o.GradingPolicies, true
-}
-
-// HasGradingPolicies returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasGradingPolicies() bool {
-	if o != nil && !utils.IsNil(o.GradingPolicies) {
-		return true
-	}
-
-	return false
-}
-
-// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
-func (o *EstProfileResponse) SetGradingPolicies(v []string) {
-	o.GradingPolicies = v
-}
-
-// GetValidationRuleset returns the ValidationRuleset field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetValidationRuleset() ValidationRuleset {
-	if o == nil || utils.IsNil(o.ValidationRuleset.Get()) {
-		var ret ValidationRuleset
-		return ret
-	}
-	return *o.ValidationRuleset.Get()
-}
-
-// GetValidationRulesetOk returns a tuple with the ValidationRuleset field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetValidationRulesetOk() (*ValidationRuleset, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ValidationRuleset.Get(), o.ValidationRuleset.IsSet()
-}
-
-// HasValidationRuleset returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasValidationRuleset() bool {
-	if o != nil && o.ValidationRuleset.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetValidationRuleset gets a reference to the given NullableValidationRuleset and assigns it to the ValidationRuleset field.
-func (o *EstProfileResponse) SetValidationRuleset(v ValidationRuleset) {
-	o.ValidationRuleset.Set(&v)
-}
-
-// SetValidationRulesetNil sets the value for ValidationRuleset to be an explicit nil
-func (o *EstProfileResponse) SetValidationRulesetNil() {
-	o.ValidationRuleset.Set(nil)
-}
-
-// UnsetValidationRuleset ensures that no value is present for ValidationRuleset, not even an explicit nil
-func (o *EstProfileResponse) UnsetValidationRuleset() {
-	o.ValidationRuleset.Unset()
-}
-
-// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstProfileResponse) GetDsFlow() []DataSourceFlowEntry {
-	if o == nil {
-		var ret []DataSourceFlowEntry
-		return ret
-	}
-	return o.DsFlow
-}
-
-// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstProfileResponse) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
-	if o == nil || utils.IsNil(o.DsFlow) {
-		return nil, false
-	}
-	return o.DsFlow, true
-}
-
-// HasDsFlow returns a boolean if a field has been set.
-func (o *EstProfileResponse) HasDsFlow() bool {
-	if o != nil && !utils.IsNil(o.DsFlow) {
-		return true
-	}
-
-	return false
-}
-
-// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
-func (o *EstProfileResponse) SetDsFlow(v []DataSourceFlowEntry) {
-	o.DsFlow = v
 }
 
 // GetThirdPartyDiscoverySync returns the ThirdPartyDiscoverySync field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -953,6 +867,92 @@ func (o *EstProfileResponse) UnsetThirdPartyDiscoverySync() {
 	o.ThirdPartyDiscoverySync.Unset()
 }
 
+// GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetTriggers() CertificateProfileTriggers {
+	if o == nil || utils.IsNil(o.Triggers.Get()) {
+		var ret CertificateProfileTriggers
+		return ret
+	}
+	return *o.Triggers.Get()
+}
+
+// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstProfileResponse) GetTriggersOk() (*CertificateProfileTriggers, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Triggers.Get(), o.Triggers.IsSet()
+}
+
+// HasTriggers returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasTriggers() bool {
+	if o != nil && o.Triggers.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggers gets a reference to the given NullableCertificateProfileTriggers and assigns it to the Triggers field.
+func (o *EstProfileResponse) SetTriggers(v CertificateProfileTriggers) {
+	o.Triggers.Set(&v)
+}
+
+// SetTriggersNil sets the value for Triggers to be an explicit nil
+func (o *EstProfileResponse) SetTriggersNil() {
+	o.Triggers.Set(nil)
+}
+
+// UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
+func (o *EstProfileResponse) UnsetTriggers() {
+	o.Triggers.Unset()
+}
+
+// GetValidationRuleset returns the ValidationRuleset field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstProfileResponse) GetValidationRuleset() ValidationRuleset {
+	if o == nil || utils.IsNil(o.ValidationRuleset.Get()) {
+		var ret ValidationRuleset
+		return ret
+	}
+	return *o.ValidationRuleset.Get()
+}
+
+// GetValidationRulesetOk returns a tuple with the ValidationRuleset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstProfileResponse) GetValidationRulesetOk() (*ValidationRuleset, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ValidationRuleset.Get(), o.ValidationRuleset.IsSet()
+}
+
+// HasValidationRuleset returns a boolean if a field has been set.
+func (o *EstProfileResponse) HasValidationRuleset() bool {
+	if o != nil && o.ValidationRuleset.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValidationRuleset gets a reference to the given NullableValidationRuleset and assigns it to the ValidationRuleset field.
+func (o *EstProfileResponse) SetValidationRuleset(v ValidationRuleset) {
+	o.ValidationRuleset.Set(&v)
+}
+
+// SetValidationRulesetNil sets the value for ValidationRuleset to be an explicit nil
+func (o *EstProfileResponse) SetValidationRulesetNil() {
+	o.ValidationRuleset.Set(nil)
+}
+
+// UnsetValidationRuleset ensures that no value is present for ValidationRuleset, not even an explicit nil
+func (o *EstProfileResponse) UnsetValidationRuleset() {
+	o.ValidationRuleset.Unset()
+}
+
 func (o EstProfileResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -964,61 +964,61 @@ func (o EstProfileResponse) MarshalJSON() ([]byte, error) {
 func (o EstProfileResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["module"] = o.Module
-	toSerialize["name"] = o.Name
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
+	toSerialize["authorizationLevels"] = o.AuthorizationLevels
+	toSerialize["authorizationMode"] = o.AuthorizationMode
+	toSerialize["ca"] = o.Ca
+	if o.CertificateTemplate.IsSet() {
+		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
+	}
+	if o.Constraints.IsSet() {
+		toSerialize["constraints"] = o.Constraints.Get()
+	}
+	toSerialize["cryptoPolicy"] = o.CryptoPolicy
+	if o.CsrDataMapping != nil {
+		toSerialize["csrDataMapping"] = o.CsrDataMapping
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["enabled"] = o.Enabled
-	toSerialize["ca"] = o.Ca
-	if o.Constraints.IsSet() {
-		toSerialize["constraints"] = o.Constraints.Get()
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
 	}
-	toSerialize["pkiConnector"] = o.PkiConnector
-	if o.CsrDataMapping != nil {
-		toSerialize["csrDataMapping"] = o.CsrDataMapping
+	toSerialize["dnWhitelist"] = o.DnWhitelist
+	if o.DsFlow != nil {
+		toSerialize["dsFlow"] = o.DsFlow
+	}
+	toSerialize["enabled"] = o.Enabled
+	if o.EnrollAuthorizedCas != nil {
+		toSerialize["enrollAuthorizedCas"] = o.EnrollAuthorizedCas
+	}
+	if o.GradingPolicies != nil {
+		toSerialize["gradingPolicies"] = o.GradingPolicies
 	}
 	if o.MaxCertificatePerHolderPolicy.IsSet() {
 		toSerialize["maxCertificatePerHolderPolicy"] = o.MaxCertificatePerHolderPolicy.Get()
 	}
-	toSerialize["authorizationMode"] = o.AuthorizationMode
-	toSerialize["dnWhitelist"] = o.DnWhitelist
-	if o.EnrollAuthorizedCas != nil {
-		toSerialize["enrollAuthorizedCas"] = o.EnrollAuthorizedCas
+	toSerialize["module"] = o.Module
+	toSerialize["name"] = o.Name
+	if o.PasswordPolicy.IsSet() {
+		toSerialize["passwordPolicy"] = o.PasswordPolicy.Get()
 	}
+	toSerialize["pkiConnector"] = o.PkiConnector
 	if o.RenewalAuthorizedCas != nil {
 		toSerialize["renewalAuthorizedCas"] = o.RenewalAuthorizedCas
 	}
 	if o.RenewalPeriod.IsSet() {
 		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
 	}
-	toSerialize["authorizationLevels"] = o.AuthorizationLevels
+	toSerialize["requestsPolicy"] = o.RequestsPolicy
+	toSerialize["selfPermissions"] = o.SelfPermissions
+	if o.ThirdPartyDiscoverySync.IsSet() {
+		toSerialize["thirdPartyDiscoverySync"] = o.ThirdPartyDiscoverySync.Get()
+	}
 	if o.Triggers.IsSet() {
 		toSerialize["triggers"] = o.Triggers.Get()
 	}
-	toSerialize["requestsPolicy"] = o.RequestsPolicy
-	if o.PasswordPolicy.IsSet() {
-		toSerialize["passwordPolicy"] = o.PasswordPolicy.Get()
-	}
-	toSerialize["cryptoPolicy"] = o.CryptoPolicy
-	toSerialize["selfPermissions"] = o.SelfPermissions
-	if o.CertificateTemplate.IsSet() {
-		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
-	}
-	if o.GradingPolicies != nil {
-		toSerialize["gradingPolicies"] = o.GradingPolicies
-	}
 	if o.ValidationRuleset.IsSet() {
 		toSerialize["validationRuleset"] = o.ValidationRuleset.Get()
-	}
-	if o.DsFlow != nil {
-		toSerialize["dsFlow"] = o.DsFlow
-	}
-	if o.ThirdPartyDiscoverySync.IsSet() {
-		toSerialize["thirdPartyDiscoverySync"] = o.ThirdPartyDiscoverySync.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -1034,16 +1034,16 @@ func (o *EstProfileResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
+		"authorizationLevels",
+		"authorizationMode",
+		"ca",
+		"cryptoPolicy",
+		"dnWhitelist",
+		"enabled",
 		"module",
 		"name",
-		"enabled",
-		"ca",
 		"pkiConnector",
-		"authorizationMode",
-		"dnWhitelist",
-		"authorizationLevels",
 		"requestsPolicy",
-		"cryptoPolicy",
 		"selfPermissions",
 	}
 
@@ -1075,32 +1075,32 @@ func (o *EstProfileResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
+		delete(additionalProperties, "authorizationLevels")
+		delete(additionalProperties, "authorizationMode")
+		delete(additionalProperties, "ca")
+		delete(additionalProperties, "certificateTemplate")
+		delete(additionalProperties, "constraints")
+		delete(additionalProperties, "cryptoPolicy")
+		delete(additionalProperties, "csrDataMapping")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "dnWhitelist")
+		delete(additionalProperties, "dsFlow")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "enrollAuthorizedCas")
+		delete(additionalProperties, "gradingPolicies")
+		delete(additionalProperties, "maxCertificatePerHolderPolicy")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "enabled")
-		delete(additionalProperties, "ca")
-		delete(additionalProperties, "constraints")
+		delete(additionalProperties, "passwordPolicy")
 		delete(additionalProperties, "pkiConnector")
-		delete(additionalProperties, "csrDataMapping")
-		delete(additionalProperties, "maxCertificatePerHolderPolicy")
-		delete(additionalProperties, "authorizationMode")
-		delete(additionalProperties, "dnWhitelist")
-		delete(additionalProperties, "enrollAuthorizedCas")
 		delete(additionalProperties, "renewalAuthorizedCas")
 		delete(additionalProperties, "renewalPeriod")
-		delete(additionalProperties, "authorizationLevels")
-		delete(additionalProperties, "triggers")
 		delete(additionalProperties, "requestsPolicy")
-		delete(additionalProperties, "passwordPolicy")
-		delete(additionalProperties, "cryptoPolicy")
 		delete(additionalProperties, "selfPermissions")
-		delete(additionalProperties, "certificateTemplate")
-		delete(additionalProperties, "gradingPolicies")
-		delete(additionalProperties, "validationRuleset")
-		delete(additionalProperties, "dsFlow")
 		delete(additionalProperties, "thirdPartyDiscoverySync")
+		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "validationRuleset")
 		o.AdditionalProperties = additionalProperties
 	}
 

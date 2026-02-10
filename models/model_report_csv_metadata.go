@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &ReportCSVMetadata{}
 
 // ReportCSVMetadata struct for ReportCSVMetadata
 type ReportCSVMetadata struct {
-	// The unique identifier of the report CSV. With that UUID, it is possible to download the CSV
-	Uuid string `json:"uuid" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Indicates when the report CSV will be deleted from database
 	RemoveAt int64 `json:"removeAt"`
 	// Id of the report that generated this CSV
 	ReportId string `json:"reportId"`
 	// Name of the report that generated this CSV
-	ReportName           string `json:"reportName"`
+	ReportName string `json:"reportName"`
+	// The unique identifier of the report CSV. With that UUID, it is possible to download the CSV
+	Uuid                 string `json:"uuid" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,12 +39,12 @@ type _ReportCSVMetadata ReportCSVMetadata
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReportCSVMetadata(uuid string, removeAt int64, reportId string, reportName string) *ReportCSVMetadata {
+func NewReportCSVMetadata(removeAt int64, reportId string, reportName string, uuid string) *ReportCSVMetadata {
 	this := ReportCSVMetadata{}
-	this.Uuid = uuid
 	this.RemoveAt = removeAt
 	this.ReportId = reportId
 	this.ReportName = reportName
+	this.Uuid = uuid
 	return &this
 }
 
@@ -54,30 +54,6 @@ func NewReportCSVMetadata(uuid string, removeAt int64, reportId string, reportNa
 func NewReportCSVMetadataWithDefaults() *ReportCSVMetadata {
 	this := ReportCSVMetadata{}
 	return &this
-}
-
-// GetUuid returns the Uuid field value
-func (o *ReportCSVMetadata) GetUuid() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Uuid
-}
-
-// GetUuidOk returns a tuple with the Uuid field value
-// and a boolean to check if the value has been set.
-func (o *ReportCSVMetadata) GetUuidOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Uuid, true
-}
-
-// SetUuid sets field value
-func (o *ReportCSVMetadata) SetUuid(v string) {
-	o.Uuid = v
 }
 
 // GetRemoveAt returns the RemoveAt field value
@@ -152,6 +128,30 @@ func (o *ReportCSVMetadata) SetReportName(v string) {
 	o.ReportName = v
 }
 
+// GetUuid returns the Uuid field value
+func (o *ReportCSVMetadata) GetUuid() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value
+// and a boolean to check if the value has been set.
+func (o *ReportCSVMetadata) GetUuidOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Uuid, true
+}
+
+// SetUuid sets field value
+func (o *ReportCSVMetadata) SetUuid(v string) {
+	o.Uuid = v
+}
+
 func (o ReportCSVMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -162,10 +162,10 @@ func (o ReportCSVMetadata) MarshalJSON() ([]byte, error) {
 
 func (o ReportCSVMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["uuid"] = o.Uuid
 	toSerialize["removeAt"] = o.RemoveAt
 	toSerialize["reportId"] = o.ReportId
 	toSerialize["reportName"] = o.ReportName
+	toSerialize["uuid"] = o.Uuid
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -179,10 +179,10 @@ func (o *ReportCSVMetadata) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"uuid",
 		"removeAt",
 		"reportId",
 		"reportName",
+		"uuid",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -212,10 +212,10 @@ func (o *ReportCSVMetadata) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "uuid")
 		delete(additionalProperties, "removeAt")
 		delete(additionalProperties, "reportId")
 		delete(additionalProperties, "reportName")
+		delete(additionalProperties, "uuid")
 		o.AdditionalProperties = additionalProperties
 	}
 

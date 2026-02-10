@@ -150,7 +150,7 @@ func (a *DatasourceFlowAPIService) DatasourceFlowTemplateExecute(r DatasourceFlo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.DatasourceFlowTest400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -161,7 +161,7 @@ func (a *DatasourceFlowAPIService) DatasourceFlowTemplateExecute(r DatasourceFlo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -172,7 +172,7 @@ func (a *DatasourceFlowAPIService) DatasourceFlowTemplateExecute(r DatasourceFlo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.AdocGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -183,7 +183,7 @@ func (a *DatasourceFlowAPIService) DatasourceFlowTemplateExecute(r DatasourceFlo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.DatasourceFlowTest500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -219,7 +219,7 @@ func (r DatasourceFlowAPIDatasourceFlowTestRequest) DatasourceFlow(datasourceFlo
 	return r
 }
 
-func (r DatasourceFlowAPIDatasourceFlowTestRequest) Execute() ([]models.DatasourceTest200Response, *http.Response, error) {
+func (r DatasourceFlowAPIDatasourceFlowTestRequest) Execute() ([]models.DatasourceFlowTest200ResponseInner, *http.Response, error) {
 	return r.ApiService.DatasourceFlowTestExecute(r)
 }
 
@@ -240,13 +240,13 @@ func (a *DatasourceFlowAPIService) DatasourceFlowTest(ctx context.Context) Datas
 
 // Execute executes the request
 //
-//	@return []DatasourceTest200Response
-func (a *DatasourceFlowAPIService) DatasourceFlowTestExecute(r DatasourceFlowAPIDatasourceFlowTestRequest) ([]models.DatasourceTest200Response, *http.Response, error) {
+//	@return []DatasourceFlowTest200ResponseInner
+func (a *DatasourceFlowAPIService) DatasourceFlowTestExecute(r DatasourceFlowAPIDatasourceFlowTestRequest) ([]models.DatasourceFlowTest200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []models.DatasourceTest200Response
+		localVarReturnValue []models.DatasourceFlowTest200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DatasourceFlowAPIService.DatasourceFlowTest")
@@ -333,7 +333,7 @@ func (a *DatasourceFlowAPIService) DatasourceFlowTestExecute(r DatasourceFlowAPI
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.DatasourceFlowTest400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -344,7 +344,7 @@ func (a *DatasourceFlowAPIService) DatasourceFlowTestExecute(r DatasourceFlowAPI
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -355,7 +355,7 @@ func (a *DatasourceFlowAPIService) DatasourceFlowTestExecute(r DatasourceFlowAPI
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.AdocGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -366,7 +366,7 @@ func (a *DatasourceFlowAPIService) DatasourceFlowTestExecute(r DatasourceFlowAPI
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.DatasourceFlowTest500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

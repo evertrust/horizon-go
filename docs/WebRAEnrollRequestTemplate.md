@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**KeyType** | Pointer to **NullableString** | The type of key that will be used to generate the certificate, if in centralized mode | [optional] 
 **Csr** | Pointer to **NullableString** | If decentralized enrollment is enabled, this field will contain the CSR that will be used to generate the certificate | [optional] 
-**Subject** | Pointer to [**[]IndexedDNElement**](IndexedDNElement.md) | List of DN elements that will be used to build the certificate&#39;s Distinguished Name | [optional] 
-**Sans** | Pointer to [**[]ListSANElement**](ListSANElement.md) | List of SAN elements that will be used to build the certificate&#39;s Subject Alternative Name | [optional] 
+**KeyType** | Pointer to **NullableString** | The type of key that will be used to generate the certificate, if in centralized mode | [optional] 
+**ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | Information about the certificate&#39;s contact email and how to edit it | [optional] 
 **Extensions** | Pointer to [**[]CertificateExtensionElement**](CertificateExtensionElement.md) | Information about the certificate&#39;s extensions and how to edit them | [optional] 
 **Labels** | Pointer to [**[]RequestLabelElement**](RequestLabelElement.md) | List of labels used internally to tag and group certificates | [optional] 
-**ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | Information about the certificate&#39;s contact email and how to edit it | [optional] 
-**Owner** | Pointer to [**NullableCertificateOwnerElement**](CertificateOwnerElement.md) | Information about the certificate&#39;s owner and how to edit it | [optional] 
-**Team** | Pointer to [**NullableCertificateTeamElement**](CertificateTeamElement.md) | Information about the certificate&#39;s team and how to edit it | [optional] 
 **Metadata** | Pointer to [**[]CertificateMetadataElement**](CertificateMetadataElement.md) | The technical metadata for this certificate | [optional] 
+**Owner** | Pointer to [**NullableCertificateOwnerElement**](CertificateOwnerElement.md) | Information about the certificate&#39;s owner and how to edit it | [optional] 
+**Sans** | Pointer to [**[]ListSANElement**](ListSANElement.md) | List of SAN elements that will be used to build the certificate&#39;s Subject Alternative Name | [optional] 
+**Subject** | Pointer to [**[]IndexedDNElement**](IndexedDNElement.md) | List of DN elements that will be used to build the certificate&#39;s Distinguished Name | [optional] 
+**Team** | Pointer to [**NullableCertificateTeamElement**](CertificateTeamElement.md) | Information about the certificate&#39;s team and how to edit it | [optional] 
 
 ## Methods
 
@@ -34,41 +34,6 @@ NewWebRAEnrollRequestTemplateWithDefaults instantiates a new WebRAEnrollRequestT
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetKeyType
-
-`func (o *WebRAEnrollRequestTemplate) GetKeyType() string`
-
-GetKeyType returns the KeyType field if non-nil, zero value otherwise.
-
-### GetKeyTypeOk
-
-`func (o *WebRAEnrollRequestTemplate) GetKeyTypeOk() (*string, bool)`
-
-GetKeyTypeOk returns a tuple with the KeyType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKeyType
-
-`func (o *WebRAEnrollRequestTemplate) SetKeyType(v string)`
-
-SetKeyType sets KeyType field to given value.
-
-### HasKeyType
-
-`func (o *WebRAEnrollRequestTemplate) HasKeyType() bool`
-
-HasKeyType returns a boolean if a field has been set.
-
-### SetKeyTypeNil
-
-`func (o *WebRAEnrollRequestTemplate) SetKeyTypeNil(b bool)`
-
- SetKeyTypeNil sets the value for KeyType to be an explicit nil
-
-### UnsetKeyType
-`func (o *WebRAEnrollRequestTemplate) UnsetKeyType()`
-
-UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
 ### GetCsr
 
 `func (o *WebRAEnrollRequestTemplate) GetCsr() string`
@@ -104,76 +69,76 @@ HasCsr returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestTemplate) UnsetCsr()`
 
 UnsetCsr ensures that no value is present for Csr, not even an explicit nil
-### GetSubject
+### GetKeyType
 
-`func (o *WebRAEnrollRequestTemplate) GetSubject() []IndexedDNElement`
+`func (o *WebRAEnrollRequestTemplate) GetKeyType() string`
 
-GetSubject returns the Subject field if non-nil, zero value otherwise.
+GetKeyType returns the KeyType field if non-nil, zero value otherwise.
 
-### GetSubjectOk
+### GetKeyTypeOk
 
-`func (o *WebRAEnrollRequestTemplate) GetSubjectOk() (*[]IndexedDNElement, bool)`
+`func (o *WebRAEnrollRequestTemplate) GetKeyTypeOk() (*string, bool)`
 
-GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
+GetKeyTypeOk returns a tuple with the KeyType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubject
+### SetKeyType
 
-`func (o *WebRAEnrollRequestTemplate) SetSubject(v []IndexedDNElement)`
+`func (o *WebRAEnrollRequestTemplate) SetKeyType(v string)`
 
-SetSubject sets Subject field to given value.
+SetKeyType sets KeyType field to given value.
 
-### HasSubject
+### HasKeyType
 
-`func (o *WebRAEnrollRequestTemplate) HasSubject() bool`
+`func (o *WebRAEnrollRequestTemplate) HasKeyType() bool`
 
-HasSubject returns a boolean if a field has been set.
+HasKeyType returns a boolean if a field has been set.
 
-### SetSubjectNil
+### SetKeyTypeNil
 
-`func (o *WebRAEnrollRequestTemplate) SetSubjectNil(b bool)`
+`func (o *WebRAEnrollRequestTemplate) SetKeyTypeNil(b bool)`
 
- SetSubjectNil sets the value for Subject to be an explicit nil
+ SetKeyTypeNil sets the value for KeyType to be an explicit nil
 
-### UnsetSubject
-`func (o *WebRAEnrollRequestTemplate) UnsetSubject()`
+### UnsetKeyType
+`func (o *WebRAEnrollRequestTemplate) UnsetKeyType()`
 
-UnsetSubject ensures that no value is present for Subject, not even an explicit nil
-### GetSans
+UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
+### GetContactEmail
 
-`func (o *WebRAEnrollRequestTemplate) GetSans() []ListSANElement`
+`func (o *WebRAEnrollRequestTemplate) GetContactEmail() CertificateContactEmailElement`
 
-GetSans returns the Sans field if non-nil, zero value otherwise.
+GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
 
-### GetSansOk
+### GetContactEmailOk
 
-`func (o *WebRAEnrollRequestTemplate) GetSansOk() (*[]ListSANElement, bool)`
+`func (o *WebRAEnrollRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool)`
 
-GetSansOk returns a tuple with the Sans field if it's non-nil, zero value otherwise
+GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSans
+### SetContactEmail
 
-`func (o *WebRAEnrollRequestTemplate) SetSans(v []ListSANElement)`
+`func (o *WebRAEnrollRequestTemplate) SetContactEmail(v CertificateContactEmailElement)`
 
-SetSans sets Sans field to given value.
+SetContactEmail sets ContactEmail field to given value.
 
-### HasSans
+### HasContactEmail
 
-`func (o *WebRAEnrollRequestTemplate) HasSans() bool`
+`func (o *WebRAEnrollRequestTemplate) HasContactEmail() bool`
 
-HasSans returns a boolean if a field has been set.
+HasContactEmail returns a boolean if a field has been set.
 
-### SetSansNil
+### SetContactEmailNil
 
-`func (o *WebRAEnrollRequestTemplate) SetSansNil(b bool)`
+`func (o *WebRAEnrollRequestTemplate) SetContactEmailNil(b bool)`
 
- SetSansNil sets the value for Sans to be an explicit nil
+ SetContactEmailNil sets the value for ContactEmail to be an explicit nil
 
-### UnsetSans
-`func (o *WebRAEnrollRequestTemplate) UnsetSans()`
+### UnsetContactEmail
+`func (o *WebRAEnrollRequestTemplate) UnsetContactEmail()`
 
-UnsetSans ensures that no value is present for Sans, not even an explicit nil
+UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
 ### GetExtensions
 
 `func (o *WebRAEnrollRequestTemplate) GetExtensions() []CertificateExtensionElement`
@@ -244,111 +209,6 @@ HasLabels returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestTemplate) UnsetLabels()`
 
 UnsetLabels ensures that no value is present for Labels, not even an explicit nil
-### GetContactEmail
-
-`func (o *WebRAEnrollRequestTemplate) GetContactEmail() CertificateContactEmailElement`
-
-GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
-
-### GetContactEmailOk
-
-`func (o *WebRAEnrollRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool)`
-
-GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContactEmail
-
-`func (o *WebRAEnrollRequestTemplate) SetContactEmail(v CertificateContactEmailElement)`
-
-SetContactEmail sets ContactEmail field to given value.
-
-### HasContactEmail
-
-`func (o *WebRAEnrollRequestTemplate) HasContactEmail() bool`
-
-HasContactEmail returns a boolean if a field has been set.
-
-### SetContactEmailNil
-
-`func (o *WebRAEnrollRequestTemplate) SetContactEmailNil(b bool)`
-
- SetContactEmailNil sets the value for ContactEmail to be an explicit nil
-
-### UnsetContactEmail
-`func (o *WebRAEnrollRequestTemplate) UnsetContactEmail()`
-
-UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
-### GetOwner
-
-`func (o *WebRAEnrollRequestTemplate) GetOwner() CertificateOwnerElement`
-
-GetOwner returns the Owner field if non-nil, zero value otherwise.
-
-### GetOwnerOk
-
-`func (o *WebRAEnrollRequestTemplate) GetOwnerOk() (*CertificateOwnerElement, bool)`
-
-GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOwner
-
-`func (o *WebRAEnrollRequestTemplate) SetOwner(v CertificateOwnerElement)`
-
-SetOwner sets Owner field to given value.
-
-### HasOwner
-
-`func (o *WebRAEnrollRequestTemplate) HasOwner() bool`
-
-HasOwner returns a boolean if a field has been set.
-
-### SetOwnerNil
-
-`func (o *WebRAEnrollRequestTemplate) SetOwnerNil(b bool)`
-
- SetOwnerNil sets the value for Owner to be an explicit nil
-
-### UnsetOwner
-`func (o *WebRAEnrollRequestTemplate) UnsetOwner()`
-
-UnsetOwner ensures that no value is present for Owner, not even an explicit nil
-### GetTeam
-
-`func (o *WebRAEnrollRequestTemplate) GetTeam() CertificateTeamElement`
-
-GetTeam returns the Team field if non-nil, zero value otherwise.
-
-### GetTeamOk
-
-`func (o *WebRAEnrollRequestTemplate) GetTeamOk() (*CertificateTeamElement, bool)`
-
-GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTeam
-
-`func (o *WebRAEnrollRequestTemplate) SetTeam(v CertificateTeamElement)`
-
-SetTeam sets Team field to given value.
-
-### HasTeam
-
-`func (o *WebRAEnrollRequestTemplate) HasTeam() bool`
-
-HasTeam returns a boolean if a field has been set.
-
-### SetTeamNil
-
-`func (o *WebRAEnrollRequestTemplate) SetTeamNil(b bool)`
-
- SetTeamNil sets the value for Team to be an explicit nil
-
-### UnsetTeam
-`func (o *WebRAEnrollRequestTemplate) UnsetTeam()`
-
-UnsetTeam ensures that no value is present for Team, not even an explicit nil
 ### GetMetadata
 
 `func (o *WebRAEnrollRequestTemplate) GetMetadata() []CertificateMetadataElement`
@@ -384,6 +244,146 @@ HasMetadata returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestTemplate) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
+### GetOwner
+
+`func (o *WebRAEnrollRequestTemplate) GetOwner() CertificateOwnerElement`
+
+GetOwner returns the Owner field if non-nil, zero value otherwise.
+
+### GetOwnerOk
+
+`func (o *WebRAEnrollRequestTemplate) GetOwnerOk() (*CertificateOwnerElement, bool)`
+
+GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOwner
+
+`func (o *WebRAEnrollRequestTemplate) SetOwner(v CertificateOwnerElement)`
+
+SetOwner sets Owner field to given value.
+
+### HasOwner
+
+`func (o *WebRAEnrollRequestTemplate) HasOwner() bool`
+
+HasOwner returns a boolean if a field has been set.
+
+### SetOwnerNil
+
+`func (o *WebRAEnrollRequestTemplate) SetOwnerNil(b bool)`
+
+ SetOwnerNil sets the value for Owner to be an explicit nil
+
+### UnsetOwner
+`func (o *WebRAEnrollRequestTemplate) UnsetOwner()`
+
+UnsetOwner ensures that no value is present for Owner, not even an explicit nil
+### GetSans
+
+`func (o *WebRAEnrollRequestTemplate) GetSans() []ListSANElement`
+
+GetSans returns the Sans field if non-nil, zero value otherwise.
+
+### GetSansOk
+
+`func (o *WebRAEnrollRequestTemplate) GetSansOk() (*[]ListSANElement, bool)`
+
+GetSansOk returns a tuple with the Sans field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSans
+
+`func (o *WebRAEnrollRequestTemplate) SetSans(v []ListSANElement)`
+
+SetSans sets Sans field to given value.
+
+### HasSans
+
+`func (o *WebRAEnrollRequestTemplate) HasSans() bool`
+
+HasSans returns a boolean if a field has been set.
+
+### SetSansNil
+
+`func (o *WebRAEnrollRequestTemplate) SetSansNil(b bool)`
+
+ SetSansNil sets the value for Sans to be an explicit nil
+
+### UnsetSans
+`func (o *WebRAEnrollRequestTemplate) UnsetSans()`
+
+UnsetSans ensures that no value is present for Sans, not even an explicit nil
+### GetSubject
+
+`func (o *WebRAEnrollRequestTemplate) GetSubject() []IndexedDNElement`
+
+GetSubject returns the Subject field if non-nil, zero value otherwise.
+
+### GetSubjectOk
+
+`func (o *WebRAEnrollRequestTemplate) GetSubjectOk() (*[]IndexedDNElement, bool)`
+
+GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubject
+
+`func (o *WebRAEnrollRequestTemplate) SetSubject(v []IndexedDNElement)`
+
+SetSubject sets Subject field to given value.
+
+### HasSubject
+
+`func (o *WebRAEnrollRequestTemplate) HasSubject() bool`
+
+HasSubject returns a boolean if a field has been set.
+
+### SetSubjectNil
+
+`func (o *WebRAEnrollRequestTemplate) SetSubjectNil(b bool)`
+
+ SetSubjectNil sets the value for Subject to be an explicit nil
+
+### UnsetSubject
+`func (o *WebRAEnrollRequestTemplate) UnsetSubject()`
+
+UnsetSubject ensures that no value is present for Subject, not even an explicit nil
+### GetTeam
+
+`func (o *WebRAEnrollRequestTemplate) GetTeam() CertificateTeamElement`
+
+GetTeam returns the Team field if non-nil, zero value otherwise.
+
+### GetTeamOk
+
+`func (o *WebRAEnrollRequestTemplate) GetTeamOk() (*CertificateTeamElement, bool)`
+
+GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeam
+
+`func (o *WebRAEnrollRequestTemplate) SetTeam(v CertificateTeamElement)`
+
+SetTeam sets Team field to given value.
+
+### HasTeam
+
+`func (o *WebRAEnrollRequestTemplate) HasTeam() bool`
+
+HasTeam returns a boolean if a field has been set.
+
+### SetTeamNil
+
+`func (o *WebRAEnrollRequestTemplate) SetTeamNil(b bool)`
+
+ SetTeamNil sets the value for Team to be an explicit nil
+
+### UnsetTeam
+`func (o *WebRAEnrollRequestTemplate) UnsetTeam()`
+
+UnsetTeam ensures that no value is present for Team, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

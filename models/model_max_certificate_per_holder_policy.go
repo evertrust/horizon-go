@@ -22,8 +22,8 @@ var _ utils.MappedNullable = &MaxCertificatePerHolderPolicy{}
 
 // MaxCertificatePerHolderPolicy struct for MaxCertificatePerHolderPolicy
 type MaxCertificatePerHolderPolicy struct {
-	Max      int64  `json:"max"`
 	Behavior string `json:"behavior"`
+	Max      int64  `json:"max"`
 	// One of: `unspecified`, `keycompromise`, `cacompromise`, `affiliationchange`, `superseded`, `cessationofoperation`
 	RevocationReason     utils.NullableString `json:"revocationReason,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -35,10 +35,10 @@ type _MaxCertificatePerHolderPolicy MaxCertificatePerHolderPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMaxCertificatePerHolderPolicy(max int64, behavior string) *MaxCertificatePerHolderPolicy {
+func NewMaxCertificatePerHolderPolicy(behavior string, max int64) *MaxCertificatePerHolderPolicy {
 	this := MaxCertificatePerHolderPolicy{}
-	this.Max = max
 	this.Behavior = behavior
+	this.Max = max
 	return &this
 }
 
@@ -48,30 +48,6 @@ func NewMaxCertificatePerHolderPolicy(max int64, behavior string) *MaxCertificat
 func NewMaxCertificatePerHolderPolicyWithDefaults() *MaxCertificatePerHolderPolicy {
 	this := MaxCertificatePerHolderPolicy{}
 	return &this
-}
-
-// GetMax returns the Max field value
-func (o *MaxCertificatePerHolderPolicy) GetMax() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Max
-}
-
-// GetMaxOk returns a tuple with the Max field value
-// and a boolean to check if the value has been set.
-func (o *MaxCertificatePerHolderPolicy) GetMaxOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Max, true
-}
-
-// SetMax sets field value
-func (o *MaxCertificatePerHolderPolicy) SetMax(v int64) {
-	o.Max = v
 }
 
 // GetBehavior returns the Behavior field value
@@ -96,6 +72,30 @@ func (o *MaxCertificatePerHolderPolicy) GetBehaviorOk() (*string, bool) {
 // SetBehavior sets field value
 func (o *MaxCertificatePerHolderPolicy) SetBehavior(v string) {
 	o.Behavior = v
+}
+
+// GetMax returns the Max field value
+func (o *MaxCertificatePerHolderPolicy) GetMax() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.Max
+}
+
+// GetMaxOk returns a tuple with the Max field value
+// and a boolean to check if the value has been set.
+func (o *MaxCertificatePerHolderPolicy) GetMaxOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Max, true
+}
+
+// SetMax sets field value
+func (o *MaxCertificatePerHolderPolicy) SetMax(v int64) {
+	o.Max = v
 }
 
 // GetRevocationReason returns the RevocationReason field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -151,8 +151,8 @@ func (o MaxCertificatePerHolderPolicy) MarshalJSON() ([]byte, error) {
 
 func (o MaxCertificatePerHolderPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["max"] = o.Max
 	toSerialize["behavior"] = o.Behavior
+	toSerialize["max"] = o.Max
 	if o.RevocationReason.IsSet() {
 		toSerialize["revocationReason"] = o.RevocationReason.Get()
 	}
@@ -169,8 +169,8 @@ func (o *MaxCertificatePerHolderPolicy) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"max",
 		"behavior",
+		"max",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -200,8 +200,8 @@ func (o *MaxCertificatePerHolderPolicy) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "max")
 		delete(additionalProperties, "behavior")
+		delete(additionalProperties, "max")
 		delete(additionalProperties, "revocationReason")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -21,17 +21,17 @@ var _ utils.MappedNullable = &CertificateAggregateQuery{}
 
 // CertificateAggregateQuery struct for CertificateAggregateQuery
 type CertificateAggregateQuery struct {
-	// The HCQL query to use for the search, represents the way to filter certificates. If not specified, it will filter nothing
-	Query utils.NullableString `json:"query,omitempty"`
 	// The field that the aggregation will take place on
 	GroupBy []string `json:"groupBy,omitempty"`
-	// If set to `true`, the total count of certificates matching the HCQL query will be returned
-	WithCount utils.NullableBool   `json:"withCount,omitempty"`
-	SortOrder utils.NullableString `json:"sortOrder,omitempty"`
+	// A condition to apply to the result. Only the aggregates results with more than 5 certificates in them can be kept for example
+	Having NullableHaving `json:"having,omitempty"`
 	// In case of an aggregate sending a lot of different results, how many must be sent back
 	Limit utils.NullableInt64 `json:"limit,omitempty"`
-	// A condition to apply to the result. Only the aggregates results with more than 5 certificates in them can be kept for example
-	Having               NullableHaving `json:"having,omitempty"`
+	// The HCQL query to use for the search, represents the way to filter certificates. If not specified, it will filter nothing
+	Query     utils.NullableString `json:"query,omitempty"`
+	SortOrder utils.NullableString `json:"sortOrder,omitempty"`
+	// If set to `true`, the total count of certificates matching the HCQL query will be returned
+	WithCount            utils.NullableBool `json:"withCount,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -52,49 +52,6 @@ func NewCertificateAggregateQuery() *CertificateAggregateQuery {
 func NewCertificateAggregateQueryWithDefaults() *CertificateAggregateQuery {
 	this := CertificateAggregateQuery{}
 	return &this
-}
-
-// GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateAggregateQuery) GetQuery() string {
-	if o == nil || utils.IsNil(o.Query.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Query.Get()
-}
-
-// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateAggregateQuery) GetQueryOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Query.Get(), o.Query.IsSet()
-}
-
-// HasQuery returns a boolean if a field has been set.
-func (o *CertificateAggregateQuery) HasQuery() bool {
-	if o != nil && o.Query.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetQuery gets a reference to the given NullableString and assigns it to the Query field.
-func (o *CertificateAggregateQuery) SetQuery(v string) {
-	o.Query.Set(&v)
-}
-
-// SetQueryNil sets the value for Query to be an explicit nil
-func (o *CertificateAggregateQuery) SetQueryNil() {
-	o.Query.Set(nil)
-}
-
-// UnsetQuery ensures that no value is present for Query, not even an explicit nil
-func (o *CertificateAggregateQuery) UnsetQuery() {
-	o.Query.Unset()
 }
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -128,135 +85,6 @@ func (o *CertificateAggregateQuery) HasGroupBy() bool {
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
 func (o *CertificateAggregateQuery) SetGroupBy(v []string) {
 	o.GroupBy = v
-}
-
-// GetWithCount returns the WithCount field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateAggregateQuery) GetWithCount() bool {
-	if o == nil || utils.IsNil(o.WithCount.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.WithCount.Get()
-}
-
-// GetWithCountOk returns a tuple with the WithCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateAggregateQuery) GetWithCountOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.WithCount.Get(), o.WithCount.IsSet()
-}
-
-// HasWithCount returns a boolean if a field has been set.
-func (o *CertificateAggregateQuery) HasWithCount() bool {
-	if o != nil && o.WithCount.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetWithCount gets a reference to the given NullableBool and assigns it to the WithCount field.
-func (o *CertificateAggregateQuery) SetWithCount(v bool) {
-	o.WithCount.Set(&v)
-}
-
-// SetWithCountNil sets the value for WithCount to be an explicit nil
-func (o *CertificateAggregateQuery) SetWithCountNil() {
-	o.WithCount.Set(nil)
-}
-
-// UnsetWithCount ensures that no value is present for WithCount, not even an explicit nil
-func (o *CertificateAggregateQuery) UnsetWithCount() {
-	o.WithCount.Unset()
-}
-
-// GetSortOrder returns the SortOrder field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateAggregateQuery) GetSortOrder() string {
-	if o == nil || utils.IsNil(o.SortOrder.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.SortOrder.Get()
-}
-
-// GetSortOrderOk returns a tuple with the SortOrder field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateAggregateQuery) GetSortOrderOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SortOrder.Get(), o.SortOrder.IsSet()
-}
-
-// HasSortOrder returns a boolean if a field has been set.
-func (o *CertificateAggregateQuery) HasSortOrder() bool {
-	if o != nil && o.SortOrder.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSortOrder gets a reference to the given NullableString and assigns it to the SortOrder field.
-func (o *CertificateAggregateQuery) SetSortOrder(v string) {
-	o.SortOrder.Set(&v)
-}
-
-// SetSortOrderNil sets the value for SortOrder to be an explicit nil
-func (o *CertificateAggregateQuery) SetSortOrderNil() {
-	o.SortOrder.Set(nil)
-}
-
-// UnsetSortOrder ensures that no value is present for SortOrder, not even an explicit nil
-func (o *CertificateAggregateQuery) UnsetSortOrder() {
-	o.SortOrder.Unset()
-}
-
-// GetLimit returns the Limit field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateAggregateQuery) GetLimit() int64 {
-	if o == nil || utils.IsNil(o.Limit.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.Limit.Get()
-}
-
-// GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateAggregateQuery) GetLimitOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Limit.Get(), o.Limit.IsSet()
-}
-
-// HasLimit returns a boolean if a field has been set.
-func (o *CertificateAggregateQuery) HasLimit() bool {
-	if o != nil && o.Limit.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLimit gets a reference to the given NullableInt64 and assigns it to the Limit field.
-func (o *CertificateAggregateQuery) SetLimit(v int64) {
-	o.Limit.Set(&v)
-}
-
-// SetLimitNil sets the value for Limit to be an explicit nil
-func (o *CertificateAggregateQuery) SetLimitNil() {
-	o.Limit.Set(nil)
-}
-
-// UnsetLimit ensures that no value is present for Limit, not even an explicit nil
-func (o *CertificateAggregateQuery) UnsetLimit() {
-	o.Limit.Unset()
 }
 
 // GetHaving returns the Having field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -302,6 +130,178 @@ func (o *CertificateAggregateQuery) UnsetHaving() {
 	o.Having.Unset()
 }
 
+// GetLimit returns the Limit field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateAggregateQuery) GetLimit() int64 {
+	if o == nil || utils.IsNil(o.Limit.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Limit.Get()
+}
+
+// GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateAggregateQuery) GetLimitOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Limit.Get(), o.Limit.IsSet()
+}
+
+// HasLimit returns a boolean if a field has been set.
+func (o *CertificateAggregateQuery) HasLimit() bool {
+	if o != nil && o.Limit.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLimit gets a reference to the given NullableInt64 and assigns it to the Limit field.
+func (o *CertificateAggregateQuery) SetLimit(v int64) {
+	o.Limit.Set(&v)
+}
+
+// SetLimitNil sets the value for Limit to be an explicit nil
+func (o *CertificateAggregateQuery) SetLimitNil() {
+	o.Limit.Set(nil)
+}
+
+// UnsetLimit ensures that no value is present for Limit, not even an explicit nil
+func (o *CertificateAggregateQuery) UnsetLimit() {
+	o.Limit.Unset()
+}
+
+// GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateAggregateQuery) GetQuery() string {
+	if o == nil || utils.IsNil(o.Query.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Query.Get()
+}
+
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateAggregateQuery) GetQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Query.Get(), o.Query.IsSet()
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (o *CertificateAggregateQuery) HasQuery() bool {
+	if o != nil && o.Query.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery gets a reference to the given NullableString and assigns it to the Query field.
+func (o *CertificateAggregateQuery) SetQuery(v string) {
+	o.Query.Set(&v)
+}
+
+// SetQueryNil sets the value for Query to be an explicit nil
+func (o *CertificateAggregateQuery) SetQueryNil() {
+	o.Query.Set(nil)
+}
+
+// UnsetQuery ensures that no value is present for Query, not even an explicit nil
+func (o *CertificateAggregateQuery) UnsetQuery() {
+	o.Query.Unset()
+}
+
+// GetSortOrder returns the SortOrder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateAggregateQuery) GetSortOrder() string {
+	if o == nil || utils.IsNil(o.SortOrder.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SortOrder.Get()
+}
+
+// GetSortOrderOk returns a tuple with the SortOrder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateAggregateQuery) GetSortOrderOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SortOrder.Get(), o.SortOrder.IsSet()
+}
+
+// HasSortOrder returns a boolean if a field has been set.
+func (o *CertificateAggregateQuery) HasSortOrder() bool {
+	if o != nil && o.SortOrder.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSortOrder gets a reference to the given NullableString and assigns it to the SortOrder field.
+func (o *CertificateAggregateQuery) SetSortOrder(v string) {
+	o.SortOrder.Set(&v)
+}
+
+// SetSortOrderNil sets the value for SortOrder to be an explicit nil
+func (o *CertificateAggregateQuery) SetSortOrderNil() {
+	o.SortOrder.Set(nil)
+}
+
+// UnsetSortOrder ensures that no value is present for SortOrder, not even an explicit nil
+func (o *CertificateAggregateQuery) UnsetSortOrder() {
+	o.SortOrder.Unset()
+}
+
+// GetWithCount returns the WithCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateAggregateQuery) GetWithCount() bool {
+	if o == nil || utils.IsNil(o.WithCount.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.WithCount.Get()
+}
+
+// GetWithCountOk returns a tuple with the WithCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateAggregateQuery) GetWithCountOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.WithCount.Get(), o.WithCount.IsSet()
+}
+
+// HasWithCount returns a boolean if a field has been set.
+func (o *CertificateAggregateQuery) HasWithCount() bool {
+	if o != nil && o.WithCount.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWithCount gets a reference to the given NullableBool and assigns it to the WithCount field.
+func (o *CertificateAggregateQuery) SetWithCount(v bool) {
+	o.WithCount.Set(&v)
+}
+
+// SetWithCountNil sets the value for WithCount to be an explicit nil
+func (o *CertificateAggregateQuery) SetWithCountNil() {
+	o.WithCount.Set(nil)
+}
+
+// UnsetWithCount ensures that no value is present for WithCount, not even an explicit nil
+func (o *CertificateAggregateQuery) UnsetWithCount() {
+	o.WithCount.Unset()
+}
+
 func (o CertificateAggregateQuery) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -312,23 +312,23 @@ func (o CertificateAggregateQuery) MarshalJSON() ([]byte, error) {
 
 func (o CertificateAggregateQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Query.IsSet() {
-		toSerialize["query"] = o.Query.Get()
-	}
 	if o.GroupBy != nil {
 		toSerialize["groupBy"] = o.GroupBy
 	}
-	if o.WithCount.IsSet() {
-		toSerialize["withCount"] = o.WithCount.Get()
-	}
-	if o.SortOrder.IsSet() {
-		toSerialize["sortOrder"] = o.SortOrder.Get()
+	if o.Having.IsSet() {
+		toSerialize["having"] = o.Having.Get()
 	}
 	if o.Limit.IsSet() {
 		toSerialize["limit"] = o.Limit.Get()
 	}
-	if o.Having.IsSet() {
-		toSerialize["having"] = o.Having.Get()
+	if o.Query.IsSet() {
+		toSerialize["query"] = o.Query.Get()
+	}
+	if o.SortOrder.IsSet() {
+		toSerialize["sortOrder"] = o.SortOrder.Get()
+	}
+	if o.WithCount.IsSet() {
+		toSerialize["withCount"] = o.WithCount.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -352,12 +352,12 @@ func (o *CertificateAggregateQuery) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "query")
 		delete(additionalProperties, "groupBy")
-		delete(additionalProperties, "withCount")
-		delete(additionalProperties, "sortOrder")
-		delete(additionalProperties, "limit")
 		delete(additionalProperties, "having")
+		delete(additionalProperties, "limit")
+		delete(additionalProperties, "query")
+		delete(additionalProperties, "sortOrder")
+		delete(additionalProperties, "withCount")
 		o.AdditionalProperties = additionalProperties
 	}
 

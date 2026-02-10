@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | Object internal ID | [optional] 
-**Name** | **string** |  | 
-**ExecutionPolicy** | Pointer to **NullableString** |  | [optional] 
 **CompliancePolicy** | Pointer to [**NullableCompliancePolicy**](CompliancePolicy.md) |  | [optional] 
-**TrustChains** | Pointer to **[]string** |  | [optional] 
+**ExecutionPolicy** | Pointer to **NullableString** |  | [optional] 
+**Name** | **string** |  | 
 **Profile** | Pointer to **string** |  | [optional] 
+**TrustChains** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -55,61 +55,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### GetName
-
-`func (o *AutomationPolicyResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *AutomationPolicyResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *AutomationPolicyResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetExecutionPolicy
-
-`func (o *AutomationPolicyResponse) GetExecutionPolicy() string`
-
-GetExecutionPolicy returns the ExecutionPolicy field if non-nil, zero value otherwise.
-
-### GetExecutionPolicyOk
-
-`func (o *AutomationPolicyResponse) GetExecutionPolicyOk() (*string, bool)`
-
-GetExecutionPolicyOk returns a tuple with the ExecutionPolicy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExecutionPolicy
-
-`func (o *AutomationPolicyResponse) SetExecutionPolicy(v string)`
-
-SetExecutionPolicy sets ExecutionPolicy field to given value.
-
-### HasExecutionPolicy
-
-`func (o *AutomationPolicyResponse) HasExecutionPolicy() bool`
-
-HasExecutionPolicy returns a boolean if a field has been set.
-
-### SetExecutionPolicyNil
-
-`func (o *AutomationPolicyResponse) SetExecutionPolicyNil(b bool)`
-
- SetExecutionPolicyNil sets the value for ExecutionPolicy to be an explicit nil
-
-### UnsetExecutionPolicy
-`func (o *AutomationPolicyResponse) UnsetExecutionPolicy()`
-
-UnsetExecutionPolicy ensures that no value is present for ExecutionPolicy, not even an explicit nil
 ### GetCompliancePolicy
 
 `func (o *AutomationPolicyResponse) GetCompliancePolicy() CompliancePolicy`
@@ -145,6 +90,86 @@ HasCompliancePolicy returns a boolean if a field has been set.
 `func (o *AutomationPolicyResponse) UnsetCompliancePolicy()`
 
 UnsetCompliancePolicy ensures that no value is present for CompliancePolicy, not even an explicit nil
+### GetExecutionPolicy
+
+`func (o *AutomationPolicyResponse) GetExecutionPolicy() string`
+
+GetExecutionPolicy returns the ExecutionPolicy field if non-nil, zero value otherwise.
+
+### GetExecutionPolicyOk
+
+`func (o *AutomationPolicyResponse) GetExecutionPolicyOk() (*string, bool)`
+
+GetExecutionPolicyOk returns a tuple with the ExecutionPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExecutionPolicy
+
+`func (o *AutomationPolicyResponse) SetExecutionPolicy(v string)`
+
+SetExecutionPolicy sets ExecutionPolicy field to given value.
+
+### HasExecutionPolicy
+
+`func (o *AutomationPolicyResponse) HasExecutionPolicy() bool`
+
+HasExecutionPolicy returns a boolean if a field has been set.
+
+### SetExecutionPolicyNil
+
+`func (o *AutomationPolicyResponse) SetExecutionPolicyNil(b bool)`
+
+ SetExecutionPolicyNil sets the value for ExecutionPolicy to be an explicit nil
+
+### UnsetExecutionPolicy
+`func (o *AutomationPolicyResponse) UnsetExecutionPolicy()`
+
+UnsetExecutionPolicy ensures that no value is present for ExecutionPolicy, not even an explicit nil
+### GetName
+
+`func (o *AutomationPolicyResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *AutomationPolicyResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *AutomationPolicyResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetProfile
+
+`func (o *AutomationPolicyResponse) GetProfile() string`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *AutomationPolicyResponse) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *AutomationPolicyResponse) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
+
+### HasProfile
+
+`func (o *AutomationPolicyResponse) HasProfile() bool`
+
+HasProfile returns a boolean if a field has been set.
+
 ### GetTrustChains
 
 `func (o *AutomationPolicyResponse) GetTrustChains() []string`
@@ -180,31 +205,6 @@ HasTrustChains returns a boolean if a field has been set.
 `func (o *AutomationPolicyResponse) UnsetTrustChains()`
 
 UnsetTrustChains ensures that no value is present for TrustChains, not even an explicit nil
-### GetProfile
-
-`func (o *AutomationPolicyResponse) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *AutomationPolicyResponse) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *AutomationPolicyResponse) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-### HasProfile
-
-`func (o *AutomationPolicyResponse) HasProfile() bool`
-
-HasProfile returns a boolean if a field has been set.
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -22,23 +22,23 @@ var _ utils.MappedNullable = &DigiCertConnector{}
 
 // DigiCertConnector struct for DigiCertConnector
 type DigiCertConnector struct {
-	Name string `json:"name"`
-	Type string `json:"type"`
-	// The base URL of the used digicert instance.
-	BaseUrl string `json:"baseUrl"`
-	// One of the DigiCert product identifier an exhaustive list can be found here: https://dev.digicert.com/en/certcentral-apis/services-api/glossary.html#product-identifiers
-	ProductId *string `json:"productId,omitempty"`
 	// Name of the `raw` [credentials](#tag/security.credentials) containing the API key to authenticate on the PKI
-	ApiCredentials             string               `json:"apiCredentials"`
-	OrganizationId             int64                `json:"organizationId"`
+	ApiCredentials string `json:"apiCredentials"`
+	// The base URL of the used digicert instance.
+	BaseUrl                    string               `json:"baseUrl"`
 	CaCertId                   utils.NullableString `json:"caCertId,omitempty"`
-	RetryInterval              utils.NullableString `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	SkipApproval               utils.NullableBool   `json:"skipApproval,omitempty"`
 	CustomConnectorDataMapping map[string]string    `json:"customConnectorDataMapping,omitempty"`
-	Timeout                    utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Proxy                      utils.NullableString `json:"proxy,omitempty"`
-	Queue                      utils.NullableString `json:"queue,omitempty"`
-	AdditionalProperties       map[string]interface{}
+	Name                       string               `json:"name"`
+	OrganizationId             int64                `json:"organizationId"`
+	// One of the DigiCert product identifier an exhaustive list can be found here: https://dev.digicert.com/en/certcentral-apis/services-api/glossary.html#product-identifiers
+	ProductId            *string              `json:"productId,omitempty"`
+	Proxy                utils.NullableString `json:"proxy,omitempty"`
+	Queue                utils.NullableString `json:"queue,omitempty"`
+	RetryInterval        utils.NullableString `json:"retryInterval,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	SkipApproval         utils.NullableBool   `json:"skipApproval,omitempty"`
+	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string               `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DigiCertConnector DigiCertConnector
@@ -47,13 +47,13 @@ type _DigiCertConnector DigiCertConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDigiCertConnector(name string, type_ string, baseUrl string, apiCredentials string, organizationId int64) *DigiCertConnector {
+func NewDigiCertConnector(apiCredentials string, baseUrl string, name string, organizationId int64, type_ string) *DigiCertConnector {
 	this := DigiCertConnector{}
-	this.Name = name
-	this.Type = type_
-	this.BaseUrl = baseUrl
 	this.ApiCredentials = apiCredentials
+	this.BaseUrl = baseUrl
+	this.Name = name
 	this.OrganizationId = organizationId
+	this.Type = type_
 	return &this
 }
 
@@ -63,110 +63,6 @@ func NewDigiCertConnector(name string, type_ string, baseUrl string, apiCredenti
 func NewDigiCertConnectorWithDefaults() *DigiCertConnector {
 	this := DigiCertConnector{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *DigiCertConnector) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *DigiCertConnector) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *DigiCertConnector) SetName(v string) {
-	o.Name = v
-}
-
-// GetType returns the Type field value
-func (o *DigiCertConnector) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *DigiCertConnector) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *DigiCertConnector) SetType(v string) {
-	o.Type = v
-}
-
-// GetBaseUrl returns the BaseUrl field value
-func (o *DigiCertConnector) GetBaseUrl() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BaseUrl
-}
-
-// GetBaseUrlOk returns a tuple with the BaseUrl field value
-// and a boolean to check if the value has been set.
-func (o *DigiCertConnector) GetBaseUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BaseUrl, true
-}
-
-// SetBaseUrl sets field value
-func (o *DigiCertConnector) SetBaseUrl(v string) {
-	o.BaseUrl = v
-}
-
-// GetProductId returns the ProductId field value if set, zero value otherwise.
-func (o *DigiCertConnector) GetProductId() string {
-	if o == nil || utils.IsNil(o.ProductId) {
-		var ret string
-		return ret
-	}
-	return *o.ProductId
-}
-
-// GetProductIdOk returns a tuple with the ProductId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DigiCertConnector) GetProductIdOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.ProductId) {
-		return nil, false
-	}
-	return o.ProductId, true
-}
-
-// HasProductId returns a boolean if a field has been set.
-func (o *DigiCertConnector) HasProductId() bool {
-	if o != nil && !utils.IsNil(o.ProductId) {
-		return true
-	}
-
-	return false
-}
-
-// SetProductId gets a reference to the given string and assigns it to the ProductId field.
-func (o *DigiCertConnector) SetProductId(v string) {
-	o.ProductId = &v
 }
 
 // GetApiCredentials returns the ApiCredentials field value
@@ -193,28 +89,28 @@ func (o *DigiCertConnector) SetApiCredentials(v string) {
 	o.ApiCredentials = v
 }
 
-// GetOrganizationId returns the OrganizationId field value
-func (o *DigiCertConnector) GetOrganizationId() int64 {
+// GetBaseUrl returns the BaseUrl field value
+func (o *DigiCertConnector) GetBaseUrl() string {
 	if o == nil {
-		var ret int64
+		var ret string
 		return ret
 	}
 
-	return o.OrganizationId
+	return o.BaseUrl
 }
 
-// GetOrganizationIdOk returns a tuple with the OrganizationId field value
+// GetBaseUrlOk returns a tuple with the BaseUrl field value
 // and a boolean to check if the value has been set.
-func (o *DigiCertConnector) GetOrganizationIdOk() (*int64, bool) {
+func (o *DigiCertConnector) GetBaseUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.OrganizationId, true
+	return &o.BaseUrl, true
 }
 
-// SetOrganizationId sets field value
-func (o *DigiCertConnector) SetOrganizationId(v int64) {
-	o.OrganizationId = v
+// SetBaseUrl sets field value
+func (o *DigiCertConnector) SetBaseUrl(v string) {
+	o.BaseUrl = v
 }
 
 // GetCaCertId returns the CaCertId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -260,92 +156,6 @@ func (o *DigiCertConnector) UnsetCaCertId() {
 	o.CaCertId.Unset()
 }
 
-// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DigiCertConnector) GetRetryInterval() string {
-	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RetryInterval.Get()
-}
-
-// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DigiCertConnector) GetRetryIntervalOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
-}
-
-// HasRetryInterval returns a boolean if a field has been set.
-func (o *DigiCertConnector) HasRetryInterval() bool {
-	if o != nil && o.RetryInterval.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
-func (o *DigiCertConnector) SetRetryInterval(v string) {
-	o.RetryInterval.Set(&v)
-}
-
-// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
-func (o *DigiCertConnector) SetRetryIntervalNil() {
-	o.RetryInterval.Set(nil)
-}
-
-// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-func (o *DigiCertConnector) UnsetRetryInterval() {
-	o.RetryInterval.Unset()
-}
-
-// GetSkipApproval returns the SkipApproval field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DigiCertConnector) GetSkipApproval() bool {
-	if o == nil || utils.IsNil(o.SkipApproval.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.SkipApproval.Get()
-}
-
-// GetSkipApprovalOk returns a tuple with the SkipApproval field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DigiCertConnector) GetSkipApprovalOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SkipApproval.Get(), o.SkipApproval.IsSet()
-}
-
-// HasSkipApproval returns a boolean if a field has been set.
-func (o *DigiCertConnector) HasSkipApproval() bool {
-	if o != nil && o.SkipApproval.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSkipApproval gets a reference to the given NullableBool and assigns it to the SkipApproval field.
-func (o *DigiCertConnector) SetSkipApproval(v bool) {
-	o.SkipApproval.Set(&v)
-}
-
-// SetSkipApprovalNil sets the value for SkipApproval to be an explicit nil
-func (o *DigiCertConnector) SetSkipApprovalNil() {
-	o.SkipApproval.Set(nil)
-}
-
-// UnsetSkipApproval ensures that no value is present for SkipApproval, not even an explicit nil
-func (o *DigiCertConnector) UnsetSkipApproval() {
-	o.SkipApproval.Unset()
-}
-
 // GetCustomConnectorDataMapping returns the CustomConnectorDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DigiCertConnector) GetCustomConnectorDataMapping() map[string]string {
 	if o == nil {
@@ -379,47 +189,84 @@ func (o *DigiCertConnector) SetCustomConnectorDataMapping(v map[string]string) {
 	o.CustomConnectorDataMapping = v
 }
 
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DigiCertConnector) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
+// GetName returns the Name field value
+func (o *DigiCertConnector) GetName() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Timeout.Get()
+
+	return o.Name
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DigiCertConnector) GetTimeoutOk() (*string, bool) {
+func (o *DigiCertConnector) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
+	return &o.Name, true
 }
 
-// HasTimeout returns a boolean if a field has been set.
-func (o *DigiCertConnector) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
+// SetName sets field value
+func (o *DigiCertConnector) SetName(v string) {
+	o.Name = v
+}
+
+// GetOrganizationId returns the OrganizationId field value
+func (o *DigiCertConnector) GetOrganizationId() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.OrganizationId
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertConnector) GetOrganizationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.OrganizationId, true
+}
+
+// SetOrganizationId sets field value
+func (o *DigiCertConnector) SetOrganizationId(v int64) {
+	o.OrganizationId = v
+}
+
+// GetProductId returns the ProductId field value if set, zero value otherwise.
+func (o *DigiCertConnector) GetProductId() string {
+	if o == nil || utils.IsNil(o.ProductId) {
+		var ret string
+		return ret
+	}
+	return *o.ProductId
+}
+
+// GetProductIdOk returns a tuple with the ProductId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DigiCertConnector) GetProductIdOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.ProductId) {
+		return nil, false
+	}
+	return o.ProductId, true
+}
+
+// HasProductId returns a boolean if a field has been set.
+func (o *DigiCertConnector) HasProductId() bool {
+	if o != nil && !utils.IsNil(o.ProductId) {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *DigiCertConnector) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *DigiCertConnector) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *DigiCertConnector) UnsetTimeout() {
-	o.Timeout.Unset()
+// SetProductId gets a reference to the given string and assigns it to the ProductId field.
+func (o *DigiCertConnector) SetProductId(v string) {
+	o.ProductId = &v
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -508,6 +355,159 @@ func (o *DigiCertConnector) UnsetQueue() {
 	o.Queue.Unset()
 }
 
+// GetRetryInterval returns the RetryInterval field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DigiCertConnector) GetRetryInterval() string {
+	if o == nil || utils.IsNil(o.RetryInterval.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RetryInterval.Get()
+}
+
+// GetRetryIntervalOk returns a tuple with the RetryInterval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DigiCertConnector) GetRetryIntervalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RetryInterval.Get(), o.RetryInterval.IsSet()
+}
+
+// HasRetryInterval returns a boolean if a field has been set.
+func (o *DigiCertConnector) HasRetryInterval() bool {
+	if o != nil && o.RetryInterval.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRetryInterval gets a reference to the given NullableString and assigns it to the RetryInterval field.
+func (o *DigiCertConnector) SetRetryInterval(v string) {
+	o.RetryInterval.Set(&v)
+}
+
+// SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+func (o *DigiCertConnector) SetRetryIntervalNil() {
+	o.RetryInterval.Set(nil)
+}
+
+// UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
+func (o *DigiCertConnector) UnsetRetryInterval() {
+	o.RetryInterval.Unset()
+}
+
+// GetSkipApproval returns the SkipApproval field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DigiCertConnector) GetSkipApproval() bool {
+	if o == nil || utils.IsNil(o.SkipApproval.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.SkipApproval.Get()
+}
+
+// GetSkipApprovalOk returns a tuple with the SkipApproval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DigiCertConnector) GetSkipApprovalOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SkipApproval.Get(), o.SkipApproval.IsSet()
+}
+
+// HasSkipApproval returns a boolean if a field has been set.
+func (o *DigiCertConnector) HasSkipApproval() bool {
+	if o != nil && o.SkipApproval.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSkipApproval gets a reference to the given NullableBool and assigns it to the SkipApproval field.
+func (o *DigiCertConnector) SetSkipApproval(v bool) {
+	o.SkipApproval.Set(&v)
+}
+
+// SetSkipApprovalNil sets the value for SkipApproval to be an explicit nil
+func (o *DigiCertConnector) SetSkipApprovalNil() {
+	o.SkipApproval.Set(nil)
+}
+
+// UnsetSkipApproval ensures that no value is present for SkipApproval, not even an explicit nil
+func (o *DigiCertConnector) UnsetSkipApproval() {
+	o.SkipApproval.Unset()
+}
+
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DigiCertConnector) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DigiCertConnector) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *DigiCertConnector) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *DigiCertConnector) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *DigiCertConnector) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *DigiCertConnector) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetType returns the Type field value
+func (o *DigiCertConnector) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertConnector) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *DigiCertConnector) SetType(v string) {
+	o.Type = v
+}
+
 func (o DigiCertConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -518,28 +518,18 @@ func (o DigiCertConnector) MarshalJSON() ([]byte, error) {
 
 func (o DigiCertConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
-	toSerialize["baseUrl"] = o.BaseUrl
-	if !utils.IsNil(o.ProductId) {
-		toSerialize["productId"] = o.ProductId
-	}
 	toSerialize["apiCredentials"] = o.ApiCredentials
-	toSerialize["organizationId"] = o.OrganizationId
+	toSerialize["baseUrl"] = o.BaseUrl
 	if o.CaCertId.IsSet() {
 		toSerialize["caCertId"] = o.CaCertId.Get()
-	}
-	if o.RetryInterval.IsSet() {
-		toSerialize["retryInterval"] = o.RetryInterval.Get()
-	}
-	if o.SkipApproval.IsSet() {
-		toSerialize["skipApproval"] = o.SkipApproval.Get()
 	}
 	if o.CustomConnectorDataMapping != nil {
 		toSerialize["customConnectorDataMapping"] = o.CustomConnectorDataMapping
 	}
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
+	toSerialize["name"] = o.Name
+	toSerialize["organizationId"] = o.OrganizationId
+	if !utils.IsNil(o.ProductId) {
+		toSerialize["productId"] = o.ProductId
 	}
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
@@ -547,6 +537,16 @@ func (o DigiCertConnector) ToMap() (map[string]interface{}, error) {
 	if o.Queue.IsSet() {
 		toSerialize["queue"] = o.Queue.Get()
 	}
+	if o.RetryInterval.IsSet() {
+		toSerialize["retryInterval"] = o.RetryInterval.Get()
+	}
+	if o.SkipApproval.IsSet() {
+		toSerialize["skipApproval"] = o.SkipApproval.Get()
+	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -560,11 +560,11 @@ func (o *DigiCertConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
-		"type",
-		"baseUrl",
 		"apiCredentials",
+		"baseUrl",
+		"name",
 		"organizationId",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -594,19 +594,19 @@ func (o *DigiCertConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "baseUrl")
-		delete(additionalProperties, "productId")
 		delete(additionalProperties, "apiCredentials")
-		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "baseUrl")
 		delete(additionalProperties, "caCertId")
-		delete(additionalProperties, "retryInterval")
-		delete(additionalProperties, "skipApproval")
 		delete(additionalProperties, "customConnectorDataMapping")
-		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "productId")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
+		delete(additionalProperties, "retryInterval")
+		delete(additionalProperties, "skipApproval")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

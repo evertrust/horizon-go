@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Before** | **int64** | Date before which all events will be archived | 
+**Filename** | **string** |  | 
 **Name** | **string** |  | 
 **Type** | **string** |  | 
-**Filename** | **string** |  | 
-**Before** | **int64** | Date before which all events will be archived | 
 
 ## Methods
 
 ### NewEventArchive
 
-`func NewEventArchive(name string, type_ string, filename string, before int64, ) *EventArchive`
+`func NewEventArchive(before int64, filename string, name string, type_ string, ) *EventArchive`
 
 NewEventArchive instantiates a new EventArchive object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,46 @@ will change when the set of required properties is changed
 NewEventArchiveWithDefaults instantiates a new EventArchive object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBefore
+
+`func (o *EventArchive) GetBefore() int64`
+
+GetBefore returns the Before field if non-nil, zero value otherwise.
+
+### GetBeforeOk
+
+`func (o *EventArchive) GetBeforeOk() (*int64, bool)`
+
+GetBeforeOk returns a tuple with the Before field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBefore
+
+`func (o *EventArchive) SetBefore(v int64)`
+
+SetBefore sets Before field to given value.
+
+
+### GetFilename
+
+`func (o *EventArchive) GetFilename() string`
+
+GetFilename returns the Filename field if non-nil, zero value otherwise.
+
+### GetFilenameOk
+
+`func (o *EventArchive) GetFilenameOk() (*string, bool)`
+
+GetFilenameOk returns a tuple with the Filename field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilename
+
+`func (o *EventArchive) SetFilename(v string)`
+
+SetFilename sets Filename field to given value.
+
 
 ### GetName
 
@@ -66,46 +106,6 @@ and a boolean to check if the value has been set.
 `func (o *EventArchive) SetType(v string)`
 
 SetType sets Type field to given value.
-
-
-### GetFilename
-
-`func (o *EventArchive) GetFilename() string`
-
-GetFilename returns the Filename field if non-nil, zero value otherwise.
-
-### GetFilenameOk
-
-`func (o *EventArchive) GetFilenameOk() (*string, bool)`
-
-GetFilenameOk returns a tuple with the Filename field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilename
-
-`func (o *EventArchive) SetFilename(v string)`
-
-SetFilename sets Filename field to given value.
-
-
-### GetBefore
-
-`func (o *EventArchive) GetBefore() int64`
-
-GetBefore returns the Before field if non-nil, zero value otherwise.
-
-### GetBeforeOk
-
-`func (o *EventArchive) GetBeforeOk() (*int64, bool)`
-
-GetBeforeOk returns a tuple with the Before field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBefore
-
-`func (o *EventArchive) SetBefore(v int64)`
-
-SetBefore sets Before field to given value.
 
 
 

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Type** | **string** |  | 
-**Retries** | Pointer to **NullableInt64** |  | [optional] 
 **Connector** | **string** |  | 
+**Name** | **string** |  | 
+**Retries** | Pointer to **NullableInt64** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewGCMTrigger
 
-`func NewGCMTrigger(name string, type_ string, connector string, ) *GCMTrigger`
+`func NewGCMTrigger(connector string, name string, type_ string, ) *GCMTrigger`
 
 NewGCMTrigger instantiates a new GCMTrigger object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,26 @@ will change when the set of required properties is changed
 NewGCMTriggerWithDefaults instantiates a new GCMTrigger object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetConnector
+
+`func (o *GCMTrigger) GetConnector() string`
+
+GetConnector returns the Connector field if non-nil, zero value otherwise.
+
+### GetConnectorOk
+
+`func (o *GCMTrigger) GetConnectorOk() (*string, bool)`
+
+GetConnectorOk returns a tuple with the Connector field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConnector
+
+`func (o *GCMTrigger) SetConnector(v string)`
+
+SetConnector sets Connector field to given value.
+
 
 ### GetName
 
@@ -46,26 +66,6 @@ and a boolean to check if the value has been set.
 `func (o *GCMTrigger) SetName(v string)`
 
 SetName sets Name field to given value.
-
-
-### GetType
-
-`func (o *GCMTrigger) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *GCMTrigger) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *GCMTrigger) SetType(v string)`
-
-SetType sets Type field to given value.
 
 
 ### GetRetries
@@ -103,24 +103,24 @@ HasRetries returns a boolean if a field has been set.
 `func (o *GCMTrigger) UnsetRetries()`
 
 UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetConnector
+### GetType
 
-`func (o *GCMTrigger) GetConnector() string`
+`func (o *GCMTrigger) GetType() string`
 
-GetConnector returns the Connector field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetConnectorOk
+### GetTypeOk
 
-`func (o *GCMTrigger) GetConnectorOk() (*string, bool)`
+`func (o *GCMTrigger) GetTypeOk() (*string, bool)`
 
-GetConnectorOk returns a tuple with the Connector field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConnector
+### SetType
 
-`func (o *GCMTrigger) SetConnector(v string)`
+`func (o *GCMTrigger) SetType(v string)`
 
-SetConnector sets Connector field to given value.
+SetType sets Type field to given value.
 
 
 

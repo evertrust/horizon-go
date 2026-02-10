@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &ManualDnsChallengeProvider{}
 
 // ManualDnsChallengeProvider Manually configure the DNS Challenge Provider using REST Triggers
 type ManualDnsChallengeProvider struct {
-	Type string `json:"type"`
 	// The triggers that will set the DNS challenge on the provider.
 	SetTriggers []AcmeRestRequest `json:"setTriggers"`
+	Type        string            `json:"type"`
 	// The triggers that will unset the DNS challenge on the provider.
 	UnsetTriggers        []AcmeRestRequest `json:"unsetTriggers,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -36,10 +36,10 @@ type _ManualDnsChallengeProvider ManualDnsChallengeProvider
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewManualDnsChallengeProvider(type_ string, setTriggers []AcmeRestRequest) *ManualDnsChallengeProvider {
+func NewManualDnsChallengeProvider(setTriggers []AcmeRestRequest, type_ string) *ManualDnsChallengeProvider {
 	this := ManualDnsChallengeProvider{}
-	this.Type = type_
 	this.SetTriggers = setTriggers
+	this.Type = type_
 	return &this
 }
 
@@ -49,30 +49,6 @@ func NewManualDnsChallengeProvider(type_ string, setTriggers []AcmeRestRequest) 
 func NewManualDnsChallengeProviderWithDefaults() *ManualDnsChallengeProvider {
 	this := ManualDnsChallengeProvider{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *ManualDnsChallengeProvider) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *ManualDnsChallengeProvider) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *ManualDnsChallengeProvider) SetType(v string) {
-	o.Type = v
 }
 
 // GetSetTriggers returns the SetTriggers field value
@@ -97,6 +73,30 @@ func (o *ManualDnsChallengeProvider) GetSetTriggersOk() ([]AcmeRestRequest, bool
 // SetSetTriggers sets field value
 func (o *ManualDnsChallengeProvider) SetSetTriggers(v []AcmeRestRequest) {
 	o.SetTriggers = v
+}
+
+// GetType returns the Type field value
+func (o *ManualDnsChallengeProvider) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ManualDnsChallengeProvider) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *ManualDnsChallengeProvider) SetType(v string) {
+	o.Type = v
 }
 
 // GetUnsetTriggers returns the UnsetTriggers field value if set, zero value otherwise.
@@ -141,8 +141,8 @@ func (o ManualDnsChallengeProvider) MarshalJSON() ([]byte, error) {
 
 func (o ManualDnsChallengeProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
 	toSerialize["setTriggers"] = o.SetTriggers
+	toSerialize["type"] = o.Type
 	if !utils.IsNil(o.UnsetTriggers) {
 		toSerialize["unsetTriggers"] = o.UnsetTriggers
 	}
@@ -159,8 +159,8 @@ func (o *ManualDnsChallengeProvider) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
 		"setTriggers",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -190,8 +190,8 @@ func (o *ManualDnsChallengeProvider) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "setTriggers")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "unsetTriggers")
 		o.AdditionalProperties = additionalProperties
 	}

@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &WcceTemplateMapping{}
 
 // WcceTemplateMapping struct for WcceTemplateMapping
 type WcceTemplateMapping struct {
-	Template       string   `json:"template"`
-	Profile        string   `json:"profile"`
 	EnrollmentMode string   `json:"enrollmentMode"`
 	EoboTrustedCas []string `json:"eoboTrustedCas,omitempty"`
+	Profile        string   `json:"profile"`
+	Template       string   `json:"template"`
 	// The version of the Microsoft template. Available from `2.8.1`
 	TemplateVersion      *string `json:"templateVersion,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -37,11 +37,11 @@ type _WcceTemplateMapping WcceTemplateMapping
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWcceTemplateMapping(template string, profile string, enrollmentMode string) *WcceTemplateMapping {
+func NewWcceTemplateMapping(enrollmentMode string, profile string, template string) *WcceTemplateMapping {
 	this := WcceTemplateMapping{}
-	this.Template = template
-	this.Profile = profile
 	this.EnrollmentMode = enrollmentMode
+	this.Profile = profile
+	this.Template = template
 	var templateVersion string = "v1"
 	this.TemplateVersion = &templateVersion
 	return &this
@@ -55,54 +55,6 @@ func NewWcceTemplateMappingWithDefaults() *WcceTemplateMapping {
 	var templateVersion string = "v1"
 	this.TemplateVersion = &templateVersion
 	return &this
-}
-
-// GetTemplate returns the Template field value
-func (o *WcceTemplateMapping) GetTemplate() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value
-// and a boolean to check if the value has been set.
-func (o *WcceTemplateMapping) GetTemplateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Template, true
-}
-
-// SetTemplate sets field value
-func (o *WcceTemplateMapping) SetTemplate(v string) {
-	o.Template = v
-}
-
-// GetProfile returns the Profile field value
-func (o *WcceTemplateMapping) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *WcceTemplateMapping) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *WcceTemplateMapping) SetProfile(v string) {
-	o.Profile = v
 }
 
 // GetEnrollmentMode returns the EnrollmentMode field value
@@ -162,6 +114,54 @@ func (o *WcceTemplateMapping) SetEoboTrustedCas(v []string) {
 	o.EoboTrustedCas = v
 }
 
+// GetProfile returns the Profile field value
+func (o *WcceTemplateMapping) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *WcceTemplateMapping) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *WcceTemplateMapping) SetProfile(v string) {
+	o.Profile = v
+}
+
+// GetTemplate returns the Template field value
+func (o *WcceTemplateMapping) GetTemplate() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value
+// and a boolean to check if the value has been set.
+func (o *WcceTemplateMapping) GetTemplateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Template, true
+}
+
+// SetTemplate sets field value
+func (o *WcceTemplateMapping) SetTemplate(v string) {
+	o.Template = v
+}
+
 // GetTemplateVersion returns the TemplateVersion field value if set, zero value otherwise.
 func (o *WcceTemplateMapping) GetTemplateVersion() string {
 	if o == nil || utils.IsNil(o.TemplateVersion) {
@@ -204,12 +204,12 @@ func (o WcceTemplateMapping) MarshalJSON() ([]byte, error) {
 
 func (o WcceTemplateMapping) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["template"] = o.Template
-	toSerialize["profile"] = o.Profile
 	toSerialize["enrollmentMode"] = o.EnrollmentMode
 	if o.EoboTrustedCas != nil {
 		toSerialize["eoboTrustedCas"] = o.EoboTrustedCas
 	}
+	toSerialize["profile"] = o.Profile
+	toSerialize["template"] = o.Template
 	if !utils.IsNil(o.TemplateVersion) {
 		toSerialize["templateVersion"] = o.TemplateVersion
 	}
@@ -226,9 +226,9 @@ func (o *WcceTemplateMapping) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"template",
-		"profile",
 		"enrollmentMode",
+		"profile",
+		"template",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -258,10 +258,10 @@ func (o *WcceTemplateMapping) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "template")
-		delete(additionalProperties, "profile")
 		delete(additionalProperties, "enrollmentMode")
 		delete(additionalProperties, "eoboTrustedCas")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "template")
 		delete(additionalProperties, "templateVersion")
 		o.AdditionalProperties = additionalProperties
 	}

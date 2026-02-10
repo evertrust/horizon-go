@@ -24,22 +24,22 @@ var _ utils.MappedNullable = &PasswordPolicyResponse{}
 type PasswordPolicyResponse struct {
 	// The internal ID of the password policy
 	Id string `json:"_id"`
-	// The name of the password policy
-	Name string `json:"name"`
-	// The minimum number of characters of the password
-	MinChar int64 `json:"minChar"`
 	// The maximum number of characters of the password
 	MaxChar utils.NullableInt64 `json:"maxChar,omitempty"`
-	// The minimum number of uppercase characters of the password
-	MinUpChar utils.NullableInt64 `json:"minUpChar,omitempty"`
-	// The minimum number of lowercase characters of the password
-	MinLoChar utils.NullableInt64 `json:"minLoChar,omitempty"`
+	// The minimum number of characters of the password
+	MinChar int64 `json:"minChar"`
 	// The minimum number of digits of the password
 	MinDiChar utils.NullableInt64 `json:"minDiChar,omitempty"`
-	// The special characters of the password accepted by the password policy
-	SpChar utils.NullableString `json:"spChar,omitempty"`
+	// The minimum number of lowercase characters of the password
+	MinLoChar utils.NullableInt64 `json:"minLoChar,omitempty"`
 	// The minimum number of special characters of the password
-	MinSpChar            utils.NullableInt64 `json:"minSpChar,omitempty"`
+	MinSpChar utils.NullableInt64 `json:"minSpChar,omitempty"`
+	// The minimum number of uppercase characters of the password
+	MinUpChar utils.NullableInt64 `json:"minUpChar,omitempty"`
+	// The name of the password policy
+	Name string `json:"name"`
+	// The special characters of the password accepted by the password policy
+	SpChar               utils.NullableString `json:"spChar,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,11 +49,11 @@ type _PasswordPolicyResponse PasswordPolicyResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPasswordPolicyResponse(id string, name string, minChar int64) *PasswordPolicyResponse {
+func NewPasswordPolicyResponse(id string, minChar int64, name string) *PasswordPolicyResponse {
 	this := PasswordPolicyResponse{}
 	this.Id = id
-	this.Name = name
 	this.MinChar = minChar
+	this.Name = name
 	return &this
 }
 
@@ -87,54 +87,6 @@ func (o *PasswordPolicyResponse) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *PasswordPolicyResponse) SetId(v string) {
 	o.Id = v
-}
-
-// GetName returns the Name field value
-func (o *PasswordPolicyResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *PasswordPolicyResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *PasswordPolicyResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetMinChar returns the MinChar field value
-func (o *PasswordPolicyResponse) GetMinChar() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.MinChar
-}
-
-// GetMinCharOk returns a tuple with the MinChar field value
-// and a boolean to check if the value has been set.
-func (o *PasswordPolicyResponse) GetMinCharOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.MinChar, true
-}
-
-// SetMinChar sets field value
-func (o *PasswordPolicyResponse) SetMinChar(v int64) {
-	o.MinChar = v
 }
 
 // GetMaxChar returns the MaxChar field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -180,90 +132,28 @@ func (o *PasswordPolicyResponse) UnsetMaxChar() {
 	o.MaxChar.Unset()
 }
 
-// GetMinUpChar returns the MinUpChar field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PasswordPolicyResponse) GetMinUpChar() int64 {
-	if o == nil || utils.IsNil(o.MinUpChar.Get()) {
+// GetMinChar returns the MinChar field value
+func (o *PasswordPolicyResponse) GetMinChar() int64 {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.MinUpChar.Get()
+
+	return o.MinChar
 }
 
-// GetMinUpCharOk returns a tuple with the MinUpChar field value if set, nil otherwise
+// GetMinCharOk returns a tuple with the MinChar field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PasswordPolicyResponse) GetMinUpCharOk() (*int64, bool) {
+func (o *PasswordPolicyResponse) GetMinCharOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.MinUpChar.Get(), o.MinUpChar.IsSet()
+	return &o.MinChar, true
 }
 
-// HasMinUpChar returns a boolean if a field has been set.
-func (o *PasswordPolicyResponse) HasMinUpChar() bool {
-	if o != nil && o.MinUpChar.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMinUpChar gets a reference to the given NullableInt64 and assigns it to the MinUpChar field.
-func (o *PasswordPolicyResponse) SetMinUpChar(v int64) {
-	o.MinUpChar.Set(&v)
-}
-
-// SetMinUpCharNil sets the value for MinUpChar to be an explicit nil
-func (o *PasswordPolicyResponse) SetMinUpCharNil() {
-	o.MinUpChar.Set(nil)
-}
-
-// UnsetMinUpChar ensures that no value is present for MinUpChar, not even an explicit nil
-func (o *PasswordPolicyResponse) UnsetMinUpChar() {
-	o.MinUpChar.Unset()
-}
-
-// GetMinLoChar returns the MinLoChar field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PasswordPolicyResponse) GetMinLoChar() int64 {
-	if o == nil || utils.IsNil(o.MinLoChar.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.MinLoChar.Get()
-}
-
-// GetMinLoCharOk returns a tuple with the MinLoChar field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PasswordPolicyResponse) GetMinLoCharOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MinLoChar.Get(), o.MinLoChar.IsSet()
-}
-
-// HasMinLoChar returns a boolean if a field has been set.
-func (o *PasswordPolicyResponse) HasMinLoChar() bool {
-	if o != nil && o.MinLoChar.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMinLoChar gets a reference to the given NullableInt64 and assigns it to the MinLoChar field.
-func (o *PasswordPolicyResponse) SetMinLoChar(v int64) {
-	o.MinLoChar.Set(&v)
-}
-
-// SetMinLoCharNil sets the value for MinLoChar to be an explicit nil
-func (o *PasswordPolicyResponse) SetMinLoCharNil() {
-	o.MinLoChar.Set(nil)
-}
-
-// UnsetMinLoChar ensures that no value is present for MinLoChar, not even an explicit nil
-func (o *PasswordPolicyResponse) UnsetMinLoChar() {
-	o.MinLoChar.Unset()
+// SetMinChar sets field value
+func (o *PasswordPolicyResponse) SetMinChar(v int64) {
+	o.MinChar = v
 }
 
 // GetMinDiChar returns the MinDiChar field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -309,47 +199,47 @@ func (o *PasswordPolicyResponse) UnsetMinDiChar() {
 	o.MinDiChar.Unset()
 }
 
-// GetSpChar returns the SpChar field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PasswordPolicyResponse) GetSpChar() string {
-	if o == nil || utils.IsNil(o.SpChar.Get()) {
-		var ret string
+// GetMinLoChar returns the MinLoChar field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PasswordPolicyResponse) GetMinLoChar() int64 {
+	if o == nil || utils.IsNil(o.MinLoChar.Get()) {
+		var ret int64
 		return ret
 	}
-	return *o.SpChar.Get()
+	return *o.MinLoChar.Get()
 }
 
-// GetSpCharOk returns a tuple with the SpChar field value if set, nil otherwise
+// GetMinLoCharOk returns a tuple with the MinLoChar field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PasswordPolicyResponse) GetSpCharOk() (*string, bool) {
+func (o *PasswordPolicyResponse) GetMinLoCharOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.SpChar.Get(), o.SpChar.IsSet()
+	return o.MinLoChar.Get(), o.MinLoChar.IsSet()
 }
 
-// HasSpChar returns a boolean if a field has been set.
-func (o *PasswordPolicyResponse) HasSpChar() bool {
-	if o != nil && o.SpChar.IsSet() {
+// HasMinLoChar returns a boolean if a field has been set.
+func (o *PasswordPolicyResponse) HasMinLoChar() bool {
+	if o != nil && o.MinLoChar.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSpChar gets a reference to the given NullableString and assigns it to the SpChar field.
-func (o *PasswordPolicyResponse) SetSpChar(v string) {
-	o.SpChar.Set(&v)
+// SetMinLoChar gets a reference to the given NullableInt64 and assigns it to the MinLoChar field.
+func (o *PasswordPolicyResponse) SetMinLoChar(v int64) {
+	o.MinLoChar.Set(&v)
 }
 
-// SetSpCharNil sets the value for SpChar to be an explicit nil
-func (o *PasswordPolicyResponse) SetSpCharNil() {
-	o.SpChar.Set(nil)
+// SetMinLoCharNil sets the value for MinLoChar to be an explicit nil
+func (o *PasswordPolicyResponse) SetMinLoCharNil() {
+	o.MinLoChar.Set(nil)
 }
 
-// UnsetSpChar ensures that no value is present for SpChar, not even an explicit nil
-func (o *PasswordPolicyResponse) UnsetSpChar() {
-	o.SpChar.Unset()
+// UnsetMinLoChar ensures that no value is present for MinLoChar, not even an explicit nil
+func (o *PasswordPolicyResponse) UnsetMinLoChar() {
+	o.MinLoChar.Unset()
 }
 
 // GetMinSpChar returns the MinSpChar field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -395,6 +285,116 @@ func (o *PasswordPolicyResponse) UnsetMinSpChar() {
 	o.MinSpChar.Unset()
 }
 
+// GetMinUpChar returns the MinUpChar field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PasswordPolicyResponse) GetMinUpChar() int64 {
+	if o == nil || utils.IsNil(o.MinUpChar.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.MinUpChar.Get()
+}
+
+// GetMinUpCharOk returns a tuple with the MinUpChar field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PasswordPolicyResponse) GetMinUpCharOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MinUpChar.Get(), o.MinUpChar.IsSet()
+}
+
+// HasMinUpChar returns a boolean if a field has been set.
+func (o *PasswordPolicyResponse) HasMinUpChar() bool {
+	if o != nil && o.MinUpChar.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMinUpChar gets a reference to the given NullableInt64 and assigns it to the MinUpChar field.
+func (o *PasswordPolicyResponse) SetMinUpChar(v int64) {
+	o.MinUpChar.Set(&v)
+}
+
+// SetMinUpCharNil sets the value for MinUpChar to be an explicit nil
+func (o *PasswordPolicyResponse) SetMinUpCharNil() {
+	o.MinUpChar.Set(nil)
+}
+
+// UnsetMinUpChar ensures that no value is present for MinUpChar, not even an explicit nil
+func (o *PasswordPolicyResponse) UnsetMinUpChar() {
+	o.MinUpChar.Unset()
+}
+
+// GetName returns the Name field value
+func (o *PasswordPolicyResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *PasswordPolicyResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *PasswordPolicyResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetSpChar returns the SpChar field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PasswordPolicyResponse) GetSpChar() string {
+	if o == nil || utils.IsNil(o.SpChar.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SpChar.Get()
+}
+
+// GetSpCharOk returns a tuple with the SpChar field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PasswordPolicyResponse) GetSpCharOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SpChar.Get(), o.SpChar.IsSet()
+}
+
+// HasSpChar returns a boolean if a field has been set.
+func (o *PasswordPolicyResponse) HasSpChar() bool {
+	if o != nil && o.SpChar.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSpChar gets a reference to the given NullableString and assigns it to the SpChar field.
+func (o *PasswordPolicyResponse) SetSpChar(v string) {
+	o.SpChar.Set(&v)
+}
+
+// SetSpCharNil sets the value for SpChar to be an explicit nil
+func (o *PasswordPolicyResponse) SetSpCharNil() {
+	o.SpChar.Set(nil)
+}
+
+// UnsetSpChar ensures that no value is present for SpChar, not even an explicit nil
+func (o *PasswordPolicyResponse) UnsetSpChar() {
+	o.SpChar.Unset()
+}
+
 func (o PasswordPolicyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -406,25 +406,25 @@ func (o PasswordPolicyResponse) MarshalJSON() ([]byte, error) {
 func (o PasswordPolicyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["minChar"] = o.MinChar
 	if o.MaxChar.IsSet() {
 		toSerialize["maxChar"] = o.MaxChar.Get()
 	}
-	if o.MinUpChar.IsSet() {
-		toSerialize["minUpChar"] = o.MinUpChar.Get()
+	toSerialize["minChar"] = o.MinChar
+	if o.MinDiChar.IsSet() {
+		toSerialize["minDiChar"] = o.MinDiChar.Get()
 	}
 	if o.MinLoChar.IsSet() {
 		toSerialize["minLoChar"] = o.MinLoChar.Get()
 	}
-	if o.MinDiChar.IsSet() {
-		toSerialize["minDiChar"] = o.MinDiChar.Get()
-	}
-	if o.SpChar.IsSet() {
-		toSerialize["spChar"] = o.SpChar.Get()
-	}
 	if o.MinSpChar.IsSet() {
 		toSerialize["minSpChar"] = o.MinSpChar.Get()
+	}
+	if o.MinUpChar.IsSet() {
+		toSerialize["minUpChar"] = o.MinUpChar.Get()
+	}
+	toSerialize["name"] = o.Name
+	if o.SpChar.IsSet() {
+		toSerialize["spChar"] = o.SpChar.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -440,8 +440,8 @@ func (o *PasswordPolicyResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"name",
 		"minChar",
+		"name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -472,14 +472,14 @@ func (o *PasswordPolicyResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "minChar")
 		delete(additionalProperties, "maxChar")
-		delete(additionalProperties, "minUpChar")
-		delete(additionalProperties, "minLoChar")
+		delete(additionalProperties, "minChar")
 		delete(additionalProperties, "minDiChar")
-		delete(additionalProperties, "spChar")
+		delete(additionalProperties, "minLoChar")
 		delete(additionalProperties, "minSpChar")
+		delete(additionalProperties, "minUpChar")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "spChar")
 		o.AdditionalProperties = additionalProperties
 	}
 

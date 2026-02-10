@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Search** | [**AuthorizationLevel**](AuthorizationLevel.md) | The authorization level required to search the discovered certificates of this campaign | 
 **Feed** | [**AuthorizationLevel**](AuthorizationLevel.md) | The authorization level required to feed certificates into this discovery campaign | 
+**Search** | [**AuthorizationLevel**](AuthorizationLevel.md) | The authorization level required to search the discovered certificates of this campaign | 
 
 ## Methods
 
 ### NewDiscoveryCampaignAuthorizationLevels
 
-`func NewDiscoveryCampaignAuthorizationLevels(search AuthorizationLevel, feed AuthorizationLevel, ) *DiscoveryCampaignAuthorizationLevels`
+`func NewDiscoveryCampaignAuthorizationLevels(feed AuthorizationLevel, search AuthorizationLevel, ) *DiscoveryCampaignAuthorizationLevels`
 
 NewDiscoveryCampaignAuthorizationLevels instantiates a new DiscoveryCampaignAuthorizationLevels object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewDiscoveryCampaignAuthorizationLevelsWithDefaults instantiates a new DiscoveryCampaignAuthorizationLevels object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetSearch
-
-`func (o *DiscoveryCampaignAuthorizationLevels) GetSearch() AuthorizationLevel`
-
-GetSearch returns the Search field if non-nil, zero value otherwise.
-
-### GetSearchOk
-
-`func (o *DiscoveryCampaignAuthorizationLevels) GetSearchOk() (*AuthorizationLevel, bool)`
-
-GetSearchOk returns a tuple with the Search field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSearch
-
-`func (o *DiscoveryCampaignAuthorizationLevels) SetSearch(v AuthorizationLevel)`
-
-SetSearch sets Search field to given value.
-
 
 ### GetFeed
 
@@ -64,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *DiscoveryCampaignAuthorizationLevels) SetFeed(v AuthorizationLevel)`
 
 SetFeed sets Feed field to given value.
+
+
+### GetSearch
+
+`func (o *DiscoveryCampaignAuthorizationLevels) GetSearch() AuthorizationLevel`
+
+GetSearch returns the Search field if non-nil, zero value otherwise.
+
+### GetSearchOk
+
+`func (o *DiscoveryCampaignAuthorizationLevels) GetSearchOk() (*AuthorizationLevel, bool)`
+
+GetSearchOk returns a tuple with the Search field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSearch
+
+`func (o *DiscoveryCampaignAuthorizationLevels) SetSearch(v AuthorizationLevel)`
+
+SetSearch sets Search field to given value.
 
 
 

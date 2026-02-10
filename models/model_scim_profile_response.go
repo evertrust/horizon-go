@@ -24,14 +24,14 @@ var _ utils.MappedNullable = &ScimProfileResponse{}
 type ScimProfileResponse struct {
 	// Object internal ID
 	Id string `json:"_id"`
-	// The name of the Scim profile
-	Name string `json:"name"`
 	// The description of the Scim profile
 	Description utils.NullableString `json:"description,omitempty"`
 	// The mail type corresponds to the mail coming from the scim provider that must be synchronised in horizon. By default, the mail type is \"work\".
 	MailType utils.NullableString `json:"mailType,omitempty"`
 	// The mapping used to synchronize user and group between the scim provider and Horizon.
-	Mappings             []ScimProfileResponseMappingsInner `json:"mappings,omitempty"`
+	Mappings []ScimProfileMappingsInner `json:"mappings,omitempty"`
+	// The name of the Scim profile
+	Name                 string `json:"name"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,9 +44,9 @@ type _ScimProfileResponse ScimProfileResponse
 func NewScimProfileResponse(id string, name string) *ScimProfileResponse {
 	this := ScimProfileResponse{}
 	this.Id = id
-	this.Name = name
 	var mailType string = "work"
 	this.MailType = *utils.NewNullableString(&mailType)
+	this.Name = name
 	return &this
 }
 
@@ -82,30 +82,6 @@ func (o *ScimProfileResponse) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *ScimProfileResponse) SetId(v string) {
 	o.Id = v
-}
-
-// GetName returns the Name field value
-func (o *ScimProfileResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ScimProfileResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ScimProfileResponse) SetName(v string) {
-	o.Name = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -195,9 +171,9 @@ func (o *ScimProfileResponse) UnsetMailType() {
 }
 
 // GetMappings returns the Mappings field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ScimProfileResponse) GetMappings() []ScimProfileResponseMappingsInner {
+func (o *ScimProfileResponse) GetMappings() []ScimProfileMappingsInner {
 	if o == nil {
-		var ret []ScimProfileResponseMappingsInner
+		var ret []ScimProfileMappingsInner
 		return ret
 	}
 	return o.Mappings
@@ -206,7 +182,7 @@ func (o *ScimProfileResponse) GetMappings() []ScimProfileResponseMappingsInner {
 // GetMappingsOk returns a tuple with the Mappings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ScimProfileResponse) GetMappingsOk() ([]ScimProfileResponseMappingsInner, bool) {
+func (o *ScimProfileResponse) GetMappingsOk() ([]ScimProfileMappingsInner, bool) {
 	if o == nil || utils.IsNil(o.Mappings) {
 		return nil, false
 	}
@@ -222,9 +198,33 @@ func (o *ScimProfileResponse) HasMappings() bool {
 	return false
 }
 
-// SetMappings gets a reference to the given []ScimProfileResponseMappingsInner and assigns it to the Mappings field.
-func (o *ScimProfileResponse) SetMappings(v []ScimProfileResponseMappingsInner) {
+// SetMappings gets a reference to the given []ScimProfileMappingsInner and assigns it to the Mappings field.
+func (o *ScimProfileResponse) SetMappings(v []ScimProfileMappingsInner) {
 	o.Mappings = v
+}
+
+// GetName returns the Name field value
+func (o *ScimProfileResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ScimProfileResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ScimProfileResponse) SetName(v string) {
+	o.Name = v
 }
 
 func (o ScimProfileResponse) MarshalJSON() ([]byte, error) {
@@ -238,7 +238,6 @@ func (o ScimProfileResponse) MarshalJSON() ([]byte, error) {
 func (o ScimProfileResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["name"] = o.Name
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
@@ -248,6 +247,7 @@ func (o ScimProfileResponse) ToMap() (map[string]interface{}, error) {
 	if o.Mappings != nil {
 		toSerialize["mappings"] = o.Mappings
 	}
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -293,10 +293,10 @@ func (o *ScimProfileResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "mailType")
 		delete(additionalProperties, "mappings")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

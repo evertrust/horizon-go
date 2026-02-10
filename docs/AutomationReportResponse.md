@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Runnable** | **bool** | If true the certificate can be renewed now (the execution period allows it) | 
 **Renewable** | **bool** | If true the certificate can be renewed (all conditions for renewal are met - correct profile, renewal period, etc...) | 
+**Runnable** | **bool** | If true the certificate can be renewed now (the execution period allows it) | 
 
 ## Methods
 
 ### NewAutomationReportResponse
 
-`func NewAutomationReportResponse(runnable bool, renewable bool, ) *AutomationReportResponse`
+`func NewAutomationReportResponse(renewable bool, runnable bool, ) *AutomationReportResponse`
 
 NewAutomationReportResponse instantiates a new AutomationReportResponse object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewAutomationReportResponseWithDefaults instantiates a new AutomationReportResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetRunnable
-
-`func (o *AutomationReportResponse) GetRunnable() bool`
-
-GetRunnable returns the Runnable field if non-nil, zero value otherwise.
-
-### GetRunnableOk
-
-`func (o *AutomationReportResponse) GetRunnableOk() (*bool, bool)`
-
-GetRunnableOk returns a tuple with the Runnable field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRunnable
-
-`func (o *AutomationReportResponse) SetRunnable(v bool)`
-
-SetRunnable sets Runnable field to given value.
-
 
 ### GetRenewable
 
@@ -64,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *AutomationReportResponse) SetRenewable(v bool)`
 
 SetRenewable sets Renewable field to given value.
+
+
+### GetRunnable
+
+`func (o *AutomationReportResponse) GetRunnable() bool`
+
+GetRunnable returns the Runnable field if non-nil, zero value otherwise.
+
+### GetRunnableOk
+
+`func (o *AutomationReportResponse) GetRunnableOk() (*bool, bool)`
+
+GetRunnableOk returns a tuple with the Runnable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRunnable
+
+`func (o *AutomationReportResponse) SetRunnable(v bool)`
+
+SetRunnable sets Runnable field to given value.
 
 
 

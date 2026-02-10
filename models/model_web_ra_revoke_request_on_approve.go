@@ -28,12 +28,12 @@ type WebRARevokeRequestOnApprove struct {
 	ApproverComment utils.NullableString `json:"approverComment,omitempty"`
 	// The module on which the revocation occurred
 	Module string `json:"module"`
-	// What this request will do. For a revocation request, this is always `revoke`
-	Workflow string `json:"workflow"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun utils.NullableBool `json:"dryRun,omitempty"`
 	// The user-data that will be used to revoke the certificate
 	Template *WebRARevokeRequestTemplate `json:"template,omitempty"`
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
+	// What this request will do. For a revocation request, this is always `revoke`
+	Workflow             string `json:"workflow"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,9 +45,9 @@ type _WebRARevokeRequestOnApprove WebRARevokeRequestOnApprove
 // will change when the set of required properties is changed
 func NewWebRARevokeRequestOnApprove(id string, module string, workflow string) *WebRARevokeRequestOnApprove {
 	this := WebRARevokeRequestOnApprove{}
-	this.Workflow = workflow
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
+	this.Workflow = workflow
 	return &this
 }
 
@@ -152,62 +152,6 @@ func (o *WebRARevokeRequestOnApprove) SetModule(v string) {
 	o.Module = v
 }
 
-// GetWorkflow returns the Workflow field value
-func (o *WebRARevokeRequestOnApprove) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRARevokeRequestOnApprove) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRARevokeRequestOnApprove) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
-// GetTemplate returns the Template field value if set, zero value otherwise.
-func (o *WebRARevokeRequestOnApprove) GetTemplate() WebRARevokeRequestTemplate {
-	if o == nil || utils.IsNil(o.Template) {
-		var ret WebRARevokeRequestTemplate
-		return ret
-	}
-	return *o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebRARevokeRequestOnApprove) GetTemplateOk() (*WebRARevokeRequestTemplate, bool) {
-	if o == nil || utils.IsNil(o.Template) {
-		return nil, false
-	}
-	return o.Template, true
-}
-
-// HasTemplate returns a boolean if a field has been set.
-func (o *WebRARevokeRequestOnApprove) HasTemplate() bool {
-	if o != nil && !utils.IsNil(o.Template) {
-		return true
-	}
-
-	return false
-}
-
-// SetTemplate gets a reference to the given WebRARevokeRequestTemplate and assigns it to the Template field.
-func (o *WebRARevokeRequestOnApprove) SetTemplate(v WebRARevokeRequestTemplate) {
-	o.Template = &v
-}
-
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRARevokeRequestOnApprove) GetDryRun() bool {
 	if o == nil || utils.IsNil(o.DryRun.Get()) {
@@ -251,6 +195,62 @@ func (o *WebRARevokeRequestOnApprove) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
+// GetTemplate returns the Template field value if set, zero value otherwise.
+func (o *WebRARevokeRequestOnApprove) GetTemplate() WebRARevokeRequestTemplate {
+	if o == nil || utils.IsNil(o.Template) {
+		var ret WebRARevokeRequestTemplate
+		return ret
+	}
+	return *o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRARevokeRequestOnApprove) GetTemplateOk() (*WebRARevokeRequestTemplate, bool) {
+	if o == nil || utils.IsNil(o.Template) {
+		return nil, false
+	}
+	return o.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (o *WebRARevokeRequestOnApprove) HasTemplate() bool {
+	if o != nil && !utils.IsNil(o.Template) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplate gets a reference to the given WebRARevokeRequestTemplate and assigns it to the Template field.
+func (o *WebRARevokeRequestOnApprove) SetTemplate(v WebRARevokeRequestTemplate) {
+	o.Template = &v
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *WebRARevokeRequestOnApprove) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRARevokeRequestOnApprove) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRARevokeRequestOnApprove) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
 func (o WebRARevokeRequestOnApprove) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -266,13 +266,13 @@ func (o WebRARevokeRequestOnApprove) ToMap() (map[string]interface{}, error) {
 		toSerialize["approverComment"] = o.ApproverComment.Get()
 	}
 	toSerialize["module"] = o.Module
-	toSerialize["workflow"] = o.Workflow
-	if !utils.IsNil(o.Template) {
-		toSerialize["template"] = o.Template
-	}
 	if o.DryRun.IsSet() {
 		toSerialize["dryRun"] = o.DryRun.Get()
 	}
+	if !utils.IsNil(o.Template) {
+		toSerialize["template"] = o.Template
+	}
+	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -321,9 +321,9 @@ func (o *WebRARevokeRequestOnApprove) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "_id")
 		delete(additionalProperties, "approverComment")
 		delete(additionalProperties, "module")
-		delete(additionalProperties, "workflow")
-		delete(additionalProperties, "template")
 		delete(additionalProperties, "dryRun")
+		delete(additionalProperties, "template")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

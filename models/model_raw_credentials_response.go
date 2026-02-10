@@ -23,19 +23,19 @@ var _ utils.MappedNullable = &RawCredentialsResponse{}
 // RawCredentialsResponse struct for RawCredentialsResponse
 type RawCredentialsResponse struct {
 	// Object internal ID
-	Id   string `json:"_id"`
-	Type string `json:"type"`
+	Id string `json:"_id"`
 	// These credentials secret
 	Secret SecretString `json:"secret"`
-	// These credentials identifying name
-	Name string `json:"name"`
+	Type   string       `json:"type"`
 	// These credentials description
 	Description utils.NullableString `json:"description,omitempty"`
 	// The expiration date of these credentials
-	Expires  utils.NullableInt64  `json:"expires,omitempty"`
-	Triggers *CredentialsTriggers `json:"triggers,omitempty"`
+	Expires utils.NullableInt64 `json:"expires,omitempty"`
+	// These credentials identifying name
+	Name string `json:"name"`
 	// On which configuration the credentials are usable
-	Targets              []string `json:"targets,omitempty"`
+	Targets              []string             `json:"targets,omitempty"`
+	Triggers             *CredentialsTriggers `json:"triggers,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,7 +45,7 @@ type _RawCredentialsResponse RawCredentialsResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRawCredentialsResponse(id string, type_ string, secret SecretString, name string) *RawCredentialsResponse {
+func NewRawCredentialsResponse(id string, secret SecretString, type_ string, name string) *RawCredentialsResponse {
 	this := RawCredentialsResponse{}
 	this.Id = id
 	this.Name = name
@@ -85,30 +85,6 @@ func (o *RawCredentialsResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
-func (o *RawCredentialsResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *RawCredentialsResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *RawCredentialsResponse) SetType(v string) {
-	o.Type = v
-}
-
 // GetSecret returns the Secret field value
 func (o *RawCredentialsResponse) GetSecret() SecretString {
 	if o == nil {
@@ -133,28 +109,28 @@ func (o *RawCredentialsResponse) SetSecret(v SecretString) {
 	o.Secret = v
 }
 
-// GetName returns the Name field value
-func (o *RawCredentialsResponse) GetName() string {
+// GetType returns the Type field value
+func (o *RawCredentialsResponse) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.Type
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RawCredentialsResponse) GetNameOk() (*string, bool) {
+func (o *RawCredentialsResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.Type, true
 }
 
-// SetName sets field value
-func (o *RawCredentialsResponse) SetName(v string) {
-	o.Name = v
+// SetType sets field value
+func (o *RawCredentialsResponse) SetType(v string) {
+	o.Type = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -243,36 +219,28 @@ func (o *RawCredentialsResponse) UnsetExpires() {
 	o.Expires.Unset()
 }
 
-// GetTriggers returns the Triggers field value if set, zero value otherwise.
-func (o *RawCredentialsResponse) GetTriggers() CredentialsTriggers {
-	if o == nil || utils.IsNil(o.Triggers) {
-		var ret CredentialsTriggers
+// GetName returns the Name field value
+func (o *RawCredentialsResponse) GetName() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return *o.Triggers
+
+	return o.Name
 }
 
-// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *RawCredentialsResponse) GetTriggersOk() (*CredentialsTriggers, bool) {
-	if o == nil || utils.IsNil(o.Triggers) {
+func (o *RawCredentialsResponse) GetNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Triggers, true
+	return &o.Name, true
 }
 
-// HasTriggers returns a boolean if a field has been set.
-func (o *RawCredentialsResponse) HasTriggers() bool {
-	if o != nil && !utils.IsNil(o.Triggers) {
-		return true
-	}
-
-	return false
-}
-
-// SetTriggers gets a reference to the given CredentialsTriggers and assigns it to the Triggers field.
-func (o *RawCredentialsResponse) SetTriggers(v CredentialsTriggers) {
-	o.Triggers = &v
+// SetName sets field value
+func (o *RawCredentialsResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetTargets returns the Targets field value if set, zero value otherwise.
@@ -307,6 +275,38 @@ func (o *RawCredentialsResponse) SetTargets(v []string) {
 	o.Targets = v
 }
 
+// GetTriggers returns the Triggers field value if set, zero value otherwise.
+func (o *RawCredentialsResponse) GetTriggers() CredentialsTriggers {
+	if o == nil || utils.IsNil(o.Triggers) {
+		var ret CredentialsTriggers
+		return ret
+	}
+	return *o.Triggers
+}
+
+// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RawCredentialsResponse) GetTriggersOk() (*CredentialsTriggers, bool) {
+	if o == nil || utils.IsNil(o.Triggers) {
+		return nil, false
+	}
+	return o.Triggers, true
+}
+
+// HasTriggers returns a boolean if a field has been set.
+func (o *RawCredentialsResponse) HasTriggers() bool {
+	if o != nil && !utils.IsNil(o.Triggers) {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggers gets a reference to the given CredentialsTriggers and assigns it to the Triggers field.
+func (o *RawCredentialsResponse) SetTriggers(v CredentialsTriggers) {
+	o.Triggers = &v
+}
+
 func (o RawCredentialsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -318,20 +318,20 @@ func (o RawCredentialsResponse) MarshalJSON() ([]byte, error) {
 func (o RawCredentialsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["type"] = o.Type
 	toSerialize["secret"] = o.Secret
-	toSerialize["name"] = o.Name
+	toSerialize["type"] = o.Type
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
 	if o.Expires.IsSet() {
 		toSerialize["expires"] = o.Expires.Get()
 	}
-	if !utils.IsNil(o.Triggers) {
-		toSerialize["triggers"] = o.Triggers
-	}
+	toSerialize["name"] = o.Name
 	if !utils.IsNil(o.Targets) {
 		toSerialize["targets"] = o.Targets
+	}
+	if !utils.IsNil(o.Triggers) {
+		toSerialize["triggers"] = o.Triggers
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -347,8 +347,8 @@ func (o *RawCredentialsResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"type",
 		"secret",
+		"type",
 		"name",
 	}
 
@@ -380,13 +380,13 @@ func (o *RawCredentialsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "secret")
-		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "expires")
-		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "targets")
+		delete(additionalProperties, "triggers")
 		o.AdditionalProperties = additionalProperties
 	}
 

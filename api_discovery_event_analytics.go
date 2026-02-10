@@ -134,7 +134,7 @@ func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventFlushExecute(
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -145,7 +145,7 @@ func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventFlushExecute(
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.AnalyticsEventFlush403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -156,7 +156,7 @@ func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventFlushExecute(
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.AnalyticsCertificateFlush500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -176,7 +176,7 @@ type DiscoveryEventAnalyticsAPIAnalyticsDiscoveryEventGetRequest struct {
 	ApiService *DiscoveryEventAnalyticsAPIService
 }
 
-func (r DiscoveryEventAnalyticsAPIAnalyticsDiscoveryEventGetRequest) Execute() ([]models.AnalyticsStatus2, *http.Response, error) {
+func (r DiscoveryEventAnalyticsAPIAnalyticsDiscoveryEventGetRequest) Execute() ([]models.AnalyticsStatus1, *http.Response, error) {
 	return r.ApiService.AnalyticsDiscoveryEventGetExecute(r)
 }
 
@@ -197,13 +197,13 @@ func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventGet(ctx conte
 
 // Execute executes the request
 //
-//	@return []AnalyticsStatus2
-func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventGetExecute(r DiscoveryEventAnalyticsAPIAnalyticsDiscoveryEventGetRequest) ([]models.AnalyticsStatus2, *http.Response, error) {
+//	@return []AnalyticsStatus1
+func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventGetExecute(r DiscoveryEventAnalyticsAPIAnalyticsDiscoveryEventGetRequest) ([]models.AnalyticsStatus1, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []models.AnalyticsStatus2
+		localVarReturnValue []models.AnalyticsStatus1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscoveryEventAnalyticsAPIService.AnalyticsDiscoveryEventGet")
@@ -285,7 +285,7 @@ func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventGetExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -296,7 +296,7 @@ func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.AnalyticsEventGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -307,7 +307,7 @@ func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.AnalyticsCertificateGet500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -442,7 +442,7 @@ func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventUpdateExecute
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.AdocGet401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -453,7 +453,7 @@ func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventUpdateExecute
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.AnalyticsEventFlush403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -464,7 +464,7 @@ func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventUpdateExecute
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.AnalyticsCertificateFlush500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

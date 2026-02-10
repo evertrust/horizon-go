@@ -22,27 +22,27 @@ var _ utils.MappedNullable = &CrmpProfile{}
 
 // CrmpProfile struct for CrmpProfile
 type CrmpProfile struct {
+	AuthorizationLevels CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
+	CertificateTemplate NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
+	Constraints         NullableCertificateRequestConstraints `json:"constraints,omitempty"`
+	CryptoPolicy        ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
+	// Only when escrow is enabled in the cryptoPolicy, possible values are: `rfc822name`, `othername_upn`, `mail`, `uid`, `cn` and `label.<label_name>`. If a label is used, it should be defined in the certificateTemplate
+	DataFieldIdentifier utils.NullableString `json:"dataFieldIdentifier,omitempty" validate:"regexp=(rfc822name|othername_upn|mail|uid|cn|label\\\\..+)"`
+	Description         []LocalizedString    `json:"description,omitempty"`
+	DisplayName         []LocalizedString    `json:"displayName,omitempty"`
+	// Representation of a datasource execution flow
+	DsFlow                        []DataSourceFlowEntry                 `json:"dsFlow,omitempty"`
+	Enabled                       bool                                  `json:"enabled"`
+	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
+	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
 	Module                        string                                `json:"module"`
 	Name                          string                                `json:"name"`
-	DisplayName                   []LocalizedString                     `json:"displayName,omitempty"`
-	Description                   []LocalizedString                     `json:"description,omitempty"`
 	PkiConnector                  string                                `json:"pkiConnector"`
-	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
-	AuthorizationLevels           CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
-	Triggers                      NullableCertificateProfileTriggers    `json:"triggers,omitempty"`
 	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
-	Enabled                       bool                                  `json:"enabled"`
-	CryptoPolicy                  ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
 	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
-	// Only when escrow is enabled in the cryptoPolicy, possible values are: `rfc822name`, `othername_upn`, `mail`, `uid`, `cn` and `label.<label_name>`. If a label is used, it should be defined in the certificateTemplate
-	DataFieldIdentifier utils.NullableString                  `json:"dataFieldIdentifier,omitempty" validate:"regexp=(rfc822name|othername_upn|mail|uid|cn|label\\\\..+)"`
-	Constraints         NullableCertificateRequestConstraints `json:"constraints,omitempty"`
-	CertificateTemplate NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
-	GradingPolicies     []string                              `json:"gradingPolicies,omitempty"`
-	// Representation of a datasource execution flow
-	DsFlow []DataSourceFlowEntry `json:"dsFlow,omitempty"`
 	// Available from `2.8.2`
-	ThirdPartyDiscoverySync utils.NullableBool `json:"thirdPartyDiscoverySync,omitempty"`
+	ThirdPartyDiscoverySync utils.NullableBool                 `json:"thirdPartyDiscoverySync,omitempty"`
+	Triggers                NullableCertificateProfileTriggers `json:"triggers,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -52,15 +52,15 @@ type _CrmpProfile CrmpProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCrmpProfile(module string, name string, pkiConnector string, authorizationLevels CertificateProfileAuthorizationLevels, requestsPolicy RequestsPolicy, enabled bool, cryptoPolicy ManagedCertificateProfileCryptoPolicy, selfPermissions CertificateProfileSelfPermissions) *CrmpProfile {
+func NewCrmpProfile(authorizationLevels CertificateProfileAuthorizationLevels, cryptoPolicy ManagedCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions) *CrmpProfile {
 	this := CrmpProfile{}
+	this.AuthorizationLevels = authorizationLevels
+	this.CryptoPolicy = cryptoPolicy
+	this.Enabled = enabled
 	this.Module = module
 	this.Name = name
 	this.PkiConnector = pkiConnector
-	this.AuthorizationLevels = authorizationLevels
 	this.RequestsPolicy = requestsPolicy
-	this.Enabled = enabled
-	this.CryptoPolicy = cryptoPolicy
 	this.SelfPermissions = selfPermissions
 	var thirdPartyDiscoverySync bool = false
 	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
@@ -75,6 +75,382 @@ func NewCrmpProfileWithDefaults() *CrmpProfile {
 	var thirdPartyDiscoverySync bool = false
 	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
+}
+
+// GetAuthorizationLevels returns the AuthorizationLevels field value
+func (o *CrmpProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
+	if o == nil {
+		var ret CertificateProfileAuthorizationLevels
+		return ret
+	}
+
+	return o.AuthorizationLevels
+}
+
+// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
+// and a boolean to check if the value has been set.
+func (o *CrmpProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizationLevels, true
+}
+
+// SetAuthorizationLevels sets field value
+func (o *CrmpProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
+	o.AuthorizationLevels = v
+}
+
+// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CrmpProfile) GetCertificateTemplate() CertificateTemplate {
+	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
+		var ret CertificateTemplate
+		return ret
+	}
+	return *o.CertificateTemplate.Get()
+}
+
+// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CrmpProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
+}
+
+// HasCertificateTemplate returns a boolean if a field has been set.
+func (o *CrmpProfile) HasCertificateTemplate() bool {
+	if o != nil && o.CertificateTemplate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
+func (o *CrmpProfile) SetCertificateTemplate(v CertificateTemplate) {
+	o.CertificateTemplate.Set(&v)
+}
+
+// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
+func (o *CrmpProfile) SetCertificateTemplateNil() {
+	o.CertificateTemplate.Set(nil)
+}
+
+// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
+func (o *CrmpProfile) UnsetCertificateTemplate() {
+	o.CertificateTemplate.Unset()
+}
+
+// GetConstraints returns the Constraints field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CrmpProfile) GetConstraints() CertificateRequestConstraints {
+	if o == nil || utils.IsNil(o.Constraints.Get()) {
+		var ret CertificateRequestConstraints
+		return ret
+	}
+	return *o.Constraints.Get()
+}
+
+// GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CrmpProfile) GetConstraintsOk() (*CertificateRequestConstraints, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Constraints.Get(), o.Constraints.IsSet()
+}
+
+// HasConstraints returns a boolean if a field has been set.
+func (o *CrmpProfile) HasConstraints() bool {
+	if o != nil && o.Constraints.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConstraints gets a reference to the given NullableCertificateRequestConstraints and assigns it to the Constraints field.
+func (o *CrmpProfile) SetConstraints(v CertificateRequestConstraints) {
+	o.Constraints.Set(&v)
+}
+
+// SetConstraintsNil sets the value for Constraints to be an explicit nil
+func (o *CrmpProfile) SetConstraintsNil() {
+	o.Constraints.Set(nil)
+}
+
+// UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
+func (o *CrmpProfile) UnsetConstraints() {
+	o.Constraints.Unset()
+}
+
+// GetCryptoPolicy returns the CryptoPolicy field value
+func (o *CrmpProfile) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
+	if o == nil {
+		var ret ManagedCertificateProfileCryptoPolicy
+		return ret
+	}
+
+	return o.CryptoPolicy
+}
+
+// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
+// and a boolean to check if the value has been set.
+func (o *CrmpProfile) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CryptoPolicy, true
+}
+
+// SetCryptoPolicy sets field value
+func (o *CrmpProfile) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
+	o.CryptoPolicy = v
+}
+
+// GetDataFieldIdentifier returns the DataFieldIdentifier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CrmpProfile) GetDataFieldIdentifier() string {
+	if o == nil || utils.IsNil(o.DataFieldIdentifier.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DataFieldIdentifier.Get()
+}
+
+// GetDataFieldIdentifierOk returns a tuple with the DataFieldIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CrmpProfile) GetDataFieldIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DataFieldIdentifier.Get(), o.DataFieldIdentifier.IsSet()
+}
+
+// HasDataFieldIdentifier returns a boolean if a field has been set.
+func (o *CrmpProfile) HasDataFieldIdentifier() bool {
+	if o != nil && o.DataFieldIdentifier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDataFieldIdentifier gets a reference to the given NullableString and assigns it to the DataFieldIdentifier field.
+func (o *CrmpProfile) SetDataFieldIdentifier(v string) {
+	o.DataFieldIdentifier.Set(&v)
+}
+
+// SetDataFieldIdentifierNil sets the value for DataFieldIdentifier to be an explicit nil
+func (o *CrmpProfile) SetDataFieldIdentifierNil() {
+	o.DataFieldIdentifier.Set(nil)
+}
+
+// UnsetDataFieldIdentifier ensures that no value is present for DataFieldIdentifier, not even an explicit nil
+func (o *CrmpProfile) UnsetDataFieldIdentifier() {
+	o.DataFieldIdentifier.Unset()
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CrmpProfile) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CrmpProfile) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *CrmpProfile) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *CrmpProfile) SetDescription(v []LocalizedString) {
+	o.Description = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CrmpProfile) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CrmpProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *CrmpProfile) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *CrmpProfile) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
+// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CrmpProfile) GetDsFlow() []DataSourceFlowEntry {
+	if o == nil {
+		var ret []DataSourceFlowEntry
+		return ret
+	}
+	return o.DsFlow
+}
+
+// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CrmpProfile) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
+	if o == nil || utils.IsNil(o.DsFlow) {
+		return nil, false
+	}
+	return o.DsFlow, true
+}
+
+// HasDsFlow returns a boolean if a field has been set.
+func (o *CrmpProfile) HasDsFlow() bool {
+	if o != nil && !utils.IsNil(o.DsFlow) {
+		return true
+	}
+
+	return false
+}
+
+// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
+func (o *CrmpProfile) SetDsFlow(v []DataSourceFlowEntry) {
+	o.DsFlow = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *CrmpProfile) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *CrmpProfile) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *CrmpProfile) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CrmpProfile) GetGradingPolicies() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.GradingPolicies
+}
+
+// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CrmpProfile) GetGradingPoliciesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.GradingPolicies) {
+		return nil, false
+	}
+	return o.GradingPolicies, true
+}
+
+// HasGradingPolicies returns a boolean if a field has been set.
+func (o *CrmpProfile) HasGradingPolicies() bool {
+	if o != nil && !utils.IsNil(o.GradingPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
+func (o *CrmpProfile) SetGradingPolicies(v []string) {
+	o.GradingPolicies = v
+}
+
+// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CrmpProfile) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
+	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
+		var ret MaxCertificatePerHolderPolicy
+		return ret
+	}
+	return *o.MaxCertificatePerHolderPolicy.Get()
+}
+
+// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CrmpProfile) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
+}
+
+// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
+func (o *CrmpProfile) HasMaxCertificatePerHolderPolicy() bool {
+	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
+func (o *CrmpProfile) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
+	o.MaxCertificatePerHolderPolicy.Set(&v)
+}
+
+// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
+func (o *CrmpProfile) SetMaxCertificatePerHolderPolicyNil() {
+	o.MaxCertificatePerHolderPolicy.Set(nil)
+}
+
+// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
+func (o *CrmpProfile) UnsetMaxCertificatePerHolderPolicy() {
+	o.MaxCertificatePerHolderPolicy.Unset()
 }
 
 // GetModule returns the Module field value
@@ -125,72 +501,6 @@ func (o *CrmpProfile) SetName(v string) {
 	o.Name = v
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CrmpProfile) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CrmpProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *CrmpProfile) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *CrmpProfile) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CrmpProfile) GetDescription() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CrmpProfile) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *CrmpProfile) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *CrmpProfile) SetDescription(v []LocalizedString) {
-	o.Description = v
-}
-
 // GetPkiConnector returns the PkiConnector field value
 func (o *CrmpProfile) GetPkiConnector() string {
 	if o == nil {
@@ -213,116 +523,6 @@ func (o *CrmpProfile) GetPkiConnectorOk() (*string, bool) {
 // SetPkiConnector sets field value
 func (o *CrmpProfile) SetPkiConnector(v string) {
 	o.PkiConnector = v
-}
-
-// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CrmpProfile) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
-	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
-		var ret MaxCertificatePerHolderPolicy
-		return ret
-	}
-	return *o.MaxCertificatePerHolderPolicy.Get()
-}
-
-// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CrmpProfile) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
-}
-
-// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
-func (o *CrmpProfile) HasMaxCertificatePerHolderPolicy() bool {
-	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
-func (o *CrmpProfile) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
-	o.MaxCertificatePerHolderPolicy.Set(&v)
-}
-
-// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
-func (o *CrmpProfile) SetMaxCertificatePerHolderPolicyNil() {
-	o.MaxCertificatePerHolderPolicy.Set(nil)
-}
-
-// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
-func (o *CrmpProfile) UnsetMaxCertificatePerHolderPolicy() {
-	o.MaxCertificatePerHolderPolicy.Unset()
-}
-
-// GetAuthorizationLevels returns the AuthorizationLevels field value
-func (o *CrmpProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
-	if o == nil {
-		var ret CertificateProfileAuthorizationLevels
-		return ret
-	}
-
-	return o.AuthorizationLevels
-}
-
-// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
-// and a boolean to check if the value has been set.
-func (o *CrmpProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthorizationLevels, true
-}
-
-// SetAuthorizationLevels sets field value
-func (o *CrmpProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
-	o.AuthorizationLevels = v
-}
-
-// GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CrmpProfile) GetTriggers() CertificateProfileTriggers {
-	if o == nil || utils.IsNil(o.Triggers.Get()) {
-		var ret CertificateProfileTriggers
-		return ret
-	}
-	return *o.Triggers.Get()
-}
-
-// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CrmpProfile) GetTriggersOk() (*CertificateProfileTriggers, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Triggers.Get(), o.Triggers.IsSet()
-}
-
-// HasTriggers returns a boolean if a field has been set.
-func (o *CrmpProfile) HasTriggers() bool {
-	if o != nil && o.Triggers.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTriggers gets a reference to the given NullableCertificateProfileTriggers and assigns it to the Triggers field.
-func (o *CrmpProfile) SetTriggers(v CertificateProfileTriggers) {
-	o.Triggers.Set(&v)
-}
-
-// SetTriggersNil sets the value for Triggers to be an explicit nil
-func (o *CrmpProfile) SetTriggersNil() {
-	o.Triggers.Set(nil)
-}
-
-// UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
-func (o *CrmpProfile) UnsetTriggers() {
-	o.Triggers.Unset()
 }
 
 // GetRequestsPolicy returns the RequestsPolicy field value
@@ -349,54 +549,6 @@ func (o *CrmpProfile) SetRequestsPolicy(v RequestsPolicy) {
 	o.RequestsPolicy = v
 }
 
-// GetEnabled returns the Enabled field value
-func (o *CrmpProfile) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *CrmpProfile) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *CrmpProfile) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetCryptoPolicy returns the CryptoPolicy field value
-func (o *CrmpProfile) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
-	if o == nil {
-		var ret ManagedCertificateProfileCryptoPolicy
-		return ret
-	}
-
-	return o.CryptoPolicy
-}
-
-// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
-// and a boolean to check if the value has been set.
-func (o *CrmpProfile) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CryptoPolicy, true
-}
-
-// SetCryptoPolicy sets field value
-func (o *CrmpProfile) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
-	o.CryptoPolicy = v
-}
-
 // GetSelfPermissions returns the SelfPermissions field value
 func (o *CrmpProfile) GetSelfPermissions() CertificateProfileSelfPermissions {
 	if o == nil {
@@ -419,201 +571,6 @@ func (o *CrmpProfile) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions
 // SetSelfPermissions sets field value
 func (o *CrmpProfile) SetSelfPermissions(v CertificateProfileSelfPermissions) {
 	o.SelfPermissions = v
-}
-
-// GetDataFieldIdentifier returns the DataFieldIdentifier field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CrmpProfile) GetDataFieldIdentifier() string {
-	if o == nil || utils.IsNil(o.DataFieldIdentifier.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.DataFieldIdentifier.Get()
-}
-
-// GetDataFieldIdentifierOk returns a tuple with the DataFieldIdentifier field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CrmpProfile) GetDataFieldIdentifierOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DataFieldIdentifier.Get(), o.DataFieldIdentifier.IsSet()
-}
-
-// HasDataFieldIdentifier returns a boolean if a field has been set.
-func (o *CrmpProfile) HasDataFieldIdentifier() bool {
-	if o != nil && o.DataFieldIdentifier.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDataFieldIdentifier gets a reference to the given NullableString and assigns it to the DataFieldIdentifier field.
-func (o *CrmpProfile) SetDataFieldIdentifier(v string) {
-	o.DataFieldIdentifier.Set(&v)
-}
-
-// SetDataFieldIdentifierNil sets the value for DataFieldIdentifier to be an explicit nil
-func (o *CrmpProfile) SetDataFieldIdentifierNil() {
-	o.DataFieldIdentifier.Set(nil)
-}
-
-// UnsetDataFieldIdentifier ensures that no value is present for DataFieldIdentifier, not even an explicit nil
-func (o *CrmpProfile) UnsetDataFieldIdentifier() {
-	o.DataFieldIdentifier.Unset()
-}
-
-// GetConstraints returns the Constraints field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CrmpProfile) GetConstraints() CertificateRequestConstraints {
-	if o == nil || utils.IsNil(o.Constraints.Get()) {
-		var ret CertificateRequestConstraints
-		return ret
-	}
-	return *o.Constraints.Get()
-}
-
-// GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CrmpProfile) GetConstraintsOk() (*CertificateRequestConstraints, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Constraints.Get(), o.Constraints.IsSet()
-}
-
-// HasConstraints returns a boolean if a field has been set.
-func (o *CrmpProfile) HasConstraints() bool {
-	if o != nil && o.Constraints.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetConstraints gets a reference to the given NullableCertificateRequestConstraints and assigns it to the Constraints field.
-func (o *CrmpProfile) SetConstraints(v CertificateRequestConstraints) {
-	o.Constraints.Set(&v)
-}
-
-// SetConstraintsNil sets the value for Constraints to be an explicit nil
-func (o *CrmpProfile) SetConstraintsNil() {
-	o.Constraints.Set(nil)
-}
-
-// UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
-func (o *CrmpProfile) UnsetConstraints() {
-	o.Constraints.Unset()
-}
-
-// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CrmpProfile) GetCertificateTemplate() CertificateTemplate {
-	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
-		var ret CertificateTemplate
-		return ret
-	}
-	return *o.CertificateTemplate.Get()
-}
-
-// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CrmpProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
-}
-
-// HasCertificateTemplate returns a boolean if a field has been set.
-func (o *CrmpProfile) HasCertificateTemplate() bool {
-	if o != nil && o.CertificateTemplate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
-func (o *CrmpProfile) SetCertificateTemplate(v CertificateTemplate) {
-	o.CertificateTemplate.Set(&v)
-}
-
-// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-func (o *CrmpProfile) SetCertificateTemplateNil() {
-	o.CertificateTemplate.Set(nil)
-}
-
-// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
-func (o *CrmpProfile) UnsetCertificateTemplate() {
-	o.CertificateTemplate.Unset()
-}
-
-// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CrmpProfile) GetGradingPolicies() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.GradingPolicies
-}
-
-// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CrmpProfile) GetGradingPoliciesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.GradingPolicies) {
-		return nil, false
-	}
-	return o.GradingPolicies, true
-}
-
-// HasGradingPolicies returns a boolean if a field has been set.
-func (o *CrmpProfile) HasGradingPolicies() bool {
-	if o != nil && !utils.IsNil(o.GradingPolicies) {
-		return true
-	}
-
-	return false
-}
-
-// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
-func (o *CrmpProfile) SetGradingPolicies(v []string) {
-	o.GradingPolicies = v
-}
-
-// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CrmpProfile) GetDsFlow() []DataSourceFlowEntry {
-	if o == nil {
-		var ret []DataSourceFlowEntry
-		return ret
-	}
-	return o.DsFlow
-}
-
-// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CrmpProfile) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
-	if o == nil || utils.IsNil(o.DsFlow) {
-		return nil, false
-	}
-	return o.DsFlow, true
-}
-
-// HasDsFlow returns a boolean if a field has been set.
-func (o *CrmpProfile) HasDsFlow() bool {
-	if o != nil && !utils.IsNil(o.DsFlow) {
-		return true
-	}
-
-	return false
-}
-
-// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
-func (o *CrmpProfile) SetDsFlow(v []DataSourceFlowEntry) {
-	o.DsFlow = v
 }
 
 // GetThirdPartyDiscoverySync returns the ThirdPartyDiscoverySync field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -659,6 +616,49 @@ func (o *CrmpProfile) UnsetThirdPartyDiscoverySync() {
 	o.ThirdPartyDiscoverySync.Unset()
 }
 
+// GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CrmpProfile) GetTriggers() CertificateProfileTriggers {
+	if o == nil || utils.IsNil(o.Triggers.Get()) {
+		var ret CertificateProfileTriggers
+		return ret
+	}
+	return *o.Triggers.Get()
+}
+
+// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CrmpProfile) GetTriggersOk() (*CertificateProfileTriggers, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Triggers.Get(), o.Triggers.IsSet()
+}
+
+// HasTriggers returns a boolean if a field has been set.
+func (o *CrmpProfile) HasTriggers() bool {
+	if o != nil && o.Triggers.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggers gets a reference to the given NullableCertificateProfileTriggers and assigns it to the Triggers field.
+func (o *CrmpProfile) SetTriggers(v CertificateProfileTriggers) {
+	o.Triggers.Set(&v)
+}
+
+// SetTriggersNil sets the value for Triggers to be an explicit nil
+func (o *CrmpProfile) SetTriggersNil() {
+	o.Triggers.Set(nil)
+}
+
+// UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
+func (o *CrmpProfile) UnsetTriggers() {
+	o.Triggers.Unset()
+}
+
 func (o CrmpProfile) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -669,43 +669,43 @@ func (o CrmpProfile) MarshalJSON() ([]byte, error) {
 
 func (o CrmpProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
-	toSerialize["name"] = o.Name
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	toSerialize["pkiConnector"] = o.PkiConnector
-	if o.MaxCertificatePerHolderPolicy.IsSet() {
-		toSerialize["maxCertificatePerHolderPolicy"] = o.MaxCertificatePerHolderPolicy.Get()
-	}
 	toSerialize["authorizationLevels"] = o.AuthorizationLevels
-	if o.Triggers.IsSet() {
-		toSerialize["triggers"] = o.Triggers.Get()
-	}
-	toSerialize["requestsPolicy"] = o.RequestsPolicy
-	toSerialize["enabled"] = o.Enabled
-	toSerialize["cryptoPolicy"] = o.CryptoPolicy
-	toSerialize["selfPermissions"] = o.SelfPermissions
-	if o.DataFieldIdentifier.IsSet() {
-		toSerialize["dataFieldIdentifier"] = o.DataFieldIdentifier.Get()
+	if o.CertificateTemplate.IsSet() {
+		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
 	}
 	if o.Constraints.IsSet() {
 		toSerialize["constraints"] = o.Constraints.Get()
 	}
-	if o.CertificateTemplate.IsSet() {
-		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
+	toSerialize["cryptoPolicy"] = o.CryptoPolicy
+	if o.DataFieldIdentifier.IsSet() {
+		toSerialize["dataFieldIdentifier"] = o.DataFieldIdentifier.Get()
 	}
-	if o.GradingPolicies != nil {
-		toSerialize["gradingPolicies"] = o.GradingPolicies
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
 	}
 	if o.DsFlow != nil {
 		toSerialize["dsFlow"] = o.DsFlow
 	}
+	toSerialize["enabled"] = o.Enabled
+	if o.GradingPolicies != nil {
+		toSerialize["gradingPolicies"] = o.GradingPolicies
+	}
+	if o.MaxCertificatePerHolderPolicy.IsSet() {
+		toSerialize["maxCertificatePerHolderPolicy"] = o.MaxCertificatePerHolderPolicy.Get()
+	}
+	toSerialize["module"] = o.Module
+	toSerialize["name"] = o.Name
+	toSerialize["pkiConnector"] = o.PkiConnector
+	toSerialize["requestsPolicy"] = o.RequestsPolicy
+	toSerialize["selfPermissions"] = o.SelfPermissions
 	if o.ThirdPartyDiscoverySync.IsSet() {
 		toSerialize["thirdPartyDiscoverySync"] = o.ThirdPartyDiscoverySync.Get()
+	}
+	if o.Triggers.IsSet() {
+		toSerialize["triggers"] = o.Triggers.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -720,13 +720,13 @@ func (o *CrmpProfile) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"authorizationLevels",
+		"cryptoPolicy",
+		"enabled",
 		"module",
 		"name",
 		"pkiConnector",
-		"authorizationLevels",
 		"requestsPolicy",
-		"enabled",
-		"cryptoPolicy",
 		"selfPermissions",
 	}
 
@@ -757,24 +757,24 @@ func (o *CrmpProfile) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorizationLevels")
+		delete(additionalProperties, "certificateTemplate")
+		delete(additionalProperties, "constraints")
+		delete(additionalProperties, "cryptoPolicy")
+		delete(additionalProperties, "dataFieldIdentifier")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "dsFlow")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "gradingPolicies")
+		delete(additionalProperties, "maxCertificatePerHolderPolicy")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "pkiConnector")
-		delete(additionalProperties, "maxCertificatePerHolderPolicy")
-		delete(additionalProperties, "authorizationLevels")
-		delete(additionalProperties, "triggers")
 		delete(additionalProperties, "requestsPolicy")
-		delete(additionalProperties, "enabled")
-		delete(additionalProperties, "cryptoPolicy")
 		delete(additionalProperties, "selfPermissions")
-		delete(additionalProperties, "dataFieldIdentifier")
-		delete(additionalProperties, "constraints")
-		delete(additionalProperties, "certificateTemplate")
-		delete(additionalProperties, "gradingPolicies")
-		delete(additionalProperties, "dsFlow")
 		delete(additionalProperties, "thirdPartyDiscoverySync")
+		delete(additionalProperties, "triggers")
 		o.AdditionalProperties = additionalProperties
 	}
 

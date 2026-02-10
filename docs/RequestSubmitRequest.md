@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Profile** | **interface{}** | The SCEP profile name | 
 **Password** | Pointer to [**SecretString**](SecretString.md) | The password of the challenge. Must be set if password mode is &#x60;manual&#x60; | [optional] 
+**Profile** | **interface{}** | The SCEP profile name | 
 **RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
-**Module** | **string** | The module that will be used to process this request. For a SCEP request, this is always &#x60;scep&#x60; | 
-**Workflow** | **string** | What this request will do. For an enrollment request, this is always &#x60;enroll&#x60; | 
-**Template** | [**ScepEnrollRequestTemplate**](ScepEnrollRequestTemplate.md) | The user-data that will be used to generate the challenge | 
 **DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
+**Module** | **string** | The module that will be used to process this request. For a SCEP request, this is always &#x60;scep&#x60; | 
+**Template** | [**ScepEnrollRequestTemplate**](ScepEnrollRequestTemplate.md) | The user-data that will be used to generate the challenge | 
+**Workflow** | **string** | What this request will do. For an enrollment request, this is always &#x60;enroll&#x60; | 
 **CertificateId** | Pointer to **NullableString** | The id of the certificate to import | [optional] 
 **CertificatePem** | Pointer to **NullableString** | The PEM encoded certificate to import | [optional] 
 **Dn** | Pointer to **interface{}** | Fill the DN if DN whitelist is enabled. Contains the DN of the challenge | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewRequestSubmitRequest
 
-`func NewRequestSubmitRequest(profile interface{}, module string, workflow string, template ScepEnrollRequestTemplate, ) *RequestSubmitRequest`
+`func NewRequestSubmitRequest(profile interface{}, module string, template ScepEnrollRequestTemplate, workflow string, ) *RequestSubmitRequest`
 
 NewRequestSubmitRequest instantiates a new RequestSubmitRequest object
 This constructor will assign default values to properties that have it defined,
@@ -33,6 +33,31 @@ will change when the set of required properties is changed
 NewRequestSubmitRequestWithDefaults instantiates a new RequestSubmitRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetPassword
+
+`func (o *RequestSubmitRequest) GetPassword() SecretString`
+
+GetPassword returns the Password field if non-nil, zero value otherwise.
+
+### GetPasswordOk
+
+`func (o *RequestSubmitRequest) GetPasswordOk() (*SecretString, bool)`
+
+GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPassword
+
+`func (o *RequestSubmitRequest) SetPassword(v SecretString)`
+
+SetPassword sets Password field to given value.
+
+### HasPassword
+
+`func (o *RequestSubmitRequest) HasPassword() bool`
+
+HasPassword returns a boolean if a field has been set.
 
 ### GetProfile
 
@@ -64,31 +89,6 @@ SetProfile sets Profile field to given value.
 `func (o *RequestSubmitRequest) UnsetProfile()`
 
 UnsetProfile ensures that no value is present for Profile, not even an explicit nil
-### GetPassword
-
-`func (o *RequestSubmitRequest) GetPassword() SecretString`
-
-GetPassword returns the Password field if non-nil, zero value otherwise.
-
-### GetPasswordOk
-
-`func (o *RequestSubmitRequest) GetPasswordOk() (*SecretString, bool)`
-
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPassword
-
-`func (o *RequestSubmitRequest) SetPassword(v SecretString)`
-
-SetPassword sets Password field to given value.
-
-### HasPassword
-
-`func (o *RequestSubmitRequest) HasPassword() bool`
-
-HasPassword returns a boolean if a field has been set.
-
 ### GetRequesterComment
 
 `func (o *RequestSubmitRequest) GetRequesterComment() string`
@@ -124,66 +124,6 @@ HasRequesterComment returns a boolean if a field has been set.
 `func (o *RequestSubmitRequest) UnsetRequesterComment()`
 
 UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
-### GetModule
-
-`func (o *RequestSubmitRequest) GetModule() string`
-
-GetModule returns the Module field if non-nil, zero value otherwise.
-
-### GetModuleOk
-
-`func (o *RequestSubmitRequest) GetModuleOk() (*string, bool)`
-
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModule
-
-`func (o *RequestSubmitRequest) SetModule(v string)`
-
-SetModule sets Module field to given value.
-
-
-### GetWorkflow
-
-`func (o *RequestSubmitRequest) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *RequestSubmitRequest) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *RequestSubmitRequest) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-
-### GetTemplate
-
-`func (o *RequestSubmitRequest) GetTemplate() ScepEnrollRequestTemplate`
-
-GetTemplate returns the Template field if non-nil, zero value otherwise.
-
-### GetTemplateOk
-
-`func (o *RequestSubmitRequest) GetTemplateOk() (*ScepEnrollRequestTemplate, bool)`
-
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplate
-
-`func (o *RequestSubmitRequest) SetTemplate(v ScepEnrollRequestTemplate)`
-
-SetTemplate sets Template field to given value.
-
-
 ### GetDryRun
 
 `func (o *RequestSubmitRequest) GetDryRun() bool`
@@ -219,6 +159,66 @@ HasDryRun returns a boolean if a field has been set.
 `func (o *RequestSubmitRequest) UnsetDryRun()`
 
 UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
+### GetModule
+
+`func (o *RequestSubmitRequest) GetModule() string`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *RequestSubmitRequest) GetModuleOk() (*string, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *RequestSubmitRequest) SetModule(v string)`
+
+SetModule sets Module field to given value.
+
+
+### GetTemplate
+
+`func (o *RequestSubmitRequest) GetTemplate() ScepEnrollRequestTemplate`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *RequestSubmitRequest) GetTemplateOk() (*ScepEnrollRequestTemplate, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *RequestSubmitRequest) SetTemplate(v ScepEnrollRequestTemplate)`
+
+SetTemplate sets Template field to given value.
+
+
+### GetWorkflow
+
+`func (o *RequestSubmitRequest) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *RequestSubmitRequest) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *RequestSubmitRequest) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
 ### GetCertificateId
 
 `func (o *RequestSubmitRequest) GetCertificateId() string`

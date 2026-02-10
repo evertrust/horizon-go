@@ -21,11 +21,11 @@ var _ utils.MappedNullable = &WebRAMigrateRequestTemplate{}
 
 // WebRAMigrateRequestTemplate struct for WebRAMigrateRequestTemplate
 type WebRAMigrateRequestTemplate struct {
+	ContactEmail         NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
 	Labels               []RequestLabelElement                  `json:"labels,omitempty"`
+	Metadata             []CertificateMetadataElement           `json:"metadata,omitempty"`
 	Owner                NullableCertificateOwnerElement        `json:"owner,omitempty"`
 	Team                 NullableCertificateTeamElement         `json:"team,omitempty"`
-	Metadata             []CertificateMetadataElement           `json:"metadata,omitempty"`
-	ContactEmail         NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,6 +46,49 @@ func NewWebRAMigrateRequestTemplate() *WebRAMigrateRequestTemplate {
 func NewWebRAMigrateRequestTemplateWithDefaults() *WebRAMigrateRequestTemplate {
 	this := WebRAMigrateRequestTemplate{}
 	return &this
+}
+
+// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAMigrateRequestTemplate) GetContactEmail() CertificateContactEmailElement {
+	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
+		var ret CertificateContactEmailElement
+		return ret
+	}
+	return *o.ContactEmail.Get()
+}
+
+// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAMigrateRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
+}
+
+// HasContactEmail returns a boolean if a field has been set.
+func (o *WebRAMigrateRequestTemplate) HasContactEmail() bool {
+	if o != nil && o.ContactEmail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
+func (o *WebRAMigrateRequestTemplate) SetContactEmail(v CertificateContactEmailElement) {
+	o.ContactEmail.Set(&v)
+}
+
+// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+func (o *WebRAMigrateRequestTemplate) SetContactEmailNil() {
+	o.ContactEmail.Set(nil)
+}
+
+// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
+func (o *WebRAMigrateRequestTemplate) UnsetContactEmail() {
+	o.ContactEmail.Unset()
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -79,6 +122,39 @@ func (o *WebRAMigrateRequestTemplate) HasLabels() bool {
 // SetLabels gets a reference to the given []RequestLabelElement and assigns it to the Labels field.
 func (o *WebRAMigrateRequestTemplate) SetLabels(v []RequestLabelElement) {
 	o.Labels = v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAMigrateRequestTemplate) GetMetadata() []CertificateMetadataElement {
+	if o == nil {
+		var ret []CertificateMetadataElement
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAMigrateRequestTemplate) GetMetadataOk() ([]CertificateMetadataElement, bool) {
+	if o == nil || utils.IsNil(o.Metadata) {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *WebRAMigrateRequestTemplate) HasMetadata() bool {
+	if o != nil && !utils.IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given []CertificateMetadataElement and assigns it to the Metadata field.
+func (o *WebRAMigrateRequestTemplate) SetMetadata(v []CertificateMetadataElement) {
+	o.Metadata = v
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -167,82 +243,6 @@ func (o *WebRAMigrateRequestTemplate) UnsetTeam() {
 	o.Team.Unset()
 }
 
-// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAMigrateRequestTemplate) GetMetadata() []CertificateMetadataElement {
-	if o == nil {
-		var ret []CertificateMetadataElement
-		return ret
-	}
-	return o.Metadata
-}
-
-// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAMigrateRequestTemplate) GetMetadataOk() ([]CertificateMetadataElement, bool) {
-	if o == nil || utils.IsNil(o.Metadata) {
-		return nil, false
-	}
-	return o.Metadata, true
-}
-
-// HasMetadata returns a boolean if a field has been set.
-func (o *WebRAMigrateRequestTemplate) HasMetadata() bool {
-	if o != nil && !utils.IsNil(o.Metadata) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetadata gets a reference to the given []CertificateMetadataElement and assigns it to the Metadata field.
-func (o *WebRAMigrateRequestTemplate) SetMetadata(v []CertificateMetadataElement) {
-	o.Metadata = v
-}
-
-// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAMigrateRequestTemplate) GetContactEmail() CertificateContactEmailElement {
-	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
-		var ret CertificateContactEmailElement
-		return ret
-	}
-	return *o.ContactEmail.Get()
-}
-
-// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAMigrateRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
-}
-
-// HasContactEmail returns a boolean if a field has been set.
-func (o *WebRAMigrateRequestTemplate) HasContactEmail() bool {
-	if o != nil && o.ContactEmail.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
-func (o *WebRAMigrateRequestTemplate) SetContactEmail(v CertificateContactEmailElement) {
-	o.ContactEmail.Set(&v)
-}
-
-// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
-func (o *WebRAMigrateRequestTemplate) SetContactEmailNil() {
-	o.ContactEmail.Set(nil)
-}
-
-// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
-func (o *WebRAMigrateRequestTemplate) UnsetContactEmail() {
-	o.ContactEmail.Unset()
-}
-
 func (o WebRAMigrateRequestTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -253,20 +253,20 @@ func (o WebRAMigrateRequestTemplate) MarshalJSON() ([]byte, error) {
 
 func (o WebRAMigrateRequestTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.ContactEmail.IsSet() {
+		toSerialize["contactEmail"] = o.ContactEmail.Get()
+	}
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
+	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if o.Owner.IsSet() {
 		toSerialize["owner"] = o.Owner.Get()
 	}
 	if o.Team.IsSet() {
 		toSerialize["team"] = o.Team.Get()
-	}
-	if o.Metadata != nil {
-		toSerialize["metadata"] = o.Metadata
-	}
-	if o.ContactEmail.IsSet() {
-		toSerialize["contactEmail"] = o.ContactEmail.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -290,11 +290,11 @@ func (o *WebRAMigrateRequestTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "contactEmail")
 		delete(additionalProperties, "labels")
+		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "owner")
 		delete(additionalProperties, "team")
-		delete(additionalProperties, "metadata")
-		delete(additionalProperties, "contactEmail")
 		o.AdditionalProperties = additionalProperties
 	}
 

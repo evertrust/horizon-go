@@ -24,19 +24,19 @@ var _ utils.MappedNullable = &ADCSConnectorResponse{}
 type ADCSConnectorResponse struct {
 	// Object internal ID
 	Id       string `json:"_id"`
-	Name     string `json:"name"`
-	Type     string `json:"type"`
 	EndPoint string `json:"endPoint"`
-	Profile  string `json:"profile"`
-	// Name of the `password` [credentials](#tag/security.credentials) to use for technical account on the PKI
-	LoginCredentials string `json:"loginCredentials"`
 	// Name of the `certificate` [credentials](#tag/security.credentials) to use to enroll on the PKI
-	EnrollmentCredentials string                     `json:"enrollmentCredentials"`
-	Timeout               utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Proxy                 utils.NullableString       `json:"proxy,omitempty"`
-	Queue                 utils.NullableString       `json:"queue,omitempty"`
-	Status                NullablePKIConnectorStatus `json:"status,omitempty"`
-	AdditionalProperties  map[string]interface{}
+	EnrollmentCredentials string `json:"enrollmentCredentials"`
+	// Name of the `password` [credentials](#tag/security.credentials) to use for technical account on the PKI
+	LoginCredentials     string                     `json:"loginCredentials"`
+	Name                 string                     `json:"name"`
+	Profile              string                     `json:"profile"`
+	Proxy                utils.NullableString       `json:"proxy,omitempty"`
+	Queue                utils.NullableString       `json:"queue,omitempty"`
+	Status               NullablePKIConnectorStatus `json:"status,omitempty"`
+	Timeout              utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string                     `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ADCSConnectorResponse ADCSConnectorResponse
@@ -45,15 +45,15 @@ type _ADCSConnectorResponse ADCSConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewADCSConnectorResponse(id string, name string, type_ string, endPoint string, profile string, loginCredentials string, enrollmentCredentials string) *ADCSConnectorResponse {
+func NewADCSConnectorResponse(id string, endPoint string, enrollmentCredentials string, loginCredentials string, name string, profile string, type_ string) *ADCSConnectorResponse {
 	this := ADCSConnectorResponse{}
 	this.Id = id
-	this.Name = name
-	this.Type = type_
 	this.EndPoint = endPoint
-	this.Profile = profile
-	this.LoginCredentials = loginCredentials
 	this.EnrollmentCredentials = enrollmentCredentials
+	this.LoginCredentials = loginCredentials
+	this.Name = name
+	this.Profile = profile
+	this.Type = type_
 	return &this
 }
 
@@ -89,54 +89,6 @@ func (o *ADCSConnectorResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetName returns the Name field value
-func (o *ADCSConnectorResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ADCSConnectorResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *ADCSConnectorResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetType returns the Type field value
-func (o *ADCSConnectorResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *ADCSConnectorResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *ADCSConnectorResponse) SetType(v string) {
-	o.Type = v
-}
-
 // GetEndPoint returns the EndPoint field value
 func (o *ADCSConnectorResponse) GetEndPoint() string {
 	if o == nil {
@@ -159,54 +111,6 @@ func (o *ADCSConnectorResponse) GetEndPointOk() (*string, bool) {
 // SetEndPoint sets field value
 func (o *ADCSConnectorResponse) SetEndPoint(v string) {
 	o.EndPoint = v
-}
-
-// GetProfile returns the Profile field value
-func (o *ADCSConnectorResponse) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *ADCSConnectorResponse) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *ADCSConnectorResponse) SetProfile(v string) {
-	o.Profile = v
-}
-
-// GetLoginCredentials returns the LoginCredentials field value
-func (o *ADCSConnectorResponse) GetLoginCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LoginCredentials
-}
-
-// GetLoginCredentialsOk returns a tuple with the LoginCredentials field value
-// and a boolean to check if the value has been set.
-func (o *ADCSConnectorResponse) GetLoginCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LoginCredentials, true
-}
-
-// SetLoginCredentials sets field value
-func (o *ADCSConnectorResponse) SetLoginCredentials(v string) {
-	o.LoginCredentials = v
 }
 
 // GetEnrollmentCredentials returns the EnrollmentCredentials field value
@@ -233,47 +137,76 @@ func (o *ADCSConnectorResponse) SetEnrollmentCredentials(v string) {
 	o.EnrollmentCredentials = v
 }
 
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ADCSConnectorResponse) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
+// GetLoginCredentials returns the LoginCredentials field value
+func (o *ADCSConnectorResponse) GetLoginCredentials() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Timeout.Get()
+
+	return o.LoginCredentials
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// GetLoginCredentialsOk returns a tuple with the LoginCredentials field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ADCSConnectorResponse) GetTimeoutOk() (*string, bool) {
+func (o *ADCSConnectorResponse) GetLoginCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
+	return &o.LoginCredentials, true
 }
 
-// HasTimeout returns a boolean if a field has been set.
-func (o *ADCSConnectorResponse) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
+// SetLoginCredentials sets field value
+func (o *ADCSConnectorResponse) SetLoginCredentials(v string) {
+	o.LoginCredentials = v
+}
+
+// GetName returns the Name field value
+func (o *ADCSConnectorResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Name
 }
 
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *ADCSConnectorResponse) SetTimeout(v string) {
-	o.Timeout.Set(&v)
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ADCSConnectorResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *ADCSConnectorResponse) SetTimeoutNil() {
-	o.Timeout.Set(nil)
+// SetName sets field value
+func (o *ADCSConnectorResponse) SetName(v string) {
+	o.Name = v
 }
 
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *ADCSConnectorResponse) UnsetTimeout() {
-	o.Timeout.Unset()
+// GetProfile returns the Profile field value
+func (o *ADCSConnectorResponse) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *ADCSConnectorResponse) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *ADCSConnectorResponse) SetProfile(v string) {
+	o.Profile = v
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -405,6 +338,73 @@ func (o *ADCSConnectorResponse) UnsetStatus() {
 	o.Status.Unset()
 }
 
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ADCSConnectorResponse) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ADCSConnectorResponse) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *ADCSConnectorResponse) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *ADCSConnectorResponse) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *ADCSConnectorResponse) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *ADCSConnectorResponse) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetType returns the Type field value
+func (o *ADCSConnectorResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ADCSConnectorResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *ADCSConnectorResponse) SetType(v string) {
+	o.Type = v
+}
+
 func (o ADCSConnectorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -416,15 +416,11 @@ func (o ADCSConnectorResponse) MarshalJSON() ([]byte, error) {
 func (o ADCSConnectorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
 	toSerialize["endPoint"] = o.EndPoint
-	toSerialize["profile"] = o.Profile
-	toSerialize["loginCredentials"] = o.LoginCredentials
 	toSerialize["enrollmentCredentials"] = o.EnrollmentCredentials
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
+	toSerialize["loginCredentials"] = o.LoginCredentials
+	toSerialize["name"] = o.Name
+	toSerialize["profile"] = o.Profile
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
@@ -434,6 +430,10 @@ func (o ADCSConnectorResponse) ToMap() (map[string]interface{}, error) {
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
 	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -448,12 +448,12 @@ func (o *ADCSConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"name",
-		"type",
 		"endPoint",
-		"profile",
-		"loginCredentials",
 		"enrollmentCredentials",
+		"loginCredentials",
+		"name",
+		"profile",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -484,16 +484,16 @@ func (o *ADCSConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "endPoint")
-		delete(additionalProperties, "profile")
-		delete(additionalProperties, "loginCredentials")
 		delete(additionalProperties, "enrollmentCredentials")
-		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "loginCredentials")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "profile")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

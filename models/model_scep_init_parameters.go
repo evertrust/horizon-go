@@ -22,16 +22,16 @@ var _ utils.MappedNullable = &ScepInitParameters{}
 
 // ScepInitParameters struct for ScepInitParameters
 type ScepInitParameters struct {
+	// The authorization mode for SCEP.
+	AuthorizationMode *string `json:"authorizationMode,omitempty"`
+	// Indicates whether CSR info is ignored for SCEP.
+	CsrInfoIgnored *bool `json:"csrInfoIgnored,omitempty"`
+	// The key type used for SCEP.
+	KeyType *string `json:"keyType,omitempty"`
 	// The module of the initialization parameters.
 	Module string `json:"module"`
 	// The profile used for SCEP.
-	Profile string `json:"profile"`
-	// The key type used for SCEP.
-	KeyType *string `json:"keyType,omitempty"`
-	// Indicates whether CSR info is ignored for SCEP.
-	CsrInfoIgnored *bool `json:"csrInfoIgnored,omitempty"`
-	// The authorization mode for SCEP.
-	AuthorizationMode    *string `json:"authorizationMode,omitempty"`
+	Profile              string `json:"profile"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -54,6 +54,102 @@ func NewScepInitParameters(module string, profile string) *ScepInitParameters {
 func NewScepInitParametersWithDefaults() *ScepInitParameters {
 	this := ScepInitParameters{}
 	return &this
+}
+
+// GetAuthorizationMode returns the AuthorizationMode field value if set, zero value otherwise.
+func (o *ScepInitParameters) GetAuthorizationMode() string {
+	if o == nil || utils.IsNil(o.AuthorizationMode) {
+		var ret string
+		return ret
+	}
+	return *o.AuthorizationMode
+}
+
+// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScepInitParameters) GetAuthorizationModeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.AuthorizationMode) {
+		return nil, false
+	}
+	return o.AuthorizationMode, true
+}
+
+// HasAuthorizationMode returns a boolean if a field has been set.
+func (o *ScepInitParameters) HasAuthorizationMode() bool {
+	if o != nil && !utils.IsNil(o.AuthorizationMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthorizationMode gets a reference to the given string and assigns it to the AuthorizationMode field.
+func (o *ScepInitParameters) SetAuthorizationMode(v string) {
+	o.AuthorizationMode = &v
+}
+
+// GetCsrInfoIgnored returns the CsrInfoIgnored field value if set, zero value otherwise.
+func (o *ScepInitParameters) GetCsrInfoIgnored() bool {
+	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
+		var ret bool
+		return ret
+	}
+	return *o.CsrInfoIgnored
+}
+
+// GetCsrInfoIgnoredOk returns a tuple with the CsrInfoIgnored field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScepInitParameters) GetCsrInfoIgnoredOk() (*bool, bool) {
+	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
+		return nil, false
+	}
+	return o.CsrInfoIgnored, true
+}
+
+// HasCsrInfoIgnored returns a boolean if a field has been set.
+func (o *ScepInitParameters) HasCsrInfoIgnored() bool {
+	if o != nil && !utils.IsNil(o.CsrInfoIgnored) {
+		return true
+	}
+
+	return false
+}
+
+// SetCsrInfoIgnored gets a reference to the given bool and assigns it to the CsrInfoIgnored field.
+func (o *ScepInitParameters) SetCsrInfoIgnored(v bool) {
+	o.CsrInfoIgnored = &v
+}
+
+// GetKeyType returns the KeyType field value if set, zero value otherwise.
+func (o *ScepInitParameters) GetKeyType() string {
+	if o == nil || utils.IsNil(o.KeyType) {
+		var ret string
+		return ret
+	}
+	return *o.KeyType
+}
+
+// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScepInitParameters) GetKeyTypeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.KeyType) {
+		return nil, false
+	}
+	return o.KeyType, true
+}
+
+// HasKeyType returns a boolean if a field has been set.
+func (o *ScepInitParameters) HasKeyType() bool {
+	if o != nil && !utils.IsNil(o.KeyType) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
+func (o *ScepInitParameters) SetKeyType(v string) {
+	o.KeyType = &v
 }
 
 // GetModule returns the Module field value
@@ -104,102 +200,6 @@ func (o *ScepInitParameters) SetProfile(v string) {
 	o.Profile = v
 }
 
-// GetKeyType returns the KeyType field value if set, zero value otherwise.
-func (o *ScepInitParameters) GetKeyType() string {
-	if o == nil || utils.IsNil(o.KeyType) {
-		var ret string
-		return ret
-	}
-	return *o.KeyType
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ScepInitParameters) GetKeyTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.KeyType) {
-		return nil, false
-	}
-	return o.KeyType, true
-}
-
-// HasKeyType returns a boolean if a field has been set.
-func (o *ScepInitParameters) HasKeyType() bool {
-	if o != nil && !utils.IsNil(o.KeyType) {
-		return true
-	}
-
-	return false
-}
-
-// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
-func (o *ScepInitParameters) SetKeyType(v string) {
-	o.KeyType = &v
-}
-
-// GetCsrInfoIgnored returns the CsrInfoIgnored field value if set, zero value otherwise.
-func (o *ScepInitParameters) GetCsrInfoIgnored() bool {
-	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
-		var ret bool
-		return ret
-	}
-	return *o.CsrInfoIgnored
-}
-
-// GetCsrInfoIgnoredOk returns a tuple with the CsrInfoIgnored field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ScepInitParameters) GetCsrInfoIgnoredOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
-		return nil, false
-	}
-	return o.CsrInfoIgnored, true
-}
-
-// HasCsrInfoIgnored returns a boolean if a field has been set.
-func (o *ScepInitParameters) HasCsrInfoIgnored() bool {
-	if o != nil && !utils.IsNil(o.CsrInfoIgnored) {
-		return true
-	}
-
-	return false
-}
-
-// SetCsrInfoIgnored gets a reference to the given bool and assigns it to the CsrInfoIgnored field.
-func (o *ScepInitParameters) SetCsrInfoIgnored(v bool) {
-	o.CsrInfoIgnored = &v
-}
-
-// GetAuthorizationMode returns the AuthorizationMode field value if set, zero value otherwise.
-func (o *ScepInitParameters) GetAuthorizationMode() string {
-	if o == nil || utils.IsNil(o.AuthorizationMode) {
-		var ret string
-		return ret
-	}
-	return *o.AuthorizationMode
-}
-
-// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ScepInitParameters) GetAuthorizationModeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.AuthorizationMode) {
-		return nil, false
-	}
-	return o.AuthorizationMode, true
-}
-
-// HasAuthorizationMode returns a boolean if a field has been set.
-func (o *ScepInitParameters) HasAuthorizationMode() bool {
-	if o != nil && !utils.IsNil(o.AuthorizationMode) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthorizationMode gets a reference to the given string and assigns it to the AuthorizationMode field.
-func (o *ScepInitParameters) SetAuthorizationMode(v string) {
-	o.AuthorizationMode = &v
-}
-
 func (o ScepInitParameters) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -210,17 +210,17 @@ func (o ScepInitParameters) MarshalJSON() ([]byte, error) {
 
 func (o ScepInitParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
-	toSerialize["profile"] = o.Profile
-	if !utils.IsNil(o.KeyType) {
-		toSerialize["keyType"] = o.KeyType
+	if !utils.IsNil(o.AuthorizationMode) {
+		toSerialize["authorizationMode"] = o.AuthorizationMode
 	}
 	if !utils.IsNil(o.CsrInfoIgnored) {
 		toSerialize["csrInfoIgnored"] = o.CsrInfoIgnored
 	}
-	if !utils.IsNil(o.AuthorizationMode) {
-		toSerialize["authorizationMode"] = o.AuthorizationMode
+	if !utils.IsNil(o.KeyType) {
+		toSerialize["keyType"] = o.KeyType
 	}
+	toSerialize["module"] = o.Module
+	toSerialize["profile"] = o.Profile
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -265,11 +265,11 @@ func (o *ScepInitParameters) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorizationMode")
+		delete(additionalProperties, "csrInfoIgnored")
+		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "profile")
-		delete(additionalProperties, "keyType")
-		delete(additionalProperties, "csrInfoIgnored")
-		delete(additionalProperties, "authorizationMode")
 		o.AdditionalProperties = additionalProperties
 	}
 

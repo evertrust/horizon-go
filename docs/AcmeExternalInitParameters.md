@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Module** | **string** | The module of the initialization parameters. | 
-**Profile** | **string** | The profile used for ACME external. | 
-**KeyType** | Pointer to **string** | The key type used for ACME external. | [optional] 
 **AcmeUrl** | Pointer to **string** | The ACME URL for the external ACME server. | [optional] 
 **AllowedAuthorizationMethod** | Pointer to **[]string** | The allowed authorization methods for ACME external. | [optional] 
+**KeyType** | Pointer to **string** | The key type used for ACME external. | [optional] 
+**Module** | **string** | The module of the initialization parameters. | 
+**Profile** | **string** | The profile used for ACME external. | 
 **RequireEAB** | Pointer to **bool** | Indicates whether EAB is required for ACME external. | [optional] 
 
 ## Methods
@@ -29,71 +29,6 @@ will change when the set of required properties is changed
 NewAcmeExternalInitParametersWithDefaults instantiates a new AcmeExternalInitParameters object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetModule
-
-`func (o *AcmeExternalInitParameters) GetModule() string`
-
-GetModule returns the Module field if non-nil, zero value otherwise.
-
-### GetModuleOk
-
-`func (o *AcmeExternalInitParameters) GetModuleOk() (*string, bool)`
-
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModule
-
-`func (o *AcmeExternalInitParameters) SetModule(v string)`
-
-SetModule sets Module field to given value.
-
-
-### GetProfile
-
-`func (o *AcmeExternalInitParameters) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *AcmeExternalInitParameters) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *AcmeExternalInitParameters) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-
-### GetKeyType
-
-`func (o *AcmeExternalInitParameters) GetKeyType() string`
-
-GetKeyType returns the KeyType field if non-nil, zero value otherwise.
-
-### GetKeyTypeOk
-
-`func (o *AcmeExternalInitParameters) GetKeyTypeOk() (*string, bool)`
-
-GetKeyTypeOk returns a tuple with the KeyType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKeyType
-
-`func (o *AcmeExternalInitParameters) SetKeyType(v string)`
-
-SetKeyType sets KeyType field to given value.
-
-### HasKeyType
-
-`func (o *AcmeExternalInitParameters) HasKeyType() bool`
-
-HasKeyType returns a boolean if a field has been set.
 
 ### GetAcmeUrl
 
@@ -144,6 +79,71 @@ SetAllowedAuthorizationMethod sets AllowedAuthorizationMethod field to given val
 `func (o *AcmeExternalInitParameters) HasAllowedAuthorizationMethod() bool`
 
 HasAllowedAuthorizationMethod returns a boolean if a field has been set.
+
+### GetKeyType
+
+`func (o *AcmeExternalInitParameters) GetKeyType() string`
+
+GetKeyType returns the KeyType field if non-nil, zero value otherwise.
+
+### GetKeyTypeOk
+
+`func (o *AcmeExternalInitParameters) GetKeyTypeOk() (*string, bool)`
+
+GetKeyTypeOk returns a tuple with the KeyType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKeyType
+
+`func (o *AcmeExternalInitParameters) SetKeyType(v string)`
+
+SetKeyType sets KeyType field to given value.
+
+### HasKeyType
+
+`func (o *AcmeExternalInitParameters) HasKeyType() bool`
+
+HasKeyType returns a boolean if a field has been set.
+
+### GetModule
+
+`func (o *AcmeExternalInitParameters) GetModule() string`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *AcmeExternalInitParameters) GetModuleOk() (*string, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *AcmeExternalInitParameters) SetModule(v string)`
+
+SetModule sets Module field to given value.
+
+
+### GetProfile
+
+`func (o *AcmeExternalInitParameters) GetProfile() string`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *AcmeExternalInitParameters) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *AcmeExternalInitParameters) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
+
 
 ### GetRequireEAB
 

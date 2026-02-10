@@ -24,10 +24,10 @@ var _ utils.MappedNullable = &DiscoveryInfo{}
 type DiscoveryInfo struct {
 	// The discovery campaign's name
 	Campaign string `json:"campaign"`
-	// When this certificate was discovered for the last time
-	LastDiscoveryDate int64 `json:"lastDiscoveryDate"`
 	// Identifier of the user that discovered this certificate
-	Identifier           utils.NullableString `json:"identifier,omitempty"`
+	Identifier utils.NullableString `json:"identifier,omitempty"`
+	// When this certificate was discovered for the last time
+	LastDiscoveryDate    int64 `json:"lastDiscoveryDate"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -76,30 +76,6 @@ func (o *DiscoveryInfo) SetCampaign(v string) {
 	o.Campaign = v
 }
 
-// GetLastDiscoveryDate returns the LastDiscoveryDate field value
-func (o *DiscoveryInfo) GetLastDiscoveryDate() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.LastDiscoveryDate
-}
-
-// GetLastDiscoveryDateOk returns a tuple with the LastDiscoveryDate field value
-// and a boolean to check if the value has been set.
-func (o *DiscoveryInfo) GetLastDiscoveryDateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastDiscoveryDate, true
-}
-
-// SetLastDiscoveryDate sets field value
-func (o *DiscoveryInfo) SetLastDiscoveryDate(v int64) {
-	o.LastDiscoveryDate = v
-}
-
 // GetIdentifier returns the Identifier field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DiscoveryInfo) GetIdentifier() string {
 	if o == nil || utils.IsNil(o.Identifier.Get()) {
@@ -143,6 +119,30 @@ func (o *DiscoveryInfo) UnsetIdentifier() {
 	o.Identifier.Unset()
 }
 
+// GetLastDiscoveryDate returns the LastDiscoveryDate field value
+func (o *DiscoveryInfo) GetLastDiscoveryDate() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.LastDiscoveryDate
+}
+
+// GetLastDiscoveryDateOk returns a tuple with the LastDiscoveryDate field value
+// and a boolean to check if the value has been set.
+func (o *DiscoveryInfo) GetLastDiscoveryDateOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastDiscoveryDate, true
+}
+
+// SetLastDiscoveryDate sets field value
+func (o *DiscoveryInfo) SetLastDiscoveryDate(v int64) {
+	o.LastDiscoveryDate = v
+}
+
 func (o DiscoveryInfo) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -154,10 +154,10 @@ func (o DiscoveryInfo) MarshalJSON() ([]byte, error) {
 func (o DiscoveryInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["campaign"] = o.Campaign
-	toSerialize["lastDiscoveryDate"] = o.LastDiscoveryDate
 	if o.Identifier.IsSet() {
 		toSerialize["identifier"] = o.Identifier.Get()
 	}
+	toSerialize["lastDiscoveryDate"] = o.LastDiscoveryDate
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -203,8 +203,8 @@ func (o *DiscoveryInfo) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "campaign")
-		delete(additionalProperties, "lastDiscoveryDate")
 		delete(additionalProperties, "identifier")
+		delete(additionalProperties, "lastDiscoveryDate")
 		o.AdditionalProperties = additionalProperties
 	}
 

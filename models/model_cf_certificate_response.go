@@ -22,53 +22,53 @@ var _ utils.MappedNullable = &CFCertificateResponse{}
 
 // CFCertificateResponse struct for CFCertificateResponse
 type CFCertificateResponse struct {
+	Aias *CFCertificateAias `json:"aias,omitempty"`
+	// The certificate AKI
+	AuthorityKeyIdentifier *string                       `json:"authorityKeyIdentifier,omitempty"`
+	BasicConstraints       CFCertificateBasicConstraints `json:"basicConstraints"`
+	// The thumbprint of the certificate using SHAOne algorithm
+	CertificateSHAOneThumbprint string `json:"certificateSHAOneThumbprint"`
+	// The certificate's thumbprint
+	CertificateThumbprint string `json:"certificateThumbprint"`
+	// The certificate's CRLDP if any
+	Crldps []string `json:"crldps,omitempty"`
 	// The certificate's Distinguished Name
 	Dn         string                `json:"dn"`
 	DnElements []CFDistinguishedName `json:"dnElements"`
-	// The certificate's issuer Distinguished Name
-	IssuerDn string `json:"issuerDn"`
-	// The certificate's serial number
-	Serial *string `json:"serial,omitempty"`
-	// The certificate's start date in milliseconds since the epoch
-	NotBefore int64 `json:"notBefore"`
-	// The certificate's expiration date in milliseconds since the epoch
-	NotAfter int64 `json:"notAfter"`
-	// The certificate's key type
-	KeyType string `json:"keyType" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
-	// The certificate's signing algorithm
-	SigningAlgorithm string `json:"signingAlgorithm"`
-	// The certificate's PEM-encoded content
-	Pem                  string `json:"pem"`
-	SubjectKeyIdentifier string `json:"subjectKeyIdentifier"`
-	// The certificate's thumbprint
-	CertificateThumbprint string `json:"certificateThumbprint"`
-	// The thumbprint of the certificate using SHAOne algorithm
-	CertificateSHAOneThumbprint string `json:"certificateSHAOneThumbprint"`
-	// The certificate's public key thumbprint
-	PublicKeyThumbprint string `json:"publicKeyThumbprint"`
-	// The certificate key's usage
-	KeyUsages []string `json:"keyUsages"`
-	// If the key usage of the certificate are critical
-	IsKeyUsagesCritical bool `json:"isKeyUsagesCritical"`
 	// The certificate extended key's usage
 	ExtendedKeyUsages []string `json:"extendedKeyUsages"`
-	// If the extended key usage are critical
-	IsExtendedKeyUsagesCritical bool `json:"isExtendedKeyUsagesCritical"`
-	// Whether the certificate is self-signed
-	SelfSigned bool `json:"selfSigned"`
-	// The certificate's SAN
-	Sans             []SubjectAlternateName        `json:"sans,omitempty"`
-	BasicConstraints CFCertificateBasicConstraints `json:"basicConstraints"`
 	// The certificate's extensions
 	Extensions []CertificateExtension `json:"extensions,omitempty"`
-	// The certificate's CRLDP if any
-	Crldps   []string                     `json:"crldps,omitempty"`
-	Aias     *CFCertificateAias           `json:"aias,omitempty"`
+	// If the extended key usage are critical
+	IsExtendedKeyUsagesCritical bool `json:"isExtendedKeyUsagesCritical"`
+	// If the key usage of the certificate are critical
+	IsKeyUsagesCritical bool `json:"isKeyUsagesCritical"`
+	// The certificate's issuer Distinguished Name
+	IssuerDn string `json:"issuerDn"`
+	// The certificate's key type
+	KeyType string `json:"keyType" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
+	// The certificate key's usage
+	KeyUsages []string `json:"keyUsages"`
+	// The certificate's expiration date in milliseconds since the epoch
+	NotAfter int64 `json:"notAfter"`
+	// The certificate's start date in milliseconds since the epoch
+	NotBefore int64 `json:"notBefore"`
+	// The certificate's PEM-encoded content
+	Pem      string                       `json:"pem"`
 	Policies []CFCertificatePoliciesInner `json:"policies,omitempty"`
-	// The certificate AKI
-	AuthorityKeyIdentifier *string                                   `json:"authorityKeyIdentifier,omitempty"`
-	UnsupportedExtensions  []CFCertificateUnsupportedExtensionsInner `json:"unsupportedExtensions,omitempty"`
-	AdditionalProperties   map[string]interface{}
+	// The certificate's public key thumbprint
+	PublicKeyThumbprint string `json:"publicKeyThumbprint"`
+	// The certificate's SAN
+	Sans []SubjectAlternateName `json:"sans,omitempty"`
+	// Whether the certificate is self-signed
+	SelfSigned bool `json:"selfSigned"`
+	// The certificate's serial number
+	Serial *string `json:"serial,omitempty"`
+	// The certificate's signing algorithm
+	SigningAlgorithm      string                                    `json:"signingAlgorithm"`
+	SubjectKeyIdentifier  string                                    `json:"subjectKeyIdentifier"`
+	UnsupportedExtensions []CFCertificateUnsupportedExtensionsInner `json:"unsupportedExtensions,omitempty"`
+	AdditionalProperties  map[string]interface{}
 }
 
 type _CFCertificateResponse CFCertificateResponse
@@ -77,26 +77,26 @@ type _CFCertificateResponse CFCertificateResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCFCertificateResponse(dn string, dnElements []CFDistinguishedName, issuerDn string, notBefore int64, notAfter int64, keyType string, signingAlgorithm string, pem string, subjectKeyIdentifier string, certificateThumbprint string, certificateSHAOneThumbprint string, publicKeyThumbprint string, keyUsages []string, isKeyUsagesCritical bool, extendedKeyUsages []string, isExtendedKeyUsagesCritical bool, selfSigned bool, basicConstraints CFCertificateBasicConstraints) *CFCertificateResponse {
+func NewCFCertificateResponse(basicConstraints CFCertificateBasicConstraints, certificateSHAOneThumbprint string, certificateThumbprint string, dn string, dnElements []CFDistinguishedName, extendedKeyUsages []string, isExtendedKeyUsagesCritical bool, isKeyUsagesCritical bool, issuerDn string, keyType string, keyUsages []string, notAfter int64, notBefore int64, pem string, publicKeyThumbprint string, selfSigned bool, signingAlgorithm string, subjectKeyIdentifier string) *CFCertificateResponse {
 	this := CFCertificateResponse{}
+	this.BasicConstraints = basicConstraints
+	this.CertificateSHAOneThumbprint = certificateSHAOneThumbprint
+	this.CertificateThumbprint = certificateThumbprint
 	this.Dn = dn
 	this.DnElements = dnElements
-	this.IssuerDn = issuerDn
-	this.NotBefore = notBefore
-	this.NotAfter = notAfter
-	this.KeyType = keyType
-	this.SigningAlgorithm = signingAlgorithm
-	this.Pem = pem
-	this.SubjectKeyIdentifier = subjectKeyIdentifier
-	this.CertificateThumbprint = certificateThumbprint
-	this.CertificateSHAOneThumbprint = certificateSHAOneThumbprint
-	this.PublicKeyThumbprint = publicKeyThumbprint
-	this.KeyUsages = keyUsages
-	this.IsKeyUsagesCritical = isKeyUsagesCritical
 	this.ExtendedKeyUsages = extendedKeyUsages
 	this.IsExtendedKeyUsagesCritical = isExtendedKeyUsagesCritical
+	this.IsKeyUsagesCritical = isKeyUsagesCritical
+	this.IssuerDn = issuerDn
+	this.KeyType = keyType
+	this.KeyUsages = keyUsages
+	this.NotAfter = notAfter
+	this.NotBefore = notBefore
+	this.Pem = pem
+	this.PublicKeyThumbprint = publicKeyThumbprint
 	this.SelfSigned = selfSigned
-	this.BasicConstraints = basicConstraints
+	this.SigningAlgorithm = signingAlgorithm
+	this.SubjectKeyIdentifier = subjectKeyIdentifier
 	return &this
 }
 
@@ -106,6 +106,174 @@ func NewCFCertificateResponse(dn string, dnElements []CFDistinguishedName, issue
 func NewCFCertificateResponseWithDefaults() *CFCertificateResponse {
 	this := CFCertificateResponse{}
 	return &this
+}
+
+// GetAias returns the Aias field value if set, zero value otherwise.
+func (o *CFCertificateResponse) GetAias() CFCertificateAias {
+	if o == nil || utils.IsNil(o.Aias) {
+		var ret CFCertificateAias
+		return ret
+	}
+	return *o.Aias
+}
+
+// GetAiasOk returns a tuple with the Aias field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetAiasOk() (*CFCertificateAias, bool) {
+	if o == nil || utils.IsNil(o.Aias) {
+		return nil, false
+	}
+	return o.Aias, true
+}
+
+// HasAias returns a boolean if a field has been set.
+func (o *CFCertificateResponse) HasAias() bool {
+	if o != nil && !utils.IsNil(o.Aias) {
+		return true
+	}
+
+	return false
+}
+
+// SetAias gets a reference to the given CFCertificateAias and assigns it to the Aias field.
+func (o *CFCertificateResponse) SetAias(v CFCertificateAias) {
+	o.Aias = &v
+}
+
+// GetAuthorityKeyIdentifier returns the AuthorityKeyIdentifier field value if set, zero value otherwise.
+func (o *CFCertificateResponse) GetAuthorityKeyIdentifier() string {
+	if o == nil || utils.IsNil(o.AuthorityKeyIdentifier) {
+		var ret string
+		return ret
+	}
+	return *o.AuthorityKeyIdentifier
+}
+
+// GetAuthorityKeyIdentifierOk returns a tuple with the AuthorityKeyIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetAuthorityKeyIdentifierOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.AuthorityKeyIdentifier) {
+		return nil, false
+	}
+	return o.AuthorityKeyIdentifier, true
+}
+
+// HasAuthorityKeyIdentifier returns a boolean if a field has been set.
+func (o *CFCertificateResponse) HasAuthorityKeyIdentifier() bool {
+	if o != nil && !utils.IsNil(o.AuthorityKeyIdentifier) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthorityKeyIdentifier gets a reference to the given string and assigns it to the AuthorityKeyIdentifier field.
+func (o *CFCertificateResponse) SetAuthorityKeyIdentifier(v string) {
+	o.AuthorityKeyIdentifier = &v
+}
+
+// GetBasicConstraints returns the BasicConstraints field value
+func (o *CFCertificateResponse) GetBasicConstraints() CFCertificateBasicConstraints {
+	if o == nil {
+		var ret CFCertificateBasicConstraints
+		return ret
+	}
+
+	return o.BasicConstraints
+}
+
+// GetBasicConstraintsOk returns a tuple with the BasicConstraints field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetBasicConstraintsOk() (*CFCertificateBasicConstraints, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BasicConstraints, true
+}
+
+// SetBasicConstraints sets field value
+func (o *CFCertificateResponse) SetBasicConstraints(v CFCertificateBasicConstraints) {
+	o.BasicConstraints = v
+}
+
+// GetCertificateSHAOneThumbprint returns the CertificateSHAOneThumbprint field value
+func (o *CFCertificateResponse) GetCertificateSHAOneThumbprint() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CertificateSHAOneThumbprint
+}
+
+// GetCertificateSHAOneThumbprintOk returns a tuple with the CertificateSHAOneThumbprint field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetCertificateSHAOneThumbprintOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CertificateSHAOneThumbprint, true
+}
+
+// SetCertificateSHAOneThumbprint sets field value
+func (o *CFCertificateResponse) SetCertificateSHAOneThumbprint(v string) {
+	o.CertificateSHAOneThumbprint = v
+}
+
+// GetCertificateThumbprint returns the CertificateThumbprint field value
+func (o *CFCertificateResponse) GetCertificateThumbprint() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CertificateThumbprint
+}
+
+// GetCertificateThumbprintOk returns a tuple with the CertificateThumbprint field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetCertificateThumbprintOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CertificateThumbprint, true
+}
+
+// SetCertificateThumbprint sets field value
+func (o *CFCertificateResponse) SetCertificateThumbprint(v string) {
+	o.CertificateThumbprint = v
+}
+
+// GetCrldps returns the Crldps field value if set, zero value otherwise.
+func (o *CFCertificateResponse) GetCrldps() []string {
+	if o == nil || utils.IsNil(o.Crldps) {
+		var ret []string
+		return ret
+	}
+	return o.Crldps
+}
+
+// GetCrldpsOk returns a tuple with the Crldps field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetCrldpsOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Crldps) {
+		return nil, false
+	}
+	return o.Crldps, true
+}
+
+// HasCrldps returns a boolean if a field has been set.
+func (o *CFCertificateResponse) HasCrldps() bool {
+	if o != nil && !utils.IsNil(o.Crldps) {
+		return true
+	}
+
+	return false
+}
+
+// SetCrldps gets a reference to the given []string and assigns it to the Crldps field.
+func (o *CFCertificateResponse) SetCrldps(v []string) {
+	o.Crldps = v
 }
 
 // GetDn returns the Dn field value
@@ -156,326 +324,6 @@ func (o *CFCertificateResponse) SetDnElements(v []CFDistinguishedName) {
 	o.DnElements = v
 }
 
-// GetIssuerDn returns the IssuerDn field value
-func (o *CFCertificateResponse) GetIssuerDn() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.IssuerDn
-}
-
-// GetIssuerDnOk returns a tuple with the IssuerDn field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetIssuerDnOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IssuerDn, true
-}
-
-// SetIssuerDn sets field value
-func (o *CFCertificateResponse) SetIssuerDn(v string) {
-	o.IssuerDn = v
-}
-
-// GetSerial returns the Serial field value if set, zero value otherwise.
-func (o *CFCertificateResponse) GetSerial() string {
-	if o == nil || utils.IsNil(o.Serial) {
-		var ret string
-		return ret
-	}
-	return *o.Serial
-}
-
-// GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetSerialOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Serial) {
-		return nil, false
-	}
-	return o.Serial, true
-}
-
-// HasSerial returns a boolean if a field has been set.
-func (o *CFCertificateResponse) HasSerial() bool {
-	if o != nil && !utils.IsNil(o.Serial) {
-		return true
-	}
-
-	return false
-}
-
-// SetSerial gets a reference to the given string and assigns it to the Serial field.
-func (o *CFCertificateResponse) SetSerial(v string) {
-	o.Serial = &v
-}
-
-// GetNotBefore returns the NotBefore field value
-func (o *CFCertificateResponse) GetNotBefore() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.NotBefore
-}
-
-// GetNotBeforeOk returns a tuple with the NotBefore field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetNotBeforeOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.NotBefore, true
-}
-
-// SetNotBefore sets field value
-func (o *CFCertificateResponse) SetNotBefore(v int64) {
-	o.NotBefore = v
-}
-
-// GetNotAfter returns the NotAfter field value
-func (o *CFCertificateResponse) GetNotAfter() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.NotAfter
-}
-
-// GetNotAfterOk returns a tuple with the NotAfter field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetNotAfterOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.NotAfter, true
-}
-
-// SetNotAfter sets field value
-func (o *CFCertificateResponse) SetNotAfter(v int64) {
-	o.NotAfter = v
-}
-
-// GetKeyType returns the KeyType field value
-func (o *CFCertificateResponse) GetKeyType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.KeyType
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetKeyTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.KeyType, true
-}
-
-// SetKeyType sets field value
-func (o *CFCertificateResponse) SetKeyType(v string) {
-	o.KeyType = v
-}
-
-// GetSigningAlgorithm returns the SigningAlgorithm field value
-func (o *CFCertificateResponse) GetSigningAlgorithm() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SigningAlgorithm
-}
-
-// GetSigningAlgorithmOk returns a tuple with the SigningAlgorithm field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetSigningAlgorithmOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SigningAlgorithm, true
-}
-
-// SetSigningAlgorithm sets field value
-func (o *CFCertificateResponse) SetSigningAlgorithm(v string) {
-	o.SigningAlgorithm = v
-}
-
-// GetPem returns the Pem field value
-func (o *CFCertificateResponse) GetPem() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Pem
-}
-
-// GetPemOk returns a tuple with the Pem field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetPemOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Pem, true
-}
-
-// SetPem sets field value
-func (o *CFCertificateResponse) SetPem(v string) {
-	o.Pem = v
-}
-
-// GetSubjectKeyIdentifier returns the SubjectKeyIdentifier field value
-func (o *CFCertificateResponse) GetSubjectKeyIdentifier() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SubjectKeyIdentifier
-}
-
-// GetSubjectKeyIdentifierOk returns a tuple with the SubjectKeyIdentifier field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetSubjectKeyIdentifierOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SubjectKeyIdentifier, true
-}
-
-// SetSubjectKeyIdentifier sets field value
-func (o *CFCertificateResponse) SetSubjectKeyIdentifier(v string) {
-	o.SubjectKeyIdentifier = v
-}
-
-// GetCertificateThumbprint returns the CertificateThumbprint field value
-func (o *CFCertificateResponse) GetCertificateThumbprint() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CertificateThumbprint
-}
-
-// GetCertificateThumbprintOk returns a tuple with the CertificateThumbprint field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetCertificateThumbprintOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CertificateThumbprint, true
-}
-
-// SetCertificateThumbprint sets field value
-func (o *CFCertificateResponse) SetCertificateThumbprint(v string) {
-	o.CertificateThumbprint = v
-}
-
-// GetCertificateSHAOneThumbprint returns the CertificateSHAOneThumbprint field value
-func (o *CFCertificateResponse) GetCertificateSHAOneThumbprint() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CertificateSHAOneThumbprint
-}
-
-// GetCertificateSHAOneThumbprintOk returns a tuple with the CertificateSHAOneThumbprint field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetCertificateSHAOneThumbprintOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CertificateSHAOneThumbprint, true
-}
-
-// SetCertificateSHAOneThumbprint sets field value
-func (o *CFCertificateResponse) SetCertificateSHAOneThumbprint(v string) {
-	o.CertificateSHAOneThumbprint = v
-}
-
-// GetPublicKeyThumbprint returns the PublicKeyThumbprint field value
-func (o *CFCertificateResponse) GetPublicKeyThumbprint() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PublicKeyThumbprint
-}
-
-// GetPublicKeyThumbprintOk returns a tuple with the PublicKeyThumbprint field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetPublicKeyThumbprintOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.PublicKeyThumbprint, true
-}
-
-// SetPublicKeyThumbprint sets field value
-func (o *CFCertificateResponse) SetPublicKeyThumbprint(v string) {
-	o.PublicKeyThumbprint = v
-}
-
-// GetKeyUsages returns the KeyUsages field value
-func (o *CFCertificateResponse) GetKeyUsages() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.KeyUsages
-}
-
-// GetKeyUsagesOk returns a tuple with the KeyUsages field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetKeyUsagesOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyUsages, true
-}
-
-// SetKeyUsages sets field value
-func (o *CFCertificateResponse) SetKeyUsages(v []string) {
-	o.KeyUsages = v
-}
-
-// GetIsKeyUsagesCritical returns the IsKeyUsagesCritical field value
-func (o *CFCertificateResponse) GetIsKeyUsagesCritical() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsKeyUsagesCritical
-}
-
-// GetIsKeyUsagesCriticalOk returns a tuple with the IsKeyUsagesCritical field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetIsKeyUsagesCriticalOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsKeyUsagesCritical, true
-}
-
-// SetIsKeyUsagesCritical sets field value
-func (o *CFCertificateResponse) SetIsKeyUsagesCritical(v bool) {
-	o.IsKeyUsagesCritical = v
-}
-
 // GetExtendedKeyUsages returns the ExtendedKeyUsages field value
 func (o *CFCertificateResponse) GetExtendedKeyUsages() []string {
 	if o == nil {
@@ -498,110 +346,6 @@ func (o *CFCertificateResponse) GetExtendedKeyUsagesOk() ([]string, bool) {
 // SetExtendedKeyUsages sets field value
 func (o *CFCertificateResponse) SetExtendedKeyUsages(v []string) {
 	o.ExtendedKeyUsages = v
-}
-
-// GetIsExtendedKeyUsagesCritical returns the IsExtendedKeyUsagesCritical field value
-func (o *CFCertificateResponse) GetIsExtendedKeyUsagesCritical() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsExtendedKeyUsagesCritical
-}
-
-// GetIsExtendedKeyUsagesCriticalOk returns a tuple with the IsExtendedKeyUsagesCritical field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetIsExtendedKeyUsagesCriticalOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsExtendedKeyUsagesCritical, true
-}
-
-// SetIsExtendedKeyUsagesCritical sets field value
-func (o *CFCertificateResponse) SetIsExtendedKeyUsagesCritical(v bool) {
-	o.IsExtendedKeyUsagesCritical = v
-}
-
-// GetSelfSigned returns the SelfSigned field value
-func (o *CFCertificateResponse) GetSelfSigned() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.SelfSigned
-}
-
-// GetSelfSignedOk returns a tuple with the SelfSigned field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetSelfSignedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SelfSigned, true
-}
-
-// SetSelfSigned sets field value
-func (o *CFCertificateResponse) SetSelfSigned(v bool) {
-	o.SelfSigned = v
-}
-
-// GetSans returns the Sans field value if set, zero value otherwise.
-func (o *CFCertificateResponse) GetSans() []SubjectAlternateName {
-	if o == nil || utils.IsNil(o.Sans) {
-		var ret []SubjectAlternateName
-		return ret
-	}
-	return o.Sans
-}
-
-// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetSansOk() ([]SubjectAlternateName, bool) {
-	if o == nil || utils.IsNil(o.Sans) {
-		return nil, false
-	}
-	return o.Sans, true
-}
-
-// HasSans returns a boolean if a field has been set.
-func (o *CFCertificateResponse) HasSans() bool {
-	if o != nil && !utils.IsNil(o.Sans) {
-		return true
-	}
-
-	return false
-}
-
-// SetSans gets a reference to the given []SubjectAlternateName and assigns it to the Sans field.
-func (o *CFCertificateResponse) SetSans(v []SubjectAlternateName) {
-	o.Sans = v
-}
-
-// GetBasicConstraints returns the BasicConstraints field value
-func (o *CFCertificateResponse) GetBasicConstraints() CFCertificateBasicConstraints {
-	if o == nil {
-		var ret CFCertificateBasicConstraints
-		return ret
-	}
-
-	return o.BasicConstraints
-}
-
-// GetBasicConstraintsOk returns a tuple with the BasicConstraints field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetBasicConstraintsOk() (*CFCertificateBasicConstraints, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BasicConstraints, true
-}
-
-// SetBasicConstraints sets field value
-func (o *CFCertificateResponse) SetBasicConstraints(v CFCertificateBasicConstraints) {
-	o.BasicConstraints = v
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -637,68 +381,196 @@ func (o *CFCertificateResponse) SetExtensions(v []CertificateExtension) {
 	o.Extensions = v
 }
 
-// GetCrldps returns the Crldps field value if set, zero value otherwise.
-func (o *CFCertificateResponse) GetCrldps() []string {
-	if o == nil || utils.IsNil(o.Crldps) {
+// GetIsExtendedKeyUsagesCritical returns the IsExtendedKeyUsagesCritical field value
+func (o *CFCertificateResponse) GetIsExtendedKeyUsagesCritical() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsExtendedKeyUsagesCritical
+}
+
+// GetIsExtendedKeyUsagesCriticalOk returns a tuple with the IsExtendedKeyUsagesCritical field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetIsExtendedKeyUsagesCriticalOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsExtendedKeyUsagesCritical, true
+}
+
+// SetIsExtendedKeyUsagesCritical sets field value
+func (o *CFCertificateResponse) SetIsExtendedKeyUsagesCritical(v bool) {
+	o.IsExtendedKeyUsagesCritical = v
+}
+
+// GetIsKeyUsagesCritical returns the IsKeyUsagesCritical field value
+func (o *CFCertificateResponse) GetIsKeyUsagesCritical() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsKeyUsagesCritical
+}
+
+// GetIsKeyUsagesCriticalOk returns a tuple with the IsKeyUsagesCritical field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetIsKeyUsagesCriticalOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsKeyUsagesCritical, true
+}
+
+// SetIsKeyUsagesCritical sets field value
+func (o *CFCertificateResponse) SetIsKeyUsagesCritical(v bool) {
+	o.IsKeyUsagesCritical = v
+}
+
+// GetIssuerDn returns the IssuerDn field value
+func (o *CFCertificateResponse) GetIssuerDn() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.IssuerDn
+}
+
+// GetIssuerDnOk returns a tuple with the IssuerDn field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetIssuerDnOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IssuerDn, true
+}
+
+// SetIssuerDn sets field value
+func (o *CFCertificateResponse) SetIssuerDn(v string) {
+	o.IssuerDn = v
+}
+
+// GetKeyType returns the KeyType field value
+func (o *CFCertificateResponse) GetKeyType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.KeyType
+}
+
+// GetKeyTypeOk returns a tuple with the KeyType field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetKeyTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.KeyType, true
+}
+
+// SetKeyType sets field value
+func (o *CFCertificateResponse) SetKeyType(v string) {
+	o.KeyType = v
+}
+
+// GetKeyUsages returns the KeyUsages field value
+func (o *CFCertificateResponse) GetKeyUsages() []string {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return o.Crldps
+
+	return o.KeyUsages
 }
 
-// GetCrldpsOk returns a tuple with the Crldps field value if set, nil otherwise
+// GetKeyUsagesOk returns a tuple with the KeyUsages field value
 // and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetCrldpsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Crldps) {
+func (o *CFCertificateResponse) GetKeyUsagesOk() ([]string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Crldps, true
+	return o.KeyUsages, true
 }
 
-// HasCrldps returns a boolean if a field has been set.
-func (o *CFCertificateResponse) HasCrldps() bool {
-	if o != nil && !utils.IsNil(o.Crldps) {
-		return true
-	}
-
-	return false
+// SetKeyUsages sets field value
+func (o *CFCertificateResponse) SetKeyUsages(v []string) {
+	o.KeyUsages = v
 }
 
-// SetCrldps gets a reference to the given []string and assigns it to the Crldps field.
-func (o *CFCertificateResponse) SetCrldps(v []string) {
-	o.Crldps = v
-}
-
-// GetAias returns the Aias field value if set, zero value otherwise.
-func (o *CFCertificateResponse) GetAias() CFCertificateAias {
-	if o == nil || utils.IsNil(o.Aias) {
-		var ret CFCertificateAias
+// GetNotAfter returns the NotAfter field value
+func (o *CFCertificateResponse) GetNotAfter() int64 {
+	if o == nil {
+		var ret int64
 		return ret
 	}
-	return *o.Aias
+
+	return o.NotAfter
 }
 
-// GetAiasOk returns a tuple with the Aias field value if set, nil otherwise
+// GetNotAfterOk returns a tuple with the NotAfter field value
 // and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetAiasOk() (*CFCertificateAias, bool) {
-	if o == nil || utils.IsNil(o.Aias) {
+func (o *CFCertificateResponse) GetNotAfterOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Aias, true
+	return &o.NotAfter, true
 }
 
-// HasAias returns a boolean if a field has been set.
-func (o *CFCertificateResponse) HasAias() bool {
-	if o != nil && !utils.IsNil(o.Aias) {
-		return true
+// SetNotAfter sets field value
+func (o *CFCertificateResponse) SetNotAfter(v int64) {
+	o.NotAfter = v
+}
+
+// GetNotBefore returns the NotBefore field value
+func (o *CFCertificateResponse) GetNotBefore() int64 {
+	if o == nil {
+		var ret int64
+		return ret
 	}
 
-	return false
+	return o.NotBefore
 }
 
-// SetAias gets a reference to the given CFCertificateAias and assigns it to the Aias field.
-func (o *CFCertificateResponse) SetAias(v CFCertificateAias) {
-	o.Aias = &v
+// GetNotBeforeOk returns a tuple with the NotBefore field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetNotBeforeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NotBefore, true
+}
+
+// SetNotBefore sets field value
+func (o *CFCertificateResponse) SetNotBefore(v int64) {
+	o.NotBefore = v
+}
+
+// GetPem returns the Pem field value
+func (o *CFCertificateResponse) GetPem() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Pem
+}
+
+// GetPemOk returns a tuple with the Pem field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetPemOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Pem, true
+}
+
+// SetPem sets field value
+func (o *CFCertificateResponse) SetPem(v string) {
+	o.Pem = v
 }
 
 // GetPolicies returns the Policies field value if set, zero value otherwise.
@@ -733,36 +605,164 @@ func (o *CFCertificateResponse) SetPolicies(v []CFCertificatePoliciesInner) {
 	o.Policies = v
 }
 
-// GetAuthorityKeyIdentifier returns the AuthorityKeyIdentifier field value if set, zero value otherwise.
-func (o *CFCertificateResponse) GetAuthorityKeyIdentifier() string {
-	if o == nil || utils.IsNil(o.AuthorityKeyIdentifier) {
+// GetPublicKeyThumbprint returns the PublicKeyThumbprint field value
+func (o *CFCertificateResponse) GetPublicKeyThumbprint() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.AuthorityKeyIdentifier
+
+	return o.PublicKeyThumbprint
 }
 
-// GetAuthorityKeyIdentifierOk returns a tuple with the AuthorityKeyIdentifier field value if set, nil otherwise
+// GetPublicKeyThumbprintOk returns a tuple with the PublicKeyThumbprint field value
 // and a boolean to check if the value has been set.
-func (o *CFCertificateResponse) GetAuthorityKeyIdentifierOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.AuthorityKeyIdentifier) {
+func (o *CFCertificateResponse) GetPublicKeyThumbprintOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.AuthorityKeyIdentifier, true
+	return &o.PublicKeyThumbprint, true
 }
 
-// HasAuthorityKeyIdentifier returns a boolean if a field has been set.
-func (o *CFCertificateResponse) HasAuthorityKeyIdentifier() bool {
-	if o != nil && !utils.IsNil(o.AuthorityKeyIdentifier) {
+// SetPublicKeyThumbprint sets field value
+func (o *CFCertificateResponse) SetPublicKeyThumbprint(v string) {
+	o.PublicKeyThumbprint = v
+}
+
+// GetSans returns the Sans field value if set, zero value otherwise.
+func (o *CFCertificateResponse) GetSans() []SubjectAlternateName {
+	if o == nil || utils.IsNil(o.Sans) {
+		var ret []SubjectAlternateName
+		return ret
+	}
+	return o.Sans
+}
+
+// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetSansOk() ([]SubjectAlternateName, bool) {
+	if o == nil || utils.IsNil(o.Sans) {
+		return nil, false
+	}
+	return o.Sans, true
+}
+
+// HasSans returns a boolean if a field has been set.
+func (o *CFCertificateResponse) HasSans() bool {
+	if o != nil && !utils.IsNil(o.Sans) {
 		return true
 	}
 
 	return false
 }
 
-// SetAuthorityKeyIdentifier gets a reference to the given string and assigns it to the AuthorityKeyIdentifier field.
-func (o *CFCertificateResponse) SetAuthorityKeyIdentifier(v string) {
-	o.AuthorityKeyIdentifier = &v
+// SetSans gets a reference to the given []SubjectAlternateName and assigns it to the Sans field.
+func (o *CFCertificateResponse) SetSans(v []SubjectAlternateName) {
+	o.Sans = v
+}
+
+// GetSelfSigned returns the SelfSigned field value
+func (o *CFCertificateResponse) GetSelfSigned() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SelfSigned
+}
+
+// GetSelfSignedOk returns a tuple with the SelfSigned field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetSelfSignedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SelfSigned, true
+}
+
+// SetSelfSigned sets field value
+func (o *CFCertificateResponse) SetSelfSigned(v bool) {
+	o.SelfSigned = v
+}
+
+// GetSerial returns the Serial field value if set, zero value otherwise.
+func (o *CFCertificateResponse) GetSerial() string {
+	if o == nil || utils.IsNil(o.Serial) {
+		var ret string
+		return ret
+	}
+	return *o.Serial
+}
+
+// GetSerialOk returns a tuple with the Serial field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetSerialOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Serial) {
+		return nil, false
+	}
+	return o.Serial, true
+}
+
+// HasSerial returns a boolean if a field has been set.
+func (o *CFCertificateResponse) HasSerial() bool {
+	if o != nil && !utils.IsNil(o.Serial) {
+		return true
+	}
+
+	return false
+}
+
+// SetSerial gets a reference to the given string and assigns it to the Serial field.
+func (o *CFCertificateResponse) SetSerial(v string) {
+	o.Serial = &v
+}
+
+// GetSigningAlgorithm returns the SigningAlgorithm field value
+func (o *CFCertificateResponse) GetSigningAlgorithm() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SigningAlgorithm
+}
+
+// GetSigningAlgorithmOk returns a tuple with the SigningAlgorithm field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetSigningAlgorithmOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SigningAlgorithm, true
+}
+
+// SetSigningAlgorithm sets field value
+func (o *CFCertificateResponse) SetSigningAlgorithm(v string) {
+	o.SigningAlgorithm = v
+}
+
+// GetSubjectKeyIdentifier returns the SubjectKeyIdentifier field value
+func (o *CFCertificateResponse) GetSubjectKeyIdentifier() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SubjectKeyIdentifier
+}
+
+// GetSubjectKeyIdentifierOk returns a tuple with the SubjectKeyIdentifier field value
+// and a boolean to check if the value has been set.
+func (o *CFCertificateResponse) GetSubjectKeyIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubjectKeyIdentifier, true
+}
+
+// SetSubjectKeyIdentifier sets field value
+func (o *CFCertificateResponse) SetSubjectKeyIdentifier(v string) {
+	o.SubjectKeyIdentifier = v
 }
 
 // GetUnsupportedExtensions returns the UnsupportedExtensions field value if set, zero value otherwise.
@@ -807,45 +807,45 @@ func (o CFCertificateResponse) MarshalJSON() ([]byte, error) {
 
 func (o CFCertificateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["dn"] = o.Dn
-	toSerialize["dnElements"] = o.DnElements
-	toSerialize["issuerDn"] = o.IssuerDn
-	if !utils.IsNil(o.Serial) {
-		toSerialize["serial"] = o.Serial
-	}
-	toSerialize["notBefore"] = o.NotBefore
-	toSerialize["notAfter"] = o.NotAfter
-	toSerialize["keyType"] = o.KeyType
-	toSerialize["signingAlgorithm"] = o.SigningAlgorithm
-	toSerialize["pem"] = o.Pem
-	toSerialize["subjectKeyIdentifier"] = o.SubjectKeyIdentifier
-	toSerialize["certificateThumbprint"] = o.CertificateThumbprint
-	toSerialize["certificateSHAOneThumbprint"] = o.CertificateSHAOneThumbprint
-	toSerialize["publicKeyThumbprint"] = o.PublicKeyThumbprint
-	toSerialize["keyUsages"] = o.KeyUsages
-	toSerialize["isKeyUsagesCritical"] = o.IsKeyUsagesCritical
-	toSerialize["extendedKeyUsages"] = o.ExtendedKeyUsages
-	toSerialize["isExtendedKeyUsagesCritical"] = o.IsExtendedKeyUsagesCritical
-	toSerialize["selfSigned"] = o.SelfSigned
-	if !utils.IsNil(o.Sans) {
-		toSerialize["sans"] = o.Sans
-	}
-	toSerialize["basicConstraints"] = o.BasicConstraints
-	if o.Extensions != nil {
-		toSerialize["extensions"] = o.Extensions
-	}
-	if !utils.IsNil(o.Crldps) {
-		toSerialize["crldps"] = o.Crldps
-	}
 	if !utils.IsNil(o.Aias) {
 		toSerialize["aias"] = o.Aias
-	}
-	if !utils.IsNil(o.Policies) {
-		toSerialize["policies"] = o.Policies
 	}
 	if !utils.IsNil(o.AuthorityKeyIdentifier) {
 		toSerialize["authorityKeyIdentifier"] = o.AuthorityKeyIdentifier
 	}
+	toSerialize["basicConstraints"] = o.BasicConstraints
+	toSerialize["certificateSHAOneThumbprint"] = o.CertificateSHAOneThumbprint
+	toSerialize["certificateThumbprint"] = o.CertificateThumbprint
+	if !utils.IsNil(o.Crldps) {
+		toSerialize["crldps"] = o.Crldps
+	}
+	toSerialize["dn"] = o.Dn
+	toSerialize["dnElements"] = o.DnElements
+	toSerialize["extendedKeyUsages"] = o.ExtendedKeyUsages
+	if o.Extensions != nil {
+		toSerialize["extensions"] = o.Extensions
+	}
+	toSerialize["isExtendedKeyUsagesCritical"] = o.IsExtendedKeyUsagesCritical
+	toSerialize["isKeyUsagesCritical"] = o.IsKeyUsagesCritical
+	toSerialize["issuerDn"] = o.IssuerDn
+	toSerialize["keyType"] = o.KeyType
+	toSerialize["keyUsages"] = o.KeyUsages
+	toSerialize["notAfter"] = o.NotAfter
+	toSerialize["notBefore"] = o.NotBefore
+	toSerialize["pem"] = o.Pem
+	if !utils.IsNil(o.Policies) {
+		toSerialize["policies"] = o.Policies
+	}
+	toSerialize["publicKeyThumbprint"] = o.PublicKeyThumbprint
+	if !utils.IsNil(o.Sans) {
+		toSerialize["sans"] = o.Sans
+	}
+	toSerialize["selfSigned"] = o.SelfSigned
+	if !utils.IsNil(o.Serial) {
+		toSerialize["serial"] = o.Serial
+	}
+	toSerialize["signingAlgorithm"] = o.SigningAlgorithm
+	toSerialize["subjectKeyIdentifier"] = o.SubjectKeyIdentifier
 	if !utils.IsNil(o.UnsupportedExtensions) {
 		toSerialize["unsupportedExtensions"] = o.UnsupportedExtensions
 	}
@@ -862,24 +862,24 @@ func (o *CFCertificateResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"basicConstraints",
+		"certificateSHAOneThumbprint",
+		"certificateThumbprint",
 		"dn",
 		"dnElements",
-		"issuerDn",
-		"notBefore",
-		"notAfter",
-		"keyType",
-		"signingAlgorithm",
-		"pem",
-		"subjectKeyIdentifier",
-		"certificateThumbprint",
-		"certificateSHAOneThumbprint",
-		"publicKeyThumbprint",
-		"keyUsages",
-		"isKeyUsagesCritical",
 		"extendedKeyUsages",
 		"isExtendedKeyUsagesCritical",
+		"isKeyUsagesCritical",
+		"issuerDn",
+		"keyType",
+		"keyUsages",
+		"notAfter",
+		"notBefore",
+		"pem",
+		"publicKeyThumbprint",
 		"selfSigned",
-		"basicConstraints",
+		"signingAlgorithm",
+		"subjectKeyIdentifier",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -909,31 +909,31 @@ func (o *CFCertificateResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "aias")
+		delete(additionalProperties, "authorityKeyIdentifier")
+		delete(additionalProperties, "basicConstraints")
+		delete(additionalProperties, "certificateSHAOneThumbprint")
+		delete(additionalProperties, "certificateThumbprint")
+		delete(additionalProperties, "crldps")
 		delete(additionalProperties, "dn")
 		delete(additionalProperties, "dnElements")
-		delete(additionalProperties, "issuerDn")
-		delete(additionalProperties, "serial")
-		delete(additionalProperties, "notBefore")
-		delete(additionalProperties, "notAfter")
-		delete(additionalProperties, "keyType")
-		delete(additionalProperties, "signingAlgorithm")
-		delete(additionalProperties, "pem")
-		delete(additionalProperties, "subjectKeyIdentifier")
-		delete(additionalProperties, "certificateThumbprint")
-		delete(additionalProperties, "certificateSHAOneThumbprint")
-		delete(additionalProperties, "publicKeyThumbprint")
-		delete(additionalProperties, "keyUsages")
-		delete(additionalProperties, "isKeyUsagesCritical")
 		delete(additionalProperties, "extendedKeyUsages")
-		delete(additionalProperties, "isExtendedKeyUsagesCritical")
-		delete(additionalProperties, "selfSigned")
-		delete(additionalProperties, "sans")
-		delete(additionalProperties, "basicConstraints")
 		delete(additionalProperties, "extensions")
-		delete(additionalProperties, "crldps")
-		delete(additionalProperties, "aias")
+		delete(additionalProperties, "isExtendedKeyUsagesCritical")
+		delete(additionalProperties, "isKeyUsagesCritical")
+		delete(additionalProperties, "issuerDn")
+		delete(additionalProperties, "keyType")
+		delete(additionalProperties, "keyUsages")
+		delete(additionalProperties, "notAfter")
+		delete(additionalProperties, "notBefore")
+		delete(additionalProperties, "pem")
 		delete(additionalProperties, "policies")
-		delete(additionalProperties, "authorityKeyIdentifier")
+		delete(additionalProperties, "publicKeyThumbprint")
+		delete(additionalProperties, "sans")
+		delete(additionalProperties, "selfSigned")
+		delete(additionalProperties, "serial")
+		delete(additionalProperties, "signingAlgorithm")
+		delete(additionalProperties, "subjectKeyIdentifier")
 		delete(additionalProperties, "unsupportedExtensions")
 		o.AdditionalProperties = additionalProperties
 	}

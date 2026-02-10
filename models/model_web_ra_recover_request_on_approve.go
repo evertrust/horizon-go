@@ -26,10 +26,10 @@ type WebRARecoverRequestOnApprove struct {
 	Id string `json:"_id"`
 	// Free-text field editable by the approver to provider more context on the request
 	ApproverComment utils.NullableString `json:"approverComment,omitempty"`
-	// What this request will do. For a recovery request, this is always `recover`
-	Workflow string `json:"workflow"`
 	// If true, the request is validated, but will not result in an enrollment
-	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
+	DryRun utils.NullableBool `json:"dryRun,omitempty"`
+	// What this request will do. For a recovery request, this is always `recover`
+	Workflow             string `json:"workflow"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,9 +41,9 @@ type _WebRARecoverRequestOnApprove WebRARecoverRequestOnApprove
 // will change when the set of required properties is changed
 func NewWebRARecoverRequestOnApprove(id string, workflow string) *WebRARecoverRequestOnApprove {
 	this := WebRARecoverRequestOnApprove{}
-	this.Workflow = workflow
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
+	this.Workflow = workflow
 	return &this
 }
 
@@ -124,30 +124,6 @@ func (o *WebRARecoverRequestOnApprove) UnsetApproverComment() {
 	o.ApproverComment.Unset()
 }
 
-// GetWorkflow returns the Workflow field value
-func (o *WebRARecoverRequestOnApprove) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRARecoverRequestOnApprove) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRARecoverRequestOnApprove) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRARecoverRequestOnApprove) GetDryRun() bool {
 	if o == nil || utils.IsNil(o.DryRun.Get()) {
@@ -191,6 +167,30 @@ func (o *WebRARecoverRequestOnApprove) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
+// GetWorkflow returns the Workflow field value
+func (o *WebRARecoverRequestOnApprove) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRARecoverRequestOnApprove) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRARecoverRequestOnApprove) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
 func (o WebRARecoverRequestOnApprove) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -205,10 +205,10 @@ func (o WebRARecoverRequestOnApprove) ToMap() (map[string]interface{}, error) {
 	if o.ApproverComment.IsSet() {
 		toSerialize["approverComment"] = o.ApproverComment.Get()
 	}
-	toSerialize["workflow"] = o.Workflow
 	if o.DryRun.IsSet() {
 		toSerialize["dryRun"] = o.DryRun.Get()
 	}
+	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -255,8 +255,8 @@ func (o *WebRARecoverRequestOnApprove) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
 		delete(additionalProperties, "approverComment")
-		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "dryRun")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

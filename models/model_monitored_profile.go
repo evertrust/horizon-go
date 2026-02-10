@@ -22,18 +22,18 @@ var _ utils.MappedNullable = &MonitoredProfile{}
 
 // MonitoredProfile struct for MonitoredProfile
 type MonitoredProfile struct {
+	AuthorizationLevels  CertificateProfileAuthorizationLevels   `json:"authorizationLevels"`
+	CertificateTemplate  NullableCertificateTemplate             `json:"certificateTemplate,omitempty"`
+	CryptoPolicy         MonitoredCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
+	Description          []LocalizedString                       `json:"description,omitempty"`
+	DisplayName          []LocalizedString                       `json:"displayName,omitempty"`
+	Enabled              bool                                    `json:"enabled"`
+	GradingPolicies      []string                                `json:"gradingPolicies,omitempty"`
 	Module               string                                  `json:"module"`
 	Name                 string                                  `json:"name"`
-	DisplayName          []LocalizedString                       `json:"displayName,omitempty"`
-	Description          []LocalizedString                       `json:"description,omitempty"`
-	Enabled              bool                                    `json:"enabled"`
-	AuthorizationLevels  CertificateProfileAuthorizationLevels   `json:"authorizationLevels"`
-	Triggers             NullableCertificateProfileTriggers      `json:"triggers,omitempty"`
 	RequestsPolicy       RequestsPolicy                          `json:"requestsPolicy"`
-	CryptoPolicy         MonitoredCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
 	SelfPermissions      CertificateProfileSelfPermissions       `json:"selfPermissions"`
-	CertificateTemplate  NullableCertificateTemplate             `json:"certificateTemplate,omitempty"`
-	GradingPolicies      []string                                `json:"gradingPolicies,omitempty"`
+	Triggers             NullableCertificateProfileTriggers      `json:"triggers,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,14 +43,14 @@ type _MonitoredProfile MonitoredProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMonitoredProfile(module string, name string, enabled bool, authorizationLevels CertificateProfileAuthorizationLevels, requestsPolicy RequestsPolicy, cryptoPolicy MonitoredCertificateProfileCryptoPolicy, selfPermissions CertificateProfileSelfPermissions) *MonitoredProfile {
+func NewMonitoredProfile(authorizationLevels CertificateProfileAuthorizationLevels, cryptoPolicy MonitoredCertificateProfileCryptoPolicy, enabled bool, module string, name string, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions) *MonitoredProfile {
 	this := MonitoredProfile{}
+	this.AuthorizationLevels = authorizationLevels
+	this.CryptoPolicy = cryptoPolicy
+	this.Enabled = enabled
 	this.Module = module
 	this.Name = name
-	this.Enabled = enabled
-	this.AuthorizationLevels = authorizationLevels
 	this.RequestsPolicy = requestsPolicy
-	this.CryptoPolicy = cryptoPolicy
 	this.SelfPermissions = selfPermissions
 	return &this
 }
@@ -61,6 +61,220 @@ func NewMonitoredProfile(module string, name string, enabled bool, authorization
 func NewMonitoredProfileWithDefaults() *MonitoredProfile {
 	this := MonitoredProfile{}
 	return &this
+}
+
+// GetAuthorizationLevels returns the AuthorizationLevels field value
+func (o *MonitoredProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
+	if o == nil {
+		var ret CertificateProfileAuthorizationLevels
+		return ret
+	}
+
+	return o.AuthorizationLevels
+}
+
+// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
+// and a boolean to check if the value has been set.
+func (o *MonitoredProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizationLevels, true
+}
+
+// SetAuthorizationLevels sets field value
+func (o *MonitoredProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
+	o.AuthorizationLevels = v
+}
+
+// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitoredProfile) GetCertificateTemplate() CertificateTemplate {
+	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
+		var ret CertificateTemplate
+		return ret
+	}
+	return *o.CertificateTemplate.Get()
+}
+
+// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitoredProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
+}
+
+// HasCertificateTemplate returns a boolean if a field has been set.
+func (o *MonitoredProfile) HasCertificateTemplate() bool {
+	if o != nil && o.CertificateTemplate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
+func (o *MonitoredProfile) SetCertificateTemplate(v CertificateTemplate) {
+	o.CertificateTemplate.Set(&v)
+}
+
+// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
+func (o *MonitoredProfile) SetCertificateTemplateNil() {
+	o.CertificateTemplate.Set(nil)
+}
+
+// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
+func (o *MonitoredProfile) UnsetCertificateTemplate() {
+	o.CertificateTemplate.Unset()
+}
+
+// GetCryptoPolicy returns the CryptoPolicy field value
+func (o *MonitoredProfile) GetCryptoPolicy() MonitoredCertificateProfileCryptoPolicy {
+	if o == nil {
+		var ret MonitoredCertificateProfileCryptoPolicy
+		return ret
+	}
+
+	return o.CryptoPolicy
+}
+
+// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
+// and a boolean to check if the value has been set.
+func (o *MonitoredProfile) GetCryptoPolicyOk() (*MonitoredCertificateProfileCryptoPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CryptoPolicy, true
+}
+
+// SetCryptoPolicy sets field value
+func (o *MonitoredProfile) SetCryptoPolicy(v MonitoredCertificateProfileCryptoPolicy) {
+	o.CryptoPolicy = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitoredProfile) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitoredProfile) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *MonitoredProfile) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *MonitoredProfile) SetDescription(v []LocalizedString) {
+	o.Description = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitoredProfile) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitoredProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *MonitoredProfile) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *MonitoredProfile) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *MonitoredProfile) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *MonitoredProfile) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *MonitoredProfile) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MonitoredProfile) GetGradingPolicies() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.GradingPolicies
+}
+
+// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MonitoredProfile) GetGradingPoliciesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.GradingPolicies) {
+		return nil, false
+	}
+	return o.GradingPolicies, true
+}
+
+// HasGradingPolicies returns a boolean if a field has been set.
+func (o *MonitoredProfile) HasGradingPolicies() bool {
+	if o != nil && !utils.IsNil(o.GradingPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
+func (o *MonitoredProfile) SetGradingPolicies(v []string) {
+	o.GradingPolicies = v
 }
 
 // GetModule returns the Module field value
@@ -111,118 +325,52 @@ func (o *MonitoredProfile) SetName(v string) {
 	o.Name = v
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MonitoredProfile) GetDisplayName() []LocalizedString {
+// GetRequestsPolicy returns the RequestsPolicy field value
+func (o *MonitoredProfile) GetRequestsPolicy() RequestsPolicy {
 	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MonitoredProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *MonitoredProfile) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *MonitoredProfile) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MonitoredProfile) GetDescription() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MonitoredProfile) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *MonitoredProfile) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *MonitoredProfile) SetDescription(v []LocalizedString) {
-	o.Description = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *MonitoredProfile) GetEnabled() bool {
-	if o == nil {
-		var ret bool
+		var ret RequestsPolicy
 		return ret
 	}
 
-	return o.Enabled
+	return o.RequestsPolicy
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value
+// GetRequestsPolicyOk returns a tuple with the RequestsPolicy field value
 // and a boolean to check if the value has been set.
-func (o *MonitoredProfile) GetEnabledOk() (*bool, bool) {
+func (o *MonitoredProfile) GetRequestsPolicyOk() (*RequestsPolicy, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return &o.RequestsPolicy, true
 }
 
-// SetEnabled sets field value
-func (o *MonitoredProfile) SetEnabled(v bool) {
-	o.Enabled = v
+// SetRequestsPolicy sets field value
+func (o *MonitoredProfile) SetRequestsPolicy(v RequestsPolicy) {
+	o.RequestsPolicy = v
 }
 
-// GetAuthorizationLevels returns the AuthorizationLevels field value
-func (o *MonitoredProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
+// GetSelfPermissions returns the SelfPermissions field value
+func (o *MonitoredProfile) GetSelfPermissions() CertificateProfileSelfPermissions {
 	if o == nil {
-		var ret CertificateProfileAuthorizationLevels
+		var ret CertificateProfileSelfPermissions
 		return ret
 	}
 
-	return o.AuthorizationLevels
+	return o.SelfPermissions
 }
 
-// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
+// GetSelfPermissionsOk returns a tuple with the SelfPermissions field value
 // and a boolean to check if the value has been set.
-func (o *MonitoredProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
+func (o *MonitoredProfile) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AuthorizationLevels, true
+	return &o.SelfPermissions, true
 }
 
-// SetAuthorizationLevels sets field value
-func (o *MonitoredProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
-	o.AuthorizationLevels = v
+// SetSelfPermissions sets field value
+func (o *MonitoredProfile) SetSelfPermissions(v CertificateProfileSelfPermissions) {
+	o.SelfPermissions = v
 }
 
 // GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -268,154 +416,6 @@ func (o *MonitoredProfile) UnsetTriggers() {
 	o.Triggers.Unset()
 }
 
-// GetRequestsPolicy returns the RequestsPolicy field value
-func (o *MonitoredProfile) GetRequestsPolicy() RequestsPolicy {
-	if o == nil {
-		var ret RequestsPolicy
-		return ret
-	}
-
-	return o.RequestsPolicy
-}
-
-// GetRequestsPolicyOk returns a tuple with the RequestsPolicy field value
-// and a boolean to check if the value has been set.
-func (o *MonitoredProfile) GetRequestsPolicyOk() (*RequestsPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RequestsPolicy, true
-}
-
-// SetRequestsPolicy sets field value
-func (o *MonitoredProfile) SetRequestsPolicy(v RequestsPolicy) {
-	o.RequestsPolicy = v
-}
-
-// GetCryptoPolicy returns the CryptoPolicy field value
-func (o *MonitoredProfile) GetCryptoPolicy() MonitoredCertificateProfileCryptoPolicy {
-	if o == nil {
-		var ret MonitoredCertificateProfileCryptoPolicy
-		return ret
-	}
-
-	return o.CryptoPolicy
-}
-
-// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
-// and a boolean to check if the value has been set.
-func (o *MonitoredProfile) GetCryptoPolicyOk() (*MonitoredCertificateProfileCryptoPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CryptoPolicy, true
-}
-
-// SetCryptoPolicy sets field value
-func (o *MonitoredProfile) SetCryptoPolicy(v MonitoredCertificateProfileCryptoPolicy) {
-	o.CryptoPolicy = v
-}
-
-// GetSelfPermissions returns the SelfPermissions field value
-func (o *MonitoredProfile) GetSelfPermissions() CertificateProfileSelfPermissions {
-	if o == nil {
-		var ret CertificateProfileSelfPermissions
-		return ret
-	}
-
-	return o.SelfPermissions
-}
-
-// GetSelfPermissionsOk returns a tuple with the SelfPermissions field value
-// and a boolean to check if the value has been set.
-func (o *MonitoredProfile) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SelfPermissions, true
-}
-
-// SetSelfPermissions sets field value
-func (o *MonitoredProfile) SetSelfPermissions(v CertificateProfileSelfPermissions) {
-	o.SelfPermissions = v
-}
-
-// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MonitoredProfile) GetCertificateTemplate() CertificateTemplate {
-	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
-		var ret CertificateTemplate
-		return ret
-	}
-	return *o.CertificateTemplate.Get()
-}
-
-// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MonitoredProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
-}
-
-// HasCertificateTemplate returns a boolean if a field has been set.
-func (o *MonitoredProfile) HasCertificateTemplate() bool {
-	if o != nil && o.CertificateTemplate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
-func (o *MonitoredProfile) SetCertificateTemplate(v CertificateTemplate) {
-	o.CertificateTemplate.Set(&v)
-}
-
-// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-func (o *MonitoredProfile) SetCertificateTemplateNil() {
-	o.CertificateTemplate.Set(nil)
-}
-
-// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
-func (o *MonitoredProfile) UnsetCertificateTemplate() {
-	o.CertificateTemplate.Unset()
-}
-
-// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MonitoredProfile) GetGradingPolicies() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.GradingPolicies
-}
-
-// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MonitoredProfile) GetGradingPoliciesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.GradingPolicies) {
-		return nil, false
-	}
-	return o.GradingPolicies, true
-}
-
-// HasGradingPolicies returns a boolean if a field has been set.
-func (o *MonitoredProfile) HasGradingPolicies() bool {
-	if o != nil && !utils.IsNil(o.GradingPolicies) {
-		return true
-	}
-
-	return false
-}
-
-// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
-func (o *MonitoredProfile) SetGradingPolicies(v []string) {
-	o.GradingPolicies = v
-}
-
 func (o MonitoredProfile) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -426,27 +426,27 @@ func (o MonitoredProfile) MarshalJSON() ([]byte, error) {
 
 func (o MonitoredProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
-	toSerialize["name"] = o.Name
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	toSerialize["enabled"] = o.Enabled
 	toSerialize["authorizationLevels"] = o.AuthorizationLevels
-	if o.Triggers.IsSet() {
-		toSerialize["triggers"] = o.Triggers.Get()
-	}
-	toSerialize["requestsPolicy"] = o.RequestsPolicy
-	toSerialize["cryptoPolicy"] = o.CryptoPolicy
-	toSerialize["selfPermissions"] = o.SelfPermissions
 	if o.CertificateTemplate.IsSet() {
 		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
 	}
+	toSerialize["cryptoPolicy"] = o.CryptoPolicy
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	toSerialize["enabled"] = o.Enabled
 	if o.GradingPolicies != nil {
 		toSerialize["gradingPolicies"] = o.GradingPolicies
+	}
+	toSerialize["module"] = o.Module
+	toSerialize["name"] = o.Name
+	toSerialize["requestsPolicy"] = o.RequestsPolicy
+	toSerialize["selfPermissions"] = o.SelfPermissions
+	if o.Triggers.IsSet() {
+		toSerialize["triggers"] = o.Triggers.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -461,12 +461,12 @@ func (o *MonitoredProfile) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"authorizationLevels",
+		"cryptoPolicy",
+		"enabled",
 		"module",
 		"name",
-		"enabled",
-		"authorizationLevels",
 		"requestsPolicy",
-		"cryptoPolicy",
 		"selfPermissions",
 	}
 
@@ -497,18 +497,18 @@ func (o *MonitoredProfile) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorizationLevels")
+		delete(additionalProperties, "certificateTemplate")
+		delete(additionalProperties, "cryptoPolicy")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "gradingPolicies")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "enabled")
-		delete(additionalProperties, "authorizationLevels")
-		delete(additionalProperties, "triggers")
 		delete(additionalProperties, "requestsPolicy")
-		delete(additionalProperties, "cryptoPolicy")
 		delete(additionalProperties, "selfPermissions")
-		delete(additionalProperties, "certificateTemplate")
-		delete(additionalProperties, "gradingPolicies")
+		delete(additionalProperties, "triggers")
 		o.AdditionalProperties = additionalProperties
 	}
 

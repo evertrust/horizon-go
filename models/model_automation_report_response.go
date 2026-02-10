@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &AutomationReportResponse{}
 
 // AutomationReportResponse struct for AutomationReportResponse
 type AutomationReportResponse struct {
-	// If true the certificate can be renewed now (the execution period allows it)
-	Runnable bool `json:"runnable"`
 	// If true the certificate can be renewed (all conditions for renewal are met - correct profile, renewal period, etc...)
-	Renewable            bool `json:"renewable"`
+	Renewable bool `json:"renewable"`
+	// If true the certificate can be renewed now (the execution period allows it)
+	Runnable             bool `json:"runnable"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,10 +35,10 @@ type _AutomationReportResponse AutomationReportResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAutomationReportResponse(runnable bool, renewable bool) *AutomationReportResponse {
+func NewAutomationReportResponse(renewable bool, runnable bool) *AutomationReportResponse {
 	this := AutomationReportResponse{}
-	this.Runnable = runnable
 	this.Renewable = renewable
+	this.Runnable = runnable
 	return &this
 }
 
@@ -48,30 +48,6 @@ func NewAutomationReportResponse(runnable bool, renewable bool) *AutomationRepor
 func NewAutomationReportResponseWithDefaults() *AutomationReportResponse {
 	this := AutomationReportResponse{}
 	return &this
-}
-
-// GetRunnable returns the Runnable field value
-func (o *AutomationReportResponse) GetRunnable() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Runnable
-}
-
-// GetRunnableOk returns a tuple with the Runnable field value
-// and a boolean to check if the value has been set.
-func (o *AutomationReportResponse) GetRunnableOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Runnable, true
-}
-
-// SetRunnable sets field value
-func (o *AutomationReportResponse) SetRunnable(v bool) {
-	o.Runnable = v
 }
 
 // GetRenewable returns the Renewable field value
@@ -98,6 +74,30 @@ func (o *AutomationReportResponse) SetRenewable(v bool) {
 	o.Renewable = v
 }
 
+// GetRunnable returns the Runnable field value
+func (o *AutomationReportResponse) GetRunnable() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Runnable
+}
+
+// GetRunnableOk returns a tuple with the Runnable field value
+// and a boolean to check if the value has been set.
+func (o *AutomationReportResponse) GetRunnableOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Runnable, true
+}
+
+// SetRunnable sets field value
+func (o *AutomationReportResponse) SetRunnable(v bool) {
+	o.Runnable = v
+}
+
 func (o AutomationReportResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -108,8 +108,8 @@ func (o AutomationReportResponse) MarshalJSON() ([]byte, error) {
 
 func (o AutomationReportResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["runnable"] = o.Runnable
 	toSerialize["renewable"] = o.Renewable
+	toSerialize["runnable"] = o.Runnable
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,8 +123,8 @@ func (o *AutomationReportResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"runnable",
 		"renewable",
+		"runnable",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -154,8 +154,8 @@ func (o *AutomationReportResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "runnable")
 		delete(additionalProperties, "renewable")
+		delete(additionalProperties, "runnable")
 		o.AdditionalProperties = additionalProperties
 	}
 

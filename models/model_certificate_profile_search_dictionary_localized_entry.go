@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &CertificateProfileSearchDictionaryLocalizedEntry{}
 
 // CertificateProfileSearchDictionaryLocalizedEntry struct for CertificateProfileSearchDictionaryLocalizedEntry
 type CertificateProfileSearchDictionaryLocalizedEntry struct {
-	// The technical name of the profile
-	Name string `json:"name"`
-	// The module on which the profile belongs
-	Module string `json:"module"`
+	// The localized description of the profile
+	Description []LocalizedString `json:"description,omitempty"`
 	// The localized name of the profile
 	DisplayName []LocalizedString `json:"displayName,omitempty"`
-	// The localized description of the profile
-	Description          []LocalizedString `json:"description,omitempty"`
+	// The module on which the profile belongs
+	Module string `json:"module"`
+	// The technical name of the profile
+	Name                 string `json:"name"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,10 +39,10 @@ type _CertificateProfileSearchDictionaryLocalizedEntry CertificateProfileSearchD
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificateProfileSearchDictionaryLocalizedEntry(name string, module string) *CertificateProfileSearchDictionaryLocalizedEntry {
+func NewCertificateProfileSearchDictionaryLocalizedEntry(module string, name string) *CertificateProfileSearchDictionaryLocalizedEntry {
 	this := CertificateProfileSearchDictionaryLocalizedEntry{}
-	this.Name = name
 	this.Module = module
+	this.Name = name
 	return &this
 }
 
@@ -52,87 +52,6 @@ func NewCertificateProfileSearchDictionaryLocalizedEntry(name string, module str
 func NewCertificateProfileSearchDictionaryLocalizedEntryWithDefaults() *CertificateProfileSearchDictionaryLocalizedEntry {
 	this := CertificateProfileSearchDictionaryLocalizedEntry{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetName(v string) {
-	o.Name = v
-}
-
-// GetModule returns the Module field value
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetModule(v string) {
-	o.Module = v
-}
-
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -168,6 +87,87 @@ func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetDescription(v []Lo
 	o.Description = v
 }
 
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
+// GetModule returns the Module field value
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetModule(v string) {
+	o.Module = v
+}
+
+// GetName returns the Name field value
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *CertificateProfileSearchDictionaryLocalizedEntry) SetName(v string) {
+	o.Name = v
+}
+
 func (o CertificateProfileSearchDictionaryLocalizedEntry) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -178,14 +178,14 @@ func (o CertificateProfileSearchDictionaryLocalizedEntry) MarshalJSON() ([]byte,
 
 func (o CertificateProfileSearchDictionaryLocalizedEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["module"] = o.Module
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
-	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	toSerialize["module"] = o.Module
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -199,8 +199,8 @@ func (o *CertificateProfileSearchDictionaryLocalizedEntry) UnmarshalJSON(data []
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
 		"module",
+		"name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -230,10 +230,10 @@ func (o *CertificateProfileSearchDictionaryLocalizedEntry) UnmarshalJSON(data []
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "module")
-		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "module")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

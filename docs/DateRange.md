@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Start** | **string** |  | 
 **End** | **string** |  | 
+**Start** | **string** |  | 
 
 ## Methods
 
 ### NewDateRange
 
-`func NewDateRange(start string, end string, ) *DateRange`
+`func NewDateRange(end string, start string, ) *DateRange`
 
 NewDateRange instantiates a new DateRange object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewDateRangeWithDefaults instantiates a new DateRange object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetStart
-
-`func (o *DateRange) GetStart() string`
-
-GetStart returns the Start field if non-nil, zero value otherwise.
-
-### GetStartOk
-
-`func (o *DateRange) GetStartOk() (*string, bool)`
-
-GetStartOk returns a tuple with the Start field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStart
-
-`func (o *DateRange) SetStart(v string)`
-
-SetStart sets Start field to given value.
-
 
 ### GetEnd
 
@@ -64,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *DateRange) SetEnd(v string)`
 
 SetEnd sets End field to given value.
+
+
+### GetStart
+
+`func (o *DateRange) GetStart() string`
+
+GetStart returns the Start field if non-nil, zero value otherwise.
+
+### GetStartOk
+
+`func (o *DateRange) GetStartOk() (*string, bool)`
+
+GetStartOk returns a tuple with the Start field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStart
+
+`func (o *DateRange) SetStart(v string)`
+
+SetStart sets Start field to given value.
 
 
 

@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &InternalMonitorConfiguration{}
 
 // InternalMonitorConfiguration struct for InternalMonitorConfiguration
 type InternalMonitorConfiguration struct {
-	// The type of the configuration entry
-	Type string `json:"type"`
 	// Cron defining when to run internal monitor checks
-	Cron                 string `json:"cron"`
+	Cron string `json:"cron"`
+	// The type of the configuration entry
+	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,10 +35,10 @@ type _InternalMonitorConfiguration InternalMonitorConfiguration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInternalMonitorConfiguration(type_ string, cron string) *InternalMonitorConfiguration {
+func NewInternalMonitorConfiguration(cron string, type_ string) *InternalMonitorConfiguration {
 	this := InternalMonitorConfiguration{}
-	this.Type = type_
 	this.Cron = cron
+	this.Type = type_
 	return &this
 }
 
@@ -48,30 +48,6 @@ func NewInternalMonitorConfiguration(type_ string, cron string) *InternalMonitor
 func NewInternalMonitorConfigurationWithDefaults() *InternalMonitorConfiguration {
 	this := InternalMonitorConfiguration{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *InternalMonitorConfiguration) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *InternalMonitorConfiguration) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *InternalMonitorConfiguration) SetType(v string) {
-	o.Type = v
 }
 
 // GetCron returns the Cron field value
@@ -98,6 +74,30 @@ func (o *InternalMonitorConfiguration) SetCron(v string) {
 	o.Cron = v
 }
 
+// GetType returns the Type field value
+func (o *InternalMonitorConfiguration) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *InternalMonitorConfiguration) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *InternalMonitorConfiguration) SetType(v string) {
+	o.Type = v
+}
+
 func (o InternalMonitorConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -108,8 +108,8 @@ func (o InternalMonitorConfiguration) MarshalJSON() ([]byte, error) {
 
 func (o InternalMonitorConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
 	toSerialize["cron"] = o.Cron
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,8 +123,8 @@ func (o *InternalMonitorConfiguration) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
 		"cron",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -154,8 +154,8 @@ func (o *InternalMonitorConfiguration) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "cron")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

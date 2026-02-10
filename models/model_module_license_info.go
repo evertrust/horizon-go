@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &ModuleLicenseInfo{}
 
 // ModuleLicenseInfo struct for ModuleLicenseInfo
 type ModuleLicenseInfo struct {
-	Module               string              `json:"module"`
 	Items                int64               `json:"items"`
 	Limit                utils.NullableInt64 `json:"limit,omitempty"`
+	Module               string              `json:"module"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -34,10 +34,10 @@ type _ModuleLicenseInfo ModuleLicenseInfo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewModuleLicenseInfo(module string, items int64) *ModuleLicenseInfo {
+func NewModuleLicenseInfo(items int64, module string) *ModuleLicenseInfo {
 	this := ModuleLicenseInfo{}
-	this.Module = module
 	this.Items = items
+	this.Module = module
 	return &this
 }
 
@@ -47,30 +47,6 @@ func NewModuleLicenseInfo(module string, items int64) *ModuleLicenseInfo {
 func NewModuleLicenseInfoWithDefaults() *ModuleLicenseInfo {
 	this := ModuleLicenseInfo{}
 	return &this
-}
-
-// GetModule returns the Module field value
-func (o *ModuleLicenseInfo) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *ModuleLicenseInfo) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *ModuleLicenseInfo) SetModule(v string) {
-	o.Module = v
 }
 
 // GetItems returns the Items field value
@@ -140,6 +116,30 @@ func (o *ModuleLicenseInfo) UnsetLimit() {
 	o.Limit.Unset()
 }
 
+// GetModule returns the Module field value
+func (o *ModuleLicenseInfo) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *ModuleLicenseInfo) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *ModuleLicenseInfo) SetModule(v string) {
+	o.Module = v
+}
+
 func (o ModuleLicenseInfo) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -150,11 +150,11 @@ func (o ModuleLicenseInfo) MarshalJSON() ([]byte, error) {
 
 func (o ModuleLicenseInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
 	toSerialize["items"] = o.Items
 	if o.Limit.IsSet() {
 		toSerialize["limit"] = o.Limit.Get()
 	}
+	toSerialize["module"] = o.Module
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -168,8 +168,8 @@ func (o *ModuleLicenseInfo) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"module",
 		"items",
+		"module",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -199,9 +199,9 @@ func (o *ModuleLicenseInfo) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "module")
 		delete(additionalProperties, "items")
 		delete(additionalProperties, "limit")
+		delete(additionalProperties, "module")
 		o.AdditionalProperties = additionalProperties
 	}
 

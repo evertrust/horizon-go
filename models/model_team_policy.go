@@ -22,15 +22,15 @@ var _ utils.MappedNullable = &TeamPolicy{}
 
 // TeamPolicy struct for TeamPolicy
 type TeamPolicy struct {
-	EditableByRequester bool                 `json:"editableByRequester"`
-	EditableByApprover  bool                 `json:"editableByApprover"`
-	Regex               utils.NullableString `json:"regex,omitempty"`
-	Whitelist           []string             `json:"whitelist,omitempty"`
-	Value               utils.NullableString `json:"value,omitempty"`
 	// A computation rule that will dynamically generate a string value from the request's context
 	ComputationRule      utils.NullableString `json:"computationRule,omitempty"`
-	Mandatory            bool                 `json:"mandatory"`
 	Description          []LocalizedString    `json:"description,omitempty"`
+	EditableByApprover   bool                 `json:"editableByApprover"`
+	EditableByRequester  bool                 `json:"editableByRequester"`
+	Mandatory            bool                 `json:"mandatory"`
+	Regex                utils.NullableString `json:"regex,omitempty"`
+	Value                utils.NullableString `json:"value,omitempty"`
+	Whitelist            []string             `json:"whitelist,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,10 +40,10 @@ type _TeamPolicy TeamPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTeamPolicy(editableByRequester bool, editableByApprover bool, mandatory bool) *TeamPolicy {
+func NewTeamPolicy(editableByApprover bool, editableByRequester bool, mandatory bool) *TeamPolicy {
 	this := TeamPolicy{}
-	this.EditableByRequester = editableByRequester
 	this.EditableByApprover = editableByApprover
+	this.EditableByRequester = editableByRequester
 	this.Mandatory = mandatory
 	return &this
 }
@@ -54,173 +54,6 @@ func NewTeamPolicy(editableByRequester bool, editableByApprover bool, mandatory 
 func NewTeamPolicyWithDefaults() *TeamPolicy {
 	this := TeamPolicy{}
 	return &this
-}
-
-// GetEditableByRequester returns the EditableByRequester field value
-func (o *TeamPolicy) GetEditableByRequester() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.EditableByRequester
-}
-
-// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value
-// and a boolean to check if the value has been set.
-func (o *TeamPolicy) GetEditableByRequesterOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EditableByRequester, true
-}
-
-// SetEditableByRequester sets field value
-func (o *TeamPolicy) SetEditableByRequester(v bool) {
-	o.EditableByRequester = v
-}
-
-// GetEditableByApprover returns the EditableByApprover field value
-func (o *TeamPolicy) GetEditableByApprover() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.EditableByApprover
-}
-
-// GetEditableByApproverOk returns a tuple with the EditableByApprover field value
-// and a boolean to check if the value has been set.
-func (o *TeamPolicy) GetEditableByApproverOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EditableByApprover, true
-}
-
-// SetEditableByApprover sets field value
-func (o *TeamPolicy) SetEditableByApprover(v bool) {
-	o.EditableByApprover = v
-}
-
-// GetRegex returns the Regex field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TeamPolicy) GetRegex() string {
-	if o == nil || utils.IsNil(o.Regex.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Regex.Get()
-}
-
-// GetRegexOk returns a tuple with the Regex field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TeamPolicy) GetRegexOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Regex.Get(), o.Regex.IsSet()
-}
-
-// HasRegex returns a boolean if a field has been set.
-func (o *TeamPolicy) HasRegex() bool {
-	if o != nil && o.Regex.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRegex gets a reference to the given NullableString and assigns it to the Regex field.
-func (o *TeamPolicy) SetRegex(v string) {
-	o.Regex.Set(&v)
-}
-
-// SetRegexNil sets the value for Regex to be an explicit nil
-func (o *TeamPolicy) SetRegexNil() {
-	o.Regex.Set(nil)
-}
-
-// UnsetRegex ensures that no value is present for Regex, not even an explicit nil
-func (o *TeamPolicy) UnsetRegex() {
-	o.Regex.Unset()
-}
-
-// GetWhitelist returns the Whitelist field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TeamPolicy) GetWhitelist() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Whitelist
-}
-
-// GetWhitelistOk returns a tuple with the Whitelist field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TeamPolicy) GetWhitelistOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Whitelist) {
-		return nil, false
-	}
-	return o.Whitelist, true
-}
-
-// HasWhitelist returns a boolean if a field has been set.
-func (o *TeamPolicy) HasWhitelist() bool {
-	if o != nil && !utils.IsNil(o.Whitelist) {
-		return true
-	}
-
-	return false
-}
-
-// SetWhitelist gets a reference to the given []string and assigns it to the Whitelist field.
-func (o *TeamPolicy) SetWhitelist(v []string) {
-	o.Whitelist = v
-}
-
-// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TeamPolicy) GetValue() string {
-	if o == nil || utils.IsNil(o.Value.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Value.Get()
-}
-
-// GetValueOk returns a tuple with the Value field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TeamPolicy) GetValueOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Value.Get(), o.Value.IsSet()
-}
-
-// HasValue returns a boolean if a field has been set.
-func (o *TeamPolicy) HasValue() bool {
-	if o != nil && o.Value.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetValue gets a reference to the given NullableString and assigns it to the Value field.
-func (o *TeamPolicy) SetValue(v string) {
-	o.Value.Set(&v)
-}
-
-// SetValueNil sets the value for Value to be an explicit nil
-func (o *TeamPolicy) SetValueNil() {
-	o.Value.Set(nil)
-}
-
-// UnsetValue ensures that no value is present for Value, not even an explicit nil
-func (o *TeamPolicy) UnsetValue() {
-	o.Value.Unset()
 }
 
 // GetComputationRule returns the ComputationRule field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -266,30 +99,6 @@ func (o *TeamPolicy) UnsetComputationRule() {
 	o.ComputationRule.Unset()
 }
 
-// GetMandatory returns the Mandatory field value
-func (o *TeamPolicy) GetMandatory() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Mandatory
-}
-
-// GetMandatoryOk returns a tuple with the Mandatory field value
-// and a boolean to check if the value has been set.
-func (o *TeamPolicy) GetMandatoryOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Mandatory, true
-}
-
-// SetMandatory sets field value
-func (o *TeamPolicy) SetMandatory(v bool) {
-	o.Mandatory = v
-}
-
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TeamPolicy) GetDescription() []LocalizedString {
 	if o == nil {
@@ -323,6 +132,197 @@ func (o *TeamPolicy) SetDescription(v []LocalizedString) {
 	o.Description = v
 }
 
+// GetEditableByApprover returns the EditableByApprover field value
+func (o *TeamPolicy) GetEditableByApprover() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.EditableByApprover
+}
+
+// GetEditableByApproverOk returns a tuple with the EditableByApprover field value
+// and a boolean to check if the value has been set.
+func (o *TeamPolicy) GetEditableByApproverOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EditableByApprover, true
+}
+
+// SetEditableByApprover sets field value
+func (o *TeamPolicy) SetEditableByApprover(v bool) {
+	o.EditableByApprover = v
+}
+
+// GetEditableByRequester returns the EditableByRequester field value
+func (o *TeamPolicy) GetEditableByRequester() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.EditableByRequester
+}
+
+// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value
+// and a boolean to check if the value has been set.
+func (o *TeamPolicy) GetEditableByRequesterOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EditableByRequester, true
+}
+
+// SetEditableByRequester sets field value
+func (o *TeamPolicy) SetEditableByRequester(v bool) {
+	o.EditableByRequester = v
+}
+
+// GetMandatory returns the Mandatory field value
+func (o *TeamPolicy) GetMandatory() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Mandatory
+}
+
+// GetMandatoryOk returns a tuple with the Mandatory field value
+// and a boolean to check if the value has been set.
+func (o *TeamPolicy) GetMandatoryOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Mandatory, true
+}
+
+// SetMandatory sets field value
+func (o *TeamPolicy) SetMandatory(v bool) {
+	o.Mandatory = v
+}
+
+// GetRegex returns the Regex field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TeamPolicy) GetRegex() string {
+	if o == nil || utils.IsNil(o.Regex.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Regex.Get()
+}
+
+// GetRegexOk returns a tuple with the Regex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TeamPolicy) GetRegexOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Regex.Get(), o.Regex.IsSet()
+}
+
+// HasRegex returns a boolean if a field has been set.
+func (o *TeamPolicy) HasRegex() bool {
+	if o != nil && o.Regex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRegex gets a reference to the given NullableString and assigns it to the Regex field.
+func (o *TeamPolicy) SetRegex(v string) {
+	o.Regex.Set(&v)
+}
+
+// SetRegexNil sets the value for Regex to be an explicit nil
+func (o *TeamPolicy) SetRegexNil() {
+	o.Regex.Set(nil)
+}
+
+// UnsetRegex ensures that no value is present for Regex, not even an explicit nil
+func (o *TeamPolicy) UnsetRegex() {
+	o.Regex.Unset()
+}
+
+// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TeamPolicy) GetValue() string {
+	if o == nil || utils.IsNil(o.Value.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Value.Get()
+}
+
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TeamPolicy) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Value.Get(), o.Value.IsSet()
+}
+
+// HasValue returns a boolean if a field has been set.
+func (o *TeamPolicy) HasValue() bool {
+	if o != nil && o.Value.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given NullableString and assigns it to the Value field.
+func (o *TeamPolicy) SetValue(v string) {
+	o.Value.Set(&v)
+}
+
+// SetValueNil sets the value for Value to be an explicit nil
+func (o *TeamPolicy) SetValueNil() {
+	o.Value.Set(nil)
+}
+
+// UnsetValue ensures that no value is present for Value, not even an explicit nil
+func (o *TeamPolicy) UnsetValue() {
+	o.Value.Unset()
+}
+
+// GetWhitelist returns the Whitelist field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TeamPolicy) GetWhitelist() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Whitelist
+}
+
+// GetWhitelistOk returns a tuple with the Whitelist field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TeamPolicy) GetWhitelistOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Whitelist) {
+		return nil, false
+	}
+	return o.Whitelist, true
+}
+
+// HasWhitelist returns a boolean if a field has been set.
+func (o *TeamPolicy) HasWhitelist() bool {
+	if o != nil && !utils.IsNil(o.Whitelist) {
+		return true
+	}
+
+	return false
+}
+
+// SetWhitelist gets a reference to the given []string and assigns it to the Whitelist field.
+func (o *TeamPolicy) SetWhitelist(v []string) {
+	o.Whitelist = v
+}
+
 func (o TeamPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -333,23 +333,23 @@ func (o TeamPolicy) MarshalJSON() ([]byte, error) {
 
 func (o TeamPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["editableByRequester"] = o.EditableByRequester
+	if o.ComputationRule.IsSet() {
+		toSerialize["computationRule"] = o.ComputationRule.Get()
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
 	toSerialize["editableByApprover"] = o.EditableByApprover
+	toSerialize["editableByRequester"] = o.EditableByRequester
+	toSerialize["mandatory"] = o.Mandatory
 	if o.Regex.IsSet() {
 		toSerialize["regex"] = o.Regex.Get()
-	}
-	if o.Whitelist != nil {
-		toSerialize["whitelist"] = o.Whitelist
 	}
 	if o.Value.IsSet() {
 		toSerialize["value"] = o.Value.Get()
 	}
-	if o.ComputationRule.IsSet() {
-		toSerialize["computationRule"] = o.ComputationRule.Get()
-	}
-	toSerialize["mandatory"] = o.Mandatory
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
+	if o.Whitelist != nil {
+		toSerialize["whitelist"] = o.Whitelist
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -364,8 +364,8 @@ func (o *TeamPolicy) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"editableByRequester",
 		"editableByApprover",
+		"editableByRequester",
 		"mandatory",
 	}
 
@@ -396,14 +396,14 @@ func (o *TeamPolicy) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "editableByRequester")
-		delete(additionalProperties, "editableByApprover")
-		delete(additionalProperties, "regex")
-		delete(additionalProperties, "whitelist")
-		delete(additionalProperties, "value")
 		delete(additionalProperties, "computationRule")
-		delete(additionalProperties, "mandatory")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "editableByApprover")
+		delete(additionalProperties, "editableByRequester")
+		delete(additionalProperties, "mandatory")
+		delete(additionalProperties, "regex")
+		delete(additionalProperties, "value")
+		delete(additionalProperties, "whitelist")
 		o.AdditionalProperties = additionalProperties
 	}
 

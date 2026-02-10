@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &PrincipalInfoSearchResultResponse{}
 
 // PrincipalInfoSearchResultResponse struct for PrincipalInfoSearchResultResponse
 type PrincipalInfoSearchResultResponse struct {
-	// The identifier of the principal matching the search
-	Identifier string `json:"identifier"`
 	// The mail of the principal matching the search
 	Contact utils.NullableString `json:"contact,omitempty"`
-	// The type of the identity provider on which this user is registered
-	ProviderType string `json:"providerType"`
+	// The identifier of the principal matching the search
+	Identifier string `json:"identifier"`
 	// The name of the identity provider on which this user is registered
-	ProviderName         string `json:"providerName"`
+	ProviderName string `json:"providerName"`
+	// The type of the identity provider on which this user is registered
+	ProviderType         string `json:"providerType"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,11 +39,11 @@ type _PrincipalInfoSearchResultResponse PrincipalInfoSearchResultResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrincipalInfoSearchResultResponse(identifier string, providerType string, providerName string) *PrincipalInfoSearchResultResponse {
+func NewPrincipalInfoSearchResultResponse(identifier string, providerName string, providerType string) *PrincipalInfoSearchResultResponse {
 	this := PrincipalInfoSearchResultResponse{}
 	this.Identifier = identifier
-	this.ProviderType = providerType
 	this.ProviderName = providerName
+	this.ProviderType = providerType
 	return &this
 }
 
@@ -53,30 +53,6 @@ func NewPrincipalInfoSearchResultResponse(identifier string, providerType string
 func NewPrincipalInfoSearchResultResponseWithDefaults() *PrincipalInfoSearchResultResponse {
 	this := PrincipalInfoSearchResultResponse{}
 	return &this
-}
-
-// GetIdentifier returns the Identifier field value
-func (o *PrincipalInfoSearchResultResponse) GetIdentifier() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Identifier
-}
-
-// GetIdentifierOk returns a tuple with the Identifier field value
-// and a boolean to check if the value has been set.
-func (o *PrincipalInfoSearchResultResponse) GetIdentifierOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Identifier, true
-}
-
-// SetIdentifier sets field value
-func (o *PrincipalInfoSearchResultResponse) SetIdentifier(v string) {
-	o.Identifier = v
 }
 
 // GetContact returns the Contact field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -122,28 +98,28 @@ func (o *PrincipalInfoSearchResultResponse) UnsetContact() {
 	o.Contact.Unset()
 }
 
-// GetProviderType returns the ProviderType field value
-func (o *PrincipalInfoSearchResultResponse) GetProviderType() string {
+// GetIdentifier returns the Identifier field value
+func (o *PrincipalInfoSearchResultResponse) GetIdentifier() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ProviderType
+	return o.Identifier
 }
 
-// GetProviderTypeOk returns a tuple with the ProviderType field value
+// GetIdentifierOk returns a tuple with the Identifier field value
 // and a boolean to check if the value has been set.
-func (o *PrincipalInfoSearchResultResponse) GetProviderTypeOk() (*string, bool) {
+func (o *PrincipalInfoSearchResultResponse) GetIdentifierOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ProviderType, true
+	return &o.Identifier, true
 }
 
-// SetProviderType sets field value
-func (o *PrincipalInfoSearchResultResponse) SetProviderType(v string) {
-	o.ProviderType = v
+// SetIdentifier sets field value
+func (o *PrincipalInfoSearchResultResponse) SetIdentifier(v string) {
+	o.Identifier = v
 }
 
 // GetProviderName returns the ProviderName field value
@@ -170,6 +146,30 @@ func (o *PrincipalInfoSearchResultResponse) SetProviderName(v string) {
 	o.ProviderName = v
 }
 
+// GetProviderType returns the ProviderType field value
+func (o *PrincipalInfoSearchResultResponse) GetProviderType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProviderType
+}
+
+// GetProviderTypeOk returns a tuple with the ProviderType field value
+// and a boolean to check if the value has been set.
+func (o *PrincipalInfoSearchResultResponse) GetProviderTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProviderType, true
+}
+
+// SetProviderType sets field value
+func (o *PrincipalInfoSearchResultResponse) SetProviderType(v string) {
+	o.ProviderType = v
+}
+
 func (o PrincipalInfoSearchResultResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -180,12 +180,12 @@ func (o PrincipalInfoSearchResultResponse) MarshalJSON() ([]byte, error) {
 
 func (o PrincipalInfoSearchResultResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["identifier"] = o.Identifier
 	if o.Contact.IsSet() {
 		toSerialize["contact"] = o.Contact.Get()
 	}
-	toSerialize["providerType"] = o.ProviderType
+	toSerialize["identifier"] = o.Identifier
 	toSerialize["providerName"] = o.ProviderName
+	toSerialize["providerType"] = o.ProviderType
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -200,8 +200,8 @@ func (o *PrincipalInfoSearchResultResponse) UnmarshalJSON(data []byte) (err erro
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"identifier",
-		"providerType",
 		"providerName",
+		"providerType",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -231,10 +231,10 @@ func (o *PrincipalInfoSearchResultResponse) UnmarshalJSON(data []byte) (err erro
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "identifier")
 		delete(additionalProperties, "contact")
-		delete(additionalProperties, "providerType")
+		delete(additionalProperties, "identifier")
 		delete(additionalProperties, "providerName")
+		delete(additionalProperties, "providerType")
 		o.AdditionalProperties = additionalProperties
 	}
 

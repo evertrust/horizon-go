@@ -22,16 +22,16 @@ var _ utils.MappedNullable = &AcmeExternalInitParameters{}
 
 // AcmeExternalInitParameters struct for AcmeExternalInitParameters
 type AcmeExternalInitParameters struct {
-	// The module of the initialization parameters.
-	Module string `json:"module"`
-	// The profile used for ACME external.
-	Profile string `json:"profile"`
-	// The key type used for ACME external.
-	KeyType *string `json:"keyType,omitempty"`
 	// The ACME URL for the external ACME server.
 	AcmeUrl *string `json:"acmeUrl,omitempty"`
 	// The allowed authorization methods for ACME external.
 	AllowedAuthorizationMethod []string `json:"allowedAuthorizationMethod,omitempty"`
+	// The key type used for ACME external.
+	KeyType *string `json:"keyType,omitempty"`
+	// The module of the initialization parameters.
+	Module string `json:"module"`
+	// The profile used for ACME external.
+	Profile string `json:"profile"`
 	// Indicates whether EAB is required for ACME external.
 	RequireEAB           *bool `json:"requireEAB,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -56,86 +56,6 @@ func NewAcmeExternalInitParameters(module string, profile string) *AcmeExternalI
 func NewAcmeExternalInitParametersWithDefaults() *AcmeExternalInitParameters {
 	this := AcmeExternalInitParameters{}
 	return &this
-}
-
-// GetModule returns the Module field value
-func (o *AcmeExternalInitParameters) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *AcmeExternalInitParameters) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *AcmeExternalInitParameters) SetModule(v string) {
-	o.Module = v
-}
-
-// GetProfile returns the Profile field value
-func (o *AcmeExternalInitParameters) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *AcmeExternalInitParameters) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *AcmeExternalInitParameters) SetProfile(v string) {
-	o.Profile = v
-}
-
-// GetKeyType returns the KeyType field value if set, zero value otherwise.
-func (o *AcmeExternalInitParameters) GetKeyType() string {
-	if o == nil || utils.IsNil(o.KeyType) {
-		var ret string
-		return ret
-	}
-	return *o.KeyType
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AcmeExternalInitParameters) GetKeyTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.KeyType) {
-		return nil, false
-	}
-	return o.KeyType, true
-}
-
-// HasKeyType returns a boolean if a field has been set.
-func (o *AcmeExternalInitParameters) HasKeyType() bool {
-	if o != nil && !utils.IsNil(o.KeyType) {
-		return true
-	}
-
-	return false
-}
-
-// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
-func (o *AcmeExternalInitParameters) SetKeyType(v string) {
-	o.KeyType = &v
 }
 
 // GetAcmeUrl returns the AcmeUrl field value if set, zero value otherwise.
@@ -202,6 +122,86 @@ func (o *AcmeExternalInitParameters) SetAllowedAuthorizationMethod(v []string) {
 	o.AllowedAuthorizationMethod = v
 }
 
+// GetKeyType returns the KeyType field value if set, zero value otherwise.
+func (o *AcmeExternalInitParameters) GetKeyType() string {
+	if o == nil || utils.IsNil(o.KeyType) {
+		var ret string
+		return ret
+	}
+	return *o.KeyType
+}
+
+// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AcmeExternalInitParameters) GetKeyTypeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.KeyType) {
+		return nil, false
+	}
+	return o.KeyType, true
+}
+
+// HasKeyType returns a boolean if a field has been set.
+func (o *AcmeExternalInitParameters) HasKeyType() bool {
+	if o != nil && !utils.IsNil(o.KeyType) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
+func (o *AcmeExternalInitParameters) SetKeyType(v string) {
+	o.KeyType = &v
+}
+
+// GetModule returns the Module field value
+func (o *AcmeExternalInitParameters) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *AcmeExternalInitParameters) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *AcmeExternalInitParameters) SetModule(v string) {
+	o.Module = v
+}
+
+// GetProfile returns the Profile field value
+func (o *AcmeExternalInitParameters) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *AcmeExternalInitParameters) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *AcmeExternalInitParameters) SetProfile(v string) {
+	o.Profile = v
+}
+
 // GetRequireEAB returns the RequireEAB field value if set, zero value otherwise.
 func (o *AcmeExternalInitParameters) GetRequireEAB() bool {
 	if o == nil || utils.IsNil(o.RequireEAB) {
@@ -244,17 +244,17 @@ func (o AcmeExternalInitParameters) MarshalJSON() ([]byte, error) {
 
 func (o AcmeExternalInitParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
-	toSerialize["profile"] = o.Profile
-	if !utils.IsNil(o.KeyType) {
-		toSerialize["keyType"] = o.KeyType
-	}
 	if !utils.IsNil(o.AcmeUrl) {
 		toSerialize["acmeUrl"] = o.AcmeUrl
 	}
 	if !utils.IsNil(o.AllowedAuthorizationMethod) {
 		toSerialize["allowedAuthorizationMethod"] = o.AllowedAuthorizationMethod
 	}
+	if !utils.IsNil(o.KeyType) {
+		toSerialize["keyType"] = o.KeyType
+	}
+	toSerialize["module"] = o.Module
+	toSerialize["profile"] = o.Profile
 	if !utils.IsNil(o.RequireEAB) {
 		toSerialize["requireEAB"] = o.RequireEAB
 	}
@@ -302,11 +302,11 @@ func (o *AcmeExternalInitParameters) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "module")
-		delete(additionalProperties, "profile")
-		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "acmeUrl")
 		delete(additionalProperties, "allowedAuthorizationMethod")
+		delete(additionalProperties, "keyType")
+		delete(additionalProperties, "module")
+		delete(additionalProperties, "profile")
 		delete(additionalProperties, "requireEAB")
 		o.AdditionalProperties = additionalProperties
 	}

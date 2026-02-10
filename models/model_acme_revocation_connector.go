@@ -22,13 +22,13 @@ var _ utils.MappedNullable = &AcmeRevocationConnector{}
 
 // AcmeRevocationConnector Used to revoke certificate using the acme protocol on compatible public PKI
 type AcmeRevocationConnector struct {
-	Name string `json:"name"`
-	Type string `json:"type"`
 	// The directory url of the ACME endpoint
 	AcmeDirectoryUrl     string               `json:"acmeDirectoryUrl"`
-	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Name                 string               `json:"name"`
 	Proxy                utils.NullableString `json:"proxy,omitempty"`
 	Queue                utils.NullableString `json:"queue,omitempty"`
+	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string               `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,11 +38,11 @@ type _AcmeRevocationConnector AcmeRevocationConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAcmeRevocationConnector(name string, type_ string, acmeDirectoryUrl string) *AcmeRevocationConnector {
+func NewAcmeRevocationConnector(acmeDirectoryUrl string, name string, type_ string) *AcmeRevocationConnector {
 	this := AcmeRevocationConnector{}
+	this.AcmeDirectoryUrl = acmeDirectoryUrl
 	this.Name = name
 	this.Type = type_
-	this.AcmeDirectoryUrl = acmeDirectoryUrl
 	return &this
 }
 
@@ -52,54 +52,6 @@ func NewAcmeRevocationConnector(name string, type_ string, acmeDirectoryUrl stri
 func NewAcmeRevocationConnectorWithDefaults() *AcmeRevocationConnector {
 	this := AcmeRevocationConnector{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *AcmeRevocationConnector) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *AcmeRevocationConnector) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *AcmeRevocationConnector) SetName(v string) {
-	o.Name = v
-}
-
-// GetType returns the Type field value
-func (o *AcmeRevocationConnector) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *AcmeRevocationConnector) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *AcmeRevocationConnector) SetType(v string) {
-	o.Type = v
 }
 
 // GetAcmeDirectoryUrl returns the AcmeDirectoryUrl field value
@@ -126,47 +78,28 @@ func (o *AcmeRevocationConnector) SetAcmeDirectoryUrl(v string) {
 	o.AcmeDirectoryUrl = v
 }
 
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AcmeRevocationConnector) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
+// GetName returns the Name field value
+func (o *AcmeRevocationConnector) GetName() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Timeout.Get()
+
+	return o.Name
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AcmeRevocationConnector) GetTimeoutOk() (*string, bool) {
+func (o *AcmeRevocationConnector) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
+	return &o.Name, true
 }
 
-// HasTimeout returns a boolean if a field has been set.
-func (o *AcmeRevocationConnector) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *AcmeRevocationConnector) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *AcmeRevocationConnector) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *AcmeRevocationConnector) UnsetTimeout() {
-	o.Timeout.Unset()
+// SetName sets field value
+func (o *AcmeRevocationConnector) SetName(v string) {
+	o.Name = v
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -255,6 +188,73 @@ func (o *AcmeRevocationConnector) UnsetQueue() {
 	o.Queue.Unset()
 }
 
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AcmeRevocationConnector) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AcmeRevocationConnector) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *AcmeRevocationConnector) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *AcmeRevocationConnector) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *AcmeRevocationConnector) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *AcmeRevocationConnector) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetType returns the Type field value
+func (o *AcmeRevocationConnector) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *AcmeRevocationConnector) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *AcmeRevocationConnector) SetType(v string) {
+	o.Type = v
+}
+
 func (o AcmeRevocationConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -265,18 +265,18 @@ func (o AcmeRevocationConnector) MarshalJSON() ([]byte, error) {
 
 func (o AcmeRevocationConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
 	toSerialize["acmeDirectoryUrl"] = o.AcmeDirectoryUrl
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
+	toSerialize["name"] = o.Name
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	if o.Queue.IsSet() {
 		toSerialize["queue"] = o.Queue.Get()
 	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -290,9 +290,9 @@ func (o *AcmeRevocationConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"acmeDirectoryUrl",
 		"name",
 		"type",
-		"acmeDirectoryUrl",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -322,12 +322,12 @@ func (o *AcmeRevocationConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "acmeDirectoryUrl")
-		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -4,38 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Module** | **string** |  | 
-**Workflow** | **string** |  | 
-**Pkcs12** | Pointer to [**NullableSecretString**](SecretString.md) | The generated PKCS#12 for this request. This is only available after the request has been approved. | [optional] 
-**Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. | [optional] 
 **Certificate** | Pointer to [**NullableCertificate**](Certificate.md) | The certificate that was recovered. | [optional] 
+**Module** | **string** |  | 
+**Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. | [optional] 
+**Pkcs12** | Pointer to [**NullableSecretString**](SecretString.md) | The generated PKCS#12 for this request. This is only available after the request has been approved. | [optional] 
+**Workflow** | **string** |  | 
 **Id** | **string** | Object internal ID | 
-**Status** | [**RequestStatus**](RequestStatus.md) |  | 
-**Profile** | **string** | The associated profile name | 
-**Dn** | Pointer to **string** | Certificate&#39;s Distinguished Name | [optional] 
-**Requester** | Pointer to **NullableString** | The requester&#39;s principal identifier | [optional] 
-**Team** | Pointer to **NullableString** | The team that will be assigned to this certificate. Teams are used to link certificates to people and to assign permissions to them | [optional] 
 **Approver** | Pointer to **NullableString** | The approver&#39;s principal identifier | [optional] 
-**Contact** | Pointer to **NullableString** | The request&#39;s contact email | [optional] 
-**RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
 **ApproverComment** | Pointer to **NullableString** | Free-text field editable by the approver to provider more context on the request | [optional] 
-**RegistrationDate** | **int64** | The date the request was created. This is set by the system | 
-**LastModificationDate** | **int64** | The date the request was last modified. This is set by the system | 
-**ExpirationDate** | Pointer to **int64** | The date the request will expire. This is set by the system | [optional] 
-**RemoveAt** | **int64** | The date the requested will be deleted. This is set by the system | 
-**TriggerResults** | Pointer to [**[]TriggerResult**](TriggerResult.md) | The result of the execution of triggers on this request | [optional] 
-**HolderId** | **string** | The computed holderID for this request. This is set by the system based on DN and SANs | 
-**GlobalHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the Horizon database | [optional] 
-**ProfileHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile | [optional] 
-**Labels** | Pointer to [**[]LabelData**](LabelData.md) | The labels set in this request | [optional] 
-**Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The metadata set in this request | [optional] 
+**Contact** | Pointer to **NullableString** | The request&#39;s contact email | [optional] 
+**Dn** | Pointer to **string** | Certificate&#39;s Distinguished Name | [optional] 
 **DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
+**ExpirationDate** | Pointer to **int64** | The date the request will expire. This is set by the system | [optional] 
+**GlobalHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the Horizon database | [optional] 
+**HolderId** | **string** | The computed holderID for this request. This is set by the system based on DN and SANs | 
+**Labels** | Pointer to [**[]LabelData**](LabelData.md) | The labels set in this request | [optional] 
+**LastModificationDate** | **int64** | The date the request was last modified. This is set by the system | 
+**Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The metadata set in this request | [optional] 
+**Profile** | **string** | The associated profile name | 
+**ProfileHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile | [optional] 
+**RegistrationDate** | **int64** | The date the request was created. This is set by the system | 
+**RemoveAt** | **int64** | The date the requested will be deleted. This is set by the system | 
+**Requester** | Pointer to **NullableString** | The requester&#39;s principal identifier | [optional] 
+**RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
+**Status** | [**RequestStatus**](RequestStatus.md) |  | 
+**Team** | Pointer to **NullableString** | The team that will be assigned to this certificate. Teams are used to link certificates to people and to assign permissions to them | [optional] 
+**TriggerResults** | Pointer to [**[]TriggerResult**](TriggerResult.md) | The result of the execution of triggers on this request | [optional] 
 
 ## Methods
 
 ### NewWebRARecoverRequestOnApproveResponse
 
-`func NewWebRARecoverRequestOnApproveResponse(module string, workflow string, id string, status RequestStatus, profile string, registrationDate int64, lastModificationDate int64, removeAt int64, holderId string, ) *WebRARecoverRequestOnApproveResponse`
+`func NewWebRARecoverRequestOnApproveResponse(module string, workflow string, id string, holderId string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRARecoverRequestOnApproveResponse`
 
 NewWebRARecoverRequestOnApproveResponse instantiates a new WebRARecoverRequestOnApproveResponse object
 This constructor will assign default values to properties that have it defined,
@@ -50,116 +50,6 @@ NewWebRARecoverRequestOnApproveResponseWithDefaults instantiates a new WebRAReco
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetModule
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetModule() string`
-
-GetModule returns the Module field if non-nil, zero value otherwise.
-
-### GetModuleOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetModuleOk() (*string, bool)`
-
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModule
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetModule(v string)`
-
-SetModule sets Module field to given value.
-
-
-### GetWorkflow
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-
-### GetPkcs12
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetPkcs12() SecretString`
-
-GetPkcs12 returns the Pkcs12 field if non-nil, zero value otherwise.
-
-### GetPkcs12Ok
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetPkcs12Ok() (*SecretString, bool)`
-
-GetPkcs12Ok returns a tuple with the Pkcs12 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPkcs12
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetPkcs12(v SecretString)`
-
-SetPkcs12 sets Pkcs12 field to given value.
-
-### HasPkcs12
-
-`func (o *WebRARecoverRequestOnApproveResponse) HasPkcs12() bool`
-
-HasPkcs12 returns a boolean if a field has been set.
-
-### SetPkcs12Nil
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetPkcs12Nil(b bool)`
-
- SetPkcs12Nil sets the value for Pkcs12 to be an explicit nil
-
-### UnsetPkcs12
-`func (o *WebRARecoverRequestOnApproveResponse) UnsetPkcs12()`
-
-UnsetPkcs12 ensures that no value is present for Pkcs12, not even an explicit nil
-### GetPassword
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetPassword() SecretString`
-
-GetPassword returns the Password field if non-nil, zero value otherwise.
-
-### GetPasswordOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetPasswordOk() (*SecretString, bool)`
-
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPassword
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetPassword(v SecretString)`
-
-SetPassword sets Password field to given value.
-
-### HasPassword
-
-`func (o *WebRARecoverRequestOnApproveResponse) HasPassword() bool`
-
-HasPassword returns a boolean if a field has been set.
-
-### SetPasswordNil
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetPasswordNil(b bool)`
-
- SetPasswordNil sets the value for Password to be an explicit nil
-
-### UnsetPassword
-`func (o *WebRARecoverRequestOnApproveResponse) UnsetPassword()`
-
-UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetCertificate
 
 `func (o *WebRARecoverRequestOnApproveResponse) GetCertificate() Certificate`
@@ -195,6 +85,116 @@ HasCertificate returns a boolean if a field has been set.
 `func (o *WebRARecoverRequestOnApproveResponse) UnsetCertificate()`
 
 UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
+### GetModule
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetModule() string`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetModuleOk() (*string, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetModule(v string)`
+
+SetModule sets Module field to given value.
+
+
+### GetPassword
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetPassword() SecretString`
+
+GetPassword returns the Password field if non-nil, zero value otherwise.
+
+### GetPasswordOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetPasswordOk() (*SecretString, bool)`
+
+GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPassword
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetPassword(v SecretString)`
+
+SetPassword sets Password field to given value.
+
+### HasPassword
+
+`func (o *WebRARecoverRequestOnApproveResponse) HasPassword() bool`
+
+HasPassword returns a boolean if a field has been set.
+
+### SetPasswordNil
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetPasswordNil(b bool)`
+
+ SetPasswordNil sets the value for Password to be an explicit nil
+
+### UnsetPassword
+`func (o *WebRARecoverRequestOnApproveResponse) UnsetPassword()`
+
+UnsetPassword ensures that no value is present for Password, not even an explicit nil
+### GetPkcs12
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetPkcs12() SecretString`
+
+GetPkcs12 returns the Pkcs12 field if non-nil, zero value otherwise.
+
+### GetPkcs12Ok
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetPkcs12Ok() (*SecretString, bool)`
+
+GetPkcs12Ok returns a tuple with the Pkcs12 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkcs12
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetPkcs12(v SecretString)`
+
+SetPkcs12 sets Pkcs12 field to given value.
+
+### HasPkcs12
+
+`func (o *WebRARecoverRequestOnApproveResponse) HasPkcs12() bool`
+
+HasPkcs12 returns a boolean if a field has been set.
+
+### SetPkcs12Nil
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetPkcs12Nil(b bool)`
+
+ SetPkcs12Nil sets the value for Pkcs12 to be an explicit nil
+
+### UnsetPkcs12
+`func (o *WebRARecoverRequestOnApproveResponse) UnsetPkcs12()`
+
+UnsetPkcs12 ensures that no value is present for Pkcs12, not even an explicit nil
+### GetWorkflow
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
 ### GetId
 
 `func (o *WebRARecoverRequestOnApproveResponse) GetId() string`
@@ -215,141 +215,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetStatus
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetStatus() RequestStatus`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetStatusOk() (*RequestStatus, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetStatus(v RequestStatus)`
-
-SetStatus sets Status field to given value.
-
-
-### GetProfile
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-
-### GetDn
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetDn() string`
-
-GetDn returns the Dn field if non-nil, zero value otherwise.
-
-### GetDnOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetDnOk() (*string, bool)`
-
-GetDnOk returns a tuple with the Dn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDn
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetDn(v string)`
-
-SetDn sets Dn field to given value.
-
-### HasDn
-
-`func (o *WebRARecoverRequestOnApproveResponse) HasDn() bool`
-
-HasDn returns a boolean if a field has been set.
-
-### GetRequester
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetRequester() string`
-
-GetRequester returns the Requester field if non-nil, zero value otherwise.
-
-### GetRequesterOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetRequesterOk() (*string, bool)`
-
-GetRequesterOk returns a tuple with the Requester field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequester
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetRequester(v string)`
-
-SetRequester sets Requester field to given value.
-
-### HasRequester
-
-`func (o *WebRARecoverRequestOnApproveResponse) HasRequester() bool`
-
-HasRequester returns a boolean if a field has been set.
-
-### SetRequesterNil
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetRequesterNil(b bool)`
-
- SetRequesterNil sets the value for Requester to be an explicit nil
-
-### UnsetRequester
-`func (o *WebRARecoverRequestOnApproveResponse) UnsetRequester()`
-
-UnsetRequester ensures that no value is present for Requester, not even an explicit nil
-### GetTeam
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetTeam() string`
-
-GetTeam returns the Team field if non-nil, zero value otherwise.
-
-### GetTeamOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetTeamOk() (*string, bool)`
-
-GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTeam
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetTeam(v string)`
-
-SetTeam sets Team field to given value.
-
-### HasTeam
-
-`func (o *WebRARecoverRequestOnApproveResponse) HasTeam() bool`
-
-HasTeam returns a boolean if a field has been set.
-
-### SetTeamNil
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetTeamNil(b bool)`
-
- SetTeamNil sets the value for Team to be an explicit nil
-
-### UnsetTeam
-`func (o *WebRARecoverRequestOnApproveResponse) UnsetTeam()`
-
-UnsetTeam ensures that no value is present for Team, not even an explicit nil
 ### GetApprover
 
 `func (o *WebRARecoverRequestOnApproveResponse) GetApprover() string`
@@ -385,76 +250,6 @@ HasApprover returns a boolean if a field has been set.
 `func (o *WebRARecoverRequestOnApproveResponse) UnsetApprover()`
 
 UnsetApprover ensures that no value is present for Approver, not even an explicit nil
-### GetContact
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetContact() string`
-
-GetContact returns the Contact field if non-nil, zero value otherwise.
-
-### GetContactOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetContactOk() (*string, bool)`
-
-GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContact
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetContact(v string)`
-
-SetContact sets Contact field to given value.
-
-### HasContact
-
-`func (o *WebRARecoverRequestOnApproveResponse) HasContact() bool`
-
-HasContact returns a boolean if a field has been set.
-
-### SetContactNil
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetContactNil(b bool)`
-
- SetContactNil sets the value for Contact to be an explicit nil
-
-### UnsetContact
-`func (o *WebRARecoverRequestOnApproveResponse) UnsetContact()`
-
-UnsetContact ensures that no value is present for Contact, not even an explicit nil
-### GetRequesterComment
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetRequesterComment() string`
-
-GetRequesterComment returns the RequesterComment field if non-nil, zero value otherwise.
-
-### GetRequesterCommentOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetRequesterCommentOk() (*string, bool)`
-
-GetRequesterCommentOk returns a tuple with the RequesterComment field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequesterComment
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetRequesterComment(v string)`
-
-SetRequesterComment sets RequesterComment field to given value.
-
-### HasRequesterComment
-
-`func (o *WebRARecoverRequestOnApproveResponse) HasRequesterComment() bool`
-
-HasRequesterComment returns a boolean if a field has been set.
-
-### SetRequesterCommentNil
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetRequesterCommentNil(b bool)`
-
- SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
-
-### UnsetRequesterComment
-`func (o *WebRARecoverRequestOnApproveResponse) UnsetRequesterComment()`
-
-UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
 ### GetApproverComment
 
 `func (o *WebRARecoverRequestOnApproveResponse) GetApproverComment() string`
@@ -490,46 +285,101 @@ HasApproverComment returns a boolean if a field has been set.
 `func (o *WebRARecoverRequestOnApproveResponse) UnsetApproverComment()`
 
 UnsetApproverComment ensures that no value is present for ApproverComment, not even an explicit nil
-### GetRegistrationDate
+### GetContact
 
-`func (o *WebRARecoverRequestOnApproveResponse) GetRegistrationDate() int64`
+`func (o *WebRARecoverRequestOnApproveResponse) GetContact() string`
 
-GetRegistrationDate returns the RegistrationDate field if non-nil, zero value otherwise.
+GetContact returns the Contact field if non-nil, zero value otherwise.
 
-### GetRegistrationDateOk
+### GetContactOk
 
-`func (o *WebRARecoverRequestOnApproveResponse) GetRegistrationDateOk() (*int64, bool)`
+`func (o *WebRARecoverRequestOnApproveResponse) GetContactOk() (*string, bool)`
 
-GetRegistrationDateOk returns a tuple with the RegistrationDate field if it's non-nil, zero value otherwise
+GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRegistrationDate
+### SetContact
 
-`func (o *WebRARecoverRequestOnApproveResponse) SetRegistrationDate(v int64)`
+`func (o *WebRARecoverRequestOnApproveResponse) SetContact(v string)`
 
-SetRegistrationDate sets RegistrationDate field to given value.
+SetContact sets Contact field to given value.
 
+### HasContact
 
-### GetLastModificationDate
+`func (o *WebRARecoverRequestOnApproveResponse) HasContact() bool`
 
-`func (o *WebRARecoverRequestOnApproveResponse) GetLastModificationDate() int64`
+HasContact returns a boolean if a field has been set.
 
-GetLastModificationDate returns the LastModificationDate field if non-nil, zero value otherwise.
+### SetContactNil
 
-### GetLastModificationDateOk
+`func (o *WebRARecoverRequestOnApproveResponse) SetContactNil(b bool)`
 
-`func (o *WebRARecoverRequestOnApproveResponse) GetLastModificationDateOk() (*int64, bool)`
+ SetContactNil sets the value for Contact to be an explicit nil
 
-GetLastModificationDateOk returns a tuple with the LastModificationDate field if it's non-nil, zero value otherwise
+### UnsetContact
+`func (o *WebRARecoverRequestOnApproveResponse) UnsetContact()`
+
+UnsetContact ensures that no value is present for Contact, not even an explicit nil
+### GetDn
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetDn() string`
+
+GetDn returns the Dn field if non-nil, zero value otherwise.
+
+### GetDnOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetDnOk() (*string, bool)`
+
+GetDnOk returns a tuple with the Dn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLastModificationDate
+### SetDn
 
-`func (o *WebRARecoverRequestOnApproveResponse) SetLastModificationDate(v int64)`
+`func (o *WebRARecoverRequestOnApproveResponse) SetDn(v string)`
 
-SetLastModificationDate sets LastModificationDate field to given value.
+SetDn sets Dn field to given value.
 
+### HasDn
 
+`func (o *WebRARecoverRequestOnApproveResponse) HasDn() bool`
+
+HasDn returns a boolean if a field has been set.
+
+### GetDryRun
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetDryRun() bool`
+
+GetDryRun returns the DryRun field if non-nil, zero value otherwise.
+
+### GetDryRunOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetDryRunOk() (*bool, bool)`
+
+GetDryRunOk returns a tuple with the DryRun field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDryRun
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetDryRun(v bool)`
+
+SetDryRun sets DryRun field to given value.
+
+### HasDryRun
+
+`func (o *WebRARecoverRequestOnApproveResponse) HasDryRun() bool`
+
+HasDryRun returns a boolean if a field has been set.
+
+### SetDryRunNil
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetDryRunNil(b bool)`
+
+ SetDryRunNil sets the value for DryRun to be an explicit nil
+
+### UnsetDryRun
+`func (o *WebRARecoverRequestOnApproveResponse) UnsetDryRun()`
+
+UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
 ### GetExpirationDate
 
 `func (o *WebRARecoverRequestOnApproveResponse) GetExpirationDate() int64`
@@ -554,81 +404,6 @@ SetExpirationDate sets ExpirationDate field to given value.
 `func (o *WebRARecoverRequestOnApproveResponse) HasExpirationDate() bool`
 
 HasExpirationDate returns a boolean if a field has been set.
-
-### GetRemoveAt
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetRemoveAt() int64`
-
-GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
-
-### GetRemoveAtOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetRemoveAtOk() (*int64, bool)`
-
-GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoveAt
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetRemoveAt(v int64)`
-
-SetRemoveAt sets RemoveAt field to given value.
-
-
-### GetTriggerResults
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetTriggerResults() []TriggerResult`
-
-GetTriggerResults returns the TriggerResults field if non-nil, zero value otherwise.
-
-### GetTriggerResultsOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetTriggerResultsOk() (*[]TriggerResult, bool)`
-
-GetTriggerResultsOk returns a tuple with the TriggerResults field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTriggerResults
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetTriggerResults(v []TriggerResult)`
-
-SetTriggerResults sets TriggerResults field to given value.
-
-### HasTriggerResults
-
-`func (o *WebRARecoverRequestOnApproveResponse) HasTriggerResults() bool`
-
-HasTriggerResults returns a boolean if a field has been set.
-
-### SetTriggerResultsNil
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetTriggerResultsNil(b bool)`
-
- SetTriggerResultsNil sets the value for TriggerResults to be an explicit nil
-
-### UnsetTriggerResults
-`func (o *WebRARecoverRequestOnApproveResponse) UnsetTriggerResults()`
-
-UnsetTriggerResults ensures that no value is present for TriggerResults, not even an explicit nil
-### GetHolderId
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetHolderId() string`
-
-GetHolderId returns the HolderId field if non-nil, zero value otherwise.
-
-### GetHolderIdOk
-
-`func (o *WebRARecoverRequestOnApproveResponse) GetHolderIdOk() (*string, bool)`
-
-GetHolderIdOk returns a tuple with the HolderId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHolderId
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetHolderId(v string)`
-
-SetHolderId sets HolderId field to given value.
-
 
 ### GetGlobalHolderIdCount
 
@@ -665,41 +440,26 @@ HasGlobalHolderIdCount returns a boolean if a field has been set.
 `func (o *WebRARecoverRequestOnApproveResponse) UnsetGlobalHolderIdCount()`
 
 UnsetGlobalHolderIdCount ensures that no value is present for GlobalHolderIdCount, not even an explicit nil
-### GetProfileHolderIdCount
+### GetHolderId
 
-`func (o *WebRARecoverRequestOnApproveResponse) GetProfileHolderIdCount() int64`
+`func (o *WebRARecoverRequestOnApproveResponse) GetHolderId() string`
 
-GetProfileHolderIdCount returns the ProfileHolderIdCount field if non-nil, zero value otherwise.
+GetHolderId returns the HolderId field if non-nil, zero value otherwise.
 
-### GetProfileHolderIdCountOk
+### GetHolderIdOk
 
-`func (o *WebRARecoverRequestOnApproveResponse) GetProfileHolderIdCountOk() (*int64, bool)`
+`func (o *WebRARecoverRequestOnApproveResponse) GetHolderIdOk() (*string, bool)`
 
-GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field if it's non-nil, zero value otherwise
+GetHolderIdOk returns a tuple with the HolderId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProfileHolderIdCount
+### SetHolderId
 
-`func (o *WebRARecoverRequestOnApproveResponse) SetProfileHolderIdCount(v int64)`
+`func (o *WebRARecoverRequestOnApproveResponse) SetHolderId(v string)`
 
-SetProfileHolderIdCount sets ProfileHolderIdCount field to given value.
+SetHolderId sets HolderId field to given value.
 
-### HasProfileHolderIdCount
 
-`func (o *WebRARecoverRequestOnApproveResponse) HasProfileHolderIdCount() bool`
-
-HasProfileHolderIdCount returns a boolean if a field has been set.
-
-### SetProfileHolderIdCountNil
-
-`func (o *WebRARecoverRequestOnApproveResponse) SetProfileHolderIdCountNil(b bool)`
-
- SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
-
-### UnsetProfileHolderIdCount
-`func (o *WebRARecoverRequestOnApproveResponse) UnsetProfileHolderIdCount()`
-
-UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
 ### GetLabels
 
 `func (o *WebRARecoverRequestOnApproveResponse) GetLabels() []LabelData`
@@ -735,6 +495,26 @@ HasLabels returns a boolean if a field has been set.
 `func (o *WebRARecoverRequestOnApproveResponse) UnsetLabels()`
 
 UnsetLabels ensures that no value is present for Labels, not even an explicit nil
+### GetLastModificationDate
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetLastModificationDate() int64`
+
+GetLastModificationDate returns the LastModificationDate field if non-nil, zero value otherwise.
+
+### GetLastModificationDateOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetLastModificationDateOk() (*int64, bool)`
+
+GetLastModificationDateOk returns a tuple with the LastModificationDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastModificationDate
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetLastModificationDate(v int64)`
+
+SetLastModificationDate sets LastModificationDate field to given value.
+
+
 ### GetMetadata
 
 `func (o *WebRARecoverRequestOnApproveResponse) GetMetadata() []CertificateMetadata`
@@ -770,41 +550,261 @@ HasMetadata returns a boolean if a field has been set.
 `func (o *WebRARecoverRequestOnApproveResponse) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
-### GetDryRun
+### GetProfile
 
-`func (o *WebRARecoverRequestOnApproveResponse) GetDryRun() bool`
+`func (o *WebRARecoverRequestOnApproveResponse) GetProfile() string`
 
-GetDryRun returns the DryRun field if non-nil, zero value otherwise.
+GetProfile returns the Profile field if non-nil, zero value otherwise.
 
-### GetDryRunOk
+### GetProfileOk
 
-`func (o *WebRARecoverRequestOnApproveResponse) GetDryRunOk() (*bool, bool)`
+`func (o *WebRARecoverRequestOnApproveResponse) GetProfileOk() (*string, bool)`
 
-GetDryRunOk returns a tuple with the DryRun field if it's non-nil, zero value otherwise
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDryRun
+### SetProfile
 
-`func (o *WebRARecoverRequestOnApproveResponse) SetDryRun(v bool)`
+`func (o *WebRARecoverRequestOnApproveResponse) SetProfile(v string)`
 
-SetDryRun sets DryRun field to given value.
+SetProfile sets Profile field to given value.
 
-### HasDryRun
 
-`func (o *WebRARecoverRequestOnApproveResponse) HasDryRun() bool`
+### GetProfileHolderIdCount
 
-HasDryRun returns a boolean if a field has been set.
+`func (o *WebRARecoverRequestOnApproveResponse) GetProfileHolderIdCount() int64`
 
-### SetDryRunNil
+GetProfileHolderIdCount returns the ProfileHolderIdCount field if non-nil, zero value otherwise.
 
-`func (o *WebRARecoverRequestOnApproveResponse) SetDryRunNil(b bool)`
+### GetProfileHolderIdCountOk
 
- SetDryRunNil sets the value for DryRun to be an explicit nil
+`func (o *WebRARecoverRequestOnApproveResponse) GetProfileHolderIdCountOk() (*int64, bool)`
 
-### UnsetDryRun
-`func (o *WebRARecoverRequestOnApproveResponse) UnsetDryRun()`
+GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
+### SetProfileHolderIdCount
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetProfileHolderIdCount(v int64)`
+
+SetProfileHolderIdCount sets ProfileHolderIdCount field to given value.
+
+### HasProfileHolderIdCount
+
+`func (o *WebRARecoverRequestOnApproveResponse) HasProfileHolderIdCount() bool`
+
+HasProfileHolderIdCount returns a boolean if a field has been set.
+
+### SetProfileHolderIdCountNil
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetProfileHolderIdCountNil(b bool)`
+
+ SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
+
+### UnsetProfileHolderIdCount
+`func (o *WebRARecoverRequestOnApproveResponse) UnsetProfileHolderIdCount()`
+
+UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
+### GetRegistrationDate
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetRegistrationDate() int64`
+
+GetRegistrationDate returns the RegistrationDate field if non-nil, zero value otherwise.
+
+### GetRegistrationDateOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetRegistrationDateOk() (*int64, bool)`
+
+GetRegistrationDateOk returns a tuple with the RegistrationDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationDate
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetRegistrationDate(v int64)`
+
+SetRegistrationDate sets RegistrationDate field to given value.
+
+
+### GetRemoveAt
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetRemoveAt() int64`
+
+GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
+
+### GetRemoveAtOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetRemoveAtOk() (*int64, bool)`
+
+GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveAt
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetRemoveAt(v int64)`
+
+SetRemoveAt sets RemoveAt field to given value.
+
+
+### GetRequester
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetRequester() string`
+
+GetRequester returns the Requester field if non-nil, zero value otherwise.
+
+### GetRequesterOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetRequesterOk() (*string, bool)`
+
+GetRequesterOk returns a tuple with the Requester field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequester
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetRequester(v string)`
+
+SetRequester sets Requester field to given value.
+
+### HasRequester
+
+`func (o *WebRARecoverRequestOnApproveResponse) HasRequester() bool`
+
+HasRequester returns a boolean if a field has been set.
+
+### SetRequesterNil
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetRequesterNil(b bool)`
+
+ SetRequesterNil sets the value for Requester to be an explicit nil
+
+### UnsetRequester
+`func (o *WebRARecoverRequestOnApproveResponse) UnsetRequester()`
+
+UnsetRequester ensures that no value is present for Requester, not even an explicit nil
+### GetRequesterComment
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetRequesterComment() string`
+
+GetRequesterComment returns the RequesterComment field if non-nil, zero value otherwise.
+
+### GetRequesterCommentOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetRequesterCommentOk() (*string, bool)`
+
+GetRequesterCommentOk returns a tuple with the RequesterComment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequesterComment
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetRequesterComment(v string)`
+
+SetRequesterComment sets RequesterComment field to given value.
+
+### HasRequesterComment
+
+`func (o *WebRARecoverRequestOnApproveResponse) HasRequesterComment() bool`
+
+HasRequesterComment returns a boolean if a field has been set.
+
+### SetRequesterCommentNil
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetRequesterCommentNil(b bool)`
+
+ SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
+
+### UnsetRequesterComment
+`func (o *WebRARecoverRequestOnApproveResponse) UnsetRequesterComment()`
+
+UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
+### GetStatus
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetStatus() RequestStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetStatusOk() (*RequestStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetStatus(v RequestStatus)`
+
+SetStatus sets Status field to given value.
+
+
+### GetTeam
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetTeam() string`
+
+GetTeam returns the Team field if non-nil, zero value otherwise.
+
+### GetTeamOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetTeamOk() (*string, bool)`
+
+GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeam
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetTeam(v string)`
+
+SetTeam sets Team field to given value.
+
+### HasTeam
+
+`func (o *WebRARecoverRequestOnApproveResponse) HasTeam() bool`
+
+HasTeam returns a boolean if a field has been set.
+
+### SetTeamNil
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetTeamNil(b bool)`
+
+ SetTeamNil sets the value for Team to be an explicit nil
+
+### UnsetTeam
+`func (o *WebRARecoverRequestOnApproveResponse) UnsetTeam()`
+
+UnsetTeam ensures that no value is present for Team, not even an explicit nil
+### GetTriggerResults
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetTriggerResults() []TriggerResult`
+
+GetTriggerResults returns the TriggerResults field if non-nil, zero value otherwise.
+
+### GetTriggerResultsOk
+
+`func (o *WebRARecoverRequestOnApproveResponse) GetTriggerResultsOk() (*[]TriggerResult, bool)`
+
+GetTriggerResultsOk returns a tuple with the TriggerResults field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggerResults
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetTriggerResults(v []TriggerResult)`
+
+SetTriggerResults sets TriggerResults field to given value.
+
+### HasTriggerResults
+
+`func (o *WebRARecoverRequestOnApproveResponse) HasTriggerResults() bool`
+
+HasTriggerResults returns a boolean if a field has been set.
+
+### SetTriggerResultsNil
+
+`func (o *WebRARecoverRequestOnApproveResponse) SetTriggerResultsNil(b bool)`
+
+ SetTriggerResultsNil sets the value for TriggerResults to be an explicit nil
+
+### UnsetTriggerResults
+`func (o *WebRARecoverRequestOnApproveResponse) UnsetTriggerResults()`
+
+UnsetTriggerResults ensures that no value is present for TriggerResults, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

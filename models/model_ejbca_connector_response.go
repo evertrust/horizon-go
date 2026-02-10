@@ -23,19 +23,19 @@ var _ utils.MappedNullable = &EJBCAConnectorResponse{}
 // EJBCAConnectorResponse struct for EJBCAConnectorResponse
 type EJBCAConnectorResponse struct {
 	// Object internal ID
-	Id        string               `json:"_id"`
-	Name      string               `json:"name"`
-	Type      string               `json:"type"`
-	EndPoint  string               `json:"endPoint"`
-	Profile   string               `json:"profile"`
-	CaName    string               `json:"caName"`
-	EeProfile utils.NullableString `json:"eeProfile,omitempty"`
+	Id string `json:"_id"`
 	// Name of the `certificate` [credentials](#tag/security.credentials) to use to authenticate on the PKI
 	AuthenticationCredentials string                     `json:"authenticationCredentials"`
-	Timeout                   utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	CaName                    string                     `json:"caName"`
+	EeProfile                 utils.NullableString       `json:"eeProfile,omitempty"`
+	EndPoint                  string                     `json:"endPoint"`
+	Name                      string                     `json:"name"`
+	Profile                   string                     `json:"profile"`
 	Proxy                     utils.NullableString       `json:"proxy,omitempty"`
 	Queue                     utils.NullableString       `json:"queue,omitempty"`
 	Status                    NullablePKIConnectorStatus `json:"status,omitempty"`
+	Timeout                   utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                      string                     `json:"type"`
 	AdditionalProperties      map[string]interface{}
 }
 
@@ -45,15 +45,15 @@ type _EJBCAConnectorResponse EJBCAConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEJBCAConnectorResponse(id string, name string, type_ string, endPoint string, profile string, caName string, authenticationCredentials string) *EJBCAConnectorResponse {
+func NewEJBCAConnectorResponse(id string, authenticationCredentials string, caName string, endPoint string, name string, profile string, type_ string) *EJBCAConnectorResponse {
 	this := EJBCAConnectorResponse{}
 	this.Id = id
-	this.Name = name
-	this.Type = type_
-	this.EndPoint = endPoint
-	this.Profile = profile
-	this.CaName = caName
 	this.AuthenticationCredentials = authenticationCredentials
+	this.CaName = caName
+	this.EndPoint = endPoint
+	this.Name = name
+	this.Profile = profile
+	this.Type = type_
 	return &this
 }
 
@@ -89,100 +89,28 @@ func (o *EJBCAConnectorResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetName returns the Name field value
-func (o *EJBCAConnectorResponse) GetName() string {
+// GetAuthenticationCredentials returns the AuthenticationCredentials field value
+func (o *EJBCAConnectorResponse) GetAuthenticationCredentials() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.AuthenticationCredentials
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value
 // and a boolean to check if the value has been set.
-func (o *EJBCAConnectorResponse) GetNameOk() (*string, bool) {
+func (o *EJBCAConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.AuthenticationCredentials, true
 }
 
-// SetName sets field value
-func (o *EJBCAConnectorResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetType returns the Type field value
-func (o *EJBCAConnectorResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *EJBCAConnectorResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *EJBCAConnectorResponse) SetType(v string) {
-	o.Type = v
-}
-
-// GetEndPoint returns the EndPoint field value
-func (o *EJBCAConnectorResponse) GetEndPoint() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.EndPoint
-}
-
-// GetEndPointOk returns a tuple with the EndPoint field value
-// and a boolean to check if the value has been set.
-func (o *EJBCAConnectorResponse) GetEndPointOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EndPoint, true
-}
-
-// SetEndPoint sets field value
-func (o *EJBCAConnectorResponse) SetEndPoint(v string) {
-	o.EndPoint = v
-}
-
-// GetProfile returns the Profile field value
-func (o *EJBCAConnectorResponse) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *EJBCAConnectorResponse) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *EJBCAConnectorResponse) SetProfile(v string) {
-	o.Profile = v
+// SetAuthenticationCredentials sets field value
+func (o *EJBCAConnectorResponse) SetAuthenticationCredentials(v string) {
+	o.AuthenticationCredentials = v
 }
 
 // GetCaName returns the CaName field value
@@ -252,71 +180,76 @@ func (o *EJBCAConnectorResponse) UnsetEeProfile() {
 	o.EeProfile.Unset()
 }
 
-// GetAuthenticationCredentials returns the AuthenticationCredentials field value
-func (o *EJBCAConnectorResponse) GetAuthenticationCredentials() string {
+// GetEndPoint returns the EndPoint field value
+func (o *EJBCAConnectorResponse) GetEndPoint() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.AuthenticationCredentials
+	return o.EndPoint
 }
 
-// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value
+// GetEndPointOk returns a tuple with the EndPoint field value
 // and a boolean to check if the value has been set.
-func (o *EJBCAConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool) {
+func (o *EJBCAConnectorResponse) GetEndPointOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AuthenticationCredentials, true
+	return &o.EndPoint, true
 }
 
-// SetAuthenticationCredentials sets field value
-func (o *EJBCAConnectorResponse) SetAuthenticationCredentials(v string) {
-	o.AuthenticationCredentials = v
+// SetEndPoint sets field value
+func (o *EJBCAConnectorResponse) SetEndPoint(v string) {
+	o.EndPoint = v
 }
 
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EJBCAConnectorResponse) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
+// GetName returns the Name field value
+func (o *EJBCAConnectorResponse) GetName() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Timeout.Get()
+
+	return o.Name
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EJBCAConnectorResponse) GetTimeoutOk() (*string, bool) {
+func (o *EJBCAConnectorResponse) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
+	return &o.Name, true
 }
 
-// HasTimeout returns a boolean if a field has been set.
-func (o *EJBCAConnectorResponse) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
+// SetName sets field value
+func (o *EJBCAConnectorResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetProfile returns the Profile field value
+func (o *EJBCAConnectorResponse) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Profile
 }
 
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *EJBCAConnectorResponse) SetTimeout(v string) {
-	o.Timeout.Set(&v)
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *EJBCAConnectorResponse) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
 }
 
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *EJBCAConnectorResponse) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *EJBCAConnectorResponse) UnsetTimeout() {
-	o.Timeout.Unset()
+// SetProfile sets field value
+func (o *EJBCAConnectorResponse) SetProfile(v string) {
+	o.Profile = v
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -448,6 +381,73 @@ func (o *EJBCAConnectorResponse) UnsetStatus() {
 	o.Status.Unset()
 }
 
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EJBCAConnectorResponse) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EJBCAConnectorResponse) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *EJBCAConnectorResponse) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *EJBCAConnectorResponse) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *EJBCAConnectorResponse) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *EJBCAConnectorResponse) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetType returns the Type field value
+func (o *EJBCAConnectorResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *EJBCAConnectorResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *EJBCAConnectorResponse) SetType(v string) {
+	o.Type = v
+}
+
 func (o EJBCAConnectorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -459,18 +459,14 @@ func (o EJBCAConnectorResponse) MarshalJSON() ([]byte, error) {
 func (o EJBCAConnectorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
-	toSerialize["endPoint"] = o.EndPoint
-	toSerialize["profile"] = o.Profile
+	toSerialize["authenticationCredentials"] = o.AuthenticationCredentials
 	toSerialize["caName"] = o.CaName
 	if o.EeProfile.IsSet() {
 		toSerialize["eeProfile"] = o.EeProfile.Get()
 	}
-	toSerialize["authenticationCredentials"] = o.AuthenticationCredentials
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
+	toSerialize["endPoint"] = o.EndPoint
+	toSerialize["name"] = o.Name
+	toSerialize["profile"] = o.Profile
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
@@ -480,6 +476,10 @@ func (o EJBCAConnectorResponse) ToMap() (map[string]interface{}, error) {
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
 	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -494,12 +494,12 @@ func (o *EJBCAConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"name",
-		"type",
-		"endPoint",
-		"profile",
-		"caName",
 		"authenticationCredentials",
+		"caName",
+		"endPoint",
+		"name",
+		"profile",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -530,17 +530,17 @@ func (o *EJBCAConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "endPoint")
-		delete(additionalProperties, "profile")
+		delete(additionalProperties, "authenticationCredentials")
 		delete(additionalProperties, "caName")
 		delete(additionalProperties, "eeProfile")
-		delete(additionalProperties, "authenticationCredentials")
-		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "endPoint")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "profile")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -22,16 +22,16 @@ var _ utils.MappedNullable = &EnabledIdentityProviderResponse{}
 
 // EnabledIdentityProviderResponse struct for EnabledIdentityProviderResponse
 type EnabledIdentityProviderResponse struct {
-	// The type of the identity provider
-	Type string `json:"type"`
-	// The internal name of the identity provider
-	Name string `json:"name"`
-	// The display name of the identity provider
-	DisplayName []LocalizedString `json:"displayName,omitempty"`
 	// The description of the identity provider
 	Description []LocalizedString `json:"description,omitempty"`
+	// The display name of the identity provider
+	DisplayName []LocalizedString `json:"displayName,omitempty"`
+	// The internal name of the identity provider
+	Name string `json:"name"`
 	// Whether the password reset option is enabled on the identity provider (only for IdentityProvider of type `Local`)
-	Reset                bool `json:"reset"`
+	Reset bool `json:"reset"`
+	// The type of the identity provider
+	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,11 +41,11 @@ type _EnabledIdentityProviderResponse EnabledIdentityProviderResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEnabledIdentityProviderResponse(type_ string, name string, reset bool) *EnabledIdentityProviderResponse {
+func NewEnabledIdentityProviderResponse(name string, reset bool, type_ string) *EnabledIdentityProviderResponse {
 	this := EnabledIdentityProviderResponse{}
-	this.Type = type_
 	this.Name = name
 	this.Reset = reset
+	this.Type = type_
 	return &this
 }
 
@@ -55,87 +55,6 @@ func NewEnabledIdentityProviderResponse(type_ string, name string, reset bool) *
 func NewEnabledIdentityProviderResponseWithDefaults() *EnabledIdentityProviderResponse {
 	this := EnabledIdentityProviderResponse{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *EnabledIdentityProviderResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *EnabledIdentityProviderResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *EnabledIdentityProviderResponse) SetType(v string) {
-	o.Type = v
-}
-
-// GetName returns the Name field value
-func (o *EnabledIdentityProviderResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *EnabledIdentityProviderResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *EnabledIdentityProviderResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EnabledIdentityProviderResponse) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EnabledIdentityProviderResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *EnabledIdentityProviderResponse) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *EnabledIdentityProviderResponse) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -171,6 +90,63 @@ func (o *EnabledIdentityProviderResponse) SetDescription(v []LocalizedString) {
 	o.Description = v
 }
 
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EnabledIdentityProviderResponse) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EnabledIdentityProviderResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *EnabledIdentityProviderResponse) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *EnabledIdentityProviderResponse) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
+// GetName returns the Name field value
+func (o *EnabledIdentityProviderResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *EnabledIdentityProviderResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *EnabledIdentityProviderResponse) SetName(v string) {
+	o.Name = v
+}
+
 // GetReset returns the Reset field value
 func (o *EnabledIdentityProviderResponse) GetReset() bool {
 	if o == nil {
@@ -195,6 +171,30 @@ func (o *EnabledIdentityProviderResponse) SetReset(v bool) {
 	o.Reset = v
 }
 
+// GetType returns the Type field value
+func (o *EnabledIdentityProviderResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *EnabledIdentityProviderResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *EnabledIdentityProviderResponse) SetType(v string) {
+	o.Type = v
+}
+
 func (o EnabledIdentityProviderResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -205,15 +205,15 @@ func (o EnabledIdentityProviderResponse) MarshalJSON() ([]byte, error) {
 
 func (o EnabledIdentityProviderResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["name"] = o.Name
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
-	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	toSerialize["name"] = o.Name
 	toSerialize["reset"] = o.Reset
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -227,9 +227,9 @@ func (o *EnabledIdentityProviderResponse) UnmarshalJSON(data []byte) (err error)
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
 		"name",
 		"reset",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -259,11 +259,11 @@ func (o *EnabledIdentityProviderResponse) UnmarshalJSON(data []byte) (err error)
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "reset")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

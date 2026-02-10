@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &EmailTriggerTestResponse{}
 
 // EmailTriggerTestResponse struct for EmailTriggerTestResponse
 type EmailTriggerTestResponse struct {
-	// Status of the test
-	Status string `json:"status"`
 	// A message describing the test
-	Message              string `json:"message"`
+	Message string `json:"message"`
+	// Status of the test
+	Status               string `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -35,10 +35,10 @@ type _EmailTriggerTestResponse EmailTriggerTestResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEmailTriggerTestResponse(status string, message string) *EmailTriggerTestResponse {
+func NewEmailTriggerTestResponse(message string, status string) *EmailTriggerTestResponse {
 	this := EmailTriggerTestResponse{}
-	this.Status = status
 	this.Message = message
+	this.Status = status
 	return &this
 }
 
@@ -48,30 +48,6 @@ func NewEmailTriggerTestResponse(status string, message string) *EmailTriggerTes
 func NewEmailTriggerTestResponseWithDefaults() *EmailTriggerTestResponse {
 	this := EmailTriggerTestResponse{}
 	return &this
-}
-
-// GetStatus returns the Status field value
-func (o *EmailTriggerTestResponse) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *EmailTriggerTestResponse) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *EmailTriggerTestResponse) SetStatus(v string) {
-	o.Status = v
 }
 
 // GetMessage returns the Message field value
@@ -98,6 +74,30 @@ func (o *EmailTriggerTestResponse) SetMessage(v string) {
 	o.Message = v
 }
 
+// GetStatus returns the Status field value
+func (o *EmailTriggerTestResponse) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *EmailTriggerTestResponse) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *EmailTriggerTestResponse) SetStatus(v string) {
+	o.Status = v
+}
+
 func (o EmailTriggerTestResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -108,8 +108,8 @@ func (o EmailTriggerTestResponse) MarshalJSON() ([]byte, error) {
 
 func (o EmailTriggerTestResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["status"] = o.Status
 	toSerialize["message"] = o.Message
+	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -123,8 +123,8 @@ func (o *EmailTriggerTestResponse) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"status",
 		"message",
+		"status",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -154,8 +154,8 @@ func (o *EmailTriggerTestResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "status")
 		delete(additionalProperties, "message")
+		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -23,19 +23,19 @@ var _ utils.MappedNullable = &SwissSignConnectorResponse{}
 // SwissSignConnectorResponse struct for SwissSignConnectorResponse
 type SwissSignConnectorResponse struct {
 	// Object internal ID
-	Id      string               `json:"_id"`
-	Name    string               `json:"name"`
-	Proxy   utils.NullableString `json:"proxy,omitempty"`
-	Timeout utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Queue   utils.NullableString `json:"queue,omitempty"`
-	Type    string               `json:"type"`
-	// Name of the `password` [credentials](#tag/security.credentials) to use to authenticate on the PKI.  It should contains the mpkiId as the login and the apiKey as password.
-	MpkiCredentials string `json:"mpkiCredentials"`
+	Id string `json:"_id"`
 	// Swiss base endpoint
 	EndPoint string `json:"endPoint"`
+	// Name of the `password` [credentials](#tag/security.credentials) to use to authenticate on the PKI.  It should contains the mpkiId as the login and the apiKey as password.
+	MpkiCredentials string `json:"mpkiCredentials"`
+	Name            string `json:"name"`
 	// The product Uuid that need to be retrieved from the swiss sign api's (<endpoints>/v2/clients)
 	ProductUuid          string                     `json:"productUuid"`
+	Proxy                utils.NullableString       `json:"proxy,omitempty"`
+	Queue                utils.NullableString       `json:"queue,omitempty"`
 	Status               NullablePKIConnectorStatus `json:"status,omitempty"`
+	Timeout              utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string                     `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,14 +45,14 @@ type _SwissSignConnectorResponse SwissSignConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSwissSignConnectorResponse(id string, name string, type_ string, mpkiCredentials string, endPoint string, productUuid string) *SwissSignConnectorResponse {
+func NewSwissSignConnectorResponse(id string, endPoint string, mpkiCredentials string, name string, productUuid string, type_ string) *SwissSignConnectorResponse {
 	this := SwissSignConnectorResponse{}
 	this.Id = id
-	this.Name = name
-	this.Type = type_
-	this.MpkiCredentials = mpkiCredentials
 	this.EndPoint = endPoint
+	this.MpkiCredentials = mpkiCredentials
+	this.Name = name
 	this.ProductUuid = productUuid
+	this.Type = type_
 	return &this
 }
 
@@ -88,6 +88,54 @@ func (o *SwissSignConnectorResponse) SetId(v string) {
 	o.Id = v
 }
 
+// GetEndPoint returns the EndPoint field value
+func (o *SwissSignConnectorResponse) GetEndPoint() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndPoint
+}
+
+// GetEndPointOk returns a tuple with the EndPoint field value
+// and a boolean to check if the value has been set.
+func (o *SwissSignConnectorResponse) GetEndPointOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EndPoint, true
+}
+
+// SetEndPoint sets field value
+func (o *SwissSignConnectorResponse) SetEndPoint(v string) {
+	o.EndPoint = v
+}
+
+// GetMpkiCredentials returns the MpkiCredentials field value
+func (o *SwissSignConnectorResponse) GetMpkiCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.MpkiCredentials
+}
+
+// GetMpkiCredentialsOk returns a tuple with the MpkiCredentials field value
+// and a boolean to check if the value has been set.
+func (o *SwissSignConnectorResponse) GetMpkiCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.MpkiCredentials, true
+}
+
+// SetMpkiCredentials sets field value
+func (o *SwissSignConnectorResponse) SetMpkiCredentials(v string) {
+	o.MpkiCredentials = v
+}
+
 // GetName returns the Name field value
 func (o *SwissSignConnectorResponse) GetName() string {
 	if o == nil {
@@ -110,6 +158,30 @@ func (o *SwissSignConnectorResponse) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *SwissSignConnectorResponse) SetName(v string) {
 	o.Name = v
+}
+
+// GetProductUuid returns the ProductUuid field value
+func (o *SwissSignConnectorResponse) GetProductUuid() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProductUuid
+}
+
+// GetProductUuidOk returns a tuple with the ProductUuid field value
+// and a boolean to check if the value has been set.
+func (o *SwissSignConnectorResponse) GetProductUuidOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProductUuid, true
+}
+
+// SetProductUuid sets field value
+func (o *SwissSignConnectorResponse) SetProductUuid(v string) {
+	o.ProductUuid = v
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -155,49 +227,6 @@ func (o *SwissSignConnectorResponse) UnsetProxy() {
 	o.Proxy.Unset()
 }
 
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SwissSignConnectorResponse) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Timeout.Get()
-}
-
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SwissSignConnectorResponse) GetTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
-}
-
-// HasTimeout returns a boolean if a field has been set.
-func (o *SwissSignConnectorResponse) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *SwissSignConnectorResponse) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *SwissSignConnectorResponse) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *SwissSignConnectorResponse) UnsetTimeout() {
-	o.Timeout.Unset()
-}
-
 // GetQueue returns the Queue field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SwissSignConnectorResponse) GetQueue() string {
 	if o == nil || utils.IsNil(o.Queue.Get()) {
@@ -239,102 +268,6 @@ func (o *SwissSignConnectorResponse) SetQueueNil() {
 // UnsetQueue ensures that no value is present for Queue, not even an explicit nil
 func (o *SwissSignConnectorResponse) UnsetQueue() {
 	o.Queue.Unset()
-}
-
-// GetType returns the Type field value
-func (o *SwissSignConnectorResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *SwissSignConnectorResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *SwissSignConnectorResponse) SetType(v string) {
-	o.Type = v
-}
-
-// GetMpkiCredentials returns the MpkiCredentials field value
-func (o *SwissSignConnectorResponse) GetMpkiCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.MpkiCredentials
-}
-
-// GetMpkiCredentialsOk returns a tuple with the MpkiCredentials field value
-// and a boolean to check if the value has been set.
-func (o *SwissSignConnectorResponse) GetMpkiCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.MpkiCredentials, true
-}
-
-// SetMpkiCredentials sets field value
-func (o *SwissSignConnectorResponse) SetMpkiCredentials(v string) {
-	o.MpkiCredentials = v
-}
-
-// GetEndPoint returns the EndPoint field value
-func (o *SwissSignConnectorResponse) GetEndPoint() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.EndPoint
-}
-
-// GetEndPointOk returns a tuple with the EndPoint field value
-// and a boolean to check if the value has been set.
-func (o *SwissSignConnectorResponse) GetEndPointOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EndPoint, true
-}
-
-// SetEndPoint sets field value
-func (o *SwissSignConnectorResponse) SetEndPoint(v string) {
-	o.EndPoint = v
-}
-
-// GetProductUuid returns the ProductUuid field value
-func (o *SwissSignConnectorResponse) GetProductUuid() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ProductUuid
-}
-
-// GetProductUuidOk returns a tuple with the ProductUuid field value
-// and a boolean to check if the value has been set.
-func (o *SwissSignConnectorResponse) GetProductUuidOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ProductUuid, true
-}
-
-// SetProductUuid sets field value
-func (o *SwissSignConnectorResponse) SetProductUuid(v string) {
-	o.ProductUuid = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -380,6 +313,73 @@ func (o *SwissSignConnectorResponse) UnsetStatus() {
 	o.Status.Unset()
 }
 
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SwissSignConnectorResponse) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SwissSignConnectorResponse) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *SwissSignConnectorResponse) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *SwissSignConnectorResponse) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *SwissSignConnectorResponse) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *SwissSignConnectorResponse) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetType returns the Type field value
+func (o *SwissSignConnectorResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *SwissSignConnectorResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *SwissSignConnectorResponse) SetType(v string) {
+	o.Type = v
+}
+
 func (o SwissSignConnectorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -391,23 +391,23 @@ func (o SwissSignConnectorResponse) MarshalJSON() ([]byte, error) {
 func (o SwissSignConnectorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
+	toSerialize["endPoint"] = o.EndPoint
+	toSerialize["mpkiCredentials"] = o.MpkiCredentials
 	toSerialize["name"] = o.Name
+	toSerialize["productUuid"] = o.ProductUuid
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
-	}
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
 	}
 	if o.Queue.IsSet() {
 		toSerialize["queue"] = o.Queue.Get()
 	}
-	toSerialize["type"] = o.Type
-	toSerialize["mpkiCredentials"] = o.MpkiCredentials
-	toSerialize["endPoint"] = o.EndPoint
-	toSerialize["productUuid"] = o.ProductUuid
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
 	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -422,11 +422,11 @@ func (o *SwissSignConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"name",
-		"type",
-		"mpkiCredentials",
 		"endPoint",
+		"mpkiCredentials",
+		"name",
 		"productUuid",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -457,15 +457,15 @@ func (o *SwissSignConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "queue")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "mpkiCredentials")
 		delete(additionalProperties, "endPoint")
+		delete(additionalProperties, "mpkiCredentials")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "productUuid")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "queue")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

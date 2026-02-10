@@ -21,19 +21,19 @@ var _ utils.MappedNullable = &DataSourceFlowTemplateEntryResponse{}
 
 // DataSourceFlowTemplateEntryResponse struct for DataSourceFlowTemplateEntryResponse
 type DataSourceFlowTemplateEntryResponse struct {
-	// Name of the datasource
-	Name *string         `json:"name,omitempty"`
-	Type *DataSourceType `json:"type,omitempty"`
-	// Display name of the datasource
-	DisplayName []LocalizedString `json:"displayName,omitempty"`
 	// Description of the datasource
 	Description utils.NullableString `json:"description,omitempty"`
+	// Display name of the datasource
+	DisplayName []LocalizedString `json:"displayName,omitempty"`
 	// List of inputs to use for this datasource
 	Inputs []DataSourceInput `json:"inputs,omitempty"`
-	// Stop the execution if this datasource's execution is successful
-	StopOnSuccess *bool `json:"stopOnSuccess,omitempty"`
+	// Name of the datasource
+	Name *string `json:"name,omitempty"`
 	// List of outputs for this datasource
-	Outputs              []DataSourceOutput `json:"outputs,omitempty"`
+	Outputs []DataSourceOutput `json:"outputs,omitempty"`
+	// Stop the execution if this datasource's execution is successful
+	StopOnSuccess        *bool           `json:"stopOnSuccess,omitempty"`
+	Type                 *DataSourceType `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -58,103 +58,6 @@ func NewDataSourceFlowTemplateEntryResponseWithDefaults() *DataSourceFlowTemplat
 	var stopOnSuccess bool = false
 	this.StopOnSuccess = &stopOnSuccess
 	return &this
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *DataSourceFlowTemplateEntryResponse) GetName() string {
-	if o == nil || utils.IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DataSourceFlowTemplateEntryResponse) GetNameOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *DataSourceFlowTemplateEntryResponse) HasName() bool {
-	if o != nil && !utils.IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *DataSourceFlowTemplateEntryResponse) SetName(v string) {
-	o.Name = &v
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *DataSourceFlowTemplateEntryResponse) GetType() DataSourceType {
-	if o == nil || utils.IsNil(o.Type) {
-		var ret DataSourceType
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DataSourceFlowTemplateEntryResponse) GetTypeOk() (*DataSourceType, bool) {
-	if o == nil || utils.IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *DataSourceFlowTemplateEntryResponse) HasType() bool {
-	if o != nil && !utils.IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given DataSourceType and assigns it to the Type field.
-func (o *DataSourceFlowTemplateEntryResponse) SetType(v DataSourceType) {
-	o.Type = &v
-}
-
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DataSourceFlowTemplateEntryResponse) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DataSourceFlowTemplateEntryResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *DataSourceFlowTemplateEntryResponse) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *DataSourceFlowTemplateEntryResponse) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -200,6 +103,39 @@ func (o *DataSourceFlowTemplateEntryResponse) UnsetDescription() {
 	o.Description.Unset()
 }
 
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DataSourceFlowTemplateEntryResponse) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DataSourceFlowTemplateEntryResponse) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *DataSourceFlowTemplateEntryResponse) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *DataSourceFlowTemplateEntryResponse) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
 // GetInputs returns the Inputs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataSourceFlowTemplateEntryResponse) GetInputs() []DataSourceInput {
 	if o == nil {
@@ -233,36 +169,36 @@ func (o *DataSourceFlowTemplateEntryResponse) SetInputs(v []DataSourceInput) {
 	o.Inputs = v
 }
 
-// GetStopOnSuccess returns the StopOnSuccess field value if set, zero value otherwise.
-func (o *DataSourceFlowTemplateEntryResponse) GetStopOnSuccess() bool {
-	if o == nil || utils.IsNil(o.StopOnSuccess) {
-		var ret bool
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *DataSourceFlowTemplateEntryResponse) GetName() string {
+	if o == nil || utils.IsNil(o.Name) {
+		var ret string
 		return ret
 	}
-	return *o.StopOnSuccess
+	return *o.Name
 }
 
-// GetStopOnSuccessOk returns a tuple with the StopOnSuccess field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DataSourceFlowTemplateEntryResponse) GetStopOnSuccessOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.StopOnSuccess) {
+func (o *DataSourceFlowTemplateEntryResponse) GetNameOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Name) {
 		return nil, false
 	}
-	return o.StopOnSuccess, true
+	return o.Name, true
 }
 
-// HasStopOnSuccess returns a boolean if a field has been set.
-func (o *DataSourceFlowTemplateEntryResponse) HasStopOnSuccess() bool {
-	if o != nil && !utils.IsNil(o.StopOnSuccess) {
+// HasName returns a boolean if a field has been set.
+func (o *DataSourceFlowTemplateEntryResponse) HasName() bool {
+	if o != nil && !utils.IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetStopOnSuccess gets a reference to the given bool and assigns it to the StopOnSuccess field.
-func (o *DataSourceFlowTemplateEntryResponse) SetStopOnSuccess(v bool) {
-	o.StopOnSuccess = &v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *DataSourceFlowTemplateEntryResponse) SetName(v string) {
+	o.Name = &v
 }
 
 // GetOutputs returns the Outputs field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -298,6 +234,70 @@ func (o *DataSourceFlowTemplateEntryResponse) SetOutputs(v []DataSourceOutput) {
 	o.Outputs = v
 }
 
+// GetStopOnSuccess returns the StopOnSuccess field value if set, zero value otherwise.
+func (o *DataSourceFlowTemplateEntryResponse) GetStopOnSuccess() bool {
+	if o == nil || utils.IsNil(o.StopOnSuccess) {
+		var ret bool
+		return ret
+	}
+	return *o.StopOnSuccess
+}
+
+// GetStopOnSuccessOk returns a tuple with the StopOnSuccess field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataSourceFlowTemplateEntryResponse) GetStopOnSuccessOk() (*bool, bool) {
+	if o == nil || utils.IsNil(o.StopOnSuccess) {
+		return nil, false
+	}
+	return o.StopOnSuccess, true
+}
+
+// HasStopOnSuccess returns a boolean if a field has been set.
+func (o *DataSourceFlowTemplateEntryResponse) HasStopOnSuccess() bool {
+	if o != nil && !utils.IsNil(o.StopOnSuccess) {
+		return true
+	}
+
+	return false
+}
+
+// SetStopOnSuccess gets a reference to the given bool and assigns it to the StopOnSuccess field.
+func (o *DataSourceFlowTemplateEntryResponse) SetStopOnSuccess(v bool) {
+	o.StopOnSuccess = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *DataSourceFlowTemplateEntryResponse) GetType() DataSourceType {
+	if o == nil || utils.IsNil(o.Type) {
+		var ret DataSourceType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DataSourceFlowTemplateEntryResponse) GetTypeOk() (*DataSourceType, bool) {
+	if o == nil || utils.IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *DataSourceFlowTemplateEntryResponse) HasType() bool {
+	if o != nil && !utils.IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given DataSourceType and assigns it to the Type field.
+func (o *DataSourceFlowTemplateEntryResponse) SetType(v DataSourceType) {
+	o.Type = &v
+}
+
 func (o DataSourceFlowTemplateEntryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -308,26 +308,26 @@ func (o DataSourceFlowTemplateEntryResponse) MarshalJSON() ([]byte, error) {
 
 func (o DataSourceFlowTemplateEntryResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !utils.IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
 	}
 	if o.DisplayName != nil {
 		toSerialize["displayName"] = o.DisplayName
 	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
-	}
 	if o.Inputs != nil {
 		toSerialize["inputs"] = o.Inputs
+	}
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if o.Outputs != nil {
+		toSerialize["outputs"] = o.Outputs
 	}
 	if !utils.IsNil(o.StopOnSuccess) {
 		toSerialize["stopOnSuccess"] = o.StopOnSuccess
 	}
-	if o.Outputs != nil {
-		toSerialize["outputs"] = o.Outputs
+	if !utils.IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -351,13 +351,13 @@ func (o *DataSourceFlowTemplateEntryResponse) UnmarshalJSON(data []byte) (err er
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "inputs")
-		delete(additionalProperties, "stopOnSuccess")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "outputs")
+		delete(additionalProperties, "stopOnSuccess")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

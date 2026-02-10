@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EditableByRequester** | **bool** |  | 
-**EditableByApprover** | **bool** |  | 
 **ComputationRule** | Pointer to **NullableString** | A computation rule that will dynamically generate a string value from the request&#39;s context | [optional] 
-**Mandatory** | **bool** |  | 
 **Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
+**EditableByApprover** | **bool** |  | 
+**EditableByRequester** | **bool** |  | 
+**Mandatory** | **bool** |  | 
 
 ## Methods
 
 ### NewOwnerPolicy
 
-`func NewOwnerPolicy(editableByRequester bool, editableByApprover bool, mandatory bool, ) *OwnerPolicy`
+`func NewOwnerPolicy(editableByApprover bool, editableByRequester bool, mandatory bool, ) *OwnerPolicy`
 
 NewOwnerPolicy instantiates a new OwnerPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -28,46 +28,6 @@ will change when the set of required properties is changed
 NewOwnerPolicyWithDefaults instantiates a new OwnerPolicy object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetEditableByRequester
-
-`func (o *OwnerPolicy) GetEditableByRequester() bool`
-
-GetEditableByRequester returns the EditableByRequester field if non-nil, zero value otherwise.
-
-### GetEditableByRequesterOk
-
-`func (o *OwnerPolicy) GetEditableByRequesterOk() (*bool, bool)`
-
-GetEditableByRequesterOk returns a tuple with the EditableByRequester field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEditableByRequester
-
-`func (o *OwnerPolicy) SetEditableByRequester(v bool)`
-
-SetEditableByRequester sets EditableByRequester field to given value.
-
-
-### GetEditableByApprover
-
-`func (o *OwnerPolicy) GetEditableByApprover() bool`
-
-GetEditableByApprover returns the EditableByApprover field if non-nil, zero value otherwise.
-
-### GetEditableByApproverOk
-
-`func (o *OwnerPolicy) GetEditableByApproverOk() (*bool, bool)`
-
-GetEditableByApproverOk returns a tuple with the EditableByApprover field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEditableByApprover
-
-`func (o *OwnerPolicy) SetEditableByApprover(v bool)`
-
-SetEditableByApprover sets EditableByApprover field to given value.
-
 
 ### GetComputationRule
 
@@ -104,26 +64,6 @@ HasComputationRule returns a boolean if a field has been set.
 `func (o *OwnerPolicy) UnsetComputationRule()`
 
 UnsetComputationRule ensures that no value is present for ComputationRule, not even an explicit nil
-### GetMandatory
-
-`func (o *OwnerPolicy) GetMandatory() bool`
-
-GetMandatory returns the Mandatory field if non-nil, zero value otherwise.
-
-### GetMandatoryOk
-
-`func (o *OwnerPolicy) GetMandatoryOk() (*bool, bool)`
-
-GetMandatoryOk returns a tuple with the Mandatory field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMandatory
-
-`func (o *OwnerPolicy) SetMandatory(v bool)`
-
-SetMandatory sets Mandatory field to given value.
-
-
 ### GetDescription
 
 `func (o *OwnerPolicy) GetDescription() []LocalizedString`
@@ -159,6 +99,66 @@ HasDescription returns a boolean if a field has been set.
 `func (o *OwnerPolicy) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetEditableByApprover
+
+`func (o *OwnerPolicy) GetEditableByApprover() bool`
+
+GetEditableByApprover returns the EditableByApprover field if non-nil, zero value otherwise.
+
+### GetEditableByApproverOk
+
+`func (o *OwnerPolicy) GetEditableByApproverOk() (*bool, bool)`
+
+GetEditableByApproverOk returns a tuple with the EditableByApprover field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEditableByApprover
+
+`func (o *OwnerPolicy) SetEditableByApprover(v bool)`
+
+SetEditableByApprover sets EditableByApprover field to given value.
+
+
+### GetEditableByRequester
+
+`func (o *OwnerPolicy) GetEditableByRequester() bool`
+
+GetEditableByRequester returns the EditableByRequester field if non-nil, zero value otherwise.
+
+### GetEditableByRequesterOk
+
+`func (o *OwnerPolicy) GetEditableByRequesterOk() (*bool, bool)`
+
+GetEditableByRequesterOk returns a tuple with the EditableByRequester field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEditableByRequester
+
+`func (o *OwnerPolicy) SetEditableByRequester(v bool)`
+
+SetEditableByRequester sets EditableByRequester field to given value.
+
+
+### GetMandatory
+
+`func (o *OwnerPolicy) GetMandatory() bool`
+
+GetMandatory returns the Mandatory field if non-nil, zero value otherwise.
+
+### GetMandatoryOk
+
+`func (o *OwnerPolicy) GetMandatoryOk() (*bool, bool)`
+
+GetMandatoryOk returns a tuple with the Mandatory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMandatory
+
+`func (o *OwnerPolicy) SetMandatory(v bool)`
+
+SetMandatory sets Mandatory field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

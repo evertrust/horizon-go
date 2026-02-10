@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Type** | **string** |  | 
-**EndpointType** | **string** |  | 
-**Profile** | **string** |  | 
-**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for technical account on the PKI | 
-**DomainId** | **string** |  | 
 **CertificateValidity** | Pointer to **NullableInt64** |  | [optional] 
 **DefaultEmail** | Pointer to **NullableString** |  | [optional] 
 **DefaultPhone** | Pointer to **NullableString** |  | [optional] 
-**RetryInterval** | Pointer to **NullableString** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
+**DomainId** | **string** |  | 
+**EndpointType** | **string** |  | 
+**LoginCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for technical account on the PKI | 
+**Name** | **string** |  | 
+**Profile** | **string** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
+**RetryInterval** | Pointer to **NullableString** |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewGSMSSLConnector
 
-`func NewGSMSSLConnector(name string, type_ string, endpointType string, profile string, loginCredentials string, domainId string, ) *GSMSSLConnector`
+`func NewGSMSSLConnector(domainId string, endpointType string, loginCredentials string, name string, profile string, type_ string, ) *GSMSSLConnector`
 
 NewGSMSSLConnector instantiates a new GSMSSLConnector object
 This constructor will assign default values to properties that have it defined,
@@ -36,126 +36,6 @@ will change when the set of required properties is changed
 NewGSMSSLConnectorWithDefaults instantiates a new GSMSSLConnector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetName
-
-`func (o *GSMSSLConnector) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *GSMSSLConnector) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *GSMSSLConnector) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetType
-
-`func (o *GSMSSLConnector) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *GSMSSLConnector) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *GSMSSLConnector) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetEndpointType
-
-`func (o *GSMSSLConnector) GetEndpointType() string`
-
-GetEndpointType returns the EndpointType field if non-nil, zero value otherwise.
-
-### GetEndpointTypeOk
-
-`func (o *GSMSSLConnector) GetEndpointTypeOk() (*string, bool)`
-
-GetEndpointTypeOk returns a tuple with the EndpointType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEndpointType
-
-`func (o *GSMSSLConnector) SetEndpointType(v string)`
-
-SetEndpointType sets EndpointType field to given value.
-
-
-### GetProfile
-
-`func (o *GSMSSLConnector) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *GSMSSLConnector) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *GSMSSLConnector) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-
-### GetLoginCredentials
-
-`func (o *GSMSSLConnector) GetLoginCredentials() string`
-
-GetLoginCredentials returns the LoginCredentials field if non-nil, zero value otherwise.
-
-### GetLoginCredentialsOk
-
-`func (o *GSMSSLConnector) GetLoginCredentialsOk() (*string, bool)`
-
-GetLoginCredentialsOk returns a tuple with the LoginCredentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLoginCredentials
-
-`func (o *GSMSSLConnector) SetLoginCredentials(v string)`
-
-SetLoginCredentials sets LoginCredentials field to given value.
-
-
-### GetDomainId
-
-`func (o *GSMSSLConnector) GetDomainId() string`
-
-GetDomainId returns the DomainId field if non-nil, zero value otherwise.
-
-### GetDomainIdOk
-
-`func (o *GSMSSLConnector) GetDomainIdOk() (*string, bool)`
-
-GetDomainIdOk returns a tuple with the DomainId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDomainId
-
-`func (o *GSMSSLConnector) SetDomainId(v string)`
-
-SetDomainId sets DomainId field to given value.
-
 
 ### GetCertificateValidity
 
@@ -262,76 +142,106 @@ HasDefaultPhone returns a boolean if a field has been set.
 `func (o *GSMSSLConnector) UnsetDefaultPhone()`
 
 UnsetDefaultPhone ensures that no value is present for DefaultPhone, not even an explicit nil
-### GetRetryInterval
+### GetDomainId
 
-`func (o *GSMSSLConnector) GetRetryInterval() string`
+`func (o *GSMSSLConnector) GetDomainId() string`
 
-GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
+GetDomainId returns the DomainId field if non-nil, zero value otherwise.
 
-### GetRetryIntervalOk
+### GetDomainIdOk
 
-`func (o *GSMSSLConnector) GetRetryIntervalOk() (*string, bool)`
+`func (o *GSMSSLConnector) GetDomainIdOk() (*string, bool)`
 
-GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
+GetDomainIdOk returns a tuple with the DomainId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRetryInterval
+### SetDomainId
 
-`func (o *GSMSSLConnector) SetRetryInterval(v string)`
+`func (o *GSMSSLConnector) SetDomainId(v string)`
 
-SetRetryInterval sets RetryInterval field to given value.
+SetDomainId sets DomainId field to given value.
 
-### HasRetryInterval
 
-`func (o *GSMSSLConnector) HasRetryInterval() bool`
+### GetEndpointType
 
-HasRetryInterval returns a boolean if a field has been set.
+`func (o *GSMSSLConnector) GetEndpointType() string`
 
-### SetRetryIntervalNil
+GetEndpointType returns the EndpointType field if non-nil, zero value otherwise.
 
-`func (o *GSMSSLConnector) SetRetryIntervalNil(b bool)`
+### GetEndpointTypeOk
 
- SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+`func (o *GSMSSLConnector) GetEndpointTypeOk() (*string, bool)`
 
-### UnsetRetryInterval
-`func (o *GSMSSLConnector) UnsetRetryInterval()`
-
-UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-### GetTimeout
-
-`func (o *GSMSSLConnector) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *GSMSSLConnector) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+GetEndpointTypeOk returns a tuple with the EndpointType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeout
+### SetEndpointType
 
-`func (o *GSMSSLConnector) SetTimeout(v string)`
+`func (o *GSMSSLConnector) SetEndpointType(v string)`
 
-SetTimeout sets Timeout field to given value.
+SetEndpointType sets EndpointType field to given value.
 
-### HasTimeout
 
-`func (o *GSMSSLConnector) HasTimeout() bool`
+### GetLoginCredentials
 
-HasTimeout returns a boolean if a field has been set.
+`func (o *GSMSSLConnector) GetLoginCredentials() string`
 
-### SetTimeoutNil
+GetLoginCredentials returns the LoginCredentials field if non-nil, zero value otherwise.
 
-`func (o *GSMSSLConnector) SetTimeoutNil(b bool)`
+### GetLoginCredentialsOk
 
- SetTimeoutNil sets the value for Timeout to be an explicit nil
+`func (o *GSMSSLConnector) GetLoginCredentialsOk() (*string, bool)`
 
-### UnsetTimeout
-`func (o *GSMSSLConnector) UnsetTimeout()`
+GetLoginCredentialsOk returns a tuple with the LoginCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### SetLoginCredentials
+
+`func (o *GSMSSLConnector) SetLoginCredentials(v string)`
+
+SetLoginCredentials sets LoginCredentials field to given value.
+
+
+### GetName
+
+`func (o *GSMSSLConnector) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *GSMSSLConnector) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *GSMSSLConnector) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetProfile
+
+`func (o *GSMSSLConnector) GetProfile() string`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *GSMSSLConnector) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *GSMSSLConnector) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
+
+
 ### GetProxy
 
 `func (o *GSMSSLConnector) GetProxy() string`
@@ -402,6 +312,96 @@ HasQueue returns a boolean if a field has been set.
 `func (o *GSMSSLConnector) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetRetryInterval
+
+`func (o *GSMSSLConnector) GetRetryInterval() string`
+
+GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
+
+### GetRetryIntervalOk
+
+`func (o *GSMSSLConnector) GetRetryIntervalOk() (*string, bool)`
+
+GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryInterval
+
+`func (o *GSMSSLConnector) SetRetryInterval(v string)`
+
+SetRetryInterval sets RetryInterval field to given value.
+
+### HasRetryInterval
+
+`func (o *GSMSSLConnector) HasRetryInterval() bool`
+
+HasRetryInterval returns a boolean if a field has been set.
+
+### SetRetryIntervalNil
+
+`func (o *GSMSSLConnector) SetRetryIntervalNil(b bool)`
+
+ SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+
+### UnsetRetryInterval
+`func (o *GSMSSLConnector) UnsetRetryInterval()`
+
+UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
+### GetTimeout
+
+`func (o *GSMSSLConnector) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *GSMSSLConnector) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *GSMSSLConnector) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *GSMSSLConnector) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *GSMSSLConnector) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *GSMSSLConnector) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *GSMSSLConnector) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *GSMSSLConnector) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *GSMSSLConnector) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

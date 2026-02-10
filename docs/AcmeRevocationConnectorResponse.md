@@ -5,19 +5,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
-**Type** | **string** |  | 
 **AcmeDirectoryUrl** | **string** | The directory url of the ACME endpoint | 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Name** | **string** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewAcmeRevocationConnectorResponse
 
-`func NewAcmeRevocationConnectorResponse(id string, name string, type_ string, acmeDirectoryUrl string, ) *AcmeRevocationConnectorResponse`
+`func NewAcmeRevocationConnectorResponse(id string, acmeDirectoryUrl string, name string, type_ string, ) *AcmeRevocationConnectorResponse`
 
 NewAcmeRevocationConnectorResponse instantiates a new AcmeRevocationConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -52,46 +52,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetName
-
-`func (o *AcmeRevocationConnectorResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *AcmeRevocationConnectorResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *AcmeRevocationConnectorResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetType
-
-`func (o *AcmeRevocationConnectorResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *AcmeRevocationConnectorResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *AcmeRevocationConnectorResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 ### GetAcmeDirectoryUrl
 
 `func (o *AcmeRevocationConnectorResponse) GetAcmeDirectoryUrl() string`
@@ -112,41 +72,26 @@ and a boolean to check if the value has been set.
 SetAcmeDirectoryUrl sets AcmeDirectoryUrl field to given value.
 
 
-### GetTimeout
+### GetName
 
-`func (o *AcmeRevocationConnectorResponse) GetTimeout() string`
+`func (o *AcmeRevocationConnectorResponse) GetName() string`
 
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTimeoutOk
+### GetNameOk
 
-`func (o *AcmeRevocationConnectorResponse) GetTimeoutOk() (*string, bool)`
+`func (o *AcmeRevocationConnectorResponse) GetNameOk() (*string, bool)`
 
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeout
+### SetName
 
-`func (o *AcmeRevocationConnectorResponse) SetTimeout(v string)`
+`func (o *AcmeRevocationConnectorResponse) SetName(v string)`
 
-SetTimeout sets Timeout field to given value.
+SetName sets Name field to given value.
 
-### HasTimeout
 
-`func (o *AcmeRevocationConnectorResponse) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *AcmeRevocationConnectorResponse) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *AcmeRevocationConnectorResponse) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *AcmeRevocationConnectorResponse) GetProxy() string`
@@ -252,6 +197,61 @@ HasStatus returns a boolean if a field has been set.
 `func (o *AcmeRevocationConnectorResponse) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
+### GetTimeout
+
+`func (o *AcmeRevocationConnectorResponse) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *AcmeRevocationConnectorResponse) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *AcmeRevocationConnectorResponse) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *AcmeRevocationConnectorResponse) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *AcmeRevocationConnectorResponse) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *AcmeRevocationConnectorResponse) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *AcmeRevocationConnectorResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *AcmeRevocationConnectorResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *AcmeRevocationConnectorResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

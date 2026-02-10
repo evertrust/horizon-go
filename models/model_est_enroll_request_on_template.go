@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &EstEnrollRequestOnTemplate{}
 
 // EstEnrollRequestOnTemplate struct for EstEnrollRequestOnTemplate
 type EstEnrollRequestOnTemplate struct {
-	Workflow string `json:"workflow"`
 	// The module for which to return the template.
-	Module string `json:"module"`
+	Module   string `json:"module"`
+	Workflow string `json:"workflow"`
 	// The profile for which to return the template.
 	Profile              string `json:"profile"`
 	AdditionalProperties map[string]interface{}
@@ -36,11 +36,11 @@ type _EstEnrollRequestOnTemplate EstEnrollRequestOnTemplate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEstEnrollRequestOnTemplate(workflow string, module string, profile string) *EstEnrollRequestOnTemplate {
+func NewEstEnrollRequestOnTemplate(module string, workflow string, profile string) *EstEnrollRequestOnTemplate {
 	this := EstEnrollRequestOnTemplate{}
 	this.Module = module
-	this.Workflow = workflow
 	this.Profile = profile
+	this.Workflow = workflow
 	return &this
 }
 
@@ -50,30 +50,6 @@ func NewEstEnrollRequestOnTemplate(workflow string, module string, profile strin
 func NewEstEnrollRequestOnTemplateWithDefaults() *EstEnrollRequestOnTemplate {
 	this := EstEnrollRequestOnTemplate{}
 	return &this
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *EstEnrollRequestOnTemplate) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *EstEnrollRequestOnTemplate) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *EstEnrollRequestOnTemplate) SetWorkflow(v string) {
-	o.Workflow = v
 }
 
 // GetModule returns the Module field value
@@ -98,6 +74,30 @@ func (o *EstEnrollRequestOnTemplate) GetModuleOk() (*string, bool) {
 // SetModule sets field value
 func (o *EstEnrollRequestOnTemplate) SetModule(v string) {
 	o.Module = v
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *EstEnrollRequestOnTemplate) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *EstEnrollRequestOnTemplate) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *EstEnrollRequestOnTemplate) SetWorkflow(v string) {
+	o.Workflow = v
 }
 
 // GetProfile returns the Profile field value
@@ -134,8 +134,8 @@ func (o EstEnrollRequestOnTemplate) MarshalJSON() ([]byte, error) {
 
 func (o EstEnrollRequestOnTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["workflow"] = o.Workflow
 	toSerialize["module"] = o.Module
+	toSerialize["workflow"] = o.Workflow
 	toSerialize["profile"] = o.Profile
 
 	for key, value := range o.AdditionalProperties {
@@ -150,8 +150,8 @@ func (o *EstEnrollRequestOnTemplate) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"workflow",
 		"module",
+		"workflow",
 		"profile",
 	}
 
@@ -182,8 +182,8 @@ func (o *EstEnrollRequestOnTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "module")
+		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "profile")
 		o.AdditionalProperties = additionalProperties
 	}

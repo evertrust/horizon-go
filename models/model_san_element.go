@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &SANElement{}
 
 // SANElement struct for SANElement
 type SANElement struct {
-	Type string `json:"type"`
 	// A computation rule that will dynamically generate a string value from the request's context
 	ComputationRule      utils.NullableString `json:"computationRule,omitempty"`
-	EditableByRequester  utils.NullableBool   `json:"editableByRequester,omitempty"`
 	EditableByApprover   utils.NullableBool   `json:"editableByApprover,omitempty"`
-	Regex                utils.NullableString `json:"regex,omitempty"`
-	Min                  utils.NullableInt64  `json:"min,omitempty"`
+	EditableByRequester  utils.NullableBool   `json:"editableByRequester,omitempty"`
 	Max                  utils.NullableInt64  `json:"max,omitempty"`
+	Min                  utils.NullableInt64  `json:"min,omitempty"`
+	Regex                utils.NullableString `json:"regex,omitempty"`
+	Type                 string               `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -51,30 +51,6 @@ func NewSANElement(type_ string) *SANElement {
 func NewSANElementWithDefaults() *SANElement {
 	this := SANElement{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *SANElement) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *SANElement) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *SANElement) SetType(v string) {
-	o.Type = v
 }
 
 // GetComputationRule returns the ComputationRule field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -120,49 +96,6 @@ func (o *SANElement) UnsetComputationRule() {
 	o.ComputationRule.Unset()
 }
 
-// GetEditableByRequester returns the EditableByRequester field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SANElement) GetEditableByRequester() bool {
-	if o == nil || utils.IsNil(o.EditableByRequester.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.EditableByRequester.Get()
-}
-
-// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SANElement) GetEditableByRequesterOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.EditableByRequester.Get(), o.EditableByRequester.IsSet()
-}
-
-// HasEditableByRequester returns a boolean if a field has been set.
-func (o *SANElement) HasEditableByRequester() bool {
-	if o != nil && o.EditableByRequester.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEditableByRequester gets a reference to the given NullableBool and assigns it to the EditableByRequester field.
-func (o *SANElement) SetEditableByRequester(v bool) {
-	o.EditableByRequester.Set(&v)
-}
-
-// SetEditableByRequesterNil sets the value for EditableByRequester to be an explicit nil
-func (o *SANElement) SetEditableByRequesterNil() {
-	o.EditableByRequester.Set(nil)
-}
-
-// UnsetEditableByRequester ensures that no value is present for EditableByRequester, not even an explicit nil
-func (o *SANElement) UnsetEditableByRequester() {
-	o.EditableByRequester.Unset()
-}
-
 // GetEditableByApprover returns the EditableByApprover field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SANElement) GetEditableByApprover() bool {
 	if o == nil || utils.IsNil(o.EditableByApprover.Get()) {
@@ -206,90 +139,47 @@ func (o *SANElement) UnsetEditableByApprover() {
 	o.EditableByApprover.Unset()
 }
 
-// GetRegex returns the Regex field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SANElement) GetRegex() string {
-	if o == nil || utils.IsNil(o.Regex.Get()) {
-		var ret string
+// GetEditableByRequester returns the EditableByRequester field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SANElement) GetEditableByRequester() bool {
+	if o == nil || utils.IsNil(o.EditableByRequester.Get()) {
+		var ret bool
 		return ret
 	}
-	return *o.Regex.Get()
+	return *o.EditableByRequester.Get()
 }
 
-// GetRegexOk returns a tuple with the Regex field value if set, nil otherwise
+// GetEditableByRequesterOk returns a tuple with the EditableByRequester field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SANElement) GetRegexOk() (*string, bool) {
+func (o *SANElement) GetEditableByRequesterOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Regex.Get(), o.Regex.IsSet()
+	return o.EditableByRequester.Get(), o.EditableByRequester.IsSet()
 }
 
-// HasRegex returns a boolean if a field has been set.
-func (o *SANElement) HasRegex() bool {
-	if o != nil && o.Regex.IsSet() {
+// HasEditableByRequester returns a boolean if a field has been set.
+func (o *SANElement) HasEditableByRequester() bool {
+	if o != nil && o.EditableByRequester.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRegex gets a reference to the given NullableString and assigns it to the Regex field.
-func (o *SANElement) SetRegex(v string) {
-	o.Regex.Set(&v)
+// SetEditableByRequester gets a reference to the given NullableBool and assigns it to the EditableByRequester field.
+func (o *SANElement) SetEditableByRequester(v bool) {
+	o.EditableByRequester.Set(&v)
 }
 
-// SetRegexNil sets the value for Regex to be an explicit nil
-func (o *SANElement) SetRegexNil() {
-	o.Regex.Set(nil)
+// SetEditableByRequesterNil sets the value for EditableByRequester to be an explicit nil
+func (o *SANElement) SetEditableByRequesterNil() {
+	o.EditableByRequester.Set(nil)
 }
 
-// UnsetRegex ensures that no value is present for Regex, not even an explicit nil
-func (o *SANElement) UnsetRegex() {
-	o.Regex.Unset()
-}
-
-// GetMin returns the Min field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SANElement) GetMin() int64 {
-	if o == nil || utils.IsNil(o.Min.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.Min.Get()
-}
-
-// GetMinOk returns a tuple with the Min field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SANElement) GetMinOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Min.Get(), o.Min.IsSet()
-}
-
-// HasMin returns a boolean if a field has been set.
-func (o *SANElement) HasMin() bool {
-	if o != nil && o.Min.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMin gets a reference to the given NullableInt64 and assigns it to the Min field.
-func (o *SANElement) SetMin(v int64) {
-	o.Min.Set(&v)
-}
-
-// SetMinNil sets the value for Min to be an explicit nil
-func (o *SANElement) SetMinNil() {
-	o.Min.Set(nil)
-}
-
-// UnsetMin ensures that no value is present for Min, not even an explicit nil
-func (o *SANElement) UnsetMin() {
-	o.Min.Unset()
+// UnsetEditableByRequester ensures that no value is present for EditableByRequester, not even an explicit nil
+func (o *SANElement) UnsetEditableByRequester() {
+	o.EditableByRequester.Unset()
 }
 
 // GetMax returns the Max field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -335,6 +225,116 @@ func (o *SANElement) UnsetMax() {
 	o.Max.Unset()
 }
 
+// GetMin returns the Min field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SANElement) GetMin() int64 {
+	if o == nil || utils.IsNil(o.Min.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Min.Get()
+}
+
+// GetMinOk returns a tuple with the Min field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SANElement) GetMinOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Min.Get(), o.Min.IsSet()
+}
+
+// HasMin returns a boolean if a field has been set.
+func (o *SANElement) HasMin() bool {
+	if o != nil && o.Min.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMin gets a reference to the given NullableInt64 and assigns it to the Min field.
+func (o *SANElement) SetMin(v int64) {
+	o.Min.Set(&v)
+}
+
+// SetMinNil sets the value for Min to be an explicit nil
+func (o *SANElement) SetMinNil() {
+	o.Min.Set(nil)
+}
+
+// UnsetMin ensures that no value is present for Min, not even an explicit nil
+func (o *SANElement) UnsetMin() {
+	o.Min.Unset()
+}
+
+// GetRegex returns the Regex field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SANElement) GetRegex() string {
+	if o == nil || utils.IsNil(o.Regex.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Regex.Get()
+}
+
+// GetRegexOk returns a tuple with the Regex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SANElement) GetRegexOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Regex.Get(), o.Regex.IsSet()
+}
+
+// HasRegex returns a boolean if a field has been set.
+func (o *SANElement) HasRegex() bool {
+	if o != nil && o.Regex.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRegex gets a reference to the given NullableString and assigns it to the Regex field.
+func (o *SANElement) SetRegex(v string) {
+	o.Regex.Set(&v)
+}
+
+// SetRegexNil sets the value for Regex to be an explicit nil
+func (o *SANElement) SetRegexNil() {
+	o.Regex.Set(nil)
+}
+
+// UnsetRegex ensures that no value is present for Regex, not even an explicit nil
+func (o *SANElement) UnsetRegex() {
+	o.Regex.Unset()
+}
+
+// GetType returns the Type field value
+func (o *SANElement) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *SANElement) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *SANElement) SetType(v string) {
+	o.Type = v
+}
+
 func (o SANElement) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -345,25 +345,25 @@ func (o SANElement) MarshalJSON() ([]byte, error) {
 
 func (o SANElement) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
 	if o.ComputationRule.IsSet() {
 		toSerialize["computationRule"] = o.ComputationRule.Get()
-	}
-	if o.EditableByRequester.IsSet() {
-		toSerialize["editableByRequester"] = o.EditableByRequester.Get()
 	}
 	if o.EditableByApprover.IsSet() {
 		toSerialize["editableByApprover"] = o.EditableByApprover.Get()
 	}
-	if o.Regex.IsSet() {
-		toSerialize["regex"] = o.Regex.Get()
-	}
-	if o.Min.IsSet() {
-		toSerialize["min"] = o.Min.Get()
+	if o.EditableByRequester.IsSet() {
+		toSerialize["editableByRequester"] = o.EditableByRequester.Get()
 	}
 	if o.Max.IsSet() {
 		toSerialize["max"] = o.Max.Get()
 	}
+	if o.Min.IsSet() {
+		toSerialize["min"] = o.Min.Get()
+	}
+	if o.Regex.IsSet() {
+		toSerialize["regex"] = o.Regex.Get()
+	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -407,13 +407,13 @@ func (o *SANElement) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "computationRule")
-		delete(additionalProperties, "editableByRequester")
 		delete(additionalProperties, "editableByApprover")
-		delete(additionalProperties, "regex")
-		delete(additionalProperties, "min")
+		delete(additionalProperties, "editableByRequester")
 		delete(additionalProperties, "max")
+		delete(additionalProperties, "min")
+		delete(additionalProperties, "regex")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

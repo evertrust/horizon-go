@@ -22,8 +22,8 @@ var _ utils.MappedNullable = &TrustChainAnchor{}
 
 // TrustChainAnchor struct for TrustChainAnchor
 type TrustChainAnchor struct {
-	Name                 string             `json:"name"`
 	Certificate          CFCertificate      `json:"certificate"`
+	Name                 string             `json:"name"`
 	Subordinates         []TrustChainAnchor `json:"subordinates,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -34,10 +34,10 @@ type _TrustChainAnchor TrustChainAnchor
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTrustChainAnchor(name string, certificate CFCertificate) *TrustChainAnchor {
+func NewTrustChainAnchor(certificate CFCertificate, name string) *TrustChainAnchor {
 	this := TrustChainAnchor{}
-	this.Name = name
 	this.Certificate = certificate
+	this.Name = name
 	return &this
 }
 
@@ -47,30 +47,6 @@ func NewTrustChainAnchor(name string, certificate CFCertificate) *TrustChainAnch
 func NewTrustChainAnchorWithDefaults() *TrustChainAnchor {
 	this := TrustChainAnchor{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *TrustChainAnchor) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *TrustChainAnchor) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *TrustChainAnchor) SetName(v string) {
-	o.Name = v
 }
 
 // GetCertificate returns the Certificate field value
@@ -95,6 +71,30 @@ func (o *TrustChainAnchor) GetCertificateOk() (*CFCertificate, bool) {
 // SetCertificate sets field value
 func (o *TrustChainAnchor) SetCertificate(v CFCertificate) {
 	o.Certificate = v
+}
+
+// GetName returns the Name field value
+func (o *TrustChainAnchor) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *TrustChainAnchor) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *TrustChainAnchor) SetName(v string) {
+	o.Name = v
 }
 
 // GetSubordinates returns the Subordinates field value if set, zero value otherwise.
@@ -139,8 +139,8 @@ func (o TrustChainAnchor) MarshalJSON() ([]byte, error) {
 
 func (o TrustChainAnchor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
 	toSerialize["certificate"] = o.Certificate
+	toSerialize["name"] = o.Name
 	if !utils.IsNil(o.Subordinates) {
 		toSerialize["subordinates"] = o.Subordinates
 	}
@@ -157,8 +157,8 @@ func (o *TrustChainAnchor) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
 		"certificate",
+		"name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -188,8 +188,8 @@ func (o *TrustChainAnchor) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "certificate")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "subordinates")
 		o.AdditionalProperties = additionalProperties
 	}

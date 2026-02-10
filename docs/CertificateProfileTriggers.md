@@ -4,43 +4,43 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OnEnroll** | Pointer to **[]string** |  | [optional] 
-**OnSubmitEnroll** | Pointer to **[]string** |  | [optional] 
-**OnCancelEnroll** | Pointer to **[]string** |  | [optional] 
 **OnApproveEnroll** | Pointer to **[]string** |  | [optional] 
-**OnDenyEnroll** | Pointer to **[]string** |  | [optional] 
-**OnPendingEnroll** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
-**OnRevoke** | Pointer to **[]string** |  | [optional] 
-**OnSubmitRevoke** | Pointer to **[]string** |  | [optional] 
-**OnCancelRevoke** | Pointer to **[]string** |  | [optional] 
+**OnApproveMigrate** | Pointer to **[]string** |  | [optional] 
+**OnApproveRecover** | Pointer to **[]string** |  | [optional] 
+**OnApproveRenew** | Pointer to **[]string** |  | [optional] 
 **OnApproveRevoke** | Pointer to **[]string** |  | [optional] 
-**OnDenyRevoke** | Pointer to **[]string** |  | [optional] 
-**OnPendingRevoke** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
-**OnUpdate** | Pointer to **[]string** |  | [optional] 
-**OnSubmitUpdate** | Pointer to **[]string** |  | [optional] 
-**OnCancelUpdate** | Pointer to **[]string** |  | [optional] 
 **OnApproveUpdate** | Pointer to **[]string** |  | [optional] 
+**OnCancelEnroll** | Pointer to **[]string** |  | [optional] 
+**OnCancelMigrate** | Pointer to **[]string** |  | [optional] 
+**OnCancelRecover** | Pointer to **[]string** |  | [optional] 
+**OnCancelRenew** | Pointer to **[]string** |  | [optional] 
+**OnCancelRevoke** | Pointer to **[]string** |  | [optional] 
+**OnCancelUpdate** | Pointer to **[]string** |  | [optional] 
+**OnDenyEnroll** | Pointer to **[]string** |  | [optional] 
+**OnDenyMigrate** | Pointer to **[]string** |  | [optional] 
+**OnDenyRecover** | Pointer to **[]string** |  | [optional] 
+**OnDenyRenew** | Pointer to **[]string** |  | [optional] 
+**OnDenyRevoke** | Pointer to **[]string** |  | [optional] 
 **OnDenyUpdate** | Pointer to **[]string** |  | [optional] 
+**OnEnroll** | Pointer to **[]string** |  | [optional] 
+**OnExpire** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
+**OnMigrate** | Pointer to **[]string** |  | [optional] 
+**OnPendingEnroll** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
+**OnPendingMigrate** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
+**OnPendingRecover** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
+**OnPendingRenew** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
+**OnPendingRevoke** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
 **OnPendingUpdate** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
 **OnRecover** | Pointer to **[]string** |  | [optional] 
-**OnSubmitRecover** | Pointer to **[]string** |  | [optional] 
-**OnCancelRecover** | Pointer to **[]string** |  | [optional] 
-**OnApproveRecover** | Pointer to **[]string** |  | [optional] 
-**OnDenyRecover** | Pointer to **[]string** |  | [optional] 
-**OnPendingRecover** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
-**OnMigrate** | Pointer to **[]string** |  | [optional] 
-**OnSubmitMigrate** | Pointer to **[]string** |  | [optional] 
-**OnCancelMigrate** | Pointer to **[]string** |  | [optional] 
-**OnApproveMigrate** | Pointer to **[]string** |  | [optional] 
-**OnDenyMigrate** | Pointer to **[]string** |  | [optional] 
-**OnPendingMigrate** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
-**OnExpire** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
 **OnRenew** | Pointer to **[]string** |  | [optional] 
+**OnRevoke** | Pointer to **[]string** |  | [optional] 
+**OnSubmitEnroll** | Pointer to **[]string** |  | [optional] 
+**OnSubmitMigrate** | Pointer to **[]string** |  | [optional] 
+**OnSubmitRecover** | Pointer to **[]string** |  | [optional] 
 **OnSubmitRenew** | Pointer to **[]string** |  | [optional] 
-**OnCancelRenew** | Pointer to **[]string** |  | [optional] 
-**OnApproveRenew** | Pointer to **[]string** |  | [optional] 
-**OnDenyRenew** | Pointer to **[]string** |  | [optional] 
-**OnPendingRenew** | Pointer to [**[]CertificateProfileAsynchronousTrigger**](CertificateProfileAsynchronousTrigger.md) |  | [optional] 
+**OnSubmitRevoke** | Pointer to **[]string** |  | [optional] 
+**OnSubmitUpdate** | Pointer to **[]string** |  | [optional] 
+**OnUpdate** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -61,111 +61,6 @@ NewCertificateProfileTriggersWithDefaults instantiates a new CertificateProfileT
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetOnEnroll
-
-`func (o *CertificateProfileTriggers) GetOnEnroll() []string`
-
-GetOnEnroll returns the OnEnroll field if non-nil, zero value otherwise.
-
-### GetOnEnrollOk
-
-`func (o *CertificateProfileTriggers) GetOnEnrollOk() (*[]string, bool)`
-
-GetOnEnrollOk returns a tuple with the OnEnroll field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnEnroll
-
-`func (o *CertificateProfileTriggers) SetOnEnroll(v []string)`
-
-SetOnEnroll sets OnEnroll field to given value.
-
-### HasOnEnroll
-
-`func (o *CertificateProfileTriggers) HasOnEnroll() bool`
-
-HasOnEnroll returns a boolean if a field has been set.
-
-### SetOnEnrollNil
-
-`func (o *CertificateProfileTriggers) SetOnEnrollNil(b bool)`
-
- SetOnEnrollNil sets the value for OnEnroll to be an explicit nil
-
-### UnsetOnEnroll
-`func (o *CertificateProfileTriggers) UnsetOnEnroll()`
-
-UnsetOnEnroll ensures that no value is present for OnEnroll, not even an explicit nil
-### GetOnSubmitEnroll
-
-`func (o *CertificateProfileTriggers) GetOnSubmitEnroll() []string`
-
-GetOnSubmitEnroll returns the OnSubmitEnroll field if non-nil, zero value otherwise.
-
-### GetOnSubmitEnrollOk
-
-`func (o *CertificateProfileTriggers) GetOnSubmitEnrollOk() (*[]string, bool)`
-
-GetOnSubmitEnrollOk returns a tuple with the OnSubmitEnroll field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnSubmitEnroll
-
-`func (o *CertificateProfileTriggers) SetOnSubmitEnroll(v []string)`
-
-SetOnSubmitEnroll sets OnSubmitEnroll field to given value.
-
-### HasOnSubmitEnroll
-
-`func (o *CertificateProfileTriggers) HasOnSubmitEnroll() bool`
-
-HasOnSubmitEnroll returns a boolean if a field has been set.
-
-### SetOnSubmitEnrollNil
-
-`func (o *CertificateProfileTriggers) SetOnSubmitEnrollNil(b bool)`
-
- SetOnSubmitEnrollNil sets the value for OnSubmitEnroll to be an explicit nil
-
-### UnsetOnSubmitEnroll
-`func (o *CertificateProfileTriggers) UnsetOnSubmitEnroll()`
-
-UnsetOnSubmitEnroll ensures that no value is present for OnSubmitEnroll, not even an explicit nil
-### GetOnCancelEnroll
-
-`func (o *CertificateProfileTriggers) GetOnCancelEnroll() []string`
-
-GetOnCancelEnroll returns the OnCancelEnroll field if non-nil, zero value otherwise.
-
-### GetOnCancelEnrollOk
-
-`func (o *CertificateProfileTriggers) GetOnCancelEnrollOk() (*[]string, bool)`
-
-GetOnCancelEnrollOk returns a tuple with the OnCancelEnroll field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnCancelEnroll
-
-`func (o *CertificateProfileTriggers) SetOnCancelEnroll(v []string)`
-
-SetOnCancelEnroll sets OnCancelEnroll field to given value.
-
-### HasOnCancelEnroll
-
-`func (o *CertificateProfileTriggers) HasOnCancelEnroll() bool`
-
-HasOnCancelEnroll returns a boolean if a field has been set.
-
-### SetOnCancelEnrollNil
-
-`func (o *CertificateProfileTriggers) SetOnCancelEnrollNil(b bool)`
-
- SetOnCancelEnrollNil sets the value for OnCancelEnroll to be an explicit nil
-
-### UnsetOnCancelEnroll
-`func (o *CertificateProfileTriggers) UnsetOnCancelEnroll()`
-
-UnsetOnCancelEnroll ensures that no value is present for OnCancelEnroll, not even an explicit nil
 ### GetOnApproveEnroll
 
 `func (o *CertificateProfileTriggers) GetOnApproveEnroll() []string`
@@ -201,181 +96,111 @@ HasOnApproveEnroll returns a boolean if a field has been set.
 `func (o *CertificateProfileTriggers) UnsetOnApproveEnroll()`
 
 UnsetOnApproveEnroll ensures that no value is present for OnApproveEnroll, not even an explicit nil
-### GetOnDenyEnroll
+### GetOnApproveMigrate
 
-`func (o *CertificateProfileTriggers) GetOnDenyEnroll() []string`
+`func (o *CertificateProfileTriggers) GetOnApproveMigrate() []string`
 
-GetOnDenyEnroll returns the OnDenyEnroll field if non-nil, zero value otherwise.
+GetOnApproveMigrate returns the OnApproveMigrate field if non-nil, zero value otherwise.
 
-### GetOnDenyEnrollOk
+### GetOnApproveMigrateOk
 
-`func (o *CertificateProfileTriggers) GetOnDenyEnrollOk() (*[]string, bool)`
+`func (o *CertificateProfileTriggers) GetOnApproveMigrateOk() (*[]string, bool)`
 
-GetOnDenyEnrollOk returns a tuple with the OnDenyEnroll field if it's non-nil, zero value otherwise
+GetOnApproveMigrateOk returns a tuple with the OnApproveMigrate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOnDenyEnroll
+### SetOnApproveMigrate
 
-`func (o *CertificateProfileTriggers) SetOnDenyEnroll(v []string)`
+`func (o *CertificateProfileTriggers) SetOnApproveMigrate(v []string)`
 
-SetOnDenyEnroll sets OnDenyEnroll field to given value.
+SetOnApproveMigrate sets OnApproveMigrate field to given value.
 
-### HasOnDenyEnroll
+### HasOnApproveMigrate
 
-`func (o *CertificateProfileTriggers) HasOnDenyEnroll() bool`
+`func (o *CertificateProfileTriggers) HasOnApproveMigrate() bool`
 
-HasOnDenyEnroll returns a boolean if a field has been set.
+HasOnApproveMigrate returns a boolean if a field has been set.
 
-### SetOnDenyEnrollNil
+### SetOnApproveMigrateNil
 
-`func (o *CertificateProfileTriggers) SetOnDenyEnrollNil(b bool)`
+`func (o *CertificateProfileTriggers) SetOnApproveMigrateNil(b bool)`
 
- SetOnDenyEnrollNil sets the value for OnDenyEnroll to be an explicit nil
+ SetOnApproveMigrateNil sets the value for OnApproveMigrate to be an explicit nil
 
-### UnsetOnDenyEnroll
-`func (o *CertificateProfileTriggers) UnsetOnDenyEnroll()`
+### UnsetOnApproveMigrate
+`func (o *CertificateProfileTriggers) UnsetOnApproveMigrate()`
 
-UnsetOnDenyEnroll ensures that no value is present for OnDenyEnroll, not even an explicit nil
-### GetOnPendingEnroll
+UnsetOnApproveMigrate ensures that no value is present for OnApproveMigrate, not even an explicit nil
+### GetOnApproveRecover
 
-`func (o *CertificateProfileTriggers) GetOnPendingEnroll() []CertificateProfileAsynchronousTrigger`
+`func (o *CertificateProfileTriggers) GetOnApproveRecover() []string`
 
-GetOnPendingEnroll returns the OnPendingEnroll field if non-nil, zero value otherwise.
+GetOnApproveRecover returns the OnApproveRecover field if non-nil, zero value otherwise.
 
-### GetOnPendingEnrollOk
+### GetOnApproveRecoverOk
 
-`func (o *CertificateProfileTriggers) GetOnPendingEnrollOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
+`func (o *CertificateProfileTriggers) GetOnApproveRecoverOk() (*[]string, bool)`
 
-GetOnPendingEnrollOk returns a tuple with the OnPendingEnroll field if it's non-nil, zero value otherwise
+GetOnApproveRecoverOk returns a tuple with the OnApproveRecover field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOnPendingEnroll
+### SetOnApproveRecover
 
-`func (o *CertificateProfileTriggers) SetOnPendingEnroll(v []CertificateProfileAsynchronousTrigger)`
+`func (o *CertificateProfileTriggers) SetOnApproveRecover(v []string)`
 
-SetOnPendingEnroll sets OnPendingEnroll field to given value.
+SetOnApproveRecover sets OnApproveRecover field to given value.
 
-### HasOnPendingEnroll
+### HasOnApproveRecover
 
-`func (o *CertificateProfileTriggers) HasOnPendingEnroll() bool`
+`func (o *CertificateProfileTriggers) HasOnApproveRecover() bool`
 
-HasOnPendingEnroll returns a boolean if a field has been set.
+HasOnApproveRecover returns a boolean if a field has been set.
 
-### SetOnPendingEnrollNil
+### SetOnApproveRecoverNil
 
-`func (o *CertificateProfileTriggers) SetOnPendingEnrollNil(b bool)`
+`func (o *CertificateProfileTriggers) SetOnApproveRecoverNil(b bool)`
 
- SetOnPendingEnrollNil sets the value for OnPendingEnroll to be an explicit nil
+ SetOnApproveRecoverNil sets the value for OnApproveRecover to be an explicit nil
 
-### UnsetOnPendingEnroll
-`func (o *CertificateProfileTriggers) UnsetOnPendingEnroll()`
+### UnsetOnApproveRecover
+`func (o *CertificateProfileTriggers) UnsetOnApproveRecover()`
 
-UnsetOnPendingEnroll ensures that no value is present for OnPendingEnroll, not even an explicit nil
-### GetOnRevoke
+UnsetOnApproveRecover ensures that no value is present for OnApproveRecover, not even an explicit nil
+### GetOnApproveRenew
 
-`func (o *CertificateProfileTriggers) GetOnRevoke() []string`
+`func (o *CertificateProfileTriggers) GetOnApproveRenew() []string`
 
-GetOnRevoke returns the OnRevoke field if non-nil, zero value otherwise.
+GetOnApproveRenew returns the OnApproveRenew field if non-nil, zero value otherwise.
 
-### GetOnRevokeOk
+### GetOnApproveRenewOk
 
-`func (o *CertificateProfileTriggers) GetOnRevokeOk() (*[]string, bool)`
+`func (o *CertificateProfileTriggers) GetOnApproveRenewOk() (*[]string, bool)`
 
-GetOnRevokeOk returns a tuple with the OnRevoke field if it's non-nil, zero value otherwise
+GetOnApproveRenewOk returns a tuple with the OnApproveRenew field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOnRevoke
+### SetOnApproveRenew
 
-`func (o *CertificateProfileTriggers) SetOnRevoke(v []string)`
+`func (o *CertificateProfileTriggers) SetOnApproveRenew(v []string)`
 
-SetOnRevoke sets OnRevoke field to given value.
+SetOnApproveRenew sets OnApproveRenew field to given value.
 
-### HasOnRevoke
+### HasOnApproveRenew
 
-`func (o *CertificateProfileTriggers) HasOnRevoke() bool`
+`func (o *CertificateProfileTriggers) HasOnApproveRenew() bool`
 
-HasOnRevoke returns a boolean if a field has been set.
+HasOnApproveRenew returns a boolean if a field has been set.
 
-### SetOnRevokeNil
+### SetOnApproveRenewNil
 
-`func (o *CertificateProfileTriggers) SetOnRevokeNil(b bool)`
+`func (o *CertificateProfileTriggers) SetOnApproveRenewNil(b bool)`
 
- SetOnRevokeNil sets the value for OnRevoke to be an explicit nil
+ SetOnApproveRenewNil sets the value for OnApproveRenew to be an explicit nil
 
-### UnsetOnRevoke
-`func (o *CertificateProfileTriggers) UnsetOnRevoke()`
+### UnsetOnApproveRenew
+`func (o *CertificateProfileTriggers) UnsetOnApproveRenew()`
 
-UnsetOnRevoke ensures that no value is present for OnRevoke, not even an explicit nil
-### GetOnSubmitRevoke
-
-`func (o *CertificateProfileTriggers) GetOnSubmitRevoke() []string`
-
-GetOnSubmitRevoke returns the OnSubmitRevoke field if non-nil, zero value otherwise.
-
-### GetOnSubmitRevokeOk
-
-`func (o *CertificateProfileTriggers) GetOnSubmitRevokeOk() (*[]string, bool)`
-
-GetOnSubmitRevokeOk returns a tuple with the OnSubmitRevoke field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnSubmitRevoke
-
-`func (o *CertificateProfileTriggers) SetOnSubmitRevoke(v []string)`
-
-SetOnSubmitRevoke sets OnSubmitRevoke field to given value.
-
-### HasOnSubmitRevoke
-
-`func (o *CertificateProfileTriggers) HasOnSubmitRevoke() bool`
-
-HasOnSubmitRevoke returns a boolean if a field has been set.
-
-### SetOnSubmitRevokeNil
-
-`func (o *CertificateProfileTriggers) SetOnSubmitRevokeNil(b bool)`
-
- SetOnSubmitRevokeNil sets the value for OnSubmitRevoke to be an explicit nil
-
-### UnsetOnSubmitRevoke
-`func (o *CertificateProfileTriggers) UnsetOnSubmitRevoke()`
-
-UnsetOnSubmitRevoke ensures that no value is present for OnSubmitRevoke, not even an explicit nil
-### GetOnCancelRevoke
-
-`func (o *CertificateProfileTriggers) GetOnCancelRevoke() []string`
-
-GetOnCancelRevoke returns the OnCancelRevoke field if non-nil, zero value otherwise.
-
-### GetOnCancelRevokeOk
-
-`func (o *CertificateProfileTriggers) GetOnCancelRevokeOk() (*[]string, bool)`
-
-GetOnCancelRevokeOk returns a tuple with the OnCancelRevoke field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnCancelRevoke
-
-`func (o *CertificateProfileTriggers) SetOnCancelRevoke(v []string)`
-
-SetOnCancelRevoke sets OnCancelRevoke field to given value.
-
-### HasOnCancelRevoke
-
-`func (o *CertificateProfileTriggers) HasOnCancelRevoke() bool`
-
-HasOnCancelRevoke returns a boolean if a field has been set.
-
-### SetOnCancelRevokeNil
-
-`func (o *CertificateProfileTriggers) SetOnCancelRevokeNil(b bool)`
-
- SetOnCancelRevokeNil sets the value for OnCancelRevoke to be an explicit nil
-
-### UnsetOnCancelRevoke
-`func (o *CertificateProfileTriggers) UnsetOnCancelRevoke()`
-
-UnsetOnCancelRevoke ensures that no value is present for OnCancelRevoke, not even an explicit nil
+UnsetOnApproveRenew ensures that no value is present for OnApproveRenew, not even an explicit nil
 ### GetOnApproveRevoke
 
 `func (o *CertificateProfileTriggers) GetOnApproveRevoke() []string`
@@ -411,181 +236,6 @@ HasOnApproveRevoke returns a boolean if a field has been set.
 `func (o *CertificateProfileTriggers) UnsetOnApproveRevoke()`
 
 UnsetOnApproveRevoke ensures that no value is present for OnApproveRevoke, not even an explicit nil
-### GetOnDenyRevoke
-
-`func (o *CertificateProfileTriggers) GetOnDenyRevoke() []string`
-
-GetOnDenyRevoke returns the OnDenyRevoke field if non-nil, zero value otherwise.
-
-### GetOnDenyRevokeOk
-
-`func (o *CertificateProfileTriggers) GetOnDenyRevokeOk() (*[]string, bool)`
-
-GetOnDenyRevokeOk returns a tuple with the OnDenyRevoke field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnDenyRevoke
-
-`func (o *CertificateProfileTriggers) SetOnDenyRevoke(v []string)`
-
-SetOnDenyRevoke sets OnDenyRevoke field to given value.
-
-### HasOnDenyRevoke
-
-`func (o *CertificateProfileTriggers) HasOnDenyRevoke() bool`
-
-HasOnDenyRevoke returns a boolean if a field has been set.
-
-### SetOnDenyRevokeNil
-
-`func (o *CertificateProfileTriggers) SetOnDenyRevokeNil(b bool)`
-
- SetOnDenyRevokeNil sets the value for OnDenyRevoke to be an explicit nil
-
-### UnsetOnDenyRevoke
-`func (o *CertificateProfileTriggers) UnsetOnDenyRevoke()`
-
-UnsetOnDenyRevoke ensures that no value is present for OnDenyRevoke, not even an explicit nil
-### GetOnPendingRevoke
-
-`func (o *CertificateProfileTriggers) GetOnPendingRevoke() []CertificateProfileAsynchronousTrigger`
-
-GetOnPendingRevoke returns the OnPendingRevoke field if non-nil, zero value otherwise.
-
-### GetOnPendingRevokeOk
-
-`func (o *CertificateProfileTriggers) GetOnPendingRevokeOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
-
-GetOnPendingRevokeOk returns a tuple with the OnPendingRevoke field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnPendingRevoke
-
-`func (o *CertificateProfileTriggers) SetOnPendingRevoke(v []CertificateProfileAsynchronousTrigger)`
-
-SetOnPendingRevoke sets OnPendingRevoke field to given value.
-
-### HasOnPendingRevoke
-
-`func (o *CertificateProfileTriggers) HasOnPendingRevoke() bool`
-
-HasOnPendingRevoke returns a boolean if a field has been set.
-
-### SetOnPendingRevokeNil
-
-`func (o *CertificateProfileTriggers) SetOnPendingRevokeNil(b bool)`
-
- SetOnPendingRevokeNil sets the value for OnPendingRevoke to be an explicit nil
-
-### UnsetOnPendingRevoke
-`func (o *CertificateProfileTriggers) UnsetOnPendingRevoke()`
-
-UnsetOnPendingRevoke ensures that no value is present for OnPendingRevoke, not even an explicit nil
-### GetOnUpdate
-
-`func (o *CertificateProfileTriggers) GetOnUpdate() []string`
-
-GetOnUpdate returns the OnUpdate field if non-nil, zero value otherwise.
-
-### GetOnUpdateOk
-
-`func (o *CertificateProfileTriggers) GetOnUpdateOk() (*[]string, bool)`
-
-GetOnUpdateOk returns a tuple with the OnUpdate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnUpdate
-
-`func (o *CertificateProfileTriggers) SetOnUpdate(v []string)`
-
-SetOnUpdate sets OnUpdate field to given value.
-
-### HasOnUpdate
-
-`func (o *CertificateProfileTriggers) HasOnUpdate() bool`
-
-HasOnUpdate returns a boolean if a field has been set.
-
-### SetOnUpdateNil
-
-`func (o *CertificateProfileTriggers) SetOnUpdateNil(b bool)`
-
- SetOnUpdateNil sets the value for OnUpdate to be an explicit nil
-
-### UnsetOnUpdate
-`func (o *CertificateProfileTriggers) UnsetOnUpdate()`
-
-UnsetOnUpdate ensures that no value is present for OnUpdate, not even an explicit nil
-### GetOnSubmitUpdate
-
-`func (o *CertificateProfileTriggers) GetOnSubmitUpdate() []string`
-
-GetOnSubmitUpdate returns the OnSubmitUpdate field if non-nil, zero value otherwise.
-
-### GetOnSubmitUpdateOk
-
-`func (o *CertificateProfileTriggers) GetOnSubmitUpdateOk() (*[]string, bool)`
-
-GetOnSubmitUpdateOk returns a tuple with the OnSubmitUpdate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnSubmitUpdate
-
-`func (o *CertificateProfileTriggers) SetOnSubmitUpdate(v []string)`
-
-SetOnSubmitUpdate sets OnSubmitUpdate field to given value.
-
-### HasOnSubmitUpdate
-
-`func (o *CertificateProfileTriggers) HasOnSubmitUpdate() bool`
-
-HasOnSubmitUpdate returns a boolean if a field has been set.
-
-### SetOnSubmitUpdateNil
-
-`func (o *CertificateProfileTriggers) SetOnSubmitUpdateNil(b bool)`
-
- SetOnSubmitUpdateNil sets the value for OnSubmitUpdate to be an explicit nil
-
-### UnsetOnSubmitUpdate
-`func (o *CertificateProfileTriggers) UnsetOnSubmitUpdate()`
-
-UnsetOnSubmitUpdate ensures that no value is present for OnSubmitUpdate, not even an explicit nil
-### GetOnCancelUpdate
-
-`func (o *CertificateProfileTriggers) GetOnCancelUpdate() []string`
-
-GetOnCancelUpdate returns the OnCancelUpdate field if non-nil, zero value otherwise.
-
-### GetOnCancelUpdateOk
-
-`func (o *CertificateProfileTriggers) GetOnCancelUpdateOk() (*[]string, bool)`
-
-GetOnCancelUpdateOk returns a tuple with the OnCancelUpdate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnCancelUpdate
-
-`func (o *CertificateProfileTriggers) SetOnCancelUpdate(v []string)`
-
-SetOnCancelUpdate sets OnCancelUpdate field to given value.
-
-### HasOnCancelUpdate
-
-`func (o *CertificateProfileTriggers) HasOnCancelUpdate() bool`
-
-HasOnCancelUpdate returns a boolean if a field has been set.
-
-### SetOnCancelUpdateNil
-
-`func (o *CertificateProfileTriggers) SetOnCancelUpdateNil(b bool)`
-
- SetOnCancelUpdateNil sets the value for OnCancelUpdate to be an explicit nil
-
-### UnsetOnCancelUpdate
-`func (o *CertificateProfileTriggers) UnsetOnCancelUpdate()`
-
-UnsetOnCancelUpdate ensures that no value is present for OnCancelUpdate, not even an explicit nil
 ### GetOnApproveUpdate
 
 `func (o *CertificateProfileTriggers) GetOnApproveUpdate() []string`
@@ -621,6 +271,391 @@ HasOnApproveUpdate returns a boolean if a field has been set.
 `func (o *CertificateProfileTriggers) UnsetOnApproveUpdate()`
 
 UnsetOnApproveUpdate ensures that no value is present for OnApproveUpdate, not even an explicit nil
+### GetOnCancelEnroll
+
+`func (o *CertificateProfileTriggers) GetOnCancelEnroll() []string`
+
+GetOnCancelEnroll returns the OnCancelEnroll field if non-nil, zero value otherwise.
+
+### GetOnCancelEnrollOk
+
+`func (o *CertificateProfileTriggers) GetOnCancelEnrollOk() (*[]string, bool)`
+
+GetOnCancelEnrollOk returns a tuple with the OnCancelEnroll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnCancelEnroll
+
+`func (o *CertificateProfileTriggers) SetOnCancelEnroll(v []string)`
+
+SetOnCancelEnroll sets OnCancelEnroll field to given value.
+
+### HasOnCancelEnroll
+
+`func (o *CertificateProfileTriggers) HasOnCancelEnroll() bool`
+
+HasOnCancelEnroll returns a boolean if a field has been set.
+
+### SetOnCancelEnrollNil
+
+`func (o *CertificateProfileTriggers) SetOnCancelEnrollNil(b bool)`
+
+ SetOnCancelEnrollNil sets the value for OnCancelEnroll to be an explicit nil
+
+### UnsetOnCancelEnroll
+`func (o *CertificateProfileTriggers) UnsetOnCancelEnroll()`
+
+UnsetOnCancelEnroll ensures that no value is present for OnCancelEnroll, not even an explicit nil
+### GetOnCancelMigrate
+
+`func (o *CertificateProfileTriggers) GetOnCancelMigrate() []string`
+
+GetOnCancelMigrate returns the OnCancelMigrate field if non-nil, zero value otherwise.
+
+### GetOnCancelMigrateOk
+
+`func (o *CertificateProfileTriggers) GetOnCancelMigrateOk() (*[]string, bool)`
+
+GetOnCancelMigrateOk returns a tuple with the OnCancelMigrate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnCancelMigrate
+
+`func (o *CertificateProfileTriggers) SetOnCancelMigrate(v []string)`
+
+SetOnCancelMigrate sets OnCancelMigrate field to given value.
+
+### HasOnCancelMigrate
+
+`func (o *CertificateProfileTriggers) HasOnCancelMigrate() bool`
+
+HasOnCancelMigrate returns a boolean if a field has been set.
+
+### SetOnCancelMigrateNil
+
+`func (o *CertificateProfileTriggers) SetOnCancelMigrateNil(b bool)`
+
+ SetOnCancelMigrateNil sets the value for OnCancelMigrate to be an explicit nil
+
+### UnsetOnCancelMigrate
+`func (o *CertificateProfileTriggers) UnsetOnCancelMigrate()`
+
+UnsetOnCancelMigrate ensures that no value is present for OnCancelMigrate, not even an explicit nil
+### GetOnCancelRecover
+
+`func (o *CertificateProfileTriggers) GetOnCancelRecover() []string`
+
+GetOnCancelRecover returns the OnCancelRecover field if non-nil, zero value otherwise.
+
+### GetOnCancelRecoverOk
+
+`func (o *CertificateProfileTriggers) GetOnCancelRecoverOk() (*[]string, bool)`
+
+GetOnCancelRecoverOk returns a tuple with the OnCancelRecover field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnCancelRecover
+
+`func (o *CertificateProfileTriggers) SetOnCancelRecover(v []string)`
+
+SetOnCancelRecover sets OnCancelRecover field to given value.
+
+### HasOnCancelRecover
+
+`func (o *CertificateProfileTriggers) HasOnCancelRecover() bool`
+
+HasOnCancelRecover returns a boolean if a field has been set.
+
+### SetOnCancelRecoverNil
+
+`func (o *CertificateProfileTriggers) SetOnCancelRecoverNil(b bool)`
+
+ SetOnCancelRecoverNil sets the value for OnCancelRecover to be an explicit nil
+
+### UnsetOnCancelRecover
+`func (o *CertificateProfileTriggers) UnsetOnCancelRecover()`
+
+UnsetOnCancelRecover ensures that no value is present for OnCancelRecover, not even an explicit nil
+### GetOnCancelRenew
+
+`func (o *CertificateProfileTriggers) GetOnCancelRenew() []string`
+
+GetOnCancelRenew returns the OnCancelRenew field if non-nil, zero value otherwise.
+
+### GetOnCancelRenewOk
+
+`func (o *CertificateProfileTriggers) GetOnCancelRenewOk() (*[]string, bool)`
+
+GetOnCancelRenewOk returns a tuple with the OnCancelRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnCancelRenew
+
+`func (o *CertificateProfileTriggers) SetOnCancelRenew(v []string)`
+
+SetOnCancelRenew sets OnCancelRenew field to given value.
+
+### HasOnCancelRenew
+
+`func (o *CertificateProfileTriggers) HasOnCancelRenew() bool`
+
+HasOnCancelRenew returns a boolean if a field has been set.
+
+### SetOnCancelRenewNil
+
+`func (o *CertificateProfileTriggers) SetOnCancelRenewNil(b bool)`
+
+ SetOnCancelRenewNil sets the value for OnCancelRenew to be an explicit nil
+
+### UnsetOnCancelRenew
+`func (o *CertificateProfileTriggers) UnsetOnCancelRenew()`
+
+UnsetOnCancelRenew ensures that no value is present for OnCancelRenew, not even an explicit nil
+### GetOnCancelRevoke
+
+`func (o *CertificateProfileTriggers) GetOnCancelRevoke() []string`
+
+GetOnCancelRevoke returns the OnCancelRevoke field if non-nil, zero value otherwise.
+
+### GetOnCancelRevokeOk
+
+`func (o *CertificateProfileTriggers) GetOnCancelRevokeOk() (*[]string, bool)`
+
+GetOnCancelRevokeOk returns a tuple with the OnCancelRevoke field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnCancelRevoke
+
+`func (o *CertificateProfileTriggers) SetOnCancelRevoke(v []string)`
+
+SetOnCancelRevoke sets OnCancelRevoke field to given value.
+
+### HasOnCancelRevoke
+
+`func (o *CertificateProfileTriggers) HasOnCancelRevoke() bool`
+
+HasOnCancelRevoke returns a boolean if a field has been set.
+
+### SetOnCancelRevokeNil
+
+`func (o *CertificateProfileTriggers) SetOnCancelRevokeNil(b bool)`
+
+ SetOnCancelRevokeNil sets the value for OnCancelRevoke to be an explicit nil
+
+### UnsetOnCancelRevoke
+`func (o *CertificateProfileTriggers) UnsetOnCancelRevoke()`
+
+UnsetOnCancelRevoke ensures that no value is present for OnCancelRevoke, not even an explicit nil
+### GetOnCancelUpdate
+
+`func (o *CertificateProfileTriggers) GetOnCancelUpdate() []string`
+
+GetOnCancelUpdate returns the OnCancelUpdate field if non-nil, zero value otherwise.
+
+### GetOnCancelUpdateOk
+
+`func (o *CertificateProfileTriggers) GetOnCancelUpdateOk() (*[]string, bool)`
+
+GetOnCancelUpdateOk returns a tuple with the OnCancelUpdate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnCancelUpdate
+
+`func (o *CertificateProfileTriggers) SetOnCancelUpdate(v []string)`
+
+SetOnCancelUpdate sets OnCancelUpdate field to given value.
+
+### HasOnCancelUpdate
+
+`func (o *CertificateProfileTriggers) HasOnCancelUpdate() bool`
+
+HasOnCancelUpdate returns a boolean if a field has been set.
+
+### SetOnCancelUpdateNil
+
+`func (o *CertificateProfileTriggers) SetOnCancelUpdateNil(b bool)`
+
+ SetOnCancelUpdateNil sets the value for OnCancelUpdate to be an explicit nil
+
+### UnsetOnCancelUpdate
+`func (o *CertificateProfileTriggers) UnsetOnCancelUpdate()`
+
+UnsetOnCancelUpdate ensures that no value is present for OnCancelUpdate, not even an explicit nil
+### GetOnDenyEnroll
+
+`func (o *CertificateProfileTriggers) GetOnDenyEnroll() []string`
+
+GetOnDenyEnroll returns the OnDenyEnroll field if non-nil, zero value otherwise.
+
+### GetOnDenyEnrollOk
+
+`func (o *CertificateProfileTriggers) GetOnDenyEnrollOk() (*[]string, bool)`
+
+GetOnDenyEnrollOk returns a tuple with the OnDenyEnroll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnDenyEnroll
+
+`func (o *CertificateProfileTriggers) SetOnDenyEnroll(v []string)`
+
+SetOnDenyEnroll sets OnDenyEnroll field to given value.
+
+### HasOnDenyEnroll
+
+`func (o *CertificateProfileTriggers) HasOnDenyEnroll() bool`
+
+HasOnDenyEnroll returns a boolean if a field has been set.
+
+### SetOnDenyEnrollNil
+
+`func (o *CertificateProfileTriggers) SetOnDenyEnrollNil(b bool)`
+
+ SetOnDenyEnrollNil sets the value for OnDenyEnroll to be an explicit nil
+
+### UnsetOnDenyEnroll
+`func (o *CertificateProfileTriggers) UnsetOnDenyEnroll()`
+
+UnsetOnDenyEnroll ensures that no value is present for OnDenyEnroll, not even an explicit nil
+### GetOnDenyMigrate
+
+`func (o *CertificateProfileTriggers) GetOnDenyMigrate() []string`
+
+GetOnDenyMigrate returns the OnDenyMigrate field if non-nil, zero value otherwise.
+
+### GetOnDenyMigrateOk
+
+`func (o *CertificateProfileTriggers) GetOnDenyMigrateOk() (*[]string, bool)`
+
+GetOnDenyMigrateOk returns a tuple with the OnDenyMigrate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnDenyMigrate
+
+`func (o *CertificateProfileTriggers) SetOnDenyMigrate(v []string)`
+
+SetOnDenyMigrate sets OnDenyMigrate field to given value.
+
+### HasOnDenyMigrate
+
+`func (o *CertificateProfileTriggers) HasOnDenyMigrate() bool`
+
+HasOnDenyMigrate returns a boolean if a field has been set.
+
+### SetOnDenyMigrateNil
+
+`func (o *CertificateProfileTriggers) SetOnDenyMigrateNil(b bool)`
+
+ SetOnDenyMigrateNil sets the value for OnDenyMigrate to be an explicit nil
+
+### UnsetOnDenyMigrate
+`func (o *CertificateProfileTriggers) UnsetOnDenyMigrate()`
+
+UnsetOnDenyMigrate ensures that no value is present for OnDenyMigrate, not even an explicit nil
+### GetOnDenyRecover
+
+`func (o *CertificateProfileTriggers) GetOnDenyRecover() []string`
+
+GetOnDenyRecover returns the OnDenyRecover field if non-nil, zero value otherwise.
+
+### GetOnDenyRecoverOk
+
+`func (o *CertificateProfileTriggers) GetOnDenyRecoverOk() (*[]string, bool)`
+
+GetOnDenyRecoverOk returns a tuple with the OnDenyRecover field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnDenyRecover
+
+`func (o *CertificateProfileTriggers) SetOnDenyRecover(v []string)`
+
+SetOnDenyRecover sets OnDenyRecover field to given value.
+
+### HasOnDenyRecover
+
+`func (o *CertificateProfileTriggers) HasOnDenyRecover() bool`
+
+HasOnDenyRecover returns a boolean if a field has been set.
+
+### SetOnDenyRecoverNil
+
+`func (o *CertificateProfileTriggers) SetOnDenyRecoverNil(b bool)`
+
+ SetOnDenyRecoverNil sets the value for OnDenyRecover to be an explicit nil
+
+### UnsetOnDenyRecover
+`func (o *CertificateProfileTriggers) UnsetOnDenyRecover()`
+
+UnsetOnDenyRecover ensures that no value is present for OnDenyRecover, not even an explicit nil
+### GetOnDenyRenew
+
+`func (o *CertificateProfileTriggers) GetOnDenyRenew() []string`
+
+GetOnDenyRenew returns the OnDenyRenew field if non-nil, zero value otherwise.
+
+### GetOnDenyRenewOk
+
+`func (o *CertificateProfileTriggers) GetOnDenyRenewOk() (*[]string, bool)`
+
+GetOnDenyRenewOk returns a tuple with the OnDenyRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnDenyRenew
+
+`func (o *CertificateProfileTriggers) SetOnDenyRenew(v []string)`
+
+SetOnDenyRenew sets OnDenyRenew field to given value.
+
+### HasOnDenyRenew
+
+`func (o *CertificateProfileTriggers) HasOnDenyRenew() bool`
+
+HasOnDenyRenew returns a boolean if a field has been set.
+
+### SetOnDenyRenewNil
+
+`func (o *CertificateProfileTriggers) SetOnDenyRenewNil(b bool)`
+
+ SetOnDenyRenewNil sets the value for OnDenyRenew to be an explicit nil
+
+### UnsetOnDenyRenew
+`func (o *CertificateProfileTriggers) UnsetOnDenyRenew()`
+
+UnsetOnDenyRenew ensures that no value is present for OnDenyRenew, not even an explicit nil
+### GetOnDenyRevoke
+
+`func (o *CertificateProfileTriggers) GetOnDenyRevoke() []string`
+
+GetOnDenyRevoke returns the OnDenyRevoke field if non-nil, zero value otherwise.
+
+### GetOnDenyRevokeOk
+
+`func (o *CertificateProfileTriggers) GetOnDenyRevokeOk() (*[]string, bool)`
+
+GetOnDenyRevokeOk returns a tuple with the OnDenyRevoke field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnDenyRevoke
+
+`func (o *CertificateProfileTriggers) SetOnDenyRevoke(v []string)`
+
+SetOnDenyRevoke sets OnDenyRevoke field to given value.
+
+### HasOnDenyRevoke
+
+`func (o *CertificateProfileTriggers) HasOnDenyRevoke() bool`
+
+HasOnDenyRevoke returns a boolean if a field has been set.
+
+### SetOnDenyRevokeNil
+
+`func (o *CertificateProfileTriggers) SetOnDenyRevokeNil(b bool)`
+
+ SetOnDenyRevokeNil sets the value for OnDenyRevoke to be an explicit nil
+
+### UnsetOnDenyRevoke
+`func (o *CertificateProfileTriggers) UnsetOnDenyRevoke()`
+
+UnsetOnDenyRevoke ensures that no value is present for OnDenyRevoke, not even an explicit nil
 ### GetOnDenyUpdate
 
 `func (o *CertificateProfileTriggers) GetOnDenyUpdate() []string`
@@ -656,6 +691,286 @@ HasOnDenyUpdate returns a boolean if a field has been set.
 `func (o *CertificateProfileTriggers) UnsetOnDenyUpdate()`
 
 UnsetOnDenyUpdate ensures that no value is present for OnDenyUpdate, not even an explicit nil
+### GetOnEnroll
+
+`func (o *CertificateProfileTriggers) GetOnEnroll() []string`
+
+GetOnEnroll returns the OnEnroll field if non-nil, zero value otherwise.
+
+### GetOnEnrollOk
+
+`func (o *CertificateProfileTriggers) GetOnEnrollOk() (*[]string, bool)`
+
+GetOnEnrollOk returns a tuple with the OnEnroll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnEnroll
+
+`func (o *CertificateProfileTriggers) SetOnEnroll(v []string)`
+
+SetOnEnroll sets OnEnroll field to given value.
+
+### HasOnEnroll
+
+`func (o *CertificateProfileTriggers) HasOnEnroll() bool`
+
+HasOnEnroll returns a boolean if a field has been set.
+
+### SetOnEnrollNil
+
+`func (o *CertificateProfileTriggers) SetOnEnrollNil(b bool)`
+
+ SetOnEnrollNil sets the value for OnEnroll to be an explicit nil
+
+### UnsetOnEnroll
+`func (o *CertificateProfileTriggers) UnsetOnEnroll()`
+
+UnsetOnEnroll ensures that no value is present for OnEnroll, not even an explicit nil
+### GetOnExpire
+
+`func (o *CertificateProfileTriggers) GetOnExpire() []CertificateProfileAsynchronousTrigger`
+
+GetOnExpire returns the OnExpire field if non-nil, zero value otherwise.
+
+### GetOnExpireOk
+
+`func (o *CertificateProfileTriggers) GetOnExpireOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
+
+GetOnExpireOk returns a tuple with the OnExpire field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnExpire
+
+`func (o *CertificateProfileTriggers) SetOnExpire(v []CertificateProfileAsynchronousTrigger)`
+
+SetOnExpire sets OnExpire field to given value.
+
+### HasOnExpire
+
+`func (o *CertificateProfileTriggers) HasOnExpire() bool`
+
+HasOnExpire returns a boolean if a field has been set.
+
+### SetOnExpireNil
+
+`func (o *CertificateProfileTriggers) SetOnExpireNil(b bool)`
+
+ SetOnExpireNil sets the value for OnExpire to be an explicit nil
+
+### UnsetOnExpire
+`func (o *CertificateProfileTriggers) UnsetOnExpire()`
+
+UnsetOnExpire ensures that no value is present for OnExpire, not even an explicit nil
+### GetOnMigrate
+
+`func (o *CertificateProfileTriggers) GetOnMigrate() []string`
+
+GetOnMigrate returns the OnMigrate field if non-nil, zero value otherwise.
+
+### GetOnMigrateOk
+
+`func (o *CertificateProfileTriggers) GetOnMigrateOk() (*[]string, bool)`
+
+GetOnMigrateOk returns a tuple with the OnMigrate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnMigrate
+
+`func (o *CertificateProfileTriggers) SetOnMigrate(v []string)`
+
+SetOnMigrate sets OnMigrate field to given value.
+
+### HasOnMigrate
+
+`func (o *CertificateProfileTriggers) HasOnMigrate() bool`
+
+HasOnMigrate returns a boolean if a field has been set.
+
+### SetOnMigrateNil
+
+`func (o *CertificateProfileTriggers) SetOnMigrateNil(b bool)`
+
+ SetOnMigrateNil sets the value for OnMigrate to be an explicit nil
+
+### UnsetOnMigrate
+`func (o *CertificateProfileTriggers) UnsetOnMigrate()`
+
+UnsetOnMigrate ensures that no value is present for OnMigrate, not even an explicit nil
+### GetOnPendingEnroll
+
+`func (o *CertificateProfileTriggers) GetOnPendingEnroll() []CertificateProfileAsynchronousTrigger`
+
+GetOnPendingEnroll returns the OnPendingEnroll field if non-nil, zero value otherwise.
+
+### GetOnPendingEnrollOk
+
+`func (o *CertificateProfileTriggers) GetOnPendingEnrollOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
+
+GetOnPendingEnrollOk returns a tuple with the OnPendingEnroll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnPendingEnroll
+
+`func (o *CertificateProfileTriggers) SetOnPendingEnroll(v []CertificateProfileAsynchronousTrigger)`
+
+SetOnPendingEnroll sets OnPendingEnroll field to given value.
+
+### HasOnPendingEnroll
+
+`func (o *CertificateProfileTriggers) HasOnPendingEnroll() bool`
+
+HasOnPendingEnroll returns a boolean if a field has been set.
+
+### SetOnPendingEnrollNil
+
+`func (o *CertificateProfileTriggers) SetOnPendingEnrollNil(b bool)`
+
+ SetOnPendingEnrollNil sets the value for OnPendingEnroll to be an explicit nil
+
+### UnsetOnPendingEnroll
+`func (o *CertificateProfileTriggers) UnsetOnPendingEnroll()`
+
+UnsetOnPendingEnroll ensures that no value is present for OnPendingEnroll, not even an explicit nil
+### GetOnPendingMigrate
+
+`func (o *CertificateProfileTriggers) GetOnPendingMigrate() []CertificateProfileAsynchronousTrigger`
+
+GetOnPendingMigrate returns the OnPendingMigrate field if non-nil, zero value otherwise.
+
+### GetOnPendingMigrateOk
+
+`func (o *CertificateProfileTriggers) GetOnPendingMigrateOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
+
+GetOnPendingMigrateOk returns a tuple with the OnPendingMigrate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnPendingMigrate
+
+`func (o *CertificateProfileTriggers) SetOnPendingMigrate(v []CertificateProfileAsynchronousTrigger)`
+
+SetOnPendingMigrate sets OnPendingMigrate field to given value.
+
+### HasOnPendingMigrate
+
+`func (o *CertificateProfileTriggers) HasOnPendingMigrate() bool`
+
+HasOnPendingMigrate returns a boolean if a field has been set.
+
+### SetOnPendingMigrateNil
+
+`func (o *CertificateProfileTriggers) SetOnPendingMigrateNil(b bool)`
+
+ SetOnPendingMigrateNil sets the value for OnPendingMigrate to be an explicit nil
+
+### UnsetOnPendingMigrate
+`func (o *CertificateProfileTriggers) UnsetOnPendingMigrate()`
+
+UnsetOnPendingMigrate ensures that no value is present for OnPendingMigrate, not even an explicit nil
+### GetOnPendingRecover
+
+`func (o *CertificateProfileTriggers) GetOnPendingRecover() []CertificateProfileAsynchronousTrigger`
+
+GetOnPendingRecover returns the OnPendingRecover field if non-nil, zero value otherwise.
+
+### GetOnPendingRecoverOk
+
+`func (o *CertificateProfileTriggers) GetOnPendingRecoverOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
+
+GetOnPendingRecoverOk returns a tuple with the OnPendingRecover field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnPendingRecover
+
+`func (o *CertificateProfileTriggers) SetOnPendingRecover(v []CertificateProfileAsynchronousTrigger)`
+
+SetOnPendingRecover sets OnPendingRecover field to given value.
+
+### HasOnPendingRecover
+
+`func (o *CertificateProfileTriggers) HasOnPendingRecover() bool`
+
+HasOnPendingRecover returns a boolean if a field has been set.
+
+### SetOnPendingRecoverNil
+
+`func (o *CertificateProfileTriggers) SetOnPendingRecoverNil(b bool)`
+
+ SetOnPendingRecoverNil sets the value for OnPendingRecover to be an explicit nil
+
+### UnsetOnPendingRecover
+`func (o *CertificateProfileTriggers) UnsetOnPendingRecover()`
+
+UnsetOnPendingRecover ensures that no value is present for OnPendingRecover, not even an explicit nil
+### GetOnPendingRenew
+
+`func (o *CertificateProfileTriggers) GetOnPendingRenew() []CertificateProfileAsynchronousTrigger`
+
+GetOnPendingRenew returns the OnPendingRenew field if non-nil, zero value otherwise.
+
+### GetOnPendingRenewOk
+
+`func (o *CertificateProfileTriggers) GetOnPendingRenewOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
+
+GetOnPendingRenewOk returns a tuple with the OnPendingRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnPendingRenew
+
+`func (o *CertificateProfileTriggers) SetOnPendingRenew(v []CertificateProfileAsynchronousTrigger)`
+
+SetOnPendingRenew sets OnPendingRenew field to given value.
+
+### HasOnPendingRenew
+
+`func (o *CertificateProfileTriggers) HasOnPendingRenew() bool`
+
+HasOnPendingRenew returns a boolean if a field has been set.
+
+### SetOnPendingRenewNil
+
+`func (o *CertificateProfileTriggers) SetOnPendingRenewNil(b bool)`
+
+ SetOnPendingRenewNil sets the value for OnPendingRenew to be an explicit nil
+
+### UnsetOnPendingRenew
+`func (o *CertificateProfileTriggers) UnsetOnPendingRenew()`
+
+UnsetOnPendingRenew ensures that no value is present for OnPendingRenew, not even an explicit nil
+### GetOnPendingRevoke
+
+`func (o *CertificateProfileTriggers) GetOnPendingRevoke() []CertificateProfileAsynchronousTrigger`
+
+GetOnPendingRevoke returns the OnPendingRevoke field if non-nil, zero value otherwise.
+
+### GetOnPendingRevokeOk
+
+`func (o *CertificateProfileTriggers) GetOnPendingRevokeOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
+
+GetOnPendingRevokeOk returns a tuple with the OnPendingRevoke field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnPendingRevoke
+
+`func (o *CertificateProfileTriggers) SetOnPendingRevoke(v []CertificateProfileAsynchronousTrigger)`
+
+SetOnPendingRevoke sets OnPendingRevoke field to given value.
+
+### HasOnPendingRevoke
+
+`func (o *CertificateProfileTriggers) HasOnPendingRevoke() bool`
+
+HasOnPendingRevoke returns a boolean if a field has been set.
+
+### SetOnPendingRevokeNil
+
+`func (o *CertificateProfileTriggers) SetOnPendingRevokeNil(b bool)`
+
+ SetOnPendingRevokeNil sets the value for OnPendingRevoke to be an explicit nil
+
+### UnsetOnPendingRevoke
+`func (o *CertificateProfileTriggers) UnsetOnPendingRevoke()`
+
+UnsetOnPendingRevoke ensures that no value is present for OnPendingRevoke, not even an explicit nil
 ### GetOnPendingUpdate
 
 `func (o *CertificateProfileTriggers) GetOnPendingUpdate() []CertificateProfileAsynchronousTrigger`
@@ -726,426 +1041,6 @@ HasOnRecover returns a boolean if a field has been set.
 `func (o *CertificateProfileTriggers) UnsetOnRecover()`
 
 UnsetOnRecover ensures that no value is present for OnRecover, not even an explicit nil
-### GetOnSubmitRecover
-
-`func (o *CertificateProfileTriggers) GetOnSubmitRecover() []string`
-
-GetOnSubmitRecover returns the OnSubmitRecover field if non-nil, zero value otherwise.
-
-### GetOnSubmitRecoverOk
-
-`func (o *CertificateProfileTriggers) GetOnSubmitRecoverOk() (*[]string, bool)`
-
-GetOnSubmitRecoverOk returns a tuple with the OnSubmitRecover field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnSubmitRecover
-
-`func (o *CertificateProfileTriggers) SetOnSubmitRecover(v []string)`
-
-SetOnSubmitRecover sets OnSubmitRecover field to given value.
-
-### HasOnSubmitRecover
-
-`func (o *CertificateProfileTriggers) HasOnSubmitRecover() bool`
-
-HasOnSubmitRecover returns a boolean if a field has been set.
-
-### SetOnSubmitRecoverNil
-
-`func (o *CertificateProfileTriggers) SetOnSubmitRecoverNil(b bool)`
-
- SetOnSubmitRecoverNil sets the value for OnSubmitRecover to be an explicit nil
-
-### UnsetOnSubmitRecover
-`func (o *CertificateProfileTriggers) UnsetOnSubmitRecover()`
-
-UnsetOnSubmitRecover ensures that no value is present for OnSubmitRecover, not even an explicit nil
-### GetOnCancelRecover
-
-`func (o *CertificateProfileTriggers) GetOnCancelRecover() []string`
-
-GetOnCancelRecover returns the OnCancelRecover field if non-nil, zero value otherwise.
-
-### GetOnCancelRecoverOk
-
-`func (o *CertificateProfileTriggers) GetOnCancelRecoverOk() (*[]string, bool)`
-
-GetOnCancelRecoverOk returns a tuple with the OnCancelRecover field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnCancelRecover
-
-`func (o *CertificateProfileTriggers) SetOnCancelRecover(v []string)`
-
-SetOnCancelRecover sets OnCancelRecover field to given value.
-
-### HasOnCancelRecover
-
-`func (o *CertificateProfileTriggers) HasOnCancelRecover() bool`
-
-HasOnCancelRecover returns a boolean if a field has been set.
-
-### SetOnCancelRecoverNil
-
-`func (o *CertificateProfileTriggers) SetOnCancelRecoverNil(b bool)`
-
- SetOnCancelRecoverNil sets the value for OnCancelRecover to be an explicit nil
-
-### UnsetOnCancelRecover
-`func (o *CertificateProfileTriggers) UnsetOnCancelRecover()`
-
-UnsetOnCancelRecover ensures that no value is present for OnCancelRecover, not even an explicit nil
-### GetOnApproveRecover
-
-`func (o *CertificateProfileTriggers) GetOnApproveRecover() []string`
-
-GetOnApproveRecover returns the OnApproveRecover field if non-nil, zero value otherwise.
-
-### GetOnApproveRecoverOk
-
-`func (o *CertificateProfileTriggers) GetOnApproveRecoverOk() (*[]string, bool)`
-
-GetOnApproveRecoverOk returns a tuple with the OnApproveRecover field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnApproveRecover
-
-`func (o *CertificateProfileTriggers) SetOnApproveRecover(v []string)`
-
-SetOnApproveRecover sets OnApproveRecover field to given value.
-
-### HasOnApproveRecover
-
-`func (o *CertificateProfileTriggers) HasOnApproveRecover() bool`
-
-HasOnApproveRecover returns a boolean if a field has been set.
-
-### SetOnApproveRecoverNil
-
-`func (o *CertificateProfileTriggers) SetOnApproveRecoverNil(b bool)`
-
- SetOnApproveRecoverNil sets the value for OnApproveRecover to be an explicit nil
-
-### UnsetOnApproveRecover
-`func (o *CertificateProfileTriggers) UnsetOnApproveRecover()`
-
-UnsetOnApproveRecover ensures that no value is present for OnApproveRecover, not even an explicit nil
-### GetOnDenyRecover
-
-`func (o *CertificateProfileTriggers) GetOnDenyRecover() []string`
-
-GetOnDenyRecover returns the OnDenyRecover field if non-nil, zero value otherwise.
-
-### GetOnDenyRecoverOk
-
-`func (o *CertificateProfileTriggers) GetOnDenyRecoverOk() (*[]string, bool)`
-
-GetOnDenyRecoverOk returns a tuple with the OnDenyRecover field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnDenyRecover
-
-`func (o *CertificateProfileTriggers) SetOnDenyRecover(v []string)`
-
-SetOnDenyRecover sets OnDenyRecover field to given value.
-
-### HasOnDenyRecover
-
-`func (o *CertificateProfileTriggers) HasOnDenyRecover() bool`
-
-HasOnDenyRecover returns a boolean if a field has been set.
-
-### SetOnDenyRecoverNil
-
-`func (o *CertificateProfileTriggers) SetOnDenyRecoverNil(b bool)`
-
- SetOnDenyRecoverNil sets the value for OnDenyRecover to be an explicit nil
-
-### UnsetOnDenyRecover
-`func (o *CertificateProfileTriggers) UnsetOnDenyRecover()`
-
-UnsetOnDenyRecover ensures that no value is present for OnDenyRecover, not even an explicit nil
-### GetOnPendingRecover
-
-`func (o *CertificateProfileTriggers) GetOnPendingRecover() []CertificateProfileAsynchronousTrigger`
-
-GetOnPendingRecover returns the OnPendingRecover field if non-nil, zero value otherwise.
-
-### GetOnPendingRecoverOk
-
-`func (o *CertificateProfileTriggers) GetOnPendingRecoverOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
-
-GetOnPendingRecoverOk returns a tuple with the OnPendingRecover field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnPendingRecover
-
-`func (o *CertificateProfileTriggers) SetOnPendingRecover(v []CertificateProfileAsynchronousTrigger)`
-
-SetOnPendingRecover sets OnPendingRecover field to given value.
-
-### HasOnPendingRecover
-
-`func (o *CertificateProfileTriggers) HasOnPendingRecover() bool`
-
-HasOnPendingRecover returns a boolean if a field has been set.
-
-### SetOnPendingRecoverNil
-
-`func (o *CertificateProfileTriggers) SetOnPendingRecoverNil(b bool)`
-
- SetOnPendingRecoverNil sets the value for OnPendingRecover to be an explicit nil
-
-### UnsetOnPendingRecover
-`func (o *CertificateProfileTriggers) UnsetOnPendingRecover()`
-
-UnsetOnPendingRecover ensures that no value is present for OnPendingRecover, not even an explicit nil
-### GetOnMigrate
-
-`func (o *CertificateProfileTriggers) GetOnMigrate() []string`
-
-GetOnMigrate returns the OnMigrate field if non-nil, zero value otherwise.
-
-### GetOnMigrateOk
-
-`func (o *CertificateProfileTriggers) GetOnMigrateOk() (*[]string, bool)`
-
-GetOnMigrateOk returns a tuple with the OnMigrate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnMigrate
-
-`func (o *CertificateProfileTriggers) SetOnMigrate(v []string)`
-
-SetOnMigrate sets OnMigrate field to given value.
-
-### HasOnMigrate
-
-`func (o *CertificateProfileTriggers) HasOnMigrate() bool`
-
-HasOnMigrate returns a boolean if a field has been set.
-
-### SetOnMigrateNil
-
-`func (o *CertificateProfileTriggers) SetOnMigrateNil(b bool)`
-
- SetOnMigrateNil sets the value for OnMigrate to be an explicit nil
-
-### UnsetOnMigrate
-`func (o *CertificateProfileTriggers) UnsetOnMigrate()`
-
-UnsetOnMigrate ensures that no value is present for OnMigrate, not even an explicit nil
-### GetOnSubmitMigrate
-
-`func (o *CertificateProfileTriggers) GetOnSubmitMigrate() []string`
-
-GetOnSubmitMigrate returns the OnSubmitMigrate field if non-nil, zero value otherwise.
-
-### GetOnSubmitMigrateOk
-
-`func (o *CertificateProfileTriggers) GetOnSubmitMigrateOk() (*[]string, bool)`
-
-GetOnSubmitMigrateOk returns a tuple with the OnSubmitMigrate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnSubmitMigrate
-
-`func (o *CertificateProfileTriggers) SetOnSubmitMigrate(v []string)`
-
-SetOnSubmitMigrate sets OnSubmitMigrate field to given value.
-
-### HasOnSubmitMigrate
-
-`func (o *CertificateProfileTriggers) HasOnSubmitMigrate() bool`
-
-HasOnSubmitMigrate returns a boolean if a field has been set.
-
-### SetOnSubmitMigrateNil
-
-`func (o *CertificateProfileTriggers) SetOnSubmitMigrateNil(b bool)`
-
- SetOnSubmitMigrateNil sets the value for OnSubmitMigrate to be an explicit nil
-
-### UnsetOnSubmitMigrate
-`func (o *CertificateProfileTriggers) UnsetOnSubmitMigrate()`
-
-UnsetOnSubmitMigrate ensures that no value is present for OnSubmitMigrate, not even an explicit nil
-### GetOnCancelMigrate
-
-`func (o *CertificateProfileTriggers) GetOnCancelMigrate() []string`
-
-GetOnCancelMigrate returns the OnCancelMigrate field if non-nil, zero value otherwise.
-
-### GetOnCancelMigrateOk
-
-`func (o *CertificateProfileTriggers) GetOnCancelMigrateOk() (*[]string, bool)`
-
-GetOnCancelMigrateOk returns a tuple with the OnCancelMigrate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnCancelMigrate
-
-`func (o *CertificateProfileTriggers) SetOnCancelMigrate(v []string)`
-
-SetOnCancelMigrate sets OnCancelMigrate field to given value.
-
-### HasOnCancelMigrate
-
-`func (o *CertificateProfileTriggers) HasOnCancelMigrate() bool`
-
-HasOnCancelMigrate returns a boolean if a field has been set.
-
-### SetOnCancelMigrateNil
-
-`func (o *CertificateProfileTriggers) SetOnCancelMigrateNil(b bool)`
-
- SetOnCancelMigrateNil sets the value for OnCancelMigrate to be an explicit nil
-
-### UnsetOnCancelMigrate
-`func (o *CertificateProfileTriggers) UnsetOnCancelMigrate()`
-
-UnsetOnCancelMigrate ensures that no value is present for OnCancelMigrate, not even an explicit nil
-### GetOnApproveMigrate
-
-`func (o *CertificateProfileTriggers) GetOnApproveMigrate() []string`
-
-GetOnApproveMigrate returns the OnApproveMigrate field if non-nil, zero value otherwise.
-
-### GetOnApproveMigrateOk
-
-`func (o *CertificateProfileTriggers) GetOnApproveMigrateOk() (*[]string, bool)`
-
-GetOnApproveMigrateOk returns a tuple with the OnApproveMigrate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnApproveMigrate
-
-`func (o *CertificateProfileTriggers) SetOnApproveMigrate(v []string)`
-
-SetOnApproveMigrate sets OnApproveMigrate field to given value.
-
-### HasOnApproveMigrate
-
-`func (o *CertificateProfileTriggers) HasOnApproveMigrate() bool`
-
-HasOnApproveMigrate returns a boolean if a field has been set.
-
-### SetOnApproveMigrateNil
-
-`func (o *CertificateProfileTriggers) SetOnApproveMigrateNil(b bool)`
-
- SetOnApproveMigrateNil sets the value for OnApproveMigrate to be an explicit nil
-
-### UnsetOnApproveMigrate
-`func (o *CertificateProfileTriggers) UnsetOnApproveMigrate()`
-
-UnsetOnApproveMigrate ensures that no value is present for OnApproveMigrate, not even an explicit nil
-### GetOnDenyMigrate
-
-`func (o *CertificateProfileTriggers) GetOnDenyMigrate() []string`
-
-GetOnDenyMigrate returns the OnDenyMigrate field if non-nil, zero value otherwise.
-
-### GetOnDenyMigrateOk
-
-`func (o *CertificateProfileTriggers) GetOnDenyMigrateOk() (*[]string, bool)`
-
-GetOnDenyMigrateOk returns a tuple with the OnDenyMigrate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnDenyMigrate
-
-`func (o *CertificateProfileTriggers) SetOnDenyMigrate(v []string)`
-
-SetOnDenyMigrate sets OnDenyMigrate field to given value.
-
-### HasOnDenyMigrate
-
-`func (o *CertificateProfileTriggers) HasOnDenyMigrate() bool`
-
-HasOnDenyMigrate returns a boolean if a field has been set.
-
-### SetOnDenyMigrateNil
-
-`func (o *CertificateProfileTriggers) SetOnDenyMigrateNil(b bool)`
-
- SetOnDenyMigrateNil sets the value for OnDenyMigrate to be an explicit nil
-
-### UnsetOnDenyMigrate
-`func (o *CertificateProfileTriggers) UnsetOnDenyMigrate()`
-
-UnsetOnDenyMigrate ensures that no value is present for OnDenyMigrate, not even an explicit nil
-### GetOnPendingMigrate
-
-`func (o *CertificateProfileTriggers) GetOnPendingMigrate() []CertificateProfileAsynchronousTrigger`
-
-GetOnPendingMigrate returns the OnPendingMigrate field if non-nil, zero value otherwise.
-
-### GetOnPendingMigrateOk
-
-`func (o *CertificateProfileTriggers) GetOnPendingMigrateOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
-
-GetOnPendingMigrateOk returns a tuple with the OnPendingMigrate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnPendingMigrate
-
-`func (o *CertificateProfileTriggers) SetOnPendingMigrate(v []CertificateProfileAsynchronousTrigger)`
-
-SetOnPendingMigrate sets OnPendingMigrate field to given value.
-
-### HasOnPendingMigrate
-
-`func (o *CertificateProfileTriggers) HasOnPendingMigrate() bool`
-
-HasOnPendingMigrate returns a boolean if a field has been set.
-
-### SetOnPendingMigrateNil
-
-`func (o *CertificateProfileTriggers) SetOnPendingMigrateNil(b bool)`
-
- SetOnPendingMigrateNil sets the value for OnPendingMigrate to be an explicit nil
-
-### UnsetOnPendingMigrate
-`func (o *CertificateProfileTriggers) UnsetOnPendingMigrate()`
-
-UnsetOnPendingMigrate ensures that no value is present for OnPendingMigrate, not even an explicit nil
-### GetOnExpire
-
-`func (o *CertificateProfileTriggers) GetOnExpire() []CertificateProfileAsynchronousTrigger`
-
-GetOnExpire returns the OnExpire field if non-nil, zero value otherwise.
-
-### GetOnExpireOk
-
-`func (o *CertificateProfileTriggers) GetOnExpireOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
-
-GetOnExpireOk returns a tuple with the OnExpire field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnExpire
-
-`func (o *CertificateProfileTriggers) SetOnExpire(v []CertificateProfileAsynchronousTrigger)`
-
-SetOnExpire sets OnExpire field to given value.
-
-### HasOnExpire
-
-`func (o *CertificateProfileTriggers) HasOnExpire() bool`
-
-HasOnExpire returns a boolean if a field has been set.
-
-### SetOnExpireNil
-
-`func (o *CertificateProfileTriggers) SetOnExpireNil(b bool)`
-
- SetOnExpireNil sets the value for OnExpire to be an explicit nil
-
-### UnsetOnExpire
-`func (o *CertificateProfileTriggers) UnsetOnExpire()`
-
-UnsetOnExpire ensures that no value is present for OnExpire, not even an explicit nil
 ### GetOnRenew
 
 `func (o *CertificateProfileTriggers) GetOnRenew() []string`
@@ -1181,6 +1076,146 @@ HasOnRenew returns a boolean if a field has been set.
 `func (o *CertificateProfileTriggers) UnsetOnRenew()`
 
 UnsetOnRenew ensures that no value is present for OnRenew, not even an explicit nil
+### GetOnRevoke
+
+`func (o *CertificateProfileTriggers) GetOnRevoke() []string`
+
+GetOnRevoke returns the OnRevoke field if non-nil, zero value otherwise.
+
+### GetOnRevokeOk
+
+`func (o *CertificateProfileTriggers) GetOnRevokeOk() (*[]string, bool)`
+
+GetOnRevokeOk returns a tuple with the OnRevoke field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnRevoke
+
+`func (o *CertificateProfileTriggers) SetOnRevoke(v []string)`
+
+SetOnRevoke sets OnRevoke field to given value.
+
+### HasOnRevoke
+
+`func (o *CertificateProfileTriggers) HasOnRevoke() bool`
+
+HasOnRevoke returns a boolean if a field has been set.
+
+### SetOnRevokeNil
+
+`func (o *CertificateProfileTriggers) SetOnRevokeNil(b bool)`
+
+ SetOnRevokeNil sets the value for OnRevoke to be an explicit nil
+
+### UnsetOnRevoke
+`func (o *CertificateProfileTriggers) UnsetOnRevoke()`
+
+UnsetOnRevoke ensures that no value is present for OnRevoke, not even an explicit nil
+### GetOnSubmitEnroll
+
+`func (o *CertificateProfileTriggers) GetOnSubmitEnroll() []string`
+
+GetOnSubmitEnroll returns the OnSubmitEnroll field if non-nil, zero value otherwise.
+
+### GetOnSubmitEnrollOk
+
+`func (o *CertificateProfileTriggers) GetOnSubmitEnrollOk() (*[]string, bool)`
+
+GetOnSubmitEnrollOk returns a tuple with the OnSubmitEnroll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnSubmitEnroll
+
+`func (o *CertificateProfileTriggers) SetOnSubmitEnroll(v []string)`
+
+SetOnSubmitEnroll sets OnSubmitEnroll field to given value.
+
+### HasOnSubmitEnroll
+
+`func (o *CertificateProfileTriggers) HasOnSubmitEnroll() bool`
+
+HasOnSubmitEnroll returns a boolean if a field has been set.
+
+### SetOnSubmitEnrollNil
+
+`func (o *CertificateProfileTriggers) SetOnSubmitEnrollNil(b bool)`
+
+ SetOnSubmitEnrollNil sets the value for OnSubmitEnroll to be an explicit nil
+
+### UnsetOnSubmitEnroll
+`func (o *CertificateProfileTriggers) UnsetOnSubmitEnroll()`
+
+UnsetOnSubmitEnroll ensures that no value is present for OnSubmitEnroll, not even an explicit nil
+### GetOnSubmitMigrate
+
+`func (o *CertificateProfileTriggers) GetOnSubmitMigrate() []string`
+
+GetOnSubmitMigrate returns the OnSubmitMigrate field if non-nil, zero value otherwise.
+
+### GetOnSubmitMigrateOk
+
+`func (o *CertificateProfileTriggers) GetOnSubmitMigrateOk() (*[]string, bool)`
+
+GetOnSubmitMigrateOk returns a tuple with the OnSubmitMigrate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnSubmitMigrate
+
+`func (o *CertificateProfileTriggers) SetOnSubmitMigrate(v []string)`
+
+SetOnSubmitMigrate sets OnSubmitMigrate field to given value.
+
+### HasOnSubmitMigrate
+
+`func (o *CertificateProfileTriggers) HasOnSubmitMigrate() bool`
+
+HasOnSubmitMigrate returns a boolean if a field has been set.
+
+### SetOnSubmitMigrateNil
+
+`func (o *CertificateProfileTriggers) SetOnSubmitMigrateNil(b bool)`
+
+ SetOnSubmitMigrateNil sets the value for OnSubmitMigrate to be an explicit nil
+
+### UnsetOnSubmitMigrate
+`func (o *CertificateProfileTriggers) UnsetOnSubmitMigrate()`
+
+UnsetOnSubmitMigrate ensures that no value is present for OnSubmitMigrate, not even an explicit nil
+### GetOnSubmitRecover
+
+`func (o *CertificateProfileTriggers) GetOnSubmitRecover() []string`
+
+GetOnSubmitRecover returns the OnSubmitRecover field if non-nil, zero value otherwise.
+
+### GetOnSubmitRecoverOk
+
+`func (o *CertificateProfileTriggers) GetOnSubmitRecoverOk() (*[]string, bool)`
+
+GetOnSubmitRecoverOk returns a tuple with the OnSubmitRecover field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnSubmitRecover
+
+`func (o *CertificateProfileTriggers) SetOnSubmitRecover(v []string)`
+
+SetOnSubmitRecover sets OnSubmitRecover field to given value.
+
+### HasOnSubmitRecover
+
+`func (o *CertificateProfileTriggers) HasOnSubmitRecover() bool`
+
+HasOnSubmitRecover returns a boolean if a field has been set.
+
+### SetOnSubmitRecoverNil
+
+`func (o *CertificateProfileTriggers) SetOnSubmitRecoverNil(b bool)`
+
+ SetOnSubmitRecoverNil sets the value for OnSubmitRecover to be an explicit nil
+
+### UnsetOnSubmitRecover
+`func (o *CertificateProfileTriggers) UnsetOnSubmitRecover()`
+
+UnsetOnSubmitRecover ensures that no value is present for OnSubmitRecover, not even an explicit nil
 ### GetOnSubmitRenew
 
 `func (o *CertificateProfileTriggers) GetOnSubmitRenew() []string`
@@ -1216,146 +1251,111 @@ HasOnSubmitRenew returns a boolean if a field has been set.
 `func (o *CertificateProfileTriggers) UnsetOnSubmitRenew()`
 
 UnsetOnSubmitRenew ensures that no value is present for OnSubmitRenew, not even an explicit nil
-### GetOnCancelRenew
+### GetOnSubmitRevoke
 
-`func (o *CertificateProfileTriggers) GetOnCancelRenew() []string`
+`func (o *CertificateProfileTriggers) GetOnSubmitRevoke() []string`
 
-GetOnCancelRenew returns the OnCancelRenew field if non-nil, zero value otherwise.
+GetOnSubmitRevoke returns the OnSubmitRevoke field if non-nil, zero value otherwise.
 
-### GetOnCancelRenewOk
+### GetOnSubmitRevokeOk
 
-`func (o *CertificateProfileTriggers) GetOnCancelRenewOk() (*[]string, bool)`
+`func (o *CertificateProfileTriggers) GetOnSubmitRevokeOk() (*[]string, bool)`
 
-GetOnCancelRenewOk returns a tuple with the OnCancelRenew field if it's non-nil, zero value otherwise
+GetOnSubmitRevokeOk returns a tuple with the OnSubmitRevoke field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOnCancelRenew
+### SetOnSubmitRevoke
 
-`func (o *CertificateProfileTriggers) SetOnCancelRenew(v []string)`
+`func (o *CertificateProfileTriggers) SetOnSubmitRevoke(v []string)`
 
-SetOnCancelRenew sets OnCancelRenew field to given value.
+SetOnSubmitRevoke sets OnSubmitRevoke field to given value.
 
-### HasOnCancelRenew
+### HasOnSubmitRevoke
 
-`func (o *CertificateProfileTriggers) HasOnCancelRenew() bool`
+`func (o *CertificateProfileTriggers) HasOnSubmitRevoke() bool`
 
-HasOnCancelRenew returns a boolean if a field has been set.
+HasOnSubmitRevoke returns a boolean if a field has been set.
 
-### SetOnCancelRenewNil
+### SetOnSubmitRevokeNil
 
-`func (o *CertificateProfileTriggers) SetOnCancelRenewNil(b bool)`
+`func (o *CertificateProfileTriggers) SetOnSubmitRevokeNil(b bool)`
 
- SetOnCancelRenewNil sets the value for OnCancelRenew to be an explicit nil
+ SetOnSubmitRevokeNil sets the value for OnSubmitRevoke to be an explicit nil
 
-### UnsetOnCancelRenew
-`func (o *CertificateProfileTriggers) UnsetOnCancelRenew()`
+### UnsetOnSubmitRevoke
+`func (o *CertificateProfileTriggers) UnsetOnSubmitRevoke()`
 
-UnsetOnCancelRenew ensures that no value is present for OnCancelRenew, not even an explicit nil
-### GetOnApproveRenew
+UnsetOnSubmitRevoke ensures that no value is present for OnSubmitRevoke, not even an explicit nil
+### GetOnSubmitUpdate
 
-`func (o *CertificateProfileTriggers) GetOnApproveRenew() []string`
+`func (o *CertificateProfileTriggers) GetOnSubmitUpdate() []string`
 
-GetOnApproveRenew returns the OnApproveRenew field if non-nil, zero value otherwise.
+GetOnSubmitUpdate returns the OnSubmitUpdate field if non-nil, zero value otherwise.
 
-### GetOnApproveRenewOk
+### GetOnSubmitUpdateOk
 
-`func (o *CertificateProfileTriggers) GetOnApproveRenewOk() (*[]string, bool)`
+`func (o *CertificateProfileTriggers) GetOnSubmitUpdateOk() (*[]string, bool)`
 
-GetOnApproveRenewOk returns a tuple with the OnApproveRenew field if it's non-nil, zero value otherwise
+GetOnSubmitUpdateOk returns a tuple with the OnSubmitUpdate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOnApproveRenew
+### SetOnSubmitUpdate
 
-`func (o *CertificateProfileTriggers) SetOnApproveRenew(v []string)`
+`func (o *CertificateProfileTriggers) SetOnSubmitUpdate(v []string)`
 
-SetOnApproveRenew sets OnApproveRenew field to given value.
+SetOnSubmitUpdate sets OnSubmitUpdate field to given value.
 
-### HasOnApproveRenew
+### HasOnSubmitUpdate
 
-`func (o *CertificateProfileTriggers) HasOnApproveRenew() bool`
+`func (o *CertificateProfileTriggers) HasOnSubmitUpdate() bool`
 
-HasOnApproveRenew returns a boolean if a field has been set.
+HasOnSubmitUpdate returns a boolean if a field has been set.
 
-### SetOnApproveRenewNil
+### SetOnSubmitUpdateNil
 
-`func (o *CertificateProfileTriggers) SetOnApproveRenewNil(b bool)`
+`func (o *CertificateProfileTriggers) SetOnSubmitUpdateNil(b bool)`
 
- SetOnApproveRenewNil sets the value for OnApproveRenew to be an explicit nil
+ SetOnSubmitUpdateNil sets the value for OnSubmitUpdate to be an explicit nil
 
-### UnsetOnApproveRenew
-`func (o *CertificateProfileTriggers) UnsetOnApproveRenew()`
+### UnsetOnSubmitUpdate
+`func (o *CertificateProfileTriggers) UnsetOnSubmitUpdate()`
 
-UnsetOnApproveRenew ensures that no value is present for OnApproveRenew, not even an explicit nil
-### GetOnDenyRenew
+UnsetOnSubmitUpdate ensures that no value is present for OnSubmitUpdate, not even an explicit nil
+### GetOnUpdate
 
-`func (o *CertificateProfileTriggers) GetOnDenyRenew() []string`
+`func (o *CertificateProfileTriggers) GetOnUpdate() []string`
 
-GetOnDenyRenew returns the OnDenyRenew field if non-nil, zero value otherwise.
+GetOnUpdate returns the OnUpdate field if non-nil, zero value otherwise.
 
-### GetOnDenyRenewOk
+### GetOnUpdateOk
 
-`func (o *CertificateProfileTriggers) GetOnDenyRenewOk() (*[]string, bool)`
+`func (o *CertificateProfileTriggers) GetOnUpdateOk() (*[]string, bool)`
 
-GetOnDenyRenewOk returns a tuple with the OnDenyRenew field if it's non-nil, zero value otherwise
+GetOnUpdateOk returns a tuple with the OnUpdate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOnDenyRenew
+### SetOnUpdate
 
-`func (o *CertificateProfileTriggers) SetOnDenyRenew(v []string)`
+`func (o *CertificateProfileTriggers) SetOnUpdate(v []string)`
 
-SetOnDenyRenew sets OnDenyRenew field to given value.
+SetOnUpdate sets OnUpdate field to given value.
 
-### HasOnDenyRenew
+### HasOnUpdate
 
-`func (o *CertificateProfileTriggers) HasOnDenyRenew() bool`
+`func (o *CertificateProfileTriggers) HasOnUpdate() bool`
 
-HasOnDenyRenew returns a boolean if a field has been set.
+HasOnUpdate returns a boolean if a field has been set.
 
-### SetOnDenyRenewNil
+### SetOnUpdateNil
 
-`func (o *CertificateProfileTriggers) SetOnDenyRenewNil(b bool)`
+`func (o *CertificateProfileTriggers) SetOnUpdateNil(b bool)`
 
- SetOnDenyRenewNil sets the value for OnDenyRenew to be an explicit nil
+ SetOnUpdateNil sets the value for OnUpdate to be an explicit nil
 
-### UnsetOnDenyRenew
-`func (o *CertificateProfileTriggers) UnsetOnDenyRenew()`
+### UnsetOnUpdate
+`func (o *CertificateProfileTriggers) UnsetOnUpdate()`
 
-UnsetOnDenyRenew ensures that no value is present for OnDenyRenew, not even an explicit nil
-### GetOnPendingRenew
-
-`func (o *CertificateProfileTriggers) GetOnPendingRenew() []CertificateProfileAsynchronousTrigger`
-
-GetOnPendingRenew returns the OnPendingRenew field if non-nil, zero value otherwise.
-
-### GetOnPendingRenewOk
-
-`func (o *CertificateProfileTriggers) GetOnPendingRenewOk() (*[]CertificateProfileAsynchronousTrigger, bool)`
-
-GetOnPendingRenewOk returns a tuple with the OnPendingRenew field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnPendingRenew
-
-`func (o *CertificateProfileTriggers) SetOnPendingRenew(v []CertificateProfileAsynchronousTrigger)`
-
-SetOnPendingRenew sets OnPendingRenew field to given value.
-
-### HasOnPendingRenew
-
-`func (o *CertificateProfileTriggers) HasOnPendingRenew() bool`
-
-HasOnPendingRenew returns a boolean if a field has been set.
-
-### SetOnPendingRenewNil
-
-`func (o *CertificateProfileTriggers) SetOnPendingRenewNil(b bool)`
-
- SetOnPendingRenewNil sets the value for OnPendingRenew to be an explicit nil
-
-### UnsetOnPendingRenew
-`func (o *CertificateProfileTriggers) UnsetOnPendingRenew()`
-
-UnsetOnPendingRenew ensures that no value is present for OnPendingRenew, not even an explicit nil
+UnsetOnUpdate ensures that no value is present for OnUpdate, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

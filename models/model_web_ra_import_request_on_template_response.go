@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &WebRAImportRequestOnTemplateResponse{}
 
 // WebRAImportRequestOnTemplateResponse struct for WebRAImportRequestOnTemplateResponse
 type WebRAImportRequestOnTemplateResponse struct {
-	// The request workflow
-	Workflow string `json:"workflow"`
 	// The module for which to return the template.
 	Module string `json:"module"`
 	// The profile for which to return the template.
 	Profile string `json:"profile"`
 	// The template with the constraint set on the profile
-	Template             WebRAImportRequestTemplateResponse `json:"template"`
+	Template WebRAImportRequestTemplateResponse `json:"template"`
+	// The request workflow
+	Workflow             string `json:"workflow"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,12 +39,12 @@ type _WebRAImportRequestOnTemplateResponse WebRAImportRequestOnTemplateResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAImportRequestOnTemplateResponse(workflow string, module string, profile string, template WebRAImportRequestTemplateResponse) *WebRAImportRequestOnTemplateResponse {
+func NewWebRAImportRequestOnTemplateResponse(module string, profile string, template WebRAImportRequestTemplateResponse, workflow string) *WebRAImportRequestOnTemplateResponse {
 	this := WebRAImportRequestOnTemplateResponse{}
-	this.Workflow = workflow
 	this.Module = module
 	this.Profile = profile
 	this.Template = template
+	this.Workflow = workflow
 	return &this
 }
 
@@ -54,30 +54,6 @@ func NewWebRAImportRequestOnTemplateResponse(workflow string, module string, pro
 func NewWebRAImportRequestOnTemplateResponseWithDefaults() *WebRAImportRequestOnTemplateResponse {
 	this := WebRAImportRequestOnTemplateResponse{}
 	return &this
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRAImportRequestOnTemplateResponse) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRAImportRequestOnTemplateResponse) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRAImportRequestOnTemplateResponse) SetWorkflow(v string) {
-	o.Workflow = v
 }
 
 // GetModule returns the Module field value
@@ -152,6 +128,30 @@ func (o *WebRAImportRequestOnTemplateResponse) SetTemplate(v WebRAImportRequestT
 	o.Template = v
 }
 
+// GetWorkflow returns the Workflow field value
+func (o *WebRAImportRequestOnTemplateResponse) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRAImportRequestOnTemplateResponse) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRAImportRequestOnTemplateResponse) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
 func (o WebRAImportRequestOnTemplateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -162,10 +162,10 @@ func (o WebRAImportRequestOnTemplateResponse) MarshalJSON() ([]byte, error) {
 
 func (o WebRAImportRequestOnTemplateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["workflow"] = o.Workflow
 	toSerialize["module"] = o.Module
 	toSerialize["profile"] = o.Profile
 	toSerialize["template"] = o.Template
+	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -179,10 +179,10 @@ func (o *WebRAImportRequestOnTemplateResponse) UnmarshalJSON(data []byte) (err e
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"workflow",
 		"module",
 		"profile",
 		"template",
+		"workflow",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -212,10 +212,10 @@ func (o *WebRAImportRequestOnTemplateResponse) UnmarshalJSON(data []byte) (err e
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "profile")
 		delete(additionalProperties, "template")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

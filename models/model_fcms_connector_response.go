@@ -23,21 +23,21 @@ var _ utils.MappedNullable = &FCMSConnectorResponse{}
 // FCMSConnectorResponse struct for FCMSConnectorResponse
 type FCMSConnectorResponse struct {
 	// Object internal ID
-	Id       string `json:"_id"`
-	Name     string `json:"name"`
-	Type     string `json:"type"`
-	EndPoint string `json:"endPoint"`
+	Id string `json:"_id"`
 	// Name of the `raw` [credentials](#tag/security.credentials) containing the API key to authenticate on the PKI
 	ApiCredentials         string                     `json:"apiCredentials"`
-	TemplateId             int64                      `json:"templateId"`
-	DefaultOwner           string                     `json:"defaultOwner"`
 	AuthenticationDomainId int64                      `json:"authenticationDomainId"`
-	OwnerGroups            utils.NullableString       `json:"ownerGroups,omitempty"`
+	DefaultOwner           string                     `json:"defaultOwner"`
 	DeleteOnRevoke         bool                       `json:"deleteOnRevoke"`
-	Timeout                utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	EndPoint               string                     `json:"endPoint"`
+	Name                   string                     `json:"name"`
+	OwnerGroups            utils.NullableString       `json:"ownerGroups,omitempty"`
 	Proxy                  utils.NullableString       `json:"proxy,omitempty"`
 	Queue                  utils.NullableString       `json:"queue,omitempty"`
 	Status                 NullablePKIConnectorStatus `json:"status,omitempty"`
+	TemplateId             int64                      `json:"templateId"`
+	Timeout                utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                   string                     `json:"type"`
 	AdditionalProperties   map[string]interface{}
 }
 
@@ -47,17 +47,17 @@ type _FCMSConnectorResponse FCMSConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFCMSConnectorResponse(id string, name string, type_ string, endPoint string, apiCredentials string, templateId int64, defaultOwner string, authenticationDomainId int64, deleteOnRevoke bool) *FCMSConnectorResponse {
+func NewFCMSConnectorResponse(id string, apiCredentials string, authenticationDomainId int64, defaultOwner string, deleteOnRevoke bool, endPoint string, name string, templateId int64, type_ string) *FCMSConnectorResponse {
 	this := FCMSConnectorResponse{}
 	this.Id = id
-	this.Name = name
-	this.Type = type_
-	this.EndPoint = endPoint
 	this.ApiCredentials = apiCredentials
-	this.TemplateId = templateId
-	this.DefaultOwner = defaultOwner
 	this.AuthenticationDomainId = authenticationDomainId
+	this.DefaultOwner = defaultOwner
 	this.DeleteOnRevoke = deleteOnRevoke
+	this.EndPoint = endPoint
+	this.Name = name
+	this.TemplateId = templateId
+	this.Type = type_
 	return &this
 }
 
@@ -93,78 +93,6 @@ func (o *FCMSConnectorResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetName returns the Name field value
-func (o *FCMSConnectorResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *FCMSConnectorResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *FCMSConnectorResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetType returns the Type field value
-func (o *FCMSConnectorResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *FCMSConnectorResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *FCMSConnectorResponse) SetType(v string) {
-	o.Type = v
-}
-
-// GetEndPoint returns the EndPoint field value
-func (o *FCMSConnectorResponse) GetEndPoint() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.EndPoint
-}
-
-// GetEndPointOk returns a tuple with the EndPoint field value
-// and a boolean to check if the value has been set.
-func (o *FCMSConnectorResponse) GetEndPointOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EndPoint, true
-}
-
-// SetEndPoint sets field value
-func (o *FCMSConnectorResponse) SetEndPoint(v string) {
-	o.EndPoint = v
-}
-
 // GetApiCredentials returns the ApiCredentials field value
 func (o *FCMSConnectorResponse) GetApiCredentials() string {
 	if o == nil {
@@ -189,28 +117,28 @@ func (o *FCMSConnectorResponse) SetApiCredentials(v string) {
 	o.ApiCredentials = v
 }
 
-// GetTemplateId returns the TemplateId field value
-func (o *FCMSConnectorResponse) GetTemplateId() int64 {
+// GetAuthenticationDomainId returns the AuthenticationDomainId field value
+func (o *FCMSConnectorResponse) GetAuthenticationDomainId() int64 {
 	if o == nil {
 		var ret int64
 		return ret
 	}
 
-	return o.TemplateId
+	return o.AuthenticationDomainId
 }
 
-// GetTemplateIdOk returns a tuple with the TemplateId field value
+// GetAuthenticationDomainIdOk returns a tuple with the AuthenticationDomainId field value
 // and a boolean to check if the value has been set.
-func (o *FCMSConnectorResponse) GetTemplateIdOk() (*int64, bool) {
+func (o *FCMSConnectorResponse) GetAuthenticationDomainIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TemplateId, true
+	return &o.AuthenticationDomainId, true
 }
 
-// SetTemplateId sets field value
-func (o *FCMSConnectorResponse) SetTemplateId(v int64) {
-	o.TemplateId = v
+// SetAuthenticationDomainId sets field value
+func (o *FCMSConnectorResponse) SetAuthenticationDomainId(v int64) {
+	o.AuthenticationDomainId = v
 }
 
 // GetDefaultOwner returns the DefaultOwner field value
@@ -237,28 +165,76 @@ func (o *FCMSConnectorResponse) SetDefaultOwner(v string) {
 	o.DefaultOwner = v
 }
 
-// GetAuthenticationDomainId returns the AuthenticationDomainId field value
-func (o *FCMSConnectorResponse) GetAuthenticationDomainId() int64 {
+// GetDeleteOnRevoke returns the DeleteOnRevoke field value
+func (o *FCMSConnectorResponse) GetDeleteOnRevoke() bool {
 	if o == nil {
-		var ret int64
+		var ret bool
 		return ret
 	}
 
-	return o.AuthenticationDomainId
+	return o.DeleteOnRevoke
 }
 
-// GetAuthenticationDomainIdOk returns a tuple with the AuthenticationDomainId field value
+// GetDeleteOnRevokeOk returns a tuple with the DeleteOnRevoke field value
 // and a boolean to check if the value has been set.
-func (o *FCMSConnectorResponse) GetAuthenticationDomainIdOk() (*int64, bool) {
+func (o *FCMSConnectorResponse) GetDeleteOnRevokeOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AuthenticationDomainId, true
+	return &o.DeleteOnRevoke, true
 }
 
-// SetAuthenticationDomainId sets field value
-func (o *FCMSConnectorResponse) SetAuthenticationDomainId(v int64) {
-	o.AuthenticationDomainId = v
+// SetDeleteOnRevoke sets field value
+func (o *FCMSConnectorResponse) SetDeleteOnRevoke(v bool) {
+	o.DeleteOnRevoke = v
+}
+
+// GetEndPoint returns the EndPoint field value
+func (o *FCMSConnectorResponse) GetEndPoint() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EndPoint
+}
+
+// GetEndPointOk returns a tuple with the EndPoint field value
+// and a boolean to check if the value has been set.
+func (o *FCMSConnectorResponse) GetEndPointOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EndPoint, true
+}
+
+// SetEndPoint sets field value
+func (o *FCMSConnectorResponse) SetEndPoint(v string) {
+	o.EndPoint = v
+}
+
+// GetName returns the Name field value
+func (o *FCMSConnectorResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *FCMSConnectorResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *FCMSConnectorResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetOwnerGroups returns the OwnerGroups field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -302,73 +278,6 @@ func (o *FCMSConnectorResponse) SetOwnerGroupsNil() {
 // UnsetOwnerGroups ensures that no value is present for OwnerGroups, not even an explicit nil
 func (o *FCMSConnectorResponse) UnsetOwnerGroups() {
 	o.OwnerGroups.Unset()
-}
-
-// GetDeleteOnRevoke returns the DeleteOnRevoke field value
-func (o *FCMSConnectorResponse) GetDeleteOnRevoke() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.DeleteOnRevoke
-}
-
-// GetDeleteOnRevokeOk returns a tuple with the DeleteOnRevoke field value
-// and a boolean to check if the value has been set.
-func (o *FCMSConnectorResponse) GetDeleteOnRevokeOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DeleteOnRevoke, true
-}
-
-// SetDeleteOnRevoke sets field value
-func (o *FCMSConnectorResponse) SetDeleteOnRevoke(v bool) {
-	o.DeleteOnRevoke = v
-}
-
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FCMSConnectorResponse) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Timeout.Get()
-}
-
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FCMSConnectorResponse) GetTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
-}
-
-// HasTimeout returns a boolean if a field has been set.
-func (o *FCMSConnectorResponse) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *FCMSConnectorResponse) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *FCMSConnectorResponse) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *FCMSConnectorResponse) UnsetTimeout() {
-	o.Timeout.Unset()
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -500,6 +409,97 @@ func (o *FCMSConnectorResponse) UnsetStatus() {
 	o.Status.Unset()
 }
 
+// GetTemplateId returns the TemplateId field value
+func (o *FCMSConnectorResponse) GetTemplateId() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.TemplateId
+}
+
+// GetTemplateIdOk returns a tuple with the TemplateId field value
+// and a boolean to check if the value has been set.
+func (o *FCMSConnectorResponse) GetTemplateIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TemplateId, true
+}
+
+// SetTemplateId sets field value
+func (o *FCMSConnectorResponse) SetTemplateId(v int64) {
+	o.TemplateId = v
+}
+
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FCMSConnectorResponse) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FCMSConnectorResponse) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *FCMSConnectorResponse) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *FCMSConnectorResponse) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *FCMSConnectorResponse) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *FCMSConnectorResponse) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetType returns the Type field value
+func (o *FCMSConnectorResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *FCMSConnectorResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *FCMSConnectorResponse) SetType(v string) {
+	o.Type = v
+}
+
 func (o FCMSConnectorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -511,19 +511,14 @@ func (o FCMSConnectorResponse) MarshalJSON() ([]byte, error) {
 func (o FCMSConnectorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
-	toSerialize["endPoint"] = o.EndPoint
 	toSerialize["apiCredentials"] = o.ApiCredentials
-	toSerialize["templateId"] = o.TemplateId
-	toSerialize["defaultOwner"] = o.DefaultOwner
 	toSerialize["authenticationDomainId"] = o.AuthenticationDomainId
+	toSerialize["defaultOwner"] = o.DefaultOwner
+	toSerialize["deleteOnRevoke"] = o.DeleteOnRevoke
+	toSerialize["endPoint"] = o.EndPoint
+	toSerialize["name"] = o.Name
 	if o.OwnerGroups.IsSet() {
 		toSerialize["ownerGroups"] = o.OwnerGroups.Get()
-	}
-	toSerialize["deleteOnRevoke"] = o.DeleteOnRevoke
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
 	}
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
@@ -534,6 +529,11 @@ func (o FCMSConnectorResponse) ToMap() (map[string]interface{}, error) {
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
 	}
+	toSerialize["templateId"] = o.TemplateId
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -548,14 +548,14 @@ func (o *FCMSConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"name",
-		"type",
-		"endPoint",
 		"apiCredentials",
-		"templateId",
-		"defaultOwner",
 		"authenticationDomainId",
+		"defaultOwner",
 		"deleteOnRevoke",
+		"endPoint",
+		"name",
+		"templateId",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -586,19 +586,19 @@ func (o *FCMSConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "endPoint")
 		delete(additionalProperties, "apiCredentials")
-		delete(additionalProperties, "templateId")
-		delete(additionalProperties, "defaultOwner")
 		delete(additionalProperties, "authenticationDomainId")
-		delete(additionalProperties, "ownerGroups")
+		delete(additionalProperties, "defaultOwner")
 		delete(additionalProperties, "deleteOnRevoke")
-		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "endPoint")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "ownerGroups")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "templateId")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

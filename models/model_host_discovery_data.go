@@ -21,20 +21,20 @@ var _ utils.MappedNullable = &HostDiscoveryData{}
 
 // HostDiscoveryData struct for HostDiscoveryData
 type HostDiscoveryData struct {
-	// The certificate's host ip
-	Ip utils.NullableString `json:"ip,omitempty"`
-	// Information on the type of discovery that discovered this certificate
-	Sources []string `json:"sources,omitempty"`
 	// The certificate's host hostnames (netscan only)
 	Hostnames []string `json:"hostnames,omitempty"`
+	// The certificate's host ip
+	Ip utils.NullableString `json:"ip,omitempty"`
 	// The certificate's host operating system (localscan only)
 	OperatingSystems []string `json:"operatingSystems,omitempty"`
 	// The path to the certificate on the host machine (localscan only)
 	Paths []string `json:"paths,omitempty"`
-	// The path of the configuration files that were used to find the certificates
-	Usages []string `json:"usages,omitempty"`
+	// Information on the type of discovery that discovered this certificate
+	Sources []string `json:"sources,omitempty"`
 	// The ports on which the certificate is exposed for https connexion
-	TlsPorts             []TlsPort `json:"tlsPorts,omitempty"`
+	TlsPorts []TlsPort `json:"tlsPorts,omitempty"`
+	// The path of the configuration files that were used to find the certificates
+	Usages               []string `json:"usages,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -55,6 +55,39 @@ func NewHostDiscoveryData() *HostDiscoveryData {
 func NewHostDiscoveryDataWithDefaults() *HostDiscoveryData {
 	this := HostDiscoveryData{}
 	return &this
+}
+
+// GetHostnames returns the Hostnames field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HostDiscoveryData) GetHostnames() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Hostnames
+}
+
+// GetHostnamesOk returns a tuple with the Hostnames field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HostDiscoveryData) GetHostnamesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Hostnames) {
+		return nil, false
+	}
+	return o.Hostnames, true
+}
+
+// HasHostnames returns a boolean if a field has been set.
+func (o *HostDiscoveryData) HasHostnames() bool {
+	if o != nil && !utils.IsNil(o.Hostnames) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostnames gets a reference to the given []string and assigns it to the Hostnames field.
+func (o *HostDiscoveryData) SetHostnames(v []string) {
+	o.Hostnames = v
 }
 
 // GetIp returns the Ip field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -98,72 +131,6 @@ func (o *HostDiscoveryData) SetIpNil() {
 // UnsetIp ensures that no value is present for Ip, not even an explicit nil
 func (o *HostDiscoveryData) UnsetIp() {
 	o.Ip.Unset()
-}
-
-// GetSources returns the Sources field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HostDiscoveryData) GetSources() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Sources
-}
-
-// GetSourcesOk returns a tuple with the Sources field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HostDiscoveryData) GetSourcesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Sources) {
-		return nil, false
-	}
-	return o.Sources, true
-}
-
-// HasSources returns a boolean if a field has been set.
-func (o *HostDiscoveryData) HasSources() bool {
-	if o != nil && !utils.IsNil(o.Sources) {
-		return true
-	}
-
-	return false
-}
-
-// SetSources gets a reference to the given []string and assigns it to the Sources field.
-func (o *HostDiscoveryData) SetSources(v []string) {
-	o.Sources = v
-}
-
-// GetHostnames returns the Hostnames field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HostDiscoveryData) GetHostnames() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Hostnames
-}
-
-// GetHostnamesOk returns a tuple with the Hostnames field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HostDiscoveryData) GetHostnamesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Hostnames) {
-		return nil, false
-	}
-	return o.Hostnames, true
-}
-
-// HasHostnames returns a boolean if a field has been set.
-func (o *HostDiscoveryData) HasHostnames() bool {
-	if o != nil && !utils.IsNil(o.Hostnames) {
-		return true
-	}
-
-	return false
-}
-
-// SetHostnames gets a reference to the given []string and assigns it to the Hostnames field.
-func (o *HostDiscoveryData) SetHostnames(v []string) {
-	o.Hostnames = v
 }
 
 // GetOperatingSystems returns the OperatingSystems field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -232,37 +199,37 @@ func (o *HostDiscoveryData) SetPaths(v []string) {
 	o.Paths = v
 }
 
-// GetUsages returns the Usages field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HostDiscoveryData) GetUsages() []string {
+// GetSources returns the Sources field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HostDiscoveryData) GetSources() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
-	return o.Usages
+	return o.Sources
 }
 
-// GetUsagesOk returns a tuple with the Usages field value if set, nil otherwise
+// GetSourcesOk returns a tuple with the Sources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HostDiscoveryData) GetUsagesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Usages) {
+func (o *HostDiscoveryData) GetSourcesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Sources) {
 		return nil, false
 	}
-	return o.Usages, true
+	return o.Sources, true
 }
 
-// HasUsages returns a boolean if a field has been set.
-func (o *HostDiscoveryData) HasUsages() bool {
-	if o != nil && !utils.IsNil(o.Usages) {
+// HasSources returns a boolean if a field has been set.
+func (o *HostDiscoveryData) HasSources() bool {
+	if o != nil && !utils.IsNil(o.Sources) {
 		return true
 	}
 
 	return false
 }
 
-// SetUsages gets a reference to the given []string and assigns it to the Usages field.
-func (o *HostDiscoveryData) SetUsages(v []string) {
-	o.Usages = v
+// SetSources gets a reference to the given []string and assigns it to the Sources field.
+func (o *HostDiscoveryData) SetSources(v []string) {
+	o.Sources = v
 }
 
 // GetTlsPorts returns the TlsPorts field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -298,6 +265,39 @@ func (o *HostDiscoveryData) SetTlsPorts(v []TlsPort) {
 	o.TlsPorts = v
 }
 
+// GetUsages returns the Usages field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HostDiscoveryData) GetUsages() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Usages
+}
+
+// GetUsagesOk returns a tuple with the Usages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HostDiscoveryData) GetUsagesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Usages) {
+		return nil, false
+	}
+	return o.Usages, true
+}
+
+// HasUsages returns a boolean if a field has been set.
+func (o *HostDiscoveryData) HasUsages() bool {
+	if o != nil && !utils.IsNil(o.Usages) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsages gets a reference to the given []string and assigns it to the Usages field.
+func (o *HostDiscoveryData) SetUsages(v []string) {
+	o.Usages = v
+}
+
 func (o HostDiscoveryData) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -308,14 +308,11 @@ func (o HostDiscoveryData) MarshalJSON() ([]byte, error) {
 
 func (o HostDiscoveryData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Ip.IsSet() {
-		toSerialize["ip"] = o.Ip.Get()
-	}
-	if o.Sources != nil {
-		toSerialize["sources"] = o.Sources
-	}
 	if o.Hostnames != nil {
 		toSerialize["hostnames"] = o.Hostnames
+	}
+	if o.Ip.IsSet() {
+		toSerialize["ip"] = o.Ip.Get()
 	}
 	if o.OperatingSystems != nil {
 		toSerialize["operatingSystems"] = o.OperatingSystems
@@ -323,11 +320,14 @@ func (o HostDiscoveryData) ToMap() (map[string]interface{}, error) {
 	if o.Paths != nil {
 		toSerialize["paths"] = o.Paths
 	}
-	if o.Usages != nil {
-		toSerialize["usages"] = o.Usages
+	if o.Sources != nil {
+		toSerialize["sources"] = o.Sources
 	}
 	if o.TlsPorts != nil {
 		toSerialize["tlsPorts"] = o.TlsPorts
+	}
+	if o.Usages != nil {
+		toSerialize["usages"] = o.Usages
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -351,13 +351,13 @@ func (o *HostDiscoveryData) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "ip")
-		delete(additionalProperties, "sources")
 		delete(additionalProperties, "hostnames")
+		delete(additionalProperties, "ip")
 		delete(additionalProperties, "operatingSystems")
 		delete(additionalProperties, "paths")
-		delete(additionalProperties, "usages")
+		delete(additionalProperties, "sources")
 		delete(additionalProperties, "tlsPorts")
+		delete(additionalProperties, "usages")
 		o.AdditionalProperties = additionalProperties
 	}
 

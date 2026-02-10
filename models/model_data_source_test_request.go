@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &DataSourceTestRequest{}
 
 // DataSourceTestRequest struct for DataSourceTestRequest
 type DataSourceTestRequest struct {
-	Ds DataSourceTestRequestDs `json:"ds"`
 	// Context to interpret dynamic values from
-	Context              []MapEntry `json:"context,omitempty"`
+	Context              []MapEntry              `json:"context,omitempty"`
+	Ds                   DataSourceTestRequestDs `json:"ds"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,30 +46,6 @@ func NewDataSourceTestRequest(ds DataSourceTestRequestDs) *DataSourceTestRequest
 func NewDataSourceTestRequestWithDefaults() *DataSourceTestRequest {
 	this := DataSourceTestRequest{}
 	return &this
-}
-
-// GetDs returns the Ds field value
-func (o *DataSourceTestRequest) GetDs() DataSourceTestRequestDs {
-	if o == nil {
-		var ret DataSourceTestRequestDs
-		return ret
-	}
-
-	return o.Ds
-}
-
-// GetDsOk returns a tuple with the Ds field value
-// and a boolean to check if the value has been set.
-func (o *DataSourceTestRequest) GetDsOk() (*DataSourceTestRequestDs, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Ds, true
-}
-
-// SetDs sets field value
-func (o *DataSourceTestRequest) SetDs(v DataSourceTestRequestDs) {
-	o.Ds = v
 }
 
 // GetContext returns the Context field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -105,6 +81,30 @@ func (o *DataSourceTestRequest) SetContext(v []MapEntry) {
 	o.Context = v
 }
 
+// GetDs returns the Ds field value
+func (o *DataSourceTestRequest) GetDs() DataSourceTestRequestDs {
+	if o == nil {
+		var ret DataSourceTestRequestDs
+		return ret
+	}
+
+	return o.Ds
+}
+
+// GetDsOk returns a tuple with the Ds field value
+// and a boolean to check if the value has been set.
+func (o *DataSourceTestRequest) GetDsOk() (*DataSourceTestRequestDs, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ds, true
+}
+
+// SetDs sets field value
+func (o *DataSourceTestRequest) SetDs(v DataSourceTestRequestDs) {
+	o.Ds = v
+}
+
 func (o DataSourceTestRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -115,10 +115,10 @@ func (o DataSourceTestRequest) MarshalJSON() ([]byte, error) {
 
 func (o DataSourceTestRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["ds"] = o.Ds
 	if o.Context != nil {
 		toSerialize["context"] = o.Context
 	}
+	toSerialize["ds"] = o.Ds
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -162,8 +162,8 @@ func (o *DataSourceTestRequest) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "ds")
 		delete(additionalProperties, "context")
+		delete(additionalProperties, "ds")
 		o.AdditionalProperties = additionalProperties
 	}
 

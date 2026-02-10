@@ -21,10 +21,10 @@ var _ utils.MappedNullable = &TemplateStringPlaygroundRequest{}
 
 // TemplateStringPlaygroundRequest struct for TemplateStringPlaygroundRequest
 type TemplateStringPlaygroundRequest struct {
-	Dictionary map[string]string `json:"dictionary,omitempty"`
 	// A computation rule that will dynamically generate a string value from the request's context
 	ComputationRule      utils.NullableString `json:"computationRule,omitempty"`
 	Csr                  utils.NullableString `json:"csr,omitempty"`
+	Dictionary           map[string]string    `json:"dictionary,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,39 +45,6 @@ func NewTemplateStringPlaygroundRequest() *TemplateStringPlaygroundRequest {
 func NewTemplateStringPlaygroundRequestWithDefaults() *TemplateStringPlaygroundRequest {
 	this := TemplateStringPlaygroundRequest{}
 	return &this
-}
-
-// GetDictionary returns the Dictionary field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *TemplateStringPlaygroundRequest) GetDictionary() map[string]string {
-	if o == nil {
-		var ret map[string]string
-		return ret
-	}
-	return o.Dictionary
-}
-
-// GetDictionaryOk returns a tuple with the Dictionary field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *TemplateStringPlaygroundRequest) GetDictionaryOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.Dictionary) {
-		return nil, false
-	}
-	return &o.Dictionary, true
-}
-
-// HasDictionary returns a boolean if a field has been set.
-func (o *TemplateStringPlaygroundRequest) HasDictionary() bool {
-	if o != nil && !utils.IsNil(o.Dictionary) {
-		return true
-	}
-
-	return false
-}
-
-// SetDictionary gets a reference to the given map[string]string and assigns it to the Dictionary field.
-func (o *TemplateStringPlaygroundRequest) SetDictionary(v map[string]string) {
-	o.Dictionary = v
 }
 
 // GetComputationRule returns the ComputationRule field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -166,6 +133,39 @@ func (o *TemplateStringPlaygroundRequest) UnsetCsr() {
 	o.Csr.Unset()
 }
 
+// GetDictionary returns the Dictionary field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TemplateStringPlaygroundRequest) GetDictionary() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.Dictionary
+}
+
+// GetDictionaryOk returns a tuple with the Dictionary field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TemplateStringPlaygroundRequest) GetDictionaryOk() (*map[string]string, bool) {
+	if o == nil || utils.IsNil(o.Dictionary) {
+		return nil, false
+	}
+	return &o.Dictionary, true
+}
+
+// HasDictionary returns a boolean if a field has been set.
+func (o *TemplateStringPlaygroundRequest) HasDictionary() bool {
+	if o != nil && !utils.IsNil(o.Dictionary) {
+		return true
+	}
+
+	return false
+}
+
+// SetDictionary gets a reference to the given map[string]string and assigns it to the Dictionary field.
+func (o *TemplateStringPlaygroundRequest) SetDictionary(v map[string]string) {
+	o.Dictionary = v
+}
+
 func (o TemplateStringPlaygroundRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -176,14 +176,14 @@ func (o TemplateStringPlaygroundRequest) MarshalJSON() ([]byte, error) {
 
 func (o TemplateStringPlaygroundRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Dictionary != nil {
-		toSerialize["dictionary"] = o.Dictionary
-	}
 	if o.ComputationRule.IsSet() {
 		toSerialize["computationRule"] = o.ComputationRule.Get()
 	}
 	if o.Csr.IsSet() {
 		toSerialize["csr"] = o.Csr.Get()
+	}
+	if o.Dictionary != nil {
+		toSerialize["dictionary"] = o.Dictionary
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -207,9 +207,9 @@ func (o *TemplateStringPlaygroundRequest) UnmarshalJSON(data []byte) (err error)
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "dictionary")
 		delete(additionalProperties, "computationRule")
 		delete(additionalProperties, "csr")
+		delete(additionalProperties, "dictionary")
 		o.AdditionalProperties = additionalProperties
 	}
 

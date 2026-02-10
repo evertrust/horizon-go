@@ -23,11 +23,11 @@ var _ utils.MappedNullable = &RequestDenyRequest{}
 // RequestDenyRequest struct for RequestDenyRequest
 type RequestDenyRequest struct {
 	// The ID of the request to deny
-	Id       string   `json:"_id"`
-	Module   Module   `json:"module"`
-	Workflow Workflow `json:"workflow"`
+	Id string `json:"_id"`
 	// Free-text field editable by the approver to provider more context on the denial
-	ApproverComment      *string `json:"approverComment,omitempty"`
+	ApproverComment      *string  `json:"approverComment,omitempty"`
+	Module               Module   `json:"module"`
+	Workflow             Workflow `json:"workflow"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -75,6 +75,38 @@ func (o *RequestDenyRequest) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *RequestDenyRequest) SetId(v string) {
 	o.Id = v
+}
+
+// GetApproverComment returns the ApproverComment field value if set, zero value otherwise.
+func (o *RequestDenyRequest) GetApproverComment() string {
+	if o == nil || utils.IsNil(o.ApproverComment) {
+		var ret string
+		return ret
+	}
+	return *o.ApproverComment
+}
+
+// GetApproverCommentOk returns a tuple with the ApproverComment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestDenyRequest) GetApproverCommentOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.ApproverComment) {
+		return nil, false
+	}
+	return o.ApproverComment, true
+}
+
+// HasApproverComment returns a boolean if a field has been set.
+func (o *RequestDenyRequest) HasApproverComment() bool {
+	if o != nil && !utils.IsNil(o.ApproverComment) {
+		return true
+	}
+
+	return false
+}
+
+// SetApproverComment gets a reference to the given string and assigns it to the ApproverComment field.
+func (o *RequestDenyRequest) SetApproverComment(v string) {
+	o.ApproverComment = &v
 }
 
 // GetModule returns the Module field value
@@ -125,38 +157,6 @@ func (o *RequestDenyRequest) SetWorkflow(v Workflow) {
 	o.Workflow = v
 }
 
-// GetApproverComment returns the ApproverComment field value if set, zero value otherwise.
-func (o *RequestDenyRequest) GetApproverComment() string {
-	if o == nil || utils.IsNil(o.ApproverComment) {
-		var ret string
-		return ret
-	}
-	return *o.ApproverComment
-}
-
-// GetApproverCommentOk returns a tuple with the ApproverComment field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RequestDenyRequest) GetApproverCommentOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.ApproverComment) {
-		return nil, false
-	}
-	return o.ApproverComment, true
-}
-
-// HasApproverComment returns a boolean if a field has been set.
-func (o *RequestDenyRequest) HasApproverComment() bool {
-	if o != nil && !utils.IsNil(o.ApproverComment) {
-		return true
-	}
-
-	return false
-}
-
-// SetApproverComment gets a reference to the given string and assigns it to the ApproverComment field.
-func (o *RequestDenyRequest) SetApproverComment(v string) {
-	o.ApproverComment = &v
-}
-
 func (o RequestDenyRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -168,11 +168,11 @@ func (o RequestDenyRequest) MarshalJSON() ([]byte, error) {
 func (o RequestDenyRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["module"] = o.Module
-	toSerialize["workflow"] = o.Workflow
 	if !utils.IsNil(o.ApproverComment) {
 		toSerialize["approverComment"] = o.ApproverComment
 	}
+	toSerialize["module"] = o.Module
+	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -219,9 +219,9 @@ func (o *RequestDenyRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
+		delete(additionalProperties, "approverComment")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "workflow")
-		delete(additionalProperties, "approverComment")
 		o.AdditionalProperties = additionalProperties
 	}
 

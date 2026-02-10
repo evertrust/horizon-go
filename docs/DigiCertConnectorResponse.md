@@ -5,26 +5,26 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
-**Type** | **string** |  | 
-**BaseUrl** | **string** | The base URL of the used digicert instance. | 
-**ProductId** | Pointer to **string** | One of the DigiCert product identifier an exhaustive list can be found here: https://dev.digicert.com/en/certcentral-apis/services-api/glossary.html#product-identifiers | [optional] 
 **ApiCredentials** | **string** | Name of the &#x60;raw&#x60; [credentials](#tag/security.credentials) containing the API key to authenticate on the PKI | 
-**OrganizationId** | **int64** |  | 
+**BaseUrl** | **string** | The base URL of the used digicert instance. | 
 **CaCertId** | Pointer to **NullableString** |  | [optional] 
-**RetryInterval** | Pointer to **NullableString** |  | [optional] 
-**SkipApproval** | Pointer to **NullableBool** |  | [optional] 
 **CustomConnectorDataMapping** | Pointer to **map[string]string** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Name** | **string** |  | 
+**OrganizationId** | **int64** |  | 
+**ProductId** | Pointer to **string** | One of the DigiCert product identifier an exhaustive list can be found here: https://dev.digicert.com/en/certcentral-apis/services-api/glossary.html#product-identifiers | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
+**RetryInterval** | Pointer to **NullableString** |  | [optional] 
+**SkipApproval** | Pointer to **NullableBool** |  | [optional] 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewDigiCertConnectorResponse
 
-`func NewDigiCertConnectorResponse(id string, name string, type_ string, baseUrl string, apiCredentials string, organizationId int64, ) *DigiCertConnectorResponse`
+`func NewDigiCertConnectorResponse(id string, apiCredentials string, baseUrl string, name string, organizationId int64, type_ string, ) *DigiCertConnectorResponse`
 
 NewDigiCertConnectorResponse instantiates a new DigiCertConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -59,91 +59,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetName
-
-`func (o *DigiCertConnectorResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *DigiCertConnectorResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *DigiCertConnectorResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetType
-
-`func (o *DigiCertConnectorResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *DigiCertConnectorResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *DigiCertConnectorResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetBaseUrl
-
-`func (o *DigiCertConnectorResponse) GetBaseUrl() string`
-
-GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
-
-### GetBaseUrlOk
-
-`func (o *DigiCertConnectorResponse) GetBaseUrlOk() (*string, bool)`
-
-GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBaseUrl
-
-`func (o *DigiCertConnectorResponse) SetBaseUrl(v string)`
-
-SetBaseUrl sets BaseUrl field to given value.
-
-
-### GetProductId
-
-`func (o *DigiCertConnectorResponse) GetProductId() string`
-
-GetProductId returns the ProductId field if non-nil, zero value otherwise.
-
-### GetProductIdOk
-
-`func (o *DigiCertConnectorResponse) GetProductIdOk() (*string, bool)`
-
-GetProductIdOk returns a tuple with the ProductId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProductId
-
-`func (o *DigiCertConnectorResponse) SetProductId(v string)`
-
-SetProductId sets ProductId field to given value.
-
-### HasProductId
-
-`func (o *DigiCertConnectorResponse) HasProductId() bool`
-
-HasProductId returns a boolean if a field has been set.
-
 ### GetApiCredentials
 
 `func (o *DigiCertConnectorResponse) GetApiCredentials() string`
@@ -164,24 +79,24 @@ and a boolean to check if the value has been set.
 SetApiCredentials sets ApiCredentials field to given value.
 
 
-### GetOrganizationId
+### GetBaseUrl
 
-`func (o *DigiCertConnectorResponse) GetOrganizationId() int64`
+`func (o *DigiCertConnectorResponse) GetBaseUrl() string`
 
-GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
 
-### GetOrganizationIdOk
+### GetBaseUrlOk
 
-`func (o *DigiCertConnectorResponse) GetOrganizationIdOk() (*int64, bool)`
+`func (o *DigiCertConnectorResponse) GetBaseUrlOk() (*string, bool)`
 
-GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOrganizationId
+### SetBaseUrl
 
-`func (o *DigiCertConnectorResponse) SetOrganizationId(v int64)`
+`func (o *DigiCertConnectorResponse) SetBaseUrl(v string)`
 
-SetOrganizationId sets OrganizationId field to given value.
+SetBaseUrl sets BaseUrl field to given value.
 
 
 ### GetCaCertId
@@ -219,76 +134,6 @@ HasCaCertId returns a boolean if a field has been set.
 `func (o *DigiCertConnectorResponse) UnsetCaCertId()`
 
 UnsetCaCertId ensures that no value is present for CaCertId, not even an explicit nil
-### GetRetryInterval
-
-`func (o *DigiCertConnectorResponse) GetRetryInterval() string`
-
-GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
-
-### GetRetryIntervalOk
-
-`func (o *DigiCertConnectorResponse) GetRetryIntervalOk() (*string, bool)`
-
-GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRetryInterval
-
-`func (o *DigiCertConnectorResponse) SetRetryInterval(v string)`
-
-SetRetryInterval sets RetryInterval field to given value.
-
-### HasRetryInterval
-
-`func (o *DigiCertConnectorResponse) HasRetryInterval() bool`
-
-HasRetryInterval returns a boolean if a field has been set.
-
-### SetRetryIntervalNil
-
-`func (o *DigiCertConnectorResponse) SetRetryIntervalNil(b bool)`
-
- SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
-
-### UnsetRetryInterval
-`func (o *DigiCertConnectorResponse) UnsetRetryInterval()`
-
-UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
-### GetSkipApproval
-
-`func (o *DigiCertConnectorResponse) GetSkipApproval() bool`
-
-GetSkipApproval returns the SkipApproval field if non-nil, zero value otherwise.
-
-### GetSkipApprovalOk
-
-`func (o *DigiCertConnectorResponse) GetSkipApprovalOk() (*bool, bool)`
-
-GetSkipApprovalOk returns a tuple with the SkipApproval field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSkipApproval
-
-`func (o *DigiCertConnectorResponse) SetSkipApproval(v bool)`
-
-SetSkipApproval sets SkipApproval field to given value.
-
-### HasSkipApproval
-
-`func (o *DigiCertConnectorResponse) HasSkipApproval() bool`
-
-HasSkipApproval returns a boolean if a field has been set.
-
-### SetSkipApprovalNil
-
-`func (o *DigiCertConnectorResponse) SetSkipApprovalNil(b bool)`
-
- SetSkipApprovalNil sets the value for SkipApproval to be an explicit nil
-
-### UnsetSkipApproval
-`func (o *DigiCertConnectorResponse) UnsetSkipApproval()`
-
-UnsetSkipApproval ensures that no value is present for SkipApproval, not even an explicit nil
 ### GetCustomConnectorDataMapping
 
 `func (o *DigiCertConnectorResponse) GetCustomConnectorDataMapping() map[string]string`
@@ -324,41 +169,71 @@ HasCustomConnectorDataMapping returns a boolean if a field has been set.
 `func (o *DigiCertConnectorResponse) UnsetCustomConnectorDataMapping()`
 
 UnsetCustomConnectorDataMapping ensures that no value is present for CustomConnectorDataMapping, not even an explicit nil
-### GetTimeout
+### GetName
 
-`func (o *DigiCertConnectorResponse) GetTimeout() string`
+`func (o *DigiCertConnectorResponse) GetName() string`
 
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTimeoutOk
+### GetNameOk
 
-`func (o *DigiCertConnectorResponse) GetTimeoutOk() (*string, bool)`
+`func (o *DigiCertConnectorResponse) GetNameOk() (*string, bool)`
 
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeout
+### SetName
 
-`func (o *DigiCertConnectorResponse) SetTimeout(v string)`
+`func (o *DigiCertConnectorResponse) SetName(v string)`
 
-SetTimeout sets Timeout field to given value.
+SetName sets Name field to given value.
 
-### HasTimeout
 
-`func (o *DigiCertConnectorResponse) HasTimeout() bool`
+### GetOrganizationId
 
-HasTimeout returns a boolean if a field has been set.
+`func (o *DigiCertConnectorResponse) GetOrganizationId() int64`
 
-### SetTimeoutNil
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
 
-`func (o *DigiCertConnectorResponse) SetTimeoutNil(b bool)`
+### GetOrganizationIdOk
 
- SetTimeoutNil sets the value for Timeout to be an explicit nil
+`func (o *DigiCertConnectorResponse) GetOrganizationIdOk() (*int64, bool)`
 
-### UnsetTimeout
-`func (o *DigiCertConnectorResponse) UnsetTimeout()`
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### SetOrganizationId
+
+`func (o *DigiCertConnectorResponse) SetOrganizationId(v int64)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+
+### GetProductId
+
+`func (o *DigiCertConnectorResponse) GetProductId() string`
+
+GetProductId returns the ProductId field if non-nil, zero value otherwise.
+
+### GetProductIdOk
+
+`func (o *DigiCertConnectorResponse) GetProductIdOk() (*string, bool)`
+
+GetProductIdOk returns a tuple with the ProductId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProductId
+
+`func (o *DigiCertConnectorResponse) SetProductId(v string)`
+
+SetProductId sets ProductId field to given value.
+
+### HasProductId
+
+`func (o *DigiCertConnectorResponse) HasProductId() bool`
+
+HasProductId returns a boolean if a field has been set.
+
 ### GetProxy
 
 `func (o *DigiCertConnectorResponse) GetProxy() string`
@@ -429,6 +304,76 @@ HasQueue returns a boolean if a field has been set.
 `func (o *DigiCertConnectorResponse) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetRetryInterval
+
+`func (o *DigiCertConnectorResponse) GetRetryInterval() string`
+
+GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
+
+### GetRetryIntervalOk
+
+`func (o *DigiCertConnectorResponse) GetRetryIntervalOk() (*string, bool)`
+
+GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryInterval
+
+`func (o *DigiCertConnectorResponse) SetRetryInterval(v string)`
+
+SetRetryInterval sets RetryInterval field to given value.
+
+### HasRetryInterval
+
+`func (o *DigiCertConnectorResponse) HasRetryInterval() bool`
+
+HasRetryInterval returns a boolean if a field has been set.
+
+### SetRetryIntervalNil
+
+`func (o *DigiCertConnectorResponse) SetRetryIntervalNil(b bool)`
+
+ SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+
+### UnsetRetryInterval
+`func (o *DigiCertConnectorResponse) UnsetRetryInterval()`
+
+UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
+### GetSkipApproval
+
+`func (o *DigiCertConnectorResponse) GetSkipApproval() bool`
+
+GetSkipApproval returns the SkipApproval field if non-nil, zero value otherwise.
+
+### GetSkipApprovalOk
+
+`func (o *DigiCertConnectorResponse) GetSkipApprovalOk() (*bool, bool)`
+
+GetSkipApprovalOk returns a tuple with the SkipApproval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSkipApproval
+
+`func (o *DigiCertConnectorResponse) SetSkipApproval(v bool)`
+
+SetSkipApproval sets SkipApproval field to given value.
+
+### HasSkipApproval
+
+`func (o *DigiCertConnectorResponse) HasSkipApproval() bool`
+
+HasSkipApproval returns a boolean if a field has been set.
+
+### SetSkipApprovalNil
+
+`func (o *DigiCertConnectorResponse) SetSkipApprovalNil(b bool)`
+
+ SetSkipApprovalNil sets the value for SkipApproval to be an explicit nil
+
+### UnsetSkipApproval
+`func (o *DigiCertConnectorResponse) UnsetSkipApproval()`
+
+UnsetSkipApproval ensures that no value is present for SkipApproval, not even an explicit nil
 ### GetStatus
 
 `func (o *DigiCertConnectorResponse) GetStatus() PKIConnectorStatus`
@@ -464,6 +409,61 @@ HasStatus returns a boolean if a field has been set.
 `func (o *DigiCertConnectorResponse) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
+### GetTimeout
+
+`func (o *DigiCertConnectorResponse) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *DigiCertConnectorResponse) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *DigiCertConnectorResponse) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *DigiCertConnectorResponse) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *DigiCertConnectorResponse) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *DigiCertConnectorResponse) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *DigiCertConnectorResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *DigiCertConnectorResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *DigiCertConnectorResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Condition** | **string** |  | 
 **Description** | [**[]LocalizedString**](LocalizedString.md) |  | 
 **Scope** | Pointer to **NullableString** |  | [optional] 
-**Condition** | **string** |  | 
 **Score** | **int64** |  | 
 
 ## Methods
 
 ### NewGradingRule
 
-`func NewGradingRule(description []LocalizedString, condition string, score int64, ) *GradingRule`
+`func NewGradingRule(condition string, description []LocalizedString, score int64, ) *GradingRule`
 
 NewGradingRule instantiates a new GradingRule object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,26 @@ will change when the set of required properties is changed
 NewGradingRuleWithDefaults instantiates a new GradingRule object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCondition
+
+`func (o *GradingRule) GetCondition() string`
+
+GetCondition returns the Condition field if non-nil, zero value otherwise.
+
+### GetConditionOk
+
+`func (o *GradingRule) GetConditionOk() (*string, bool)`
+
+GetConditionOk returns a tuple with the Condition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCondition
+
+`func (o *GradingRule) SetCondition(v string)`
+
+SetCondition sets Condition field to given value.
+
 
 ### GetDescription
 
@@ -83,26 +103,6 @@ HasScope returns a boolean if a field has been set.
 `func (o *GradingRule) UnsetScope()`
 
 UnsetScope ensures that no value is present for Scope, not even an explicit nil
-### GetCondition
-
-`func (o *GradingRule) GetCondition() string`
-
-GetCondition returns the Condition field if non-nil, zero value otherwise.
-
-### GetConditionOk
-
-`func (o *GradingRule) GetConditionOk() (*string, bool)`
-
-GetConditionOk returns a tuple with the Condition field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCondition
-
-`func (o *GradingRule) SetCondition(v string)`
-
-SetCondition sets Condition field to given value.
-
-
 ### GetScore
 
 `func (o *GradingRule) GetScore() int64`

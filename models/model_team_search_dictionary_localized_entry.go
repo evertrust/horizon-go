@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &TeamSearchDictionaryLocalizedEntry{}
 
 // TeamSearchDictionaryLocalizedEntry struct for TeamSearchDictionaryLocalizedEntry
 type TeamSearchDictionaryLocalizedEntry struct {
-	// The technical name of the team
-	Name string `json:"name"`
 	// The localized name of the team
-	DisplayName          []LocalizedString `json:"displayName,omitempty"`
+	DisplayName []LocalizedString `json:"displayName,omitempty"`
+	// The technical name of the team
+	Name                 string `json:"name"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,30 +47,6 @@ func NewTeamSearchDictionaryLocalizedEntry(name string) *TeamSearchDictionaryLoc
 func NewTeamSearchDictionaryLocalizedEntryWithDefaults() *TeamSearchDictionaryLocalizedEntry {
 	this := TeamSearchDictionaryLocalizedEntry{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *TeamSearchDictionaryLocalizedEntry) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *TeamSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *TeamSearchDictionaryLocalizedEntry) SetName(v string) {
-	o.Name = v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -106,6 +82,30 @@ func (o *TeamSearchDictionaryLocalizedEntry) SetDisplayName(v []LocalizedString)
 	o.DisplayName = v
 }
 
+// GetName returns the Name field value
+func (o *TeamSearchDictionaryLocalizedEntry) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *TeamSearchDictionaryLocalizedEntry) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *TeamSearchDictionaryLocalizedEntry) SetName(v string) {
+	o.Name = v
+}
+
 func (o TeamSearchDictionaryLocalizedEntry) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -116,10 +116,10 @@ func (o TeamSearchDictionaryLocalizedEntry) MarshalJSON() ([]byte, error) {
 
 func (o TeamSearchDictionaryLocalizedEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
 	if o.DisplayName != nil {
 		toSerialize["displayName"] = o.DisplayName
 	}
+	toSerialize["name"] = o.Name
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -163,8 +163,8 @@ func (o *TeamSearchDictionaryLocalizedEntry) UnmarshalJSON(data []byte) (err err
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 

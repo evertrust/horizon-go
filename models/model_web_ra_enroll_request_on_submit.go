@@ -22,20 +22,20 @@ var _ utils.MappedNullable = &WebRAEnrollRequestOnSubmit{}
 
 // WebRAEnrollRequestOnSubmit struct for WebRAEnrollRequestOnSubmit
 type WebRAEnrollRequestOnSubmit struct {
-	// The WebRA profile name
-	Profile string `json:"profile"`
 	// The password to decrypt the PKCS12 file. Must be set if password mode is `manual`
 	Password *SecretString `json:"password,omitempty"`
+	// The WebRA profile name
+	Profile string `json:"profile"`
 	// Free-text field editable by the requester to provider more context on the request
 	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
+	// If true, the request is validated, but will not result in an enrollment
+	DryRun utils.NullableBool `json:"dryRun,omitempty"`
 	// The module that will be used to process this request. For a WebRA request, this is always `webra`
 	Module string `json:"module"`
-	// What this request will do. For an enrollment request, this is always `enroll`
-	Workflow string `json:"workflow"`
 	// The user-data that will be used to generate the certificate
 	Template WebRAEnrollRequestTemplate `json:"template"`
-	// If true, the request is validated, but will not result in an enrollment
-	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
+	// What this request will do. For an enrollment request, this is always `enroll`
+	Workflow             string `json:"workflow"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,13 +45,13 @@ type _WebRAEnrollRequestOnSubmit WebRAEnrollRequestOnSubmit
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAEnrollRequestOnSubmit(profile string, module string, workflow string, template WebRAEnrollRequestTemplate) *WebRAEnrollRequestOnSubmit {
+func NewWebRAEnrollRequestOnSubmit(profile string, module string, template WebRAEnrollRequestTemplate, workflow string) *WebRAEnrollRequestOnSubmit {
 	this := WebRAEnrollRequestOnSubmit{}
-	this.Module = module
-	this.Workflow = workflow
-	this.Template = template
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
+	this.Module = module
+	this.Template = template
+	this.Workflow = workflow
 	return &this
 }
 
@@ -63,30 +63,6 @@ func NewWebRAEnrollRequestOnSubmitWithDefaults() *WebRAEnrollRequestOnSubmit {
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
 	return &this
-}
-
-// GetProfile returns the Profile field value
-func (o *WebRAEnrollRequestOnSubmit) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *WebRAEnrollRequestOnSubmit) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *WebRAEnrollRequestOnSubmit) SetProfile(v string) {
-	o.Profile = v
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
@@ -119,6 +95,30 @@ func (o *WebRAEnrollRequestOnSubmit) HasPassword() bool {
 // SetPassword gets a reference to the given SecretString and assigns it to the Password field.
 func (o *WebRAEnrollRequestOnSubmit) SetPassword(v SecretString) {
 	o.Password = &v
+}
+
+// GetProfile returns the Profile field value
+func (o *WebRAEnrollRequestOnSubmit) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *WebRAEnrollRequestOnSubmit) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *WebRAEnrollRequestOnSubmit) SetProfile(v string) {
+	o.Profile = v
 }
 
 // GetRequesterComment returns the RequesterComment field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -164,78 +164,6 @@ func (o *WebRAEnrollRequestOnSubmit) UnsetRequesterComment() {
 	o.RequesterComment.Unset()
 }
 
-// GetModule returns the Module field value
-func (o *WebRAEnrollRequestOnSubmit) GetModule() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Module
-}
-
-// GetModuleOk returns a tuple with the Module field value
-// and a boolean to check if the value has been set.
-func (o *WebRAEnrollRequestOnSubmit) GetModuleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Module, true
-}
-
-// SetModule sets field value
-func (o *WebRAEnrollRequestOnSubmit) SetModule(v string) {
-	o.Module = v
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRAEnrollRequestOnSubmit) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRAEnrollRequestOnSubmit) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRAEnrollRequestOnSubmit) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
-// GetTemplate returns the Template field value
-func (o *WebRAEnrollRequestOnSubmit) GetTemplate() WebRAEnrollRequestTemplate {
-	if o == nil {
-		var ret WebRAEnrollRequestTemplate
-		return ret
-	}
-
-	return o.Template
-}
-
-// GetTemplateOk returns a tuple with the Template field value
-// and a boolean to check if the value has been set.
-func (o *WebRAEnrollRequestOnSubmit) GetTemplateOk() (*WebRAEnrollRequestTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Template, true
-}
-
-// SetTemplate sets field value
-func (o *WebRAEnrollRequestOnSubmit) SetTemplate(v WebRAEnrollRequestTemplate) {
-	o.Template = v
-}
-
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRAEnrollRequestOnSubmit) GetDryRun() bool {
 	if o == nil || utils.IsNil(o.DryRun.Get()) {
@@ -279,6 +207,78 @@ func (o *WebRAEnrollRequestOnSubmit) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
+// GetModule returns the Module field value
+func (o *WebRAEnrollRequestOnSubmit) GetModule() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Module
+}
+
+// GetModuleOk returns a tuple with the Module field value
+// and a boolean to check if the value has been set.
+func (o *WebRAEnrollRequestOnSubmit) GetModuleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Module, true
+}
+
+// SetModule sets field value
+func (o *WebRAEnrollRequestOnSubmit) SetModule(v string) {
+	o.Module = v
+}
+
+// GetTemplate returns the Template field value
+func (o *WebRAEnrollRequestOnSubmit) GetTemplate() WebRAEnrollRequestTemplate {
+	if o == nil {
+		var ret WebRAEnrollRequestTemplate
+		return ret
+	}
+
+	return o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value
+// and a boolean to check if the value has been set.
+func (o *WebRAEnrollRequestOnSubmit) GetTemplateOk() (*WebRAEnrollRequestTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Template, true
+}
+
+// SetTemplate sets field value
+func (o *WebRAEnrollRequestOnSubmit) SetTemplate(v WebRAEnrollRequestTemplate) {
+	o.Template = v
+}
+
+// GetWorkflow returns the Workflow field value
+func (o *WebRAEnrollRequestOnSubmit) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRAEnrollRequestOnSubmit) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRAEnrollRequestOnSubmit) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
 func (o WebRAEnrollRequestOnSubmit) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -289,19 +289,19 @@ func (o WebRAEnrollRequestOnSubmit) MarshalJSON() ([]byte, error) {
 
 func (o WebRAEnrollRequestOnSubmit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["profile"] = o.Profile
 	if !utils.IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
+	toSerialize["profile"] = o.Profile
 	if o.RequesterComment.IsSet() {
 		toSerialize["requesterComment"] = o.RequesterComment.Get()
 	}
-	toSerialize["module"] = o.Module
-	toSerialize["workflow"] = o.Workflow
-	toSerialize["template"] = o.Template
 	if o.DryRun.IsSet() {
 		toSerialize["dryRun"] = o.DryRun.Get()
 	}
+	toSerialize["module"] = o.Module
+	toSerialize["template"] = o.Template
+	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -317,8 +317,8 @@ func (o *WebRAEnrollRequestOnSubmit) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"profile",
 		"module",
-		"workflow",
 		"template",
+		"workflow",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -348,13 +348,13 @@ func (o *WebRAEnrollRequestOnSubmit) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "profile")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "profile")
 		delete(additionalProperties, "requesterComment")
-		delete(additionalProperties, "module")
-		delete(additionalProperties, "workflow")
-		delete(additionalProperties, "template")
 		delete(additionalProperties, "dryRun")
+		delete(additionalProperties, "module")
+		delete(additionalProperties, "template")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

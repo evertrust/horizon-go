@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &CertificateAggregateResultResponse{}
 
 // CertificateAggregateResultResponse struct for CertificateAggregateResultResponse
 type CertificateAggregateResultResponse struct {
-	// All the groups in this aggregate
-	Items []CertificateAggregateResultResponseItemsInner `json:"items"`
 	// The total number of certificates matching the query
-	Count                utils.NullableInt64 `json:"count,omitempty"`
+	Count utils.NullableInt64 `json:"count,omitempty"`
+	// All the groups in this aggregate
+	Items                []CertificateAggregateResultResponseItemsInner `json:"items"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,30 +47,6 @@ func NewCertificateAggregateResultResponse(items []CertificateAggregateResultRes
 func NewCertificateAggregateResultResponseWithDefaults() *CertificateAggregateResultResponse {
 	this := CertificateAggregateResultResponse{}
 	return &this
-}
-
-// GetItems returns the Items field value
-func (o *CertificateAggregateResultResponse) GetItems() []CertificateAggregateResultResponseItemsInner {
-	if o == nil {
-		var ret []CertificateAggregateResultResponseItemsInner
-		return ret
-	}
-
-	return o.Items
-}
-
-// GetItemsOk returns a tuple with the Items field value
-// and a boolean to check if the value has been set.
-func (o *CertificateAggregateResultResponse) GetItemsOk() ([]CertificateAggregateResultResponseItemsInner, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
-}
-
-// SetItems sets field value
-func (o *CertificateAggregateResultResponse) SetItems(v []CertificateAggregateResultResponseItemsInner) {
-	o.Items = v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -116,6 +92,30 @@ func (o *CertificateAggregateResultResponse) UnsetCount() {
 	o.Count.Unset()
 }
 
+// GetItems returns the Items field value
+func (o *CertificateAggregateResultResponse) GetItems() []CertificateAggregateResultResponseItemsInner {
+	if o == nil {
+		var ret []CertificateAggregateResultResponseItemsInner
+		return ret
+	}
+
+	return o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value
+// and a boolean to check if the value has been set.
+func (o *CertificateAggregateResultResponse) GetItemsOk() ([]CertificateAggregateResultResponseItemsInner, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// SetItems sets field value
+func (o *CertificateAggregateResultResponse) SetItems(v []CertificateAggregateResultResponseItemsInner) {
+	o.Items = v
+}
+
 func (o CertificateAggregateResultResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -126,10 +126,10 @@ func (o CertificateAggregateResultResponse) MarshalJSON() ([]byte, error) {
 
 func (o CertificateAggregateResultResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["items"] = o.Items
 	if o.Count.IsSet() {
 		toSerialize["count"] = o.Count.Get()
 	}
+	toSerialize["items"] = o.Items
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -173,8 +173,8 @@ func (o *CertificateAggregateResultResponse) UnmarshalJSON(data []byte) (err err
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "items")
 		delete(additionalProperties, "count")
+		delete(additionalProperties, "items")
 		o.AdditionalProperties = additionalProperties
 	}
 

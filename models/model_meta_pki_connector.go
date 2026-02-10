@@ -22,23 +22,23 @@ var _ utils.MappedNullable = &MetaPKIConnector{}
 
 // MetaPKIConnector struct for MetaPKIConnector
 type MetaPKIConnector struct {
-	Name string `json:"name"`
-	Type string `json:"type"`
+	// Name of the `certificate` [credentials](#tag/security.credentials) to use to authenticate on the PKI
+	AuthenticationCredentials utils.NullableString `json:"authenticationCredentials,omitempty"`
 	// MetaPKI base endpoint
 	EndPoint string `json:"endPoint"`
 	// Certificate authority of the endpoint
-	EndPointIssuingCA string               `json:"endPointIssuingCA"`
-	Profile           string               `json:"profile"`
-	Workflow          utils.NullableString `json:"workflow"`
-	ProfilCle         utils.NullableString `json:"profilCle"`
-	ValidDays         utils.NullableString `json:"validDays,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	FormPorteurName   utils.NullableString `json:"formPorteurName,omitempty"`
-	// Name of the `certificate` [credentials](#tag/security.credentials) to use to authenticate on the PKI
-	AuthenticationCredentials utils.NullableString `json:"authenticationCredentials,omitempty"`
-	Timeout                   utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Proxy                     utils.NullableString `json:"proxy,omitempty"`
-	Queue                     utils.NullableString `json:"queue,omitempty"`
-	AdditionalProperties      map[string]interface{}
+	EndPointIssuingCA    string               `json:"endPointIssuingCA"`
+	FormPorteurName      utils.NullableString `json:"formPorteurName,omitempty"`
+	Name                 string               `json:"name"`
+	ProfilCle            utils.NullableString `json:"profilCle"`
+	Profile              string               `json:"profile"`
+	Proxy                utils.NullableString `json:"proxy,omitempty"`
+	Queue                utils.NullableString `json:"queue,omitempty"`
+	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string               `json:"type"`
+	ValidDays            utils.NullableString `json:"validDays,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Workflow             utils.NullableString `json:"workflow"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MetaPKIConnector MetaPKIConnector
@@ -47,15 +47,15 @@ type _MetaPKIConnector MetaPKIConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMetaPKIConnector(name string, type_ string, endPoint string, endPointIssuingCA string, profile string, workflow utils.NullableString, profilCle utils.NullableString) *MetaPKIConnector {
+func NewMetaPKIConnector(endPoint string, endPointIssuingCA string, name string, profilCle utils.NullableString, profile string, type_ string, workflow utils.NullableString) *MetaPKIConnector {
 	this := MetaPKIConnector{}
-	this.Name = name
-	this.Type = type_
 	this.EndPoint = endPoint
 	this.EndPointIssuingCA = endPointIssuingCA
-	this.Profile = profile
-	this.Workflow = workflow
+	this.Name = name
 	this.ProfilCle = profilCle
+	this.Profile = profile
+	this.Type = type_
+	this.Workflow = workflow
 	return &this
 }
 
@@ -67,52 +67,47 @@ func NewMetaPKIConnectorWithDefaults() *MetaPKIConnector {
 	return &this
 }
 
-// GetName returns the Name field value
-func (o *MetaPKIConnector) GetName() string {
-	if o == nil {
+// GetAuthenticationCredentials returns the AuthenticationCredentials field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MetaPKIConnector) GetAuthenticationCredentials() string {
+	if o == nil || utils.IsNil(o.AuthenticationCredentials.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.AuthenticationCredentials.Get()
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetaPKIConnector) GetNameOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MetaPKIConnector) GetAuthenticationCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.AuthenticationCredentials.Get(), o.AuthenticationCredentials.IsSet()
 }
 
-// SetName sets field value
-func (o *MetaPKIConnector) SetName(v string) {
-	o.Name = v
-}
-
-// GetType returns the Type field value
-func (o *MetaPKIConnector) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
+// HasAuthenticationCredentials returns a boolean if a field has been set.
+func (o *MetaPKIConnector) HasAuthenticationCredentials() bool {
+	if o != nil && o.AuthenticationCredentials.IsSet() {
+		return true
 	}
 
-	return o.Type
+	return false
 }
 
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *MetaPKIConnector) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
+// SetAuthenticationCredentials gets a reference to the given NullableString and assigns it to the AuthenticationCredentials field.
+func (o *MetaPKIConnector) SetAuthenticationCredentials(v string) {
+	o.AuthenticationCredentials.Set(&v)
 }
 
-// SetType sets field value
-func (o *MetaPKIConnector) SetType(v string) {
-	o.Type = v
+// SetAuthenticationCredentialsNil sets the value for AuthenticationCredentials to be an explicit nil
+func (o *MetaPKIConnector) SetAuthenticationCredentialsNil() {
+	o.AuthenticationCredentials.Set(nil)
+}
+
+// UnsetAuthenticationCredentials ensures that no value is present for AuthenticationCredentials, not even an explicit nil
+func (o *MetaPKIConnector) UnsetAuthenticationCredentials() {
+	o.AuthenticationCredentials.Unset()
 }
 
 // GetEndPoint returns the EndPoint field value
@@ -163,125 +158,6 @@ func (o *MetaPKIConnector) SetEndPointIssuingCA(v string) {
 	o.EndPointIssuingCA = v
 }
 
-// GetProfile returns the Profile field value
-func (o *MetaPKIConnector) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *MetaPKIConnector) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *MetaPKIConnector) SetProfile(v string) {
-	o.Profile = v
-}
-
-// GetWorkflow returns the Workflow field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *MetaPKIConnector) GetWorkflow() string {
-	if o == nil || o.Workflow.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.Workflow.Get()
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MetaPKIConnector) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Workflow.Get(), o.Workflow.IsSet()
-}
-
-// SetWorkflow sets field value
-func (o *MetaPKIConnector) SetWorkflow(v string) {
-	o.Workflow.Set(&v)
-}
-
-// GetProfilCle returns the ProfilCle field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *MetaPKIConnector) GetProfilCle() string {
-	if o == nil || o.ProfilCle.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.ProfilCle.Get()
-}
-
-// GetProfilCleOk returns a tuple with the ProfilCle field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MetaPKIConnector) GetProfilCleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProfilCle.Get(), o.ProfilCle.IsSet()
-}
-
-// SetProfilCle sets field value
-func (o *MetaPKIConnector) SetProfilCle(v string) {
-	o.ProfilCle.Set(&v)
-}
-
-// GetValidDays returns the ValidDays field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MetaPKIConnector) GetValidDays() string {
-	if o == nil || utils.IsNil(o.ValidDays.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ValidDays.Get()
-}
-
-// GetValidDaysOk returns a tuple with the ValidDays field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MetaPKIConnector) GetValidDaysOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ValidDays.Get(), o.ValidDays.IsSet()
-}
-
-// HasValidDays returns a boolean if a field has been set.
-func (o *MetaPKIConnector) HasValidDays() bool {
-	if o != nil && o.ValidDays.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetValidDays gets a reference to the given NullableString and assigns it to the ValidDays field.
-func (o *MetaPKIConnector) SetValidDays(v string) {
-	o.ValidDays.Set(&v)
-}
-
-// SetValidDaysNil sets the value for ValidDays to be an explicit nil
-func (o *MetaPKIConnector) SetValidDaysNil() {
-	o.ValidDays.Set(nil)
-}
-
-// UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
-func (o *MetaPKIConnector) UnsetValidDays() {
-	o.ValidDays.Unset()
-}
-
 // GetFormPorteurName returns the FormPorteurName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MetaPKIConnector) GetFormPorteurName() string {
 	if o == nil || utils.IsNil(o.FormPorteurName.Get()) {
@@ -325,90 +201,78 @@ func (o *MetaPKIConnector) UnsetFormPorteurName() {
 	o.FormPorteurName.Unset()
 }
 
-// GetAuthenticationCredentials returns the AuthenticationCredentials field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MetaPKIConnector) GetAuthenticationCredentials() string {
-	if o == nil || utils.IsNil(o.AuthenticationCredentials.Get()) {
+// GetName returns the Name field value
+func (o *MetaPKIConnector) GetName() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.AuthenticationCredentials.Get()
+
+	return o.Name
 }
 
-// GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MetaPKIConnector) GetAuthenticationCredentialsOk() (*string, bool) {
+func (o *MetaPKIConnector) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.AuthenticationCredentials.Get(), o.AuthenticationCredentials.IsSet()
+	return &o.Name, true
 }
 
-// HasAuthenticationCredentials returns a boolean if a field has been set.
-func (o *MetaPKIConnector) HasAuthenticationCredentials() bool {
-	if o != nil && o.AuthenticationCredentials.IsSet() {
-		return true
-	}
-
-	return false
+// SetName sets field value
+func (o *MetaPKIConnector) SetName(v string) {
+	o.Name = v
 }
 
-// SetAuthenticationCredentials gets a reference to the given NullableString and assigns it to the AuthenticationCredentials field.
-func (o *MetaPKIConnector) SetAuthenticationCredentials(v string) {
-	o.AuthenticationCredentials.Set(&v)
-}
-
-// SetAuthenticationCredentialsNil sets the value for AuthenticationCredentials to be an explicit nil
-func (o *MetaPKIConnector) SetAuthenticationCredentialsNil() {
-	o.AuthenticationCredentials.Set(nil)
-}
-
-// UnsetAuthenticationCredentials ensures that no value is present for AuthenticationCredentials, not even an explicit nil
-func (o *MetaPKIConnector) UnsetAuthenticationCredentials() {
-	o.AuthenticationCredentials.Unset()
-}
-
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MetaPKIConnector) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
+// GetProfilCle returns the ProfilCle field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *MetaPKIConnector) GetProfilCle() string {
+	if o == nil || o.ProfilCle.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Timeout.Get()
+
+	return *o.ProfilCle.Get()
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// GetProfilCleOk returns a tuple with the ProfilCle field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MetaPKIConnector) GetTimeoutOk() (*string, bool) {
+func (o *MetaPKIConnector) GetProfilCleOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
+	return o.ProfilCle.Get(), o.ProfilCle.IsSet()
 }
 
-// HasTimeout returns a boolean if a field has been set.
-func (o *MetaPKIConnector) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
+// SetProfilCle sets field value
+func (o *MetaPKIConnector) SetProfilCle(v string) {
+	o.ProfilCle.Set(&v)
+}
+
+// GetProfile returns the Profile field value
+func (o *MetaPKIConnector) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Profile
 }
 
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *MetaPKIConnector) SetTimeout(v string) {
-	o.Timeout.Set(&v)
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *MetaPKIConnector) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
 }
 
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *MetaPKIConnector) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *MetaPKIConnector) UnsetTimeout() {
-	o.Timeout.Unset()
+// SetProfile sets field value
+func (o *MetaPKIConnector) SetProfile(v string) {
+	o.Profile = v
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -497,6 +361,142 @@ func (o *MetaPKIConnector) UnsetQueue() {
 	o.Queue.Unset()
 }
 
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MetaPKIConnector) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MetaPKIConnector) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *MetaPKIConnector) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *MetaPKIConnector) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *MetaPKIConnector) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *MetaPKIConnector) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetType returns the Type field value
+func (o *MetaPKIConnector) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *MetaPKIConnector) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *MetaPKIConnector) SetType(v string) {
+	o.Type = v
+}
+
+// GetValidDays returns the ValidDays field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MetaPKIConnector) GetValidDays() string {
+	if o == nil || utils.IsNil(o.ValidDays.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ValidDays.Get()
+}
+
+// GetValidDaysOk returns a tuple with the ValidDays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MetaPKIConnector) GetValidDaysOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ValidDays.Get(), o.ValidDays.IsSet()
+}
+
+// HasValidDays returns a boolean if a field has been set.
+func (o *MetaPKIConnector) HasValidDays() bool {
+	if o != nil && o.ValidDays.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValidDays gets a reference to the given NullableString and assigns it to the ValidDays field.
+func (o *MetaPKIConnector) SetValidDays(v string) {
+	o.ValidDays.Set(&v)
+}
+
+// SetValidDaysNil sets the value for ValidDays to be an explicit nil
+func (o *MetaPKIConnector) SetValidDaysNil() {
+	o.ValidDays.Set(nil)
+}
+
+// UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
+func (o *MetaPKIConnector) UnsetValidDays() {
+	o.ValidDays.Unset()
+}
+
+// GetWorkflow returns the Workflow field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *MetaPKIConnector) GetWorkflow() string {
+	if o == nil || o.Workflow.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.Workflow.Get()
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MetaPKIConnector) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Workflow.Get(), o.Workflow.IsSet()
+}
+
+// SetWorkflow sets field value
+func (o *MetaPKIConnector) SetWorkflow(v string) {
+	o.Workflow.Set(&v)
+}
+
 func (o MetaPKIConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -507,31 +507,31 @@ func (o MetaPKIConnector) MarshalJSON() ([]byte, error) {
 
 func (o MetaPKIConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
-	toSerialize["endPoint"] = o.EndPoint
-	toSerialize["endPointIssuingCA"] = o.EndPointIssuingCA
-	toSerialize["profile"] = o.Profile
-	toSerialize["workflow"] = o.Workflow.Get()
-	toSerialize["profilCle"] = o.ProfilCle.Get()
-	if o.ValidDays.IsSet() {
-		toSerialize["validDays"] = o.ValidDays.Get()
-	}
-	if o.FormPorteurName.IsSet() {
-		toSerialize["formPorteurName"] = o.FormPorteurName.Get()
-	}
 	if o.AuthenticationCredentials.IsSet() {
 		toSerialize["authenticationCredentials"] = o.AuthenticationCredentials.Get()
 	}
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
+	toSerialize["endPoint"] = o.EndPoint
+	toSerialize["endPointIssuingCA"] = o.EndPointIssuingCA
+	if o.FormPorteurName.IsSet() {
+		toSerialize["formPorteurName"] = o.FormPorteurName.Get()
 	}
+	toSerialize["name"] = o.Name
+	toSerialize["profilCle"] = o.ProfilCle.Get()
+	toSerialize["profile"] = o.Profile
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	if o.Queue.IsSet() {
 		toSerialize["queue"] = o.Queue.Get()
 	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
+	if o.ValidDays.IsSet() {
+		toSerialize["validDays"] = o.ValidDays.Get()
+	}
+	toSerialize["workflow"] = o.Workflow.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -545,13 +545,13 @@ func (o *MetaPKIConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
-		"type",
 		"endPoint",
 		"endPointIssuingCA",
-		"profile",
-		"workflow",
+		"name",
 		"profilCle",
+		"profile",
+		"type",
+		"workflow",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -581,19 +581,19 @@ func (o *MetaPKIConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "authenticationCredentials")
 		delete(additionalProperties, "endPoint")
 		delete(additionalProperties, "endPointIssuingCA")
-		delete(additionalProperties, "profile")
-		delete(additionalProperties, "workflow")
-		delete(additionalProperties, "profilCle")
-		delete(additionalProperties, "validDays")
 		delete(additionalProperties, "formPorteurName")
-		delete(additionalProperties, "authenticationCredentials")
-		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "profilCle")
+		delete(additionalProperties, "profile")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "validDays")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

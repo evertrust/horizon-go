@@ -21,10 +21,10 @@ var _ utils.MappedNullable = &CFCertificateAias{}
 
 // CFCertificateAias The certificate's AIA
 type CFCertificateAias struct {
-	// The OCSP certificate AIA
-	Ocsp []string `json:"ocsp,omitempty"`
 	// The CRT certificate AIA
-	Crt                  []string `json:"crt,omitempty"`
+	Crt []string `json:"crt,omitempty"`
+	// The OCSP certificate AIA
+	Ocsp                 []string `json:"ocsp,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,38 +45,6 @@ func NewCFCertificateAias() *CFCertificateAias {
 func NewCFCertificateAiasWithDefaults() *CFCertificateAias {
 	this := CFCertificateAias{}
 	return &this
-}
-
-// GetOcsp returns the Ocsp field value if set, zero value otherwise.
-func (o *CFCertificateAias) GetOcsp() []string {
-	if o == nil || utils.IsNil(o.Ocsp) {
-		var ret []string
-		return ret
-	}
-	return o.Ocsp
-}
-
-// GetOcspOk returns a tuple with the Ocsp field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CFCertificateAias) GetOcspOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Ocsp) {
-		return nil, false
-	}
-	return o.Ocsp, true
-}
-
-// HasOcsp returns a boolean if a field has been set.
-func (o *CFCertificateAias) HasOcsp() bool {
-	if o != nil && !utils.IsNil(o.Ocsp) {
-		return true
-	}
-
-	return false
-}
-
-// SetOcsp gets a reference to the given []string and assigns it to the Ocsp field.
-func (o *CFCertificateAias) SetOcsp(v []string) {
-	o.Ocsp = v
 }
 
 // GetCrt returns the Crt field value if set, zero value otherwise.
@@ -111,6 +79,38 @@ func (o *CFCertificateAias) SetCrt(v []string) {
 	o.Crt = v
 }
 
+// GetOcsp returns the Ocsp field value if set, zero value otherwise.
+func (o *CFCertificateAias) GetOcsp() []string {
+	if o == nil || utils.IsNil(o.Ocsp) {
+		var ret []string
+		return ret
+	}
+	return o.Ocsp
+}
+
+// GetOcspOk returns a tuple with the Ocsp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CFCertificateAias) GetOcspOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Ocsp) {
+		return nil, false
+	}
+	return o.Ocsp, true
+}
+
+// HasOcsp returns a boolean if a field has been set.
+func (o *CFCertificateAias) HasOcsp() bool {
+	if o != nil && !utils.IsNil(o.Ocsp) {
+		return true
+	}
+
+	return false
+}
+
+// SetOcsp gets a reference to the given []string and assigns it to the Ocsp field.
+func (o *CFCertificateAias) SetOcsp(v []string) {
+	o.Ocsp = v
+}
+
 func (o CFCertificateAias) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -121,11 +121,11 @@ func (o CFCertificateAias) MarshalJSON() ([]byte, error) {
 
 func (o CFCertificateAias) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.Ocsp) {
-		toSerialize["ocsp"] = o.Ocsp
-	}
 	if !utils.IsNil(o.Crt) {
 		toSerialize["crt"] = o.Crt
+	}
+	if !utils.IsNil(o.Ocsp) {
+		toSerialize["ocsp"] = o.Ocsp
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -149,8 +149,8 @@ func (o *CFCertificateAias) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "ocsp")
 		delete(additionalProperties, "crt")
+		delete(additionalProperties, "ocsp")
 		o.AdditionalProperties = additionalProperties
 	}
 

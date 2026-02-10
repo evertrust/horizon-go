@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &WebRAUpdateRequestOnTemplateResponse{}
 
 // WebRAUpdateRequestOnTemplateResponse struct for WebRAUpdateRequestOnTemplateResponse
 type WebRAUpdateRequestOnTemplateResponse struct {
-	// The request workflow
-	Workflow string `json:"workflow"`
 	// The module of the certificate to update.
 	Module Module `json:"module"`
 	// The profile for which to return the template.
 	Profile string `json:"profile"`
 	// The template with the constraint set on the profile
-	Template             WebRAUpdateRequestTemplate `json:"template"`
+	Template WebRAUpdateRequestTemplate `json:"template"`
+	// The request workflow
+	Workflow             string `json:"workflow"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,12 +39,12 @@ type _WebRAUpdateRequestOnTemplateResponse WebRAUpdateRequestOnTemplateResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAUpdateRequestOnTemplateResponse(workflow string, module Module, profile string, template WebRAUpdateRequestTemplate) *WebRAUpdateRequestOnTemplateResponse {
+func NewWebRAUpdateRequestOnTemplateResponse(module Module, profile string, template WebRAUpdateRequestTemplate, workflow string) *WebRAUpdateRequestOnTemplateResponse {
 	this := WebRAUpdateRequestOnTemplateResponse{}
-	this.Workflow = workflow
 	this.Module = module
 	this.Profile = profile
 	this.Template = template
+	this.Workflow = workflow
 	return &this
 }
 
@@ -54,30 +54,6 @@ func NewWebRAUpdateRequestOnTemplateResponse(workflow string, module Module, pro
 func NewWebRAUpdateRequestOnTemplateResponseWithDefaults() *WebRAUpdateRequestOnTemplateResponse {
 	this := WebRAUpdateRequestOnTemplateResponse{}
 	return &this
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRAUpdateRequestOnTemplateResponse) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnTemplateResponse) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRAUpdateRequestOnTemplateResponse) SetWorkflow(v string) {
-	o.Workflow = v
 }
 
 // GetModule returns the Module field value
@@ -152,6 +128,30 @@ func (o *WebRAUpdateRequestOnTemplateResponse) SetTemplate(v WebRAUpdateRequestT
 	o.Template = v
 }
 
+// GetWorkflow returns the Workflow field value
+func (o *WebRAUpdateRequestOnTemplateResponse) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRAUpdateRequestOnTemplateResponse) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRAUpdateRequestOnTemplateResponse) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
 func (o WebRAUpdateRequestOnTemplateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -162,10 +162,10 @@ func (o WebRAUpdateRequestOnTemplateResponse) MarshalJSON() ([]byte, error) {
 
 func (o WebRAUpdateRequestOnTemplateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["workflow"] = o.Workflow
 	toSerialize["module"] = o.Module
 	toSerialize["profile"] = o.Profile
 	toSerialize["template"] = o.Template
+	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -179,10 +179,10 @@ func (o *WebRAUpdateRequestOnTemplateResponse) UnmarshalJSON(data []byte) (err e
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"workflow",
 		"module",
 		"profile",
 		"template",
+		"workflow",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -212,10 +212,10 @@ func (o *WebRAUpdateRequestOnTemplateResponse) UnmarshalJSON(data []byte) (err e
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "profile")
 		delete(additionalProperties, "template")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

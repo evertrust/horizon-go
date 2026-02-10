@@ -22,12 +22,12 @@ var _ utils.MappedNullable = &BasicError{}
 
 // BasicError struct for BasicError
 type BasicError struct {
+	// A human-readable explanation specific to this occurrence of the problem. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807)
+	Detail utils.NullableString `json:"detail,omitempty"`
 	// The error code of the problem
 	Error string `json:"error"`
 	// A short, human-readable summary of the problem type
 	Message string `json:"message"`
-	// A human-readable explanation specific to this occurrence of the problem. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807)
-	Detail utils.NullableString `json:"detail,omitempty"`
 	// The http status code of the error. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807)
 	Status int64 `json:"status"`
 	// A short, human-readable summary of the problem type. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807)
@@ -56,6 +56,49 @@ func NewBasicError(error_ string, message string, status int64, title string) *B
 func NewBasicErrorWithDefaults() *BasicError {
 	this := BasicError{}
 	return &this
+}
+
+// GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *BasicError) GetDetail() string {
+	if o == nil || utils.IsNil(o.Detail.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Detail.Get()
+}
+
+// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *BasicError) GetDetailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Detail.Get(), o.Detail.IsSet()
+}
+
+// HasDetail returns a boolean if a field has been set.
+func (o *BasicError) HasDetail() bool {
+	if o != nil && o.Detail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDetail gets a reference to the given NullableString and assigns it to the Detail field.
+func (o *BasicError) SetDetail(v string) {
+	o.Detail.Set(&v)
+}
+
+// SetDetailNil sets the value for Detail to be an explicit nil
+func (o *BasicError) SetDetailNil() {
+	o.Detail.Set(nil)
+}
+
+// UnsetDetail ensures that no value is present for Detail, not even an explicit nil
+func (o *BasicError) UnsetDetail() {
+	o.Detail.Unset()
 }
 
 // GetError returns the Error field value
@@ -104,49 +147,6 @@ func (o *BasicError) GetMessageOk() (*string, bool) {
 // SetMessage sets field value
 func (o *BasicError) SetMessage(v string) {
 	o.Message = v
-}
-
-// GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *BasicError) GetDetail() string {
-	if o == nil || utils.IsNil(o.Detail.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Detail.Get()
-}
-
-// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *BasicError) GetDetailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Detail.Get(), o.Detail.IsSet()
-}
-
-// HasDetail returns a boolean if a field has been set.
-func (o *BasicError) HasDetail() bool {
-	if o != nil && o.Detail.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDetail gets a reference to the given NullableString and assigns it to the Detail field.
-func (o *BasicError) SetDetail(v string) {
-	o.Detail.Set(&v)
-}
-
-// SetDetailNil sets the value for Detail to be an explicit nil
-func (o *BasicError) SetDetailNil() {
-	o.Detail.Set(nil)
-}
-
-// UnsetDetail ensures that no value is present for Detail, not even an explicit nil
-func (o *BasicError) UnsetDetail() {
-	o.Detail.Unset()
 }
 
 // GetStatus returns the Status field value
@@ -207,11 +207,11 @@ func (o BasicError) MarshalJSON() ([]byte, error) {
 
 func (o BasicError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["error"] = o.Error
-	toSerialize["message"] = o.Message
 	if o.Detail.IsSet() {
 		toSerialize["detail"] = o.Detail.Get()
 	}
+	toSerialize["error"] = o.Error
+	toSerialize["message"] = o.Message
 	toSerialize["status"] = o.Status
 	toSerialize["title"] = o.Title
 
@@ -260,9 +260,9 @@ func (o *BasicError) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "detail")
 		delete(additionalProperties, "error")
 		delete(additionalProperties, "message")
-		delete(additionalProperties, "detail")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "title")
 		o.AdditionalProperties = additionalProperties

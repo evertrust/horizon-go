@@ -5,25 +5,25 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Type** | **string** |  | 
+**BaseDn** | **string** |  | 
+**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the DN and password to authenticate on Active Directory | 
+**Filter** | Pointer to **NullableString** |  | [optional] 
+**Hostname** | **string** |  | 
+**MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
 **Name** | **string** |  | 
+**Port** | Pointer to **NullableInt64** |  | [optional] 
+**Proxy** | Pointer to **NullableString** |  | [optional] 
 **ThrottleDuration** | **string** |  | 
 **ThrottleParallelism** | **int64** |  | 
 **Timeout** | Pointer to **NullableString** |  | [optional] 
-**MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
-**Proxy** | Pointer to **NullableString** |  | [optional] 
-**Hostname** | **string** |  | 
-**Port** | Pointer to **NullableInt64** |  | [optional] 
-**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the DN and password to authenticate on Active Directory | 
-**BaseDn** | **string** |  | 
-**Filter** | Pointer to **NullableString** |  | [optional] 
 **TlsInsecure** | Pointer to **NullableBool** | Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended. | [optional] [default to false]
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewMSADConnectorResponse
 
-`func NewMSADConnectorResponse(id string, type_ string, name string, throttleDuration string, throttleParallelism int64, hostname string, credentials string, baseDn string, ) *MSADConnectorResponse`
+`func NewMSADConnectorResponse(id string, baseDn string, credentials string, hostname string, name string, throttleDuration string, throttleParallelism int64, type_ string, ) *MSADConnectorResponse`
 
 NewMSADConnectorResponse instantiates a new MSADConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -58,26 +58,136 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetType
+### GetBaseDn
 
-`func (o *MSADConnectorResponse) GetType() string`
+`func (o *MSADConnectorResponse) GetBaseDn() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetBaseDn returns the BaseDn field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetBaseDnOk
 
-`func (o *MSADConnectorResponse) GetTypeOk() (*string, bool)`
+`func (o *MSADConnectorResponse) GetBaseDnOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetBaseDnOk returns a tuple with the BaseDn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetBaseDn
 
-`func (o *MSADConnectorResponse) SetType(v string)`
+`func (o *MSADConnectorResponse) SetBaseDn(v string)`
 
-SetType sets Type field to given value.
+SetBaseDn sets BaseDn field to given value.
 
 
+### GetCredentials
+
+`func (o *MSADConnectorResponse) GetCredentials() string`
+
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
+
+### GetCredentialsOk
+
+`func (o *MSADConnectorResponse) GetCredentialsOk() (*string, bool)`
+
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCredentials
+
+`func (o *MSADConnectorResponse) SetCredentials(v string)`
+
+SetCredentials sets Credentials field to given value.
+
+
+### GetFilter
+
+`func (o *MSADConnectorResponse) GetFilter() string`
+
+GetFilter returns the Filter field if non-nil, zero value otherwise.
+
+### GetFilterOk
+
+`func (o *MSADConnectorResponse) GetFilterOk() (*string, bool)`
+
+GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilter
+
+`func (o *MSADConnectorResponse) SetFilter(v string)`
+
+SetFilter sets Filter field to given value.
+
+### HasFilter
+
+`func (o *MSADConnectorResponse) HasFilter() bool`
+
+HasFilter returns a boolean if a field has been set.
+
+### SetFilterNil
+
+`func (o *MSADConnectorResponse) SetFilterNil(b bool)`
+
+ SetFilterNil sets the value for Filter to be an explicit nil
+
+### UnsetFilter
+`func (o *MSADConnectorResponse) UnsetFilter()`
+
+UnsetFilter ensures that no value is present for Filter, not even an explicit nil
+### GetHostname
+
+`func (o *MSADConnectorResponse) GetHostname() string`
+
+GetHostname returns the Hostname field if non-nil, zero value otherwise.
+
+### GetHostnameOk
+
+`func (o *MSADConnectorResponse) GetHostnameOk() (*string, bool)`
+
+GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHostname
+
+`func (o *MSADConnectorResponse) SetHostname(v string)`
+
+SetHostname sets Hostname field to given value.
+
+
+### GetMaxStoredCertificatePerHolder
+
+`func (o *MSADConnectorResponse) GetMaxStoredCertificatePerHolder() int64`
+
+GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field if non-nil, zero value otherwise.
+
+### GetMaxStoredCertificatePerHolderOk
+
+`func (o *MSADConnectorResponse) GetMaxStoredCertificatePerHolderOk() (*int64, bool)`
+
+GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxStoredCertificatePerHolder
+
+`func (o *MSADConnectorResponse) SetMaxStoredCertificatePerHolder(v int64)`
+
+SetMaxStoredCertificatePerHolder sets MaxStoredCertificatePerHolder field to given value.
+
+### HasMaxStoredCertificatePerHolder
+
+`func (o *MSADConnectorResponse) HasMaxStoredCertificatePerHolder() bool`
+
+HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
+
+### SetMaxStoredCertificatePerHolderNil
+
+`func (o *MSADConnectorResponse) SetMaxStoredCertificatePerHolderNil(b bool)`
+
+ SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
+
+### UnsetMaxStoredCertificatePerHolder
+`func (o *MSADConnectorResponse) UnsetMaxStoredCertificatePerHolder()`
+
+UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
 ### GetName
 
 `func (o *MSADConnectorResponse) GetName() string`
@@ -98,6 +208,76 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetPort
+
+`func (o *MSADConnectorResponse) GetPort() int64`
+
+GetPort returns the Port field if non-nil, zero value otherwise.
+
+### GetPortOk
+
+`func (o *MSADConnectorResponse) GetPortOk() (*int64, bool)`
+
+GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPort
+
+`func (o *MSADConnectorResponse) SetPort(v int64)`
+
+SetPort sets Port field to given value.
+
+### HasPort
+
+`func (o *MSADConnectorResponse) HasPort() bool`
+
+HasPort returns a boolean if a field has been set.
+
+### SetPortNil
+
+`func (o *MSADConnectorResponse) SetPortNil(b bool)`
+
+ SetPortNil sets the value for Port to be an explicit nil
+
+### UnsetPort
+`func (o *MSADConnectorResponse) UnsetPort()`
+
+UnsetPort ensures that no value is present for Port, not even an explicit nil
+### GetProxy
+
+`func (o *MSADConnectorResponse) GetProxy() string`
+
+GetProxy returns the Proxy field if non-nil, zero value otherwise.
+
+### GetProxyOk
+
+`func (o *MSADConnectorResponse) GetProxyOk() (*string, bool)`
+
+GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxy
+
+`func (o *MSADConnectorResponse) SetProxy(v string)`
+
+SetProxy sets Proxy field to given value.
+
+### HasProxy
+
+`func (o *MSADConnectorResponse) HasProxy() bool`
+
+HasProxy returns a boolean if a field has been set.
+
+### SetProxyNil
+
+`func (o *MSADConnectorResponse) SetProxyNil(b bool)`
+
+ SetProxyNil sets the value for Proxy to be an explicit nil
+
+### UnsetProxy
+`func (o *MSADConnectorResponse) UnsetProxy()`
+
+UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
 ### GetThrottleDuration
 
 `func (o *MSADConnectorResponse) GetThrottleDuration() string`
@@ -173,206 +353,6 @@ HasTimeout returns a boolean if a field has been set.
 `func (o *MSADConnectorResponse) UnsetTimeout()`
 
 UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetMaxStoredCertificatePerHolder
-
-`func (o *MSADConnectorResponse) GetMaxStoredCertificatePerHolder() int64`
-
-GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field if non-nil, zero value otherwise.
-
-### GetMaxStoredCertificatePerHolderOk
-
-`func (o *MSADConnectorResponse) GetMaxStoredCertificatePerHolderOk() (*int64, bool)`
-
-GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMaxStoredCertificatePerHolder
-
-`func (o *MSADConnectorResponse) SetMaxStoredCertificatePerHolder(v int64)`
-
-SetMaxStoredCertificatePerHolder sets MaxStoredCertificatePerHolder field to given value.
-
-### HasMaxStoredCertificatePerHolder
-
-`func (o *MSADConnectorResponse) HasMaxStoredCertificatePerHolder() bool`
-
-HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
-
-### SetMaxStoredCertificatePerHolderNil
-
-`func (o *MSADConnectorResponse) SetMaxStoredCertificatePerHolderNil(b bool)`
-
- SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
-
-### UnsetMaxStoredCertificatePerHolder
-`func (o *MSADConnectorResponse) UnsetMaxStoredCertificatePerHolder()`
-
-UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
-### GetProxy
-
-`func (o *MSADConnectorResponse) GetProxy() string`
-
-GetProxy returns the Proxy field if non-nil, zero value otherwise.
-
-### GetProxyOk
-
-`func (o *MSADConnectorResponse) GetProxyOk() (*string, bool)`
-
-GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProxy
-
-`func (o *MSADConnectorResponse) SetProxy(v string)`
-
-SetProxy sets Proxy field to given value.
-
-### HasProxy
-
-`func (o *MSADConnectorResponse) HasProxy() bool`
-
-HasProxy returns a boolean if a field has been set.
-
-### SetProxyNil
-
-`func (o *MSADConnectorResponse) SetProxyNil(b bool)`
-
- SetProxyNil sets the value for Proxy to be an explicit nil
-
-### UnsetProxy
-`func (o *MSADConnectorResponse) UnsetProxy()`
-
-UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetHostname
-
-`func (o *MSADConnectorResponse) GetHostname() string`
-
-GetHostname returns the Hostname field if non-nil, zero value otherwise.
-
-### GetHostnameOk
-
-`func (o *MSADConnectorResponse) GetHostnameOk() (*string, bool)`
-
-GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHostname
-
-`func (o *MSADConnectorResponse) SetHostname(v string)`
-
-SetHostname sets Hostname field to given value.
-
-
-### GetPort
-
-`func (o *MSADConnectorResponse) GetPort() int64`
-
-GetPort returns the Port field if non-nil, zero value otherwise.
-
-### GetPortOk
-
-`func (o *MSADConnectorResponse) GetPortOk() (*int64, bool)`
-
-GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPort
-
-`func (o *MSADConnectorResponse) SetPort(v int64)`
-
-SetPort sets Port field to given value.
-
-### HasPort
-
-`func (o *MSADConnectorResponse) HasPort() bool`
-
-HasPort returns a boolean if a field has been set.
-
-### SetPortNil
-
-`func (o *MSADConnectorResponse) SetPortNil(b bool)`
-
- SetPortNil sets the value for Port to be an explicit nil
-
-### UnsetPort
-`func (o *MSADConnectorResponse) UnsetPort()`
-
-UnsetPort ensures that no value is present for Port, not even an explicit nil
-### GetCredentials
-
-`func (o *MSADConnectorResponse) GetCredentials() string`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *MSADConnectorResponse) GetCredentialsOk() (*string, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *MSADConnectorResponse) SetCredentials(v string)`
-
-SetCredentials sets Credentials field to given value.
-
-
-### GetBaseDn
-
-`func (o *MSADConnectorResponse) GetBaseDn() string`
-
-GetBaseDn returns the BaseDn field if non-nil, zero value otherwise.
-
-### GetBaseDnOk
-
-`func (o *MSADConnectorResponse) GetBaseDnOk() (*string, bool)`
-
-GetBaseDnOk returns a tuple with the BaseDn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBaseDn
-
-`func (o *MSADConnectorResponse) SetBaseDn(v string)`
-
-SetBaseDn sets BaseDn field to given value.
-
-
-### GetFilter
-
-`func (o *MSADConnectorResponse) GetFilter() string`
-
-GetFilter returns the Filter field if non-nil, zero value otherwise.
-
-### GetFilterOk
-
-`func (o *MSADConnectorResponse) GetFilterOk() (*string, bool)`
-
-GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilter
-
-`func (o *MSADConnectorResponse) SetFilter(v string)`
-
-SetFilter sets Filter field to given value.
-
-### HasFilter
-
-`func (o *MSADConnectorResponse) HasFilter() bool`
-
-HasFilter returns a boolean if a field has been set.
-
-### SetFilterNil
-
-`func (o *MSADConnectorResponse) SetFilterNil(b bool)`
-
- SetFilterNil sets the value for Filter to be an explicit nil
-
-### UnsetFilter
-`func (o *MSADConnectorResponse) UnsetFilter()`
-
-UnsetFilter ensures that no value is present for Filter, not even an explicit nil
 ### GetTlsInsecure
 
 `func (o *MSADConnectorResponse) GetTlsInsecure() bool`
@@ -408,6 +388,26 @@ HasTlsInsecure returns a boolean if a field has been set.
 `func (o *MSADConnectorResponse) UnsetTlsInsecure()`
 
 UnsetTlsInsecure ensures that no value is present for TlsInsecure, not even an explicit nil
+### GetType
+
+`func (o *MSADConnectorResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *MSADConnectorResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *MSADConnectorResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -22,20 +22,20 @@ var _ utils.MappedNullable = &EverTrustADCSConnector{}
 
 // EverTrustADCSConnector struct for EverTrustADCSConnector
 type EverTrustADCSConnector struct {
-	Name     string `json:"name"`
-	Type     string `json:"type"`
-	EndPoint string `json:"endPoint"`
 	CaConfig string `json:"caConfig"`
-	Profile  string `json:"profile"`
 	Domain   string `json:"domain"`
-	// Name of the `password` [credentials](#tag/security.credentials) to use for technical account on the PKI
-	LoginCredentials string `json:"loginCredentials"`
+	EndPoint string `json:"endPoint"`
 	// Name of the `certificate` [credentials](#tag/security.credentials) to use to enroll on the PKI
-	EnrollmentCredentials string               `json:"enrollmentCredentials"`
-	Timeout               utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Proxy                 utils.NullableString `json:"proxy,omitempty"`
-	Queue                 utils.NullableString `json:"queue,omitempty"`
-	AdditionalProperties  map[string]interface{}
+	EnrollmentCredentials string `json:"enrollmentCredentials"`
+	// Name of the `password` [credentials](#tag/security.credentials) to use for technical account on the PKI
+	LoginCredentials     string               `json:"loginCredentials"`
+	Name                 string               `json:"name"`
+	Profile              string               `json:"profile"`
+	Proxy                utils.NullableString `json:"proxy,omitempty"`
+	Queue                utils.NullableString `json:"queue,omitempty"`
+	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string               `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EverTrustADCSConnector EverTrustADCSConnector
@@ -44,16 +44,16 @@ type _EverTrustADCSConnector EverTrustADCSConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEverTrustADCSConnector(name string, type_ string, endPoint string, caConfig string, profile string, domain string, loginCredentials string, enrollmentCredentials string) *EverTrustADCSConnector {
+func NewEverTrustADCSConnector(caConfig string, domain string, endPoint string, enrollmentCredentials string, loginCredentials string, name string, profile string, type_ string) *EverTrustADCSConnector {
 	this := EverTrustADCSConnector{}
-	this.Name = name
-	this.Type = type_
-	this.EndPoint = endPoint
 	this.CaConfig = caConfig
-	this.Profile = profile
 	this.Domain = domain
-	this.LoginCredentials = loginCredentials
+	this.EndPoint = endPoint
 	this.EnrollmentCredentials = enrollmentCredentials
+	this.LoginCredentials = loginCredentials
+	this.Name = name
+	this.Profile = profile
+	this.Type = type_
 	return &this
 }
 
@@ -63,78 +63,6 @@ func NewEverTrustADCSConnector(name string, type_ string, endPoint string, caCon
 func NewEverTrustADCSConnectorWithDefaults() *EverTrustADCSConnector {
 	this := EverTrustADCSConnector{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *EverTrustADCSConnector) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *EverTrustADCSConnector) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *EverTrustADCSConnector) SetName(v string) {
-	o.Name = v
-}
-
-// GetType returns the Type field value
-func (o *EverTrustADCSConnector) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *EverTrustADCSConnector) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *EverTrustADCSConnector) SetType(v string) {
-	o.Type = v
-}
-
-// GetEndPoint returns the EndPoint field value
-func (o *EverTrustADCSConnector) GetEndPoint() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.EndPoint
-}
-
-// GetEndPointOk returns a tuple with the EndPoint field value
-// and a boolean to check if the value has been set.
-func (o *EverTrustADCSConnector) GetEndPointOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EndPoint, true
-}
-
-// SetEndPoint sets field value
-func (o *EverTrustADCSConnector) SetEndPoint(v string) {
-	o.EndPoint = v
 }
 
 // GetCaConfig returns the CaConfig field value
@@ -161,30 +89,6 @@ func (o *EverTrustADCSConnector) SetCaConfig(v string) {
 	o.CaConfig = v
 }
 
-// GetProfile returns the Profile field value
-func (o *EverTrustADCSConnector) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *EverTrustADCSConnector) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *EverTrustADCSConnector) SetProfile(v string) {
-	o.Profile = v
-}
-
 // GetDomain returns the Domain field value
 func (o *EverTrustADCSConnector) GetDomain() string {
 	if o == nil {
@@ -209,28 +113,28 @@ func (o *EverTrustADCSConnector) SetDomain(v string) {
 	o.Domain = v
 }
 
-// GetLoginCredentials returns the LoginCredentials field value
-func (o *EverTrustADCSConnector) GetLoginCredentials() string {
+// GetEndPoint returns the EndPoint field value
+func (o *EverTrustADCSConnector) GetEndPoint() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.LoginCredentials
+	return o.EndPoint
 }
 
-// GetLoginCredentialsOk returns a tuple with the LoginCredentials field value
+// GetEndPointOk returns a tuple with the EndPoint field value
 // and a boolean to check if the value has been set.
-func (o *EverTrustADCSConnector) GetLoginCredentialsOk() (*string, bool) {
+func (o *EverTrustADCSConnector) GetEndPointOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LoginCredentials, true
+	return &o.EndPoint, true
 }
 
-// SetLoginCredentials sets field value
-func (o *EverTrustADCSConnector) SetLoginCredentials(v string) {
-	o.LoginCredentials = v
+// SetEndPoint sets field value
+func (o *EverTrustADCSConnector) SetEndPoint(v string) {
+	o.EndPoint = v
 }
 
 // GetEnrollmentCredentials returns the EnrollmentCredentials field value
@@ -257,47 +161,76 @@ func (o *EverTrustADCSConnector) SetEnrollmentCredentials(v string) {
 	o.EnrollmentCredentials = v
 }
 
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EverTrustADCSConnector) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
+// GetLoginCredentials returns the LoginCredentials field value
+func (o *EverTrustADCSConnector) GetLoginCredentials() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Timeout.Get()
+
+	return o.LoginCredentials
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// GetLoginCredentialsOk returns a tuple with the LoginCredentials field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EverTrustADCSConnector) GetTimeoutOk() (*string, bool) {
+func (o *EverTrustADCSConnector) GetLoginCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
+	return &o.LoginCredentials, true
 }
 
-// HasTimeout returns a boolean if a field has been set.
-func (o *EverTrustADCSConnector) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
+// SetLoginCredentials sets field value
+func (o *EverTrustADCSConnector) SetLoginCredentials(v string) {
+	o.LoginCredentials = v
+}
+
+// GetName returns the Name field value
+func (o *EverTrustADCSConnector) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Name
 }
 
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *EverTrustADCSConnector) SetTimeout(v string) {
-	o.Timeout.Set(&v)
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *EverTrustADCSConnector) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *EverTrustADCSConnector) SetTimeoutNil() {
-	o.Timeout.Set(nil)
+// SetName sets field value
+func (o *EverTrustADCSConnector) SetName(v string) {
+	o.Name = v
 }
 
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *EverTrustADCSConnector) UnsetTimeout() {
-	o.Timeout.Unset()
+// GetProfile returns the Profile field value
+func (o *EverTrustADCSConnector) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *EverTrustADCSConnector) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *EverTrustADCSConnector) SetProfile(v string) {
+	o.Profile = v
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -386,6 +319,73 @@ func (o *EverTrustADCSConnector) UnsetQueue() {
 	o.Queue.Unset()
 }
 
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EverTrustADCSConnector) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EverTrustADCSConnector) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *EverTrustADCSConnector) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *EverTrustADCSConnector) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *EverTrustADCSConnector) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *EverTrustADCSConnector) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetType returns the Type field value
+func (o *EverTrustADCSConnector) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *EverTrustADCSConnector) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *EverTrustADCSConnector) SetType(v string) {
+	o.Type = v
+}
+
 func (o EverTrustADCSConnector) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -396,23 +396,23 @@ func (o EverTrustADCSConnector) MarshalJSON() ([]byte, error) {
 
 func (o EverTrustADCSConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
-	toSerialize["endPoint"] = o.EndPoint
 	toSerialize["caConfig"] = o.CaConfig
-	toSerialize["profile"] = o.Profile
 	toSerialize["domain"] = o.Domain
-	toSerialize["loginCredentials"] = o.LoginCredentials
+	toSerialize["endPoint"] = o.EndPoint
 	toSerialize["enrollmentCredentials"] = o.EnrollmentCredentials
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
+	toSerialize["loginCredentials"] = o.LoginCredentials
+	toSerialize["name"] = o.Name
+	toSerialize["profile"] = o.Profile
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	if o.Queue.IsSet() {
 		toSerialize["queue"] = o.Queue.Get()
 	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -426,14 +426,14 @@ func (o *EverTrustADCSConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
-		"type",
-		"endPoint",
 		"caConfig",
-		"profile",
 		"domain",
-		"loginCredentials",
+		"endPoint",
 		"enrollmentCredentials",
+		"loginCredentials",
+		"name",
+		"profile",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -463,17 +463,17 @@ func (o *EverTrustADCSConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "endPoint")
 		delete(additionalProperties, "caConfig")
-		delete(additionalProperties, "profile")
 		delete(additionalProperties, "domain")
-		delete(additionalProperties, "loginCredentials")
+		delete(additionalProperties, "endPoint")
 		delete(additionalProperties, "enrollmentCredentials")
-		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "loginCredentials")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "profile")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -23,20 +23,20 @@ var _ utils.MappedNullable = &NameshieldResponse{}
 // NameshieldResponse struct for NameshieldResponse
 type NameshieldResponse struct {
 	// Object internal ID
-	Id   string `json:"_id"`
-	Name string `json:"name"`
-	Type string `json:"type"`
+	Id string `json:"_id"`
 	// Name of the `api-key` [credentials](#tag/security.credentials) to use to authenticate on the PKI
 	ApiCredentials string `json:"apiCredentials"`
+	CustomerId     string `json:"customerId"`
 	// The testing environment will use https://ote-api.nameshield.net endpoint  and the production will use https://api.nameshield.net
 	Environment          string                     `json:"environment"`
+	Name                 string                     `json:"name"`
 	OrganizationId       string                     `json:"organizationId"`
 	ProductId            string                     `json:"productId"`
-	CustomerId           string                     `json:"customerId"`
-	Timeout              utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	Proxy                utils.NullableString       `json:"proxy,omitempty"`
 	Queue                utils.NullableString       `json:"queue,omitempty"`
 	Status               NullablePKIConnectorStatus `json:"status,omitempty"`
+	Timeout              utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string                     `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,16 +46,16 @@ type _NameshieldResponse NameshieldResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNameshieldResponse(id string, name string, type_ string, apiCredentials string, environment string, organizationId string, productId string, customerId string) *NameshieldResponse {
+func NewNameshieldResponse(id string, apiCredentials string, customerId string, environment string, name string, organizationId string, productId string, type_ string) *NameshieldResponse {
 	this := NameshieldResponse{}
 	this.Id = id
-	this.Name = name
-	this.Type = type_
 	this.ApiCredentials = apiCredentials
+	this.CustomerId = customerId
 	this.Environment = environment
+	this.Name = name
 	this.OrganizationId = organizationId
 	this.ProductId = productId
-	this.CustomerId = customerId
+	this.Type = type_
 	return &this
 }
 
@@ -91,54 +91,6 @@ func (o *NameshieldResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetName returns the Name field value
-func (o *NameshieldResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *NameshieldResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *NameshieldResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetType returns the Type field value
-func (o *NameshieldResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *NameshieldResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *NameshieldResponse) SetType(v string) {
-	o.Type = v
-}
-
 // GetApiCredentials returns the ApiCredentials field value
 func (o *NameshieldResponse) GetApiCredentials() string {
 	if o == nil {
@@ -163,6 +115,30 @@ func (o *NameshieldResponse) SetApiCredentials(v string) {
 	o.ApiCredentials = v
 }
 
+// GetCustomerId returns the CustomerId field value
+func (o *NameshieldResponse) GetCustomerId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CustomerId
+}
+
+// GetCustomerIdOk returns a tuple with the CustomerId field value
+// and a boolean to check if the value has been set.
+func (o *NameshieldResponse) GetCustomerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CustomerId, true
+}
+
+// SetCustomerId sets field value
+func (o *NameshieldResponse) SetCustomerId(v string) {
+	o.CustomerId = v
+}
+
 // GetEnvironment returns the Environment field value
 func (o *NameshieldResponse) GetEnvironment() string {
 	if o == nil {
@@ -185,6 +161,30 @@ func (o *NameshieldResponse) GetEnvironmentOk() (*string, bool) {
 // SetEnvironment sets field value
 func (o *NameshieldResponse) SetEnvironment(v string) {
 	o.Environment = v
+}
+
+// GetName returns the Name field value
+func (o *NameshieldResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *NameshieldResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *NameshieldResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetOrganizationId returns the OrganizationId field value
@@ -233,73 +233,6 @@ func (o *NameshieldResponse) GetProductIdOk() (*string, bool) {
 // SetProductId sets field value
 func (o *NameshieldResponse) SetProductId(v string) {
 	o.ProductId = v
-}
-
-// GetCustomerId returns the CustomerId field value
-func (o *NameshieldResponse) GetCustomerId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CustomerId
-}
-
-// GetCustomerIdOk returns a tuple with the CustomerId field value
-// and a boolean to check if the value has been set.
-func (o *NameshieldResponse) GetCustomerIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CustomerId, true
-}
-
-// SetCustomerId sets field value
-func (o *NameshieldResponse) SetCustomerId(v string) {
-	o.CustomerId = v
-}
-
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NameshieldResponse) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Timeout.Get()
-}
-
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NameshieldResponse) GetTimeoutOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
-}
-
-// HasTimeout returns a boolean if a field has been set.
-func (o *NameshieldResponse) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *NameshieldResponse) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *NameshieldResponse) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *NameshieldResponse) UnsetTimeout() {
-	o.Timeout.Unset()
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -431,6 +364,73 @@ func (o *NameshieldResponse) UnsetStatus() {
 	o.Status.Unset()
 }
 
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NameshieldResponse) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NameshieldResponse) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *NameshieldResponse) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *NameshieldResponse) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *NameshieldResponse) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *NameshieldResponse) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetType returns the Type field value
+func (o *NameshieldResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *NameshieldResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *NameshieldResponse) SetType(v string) {
+	o.Type = v
+}
+
 func (o NameshieldResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -442,16 +442,12 @@ func (o NameshieldResponse) MarshalJSON() ([]byte, error) {
 func (o NameshieldResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
 	toSerialize["apiCredentials"] = o.ApiCredentials
+	toSerialize["customerId"] = o.CustomerId
 	toSerialize["environment"] = o.Environment
+	toSerialize["name"] = o.Name
 	toSerialize["organizationId"] = o.OrganizationId
 	toSerialize["productId"] = o.ProductId
-	toSerialize["customerId"] = o.CustomerId
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
@@ -461,6 +457,10 @@ func (o NameshieldResponse) ToMap() (map[string]interface{}, error) {
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
 	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -475,13 +475,13 @@ func (o *NameshieldResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"name",
-		"type",
 		"apiCredentials",
+		"customerId",
 		"environment",
+		"name",
 		"organizationId",
 		"productId",
-		"customerId",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -512,17 +512,17 @@ func (o *NameshieldResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "apiCredentials")
+		delete(additionalProperties, "customerId")
 		delete(additionalProperties, "environment")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "organizationId")
 		delete(additionalProperties, "productId")
-		delete(additionalProperties, "customerId")
-		delete(additionalProperties, "timeout")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "queue")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

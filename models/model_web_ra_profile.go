@@ -22,29 +22,29 @@ var _ utils.MappedNullable = &WebRAProfile{}
 
 // WebRAProfile struct for WebRAProfile
 type WebRAProfile struct {
-	Module      string            `json:"module"`
-	Name        string            `json:"name"`
-	DisplayName []LocalizedString `json:"displayName,omitempty"`
-	Description []LocalizedString `json:"description,omitempty"`
+	AuthorizationLevels CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
 	// The authorization mode to use.  `authorized` uses permissions to allow enrollment,  `auto-validation` uses the validation ruleset, `auto-validation-authorized` uses the validation ruleset, and if enrollment is denied, uses the permissions
-	AuthorizationMode             string                                `json:"authorizationMode"`
-	Enabled                       bool                                  `json:"enabled"`
-	PkiConnector                  string                                `json:"pkiConnector"`
-	CsrDataMapping                map[string]string                     `json:"csrDataMapping,omitempty"`
-	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
-	AuthorizationLevels           CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
-	Triggers                      NullableCertificateProfileTriggers    `json:"triggers,omitempty"`
-	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
-	CryptoPolicy                  ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
-	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
-	CertificateTemplate           NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
-	RenewalPeriod                 utils.NullableString                  `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
-	ValidationRuleset             NullableValidationRuleset             `json:"validationRuleset,omitempty"`
+	AuthorizationMode   string                                `json:"authorizationMode"`
+	CertificateTemplate NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
+	CryptoPolicy        ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
+	CsrDataMapping      map[string]string                     `json:"csrDataMapping,omitempty"`
+	Description         []LocalizedString                     `json:"description,omitempty"`
+	DisplayName         []LocalizedString                     `json:"displayName,omitempty"`
 	// Representation of a datasource execution flow
-	DsFlow []DataSourceFlowEntry `json:"dsFlow,omitempty"`
+	DsFlow                        []DataSourceFlowEntry                 `json:"dsFlow,omitempty"`
+	Enabled                       bool                                  `json:"enabled"`
+	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
+	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
+	Module                        string                                `json:"module"`
+	Name                          string                                `json:"name"`
+	PkiConnector                  string                                `json:"pkiConnector"`
+	RenewalPeriod                 utils.NullableString                  `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
+	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
 	// Available from `2.8.2`
-	ThirdPartyDiscoverySync utils.NullableBool `json:"thirdPartyDiscoverySync,omitempty"`
+	ThirdPartyDiscoverySync utils.NullableBool                 `json:"thirdPartyDiscoverySync,omitempty"`
+	Triggers                NullableCertificateProfileTriggers `json:"triggers,omitempty"`
+	ValidationRuleset       NullableValidationRuleset          `json:"validationRuleset,omitempty"`
 	AdditionalProperties    map[string]interface{}
 }
 
@@ -54,16 +54,16 @@ type _WebRAProfile WebRAProfile
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAProfile(module string, name string, authorizationMode string, enabled bool, pkiConnector string, authorizationLevels CertificateProfileAuthorizationLevels, requestsPolicy RequestsPolicy, cryptoPolicy ManagedCertificateProfileCryptoPolicy, selfPermissions CertificateProfileSelfPermissions) *WebRAProfile {
+func NewWebRAProfile(authorizationLevels CertificateProfileAuthorizationLevels, authorizationMode string, cryptoPolicy ManagedCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions) *WebRAProfile {
 	this := WebRAProfile{}
+	this.AuthorizationLevels = authorizationLevels
+	this.AuthorizationMode = authorizationMode
+	this.CryptoPolicy = cryptoPolicy
+	this.Enabled = enabled
 	this.Module = module
 	this.Name = name
-	this.AuthorizationMode = authorizationMode
-	this.Enabled = enabled
 	this.PkiConnector = pkiConnector
-	this.AuthorizationLevels = authorizationLevels
 	this.RequestsPolicy = requestsPolicy
-	this.CryptoPolicy = cryptoPolicy
 	this.SelfPermissions = selfPermissions
 	var thirdPartyDiscoverySync bool = false
 	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
@@ -78,6 +78,353 @@ func NewWebRAProfileWithDefaults() *WebRAProfile {
 	var thirdPartyDiscoverySync bool = false
 	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
+}
+
+// GetAuthorizationLevels returns the AuthorizationLevels field value
+func (o *WebRAProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
+	if o == nil {
+		var ret CertificateProfileAuthorizationLevels
+		return ret
+	}
+
+	return o.AuthorizationLevels
+}
+
+// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
+// and a boolean to check if the value has been set.
+func (o *WebRAProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizationLevels, true
+}
+
+// SetAuthorizationLevels sets field value
+func (o *WebRAProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
+	o.AuthorizationLevels = v
+}
+
+// GetAuthorizationMode returns the AuthorizationMode field value
+func (o *WebRAProfile) GetAuthorizationMode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AuthorizationMode
+}
+
+// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value
+// and a boolean to check if the value has been set.
+func (o *WebRAProfile) GetAuthorizationModeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthorizationMode, true
+}
+
+// SetAuthorizationMode sets field value
+func (o *WebRAProfile) SetAuthorizationMode(v string) {
+	o.AuthorizationMode = v
+}
+
+// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAProfile) GetCertificateTemplate() CertificateTemplate {
+	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
+		var ret CertificateTemplate
+		return ret
+	}
+	return *o.CertificateTemplate.Get()
+}
+
+// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
+}
+
+// HasCertificateTemplate returns a boolean if a field has been set.
+func (o *WebRAProfile) HasCertificateTemplate() bool {
+	if o != nil && o.CertificateTemplate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
+func (o *WebRAProfile) SetCertificateTemplate(v CertificateTemplate) {
+	o.CertificateTemplate.Set(&v)
+}
+
+// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
+func (o *WebRAProfile) SetCertificateTemplateNil() {
+	o.CertificateTemplate.Set(nil)
+}
+
+// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
+func (o *WebRAProfile) UnsetCertificateTemplate() {
+	o.CertificateTemplate.Unset()
+}
+
+// GetCryptoPolicy returns the CryptoPolicy field value
+func (o *WebRAProfile) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
+	if o == nil {
+		var ret ManagedCertificateProfileCryptoPolicy
+		return ret
+	}
+
+	return o.CryptoPolicy
+}
+
+// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
+// and a boolean to check if the value has been set.
+func (o *WebRAProfile) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CryptoPolicy, true
+}
+
+// SetCryptoPolicy sets field value
+func (o *WebRAProfile) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
+	o.CryptoPolicy = v
+}
+
+// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAProfile) GetCsrDataMapping() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.CsrDataMapping
+}
+
+// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAProfile) GetCsrDataMappingOk() (*map[string]string, bool) {
+	if o == nil || utils.IsNil(o.CsrDataMapping) {
+		return nil, false
+	}
+	return &o.CsrDataMapping, true
+}
+
+// HasCsrDataMapping returns a boolean if a field has been set.
+func (o *WebRAProfile) HasCsrDataMapping() bool {
+	if o != nil && !utils.IsNil(o.CsrDataMapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
+func (o *WebRAProfile) SetCsrDataMapping(v map[string]string) {
+	o.CsrDataMapping = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAProfile) GetDescription() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAProfile) GetDescriptionOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *WebRAProfile) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
+func (o *WebRAProfile) SetDescription(v []LocalizedString) {
+	o.Description = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAProfile) GetDisplayName() []LocalizedString {
+	if o == nil {
+		var ret []LocalizedString
+		return ret
+	}
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
+	if o == nil || utils.IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *WebRAProfile) HasDisplayName() bool {
+	if o != nil && !utils.IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
+func (o *WebRAProfile) SetDisplayName(v []LocalizedString) {
+	o.DisplayName = v
+}
+
+// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAProfile) GetDsFlow() []DataSourceFlowEntry {
+	if o == nil {
+		var ret []DataSourceFlowEntry
+		return ret
+	}
+	return o.DsFlow
+}
+
+// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAProfile) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
+	if o == nil || utils.IsNil(o.DsFlow) {
+		return nil, false
+	}
+	return o.DsFlow, true
+}
+
+// HasDsFlow returns a boolean if a field has been set.
+func (o *WebRAProfile) HasDsFlow() bool {
+	if o != nil && !utils.IsNil(o.DsFlow) {
+		return true
+	}
+
+	return false
+}
+
+// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
+func (o *WebRAProfile) SetDsFlow(v []DataSourceFlowEntry) {
+	o.DsFlow = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *WebRAProfile) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *WebRAProfile) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *WebRAProfile) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAProfile) GetGradingPolicies() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.GradingPolicies
+}
+
+// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAProfile) GetGradingPoliciesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.GradingPolicies) {
+		return nil, false
+	}
+	return o.GradingPolicies, true
+}
+
+// HasGradingPolicies returns a boolean if a field has been set.
+func (o *WebRAProfile) HasGradingPolicies() bool {
+	if o != nil && !utils.IsNil(o.GradingPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
+func (o *WebRAProfile) SetGradingPolicies(v []string) {
+	o.GradingPolicies = v
+}
+
+// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAProfile) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
+	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
+		var ret MaxCertificatePerHolderPolicy
+		return ret
+	}
+	return *o.MaxCertificatePerHolderPolicy.Get()
+}
+
+// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAProfile) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
+}
+
+// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
+func (o *WebRAProfile) HasMaxCertificatePerHolderPolicy() bool {
+	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
+func (o *WebRAProfile) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
+	o.MaxCertificatePerHolderPolicy.Set(&v)
+}
+
+// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
+func (o *WebRAProfile) SetMaxCertificatePerHolderPolicyNil() {
+	o.MaxCertificatePerHolderPolicy.Set(nil)
+}
+
+// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
+func (o *WebRAProfile) UnsetMaxCertificatePerHolderPolicy() {
+	o.MaxCertificatePerHolderPolicy.Unset()
 }
 
 // GetModule returns the Module field value
@@ -128,120 +475,6 @@ func (o *WebRAProfile) SetName(v string) {
 	o.Name = v
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAProfile) GetDisplayName() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.DisplayName
-}
-
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAProfile) GetDisplayNameOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.DisplayName) {
-		return nil, false
-	}
-	return o.DisplayName, true
-}
-
-// HasDisplayName returns a boolean if a field has been set.
-func (o *WebRAProfile) HasDisplayName() bool {
-	if o != nil && !utils.IsNil(o.DisplayName) {
-		return true
-	}
-
-	return false
-}
-
-// SetDisplayName gets a reference to the given []LocalizedString and assigns it to the DisplayName field.
-func (o *WebRAProfile) SetDisplayName(v []LocalizedString) {
-	o.DisplayName = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAProfile) GetDescription() []LocalizedString {
-	if o == nil {
-		var ret []LocalizedString
-		return ret
-	}
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAProfile) GetDescriptionOk() ([]LocalizedString, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *WebRAProfile) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given []LocalizedString and assigns it to the Description field.
-func (o *WebRAProfile) SetDescription(v []LocalizedString) {
-	o.Description = v
-}
-
-// GetAuthorizationMode returns the AuthorizationMode field value
-func (o *WebRAProfile) GetAuthorizationMode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.AuthorizationMode
-}
-
-// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value
-// and a boolean to check if the value has been set.
-func (o *WebRAProfile) GetAuthorizationModeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthorizationMode, true
-}
-
-// SetAuthorizationMode sets field value
-func (o *WebRAProfile) SetAuthorizationMode(v string) {
-	o.AuthorizationMode = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *WebRAProfile) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *WebRAProfile) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *WebRAProfile) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
 // GetPkiConnector returns the PkiConnector field value
 func (o *WebRAProfile) GetPkiConnector() string {
 	if o == nil {
@@ -264,264 +497,6 @@ func (o *WebRAProfile) GetPkiConnectorOk() (*string, bool) {
 // SetPkiConnector sets field value
 func (o *WebRAProfile) SetPkiConnector(v string) {
 	o.PkiConnector = v
-}
-
-// GetCsrDataMapping returns the CsrDataMapping field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAProfile) GetCsrDataMapping() map[string]string {
-	if o == nil {
-		var ret map[string]string
-		return ret
-	}
-	return o.CsrDataMapping
-}
-
-// GetCsrDataMappingOk returns a tuple with the CsrDataMapping field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAProfile) GetCsrDataMappingOk() (*map[string]string, bool) {
-	if o == nil || utils.IsNil(o.CsrDataMapping) {
-		return nil, false
-	}
-	return &o.CsrDataMapping, true
-}
-
-// HasCsrDataMapping returns a boolean if a field has been set.
-func (o *WebRAProfile) HasCsrDataMapping() bool {
-	if o != nil && !utils.IsNil(o.CsrDataMapping) {
-		return true
-	}
-
-	return false
-}
-
-// SetCsrDataMapping gets a reference to the given map[string]string and assigns it to the CsrDataMapping field.
-func (o *WebRAProfile) SetCsrDataMapping(v map[string]string) {
-	o.CsrDataMapping = v
-}
-
-// GetMaxCertificatePerHolderPolicy returns the MaxCertificatePerHolderPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAProfile) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy {
-	if o == nil || utils.IsNil(o.MaxCertificatePerHolderPolicy.Get()) {
-		var ret MaxCertificatePerHolderPolicy
-		return ret
-	}
-	return *o.MaxCertificatePerHolderPolicy.Get()
-}
-
-// GetMaxCertificatePerHolderPolicyOk returns a tuple with the MaxCertificatePerHolderPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAProfile) GetMaxCertificatePerHolderPolicyOk() (*MaxCertificatePerHolderPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxCertificatePerHolderPolicy.Get(), o.MaxCertificatePerHolderPolicy.IsSet()
-}
-
-// HasMaxCertificatePerHolderPolicy returns a boolean if a field has been set.
-func (o *WebRAProfile) HasMaxCertificatePerHolderPolicy() bool {
-	if o != nil && o.MaxCertificatePerHolderPolicy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxCertificatePerHolderPolicy gets a reference to the given NullableMaxCertificatePerHolderPolicy and assigns it to the MaxCertificatePerHolderPolicy field.
-func (o *WebRAProfile) SetMaxCertificatePerHolderPolicy(v MaxCertificatePerHolderPolicy) {
-	o.MaxCertificatePerHolderPolicy.Set(&v)
-}
-
-// SetMaxCertificatePerHolderPolicyNil sets the value for MaxCertificatePerHolderPolicy to be an explicit nil
-func (o *WebRAProfile) SetMaxCertificatePerHolderPolicyNil() {
-	o.MaxCertificatePerHolderPolicy.Set(nil)
-}
-
-// UnsetMaxCertificatePerHolderPolicy ensures that no value is present for MaxCertificatePerHolderPolicy, not even an explicit nil
-func (o *WebRAProfile) UnsetMaxCertificatePerHolderPolicy() {
-	o.MaxCertificatePerHolderPolicy.Unset()
-}
-
-// GetAuthorizationLevels returns the AuthorizationLevels field value
-func (o *WebRAProfile) GetAuthorizationLevels() CertificateProfileAuthorizationLevels {
-	if o == nil {
-		var ret CertificateProfileAuthorizationLevels
-		return ret
-	}
-
-	return o.AuthorizationLevels
-}
-
-// GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field value
-// and a boolean to check if the value has been set.
-func (o *WebRAProfile) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthorizationLevels, true
-}
-
-// SetAuthorizationLevels sets field value
-func (o *WebRAProfile) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels) {
-	o.AuthorizationLevels = v
-}
-
-// GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAProfile) GetTriggers() CertificateProfileTriggers {
-	if o == nil || utils.IsNil(o.Triggers.Get()) {
-		var ret CertificateProfileTriggers
-		return ret
-	}
-	return *o.Triggers.Get()
-}
-
-// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAProfile) GetTriggersOk() (*CertificateProfileTriggers, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Triggers.Get(), o.Triggers.IsSet()
-}
-
-// HasTriggers returns a boolean if a field has been set.
-func (o *WebRAProfile) HasTriggers() bool {
-	if o != nil && o.Triggers.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTriggers gets a reference to the given NullableCertificateProfileTriggers and assigns it to the Triggers field.
-func (o *WebRAProfile) SetTriggers(v CertificateProfileTriggers) {
-	o.Triggers.Set(&v)
-}
-
-// SetTriggersNil sets the value for Triggers to be an explicit nil
-func (o *WebRAProfile) SetTriggersNil() {
-	o.Triggers.Set(nil)
-}
-
-// UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
-func (o *WebRAProfile) UnsetTriggers() {
-	o.Triggers.Unset()
-}
-
-// GetRequestsPolicy returns the RequestsPolicy field value
-func (o *WebRAProfile) GetRequestsPolicy() RequestsPolicy {
-	if o == nil {
-		var ret RequestsPolicy
-		return ret
-	}
-
-	return o.RequestsPolicy
-}
-
-// GetRequestsPolicyOk returns a tuple with the RequestsPolicy field value
-// and a boolean to check if the value has been set.
-func (o *WebRAProfile) GetRequestsPolicyOk() (*RequestsPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RequestsPolicy, true
-}
-
-// SetRequestsPolicy sets field value
-func (o *WebRAProfile) SetRequestsPolicy(v RequestsPolicy) {
-	o.RequestsPolicy = v
-}
-
-// GetCryptoPolicy returns the CryptoPolicy field value
-func (o *WebRAProfile) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy {
-	if o == nil {
-		var ret ManagedCertificateProfileCryptoPolicy
-		return ret
-	}
-
-	return o.CryptoPolicy
-}
-
-// GetCryptoPolicyOk returns a tuple with the CryptoPolicy field value
-// and a boolean to check if the value has been set.
-func (o *WebRAProfile) GetCryptoPolicyOk() (*ManagedCertificateProfileCryptoPolicy, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CryptoPolicy, true
-}
-
-// SetCryptoPolicy sets field value
-func (o *WebRAProfile) SetCryptoPolicy(v ManagedCertificateProfileCryptoPolicy) {
-	o.CryptoPolicy = v
-}
-
-// GetSelfPermissions returns the SelfPermissions field value
-func (o *WebRAProfile) GetSelfPermissions() CertificateProfileSelfPermissions {
-	if o == nil {
-		var ret CertificateProfileSelfPermissions
-		return ret
-	}
-
-	return o.SelfPermissions
-}
-
-// GetSelfPermissionsOk returns a tuple with the SelfPermissions field value
-// and a boolean to check if the value has been set.
-func (o *WebRAProfile) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SelfPermissions, true
-}
-
-// SetSelfPermissions sets field value
-func (o *WebRAProfile) SetSelfPermissions(v CertificateProfileSelfPermissions) {
-	o.SelfPermissions = v
-}
-
-// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAProfile) GetCertificateTemplate() CertificateTemplate {
-	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
-		var ret CertificateTemplate
-		return ret
-	}
-	return *o.CertificateTemplate.Get()
-}
-
-// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAProfile) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
-}
-
-// HasCertificateTemplate returns a boolean if a field has been set.
-func (o *WebRAProfile) HasCertificateTemplate() bool {
-	if o != nil && o.CertificateTemplate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
-func (o *WebRAProfile) SetCertificateTemplate(v CertificateTemplate) {
-	o.CertificateTemplate.Set(&v)
-}
-
-// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-func (o *WebRAProfile) SetCertificateTemplateNil() {
-	o.CertificateTemplate.Set(nil)
-}
-
-// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
-func (o *WebRAProfile) UnsetCertificateTemplate() {
-	o.CertificateTemplate.Unset()
 }
 
 // GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -567,113 +542,52 @@ func (o *WebRAProfile) UnsetRenewalPeriod() {
 	o.RenewalPeriod.Unset()
 }
 
-// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAProfile) GetGradingPolicies() []string {
+// GetRequestsPolicy returns the RequestsPolicy field value
+func (o *WebRAProfile) GetRequestsPolicy() RequestsPolicy {
 	if o == nil {
-		var ret []string
+		var ret RequestsPolicy
 		return ret
 	}
-	return o.GradingPolicies
+
+	return o.RequestsPolicy
 }
 
-// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
+// GetRequestsPolicyOk returns a tuple with the RequestsPolicy field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAProfile) GetGradingPoliciesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.GradingPolicies) {
-		return nil, false
-	}
-	return o.GradingPolicies, true
-}
-
-// HasGradingPolicies returns a boolean if a field has been set.
-func (o *WebRAProfile) HasGradingPolicies() bool {
-	if o != nil && !utils.IsNil(o.GradingPolicies) {
-		return true
-	}
-
-	return false
-}
-
-// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
-func (o *WebRAProfile) SetGradingPolicies(v []string) {
-	o.GradingPolicies = v
-}
-
-// GetValidationRuleset returns the ValidationRuleset field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAProfile) GetValidationRuleset() ValidationRuleset {
-	if o == nil || utils.IsNil(o.ValidationRuleset.Get()) {
-		var ret ValidationRuleset
-		return ret
-	}
-	return *o.ValidationRuleset.Get()
-}
-
-// GetValidationRulesetOk returns a tuple with the ValidationRuleset field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAProfile) GetValidationRulesetOk() (*ValidationRuleset, bool) {
+func (o *WebRAProfile) GetRequestsPolicyOk() (*RequestsPolicy, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ValidationRuleset.Get(), o.ValidationRuleset.IsSet()
+	return &o.RequestsPolicy, true
 }
 
-// HasValidationRuleset returns a boolean if a field has been set.
-func (o *WebRAProfile) HasValidationRuleset() bool {
-	if o != nil && o.ValidationRuleset.IsSet() {
-		return true
-	}
-
-	return false
+// SetRequestsPolicy sets field value
+func (o *WebRAProfile) SetRequestsPolicy(v RequestsPolicy) {
+	o.RequestsPolicy = v
 }
 
-// SetValidationRuleset gets a reference to the given NullableValidationRuleset and assigns it to the ValidationRuleset field.
-func (o *WebRAProfile) SetValidationRuleset(v ValidationRuleset) {
-	o.ValidationRuleset.Set(&v)
-}
-
-// SetValidationRulesetNil sets the value for ValidationRuleset to be an explicit nil
-func (o *WebRAProfile) SetValidationRulesetNil() {
-	o.ValidationRuleset.Set(nil)
-}
-
-// UnsetValidationRuleset ensures that no value is present for ValidationRuleset, not even an explicit nil
-func (o *WebRAProfile) UnsetValidationRuleset() {
-	o.ValidationRuleset.Unset()
-}
-
-// GetDsFlow returns the DsFlow field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAProfile) GetDsFlow() []DataSourceFlowEntry {
+// GetSelfPermissions returns the SelfPermissions field value
+func (o *WebRAProfile) GetSelfPermissions() CertificateProfileSelfPermissions {
 	if o == nil {
-		var ret []DataSourceFlowEntry
+		var ret CertificateProfileSelfPermissions
 		return ret
 	}
-	return o.DsFlow
+
+	return o.SelfPermissions
 }
 
-// GetDsFlowOk returns a tuple with the DsFlow field value if set, nil otherwise
+// GetSelfPermissionsOk returns a tuple with the SelfPermissions field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAProfile) GetDsFlowOk() ([]DataSourceFlowEntry, bool) {
-	if o == nil || utils.IsNil(o.DsFlow) {
+func (o *WebRAProfile) GetSelfPermissionsOk() (*CertificateProfileSelfPermissions, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DsFlow, true
+	return &o.SelfPermissions, true
 }
 
-// HasDsFlow returns a boolean if a field has been set.
-func (o *WebRAProfile) HasDsFlow() bool {
-	if o != nil && !utils.IsNil(o.DsFlow) {
-		return true
-	}
-
-	return false
-}
-
-// SetDsFlow gets a reference to the given []DataSourceFlowEntry and assigns it to the DsFlow field.
-func (o *WebRAProfile) SetDsFlow(v []DataSourceFlowEntry) {
-	o.DsFlow = v
+// SetSelfPermissions sets field value
+func (o *WebRAProfile) SetSelfPermissions(v CertificateProfileSelfPermissions) {
+	o.SelfPermissions = v
 }
 
 // GetThirdPartyDiscoverySync returns the ThirdPartyDiscoverySync field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -719,6 +633,92 @@ func (o *WebRAProfile) UnsetThirdPartyDiscoverySync() {
 	o.ThirdPartyDiscoverySync.Unset()
 }
 
+// GetTriggers returns the Triggers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAProfile) GetTriggers() CertificateProfileTriggers {
+	if o == nil || utils.IsNil(o.Triggers.Get()) {
+		var ret CertificateProfileTriggers
+		return ret
+	}
+	return *o.Triggers.Get()
+}
+
+// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAProfile) GetTriggersOk() (*CertificateProfileTriggers, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Triggers.Get(), o.Triggers.IsSet()
+}
+
+// HasTriggers returns a boolean if a field has been set.
+func (o *WebRAProfile) HasTriggers() bool {
+	if o != nil && o.Triggers.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggers gets a reference to the given NullableCertificateProfileTriggers and assigns it to the Triggers field.
+func (o *WebRAProfile) SetTriggers(v CertificateProfileTriggers) {
+	o.Triggers.Set(&v)
+}
+
+// SetTriggersNil sets the value for Triggers to be an explicit nil
+func (o *WebRAProfile) SetTriggersNil() {
+	o.Triggers.Set(nil)
+}
+
+// UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
+func (o *WebRAProfile) UnsetTriggers() {
+	o.Triggers.Unset()
+}
+
+// GetValidationRuleset returns the ValidationRuleset field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAProfile) GetValidationRuleset() ValidationRuleset {
+	if o == nil || utils.IsNil(o.ValidationRuleset.Get()) {
+		var ret ValidationRuleset
+		return ret
+	}
+	return *o.ValidationRuleset.Get()
+}
+
+// GetValidationRulesetOk returns a tuple with the ValidationRuleset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAProfile) GetValidationRulesetOk() (*ValidationRuleset, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ValidationRuleset.Get(), o.ValidationRuleset.IsSet()
+}
+
+// HasValidationRuleset returns a boolean if a field has been set.
+func (o *WebRAProfile) HasValidationRuleset() bool {
+	if o != nil && o.ValidationRuleset.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetValidationRuleset gets a reference to the given NullableValidationRuleset and assigns it to the ValidationRuleset field.
+func (o *WebRAProfile) SetValidationRuleset(v ValidationRuleset) {
+	o.ValidationRuleset.Set(&v)
+}
+
+// SetValidationRulesetNil sets the value for ValidationRuleset to be an explicit nil
+func (o *WebRAProfile) SetValidationRulesetNil() {
+	o.ValidationRuleset.Set(nil)
+}
+
+// UnsetValidationRuleset ensures that no value is present for ValidationRuleset, not even an explicit nil
+func (o *WebRAProfile) UnsetValidationRuleset() {
+	o.ValidationRuleset.Unset()
+}
+
 func (o WebRAProfile) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -729,47 +729,47 @@ func (o WebRAProfile) MarshalJSON() ([]byte, error) {
 
 func (o WebRAProfile) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
-	toSerialize["name"] = o.Name
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
+	toSerialize["authorizationLevels"] = o.AuthorizationLevels
+	toSerialize["authorizationMode"] = o.AuthorizationMode
+	if o.CertificateTemplate.IsSet() {
+		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
+	}
+	toSerialize["cryptoPolicy"] = o.CryptoPolicy
+	if o.CsrDataMapping != nil {
+		toSerialize["csrDataMapping"] = o.CsrDataMapping
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["authorizationMode"] = o.AuthorizationMode
-	toSerialize["enabled"] = o.Enabled
-	toSerialize["pkiConnector"] = o.PkiConnector
-	if o.CsrDataMapping != nil {
-		toSerialize["csrDataMapping"] = o.CsrDataMapping
-	}
-	if o.MaxCertificatePerHolderPolicy.IsSet() {
-		toSerialize["maxCertificatePerHolderPolicy"] = o.MaxCertificatePerHolderPolicy.Get()
-	}
-	toSerialize["authorizationLevels"] = o.AuthorizationLevels
-	if o.Triggers.IsSet() {
-		toSerialize["triggers"] = o.Triggers.Get()
-	}
-	toSerialize["requestsPolicy"] = o.RequestsPolicy
-	toSerialize["cryptoPolicy"] = o.CryptoPolicy
-	toSerialize["selfPermissions"] = o.SelfPermissions
-	if o.CertificateTemplate.IsSet() {
-		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
-	}
-	if o.RenewalPeriod.IsSet() {
-		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
-	}
-	if o.GradingPolicies != nil {
-		toSerialize["gradingPolicies"] = o.GradingPolicies
-	}
-	if o.ValidationRuleset.IsSet() {
-		toSerialize["validationRuleset"] = o.ValidationRuleset.Get()
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
 	}
 	if o.DsFlow != nil {
 		toSerialize["dsFlow"] = o.DsFlow
 	}
+	toSerialize["enabled"] = o.Enabled
+	if o.GradingPolicies != nil {
+		toSerialize["gradingPolicies"] = o.GradingPolicies
+	}
+	if o.MaxCertificatePerHolderPolicy.IsSet() {
+		toSerialize["maxCertificatePerHolderPolicy"] = o.MaxCertificatePerHolderPolicy.Get()
+	}
+	toSerialize["module"] = o.Module
+	toSerialize["name"] = o.Name
+	toSerialize["pkiConnector"] = o.PkiConnector
+	if o.RenewalPeriod.IsSet() {
+		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
+	}
+	toSerialize["requestsPolicy"] = o.RequestsPolicy
+	toSerialize["selfPermissions"] = o.SelfPermissions
 	if o.ThirdPartyDiscoverySync.IsSet() {
 		toSerialize["thirdPartyDiscoverySync"] = o.ThirdPartyDiscoverySync.Get()
+	}
+	if o.Triggers.IsSet() {
+		toSerialize["triggers"] = o.Triggers.Get()
+	}
+	if o.ValidationRuleset.IsSet() {
+		toSerialize["validationRuleset"] = o.ValidationRuleset.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -784,14 +784,14 @@ func (o *WebRAProfile) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"authorizationLevels",
+		"authorizationMode",
+		"cryptoPolicy",
+		"enabled",
 		"module",
 		"name",
-		"authorizationMode",
-		"enabled",
 		"pkiConnector",
-		"authorizationLevels",
 		"requestsPolicy",
-		"cryptoPolicy",
 		"selfPermissions",
 	}
 
@@ -822,26 +822,26 @@ func (o *WebRAProfile) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorizationLevels")
+		delete(additionalProperties, "authorizationMode")
+		delete(additionalProperties, "certificateTemplate")
+		delete(additionalProperties, "cryptoPolicy")
+		delete(additionalProperties, "csrDataMapping")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "dsFlow")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "gradingPolicies")
+		delete(additionalProperties, "maxCertificatePerHolderPolicy")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "authorizationMode")
-		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "pkiConnector")
-		delete(additionalProperties, "csrDataMapping")
-		delete(additionalProperties, "maxCertificatePerHolderPolicy")
-		delete(additionalProperties, "authorizationLevels")
-		delete(additionalProperties, "triggers")
-		delete(additionalProperties, "requestsPolicy")
-		delete(additionalProperties, "cryptoPolicy")
-		delete(additionalProperties, "selfPermissions")
-		delete(additionalProperties, "certificateTemplate")
 		delete(additionalProperties, "renewalPeriod")
-		delete(additionalProperties, "gradingPolicies")
-		delete(additionalProperties, "validationRuleset")
-		delete(additionalProperties, "dsFlow")
+		delete(additionalProperties, "requestsPolicy")
+		delete(additionalProperties, "selfPermissions")
 		delete(additionalProperties, "thirdPartyDiscoverySync")
+		delete(additionalProperties, "triggers")
+		delete(additionalProperties, "validationRuleset")
 		o.AdditionalProperties = additionalProperties
 	}
 

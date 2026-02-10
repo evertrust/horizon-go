@@ -22,10 +22,10 @@ var _ utils.MappedNullable = &Permission{}
 
 // Permission struct for Permission
 type Permission struct {
-	// The permission string, in the Horizon format : `<group>:<resource>:<scope>:<action>`
-	Value string `json:"value"`
 	// The filter to apply to the permission in the HPQL format
-	Filter               utils.NullableString `json:"filter,omitempty"`
+	Filter utils.NullableString `json:"filter,omitempty"`
+	// The permission string, in the Horizon format : `<group>:<resource>:<scope>:<action>`
+	Value                string `json:"value"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -47,30 +47,6 @@ func NewPermission(value string) *Permission {
 func NewPermissionWithDefaults() *Permission {
 	this := Permission{}
 	return &this
-}
-
-// GetValue returns the Value field value
-func (o *Permission) GetValue() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Value
-}
-
-// GetValueOk returns a tuple with the Value field value
-// and a boolean to check if the value has been set.
-func (o *Permission) GetValueOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Value, true
-}
-
-// SetValue sets field value
-func (o *Permission) SetValue(v string) {
-	o.Value = v
 }
 
 // GetFilter returns the Filter field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -116,6 +92,30 @@ func (o *Permission) UnsetFilter() {
 	o.Filter.Unset()
 }
 
+// GetValue returns the Value field value
+func (o *Permission) GetValue() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *Permission) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
+// SetValue sets field value
+func (o *Permission) SetValue(v string) {
+	o.Value = v
+}
+
 func (o Permission) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -126,10 +126,10 @@ func (o Permission) MarshalJSON() ([]byte, error) {
 
 func (o Permission) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["value"] = o.Value
 	if o.Filter.IsSet() {
 		toSerialize["filter"] = o.Filter.Get()
 	}
+	toSerialize["value"] = o.Value
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -173,8 +173,8 @@ func (o *Permission) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "value")
 		delete(additionalProperties, "filter")
+		delete(additionalProperties, "value")
 		o.AdditionalProperties = additionalProperties
 	}
 

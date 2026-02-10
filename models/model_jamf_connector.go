@@ -22,15 +22,15 @@ var _ utils.MappedNullable = &JamfConnector{}
 
 // JamfConnector struct for JamfConnector
 type JamfConnector struct {
-	Type                string               `json:"type"`
-	Name                string               `json:"name"`
-	ThrottleDuration    string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	ThrottleParallelism int64                `json:"throttleParallelism"`
-	Timeout             utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Proxy               utils.NullableString `json:"proxy,omitempty"`
-	Endpoint            string               `json:"endpoint"`
 	// Name of the `password` [credentials](#tag/security.credentials) containing the account to authenticate on JAMF
-	Credentials          string `json:"credentials"`
+	Credentials          string               `json:"credentials"`
+	Endpoint             string               `json:"endpoint"`
+	Name                 string               `json:"name"`
+	Proxy                utils.NullableString `json:"proxy,omitempty"`
+	ThrottleDuration     string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	ThrottleParallelism  int64                `json:"throttleParallelism"`
+	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string               `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,14 +40,14 @@ type _JamfConnector JamfConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJamfConnector(type_ string, name string, throttleDuration string, throttleParallelism int64, endpoint string, credentials string) *JamfConnector {
+func NewJamfConnector(credentials string, endpoint string, name string, throttleDuration string, throttleParallelism int64, type_ string) *JamfConnector {
 	this := JamfConnector{}
-	this.Type = type_
+	this.Credentials = credentials
+	this.Endpoint = endpoint
 	this.Name = name
 	this.ThrottleDuration = throttleDuration
 	this.ThrottleParallelism = throttleParallelism
-	this.Endpoint = endpoint
-	this.Credentials = credentials
+	this.Type = type_
 	return &this
 }
 
@@ -59,28 +59,52 @@ func NewJamfConnectorWithDefaults() *JamfConnector {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *JamfConnector) GetType() string {
+// GetCredentials returns the Credentials field value
+func (o *JamfConnector) GetCredentials() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.Credentials
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
-func (o *JamfConnector) GetTypeOk() (*string, bool) {
+func (o *JamfConnector) GetCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.Credentials, true
 }
 
-// SetType sets field value
-func (o *JamfConnector) SetType(v string) {
-	o.Type = v
+// SetCredentials sets field value
+func (o *JamfConnector) SetCredentials(v string) {
+	o.Credentials = v
+}
+
+// GetEndpoint returns the Endpoint field value
+func (o *JamfConnector) GetEndpoint() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Endpoint
+}
+
+// GetEndpointOk returns a tuple with the Endpoint field value
+// and a boolean to check if the value has been set.
+func (o *JamfConnector) GetEndpointOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Endpoint, true
+}
+
+// SetEndpoint sets field value
+func (o *JamfConnector) SetEndpoint(v string) {
+	o.Endpoint = v
 }
 
 // GetName returns the Name field value
@@ -105,6 +129,49 @@ func (o *JamfConnector) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *JamfConnector) SetName(v string) {
 	o.Name = v
+}
+
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *JamfConnector) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Proxy.Get()
+}
+
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *JamfConnector) GetProxyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Proxy.Get(), o.Proxy.IsSet()
+}
+
+// HasProxy returns a boolean if a field has been set.
+func (o *JamfConnector) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *JamfConnector) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *JamfConnector) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *JamfConnector) UnsetProxy() {
+	o.Proxy.Unset()
 }
 
 // GetThrottleDuration returns the ThrottleDuration field value
@@ -198,95 +265,28 @@ func (o *JamfConnector) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *JamfConnector) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Proxy.Get()
-}
-
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *JamfConnector) GetProxyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
-}
-
-// HasProxy returns a boolean if a field has been set.
-func (o *JamfConnector) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *JamfConnector) SetProxy(v string) {
-	o.Proxy.Set(&v)
-}
-
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *JamfConnector) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *JamfConnector) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetEndpoint returns the Endpoint field value
-func (o *JamfConnector) GetEndpoint() string {
+// GetType returns the Type field value
+func (o *JamfConnector) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Endpoint
+	return o.Type
 }
 
-// GetEndpointOk returns a tuple with the Endpoint field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *JamfConnector) GetEndpointOk() (*string, bool) {
+func (o *JamfConnector) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Endpoint, true
+	return &o.Type, true
 }
 
-// SetEndpoint sets field value
-func (o *JamfConnector) SetEndpoint(v string) {
-	o.Endpoint = v
-}
-
-// GetCredentials returns the Credentials field value
-func (o *JamfConnector) GetCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Credentials
-}
-
-// GetCredentialsOk returns a tuple with the Credentials field value
-// and a boolean to check if the value has been set.
-func (o *JamfConnector) GetCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Credentials, true
-}
-
-// SetCredentials sets field value
-func (o *JamfConnector) SetCredentials(v string) {
-	o.Credentials = v
+// SetType sets field value
+func (o *JamfConnector) SetType(v string) {
+	o.Type = v
 }
 
 func (o JamfConnector) MarshalJSON() ([]byte, error) {
@@ -299,18 +299,18 @@ func (o JamfConnector) MarshalJSON() ([]byte, error) {
 
 func (o JamfConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
+	toSerialize["credentials"] = o.Credentials
+	toSerialize["endpoint"] = o.Endpoint
 	toSerialize["name"] = o.Name
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
 	toSerialize["throttleDuration"] = o.ThrottleDuration
 	toSerialize["throttleParallelism"] = o.ThrottleParallelism
 	if o.Timeout.IsSet() {
 		toSerialize["timeout"] = o.Timeout.Get()
 	}
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
-	}
-	toSerialize["endpoint"] = o.Endpoint
-	toSerialize["credentials"] = o.Credentials
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -324,12 +324,12 @@ func (o *JamfConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
+		"credentials",
+		"endpoint",
 		"name",
 		"throttleDuration",
 		"throttleParallelism",
-		"endpoint",
-		"credentials",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -359,14 +359,14 @@ func (o *JamfConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "endpoint")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "throttleDuration")
 		delete(additionalProperties, "throttleParallelism")
 		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "endpoint")
-		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

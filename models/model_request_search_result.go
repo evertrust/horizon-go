@@ -23,24 +23,24 @@ var _ utils.MappedNullable = &RequestSearchResult{}
 // RequestSearchResult struct for RequestSearchResult
 type RequestSearchResult struct {
 	// The ID of the request
-	Id       string         `json:"_id"`
-	Module   *Module        `json:"module,omitempty"`
-	Workflow *Workflow      `json:"workflow,omitempty"`
-	Status   *RequestStatus `json:"status,omitempty"`
-	// Any profile configured for a protocol in Horizon
-	Profile *string `json:"profile,omitempty"`
-	// Free-text field editable by the requester to provider more context on the request
-	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
-	// The id of the certificate in the request
-	CertificateId utils.NullableString `json:"certificateId,omitempty"`
+	Id string `json:"_id"`
 	// The certificate associated with the request
 	Certificate NullableCertificate `json:"certificate,omitempty"`
+	// The id of the certificate in the request
+	CertificateId utils.NullableString `json:"certificateId,omitempty"`
 	// Associated certificate's Distinguished Name
 	Dn *string `json:"dn,omitempty"`
 	// The computed holderID for this request. This is set by the system based on DN and SANs
 	HolderId *string `json:"holderId,omitempty"`
+	Module   *Module `json:"module,omitempty"`
 	// The permissions of the principal on this request.
-	Permissions          RequestPermissions `json:"permissions"`
+	Permissions RequestPermissions `json:"permissions"`
+	// Any profile configured for a protocol in Horizon
+	Profile *string `json:"profile,omitempty"`
+	// Free-text field editable by the requester to provider more context on the request
+	RequesterComment     utils.NullableString `json:"requesterComment,omitempty"`
+	Status               *RequestStatus       `json:"status,omitempty"`
+	Workflow             *Workflow            `json:"workflow,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -89,6 +89,156 @@ func (o *RequestSearchResult) SetId(v string) {
 	o.Id = v
 }
 
+// GetCertificate returns the Certificate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestSearchResult) GetCertificate() Certificate {
+	if o == nil || utils.IsNil(o.Certificate.Get()) {
+		var ret Certificate
+		return ret
+	}
+	return *o.Certificate.Get()
+}
+
+// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestSearchResult) GetCertificateOk() (*Certificate, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Certificate.Get(), o.Certificate.IsSet()
+}
+
+// HasCertificate returns a boolean if a field has been set.
+func (o *RequestSearchResult) HasCertificate() bool {
+	if o != nil && o.Certificate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificate gets a reference to the given NullableCertificate and assigns it to the Certificate field.
+func (o *RequestSearchResult) SetCertificate(v Certificate) {
+	o.Certificate.Set(&v)
+}
+
+// SetCertificateNil sets the value for Certificate to be an explicit nil
+func (o *RequestSearchResult) SetCertificateNil() {
+	o.Certificate.Set(nil)
+}
+
+// UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
+func (o *RequestSearchResult) UnsetCertificate() {
+	o.Certificate.Unset()
+}
+
+// GetCertificateId returns the CertificateId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestSearchResult) GetCertificateId() string {
+	if o == nil || utils.IsNil(o.CertificateId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CertificateId.Get()
+}
+
+// GetCertificateIdOk returns a tuple with the CertificateId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestSearchResult) GetCertificateIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CertificateId.Get(), o.CertificateId.IsSet()
+}
+
+// HasCertificateId returns a boolean if a field has been set.
+func (o *RequestSearchResult) HasCertificateId() bool {
+	if o != nil && o.CertificateId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateId gets a reference to the given NullableString and assigns it to the CertificateId field.
+func (o *RequestSearchResult) SetCertificateId(v string) {
+	o.CertificateId.Set(&v)
+}
+
+// SetCertificateIdNil sets the value for CertificateId to be an explicit nil
+func (o *RequestSearchResult) SetCertificateIdNil() {
+	o.CertificateId.Set(nil)
+}
+
+// UnsetCertificateId ensures that no value is present for CertificateId, not even an explicit nil
+func (o *RequestSearchResult) UnsetCertificateId() {
+	o.CertificateId.Unset()
+}
+
+// GetDn returns the Dn field value if set, zero value otherwise.
+func (o *RequestSearchResult) GetDn() string {
+	if o == nil || utils.IsNil(o.Dn) {
+		var ret string
+		return ret
+	}
+	return *o.Dn
+}
+
+// GetDnOk returns a tuple with the Dn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestSearchResult) GetDnOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Dn) {
+		return nil, false
+	}
+	return o.Dn, true
+}
+
+// HasDn returns a boolean if a field has been set.
+func (o *RequestSearchResult) HasDn() bool {
+	if o != nil && !utils.IsNil(o.Dn) {
+		return true
+	}
+
+	return false
+}
+
+// SetDn gets a reference to the given string and assigns it to the Dn field.
+func (o *RequestSearchResult) SetDn(v string) {
+	o.Dn = &v
+}
+
+// GetHolderId returns the HolderId field value if set, zero value otherwise.
+func (o *RequestSearchResult) GetHolderId() string {
+	if o == nil || utils.IsNil(o.HolderId) {
+		var ret string
+		return ret
+	}
+	return *o.HolderId
+}
+
+// GetHolderIdOk returns a tuple with the HolderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RequestSearchResult) GetHolderIdOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.HolderId) {
+		return nil, false
+	}
+	return o.HolderId, true
+}
+
+// HasHolderId returns a boolean if a field has been set.
+func (o *RequestSearchResult) HasHolderId() bool {
+	if o != nil && !utils.IsNil(o.HolderId) {
+		return true
+	}
+
+	return false
+}
+
+// SetHolderId gets a reference to the given string and assigns it to the HolderId field.
+func (o *RequestSearchResult) SetHolderId(v string) {
+	o.HolderId = &v
+}
+
 // GetModule returns the Module field value if set, zero value otherwise.
 func (o *RequestSearchResult) GetModule() Module {
 	if o == nil || utils.IsNil(o.Module) {
@@ -121,68 +271,28 @@ func (o *RequestSearchResult) SetModule(v Module) {
 	o.Module = &v
 }
 
-// GetWorkflow returns the Workflow field value if set, zero value otherwise.
-func (o *RequestSearchResult) GetWorkflow() Workflow {
-	if o == nil || utils.IsNil(o.Workflow) {
-		var ret Workflow
+// GetPermissions returns the Permissions field value
+func (o *RequestSearchResult) GetPermissions() RequestPermissions {
+	if o == nil {
+		var ret RequestPermissions
 		return ret
 	}
-	return *o.Workflow
+
+	return o.Permissions
 }
 
-// GetWorkflowOk returns a tuple with the Workflow field value if set, nil otherwise
+// GetPermissionsOk returns a tuple with the Permissions field value
 // and a boolean to check if the value has been set.
-func (o *RequestSearchResult) GetWorkflowOk() (*Workflow, bool) {
-	if o == nil || utils.IsNil(o.Workflow) {
+func (o *RequestSearchResult) GetPermissionsOk() (*RequestPermissions, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Workflow, true
+	return &o.Permissions, true
 }
 
-// HasWorkflow returns a boolean if a field has been set.
-func (o *RequestSearchResult) HasWorkflow() bool {
-	if o != nil && !utils.IsNil(o.Workflow) {
-		return true
-	}
-
-	return false
-}
-
-// SetWorkflow gets a reference to the given Workflow and assigns it to the Workflow field.
-func (o *RequestSearchResult) SetWorkflow(v Workflow) {
-	o.Workflow = &v
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *RequestSearchResult) GetStatus() RequestStatus {
-	if o == nil || utils.IsNil(o.Status) {
-		var ret RequestStatus
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RequestSearchResult) GetStatusOk() (*RequestStatus, bool) {
-	if o == nil || utils.IsNil(o.Status) {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *RequestSearchResult) HasStatus() bool {
-	if o != nil && !utils.IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given RequestStatus and assigns it to the Status field.
-func (o *RequestSearchResult) SetStatus(v RequestStatus) {
-	o.Status = &v
+// SetPermissions sets field value
+func (o *RequestSearchResult) SetPermissions(v RequestPermissions) {
+	o.Permissions = v
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
@@ -260,178 +370,68 @@ func (o *RequestSearchResult) UnsetRequesterComment() {
 	o.RequesterComment.Unset()
 }
 
-// GetCertificateId returns the CertificateId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestSearchResult) GetCertificateId() string {
-	if o == nil || utils.IsNil(o.CertificateId.Get()) {
-		var ret string
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *RequestSearchResult) GetStatus() RequestStatus {
+	if o == nil || utils.IsNil(o.Status) {
+		var ret RequestStatus
 		return ret
 	}
-	return *o.CertificateId.Get()
+	return *o.Status
 }
 
-// GetCertificateIdOk returns a tuple with the CertificateId field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestSearchResult) GetCertificateIdOk() (*string, bool) {
-	if o == nil {
+func (o *RequestSearchResult) GetStatusOk() (*RequestStatus, bool) {
+	if o == nil || utils.IsNil(o.Status) {
 		return nil, false
 	}
-	return o.CertificateId.Get(), o.CertificateId.IsSet()
+	return o.Status, true
 }
 
-// HasCertificateId returns a boolean if a field has been set.
-func (o *RequestSearchResult) HasCertificateId() bool {
-	if o != nil && o.CertificateId.IsSet() {
+// HasStatus returns a boolean if a field has been set.
+func (o *RequestSearchResult) HasStatus() bool {
+	if o != nil && !utils.IsNil(o.Status) {
 		return true
 	}
 
 	return false
 }
 
-// SetCertificateId gets a reference to the given NullableString and assigns it to the CertificateId field.
-func (o *RequestSearchResult) SetCertificateId(v string) {
-	o.CertificateId.Set(&v)
+// SetStatus gets a reference to the given RequestStatus and assigns it to the Status field.
+func (o *RequestSearchResult) SetStatus(v RequestStatus) {
+	o.Status = &v
 }
 
-// SetCertificateIdNil sets the value for CertificateId to be an explicit nil
-func (o *RequestSearchResult) SetCertificateIdNil() {
-	o.CertificateId.Set(nil)
-}
-
-// UnsetCertificateId ensures that no value is present for CertificateId, not even an explicit nil
-func (o *RequestSearchResult) UnsetCertificateId() {
-	o.CertificateId.Unset()
-}
-
-// GetCertificate returns the Certificate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestSearchResult) GetCertificate() Certificate {
-	if o == nil || utils.IsNil(o.Certificate.Get()) {
-		var ret Certificate
+// GetWorkflow returns the Workflow field value if set, zero value otherwise.
+func (o *RequestSearchResult) GetWorkflow() Workflow {
+	if o == nil || utils.IsNil(o.Workflow) {
+		var ret Workflow
 		return ret
 	}
-	return *o.Certificate.Get()
+	return *o.Workflow
 }
 
-// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
+// GetWorkflowOk returns a tuple with the Workflow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestSearchResult) GetCertificateOk() (*Certificate, bool) {
-	if o == nil {
+func (o *RequestSearchResult) GetWorkflowOk() (*Workflow, bool) {
+	if o == nil || utils.IsNil(o.Workflow) {
 		return nil, false
 	}
-	return o.Certificate.Get(), o.Certificate.IsSet()
+	return o.Workflow, true
 }
 
-// HasCertificate returns a boolean if a field has been set.
-func (o *RequestSearchResult) HasCertificate() bool {
-	if o != nil && o.Certificate.IsSet() {
+// HasWorkflow returns a boolean if a field has been set.
+func (o *RequestSearchResult) HasWorkflow() bool {
+	if o != nil && !utils.IsNil(o.Workflow) {
 		return true
 	}
 
 	return false
 }
 
-// SetCertificate gets a reference to the given NullableCertificate and assigns it to the Certificate field.
-func (o *RequestSearchResult) SetCertificate(v Certificate) {
-	o.Certificate.Set(&v)
-}
-
-// SetCertificateNil sets the value for Certificate to be an explicit nil
-func (o *RequestSearchResult) SetCertificateNil() {
-	o.Certificate.Set(nil)
-}
-
-// UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
-func (o *RequestSearchResult) UnsetCertificate() {
-	o.Certificate.Unset()
-}
-
-// GetDn returns the Dn field value if set, zero value otherwise.
-func (o *RequestSearchResult) GetDn() string {
-	if o == nil || utils.IsNil(o.Dn) {
-		var ret string
-		return ret
-	}
-	return *o.Dn
-}
-
-// GetDnOk returns a tuple with the Dn field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RequestSearchResult) GetDnOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Dn) {
-		return nil, false
-	}
-	return o.Dn, true
-}
-
-// HasDn returns a boolean if a field has been set.
-func (o *RequestSearchResult) HasDn() bool {
-	if o != nil && !utils.IsNil(o.Dn) {
-		return true
-	}
-
-	return false
-}
-
-// SetDn gets a reference to the given string and assigns it to the Dn field.
-func (o *RequestSearchResult) SetDn(v string) {
-	o.Dn = &v
-}
-
-// GetHolderId returns the HolderId field value if set, zero value otherwise.
-func (o *RequestSearchResult) GetHolderId() string {
-	if o == nil || utils.IsNil(o.HolderId) {
-		var ret string
-		return ret
-	}
-	return *o.HolderId
-}
-
-// GetHolderIdOk returns a tuple with the HolderId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RequestSearchResult) GetHolderIdOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.HolderId) {
-		return nil, false
-	}
-	return o.HolderId, true
-}
-
-// HasHolderId returns a boolean if a field has been set.
-func (o *RequestSearchResult) HasHolderId() bool {
-	if o != nil && !utils.IsNil(o.HolderId) {
-		return true
-	}
-
-	return false
-}
-
-// SetHolderId gets a reference to the given string and assigns it to the HolderId field.
-func (o *RequestSearchResult) SetHolderId(v string) {
-	o.HolderId = &v
-}
-
-// GetPermissions returns the Permissions field value
-func (o *RequestSearchResult) GetPermissions() RequestPermissions {
-	if o == nil {
-		var ret RequestPermissions
-		return ret
-	}
-
-	return o.Permissions
-}
-
-// GetPermissionsOk returns a tuple with the Permissions field value
-// and a boolean to check if the value has been set.
-func (o *RequestSearchResult) GetPermissionsOk() (*RequestPermissions, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Permissions, true
-}
-
-// SetPermissions sets field value
-func (o *RequestSearchResult) SetPermissions(v RequestPermissions) {
-	o.Permissions = v
+// SetWorkflow gets a reference to the given Workflow and assigns it to the Workflow field.
+func (o *RequestSearchResult) SetWorkflow(v Workflow) {
+	o.Workflow = &v
 }
 
 func (o RequestSearchResult) MarshalJSON() ([]byte, error) {
@@ -445,26 +445,11 @@ func (o RequestSearchResult) MarshalJSON() ([]byte, error) {
 func (o RequestSearchResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	if !utils.IsNil(o.Module) {
-		toSerialize["module"] = o.Module
-	}
-	if !utils.IsNil(o.Workflow) {
-		toSerialize["workflow"] = o.Workflow
-	}
-	if !utils.IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !utils.IsNil(o.Profile) {
-		toSerialize["profile"] = o.Profile
-	}
-	if o.RequesterComment.IsSet() {
-		toSerialize["requesterComment"] = o.RequesterComment.Get()
+	if o.Certificate.IsSet() {
+		toSerialize["certificate"] = o.Certificate.Get()
 	}
 	if o.CertificateId.IsSet() {
 		toSerialize["certificateId"] = o.CertificateId.Get()
-	}
-	if o.Certificate.IsSet() {
-		toSerialize["certificate"] = o.Certificate.Get()
 	}
 	if !utils.IsNil(o.Dn) {
 		toSerialize["dn"] = o.Dn
@@ -472,7 +457,22 @@ func (o RequestSearchResult) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.HolderId) {
 		toSerialize["holderId"] = o.HolderId
 	}
+	if !utils.IsNil(o.Module) {
+		toSerialize["module"] = o.Module
+	}
 	toSerialize["permissions"] = o.Permissions
+	if !utils.IsNil(o.Profile) {
+		toSerialize["profile"] = o.Profile
+	}
+	if o.RequesterComment.IsSet() {
+		toSerialize["requesterComment"] = o.RequesterComment.Get()
+	}
+	if !utils.IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !utils.IsNil(o.Workflow) {
+		toSerialize["workflow"] = o.Workflow
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -518,16 +518,16 @@ func (o *RequestSearchResult) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "module")
-		delete(additionalProperties, "workflow")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "profile")
-		delete(additionalProperties, "requesterComment")
-		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "certificate")
+		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "dn")
 		delete(additionalProperties, "holderId")
+		delete(additionalProperties, "module")
 		delete(additionalProperties, "permissions")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "requesterComment")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

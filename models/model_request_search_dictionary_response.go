@@ -22,16 +22,16 @@ var _ utils.MappedNullable = &RequestSearchDictionaryResponse{}
 
 // RequestSearchDictionaryResponse struct for RequestSearchDictionaryResponse
 type RequestSearchDictionaryResponse struct {
-	// The list of profiles the principal is authorized to search on
-	Profiles []CertificateProfileSearchDictionaryLocalizedEntry `json:"profiles,omitempty"`
-	// The list of available teams on this Horizon instance
-	Teams []TeamSearchDictionaryLocalizedEntry `json:"teams,omitempty"`
 	// The list of labels the principal is authorized to search on
 	Labels []CertificateLabelSearchDictionaryLocalizedEntry `json:"labels,omitempty"`
 	// The list of available metadata in Horizon
 	Metadata []string `json:"metadata"`
 	// The list of Horizon modules available on this instance
-	Modules              []string `json:"modules,omitempty"`
+	Modules []string `json:"modules,omitempty"`
+	// The list of profiles the principal is authorized to search on
+	Profiles []CertificateProfileSearchDictionaryLocalizedEntry `json:"profiles,omitempty"`
+	// The list of available teams on this Horizon instance
+	Teams                []TeamSearchDictionaryLocalizedEntry `json:"teams,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -53,72 +53,6 @@ func NewRequestSearchDictionaryResponse(metadata []string) *RequestSearchDiction
 func NewRequestSearchDictionaryResponseWithDefaults() *RequestSearchDictionaryResponse {
 	this := RequestSearchDictionaryResponse{}
 	return &this
-}
-
-// GetProfiles returns the Profiles field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestSearchDictionaryResponse) GetProfiles() []CertificateProfileSearchDictionaryLocalizedEntry {
-	if o == nil {
-		var ret []CertificateProfileSearchDictionaryLocalizedEntry
-		return ret
-	}
-	return o.Profiles
-}
-
-// GetProfilesOk returns a tuple with the Profiles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestSearchDictionaryResponse) GetProfilesOk() ([]CertificateProfileSearchDictionaryLocalizedEntry, bool) {
-	if o == nil || utils.IsNil(o.Profiles) {
-		return nil, false
-	}
-	return o.Profiles, true
-}
-
-// HasProfiles returns a boolean if a field has been set.
-func (o *RequestSearchDictionaryResponse) HasProfiles() bool {
-	if o != nil && !utils.IsNil(o.Profiles) {
-		return true
-	}
-
-	return false
-}
-
-// SetProfiles gets a reference to the given []CertificateProfileSearchDictionaryLocalizedEntry and assigns it to the Profiles field.
-func (o *RequestSearchDictionaryResponse) SetProfiles(v []CertificateProfileSearchDictionaryLocalizedEntry) {
-	o.Profiles = v
-}
-
-// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RequestSearchDictionaryResponse) GetTeams() []TeamSearchDictionaryLocalizedEntry {
-	if o == nil {
-		var ret []TeamSearchDictionaryLocalizedEntry
-		return ret
-	}
-	return o.Teams
-}
-
-// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RequestSearchDictionaryResponse) GetTeamsOk() ([]TeamSearchDictionaryLocalizedEntry, bool) {
-	if o == nil || utils.IsNil(o.Teams) {
-		return nil, false
-	}
-	return o.Teams, true
-}
-
-// HasTeams returns a boolean if a field has been set.
-func (o *RequestSearchDictionaryResponse) HasTeams() bool {
-	if o != nil && !utils.IsNil(o.Teams) {
-		return true
-	}
-
-	return false
-}
-
-// SetTeams gets a reference to the given []TeamSearchDictionaryLocalizedEntry and assigns it to the Teams field.
-func (o *RequestSearchDictionaryResponse) SetTeams(v []TeamSearchDictionaryLocalizedEntry) {
-	o.Teams = v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -211,6 +145,72 @@ func (o *RequestSearchDictionaryResponse) SetModules(v []string) {
 	o.Modules = v
 }
 
+// GetProfiles returns the Profiles field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestSearchDictionaryResponse) GetProfiles() []CertificateProfileSearchDictionaryLocalizedEntry {
+	if o == nil {
+		var ret []CertificateProfileSearchDictionaryLocalizedEntry
+		return ret
+	}
+	return o.Profiles
+}
+
+// GetProfilesOk returns a tuple with the Profiles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestSearchDictionaryResponse) GetProfilesOk() ([]CertificateProfileSearchDictionaryLocalizedEntry, bool) {
+	if o == nil || utils.IsNil(o.Profiles) {
+		return nil, false
+	}
+	return o.Profiles, true
+}
+
+// HasProfiles returns a boolean if a field has been set.
+func (o *RequestSearchDictionaryResponse) HasProfiles() bool {
+	if o != nil && !utils.IsNil(o.Profiles) {
+		return true
+	}
+
+	return false
+}
+
+// SetProfiles gets a reference to the given []CertificateProfileSearchDictionaryLocalizedEntry and assigns it to the Profiles field.
+func (o *RequestSearchDictionaryResponse) SetProfiles(v []CertificateProfileSearchDictionaryLocalizedEntry) {
+	o.Profiles = v
+}
+
+// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RequestSearchDictionaryResponse) GetTeams() []TeamSearchDictionaryLocalizedEntry {
+	if o == nil {
+		var ret []TeamSearchDictionaryLocalizedEntry
+		return ret
+	}
+	return o.Teams
+}
+
+// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RequestSearchDictionaryResponse) GetTeamsOk() ([]TeamSearchDictionaryLocalizedEntry, bool) {
+	if o == nil || utils.IsNil(o.Teams) {
+		return nil, false
+	}
+	return o.Teams, true
+}
+
+// HasTeams returns a boolean if a field has been set.
+func (o *RequestSearchDictionaryResponse) HasTeams() bool {
+	if o != nil && !utils.IsNil(o.Teams) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeams gets a reference to the given []TeamSearchDictionaryLocalizedEntry and assigns it to the Teams field.
+func (o *RequestSearchDictionaryResponse) SetTeams(v []TeamSearchDictionaryLocalizedEntry) {
+	o.Teams = v
+}
+
 func (o RequestSearchDictionaryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -221,18 +221,18 @@ func (o RequestSearchDictionaryResponse) MarshalJSON() ([]byte, error) {
 
 func (o RequestSearchDictionaryResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Profiles != nil {
-		toSerialize["profiles"] = o.Profiles
-	}
-	if o.Teams != nil {
-		toSerialize["teams"] = o.Teams
-	}
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
 	toSerialize["metadata"] = o.Metadata
 	if o.Modules != nil {
 		toSerialize["modules"] = o.Modules
+	}
+	if o.Profiles != nil {
+		toSerialize["profiles"] = o.Profiles
+	}
+	if o.Teams != nil {
+		toSerialize["teams"] = o.Teams
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -277,11 +277,11 @@ func (o *RequestSearchDictionaryResponse) UnmarshalJSON(data []byte) (err error)
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "profiles")
-		delete(additionalProperties, "teams")
 		delete(additionalProperties, "labels")
 		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "modules")
+		delete(additionalProperties, "profiles")
+		delete(additionalProperties, "teams")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -22,11 +22,11 @@ var _ utils.MappedNullable = &AutomationPolicy{}
 
 // AutomationPolicy struct for AutomationPolicy
 type AutomationPolicy struct {
-	Name                 string                   `json:"name"`
-	ExecutionPolicy      utils.NullableString     `json:"executionPolicy,omitempty"`
 	CompliancePolicy     NullableCompliancePolicy `json:"compliancePolicy,omitempty"`
-	TrustChains          []string                 `json:"trustChains,omitempty"`
+	ExecutionPolicy      utils.NullableString     `json:"executionPolicy,omitempty"`
+	Name                 string                   `json:"name"`
 	Profile              string                   `json:"profile"`
+	TrustChains          []string                 `json:"trustChains,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,73 +49,6 @@ func NewAutomationPolicy(name string, profile string) *AutomationPolicy {
 func NewAutomationPolicyWithDefaults() *AutomationPolicy {
 	this := AutomationPolicy{}
 	return &this
-}
-
-// GetName returns the Name field value
-func (o *AutomationPolicy) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *AutomationPolicy) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *AutomationPolicy) SetName(v string) {
-	o.Name = v
-}
-
-// GetExecutionPolicy returns the ExecutionPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AutomationPolicy) GetExecutionPolicy() string {
-	if o == nil || utils.IsNil(o.ExecutionPolicy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ExecutionPolicy.Get()
-}
-
-// GetExecutionPolicyOk returns a tuple with the ExecutionPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AutomationPolicy) GetExecutionPolicyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ExecutionPolicy.Get(), o.ExecutionPolicy.IsSet()
-}
-
-// HasExecutionPolicy returns a boolean if a field has been set.
-func (o *AutomationPolicy) HasExecutionPolicy() bool {
-	if o != nil && o.ExecutionPolicy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetExecutionPolicy gets a reference to the given NullableString and assigns it to the ExecutionPolicy field.
-func (o *AutomationPolicy) SetExecutionPolicy(v string) {
-	o.ExecutionPolicy.Set(&v)
-}
-
-// SetExecutionPolicyNil sets the value for ExecutionPolicy to be an explicit nil
-func (o *AutomationPolicy) SetExecutionPolicyNil() {
-	o.ExecutionPolicy.Set(nil)
-}
-
-// UnsetExecutionPolicy ensures that no value is present for ExecutionPolicy, not even an explicit nil
-func (o *AutomationPolicy) UnsetExecutionPolicy() {
-	o.ExecutionPolicy.Unset()
 }
 
 // GetCompliancePolicy returns the CompliancePolicy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -161,6 +94,97 @@ func (o *AutomationPolicy) UnsetCompliancePolicy() {
 	o.CompliancePolicy.Unset()
 }
 
+// GetExecutionPolicy returns the ExecutionPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AutomationPolicy) GetExecutionPolicy() string {
+	if o == nil || utils.IsNil(o.ExecutionPolicy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ExecutionPolicy.Get()
+}
+
+// GetExecutionPolicyOk returns a tuple with the ExecutionPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AutomationPolicy) GetExecutionPolicyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExecutionPolicy.Get(), o.ExecutionPolicy.IsSet()
+}
+
+// HasExecutionPolicy returns a boolean if a field has been set.
+func (o *AutomationPolicy) HasExecutionPolicy() bool {
+	if o != nil && o.ExecutionPolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExecutionPolicy gets a reference to the given NullableString and assigns it to the ExecutionPolicy field.
+func (o *AutomationPolicy) SetExecutionPolicy(v string) {
+	o.ExecutionPolicy.Set(&v)
+}
+
+// SetExecutionPolicyNil sets the value for ExecutionPolicy to be an explicit nil
+func (o *AutomationPolicy) SetExecutionPolicyNil() {
+	o.ExecutionPolicy.Set(nil)
+}
+
+// UnsetExecutionPolicy ensures that no value is present for ExecutionPolicy, not even an explicit nil
+func (o *AutomationPolicy) UnsetExecutionPolicy() {
+	o.ExecutionPolicy.Unset()
+}
+
+// GetName returns the Name field value
+func (o *AutomationPolicy) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *AutomationPolicy) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *AutomationPolicy) SetName(v string) {
+	o.Name = v
+}
+
+// GetProfile returns the Profile field value
+func (o *AutomationPolicy) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *AutomationPolicy) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *AutomationPolicy) SetProfile(v string) {
+	o.Profile = v
+}
+
 // GetTrustChains returns the TrustChains field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AutomationPolicy) GetTrustChains() []string {
 	if o == nil {
@@ -194,30 +218,6 @@ func (o *AutomationPolicy) SetTrustChains(v []string) {
 	o.TrustChains = v
 }
 
-// GetProfile returns the Profile field value
-func (o *AutomationPolicy) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *AutomationPolicy) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *AutomationPolicy) SetProfile(v string) {
-	o.Profile = v
-}
-
 func (o AutomationPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -228,17 +228,17 @@ func (o AutomationPolicy) MarshalJSON() ([]byte, error) {
 
 func (o AutomationPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	if o.ExecutionPolicy.IsSet() {
-		toSerialize["executionPolicy"] = o.ExecutionPolicy.Get()
-	}
 	if o.CompliancePolicy.IsSet() {
 		toSerialize["compliancePolicy"] = o.CompliancePolicy.Get()
 	}
+	if o.ExecutionPolicy.IsSet() {
+		toSerialize["executionPolicy"] = o.ExecutionPolicy.Get()
+	}
+	toSerialize["name"] = o.Name
+	toSerialize["profile"] = o.Profile
 	if o.TrustChains != nil {
 		toSerialize["trustChains"] = o.TrustChains
 	}
-	toSerialize["profile"] = o.Profile
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -283,11 +283,11 @@ func (o *AutomationPolicy) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "executionPolicy")
 		delete(additionalProperties, "compliancePolicy")
-		delete(additionalProperties, "trustChains")
+		delete(additionalProperties, "executionPolicy")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "profile")
+		delete(additionalProperties, "trustChains")
 		o.AdditionalProperties = additionalProperties
 	}
 

@@ -22,12 +22,12 @@ var _ utils.MappedNullable = &Dashboard{}
 
 // Dashboard struct for Dashboard
 type Dashboard struct {
-	// The dashboard's name
-	Name string `json:"name"`
-	// The dashboard's description
-	Description utils.NullableString `json:"description,omitempty"`
 	// The dashboard's list of charts
 	Charts []Chart `json:"charts"`
+	// The dashboard's description
+	Description utils.NullableString `json:"description,omitempty"`
+	// The dashboard's name
+	Name string `json:"name"`
 	// The type of objects the dashboard displays
 	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
@@ -39,10 +39,10 @@ type _Dashboard Dashboard
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDashboard(name string, charts []Chart, type_ string) *Dashboard {
+func NewDashboard(charts []Chart, name string, type_ string) *Dashboard {
 	this := Dashboard{}
-	this.Name = name
 	this.Charts = charts
+	this.Name = name
 	this.Type = type_
 	return &this
 }
@@ -55,28 +55,28 @@ func NewDashboardWithDefaults() *Dashboard {
 	return &this
 }
 
-// GetName returns the Name field value
-func (o *Dashboard) GetName() string {
+// GetCharts returns the Charts field value
+func (o *Dashboard) GetCharts() []Chart {
 	if o == nil {
-		var ret string
+		var ret []Chart
 		return ret
 	}
 
-	return o.Name
+	return o.Charts
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetChartsOk returns a tuple with the Charts field value
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetNameOk() (*string, bool) {
+func (o *Dashboard) GetChartsOk() ([]Chart, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Charts, true
 }
 
-// SetName sets field value
-func (o *Dashboard) SetName(v string) {
-	o.Name = v
+// SetCharts sets field value
+func (o *Dashboard) SetCharts(v []Chart) {
+	o.Charts = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -122,28 +122,28 @@ func (o *Dashboard) UnsetDescription() {
 	o.Description.Unset()
 }
 
-// GetCharts returns the Charts field value
-func (o *Dashboard) GetCharts() []Chart {
+// GetName returns the Name field value
+func (o *Dashboard) GetName() string {
 	if o == nil {
-		var ret []Chart
+		var ret string
 		return ret
 	}
 
-	return o.Charts
+	return o.Name
 }
 
-// GetChartsOk returns a tuple with the Charts field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetChartsOk() ([]Chart, bool) {
+func (o *Dashboard) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Charts, true
+	return &o.Name, true
 }
 
-// SetCharts sets field value
-func (o *Dashboard) SetCharts(v []Chart) {
-	o.Charts = v
+// SetName sets field value
+func (o *Dashboard) SetName(v string) {
+	o.Name = v
 }
 
 // GetType returns the Type field value
@@ -180,11 +180,11 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 
 func (o Dashboard) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
+	toSerialize["charts"] = o.Charts
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	toSerialize["charts"] = o.Charts
+	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -199,8 +199,8 @@ func (o *Dashboard) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
 		"charts",
+		"name",
 		"type",
 	}
 
@@ -231,9 +231,9 @@ func (o *Dashboard) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "charts")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}

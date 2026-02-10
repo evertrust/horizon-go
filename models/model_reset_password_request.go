@@ -24,10 +24,10 @@ var _ utils.MappedNullable = &ResetPasswordRequest{}
 type ResetPasswordRequest struct {
 	// Local identity identifier
 	Identifier string `json:"identifier"`
-	// The reset UUID received by email by the user after a password reset request
-	Uuid string `json:"uuid"`
 	// The new password to set. It must match the password policy if any has been defined
-	Password             string `json:"password"`
+	Password string `json:"password"`
+	// The reset UUID received by email by the user after a password reset request
+	Uuid                 string `json:"uuid"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,11 +37,11 @@ type _ResetPasswordRequest ResetPasswordRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResetPasswordRequest(identifier string, uuid string, password string) *ResetPasswordRequest {
+func NewResetPasswordRequest(identifier string, password string, uuid string) *ResetPasswordRequest {
 	this := ResetPasswordRequest{}
 	this.Identifier = identifier
-	this.Uuid = uuid
 	this.Password = password
+	this.Uuid = uuid
 	return &this
 }
 
@@ -77,30 +77,6 @@ func (o *ResetPasswordRequest) SetIdentifier(v string) {
 	o.Identifier = v
 }
 
-// GetUuid returns the Uuid field value
-func (o *ResetPasswordRequest) GetUuid() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Uuid
-}
-
-// GetUuidOk returns a tuple with the Uuid field value
-// and a boolean to check if the value has been set.
-func (o *ResetPasswordRequest) GetUuidOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Uuid, true
-}
-
-// SetUuid sets field value
-func (o *ResetPasswordRequest) SetUuid(v string) {
-	o.Uuid = v
-}
-
 // GetPassword returns the Password field value
 func (o *ResetPasswordRequest) GetPassword() string {
 	if o == nil {
@@ -125,6 +101,30 @@ func (o *ResetPasswordRequest) SetPassword(v string) {
 	o.Password = v
 }
 
+// GetUuid returns the Uuid field value
+func (o *ResetPasswordRequest) GetUuid() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Uuid
+}
+
+// GetUuidOk returns a tuple with the Uuid field value
+// and a boolean to check if the value has been set.
+func (o *ResetPasswordRequest) GetUuidOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Uuid, true
+}
+
+// SetUuid sets field value
+func (o *ResetPasswordRequest) SetUuid(v string) {
+	o.Uuid = v
+}
+
 func (o ResetPasswordRequest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -136,8 +136,8 @@ func (o ResetPasswordRequest) MarshalJSON() ([]byte, error) {
 func (o ResetPasswordRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["identifier"] = o.Identifier
-	toSerialize["uuid"] = o.Uuid
 	toSerialize["password"] = o.Password
+	toSerialize["uuid"] = o.Uuid
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -152,8 +152,8 @@ func (o *ResetPasswordRequest) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"identifier",
-		"uuid",
 		"password",
+		"uuid",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -184,8 +184,8 @@ func (o *ResetPasswordRequest) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "identifier")
-		delete(additionalProperties, "uuid")
 		delete(additionalProperties, "password")
+		delete(additionalProperties, "uuid")
 		o.AdditionalProperties = additionalProperties
 	}
 

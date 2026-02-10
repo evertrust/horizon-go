@@ -24,36 +24,36 @@ var _ utils.MappedNullable = &RESTDatasourceResponse{}
 type RESTDatasourceResponse struct {
 	// Object internal ID
 	Id string `json:"_id"`
-	// Type of datasource
-	Type string `json:"type"`
-	// Name of the datasource
-	Name string `json:"name"`
-	// The localized name of the datasource
-	DisplayName []LocalizedString `json:"displayName,omitempty"`
-	// Description of the datasource
-	Description *string `json:"description,omitempty"`
-	// Name of the [credentials](#tag/security.credentials) to use for authentication
-	Credentials *string `json:"credentials,omitempty"`
-	// The HTTP method to use for the request
-	Method string `json:"method"`
-	// The URL to request
-	Url string `json:"url"`
+	// List of attributes to fetch for this datasource
+	Attributes []DataSourceOutput `json:"attributes,omitempty"`
 	// The authentication type to use while making the REST call. Is linked to `credentials`.
 	AuthenticationType string `json:"authenticationType"`
-	// The headers of the request
-	Headers []Header `json:"headers,omitempty"`
-	// For UI purposes in order to format the body correctly
-	PayloadType utils.NullableString `json:"payloadType,omitempty"`
-	// The body of the request
-	Payload utils.NullableString `json:"payload,omitempty"`
+	// Name of the [credentials](#tag/security.credentials) to use for authentication
+	Credentials *string `json:"credentials,omitempty"`
+	// Description of the datasource
+	Description *string `json:"description,omitempty"`
+	// The localized name of the datasource
+	DisplayName []LocalizedString `json:"displayName,omitempty"`
 	// The success HTTP codes for the request. If the return code is not in this list, the request will be considered failed.
 	ExpectedHttpCodes []int64 `json:"expectedHttpCodes"`
+	// The headers of the request
+	Headers []Header `json:"headers,omitempty"`
+	// The HTTP method to use for the request
+	Method string `json:"method"`
+	// Name of the datasource
+	Name string `json:"name"`
+	// The body of the request
+	Payload utils.NullableString `json:"payload,omitempty"`
+	// For UI purposes in order to format the body correctly
+	PayloadType utils.NullableString `json:"payloadType,omitempty"`
 	// Name of a Proxy to use while making the request
 	Proxy utils.NullableString `json:"proxy,omitempty"`
 	// Timeout for the HTTP request.
 	Timeout string `json:"timeout" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	// List of attributes to fetch for this datasource
-	Attributes           []DataSourceOutput `json:"attributes,omitempty"`
+	// Type of datasource
+	Type string `json:"type"`
+	// The URL to request
+	Url                  string `json:"url"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -63,16 +63,16 @@ type _RESTDatasourceResponse RESTDatasourceResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRESTDatasourceResponse(id string, type_ string, name string, method string, url string, authenticationType string, expectedHttpCodes []int64, timeout string) *RESTDatasourceResponse {
+func NewRESTDatasourceResponse(id string, authenticationType string, expectedHttpCodes []int64, method string, name string, timeout string, type_ string, url string) *RESTDatasourceResponse {
 	this := RESTDatasourceResponse{}
 	this.Id = id
-	this.Type = type_
-	this.Name = name
-	this.Method = method
-	this.Url = url
 	this.AuthenticationType = authenticationType
 	this.ExpectedHttpCodes = expectedHttpCodes
+	this.Method = method
+	this.Name = name
 	this.Timeout = timeout
+	this.Type = type_
+	this.Url = url
 	return &this
 }
 
@@ -108,52 +108,125 @@ func (o *RESTDatasourceResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
-func (o *RESTDatasourceResponse) GetType() string {
+// GetAttributes returns the Attributes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RESTDatasourceResponse) GetAttributes() []DataSourceOutput {
+	if o == nil {
+		var ret []DataSourceOutput
+		return ret
+	}
+	return o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RESTDatasourceResponse) GetAttributesOk() ([]DataSourceOutput, bool) {
+	if o == nil || utils.IsNil(o.Attributes) {
+		return nil, false
+	}
+	return o.Attributes, true
+}
+
+// HasAttributes returns a boolean if a field has been set.
+func (o *RESTDatasourceResponse) HasAttributes() bool {
+	if o != nil && !utils.IsNil(o.Attributes) {
+		return true
+	}
+
+	return false
+}
+
+// SetAttributes gets a reference to the given []DataSourceOutput and assigns it to the Attributes field.
+func (o *RESTDatasourceResponse) SetAttributes(v []DataSourceOutput) {
+	o.Attributes = v
+}
+
+// GetAuthenticationType returns the AuthenticationType field value
+func (o *RESTDatasourceResponse) GetAuthenticationType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.AuthenticationType
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
 // and a boolean to check if the value has been set.
-func (o *RESTDatasourceResponse) GetTypeOk() (*string, bool) {
+func (o *RESTDatasourceResponse) GetAuthenticationTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.AuthenticationType, true
 }
 
-// SetType sets field value
-func (o *RESTDatasourceResponse) SetType(v string) {
-	o.Type = v
+// SetAuthenticationType sets field value
+func (o *RESTDatasourceResponse) SetAuthenticationType(v string) {
+	o.AuthenticationType = v
 }
 
-// GetName returns the Name field value
-func (o *RESTDatasourceResponse) GetName() string {
-	if o == nil {
+// GetCredentials returns the Credentials field value if set, zero value otherwise.
+func (o *RESTDatasourceResponse) GetCredentials() string {
+	if o == nil || utils.IsNil(o.Credentials) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Credentials
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTDatasourceResponse) GetNameOk() (*string, bool) {
-	if o == nil {
+func (o *RESTDatasourceResponse) GetCredentialsOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Credentials) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Credentials, true
 }
 
-// SetName sets field value
-func (o *RESTDatasourceResponse) SetName(v string) {
-	o.Name = v
+// HasCredentials returns a boolean if a field has been set.
+func (o *RESTDatasourceResponse) HasCredentials() bool {
+	if o != nil && !utils.IsNil(o.Credentials) {
+		return true
+	}
+
+	return false
+}
+
+// SetCredentials gets a reference to the given string and assigns it to the Credentials field.
+func (o *RESTDatasourceResponse) SetCredentials(v string) {
+	o.Credentials = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *RESTDatasourceResponse) GetDescription() string {
+	if o == nil || utils.IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RESTDatasourceResponse) GetDescriptionOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *RESTDatasourceResponse) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *RESTDatasourceResponse) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -189,140 +262,28 @@ func (o *RESTDatasourceResponse) SetDisplayName(v []LocalizedString) {
 	o.DisplayName = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *RESTDatasourceResponse) GetDescription() string {
-	if o == nil || utils.IsNil(o.Description) {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RESTDatasourceResponse) GetDescriptionOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *RESTDatasourceResponse) HasDescription() bool {
-	if o != nil && !utils.IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *RESTDatasourceResponse) SetDescription(v string) {
-	o.Description = &v
-}
-
-// GetCredentials returns the Credentials field value if set, zero value otherwise.
-func (o *RESTDatasourceResponse) GetCredentials() string {
-	if o == nil || utils.IsNil(o.Credentials) {
-		var ret string
-		return ret
-	}
-	return *o.Credentials
-}
-
-// GetCredentialsOk returns a tuple with the Credentials field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RESTDatasourceResponse) GetCredentialsOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Credentials) {
-		return nil, false
-	}
-	return o.Credentials, true
-}
-
-// HasCredentials returns a boolean if a field has been set.
-func (o *RESTDatasourceResponse) HasCredentials() bool {
-	if o != nil && !utils.IsNil(o.Credentials) {
-		return true
-	}
-
-	return false
-}
-
-// SetCredentials gets a reference to the given string and assigns it to the Credentials field.
-func (o *RESTDatasourceResponse) SetCredentials(v string) {
-	o.Credentials = &v
-}
-
-// GetMethod returns the Method field value
-func (o *RESTDatasourceResponse) GetMethod() string {
+// GetExpectedHttpCodes returns the ExpectedHttpCodes field value
+func (o *RESTDatasourceResponse) GetExpectedHttpCodes() []int64 {
 	if o == nil {
-		var ret string
+		var ret []int64
 		return ret
 	}
 
-	return o.Method
+	return o.ExpectedHttpCodes
 }
 
-// GetMethodOk returns a tuple with the Method field value
+// GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field value
 // and a boolean to check if the value has been set.
-func (o *RESTDatasourceResponse) GetMethodOk() (*string, bool) {
+func (o *RESTDatasourceResponse) GetExpectedHttpCodesOk() ([]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Method, true
+	return o.ExpectedHttpCodes, true
 }
 
-// SetMethod sets field value
-func (o *RESTDatasourceResponse) SetMethod(v string) {
-	o.Method = v
-}
-
-// GetUrl returns the Url field value
-func (o *RESTDatasourceResponse) GetUrl() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Url
-}
-
-// GetUrlOk returns a tuple with the Url field value
-// and a boolean to check if the value has been set.
-func (o *RESTDatasourceResponse) GetUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Url, true
-}
-
-// SetUrl sets field value
-func (o *RESTDatasourceResponse) SetUrl(v string) {
-	o.Url = v
-}
-
-// GetAuthenticationType returns the AuthenticationType field value
-func (o *RESTDatasourceResponse) GetAuthenticationType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.AuthenticationType
-}
-
-// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
-// and a boolean to check if the value has been set.
-func (o *RESTDatasourceResponse) GetAuthenticationTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthenticationType, true
-}
-
-// SetAuthenticationType sets field value
-func (o *RESTDatasourceResponse) SetAuthenticationType(v string) {
-	o.AuthenticationType = v
+// SetExpectedHttpCodes sets field value
+func (o *RESTDatasourceResponse) SetExpectedHttpCodes(v []int64) {
+	o.ExpectedHttpCodes = v
 }
 
 // GetHeaders returns the Headers field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -358,47 +319,52 @@ func (o *RESTDatasourceResponse) SetHeaders(v []Header) {
 	o.Headers = v
 }
 
-// GetPayloadType returns the PayloadType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RESTDatasourceResponse) GetPayloadType() string {
-	if o == nil || utils.IsNil(o.PayloadType.Get()) {
+// GetMethod returns the Method field value
+func (o *RESTDatasourceResponse) GetMethod() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.PayloadType.Get()
+
+	return o.Method
 }
 
-// GetPayloadTypeOk returns a tuple with the PayloadType field value if set, nil otherwise
+// GetMethodOk returns a tuple with the Method field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RESTDatasourceResponse) GetPayloadTypeOk() (*string, bool) {
+func (o *RESTDatasourceResponse) GetMethodOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.PayloadType.Get(), o.PayloadType.IsSet()
+	return &o.Method, true
 }
 
-// HasPayloadType returns a boolean if a field has been set.
-func (o *RESTDatasourceResponse) HasPayloadType() bool {
-	if o != nil && o.PayloadType.IsSet() {
-		return true
+// SetMethod sets field value
+func (o *RESTDatasourceResponse) SetMethod(v string) {
+	o.Method = v
+}
+
+// GetName returns the Name field value
+func (o *RESTDatasourceResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Name
 }
 
-// SetPayloadType gets a reference to the given NullableString and assigns it to the PayloadType field.
-func (o *RESTDatasourceResponse) SetPayloadType(v string) {
-	o.PayloadType.Set(&v)
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *RESTDatasourceResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
-// SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
-func (o *RESTDatasourceResponse) SetPayloadTypeNil() {
-	o.PayloadType.Set(nil)
-}
-
-// UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
-func (o *RESTDatasourceResponse) UnsetPayloadType() {
-	o.PayloadType.Unset()
+// SetName sets field value
+func (o *RESTDatasourceResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetPayload returns the Payload field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -444,28 +410,47 @@ func (o *RESTDatasourceResponse) UnsetPayload() {
 	o.Payload.Unset()
 }
 
-// GetExpectedHttpCodes returns the ExpectedHttpCodes field value
-func (o *RESTDatasourceResponse) GetExpectedHttpCodes() []int64 {
-	if o == nil {
-		var ret []int64
+// GetPayloadType returns the PayloadType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RESTDatasourceResponse) GetPayloadType() string {
+	if o == nil || utils.IsNil(o.PayloadType.Get()) {
+		var ret string
 		return ret
 	}
-
-	return o.ExpectedHttpCodes
+	return *o.PayloadType.Get()
 }
 
-// GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field value
+// GetPayloadTypeOk returns a tuple with the PayloadType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTDatasourceResponse) GetExpectedHttpCodesOk() ([]int64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RESTDatasourceResponse) GetPayloadTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ExpectedHttpCodes, true
+	return o.PayloadType.Get(), o.PayloadType.IsSet()
 }
 
-// SetExpectedHttpCodes sets field value
-func (o *RESTDatasourceResponse) SetExpectedHttpCodes(v []int64) {
-	o.ExpectedHttpCodes = v
+// HasPayloadType returns a boolean if a field has been set.
+func (o *RESTDatasourceResponse) HasPayloadType() bool {
+	if o != nil && o.PayloadType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPayloadType gets a reference to the given NullableString and assigns it to the PayloadType field.
+func (o *RESTDatasourceResponse) SetPayloadType(v string) {
+	o.PayloadType.Set(&v)
+}
+
+// SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
+func (o *RESTDatasourceResponse) SetPayloadTypeNil() {
+	o.PayloadType.Set(nil)
+}
+
+// UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
+func (o *RESTDatasourceResponse) UnsetPayloadType() {
+	o.PayloadType.Unset()
 }
 
 // GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -535,37 +520,52 @@ func (o *RESTDatasourceResponse) SetTimeout(v string) {
 	o.Timeout = v
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RESTDatasourceResponse) GetAttributes() []DataSourceOutput {
+// GetType returns the Type field value
+func (o *RESTDatasourceResponse) GetType() string {
 	if o == nil {
-		var ret []DataSourceOutput
+		var ret string
 		return ret
 	}
-	return o.Attributes
+
+	return o.Type
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RESTDatasourceResponse) GetAttributesOk() ([]DataSourceOutput, bool) {
-	if o == nil || utils.IsNil(o.Attributes) {
+func (o *RESTDatasourceResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Attributes, true
+	return &o.Type, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *RESTDatasourceResponse) HasAttributes() bool {
-	if o != nil && !utils.IsNil(o.Attributes) {
-		return true
+// SetType sets field value
+func (o *RESTDatasourceResponse) SetType(v string) {
+	o.Type = v
+}
+
+// GetUrl returns the Url field value
+func (o *RESTDatasourceResponse) GetUrl() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Url
 }
 
-// SetAttributes gets a reference to the given []DataSourceOutput and assigns it to the Attributes field.
-func (o *RESTDatasourceResponse) SetAttributes(v []DataSourceOutput) {
-	o.Attributes = v
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *RESTDatasourceResponse) GetUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Url, true
+}
+
+// SetUrl sets field value
+func (o *RESTDatasourceResponse) SetUrl(v string) {
+	o.Url = v
 }
 
 func (o RESTDatasourceResponse) MarshalJSON() ([]byte, error) {
@@ -579,37 +579,37 @@ func (o RESTDatasourceResponse) MarshalJSON() ([]byte, error) {
 func (o RESTDatasourceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["type"] = o.Type
-	toSerialize["name"] = o.Name
-	if o.DisplayName != nil {
-		toSerialize["displayName"] = o.DisplayName
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	toSerialize["authenticationType"] = o.AuthenticationType
+	if !utils.IsNil(o.Credentials) {
+		toSerialize["credentials"] = o.Credentials
 	}
 	if !utils.IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !utils.IsNil(o.Credentials) {
-		toSerialize["credentials"] = o.Credentials
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
 	}
-	toSerialize["method"] = o.Method
-	toSerialize["url"] = o.Url
-	toSerialize["authenticationType"] = o.AuthenticationType
+	toSerialize["expectedHttpCodes"] = o.ExpectedHttpCodes
 	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers
+	}
+	toSerialize["method"] = o.Method
+	toSerialize["name"] = o.Name
+	if o.Payload.IsSet() {
+		toSerialize["payload"] = o.Payload.Get()
 	}
 	if o.PayloadType.IsSet() {
 		toSerialize["payloadType"] = o.PayloadType.Get()
 	}
-	if o.Payload.IsSet() {
-		toSerialize["payload"] = o.Payload.Get()
-	}
-	toSerialize["expectedHttpCodes"] = o.ExpectedHttpCodes
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	toSerialize["timeout"] = o.Timeout
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["url"] = o.Url
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -624,13 +624,13 @@ func (o *RESTDatasourceResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"type",
-		"name",
-		"method",
-		"url",
 		"authenticationType",
 		"expectedHttpCodes",
+		"method",
+		"name",
 		"timeout",
+		"type",
+		"url",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -661,21 +661,21 @@ func (o *RESTDatasourceResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "displayName")
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "credentials")
-		delete(additionalProperties, "method")
-		delete(additionalProperties, "url")
+		delete(additionalProperties, "attributes")
 		delete(additionalProperties, "authenticationType")
-		delete(additionalProperties, "headers")
-		delete(additionalProperties, "payloadType")
-		delete(additionalProperties, "payload")
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "expectedHttpCodes")
+		delete(additionalProperties, "headers")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "payload")
+		delete(additionalProperties, "payloadType")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "attributes")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "url")
 		o.AdditionalProperties = additionalProperties
 	}
 

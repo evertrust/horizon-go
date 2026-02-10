@@ -22,17 +22,17 @@ var _ utils.MappedNullable = &DNSDataSourceResultResponse{}
 
 // DNSDataSourceResultResponse struct for DNSDataSourceResultResponse
 type DNSDataSourceResultResponse struct {
-	Type string `json:"type"`
 	// Lookup values that were requested on the datasource
 	ComputedLookupValues []string `json:"computedLookupValues,omitempty"`
-	// Name of the executed datasource
-	Name string `json:"name"`
-	// Status of the execution. `success` if the datasource data was fetched correctly, `failure` if an error occured and `ignored` if inputs were not all filled, resulting in no request being sent
-	Status string `json:"status"`
+	Type                 string   `json:"type"`
 	// Data fetched from the datasource
 	Dictionary []MapEntry `json:"dictionary"`
 	// If `status` is `failure`, the error message
-	Error                utils.NullableString `json:"error,omitempty"`
+	Error utils.NullableString `json:"error,omitempty"`
+	// Name of the executed datasource
+	Name string `json:"name"`
+	// Status of the execution. `success` if the datasource data was fetched correctly, `failure` if an error occured and `ignored` if inputs were not all filled, resulting in no request being sent
+	Status               string `json:"status"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -42,12 +42,12 @@ type _DNSDataSourceResultResponse DNSDataSourceResultResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDNSDataSourceResultResponse(type_ string, name string, status string, dictionary []MapEntry) *DNSDataSourceResultResponse {
+func NewDNSDataSourceResultResponse(type_ string, dictionary []MapEntry, name string, status string) *DNSDataSourceResultResponse {
 	this := DNSDataSourceResultResponse{}
-	this.Name = name
-	this.Type = type_
-	this.Status = status
 	this.Dictionary = dictionary
+	this.Name = name
+	this.Status = status
+	this.Type = type_
 	return &this
 }
 
@@ -57,30 +57,6 @@ func NewDNSDataSourceResultResponse(type_ string, name string, status string, di
 func NewDNSDataSourceResultResponseWithDefaults() *DNSDataSourceResultResponse {
 	this := DNSDataSourceResultResponse{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *DNSDataSourceResultResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *DNSDataSourceResultResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *DNSDataSourceResultResponse) SetType(v string) {
-	o.Type = v
 }
 
 // GetComputedLookupValues returns the ComputedLookupValues field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -116,52 +92,28 @@ func (o *DNSDataSourceResultResponse) SetComputedLookupValues(v []string) {
 	o.ComputedLookupValues = v
 }
 
-// GetName returns the Name field value
-func (o *DNSDataSourceResultResponse) GetName() string {
+// GetType returns the Type field value
+func (o *DNSDataSourceResultResponse) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.Type
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *DNSDataSourceResultResponse) GetNameOk() (*string, bool) {
+func (o *DNSDataSourceResultResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.Type, true
 }
 
-// SetName sets field value
-func (o *DNSDataSourceResultResponse) SetName(v string) {
-	o.Name = v
-}
-
-// GetStatus returns the Status field value
-func (o *DNSDataSourceResultResponse) GetStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *DNSDataSourceResultResponse) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *DNSDataSourceResultResponse) SetStatus(v string) {
-	o.Status = v
+// SetType sets field value
+func (o *DNSDataSourceResultResponse) SetType(v string) {
+	o.Type = v
 }
 
 // GetDictionary returns the Dictionary field value
@@ -231,6 +183,54 @@ func (o *DNSDataSourceResultResponse) UnsetError() {
 	o.Error.Unset()
 }
 
+// GetName returns the Name field value
+func (o *DNSDataSourceResultResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *DNSDataSourceResultResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *DNSDataSourceResultResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetStatus returns the Status field value
+func (o *DNSDataSourceResultResponse) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *DNSDataSourceResultResponse) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *DNSDataSourceResultResponse) SetStatus(v string) {
+	o.Status = v
+}
+
 func (o DNSDataSourceResultResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -241,16 +241,16 @@ func (o DNSDataSourceResultResponse) MarshalJSON() ([]byte, error) {
 
 func (o DNSDataSourceResultResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
 	if o.ComputedLookupValues != nil {
 		toSerialize["computedLookupValues"] = o.ComputedLookupValues
 	}
-	toSerialize["name"] = o.Name
-	toSerialize["status"] = o.Status
+	toSerialize["type"] = o.Type
 	toSerialize["dictionary"] = o.Dictionary
 	if o.Error.IsSet() {
 		toSerialize["error"] = o.Error.Get()
 	}
+	toSerialize["name"] = o.Name
+	toSerialize["status"] = o.Status
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -265,9 +265,9 @@ func (o *DNSDataSourceResultResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"type",
+		"dictionary",
 		"name",
 		"status",
-		"dictionary",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -297,12 +297,12 @@ func (o *DNSDataSourceResultResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "computedLookupValues")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "status")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "dictionary")
 		delete(additionalProperties, "error")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}
 

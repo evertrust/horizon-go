@@ -22,12 +22,12 @@ var _ utils.MappedNullable = &EmailRecipient{}
 
 // EmailRecipient struct for EmailRecipient
 type EmailRecipient struct {
-	// The type of email recipient. Apart from the `static` recipient, all are deduced from the request's context.
-	Type string `json:"type"`
 	// Mandatory for `static` recipient and ignored otherwise. The address to send the email to.
 	Email utils.NullableString `json:"email,omitempty"`
 	// Mandatory for `label` recipient and ignored otherwise. The label name to fetch the address from.
-	Label                utils.NullableString `json:"label,omitempty"`
+	Label utils.NullableString `json:"label,omitempty"`
+	// The type of email recipient. Apart from the `static` recipient, all are deduced from the request's context.
+	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -49,30 +49,6 @@ func NewEmailRecipient(type_ string) *EmailRecipient {
 func NewEmailRecipientWithDefaults() *EmailRecipient {
 	this := EmailRecipient{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *EmailRecipient) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *EmailRecipient) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *EmailRecipient) SetType(v string) {
-	o.Type = v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -161,6 +137,30 @@ func (o *EmailRecipient) UnsetLabel() {
 	o.Label.Unset()
 }
 
+// GetType returns the Type field value
+func (o *EmailRecipient) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *EmailRecipient) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *EmailRecipient) SetType(v string) {
+	o.Type = v
+}
+
 func (o EmailRecipient) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -171,13 +171,13 @@ func (o EmailRecipient) MarshalJSON() ([]byte, error) {
 
 func (o EmailRecipient) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
 	if o.Email.IsSet() {
 		toSerialize["email"] = o.Email.Get()
 	}
 	if o.Label.IsSet() {
 		toSerialize["label"] = o.Label.Get()
 	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -221,9 +221,9 @@ func (o *EmailRecipient) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "email")
 		delete(additionalProperties, "label")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

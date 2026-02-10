@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SelfRecover** | Pointer to **NullableBool** |  | [optional] [default to false]
-**SelfUpdate** | Pointer to **NullableBool** |  | [optional] [default to false]
-**SelfRevoke** | Pointer to **NullableBool** |  | [optional] [default to false]
-**SelfRenew** | Pointer to **NullableBool** |  | [optional] [default to false]
 **SelfPopRenew** | Pointer to **NullableBool** |  | [optional] [default to false]
 **SelfPopRevoke** | Pointer to **NullableBool** |  | [optional] [default to false]
 **SelfPopUpdate** | Pointer to **NullableBool** |  | [optional] [default to false]
+**SelfRecover** | Pointer to **NullableBool** |  | [optional] [default to false]
+**SelfRenew** | Pointer to **NullableBool** |  | [optional] [default to false]
+**SelfRevoke** | Pointer to **NullableBool** |  | [optional] [default to false]
+**SelfUpdate** | Pointer to **NullableBool** |  | [optional] [default to false]
 
 ## Methods
 
@@ -31,146 +31,6 @@ NewCertificateProfileSelfPermissionsWithDefaults instantiates a new CertificateP
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetSelfRecover
-
-`func (o *CertificateProfileSelfPermissions) GetSelfRecover() bool`
-
-GetSelfRecover returns the SelfRecover field if non-nil, zero value otherwise.
-
-### GetSelfRecoverOk
-
-`func (o *CertificateProfileSelfPermissions) GetSelfRecoverOk() (*bool, bool)`
-
-GetSelfRecoverOk returns a tuple with the SelfRecover field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSelfRecover
-
-`func (o *CertificateProfileSelfPermissions) SetSelfRecover(v bool)`
-
-SetSelfRecover sets SelfRecover field to given value.
-
-### HasSelfRecover
-
-`func (o *CertificateProfileSelfPermissions) HasSelfRecover() bool`
-
-HasSelfRecover returns a boolean if a field has been set.
-
-### SetSelfRecoverNil
-
-`func (o *CertificateProfileSelfPermissions) SetSelfRecoverNil(b bool)`
-
- SetSelfRecoverNil sets the value for SelfRecover to be an explicit nil
-
-### UnsetSelfRecover
-`func (o *CertificateProfileSelfPermissions) UnsetSelfRecover()`
-
-UnsetSelfRecover ensures that no value is present for SelfRecover, not even an explicit nil
-### GetSelfUpdate
-
-`func (o *CertificateProfileSelfPermissions) GetSelfUpdate() bool`
-
-GetSelfUpdate returns the SelfUpdate field if non-nil, zero value otherwise.
-
-### GetSelfUpdateOk
-
-`func (o *CertificateProfileSelfPermissions) GetSelfUpdateOk() (*bool, bool)`
-
-GetSelfUpdateOk returns a tuple with the SelfUpdate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSelfUpdate
-
-`func (o *CertificateProfileSelfPermissions) SetSelfUpdate(v bool)`
-
-SetSelfUpdate sets SelfUpdate field to given value.
-
-### HasSelfUpdate
-
-`func (o *CertificateProfileSelfPermissions) HasSelfUpdate() bool`
-
-HasSelfUpdate returns a boolean if a field has been set.
-
-### SetSelfUpdateNil
-
-`func (o *CertificateProfileSelfPermissions) SetSelfUpdateNil(b bool)`
-
- SetSelfUpdateNil sets the value for SelfUpdate to be an explicit nil
-
-### UnsetSelfUpdate
-`func (o *CertificateProfileSelfPermissions) UnsetSelfUpdate()`
-
-UnsetSelfUpdate ensures that no value is present for SelfUpdate, not even an explicit nil
-### GetSelfRevoke
-
-`func (o *CertificateProfileSelfPermissions) GetSelfRevoke() bool`
-
-GetSelfRevoke returns the SelfRevoke field if non-nil, zero value otherwise.
-
-### GetSelfRevokeOk
-
-`func (o *CertificateProfileSelfPermissions) GetSelfRevokeOk() (*bool, bool)`
-
-GetSelfRevokeOk returns a tuple with the SelfRevoke field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSelfRevoke
-
-`func (o *CertificateProfileSelfPermissions) SetSelfRevoke(v bool)`
-
-SetSelfRevoke sets SelfRevoke field to given value.
-
-### HasSelfRevoke
-
-`func (o *CertificateProfileSelfPermissions) HasSelfRevoke() bool`
-
-HasSelfRevoke returns a boolean if a field has been set.
-
-### SetSelfRevokeNil
-
-`func (o *CertificateProfileSelfPermissions) SetSelfRevokeNil(b bool)`
-
- SetSelfRevokeNil sets the value for SelfRevoke to be an explicit nil
-
-### UnsetSelfRevoke
-`func (o *CertificateProfileSelfPermissions) UnsetSelfRevoke()`
-
-UnsetSelfRevoke ensures that no value is present for SelfRevoke, not even an explicit nil
-### GetSelfRenew
-
-`func (o *CertificateProfileSelfPermissions) GetSelfRenew() bool`
-
-GetSelfRenew returns the SelfRenew field if non-nil, zero value otherwise.
-
-### GetSelfRenewOk
-
-`func (o *CertificateProfileSelfPermissions) GetSelfRenewOk() (*bool, bool)`
-
-GetSelfRenewOk returns a tuple with the SelfRenew field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSelfRenew
-
-`func (o *CertificateProfileSelfPermissions) SetSelfRenew(v bool)`
-
-SetSelfRenew sets SelfRenew field to given value.
-
-### HasSelfRenew
-
-`func (o *CertificateProfileSelfPermissions) HasSelfRenew() bool`
-
-HasSelfRenew returns a boolean if a field has been set.
-
-### SetSelfRenewNil
-
-`func (o *CertificateProfileSelfPermissions) SetSelfRenewNil(b bool)`
-
- SetSelfRenewNil sets the value for SelfRenew to be an explicit nil
-
-### UnsetSelfRenew
-`func (o *CertificateProfileSelfPermissions) UnsetSelfRenew()`
-
-UnsetSelfRenew ensures that no value is present for SelfRenew, not even an explicit nil
 ### GetSelfPopRenew
 
 `func (o *CertificateProfileSelfPermissions) GetSelfPopRenew() bool`
@@ -276,6 +136,146 @@ HasSelfPopUpdate returns a boolean if a field has been set.
 `func (o *CertificateProfileSelfPermissions) UnsetSelfPopUpdate()`
 
 UnsetSelfPopUpdate ensures that no value is present for SelfPopUpdate, not even an explicit nil
+### GetSelfRecover
+
+`func (o *CertificateProfileSelfPermissions) GetSelfRecover() bool`
+
+GetSelfRecover returns the SelfRecover field if non-nil, zero value otherwise.
+
+### GetSelfRecoverOk
+
+`func (o *CertificateProfileSelfPermissions) GetSelfRecoverOk() (*bool, bool)`
+
+GetSelfRecoverOk returns a tuple with the SelfRecover field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfRecover
+
+`func (o *CertificateProfileSelfPermissions) SetSelfRecover(v bool)`
+
+SetSelfRecover sets SelfRecover field to given value.
+
+### HasSelfRecover
+
+`func (o *CertificateProfileSelfPermissions) HasSelfRecover() bool`
+
+HasSelfRecover returns a boolean if a field has been set.
+
+### SetSelfRecoverNil
+
+`func (o *CertificateProfileSelfPermissions) SetSelfRecoverNil(b bool)`
+
+ SetSelfRecoverNil sets the value for SelfRecover to be an explicit nil
+
+### UnsetSelfRecover
+`func (o *CertificateProfileSelfPermissions) UnsetSelfRecover()`
+
+UnsetSelfRecover ensures that no value is present for SelfRecover, not even an explicit nil
+### GetSelfRenew
+
+`func (o *CertificateProfileSelfPermissions) GetSelfRenew() bool`
+
+GetSelfRenew returns the SelfRenew field if non-nil, zero value otherwise.
+
+### GetSelfRenewOk
+
+`func (o *CertificateProfileSelfPermissions) GetSelfRenewOk() (*bool, bool)`
+
+GetSelfRenewOk returns a tuple with the SelfRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfRenew
+
+`func (o *CertificateProfileSelfPermissions) SetSelfRenew(v bool)`
+
+SetSelfRenew sets SelfRenew field to given value.
+
+### HasSelfRenew
+
+`func (o *CertificateProfileSelfPermissions) HasSelfRenew() bool`
+
+HasSelfRenew returns a boolean if a field has been set.
+
+### SetSelfRenewNil
+
+`func (o *CertificateProfileSelfPermissions) SetSelfRenewNil(b bool)`
+
+ SetSelfRenewNil sets the value for SelfRenew to be an explicit nil
+
+### UnsetSelfRenew
+`func (o *CertificateProfileSelfPermissions) UnsetSelfRenew()`
+
+UnsetSelfRenew ensures that no value is present for SelfRenew, not even an explicit nil
+### GetSelfRevoke
+
+`func (o *CertificateProfileSelfPermissions) GetSelfRevoke() bool`
+
+GetSelfRevoke returns the SelfRevoke field if non-nil, zero value otherwise.
+
+### GetSelfRevokeOk
+
+`func (o *CertificateProfileSelfPermissions) GetSelfRevokeOk() (*bool, bool)`
+
+GetSelfRevokeOk returns a tuple with the SelfRevoke field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfRevoke
+
+`func (o *CertificateProfileSelfPermissions) SetSelfRevoke(v bool)`
+
+SetSelfRevoke sets SelfRevoke field to given value.
+
+### HasSelfRevoke
+
+`func (o *CertificateProfileSelfPermissions) HasSelfRevoke() bool`
+
+HasSelfRevoke returns a boolean if a field has been set.
+
+### SetSelfRevokeNil
+
+`func (o *CertificateProfileSelfPermissions) SetSelfRevokeNil(b bool)`
+
+ SetSelfRevokeNil sets the value for SelfRevoke to be an explicit nil
+
+### UnsetSelfRevoke
+`func (o *CertificateProfileSelfPermissions) UnsetSelfRevoke()`
+
+UnsetSelfRevoke ensures that no value is present for SelfRevoke, not even an explicit nil
+### GetSelfUpdate
+
+`func (o *CertificateProfileSelfPermissions) GetSelfUpdate() bool`
+
+GetSelfUpdate returns the SelfUpdate field if non-nil, zero value otherwise.
+
+### GetSelfUpdateOk
+
+`func (o *CertificateProfileSelfPermissions) GetSelfUpdateOk() (*bool, bool)`
+
+GetSelfUpdateOk returns a tuple with the SelfUpdate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSelfUpdate
+
+`func (o *CertificateProfileSelfPermissions) SetSelfUpdate(v bool)`
+
+SetSelfUpdate sets SelfUpdate field to given value.
+
+### HasSelfUpdate
+
+`func (o *CertificateProfileSelfPermissions) HasSelfUpdate() bool`
+
+HasSelfUpdate returns a boolean if a field has been set.
+
+### SetSelfUpdateNil
+
+`func (o *CertificateProfileSelfPermissions) SetSelfUpdateNil(b bool)`
+
+ SetSelfUpdateNil sets the value for SelfUpdate to be an explicit nil
+
+### UnsetSelfUpdate
+`func (o *CertificateProfileSelfPermissions) UnsetSelfUpdate()`
+
+UnsetSelfUpdate ensures that no value is present for SelfUpdate, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

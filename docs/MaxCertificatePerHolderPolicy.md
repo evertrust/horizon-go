@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Max** | **int64** |  | 
 **Behavior** | **string** |  | 
+**Max** | **int64** |  | 
 **RevocationReason** | Pointer to **NullableString** | One of: &#x60;unspecified&#x60;, &#x60;keycompromise&#x60;, &#x60;cacompromise&#x60;, &#x60;affiliationchange&#x60;, &#x60;superseded&#x60;, &#x60;cessationofoperation&#x60; | [optional] 
 
 ## Methods
 
 ### NewMaxCertificatePerHolderPolicy
 
-`func NewMaxCertificatePerHolderPolicy(max int64, behavior string, ) *MaxCertificatePerHolderPolicy`
+`func NewMaxCertificatePerHolderPolicy(behavior string, max int64, ) *MaxCertificatePerHolderPolicy`
 
 NewMaxCertificatePerHolderPolicy instantiates a new MaxCertificatePerHolderPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -26,26 +26,6 @@ will change when the set of required properties is changed
 NewMaxCertificatePerHolderPolicyWithDefaults instantiates a new MaxCertificatePerHolderPolicy object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetMax
-
-`func (o *MaxCertificatePerHolderPolicy) GetMax() int64`
-
-GetMax returns the Max field if non-nil, zero value otherwise.
-
-### GetMaxOk
-
-`func (o *MaxCertificatePerHolderPolicy) GetMaxOk() (*int64, bool)`
-
-GetMaxOk returns a tuple with the Max field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMax
-
-`func (o *MaxCertificatePerHolderPolicy) SetMax(v int64)`
-
-SetMax sets Max field to given value.
-
 
 ### GetBehavior
 
@@ -65,6 +45,26 @@ and a boolean to check if the value has been set.
 `func (o *MaxCertificatePerHolderPolicy) SetBehavior(v string)`
 
 SetBehavior sets Behavior field to given value.
+
+
+### GetMax
+
+`func (o *MaxCertificatePerHolderPolicy) GetMax() int64`
+
+GetMax returns the Max field if non-nil, zero value otherwise.
+
+### GetMaxOk
+
+`func (o *MaxCertificatePerHolderPolicy) GetMaxOk() (*int64, bool)`
+
+GetMaxOk returns a tuple with the Max field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMax
+
+`func (o *MaxCertificatePerHolderPolicy) SetMax(v int64)`
+
+SetMax sets Max field to given value.
 
 
 ### GetRevocationReason

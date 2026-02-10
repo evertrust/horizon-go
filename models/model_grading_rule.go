@@ -22,9 +22,9 @@ var _ utils.MappedNullable = &GradingRule{}
 
 // GradingRule struct for GradingRule
 type GradingRule struct {
+	Condition            string               `json:"condition"`
 	Description          []LocalizedString    `json:"description"`
 	Scope                utils.NullableString `json:"scope,omitempty"`
-	Condition            string               `json:"condition"`
 	Score                int64                `json:"score"`
 	AdditionalProperties map[string]interface{}
 }
@@ -35,10 +35,10 @@ type _GradingRule GradingRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGradingRule(description []LocalizedString, condition string, score int64) *GradingRule {
+func NewGradingRule(condition string, description []LocalizedString, score int64) *GradingRule {
 	this := GradingRule{}
-	this.Description = description
 	this.Condition = condition
+	this.Description = description
 	this.Score = score
 	return &this
 }
@@ -49,6 +49,30 @@ func NewGradingRule(description []LocalizedString, condition string, score int64
 func NewGradingRuleWithDefaults() *GradingRule {
 	this := GradingRule{}
 	return &this
+}
+
+// GetCondition returns the Condition field value
+func (o *GradingRule) GetCondition() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Condition
+}
+
+// GetConditionOk returns a tuple with the Condition field value
+// and a boolean to check if the value has been set.
+func (o *GradingRule) GetConditionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Condition, true
+}
+
+// SetCondition sets field value
+func (o *GradingRule) SetCondition(v string) {
+	o.Condition = v
 }
 
 // GetDescription returns the Description field value
@@ -118,30 +142,6 @@ func (o *GradingRule) UnsetScope() {
 	o.Scope.Unset()
 }
 
-// GetCondition returns the Condition field value
-func (o *GradingRule) GetCondition() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Condition
-}
-
-// GetConditionOk returns a tuple with the Condition field value
-// and a boolean to check if the value has been set.
-func (o *GradingRule) GetConditionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Condition, true
-}
-
-// SetCondition sets field value
-func (o *GradingRule) SetCondition(v string) {
-	o.Condition = v
-}
-
 // GetScore returns the Score field value
 func (o *GradingRule) GetScore() int64 {
 	if o == nil {
@@ -176,11 +176,11 @@ func (o GradingRule) MarshalJSON() ([]byte, error) {
 
 func (o GradingRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["condition"] = o.Condition
 	toSerialize["description"] = o.Description
 	if o.Scope.IsSet() {
 		toSerialize["scope"] = o.Scope.Get()
 	}
-	toSerialize["condition"] = o.Condition
 	toSerialize["score"] = o.Score
 
 	for key, value := range o.AdditionalProperties {
@@ -195,8 +195,8 @@ func (o *GradingRule) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"description",
 		"condition",
+		"description",
 		"score",
 	}
 
@@ -227,9 +227,9 @@ func (o *GradingRule) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "condition")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "scope")
-		delete(additionalProperties, "condition")
 		delete(additionalProperties, "score")
 		o.AdditionalProperties = additionalProperties
 	}

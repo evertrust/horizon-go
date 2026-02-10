@@ -23,19 +23,19 @@ var _ utils.MappedNullable = &AzureKeyVaultConnectorResponse{}
 // AzureKeyVaultConnectorResponse struct for AzureKeyVaultConnectorResponse
 type AzureKeyVaultConnectorResponse struct {
 	// Object internal ID
-	Id                  string               `json:"_id"`
-	Type                string               `json:"type"`
-	Name                string               `json:"name"`
-	ThrottleDuration    string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	ThrottleParallelism int64                `json:"throttleParallelism"`
-	RenewalPeriod       utils.NullableString `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Timeout             utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Proxy               utils.NullableString `json:"proxy,omitempty"`
-	Tenant              string               `json:"tenant"`
+	Id string `json:"_id"`
 	// Name of the `password` [credentials](#tag/security.credentials) containing the App ID and Key to authenticate on AKV
 	Credentials          string               `json:"credentials"`
-	VaultBaseUrl         string               `json:"vaultBaseUrl"`
+	Name                 string               `json:"name"`
 	Prefix               utils.NullableString `json:"prefix,omitempty"`
+	Proxy                utils.NullableString `json:"proxy,omitempty"`
+	RenewalPeriod        utils.NullableString `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Tenant               string               `json:"tenant"`
+	ThrottleDuration     string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	ThrottleParallelism  int64                `json:"throttleParallelism"`
+	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type                 string               `json:"type"`
+	VaultBaseUrl         string               `json:"vaultBaseUrl"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,15 +45,15 @@ type _AzureKeyVaultConnectorResponse AzureKeyVaultConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAzureKeyVaultConnectorResponse(id string, type_ string, name string, throttleDuration string, throttleParallelism int64, tenant string, credentials string, vaultBaseUrl string) *AzureKeyVaultConnectorResponse {
+func NewAzureKeyVaultConnectorResponse(id string, credentials string, name string, tenant string, throttleDuration string, throttleParallelism int64, type_ string, vaultBaseUrl string) *AzureKeyVaultConnectorResponse {
 	this := AzureKeyVaultConnectorResponse{}
 	this.Id = id
-	this.Type = type_
+	this.Credentials = credentials
 	this.Name = name
+	this.Tenant = tenant
 	this.ThrottleDuration = throttleDuration
 	this.ThrottleParallelism = throttleParallelism
-	this.Tenant = tenant
-	this.Credentials = credentials
+	this.Type = type_
 	this.VaultBaseUrl = vaultBaseUrl
 	return &this
 }
@@ -90,28 +90,28 @@ func (o *AzureKeyVaultConnectorResponse) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
-func (o *AzureKeyVaultConnectorResponse) GetType() string {
+// GetCredentials returns the Credentials field value
+func (o *AzureKeyVaultConnectorResponse) GetCredentials() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.Credentials
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
-func (o *AzureKeyVaultConnectorResponse) GetTypeOk() (*string, bool) {
+func (o *AzureKeyVaultConnectorResponse) GetCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.Credentials, true
 }
 
-// SetType sets field value
-func (o *AzureKeyVaultConnectorResponse) SetType(v string) {
-	o.Type = v
+// SetCredentials sets field value
+func (o *AzureKeyVaultConnectorResponse) SetCredentials(v string) {
+	o.Credentials = v
 }
 
 // GetName returns the Name field value
@@ -136,6 +136,159 @@ func (o *AzureKeyVaultConnectorResponse) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *AzureKeyVaultConnectorResponse) SetName(v string) {
 	o.Name = v
+}
+
+// GetPrefix returns the Prefix field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureKeyVaultConnectorResponse) GetPrefix() string {
+	if o == nil || utils.IsNil(o.Prefix.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Prefix.Get()
+}
+
+// GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureKeyVaultConnectorResponse) GetPrefixOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Prefix.Get(), o.Prefix.IsSet()
+}
+
+// HasPrefix returns a boolean if a field has been set.
+func (o *AzureKeyVaultConnectorResponse) HasPrefix() bool {
+	if o != nil && o.Prefix.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPrefix gets a reference to the given NullableString and assigns it to the Prefix field.
+func (o *AzureKeyVaultConnectorResponse) SetPrefix(v string) {
+	o.Prefix.Set(&v)
+}
+
+// SetPrefixNil sets the value for Prefix to be an explicit nil
+func (o *AzureKeyVaultConnectorResponse) SetPrefixNil() {
+	o.Prefix.Set(nil)
+}
+
+// UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
+func (o *AzureKeyVaultConnectorResponse) UnsetPrefix() {
+	o.Prefix.Unset()
+}
+
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureKeyVaultConnectorResponse) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Proxy.Get()
+}
+
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureKeyVaultConnectorResponse) GetProxyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Proxy.Get(), o.Proxy.IsSet()
+}
+
+// HasProxy returns a boolean if a field has been set.
+func (o *AzureKeyVaultConnectorResponse) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *AzureKeyVaultConnectorResponse) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *AzureKeyVaultConnectorResponse) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *AzureKeyVaultConnectorResponse) UnsetProxy() {
+	o.Proxy.Unset()
+}
+
+// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureKeyVaultConnectorResponse) GetRenewalPeriod() string {
+	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RenewalPeriod.Get()
+}
+
+// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureKeyVaultConnectorResponse) GetRenewalPeriodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
+}
+
+// HasRenewalPeriod returns a boolean if a field has been set.
+func (o *AzureKeyVaultConnectorResponse) HasRenewalPeriod() bool {
+	if o != nil && o.RenewalPeriod.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
+func (o *AzureKeyVaultConnectorResponse) SetRenewalPeriod(v string) {
+	o.RenewalPeriod.Set(&v)
+}
+
+// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
+func (o *AzureKeyVaultConnectorResponse) SetRenewalPeriodNil() {
+	o.RenewalPeriod.Set(nil)
+}
+
+// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+func (o *AzureKeyVaultConnectorResponse) UnsetRenewalPeriod() {
+	o.RenewalPeriod.Unset()
+}
+
+// GetTenant returns the Tenant field value
+func (o *AzureKeyVaultConnectorResponse) GetTenant() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Tenant
+}
+
+// GetTenantOk returns a tuple with the Tenant field value
+// and a boolean to check if the value has been set.
+func (o *AzureKeyVaultConnectorResponse) GetTenantOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Tenant, true
+}
+
+// SetTenant sets field value
+func (o *AzureKeyVaultConnectorResponse) SetTenant(v string) {
+	o.Tenant = v
 }
 
 // GetThrottleDuration returns the ThrottleDuration field value
@@ -186,49 +339,6 @@ func (o *AzureKeyVaultConnectorResponse) SetThrottleParallelism(v int64) {
 	o.ThrottleParallelism = v
 }
 
-// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureKeyVaultConnectorResponse) GetRenewalPeriod() string {
-	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RenewalPeriod.Get()
-}
-
-// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureKeyVaultConnectorResponse) GetRenewalPeriodOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
-}
-
-// HasRenewalPeriod returns a boolean if a field has been set.
-func (o *AzureKeyVaultConnectorResponse) HasRenewalPeriod() bool {
-	if o != nil && o.RenewalPeriod.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
-func (o *AzureKeyVaultConnectorResponse) SetRenewalPeriod(v string) {
-	o.RenewalPeriod.Set(&v)
-}
-
-// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-func (o *AzureKeyVaultConnectorResponse) SetRenewalPeriodNil() {
-	o.RenewalPeriod.Set(nil)
-}
-
-// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
-func (o *AzureKeyVaultConnectorResponse) UnsetRenewalPeriod() {
-	o.RenewalPeriod.Unset()
-}
-
 // GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AzureKeyVaultConnectorResponse) GetTimeout() string {
 	if o == nil || utils.IsNil(o.Timeout.Get()) {
@@ -272,95 +382,28 @@ func (o *AzureKeyVaultConnectorResponse) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureKeyVaultConnectorResponse) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Proxy.Get()
-}
-
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureKeyVaultConnectorResponse) GetProxyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
-}
-
-// HasProxy returns a boolean if a field has been set.
-func (o *AzureKeyVaultConnectorResponse) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *AzureKeyVaultConnectorResponse) SetProxy(v string) {
-	o.Proxy.Set(&v)
-}
-
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *AzureKeyVaultConnectorResponse) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *AzureKeyVaultConnectorResponse) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetTenant returns the Tenant field value
-func (o *AzureKeyVaultConnectorResponse) GetTenant() string {
+// GetType returns the Type field value
+func (o *AzureKeyVaultConnectorResponse) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Tenant
+	return o.Type
 }
 
-// GetTenantOk returns a tuple with the Tenant field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *AzureKeyVaultConnectorResponse) GetTenantOk() (*string, bool) {
+func (o *AzureKeyVaultConnectorResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Tenant, true
+	return &o.Type, true
 }
 
-// SetTenant sets field value
-func (o *AzureKeyVaultConnectorResponse) SetTenant(v string) {
-	o.Tenant = v
-}
-
-// GetCredentials returns the Credentials field value
-func (o *AzureKeyVaultConnectorResponse) GetCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Credentials
-}
-
-// GetCredentialsOk returns a tuple with the Credentials field value
-// and a boolean to check if the value has been set.
-func (o *AzureKeyVaultConnectorResponse) GetCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Credentials, true
-}
-
-// SetCredentials sets field value
-func (o *AzureKeyVaultConnectorResponse) SetCredentials(v string) {
-	o.Credentials = v
+// SetType sets field value
+func (o *AzureKeyVaultConnectorResponse) SetType(v string) {
+	o.Type = v
 }
 
 // GetVaultBaseUrl returns the VaultBaseUrl field value
@@ -387,49 +430,6 @@ func (o *AzureKeyVaultConnectorResponse) SetVaultBaseUrl(v string) {
 	o.VaultBaseUrl = v
 }
 
-// GetPrefix returns the Prefix field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureKeyVaultConnectorResponse) GetPrefix() string {
-	if o == nil || utils.IsNil(o.Prefix.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Prefix.Get()
-}
-
-// GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureKeyVaultConnectorResponse) GetPrefixOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Prefix.Get(), o.Prefix.IsSet()
-}
-
-// HasPrefix returns a boolean if a field has been set.
-func (o *AzureKeyVaultConnectorResponse) HasPrefix() bool {
-	if o != nil && o.Prefix.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPrefix gets a reference to the given NullableString and assigns it to the Prefix field.
-func (o *AzureKeyVaultConnectorResponse) SetPrefix(v string) {
-	o.Prefix.Set(&v)
-}
-
-// SetPrefixNil sets the value for Prefix to be an explicit nil
-func (o *AzureKeyVaultConnectorResponse) SetPrefixNil() {
-	o.Prefix.Set(nil)
-}
-
-// UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
-func (o *AzureKeyVaultConnectorResponse) UnsetPrefix() {
-	o.Prefix.Unset()
-}
-
 func (o AzureKeyVaultConnectorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -441,25 +441,25 @@ func (o AzureKeyVaultConnectorResponse) MarshalJSON() ([]byte, error) {
 func (o AzureKeyVaultConnectorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["type"] = o.Type
+	toSerialize["credentials"] = o.Credentials
 	toSerialize["name"] = o.Name
-	toSerialize["throttleDuration"] = o.ThrottleDuration
-	toSerialize["throttleParallelism"] = o.ThrottleParallelism
-	if o.RenewalPeriod.IsSet() {
-		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
-	}
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
+	if o.Prefix.IsSet() {
+		toSerialize["prefix"] = o.Prefix.Get()
 	}
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
-	toSerialize["tenant"] = o.Tenant
-	toSerialize["credentials"] = o.Credentials
-	toSerialize["vaultBaseUrl"] = o.VaultBaseUrl
-	if o.Prefix.IsSet() {
-		toSerialize["prefix"] = o.Prefix.Get()
+	if o.RenewalPeriod.IsSet() {
+		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
 	}
+	toSerialize["tenant"] = o.Tenant
+	toSerialize["throttleDuration"] = o.ThrottleDuration
+	toSerialize["throttleParallelism"] = o.ThrottleParallelism
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
+	toSerialize["vaultBaseUrl"] = o.VaultBaseUrl
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -474,12 +474,12 @@ func (o *AzureKeyVaultConnectorResponse) UnmarshalJSON(data []byte) (err error) 
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"type",
+		"credentials",
 		"name",
+		"tenant",
 		"throttleDuration",
 		"throttleParallelism",
-		"tenant",
-		"credentials",
+		"type",
 		"vaultBaseUrl",
 	}
 
@@ -511,17 +511,17 @@ func (o *AzureKeyVaultConnectorResponse) UnmarshalJSON(data []byte) (err error) 
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "credentials")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "prefix")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "renewalPeriod")
+		delete(additionalProperties, "tenant")
 		delete(additionalProperties, "throttleDuration")
 		delete(additionalProperties, "throttleParallelism")
-		delete(additionalProperties, "renewalPeriod")
 		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "tenant")
-		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "vaultBaseUrl")
-		delete(additionalProperties, "prefix")
 		o.AdditionalProperties = additionalProperties
 	}
 

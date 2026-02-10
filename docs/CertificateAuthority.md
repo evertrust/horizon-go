@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**SubjectKeyIdentifier** | Pointer to **NullableString** |  | [optional] 
-**ResponderUrl** | Pointer to **NullableString** |  | [optional] 
+**CacheTimeToIdle** | Pointer to **NullableString** |  | [optional] 
 **CrlUrl** | Pointer to **NullableString** |  | [optional] 
+**Downloadable** | Pointer to **bool** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**OutdatedRevocationStatusPolicy** | Pointer to **string** |  | [optional] 
+**Proxy** | Pointer to **NullableString** |  | [optional] 
+**Public** | Pointer to **bool** |  | [optional] 
 **Refresh** | Pointer to **NullableString** |  | [optional] 
+**ResponderUrl** | Pointer to **NullableString** |  | [optional] 
+**SubjectKeyIdentifier** | Pointer to **NullableString** |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
 **TrustedForClientAuthentication** | Pointer to **bool** |  | [optional] 
 **TrustedForServerAuthentication** | Pointer to **bool** |  | [optional] 
-**OutdatedRevocationStatusPolicy** | Pointer to **string** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Proxy** | Pointer to **NullableString** |  | [optional] 
-**CacheTimeToIdle** | Pointer to **NullableString** |  | [optional] 
-**Public** | Pointer to **bool** |  | [optional] 
-**Downloadable** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -37,101 +37,41 @@ NewCertificateAuthorityWithDefaults instantiates a new CertificateAuthority obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetCacheTimeToIdle
 
-`func (o *CertificateAuthority) GetName() string`
+`func (o *CertificateAuthority) GetCacheTimeToIdle() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetCacheTimeToIdle returns the CacheTimeToIdle field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetCacheTimeToIdleOk
 
-`func (o *CertificateAuthority) GetNameOk() (*string, bool)`
+`func (o *CertificateAuthority) GetCacheTimeToIdleOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetCacheTimeToIdleOk returns a tuple with the CacheTimeToIdle field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetCacheTimeToIdle
 
-`func (o *CertificateAuthority) SetName(v string)`
+`func (o *CertificateAuthority) SetCacheTimeToIdle(v string)`
 
-SetName sets Name field to given value.
+SetCacheTimeToIdle sets CacheTimeToIdle field to given value.
 
-### HasName
+### HasCacheTimeToIdle
 
-`func (o *CertificateAuthority) HasName() bool`
+`func (o *CertificateAuthority) HasCacheTimeToIdle() bool`
 
-HasName returns a boolean if a field has been set.
+HasCacheTimeToIdle returns a boolean if a field has been set.
 
-### GetSubjectKeyIdentifier
+### SetCacheTimeToIdleNil
 
-`func (o *CertificateAuthority) GetSubjectKeyIdentifier() string`
+`func (o *CertificateAuthority) SetCacheTimeToIdleNil(b bool)`
 
-GetSubjectKeyIdentifier returns the SubjectKeyIdentifier field if non-nil, zero value otherwise.
+ SetCacheTimeToIdleNil sets the value for CacheTimeToIdle to be an explicit nil
 
-### GetSubjectKeyIdentifierOk
+### UnsetCacheTimeToIdle
+`func (o *CertificateAuthority) UnsetCacheTimeToIdle()`
 
-`func (o *CertificateAuthority) GetSubjectKeyIdentifierOk() (*string, bool)`
-
-GetSubjectKeyIdentifierOk returns a tuple with the SubjectKeyIdentifier field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubjectKeyIdentifier
-
-`func (o *CertificateAuthority) SetSubjectKeyIdentifier(v string)`
-
-SetSubjectKeyIdentifier sets SubjectKeyIdentifier field to given value.
-
-### HasSubjectKeyIdentifier
-
-`func (o *CertificateAuthority) HasSubjectKeyIdentifier() bool`
-
-HasSubjectKeyIdentifier returns a boolean if a field has been set.
-
-### SetSubjectKeyIdentifierNil
-
-`func (o *CertificateAuthority) SetSubjectKeyIdentifierNil(b bool)`
-
- SetSubjectKeyIdentifierNil sets the value for SubjectKeyIdentifier to be an explicit nil
-
-### UnsetSubjectKeyIdentifier
-`func (o *CertificateAuthority) UnsetSubjectKeyIdentifier()`
-
-UnsetSubjectKeyIdentifier ensures that no value is present for SubjectKeyIdentifier, not even an explicit nil
-### GetResponderUrl
-
-`func (o *CertificateAuthority) GetResponderUrl() string`
-
-GetResponderUrl returns the ResponderUrl field if non-nil, zero value otherwise.
-
-### GetResponderUrlOk
-
-`func (o *CertificateAuthority) GetResponderUrlOk() (*string, bool)`
-
-GetResponderUrlOk returns a tuple with the ResponderUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetResponderUrl
-
-`func (o *CertificateAuthority) SetResponderUrl(v string)`
-
-SetResponderUrl sets ResponderUrl field to given value.
-
-### HasResponderUrl
-
-`func (o *CertificateAuthority) HasResponderUrl() bool`
-
-HasResponderUrl returns a boolean if a field has been set.
-
-### SetResponderUrlNil
-
-`func (o *CertificateAuthority) SetResponderUrlNil(b bool)`
-
- SetResponderUrlNil sets the value for ResponderUrl to be an explicit nil
-
-### UnsetResponderUrl
-`func (o *CertificateAuthority) UnsetResponderUrl()`
-
-UnsetResponderUrl ensures that no value is present for ResponderUrl, not even an explicit nil
+UnsetCacheTimeToIdle ensures that no value is present for CacheTimeToIdle, not even an explicit nil
 ### GetCrlUrl
 
 `func (o *CertificateAuthority) GetCrlUrl() string`
@@ -167,6 +107,141 @@ HasCrlUrl returns a boolean if a field has been set.
 `func (o *CertificateAuthority) UnsetCrlUrl()`
 
 UnsetCrlUrl ensures that no value is present for CrlUrl, not even an explicit nil
+### GetDownloadable
+
+`func (o *CertificateAuthority) GetDownloadable() bool`
+
+GetDownloadable returns the Downloadable field if non-nil, zero value otherwise.
+
+### GetDownloadableOk
+
+`func (o *CertificateAuthority) GetDownloadableOk() (*bool, bool)`
+
+GetDownloadableOk returns a tuple with the Downloadable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDownloadable
+
+`func (o *CertificateAuthority) SetDownloadable(v bool)`
+
+SetDownloadable sets Downloadable field to given value.
+
+### HasDownloadable
+
+`func (o *CertificateAuthority) HasDownloadable() bool`
+
+HasDownloadable returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *CertificateAuthority) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *CertificateAuthority) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *CertificateAuthority) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *CertificateAuthority) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### GetOutdatedRevocationStatusPolicy
+
+`func (o *CertificateAuthority) GetOutdatedRevocationStatusPolicy() string`
+
+GetOutdatedRevocationStatusPolicy returns the OutdatedRevocationStatusPolicy field if non-nil, zero value otherwise.
+
+### GetOutdatedRevocationStatusPolicyOk
+
+`func (o *CertificateAuthority) GetOutdatedRevocationStatusPolicyOk() (*string, bool)`
+
+GetOutdatedRevocationStatusPolicyOk returns a tuple with the OutdatedRevocationStatusPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOutdatedRevocationStatusPolicy
+
+`func (o *CertificateAuthority) SetOutdatedRevocationStatusPolicy(v string)`
+
+SetOutdatedRevocationStatusPolicy sets OutdatedRevocationStatusPolicy field to given value.
+
+### HasOutdatedRevocationStatusPolicy
+
+`func (o *CertificateAuthority) HasOutdatedRevocationStatusPolicy() bool`
+
+HasOutdatedRevocationStatusPolicy returns a boolean if a field has been set.
+
+### GetProxy
+
+`func (o *CertificateAuthority) GetProxy() string`
+
+GetProxy returns the Proxy field if non-nil, zero value otherwise.
+
+### GetProxyOk
+
+`func (o *CertificateAuthority) GetProxyOk() (*string, bool)`
+
+GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxy
+
+`func (o *CertificateAuthority) SetProxy(v string)`
+
+SetProxy sets Proxy field to given value.
+
+### HasProxy
+
+`func (o *CertificateAuthority) HasProxy() bool`
+
+HasProxy returns a boolean if a field has been set.
+
+### SetProxyNil
+
+`func (o *CertificateAuthority) SetProxyNil(b bool)`
+
+ SetProxyNil sets the value for Proxy to be an explicit nil
+
+### UnsetProxy
+`func (o *CertificateAuthority) UnsetProxy()`
+
+UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+### GetPublic
+
+`func (o *CertificateAuthority) GetPublic() bool`
+
+GetPublic returns the Public field if non-nil, zero value otherwise.
+
+### GetPublicOk
+
+`func (o *CertificateAuthority) GetPublicOk() (*bool, bool)`
+
+GetPublicOk returns a tuple with the Public field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublic
+
+`func (o *CertificateAuthority) SetPublic(v bool)`
+
+SetPublic sets Public field to given value.
+
+### HasPublic
+
+`func (o *CertificateAuthority) HasPublic() bool`
+
+HasPublic returns a boolean if a field has been set.
+
 ### GetRefresh
 
 `func (o *CertificateAuthority) GetRefresh() string`
@@ -202,6 +277,111 @@ HasRefresh returns a boolean if a field has been set.
 `func (o *CertificateAuthority) UnsetRefresh()`
 
 UnsetRefresh ensures that no value is present for Refresh, not even an explicit nil
+### GetResponderUrl
+
+`func (o *CertificateAuthority) GetResponderUrl() string`
+
+GetResponderUrl returns the ResponderUrl field if non-nil, zero value otherwise.
+
+### GetResponderUrlOk
+
+`func (o *CertificateAuthority) GetResponderUrlOk() (*string, bool)`
+
+GetResponderUrlOk returns a tuple with the ResponderUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResponderUrl
+
+`func (o *CertificateAuthority) SetResponderUrl(v string)`
+
+SetResponderUrl sets ResponderUrl field to given value.
+
+### HasResponderUrl
+
+`func (o *CertificateAuthority) HasResponderUrl() bool`
+
+HasResponderUrl returns a boolean if a field has been set.
+
+### SetResponderUrlNil
+
+`func (o *CertificateAuthority) SetResponderUrlNil(b bool)`
+
+ SetResponderUrlNil sets the value for ResponderUrl to be an explicit nil
+
+### UnsetResponderUrl
+`func (o *CertificateAuthority) UnsetResponderUrl()`
+
+UnsetResponderUrl ensures that no value is present for ResponderUrl, not even an explicit nil
+### GetSubjectKeyIdentifier
+
+`func (o *CertificateAuthority) GetSubjectKeyIdentifier() string`
+
+GetSubjectKeyIdentifier returns the SubjectKeyIdentifier field if non-nil, zero value otherwise.
+
+### GetSubjectKeyIdentifierOk
+
+`func (o *CertificateAuthority) GetSubjectKeyIdentifierOk() (*string, bool)`
+
+GetSubjectKeyIdentifierOk returns a tuple with the SubjectKeyIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubjectKeyIdentifier
+
+`func (o *CertificateAuthority) SetSubjectKeyIdentifier(v string)`
+
+SetSubjectKeyIdentifier sets SubjectKeyIdentifier field to given value.
+
+### HasSubjectKeyIdentifier
+
+`func (o *CertificateAuthority) HasSubjectKeyIdentifier() bool`
+
+HasSubjectKeyIdentifier returns a boolean if a field has been set.
+
+### SetSubjectKeyIdentifierNil
+
+`func (o *CertificateAuthority) SetSubjectKeyIdentifierNil(b bool)`
+
+ SetSubjectKeyIdentifierNil sets the value for SubjectKeyIdentifier to be an explicit nil
+
+### UnsetSubjectKeyIdentifier
+`func (o *CertificateAuthority) UnsetSubjectKeyIdentifier()`
+
+UnsetSubjectKeyIdentifier ensures that no value is present for SubjectKeyIdentifier, not even an explicit nil
+### GetTimeout
+
+`func (o *CertificateAuthority) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *CertificateAuthority) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *CertificateAuthority) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *CertificateAuthority) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *CertificateAuthority) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *CertificateAuthority) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetTrustedForClientAuthentication
 
 `func (o *CertificateAuthority) GetTrustedForClientAuthentication() bool`
@@ -251,186 +431,6 @@ SetTrustedForServerAuthentication sets TrustedForServerAuthentication field to g
 `func (o *CertificateAuthority) HasTrustedForServerAuthentication() bool`
 
 HasTrustedForServerAuthentication returns a boolean if a field has been set.
-
-### GetOutdatedRevocationStatusPolicy
-
-`func (o *CertificateAuthority) GetOutdatedRevocationStatusPolicy() string`
-
-GetOutdatedRevocationStatusPolicy returns the OutdatedRevocationStatusPolicy field if non-nil, zero value otherwise.
-
-### GetOutdatedRevocationStatusPolicyOk
-
-`func (o *CertificateAuthority) GetOutdatedRevocationStatusPolicyOk() (*string, bool)`
-
-GetOutdatedRevocationStatusPolicyOk returns a tuple with the OutdatedRevocationStatusPolicy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOutdatedRevocationStatusPolicy
-
-`func (o *CertificateAuthority) SetOutdatedRevocationStatusPolicy(v string)`
-
-SetOutdatedRevocationStatusPolicy sets OutdatedRevocationStatusPolicy field to given value.
-
-### HasOutdatedRevocationStatusPolicy
-
-`func (o *CertificateAuthority) HasOutdatedRevocationStatusPolicy() bool`
-
-HasOutdatedRevocationStatusPolicy returns a boolean if a field has been set.
-
-### GetTimeout
-
-`func (o *CertificateAuthority) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *CertificateAuthority) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *CertificateAuthority) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *CertificateAuthority) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *CertificateAuthority) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *CertificateAuthority) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetProxy
-
-`func (o *CertificateAuthority) GetProxy() string`
-
-GetProxy returns the Proxy field if non-nil, zero value otherwise.
-
-### GetProxyOk
-
-`func (o *CertificateAuthority) GetProxyOk() (*string, bool)`
-
-GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProxy
-
-`func (o *CertificateAuthority) SetProxy(v string)`
-
-SetProxy sets Proxy field to given value.
-
-### HasProxy
-
-`func (o *CertificateAuthority) HasProxy() bool`
-
-HasProxy returns a boolean if a field has been set.
-
-### SetProxyNil
-
-`func (o *CertificateAuthority) SetProxyNil(b bool)`
-
- SetProxyNil sets the value for Proxy to be an explicit nil
-
-### UnsetProxy
-`func (o *CertificateAuthority) UnsetProxy()`
-
-UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetCacheTimeToIdle
-
-`func (o *CertificateAuthority) GetCacheTimeToIdle() string`
-
-GetCacheTimeToIdle returns the CacheTimeToIdle field if non-nil, zero value otherwise.
-
-### GetCacheTimeToIdleOk
-
-`func (o *CertificateAuthority) GetCacheTimeToIdleOk() (*string, bool)`
-
-GetCacheTimeToIdleOk returns a tuple with the CacheTimeToIdle field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCacheTimeToIdle
-
-`func (o *CertificateAuthority) SetCacheTimeToIdle(v string)`
-
-SetCacheTimeToIdle sets CacheTimeToIdle field to given value.
-
-### HasCacheTimeToIdle
-
-`func (o *CertificateAuthority) HasCacheTimeToIdle() bool`
-
-HasCacheTimeToIdle returns a boolean if a field has been set.
-
-### SetCacheTimeToIdleNil
-
-`func (o *CertificateAuthority) SetCacheTimeToIdleNil(b bool)`
-
- SetCacheTimeToIdleNil sets the value for CacheTimeToIdle to be an explicit nil
-
-### UnsetCacheTimeToIdle
-`func (o *CertificateAuthority) UnsetCacheTimeToIdle()`
-
-UnsetCacheTimeToIdle ensures that no value is present for CacheTimeToIdle, not even an explicit nil
-### GetPublic
-
-`func (o *CertificateAuthority) GetPublic() bool`
-
-GetPublic returns the Public field if non-nil, zero value otherwise.
-
-### GetPublicOk
-
-`func (o *CertificateAuthority) GetPublicOk() (*bool, bool)`
-
-GetPublicOk returns a tuple with the Public field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPublic
-
-`func (o *CertificateAuthority) SetPublic(v bool)`
-
-SetPublic sets Public field to given value.
-
-### HasPublic
-
-`func (o *CertificateAuthority) HasPublic() bool`
-
-HasPublic returns a boolean if a field has been set.
-
-### GetDownloadable
-
-`func (o *CertificateAuthority) GetDownloadable() bool`
-
-GetDownloadable returns the Downloadable field if non-nil, zero value otherwise.
-
-### GetDownloadableOk
-
-`func (o *CertificateAuthority) GetDownloadableOk() (*bool, bool)`
-
-GetDownloadableOk returns a tuple with the Downloadable field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDownloadable
-
-`func (o *CertificateAuthority) SetDownloadable(v bool)`
-
-SetDownloadable sets Downloadable field to given value.
-
-### HasDownloadable
-
-`func (o *CertificateAuthority) HasDownloadable() bool`
-
-HasDownloadable returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

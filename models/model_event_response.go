@@ -27,10 +27,10 @@ type EventResponse struct {
 	Details              []EventDetail        `json:"details,omitempty"`
 	Module               EventModule          `json:"module"`
 	Node                 string               `json:"node"`
-	Timestamp            int64                `json:"timestamp"`
 	RemoveAt             utils.NullableInt64  `json:"removeAt,omitempty"`
 	Seal                 utils.NullableString `json:"seal,omitempty"`
 	Status               string               `json:"status"`
+	Timestamp            int64                `json:"timestamp"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -40,13 +40,13 @@ type _EventResponse EventResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEventResponse(code EventCode, module EventModule, node string, timestamp int64, status string) *EventResponse {
+func NewEventResponse(code EventCode, module EventModule, node string, status string, timestamp int64) *EventResponse {
 	this := EventResponse{}
 	this.Code = code
 	this.Module = module
 	this.Node = node
-	this.Timestamp = timestamp
 	this.Status = status
+	this.Timestamp = timestamp
 	return &this
 }
 
@@ -206,30 +206,6 @@ func (o *EventResponse) SetNode(v string) {
 	o.Node = v
 }
 
-// GetTimestamp returns the Timestamp field value
-func (o *EventResponse) GetTimestamp() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Timestamp
-}
-
-// GetTimestampOk returns a tuple with the Timestamp field value
-// and a boolean to check if the value has been set.
-func (o *EventResponse) GetTimestampOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Timestamp, true
-}
-
-// SetTimestamp sets field value
-func (o *EventResponse) SetTimestamp(v int64) {
-	o.Timestamp = v
-}
-
 // GetRemoveAt returns the RemoveAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EventResponse) GetRemoveAt() int64 {
 	if o == nil || utils.IsNil(o.RemoveAt.Get()) {
@@ -340,6 +316,30 @@ func (o *EventResponse) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetTimestamp returns the Timestamp field value
+func (o *EventResponse) GetTimestamp() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.Timestamp
+}
+
+// GetTimestampOk returns a tuple with the Timestamp field value
+// and a boolean to check if the value has been set.
+func (o *EventResponse) GetTimestampOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Timestamp, true
+}
+
+// SetTimestamp sets field value
+func (o *EventResponse) SetTimestamp(v int64) {
+	o.Timestamp = v
+}
+
 func (o EventResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -359,7 +359,6 @@ func (o EventResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["module"] = o.Module
 	toSerialize["node"] = o.Node
-	toSerialize["timestamp"] = o.Timestamp
 	if o.RemoveAt.IsSet() {
 		toSerialize["removeAt"] = o.RemoveAt.Get()
 	}
@@ -367,6 +366,7 @@ func (o EventResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["seal"] = o.Seal.Get()
 	}
 	toSerialize["status"] = o.Status
+	toSerialize["timestamp"] = o.Timestamp
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -383,8 +383,8 @@ func (o *EventResponse) UnmarshalJSON(data []byte) (err error) {
 		"code",
 		"module",
 		"node",
-		"timestamp",
 		"status",
+		"timestamp",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -419,10 +419,10 @@ func (o *EventResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "details")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "node")
-		delete(additionalProperties, "timestamp")
 		delete(additionalProperties, "removeAt")
 		delete(additionalProperties, "seal")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "timestamp")
 		o.AdditionalProperties = additionalProperties
 	}
 

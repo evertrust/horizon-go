@@ -22,14 +22,14 @@ var _ utils.MappedNullable = &WebRARecoverRequestOnTemplateResponse{}
 
 // WebRARecoverRequestOnTemplateResponse struct for WebRARecoverRequestOnTemplateResponse
 type WebRARecoverRequestOnTemplateResponse struct {
-	// The request workflow
-	Workflow string `json:"workflow"`
-	// The profile on which the recovery occurred
-	Profile string `json:"profile"`
 	// The module of the profile.
 	Module Module `json:"module"`
+	// The profile on which the recovery occurred
+	Profile string `json:"profile"`
 	// The cryptography policy applied during the recovery of a certificate
-	Template             WebRARecoverRequestTemplate `json:"template"`
+	Template WebRARecoverRequestTemplate `json:"template"`
+	// The request workflow
+	Workflow             string `json:"workflow"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,12 +39,12 @@ type _WebRARecoverRequestOnTemplateResponse WebRARecoverRequestOnTemplateRespons
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRARecoverRequestOnTemplateResponse(workflow string, profile string, module Module, template WebRARecoverRequestTemplate) *WebRARecoverRequestOnTemplateResponse {
+func NewWebRARecoverRequestOnTemplateResponse(module Module, profile string, template WebRARecoverRequestTemplate, workflow string) *WebRARecoverRequestOnTemplateResponse {
 	this := WebRARecoverRequestOnTemplateResponse{}
-	this.Workflow = workflow
-	this.Profile = profile
 	this.Module = module
+	this.Profile = profile
 	this.Template = template
+	this.Workflow = workflow
 	return &this
 }
 
@@ -54,54 +54,6 @@ func NewWebRARecoverRequestOnTemplateResponse(workflow string, profile string, m
 func NewWebRARecoverRequestOnTemplateResponseWithDefaults() *WebRARecoverRequestOnTemplateResponse {
 	this := WebRARecoverRequestOnTemplateResponse{}
 	return &this
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRARecoverRequestOnTemplateResponse) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRARecoverRequestOnTemplateResponse) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRARecoverRequestOnTemplateResponse) SetWorkflow(v string) {
-	o.Workflow = v
-}
-
-// GetProfile returns the Profile field value
-func (o *WebRARecoverRequestOnTemplateResponse) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *WebRARecoverRequestOnTemplateResponse) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *WebRARecoverRequestOnTemplateResponse) SetProfile(v string) {
-	o.Profile = v
 }
 
 // GetModule returns the Module field value
@@ -128,6 +80,30 @@ func (o *WebRARecoverRequestOnTemplateResponse) SetModule(v Module) {
 	o.Module = v
 }
 
+// GetProfile returns the Profile field value
+func (o *WebRARecoverRequestOnTemplateResponse) GetProfile() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Profile
+}
+
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *WebRARecoverRequestOnTemplateResponse) GetProfileOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
+// SetProfile sets field value
+func (o *WebRARecoverRequestOnTemplateResponse) SetProfile(v string) {
+	o.Profile = v
+}
+
 // GetTemplate returns the Template field value
 func (o *WebRARecoverRequestOnTemplateResponse) GetTemplate() WebRARecoverRequestTemplate {
 	if o == nil {
@@ -152,6 +128,30 @@ func (o *WebRARecoverRequestOnTemplateResponse) SetTemplate(v WebRARecoverReques
 	o.Template = v
 }
 
+// GetWorkflow returns the Workflow field value
+func (o *WebRARecoverRequestOnTemplateResponse) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRARecoverRequestOnTemplateResponse) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRARecoverRequestOnTemplateResponse) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
 func (o WebRARecoverRequestOnTemplateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -162,10 +162,10 @@ func (o WebRARecoverRequestOnTemplateResponse) MarshalJSON() ([]byte, error) {
 
 func (o WebRARecoverRequestOnTemplateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["workflow"] = o.Workflow
-	toSerialize["profile"] = o.Profile
 	toSerialize["module"] = o.Module
+	toSerialize["profile"] = o.Profile
 	toSerialize["template"] = o.Template
+	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -179,10 +179,10 @@ func (o *WebRARecoverRequestOnTemplateResponse) UnmarshalJSON(data []byte) (err 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"workflow",
-		"profile",
 		"module",
+		"profile",
 		"template",
+		"workflow",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -212,10 +212,10 @@ func (o *WebRARecoverRequestOnTemplateResponse) UnmarshalJSON(data []byte) (err 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "workflow")
-		delete(additionalProperties, "profile")
 		delete(additionalProperties, "module")
+		delete(additionalProperties, "profile")
 		delete(additionalProperties, "template")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

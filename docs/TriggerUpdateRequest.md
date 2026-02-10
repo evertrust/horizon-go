@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | The type of notification | 
-**EmailTemplate** | [**EmailTemplate**](EmailTemplate.md) |  | 
-**IfPkcs12** | Pointer to **NullableBool** | On events triggering an enrollment, select if mail is sent: - **Always**: set the value to &#x60;null&#x60;  - **Only when a PKCS#12 is available in the request**: set the value to &#x60;true&#x60;  - **Only when a PKCS#12 is not in the request**: set the value to &#x60;false&#x60;  | [optional] 
-**AttachPemCertificate** | Pointer to **NullableBool** | Attach the certificate in PEM format if available | [optional] 
-**AttachPemBundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PEM format if available | [optional] 
 **AttachDerCertificate** | Pointer to **NullableBool** | Attach the certificate in DER format if available | [optional] 
+**AttachPemBundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PEM format if available | [optional] 
+**AttachPemCertificate** | Pointer to **NullableBool** | Attach the certificate in PEM format if available | [optional] 
 **AttachPkcs7** | Pointer to **NullableBool** | Attach the certificate in PKCS7 format if available | [optional] 
 **AttachPkcs7Bundle** | Pointer to **NullableBool** | Attach the certificate and its trust chain (bundle) in PKCS7 format if available | [optional] 
 **AttachPkcs12** | Pointer to **NullableBool** | Attach the certificate in PKCS#12 format if available | [optional] 
+**EmailTemplate** | [**EmailTemplate**](EmailTemplate.md) |  | 
+**IfPkcs12** | Pointer to **NullableBool** | On events triggering an enrollment, select if mail is sent: - **Always**: set the value to &#x60;null&#x60;  - **Only when a PKCS#12 is available in the request**: set the value to &#x60;true&#x60;  - **Only when a PKCS#12 is not in the request**: set the value to &#x60;false&#x60;  | [optional] 
+**Type** | **string** | The type of notification | 
+**Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
+**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
 **Name** | **string** |  | 
 **Retries** | Pointer to **NullableInt64** |  | [optional] 
-**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
-**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
-**Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
 **RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
-**WebhookTemplate** | [**WebhookTemplate**](WebhookTemplate.md) |  | 
+**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
 **Proxy** | Pointer to **NullableString** | Name of a Proxy to use while sending the webhook | [optional] 
 **Timeout** | Pointer to **string** | Timeout for the webhook request | [optional] 
+**WebhookTemplate** | [**WebhookTemplate**](WebhookTemplate.md) |  | 
 **Sequence** | **[]map[string]interface{}** | The REST requests to execute, in execution order. Each request enriches the dictionary with its response for the next one | 
 **Connector** | **string** |  | 
 
@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewTriggerUpdateRequest
 
-`func NewTriggerUpdateRequest(type_ string, emailTemplate EmailTemplate, name string, events []string, webhookTemplate WebhookTemplate, sequence []map[string]interface{}, connector string, ) *TriggerUpdateRequest`
+`func NewTriggerUpdateRequest(emailTemplate EmailTemplate, type_ string, events []string, name string, webhookTemplate WebhookTemplate, sequence []map[string]interface{}, connector string, ) *TriggerUpdateRequest`
 
 NewTriggerUpdateRequest instantiates a new TriggerUpdateRequest object
 This constructor will assign default values to properties that have it defined,
@@ -44,151 +44,6 @@ NewTriggerUpdateRequestWithDefaults instantiates a new TriggerUpdateRequest obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetType
-
-`func (o *TriggerUpdateRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *TriggerUpdateRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *TriggerUpdateRequest) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetEmailTemplate
-
-`func (o *TriggerUpdateRequest) GetEmailTemplate() EmailTemplate`
-
-GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
-
-### GetEmailTemplateOk
-
-`func (o *TriggerUpdateRequest) GetEmailTemplateOk() (*EmailTemplate, bool)`
-
-GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmailTemplate
-
-`func (o *TriggerUpdateRequest) SetEmailTemplate(v EmailTemplate)`
-
-SetEmailTemplate sets EmailTemplate field to given value.
-
-
-### GetIfPkcs12
-
-`func (o *TriggerUpdateRequest) GetIfPkcs12() bool`
-
-GetIfPkcs12 returns the IfPkcs12 field if non-nil, zero value otherwise.
-
-### GetIfPkcs12Ok
-
-`func (o *TriggerUpdateRequest) GetIfPkcs12Ok() (*bool, bool)`
-
-GetIfPkcs12Ok returns a tuple with the IfPkcs12 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIfPkcs12
-
-`func (o *TriggerUpdateRequest) SetIfPkcs12(v bool)`
-
-SetIfPkcs12 sets IfPkcs12 field to given value.
-
-### HasIfPkcs12
-
-`func (o *TriggerUpdateRequest) HasIfPkcs12() bool`
-
-HasIfPkcs12 returns a boolean if a field has been set.
-
-### SetIfPkcs12Nil
-
-`func (o *TriggerUpdateRequest) SetIfPkcs12Nil(b bool)`
-
- SetIfPkcs12Nil sets the value for IfPkcs12 to be an explicit nil
-
-### UnsetIfPkcs12
-`func (o *TriggerUpdateRequest) UnsetIfPkcs12()`
-
-UnsetIfPkcs12 ensures that no value is present for IfPkcs12, not even an explicit nil
-### GetAttachPemCertificate
-
-`func (o *TriggerUpdateRequest) GetAttachPemCertificate() bool`
-
-GetAttachPemCertificate returns the AttachPemCertificate field if non-nil, zero value otherwise.
-
-### GetAttachPemCertificateOk
-
-`func (o *TriggerUpdateRequest) GetAttachPemCertificateOk() (*bool, bool)`
-
-GetAttachPemCertificateOk returns a tuple with the AttachPemCertificate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAttachPemCertificate
-
-`func (o *TriggerUpdateRequest) SetAttachPemCertificate(v bool)`
-
-SetAttachPemCertificate sets AttachPemCertificate field to given value.
-
-### HasAttachPemCertificate
-
-`func (o *TriggerUpdateRequest) HasAttachPemCertificate() bool`
-
-HasAttachPemCertificate returns a boolean if a field has been set.
-
-### SetAttachPemCertificateNil
-
-`func (o *TriggerUpdateRequest) SetAttachPemCertificateNil(b bool)`
-
- SetAttachPemCertificateNil sets the value for AttachPemCertificate to be an explicit nil
-
-### UnsetAttachPemCertificate
-`func (o *TriggerUpdateRequest) UnsetAttachPemCertificate()`
-
-UnsetAttachPemCertificate ensures that no value is present for AttachPemCertificate, not even an explicit nil
-### GetAttachPemBundle
-
-`func (o *TriggerUpdateRequest) GetAttachPemBundle() bool`
-
-GetAttachPemBundle returns the AttachPemBundle field if non-nil, zero value otherwise.
-
-### GetAttachPemBundleOk
-
-`func (o *TriggerUpdateRequest) GetAttachPemBundleOk() (*bool, bool)`
-
-GetAttachPemBundleOk returns a tuple with the AttachPemBundle field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAttachPemBundle
-
-`func (o *TriggerUpdateRequest) SetAttachPemBundle(v bool)`
-
-SetAttachPemBundle sets AttachPemBundle field to given value.
-
-### HasAttachPemBundle
-
-`func (o *TriggerUpdateRequest) HasAttachPemBundle() bool`
-
-HasAttachPemBundle returns a boolean if a field has been set.
-
-### SetAttachPemBundleNil
-
-`func (o *TriggerUpdateRequest) SetAttachPemBundleNil(b bool)`
-
- SetAttachPemBundleNil sets the value for AttachPemBundle to be an explicit nil
-
-### UnsetAttachPemBundle
-`func (o *TriggerUpdateRequest) UnsetAttachPemBundle()`
-
-UnsetAttachPemBundle ensures that no value is present for AttachPemBundle, not even an explicit nil
 ### GetAttachDerCertificate
 
 `func (o *TriggerUpdateRequest) GetAttachDerCertificate() bool`
@@ -224,6 +79,76 @@ HasAttachDerCertificate returns a boolean if a field has been set.
 `func (o *TriggerUpdateRequest) UnsetAttachDerCertificate()`
 
 UnsetAttachDerCertificate ensures that no value is present for AttachDerCertificate, not even an explicit nil
+### GetAttachPemBundle
+
+`func (o *TriggerUpdateRequest) GetAttachPemBundle() bool`
+
+GetAttachPemBundle returns the AttachPemBundle field if non-nil, zero value otherwise.
+
+### GetAttachPemBundleOk
+
+`func (o *TriggerUpdateRequest) GetAttachPemBundleOk() (*bool, bool)`
+
+GetAttachPemBundleOk returns a tuple with the AttachPemBundle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttachPemBundle
+
+`func (o *TriggerUpdateRequest) SetAttachPemBundle(v bool)`
+
+SetAttachPemBundle sets AttachPemBundle field to given value.
+
+### HasAttachPemBundle
+
+`func (o *TriggerUpdateRequest) HasAttachPemBundle() bool`
+
+HasAttachPemBundle returns a boolean if a field has been set.
+
+### SetAttachPemBundleNil
+
+`func (o *TriggerUpdateRequest) SetAttachPemBundleNil(b bool)`
+
+ SetAttachPemBundleNil sets the value for AttachPemBundle to be an explicit nil
+
+### UnsetAttachPemBundle
+`func (o *TriggerUpdateRequest) UnsetAttachPemBundle()`
+
+UnsetAttachPemBundle ensures that no value is present for AttachPemBundle, not even an explicit nil
+### GetAttachPemCertificate
+
+`func (o *TriggerUpdateRequest) GetAttachPemCertificate() bool`
+
+GetAttachPemCertificate returns the AttachPemCertificate field if non-nil, zero value otherwise.
+
+### GetAttachPemCertificateOk
+
+`func (o *TriggerUpdateRequest) GetAttachPemCertificateOk() (*bool, bool)`
+
+GetAttachPemCertificateOk returns a tuple with the AttachPemCertificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttachPemCertificate
+
+`func (o *TriggerUpdateRequest) SetAttachPemCertificate(v bool)`
+
+SetAttachPemCertificate sets AttachPemCertificate field to given value.
+
+### HasAttachPemCertificate
+
+`func (o *TriggerUpdateRequest) HasAttachPemCertificate() bool`
+
+HasAttachPemCertificate returns a boolean if a field has been set.
+
+### SetAttachPemCertificateNil
+
+`func (o *TriggerUpdateRequest) SetAttachPemCertificateNil(b bool)`
+
+ SetAttachPemCertificateNil sets the value for AttachPemCertificate to be an explicit nil
+
+### UnsetAttachPemCertificate
+`func (o *TriggerUpdateRequest) UnsetAttachPemCertificate()`
+
+UnsetAttachPemCertificate ensures that no value is present for AttachPemCertificate, not even an explicit nil
 ### GetAttachPkcs7
 
 `func (o *TriggerUpdateRequest) GetAttachPkcs7() bool`
@@ -329,6 +254,136 @@ HasAttachPkcs12 returns a boolean if a field has been set.
 `func (o *TriggerUpdateRequest) UnsetAttachPkcs12()`
 
 UnsetAttachPkcs12 ensures that no value is present for AttachPkcs12, not even an explicit nil
+### GetEmailTemplate
+
+`func (o *TriggerUpdateRequest) GetEmailTemplate() EmailTemplate`
+
+GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
+
+### GetEmailTemplateOk
+
+`func (o *TriggerUpdateRequest) GetEmailTemplateOk() (*EmailTemplate, bool)`
+
+GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmailTemplate
+
+`func (o *TriggerUpdateRequest) SetEmailTemplate(v EmailTemplate)`
+
+SetEmailTemplate sets EmailTemplate field to given value.
+
+
+### GetIfPkcs12
+
+`func (o *TriggerUpdateRequest) GetIfPkcs12() bool`
+
+GetIfPkcs12 returns the IfPkcs12 field if non-nil, zero value otherwise.
+
+### GetIfPkcs12Ok
+
+`func (o *TriggerUpdateRequest) GetIfPkcs12Ok() (*bool, bool)`
+
+GetIfPkcs12Ok returns a tuple with the IfPkcs12 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIfPkcs12
+
+`func (o *TriggerUpdateRequest) SetIfPkcs12(v bool)`
+
+SetIfPkcs12 sets IfPkcs12 field to given value.
+
+### HasIfPkcs12
+
+`func (o *TriggerUpdateRequest) HasIfPkcs12() bool`
+
+HasIfPkcs12 returns a boolean if a field has been set.
+
+### SetIfPkcs12Nil
+
+`func (o *TriggerUpdateRequest) SetIfPkcs12Nil(b bool)`
+
+ SetIfPkcs12Nil sets the value for IfPkcs12 to be an explicit nil
+
+### UnsetIfPkcs12
+`func (o *TriggerUpdateRequest) UnsetIfPkcs12()`
+
+UnsetIfPkcs12 ensures that no value is present for IfPkcs12, not even an explicit nil
+### GetType
+
+`func (o *TriggerUpdateRequest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *TriggerUpdateRequest) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *TriggerUpdateRequest) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
+### GetEvents
+
+`func (o *TriggerUpdateRequest) GetEvents() []string`
+
+GetEvents returns the Events field if non-nil, zero value otherwise.
+
+### GetEventsOk
+
+`func (o *TriggerUpdateRequest) GetEventsOk() (*[]string, bool)`
+
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvents
+
+`func (o *TriggerUpdateRequest) SetEvents(v []string)`
+
+SetEvents sets Events field to given value.
+
+
+### GetLicenseUsagePercent
+
+`func (o *TriggerUpdateRequest) GetLicenseUsagePercent() int64`
+
+GetLicenseUsagePercent returns the LicenseUsagePercent field if non-nil, zero value otherwise.
+
+### GetLicenseUsagePercentOk
+
+`func (o *TriggerUpdateRequest) GetLicenseUsagePercentOk() (*int64, bool)`
+
+GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLicenseUsagePercent
+
+`func (o *TriggerUpdateRequest) SetLicenseUsagePercent(v int64)`
+
+SetLicenseUsagePercent sets LicenseUsagePercent field to given value.
+
+### HasLicenseUsagePercent
+
+`func (o *TriggerUpdateRequest) HasLicenseUsagePercent() bool`
+
+HasLicenseUsagePercent returns a boolean if a field has been set.
+
+### SetLicenseUsagePercentNil
+
+`func (o *TriggerUpdateRequest) SetLicenseUsagePercentNil(b bool)`
+
+ SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
+
+### UnsetLicenseUsagePercent
+`func (o *TriggerUpdateRequest) UnsetLicenseUsagePercent()`
+
+UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
 ### GetName
 
 `func (o *TriggerUpdateRequest) GetName() string`
@@ -384,96 +439,6 @@ HasRetries returns a boolean if a field has been set.
 `func (o *TriggerUpdateRequest) UnsetRetries()`
 
 UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetRunPeriod
-
-`func (o *TriggerUpdateRequest) GetRunPeriod() string`
-
-GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
-
-### GetRunPeriodOk
-
-`func (o *TriggerUpdateRequest) GetRunPeriodOk() (*string, bool)`
-
-GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRunPeriod
-
-`func (o *TriggerUpdateRequest) SetRunPeriod(v string)`
-
-SetRunPeriod sets RunPeriod field to given value.
-
-### HasRunPeriod
-
-`func (o *TriggerUpdateRequest) HasRunPeriod() bool`
-
-HasRunPeriod returns a boolean if a field has been set.
-
-### SetRunPeriodNil
-
-`func (o *TriggerUpdateRequest) SetRunPeriodNil(b bool)`
-
- SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
-
-### UnsetRunPeriod
-`func (o *TriggerUpdateRequest) UnsetRunPeriod()`
-
-UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
-### GetLicenseUsagePercent
-
-`func (o *TriggerUpdateRequest) GetLicenseUsagePercent() int64`
-
-GetLicenseUsagePercent returns the LicenseUsagePercent field if non-nil, zero value otherwise.
-
-### GetLicenseUsagePercentOk
-
-`func (o *TriggerUpdateRequest) GetLicenseUsagePercentOk() (*int64, bool)`
-
-GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLicenseUsagePercent
-
-`func (o *TriggerUpdateRequest) SetLicenseUsagePercent(v int64)`
-
-SetLicenseUsagePercent sets LicenseUsagePercent field to given value.
-
-### HasLicenseUsagePercent
-
-`func (o *TriggerUpdateRequest) HasLicenseUsagePercent() bool`
-
-HasLicenseUsagePercent returns a boolean if a field has been set.
-
-### SetLicenseUsagePercentNil
-
-`func (o *TriggerUpdateRequest) SetLicenseUsagePercentNil(b bool)`
-
- SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
-
-### UnsetLicenseUsagePercent
-`func (o *TriggerUpdateRequest) UnsetLicenseUsagePercent()`
-
-UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
-### GetEvents
-
-`func (o *TriggerUpdateRequest) GetEvents() []string`
-
-GetEvents returns the Events field if non-nil, zero value otherwise.
-
-### GetEventsOk
-
-`func (o *TriggerUpdateRequest) GetEventsOk() (*[]string, bool)`
-
-GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEvents
-
-`func (o *TriggerUpdateRequest) SetEvents(v []string)`
-
-SetEvents sets Events field to given value.
-
-
 ### GetRunOnRenewed
 
 `func (o *TriggerUpdateRequest) GetRunOnRenewed() bool`
@@ -509,26 +474,41 @@ HasRunOnRenewed returns a boolean if a field has been set.
 `func (o *TriggerUpdateRequest) UnsetRunOnRenewed()`
 
 UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
-### GetWebhookTemplate
+### GetRunPeriod
 
-`func (o *TriggerUpdateRequest) GetWebhookTemplate() WebhookTemplate`
+`func (o *TriggerUpdateRequest) GetRunPeriod() string`
 
-GetWebhookTemplate returns the WebhookTemplate field if non-nil, zero value otherwise.
+GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
 
-### GetWebhookTemplateOk
+### GetRunPeriodOk
 
-`func (o *TriggerUpdateRequest) GetWebhookTemplateOk() (*WebhookTemplate, bool)`
+`func (o *TriggerUpdateRequest) GetRunPeriodOk() (*string, bool)`
 
-GetWebhookTemplateOk returns a tuple with the WebhookTemplate field if it's non-nil, zero value otherwise
+GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWebhookTemplate
+### SetRunPeriod
 
-`func (o *TriggerUpdateRequest) SetWebhookTemplate(v WebhookTemplate)`
+`func (o *TriggerUpdateRequest) SetRunPeriod(v string)`
 
-SetWebhookTemplate sets WebhookTemplate field to given value.
+SetRunPeriod sets RunPeriod field to given value.
 
+### HasRunPeriod
 
+`func (o *TriggerUpdateRequest) HasRunPeriod() bool`
+
+HasRunPeriod returns a boolean if a field has been set.
+
+### SetRunPeriodNil
+
+`func (o *TriggerUpdateRequest) SetRunPeriodNil(b bool)`
+
+ SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
+
+### UnsetRunPeriod
+`func (o *TriggerUpdateRequest) UnsetRunPeriod()`
+
+UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
 ### GetProxy
 
 `func (o *TriggerUpdateRequest) GetProxy() string`
@@ -588,6 +568,26 @@ SetTimeout sets Timeout field to given value.
 `func (o *TriggerUpdateRequest) HasTimeout() bool`
 
 HasTimeout returns a boolean if a field has been set.
+
+### GetWebhookTemplate
+
+`func (o *TriggerUpdateRequest) GetWebhookTemplate() WebhookTemplate`
+
+GetWebhookTemplate returns the WebhookTemplate field if non-nil, zero value otherwise.
+
+### GetWebhookTemplateOk
+
+`func (o *TriggerUpdateRequest) GetWebhookTemplateOk() (*WebhookTemplate, bool)`
+
+GetWebhookTemplateOk returns a tuple with the WebhookTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWebhookTemplate
+
+`func (o *TriggerUpdateRequest) SetWebhookTemplate(v WebhookTemplate)`
+
+SetWebhookTemplate sets WebhookTemplate field to given value.
+
 
 ### GetSequence
 

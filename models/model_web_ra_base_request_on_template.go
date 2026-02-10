@@ -27,10 +27,10 @@ type WebRABaseRequestOnTemplate struct {
 	CertificatePem utils.NullableString `json:"certificatePem,omitempty"`
 	// The request module
 	Module *string `json:"module,omitempty"`
-	// The workflow for which to return the template.
-	Workflow *string `json:"workflow,omitempty"`
 	// The profile for which to return the template.
-	Profile              *string `json:"profile,omitempty"`
+	Profile *string `json:"profile,omitempty"`
+	// The workflow for which to return the template.
+	Workflow             *string `json:"workflow,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -171,38 +171,6 @@ func (o *WebRABaseRequestOnTemplate) SetModule(v string) {
 	o.Module = &v
 }
 
-// GetWorkflow returns the Workflow field value if set, zero value otherwise.
-func (o *WebRABaseRequestOnTemplate) GetWorkflow() string {
-	if o == nil || utils.IsNil(o.Workflow) {
-		var ret string
-		return ret
-	}
-	return *o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebRABaseRequestOnTemplate) GetWorkflowOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.Workflow) {
-		return nil, false
-	}
-	return o.Workflow, true
-}
-
-// HasWorkflow returns a boolean if a field has been set.
-func (o *WebRABaseRequestOnTemplate) HasWorkflow() bool {
-	if o != nil && !utils.IsNil(o.Workflow) {
-		return true
-	}
-
-	return false
-}
-
-// SetWorkflow gets a reference to the given string and assigns it to the Workflow field.
-func (o *WebRABaseRequestOnTemplate) SetWorkflow(v string) {
-	o.Workflow = &v
-}
-
 // GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *WebRABaseRequestOnTemplate) GetProfile() string {
 	if o == nil || utils.IsNil(o.Profile) {
@@ -235,6 +203,38 @@ func (o *WebRABaseRequestOnTemplate) SetProfile(v string) {
 	o.Profile = &v
 }
 
+// GetWorkflow returns the Workflow field value if set, zero value otherwise.
+func (o *WebRABaseRequestOnTemplate) GetWorkflow() string {
+	if o == nil || utils.IsNil(o.Workflow) {
+		var ret string
+		return ret
+	}
+	return *o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRABaseRequestOnTemplate) GetWorkflowOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Workflow) {
+		return nil, false
+	}
+	return o.Workflow, true
+}
+
+// HasWorkflow returns a boolean if a field has been set.
+func (o *WebRABaseRequestOnTemplate) HasWorkflow() bool {
+	if o != nil && !utils.IsNil(o.Workflow) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkflow gets a reference to the given string and assigns it to the Workflow field.
+func (o *WebRABaseRequestOnTemplate) SetWorkflow(v string) {
+	o.Workflow = &v
+}
+
 func (o WebRABaseRequestOnTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -254,11 +254,11 @@ func (o WebRABaseRequestOnTemplate) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.Module) {
 		toSerialize["module"] = o.Module
 	}
-	if !utils.IsNil(o.Workflow) {
-		toSerialize["workflow"] = o.Workflow
-	}
 	if !utils.IsNil(o.Profile) {
 		toSerialize["profile"] = o.Profile
+	}
+	if !utils.IsNil(o.Workflow) {
+		toSerialize["workflow"] = o.Workflow
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -285,8 +285,8 @@ func (o *WebRABaseRequestOnTemplate) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "certificatePem")
 		delete(additionalProperties, "module")
-		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "profile")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

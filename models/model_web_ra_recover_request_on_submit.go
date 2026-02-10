@@ -22,18 +22,18 @@ var _ utils.MappedNullable = &WebRARecoverRequestOnSubmit{}
 
 // WebRARecoverRequestOnSubmit struct for WebRARecoverRequestOnSubmit
 type WebRARecoverRequestOnSubmit struct {
-	// The password to decrypt the PKCS12 file. Must be set if password mode is `manual`
-	Password NullableSecretString `json:"password,omitempty"`
 	// The id of the certificate to renew
 	CertificateId utils.NullableString `json:"certificateId,omitempty"`
 	// The PEM encoded certificate to renew
 	CertificatePem utils.NullableString `json:"certificatePem,omitempty"`
+	// The password to decrypt the PKCS12 file. Must be set if password mode is `manual`
+	Password NullableSecretString `json:"password,omitempty"`
 	// Free-text field editable by the requester to provider more context on the request
 	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
-	// What this request will do. For a recovery request, this is always `recover`
-	Workflow string `json:"workflow"`
 	// If true, the request is validated, but will not result in an enrollment
-	DryRun               utils.NullableBool `json:"dryRun,omitempty"`
+	DryRun utils.NullableBool `json:"dryRun,omitempty"`
+	// What this request will do. For a recovery request, this is always `recover`
+	Workflow             string `json:"workflow"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -45,9 +45,9 @@ type _WebRARecoverRequestOnSubmit WebRARecoverRequestOnSubmit
 // will change when the set of required properties is changed
 func NewWebRARecoverRequestOnSubmit(workflow string) *WebRARecoverRequestOnSubmit {
 	this := WebRARecoverRequestOnSubmit{}
-	this.Workflow = workflow
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
+	this.Workflow = workflow
 	return &this
 }
 
@@ -59,49 +59,6 @@ func NewWebRARecoverRequestOnSubmitWithDefaults() *WebRARecoverRequestOnSubmit {
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
 	return &this
-}
-
-// GetPassword returns the Password field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRARecoverRequestOnSubmit) GetPassword() SecretString {
-	if o == nil || utils.IsNil(o.Password.Get()) {
-		var ret SecretString
-		return ret
-	}
-	return *o.Password.Get()
-}
-
-// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRARecoverRequestOnSubmit) GetPasswordOk() (*SecretString, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Password.Get(), o.Password.IsSet()
-}
-
-// HasPassword returns a boolean if a field has been set.
-func (o *WebRARecoverRequestOnSubmit) HasPassword() bool {
-	if o != nil && o.Password.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPassword gets a reference to the given NullableSecretString and assigns it to the Password field.
-func (o *WebRARecoverRequestOnSubmit) SetPassword(v SecretString) {
-	o.Password.Set(&v)
-}
-
-// SetPasswordNil sets the value for Password to be an explicit nil
-func (o *WebRARecoverRequestOnSubmit) SetPasswordNil() {
-	o.Password.Set(nil)
-}
-
-// UnsetPassword ensures that no value is present for Password, not even an explicit nil
-func (o *WebRARecoverRequestOnSubmit) UnsetPassword() {
-	o.Password.Unset()
 }
 
 // GetCertificateId returns the CertificateId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -190,6 +147,49 @@ func (o *WebRARecoverRequestOnSubmit) UnsetCertificatePem() {
 	o.CertificatePem.Unset()
 }
 
+// GetPassword returns the Password field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRARecoverRequestOnSubmit) GetPassword() SecretString {
+	if o == nil || utils.IsNil(o.Password.Get()) {
+		var ret SecretString
+		return ret
+	}
+	return *o.Password.Get()
+}
+
+// GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRARecoverRequestOnSubmit) GetPasswordOk() (*SecretString, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Password.Get(), o.Password.IsSet()
+}
+
+// HasPassword returns a boolean if a field has been set.
+func (o *WebRARecoverRequestOnSubmit) HasPassword() bool {
+	if o != nil && o.Password.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPassword gets a reference to the given NullableSecretString and assigns it to the Password field.
+func (o *WebRARecoverRequestOnSubmit) SetPassword(v SecretString) {
+	o.Password.Set(&v)
+}
+
+// SetPasswordNil sets the value for Password to be an explicit nil
+func (o *WebRARecoverRequestOnSubmit) SetPasswordNil() {
+	o.Password.Set(nil)
+}
+
+// UnsetPassword ensures that no value is present for Password, not even an explicit nil
+func (o *WebRARecoverRequestOnSubmit) UnsetPassword() {
+	o.Password.Unset()
+}
+
 // GetRequesterComment returns the RequesterComment field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRARecoverRequestOnSubmit) GetRequesterComment() string {
 	if o == nil || utils.IsNil(o.RequesterComment.Get()) {
@@ -231,30 +231,6 @@ func (o *WebRARecoverRequestOnSubmit) SetRequesterCommentNil() {
 // UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
 func (o *WebRARecoverRequestOnSubmit) UnsetRequesterComment() {
 	o.RequesterComment.Unset()
-}
-
-// GetWorkflow returns the Workflow field value
-func (o *WebRARecoverRequestOnSubmit) GetWorkflow() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Workflow
-}
-
-// GetWorkflowOk returns a tuple with the Workflow field value
-// and a boolean to check if the value has been set.
-func (o *WebRARecoverRequestOnSubmit) GetWorkflowOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Workflow, true
-}
-
-// SetWorkflow sets field value
-func (o *WebRARecoverRequestOnSubmit) SetWorkflow(v string) {
-	o.Workflow = v
 }
 
 // GetDryRun returns the DryRun field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -300,6 +276,30 @@ func (o *WebRARecoverRequestOnSubmit) UnsetDryRun() {
 	o.DryRun.Unset()
 }
 
+// GetWorkflow returns the Workflow field value
+func (o *WebRARecoverRequestOnSubmit) GetWorkflow() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Workflow
+}
+
+// GetWorkflowOk returns a tuple with the Workflow field value
+// and a boolean to check if the value has been set.
+func (o *WebRARecoverRequestOnSubmit) GetWorkflowOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Workflow, true
+}
+
+// SetWorkflow sets field value
+func (o *WebRARecoverRequestOnSubmit) SetWorkflow(v string) {
+	o.Workflow = v
+}
+
 func (o WebRARecoverRequestOnSubmit) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -310,22 +310,22 @@ func (o WebRARecoverRequestOnSubmit) MarshalJSON() ([]byte, error) {
 
 func (o WebRARecoverRequestOnSubmit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Password.IsSet() {
-		toSerialize["password"] = o.Password.Get()
-	}
 	if o.CertificateId.IsSet() {
 		toSerialize["certificateId"] = o.CertificateId.Get()
 	}
 	if o.CertificatePem.IsSet() {
 		toSerialize["certificatePem"] = o.CertificatePem.Get()
 	}
+	if o.Password.IsSet() {
+		toSerialize["password"] = o.Password.Get()
+	}
 	if o.RequesterComment.IsSet() {
 		toSerialize["requesterComment"] = o.RequesterComment.Get()
 	}
-	toSerialize["workflow"] = o.Workflow
 	if o.DryRun.IsSet() {
 		toSerialize["dryRun"] = o.DryRun.Get()
 	}
+	toSerialize["workflow"] = o.Workflow
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -369,12 +369,12 @@ func (o *WebRARecoverRequestOnSubmit) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "password")
 		delete(additionalProperties, "certificateId")
 		delete(additionalProperties, "certificatePem")
+		delete(additionalProperties, "password")
 		delete(additionalProperties, "requesterComment")
-		delete(additionalProperties, "workflow")
 		delete(additionalProperties, "dryRun")
+		delete(additionalProperties, "workflow")
 		o.AdditionalProperties = additionalProperties
 	}
 

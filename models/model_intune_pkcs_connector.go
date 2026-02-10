@@ -22,23 +22,23 @@ var _ utils.MappedNullable = &IntunePKCSConnector{}
 
 // IntunePKCSConnector struct for IntunePKCSConnector
 type IntunePKCSConnector struct {
-	Type                          string               `json:"type"`
+	// Name of the `password` [credentials](#tag/security.credentials) containing the App ID and Key to authenticate on Intune PKCS
+	Credentials                   string               `json:"credentials"`
+	IntendedPurpose               utils.NullableString `json:"intendedPurpose,omitempty"`
+	KeyName                       string               `json:"keyName"`
+	MaxStoredCertificatePerHolder utils.NullableInt64  `json:"maxStoredCertificatePerHolder,omitempty"`
 	Name                          string               `json:"name"`
+	ProviderName                  utils.NullableString `json:"providerName,omitempty"`
+	Proxy                         utils.NullableString `json:"proxy,omitempty"`
+	PubKey                        string               `json:"pubKey"`
+	RenewalPeriod                 utils.NullableString `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	SearchFilter                  utils.NullableString `json:"searchFilter,omitempty"`
+	Tenant                        string               `json:"tenant"`
 	ThrottleDuration              string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	ThrottleParallelism           int64                `json:"throttleParallelism"`
-	RenewalPeriod                 utils.NullableString `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	Timeout                       utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	MaxStoredCertificatePerHolder utils.NullableInt64  `json:"maxStoredCertificatePerHolder,omitempty"`
-	Proxy                         utils.NullableString `json:"proxy,omitempty"`
-	Tenant                        string               `json:"tenant"`
-	// Name of the `password` [credentials](#tag/security.credentials) containing the App ID and Key to authenticate on Intune PKCS
-	Credentials          string               `json:"credentials"`
-	PubKey               string               `json:"pubKey"`
-	KeyName              string               `json:"keyName"`
-	ProviderName         utils.NullableString `json:"providerName,omitempty"`
-	IntendedPurpose      utils.NullableString `json:"intendedPurpose,omitempty"`
-	SearchFilter         utils.NullableString `json:"searchFilter,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Type                          string               `json:"type"`
+	AdditionalProperties          map[string]interface{}
 }
 
 type _IntunePKCSConnector IntunePKCSConnector
@@ -47,16 +47,16 @@ type _IntunePKCSConnector IntunePKCSConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntunePKCSConnector(type_ string, name string, throttleDuration string, throttleParallelism int64, tenant string, credentials string, pubKey string, keyName string) *IntunePKCSConnector {
+func NewIntunePKCSConnector(credentials string, keyName string, name string, pubKey string, tenant string, throttleDuration string, throttleParallelism int64, type_ string) *IntunePKCSConnector {
 	this := IntunePKCSConnector{}
-	this.Type = type_
+	this.Credentials = credentials
+	this.KeyName = keyName
 	this.Name = name
+	this.PubKey = pubKey
+	this.Tenant = tenant
 	this.ThrottleDuration = throttleDuration
 	this.ThrottleParallelism = throttleParallelism
-	this.Tenant = tenant
-	this.Credentials = credentials
-	this.PubKey = pubKey
-	this.KeyName = keyName
+	this.Type = type_
 	return &this
 }
 
@@ -68,28 +68,138 @@ func NewIntunePKCSConnectorWithDefaults() *IntunePKCSConnector {
 	return &this
 }
 
-// GetType returns the Type field value
-func (o *IntunePKCSConnector) GetType() string {
+// GetCredentials returns the Credentials field value
+func (o *IntunePKCSConnector) GetCredentials() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.Credentials
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
-func (o *IntunePKCSConnector) GetTypeOk() (*string, bool) {
+func (o *IntunePKCSConnector) GetCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return &o.Credentials, true
 }
 
-// SetType sets field value
-func (o *IntunePKCSConnector) SetType(v string) {
-	o.Type = v
+// SetCredentials sets field value
+func (o *IntunePKCSConnector) SetCredentials(v string) {
+	o.Credentials = v
+}
+
+// GetIntendedPurpose returns the IntendedPurpose field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSConnector) GetIntendedPurpose() string {
+	if o == nil || utils.IsNil(o.IntendedPurpose.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.IntendedPurpose.Get()
+}
+
+// GetIntendedPurposeOk returns a tuple with the IntendedPurpose field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSConnector) GetIntendedPurposeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IntendedPurpose.Get(), o.IntendedPurpose.IsSet()
+}
+
+// HasIntendedPurpose returns a boolean if a field has been set.
+func (o *IntunePKCSConnector) HasIntendedPurpose() bool {
+	if o != nil && o.IntendedPurpose.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIntendedPurpose gets a reference to the given NullableString and assigns it to the IntendedPurpose field.
+func (o *IntunePKCSConnector) SetIntendedPurpose(v string) {
+	o.IntendedPurpose.Set(&v)
+}
+
+// SetIntendedPurposeNil sets the value for IntendedPurpose to be an explicit nil
+func (o *IntunePKCSConnector) SetIntendedPurposeNil() {
+	o.IntendedPurpose.Set(nil)
+}
+
+// UnsetIntendedPurpose ensures that no value is present for IntendedPurpose, not even an explicit nil
+func (o *IntunePKCSConnector) UnsetIntendedPurpose() {
+	o.IntendedPurpose.Unset()
+}
+
+// GetKeyName returns the KeyName field value
+func (o *IntunePKCSConnector) GetKeyName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.KeyName
+}
+
+// GetKeyNameOk returns a tuple with the KeyName field value
+// and a boolean to check if the value has been set.
+func (o *IntunePKCSConnector) GetKeyNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.KeyName, true
+}
+
+// SetKeyName sets field value
+func (o *IntunePKCSConnector) SetKeyName(v string) {
+	o.KeyName = v
+}
+
+// GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSConnector) GetMaxStoredCertificatePerHolder() int64 {
+	if o == nil || utils.IsNil(o.MaxStoredCertificatePerHolder.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.MaxStoredCertificatePerHolder.Get()
+}
+
+// GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSConnector) GetMaxStoredCertificatePerHolderOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MaxStoredCertificatePerHolder.Get(), o.MaxStoredCertificatePerHolder.IsSet()
+}
+
+// HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
+func (o *IntunePKCSConnector) HasMaxStoredCertificatePerHolder() bool {
+	if o != nil && o.MaxStoredCertificatePerHolder.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxStoredCertificatePerHolder gets a reference to the given NullableInt64 and assigns it to the MaxStoredCertificatePerHolder field.
+func (o *IntunePKCSConnector) SetMaxStoredCertificatePerHolder(v int64) {
+	o.MaxStoredCertificatePerHolder.Set(&v)
+}
+
+// SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
+func (o *IntunePKCSConnector) SetMaxStoredCertificatePerHolderNil() {
+	o.MaxStoredCertificatePerHolder.Set(nil)
+}
+
+// UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
+func (o *IntunePKCSConnector) UnsetMaxStoredCertificatePerHolder() {
+	o.MaxStoredCertificatePerHolder.Unset()
 }
 
 // GetName returns the Name field value
@@ -114,6 +224,226 @@ func (o *IntunePKCSConnector) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *IntunePKCSConnector) SetName(v string) {
 	o.Name = v
+}
+
+// GetProviderName returns the ProviderName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSConnector) GetProviderName() string {
+	if o == nil || utils.IsNil(o.ProviderName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ProviderName.Get()
+}
+
+// GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSConnector) GetProviderNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ProviderName.Get(), o.ProviderName.IsSet()
+}
+
+// HasProviderName returns a boolean if a field has been set.
+func (o *IntunePKCSConnector) HasProviderName() bool {
+	if o != nil && o.ProviderName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderName gets a reference to the given NullableString and assigns it to the ProviderName field.
+func (o *IntunePKCSConnector) SetProviderName(v string) {
+	o.ProviderName.Set(&v)
+}
+
+// SetProviderNameNil sets the value for ProviderName to be an explicit nil
+func (o *IntunePKCSConnector) SetProviderNameNil() {
+	o.ProviderName.Set(nil)
+}
+
+// UnsetProviderName ensures that no value is present for ProviderName, not even an explicit nil
+func (o *IntunePKCSConnector) UnsetProviderName() {
+	o.ProviderName.Unset()
+}
+
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSConnector) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Proxy.Get()
+}
+
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSConnector) GetProxyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Proxy.Get(), o.Proxy.IsSet()
+}
+
+// HasProxy returns a boolean if a field has been set.
+func (o *IntunePKCSConnector) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *IntunePKCSConnector) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *IntunePKCSConnector) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *IntunePKCSConnector) UnsetProxy() {
+	o.Proxy.Unset()
+}
+
+// GetPubKey returns the PubKey field value
+func (o *IntunePKCSConnector) GetPubKey() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PubKey
+}
+
+// GetPubKeyOk returns a tuple with the PubKey field value
+// and a boolean to check if the value has been set.
+func (o *IntunePKCSConnector) GetPubKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PubKey, true
+}
+
+// SetPubKey sets field value
+func (o *IntunePKCSConnector) SetPubKey(v string) {
+	o.PubKey = v
+}
+
+// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSConnector) GetRenewalPeriod() string {
+	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RenewalPeriod.Get()
+}
+
+// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSConnector) GetRenewalPeriodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
+}
+
+// HasRenewalPeriod returns a boolean if a field has been set.
+func (o *IntunePKCSConnector) HasRenewalPeriod() bool {
+	if o != nil && o.RenewalPeriod.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
+func (o *IntunePKCSConnector) SetRenewalPeriod(v string) {
+	o.RenewalPeriod.Set(&v)
+}
+
+// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
+func (o *IntunePKCSConnector) SetRenewalPeriodNil() {
+	o.RenewalPeriod.Set(nil)
+}
+
+// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+func (o *IntunePKCSConnector) UnsetRenewalPeriod() {
+	o.RenewalPeriod.Unset()
+}
+
+// GetSearchFilter returns the SearchFilter field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntunePKCSConnector) GetSearchFilter() string {
+	if o == nil || utils.IsNil(o.SearchFilter.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SearchFilter.Get()
+}
+
+// GetSearchFilterOk returns a tuple with the SearchFilter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntunePKCSConnector) GetSearchFilterOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SearchFilter.Get(), o.SearchFilter.IsSet()
+}
+
+// HasSearchFilter returns a boolean if a field has been set.
+func (o *IntunePKCSConnector) HasSearchFilter() bool {
+	if o != nil && o.SearchFilter.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSearchFilter gets a reference to the given NullableString and assigns it to the SearchFilter field.
+func (o *IntunePKCSConnector) SetSearchFilter(v string) {
+	o.SearchFilter.Set(&v)
+}
+
+// SetSearchFilterNil sets the value for SearchFilter to be an explicit nil
+func (o *IntunePKCSConnector) SetSearchFilterNil() {
+	o.SearchFilter.Set(nil)
+}
+
+// UnsetSearchFilter ensures that no value is present for SearchFilter, not even an explicit nil
+func (o *IntunePKCSConnector) UnsetSearchFilter() {
+	o.SearchFilter.Unset()
+}
+
+// GetTenant returns the Tenant field value
+func (o *IntunePKCSConnector) GetTenant() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Tenant
+}
+
+// GetTenantOk returns a tuple with the Tenant field value
+// and a boolean to check if the value has been set.
+func (o *IntunePKCSConnector) GetTenantOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Tenant, true
+}
+
+// SetTenant sets field value
+func (o *IntunePKCSConnector) SetTenant(v string) {
+	o.Tenant = v
 }
 
 // GetThrottleDuration returns the ThrottleDuration field value
@@ -164,49 +494,6 @@ func (o *IntunePKCSConnector) SetThrottleParallelism(v int64) {
 	o.ThrottleParallelism = v
 }
 
-// GetRenewalPeriod returns the RenewalPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSConnector) GetRenewalPeriod() string {
-	if o == nil || utils.IsNil(o.RenewalPeriod.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.RenewalPeriod.Get()
-}
-
-// GetRenewalPeriodOk returns a tuple with the RenewalPeriod field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSConnector) GetRenewalPeriodOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RenewalPeriod.Get(), o.RenewalPeriod.IsSet()
-}
-
-// HasRenewalPeriod returns a boolean if a field has been set.
-func (o *IntunePKCSConnector) HasRenewalPeriod() bool {
-	if o != nil && o.RenewalPeriod.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRenewalPeriod gets a reference to the given NullableString and assigns it to the RenewalPeriod field.
-func (o *IntunePKCSConnector) SetRenewalPeriod(v string) {
-	o.RenewalPeriod.Set(&v)
-}
-
-// SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-func (o *IntunePKCSConnector) SetRenewalPeriodNil() {
-	o.RenewalPeriod.Set(nil)
-}
-
-// UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
-func (o *IntunePKCSConnector) UnsetRenewalPeriod() {
-	o.RenewalPeriod.Unset()
-}
-
 // GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IntunePKCSConnector) GetTimeout() string {
 	if o == nil || utils.IsNil(o.Timeout.Get()) {
@@ -250,315 +537,28 @@ func (o *IntunePKCSConnector) UnsetTimeout() {
 	o.Timeout.Unset()
 }
 
-// GetMaxStoredCertificatePerHolder returns the MaxStoredCertificatePerHolder field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSConnector) GetMaxStoredCertificatePerHolder() int64 {
-	if o == nil || utils.IsNil(o.MaxStoredCertificatePerHolder.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.MaxStoredCertificatePerHolder.Get()
-}
-
-// GetMaxStoredCertificatePerHolderOk returns a tuple with the MaxStoredCertificatePerHolder field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSConnector) GetMaxStoredCertificatePerHolderOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MaxStoredCertificatePerHolder.Get(), o.MaxStoredCertificatePerHolder.IsSet()
-}
-
-// HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
-func (o *IntunePKCSConnector) HasMaxStoredCertificatePerHolder() bool {
-	if o != nil && o.MaxStoredCertificatePerHolder.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxStoredCertificatePerHolder gets a reference to the given NullableInt64 and assigns it to the MaxStoredCertificatePerHolder field.
-func (o *IntunePKCSConnector) SetMaxStoredCertificatePerHolder(v int64) {
-	o.MaxStoredCertificatePerHolder.Set(&v)
-}
-
-// SetMaxStoredCertificatePerHolderNil sets the value for MaxStoredCertificatePerHolder to be an explicit nil
-func (o *IntunePKCSConnector) SetMaxStoredCertificatePerHolderNil() {
-	o.MaxStoredCertificatePerHolder.Set(nil)
-}
-
-// UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
-func (o *IntunePKCSConnector) UnsetMaxStoredCertificatePerHolder() {
-	o.MaxStoredCertificatePerHolder.Unset()
-}
-
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSConnector) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Proxy.Get()
-}
-
-// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSConnector) GetProxyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
-}
-
-// HasProxy returns a boolean if a field has been set.
-func (o *IntunePKCSConnector) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *IntunePKCSConnector) SetProxy(v string) {
-	o.Proxy.Set(&v)
-}
-
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *IntunePKCSConnector) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *IntunePKCSConnector) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetTenant returns the Tenant field value
-func (o *IntunePKCSConnector) GetTenant() string {
+// GetType returns the Type field value
+func (o *IntunePKCSConnector) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Tenant
+	return o.Type
 }
 
-// GetTenantOk returns a tuple with the Tenant field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *IntunePKCSConnector) GetTenantOk() (*string, bool) {
+func (o *IntunePKCSConnector) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Tenant, true
+	return &o.Type, true
 }
 
-// SetTenant sets field value
-func (o *IntunePKCSConnector) SetTenant(v string) {
-	o.Tenant = v
-}
-
-// GetCredentials returns the Credentials field value
-func (o *IntunePKCSConnector) GetCredentials() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Credentials
-}
-
-// GetCredentialsOk returns a tuple with the Credentials field value
-// and a boolean to check if the value has been set.
-func (o *IntunePKCSConnector) GetCredentialsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Credentials, true
-}
-
-// SetCredentials sets field value
-func (o *IntunePKCSConnector) SetCredentials(v string) {
-	o.Credentials = v
-}
-
-// GetPubKey returns the PubKey field value
-func (o *IntunePKCSConnector) GetPubKey() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.PubKey
-}
-
-// GetPubKeyOk returns a tuple with the PubKey field value
-// and a boolean to check if the value has been set.
-func (o *IntunePKCSConnector) GetPubKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.PubKey, true
-}
-
-// SetPubKey sets field value
-func (o *IntunePKCSConnector) SetPubKey(v string) {
-	o.PubKey = v
-}
-
-// GetKeyName returns the KeyName field value
-func (o *IntunePKCSConnector) GetKeyName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.KeyName
-}
-
-// GetKeyNameOk returns a tuple with the KeyName field value
-// and a boolean to check if the value has been set.
-func (o *IntunePKCSConnector) GetKeyNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.KeyName, true
-}
-
-// SetKeyName sets field value
-func (o *IntunePKCSConnector) SetKeyName(v string) {
-	o.KeyName = v
-}
-
-// GetProviderName returns the ProviderName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSConnector) GetProviderName() string {
-	if o == nil || utils.IsNil(o.ProviderName.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ProviderName.Get()
-}
-
-// GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSConnector) GetProviderNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProviderName.Get(), o.ProviderName.IsSet()
-}
-
-// HasProviderName returns a boolean if a field has been set.
-func (o *IntunePKCSConnector) HasProviderName() bool {
-	if o != nil && o.ProviderName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProviderName gets a reference to the given NullableString and assigns it to the ProviderName field.
-func (o *IntunePKCSConnector) SetProviderName(v string) {
-	o.ProviderName.Set(&v)
-}
-
-// SetProviderNameNil sets the value for ProviderName to be an explicit nil
-func (o *IntunePKCSConnector) SetProviderNameNil() {
-	o.ProviderName.Set(nil)
-}
-
-// UnsetProviderName ensures that no value is present for ProviderName, not even an explicit nil
-func (o *IntunePKCSConnector) UnsetProviderName() {
-	o.ProviderName.Unset()
-}
-
-// GetIntendedPurpose returns the IntendedPurpose field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSConnector) GetIntendedPurpose() string {
-	if o == nil || utils.IsNil(o.IntendedPurpose.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.IntendedPurpose.Get()
-}
-
-// GetIntendedPurposeOk returns a tuple with the IntendedPurpose field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSConnector) GetIntendedPurposeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.IntendedPurpose.Get(), o.IntendedPurpose.IsSet()
-}
-
-// HasIntendedPurpose returns a boolean if a field has been set.
-func (o *IntunePKCSConnector) HasIntendedPurpose() bool {
-	if o != nil && o.IntendedPurpose.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIntendedPurpose gets a reference to the given NullableString and assigns it to the IntendedPurpose field.
-func (o *IntunePKCSConnector) SetIntendedPurpose(v string) {
-	o.IntendedPurpose.Set(&v)
-}
-
-// SetIntendedPurposeNil sets the value for IntendedPurpose to be an explicit nil
-func (o *IntunePKCSConnector) SetIntendedPurposeNil() {
-	o.IntendedPurpose.Set(nil)
-}
-
-// UnsetIntendedPurpose ensures that no value is present for IntendedPurpose, not even an explicit nil
-func (o *IntunePKCSConnector) UnsetIntendedPurpose() {
-	o.IntendedPurpose.Unset()
-}
-
-// GetSearchFilter returns the SearchFilter field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntunePKCSConnector) GetSearchFilter() string {
-	if o == nil || utils.IsNil(o.SearchFilter.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.SearchFilter.Get()
-}
-
-// GetSearchFilterOk returns a tuple with the SearchFilter field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntunePKCSConnector) GetSearchFilterOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.SearchFilter.Get(), o.SearchFilter.IsSet()
-}
-
-// HasSearchFilter returns a boolean if a field has been set.
-func (o *IntunePKCSConnector) HasSearchFilter() bool {
-	if o != nil && o.SearchFilter.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetSearchFilter gets a reference to the given NullableString and assigns it to the SearchFilter field.
-func (o *IntunePKCSConnector) SetSearchFilter(v string) {
-	o.SearchFilter.Set(&v)
-}
-
-// SetSearchFilterNil sets the value for SearchFilter to be an explicit nil
-func (o *IntunePKCSConnector) SetSearchFilterNil() {
-	o.SearchFilter.Set(nil)
-}
-
-// UnsetSearchFilter ensures that no value is present for SearchFilter, not even an explicit nil
-func (o *IntunePKCSConnector) UnsetSearchFilter() {
-	o.SearchFilter.Unset()
+// SetType sets field value
+func (o *IntunePKCSConnector) SetType(v string) {
+	o.Type = v
 }
 
 func (o IntunePKCSConnector) MarshalJSON() ([]byte, error) {
@@ -571,35 +571,35 @@ func (o IntunePKCSConnector) MarshalJSON() ([]byte, error) {
 
 func (o IntunePKCSConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["name"] = o.Name
-	toSerialize["throttleDuration"] = o.ThrottleDuration
-	toSerialize["throttleParallelism"] = o.ThrottleParallelism
-	if o.RenewalPeriod.IsSet() {
-		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
+	toSerialize["credentials"] = o.Credentials
+	if o.IntendedPurpose.IsSet() {
+		toSerialize["intendedPurpose"] = o.IntendedPurpose.Get()
 	}
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
+	toSerialize["keyName"] = o.KeyName
 	if o.MaxStoredCertificatePerHolder.IsSet() {
 		toSerialize["maxStoredCertificatePerHolder"] = o.MaxStoredCertificatePerHolder.Get()
+	}
+	toSerialize["name"] = o.Name
+	if o.ProviderName.IsSet() {
+		toSerialize["providerName"] = o.ProviderName.Get()
 	}
 	if o.Proxy.IsSet() {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
-	toSerialize["tenant"] = o.Tenant
-	toSerialize["credentials"] = o.Credentials
 	toSerialize["pubKey"] = o.PubKey
-	toSerialize["keyName"] = o.KeyName
-	if o.ProviderName.IsSet() {
-		toSerialize["providerName"] = o.ProviderName.Get()
-	}
-	if o.IntendedPurpose.IsSet() {
-		toSerialize["intendedPurpose"] = o.IntendedPurpose.Get()
+	if o.RenewalPeriod.IsSet() {
+		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
 	}
 	if o.SearchFilter.IsSet() {
 		toSerialize["searchFilter"] = o.SearchFilter.Get()
 	}
+	toSerialize["tenant"] = o.Tenant
+	toSerialize["throttleDuration"] = o.ThrottleDuration
+	toSerialize["throttleParallelism"] = o.ThrottleParallelism
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -613,14 +613,14 @@ func (o *IntunePKCSConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
+		"credentials",
+		"keyName",
 		"name",
+		"pubKey",
+		"tenant",
 		"throttleDuration",
 		"throttleParallelism",
-		"tenant",
-		"credentials",
-		"pubKey",
-		"keyName",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -650,21 +650,21 @@ func (o *IntunePKCSConnector) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "intendedPurpose")
+		delete(additionalProperties, "keyName")
+		delete(additionalProperties, "maxStoredCertificatePerHolder")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "providerName")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "pubKey")
+		delete(additionalProperties, "renewalPeriod")
+		delete(additionalProperties, "searchFilter")
+		delete(additionalProperties, "tenant")
 		delete(additionalProperties, "throttleDuration")
 		delete(additionalProperties, "throttleParallelism")
-		delete(additionalProperties, "renewalPeriod")
 		delete(additionalProperties, "timeout")
-		delete(additionalProperties, "maxStoredCertificatePerHolder")
-		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "tenant")
-		delete(additionalProperties, "credentials")
-		delete(additionalProperties, "pubKey")
-		delete(additionalProperties, "keyName")
-		delete(additionalProperties, "providerName")
-		delete(additionalProperties, "intendedPurpose")
-		delete(additionalProperties, "searchFilter")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 

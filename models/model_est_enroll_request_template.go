@@ -21,18 +21,18 @@ var _ utils.MappedNullable = &EstEnrollRequestTemplate{}
 
 // EstEnrollRequestTemplate struct for EstEnrollRequestTemplate
 type EstEnrollRequestTemplate struct {
-	// List of DN elements that will be used to build the certificate's Distinguished Name
-	Subject []IndexedDNElement `json:"subject,omitempty"`
-	// List of SAN elements that will be used to build the certificate's Subject Alternative Name
-	Sans []ListSANElement `json:"sans,omitempty"`
+	// Information about the certificate's contact email and how to edit it
+	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
 	// Information about the certificate's extensions and how to edit them
 	Extensions []CertificateExtensionElement `json:"extensions,omitempty"`
 	// List of labels used internally to tag and group certificates
 	Labels []RequestLabelElement `json:"labels,omitempty"`
-	// Information about the certificate's contact email and how to edit it
-	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
 	// Information about the certificate's owner and how to edit it
 	Owner NullableCertificateOwnerElement `json:"owner,omitempty"`
+	// List of SAN elements that will be used to build the certificate's Subject Alternative Name
+	Sans []ListSANElement `json:"sans,omitempty"`
+	// List of DN elements that will be used to build the certificate's Distinguished Name
+	Subject []IndexedDNElement `json:"subject,omitempty"`
 	// Information about the certificate's team and how to edit it
 	Team                 NullableCertificateTeamElement `json:"team,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -57,70 +57,47 @@ func NewEstEnrollRequestTemplateWithDefaults() *EstEnrollRequestTemplate {
 	return &this
 }
 
-// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstEnrollRequestTemplate) GetSubject() []IndexedDNElement {
-	if o == nil {
-		var ret []IndexedDNElement
+// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstEnrollRequestTemplate) GetContactEmail() CertificateContactEmailElement {
+	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
+		var ret CertificateContactEmailElement
 		return ret
 	}
-	return o.Subject
+	return *o.ContactEmail.Get()
 }
 
-// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
+// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstEnrollRequestTemplate) GetSubjectOk() ([]IndexedDNElement, bool) {
-	if o == nil || utils.IsNil(o.Subject) {
+func (o *EstEnrollRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Subject, true
+	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
 }
 
-// HasSubject returns a boolean if a field has been set.
-func (o *EstEnrollRequestTemplate) HasSubject() bool {
-	if o != nil && !utils.IsNil(o.Subject) {
+// HasContactEmail returns a boolean if a field has been set.
+func (o *EstEnrollRequestTemplate) HasContactEmail() bool {
+	if o != nil && o.ContactEmail.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSubject gets a reference to the given []IndexedDNElement and assigns it to the Subject field.
-func (o *EstEnrollRequestTemplate) SetSubject(v []IndexedDNElement) {
-	o.Subject = v
+// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
+func (o *EstEnrollRequestTemplate) SetContactEmail(v CertificateContactEmailElement) {
+	o.ContactEmail.Set(&v)
 }
 
-// GetSans returns the Sans field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstEnrollRequestTemplate) GetSans() []ListSANElement {
-	if o == nil {
-		var ret []ListSANElement
-		return ret
-	}
-	return o.Sans
+// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+func (o *EstEnrollRequestTemplate) SetContactEmailNil() {
+	o.ContactEmail.Set(nil)
 }
 
-// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstEnrollRequestTemplate) GetSansOk() ([]ListSANElement, bool) {
-	if o == nil || utils.IsNil(o.Sans) {
-		return nil, false
-	}
-	return o.Sans, true
-}
-
-// HasSans returns a boolean if a field has been set.
-func (o *EstEnrollRequestTemplate) HasSans() bool {
-	if o != nil && !utils.IsNil(o.Sans) {
-		return true
-	}
-
-	return false
-}
-
-// SetSans gets a reference to the given []ListSANElement and assigns it to the Sans field.
-func (o *EstEnrollRequestTemplate) SetSans(v []ListSANElement) {
-	o.Sans = v
+// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
+func (o *EstEnrollRequestTemplate) UnsetContactEmail() {
+	o.ContactEmail.Unset()
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -189,49 +166,6 @@ func (o *EstEnrollRequestTemplate) SetLabels(v []RequestLabelElement) {
 	o.Labels = v
 }
 
-// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstEnrollRequestTemplate) GetContactEmail() CertificateContactEmailElement {
-	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
-		var ret CertificateContactEmailElement
-		return ret
-	}
-	return *o.ContactEmail.Get()
-}
-
-// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstEnrollRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
-}
-
-// HasContactEmail returns a boolean if a field has been set.
-func (o *EstEnrollRequestTemplate) HasContactEmail() bool {
-	if o != nil && o.ContactEmail.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
-func (o *EstEnrollRequestTemplate) SetContactEmail(v CertificateContactEmailElement) {
-	o.ContactEmail.Set(&v)
-}
-
-// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
-func (o *EstEnrollRequestTemplate) SetContactEmailNil() {
-	o.ContactEmail.Set(nil)
-}
-
-// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
-func (o *EstEnrollRequestTemplate) UnsetContactEmail() {
-	o.ContactEmail.Unset()
-}
-
 // GetOwner returns the Owner field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EstEnrollRequestTemplate) GetOwner() CertificateOwnerElement {
 	if o == nil || utils.IsNil(o.Owner.Get()) {
@@ -273,6 +207,72 @@ func (o *EstEnrollRequestTemplate) SetOwnerNil() {
 // UnsetOwner ensures that no value is present for Owner, not even an explicit nil
 func (o *EstEnrollRequestTemplate) UnsetOwner() {
 	o.Owner.Unset()
+}
+
+// GetSans returns the Sans field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstEnrollRequestTemplate) GetSans() []ListSANElement {
+	if o == nil {
+		var ret []ListSANElement
+		return ret
+	}
+	return o.Sans
+}
+
+// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstEnrollRequestTemplate) GetSansOk() ([]ListSANElement, bool) {
+	if o == nil || utils.IsNil(o.Sans) {
+		return nil, false
+	}
+	return o.Sans, true
+}
+
+// HasSans returns a boolean if a field has been set.
+func (o *EstEnrollRequestTemplate) HasSans() bool {
+	if o != nil && !utils.IsNil(o.Sans) {
+		return true
+	}
+
+	return false
+}
+
+// SetSans gets a reference to the given []ListSANElement and assigns it to the Sans field.
+func (o *EstEnrollRequestTemplate) SetSans(v []ListSANElement) {
+	o.Sans = v
+}
+
+// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstEnrollRequestTemplate) GetSubject() []IndexedDNElement {
+	if o == nil {
+		var ret []IndexedDNElement
+		return ret
+	}
+	return o.Subject
+}
+
+// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstEnrollRequestTemplate) GetSubjectOk() ([]IndexedDNElement, bool) {
+	if o == nil || utils.IsNil(o.Subject) {
+		return nil, false
+	}
+	return o.Subject, true
+}
+
+// HasSubject returns a boolean if a field has been set.
+func (o *EstEnrollRequestTemplate) HasSubject() bool {
+	if o != nil && !utils.IsNil(o.Subject) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubject gets a reference to the given []IndexedDNElement and assigns it to the Subject field.
+func (o *EstEnrollRequestTemplate) SetSubject(v []IndexedDNElement) {
+	o.Subject = v
 }
 
 // GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -328,11 +328,8 @@ func (o EstEnrollRequestTemplate) MarshalJSON() ([]byte, error) {
 
 func (o EstEnrollRequestTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Subject != nil {
-		toSerialize["subject"] = o.Subject
-	}
-	if o.Sans != nil {
-		toSerialize["sans"] = o.Sans
+	if o.ContactEmail.IsSet() {
+		toSerialize["contactEmail"] = o.ContactEmail.Get()
 	}
 	if o.Extensions != nil {
 		toSerialize["extensions"] = o.Extensions
@@ -340,11 +337,14 @@ func (o EstEnrollRequestTemplate) ToMap() (map[string]interface{}, error) {
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
-	if o.ContactEmail.IsSet() {
-		toSerialize["contactEmail"] = o.ContactEmail.Get()
-	}
 	if o.Owner.IsSet() {
 		toSerialize["owner"] = o.Owner.Get()
+	}
+	if o.Sans != nil {
+		toSerialize["sans"] = o.Sans
+	}
+	if o.Subject != nil {
+		toSerialize["subject"] = o.Subject
 	}
 	if o.Team.IsSet() {
 		toSerialize["team"] = o.Team.Get()
@@ -371,12 +371,12 @@ func (o *EstEnrollRequestTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "subject")
-		delete(additionalProperties, "sans")
+		delete(additionalProperties, "contactEmail")
 		delete(additionalProperties, "extensions")
 		delete(additionalProperties, "labels")
-		delete(additionalProperties, "contactEmail")
 		delete(additionalProperties, "owner")
+		delete(additionalProperties, "sans")
+		delete(additionalProperties, "subject")
 		delete(additionalProperties, "team")
 		o.AdditionalProperties = additionalProperties
 	}

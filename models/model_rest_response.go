@@ -23,22 +23,22 @@ var _ utils.MappedNullable = &RESTResponse{}
 // RESTResponse struct for RESTResponse
 type RESTResponse struct {
 	// Object internal ID
-	Id   string `json:"_id"`
-	Type string `json:"type"`
+	Id string `json:"_id"`
 	// Number of retries when the notification fails (depends on `expectedHttpCodes`)
 	Retries interface{} `json:"retries,omitempty"`
 	// The REST requests to execute, in execution order. Each request enriches the dictionary with its response for the next one
 	Sequence []interface{} `json:"sequence"`
-	// Name of the notification
-	Name string `json:"name"`
-	// Time period at which the notification needs to run. Can only be defined on expiration and pending events.
-	RunPeriod utils.NullableString `json:"runPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	// License usage at which the notification needs to run (between 0 and 100). Must be defined on `on_license_usage` event and must NOT be defined otherwise.
-	LicenseUsagePercent utils.NullableInt64 `json:"licenseUsagePercent,omitempty"`
+	Type     string        `json:"type"`
 	// Event on which the notification runs. This MUST contain only one value.
 	Events []string `json:"events"`
+	// License usage at which the notification needs to run (between 0 and 100). Must be defined on `on_license_usage` event and must NOT be defined otherwise.
+	LicenseUsagePercent utils.NullableInt64 `json:"licenseUsagePercent,omitempty"`
+	// Name of the notification
+	Name string `json:"name"`
 	// Must be defined on `on_expire` event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed.
-	RunOnRenewed         utils.NullableBool `json:"runOnRenewed,omitempty"`
+	RunOnRenewed utils.NullableBool `json:"runOnRenewed,omitempty"`
+	// Time period at which the notification needs to run. Can only be defined on expiration and pending events.
+	RunPeriod            utils.NullableString `json:"runPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -48,11 +48,11 @@ type _RESTResponse RESTResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRESTResponse(id string, type_ string, sequence []interface{}, name string, events []string) *RESTResponse {
+func NewRESTResponse(id string, sequence []interface{}, type_ string, events []string, name string) *RESTResponse {
 	this := RESTResponse{}
+	this.Events = events
 	this.Name = name
 	this.Type = type_
-	this.Events = events
 	return &this
 }
 
@@ -86,30 +86,6 @@ func (o *RESTResponse) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *RESTResponse) SetId(v string) {
 	o.Id = v
-}
-
-// GetType returns the Type field value
-func (o *RESTResponse) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *RESTResponse) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *RESTResponse) SetType(v string) {
-	o.Type = v
 }
 
 // GetRetries returns the Retries field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -169,71 +145,52 @@ func (o *RESTResponse) SetSequence(v []interface{}) {
 	o.Sequence = v
 }
 
-// GetName returns the Name field value
-func (o *RESTResponse) GetName() string {
+// GetType returns the Type field value
+func (o *RESTResponse) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.Type
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *RESTResponse) GetNameOk() (*string, bool) {
+func (o *RESTResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return &o.Type, true
 }
 
-// SetName sets field value
-func (o *RESTResponse) SetName(v string) {
-	o.Name = v
+// SetType sets field value
+func (o *RESTResponse) SetType(v string) {
+	o.Type = v
 }
 
-// GetRunPeriod returns the RunPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *RESTResponse) GetRunPeriod() string {
-	if o == nil || utils.IsNil(o.RunPeriod.Get()) {
-		var ret string
+// GetEvents returns the Events field value
+func (o *RESTResponse) GetEvents() []string {
+	if o == nil {
+		var ret []string
 		return ret
 	}
-	return *o.RunPeriod.Get()
+
+	return o.Events
 }
 
-// GetRunPeriodOk returns a tuple with the RunPeriod field value if set, nil otherwise
+// GetEventsOk returns a tuple with the Events field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *RESTResponse) GetRunPeriodOk() (*string, bool) {
+func (o *RESTResponse) GetEventsOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RunPeriod.Get(), o.RunPeriod.IsSet()
+	return o.Events, true
 }
 
-// HasRunPeriod returns a boolean if a field has been set.
-func (o *RESTResponse) HasRunPeriod() bool {
-	if o != nil && o.RunPeriod.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRunPeriod gets a reference to the given NullableString and assigns it to the RunPeriod field.
-func (o *RESTResponse) SetRunPeriod(v string) {
-	o.RunPeriod.Set(&v)
-}
-
-// SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
-func (o *RESTResponse) SetRunPeriodNil() {
-	o.RunPeriod.Set(nil)
-}
-
-// UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
-func (o *RESTResponse) UnsetRunPeriod() {
-	o.RunPeriod.Unset()
+// SetEvents sets field value
+func (o *RESTResponse) SetEvents(v []string) {
+	o.Events = v
 }
 
 // GetLicenseUsagePercent returns the LicenseUsagePercent field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -279,28 +236,28 @@ func (o *RESTResponse) UnsetLicenseUsagePercent() {
 	o.LicenseUsagePercent.Unset()
 }
 
-// GetEvents returns the Events field value
-func (o *RESTResponse) GetEvents() []string {
+// GetName returns the Name field value
+func (o *RESTResponse) GetName() string {
 	if o == nil {
-		var ret []string
+		var ret string
 		return ret
 	}
 
-	return o.Events
+	return o.Name
 }
 
-// GetEventsOk returns a tuple with the Events field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *RESTResponse) GetEventsOk() ([]string, bool) {
+func (o *RESTResponse) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Events, true
+	return &o.Name, true
 }
 
-// SetEvents sets field value
-func (o *RESTResponse) SetEvents(v []string) {
-	o.Events = v
+// SetName sets field value
+func (o *RESTResponse) SetName(v string) {
+	o.Name = v
 }
 
 // GetRunOnRenewed returns the RunOnRenewed field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -346,6 +303,49 @@ func (o *RESTResponse) UnsetRunOnRenewed() {
 	o.RunOnRenewed.Unset()
 }
 
+// GetRunPeriod returns the RunPeriod field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RESTResponse) GetRunPeriod() string {
+	if o == nil || utils.IsNil(o.RunPeriod.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.RunPeriod.Get()
+}
+
+// GetRunPeriodOk returns a tuple with the RunPeriod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RESTResponse) GetRunPeriodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RunPeriod.Get(), o.RunPeriod.IsSet()
+}
+
+// HasRunPeriod returns a boolean if a field has been set.
+func (o *RESTResponse) HasRunPeriod() bool {
+	if o != nil && o.RunPeriod.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRunPeriod gets a reference to the given NullableString and assigns it to the RunPeriod field.
+func (o *RESTResponse) SetRunPeriod(v string) {
+	o.RunPeriod.Set(&v)
+}
+
+// SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
+func (o *RESTResponse) SetRunPeriodNil() {
+	o.RunPeriod.Set(nil)
+}
+
+// UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
+func (o *RESTResponse) UnsetRunPeriod() {
+	o.RunPeriod.Unset()
+}
+
 func (o RESTResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -357,21 +357,21 @@ func (o RESTResponse) MarshalJSON() ([]byte, error) {
 func (o RESTResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["type"] = o.Type
 	if o.Retries != nil {
 		toSerialize["retries"] = o.Retries
 	}
 	toSerialize["sequence"] = o.Sequence
-	toSerialize["name"] = o.Name
-	if o.RunPeriod.IsSet() {
-		toSerialize["runPeriod"] = o.RunPeriod.Get()
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["events"] = o.Events
 	if o.LicenseUsagePercent.IsSet() {
 		toSerialize["licenseUsagePercent"] = o.LicenseUsagePercent.Get()
 	}
-	toSerialize["events"] = o.Events
+	toSerialize["name"] = o.Name
 	if o.RunOnRenewed.IsSet() {
 		toSerialize["runOnRenewed"] = o.RunOnRenewed.Get()
+	}
+	if o.RunPeriod.IsSet() {
+		toSerialize["runPeriod"] = o.RunPeriod.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -387,10 +387,10 @@ func (o *RESTResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"type",
 		"sequence",
-		"name",
+		"type",
 		"events",
+		"name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -421,14 +421,14 @@ func (o *RESTResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "_id")
-		delete(additionalProperties, "type")
 		delete(additionalProperties, "retries")
 		delete(additionalProperties, "sequence")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "runPeriod")
-		delete(additionalProperties, "licenseUsagePercent")
+		delete(additionalProperties, "type")
 		delete(additionalProperties, "events")
+		delete(additionalProperties, "licenseUsagePercent")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "runOnRenewed")
+		delete(additionalProperties, "runPeriod")
 		o.AdditionalProperties = additionalProperties
 	}
 
