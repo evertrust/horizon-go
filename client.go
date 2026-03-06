@@ -820,7 +820,15 @@ func formatErrorMessage(status string, v interface{}) string {
 
 		field = metaValue.FieldByName("Detail")
 		if field != (reflect.Value{}) {
-			str = fmt.Sprintf("%s (%s)", str, field.Interface())
+			if field.Type().String() == "NullableString" {
+				value := field.MethodByName("Get").Call([]reflect.Value{})
+				str = fmt.Sprintf("%s", value[0].Interface())
+			} else {
+				str = fmt.Sprintf("%s", field.Interface())
+			}
+			if str != "" {
+				str = ": " + str
+			}
 		}
 	}
 
