@@ -131,7 +131,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyAddExecute(r SecurityPa
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -190,7 +190,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyAddExecute(r SecurityPa
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -393,7 +393,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyDeleteExecute(r Securit
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}
@@ -452,7 +452,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyDeleteExecute(r Securit
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}
@@ -660,7 +660,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyGenerateExecute(r Secur
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -719,7 +719,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyGenerateExecute(r Secur
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -903,7 +903,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyGetExecute(r SecurityPa
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -962,7 +962,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyGetExecute(r SecurityPa
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1164,7 +1164,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyListExecute(r SecurityP
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1223,7 +1223,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyListExecute(r SecurityP
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1426,7 +1426,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyUpdateExecute(r Securit
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1485,7 +1485,7 @@ func (a *SecurityPasswordpolicyAPIService) PasswordPolicyUpdateExecute(r Securit
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}

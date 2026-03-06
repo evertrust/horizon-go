@@ -132,7 +132,7 @@ func (a *TriggerAPIService) TriggerAddExecute(r TriggerAPITriggerAddRequest) (*m
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -191,7 +191,7 @@ func (a *TriggerAPIService) TriggerAddExecute(r TriggerAPITriggerAddRequest) (*m
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -394,7 +394,7 @@ func (a *TriggerAPIService) TriggerDeleteExecute(r TriggerAPITriggerDeleteReques
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}
@@ -453,7 +453,7 @@ func (a *TriggerAPIService) TriggerDeleteExecute(r TriggerAPITriggerDeleteReques
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}
@@ -661,7 +661,7 @@ func (a *TriggerAPIService) TriggerGetExecute(r TriggerAPITriggerGetRequest) (*m
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -720,7 +720,7 @@ func (a *TriggerAPIService) TriggerGetExecute(r TriggerAPITriggerGetRequest) (*m
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -948,7 +948,7 @@ func (a *TriggerAPIService) TriggerListExecute(r TriggerAPITriggerListRequest) (
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1007,7 +1007,7 @@ func (a *TriggerAPIService) TriggerListExecute(r TriggerAPITriggerListRequest) (
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1210,7 +1210,7 @@ func (a *TriggerAPIService) TriggerTestExecute(r TriggerAPITriggerTestRequest) (
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1269,7 +1269,7 @@ func (a *TriggerAPIService) TriggerTestExecute(r TriggerAPITriggerTestRequest) (
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1483,7 +1483,7 @@ func (a *TriggerAPIService) TriggerUpdateExecute(r TriggerAPITriggerUpdateReques
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1542,7 +1542,7 @@ func (a *TriggerAPIService) TriggerUpdateExecute(r TriggerAPITriggerUpdateReques
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}

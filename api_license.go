@@ -124,7 +124,7 @@ func (a *LicenseAPIService) LicensesListExecute(r LicenseAPILicensesListRequest)
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -183,7 +183,7 @@ func (a *LicenseAPIService) LicensesListExecute(r LicenseAPILicensesListRequest)
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -374,7 +374,7 @@ func (a *LicenseAPIService) LicensesModulesExecute(r LicenseAPILicensesModulesRe
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -433,7 +433,7 @@ func (a *LicenseAPIService) LicensesModulesExecute(r LicenseAPILicensesModulesRe
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}

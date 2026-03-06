@@ -131,7 +131,7 @@ func (a *ArchiveAPIService) ArchiveAddExecute(r ArchiveAPIArchiveAddRequest) (*m
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -190,7 +190,7 @@ func (a *ArchiveAPIService) ArchiveAddExecute(r ArchiveAPIArchiveAddRequest) (*m
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -394,7 +394,7 @@ func (a *ArchiveAPIService) ArchiveCancelExecute(r ArchiveAPIArchiveCancelReques
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}
@@ -453,7 +453,7 @@ func (a *ArchiveAPIService) ArchiveCancelExecute(r ArchiveAPIArchiveCancelReques
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}
@@ -658,7 +658,7 @@ func (a *ArchiveAPIService) ArchiveCountExecute(r ArchiveAPIArchiveCountRequest)
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -717,7 +717,7 @@ func (a *ArchiveAPIService) ArchiveCountExecute(r ArchiveAPIArchiveCountRequest)
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -920,7 +920,7 @@ func (a *ArchiveAPIService) ArchiveDeleteExecute(r ArchiveAPIArchiveDeleteReques
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}
@@ -979,7 +979,7 @@ func (a *ArchiveAPIService) ArchiveDeleteExecute(r ArchiveAPIArchiveDeleteReques
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}
@@ -1187,7 +1187,7 @@ func (a *ArchiveAPIService) ArchiveDownloadExecute(r ArchiveAPIArchiveDownloadRe
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1246,7 +1246,7 @@ func (a *ArchiveAPIService) ArchiveDownloadExecute(r ArchiveAPIArchiveDownloadRe
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1452,7 +1452,7 @@ func (a *ArchiveAPIService) ArchiveGetExecute(r ArchiveAPIArchiveGetRequest) (*m
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1511,7 +1511,7 @@ func (a *ArchiveAPIService) ArchiveGetExecute(r ArchiveAPIArchiveGetRequest) (*m
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1713,7 +1713,7 @@ func (a *ArchiveAPIService) ArchiveListExecute(r ArchiveAPIArchiveListRequest) (
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1772,7 +1772,7 @@ func (a *ArchiveAPIService) ArchiveListExecute(r ArchiveAPIArchiveListRequest) (
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1965,7 +1965,7 @@ func (a *ArchiveAPIService) ArchiveRetryExecute(r ArchiveAPIArchiveRetryRequest)
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}
@@ -2024,7 +2024,7 @@ func (a *ArchiveAPIService) ArchiveRetryExecute(r ArchiveAPIArchiveRetryRequest)
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}

@@ -136,7 +136,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyExplainFileExecute(r C
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -195,7 +195,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyExplainFileExecute(r C
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -394,7 +394,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyExplainUrlExecute(r Ce
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -453,7 +453,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyExplainUrlExecute(r Ce
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -648,7 +648,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyGetExecute(r Certifica
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -707,7 +707,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyGetExecute(r Certifica
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -909,7 +909,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyListExecute(r Certific
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -968,7 +968,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyListExecute(r Certific
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return localVarReturnValue, nil, err
 				}
@@ -1160,7 +1160,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyRunExecute(r Certifica
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}
@@ -1219,7 +1219,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyRunExecute(r Certifica
 				}
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 				if err != nil {
 					return nil, err
 				}
