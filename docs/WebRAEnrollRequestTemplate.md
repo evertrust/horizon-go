@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Csr** | Pointer to **NullableString** | If decentralized enrollment is enabled, this field will contain the CSR that will be used to generate the certificate | [optional] 
-**KeyType** | Pointer to **NullableString** | The type of key that will be used to generate the certificate, if in centralized mode | [optional] 
 **ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | Information about the certificate&#39;s contact email and how to edit it | [optional] 
+**Csr** | Pointer to **NullableString** | If decentralized enrollment is enabled, this field will contain the CSR that will be used to generate the certificate | [optional] 
 **Extensions** | Pointer to [**[]CertificateExtensionElement**](CertificateExtensionElement.md) | Information about the certificate&#39;s extensions and how to edit them | [optional] 
+**KeyType** | Pointer to **NullableString** | The type of key that will be used to generate the certificate, if in centralized mode | [optional] 
 **Labels** | Pointer to [**[]RequestLabelElement**](RequestLabelElement.md) | List of labels used internally to tag and group certificates | [optional] 
 **Metadata** | Pointer to [**[]CertificateMetadataElement**](CertificateMetadataElement.md) | The technical metadata for this certificate | [optional] 
 **Owner** | Pointer to [**NullableCertificateOwnerElement**](CertificateOwnerElement.md) | Information about the certificate&#39;s owner and how to edit it | [optional] 
@@ -34,76 +34,6 @@ NewWebRAEnrollRequestTemplateWithDefaults instantiates a new WebRAEnrollRequestT
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCsr
-
-`func (o *WebRAEnrollRequestTemplate) GetCsr() string`
-
-GetCsr returns the Csr field if non-nil, zero value otherwise.
-
-### GetCsrOk
-
-`func (o *WebRAEnrollRequestTemplate) GetCsrOk() (*string, bool)`
-
-GetCsrOk returns a tuple with the Csr field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCsr
-
-`func (o *WebRAEnrollRequestTemplate) SetCsr(v string)`
-
-SetCsr sets Csr field to given value.
-
-### HasCsr
-
-`func (o *WebRAEnrollRequestTemplate) HasCsr() bool`
-
-HasCsr returns a boolean if a field has been set.
-
-### SetCsrNil
-
-`func (o *WebRAEnrollRequestTemplate) SetCsrNil(b bool)`
-
- SetCsrNil sets the value for Csr to be an explicit nil
-
-### UnsetCsr
-`func (o *WebRAEnrollRequestTemplate) UnsetCsr()`
-
-UnsetCsr ensures that no value is present for Csr, not even an explicit nil
-### GetKeyType
-
-`func (o *WebRAEnrollRequestTemplate) GetKeyType() string`
-
-GetKeyType returns the KeyType field if non-nil, zero value otherwise.
-
-### GetKeyTypeOk
-
-`func (o *WebRAEnrollRequestTemplate) GetKeyTypeOk() (*string, bool)`
-
-GetKeyTypeOk returns a tuple with the KeyType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKeyType
-
-`func (o *WebRAEnrollRequestTemplate) SetKeyType(v string)`
-
-SetKeyType sets KeyType field to given value.
-
-### HasKeyType
-
-`func (o *WebRAEnrollRequestTemplate) HasKeyType() bool`
-
-HasKeyType returns a boolean if a field has been set.
-
-### SetKeyTypeNil
-
-`func (o *WebRAEnrollRequestTemplate) SetKeyTypeNil(b bool)`
-
- SetKeyTypeNil sets the value for KeyType to be an explicit nil
-
-### UnsetKeyType
-`func (o *WebRAEnrollRequestTemplate) UnsetKeyType()`
-
-UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
 ### GetContactEmail
 
 `func (o *WebRAEnrollRequestTemplate) GetContactEmail() CertificateContactEmailElement`
@@ -139,6 +69,41 @@ HasContactEmail returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestTemplate) UnsetContactEmail()`
 
 UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
+### GetCsr
+
+`func (o *WebRAEnrollRequestTemplate) GetCsr() string`
+
+GetCsr returns the Csr field if non-nil, zero value otherwise.
+
+### GetCsrOk
+
+`func (o *WebRAEnrollRequestTemplate) GetCsrOk() (*string, bool)`
+
+GetCsrOk returns a tuple with the Csr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCsr
+
+`func (o *WebRAEnrollRequestTemplate) SetCsr(v string)`
+
+SetCsr sets Csr field to given value.
+
+### HasCsr
+
+`func (o *WebRAEnrollRequestTemplate) HasCsr() bool`
+
+HasCsr returns a boolean if a field has been set.
+
+### SetCsrNil
+
+`func (o *WebRAEnrollRequestTemplate) SetCsrNil(b bool)`
+
+ SetCsrNil sets the value for Csr to be an explicit nil
+
+### UnsetCsr
+`func (o *WebRAEnrollRequestTemplate) UnsetCsr()`
+
+UnsetCsr ensures that no value is present for Csr, not even an explicit nil
 ### GetExtensions
 
 `func (o *WebRAEnrollRequestTemplate) GetExtensions() []CertificateExtensionElement`
@@ -174,6 +139,41 @@ HasExtensions returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestTemplate) UnsetExtensions()`
 
 UnsetExtensions ensures that no value is present for Extensions, not even an explicit nil
+### GetKeyType
+
+`func (o *WebRAEnrollRequestTemplate) GetKeyType() string`
+
+GetKeyType returns the KeyType field if non-nil, zero value otherwise.
+
+### GetKeyTypeOk
+
+`func (o *WebRAEnrollRequestTemplate) GetKeyTypeOk() (*string, bool)`
+
+GetKeyTypeOk returns a tuple with the KeyType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKeyType
+
+`func (o *WebRAEnrollRequestTemplate) SetKeyType(v string)`
+
+SetKeyType sets KeyType field to given value.
+
+### HasKeyType
+
+`func (o *WebRAEnrollRequestTemplate) HasKeyType() bool`
+
+HasKeyType returns a boolean if a field has been set.
+
+### SetKeyTypeNil
+
+`func (o *WebRAEnrollRequestTemplate) SetKeyTypeNil(b bool)`
+
+ SetKeyTypeNil sets the value for KeyType to be an explicit nil
+
+### UnsetKeyType
+`func (o *WebRAEnrollRequestTemplate) UnsetKeyType()`
+
+UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
 ### GetLabels
 
 `func (o *WebRAEnrollRequestTemplate) GetLabels() []RequestLabelElement`

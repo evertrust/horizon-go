@@ -27,7 +27,7 @@ type WebRAUpdateRequestOnTemplateResponse struct {
 	// The profile for which to return the template.
 	Profile string `json:"profile"`
 	// The template with the constraint set on the profile
-	Template WebRAUpdateRequestTemplate `json:"template"`
+	Template WebRAUpdateRequestTemplateResponse `json:"template"`
 	// The request workflow
 	Workflow             string `json:"workflow"`
 	AdditionalProperties map[string]interface{}
@@ -39,7 +39,7 @@ type _WebRAUpdateRequestOnTemplateResponse WebRAUpdateRequestOnTemplateResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAUpdateRequestOnTemplateResponse(module Module, profile string, template WebRAUpdateRequestTemplate, workflow string) *WebRAUpdateRequestOnTemplateResponse {
+func NewWebRAUpdateRequestOnTemplateResponse(module Module, profile string, template WebRAUpdateRequestTemplateResponse, workflow string) *WebRAUpdateRequestOnTemplateResponse {
 	this := WebRAUpdateRequestOnTemplateResponse{}
 	this.Module = module
 	this.Profile = profile
@@ -105,9 +105,9 @@ func (o *WebRAUpdateRequestOnTemplateResponse) SetProfile(v string) {
 }
 
 // GetTemplate returns the Template field value
-func (o *WebRAUpdateRequestOnTemplateResponse) GetTemplate() WebRAUpdateRequestTemplate {
+func (o *WebRAUpdateRequestOnTemplateResponse) GetTemplate() WebRAUpdateRequestTemplateResponse {
 	if o == nil {
-		var ret WebRAUpdateRequestTemplate
+		var ret WebRAUpdateRequestTemplateResponse
 		return ret
 	}
 
@@ -116,7 +116,7 @@ func (o *WebRAUpdateRequestOnTemplateResponse) GetTemplate() WebRAUpdateRequestT
 
 // GetTemplateOk returns a tuple with the Template field value
 // and a boolean to check if the value has been set.
-func (o *WebRAUpdateRequestOnTemplateResponse) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool) {
+func (o *WebRAUpdateRequestOnTemplateResponse) GetTemplateOk() (*WebRAUpdateRequestTemplateResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *WebRAUpdateRequestOnTemplateResponse) GetTemplateOk() (*WebRAUpdateRequ
 }
 
 // SetTemplate sets field value
-func (o *WebRAUpdateRequestOnTemplateResponse) SetTemplate(v WebRAUpdateRequestTemplate) {
+func (o *WebRAUpdateRequestOnTemplateResponse) SetTemplate(v WebRAUpdateRequestTemplateResponse) {
 	o.Template = v
 }
 

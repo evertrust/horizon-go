@@ -22,19 +22,19 @@ var _ utils.MappedNullable = &WebRAImportRequestTemplateResponse{}
 // WebRAImportRequestTemplateResponse struct for WebRAImportRequestTemplateResponse
 type WebRAImportRequestTemplateResponse struct {
 	// The contact email for this certificate
-	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
+	ContactEmail NullableCertificateContactEmailElementResponse `json:"contactEmail,omitempty"`
 	// The host discovery data associated with the certificate (discovery metadata)
 	DiscoveryData *HostDiscoveryData `json:"discoveryData,omitempty"`
 	// Information about the discovery of this certificate
 	DiscoveryInfo NullableDiscoveryInfo `json:"discoveryInfo,omitempty"`
 	// The labels for this certificate
-	Labels []RequestLabelElement `json:"labels,omitempty"`
+	Labels []RequestLabelElementResponse `json:"labels,omitempty"`
 	// The technical metadata for this certificate
-	Metadata []CertificateMetadataElement `json:"metadata,omitempty"`
+	Metadata []CertificateMetadataElementResponse `json:"metadata,omitempty"`
 	// The owner for this certificate
-	Owner NullableCertificateOwnerElement `json:"owner,omitempty"`
+	Owner NullableCertificateOwnerElementResponse `json:"owner,omitempty"`
 	// The team for this certificate
-	Team NullableCertificateTeamElement `json:"team,omitempty"`
+	Team NullableCertificateTeamElementResponse `json:"team,omitempty"`
 	// The third party data associated with the certificate
 	ThirdPartyData       []ThirdPartyItem `json:"thirdPartyData,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -60,9 +60,9 @@ func NewWebRAImportRequestTemplateResponseWithDefaults() *WebRAImportRequestTemp
 }
 
 // GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAImportRequestTemplateResponse) GetContactEmail() CertificateContactEmailElement {
+func (o *WebRAImportRequestTemplateResponse) GetContactEmail() CertificateContactEmailElementResponse {
 	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
-		var ret CertificateContactEmailElement
+		var ret CertificateContactEmailElementResponse
 		return ret
 	}
 	return *o.ContactEmail.Get()
@@ -71,7 +71,7 @@ func (o *WebRAImportRequestTemplateResponse) GetContactEmail() CertificateContac
 // GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAImportRequestTemplateResponse) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
+func (o *WebRAImportRequestTemplateResponse) GetContactEmailOk() (*CertificateContactEmailElementResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -87,8 +87,8 @@ func (o *WebRAImportRequestTemplateResponse) HasContactEmail() bool {
 	return false
 }
 
-// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
-func (o *WebRAImportRequestTemplateResponse) SetContactEmail(v CertificateContactEmailElement) {
+// SetContactEmail gets a reference to the given NullableCertificateContactEmailElementResponse and assigns it to the ContactEmail field.
+func (o *WebRAImportRequestTemplateResponse) SetContactEmail(v CertificateContactEmailElementResponse) {
 	o.ContactEmail.Set(&v)
 }
 
@@ -178,9 +178,9 @@ func (o *WebRAImportRequestTemplateResponse) UnsetDiscoveryInfo() {
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAImportRequestTemplateResponse) GetLabels() []RequestLabelElement {
+func (o *WebRAImportRequestTemplateResponse) GetLabels() []RequestLabelElementResponse {
 	if o == nil {
-		var ret []RequestLabelElement
+		var ret []RequestLabelElementResponse
 		return ret
 	}
 	return o.Labels
@@ -189,7 +189,7 @@ func (o *WebRAImportRequestTemplateResponse) GetLabels() []RequestLabelElement {
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAImportRequestTemplateResponse) GetLabelsOk() ([]RequestLabelElement, bool) {
+func (o *WebRAImportRequestTemplateResponse) GetLabelsOk() ([]RequestLabelElementResponse, bool) {
 	if o == nil || utils.IsNil(o.Labels) {
 		return nil, false
 	}
@@ -205,15 +205,15 @@ func (o *WebRAImportRequestTemplateResponse) HasLabels() bool {
 	return false
 }
 
-// SetLabels gets a reference to the given []RequestLabelElement and assigns it to the Labels field.
-func (o *WebRAImportRequestTemplateResponse) SetLabels(v []RequestLabelElement) {
+// SetLabels gets a reference to the given []RequestLabelElementResponse and assigns it to the Labels field.
+func (o *WebRAImportRequestTemplateResponse) SetLabels(v []RequestLabelElementResponse) {
 	o.Labels = v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAImportRequestTemplateResponse) GetMetadata() []CertificateMetadataElement {
+func (o *WebRAImportRequestTemplateResponse) GetMetadata() []CertificateMetadataElementResponse {
 	if o == nil {
-		var ret []CertificateMetadataElement
+		var ret []CertificateMetadataElementResponse
 		return ret
 	}
 	return o.Metadata
@@ -222,7 +222,7 @@ func (o *WebRAImportRequestTemplateResponse) GetMetadata() []CertificateMetadata
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAImportRequestTemplateResponse) GetMetadataOk() ([]CertificateMetadataElement, bool) {
+func (o *WebRAImportRequestTemplateResponse) GetMetadataOk() ([]CertificateMetadataElementResponse, bool) {
 	if o == nil || utils.IsNil(o.Metadata) {
 		return nil, false
 	}
@@ -238,15 +238,15 @@ func (o *WebRAImportRequestTemplateResponse) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given []CertificateMetadataElement and assigns it to the Metadata field.
-func (o *WebRAImportRequestTemplateResponse) SetMetadata(v []CertificateMetadataElement) {
+// SetMetadata gets a reference to the given []CertificateMetadataElementResponse and assigns it to the Metadata field.
+func (o *WebRAImportRequestTemplateResponse) SetMetadata(v []CertificateMetadataElementResponse) {
 	o.Metadata = v
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAImportRequestTemplateResponse) GetOwner() CertificateOwnerElement {
+func (o *WebRAImportRequestTemplateResponse) GetOwner() CertificateOwnerElementResponse {
 	if o == nil || utils.IsNil(o.Owner.Get()) {
-		var ret CertificateOwnerElement
+		var ret CertificateOwnerElementResponse
 		return ret
 	}
 	return *o.Owner.Get()
@@ -255,7 +255,7 @@ func (o *WebRAImportRequestTemplateResponse) GetOwner() CertificateOwnerElement 
 // GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAImportRequestTemplateResponse) GetOwnerOk() (*CertificateOwnerElement, bool) {
+func (o *WebRAImportRequestTemplateResponse) GetOwnerOk() (*CertificateOwnerElementResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -271,8 +271,8 @@ func (o *WebRAImportRequestTemplateResponse) HasOwner() bool {
 	return false
 }
 
-// SetOwner gets a reference to the given NullableCertificateOwnerElement and assigns it to the Owner field.
-func (o *WebRAImportRequestTemplateResponse) SetOwner(v CertificateOwnerElement) {
+// SetOwner gets a reference to the given NullableCertificateOwnerElementResponse and assigns it to the Owner field.
+func (o *WebRAImportRequestTemplateResponse) SetOwner(v CertificateOwnerElementResponse) {
 	o.Owner.Set(&v)
 }
 
@@ -287,9 +287,9 @@ func (o *WebRAImportRequestTemplateResponse) UnsetOwner() {
 }
 
 // GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAImportRequestTemplateResponse) GetTeam() CertificateTeamElement {
+func (o *WebRAImportRequestTemplateResponse) GetTeam() CertificateTeamElementResponse {
 	if o == nil || utils.IsNil(o.Team.Get()) {
-		var ret CertificateTeamElement
+		var ret CertificateTeamElementResponse
 		return ret
 	}
 	return *o.Team.Get()
@@ -298,7 +298,7 @@ func (o *WebRAImportRequestTemplateResponse) GetTeam() CertificateTeamElement {
 // GetTeamOk returns a tuple with the Team field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAImportRequestTemplateResponse) GetTeamOk() (*CertificateTeamElement, bool) {
+func (o *WebRAImportRequestTemplateResponse) GetTeamOk() (*CertificateTeamElementResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -314,8 +314,8 @@ func (o *WebRAImportRequestTemplateResponse) HasTeam() bool {
 	return false
 }
 
-// SetTeam gets a reference to the given NullableCertificateTeamElement and assigns it to the Team field.
-func (o *WebRAImportRequestTemplateResponse) SetTeam(v CertificateTeamElement) {
+// SetTeam gets a reference to the given NullableCertificateTeamElementResponse and assigns it to the Team field.
+func (o *WebRAImportRequestTemplateResponse) SetTeam(v CertificateTeamElementResponse) {
 	o.Team.Set(&v)
 }
 

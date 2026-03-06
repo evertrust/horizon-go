@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // RequestTemplate200Response - struct for RequestTemplate200Response
@@ -99,13 +96,12 @@ func (dst *RequestTemplate200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into EstEnrollRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.EstEnrollRequestOnTemplateResponse)
+	err = json.Unmarshal(data, &dst.EstEnrollRequestOnTemplateResponse)
 	if err == nil {
 		jsonEstEnrollRequestOnTemplateResponse, _ := json.Marshal(dst.EstEnrollRequestOnTemplateResponse)
 		if string(jsonEstEnrollRequestOnTemplateResponse) == "{}" { // empty struct
 			dst.EstEnrollRequestOnTemplateResponse = nil
 		} else {
-			_ = validator.Validate(dst.EstEnrollRequestOnTemplateResponse)
 			match++
 		}
 	} else {
@@ -113,13 +109,12 @@ func (dst *RequestTemplate200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ScepEnrollRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.ScepEnrollRequestOnTemplateResponse)
+	err = json.Unmarshal(data, &dst.ScepEnrollRequestOnTemplateResponse)
 	if err == nil {
 		jsonScepEnrollRequestOnTemplateResponse, _ := json.Marshal(dst.ScepEnrollRequestOnTemplateResponse)
 		if string(jsonScepEnrollRequestOnTemplateResponse) == "{}" { // empty struct
 			dst.ScepEnrollRequestOnTemplateResponse = nil
 		} else {
-			_ = validator.Validate(dst.ScepEnrollRequestOnTemplateResponse)
 			match++
 		}
 	} else {
@@ -127,13 +122,12 @@ func (dst *RequestTemplate200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAEnrollRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAEnrollRequestOnTemplateResponse)
+	err = json.Unmarshal(data, &dst.WebRAEnrollRequestOnTemplateResponse)
 	if err == nil {
 		jsonWebRAEnrollRequestOnTemplateResponse, _ := json.Marshal(dst.WebRAEnrollRequestOnTemplateResponse)
 		if string(jsonWebRAEnrollRequestOnTemplateResponse) == "{}" { // empty struct
 			dst.WebRAEnrollRequestOnTemplateResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAEnrollRequestOnTemplateResponse)
 			match++
 		}
 	} else {
@@ -141,13 +135,12 @@ func (dst *RequestTemplate200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAImportRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAImportRequestOnTemplateResponse)
+	err = json.Unmarshal(data, &dst.WebRAImportRequestOnTemplateResponse)
 	if err == nil {
 		jsonWebRAImportRequestOnTemplateResponse, _ := json.Marshal(dst.WebRAImportRequestOnTemplateResponse)
 		if string(jsonWebRAImportRequestOnTemplateResponse) == "{}" { // empty struct
 			dst.WebRAImportRequestOnTemplateResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAImportRequestOnTemplateResponse)
 			match++
 		}
 	} else {
@@ -155,13 +148,12 @@ func (dst *RequestTemplate200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAMigrateRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAMigrateRequestOnTemplateResponse)
+	err = json.Unmarshal(data, &dst.WebRAMigrateRequestOnTemplateResponse)
 	if err == nil {
 		jsonWebRAMigrateRequestOnTemplateResponse, _ := json.Marshal(dst.WebRAMigrateRequestOnTemplateResponse)
 		if string(jsonWebRAMigrateRequestOnTemplateResponse) == "{}" { // empty struct
 			dst.WebRAMigrateRequestOnTemplateResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAMigrateRequestOnTemplateResponse)
 			match++
 		}
 	} else {
@@ -169,13 +161,12 @@ func (dst *RequestTemplate200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARecoverRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARecoverRequestOnTemplateResponse)
+	err = json.Unmarshal(data, &dst.WebRARecoverRequestOnTemplateResponse)
 	if err == nil {
 		jsonWebRARecoverRequestOnTemplateResponse, _ := json.Marshal(dst.WebRARecoverRequestOnTemplateResponse)
 		if string(jsonWebRARecoverRequestOnTemplateResponse) == "{}" { // empty struct
 			dst.WebRARecoverRequestOnTemplateResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRARecoverRequestOnTemplateResponse)
 			match++
 		}
 	} else {
@@ -183,13 +174,12 @@ func (dst *RequestTemplate200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARenewRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARenewRequestOnTemplateResponse)
+	err = json.Unmarshal(data, &dst.WebRARenewRequestOnTemplateResponse)
 	if err == nil {
 		jsonWebRARenewRequestOnTemplateResponse, _ := json.Marshal(dst.WebRARenewRequestOnTemplateResponse)
 		if string(jsonWebRARenewRequestOnTemplateResponse) == "{}" { // empty struct
 			dst.WebRARenewRequestOnTemplateResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRARenewRequestOnTemplateResponse)
 			match++
 		}
 	} else {
@@ -197,13 +187,12 @@ func (dst *RequestTemplate200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARevokeRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARevokeRequestOnTemplateResponse)
+	err = json.Unmarshal(data, &dst.WebRARevokeRequestOnTemplateResponse)
 	if err == nil {
 		jsonWebRARevokeRequestOnTemplateResponse, _ := json.Marshal(dst.WebRARevokeRequestOnTemplateResponse)
 		if string(jsonWebRARevokeRequestOnTemplateResponse) == "{}" { // empty struct
 			dst.WebRARevokeRequestOnTemplateResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRARevokeRequestOnTemplateResponse)
 			match++
 		}
 	} else {
@@ -211,13 +200,12 @@ func (dst *RequestTemplate200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAUpdateRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAUpdateRequestOnTemplateResponse)
+	err = json.Unmarshal(data, &dst.WebRAUpdateRequestOnTemplateResponse)
 	if err == nil {
 		jsonWebRAUpdateRequestOnTemplateResponse, _ := json.Marshal(dst.WebRAUpdateRequestOnTemplateResponse)
 		if string(jsonWebRAUpdateRequestOnTemplateResponse) == "{}" { // empty struct
 			dst.WebRAUpdateRequestOnTemplateResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAUpdateRequestOnTemplateResponse)
 			match++
 		}
 	} else {

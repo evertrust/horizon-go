@@ -13,56 +13,53 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // RequestGet200Response - struct for RequestGet200Response
 type RequestGet200Response struct {
-	EstEnrollRequestOnApproveResponse    *EstEnrollRequestOnApproveResponse
-	ScepEnrollRequestOnApproveResponse   *ScepEnrollRequestOnApproveResponse
-	WebRAEnrollRequestOnApproveResponse  *WebRAEnrollRequestOnApproveResponse
-	WebRAImportRequestOnApproveResponse  *WebRAImportRequestOnApproveResponse
-	WebRAMigrateRequestOnApproveResponse *WebRAMigrateRequestOnApproveResponse
+	EstEnrollRequestOnGetResponse        *EstEnrollRequestOnGetResponse
+	ScepEnrollRequestOnGetResponse       *ScepEnrollRequestOnGetResponse
+	WebRAEnrollRequestOnGetResponse      *WebRAEnrollRequestOnGetResponse
+	WebRAImportRequestOnGetResponse      *WebRAImportRequestOnGetResponse
+	WebRAMigrateRequestOnGetResponse     *WebRAMigrateRequestOnGetResponse
 	WebRARecoverRequestOnApproveResponse *WebRARecoverRequestOnApproveResponse
 	WebRARenewRequestOnApproveResponse   *WebRARenewRequestOnApproveResponse
 	WebRARevokeRequestOnApproveResponse  *WebRARevokeRequestOnApproveResponse
-	WebRAUpdateRequestOnApproveResponse  *WebRAUpdateRequestOnApproveResponse
+	WebRAUpdateRequestOnGetResponse      *WebRAUpdateRequestOnGetResponse
 }
 
-// EstEnrollRequestOnApproveResponseAsRequestGet200Response is a convenience function that returns EstEnrollRequestOnApproveResponse wrapped in RequestGet200Response
-func EstEnrollRequestOnApproveResponseAsRequestGet200Response(v *EstEnrollRequestOnApproveResponse) RequestGet200Response {
+// EstEnrollRequestOnGetResponseAsRequestGet200Response is a convenience function that returns EstEnrollRequestOnGetResponse wrapped in RequestGet200Response
+func EstEnrollRequestOnGetResponseAsRequestGet200Response(v *EstEnrollRequestOnGetResponse) RequestGet200Response {
 	return RequestGet200Response{
-		EstEnrollRequestOnApproveResponse: v,
+		EstEnrollRequestOnGetResponse: v,
 	}
 }
 
-// ScepEnrollRequestOnApproveResponseAsRequestGet200Response is a convenience function that returns ScepEnrollRequestOnApproveResponse wrapped in RequestGet200Response
-func ScepEnrollRequestOnApproveResponseAsRequestGet200Response(v *ScepEnrollRequestOnApproveResponse) RequestGet200Response {
+// ScepEnrollRequestOnGetResponseAsRequestGet200Response is a convenience function that returns ScepEnrollRequestOnGetResponse wrapped in RequestGet200Response
+func ScepEnrollRequestOnGetResponseAsRequestGet200Response(v *ScepEnrollRequestOnGetResponse) RequestGet200Response {
 	return RequestGet200Response{
-		ScepEnrollRequestOnApproveResponse: v,
+		ScepEnrollRequestOnGetResponse: v,
 	}
 }
 
-// WebRAEnrollRequestOnApproveResponseAsRequestGet200Response is a convenience function that returns WebRAEnrollRequestOnApproveResponse wrapped in RequestGet200Response
-func WebRAEnrollRequestOnApproveResponseAsRequestGet200Response(v *WebRAEnrollRequestOnApproveResponse) RequestGet200Response {
+// WebRAEnrollRequestOnGetResponseAsRequestGet200Response is a convenience function that returns WebRAEnrollRequestOnGetResponse wrapped in RequestGet200Response
+func WebRAEnrollRequestOnGetResponseAsRequestGet200Response(v *WebRAEnrollRequestOnGetResponse) RequestGet200Response {
 	return RequestGet200Response{
-		WebRAEnrollRequestOnApproveResponse: v,
+		WebRAEnrollRequestOnGetResponse: v,
 	}
 }
 
-// WebRAImportRequestOnApproveResponseAsRequestGet200Response is a convenience function that returns WebRAImportRequestOnApproveResponse wrapped in RequestGet200Response
-func WebRAImportRequestOnApproveResponseAsRequestGet200Response(v *WebRAImportRequestOnApproveResponse) RequestGet200Response {
+// WebRAImportRequestOnGetResponseAsRequestGet200Response is a convenience function that returns WebRAImportRequestOnGetResponse wrapped in RequestGet200Response
+func WebRAImportRequestOnGetResponseAsRequestGet200Response(v *WebRAImportRequestOnGetResponse) RequestGet200Response {
 	return RequestGet200Response{
-		WebRAImportRequestOnApproveResponse: v,
+		WebRAImportRequestOnGetResponse: v,
 	}
 }
 
-// WebRAMigrateRequestOnApproveResponseAsRequestGet200Response is a convenience function that returns WebRAMigrateRequestOnApproveResponse wrapped in RequestGet200Response
-func WebRAMigrateRequestOnApproveResponseAsRequestGet200Response(v *WebRAMigrateRequestOnApproveResponse) RequestGet200Response {
+// WebRAMigrateRequestOnGetResponseAsRequestGet200Response is a convenience function that returns WebRAMigrateRequestOnGetResponse wrapped in RequestGet200Response
+func WebRAMigrateRequestOnGetResponseAsRequestGet200Response(v *WebRAMigrateRequestOnGetResponse) RequestGet200Response {
 	return RequestGet200Response{
-		WebRAMigrateRequestOnApproveResponse: v,
+		WebRAMigrateRequestOnGetResponse: v,
 	}
 }
 
@@ -87,10 +84,10 @@ func WebRARevokeRequestOnApproveResponseAsRequestGet200Response(v *WebRARevokeRe
 	}
 }
 
-// WebRAUpdateRequestOnApproveResponseAsRequestGet200Response is a convenience function that returns WebRAUpdateRequestOnApproveResponse wrapped in RequestGet200Response
-func WebRAUpdateRequestOnApproveResponseAsRequestGet200Response(v *WebRAUpdateRequestOnApproveResponse) RequestGet200Response {
+// WebRAUpdateRequestOnGetResponseAsRequestGet200Response is a convenience function that returns WebRAUpdateRequestOnGetResponse wrapped in RequestGet200Response
+func WebRAUpdateRequestOnGetResponseAsRequestGet200Response(v *WebRAUpdateRequestOnGetResponse) RequestGet200Response {
 	return RequestGet200Response{
-		WebRAUpdateRequestOnApproveResponse: v,
+		WebRAUpdateRequestOnGetResponse: v,
 	}
 }
 
@@ -98,84 +95,78 @@ func WebRAUpdateRequestOnApproveResponseAsRequestGet200Response(v *WebRAUpdateRe
 func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into EstEnrollRequestOnApproveResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.EstEnrollRequestOnApproveResponse)
+	// try to unmarshal data into EstEnrollRequestOnGetResponse
+	err = json.Unmarshal(data, &dst.EstEnrollRequestOnGetResponse)
 	if err == nil {
-		jsonEstEnrollRequestOnApproveResponse, _ := json.Marshal(dst.EstEnrollRequestOnApproveResponse)
-		if string(jsonEstEnrollRequestOnApproveResponse) == "{}" { // empty struct
-			dst.EstEnrollRequestOnApproveResponse = nil
+		jsonEstEnrollRequestOnGetResponse, _ := json.Marshal(dst.EstEnrollRequestOnGetResponse)
+		if string(jsonEstEnrollRequestOnGetResponse) == "{}" { // empty struct
+			dst.EstEnrollRequestOnGetResponse = nil
 		} else {
-			_ = validator.Validate(dst.EstEnrollRequestOnApproveResponse)
 			match++
 		}
 	} else {
-		dst.EstEnrollRequestOnApproveResponse = nil
+		dst.EstEnrollRequestOnGetResponse = nil
 	}
 
-	// try to unmarshal data into ScepEnrollRequestOnApproveResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.ScepEnrollRequestOnApproveResponse)
+	// try to unmarshal data into ScepEnrollRequestOnGetResponse
+	err = json.Unmarshal(data, &dst.ScepEnrollRequestOnGetResponse)
 	if err == nil {
-		jsonScepEnrollRequestOnApproveResponse, _ := json.Marshal(dst.ScepEnrollRequestOnApproveResponse)
-		if string(jsonScepEnrollRequestOnApproveResponse) == "{}" { // empty struct
-			dst.ScepEnrollRequestOnApproveResponse = nil
+		jsonScepEnrollRequestOnGetResponse, _ := json.Marshal(dst.ScepEnrollRequestOnGetResponse)
+		if string(jsonScepEnrollRequestOnGetResponse) == "{}" { // empty struct
+			dst.ScepEnrollRequestOnGetResponse = nil
 		} else {
-			_ = validator.Validate(dst.ScepEnrollRequestOnApproveResponse)
 			match++
 		}
 	} else {
-		dst.ScepEnrollRequestOnApproveResponse = nil
+		dst.ScepEnrollRequestOnGetResponse = nil
 	}
 
-	// try to unmarshal data into WebRAEnrollRequestOnApproveResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAEnrollRequestOnApproveResponse)
+	// try to unmarshal data into WebRAEnrollRequestOnGetResponse
+	err = json.Unmarshal(data, &dst.WebRAEnrollRequestOnGetResponse)
 	if err == nil {
-		jsonWebRAEnrollRequestOnApproveResponse, _ := json.Marshal(dst.WebRAEnrollRequestOnApproveResponse)
-		if string(jsonWebRAEnrollRequestOnApproveResponse) == "{}" { // empty struct
-			dst.WebRAEnrollRequestOnApproveResponse = nil
+		jsonWebRAEnrollRequestOnGetResponse, _ := json.Marshal(dst.WebRAEnrollRequestOnGetResponse)
+		if string(jsonWebRAEnrollRequestOnGetResponse) == "{}" { // empty struct
+			dst.WebRAEnrollRequestOnGetResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAEnrollRequestOnApproveResponse)
 			match++
 		}
 	} else {
-		dst.WebRAEnrollRequestOnApproveResponse = nil
+		dst.WebRAEnrollRequestOnGetResponse = nil
 	}
 
-	// try to unmarshal data into WebRAImportRequestOnApproveResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAImportRequestOnApproveResponse)
+	// try to unmarshal data into WebRAImportRequestOnGetResponse
+	err = json.Unmarshal(data, &dst.WebRAImportRequestOnGetResponse)
 	if err == nil {
-		jsonWebRAImportRequestOnApproveResponse, _ := json.Marshal(dst.WebRAImportRequestOnApproveResponse)
-		if string(jsonWebRAImportRequestOnApproveResponse) == "{}" { // empty struct
-			dst.WebRAImportRequestOnApproveResponse = nil
+		jsonWebRAImportRequestOnGetResponse, _ := json.Marshal(dst.WebRAImportRequestOnGetResponse)
+		if string(jsonWebRAImportRequestOnGetResponse) == "{}" { // empty struct
+			dst.WebRAImportRequestOnGetResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAImportRequestOnApproveResponse)
 			match++
 		}
 	} else {
-		dst.WebRAImportRequestOnApproveResponse = nil
+		dst.WebRAImportRequestOnGetResponse = nil
 	}
 
-	// try to unmarshal data into WebRAMigrateRequestOnApproveResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAMigrateRequestOnApproveResponse)
+	// try to unmarshal data into WebRAMigrateRequestOnGetResponse
+	err = json.Unmarshal(data, &dst.WebRAMigrateRequestOnGetResponse)
 	if err == nil {
-		jsonWebRAMigrateRequestOnApproveResponse, _ := json.Marshal(dst.WebRAMigrateRequestOnApproveResponse)
-		if string(jsonWebRAMigrateRequestOnApproveResponse) == "{}" { // empty struct
-			dst.WebRAMigrateRequestOnApproveResponse = nil
+		jsonWebRAMigrateRequestOnGetResponse, _ := json.Marshal(dst.WebRAMigrateRequestOnGetResponse)
+		if string(jsonWebRAMigrateRequestOnGetResponse) == "{}" { // empty struct
+			dst.WebRAMigrateRequestOnGetResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAMigrateRequestOnApproveResponse)
 			match++
 		}
 	} else {
-		dst.WebRAMigrateRequestOnApproveResponse = nil
+		dst.WebRAMigrateRequestOnGetResponse = nil
 	}
 
 	// try to unmarshal data into WebRARecoverRequestOnApproveResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARecoverRequestOnApproveResponse)
+	err = json.Unmarshal(data, &dst.WebRARecoverRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRARecoverRequestOnApproveResponse, _ := json.Marshal(dst.WebRARecoverRequestOnApproveResponse)
 		if string(jsonWebRARecoverRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRARecoverRequestOnApproveResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRARecoverRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -183,13 +174,12 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARenewRequestOnApproveResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARenewRequestOnApproveResponse)
+	err = json.Unmarshal(data, &dst.WebRARenewRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRARenewRequestOnApproveResponse, _ := json.Marshal(dst.WebRARenewRequestOnApproveResponse)
 		if string(jsonWebRARenewRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRARenewRequestOnApproveResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRARenewRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -197,31 +187,29 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARevokeRequestOnApproveResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARevokeRequestOnApproveResponse)
+	err = json.Unmarshal(data, &dst.WebRARevokeRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRARevokeRequestOnApproveResponse, _ := json.Marshal(dst.WebRARevokeRequestOnApproveResponse)
 		if string(jsonWebRARevokeRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRARevokeRequestOnApproveResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRARevokeRequestOnApproveResponse)
 			match++
 		}
 	} else {
 		dst.WebRARevokeRequestOnApproveResponse = nil
 	}
 
-	// try to unmarshal data into WebRAUpdateRequestOnApproveResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAUpdateRequestOnApproveResponse)
+	// try to unmarshal data into WebRAUpdateRequestOnGetResponse
+	err = json.Unmarshal(data, &dst.WebRAUpdateRequestOnGetResponse)
 	if err == nil {
-		jsonWebRAUpdateRequestOnApproveResponse, _ := json.Marshal(dst.WebRAUpdateRequestOnApproveResponse)
-		if string(jsonWebRAUpdateRequestOnApproveResponse) == "{}" { // empty struct
-			dst.WebRAUpdateRequestOnApproveResponse = nil
+		jsonWebRAUpdateRequestOnGetResponse, _ := json.Marshal(dst.WebRAUpdateRequestOnGetResponse)
+		if string(jsonWebRAUpdateRequestOnGetResponse) == "{}" { // empty struct
+			dst.WebRAUpdateRequestOnGetResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAUpdateRequestOnApproveResponse)
 			match++
 		}
 	} else {
-		dst.WebRAUpdateRequestOnApproveResponse = nil
+		dst.WebRAUpdateRequestOnGetResponse = nil
 	}
 
 	if match >= 1 {
@@ -233,24 +221,24 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src RequestGet200Response) MarshalJSON() ([]byte, error) {
-	if src.EstEnrollRequestOnApproveResponse != nil {
-		return json.Marshal(&src.EstEnrollRequestOnApproveResponse)
+	if src.EstEnrollRequestOnGetResponse != nil {
+		return json.Marshal(&src.EstEnrollRequestOnGetResponse)
 	}
 
-	if src.ScepEnrollRequestOnApproveResponse != nil {
-		return json.Marshal(&src.ScepEnrollRequestOnApproveResponse)
+	if src.ScepEnrollRequestOnGetResponse != nil {
+		return json.Marshal(&src.ScepEnrollRequestOnGetResponse)
 	}
 
-	if src.WebRAEnrollRequestOnApproveResponse != nil {
-		return json.Marshal(&src.WebRAEnrollRequestOnApproveResponse)
+	if src.WebRAEnrollRequestOnGetResponse != nil {
+		return json.Marshal(&src.WebRAEnrollRequestOnGetResponse)
 	}
 
-	if src.WebRAImportRequestOnApproveResponse != nil {
-		return json.Marshal(&src.WebRAImportRequestOnApproveResponse)
+	if src.WebRAImportRequestOnGetResponse != nil {
+		return json.Marshal(&src.WebRAImportRequestOnGetResponse)
 	}
 
-	if src.WebRAMigrateRequestOnApproveResponse != nil {
-		return json.Marshal(&src.WebRAMigrateRequestOnApproveResponse)
+	if src.WebRAMigrateRequestOnGetResponse != nil {
+		return json.Marshal(&src.WebRAMigrateRequestOnGetResponse)
 	}
 
 	if src.WebRARecoverRequestOnApproveResponse != nil {
@@ -265,8 +253,8 @@ func (src RequestGet200Response) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.WebRARevokeRequestOnApproveResponse)
 	}
 
-	if src.WebRAUpdateRequestOnApproveResponse != nil {
-		return json.Marshal(&src.WebRAUpdateRequestOnApproveResponse)
+	if src.WebRAUpdateRequestOnGetResponse != nil {
+		return json.Marshal(&src.WebRAUpdateRequestOnGetResponse)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -277,24 +265,24 @@ func (obj *RequestGet200Response) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
-	if obj.EstEnrollRequestOnApproveResponse != nil {
-		return obj.EstEnrollRequestOnApproveResponse
+	if obj.EstEnrollRequestOnGetResponse != nil {
+		return obj.EstEnrollRequestOnGetResponse
 	}
 
-	if obj.ScepEnrollRequestOnApproveResponse != nil {
-		return obj.ScepEnrollRequestOnApproveResponse
+	if obj.ScepEnrollRequestOnGetResponse != nil {
+		return obj.ScepEnrollRequestOnGetResponse
 	}
 
-	if obj.WebRAEnrollRequestOnApproveResponse != nil {
-		return obj.WebRAEnrollRequestOnApproveResponse
+	if obj.WebRAEnrollRequestOnGetResponse != nil {
+		return obj.WebRAEnrollRequestOnGetResponse
 	}
 
-	if obj.WebRAImportRequestOnApproveResponse != nil {
-		return obj.WebRAImportRequestOnApproveResponse
+	if obj.WebRAImportRequestOnGetResponse != nil {
+		return obj.WebRAImportRequestOnGetResponse
 	}
 
-	if obj.WebRAMigrateRequestOnApproveResponse != nil {
-		return obj.WebRAMigrateRequestOnApproveResponse
+	if obj.WebRAMigrateRequestOnGetResponse != nil {
+		return obj.WebRAMigrateRequestOnGetResponse
 	}
 
 	if obj.WebRARecoverRequestOnApproveResponse != nil {
@@ -309,8 +297,8 @@ func (obj *RequestGet200Response) GetActualInstance() interface{} {
 		return obj.WebRARevokeRequestOnApproveResponse
 	}
 
-	if obj.WebRAUpdateRequestOnApproveResponse != nil {
-		return obj.WebRAUpdateRequestOnApproveResponse
+	if obj.WebRAUpdateRequestOnGetResponse != nil {
+		return obj.WebRAUpdateRequestOnGetResponse
 	}
 
 	// all schemas are nil

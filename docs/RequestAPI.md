@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## RequestApprove
 
-> RequestGet200Response RequestApprove(ctx).RequestApproveRequest(requestApproveRequest).Execute()
+> RequestApprove200Response RequestApprove(ctx).RequestApproveRequest(requestApproveRequest).Execute()
 
 Approve a request
 
@@ -114,7 +114,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `RequestAPI.RequestApprove``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RequestApprove`: RequestGet200Response
+	// response from `RequestApprove`: RequestApprove200Response
 	fmt.Fprintf(os.Stdout, "Response from `RequestAPI.RequestApprove`: %v\n", resp)
 }
 ```
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RequestGet200Response**](RequestGet200Response.md)
+[**RequestApprove200Response**](RequestApprove200Response.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## RequestCancel
 
-> RequestGet200Response RequestCancel(ctx).RequestCancelRequest(requestCancelRequest).Execute()
+> RequestApprove200Response RequestCancel(ctx).RequestCancelRequest(requestCancelRequest).Execute()
 
 Cancel a request
 
@@ -180,7 +180,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `RequestAPI.RequestCancel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RequestCancel`: RequestGet200Response
+	// response from `RequestCancel`: RequestApprove200Response
 	fmt.Fprintf(os.Stdout, "Response from `RequestAPI.RequestCancel`: %v\n", resp)
 }
 ```
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RequestGet200Response**](RequestGet200Response.md)
+[**RequestApprove200Response**](RequestApprove200Response.md)
 
 ### Authorization
 
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 
 ## RequestDeny
 
-> RequestGet200Response RequestDeny(ctx).RequestDenyRequest(requestDenyRequest).Execute()
+> RequestApprove200Response RequestDeny(ctx).RequestDenyRequest(requestDenyRequest).Execute()
 
 Deny a request
 
@@ -378,7 +378,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `RequestAPI.RequestDeny``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RequestDeny`: RequestGet200Response
+	// response from `RequestDeny`: RequestApprove200Response
 	fmt.Fprintf(os.Stdout, "Response from `RequestAPI.RequestDeny`: %v\n", resp)
 }
 ```
@@ -398,7 +398,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RequestGet200Response**](RequestGet200Response.md)
+[**RequestApprove200Response**](RequestApprove200Response.md)
 
 ### Authorization
 

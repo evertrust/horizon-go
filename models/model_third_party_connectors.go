@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // ThirdPartyConnectors - struct for ThirdPartyConnectors
@@ -107,13 +104,12 @@ func (dst *ThirdPartyConnectors) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into AWSConnector
-	err = utils.NewStrictDecoder(data).Decode(&dst.AWSConnector)
+	err = json.Unmarshal(data, &dst.AWSConnector)
 	if err == nil {
 		jsonAWSConnector, _ := json.Marshal(dst.AWSConnector)
 		if string(jsonAWSConnector) == "{}" { // empty struct
 			dst.AWSConnector = nil
 		} else {
-			_ = validator.Validate(dst.AWSConnector)
 			match++
 		}
 	} else {
@@ -121,13 +117,12 @@ func (dst *ThirdPartyConnectors) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into AzureKeyVaultConnector
-	err = utils.NewStrictDecoder(data).Decode(&dst.AzureKeyVaultConnector)
+	err = json.Unmarshal(data, &dst.AzureKeyVaultConnector)
 	if err == nil {
 		jsonAzureKeyVaultConnector, _ := json.Marshal(dst.AzureKeyVaultConnector)
 		if string(jsonAzureKeyVaultConnector) == "{}" { // empty struct
 			dst.AzureKeyVaultConnector = nil
 		} else {
-			_ = validator.Validate(dst.AzureKeyVaultConnector)
 			match++
 		}
 	} else {
@@ -135,13 +130,12 @@ func (dst *ThirdPartyConnectors) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into F5AS3Connector
-	err = utils.NewStrictDecoder(data).Decode(&dst.F5AS3Connector)
+	err = json.Unmarshal(data, &dst.F5AS3Connector)
 	if err == nil {
 		jsonF5AS3Connector, _ := json.Marshal(dst.F5AS3Connector)
 		if string(jsonF5AS3Connector) == "{}" { // empty struct
 			dst.F5AS3Connector = nil
 		} else {
-			_ = validator.Validate(dst.F5AS3Connector)
 			match++
 		}
 	} else {
@@ -149,13 +143,12 @@ func (dst *ThirdPartyConnectors) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into F5ClientConnector
-	err = utils.NewStrictDecoder(data).Decode(&dst.F5ClientConnector)
+	err = json.Unmarshal(data, &dst.F5ClientConnector)
 	if err == nil {
 		jsonF5ClientConnector, _ := json.Marshal(dst.F5ClientConnector)
 		if string(jsonF5ClientConnector) == "{}" { // empty struct
 			dst.F5ClientConnector = nil
 		} else {
-			_ = validator.Validate(dst.F5ClientConnector)
 			match++
 		}
 	} else {
@@ -163,13 +156,12 @@ func (dst *ThirdPartyConnectors) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into GCMConnector
-	err = utils.NewStrictDecoder(data).Decode(&dst.GCMConnector)
+	err = json.Unmarshal(data, &dst.GCMConnector)
 	if err == nil {
 		jsonGCMConnector, _ := json.Marshal(dst.GCMConnector)
 		if string(jsonGCMConnector) == "{}" { // empty struct
 			dst.GCMConnector = nil
 		} else {
-			_ = validator.Validate(dst.GCMConnector)
 			match++
 		}
 	} else {
@@ -177,13 +169,12 @@ func (dst *ThirdPartyConnectors) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IntuneConnector
-	err = utils.NewStrictDecoder(data).Decode(&dst.IntuneConnector)
+	err = json.Unmarshal(data, &dst.IntuneConnector)
 	if err == nil {
 		jsonIntuneConnector, _ := json.Marshal(dst.IntuneConnector)
 		if string(jsonIntuneConnector) == "{}" { // empty struct
 			dst.IntuneConnector = nil
 		} else {
-			_ = validator.Validate(dst.IntuneConnector)
 			match++
 		}
 	} else {
@@ -191,13 +182,12 @@ func (dst *ThirdPartyConnectors) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IntunePKCSConnector
-	err = utils.NewStrictDecoder(data).Decode(&dst.IntunePKCSConnector)
+	err = json.Unmarshal(data, &dst.IntunePKCSConnector)
 	if err == nil {
 		jsonIntunePKCSConnector, _ := json.Marshal(dst.IntunePKCSConnector)
 		if string(jsonIntunePKCSConnector) == "{}" { // empty struct
 			dst.IntunePKCSConnector = nil
 		} else {
-			_ = validator.Validate(dst.IntunePKCSConnector)
 			match++
 		}
 	} else {
@@ -205,13 +195,12 @@ func (dst *ThirdPartyConnectors) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into JamfConnector
-	err = utils.NewStrictDecoder(data).Decode(&dst.JamfConnector)
+	err = json.Unmarshal(data, &dst.JamfConnector)
 	if err == nil {
 		jsonJamfConnector, _ := json.Marshal(dst.JamfConnector)
 		if string(jsonJamfConnector) == "{}" { // empty struct
 			dst.JamfConnector = nil
 		} else {
-			_ = validator.Validate(dst.JamfConnector)
 			match++
 		}
 	} else {
@@ -219,13 +208,12 @@ func (dst *ThirdPartyConnectors) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into LDAPConnector
-	err = utils.NewStrictDecoder(data).Decode(&dst.LDAPConnector)
+	err = json.Unmarshal(data, &dst.LDAPConnector)
 	if err == nil {
 		jsonLDAPConnector, _ := json.Marshal(dst.LDAPConnector)
 		if string(jsonLDAPConnector) == "{}" { // empty struct
 			dst.LDAPConnector = nil
 		} else {
-			_ = validator.Validate(dst.LDAPConnector)
 			match++
 		}
 	} else {
@@ -233,13 +221,12 @@ func (dst *ThirdPartyConnectors) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into MSADConnector
-	err = utils.NewStrictDecoder(data).Decode(&dst.MSADConnector)
+	err = json.Unmarshal(data, &dst.MSADConnector)
 	if err == nil {
 		jsonMSADConnector, _ := json.Marshal(dst.MSADConnector)
 		if string(jsonMSADConnector) == "{}" { // empty struct
 			dst.MSADConnector = nil
 		} else {
-			_ = validator.Validate(dst.MSADConnector)
 			match++
 		}
 	} else {

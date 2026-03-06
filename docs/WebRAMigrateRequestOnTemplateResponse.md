@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Module** | [**Module**](Module.md) | The module for which to return the template. | 
 **Profile** | **string** | The profile for which to return the template. | 
-**Template** | [**WebRAMigrateRequestTemplate**](WebRAMigrateRequestTemplate.md) | The template with the constraint set on the profile | 
+**Template** | [**WebRAMigrateRequestTemplateResponse**](WebRAMigrateRequestTemplateResponse.md) | The template with the constraint set on the profile | 
 **Workflow** | **string** | The request workflow | 
 
 ## Methods
 
 ### NewWebRAMigrateRequestOnTemplateResponse
 
-`func NewWebRAMigrateRequestOnTemplateResponse(module Module, profile string, template WebRAMigrateRequestTemplate, workflow string, ) *WebRAMigrateRequestOnTemplateResponse`
+`func NewWebRAMigrateRequestOnTemplateResponse(module Module, profile string, template WebRAMigrateRequestTemplateResponse, workflow string, ) *WebRAMigrateRequestOnTemplateResponse`
 
 NewWebRAMigrateRequestOnTemplateResponse instantiates a new WebRAMigrateRequestOnTemplateResponse object
 This constructor will assign default values to properties that have it defined,
@@ -70,20 +70,20 @@ SetProfile sets Profile field to given value.
 
 ### GetTemplate
 
-`func (o *WebRAMigrateRequestOnTemplateResponse) GetTemplate() WebRAMigrateRequestTemplate`
+`func (o *WebRAMigrateRequestOnTemplateResponse) GetTemplate() WebRAMigrateRequestTemplateResponse`
 
 GetTemplate returns the Template field if non-nil, zero value otherwise.
 
 ### GetTemplateOk
 
-`func (o *WebRAMigrateRequestOnTemplateResponse) GetTemplateOk() (*WebRAMigrateRequestTemplate, bool)`
+`func (o *WebRAMigrateRequestOnTemplateResponse) GetTemplateOk() (*WebRAMigrateRequestTemplateResponse, bool)`
 
 GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplate
 
-`func (o *WebRAMigrateRequestOnTemplateResponse) SetTemplate(v WebRAMigrateRequestTemplate)`
+`func (o *WebRAMigrateRequestOnTemplateResponse) SetTemplate(v WebRAMigrateRequestTemplateResponse)`
 
 SetTemplate sets Template field to given value.
 

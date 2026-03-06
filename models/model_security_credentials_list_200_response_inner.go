@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // SecurityCredentialsList200ResponseInner - struct for SecurityCredentialsList200ResponseInner
@@ -51,13 +48,12 @@ func (dst *SecurityCredentialsList200ResponseInner) UnmarshalJSON(data []byte) e
 	var err error
 	match := 0
 	// try to unmarshal data into CertificateCredentialsResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.CertificateCredentialsResponse)
+	err = json.Unmarshal(data, &dst.CertificateCredentialsResponse)
 	if err == nil {
 		jsonCertificateCredentialsResponse, _ := json.Marshal(dst.CertificateCredentialsResponse)
 		if string(jsonCertificateCredentialsResponse) == "{}" { // empty struct
 			dst.CertificateCredentialsResponse = nil
 		} else {
-			_ = validator.Validate(dst.CertificateCredentialsResponse)
 			match++
 		}
 	} else {
@@ -65,13 +61,12 @@ func (dst *SecurityCredentialsList200ResponseInner) UnmarshalJSON(data []byte) e
 	}
 
 	// try to unmarshal data into PasswordCredentialsResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.PasswordCredentialsResponse)
+	err = json.Unmarshal(data, &dst.PasswordCredentialsResponse)
 	if err == nil {
 		jsonPasswordCredentialsResponse, _ := json.Marshal(dst.PasswordCredentialsResponse)
 		if string(jsonPasswordCredentialsResponse) == "{}" { // empty struct
 			dst.PasswordCredentialsResponse = nil
 		} else {
-			_ = validator.Validate(dst.PasswordCredentialsResponse)
 			match++
 		}
 	} else {
@@ -79,13 +74,12 @@ func (dst *SecurityCredentialsList200ResponseInner) UnmarshalJSON(data []byte) e
 	}
 
 	// try to unmarshal data into RawCredentialsResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.RawCredentialsResponse)
+	err = json.Unmarshal(data, &dst.RawCredentialsResponse)
 	if err == nil {
 		jsonRawCredentialsResponse, _ := json.Marshal(dst.RawCredentialsResponse)
 		if string(jsonRawCredentialsResponse) == "{}" { // empty struct
 			dst.RawCredentialsResponse = nil
 		} else {
-			_ = validator.Validate(dst.RawCredentialsResponse)
 			match++
 		}
 	} else {

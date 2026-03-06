@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Module** | [**Module**](Module.md) | The module of the certificate to update. | 
 **Profile** | **string** | The profile for which to return the template. | 
-**Template** | [**WebRAUpdateRequestTemplate**](WebRAUpdateRequestTemplate.md) | The template with the constraint set on the profile | 
+**Template** | [**WebRAUpdateRequestTemplateResponse**](WebRAUpdateRequestTemplateResponse.md) | The template with the constraint set on the profile | 
 **Workflow** | **string** | The request workflow | 
 
 ## Methods
 
 ### NewWebRAUpdateRequestOnTemplateResponse
 
-`func NewWebRAUpdateRequestOnTemplateResponse(module Module, profile string, template WebRAUpdateRequestTemplate, workflow string, ) *WebRAUpdateRequestOnTemplateResponse`
+`func NewWebRAUpdateRequestOnTemplateResponse(module Module, profile string, template WebRAUpdateRequestTemplateResponse, workflow string, ) *WebRAUpdateRequestOnTemplateResponse`
 
 NewWebRAUpdateRequestOnTemplateResponse instantiates a new WebRAUpdateRequestOnTemplateResponse object
 This constructor will assign default values to properties that have it defined,
@@ -70,20 +70,20 @@ SetProfile sets Profile field to given value.
 
 ### GetTemplate
 
-`func (o *WebRAUpdateRequestOnTemplateResponse) GetTemplate() WebRAUpdateRequestTemplate`
+`func (o *WebRAUpdateRequestOnTemplateResponse) GetTemplate() WebRAUpdateRequestTemplateResponse`
 
 GetTemplate returns the Template field if non-nil, zero value otherwise.
 
 ### GetTemplateOk
 
-`func (o *WebRAUpdateRequestOnTemplateResponse) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool)`
+`func (o *WebRAUpdateRequestOnTemplateResponse) GetTemplateOk() (*WebRAUpdateRequestTemplateResponse, bool)`
 
 GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplate
 
-`func (o *WebRAUpdateRequestOnTemplateResponse) SetTemplate(v WebRAUpdateRequestTemplate)`
+`func (o *WebRAUpdateRequestOnTemplateResponse) SetTemplate(v WebRAUpdateRequestTemplateResponse)`
 
 SetTemplate sets Template field to given value.
 

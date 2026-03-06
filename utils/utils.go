@@ -12,10 +12,24 @@ package utils
 
 import (
 	"bytes"
+	"crypto"
+	"crypto/ecdsa"
+	"crypto/ed25519"
+	"crypto/rand"
+	"crypto/x509"
+	"encoding/base64"
 	"encoding/json"
+	"encoding/pem"
+	"errors"
 	"fmt"
+	"math/big"
 	"reflect"
+	"strings"
 	"time"
+
+	"github.com/golang-jwt/jwt/v5"
+	"golang.org/x/crypto/cryptobyte"
+	asn1Crypto "golang.org/x/crypto/cryptobyte/asn1"
 )
 
 // PtrBool is a helper routine that returns a pointer to given boolean value.
@@ -358,4 +372,109 @@ func NewStrictDecoder(data []byte) *json.Decoder {
 // Prevent trying to import "fmt"
 func ReportError(format string, a ...interface{}) error {
 	return fmt.Errorf(format, a...)
+}
+
+func CreateJWT(cert x509.Certificate, key crypto.Signer, nonce string) (string, error) {
+	claims :=
+		jwt.MapClaims{
+			"sub": EncodeCertAsPEM(&cert),
+			"iat": time.Now().Unix(),
+			"exp": time.Now().Add(5 * time.Second).Unix(),
+		}
+	if nonce != "" {
+		claims["nonce"] = nonce
+	}
+	signingMethod := "RS256"
+	switch key := cert.PublicKey.(type) {
+	case *ecdsa.PublicKey:
+		signingMethod = fmt.Sprintf("ES%v", key.Curve.Params().BitSize)
+		if key.Curve.Params().BitSize == 521 {
+			signingMethod = "ES512"
+		}
+	// NO POINTER
+	case ed25519.PublicKey:
+		signingMethod = "EdDSA"
+	}
+	jwtSigningMethod := jwt.GetSigningMethod(signingMethod)
+	t := jwt.NewWithClaims(jwtSigningMethod, &claims)
+	sstr, err := t.SigningString()
+	if err != nil {
+		return "", err
+	}
+	var sig string
+	// We are not signing using t.SignedString() as we need to sign the content using crypto signer.sign and not using a key
+	switch method := jwtSigningMethod.(type) {
+	case *jwt.SigningMethodRSA:
+		if !crypto.SHA256.Available() {
+			return "", errors.New("SHA256 not available")
+		}
+
+		hasher := crypto.SHA256.New()
+		hasher.Write([]byte(sstr))
+
+		// Sign the string and return the encoded bytes
+		if sigBytes, err := key.Sign(rand.Reader, hasher.Sum(nil), crypto.SHA256); err == nil {
+			sig = base64.RawURLEncoding.EncodeToString(sigBytes)
+		} else {
+			return "", err
+		}
+	case *jwt.SigningMethodEd25519:
+		if sigBytes, err := method.Sign(sstr, key); err == nil {
+			sig = base64.RawURLEncoding.EncodeToString(sigBytes)
+		} else {
+			return "", err
+		}
+	case *jwt.SigningMethodECDSA:
+		if !method.Hash.Available() {
+			return "", fmt.Errorf("hash %s not available", method.Hash.String())
+		}
+
+		hasher := method.Hash.New()
+		hasher.Write([]byte(sstr))
+
+		// Sign the string and return the encoded bytes
+		if sigBytes, err := key.Sign(rand.Reader, hasher.Sum(nil), method.Hash); err == nil {
+			// This is extracted from Sign from package ecdsa, ecdsa_legacy.go, as we need the r and s from the signature
+			r, s := new(big.Int), new(big.Int)
+			var inner cryptobyte.String
+			input := cryptobyte.String(sigBytes)
+			if !input.ReadASN1(&inner, asn1Crypto.SEQUENCE) ||
+				!input.Empty() ||
+				!inner.ReadASN1Integer(r) ||
+				!inner.ReadASN1Integer(s) ||
+				!inner.Empty() {
+				return "", errors.New("invalid ASN.1 from SignASN1")
+			}
+
+			// This is extracted from SigningMethodECDSA from jwt package in Sign method in ecdsa.go
+			curveBits := cert.PublicKey.(*ecdsa.PublicKey).Curve.Params().BitSize
+
+			keyBytes := curveBits / 8
+			if curveBits%8 > 0 {
+				keyBytes += 1
+			}
+
+			// We serialize the outputs (r and s) into big-endian byte arrays
+			// padded with zeros on the left to make sure the sizes work out.
+			// Output must be 2*keyBytes long.
+			out := make([]byte, 2*keyBytes)
+			r.FillBytes(out[0:keyBytes]) // r is assigned to the first half of output.
+			s.FillBytes(out[keyBytes:])  // s is assigned to the second half of output.
+			sig = base64.RawURLEncoding.EncodeToString(out)
+		} else {
+			return "", err
+		}
+	default:
+		return "", errors.New("unsupported signing method")
+	}
+	jwtstr := strings.Join([]string{sstr, sig}, ".")
+	return jwtstr, nil
+}
+
+// EncodeCertAsPEM encodes a certificate as PEM
+func EncodeCertAsPEM(cert *x509.Certificate) string {
+	return string(pem.EncodeToMemory(&pem.Block{
+		Type:  "CERTIFICATE",
+		Bytes: cert.Raw,
+	}))
 }

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Module** | **string** |  | 
 **Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password of the challenge. Must be set if password mode is &#x60;manual&#x60; | [optional] 
 **Pkcs12** | Pointer to [**NullableSecretString**](SecretString.md) | The generated PKCS#12 for this request. This is only available after the request has been approved in centralized mode | [optional] 
-**Template** | [**ScepEnrollRequestTemplate**](ScepEnrollRequestTemplate.md) | The user-data that will be used to generate the certificate | 
+**Template** | [**ScepEnrollRequestTemplateResponse**](ScepEnrollRequestTemplateResponse.md) | The user-data that will be used to generate the certificate | 
 **Workflow** | **string** |  | 
 **Id** | **string** | Object internal ID | 
 **Approver** | Pointer to **NullableString** | The approver&#39;s principal identifier | [optional] 
@@ -36,7 +36,7 @@ Name | Type | Description | Notes
 
 ### NewRequestGet200Response
 
-`func NewRequestGet200Response(certificate NullableCertificate, module string, template ScepEnrollRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus, ) *RequestGet200Response`
+`func NewRequestGet200Response(certificate NullableCertificate, module string, template ScepEnrollRequestTemplateResponse, workflow string, id string, holderId string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus, ) *RequestGet200Response`
 
 NewRequestGet200Response instantiates a new RequestGet200Response object
 This constructor will assign default values to properties that have it defined,
@@ -173,20 +173,20 @@ HasPkcs12 returns a boolean if a field has been set.
 UnsetPkcs12 ensures that no value is present for Pkcs12, not even an explicit nil
 ### GetTemplate
 
-`func (o *RequestGet200Response) GetTemplate() ScepEnrollRequestTemplate`
+`func (o *RequestGet200Response) GetTemplate() ScepEnrollRequestTemplateResponse`
 
 GetTemplate returns the Template field if non-nil, zero value otherwise.
 
 ### GetTemplateOk
 
-`func (o *RequestGet200Response) GetTemplateOk() (*ScepEnrollRequestTemplate, bool)`
+`func (o *RequestGet200Response) GetTemplateOk() (*ScepEnrollRequestTemplateResponse, bool)`
 
 GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplate
 
-`func (o *RequestGet200Response) SetTemplate(v ScepEnrollRequestTemplate)`
+`func (o *RequestGet200Response) SetTemplate(v ScepEnrollRequestTemplateResponse)`
 
 SetTemplate sets Template field to given value.
 

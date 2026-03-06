@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // DatasourceFlowTemplate200ResponseInner - struct for DatasourceFlowTemplate200ResponseInner
@@ -35,13 +32,12 @@ func (dst *DatasourceFlowTemplate200ResponseInner) UnmarshalJSON(data []byte) er
 	var err error
 	match := 0
 	// try to unmarshal data into DataSourceFlowTemplateEntryResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.DataSourceFlowTemplateEntryResponse)
+	err = json.Unmarshal(data, &dst.DataSourceFlowTemplateEntryResponse)
 	if err == nil {
 		jsonDataSourceFlowTemplateEntryResponse, _ := json.Marshal(dst.DataSourceFlowTemplateEntryResponse)
 		if string(jsonDataSourceFlowTemplateEntryResponse) == "{}" { // empty struct
 			dst.DataSourceFlowTemplateEntryResponse = nil
 		} else {
-			_ = validator.Validate(dst.DataSourceFlowTemplateEntryResponse)
 			match++
 		}
 	} else {

@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // RequestSubmit201Response - struct for RequestSubmit201Response
@@ -99,13 +96,12 @@ func (dst *RequestSubmit201Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into EstEnrollRequestOnSubmitResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.EstEnrollRequestOnSubmitResponse)
+	err = json.Unmarshal(data, &dst.EstEnrollRequestOnSubmitResponse)
 	if err == nil {
 		jsonEstEnrollRequestOnSubmitResponse, _ := json.Marshal(dst.EstEnrollRequestOnSubmitResponse)
 		if string(jsonEstEnrollRequestOnSubmitResponse) == "{}" { // empty struct
 			dst.EstEnrollRequestOnSubmitResponse = nil
 		} else {
-			_ = validator.Validate(dst.EstEnrollRequestOnSubmitResponse)
 			match++
 		}
 	} else {
@@ -113,13 +109,12 @@ func (dst *RequestSubmit201Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ScepEnrollRequestOnSubmitResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.ScepEnrollRequestOnSubmitResponse)
+	err = json.Unmarshal(data, &dst.ScepEnrollRequestOnSubmitResponse)
 	if err == nil {
 		jsonScepEnrollRequestOnSubmitResponse, _ := json.Marshal(dst.ScepEnrollRequestOnSubmitResponse)
 		if string(jsonScepEnrollRequestOnSubmitResponse) == "{}" { // empty struct
 			dst.ScepEnrollRequestOnSubmitResponse = nil
 		} else {
-			_ = validator.Validate(dst.ScepEnrollRequestOnSubmitResponse)
 			match++
 		}
 	} else {
@@ -127,13 +122,12 @@ func (dst *RequestSubmit201Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAEnrollRequestOnSubmitResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAEnrollRequestOnSubmitResponse)
+	err = json.Unmarshal(data, &dst.WebRAEnrollRequestOnSubmitResponse)
 	if err == nil {
 		jsonWebRAEnrollRequestOnSubmitResponse, _ := json.Marshal(dst.WebRAEnrollRequestOnSubmitResponse)
 		if string(jsonWebRAEnrollRequestOnSubmitResponse) == "{}" { // empty struct
 			dst.WebRAEnrollRequestOnSubmitResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAEnrollRequestOnSubmitResponse)
 			match++
 		}
 	} else {
@@ -141,13 +135,12 @@ func (dst *RequestSubmit201Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAImportRequestOnSubmitResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAImportRequestOnSubmitResponse)
+	err = json.Unmarshal(data, &dst.WebRAImportRequestOnSubmitResponse)
 	if err == nil {
 		jsonWebRAImportRequestOnSubmitResponse, _ := json.Marshal(dst.WebRAImportRequestOnSubmitResponse)
 		if string(jsonWebRAImportRequestOnSubmitResponse) == "{}" { // empty struct
 			dst.WebRAImportRequestOnSubmitResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAImportRequestOnSubmitResponse)
 			match++
 		}
 	} else {
@@ -155,13 +148,12 @@ func (dst *RequestSubmit201Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAMigrateRequestOnSubmitResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAMigrateRequestOnSubmitResponse)
+	err = json.Unmarshal(data, &dst.WebRAMigrateRequestOnSubmitResponse)
 	if err == nil {
 		jsonWebRAMigrateRequestOnSubmitResponse, _ := json.Marshal(dst.WebRAMigrateRequestOnSubmitResponse)
 		if string(jsonWebRAMigrateRequestOnSubmitResponse) == "{}" { // empty struct
 			dst.WebRAMigrateRequestOnSubmitResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAMigrateRequestOnSubmitResponse)
 			match++
 		}
 	} else {
@@ -169,13 +161,12 @@ func (dst *RequestSubmit201Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARecoverRequestOnSubmitResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARecoverRequestOnSubmitResponse)
+	err = json.Unmarshal(data, &dst.WebRARecoverRequestOnSubmitResponse)
 	if err == nil {
 		jsonWebRARecoverRequestOnSubmitResponse, _ := json.Marshal(dst.WebRARecoverRequestOnSubmitResponse)
 		if string(jsonWebRARecoverRequestOnSubmitResponse) == "{}" { // empty struct
 			dst.WebRARecoverRequestOnSubmitResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRARecoverRequestOnSubmitResponse)
 			match++
 		}
 	} else {
@@ -183,13 +174,12 @@ func (dst *RequestSubmit201Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARenewRequestOnSubmitResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARenewRequestOnSubmitResponse)
+	err = json.Unmarshal(data, &dst.WebRARenewRequestOnSubmitResponse)
 	if err == nil {
 		jsonWebRARenewRequestOnSubmitResponse, _ := json.Marshal(dst.WebRARenewRequestOnSubmitResponse)
 		if string(jsonWebRARenewRequestOnSubmitResponse) == "{}" { // empty struct
 			dst.WebRARenewRequestOnSubmitResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRARenewRequestOnSubmitResponse)
 			match++
 		}
 	} else {
@@ -197,13 +187,12 @@ func (dst *RequestSubmit201Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARevokeRequestOnSubmitResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARevokeRequestOnSubmitResponse)
+	err = json.Unmarshal(data, &dst.WebRARevokeRequestOnSubmitResponse)
 	if err == nil {
 		jsonWebRARevokeRequestOnSubmitResponse, _ := json.Marshal(dst.WebRARevokeRequestOnSubmitResponse)
 		if string(jsonWebRARevokeRequestOnSubmitResponse) == "{}" { // empty struct
 			dst.WebRARevokeRequestOnSubmitResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRARevokeRequestOnSubmitResponse)
 			match++
 		}
 	} else {
@@ -211,13 +200,12 @@ func (dst *RequestSubmit201Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAUpdateRequestOnSubmitResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAUpdateRequestOnSubmitResponse)
+	err = json.Unmarshal(data, &dst.WebRAUpdateRequestOnSubmitResponse)
 	if err == nil {
 		jsonWebRAUpdateRequestOnSubmitResponse, _ := json.Marshal(dst.WebRAUpdateRequestOnSubmitResponse)
 		if string(jsonWebRAUpdateRequestOnSubmitResponse) == "{}" { // empty struct
 			dst.WebRAUpdateRequestOnSubmitResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAUpdateRequestOnSubmitResponse)
 			match++
 		}
 	} else {

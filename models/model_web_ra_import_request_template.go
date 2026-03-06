@@ -21,8 +21,6 @@ var _ utils.MappedNullable = &WebRAImportRequestTemplate{}
 
 // WebRAImportRequestTemplate struct for WebRAImportRequestTemplate
 type WebRAImportRequestTemplate struct {
-	// The PEM-encoded private key associated with the certificate. Mandatory if target profile has escrow enabled, forbidden otherwise
-	PrivateKey utils.NullableString `json:"privateKey,omitempty"`
 	// The contact email for this certificate
 	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
 	// The host discovery data associated with the certificate (discovery metadata)
@@ -35,6 +33,8 @@ type WebRAImportRequestTemplate struct {
 	Metadata []CertificateMetadataElement `json:"metadata,omitempty"`
 	// The owner for this certificate
 	Owner NullableCertificateOwnerElement `json:"owner,omitempty"`
+	// The PEM-encoded private key associated with the certificate. Mandatory if target profile has escrow enabled, forbidden otherwise
+	PrivateKey utils.NullableString `json:"privateKey,omitempty"`
 	// The team for this certificate
 	Team NullableCertificateTeamElement `json:"team,omitempty"`
 	// The third party data associated with the certificate
@@ -59,49 +59,6 @@ func NewWebRAImportRequestTemplate() *WebRAImportRequestTemplate {
 func NewWebRAImportRequestTemplateWithDefaults() *WebRAImportRequestTemplate {
 	this := WebRAImportRequestTemplate{}
 	return &this
-}
-
-// GetPrivateKey returns the PrivateKey field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAImportRequestTemplate) GetPrivateKey() string {
-	if o == nil || utils.IsNil(o.PrivateKey.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.PrivateKey.Get()
-}
-
-// GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAImportRequestTemplate) GetPrivateKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.PrivateKey.Get(), o.PrivateKey.IsSet()
-}
-
-// HasPrivateKey returns a boolean if a field has been set.
-func (o *WebRAImportRequestTemplate) HasPrivateKey() bool {
-	if o != nil && o.PrivateKey.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPrivateKey gets a reference to the given NullableString and assigns it to the PrivateKey field.
-func (o *WebRAImportRequestTemplate) SetPrivateKey(v string) {
-	o.PrivateKey.Set(&v)
-}
-
-// SetPrivateKeyNil sets the value for PrivateKey to be an explicit nil
-func (o *WebRAImportRequestTemplate) SetPrivateKeyNil() {
-	o.PrivateKey.Set(nil)
-}
-
-// UnsetPrivateKey ensures that no value is present for PrivateKey, not even an explicit nil
-func (o *WebRAImportRequestTemplate) UnsetPrivateKey() {
-	o.PrivateKey.Unset()
 }
 
 // GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -331,6 +288,49 @@ func (o *WebRAImportRequestTemplate) UnsetOwner() {
 	o.Owner.Unset()
 }
 
+// GetPrivateKey returns the PrivateKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAImportRequestTemplate) GetPrivateKey() string {
+	if o == nil || utils.IsNil(o.PrivateKey.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.PrivateKey.Get()
+}
+
+// GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAImportRequestTemplate) GetPrivateKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.PrivateKey.Get(), o.PrivateKey.IsSet()
+}
+
+// HasPrivateKey returns a boolean if a field has been set.
+func (o *WebRAImportRequestTemplate) HasPrivateKey() bool {
+	if o != nil && o.PrivateKey.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivateKey gets a reference to the given NullableString and assigns it to the PrivateKey field.
+func (o *WebRAImportRequestTemplate) SetPrivateKey(v string) {
+	o.PrivateKey.Set(&v)
+}
+
+// SetPrivateKeyNil sets the value for PrivateKey to be an explicit nil
+func (o *WebRAImportRequestTemplate) SetPrivateKeyNil() {
+	o.PrivateKey.Set(nil)
+}
+
+// UnsetPrivateKey ensures that no value is present for PrivateKey, not even an explicit nil
+func (o *WebRAImportRequestTemplate) UnsetPrivateKey() {
+	o.PrivateKey.Unset()
+}
+
 // GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRAImportRequestTemplate) GetTeam() CertificateTeamElement {
 	if o == nil || utils.IsNil(o.Team.Get()) {
@@ -417,9 +417,6 @@ func (o WebRAImportRequestTemplate) MarshalJSON() ([]byte, error) {
 
 func (o WebRAImportRequestTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.PrivateKey.IsSet() {
-		toSerialize["privateKey"] = o.PrivateKey.Get()
-	}
 	if o.ContactEmail.IsSet() {
 		toSerialize["contactEmail"] = o.ContactEmail.Get()
 	}
@@ -437,6 +434,9 @@ func (o WebRAImportRequestTemplate) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Owner.IsSet() {
 		toSerialize["owner"] = o.Owner.Get()
+	}
+	if o.PrivateKey.IsSet() {
+		toSerialize["privateKey"] = o.PrivateKey.Get()
 	}
 	if o.Team.IsSet() {
 		toSerialize["team"] = o.Team.Get()
@@ -466,13 +466,13 @@ func (o *WebRAImportRequestTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "privateKey")
 		delete(additionalProperties, "contactEmail")
 		delete(additionalProperties, "discoveryData")
 		delete(additionalProperties, "discoveryInfo")
 		delete(additionalProperties, "labels")
 		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "owner")
+		delete(additionalProperties, "privateKey")
 		delete(additionalProperties, "team")
 		delete(additionalProperties, "thirdPartyData")
 		o.AdditionalProperties = additionalProperties

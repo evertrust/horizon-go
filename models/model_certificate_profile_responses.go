@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // CertificateProfileResponses - struct for CertificateProfileResponses
@@ -115,13 +112,12 @@ func (dst *CertificateProfileResponses) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into AcmeExternalProfileResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.AcmeExternalProfileResponse)
+	err = json.Unmarshal(data, &dst.AcmeExternalProfileResponse)
 	if err == nil {
 		jsonAcmeExternalProfileResponse, _ := json.Marshal(dst.AcmeExternalProfileResponse)
 		if string(jsonAcmeExternalProfileResponse) == "{}" { // empty struct
 			dst.AcmeExternalProfileResponse = nil
 		} else {
-			_ = validator.Validate(dst.AcmeExternalProfileResponse)
 			match++
 		}
 	} else {
@@ -129,13 +125,12 @@ func (dst *CertificateProfileResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into AcmeProfileResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.AcmeProfileResponse)
+	err = json.Unmarshal(data, &dst.AcmeProfileResponse)
 	if err == nil {
 		jsonAcmeProfileResponse, _ := json.Marshal(dst.AcmeProfileResponse)
 		if string(jsonAcmeProfileResponse) == "{}" { // empty struct
 			dst.AcmeProfileResponse = nil
 		} else {
-			_ = validator.Validate(dst.AcmeProfileResponse)
 			match++
 		}
 	} else {
@@ -143,13 +138,12 @@ func (dst *CertificateProfileResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CrmpProfileResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.CrmpProfileResponse)
+	err = json.Unmarshal(data, &dst.CrmpProfileResponse)
 	if err == nil {
 		jsonCrmpProfileResponse, _ := json.Marshal(dst.CrmpProfileResponse)
 		if string(jsonCrmpProfileResponse) == "{}" { // empty struct
 			dst.CrmpProfileResponse = nil
 		} else {
-			_ = validator.Validate(dst.CrmpProfileResponse)
 			match++
 		}
 	} else {
@@ -157,13 +151,12 @@ func (dst *CertificateProfileResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into EstProfileResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.EstProfileResponse)
+	err = json.Unmarshal(data, &dst.EstProfileResponse)
 	if err == nil {
 		jsonEstProfileResponse, _ := json.Marshal(dst.EstProfileResponse)
 		if string(jsonEstProfileResponse) == "{}" { // empty struct
 			dst.EstProfileResponse = nil
 		} else {
-			_ = validator.Validate(dst.EstProfileResponse)
 			match++
 		}
 	} else {
@@ -171,13 +164,12 @@ func (dst *CertificateProfileResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IntunePKCSProfileResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.IntunePKCSProfileResponse)
+	err = json.Unmarshal(data, &dst.IntunePKCSProfileResponse)
 	if err == nil {
 		jsonIntunePKCSProfileResponse, _ := json.Marshal(dst.IntunePKCSProfileResponse)
 		if string(jsonIntunePKCSProfileResponse) == "{}" { // empty struct
 			dst.IntunePKCSProfileResponse = nil
 		} else {
-			_ = validator.Validate(dst.IntunePKCSProfileResponse)
 			match++
 		}
 	} else {
@@ -185,13 +177,12 @@ func (dst *CertificateProfileResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IntuneProfileResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.IntuneProfileResponse)
+	err = json.Unmarshal(data, &dst.IntuneProfileResponse)
 	if err == nil {
 		jsonIntuneProfileResponse, _ := json.Marshal(dst.IntuneProfileResponse)
 		if string(jsonIntuneProfileResponse) == "{}" { // empty struct
 			dst.IntuneProfileResponse = nil
 		} else {
-			_ = validator.Validate(dst.IntuneProfileResponse)
 			match++
 		}
 	} else {
@@ -199,13 +190,12 @@ func (dst *CertificateProfileResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into JamfProfileResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.JamfProfileResponse)
+	err = json.Unmarshal(data, &dst.JamfProfileResponse)
 	if err == nil {
 		jsonJamfProfileResponse, _ := json.Marshal(dst.JamfProfileResponse)
 		if string(jsonJamfProfileResponse) == "{}" { // empty struct
 			dst.JamfProfileResponse = nil
 		} else {
-			_ = validator.Validate(dst.JamfProfileResponse)
 			match++
 		}
 	} else {
@@ -213,13 +203,12 @@ func (dst *CertificateProfileResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into MonitoredProfileResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.MonitoredProfileResponse)
+	err = json.Unmarshal(data, &dst.MonitoredProfileResponse)
 	if err == nil {
 		jsonMonitoredProfileResponse, _ := json.Marshal(dst.MonitoredProfileResponse)
 		if string(jsonMonitoredProfileResponse) == "{}" { // empty struct
 			dst.MonitoredProfileResponse = nil
 		} else {
-			_ = validator.Validate(dst.MonitoredProfileResponse)
 			match++
 		}
 	} else {
@@ -227,13 +216,12 @@ func (dst *CertificateProfileResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ScepProfileResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.ScepProfileResponse)
+	err = json.Unmarshal(data, &dst.ScepProfileResponse)
 	if err == nil {
 		jsonScepProfileResponse, _ := json.Marshal(dst.ScepProfileResponse)
 		if string(jsonScepProfileResponse) == "{}" { // empty struct
 			dst.ScepProfileResponse = nil
 		} else {
-			_ = validator.Validate(dst.ScepProfileResponse)
 			match++
 		}
 	} else {
@@ -241,13 +229,12 @@ func (dst *CertificateProfileResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WcceProfileResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WcceProfileResponse)
+	err = json.Unmarshal(data, &dst.WcceProfileResponse)
 	if err == nil {
 		jsonWcceProfileResponse, _ := json.Marshal(dst.WcceProfileResponse)
 		if string(jsonWcceProfileResponse) == "{}" { // empty struct
 			dst.WcceProfileResponse = nil
 		} else {
-			_ = validator.Validate(dst.WcceProfileResponse)
 			match++
 		}
 	} else {
@@ -255,13 +242,12 @@ func (dst *CertificateProfileResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAProfileResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAProfileResponse)
+	err = json.Unmarshal(data, &dst.WebRAProfileResponse)
 	if err == nil {
 		jsonWebRAProfileResponse, _ := json.Marshal(dst.WebRAProfileResponse)
 		if string(jsonWebRAProfileResponse) == "{}" { // empty struct
 			dst.WebRAProfileResponse = nil
 		} else {
-			_ = validator.Validate(dst.WebRAProfileResponse)
 			match++
 		}
 	} else {

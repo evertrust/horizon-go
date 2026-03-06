@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // DatasourceFlowTest200ResponseInner - struct for DatasourceFlowTest200ResponseInner
@@ -51,13 +48,12 @@ func (dst *DatasourceFlowTest200ResponseInner) UnmarshalJSON(data []byte) error 
 	var err error
 	match := 0
 	// try to unmarshal data into DNSDataSourceResultResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.DNSDataSourceResultResponse)
+	err = json.Unmarshal(data, &dst.DNSDataSourceResultResponse)
 	if err == nil {
 		jsonDNSDataSourceResultResponse, _ := json.Marshal(dst.DNSDataSourceResultResponse)
 		if string(jsonDNSDataSourceResultResponse) == "{}" { // empty struct
 			dst.DNSDataSourceResultResponse = nil
 		} else {
-			_ = validator.Validate(dst.DNSDataSourceResultResponse)
 			match++
 		}
 	} else {
@@ -65,13 +61,12 @@ func (dst *DatasourceFlowTest200ResponseInner) UnmarshalJSON(data []byte) error 
 	}
 
 	// try to unmarshal data into LDAPDataSourceResultResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.LDAPDataSourceResultResponse)
+	err = json.Unmarshal(data, &dst.LDAPDataSourceResultResponse)
 	if err == nil {
 		jsonLDAPDataSourceResultResponse, _ := json.Marshal(dst.LDAPDataSourceResultResponse)
 		if string(jsonLDAPDataSourceResultResponse) == "{}" { // empty struct
 			dst.LDAPDataSourceResultResponse = nil
 		} else {
-			_ = validator.Validate(dst.LDAPDataSourceResultResponse)
 			match++
 		}
 	} else {
@@ -79,13 +74,12 @@ func (dst *DatasourceFlowTest200ResponseInner) UnmarshalJSON(data []byte) error 
 	}
 
 	// try to unmarshal data into RESTDataSourceResultResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.RESTDataSourceResultResponse)
+	err = json.Unmarshal(data, &dst.RESTDataSourceResultResponse)
 	if err == nil {
 		jsonRESTDataSourceResultResponse, _ := json.Marshal(dst.RESTDataSourceResultResponse)
 		if string(jsonRESTDataSourceResultResponse) == "{}" { // empty struct
 			dst.RESTDataSourceResultResponse = nil
 		} else {
-			_ = validator.Validate(dst.RESTDataSourceResultResponse)
 			match++
 		}
 	} else {

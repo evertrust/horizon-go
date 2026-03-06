@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // SecurityIdentityProviderAdd201Response - struct for SecurityIdentityProviderAdd201Response
@@ -35,13 +32,12 @@ func (dst *SecurityIdentityProviderAdd201Response) UnmarshalJSON(data []byte) er
 	var err error
 	match := 0
 	// try to unmarshal data into OidcIdentityProviderResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.OidcIdentityProviderResponse)
+	err = json.Unmarshal(data, &dst.OidcIdentityProviderResponse)
 	if err == nil {
 		jsonOidcIdentityProviderResponse, _ := json.Marshal(dst.OidcIdentityProviderResponse)
 		if string(jsonOidcIdentityProviderResponse) == "{}" { // empty struct
 			dst.OidcIdentityProviderResponse = nil
 		} else {
-			_ = validator.Validate(dst.OidcIdentityProviderResponse)
 			match++
 		}
 	} else {

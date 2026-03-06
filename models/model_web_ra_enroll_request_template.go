@@ -21,14 +21,14 @@ var _ utils.MappedNullable = &WebRAEnrollRequestTemplate{}
 
 // WebRAEnrollRequestTemplate struct for WebRAEnrollRequestTemplate
 type WebRAEnrollRequestTemplate struct {
-	// If decentralized enrollment is enabled, this field will contain the CSR that will be used to generate the certificate
-	Csr utils.NullableString `json:"csr,omitempty"`
-	// The type of key that will be used to generate the certificate, if in centralized mode
-	KeyType utils.NullableString `json:"keyType,omitempty" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
 	// Information about the certificate's contact email and how to edit it
 	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
+	// If decentralized enrollment is enabled, this field will contain the CSR that will be used to generate the certificate
+	Csr utils.NullableString `json:"csr,omitempty"`
 	// Information about the certificate's extensions and how to edit them
 	Extensions []CertificateExtensionElement `json:"extensions,omitempty"`
+	// The type of key that will be used to generate the certificate, if in centralized mode
+	KeyType utils.NullableString `json:"keyType,omitempty" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
 	// List of labels used internally to tag and group certificates
 	Labels []RequestLabelElement `json:"labels,omitempty"`
 	// The technical metadata for this certificate
@@ -61,92 +61,6 @@ func NewWebRAEnrollRequestTemplate() *WebRAEnrollRequestTemplate {
 func NewWebRAEnrollRequestTemplateWithDefaults() *WebRAEnrollRequestTemplate {
 	this := WebRAEnrollRequestTemplate{}
 	return &this
-}
-
-// GetCsr returns the Csr field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAEnrollRequestTemplate) GetCsr() string {
-	if o == nil || utils.IsNil(o.Csr.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Csr.Get()
-}
-
-// GetCsrOk returns a tuple with the Csr field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAEnrollRequestTemplate) GetCsrOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Csr.Get(), o.Csr.IsSet()
-}
-
-// HasCsr returns a boolean if a field has been set.
-func (o *WebRAEnrollRequestTemplate) HasCsr() bool {
-	if o != nil && o.Csr.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCsr gets a reference to the given NullableString and assigns it to the Csr field.
-func (o *WebRAEnrollRequestTemplate) SetCsr(v string) {
-	o.Csr.Set(&v)
-}
-
-// SetCsrNil sets the value for Csr to be an explicit nil
-func (o *WebRAEnrollRequestTemplate) SetCsrNil() {
-	o.Csr.Set(nil)
-}
-
-// UnsetCsr ensures that no value is present for Csr, not even an explicit nil
-func (o *WebRAEnrollRequestTemplate) UnsetCsr() {
-	o.Csr.Unset()
-}
-
-// GetKeyType returns the KeyType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRAEnrollRequestTemplate) GetKeyType() string {
-	if o == nil || utils.IsNil(o.KeyType.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.KeyType.Get()
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAEnrollRequestTemplate) GetKeyTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.KeyType.Get(), o.KeyType.IsSet()
-}
-
-// HasKeyType returns a boolean if a field has been set.
-func (o *WebRAEnrollRequestTemplate) HasKeyType() bool {
-	if o != nil && o.KeyType.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetKeyType gets a reference to the given NullableString and assigns it to the KeyType field.
-func (o *WebRAEnrollRequestTemplate) SetKeyType(v string) {
-	o.KeyType.Set(&v)
-}
-
-// SetKeyTypeNil sets the value for KeyType to be an explicit nil
-func (o *WebRAEnrollRequestTemplate) SetKeyTypeNil() {
-	o.KeyType.Set(nil)
-}
-
-// UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
-func (o *WebRAEnrollRequestTemplate) UnsetKeyType() {
-	o.KeyType.Unset()
 }
 
 // GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -192,6 +106,49 @@ func (o *WebRAEnrollRequestTemplate) UnsetContactEmail() {
 	o.ContactEmail.Unset()
 }
 
+// GetCsr returns the Csr field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAEnrollRequestTemplate) GetCsr() string {
+	if o == nil || utils.IsNil(o.Csr.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Csr.Get()
+}
+
+// GetCsrOk returns a tuple with the Csr field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAEnrollRequestTemplate) GetCsrOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Csr.Get(), o.Csr.IsSet()
+}
+
+// HasCsr returns a boolean if a field has been set.
+func (o *WebRAEnrollRequestTemplate) HasCsr() bool {
+	if o != nil && o.Csr.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCsr gets a reference to the given NullableString and assigns it to the Csr field.
+func (o *WebRAEnrollRequestTemplate) SetCsr(v string) {
+	o.Csr.Set(&v)
+}
+
+// SetCsrNil sets the value for Csr to be an explicit nil
+func (o *WebRAEnrollRequestTemplate) SetCsrNil() {
+	o.Csr.Set(nil)
+}
+
+// UnsetCsr ensures that no value is present for Csr, not even an explicit nil
+func (o *WebRAEnrollRequestTemplate) UnsetCsr() {
+	o.Csr.Unset()
+}
+
 // GetExtensions returns the Extensions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebRAEnrollRequestTemplate) GetExtensions() []CertificateExtensionElement {
 	if o == nil {
@@ -223,6 +180,49 @@ func (o *WebRAEnrollRequestTemplate) HasExtensions() bool {
 // SetExtensions gets a reference to the given []CertificateExtensionElement and assigns it to the Extensions field.
 func (o *WebRAEnrollRequestTemplate) SetExtensions(v []CertificateExtensionElement) {
 	o.Extensions = v
+}
+
+// GetKeyType returns the KeyType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WebRAEnrollRequestTemplate) GetKeyType() string {
+	if o == nil || utils.IsNil(o.KeyType.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.KeyType.Get()
+}
+
+// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WebRAEnrollRequestTemplate) GetKeyTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.KeyType.Get(), o.KeyType.IsSet()
+}
+
+// HasKeyType returns a boolean if a field has been set.
+func (o *WebRAEnrollRequestTemplate) HasKeyType() bool {
+	if o != nil && o.KeyType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyType gets a reference to the given NullableString and assigns it to the KeyType field.
+func (o *WebRAEnrollRequestTemplate) SetKeyType(v string) {
+	o.KeyType.Set(&v)
+}
+
+// SetKeyTypeNil sets the value for KeyType to be an explicit nil
+func (o *WebRAEnrollRequestTemplate) SetKeyTypeNil() {
+	o.KeyType.Set(nil)
+}
+
+// UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
+func (o *WebRAEnrollRequestTemplate) UnsetKeyType() {
+	o.KeyType.Unset()
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -453,17 +453,17 @@ func (o WebRAEnrollRequestTemplate) MarshalJSON() ([]byte, error) {
 
 func (o WebRAEnrollRequestTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Csr.IsSet() {
-		toSerialize["csr"] = o.Csr.Get()
-	}
-	if o.KeyType.IsSet() {
-		toSerialize["keyType"] = o.KeyType.Get()
-	}
 	if o.ContactEmail.IsSet() {
 		toSerialize["contactEmail"] = o.ContactEmail.Get()
 	}
+	if o.Csr.IsSet() {
+		toSerialize["csr"] = o.Csr.Get()
+	}
 	if o.Extensions != nil {
 		toSerialize["extensions"] = o.Extensions
+	}
+	if o.KeyType.IsSet() {
+		toSerialize["keyType"] = o.KeyType.Get()
 	}
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
@@ -505,10 +505,10 @@ func (o *WebRAEnrollRequestTemplate) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "csr")
-		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "contactEmail")
+		delete(additionalProperties, "csr")
 		delete(additionalProperties, "extensions")
+		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "labels")
 		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "owner")

@@ -1,0 +1,342 @@
+/*
+   Horizon API
+
+   ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
+
+   API version: 2.8.0
+*/
+
+// Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
+
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// RequestCancel200Response - struct for RequestCancel200Response
+type RequestCancel200Response struct {
+	EstEnrollRequestOnApproveResponse    *EstEnrollRequestOnApproveResponse
+	ScepEnrollRequestOnApproveResponse   *ScepEnrollRequestOnApproveResponse
+	WebRAEnrollRequestOnApproveResponse  *WebRAEnrollRequestOnApproveResponse
+	WebRAImportRequestOnApproveResponse  *WebRAImportRequestOnApproveResponse
+	WebRAMigrateRequestOnApproveResponse *WebRAMigrateRequestOnApproveResponse
+	WebRARecoverRequestOnApproveResponse *WebRARecoverRequestOnApproveResponse
+	WebRARenewRequestOnApproveResponse   *WebRARenewRequestOnApproveResponse
+	WebRARevokeRequestOnApproveResponse  *WebRARevokeRequestOnApproveResponse
+	WebRAUpdateRequestOnApproveResponse  *WebRAUpdateRequestOnApproveResponse
+}
+
+// EstEnrollRequestOnApproveResponseAsRequestCancel200Response is a convenience function that returns EstEnrollRequestOnApproveResponse wrapped in RequestCancel200Response
+func EstEnrollRequestOnApproveResponseAsRequestCancel200Response(v *EstEnrollRequestOnApproveResponse) RequestCancel200Response {
+	return RequestCancel200Response{
+		EstEnrollRequestOnApproveResponse: v,
+	}
+}
+
+// ScepEnrollRequestOnApproveResponseAsRequestCancel200Response is a convenience function that returns ScepEnrollRequestOnApproveResponse wrapped in RequestCancel200Response
+func ScepEnrollRequestOnApproveResponseAsRequestCancel200Response(v *ScepEnrollRequestOnApproveResponse) RequestCancel200Response {
+	return RequestCancel200Response{
+		ScepEnrollRequestOnApproveResponse: v,
+	}
+}
+
+// WebRAEnrollRequestOnApproveResponseAsRequestCancel200Response is a convenience function that returns WebRAEnrollRequestOnApproveResponse wrapped in RequestCancel200Response
+func WebRAEnrollRequestOnApproveResponseAsRequestCancel200Response(v *WebRAEnrollRequestOnApproveResponse) RequestCancel200Response {
+	return RequestCancel200Response{
+		WebRAEnrollRequestOnApproveResponse: v,
+	}
+}
+
+// WebRAImportRequestOnApproveResponseAsRequestCancel200Response is a convenience function that returns WebRAImportRequestOnApproveResponse wrapped in RequestCancel200Response
+func WebRAImportRequestOnApproveResponseAsRequestCancel200Response(v *WebRAImportRequestOnApproveResponse) RequestCancel200Response {
+	return RequestCancel200Response{
+		WebRAImportRequestOnApproveResponse: v,
+	}
+}
+
+// WebRAMigrateRequestOnApproveResponseAsRequestCancel200Response is a convenience function that returns WebRAMigrateRequestOnApproveResponse wrapped in RequestCancel200Response
+func WebRAMigrateRequestOnApproveResponseAsRequestCancel200Response(v *WebRAMigrateRequestOnApproveResponse) RequestCancel200Response {
+	return RequestCancel200Response{
+		WebRAMigrateRequestOnApproveResponse: v,
+	}
+}
+
+// WebRARecoverRequestOnApproveResponseAsRequestCancel200Response is a convenience function that returns WebRARecoverRequestOnApproveResponse wrapped in RequestCancel200Response
+func WebRARecoverRequestOnApproveResponseAsRequestCancel200Response(v *WebRARecoverRequestOnApproveResponse) RequestCancel200Response {
+	return RequestCancel200Response{
+		WebRARecoverRequestOnApproveResponse: v,
+	}
+}
+
+// WebRARenewRequestOnApproveResponseAsRequestCancel200Response is a convenience function that returns WebRARenewRequestOnApproveResponse wrapped in RequestCancel200Response
+func WebRARenewRequestOnApproveResponseAsRequestCancel200Response(v *WebRARenewRequestOnApproveResponse) RequestCancel200Response {
+	return RequestCancel200Response{
+		WebRARenewRequestOnApproveResponse: v,
+	}
+}
+
+// WebRARevokeRequestOnApproveResponseAsRequestCancel200Response is a convenience function that returns WebRARevokeRequestOnApproveResponse wrapped in RequestCancel200Response
+func WebRARevokeRequestOnApproveResponseAsRequestCancel200Response(v *WebRARevokeRequestOnApproveResponse) RequestCancel200Response {
+	return RequestCancel200Response{
+		WebRARevokeRequestOnApproveResponse: v,
+	}
+}
+
+// WebRAUpdateRequestOnApproveResponseAsRequestCancel200Response is a convenience function that returns WebRAUpdateRequestOnApproveResponse wrapped in RequestCancel200Response
+func WebRAUpdateRequestOnApproveResponseAsRequestCancel200Response(v *WebRAUpdateRequestOnApproveResponse) RequestCancel200Response {
+	return RequestCancel200Response{
+		WebRAUpdateRequestOnApproveResponse: v,
+	}
+}
+
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *RequestCancel200Response) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into EstEnrollRequestOnApproveResponse
+	err = json.Unmarshal(data, &dst.EstEnrollRequestOnApproveResponse)
+	if err == nil {
+		jsonEstEnrollRequestOnApproveResponse, _ := json.Marshal(dst.EstEnrollRequestOnApproveResponse)
+		if string(jsonEstEnrollRequestOnApproveResponse) == "{}" { // empty struct
+			dst.EstEnrollRequestOnApproveResponse = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.EstEnrollRequestOnApproveResponse = nil
+	}
+
+	// try to unmarshal data into ScepEnrollRequestOnApproveResponse
+	err = json.Unmarshal(data, &dst.ScepEnrollRequestOnApproveResponse)
+	if err == nil {
+		jsonScepEnrollRequestOnApproveResponse, _ := json.Marshal(dst.ScepEnrollRequestOnApproveResponse)
+		if string(jsonScepEnrollRequestOnApproveResponse) == "{}" { // empty struct
+			dst.ScepEnrollRequestOnApproveResponse = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.ScepEnrollRequestOnApproveResponse = nil
+	}
+
+	// try to unmarshal data into WebRAEnrollRequestOnApproveResponse
+	err = json.Unmarshal(data, &dst.WebRAEnrollRequestOnApproveResponse)
+	if err == nil {
+		jsonWebRAEnrollRequestOnApproveResponse, _ := json.Marshal(dst.WebRAEnrollRequestOnApproveResponse)
+		if string(jsonWebRAEnrollRequestOnApproveResponse) == "{}" { // empty struct
+			dst.WebRAEnrollRequestOnApproveResponse = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.WebRAEnrollRequestOnApproveResponse = nil
+	}
+
+	// try to unmarshal data into WebRAImportRequestOnApproveResponse
+	err = json.Unmarshal(data, &dst.WebRAImportRequestOnApproveResponse)
+	if err == nil {
+		jsonWebRAImportRequestOnApproveResponse, _ := json.Marshal(dst.WebRAImportRequestOnApproveResponse)
+		if string(jsonWebRAImportRequestOnApproveResponse) == "{}" { // empty struct
+			dst.WebRAImportRequestOnApproveResponse = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.WebRAImportRequestOnApproveResponse = nil
+	}
+
+	// try to unmarshal data into WebRAMigrateRequestOnApproveResponse
+	err = json.Unmarshal(data, &dst.WebRAMigrateRequestOnApproveResponse)
+	if err == nil {
+		jsonWebRAMigrateRequestOnApproveResponse, _ := json.Marshal(dst.WebRAMigrateRequestOnApproveResponse)
+		if string(jsonWebRAMigrateRequestOnApproveResponse) == "{}" { // empty struct
+			dst.WebRAMigrateRequestOnApproveResponse = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.WebRAMigrateRequestOnApproveResponse = nil
+	}
+
+	// try to unmarshal data into WebRARecoverRequestOnApproveResponse
+	err = json.Unmarshal(data, &dst.WebRARecoverRequestOnApproveResponse)
+	if err == nil {
+		jsonWebRARecoverRequestOnApproveResponse, _ := json.Marshal(dst.WebRARecoverRequestOnApproveResponse)
+		if string(jsonWebRARecoverRequestOnApproveResponse) == "{}" { // empty struct
+			dst.WebRARecoverRequestOnApproveResponse = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.WebRARecoverRequestOnApproveResponse = nil
+	}
+
+	// try to unmarshal data into WebRARenewRequestOnApproveResponse
+	err = json.Unmarshal(data, &dst.WebRARenewRequestOnApproveResponse)
+	if err == nil {
+		jsonWebRARenewRequestOnApproveResponse, _ := json.Marshal(dst.WebRARenewRequestOnApproveResponse)
+		if string(jsonWebRARenewRequestOnApproveResponse) == "{}" { // empty struct
+			dst.WebRARenewRequestOnApproveResponse = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.WebRARenewRequestOnApproveResponse = nil
+	}
+
+	// try to unmarshal data into WebRARevokeRequestOnApproveResponse
+	err = json.Unmarshal(data, &dst.WebRARevokeRequestOnApproveResponse)
+	if err == nil {
+		jsonWebRARevokeRequestOnApproveResponse, _ := json.Marshal(dst.WebRARevokeRequestOnApproveResponse)
+		if string(jsonWebRARevokeRequestOnApproveResponse) == "{}" { // empty struct
+			dst.WebRARevokeRequestOnApproveResponse = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.WebRARevokeRequestOnApproveResponse = nil
+	}
+
+	// try to unmarshal data into WebRAUpdateRequestOnApproveResponse
+	err = json.Unmarshal(data, &dst.WebRAUpdateRequestOnApproveResponse)
+	if err == nil {
+		jsonWebRAUpdateRequestOnApproveResponse, _ := json.Marshal(dst.WebRAUpdateRequestOnApproveResponse)
+		if string(jsonWebRAUpdateRequestOnApproveResponse) == "{}" { // empty struct
+			dst.WebRAUpdateRequestOnApproveResponse = nil
+		} else {
+			match++
+		}
+	} else {
+		dst.WebRAUpdateRequestOnApproveResponse = nil
+	}
+
+	if match >= 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(RequestCancel200Response)")
+	}
+}
+
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src RequestCancel200Response) MarshalJSON() ([]byte, error) {
+	if src.EstEnrollRequestOnApproveResponse != nil {
+		return json.Marshal(&src.EstEnrollRequestOnApproveResponse)
+	}
+
+	if src.ScepEnrollRequestOnApproveResponse != nil {
+		return json.Marshal(&src.ScepEnrollRequestOnApproveResponse)
+	}
+
+	if src.WebRAEnrollRequestOnApproveResponse != nil {
+		return json.Marshal(&src.WebRAEnrollRequestOnApproveResponse)
+	}
+
+	if src.WebRAImportRequestOnApproveResponse != nil {
+		return json.Marshal(&src.WebRAImportRequestOnApproveResponse)
+	}
+
+	if src.WebRAMigrateRequestOnApproveResponse != nil {
+		return json.Marshal(&src.WebRAMigrateRequestOnApproveResponse)
+	}
+
+	if src.WebRARecoverRequestOnApproveResponse != nil {
+		return json.Marshal(&src.WebRARecoverRequestOnApproveResponse)
+	}
+
+	if src.WebRARenewRequestOnApproveResponse != nil {
+		return json.Marshal(&src.WebRARenewRequestOnApproveResponse)
+	}
+
+	if src.WebRARevokeRequestOnApproveResponse != nil {
+		return json.Marshal(&src.WebRARevokeRequestOnApproveResponse)
+	}
+
+	if src.WebRAUpdateRequestOnApproveResponse != nil {
+		return json.Marshal(&src.WebRAUpdateRequestOnApproveResponse)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *RequestCancel200Response) GetActualInstance() interface{} {
+	if obj == nil {
+		return nil
+	}
+	if obj.EstEnrollRequestOnApproveResponse != nil {
+		return obj.EstEnrollRequestOnApproveResponse
+	}
+
+	if obj.ScepEnrollRequestOnApproveResponse != nil {
+		return obj.ScepEnrollRequestOnApproveResponse
+	}
+
+	if obj.WebRAEnrollRequestOnApproveResponse != nil {
+		return obj.WebRAEnrollRequestOnApproveResponse
+	}
+
+	if obj.WebRAImportRequestOnApproveResponse != nil {
+		return obj.WebRAImportRequestOnApproveResponse
+	}
+
+	if obj.WebRAMigrateRequestOnApproveResponse != nil {
+		return obj.WebRAMigrateRequestOnApproveResponse
+	}
+
+	if obj.WebRARecoverRequestOnApproveResponse != nil {
+		return obj.WebRARecoverRequestOnApproveResponse
+	}
+
+	if obj.WebRARenewRequestOnApproveResponse != nil {
+		return obj.WebRARenewRequestOnApproveResponse
+	}
+
+	if obj.WebRARevokeRequestOnApproveResponse != nil {
+		return obj.WebRARevokeRequestOnApproveResponse
+	}
+
+	if obj.WebRAUpdateRequestOnApproveResponse != nil {
+		return obj.WebRAUpdateRequestOnApproveResponse
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+type NullableRequestCancel200Response struct {
+	value *RequestCancel200Response
+	isSet bool
+}
+
+func (v NullableRequestCancel200Response) Get() *RequestCancel200Response {
+	return v.value
+}
+
+func (v *NullableRequestCancel200Response) Set(val *RequestCancel200Response) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRequestCancel200Response) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRequestCancel200Response) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRequestCancel200Response(val *RequestCancel200Response) *NullableRequestCancel200Response {
+	return &NullableRequestCancel200Response{value: val, isSet: true}
+}
+
+func (v NullableRequestCancel200Response) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRequestCancel200Response) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}

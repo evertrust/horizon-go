@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // RequestApproveRequest - struct for RequestApproveRequest
@@ -99,13 +96,12 @@ func (dst *RequestApproveRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into EstEnrollRequestOnApprove
-	err = utils.NewStrictDecoder(data).Decode(&dst.EstEnrollRequestOnApprove)
+	err = json.Unmarshal(data, &dst.EstEnrollRequestOnApprove)
 	if err == nil {
 		jsonEstEnrollRequestOnApprove, _ := json.Marshal(dst.EstEnrollRequestOnApprove)
 		if string(jsonEstEnrollRequestOnApprove) == "{}" { // empty struct
 			dst.EstEnrollRequestOnApprove = nil
 		} else {
-			_ = validator.Validate(dst.EstEnrollRequestOnApprove)
 			match++
 		}
 	} else {
@@ -113,13 +109,12 @@ func (dst *RequestApproveRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ScepEnrollRequestOnApprove
-	err = utils.NewStrictDecoder(data).Decode(&dst.ScepEnrollRequestOnApprove)
+	err = json.Unmarshal(data, &dst.ScepEnrollRequestOnApprove)
 	if err == nil {
 		jsonScepEnrollRequestOnApprove, _ := json.Marshal(dst.ScepEnrollRequestOnApprove)
 		if string(jsonScepEnrollRequestOnApprove) == "{}" { // empty struct
 			dst.ScepEnrollRequestOnApprove = nil
 		} else {
-			_ = validator.Validate(dst.ScepEnrollRequestOnApprove)
 			match++
 		}
 	} else {
@@ -127,13 +122,12 @@ func (dst *RequestApproveRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAEnrollRequestOnApprove
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAEnrollRequestOnApprove)
+	err = json.Unmarshal(data, &dst.WebRAEnrollRequestOnApprove)
 	if err == nil {
 		jsonWebRAEnrollRequestOnApprove, _ := json.Marshal(dst.WebRAEnrollRequestOnApprove)
 		if string(jsonWebRAEnrollRequestOnApprove) == "{}" { // empty struct
 			dst.WebRAEnrollRequestOnApprove = nil
 		} else {
-			_ = validator.Validate(dst.WebRAEnrollRequestOnApprove)
 			match++
 		}
 	} else {
@@ -141,13 +135,12 @@ func (dst *RequestApproveRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAImportRequestOnApprove
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAImportRequestOnApprove)
+	err = json.Unmarshal(data, &dst.WebRAImportRequestOnApprove)
 	if err == nil {
 		jsonWebRAImportRequestOnApprove, _ := json.Marshal(dst.WebRAImportRequestOnApprove)
 		if string(jsonWebRAImportRequestOnApprove) == "{}" { // empty struct
 			dst.WebRAImportRequestOnApprove = nil
 		} else {
-			_ = validator.Validate(dst.WebRAImportRequestOnApprove)
 			match++
 		}
 	} else {
@@ -155,13 +148,12 @@ func (dst *RequestApproveRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAMigrateRequestOnApprove
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAMigrateRequestOnApprove)
+	err = json.Unmarshal(data, &dst.WebRAMigrateRequestOnApprove)
 	if err == nil {
 		jsonWebRAMigrateRequestOnApprove, _ := json.Marshal(dst.WebRAMigrateRequestOnApprove)
 		if string(jsonWebRAMigrateRequestOnApprove) == "{}" { // empty struct
 			dst.WebRAMigrateRequestOnApprove = nil
 		} else {
-			_ = validator.Validate(dst.WebRAMigrateRequestOnApprove)
 			match++
 		}
 	} else {
@@ -169,13 +161,12 @@ func (dst *RequestApproveRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARecoverRequestOnApprove
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARecoverRequestOnApprove)
+	err = json.Unmarshal(data, &dst.WebRARecoverRequestOnApprove)
 	if err == nil {
 		jsonWebRARecoverRequestOnApprove, _ := json.Marshal(dst.WebRARecoverRequestOnApprove)
 		if string(jsonWebRARecoverRequestOnApprove) == "{}" { // empty struct
 			dst.WebRARecoverRequestOnApprove = nil
 		} else {
-			_ = validator.Validate(dst.WebRARecoverRequestOnApprove)
 			match++
 		}
 	} else {
@@ -183,13 +174,12 @@ func (dst *RequestApproveRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARenewRequestOnApprove
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARenewRequestOnApprove)
+	err = json.Unmarshal(data, &dst.WebRARenewRequestOnApprove)
 	if err == nil {
 		jsonWebRARenewRequestOnApprove, _ := json.Marshal(dst.WebRARenewRequestOnApprove)
 		if string(jsonWebRARenewRequestOnApprove) == "{}" { // empty struct
 			dst.WebRARenewRequestOnApprove = nil
 		} else {
-			_ = validator.Validate(dst.WebRARenewRequestOnApprove)
 			match++
 		}
 	} else {
@@ -197,13 +187,12 @@ func (dst *RequestApproveRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARevokeRequestOnApprove
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARevokeRequestOnApprove)
+	err = json.Unmarshal(data, &dst.WebRARevokeRequestOnApprove)
 	if err == nil {
 		jsonWebRARevokeRequestOnApprove, _ := json.Marshal(dst.WebRARevokeRequestOnApprove)
 		if string(jsonWebRARevokeRequestOnApprove) == "{}" { // empty struct
 			dst.WebRARevokeRequestOnApprove = nil
 		} else {
-			_ = validator.Validate(dst.WebRARevokeRequestOnApprove)
 			match++
 		}
 	} else {
@@ -211,13 +200,12 @@ func (dst *RequestApproveRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAUpdateRequestOnApprove
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAUpdateRequestOnApprove)
+	err = json.Unmarshal(data, &dst.WebRAUpdateRequestOnApprove)
 	if err == nil {
 		jsonWebRAUpdateRequestOnApprove, _ := json.Marshal(dst.WebRAUpdateRequestOnApprove)
 		if string(jsonWebRAUpdateRequestOnApprove) == "{}" { // empty struct
 			dst.WebRAUpdateRequestOnApprove = nil
 		} else {
-			_ = validator.Validate(dst.WebRAUpdateRequestOnApprove)
 			match++
 		}
 	} else {

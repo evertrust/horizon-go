@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // ThirdPartyConnectorResponses - struct for ThirdPartyConnectorResponses
@@ -107,13 +104,12 @@ func (dst *ThirdPartyConnectorResponses) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into AWSConnectorResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.AWSConnectorResponse)
+	err = json.Unmarshal(data, &dst.AWSConnectorResponse)
 	if err == nil {
 		jsonAWSConnectorResponse, _ := json.Marshal(dst.AWSConnectorResponse)
 		if string(jsonAWSConnectorResponse) == "{}" { // empty struct
 			dst.AWSConnectorResponse = nil
 		} else {
-			_ = validator.Validate(dst.AWSConnectorResponse)
 			match++
 		}
 	} else {
@@ -121,13 +117,12 @@ func (dst *ThirdPartyConnectorResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into AzureKeyVaultConnectorResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.AzureKeyVaultConnectorResponse)
+	err = json.Unmarshal(data, &dst.AzureKeyVaultConnectorResponse)
 	if err == nil {
 		jsonAzureKeyVaultConnectorResponse, _ := json.Marshal(dst.AzureKeyVaultConnectorResponse)
 		if string(jsonAzureKeyVaultConnectorResponse) == "{}" { // empty struct
 			dst.AzureKeyVaultConnectorResponse = nil
 		} else {
-			_ = validator.Validate(dst.AzureKeyVaultConnectorResponse)
 			match++
 		}
 	} else {
@@ -135,13 +130,12 @@ func (dst *ThirdPartyConnectorResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into F5AS3ConnectorResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.F5AS3ConnectorResponse)
+	err = json.Unmarshal(data, &dst.F5AS3ConnectorResponse)
 	if err == nil {
 		jsonF5AS3ConnectorResponse, _ := json.Marshal(dst.F5AS3ConnectorResponse)
 		if string(jsonF5AS3ConnectorResponse) == "{}" { // empty struct
 			dst.F5AS3ConnectorResponse = nil
 		} else {
-			_ = validator.Validate(dst.F5AS3ConnectorResponse)
 			match++
 		}
 	} else {
@@ -149,13 +143,12 @@ func (dst *ThirdPartyConnectorResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into F5ClientConnectorResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.F5ClientConnectorResponse)
+	err = json.Unmarshal(data, &dst.F5ClientConnectorResponse)
 	if err == nil {
 		jsonF5ClientConnectorResponse, _ := json.Marshal(dst.F5ClientConnectorResponse)
 		if string(jsonF5ClientConnectorResponse) == "{}" { // empty struct
 			dst.F5ClientConnectorResponse = nil
 		} else {
-			_ = validator.Validate(dst.F5ClientConnectorResponse)
 			match++
 		}
 	} else {
@@ -163,13 +156,12 @@ func (dst *ThirdPartyConnectorResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into GCMConnectorResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.GCMConnectorResponse)
+	err = json.Unmarshal(data, &dst.GCMConnectorResponse)
 	if err == nil {
 		jsonGCMConnectorResponse, _ := json.Marshal(dst.GCMConnectorResponse)
 		if string(jsonGCMConnectorResponse) == "{}" { // empty struct
 			dst.GCMConnectorResponse = nil
 		} else {
-			_ = validator.Validate(dst.GCMConnectorResponse)
 			match++
 		}
 	} else {
@@ -177,13 +169,12 @@ func (dst *ThirdPartyConnectorResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IntuneConnectorResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.IntuneConnectorResponse)
+	err = json.Unmarshal(data, &dst.IntuneConnectorResponse)
 	if err == nil {
 		jsonIntuneConnectorResponse, _ := json.Marshal(dst.IntuneConnectorResponse)
 		if string(jsonIntuneConnectorResponse) == "{}" { // empty struct
 			dst.IntuneConnectorResponse = nil
 		} else {
-			_ = validator.Validate(dst.IntuneConnectorResponse)
 			match++
 		}
 	} else {
@@ -191,13 +182,12 @@ func (dst *ThirdPartyConnectorResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IntunePKCSConnectorResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.IntunePKCSConnectorResponse)
+	err = json.Unmarshal(data, &dst.IntunePKCSConnectorResponse)
 	if err == nil {
 		jsonIntunePKCSConnectorResponse, _ := json.Marshal(dst.IntunePKCSConnectorResponse)
 		if string(jsonIntunePKCSConnectorResponse) == "{}" { // empty struct
 			dst.IntunePKCSConnectorResponse = nil
 		} else {
-			_ = validator.Validate(dst.IntunePKCSConnectorResponse)
 			match++
 		}
 	} else {
@@ -205,13 +195,12 @@ func (dst *ThirdPartyConnectorResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into JamfConnectorResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.JamfConnectorResponse)
+	err = json.Unmarshal(data, &dst.JamfConnectorResponse)
 	if err == nil {
 		jsonJamfConnectorResponse, _ := json.Marshal(dst.JamfConnectorResponse)
 		if string(jsonJamfConnectorResponse) == "{}" { // empty struct
 			dst.JamfConnectorResponse = nil
 		} else {
-			_ = validator.Validate(dst.JamfConnectorResponse)
 			match++
 		}
 	} else {
@@ -219,13 +208,12 @@ func (dst *ThirdPartyConnectorResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into LDAPConnectorResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.LDAPConnectorResponse)
+	err = json.Unmarshal(data, &dst.LDAPConnectorResponse)
 	if err == nil {
 		jsonLDAPConnectorResponse, _ := json.Marshal(dst.LDAPConnectorResponse)
 		if string(jsonLDAPConnectorResponse) == "{}" { // empty struct
 			dst.LDAPConnectorResponse = nil
 		} else {
-			_ = validator.Validate(dst.LDAPConnectorResponse)
 			match++
 		}
 	} else {
@@ -233,13 +221,12 @@ func (dst *ThirdPartyConnectorResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into MSADConnectorResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.MSADConnectorResponse)
+	err = json.Unmarshal(data, &dst.MSADConnectorResponse)
 	if err == nil {
 		jsonMSADConnectorResponse, _ := json.Marshal(dst.MSADConnectorResponse)
 		if string(jsonMSADConnectorResponse) == "{}" { // empty struct
 			dst.MSADConnectorResponse = nil
 		} else {
-			_ = validator.Validate(dst.MSADConnectorResponse)
 			match++
 		}
 	} else {

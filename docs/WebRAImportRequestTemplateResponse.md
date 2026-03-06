@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | The contact email for this certificate | [optional] 
+**ContactEmail** | Pointer to [**NullableCertificateContactEmailElementResponse**](CertificateContactEmailElementResponse.md) | The contact email for this certificate | [optional] 
 **DiscoveryData** | Pointer to [**HostDiscoveryData**](HostDiscoveryData.md) | The host discovery data associated with the certificate (discovery metadata) | [optional] 
 **DiscoveryInfo** | Pointer to [**NullableDiscoveryInfo**](DiscoveryInfo.md) | Information about the discovery of this certificate | [optional] 
-**Labels** | Pointer to [**[]RequestLabelElement**](RequestLabelElement.md) | The labels for this certificate | [optional] 
-**Metadata** | Pointer to [**[]CertificateMetadataElement**](CertificateMetadataElement.md) | The technical metadata for this certificate | [optional] 
-**Owner** | Pointer to [**NullableCertificateOwnerElement**](CertificateOwnerElement.md) | The owner for this certificate | [optional] 
-**Team** | Pointer to [**NullableCertificateTeamElement**](CertificateTeamElement.md) | The team for this certificate | [optional] 
+**Labels** | Pointer to [**[]RequestLabelElementResponse**](RequestLabelElementResponse.md) | The labels for this certificate | [optional] 
+**Metadata** | Pointer to [**[]CertificateMetadataElementResponse**](CertificateMetadataElementResponse.md) | The technical metadata for this certificate | [optional] 
+**Owner** | Pointer to [**NullableCertificateOwnerElementResponse**](CertificateOwnerElementResponse.md) | The owner for this certificate | [optional] 
+**Team** | Pointer to [**NullableCertificateTeamElementResponse**](CertificateTeamElementResponse.md) | The team for this certificate | [optional] 
 **ThirdPartyData** | Pointer to [**[]ThirdPartyItem**](ThirdPartyItem.md) | The third party data associated with the certificate | [optional] 
 
 ## Methods
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetContactEmail
 
-`func (o *WebRAImportRequestTemplateResponse) GetContactEmail() CertificateContactEmailElement`
+`func (o *WebRAImportRequestTemplateResponse) GetContactEmail() CertificateContactEmailElementResponse`
 
 GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
 
 ### GetContactEmailOk
 
-`func (o *WebRAImportRequestTemplateResponse) GetContactEmailOk() (*CertificateContactEmailElement, bool)`
+`func (o *WebRAImportRequestTemplateResponse) GetContactEmailOk() (*CertificateContactEmailElementResponse, bool)`
 
 GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetContactEmail
 
-`func (o *WebRAImportRequestTemplateResponse) SetContactEmail(v CertificateContactEmailElement)`
+`func (o *WebRAImportRequestTemplateResponse) SetContactEmail(v CertificateContactEmailElementResponse)`
 
 SetContactEmail sets ContactEmail field to given value.
 
@@ -129,20 +129,20 @@ HasDiscoveryInfo returns a boolean if a field has been set.
 UnsetDiscoveryInfo ensures that no value is present for DiscoveryInfo, not even an explicit nil
 ### GetLabels
 
-`func (o *WebRAImportRequestTemplateResponse) GetLabels() []RequestLabelElement`
+`func (o *WebRAImportRequestTemplateResponse) GetLabels() []RequestLabelElementResponse`
 
 GetLabels returns the Labels field if non-nil, zero value otherwise.
 
 ### GetLabelsOk
 
-`func (o *WebRAImportRequestTemplateResponse) GetLabelsOk() (*[]RequestLabelElement, bool)`
+`func (o *WebRAImportRequestTemplateResponse) GetLabelsOk() (*[]RequestLabelElementResponse, bool)`
 
 GetLabelsOk returns a tuple with the Labels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabels
 
-`func (o *WebRAImportRequestTemplateResponse) SetLabels(v []RequestLabelElement)`
+`func (o *WebRAImportRequestTemplateResponse) SetLabels(v []RequestLabelElementResponse)`
 
 SetLabels sets Labels field to given value.
 
@@ -164,20 +164,20 @@ HasLabels returns a boolean if a field has been set.
 UnsetLabels ensures that no value is present for Labels, not even an explicit nil
 ### GetMetadata
 
-`func (o *WebRAImportRequestTemplateResponse) GetMetadata() []CertificateMetadataElement`
+`func (o *WebRAImportRequestTemplateResponse) GetMetadata() []CertificateMetadataElementResponse`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *WebRAImportRequestTemplateResponse) GetMetadataOk() (*[]CertificateMetadataElement, bool)`
+`func (o *WebRAImportRequestTemplateResponse) GetMetadataOk() (*[]CertificateMetadataElementResponse, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *WebRAImportRequestTemplateResponse) SetMetadata(v []CertificateMetadataElement)`
+`func (o *WebRAImportRequestTemplateResponse) SetMetadata(v []CertificateMetadataElementResponse)`
 
 SetMetadata sets Metadata field to given value.
 
@@ -199,20 +199,20 @@ HasMetadata returns a boolean if a field has been set.
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetOwner
 
-`func (o *WebRAImportRequestTemplateResponse) GetOwner() CertificateOwnerElement`
+`func (o *WebRAImportRequestTemplateResponse) GetOwner() CertificateOwnerElementResponse`
 
 GetOwner returns the Owner field if non-nil, zero value otherwise.
 
 ### GetOwnerOk
 
-`func (o *WebRAImportRequestTemplateResponse) GetOwnerOk() (*CertificateOwnerElement, bool)`
+`func (o *WebRAImportRequestTemplateResponse) GetOwnerOk() (*CertificateOwnerElementResponse, bool)`
 
 GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwner
 
-`func (o *WebRAImportRequestTemplateResponse) SetOwner(v CertificateOwnerElement)`
+`func (o *WebRAImportRequestTemplateResponse) SetOwner(v CertificateOwnerElementResponse)`
 
 SetOwner sets Owner field to given value.
 
@@ -234,20 +234,20 @@ HasOwner returns a boolean if a field has been set.
 UnsetOwner ensures that no value is present for Owner, not even an explicit nil
 ### GetTeam
 
-`func (o *WebRAImportRequestTemplateResponse) GetTeam() CertificateTeamElement`
+`func (o *WebRAImportRequestTemplateResponse) GetTeam() CertificateTeamElementResponse`
 
 GetTeam returns the Team field if non-nil, zero value otherwise.
 
 ### GetTeamOk
 
-`func (o *WebRAImportRequestTemplateResponse) GetTeamOk() (*CertificateTeamElement, bool)`
+`func (o *WebRAImportRequestTemplateResponse) GetTeamOk() (*CertificateTeamElementResponse, bool)`
 
 GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTeam
 
-`func (o *WebRAImportRequestTemplateResponse) SetTeam(v CertificateTeamElement)`
+`func (o *WebRAImportRequestTemplateResponse) SetTeam(v CertificateTeamElementResponse)`
 
 SetTeam sets Team field to given value.
 

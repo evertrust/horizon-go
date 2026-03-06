@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // HorizonExportItemsTriggersInner - struct for HorizonExportItemsTriggersInner
@@ -83,13 +80,12 @@ func (dst *HorizonExportItemsTriggersInner) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into AWSTriggerResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.AWSTriggerResponse)
+	err = json.Unmarshal(data, &dst.AWSTriggerResponse)
 	if err == nil {
 		jsonAWSTriggerResponse, _ := json.Marshal(dst.AWSTriggerResponse)
 		if string(jsonAWSTriggerResponse) == "{}" { // empty struct
 			dst.AWSTriggerResponse = nil
 		} else {
-			_ = validator.Validate(dst.AWSTriggerResponse)
 			match++
 		}
 	} else {
@@ -97,13 +93,12 @@ func (dst *HorizonExportItemsTriggersInner) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into AzureKeyVaultTriggerResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.AzureKeyVaultTriggerResponse)
+	err = json.Unmarshal(data, &dst.AzureKeyVaultTriggerResponse)
 	if err == nil {
 		jsonAzureKeyVaultTriggerResponse, _ := json.Marshal(dst.AzureKeyVaultTriggerResponse)
 		if string(jsonAzureKeyVaultTriggerResponse) == "{}" { // empty struct
 			dst.AzureKeyVaultTriggerResponse = nil
 		} else {
-			_ = validator.Validate(dst.AzureKeyVaultTriggerResponse)
 			match++
 		}
 	} else {
@@ -111,13 +106,12 @@ func (dst *HorizonExportItemsTriggersInner) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into F5AS3TriggerResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.F5AS3TriggerResponse)
+	err = json.Unmarshal(data, &dst.F5AS3TriggerResponse)
 	if err == nil {
 		jsonF5AS3TriggerResponse, _ := json.Marshal(dst.F5AS3TriggerResponse)
 		if string(jsonF5AS3TriggerResponse) == "{}" { // empty struct
 			dst.F5AS3TriggerResponse = nil
 		} else {
-			_ = validator.Validate(dst.F5AS3TriggerResponse)
 			match++
 		}
 	} else {
@@ -125,13 +119,12 @@ func (dst *HorizonExportItemsTriggersInner) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into F5ClientTriggerResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.F5ClientTriggerResponse)
+	err = json.Unmarshal(data, &dst.F5ClientTriggerResponse)
 	if err == nil {
 		jsonF5ClientTriggerResponse, _ := json.Marshal(dst.F5ClientTriggerResponse)
 		if string(jsonF5ClientTriggerResponse) == "{}" { // empty struct
 			dst.F5ClientTriggerResponse = nil
 		} else {
-			_ = validator.Validate(dst.F5ClientTriggerResponse)
 			match++
 		}
 	} else {
@@ -139,13 +132,12 @@ func (dst *HorizonExportItemsTriggersInner) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into GCMTriggerResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.GCMTriggerResponse)
+	err = json.Unmarshal(data, &dst.GCMTriggerResponse)
 	if err == nil {
 		jsonGCMTriggerResponse, _ := json.Marshal(dst.GCMTriggerResponse)
 		if string(jsonGCMTriggerResponse) == "{}" { // empty struct
 			dst.GCMTriggerResponse = nil
 		} else {
-			_ = validator.Validate(dst.GCMTriggerResponse)
 			match++
 		}
 	} else {
@@ -153,13 +145,12 @@ func (dst *HorizonExportItemsTriggersInner) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IntunePKCSTriggerResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.IntunePKCSTriggerResponse)
+	err = json.Unmarshal(data, &dst.IntunePKCSTriggerResponse)
 	if err == nil {
 		jsonIntunePKCSTriggerResponse, _ := json.Marshal(dst.IntunePKCSTriggerResponse)
 		if string(jsonIntunePKCSTriggerResponse) == "{}" { // empty struct
 			dst.IntunePKCSTriggerResponse = nil
 		} else {
-			_ = validator.Validate(dst.IntunePKCSTriggerResponse)
 			match++
 		}
 	} else {
@@ -167,13 +158,12 @@ func (dst *HorizonExportItemsTriggersInner) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into LDAPTriggerResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.LDAPTriggerResponse)
+	err = json.Unmarshal(data, &dst.LDAPTriggerResponse)
 	if err == nil {
 		jsonLDAPTriggerResponse, _ := json.Marshal(dst.LDAPTriggerResponse)
 		if string(jsonLDAPTriggerResponse) == "{}" { // empty struct
 			dst.LDAPTriggerResponse = nil
 		} else {
-			_ = validator.Validate(dst.LDAPTriggerResponse)
 			match++
 		}
 	} else {

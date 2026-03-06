@@ -13,9 +13,6 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-
-	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // ArchiveResponses - struct for ArchiveResponses
@@ -43,13 +40,12 @@ func (dst *ArchiveResponses) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into CertificateArchiveResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.CertificateArchiveResponse)
+	err = json.Unmarshal(data, &dst.CertificateArchiveResponse)
 	if err == nil {
 		jsonCertificateArchiveResponse, _ := json.Marshal(dst.CertificateArchiveResponse)
 		if string(jsonCertificateArchiveResponse) == "{}" { // empty struct
 			dst.CertificateArchiveResponse = nil
 		} else {
-			_ = validator.Validate(dst.CertificateArchiveResponse)
 			match++
 		}
 	} else {
@@ -57,13 +53,12 @@ func (dst *ArchiveResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into EventArchiveResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.EventArchiveResponse)
+	err = json.Unmarshal(data, &dst.EventArchiveResponse)
 	if err == nil {
 		jsonEventArchiveResponse, _ := json.Marshal(dst.EventArchiveResponse)
 		if string(jsonEventArchiveResponse) == "{}" { // empty struct
 			dst.EventArchiveResponse = nil
 		} else {
-			_ = validator.Validate(dst.EventArchiveResponse)
 			match++
 		}
 	} else {

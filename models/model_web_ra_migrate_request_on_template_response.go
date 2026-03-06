@@ -27,7 +27,7 @@ type WebRAMigrateRequestOnTemplateResponse struct {
 	// The profile for which to return the template.
 	Profile string `json:"profile"`
 	// The template with the constraint set on the profile
-	Template WebRAMigrateRequestTemplate `json:"template"`
+	Template WebRAMigrateRequestTemplateResponse `json:"template"`
 	// The request workflow
 	Workflow             string `json:"workflow"`
 	AdditionalProperties map[string]interface{}
@@ -39,7 +39,7 @@ type _WebRAMigrateRequestOnTemplateResponse WebRAMigrateRequestOnTemplateRespons
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAMigrateRequestOnTemplateResponse(module Module, profile string, template WebRAMigrateRequestTemplate, workflow string) *WebRAMigrateRequestOnTemplateResponse {
+func NewWebRAMigrateRequestOnTemplateResponse(module Module, profile string, template WebRAMigrateRequestTemplateResponse, workflow string) *WebRAMigrateRequestOnTemplateResponse {
 	this := WebRAMigrateRequestOnTemplateResponse{}
 	this.Module = module
 	this.Profile = profile
@@ -105,9 +105,9 @@ func (o *WebRAMigrateRequestOnTemplateResponse) SetProfile(v string) {
 }
 
 // GetTemplate returns the Template field value
-func (o *WebRAMigrateRequestOnTemplateResponse) GetTemplate() WebRAMigrateRequestTemplate {
+func (o *WebRAMigrateRequestOnTemplateResponse) GetTemplate() WebRAMigrateRequestTemplateResponse {
 	if o == nil {
-		var ret WebRAMigrateRequestTemplate
+		var ret WebRAMigrateRequestTemplateResponse
 		return ret
 	}
 
@@ -116,7 +116,7 @@ func (o *WebRAMigrateRequestOnTemplateResponse) GetTemplate() WebRAMigrateReques
 
 // GetTemplateOk returns a tuple with the Template field value
 // and a boolean to check if the value has been set.
-func (o *WebRAMigrateRequestOnTemplateResponse) GetTemplateOk() (*WebRAMigrateRequestTemplate, bool) {
+func (o *WebRAMigrateRequestOnTemplateResponse) GetTemplateOk() (*WebRAMigrateRequestTemplateResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *WebRAMigrateRequestOnTemplateResponse) GetTemplateOk() (*WebRAMigrateRe
 }
 
 // SetTemplate sets field value
-func (o *WebRAMigrateRequestOnTemplateResponse) SetTemplate(v WebRAMigrateRequestTemplate) {
+func (o *WebRAMigrateRequestOnTemplateResponse) SetTemplate(v WebRAMigrateRequestTemplateResponse) {
 	o.Template = v
 }
 
