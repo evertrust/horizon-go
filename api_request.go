@@ -132,7 +132,7 @@ func (a *RequestAPIService) RequestAggregateExecute(r RequestAPIRequestAggregate
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -191,7 +191,7 @@ func (a *RequestAPIService) RequestAggregateExecute(r RequestAPIRequestAggregate
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -405,7 +405,7 @@ func (a *RequestAPIService) RequestApproveExecute(r RequestAPIRequestApproveRequ
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -464,7 +464,7 @@ func (a *RequestAPIService) RequestApproveExecute(r RequestAPIRequestApproveRequ
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -689,7 +689,7 @@ func (a *RequestAPIService) RequestCancelExecute(r RequestAPIRequestCancelReques
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -748,7 +748,7 @@ func (a *RequestAPIService) RequestCancelExecute(r RequestAPIRequestCancelReques
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -981,7 +981,7 @@ func (a *RequestAPIService) RequestCertificateProfileExecute(r RequestAPIRequest
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1040,7 +1040,7 @@ func (a *RequestAPIService) RequestCertificateProfileExecute(r RequestAPIRequest
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1229,7 +1229,7 @@ func (a *RequestAPIService) RequestCsvExecute(r RequestAPIRequestCsvRequest) (*h
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1288,7 +1288,7 @@ func (a *RequestAPIService) RequestCsvExecute(r RequestAPIRequestCsvRequest) (*h
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1493,7 +1493,7 @@ func (a *RequestAPIService) RequestDenyExecute(r RequestAPIRequestDenyRequest) (
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1552,7 +1552,7 @@ func (a *RequestAPIService) RequestDenyExecute(r RequestAPIRequestDenyRequest) (
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1775,7 +1775,7 @@ func (a *RequestAPIService) RequestDictionaryExecute(r RequestAPIRequestDictiona
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1834,7 +1834,7 @@ func (a *RequestAPIService) RequestDictionaryExecute(r RequestAPIRequestDictiona
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -2040,7 +2040,7 @@ func (a *RequestAPIService) RequestGetExecute(r RequestAPIRequestGetRequest) (*m
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -2099,7 +2099,7 @@ func (a *RequestAPIService) RequestGetExecute(r RequestAPIRequestGetRequest) (*m
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -2313,7 +2313,7 @@ func (a *RequestAPIService) RequestSearchExecute(r RequestAPIRequestSearchReques
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -2372,7 +2372,7 @@ func (a *RequestAPIService) RequestSearchExecute(r RequestAPIRequestSearchReques
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -2586,7 +2586,7 @@ func (a *RequestAPIService) RequestSubmitExecute(r RequestAPIRequestSubmitReques
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -2645,7 +2645,7 @@ func (a *RequestAPIService) RequestSubmitExecute(r RequestAPIRequestSubmitReques
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -2870,7 +2870,7 @@ func (a *RequestAPIService) RequestTemplateExecute(r RequestAPIRequestTemplateRe
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -2929,7 +2929,7 @@ func (a *RequestAPIService) RequestTemplateExecute(r RequestAPIRequestTemplateRe
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)

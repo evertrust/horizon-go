@@ -124,7 +124,7 @@ func (a *EventAPIService) EventGetExecute(r EventAPIEventGetRequest) (*models.Ev
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -183,7 +183,7 @@ func (a *EventAPIService) EventGetExecute(r EventAPIEventGetRequest) (*models.Ev
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -397,7 +397,7 @@ func (a *EventAPIService) EventSearchExecute(r EventAPIEventSearchRequest) (*mod
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -456,7 +456,7 @@ func (a *EventAPIService) EventSearchExecute(r EventAPIEventSearchRequest) (*mod
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -690,7 +690,7 @@ func (a *EventAPIService) EventValidateExecute(r EventAPIEventValidateRequest) (
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -749,7 +749,7 @@ func (a *EventAPIService) EventValidateExecute(r EventAPIEventValidateRequest) (
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)

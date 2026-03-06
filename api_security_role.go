@@ -131,7 +131,7 @@ func (a *SecurityRoleAPIService) SecurityRoleAddExecute(r SecurityRoleAPISecurit
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -190,7 +190,7 @@ func (a *SecurityRoleAPIService) SecurityRoleAddExecute(r SecurityRoleAPISecurit
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -393,7 +393,7 @@ func (a *SecurityRoleAPIService) SecurityRoleDeleteExecute(r SecurityRoleAPISecu
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -452,7 +452,7 @@ func (a *SecurityRoleAPIService) SecurityRoleDeleteExecute(r SecurityRoleAPISecu
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -649,7 +649,7 @@ func (a *SecurityRoleAPIService) SecurityRoleGetExecute(r SecurityRoleAPISecurit
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -708,7 +708,7 @@ func (a *SecurityRoleAPIService) SecurityRoleGetExecute(r SecurityRoleAPISecurit
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -910,7 +910,7 @@ func (a *SecurityRoleAPIService) SecurityRoleListExecute(r SecurityRoleAPISecuri
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -969,7 +969,7 @@ func (a *SecurityRoleAPIService) SecurityRoleListExecute(r SecurityRoleAPISecuri
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1173,7 +1173,7 @@ func (a *SecurityRoleAPIService) SecurityRoleMembersAddExecute(r SecurityRoleAPI
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1232,7 +1232,7 @@ func (a *SecurityRoleAPIService) SecurityRoleMembersAddExecute(r SecurityRoleAPI
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1429,7 +1429,7 @@ func (a *SecurityRoleAPIService) SecurityRoleMembersGetExecute(r SecurityRoleAPI
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1488,7 +1488,7 @@ func (a *SecurityRoleAPIService) SecurityRoleMembersGetExecute(r SecurityRoleAPI
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1703,7 +1703,7 @@ func (a *SecurityRoleAPIService) SecurityRoleMembersRemoveExecute(r SecurityRole
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1762,7 +1762,7 @@ func (a *SecurityRoleAPIService) SecurityRoleMembersRemoveExecute(r SecurityRole
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1967,7 +1967,7 @@ func (a *SecurityRoleAPIService) SecurityRoleUpdateExecute(r SecurityRoleAPISecu
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -2026,7 +2026,7 @@ func (a *SecurityRoleAPIService) SecurityRoleUpdateExecute(r SecurityRoleAPISecu
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)

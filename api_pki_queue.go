@@ -132,7 +132,7 @@ func (a *PkiQueueAPIService) PkiqueueAddExecute(r PkiQueueAPIPkiqueueAddRequest)
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -191,7 +191,7 @@ func (a *PkiQueueAPIService) PkiqueueAddExecute(r PkiQueueAPIPkiqueueAddRequest)
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -394,7 +394,7 @@ func (a *PkiQueueAPIService) PkiqueueDeleteExecute(r PkiQueueAPIPkiqueueDeleteRe
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -453,7 +453,7 @@ func (a *PkiQueueAPIService) PkiqueueDeleteExecute(r PkiQueueAPIPkiqueueDeleteRe
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -661,7 +661,7 @@ func (a *PkiQueueAPIService) PkiqueueGetExecute(r PkiQueueAPIPkiqueueGetRequest)
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -720,7 +720,7 @@ func (a *PkiQueueAPIService) PkiqueueGetExecute(r PkiQueueAPIPkiqueueGetRequest)
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -922,7 +922,7 @@ func (a *PkiQueueAPIService) PkiqueueListExecute(r PkiQueueAPIPkiqueueListReques
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -981,7 +981,7 @@ func (a *PkiQueueAPIService) PkiqueueListExecute(r PkiQueueAPIPkiqueueListReques
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1184,7 +1184,7 @@ func (a *PkiQueueAPIService) PkiqueueUpdateExecute(r PkiQueueAPIPkiqueueUpdateRe
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1243,7 +1243,7 @@ func (a *PkiQueueAPIService) PkiqueueUpdateExecute(r PkiQueueAPIPkiqueueUpdateRe
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err != nil {
+				if err == nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
