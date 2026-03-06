@@ -121,51 +121,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyExplainFileExecute(r C
 			}
 		}
 	}
-	if r.ctx != nil {
 
-		// JWT POP
-		if jwtPopCert, ok := r.ctx.Value("jwt-pop-cert").(*x509.Certificate); ok {
-			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
-			delete(localVarHeaderParams, "X-API-KEY")
-			delete(localVarHeaderParams, "X-API-ID")
-			if jwtPopSigner, ok := r.ctx.Value("jwt-pop-signer").(crypto.Signer); ok {
-				// send without the Nonce to get replay nonce
-				jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
-				if err != nil {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-				}
-				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err == nil {
-					return localVarReturnValue, nil, err
-				}
-				localVarHTTPResponse, err := a.client.callAPI(req)
-				if err != nil || localVarHTTPResponse == nil {
-					return localVarReturnValue, localVarHTTPResponse, err
-				}
-				// read the response to get the replay nonce
-				localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-				localVarHTTPResponse.Body.Close()
-				localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-				if err != nil {
-					return localVarReturnValue, localVarHTTPResponse, err
-				}
-				// from the request read the replay nonce from the response header and resend the request
-				nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
-				if nonce == "" {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
-				}
-				jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
-				if err != nil {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-				}
-				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			} else {
-				return localVarReturnValue, nil, &GenericOpenAPIError{error: "jwt-pop-signer is required when jwt-pop-cert is provided"}
-			}
-		}
-	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -180,6 +136,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyExplainFileExecute(r C
 			}
 		}
 	}
+
 	if r.ctx != nil {
 
 		// JWT POP
@@ -196,7 +153,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyExplainFileExecute(r C
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err == nil {
+				if err != nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -379,51 +336,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyExplainUrlExecute(r Ce
 			}
 		}
 	}
-	if r.ctx != nil {
 
-		// JWT POP
-		if jwtPopCert, ok := r.ctx.Value("jwt-pop-cert").(*x509.Certificate); ok {
-			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
-			delete(localVarHeaderParams, "X-API-KEY")
-			delete(localVarHeaderParams, "X-API-ID")
-			if jwtPopSigner, ok := r.ctx.Value("jwt-pop-signer").(crypto.Signer); ok {
-				// send without the Nonce to get replay nonce
-				jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
-				if err != nil {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-				}
-				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err == nil {
-					return localVarReturnValue, nil, err
-				}
-				localVarHTTPResponse, err := a.client.callAPI(req)
-				if err != nil || localVarHTTPResponse == nil {
-					return localVarReturnValue, localVarHTTPResponse, err
-				}
-				// read the response to get the replay nonce
-				localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-				localVarHTTPResponse.Body.Close()
-				localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-				if err != nil {
-					return localVarReturnValue, localVarHTTPResponse, err
-				}
-				// from the request read the replay nonce from the response header and resend the request
-				nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
-				if nonce == "" {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
-				}
-				jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
-				if err != nil {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-				}
-				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			} else {
-				return localVarReturnValue, nil, &GenericOpenAPIError{error: "jwt-pop-signer is required when jwt-pop-cert is provided"}
-			}
-		}
-	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -438,6 +351,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyExplainUrlExecute(r Ce
 			}
 		}
 	}
+
 	if r.ctx != nil {
 
 		// JWT POP
@@ -454,7 +368,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyExplainUrlExecute(r Ce
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err == nil {
+				if err != nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -633,51 +547,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyGetExecute(r Certifica
 			}
 		}
 	}
-	if r.ctx != nil {
 
-		// JWT POP
-		if jwtPopCert, ok := r.ctx.Value("jwt-pop-cert").(*x509.Certificate); ok {
-			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
-			delete(localVarHeaderParams, "X-API-KEY")
-			delete(localVarHeaderParams, "X-API-ID")
-			if jwtPopSigner, ok := r.ctx.Value("jwt-pop-signer").(crypto.Signer); ok {
-				// send without the Nonce to get replay nonce
-				jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
-				if err != nil {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-				}
-				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err == nil {
-					return localVarReturnValue, nil, err
-				}
-				localVarHTTPResponse, err := a.client.callAPI(req)
-				if err != nil || localVarHTTPResponse == nil {
-					return localVarReturnValue, localVarHTTPResponse, err
-				}
-				// read the response to get the replay nonce
-				localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-				localVarHTTPResponse.Body.Close()
-				localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-				if err != nil {
-					return localVarReturnValue, localVarHTTPResponse, err
-				}
-				// from the request read the replay nonce from the response header and resend the request
-				nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
-				if nonce == "" {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
-				}
-				jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
-				if err != nil {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-				}
-				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			} else {
-				return localVarReturnValue, nil, &GenericOpenAPIError{error: "jwt-pop-signer is required when jwt-pop-cert is provided"}
-			}
-		}
-	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -692,6 +562,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyGetExecute(r Certifica
 			}
 		}
 	}
+
 	if r.ctx != nil {
 
 		// JWT POP
@@ -708,7 +579,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyGetExecute(r Certifica
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err == nil {
+				if err != nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -894,51 +765,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyListExecute(r Certific
 			}
 		}
 	}
-	if r.ctx != nil {
 
-		// JWT POP
-		if jwtPopCert, ok := r.ctx.Value("jwt-pop-cert").(*x509.Certificate); ok {
-			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
-			delete(localVarHeaderParams, "X-API-KEY")
-			delete(localVarHeaderParams, "X-API-ID")
-			if jwtPopSigner, ok := r.ctx.Value("jwt-pop-signer").(crypto.Signer); ok {
-				// send without the Nonce to get replay nonce
-				jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
-				if err != nil {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-				}
-				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err == nil {
-					return localVarReturnValue, nil, err
-				}
-				localVarHTTPResponse, err := a.client.callAPI(req)
-				if err != nil || localVarHTTPResponse == nil {
-					return localVarReturnValue, localVarHTTPResponse, err
-				}
-				// read the response to get the replay nonce
-				localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-				localVarHTTPResponse.Body.Close()
-				localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-				if err != nil {
-					return localVarReturnValue, localVarHTTPResponse, err
-				}
-				// from the request read the replay nonce from the response header and resend the request
-				nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
-				if nonce == "" {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
-				}
-				jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
-				if err != nil {
-					return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-				}
-				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			} else {
-				return localVarReturnValue, nil, &GenericOpenAPIError{error: "jwt-pop-signer is required when jwt-pop-cert is provided"}
-			}
-		}
-	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -953,6 +780,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyListExecute(r Certific
 			}
 		}
 	}
+
 	if r.ctx != nil {
 
 		// JWT POP
@@ -969,7 +797,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyListExecute(r Certific
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err == nil {
+				if err != nil {
 					return localVarReturnValue, nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
@@ -1145,51 +973,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyRunExecute(r Certifica
 			}
 		}
 	}
-	if r.ctx != nil {
 
-		// JWT POP
-		if jwtPopCert, ok := r.ctx.Value("jwt-pop-cert").(*x509.Certificate); ok {
-			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
-			delete(localVarHeaderParams, "X-API-KEY")
-			delete(localVarHeaderParams, "X-API-ID")
-			if jwtPopSigner, ok := r.ctx.Value("jwt-pop-signer").(crypto.Signer); ok {
-				// send without the Nonce to get replay nonce
-				jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
-				if err != nil {
-					return nil, &GenericOpenAPIError{error: err.Error()}
-				}
-				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-				// send the request a first time but without any data to get the replay nonce
-				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err == nil {
-					return nil, err
-				}
-				localVarHTTPResponse, err := a.client.callAPI(req)
-				if err != nil || localVarHTTPResponse == nil {
-					return localVarHTTPResponse, err
-				}
-				// read the response to get the replay nonce
-				localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-				localVarHTTPResponse.Body.Close()
-				localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-				if err != nil {
-					return localVarHTTPResponse, err
-				}
-				// from the request read the replay nonce from the response header and resend the request
-				nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
-				if nonce == "" {
-					return nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
-				}
-				jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
-				if err != nil {
-					return nil, &GenericOpenAPIError{error: err.Error()}
-				}
-				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			} else {
-				return nil, &GenericOpenAPIError{error: "jwt-pop-signer is required when jwt-pop-cert is provided"}
-			}
-		}
-	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1204,6 +988,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyRunExecute(r Certifica
 			}
 		}
 	}
+
 	if r.ctx != nil {
 
 		// JWT POP
@@ -1220,7 +1005,7 @@ func (a *CertificateGradingPolicyAPIService) GradingPolicyRunExecute(r Certifica
 				localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 				// send the request a first time but without any data to get the replay nonce
 				req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-				if err == nil {
+				if err != nil {
 					return nil, err
 				}
 				localVarHTTPResponse, err := a.client.callAPI(req)
