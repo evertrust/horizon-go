@@ -825,7 +825,13 @@ func formatErrorMessage(status string, v interface{}) string {
 			if getMethod != (reflect.Value{}) {
 				result := getMethod.Call([]reflect.Value{})
 				if len(result) > 0 {
-					str = fmt.Sprintf("%s: %s", str, result[0].Interface())
+					// string in a pointer
+					s, ok := result[0].Interface().(*string)
+					if ok && s != nil {
+						str = fmt.Sprintf("%s: %s", str, *s)
+					} else {
+						str = fmt.Sprintf("%s: %v", str, result[0].Interface())
+					}
 				}
 			} else {
 				str = fmt.Sprintf("%s: %s", str, field.Interface())
