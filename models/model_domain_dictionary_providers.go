@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // DomainDictionaryProviders - struct for DomainDictionaryProviders
@@ -32,12 +35,13 @@ func (dst *DomainDictionaryProviders) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into StaticDomainDictionaryProvider
-	err = json.Unmarshal(data, &dst.StaticDomainDictionaryProvider)
+	err = utils.NewStrictDecoder(data).Decode(&dst.StaticDomainDictionaryProvider)
 	if err == nil {
 		jsonStaticDomainDictionaryProvider, _ := json.Marshal(dst.StaticDomainDictionaryProvider)
 		if string(jsonStaticDomainDictionaryProvider) == "{}" { // empty struct
 			dst.StaticDomainDictionaryProvider = nil
 		} else {
+			_ = validator.Validate(dst.StaticDomainDictionaryProvider)
 			match++
 		}
 	} else {

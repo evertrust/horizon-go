@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // TriggerTestRequestTrigger - The trigger to test
@@ -48,12 +51,13 @@ func (dst *TriggerTestRequestTrigger) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into EmailNotification
-	err = json.Unmarshal(data, &dst.EmailNotification)
+	err = utils.NewStrictDecoder(data).Decode(&dst.EmailNotification)
 	if err == nil {
 		jsonEmailNotification, _ := json.Marshal(dst.EmailNotification)
 		if string(jsonEmailNotification) == "{}" { // empty struct
 			dst.EmailNotification = nil
 		} else {
+			_ = validator.Validate(dst.EmailNotification)
 			match++
 		}
 	} else {
@@ -61,12 +65,13 @@ func (dst *TriggerTestRequestTrigger) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into REST
-	err = json.Unmarshal(data, &dst.REST)
+	err = utils.NewStrictDecoder(data).Decode(&dst.REST)
 	if err == nil {
 		jsonREST, _ := json.Marshal(dst.REST)
 		if string(jsonREST) == "{}" { // empty struct
 			dst.REST = nil
 		} else {
+			_ = validator.Validate(dst.REST)
 			match++
 		}
 	} else {
@@ -74,12 +79,13 @@ func (dst *TriggerTestRequestTrigger) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebhookNotification
-	err = json.Unmarshal(data, &dst.WebhookNotification)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebhookNotification)
 	if err == nil {
 		jsonWebhookNotification, _ := json.Marshal(dst.WebhookNotification)
 		if string(jsonWebhookNotification) == "{}" { // empty struct
 			dst.WebhookNotification = nil
 		} else {
+			_ = validator.Validate(dst.WebhookNotification)
 			match++
 		}
 	} else {

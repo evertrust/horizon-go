@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // SystemConfigurationUpsertRequest - struct for SystemConfigurationUpsertRequest
@@ -48,12 +51,13 @@ func (dst *SystemConfigurationUpsertRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into InterfaceCustomizationConfiguration
-	err = json.Unmarshal(data, &dst.InterfaceCustomizationConfiguration)
+	err = utils.NewStrictDecoder(data).Decode(&dst.InterfaceCustomizationConfiguration)
 	if err == nil {
 		jsonInterfaceCustomizationConfiguration, _ := json.Marshal(dst.InterfaceCustomizationConfiguration)
 		if string(jsonInterfaceCustomizationConfiguration) == "{}" { // empty struct
 			dst.InterfaceCustomizationConfiguration = nil
 		} else {
+			_ = validator.Validate(dst.InterfaceCustomizationConfiguration)
 			match++
 		}
 	} else {
@@ -61,12 +65,13 @@ func (dst *SystemConfigurationUpsertRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into InternalMonitorConfiguration
-	err = json.Unmarshal(data, &dst.InternalMonitorConfiguration)
+	err = utils.NewStrictDecoder(data).Decode(&dst.InternalMonitorConfiguration)
 	if err == nil {
 		jsonInternalMonitorConfiguration, _ := json.Marshal(dst.InternalMonitorConfiguration)
 		if string(jsonInternalMonitorConfiguration) == "{}" { // empty struct
 			dst.InternalMonitorConfiguration = nil
 		} else {
+			_ = validator.Validate(dst.InternalMonitorConfiguration)
 			match++
 		}
 	} else {
@@ -74,12 +79,13 @@ func (dst *SystemConfigurationUpsertRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into LicenseConfiguration
-	err = json.Unmarshal(data, &dst.LicenseConfiguration)
+	err = utils.NewStrictDecoder(data).Decode(&dst.LicenseConfiguration)
 	if err == nil {
 		jsonLicenseConfiguration, _ := json.Marshal(dst.LicenseConfiguration)
 		if string(jsonLicenseConfiguration) == "{}" { // empty struct
 			dst.LicenseConfiguration = nil
 		} else {
+			_ = validator.Validate(dst.LicenseConfiguration)
 			match++
 		}
 	} else {

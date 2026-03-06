@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // SecurityIdentityProviderUpdateRequest - struct for SecurityIdentityProviderUpdateRequest
@@ -40,12 +43,13 @@ func (dst *SecurityIdentityProviderUpdateRequest) UnmarshalJSON(data []byte) err
 	var err error
 	match := 0
 	// try to unmarshal data into LocalIdentityProvider
-	err = json.Unmarshal(data, &dst.LocalIdentityProvider)
+	err = utils.NewStrictDecoder(data).Decode(&dst.LocalIdentityProvider)
 	if err == nil {
 		jsonLocalIdentityProvider, _ := json.Marshal(dst.LocalIdentityProvider)
 		if string(jsonLocalIdentityProvider) == "{}" { // empty struct
 			dst.LocalIdentityProvider = nil
 		} else {
+			_ = validator.Validate(dst.LocalIdentityProvider)
 			match++
 		}
 	} else {
@@ -53,12 +57,13 @@ func (dst *SecurityIdentityProviderUpdateRequest) UnmarshalJSON(data []byte) err
 	}
 
 	// try to unmarshal data into OidcIdentityProvider
-	err = json.Unmarshal(data, &dst.OidcIdentityProvider)
+	err = utils.NewStrictDecoder(data).Decode(&dst.OidcIdentityProvider)
 	if err == nil {
 		jsonOidcIdentityProvider, _ := json.Marshal(dst.OidcIdentityProvider)
 		if string(jsonOidcIdentityProvider) == "{}" { // empty struct
 			dst.OidcIdentityProvider = nil
 		} else {
+			_ = validator.Validate(dst.OidcIdentityProvider)
 			match++
 		}
 	} else {

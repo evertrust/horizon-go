@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // DnsChallengeProviders - struct for DnsChallengeProviders
@@ -40,12 +43,13 @@ func (dst *DnsChallengeProviders) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into ManualDnsChallengeProvider
-	err = json.Unmarshal(data, &dst.ManualDnsChallengeProvider)
+	err = utils.NewStrictDecoder(data).Decode(&dst.ManualDnsChallengeProvider)
 	if err == nil {
 		jsonManualDnsChallengeProvider, _ := json.Marshal(dst.ManualDnsChallengeProvider)
 		if string(jsonManualDnsChallengeProvider) == "{}" { // empty struct
 			dst.ManualDnsChallengeProvider = nil
 		} else {
+			_ = validator.Validate(dst.ManualDnsChallengeProvider)
 			match++
 		}
 	} else {
@@ -53,12 +57,13 @@ func (dst *DnsChallengeProviders) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into NameshieldDnsChallengeProvider
-	err = json.Unmarshal(data, &dst.NameshieldDnsChallengeProvider)
+	err = utils.NewStrictDecoder(data).Decode(&dst.NameshieldDnsChallengeProvider)
 	if err == nil {
 		jsonNameshieldDnsChallengeProvider, _ := json.Marshal(dst.NameshieldDnsChallengeProvider)
 		if string(jsonNameshieldDnsChallengeProvider) == "{}" { // empty struct
 			dst.NameshieldDnsChallengeProvider = nil
 		} else {
+			_ = validator.Validate(dst.NameshieldDnsChallengeProvider)
 			match++
 		}
 	} else {

@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // TriggerUpdateRequest - struct for TriggerUpdateRequest
@@ -104,12 +107,13 @@ func (dst *TriggerUpdateRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into AWSTrigger
-	err = json.Unmarshal(data, &dst.AWSTrigger)
+	err = utils.NewStrictDecoder(data).Decode(&dst.AWSTrigger)
 	if err == nil {
 		jsonAWSTrigger, _ := json.Marshal(dst.AWSTrigger)
 		if string(jsonAWSTrigger) == "{}" { // empty struct
 			dst.AWSTrigger = nil
 		} else {
+			_ = validator.Validate(dst.AWSTrigger)
 			match++
 		}
 	} else {
@@ -117,12 +121,13 @@ func (dst *TriggerUpdateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into AzureKeyVaultTrigger
-	err = json.Unmarshal(data, &dst.AzureKeyVaultTrigger)
+	err = utils.NewStrictDecoder(data).Decode(&dst.AzureKeyVaultTrigger)
 	if err == nil {
 		jsonAzureKeyVaultTrigger, _ := json.Marshal(dst.AzureKeyVaultTrigger)
 		if string(jsonAzureKeyVaultTrigger) == "{}" { // empty struct
 			dst.AzureKeyVaultTrigger = nil
 		} else {
+			_ = validator.Validate(dst.AzureKeyVaultTrigger)
 			match++
 		}
 	} else {
@@ -130,12 +135,13 @@ func (dst *TriggerUpdateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into EmailNotification
-	err = json.Unmarshal(data, &dst.EmailNotification)
+	err = utils.NewStrictDecoder(data).Decode(&dst.EmailNotification)
 	if err == nil {
 		jsonEmailNotification, _ := json.Marshal(dst.EmailNotification)
 		if string(jsonEmailNotification) == "{}" { // empty struct
 			dst.EmailNotification = nil
 		} else {
+			_ = validator.Validate(dst.EmailNotification)
 			match++
 		}
 	} else {
@@ -143,12 +149,13 @@ func (dst *TriggerUpdateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into F5AS3Trigger
-	err = json.Unmarshal(data, &dst.F5AS3Trigger)
+	err = utils.NewStrictDecoder(data).Decode(&dst.F5AS3Trigger)
 	if err == nil {
 		jsonF5AS3Trigger, _ := json.Marshal(dst.F5AS3Trigger)
 		if string(jsonF5AS3Trigger) == "{}" { // empty struct
 			dst.F5AS3Trigger = nil
 		} else {
+			_ = validator.Validate(dst.F5AS3Trigger)
 			match++
 		}
 	} else {
@@ -156,12 +163,13 @@ func (dst *TriggerUpdateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into F5ClientTrigger
-	err = json.Unmarshal(data, &dst.F5ClientTrigger)
+	err = utils.NewStrictDecoder(data).Decode(&dst.F5ClientTrigger)
 	if err == nil {
 		jsonF5ClientTrigger, _ := json.Marshal(dst.F5ClientTrigger)
 		if string(jsonF5ClientTrigger) == "{}" { // empty struct
 			dst.F5ClientTrigger = nil
 		} else {
+			_ = validator.Validate(dst.F5ClientTrigger)
 			match++
 		}
 	} else {
@@ -169,12 +177,13 @@ func (dst *TriggerUpdateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into GCMTrigger
-	err = json.Unmarshal(data, &dst.GCMTrigger)
+	err = utils.NewStrictDecoder(data).Decode(&dst.GCMTrigger)
 	if err == nil {
 		jsonGCMTrigger, _ := json.Marshal(dst.GCMTrigger)
 		if string(jsonGCMTrigger) == "{}" { // empty struct
 			dst.GCMTrigger = nil
 		} else {
+			_ = validator.Validate(dst.GCMTrigger)
 			match++
 		}
 	} else {
@@ -182,12 +191,13 @@ func (dst *TriggerUpdateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IntunePKCSTrigger
-	err = json.Unmarshal(data, &dst.IntunePKCSTrigger)
+	err = utils.NewStrictDecoder(data).Decode(&dst.IntunePKCSTrigger)
 	if err == nil {
 		jsonIntunePKCSTrigger, _ := json.Marshal(dst.IntunePKCSTrigger)
 		if string(jsonIntunePKCSTrigger) == "{}" { // empty struct
 			dst.IntunePKCSTrigger = nil
 		} else {
+			_ = validator.Validate(dst.IntunePKCSTrigger)
 			match++
 		}
 	} else {
@@ -195,12 +205,13 @@ func (dst *TriggerUpdateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into LDAPTrigger
-	err = json.Unmarshal(data, &dst.LDAPTrigger)
+	err = utils.NewStrictDecoder(data).Decode(&dst.LDAPTrigger)
 	if err == nil {
 		jsonLDAPTrigger, _ := json.Marshal(dst.LDAPTrigger)
 		if string(jsonLDAPTrigger) == "{}" { // empty struct
 			dst.LDAPTrigger = nil
 		} else {
+			_ = validator.Validate(dst.LDAPTrigger)
 			match++
 		}
 	} else {
@@ -208,12 +219,13 @@ func (dst *TriggerUpdateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into REST
-	err = json.Unmarshal(data, &dst.REST)
+	err = utils.NewStrictDecoder(data).Decode(&dst.REST)
 	if err == nil {
 		jsonREST, _ := json.Marshal(dst.REST)
 		if string(jsonREST) == "{}" { // empty struct
 			dst.REST = nil
 		} else {
+			_ = validator.Validate(dst.REST)
 			match++
 		}
 	} else {
@@ -221,12 +233,13 @@ func (dst *TriggerUpdateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebhookNotification
-	err = json.Unmarshal(data, &dst.WebhookNotification)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebhookNotification)
 	if err == nil {
 		jsonWebhookNotification, _ := json.Marshal(dst.WebhookNotification)
 		if string(jsonWebhookNotification) == "{}" { // empty struct
 			dst.WebhookNotification = nil
 		} else {
+			_ = validator.Validate(dst.WebhookNotification)
 			match++
 		}
 	} else {

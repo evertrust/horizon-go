@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // RequestGet200Response - struct for RequestGet200Response
@@ -96,12 +99,13 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into EstEnrollRequestOnGetResponse
-	err = json.Unmarshal(data, &dst.EstEnrollRequestOnGetResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.EstEnrollRequestOnGetResponse)
 	if err == nil {
 		jsonEstEnrollRequestOnGetResponse, _ := json.Marshal(dst.EstEnrollRequestOnGetResponse)
 		if string(jsonEstEnrollRequestOnGetResponse) == "{}" { // empty struct
 			dst.EstEnrollRequestOnGetResponse = nil
 		} else {
+			_ = validator.Validate(dst.EstEnrollRequestOnGetResponse)
 			match++
 		}
 	} else {
@@ -109,12 +113,13 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ScepEnrollRequestOnGetResponse
-	err = json.Unmarshal(data, &dst.ScepEnrollRequestOnGetResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.ScepEnrollRequestOnGetResponse)
 	if err == nil {
 		jsonScepEnrollRequestOnGetResponse, _ := json.Marshal(dst.ScepEnrollRequestOnGetResponse)
 		if string(jsonScepEnrollRequestOnGetResponse) == "{}" { // empty struct
 			dst.ScepEnrollRequestOnGetResponse = nil
 		} else {
+			_ = validator.Validate(dst.ScepEnrollRequestOnGetResponse)
 			match++
 		}
 	} else {
@@ -122,12 +127,13 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAEnrollRequestOnGetResponse
-	err = json.Unmarshal(data, &dst.WebRAEnrollRequestOnGetResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAEnrollRequestOnGetResponse)
 	if err == nil {
 		jsonWebRAEnrollRequestOnGetResponse, _ := json.Marshal(dst.WebRAEnrollRequestOnGetResponse)
 		if string(jsonWebRAEnrollRequestOnGetResponse) == "{}" { // empty struct
 			dst.WebRAEnrollRequestOnGetResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRAEnrollRequestOnGetResponse)
 			match++
 		}
 	} else {
@@ -135,12 +141,13 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAImportRequestOnGetResponse
-	err = json.Unmarshal(data, &dst.WebRAImportRequestOnGetResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAImportRequestOnGetResponse)
 	if err == nil {
 		jsonWebRAImportRequestOnGetResponse, _ := json.Marshal(dst.WebRAImportRequestOnGetResponse)
 		if string(jsonWebRAImportRequestOnGetResponse) == "{}" { // empty struct
 			dst.WebRAImportRequestOnGetResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRAImportRequestOnGetResponse)
 			match++
 		}
 	} else {
@@ -148,12 +155,13 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAMigrateRequestOnGetResponse
-	err = json.Unmarshal(data, &dst.WebRAMigrateRequestOnGetResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAMigrateRequestOnGetResponse)
 	if err == nil {
 		jsonWebRAMigrateRequestOnGetResponse, _ := json.Marshal(dst.WebRAMigrateRequestOnGetResponse)
 		if string(jsonWebRAMigrateRequestOnGetResponse) == "{}" { // empty struct
 			dst.WebRAMigrateRequestOnGetResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRAMigrateRequestOnGetResponse)
 			match++
 		}
 	} else {
@@ -161,12 +169,13 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARecoverRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.WebRARecoverRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARecoverRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRARecoverRequestOnApproveResponse, _ := json.Marshal(dst.WebRARecoverRequestOnApproveResponse)
 		if string(jsonWebRARecoverRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRARecoverRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRARecoverRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -174,12 +183,13 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARenewRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.WebRARenewRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARenewRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRARenewRequestOnApproveResponse, _ := json.Marshal(dst.WebRARenewRequestOnApproveResponse)
 		if string(jsonWebRARenewRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRARenewRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRARenewRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -187,12 +197,13 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARevokeRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.WebRARevokeRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARevokeRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRARevokeRequestOnApproveResponse, _ := json.Marshal(dst.WebRARevokeRequestOnApproveResponse)
 		if string(jsonWebRARevokeRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRARevokeRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRARevokeRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -200,12 +211,13 @@ func (dst *RequestGet200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAUpdateRequestOnGetResponse
-	err = json.Unmarshal(data, &dst.WebRAUpdateRequestOnGetResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAUpdateRequestOnGetResponse)
 	if err == nil {
 		jsonWebRAUpdateRequestOnGetResponse, _ := json.Marshal(dst.WebRAUpdateRequestOnGetResponse)
 		if string(jsonWebRAUpdateRequestOnGetResponse) == "{}" { // empty struct
 			dst.WebRAUpdateRequestOnGetResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRAUpdateRequestOnGetResponse)
 			match++
 		}
 	} else {

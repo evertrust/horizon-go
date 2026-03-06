@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // GradingPolicyExplainFileRequestX509 - struct for GradingPolicyExplainFileRequestX509
@@ -40,12 +43,13 @@ func (dst *GradingPolicyExplainFileRequestX509) UnmarshalJSON(data []byte) error
 	var err error
 	match := 0
 	// try to unmarshal data into ArrayOfByte
-	err = json.Unmarshal(data, &dst.ArrayOfByte)
+	err = utils.NewStrictDecoder(data).Decode(&dst.ArrayOfByte)
 	if err == nil {
 		jsonArrayOfByte, _ := json.Marshal(dst.ArrayOfByte)
 		if string(jsonArrayOfByte) == "{}" { // empty struct
 			dst.ArrayOfByte = nil
 		} else {
+			_ = validator.Validate(dst.ArrayOfByte)
 			match++
 		}
 	} else {
@@ -53,12 +57,13 @@ func (dst *GradingPolicyExplainFileRequestX509) UnmarshalJSON(data []byte) error
 	}
 
 	// try to unmarshal data into String
-	err = json.Unmarshal(data, &dst.String)
+	err = utils.NewStrictDecoder(data).Decode(&dst.String)
 	if err == nil {
 		jsonString, _ := json.Marshal(dst.String)
 		if string(jsonString) == "{}" { // empty struct
 			dst.String = nil
 		} else {
+			_ = validator.Validate(dst.String)
 			match++
 		}
 	} else {

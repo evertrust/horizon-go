@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // TriggerTest200Response - struct for TriggerTest200Response
@@ -40,12 +43,13 @@ func (dst *TriggerTest200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into EmailTriggerTestResponse
-	err = json.Unmarshal(data, &dst.EmailTriggerTestResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.EmailTriggerTestResponse)
 	if err == nil {
 		jsonEmailTriggerTestResponse, _ := json.Marshal(dst.EmailTriggerTestResponse)
 		if string(jsonEmailTriggerTestResponse) == "{}" { // empty struct
 			dst.EmailTriggerTestResponse = nil
 		} else {
+			_ = validator.Validate(dst.EmailTriggerTestResponse)
 			match++
 		}
 	} else {
@@ -53,12 +57,13 @@ func (dst *TriggerTest200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into RestTriggerTestResponse
-	err = json.Unmarshal(data, &dst.RestTriggerTestResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.RestTriggerTestResponse)
 	if err == nil {
 		jsonRestTriggerTestResponse, _ := json.Marshal(dst.RestTriggerTestResponse)
 		if string(jsonRestTriggerTestResponse) == "{}" { // empty struct
 			dst.RestTriggerTestResponse = nil
 		} else {
+			_ = validator.Validate(dst.RestTriggerTestResponse)
 			match++
 		}
 	} else {

@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // ScimProfileMappingsInner - struct for ScimProfileMappingsInner
@@ -40,12 +43,13 @@ func (dst *ScimProfileMappingsInner) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into MappingRole
-	err = json.Unmarshal(data, &dst.MappingRole)
+	err = utils.NewStrictDecoder(data).Decode(&dst.MappingRole)
 	if err == nil {
 		jsonMappingRole, _ := json.Marshal(dst.MappingRole)
 		if string(jsonMappingRole) == "{}" { // empty struct
 			dst.MappingRole = nil
 		} else {
+			_ = validator.Validate(dst.MappingRole)
 			match++
 		}
 	} else {
@@ -53,12 +57,13 @@ func (dst *ScimProfileMappingsInner) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into MappingTeam
-	err = json.Unmarshal(data, &dst.MappingTeam)
+	err = utils.NewStrictDecoder(data).Decode(&dst.MappingTeam)
 	if err == nil {
 		jsonMappingTeam, _ := json.Marshal(dst.MappingTeam)
 		if string(jsonMappingTeam) == "{}" { // empty struct
 			dst.MappingTeam = nil
 		} else {
+			_ = validator.Validate(dst.MappingTeam)
 			match++
 		}
 	} else {

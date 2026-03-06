@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // ReportScheduledTaskResponse - struct for ReportScheduledTaskResponse
@@ -40,12 +43,13 @@ func (dst *ReportScheduledTaskResponse) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into AttachmentReportScheduledTaskResponse
-	err = json.Unmarshal(data, &dst.AttachmentReportScheduledTaskResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.AttachmentReportScheduledTaskResponse)
 	if err == nil {
 		jsonAttachmentReportScheduledTaskResponse, _ := json.Marshal(dst.AttachmentReportScheduledTaskResponse)
 		if string(jsonAttachmentReportScheduledTaskResponse) == "{}" { // empty struct
 			dst.AttachmentReportScheduledTaskResponse = nil
 		} else {
+			_ = validator.Validate(dst.AttachmentReportScheduledTaskResponse)
 			match++
 		}
 	} else {
@@ -53,12 +57,13 @@ func (dst *ReportScheduledTaskResponse) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into LinkReportScheduledTaskResponse
-	err = json.Unmarshal(data, &dst.LinkReportScheduledTaskResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.LinkReportScheduledTaskResponse)
 	if err == nil {
 		jsonLinkReportScheduledTaskResponse, _ := json.Marshal(dst.LinkReportScheduledTaskResponse)
 		if string(jsonLinkReportScheduledTaskResponse) == "{}" { // empty struct
 			dst.LinkReportScheduledTaskResponse = nil
 		} else {
+			_ = validator.Validate(dst.LinkReportScheduledTaskResponse)
 			match++
 		}
 	} else {

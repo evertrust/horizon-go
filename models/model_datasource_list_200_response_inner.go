@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // DatasourceList200ResponseInner - struct for DatasourceList200ResponseInner
@@ -48,12 +51,13 @@ func (dst *DatasourceList200ResponseInner) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into DNSDatasourceResponse
-	err = json.Unmarshal(data, &dst.DNSDatasourceResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.DNSDatasourceResponse)
 	if err == nil {
 		jsonDNSDatasourceResponse, _ := json.Marshal(dst.DNSDatasourceResponse)
 		if string(jsonDNSDatasourceResponse) == "{}" { // empty struct
 			dst.DNSDatasourceResponse = nil
 		} else {
+			_ = validator.Validate(dst.DNSDatasourceResponse)
 			match++
 		}
 	} else {
@@ -61,12 +65,13 @@ func (dst *DatasourceList200ResponseInner) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into LDAPDatasourceResponse
-	err = json.Unmarshal(data, &dst.LDAPDatasourceResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.LDAPDatasourceResponse)
 	if err == nil {
 		jsonLDAPDatasourceResponse, _ := json.Marshal(dst.LDAPDatasourceResponse)
 		if string(jsonLDAPDatasourceResponse) == "{}" { // empty struct
 			dst.LDAPDatasourceResponse = nil
 		} else {
+			_ = validator.Validate(dst.LDAPDatasourceResponse)
 			match++
 		}
 	} else {
@@ -74,12 +79,13 @@ func (dst *DatasourceList200ResponseInner) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into RESTDatasourceResponse
-	err = json.Unmarshal(data, &dst.RESTDatasourceResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.RESTDatasourceResponse)
 	if err == nil {
 		jsonRESTDatasourceResponse, _ := json.Marshal(dst.RESTDatasourceResponse)
 		if string(jsonRESTDatasourceResponse) == "{}" { // empty struct
 			dst.RESTDatasourceResponse = nil
 		} else {
+			_ = validator.Validate(dst.RESTDatasourceResponse)
 			match++
 		}
 	} else {

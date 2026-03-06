@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // PKIResponses - struct for PKIResponses
@@ -200,12 +203,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into ADCSConnectorResponse
-	err = json.Unmarshal(data, &dst.ADCSConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.ADCSConnectorResponse)
 	if err == nil {
 		jsonADCSConnectorResponse, _ := json.Marshal(dst.ADCSConnectorResponse)
 		if string(jsonADCSConnectorResponse) == "{}" { // empty struct
 			dst.ADCSConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.ADCSConnectorResponse)
 			match++
 		}
 	} else {
@@ -213,12 +217,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into AWSACMPCAConnectorResponse
-	err = json.Unmarshal(data, &dst.AWSACMPCAConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.AWSACMPCAConnectorResponse)
 	if err == nil {
 		jsonAWSACMPCAConnectorResponse, _ := json.Marshal(dst.AWSACMPCAConnectorResponse)
 		if string(jsonAWSACMPCAConnectorResponse) == "{}" { // empty struct
 			dst.AWSACMPCAConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.AWSACMPCAConnectorResponse)
 			match++
 		}
 	} else {
@@ -226,12 +231,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into AcmeEnrollConnectorResponse
-	err = json.Unmarshal(data, &dst.AcmeEnrollConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.AcmeEnrollConnectorResponse)
 	if err == nil {
 		jsonAcmeEnrollConnectorResponse, _ := json.Marshal(dst.AcmeEnrollConnectorResponse)
 		if string(jsonAcmeEnrollConnectorResponse) == "{}" { // empty struct
 			dst.AcmeEnrollConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.AcmeEnrollConnectorResponse)
 			match++
 		}
 	} else {
@@ -239,12 +245,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into AcmeRevocationConnectorResponse
-	err = json.Unmarshal(data, &dst.AcmeRevocationConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.AcmeRevocationConnectorResponse)
 	if err == nil {
 		jsonAcmeRevocationConnectorResponse, _ := json.Marshal(dst.AcmeRevocationConnectorResponse)
 		if string(jsonAcmeRevocationConnectorResponse) == "{}" { // empty struct
 			dst.AcmeRevocationConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.AcmeRevocationConnectorResponse)
 			match++
 		}
 	} else {
@@ -252,12 +259,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CMPConnectorResponse
-	err = json.Unmarshal(data, &dst.CMPConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.CMPConnectorResponse)
 	if err == nil {
 		jsonCMPConnectorResponse, _ := json.Marshal(dst.CMPConnectorResponse)
 		if string(jsonCMPConnectorResponse) == "{}" { // empty struct
 			dst.CMPConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.CMPConnectorResponse)
 			match++
 		}
 	} else {
@@ -265,12 +273,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CertEuropeConnectorResponse
-	err = json.Unmarshal(data, &dst.CertEuropeConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.CertEuropeConnectorResponse)
 	if err == nil {
 		jsonCertEuropeConnectorResponse, _ := json.Marshal(dst.CertEuropeConnectorResponse)
 		if string(jsonCertEuropeConnectorResponse) == "{}" { // empty struct
 			dst.CertEuropeConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.CertEuropeConnectorResponse)
 			match++
 		}
 	} else {
@@ -278,12 +287,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into DigiCertConnectorResponse
-	err = json.Unmarshal(data, &dst.DigiCertConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.DigiCertConnectorResponse)
 	if err == nil {
 		jsonDigiCertConnectorResponse, _ := json.Marshal(dst.DigiCertConnectorResponse)
 		if string(jsonDigiCertConnectorResponse) == "{}" { // empty struct
 			dst.DigiCertConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.DigiCertConnectorResponse)
 			match++
 		}
 	} else {
@@ -291,12 +301,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into EJBCAConnectorResponse
-	err = json.Unmarshal(data, &dst.EJBCAConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.EJBCAConnectorResponse)
 	if err == nil {
 		jsonEJBCAConnectorResponse, _ := json.Marshal(dst.EJBCAConnectorResponse)
 		if string(jsonEJBCAConnectorResponse) == "{}" { // empty struct
 			dst.EJBCAConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.EJBCAConnectorResponse)
 			match++
 		}
 	} else {
@@ -304,12 +315,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into EntrustConnectorResponse
-	err = json.Unmarshal(data, &dst.EntrustConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.EntrustConnectorResponse)
 	if err == nil {
 		jsonEntrustConnectorResponse, _ := json.Marshal(dst.EntrustConnectorResponse)
 		if string(jsonEntrustConnectorResponse) == "{}" { // empty struct
 			dst.EntrustConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.EntrustConnectorResponse)
 			match++
 		}
 	} else {
@@ -317,12 +329,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into EverTrustADCSConnectorResponse
-	err = json.Unmarshal(data, &dst.EverTrustADCSConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.EverTrustADCSConnectorResponse)
 	if err == nil {
 		jsonEverTrustADCSConnectorResponse, _ := json.Marshal(dst.EverTrustADCSConnectorResponse)
 		if string(jsonEverTrustADCSConnectorResponse) == "{}" { // empty struct
 			dst.EverTrustADCSConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.EverTrustADCSConnectorResponse)
 			match++
 		}
 	} else {
@@ -330,12 +343,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into FCMSConnectorResponse
-	err = json.Unmarshal(data, &dst.FCMSConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.FCMSConnectorResponse)
 	if err == nil {
 		jsonFCMSConnectorResponse, _ := json.Marshal(dst.FCMSConnectorResponse)
 		if string(jsonFCMSConnectorResponse) == "{}" { // empty struct
 			dst.FCMSConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.FCMSConnectorResponse)
 			match++
 		}
 	} else {
@@ -343,12 +357,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into GSAtlasConnectorResponse
-	err = json.Unmarshal(data, &dst.GSAtlasConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.GSAtlasConnectorResponse)
 	if err == nil {
 		jsonGSAtlasConnectorResponse, _ := json.Marshal(dst.GSAtlasConnectorResponse)
 		if string(jsonGSAtlasConnectorResponse) == "{}" { // empty struct
 			dst.GSAtlasConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.GSAtlasConnectorResponse)
 			match++
 		}
 	} else {
@@ -356,12 +371,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into GSMSSLConnectorResponse
-	err = json.Unmarshal(data, &dst.GSMSSLConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.GSMSSLConnectorResponse)
 	if err == nil {
 		jsonGSMSSLConnectorResponse, _ := json.Marshal(dst.GSMSSLConnectorResponse)
 		if string(jsonGSMSSLConnectorResponse) == "{}" { // empty struct
 			dst.GSMSSLConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.GSMSSLConnectorResponse)
 			match++
 		}
 	} else {
@@ -369,12 +385,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IDCAConnectorResponse
-	err = json.Unmarshal(data, &dst.IDCAConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.IDCAConnectorResponse)
 	if err == nil {
 		jsonIDCAConnectorResponse, _ := json.Marshal(dst.IDCAConnectorResponse)
 		if string(jsonIDCAConnectorResponse) == "{}" { // empty struct
 			dst.IDCAConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.IDCAConnectorResponse)
 			match++
 		}
 	} else {
@@ -382,12 +399,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IntegratedCAConnectorResponse
-	err = json.Unmarshal(data, &dst.IntegratedCAConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.IntegratedCAConnectorResponse)
 	if err == nil {
 		jsonIntegratedCAConnectorResponse, _ := json.Marshal(dst.IntegratedCAConnectorResponse)
 		if string(jsonIntegratedCAConnectorResponse) == "{}" { // empty struct
 			dst.IntegratedCAConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.IntegratedCAConnectorResponse)
 			match++
 		}
 	} else {
@@ -395,12 +413,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into MetaPKIConnectorResponse
-	err = json.Unmarshal(data, &dst.MetaPKIConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.MetaPKIConnectorResponse)
 	if err == nil {
 		jsonMetaPKIConnectorResponse, _ := json.Marshal(dst.MetaPKIConnectorResponse)
 		if string(jsonMetaPKIConnectorResponse) == "{}" { // empty struct
 			dst.MetaPKIConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.MetaPKIConnectorResponse)
 			match++
 		}
 	} else {
@@ -408,12 +427,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into NameshieldResponse
-	err = json.Unmarshal(data, &dst.NameshieldResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.NameshieldResponse)
 	if err == nil {
 		jsonNameshieldResponse, _ := json.Marshal(dst.NameshieldResponse)
 		if string(jsonNameshieldResponse) == "{}" { // empty struct
 			dst.NameshieldResponse = nil
 		} else {
+			_ = validator.Validate(dst.NameshieldResponse)
 			match++
 		}
 	} else {
@@ -421,12 +441,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into NexusCMConnectorResponse
-	err = json.Unmarshal(data, &dst.NexusCMConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.NexusCMConnectorResponse)
 	if err == nil {
 		jsonNexusCMConnectorResponse, _ := json.Marshal(dst.NexusCMConnectorResponse)
 		if string(jsonNexusCMConnectorResponse) == "{}" { // empty struct
 			dst.NexusCMConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.NexusCMConnectorResponse)
 			match++
 		}
 	} else {
@@ -434,12 +455,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into OTPKIConnectorResponse
-	err = json.Unmarshal(data, &dst.OTPKIConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.OTPKIConnectorResponse)
 	if err == nil {
 		jsonOTPKIConnectorResponse, _ := json.Marshal(dst.OTPKIConnectorResponse)
 		if string(jsonOTPKIConnectorResponse) == "{}" { // empty struct
 			dst.OTPKIConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.OTPKIConnectorResponse)
 			match++
 		}
 	} else {
@@ -447,12 +469,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SectigoCMSConnectorResponse
-	err = json.Unmarshal(data, &dst.SectigoCMSConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.SectigoCMSConnectorResponse)
 	if err == nil {
 		jsonSectigoCMSConnectorResponse, _ := json.Marshal(dst.SectigoCMSConnectorResponse)
 		if string(jsonSectigoCMSConnectorResponse) == "{}" { // empty struct
 			dst.SectigoCMSConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.SectigoCMSConnectorResponse)
 			match++
 		}
 	} else {
@@ -460,12 +483,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into StreamConnectorResponse
-	err = json.Unmarshal(data, &dst.StreamConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.StreamConnectorResponse)
 	if err == nil {
 		jsonStreamConnectorResponse, _ := json.Marshal(dst.StreamConnectorResponse)
 		if string(jsonStreamConnectorResponse) == "{}" { // empty struct
 			dst.StreamConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.StreamConnectorResponse)
 			match++
 		}
 	} else {
@@ -473,12 +497,13 @@ func (dst *PKIResponses) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SwissSignConnectorResponse
-	err = json.Unmarshal(data, &dst.SwissSignConnectorResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.SwissSignConnectorResponse)
 	if err == nil {
 		jsonSwissSignConnectorResponse, _ := json.Marshal(dst.SwissSignConnectorResponse)
 		if string(jsonSwissSignConnectorResponse) == "{}" { // empty struct
 			dst.SwissSignConnectorResponse = nil
 		} else {
+			_ = validator.Validate(dst.SwissSignConnectorResponse)
 			match++
 		}
 	} else {

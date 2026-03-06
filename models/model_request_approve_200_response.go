@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // RequestApprove200Response - struct for RequestApprove200Response
@@ -96,12 +99,13 @@ func (dst *RequestApprove200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into EstEnrollRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.EstEnrollRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.EstEnrollRequestOnApproveResponse)
 	if err == nil {
 		jsonEstEnrollRequestOnApproveResponse, _ := json.Marshal(dst.EstEnrollRequestOnApproveResponse)
 		if string(jsonEstEnrollRequestOnApproveResponse) == "{}" { // empty struct
 			dst.EstEnrollRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.EstEnrollRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -109,12 +113,13 @@ func (dst *RequestApprove200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ScepEnrollRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.ScepEnrollRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.ScepEnrollRequestOnApproveResponse)
 	if err == nil {
 		jsonScepEnrollRequestOnApproveResponse, _ := json.Marshal(dst.ScepEnrollRequestOnApproveResponse)
 		if string(jsonScepEnrollRequestOnApproveResponse) == "{}" { // empty struct
 			dst.ScepEnrollRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.ScepEnrollRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -122,12 +127,13 @@ func (dst *RequestApprove200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAEnrollRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.WebRAEnrollRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAEnrollRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRAEnrollRequestOnApproveResponse, _ := json.Marshal(dst.WebRAEnrollRequestOnApproveResponse)
 		if string(jsonWebRAEnrollRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRAEnrollRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRAEnrollRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -135,12 +141,13 @@ func (dst *RequestApprove200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAImportRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.WebRAImportRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAImportRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRAImportRequestOnApproveResponse, _ := json.Marshal(dst.WebRAImportRequestOnApproveResponse)
 		if string(jsonWebRAImportRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRAImportRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRAImportRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -148,12 +155,13 @@ func (dst *RequestApprove200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAMigrateRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.WebRAMigrateRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAMigrateRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRAMigrateRequestOnApproveResponse, _ := json.Marshal(dst.WebRAMigrateRequestOnApproveResponse)
 		if string(jsonWebRAMigrateRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRAMigrateRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRAMigrateRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -161,12 +169,13 @@ func (dst *RequestApprove200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARecoverRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.WebRARecoverRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARecoverRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRARecoverRequestOnApproveResponse, _ := json.Marshal(dst.WebRARecoverRequestOnApproveResponse)
 		if string(jsonWebRARecoverRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRARecoverRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRARecoverRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -174,12 +183,13 @@ func (dst *RequestApprove200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARenewRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.WebRARenewRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARenewRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRARenewRequestOnApproveResponse, _ := json.Marshal(dst.WebRARenewRequestOnApproveResponse)
 		if string(jsonWebRARenewRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRARenewRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRARenewRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -187,12 +197,13 @@ func (dst *RequestApprove200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRARevokeRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.WebRARevokeRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARevokeRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRARevokeRequestOnApproveResponse, _ := json.Marshal(dst.WebRARevokeRequestOnApproveResponse)
 		if string(jsonWebRARevokeRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRARevokeRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRARevokeRequestOnApproveResponse)
 			match++
 		}
 	} else {
@@ -200,12 +211,13 @@ func (dst *RequestApprove200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into WebRAUpdateRequestOnApproveResponse
-	err = json.Unmarshal(data, &dst.WebRAUpdateRequestOnApproveResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAUpdateRequestOnApproveResponse)
 	if err == nil {
 		jsonWebRAUpdateRequestOnApproveResponse, _ := json.Marshal(dst.WebRAUpdateRequestOnApproveResponse)
 		if string(jsonWebRAUpdateRequestOnApproveResponse) == "{}" { // empty struct
 			dst.WebRAUpdateRequestOnApproveResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebRAUpdateRequestOnApproveResponse)
 			match++
 		}
 	} else {

@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // SecurityCredentialsUpdateRequest - struct for SecurityCredentialsUpdateRequest
@@ -48,12 +51,13 @@ func (dst *SecurityCredentialsUpdateRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into CertificateCredentials
-	err = json.Unmarshal(data, &dst.CertificateCredentials)
+	err = utils.NewStrictDecoder(data).Decode(&dst.CertificateCredentials)
 	if err == nil {
 		jsonCertificateCredentials, _ := json.Marshal(dst.CertificateCredentials)
 		if string(jsonCertificateCredentials) == "{}" { // empty struct
 			dst.CertificateCredentials = nil
 		} else {
+			_ = validator.Validate(dst.CertificateCredentials)
 			match++
 		}
 	} else {
@@ -61,12 +65,13 @@ func (dst *SecurityCredentialsUpdateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into PasswordCredentials
-	err = json.Unmarshal(data, &dst.PasswordCredentials)
+	err = utils.NewStrictDecoder(data).Decode(&dst.PasswordCredentials)
 	if err == nil {
 		jsonPasswordCredentials, _ := json.Marshal(dst.PasswordCredentials)
 		if string(jsonPasswordCredentials) == "{}" { // empty struct
 			dst.PasswordCredentials = nil
 		} else {
+			_ = validator.Validate(dst.PasswordCredentials)
 			match++
 		}
 	} else {
@@ -74,12 +79,13 @@ func (dst *SecurityCredentialsUpdateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into RawCredentials
-	err = json.Unmarshal(data, &dst.RawCredentials)
+	err = utils.NewStrictDecoder(data).Decode(&dst.RawCredentials)
 	if err == nil {
 		jsonRawCredentials, _ := json.Marshal(dst.RawCredentials)
 		if string(jsonRawCredentials) == "{}" { // empty struct
 			dst.RawCredentials = nil
 		} else {
+			_ = validator.Validate(dst.RawCredentials)
 			match++
 		}
 	} else {

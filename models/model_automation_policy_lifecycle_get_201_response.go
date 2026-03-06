@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // AutomationPolicyLifecycleGet201Response - struct for AutomationPolicyLifecycleGet201Response
@@ -64,12 +67,13 @@ func (dst *AutomationPolicyLifecycleGet201Response) UnmarshalJSON(data []byte) e
 	var err error
 	match := 0
 	// try to unmarshal data into AcmeExternalInitParameters
-	err = json.Unmarshal(data, &dst.AcmeExternalInitParameters)
+	err = utils.NewStrictDecoder(data).Decode(&dst.AcmeExternalInitParameters)
 	if err == nil {
 		jsonAcmeExternalInitParameters, _ := json.Marshal(dst.AcmeExternalInitParameters)
 		if string(jsonAcmeExternalInitParameters) == "{}" { // empty struct
 			dst.AcmeExternalInitParameters = nil
 		} else {
+			_ = validator.Validate(dst.AcmeExternalInitParameters)
 			match++
 		}
 	} else {
@@ -77,12 +81,13 @@ func (dst *AutomationPolicyLifecycleGet201Response) UnmarshalJSON(data []byte) e
 	}
 
 	// try to unmarshal data into AcmeInitParameters
-	err = json.Unmarshal(data, &dst.AcmeInitParameters)
+	err = utils.NewStrictDecoder(data).Decode(&dst.AcmeInitParameters)
 	if err == nil {
 		jsonAcmeInitParameters, _ := json.Marshal(dst.AcmeInitParameters)
 		if string(jsonAcmeInitParameters) == "{}" { // empty struct
 			dst.AcmeInitParameters = nil
 		} else {
+			_ = validator.Validate(dst.AcmeInitParameters)
 			match++
 		}
 	} else {
@@ -90,12 +95,13 @@ func (dst *AutomationPolicyLifecycleGet201Response) UnmarshalJSON(data []byte) e
 	}
 
 	// try to unmarshal data into EstInitParameters
-	err = json.Unmarshal(data, &dst.EstInitParameters)
+	err = utils.NewStrictDecoder(data).Decode(&dst.EstInitParameters)
 	if err == nil {
 		jsonEstInitParameters, _ := json.Marshal(dst.EstInitParameters)
 		if string(jsonEstInitParameters) == "{}" { // empty struct
 			dst.EstInitParameters = nil
 		} else {
+			_ = validator.Validate(dst.EstInitParameters)
 			match++
 		}
 	} else {
@@ -103,12 +109,13 @@ func (dst *AutomationPolicyLifecycleGet201Response) UnmarshalJSON(data []byte) e
 	}
 
 	// try to unmarshal data into ScepInitParameters
-	err = json.Unmarshal(data, &dst.ScepInitParameters)
+	err = utils.NewStrictDecoder(data).Decode(&dst.ScepInitParameters)
 	if err == nil {
 		jsonScepInitParameters, _ := json.Marshal(dst.ScepInitParameters)
 		if string(jsonScepInitParameters) == "{}" { // empty struct
 			dst.ScepInitParameters = nil
 		} else {
+			_ = validator.Validate(dst.ScepInitParameters)
 			match++
 		}
 	} else {
@@ -116,12 +123,13 @@ func (dst *AutomationPolicyLifecycleGet201Response) UnmarshalJSON(data []byte) e
 	}
 
 	// try to unmarshal data into WebraInitParameters
-	err = json.Unmarshal(data, &dst.WebraInitParameters)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebraInitParameters)
 	if err == nil {
 		jsonWebraInitParameters, _ := json.Marshal(dst.WebraInitParameters)
 		if string(jsonWebraInitParameters) == "{}" { // empty struct
 			dst.WebraInitParameters = nil
 		} else {
+			_ = validator.Validate(dst.WebraInitParameters)
 			match++
 		}
 	} else {

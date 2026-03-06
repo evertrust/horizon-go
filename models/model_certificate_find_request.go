@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // CertificateFindRequest - struct for CertificateFindRequest
@@ -40,12 +43,13 @@ func (dst *CertificateFindRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into FindCertificateById
-	err = json.Unmarshal(data, &dst.FindCertificateById)
+	err = utils.NewStrictDecoder(data).Decode(&dst.FindCertificateById)
 	if err == nil {
 		jsonFindCertificateById, _ := json.Marshal(dst.FindCertificateById)
 		if string(jsonFindCertificateById) == "{}" { // empty struct
 			dst.FindCertificateById = nil
 		} else {
+			_ = validator.Validate(dst.FindCertificateById)
 			match++
 		}
 	} else {
@@ -53,12 +57,13 @@ func (dst *CertificateFindRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into FindCertificateByPem
-	err = json.Unmarshal(data, &dst.FindCertificateByPem)
+	err = utils.NewStrictDecoder(data).Decode(&dst.FindCertificateByPem)
 	if err == nil {
 		jsonFindCertificateByPem, _ := json.Marshal(dst.FindCertificateByPem)
 		if string(jsonFindCertificateByPem) == "{}" { // empty struct
 			dst.FindCertificateByPem = nil
 		} else {
+			_ = validator.Validate(dst.FindCertificateByPem)
 			match++
 		}
 	} else {

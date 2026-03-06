@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // DataSourceTestRequestDs - Datasource to test
@@ -48,12 +51,13 @@ func (dst *DataSourceTestRequestDs) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into DNSDatasource
-	err = json.Unmarshal(data, &dst.DNSDatasource)
+	err = utils.NewStrictDecoder(data).Decode(&dst.DNSDatasource)
 	if err == nil {
 		jsonDNSDatasource, _ := json.Marshal(dst.DNSDatasource)
 		if string(jsonDNSDatasource) == "{}" { // empty struct
 			dst.DNSDatasource = nil
 		} else {
+			_ = validator.Validate(dst.DNSDatasource)
 			match++
 		}
 	} else {
@@ -61,12 +65,13 @@ func (dst *DataSourceTestRequestDs) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into LDAPDatasource
-	err = json.Unmarshal(data, &dst.LDAPDatasource)
+	err = utils.NewStrictDecoder(data).Decode(&dst.LDAPDatasource)
 	if err == nil {
 		jsonLDAPDatasource, _ := json.Marshal(dst.LDAPDatasource)
 		if string(jsonLDAPDatasource) == "{}" { // empty struct
 			dst.LDAPDatasource = nil
 		} else {
+			_ = validator.Validate(dst.LDAPDatasource)
 			match++
 		}
 	} else {
@@ -74,12 +79,13 @@ func (dst *DataSourceTestRequestDs) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into RESTDatasource
-	err = json.Unmarshal(data, &dst.RESTDatasource)
+	err = utils.NewStrictDecoder(data).Decode(&dst.RESTDatasource)
 	if err == nil {
 		jsonRESTDatasource, _ := json.Marshal(dst.RESTDatasource)
 		if string(jsonRESTDatasource) == "{}" { // empty struct
 			dst.RESTDatasource = nil
 		} else {
+			_ = validator.Validate(dst.RESTDatasource)
 			match++
 		}
 	} else {

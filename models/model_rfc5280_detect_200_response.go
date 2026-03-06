@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // Rfc5280Detect200Response - struct for Rfc5280Detect200Response
@@ -56,12 +59,13 @@ func (dst *Rfc5280Detect200Response) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into BundleResponseResponse
-	err = json.Unmarshal(data, &dst.BundleResponseResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.BundleResponseResponse)
 	if err == nil {
 		jsonBundleResponseResponse, _ := json.Marshal(dst.BundleResponseResponse)
 		if string(jsonBundleResponseResponse) == "{}" { // empty struct
 			dst.BundleResponseResponse = nil
 		} else {
+			_ = validator.Validate(dst.BundleResponseResponse)
 			match++
 		}
 	} else {
@@ -69,12 +73,13 @@ func (dst *Rfc5280Detect200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CRLResponseResponse
-	err = json.Unmarshal(data, &dst.CRLResponseResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.CRLResponseResponse)
 	if err == nil {
 		jsonCRLResponseResponse, _ := json.Marshal(dst.CRLResponseResponse)
 		if string(jsonCRLResponseResponse) == "{}" { // empty struct
 			dst.CRLResponseResponse = nil
 		} else {
+			_ = validator.Validate(dst.CRLResponseResponse)
 			match++
 		}
 	} else {
@@ -82,12 +87,13 @@ func (dst *Rfc5280Detect200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CSRResponseResponse
-	err = json.Unmarshal(data, &dst.CSRResponseResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.CSRResponseResponse)
 	if err == nil {
 		jsonCSRResponseResponse, _ := json.Marshal(dst.CSRResponseResponse)
 		if string(jsonCSRResponseResponse) == "{}" { // empty struct
 			dst.CSRResponseResponse = nil
 		} else {
+			_ = validator.Validate(dst.CSRResponseResponse)
 			match++
 		}
 	} else {
@@ -95,12 +101,13 @@ func (dst *Rfc5280Detect200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CertificateResponseResponse
-	err = json.Unmarshal(data, &dst.CertificateResponseResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.CertificateResponseResponse)
 	if err == nil {
 		jsonCertificateResponseResponse, _ := json.Marshal(dst.CertificateResponseResponse)
 		if string(jsonCertificateResponseResponse) == "{}" { // empty struct
 			dst.CertificateResponseResponse = nil
 		} else {
+			_ = validator.Validate(dst.CertificateResponseResponse)
 			match++
 		}
 	} else {

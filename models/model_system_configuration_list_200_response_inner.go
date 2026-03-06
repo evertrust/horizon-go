@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // SystemConfigurationList200ResponseInner - struct for SystemConfigurationList200ResponseInner
@@ -48,12 +51,13 @@ func (dst *SystemConfigurationList200ResponseInner) UnmarshalJSON(data []byte) e
 	var err error
 	match := 0
 	// try to unmarshal data into InterfaceCustomizationConfigurationResponse
-	err = json.Unmarshal(data, &dst.InterfaceCustomizationConfigurationResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.InterfaceCustomizationConfigurationResponse)
 	if err == nil {
 		jsonInterfaceCustomizationConfigurationResponse, _ := json.Marshal(dst.InterfaceCustomizationConfigurationResponse)
 		if string(jsonInterfaceCustomizationConfigurationResponse) == "{}" { // empty struct
 			dst.InterfaceCustomizationConfigurationResponse = nil
 		} else {
+			_ = validator.Validate(dst.InterfaceCustomizationConfigurationResponse)
 			match++
 		}
 	} else {
@@ -61,12 +65,13 @@ func (dst *SystemConfigurationList200ResponseInner) UnmarshalJSON(data []byte) e
 	}
 
 	// try to unmarshal data into InternalMonitorConfigurationResponse
-	err = json.Unmarshal(data, &dst.InternalMonitorConfigurationResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.InternalMonitorConfigurationResponse)
 	if err == nil {
 		jsonInternalMonitorConfigurationResponse, _ := json.Marshal(dst.InternalMonitorConfigurationResponse)
 		if string(jsonInternalMonitorConfigurationResponse) == "{}" { // empty struct
 			dst.InternalMonitorConfigurationResponse = nil
 		} else {
+			_ = validator.Validate(dst.InternalMonitorConfigurationResponse)
 			match++
 		}
 	} else {
@@ -74,12 +79,13 @@ func (dst *SystemConfigurationList200ResponseInner) UnmarshalJSON(data []byte) e
 	}
 
 	// try to unmarshal data into LicenseConfigurationResponse
-	err = json.Unmarshal(data, &dst.LicenseConfigurationResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.LicenseConfigurationResponse)
 	if err == nil {
 		jsonLicenseConfigurationResponse, _ := json.Marshal(dst.LicenseConfigurationResponse)
 		if string(jsonLicenseConfigurationResponse) == "{}" { // empty struct
 			dst.LicenseConfigurationResponse = nil
 		} else {
+			_ = validator.Validate(dst.LicenseConfigurationResponse)
 			match++
 		}
 	} else {

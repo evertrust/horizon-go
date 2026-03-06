@@ -13,6 +13,9 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+	"gopkg.in/validator.v2"
 )
 
 // HorizonExportItemsNotificationsInner - struct for HorizonExportItemsNotificationsInner
@@ -48,12 +51,13 @@ func (dst *HorizonExportItemsNotificationsInner) UnmarshalJSON(data []byte) erro
 	var err error
 	match := 0
 	// try to unmarshal data into EmailNotificationResponse
-	err = json.Unmarshal(data, &dst.EmailNotificationResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.EmailNotificationResponse)
 	if err == nil {
 		jsonEmailNotificationResponse, _ := json.Marshal(dst.EmailNotificationResponse)
 		if string(jsonEmailNotificationResponse) == "{}" { // empty struct
 			dst.EmailNotificationResponse = nil
 		} else {
+			_ = validator.Validate(dst.EmailNotificationResponse)
 			match++
 		}
 	} else {
@@ -61,12 +65,13 @@ func (dst *HorizonExportItemsNotificationsInner) UnmarshalJSON(data []byte) erro
 	}
 
 	// try to unmarshal data into RESTResponse
-	err = json.Unmarshal(data, &dst.RESTResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.RESTResponse)
 	if err == nil {
 		jsonRESTResponse, _ := json.Marshal(dst.RESTResponse)
 		if string(jsonRESTResponse) == "{}" { // empty struct
 			dst.RESTResponse = nil
 		} else {
+			_ = validator.Validate(dst.RESTResponse)
 			match++
 		}
 	} else {
@@ -74,12 +79,13 @@ func (dst *HorizonExportItemsNotificationsInner) UnmarshalJSON(data []byte) erro
 	}
 
 	// try to unmarshal data into WebhookNotificationResponse
-	err = json.Unmarshal(data, &dst.WebhookNotificationResponse)
+	err = utils.NewStrictDecoder(data).Decode(&dst.WebhookNotificationResponse)
 	if err == nil {
 		jsonWebhookNotificationResponse, _ := json.Marshal(dst.WebhookNotificationResponse)
 		if string(jsonWebhookNotificationResponse) == "{}" { // empty struct
 			dst.WebhookNotificationResponse = nil
 		} else {
+			_ = validator.Validate(dst.WebhookNotificationResponse)
 			match++
 		}
 	} else {
