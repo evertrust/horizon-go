@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ## Rfc5280Pkcs12File
 
-> Pkcs12ContentResponse Rfc5280Pkcs12File(ctx).Pkcs12(pkcs12).Execute()
+> Rfc5280Pkcs12ContentResponse Rfc5280Pkcs12File(ctx).Pkcs12(pkcs12).Execute()
 
 Extract the certificate and associated private key from a pkcs#12 (file)
 
@@ -247,7 +247,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `Rfc5280API.Rfc5280Pkcs12File``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `Rfc5280Pkcs12File`: Pkcs12ContentResponse
+	// response from `Rfc5280Pkcs12File`: Rfc5280Pkcs12ContentResponse
 	fmt.Fprintf(os.Stdout, "Response from `Rfc5280API.Rfc5280Pkcs12File`: %v\n", resp)
 }
 ```
@@ -267,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Pkcs12ContentResponse**](Pkcs12ContentResponse.md)
+[**Rfc5280Pkcs12ContentResponse**](Rfc5280Pkcs12ContentResponse.md)
 
 ### Authorization
 

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | These credentials identifying name | [optional] 
-**Type** | Pointer to **string** | These credentials type | [optional] 
 **Description** | Pointer to **NullableString** | These credentials description | [optional] 
 **Expires** | Pointer to **NullableInt64** | The expiration date of these credentials | [optional] 
-**Triggers** | Pointer to [**CredentialsTriggers**](CredentialsTriggers.md) |  | [optional] 
+**Name** | Pointer to **string** | These credentials identifying name | [optional] 
 **Targets** | Pointer to **[]string** | On which configuration the credentials are usable | [optional] 
+**Triggers** | Pointer to [**CredentialsTriggers**](CredentialsTriggers.md) |  | [optional] 
+**Type** | Pointer to **string** | These credentials type | [optional] 
 
 ## Methods
 
@@ -29,56 +29,6 @@ will change when the set of required properties is changed
 NewCredentialsWithDefaults instantiates a new Credentials object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetName
-
-`func (o *Credentials) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *Credentials) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *Credentials) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *Credentials) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *Credentials) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *Credentials) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *Credentials) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *Credentials) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -150,30 +100,30 @@ HasExpires returns a boolean if a field has been set.
 `func (o *Credentials) UnsetExpires()`
 
 UnsetExpires ensures that no value is present for Expires, not even an explicit nil
-### GetTriggers
+### GetName
 
-`func (o *Credentials) GetTriggers() CredentialsTriggers`
+`func (o *Credentials) GetName() string`
 
-GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTriggersOk
+### GetNameOk
 
-`func (o *Credentials) GetTriggersOk() (*CredentialsTriggers, bool)`
+`func (o *Credentials) GetNameOk() (*string, bool)`
 
-GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTriggers
+### SetName
 
-`func (o *Credentials) SetTriggers(v CredentialsTriggers)`
+`func (o *Credentials) SetName(v string)`
 
-SetTriggers sets Triggers field to given value.
+SetName sets Name field to given value.
 
-### HasTriggers
+### HasName
 
-`func (o *Credentials) HasTriggers() bool`
+`func (o *Credentials) HasName() bool`
 
-HasTriggers returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
 ### GetTargets
 
@@ -199,6 +149,56 @@ SetTargets sets Targets field to given value.
 `func (o *Credentials) HasTargets() bool`
 
 HasTargets returns a boolean if a field has been set.
+
+### GetTriggers
+
+`func (o *Credentials) GetTriggers() CredentialsTriggers`
+
+GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+
+### GetTriggersOk
+
+`func (o *Credentials) GetTriggersOk() (*CredentialsTriggers, bool)`
+
+GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggers
+
+`func (o *Credentials) SetTriggers(v CredentialsTriggers)`
+
+SetTriggers sets Triggers field to given value.
+
+### HasTriggers
+
+`func (o *Credentials) HasTriggers() bool`
+
+HasTriggers returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *Credentials) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *Credentials) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *Credentials) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *Credentials) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

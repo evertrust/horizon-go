@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Apply** | **bool** |  | 
+**Condition** | **string** |  | 
 **Description** | [**[]LocalizedString**](LocalizedString.md) |  | 
-**Score** | Pointer to **NullableInt64** |  | [optional] 
+**Eval** | Pointer to **NullableBool** |  | [optional] 
 **Obtained** | Pointer to **NullableInt64** |  | [optional] 
 **Scope** | Pointer to **NullableString** |  | [optional] 
-**Condition** | **string** |  | 
-**Apply** | **bool** |  | 
-**Eval** | Pointer to **NullableBool** |  | [optional] 
+**Score** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
 
 ### NewExplainedGradingRule
 
-`func NewExplainedGradingRule(description []LocalizedString, condition string, apply bool, ) *ExplainedGradingRule`
+`func NewExplainedGradingRule(apply bool, condition string, description []LocalizedString, ) *ExplainedGradingRule`
 
 NewExplainedGradingRule instantiates a new ExplainedGradingRule object
 This constructor will assign default values to properties that have it defined,
@@ -30,6 +30,46 @@ will change when the set of required properties is changed
 NewExplainedGradingRuleWithDefaults instantiates a new ExplainedGradingRule object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetApply
+
+`func (o *ExplainedGradingRule) GetApply() bool`
+
+GetApply returns the Apply field if non-nil, zero value otherwise.
+
+### GetApplyOk
+
+`func (o *ExplainedGradingRule) GetApplyOk() (*bool, bool)`
+
+GetApplyOk returns a tuple with the Apply field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApply
+
+`func (o *ExplainedGradingRule) SetApply(v bool)`
+
+SetApply sets Apply field to given value.
+
+
+### GetCondition
+
+`func (o *ExplainedGradingRule) GetCondition() string`
+
+GetCondition returns the Condition field if non-nil, zero value otherwise.
+
+### GetConditionOk
+
+`func (o *ExplainedGradingRule) GetConditionOk() (*string, bool)`
+
+GetConditionOk returns a tuple with the Condition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCondition
+
+`func (o *ExplainedGradingRule) SetCondition(v string)`
+
+SetCondition sets Condition field to given value.
+
 
 ### GetDescription
 
@@ -51,41 +91,41 @@ and a boolean to check if the value has been set.
 SetDescription sets Description field to given value.
 
 
-### GetScore
+### GetEval
 
-`func (o *ExplainedGradingRule) GetScore() int64`
+`func (o *ExplainedGradingRule) GetEval() bool`
 
-GetScore returns the Score field if non-nil, zero value otherwise.
+GetEval returns the Eval field if non-nil, zero value otherwise.
 
-### GetScoreOk
+### GetEvalOk
 
-`func (o *ExplainedGradingRule) GetScoreOk() (*int64, bool)`
+`func (o *ExplainedGradingRule) GetEvalOk() (*bool, bool)`
 
-GetScoreOk returns a tuple with the Score field if it's non-nil, zero value otherwise
+GetEvalOk returns a tuple with the Eval field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetScore
+### SetEval
 
-`func (o *ExplainedGradingRule) SetScore(v int64)`
+`func (o *ExplainedGradingRule) SetEval(v bool)`
 
-SetScore sets Score field to given value.
+SetEval sets Eval field to given value.
 
-### HasScore
+### HasEval
 
-`func (o *ExplainedGradingRule) HasScore() bool`
+`func (o *ExplainedGradingRule) HasEval() bool`
 
-HasScore returns a boolean if a field has been set.
+HasEval returns a boolean if a field has been set.
 
-### SetScoreNil
+### SetEvalNil
 
-`func (o *ExplainedGradingRule) SetScoreNil(b bool)`
+`func (o *ExplainedGradingRule) SetEvalNil(b bool)`
 
- SetScoreNil sets the value for Score to be an explicit nil
+ SetEvalNil sets the value for Eval to be an explicit nil
 
-### UnsetScore
-`func (o *ExplainedGradingRule) UnsetScore()`
+### UnsetEval
+`func (o *ExplainedGradingRule) UnsetEval()`
 
-UnsetScore ensures that no value is present for Score, not even an explicit nil
+UnsetEval ensures that no value is present for Eval, not even an explicit nil
 ### GetObtained
 
 `func (o *ExplainedGradingRule) GetObtained() int64`
@@ -156,81 +196,41 @@ HasScope returns a boolean if a field has been set.
 `func (o *ExplainedGradingRule) UnsetScope()`
 
 UnsetScope ensures that no value is present for Scope, not even an explicit nil
-### GetCondition
+### GetScore
 
-`func (o *ExplainedGradingRule) GetCondition() string`
+`func (o *ExplainedGradingRule) GetScore() int64`
 
-GetCondition returns the Condition field if non-nil, zero value otherwise.
+GetScore returns the Score field if non-nil, zero value otherwise.
 
-### GetConditionOk
+### GetScoreOk
 
-`func (o *ExplainedGradingRule) GetConditionOk() (*string, bool)`
+`func (o *ExplainedGradingRule) GetScoreOk() (*int64, bool)`
 
-GetConditionOk returns a tuple with the Condition field if it's non-nil, zero value otherwise
+GetScoreOk returns a tuple with the Score field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCondition
+### SetScore
 
-`func (o *ExplainedGradingRule) SetCondition(v string)`
+`func (o *ExplainedGradingRule) SetScore(v int64)`
 
-SetCondition sets Condition field to given value.
+SetScore sets Score field to given value.
 
+### HasScore
 
-### GetApply
+`func (o *ExplainedGradingRule) HasScore() bool`
 
-`func (o *ExplainedGradingRule) GetApply() bool`
+HasScore returns a boolean if a field has been set.
 
-GetApply returns the Apply field if non-nil, zero value otherwise.
+### SetScoreNil
 
-### GetApplyOk
+`func (o *ExplainedGradingRule) SetScoreNil(b bool)`
 
-`func (o *ExplainedGradingRule) GetApplyOk() (*bool, bool)`
+ SetScoreNil sets the value for Score to be an explicit nil
 
-GetApplyOk returns a tuple with the Apply field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetScore
+`func (o *ExplainedGradingRule) UnsetScore()`
 
-### SetApply
-
-`func (o *ExplainedGradingRule) SetApply(v bool)`
-
-SetApply sets Apply field to given value.
-
-
-### GetEval
-
-`func (o *ExplainedGradingRule) GetEval() bool`
-
-GetEval returns the Eval field if non-nil, zero value otherwise.
-
-### GetEvalOk
-
-`func (o *ExplainedGradingRule) GetEvalOk() (*bool, bool)`
-
-GetEvalOk returns a tuple with the Eval field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEval
-
-`func (o *ExplainedGradingRule) SetEval(v bool)`
-
-SetEval sets Eval field to given value.
-
-### HasEval
-
-`func (o *ExplainedGradingRule) HasEval() bool`
-
-HasEval returns a boolean if a field has been set.
-
-### SetEvalNil
-
-`func (o *ExplainedGradingRule) SetEvalNil(b bool)`
-
- SetEvalNil sets the value for Eval to be an explicit nil
-
-### UnsetEval
-`func (o *ExplainedGradingRule) UnsetEval()`
-
-UnsetEval ensures that no value is present for Eval, not even an explicit nil
+UnsetScore ensures that no value is present for Score, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

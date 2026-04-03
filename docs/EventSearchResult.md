@@ -9,10 +9,10 @@ Name | Type | Description | Notes
 **Details** | Pointer to [**[]EventDetail**](EventDetail.md) |  | [optional] 
 **Module** | Pointer to [**NullableEventModule**](EventModule.md) |  | [optional] 
 **Node** | Pointer to **NullableString** |  | [optional] 
-**Timestamp** | Pointer to **NullableInt64** |  | [optional] 
 **RemoveAt** | Pointer to **NullableInt64** |  | [optional] 
 **Seal** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to **NullableString** |  | [optional] 
+**Timestamp** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
 
@@ -208,41 +208,6 @@ HasNode returns a boolean if a field has been set.
 `func (o *EventSearchResult) UnsetNode()`
 
 UnsetNode ensures that no value is present for Node, not even an explicit nil
-### GetTimestamp
-
-`func (o *EventSearchResult) GetTimestamp() int64`
-
-GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
-
-### GetTimestampOk
-
-`func (o *EventSearchResult) GetTimestampOk() (*int64, bool)`
-
-GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimestamp
-
-`func (o *EventSearchResult) SetTimestamp(v int64)`
-
-SetTimestamp sets Timestamp field to given value.
-
-### HasTimestamp
-
-`func (o *EventSearchResult) HasTimestamp() bool`
-
-HasTimestamp returns a boolean if a field has been set.
-
-### SetTimestampNil
-
-`func (o *EventSearchResult) SetTimestampNil(b bool)`
-
- SetTimestampNil sets the value for Timestamp to be an explicit nil
-
-### UnsetTimestamp
-`func (o *EventSearchResult) UnsetTimestamp()`
-
-UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
 ### GetRemoveAt
 
 `func (o *EventSearchResult) GetRemoveAt() int64`
@@ -348,6 +313,41 @@ HasStatus returns a boolean if a field has been set.
 `func (o *EventSearchResult) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
+### GetTimestamp
+
+`func (o *EventSearchResult) GetTimestamp() int64`
+
+GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
+
+### GetTimestampOk
+
+`func (o *EventSearchResult) GetTimestampOk() (*int64, bool)`
+
+GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimestamp
+
+`func (o *EventSearchResult) SetTimestamp(v int64)`
+
+SetTimestamp sets Timestamp field to given value.
+
+### HasTimestamp
+
+`func (o *EventSearchResult) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
+
+### SetTimestampNil
+
+`func (o *EventSearchResult) SetTimestampNil(b bool)`
+
+ SetTimestampNil sets the value for Timestamp to be an explicit nil
+
+### UnsetTimestamp
+`func (o *EventSearchResult) UnsetTimestamp()`
+
+UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

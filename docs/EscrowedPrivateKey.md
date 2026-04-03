@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HorizonKey** | **string** |  | 
+**Transient** | Pointer to **NullableBool** |  | [optional] 
 **Value** | Pointer to **NullableString** |  | [optional] 
 **VaultKey** | Pointer to **NullableString** |  | [optional] 
-**Transient** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
 
@@ -48,6 +48,41 @@ and a boolean to check if the value has been set.
 SetHorizonKey sets HorizonKey field to given value.
 
 
+### GetTransient
+
+`func (o *EscrowedPrivateKey) GetTransient() bool`
+
+GetTransient returns the Transient field if non-nil, zero value otherwise.
+
+### GetTransientOk
+
+`func (o *EscrowedPrivateKey) GetTransientOk() (*bool, bool)`
+
+GetTransientOk returns a tuple with the Transient field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransient
+
+`func (o *EscrowedPrivateKey) SetTransient(v bool)`
+
+SetTransient sets Transient field to given value.
+
+### HasTransient
+
+`func (o *EscrowedPrivateKey) HasTransient() bool`
+
+HasTransient returns a boolean if a field has been set.
+
+### SetTransientNil
+
+`func (o *EscrowedPrivateKey) SetTransientNil(b bool)`
+
+ SetTransientNil sets the value for Transient to be an explicit nil
+
+### UnsetTransient
+`func (o *EscrowedPrivateKey) UnsetTransient()`
+
+UnsetTransient ensures that no value is present for Transient, not even an explicit nil
 ### GetValue
 
 `func (o *EscrowedPrivateKey) GetValue() string`
@@ -118,41 +153,6 @@ HasVaultKey returns a boolean if a field has been set.
 `func (o *EscrowedPrivateKey) UnsetVaultKey()`
 
 UnsetVaultKey ensures that no value is present for VaultKey, not even an explicit nil
-### GetTransient
-
-`func (o *EscrowedPrivateKey) GetTransient() bool`
-
-GetTransient returns the Transient field if non-nil, zero value otherwise.
-
-### GetTransientOk
-
-`func (o *EscrowedPrivateKey) GetTransientOk() (*bool, bool)`
-
-GetTransientOk returns a tuple with the Transient field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTransient
-
-`func (o *EscrowedPrivateKey) SetTransient(v bool)`
-
-SetTransient sets Transient field to given value.
-
-### HasTransient
-
-`func (o *EscrowedPrivateKey) HasTransient() bool`
-
-HasTransient returns a boolean if a field has been set.
-
-### SetTransientNil
-
-`func (o *EscrowedPrivateKey) SetTransientNil(b bool)`
-
- SetTransientNil sets the value for Transient to be an explicit nil
-
-### UnsetTransient
-`func (o *EscrowedPrivateKey) UnsetTransient()`
-
-UnsetTransient ensures that no value is present for Transient, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

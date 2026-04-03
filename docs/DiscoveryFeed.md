@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Campaign** | **string** | The name of the discovery campaign to feed into | 
-**SessionId** | Pointer to **NullableString** | The ID of the previously opened discovery feed session | [optional] 
-**Code** | Pointer to **NullableString** | The code of the event to raise in the discovery events | [optional] 
 **Certificate** | **string** | The PEM-encoded certificate to feed the discovery campaign with | 
+**Code** | Pointer to **NullableString** | The code of the event to raise in the discovery events | [optional] 
 **HostDiscoveryData** | [**HostDiscoveryData**](HostDiscoveryData.md) | The host discovery data to feed the discovery campaign with (discovery metadata) | 
 **Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The list of certificate metadata to feed the discovery campaign with | [optional] 
 **PrivateKey** | Pointer to **NullableString** | The PEM-encoded private key to feed the discovery campaign with | [optional] 
+**SessionId** | Pointer to **NullableString** | The ID of the previously opened discovery feed session | [optional] 
 
 ## Methods
 
@@ -51,41 +51,26 @@ and a boolean to check if the value has been set.
 SetCampaign sets Campaign field to given value.
 
 
-### GetSessionId
+### GetCertificate
 
-`func (o *DiscoveryFeed) GetSessionId() string`
+`func (o *DiscoveryFeed) GetCertificate() string`
 
-GetSessionId returns the SessionId field if non-nil, zero value otherwise.
+GetCertificate returns the Certificate field if non-nil, zero value otherwise.
 
-### GetSessionIdOk
+### GetCertificateOk
 
-`func (o *DiscoveryFeed) GetSessionIdOk() (*string, bool)`
+`func (o *DiscoveryFeed) GetCertificateOk() (*string, bool)`
 
-GetSessionIdOk returns a tuple with the SessionId field if it's non-nil, zero value otherwise
+GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSessionId
+### SetCertificate
 
-`func (o *DiscoveryFeed) SetSessionId(v string)`
+`func (o *DiscoveryFeed) SetCertificate(v string)`
 
-SetSessionId sets SessionId field to given value.
+SetCertificate sets Certificate field to given value.
 
-### HasSessionId
 
-`func (o *DiscoveryFeed) HasSessionId() bool`
-
-HasSessionId returns a boolean if a field has been set.
-
-### SetSessionIdNil
-
-`func (o *DiscoveryFeed) SetSessionIdNil(b bool)`
-
- SetSessionIdNil sets the value for SessionId to be an explicit nil
-
-### UnsetSessionId
-`func (o *DiscoveryFeed) UnsetSessionId()`
-
-UnsetSessionId ensures that no value is present for SessionId, not even an explicit nil
 ### GetCode
 
 `func (o *DiscoveryFeed) GetCode() string`
@@ -121,26 +106,6 @@ HasCode returns a boolean if a field has been set.
 `func (o *DiscoveryFeed) UnsetCode()`
 
 UnsetCode ensures that no value is present for Code, not even an explicit nil
-### GetCertificate
-
-`func (o *DiscoveryFeed) GetCertificate() string`
-
-GetCertificate returns the Certificate field if non-nil, zero value otherwise.
-
-### GetCertificateOk
-
-`func (o *DiscoveryFeed) GetCertificateOk() (*string, bool)`
-
-GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificate
-
-`func (o *DiscoveryFeed) SetCertificate(v string)`
-
-SetCertificate sets Certificate field to given value.
-
-
 ### GetHostDiscoveryData
 
 `func (o *DiscoveryFeed) GetHostDiscoveryData() HostDiscoveryData`
@@ -231,6 +196,41 @@ HasPrivateKey returns a boolean if a field has been set.
 `func (o *DiscoveryFeed) UnsetPrivateKey()`
 
 UnsetPrivateKey ensures that no value is present for PrivateKey, not even an explicit nil
+### GetSessionId
+
+`func (o *DiscoveryFeed) GetSessionId() string`
+
+GetSessionId returns the SessionId field if non-nil, zero value otherwise.
+
+### GetSessionIdOk
+
+`func (o *DiscoveryFeed) GetSessionIdOk() (*string, bool)`
+
+GetSessionIdOk returns a tuple with the SessionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSessionId
+
+`func (o *DiscoveryFeed) SetSessionId(v string)`
+
+SetSessionId sets SessionId field to given value.
+
+### HasSessionId
+
+`func (o *DiscoveryFeed) HasSessionId() bool`
+
+HasSessionId returns a boolean if a field has been set.
+
+### SetSessionIdNil
+
+`func (o *DiscoveryFeed) SetSessionIdNil(b bool)`
+
+ SetSessionIdNil sets the value for SessionId to be an explicit nil
+
+### UnsetSessionId
+`func (o *DiscoveryFeed) UnsetSessionId()`
+
+UnsetSessionId ensures that no value is present for SessionId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

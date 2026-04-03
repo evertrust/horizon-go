@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The dashboard&#39;s name | 
-**Description** | Pointer to **NullableString** | The dashboard&#39;s description | [optional] 
 **Charts** | [**[]Chart**](Chart.md) | The dashboard&#39;s list of charts | 
+**Description** | Pointer to **NullableString** | The dashboard&#39;s description | [optional] 
+**Name** | **string** | The dashboard&#39;s name | 
 **Type** | **string** | The type of objects the dashboard displays | 
 
 ## Methods
 
 ### NewDashboard
 
-`func NewDashboard(name string, charts []Chart, type_ string, ) *Dashboard`
+`func NewDashboard(charts []Chart, name string, type_ string, ) *Dashboard`
 
 NewDashboard instantiates a new Dashboard object
 This constructor will assign default values to properties that have it defined,
@@ -28,24 +28,24 @@ NewDashboardWithDefaults instantiates a new Dashboard object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetCharts
 
-`func (o *Dashboard) GetName() string`
+`func (o *Dashboard) GetCharts() []Chart`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetCharts returns the Charts field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetChartsOk
 
-`func (o *Dashboard) GetNameOk() (*string, bool)`
+`func (o *Dashboard) GetChartsOk() (*[]Chart, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetChartsOk returns a tuple with the Charts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetCharts
 
-`func (o *Dashboard) SetName(v string)`
+`func (o *Dashboard) SetCharts(v []Chart)`
 
-SetName sets Name field to given value.
+SetCharts sets Charts field to given value.
 
 
 ### GetDescription
@@ -83,24 +83,24 @@ HasDescription returns a boolean if a field has been set.
 `func (o *Dashboard) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetCharts
+### GetName
 
-`func (o *Dashboard) GetCharts() []Chart`
+`func (o *Dashboard) GetName() string`
 
-GetCharts returns the Charts field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetChartsOk
+### GetNameOk
 
-`func (o *Dashboard) GetChartsOk() (*[]Chart, bool)`
+`func (o *Dashboard) GetNameOk() (*string, bool)`
 
-GetChartsOk returns a tuple with the Charts field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCharts
+### SetName
 
-`func (o *Dashboard) SetCharts(v []Chart)`
+`func (o *Dashboard) SetName(v string)`
 
-SetCharts sets Charts field to given value.
+SetName sets Name field to given value.
 
 
 ### GetType

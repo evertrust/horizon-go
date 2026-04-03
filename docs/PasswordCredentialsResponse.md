@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
 **Login** | **string** | These credentials login | 
 **Password** | [**SecretString**](SecretString.md) | These credentials password | 
+**Type** | **string** |  | 
 **Id** | **string** | Object internal ID | 
-**Name** | **string** | These credentials identifying name | 
 **Description** | Pointer to **NullableString** | These credentials description | [optional] 
 **Expires** | Pointer to **NullableInt64** | The expiration date of these credentials | [optional] 
-**Triggers** | Pointer to [**CredentialsTriggers**](CredentialsTriggers.md) |  | [optional] 
+**Name** | **string** | These credentials identifying name | 
 **Targets** | Pointer to **[]string** | On which configuration the credentials are usable | [optional] 
+**Triggers** | Pointer to [**CredentialsTriggers**](CredentialsTriggers.md) |  | [optional] 
 
 ## Methods
 
 ### NewPasswordCredentialsResponse
 
-`func NewPasswordCredentialsResponse(type_ string, login string, password SecretString, id string, name string, ) *PasswordCredentialsResponse`
+`func NewPasswordCredentialsResponse(login string, password SecretString, type_ string, id string, name string, ) *PasswordCredentialsResponse`
 
 NewPasswordCredentialsResponse instantiates a new PasswordCredentialsResponse object
 This constructor will assign default values to properties that have it defined,
@@ -32,26 +32,6 @@ will change when the set of required properties is changed
 NewPasswordCredentialsResponseWithDefaults instantiates a new PasswordCredentialsResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetType
-
-`func (o *PasswordCredentialsResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *PasswordCredentialsResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *PasswordCredentialsResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetLogin
 
@@ -93,6 +73,26 @@ and a boolean to check if the value has been set.
 SetPassword sets Password field to given value.
 
 
+### GetType
+
+`func (o *PasswordCredentialsResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *PasswordCredentialsResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *PasswordCredentialsResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 ### GetId
 
 `func (o *PasswordCredentialsResponse) GetId() string`
@@ -111,26 +111,6 @@ and a boolean to check if the value has been set.
 `func (o *PasswordCredentialsResponse) SetId(v string)`
 
 SetId sets Id field to given value.
-
-
-### GetName
-
-`func (o *PasswordCredentialsResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *PasswordCredentialsResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *PasswordCredentialsResponse) SetName(v string)`
-
-SetName sets Name field to given value.
 
 
 ### GetDescription
@@ -203,30 +183,25 @@ HasExpires returns a boolean if a field has been set.
 `func (o *PasswordCredentialsResponse) UnsetExpires()`
 
 UnsetExpires ensures that no value is present for Expires, not even an explicit nil
-### GetTriggers
+### GetName
 
-`func (o *PasswordCredentialsResponse) GetTriggers() CredentialsTriggers`
+`func (o *PasswordCredentialsResponse) GetName() string`
 
-GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTriggersOk
+### GetNameOk
 
-`func (o *PasswordCredentialsResponse) GetTriggersOk() (*CredentialsTriggers, bool)`
+`func (o *PasswordCredentialsResponse) GetNameOk() (*string, bool)`
 
-GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTriggers
+### SetName
 
-`func (o *PasswordCredentialsResponse) SetTriggers(v CredentialsTriggers)`
+`func (o *PasswordCredentialsResponse) SetName(v string)`
 
-SetTriggers sets Triggers field to given value.
+SetName sets Name field to given value.
 
-### HasTriggers
-
-`func (o *PasswordCredentialsResponse) HasTriggers() bool`
-
-HasTriggers returns a boolean if a field has been set.
 
 ### GetTargets
 
@@ -252,6 +227,31 @@ SetTargets sets Targets field to given value.
 `func (o *PasswordCredentialsResponse) HasTargets() bool`
 
 HasTargets returns a boolean if a field has been set.
+
+### GetTriggers
+
+`func (o *PasswordCredentialsResponse) GetTriggers() CredentialsTriggers`
+
+GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+
+### GetTriggersOk
+
+`func (o *PasswordCredentialsResponse) GetTriggersOk() (*CredentialsTriggers, bool)`
+
+GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggers
+
+`func (o *PasswordCredentialsResponse) SetTriggers(v CredentialsTriggers)`
+
+SetTriggers sets Triggers field to given value.
+
+### HasTriggers
+
+`func (o *PasswordCredentialsResponse) HasTriggers() bool`
+
+HasTriggers returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

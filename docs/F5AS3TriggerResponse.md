@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
-**Type** | **string** |  | 
-**Retries** | Pointer to **NullableInt64** |  | [optional] 
 **Connector** | **string** |  | 
+**Name** | **string** |  | 
+**Retries** | Pointer to **NullableInt64** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewF5AS3TriggerResponse
 
-`func NewF5AS3TriggerResponse(id string, name string, type_ string, connector string, ) *F5AS3TriggerResponse`
+`func NewF5AS3TriggerResponse(id string, connector string, name string, type_ string, ) *F5AS3TriggerResponse`
 
 NewF5AS3TriggerResponse instantiates a new F5AS3TriggerResponse object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetConnector
+
+`func (o *F5AS3TriggerResponse) GetConnector() string`
+
+GetConnector returns the Connector field if non-nil, zero value otherwise.
+
+### GetConnectorOk
+
+`func (o *F5AS3TriggerResponse) GetConnectorOk() (*string, bool)`
+
+GetConnectorOk returns a tuple with the Connector field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConnector
+
+`func (o *F5AS3TriggerResponse) SetConnector(v string)`
+
+SetConnector sets Connector field to given value.
+
+
 ### GetName
 
 `func (o *F5AS3TriggerResponse) GetName() string`
@@ -67,26 +87,6 @@ and a boolean to check if the value has been set.
 `func (o *F5AS3TriggerResponse) SetName(v string)`
 
 SetName sets Name field to given value.
-
-
-### GetType
-
-`func (o *F5AS3TriggerResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *F5AS3TriggerResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *F5AS3TriggerResponse) SetType(v string)`
-
-SetType sets Type field to given value.
 
 
 ### GetRetries
@@ -124,24 +124,24 @@ HasRetries returns a boolean if a field has been set.
 `func (o *F5AS3TriggerResponse) UnsetRetries()`
 
 UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetConnector
+### GetType
 
-`func (o *F5AS3TriggerResponse) GetConnector() string`
+`func (o *F5AS3TriggerResponse) GetType() string`
 
-GetConnector returns the Connector field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetConnectorOk
+### GetTypeOk
 
-`func (o *F5AS3TriggerResponse) GetConnectorOk() (*string, bool)`
+`func (o *F5AS3TriggerResponse) GetTypeOk() (*string, bool)`
 
-GetConnectorOk returns a tuple with the Connector field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConnector
+### SetType
 
-`func (o *F5AS3TriggerResponse) SetConnector(v string)`
+`func (o *F5AS3TriggerResponse) SetType(v string)`
 
-SetConnector sets Connector field to given value.
+SetType sets Type field to given value.
 
 
 

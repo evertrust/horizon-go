@@ -5,21 +5,21 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
+**Count** | Pointer to **NullableInt64** |  | [optional] 
 **CreatedAt** | Pointer to **NullableInt64** |  | [optional] 
+**Error** | Pointer to **NullableString** |  | [optional] 
 **PurgeAt** | Pointer to **NullableInt64** |  | [optional] 
 **Status** | [**ArchiveStatus**](ArchiveStatus.md) |  | 
-**Count** | Pointer to **NullableInt64** |  | [optional] 
-**Error** | Pointer to **NullableString** |  | [optional] 
+**Before** | **int64** | Date before which all events will be archived | 
+**Filename** | **string** |  | 
 **Name** | **string** |  | 
 **Type** | **string** |  | 
-**Filename** | **string** |  | 
-**Before** | **int64** | Date before which all events will be archived | 
 
 ## Methods
 
 ### NewEventArchiveResponse
 
-`func NewEventArchiveResponse(id string, status ArchiveStatus, name string, type_ string, filename string, before int64, ) *EventArchiveResponse`
+`func NewEventArchiveResponse(id string, status ArchiveStatus, before int64, filename string, name string, type_ string, ) *EventArchiveResponse`
 
 NewEventArchiveResponse instantiates a new EventArchiveResponse object
 This constructor will assign default values to properties that have it defined,
@@ -54,6 +54,41 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetCount
+
+`func (o *EventArchiveResponse) GetCount() int64`
+
+GetCount returns the Count field if non-nil, zero value otherwise.
+
+### GetCountOk
+
+`func (o *EventArchiveResponse) GetCountOk() (*int64, bool)`
+
+GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCount
+
+`func (o *EventArchiveResponse) SetCount(v int64)`
+
+SetCount sets Count field to given value.
+
+### HasCount
+
+`func (o *EventArchiveResponse) HasCount() bool`
+
+HasCount returns a boolean if a field has been set.
+
+### SetCountNil
+
+`func (o *EventArchiveResponse) SetCountNil(b bool)`
+
+ SetCountNil sets the value for Count to be an explicit nil
+
+### UnsetCount
+`func (o *EventArchiveResponse) UnsetCount()`
+
+UnsetCount ensures that no value is present for Count, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *EventArchiveResponse) GetCreatedAt() int64`
@@ -89,6 +124,41 @@ HasCreatedAt returns a boolean if a field has been set.
 `func (o *EventArchiveResponse) UnsetCreatedAt()`
 
 UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
+### GetError
+
+`func (o *EventArchiveResponse) GetError() string`
+
+GetError returns the Error field if non-nil, zero value otherwise.
+
+### GetErrorOk
+
+`func (o *EventArchiveResponse) GetErrorOk() (*string, bool)`
+
+GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetError
+
+`func (o *EventArchiveResponse) SetError(v string)`
+
+SetError sets Error field to given value.
+
+### HasError
+
+`func (o *EventArchiveResponse) HasError() bool`
+
+HasError returns a boolean if a field has been set.
+
+### SetErrorNil
+
+`func (o *EventArchiveResponse) SetErrorNil(b bool)`
+
+ SetErrorNil sets the value for Error to be an explicit nil
+
+### UnsetError
+`func (o *EventArchiveResponse) UnsetError()`
+
+UnsetError ensures that no value is present for Error, not even an explicit nil
 ### GetPurgeAt
 
 `func (o *EventArchiveResponse) GetPurgeAt() int64`
@@ -144,76 +214,46 @@ and a boolean to check if the value has been set.
 SetStatus sets Status field to given value.
 
 
-### GetCount
+### GetBefore
 
-`func (o *EventArchiveResponse) GetCount() int64`
+`func (o *EventArchiveResponse) GetBefore() int64`
 
-GetCount returns the Count field if non-nil, zero value otherwise.
+GetBefore returns the Before field if non-nil, zero value otherwise.
 
-### GetCountOk
+### GetBeforeOk
 
-`func (o *EventArchiveResponse) GetCountOk() (*int64, bool)`
+`func (o *EventArchiveResponse) GetBeforeOk() (*int64, bool)`
 
-GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+GetBeforeOk returns a tuple with the Before field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCount
+### SetBefore
 
-`func (o *EventArchiveResponse) SetCount(v int64)`
+`func (o *EventArchiveResponse) SetBefore(v int64)`
 
-SetCount sets Count field to given value.
+SetBefore sets Before field to given value.
 
-### HasCount
 
-`func (o *EventArchiveResponse) HasCount() bool`
+### GetFilename
 
-HasCount returns a boolean if a field has been set.
+`func (o *EventArchiveResponse) GetFilename() string`
 
-### SetCountNil
+GetFilename returns the Filename field if non-nil, zero value otherwise.
 
-`func (o *EventArchiveResponse) SetCountNil(b bool)`
+### GetFilenameOk
 
- SetCountNil sets the value for Count to be an explicit nil
+`func (o *EventArchiveResponse) GetFilenameOk() (*string, bool)`
 
-### UnsetCount
-`func (o *EventArchiveResponse) UnsetCount()`
-
-UnsetCount ensures that no value is present for Count, not even an explicit nil
-### GetError
-
-`func (o *EventArchiveResponse) GetError() string`
-
-GetError returns the Error field if non-nil, zero value otherwise.
-
-### GetErrorOk
-
-`func (o *EventArchiveResponse) GetErrorOk() (*string, bool)`
-
-GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+GetFilenameOk returns a tuple with the Filename field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetError
+### SetFilename
 
-`func (o *EventArchiveResponse) SetError(v string)`
+`func (o *EventArchiveResponse) SetFilename(v string)`
 
-SetError sets Error field to given value.
+SetFilename sets Filename field to given value.
 
-### HasError
 
-`func (o *EventArchiveResponse) HasError() bool`
-
-HasError returns a boolean if a field has been set.
-
-### SetErrorNil
-
-`func (o *EventArchiveResponse) SetErrorNil(b bool)`
-
- SetErrorNil sets the value for Error to be an explicit nil
-
-### UnsetError
-`func (o *EventArchiveResponse) UnsetError()`
-
-UnsetError ensures that no value is present for Error, not even an explicit nil
 ### GetName
 
 `func (o *EventArchiveResponse) GetName() string`
@@ -252,46 +292,6 @@ and a boolean to check if the value has been set.
 `func (o *EventArchiveResponse) SetType(v string)`
 
 SetType sets Type field to given value.
-
-
-### GetFilename
-
-`func (o *EventArchiveResponse) GetFilename() string`
-
-GetFilename returns the Filename field if non-nil, zero value otherwise.
-
-### GetFilenameOk
-
-`func (o *EventArchiveResponse) GetFilenameOk() (*string, bool)`
-
-GetFilenameOk returns a tuple with the Filename field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilename
-
-`func (o *EventArchiveResponse) SetFilename(v string)`
-
-SetFilename sets Filename field to given value.
-
-
-### GetBefore
-
-`func (o *EventArchiveResponse) GetBefore() int64`
-
-GetBefore returns the Before field if non-nil, zero value otherwise.
-
-### GetBeforeOk
-
-`func (o *EventArchiveResponse) GetBeforeOk() (*int64, bool)`
-
-GetBeforeOk returns a tuple with the Before field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBefore
-
-`func (o *EventArchiveResponse) SetBefore(v int64)`
-
-SetBefore sets Before field to given value.
 
 
 

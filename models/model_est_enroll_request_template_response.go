@@ -3,7 +3,7 @@
 
    ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
 
-   API version: 2.8.0
+   API version: 2.9.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -23,18 +23,18 @@ var _ utils.MappedNullable = &EstEnrollRequestTemplateResponse{}
 type EstEnrollRequestTemplateResponse struct {
 	// DN whitelist is enabled on this request
 	DnWhitelist utils.NullableBool `json:"dnWhitelist,omitempty"`
-	// List of DN elements that will be used to build the certificate's Distinguished Name
-	Subject []IndexedDNElement `json:"subject,omitempty"`
-	// List of SAN elements that will be used to build the certificate's Subject Alternative Name
-	Sans []ListSANElement `json:"sans,omitempty"`
+	// Information about the certificate's contact email and how to edit it
+	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
 	// Information about the certificate's extensions and how to edit them
 	Extensions []CertificateExtensionElement `json:"extensions,omitempty"`
 	// List of labels used internally to tag and group certificates
 	Labels []RequestLabelElement `json:"labels,omitempty"`
-	// Information about the certificate's contact email and how to edit it
-	ContactEmail NullableCertificateContactEmailElement `json:"contactEmail,omitempty"`
 	// Information about the certificate's owner and how to edit it
 	Owner NullableCertificateOwnerElement `json:"owner,omitempty"`
+	// List of SAN elements that will be used to build the certificate's Subject Alternative Name
+	Sans []ListSANElement `json:"sans,omitempty"`
+	// List of DN elements that will be used to build the certificate's Distinguished Name
+	Subject []IndexedDNElement `json:"subject,omitempty"`
 	// Information about the certificate's team and how to edit it
 	Team                 NullableCertificateTeamElement `json:"team,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -102,70 +102,47 @@ func (o *EstEnrollRequestTemplateResponse) UnsetDnWhitelist() {
 	o.DnWhitelist.Unset()
 }
 
-// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstEnrollRequestTemplateResponse) GetSubject() []IndexedDNElement {
-	if o == nil {
-		var ret []IndexedDNElement
+// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstEnrollRequestTemplateResponse) GetContactEmail() CertificateContactEmailElement {
+	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
+		var ret CertificateContactEmailElement
 		return ret
 	}
-	return o.Subject
+	return *o.ContactEmail.Get()
 }
 
-// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
+// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstEnrollRequestTemplateResponse) GetSubjectOk() ([]IndexedDNElement, bool) {
-	if o == nil || utils.IsNil(o.Subject) {
+func (o *EstEnrollRequestTemplateResponse) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Subject, true
+	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
 }
 
-// HasSubject returns a boolean if a field has been set.
-func (o *EstEnrollRequestTemplateResponse) HasSubject() bool {
-	if o != nil && !utils.IsNil(o.Subject) {
+// HasContactEmail returns a boolean if a field has been set.
+func (o *EstEnrollRequestTemplateResponse) HasContactEmail() bool {
+	if o != nil && o.ContactEmail.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSubject gets a reference to the given []IndexedDNElement and assigns it to the Subject field.
-func (o *EstEnrollRequestTemplateResponse) SetSubject(v []IndexedDNElement) {
-	o.Subject = v
+// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
+func (o *EstEnrollRequestTemplateResponse) SetContactEmail(v CertificateContactEmailElement) {
+	o.ContactEmail.Set(&v)
 }
 
-// GetSans returns the Sans field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstEnrollRequestTemplateResponse) GetSans() []ListSANElement {
-	if o == nil {
-		var ret []ListSANElement
-		return ret
-	}
-	return o.Sans
+// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+func (o *EstEnrollRequestTemplateResponse) SetContactEmailNil() {
+	o.ContactEmail.Set(nil)
 }
 
-// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstEnrollRequestTemplateResponse) GetSansOk() ([]ListSANElement, bool) {
-	if o == nil || utils.IsNil(o.Sans) {
-		return nil, false
-	}
-	return o.Sans, true
-}
-
-// HasSans returns a boolean if a field has been set.
-func (o *EstEnrollRequestTemplateResponse) HasSans() bool {
-	if o != nil && !utils.IsNil(o.Sans) {
-		return true
-	}
-
-	return false
-}
-
-// SetSans gets a reference to the given []ListSANElement and assigns it to the Sans field.
-func (o *EstEnrollRequestTemplateResponse) SetSans(v []ListSANElement) {
-	o.Sans = v
+// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
+func (o *EstEnrollRequestTemplateResponse) UnsetContactEmail() {
+	o.ContactEmail.Unset()
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -234,49 +211,6 @@ func (o *EstEnrollRequestTemplateResponse) SetLabels(v []RequestLabelElement) {
 	o.Labels = v
 }
 
-// GetContactEmail returns the ContactEmail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstEnrollRequestTemplateResponse) GetContactEmail() CertificateContactEmailElement {
-	if o == nil || utils.IsNil(o.ContactEmail.Get()) {
-		var ret CertificateContactEmailElement
-		return ret
-	}
-	return *o.ContactEmail.Get()
-}
-
-// GetContactEmailOk returns a tuple with the ContactEmail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstEnrollRequestTemplateResponse) GetContactEmailOk() (*CertificateContactEmailElement, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ContactEmail.Get(), o.ContactEmail.IsSet()
-}
-
-// HasContactEmail returns a boolean if a field has been set.
-func (o *EstEnrollRequestTemplateResponse) HasContactEmail() bool {
-	if o != nil && o.ContactEmail.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetContactEmail gets a reference to the given NullableCertificateContactEmailElement and assigns it to the ContactEmail field.
-func (o *EstEnrollRequestTemplateResponse) SetContactEmail(v CertificateContactEmailElement) {
-	o.ContactEmail.Set(&v)
-}
-
-// SetContactEmailNil sets the value for ContactEmail to be an explicit nil
-func (o *EstEnrollRequestTemplateResponse) SetContactEmailNil() {
-	o.ContactEmail.Set(nil)
-}
-
-// UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
-func (o *EstEnrollRequestTemplateResponse) UnsetContactEmail() {
-	o.ContactEmail.Unset()
-}
-
 // GetOwner returns the Owner field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EstEnrollRequestTemplateResponse) GetOwner() CertificateOwnerElement {
 	if o == nil || utils.IsNil(o.Owner.Get()) {
@@ -318,6 +252,72 @@ func (o *EstEnrollRequestTemplateResponse) SetOwnerNil() {
 // UnsetOwner ensures that no value is present for Owner, not even an explicit nil
 func (o *EstEnrollRequestTemplateResponse) UnsetOwner() {
 	o.Owner.Unset()
+}
+
+// GetSans returns the Sans field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstEnrollRequestTemplateResponse) GetSans() []ListSANElement {
+	if o == nil {
+		var ret []ListSANElement
+		return ret
+	}
+	return o.Sans
+}
+
+// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstEnrollRequestTemplateResponse) GetSansOk() ([]ListSANElement, bool) {
+	if o == nil || utils.IsNil(o.Sans) {
+		return nil, false
+	}
+	return o.Sans, true
+}
+
+// HasSans returns a boolean if a field has been set.
+func (o *EstEnrollRequestTemplateResponse) HasSans() bool {
+	if o != nil && !utils.IsNil(o.Sans) {
+		return true
+	}
+
+	return false
+}
+
+// SetSans gets a reference to the given []ListSANElement and assigns it to the Sans field.
+func (o *EstEnrollRequestTemplateResponse) SetSans(v []ListSANElement) {
+	o.Sans = v
+}
+
+// GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EstEnrollRequestTemplateResponse) GetSubject() []IndexedDNElement {
+	if o == nil {
+		var ret []IndexedDNElement
+		return ret
+	}
+	return o.Subject
+}
+
+// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EstEnrollRequestTemplateResponse) GetSubjectOk() ([]IndexedDNElement, bool) {
+	if o == nil || utils.IsNil(o.Subject) {
+		return nil, false
+	}
+	return o.Subject, true
+}
+
+// HasSubject returns a boolean if a field has been set.
+func (o *EstEnrollRequestTemplateResponse) HasSubject() bool {
+	if o != nil && !utils.IsNil(o.Subject) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubject gets a reference to the given []IndexedDNElement and assigns it to the Subject field.
+func (o *EstEnrollRequestTemplateResponse) SetSubject(v []IndexedDNElement) {
+	o.Subject = v
 }
 
 // GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -376,11 +376,8 @@ func (o EstEnrollRequestTemplateResponse) ToMap() (map[string]interface{}, error
 	if o.DnWhitelist.IsSet() {
 		toSerialize["dnWhitelist"] = o.DnWhitelist.Get()
 	}
-	if o.Subject != nil {
-		toSerialize["subject"] = o.Subject
-	}
-	if o.Sans != nil {
-		toSerialize["sans"] = o.Sans
+	if o.ContactEmail.IsSet() {
+		toSerialize["contactEmail"] = o.ContactEmail.Get()
 	}
 	if o.Extensions != nil {
 		toSerialize["extensions"] = o.Extensions
@@ -388,11 +385,14 @@ func (o EstEnrollRequestTemplateResponse) ToMap() (map[string]interface{}, error
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
-	if o.ContactEmail.IsSet() {
-		toSerialize["contactEmail"] = o.ContactEmail.Get()
-	}
 	if o.Owner.IsSet() {
 		toSerialize["owner"] = o.Owner.Get()
+	}
+	if o.Sans != nil {
+		toSerialize["sans"] = o.Sans
+	}
+	if o.Subject != nil {
+		toSerialize["subject"] = o.Subject
 	}
 	if o.Team.IsSet() {
 		toSerialize["team"] = o.Team.Get()
@@ -420,12 +420,12 @@ func (o *EstEnrollRequestTemplateResponse) UnmarshalJSON(data []byte) (err error
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "dnWhitelist")
-		delete(additionalProperties, "subject")
-		delete(additionalProperties, "sans")
+		delete(additionalProperties, "contactEmail")
 		delete(additionalProperties, "extensions")
 		delete(additionalProperties, "labels")
-		delete(additionalProperties, "contactEmail")
 		delete(additionalProperties, "owner")
+		delete(additionalProperties, "sans")
+		delete(additionalProperties, "subject")
 		delete(additionalProperties, "team")
 		o.AdditionalProperties = additionalProperties
 	}

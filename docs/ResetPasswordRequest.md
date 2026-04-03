@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Identifier** | **string** | Local identity identifier | 
-**Uuid** | **string** | The reset UUID received by email by the user after a password reset request | 
 **Password** | **string** | The new password to set. It must match the password policy if any has been defined | 
+**Uuid** | **string** | The reset UUID received by email by the user after a password reset request | 
 
 ## Methods
 
 ### NewResetPasswordRequest
 
-`func NewResetPasswordRequest(identifier string, uuid string, password string, ) *ResetPasswordRequest`
+`func NewResetPasswordRequest(identifier string, password string, uuid string, ) *ResetPasswordRequest`
 
 NewResetPasswordRequest instantiates a new ResetPasswordRequest object
 This constructor will assign default values to properties that have it defined,
@@ -47,26 +47,6 @@ and a boolean to check if the value has been set.
 SetIdentifier sets Identifier field to given value.
 
 
-### GetUuid
-
-`func (o *ResetPasswordRequest) GetUuid() string`
-
-GetUuid returns the Uuid field if non-nil, zero value otherwise.
-
-### GetUuidOk
-
-`func (o *ResetPasswordRequest) GetUuidOk() (*string, bool)`
-
-GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUuid
-
-`func (o *ResetPasswordRequest) SetUuid(v string)`
-
-SetUuid sets Uuid field to given value.
-
-
 ### GetPassword
 
 `func (o *ResetPasswordRequest) GetPassword() string`
@@ -85,6 +65,26 @@ and a boolean to check if the value has been set.
 `func (o *ResetPasswordRequest) SetPassword(v string)`
 
 SetPassword sets Password field to given value.
+
+
+### GetUuid
+
+`func (o *ResetPasswordRequest) GetUuid() string`
+
+GetUuid returns the Uuid field if non-nil, zero value otherwise.
+
+### GetUuidOk
+
+`func (o *ResetPasswordRequest) GetUuidOk() (*string, bool)`
+
+GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUuid
+
+`func (o *ResetPasswordRequest) SetUuid(v string)`
+
+SetUuid sets Uuid field to given value.
 
 
 

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Module** | Pointer to **string** | The request module | [optional] 
-**Workflow** | Pointer to **string** | The workflow for which to return the template. | [optional] 
 **Profile** | Pointer to **string** | The profile for which to return the template. | [optional] 
+**Workflow** | Pointer to **string** | The workflow for which to return the template. | [optional] 
 
 ## Methods
 
@@ -52,31 +52,6 @@ SetModule sets Module field to given value.
 
 HasModule returns a boolean if a field has been set.
 
-### GetWorkflow
-
-`func (o *ChallengeBaseRequestOnTemplate) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *ChallengeBaseRequestOnTemplate) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *ChallengeBaseRequestOnTemplate) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-### HasWorkflow
-
-`func (o *ChallengeBaseRequestOnTemplate) HasWorkflow() bool`
-
-HasWorkflow returns a boolean if a field has been set.
-
 ### GetProfile
 
 `func (o *ChallengeBaseRequestOnTemplate) GetProfile() string`
@@ -101,6 +76,31 @@ SetProfile sets Profile field to given value.
 `func (o *ChallengeBaseRequestOnTemplate) HasProfile() bool`
 
 HasProfile returns a boolean if a field has been set.
+
+### GetWorkflow
+
+`func (o *ChallengeBaseRequestOnTemplate) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *ChallengeBaseRequestOnTemplate) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *ChallengeBaseRequestOnTemplate) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+### HasWorkflow
+
+`func (o *ChallengeBaseRequestOnTemplate) HasWorkflow() bool`
+
+HasWorkflow returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

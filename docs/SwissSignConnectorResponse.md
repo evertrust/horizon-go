@@ -5,21 +5,21 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
-**Proxy** | Pointer to **NullableString** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Queue** | Pointer to **NullableString** |  | [optional] 
-**Type** | **string** |  | 
-**MpkiCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI.  It should contains the mpkiId as the login and the apiKey as password.  | 
 **EndPoint** | **string** | Swiss base endpoint | 
+**MpkiCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI.  It should contains the mpkiId as the login and the apiKey as password.  | 
+**Name** | **string** |  | 
 **ProductUuid** | **string** | The product Uuid that need to be retrieved from the swiss sign api&#39;s (&lt;endpoints&gt;/v2/clients) | 
+**Proxy** | Pointer to **NullableString** |  | [optional] 
+**Queue** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewSwissSignConnectorResponse
 
-`func NewSwissSignConnectorResponse(id string, name string, type_ string, mpkiCredentials string, endPoint string, productUuid string, ) *SwissSignConnectorResponse`
+`func NewSwissSignConnectorResponse(id string, endPoint string, mpkiCredentials string, name string, productUuid string, type_ string, ) *SwissSignConnectorResponse`
 
 NewSwissSignConnectorResponse instantiates a new SwissSignConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -54,6 +54,46 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetEndPoint
+
+`func (o *SwissSignConnectorResponse) GetEndPoint() string`
+
+GetEndPoint returns the EndPoint field if non-nil, zero value otherwise.
+
+### GetEndPointOk
+
+`func (o *SwissSignConnectorResponse) GetEndPointOk() (*string, bool)`
+
+GetEndPointOk returns a tuple with the EndPoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndPoint
+
+`func (o *SwissSignConnectorResponse) SetEndPoint(v string)`
+
+SetEndPoint sets EndPoint field to given value.
+
+
+### GetMpkiCredentials
+
+`func (o *SwissSignConnectorResponse) GetMpkiCredentials() string`
+
+GetMpkiCredentials returns the MpkiCredentials field if non-nil, zero value otherwise.
+
+### GetMpkiCredentialsOk
+
+`func (o *SwissSignConnectorResponse) GetMpkiCredentialsOk() (*string, bool)`
+
+GetMpkiCredentialsOk returns a tuple with the MpkiCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMpkiCredentials
+
+`func (o *SwissSignConnectorResponse) SetMpkiCredentials(v string)`
+
+SetMpkiCredentials sets MpkiCredentials field to given value.
+
+
 ### GetName
 
 `func (o *SwissSignConnectorResponse) GetName() string`
@@ -72,6 +112,26 @@ and a boolean to check if the value has been set.
 `func (o *SwissSignConnectorResponse) SetName(v string)`
 
 SetName sets Name field to given value.
+
+
+### GetProductUuid
+
+`func (o *SwissSignConnectorResponse) GetProductUuid() string`
+
+GetProductUuid returns the ProductUuid field if non-nil, zero value otherwise.
+
+### GetProductUuidOk
+
+`func (o *SwissSignConnectorResponse) GetProductUuidOk() (*string, bool)`
+
+GetProductUuidOk returns a tuple with the ProductUuid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProductUuid
+
+`func (o *SwissSignConnectorResponse) SetProductUuid(v string)`
+
+SetProductUuid sets ProductUuid field to given value.
 
 
 ### GetProxy
@@ -109,41 +169,6 @@ HasProxy returns a boolean if a field has been set.
 `func (o *SwissSignConnectorResponse) UnsetProxy()`
 
 UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetTimeout
-
-`func (o *SwissSignConnectorResponse) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *SwissSignConnectorResponse) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *SwissSignConnectorResponse) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *SwissSignConnectorResponse) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *SwissSignConnectorResponse) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *SwissSignConnectorResponse) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetQueue
 
 `func (o *SwissSignConnectorResponse) GetQueue() string`
@@ -179,86 +204,6 @@ HasQueue returns a boolean if a field has been set.
 `func (o *SwissSignConnectorResponse) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
-### GetType
-
-`func (o *SwissSignConnectorResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *SwissSignConnectorResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *SwissSignConnectorResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetMpkiCredentials
-
-`func (o *SwissSignConnectorResponse) GetMpkiCredentials() string`
-
-GetMpkiCredentials returns the MpkiCredentials field if non-nil, zero value otherwise.
-
-### GetMpkiCredentialsOk
-
-`func (o *SwissSignConnectorResponse) GetMpkiCredentialsOk() (*string, bool)`
-
-GetMpkiCredentialsOk returns a tuple with the MpkiCredentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMpkiCredentials
-
-`func (o *SwissSignConnectorResponse) SetMpkiCredentials(v string)`
-
-SetMpkiCredentials sets MpkiCredentials field to given value.
-
-
-### GetEndPoint
-
-`func (o *SwissSignConnectorResponse) GetEndPoint() string`
-
-GetEndPoint returns the EndPoint field if non-nil, zero value otherwise.
-
-### GetEndPointOk
-
-`func (o *SwissSignConnectorResponse) GetEndPointOk() (*string, bool)`
-
-GetEndPointOk returns a tuple with the EndPoint field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEndPoint
-
-`func (o *SwissSignConnectorResponse) SetEndPoint(v string)`
-
-SetEndPoint sets EndPoint field to given value.
-
-
-### GetProductUuid
-
-`func (o *SwissSignConnectorResponse) GetProductUuid() string`
-
-GetProductUuid returns the ProductUuid field if non-nil, zero value otherwise.
-
-### GetProductUuidOk
-
-`func (o *SwissSignConnectorResponse) GetProductUuidOk() (*string, bool)`
-
-GetProductUuidOk returns a tuple with the ProductUuid field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProductUuid
-
-`func (o *SwissSignConnectorResponse) SetProductUuid(v string)`
-
-SetProductUuid sets ProductUuid field to given value.
-
-
 ### GetStatus
 
 `func (o *SwissSignConnectorResponse) GetStatus() PKIConnectorStatus`
@@ -294,6 +239,61 @@ HasStatus returns a boolean if a field has been set.
 `func (o *SwissSignConnectorResponse) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
+### GetTimeout
+
+`func (o *SwissSignConnectorResponse) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *SwissSignConnectorResponse) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *SwissSignConnectorResponse) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *SwissSignConnectorResponse) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *SwissSignConnectorResponse) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *SwissSignConnectorResponse) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *SwissSignConnectorResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *SwissSignConnectorResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *SwissSignConnectorResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The ID of the request | 
-**Module** | Pointer to [**Module**](Module.md) |  | [optional] 
-**Workflow** | Pointer to [**Workflow**](Workflow.md) |  | [optional] 
-**Status** | Pointer to [**RequestStatus**](RequestStatus.md) |  | [optional] 
-**Profile** | Pointer to **string** | Any profile configured for a protocol in Horizon | [optional] 
-**RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
-**CertificateId** | Pointer to **NullableString** | The id of the certificate in the request | [optional] 
 **Certificate** | Pointer to [**NullableCertificate**](Certificate.md) | The certificate associated with the request | [optional] 
+**CertificateId** | Pointer to **NullableString** | The id of the certificate in the request | [optional] 
 **Dn** | Pointer to **string** | Associated certificate&#39;s Distinguished Name | [optional] 
 **HolderId** | Pointer to **string** | The computed holderID for this request. This is set by the system based on DN and SANs | [optional] 
+**Module** | Pointer to [**Module**](Module.md) |  | [optional] 
 **Permissions** | [**RequestPermissions**](RequestPermissions.md) | The permissions of the principal on this request. | 
+**Profile** | Pointer to **string** | Any profile configured for a protocol in Horizon | [optional] 
+**RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
+**Status** | Pointer to [**RequestStatus**](RequestStatus.md) |  | [optional] 
+**Workflow** | Pointer to [**Workflow**](Workflow.md) |  | [optional] 
 
 ## Methods
 
@@ -55,6 +55,126 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetCertificate
+
+`func (o *RequestSearchResult) GetCertificate() Certificate`
+
+GetCertificate returns the Certificate field if non-nil, zero value otherwise.
+
+### GetCertificateOk
+
+`func (o *RequestSearchResult) GetCertificateOk() (*Certificate, bool)`
+
+GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificate
+
+`func (o *RequestSearchResult) SetCertificate(v Certificate)`
+
+SetCertificate sets Certificate field to given value.
+
+### HasCertificate
+
+`func (o *RequestSearchResult) HasCertificate() bool`
+
+HasCertificate returns a boolean if a field has been set.
+
+### SetCertificateNil
+
+`func (o *RequestSearchResult) SetCertificateNil(b bool)`
+
+ SetCertificateNil sets the value for Certificate to be an explicit nil
+
+### UnsetCertificate
+`func (o *RequestSearchResult) UnsetCertificate()`
+
+UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
+### GetCertificateId
+
+`func (o *RequestSearchResult) GetCertificateId() string`
+
+GetCertificateId returns the CertificateId field if non-nil, zero value otherwise.
+
+### GetCertificateIdOk
+
+`func (o *RequestSearchResult) GetCertificateIdOk() (*string, bool)`
+
+GetCertificateIdOk returns a tuple with the CertificateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateId
+
+`func (o *RequestSearchResult) SetCertificateId(v string)`
+
+SetCertificateId sets CertificateId field to given value.
+
+### HasCertificateId
+
+`func (o *RequestSearchResult) HasCertificateId() bool`
+
+HasCertificateId returns a boolean if a field has been set.
+
+### SetCertificateIdNil
+
+`func (o *RequestSearchResult) SetCertificateIdNil(b bool)`
+
+ SetCertificateIdNil sets the value for CertificateId to be an explicit nil
+
+### UnsetCertificateId
+`func (o *RequestSearchResult) UnsetCertificateId()`
+
+UnsetCertificateId ensures that no value is present for CertificateId, not even an explicit nil
+### GetDn
+
+`func (o *RequestSearchResult) GetDn() string`
+
+GetDn returns the Dn field if non-nil, zero value otherwise.
+
+### GetDnOk
+
+`func (o *RequestSearchResult) GetDnOk() (*string, bool)`
+
+GetDnOk returns a tuple with the Dn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDn
+
+`func (o *RequestSearchResult) SetDn(v string)`
+
+SetDn sets Dn field to given value.
+
+### HasDn
+
+`func (o *RequestSearchResult) HasDn() bool`
+
+HasDn returns a boolean if a field has been set.
+
+### GetHolderId
+
+`func (o *RequestSearchResult) GetHolderId() string`
+
+GetHolderId returns the HolderId field if non-nil, zero value otherwise.
+
+### GetHolderIdOk
+
+`func (o *RequestSearchResult) GetHolderIdOk() (*string, bool)`
+
+GetHolderIdOk returns a tuple with the HolderId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHolderId
+
+`func (o *RequestSearchResult) SetHolderId(v string)`
+
+SetHolderId sets HolderId field to given value.
+
+### HasHolderId
+
+`func (o *RequestSearchResult) HasHolderId() bool`
+
+HasHolderId returns a boolean if a field has been set.
+
 ### GetModule
 
 `func (o *RequestSearchResult) GetModule() Module`
@@ -80,55 +200,25 @@ SetModule sets Module field to given value.
 
 HasModule returns a boolean if a field has been set.
 
-### GetWorkflow
+### GetPermissions
 
-`func (o *RequestSearchResult) GetWorkflow() Workflow`
+`func (o *RequestSearchResult) GetPermissions() RequestPermissions`
 
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+GetPermissions returns the Permissions field if non-nil, zero value otherwise.
 
-### GetWorkflowOk
+### GetPermissionsOk
 
-`func (o *RequestSearchResult) GetWorkflowOk() (*Workflow, bool)`
+`func (o *RequestSearchResult) GetPermissionsOk() (*RequestPermissions, bool)`
 
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetWorkflow
+### SetPermissions
 
-`func (o *RequestSearchResult) SetWorkflow(v Workflow)`
+`func (o *RequestSearchResult) SetPermissions(v RequestPermissions)`
 
-SetWorkflow sets Workflow field to given value.
+SetPermissions sets Permissions field to given value.
 
-### HasWorkflow
-
-`func (o *RequestSearchResult) HasWorkflow() bool`
-
-HasWorkflow returns a boolean if a field has been set.
-
-### GetStatus
-
-`func (o *RequestSearchResult) GetStatus() RequestStatus`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *RequestSearchResult) GetStatusOk() (*RequestStatus, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *RequestSearchResult) SetStatus(v RequestStatus)`
-
-SetStatus sets Status field to given value.
-
-### HasStatus
-
-`func (o *RequestSearchResult) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### GetProfile
 
@@ -190,145 +280,55 @@ HasRequesterComment returns a boolean if a field has been set.
 `func (o *RequestSearchResult) UnsetRequesterComment()`
 
 UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
-### GetCertificateId
+### GetStatus
 
-`func (o *RequestSearchResult) GetCertificateId() string`
+`func (o *RequestSearchResult) GetStatus() RequestStatus`
 
-GetCertificateId returns the CertificateId field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetCertificateIdOk
+### GetStatusOk
 
-`func (o *RequestSearchResult) GetCertificateIdOk() (*string, bool)`
+`func (o *RequestSearchResult) GetStatusOk() (*RequestStatus, bool)`
 
-GetCertificateIdOk returns a tuple with the CertificateId field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCertificateId
+### SetStatus
 
-`func (o *RequestSearchResult) SetCertificateId(v string)`
+`func (o *RequestSearchResult) SetStatus(v RequestStatus)`
 
-SetCertificateId sets CertificateId field to given value.
+SetStatus sets Status field to given value.
 
-### HasCertificateId
+### HasStatus
 
-`func (o *RequestSearchResult) HasCertificateId() bool`
+`func (o *RequestSearchResult) HasStatus() bool`
 
-HasCertificateId returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
-### SetCertificateIdNil
+### GetWorkflow
 
-`func (o *RequestSearchResult) SetCertificateIdNil(b bool)`
+`func (o *RequestSearchResult) GetWorkflow() Workflow`
 
- SetCertificateIdNil sets the value for CertificateId to be an explicit nil
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
 
-### UnsetCertificateId
-`func (o *RequestSearchResult) UnsetCertificateId()`
+### GetWorkflowOk
 
-UnsetCertificateId ensures that no value is present for CertificateId, not even an explicit nil
-### GetCertificate
+`func (o *RequestSearchResult) GetWorkflowOk() (*Workflow, bool)`
 
-`func (o *RequestSearchResult) GetCertificate() Certificate`
-
-GetCertificate returns the Certificate field if non-nil, zero value otherwise.
-
-### GetCertificateOk
-
-`func (o *RequestSearchResult) GetCertificateOk() (*Certificate, bool)`
-
-GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCertificate
+### SetWorkflow
 
-`func (o *RequestSearchResult) SetCertificate(v Certificate)`
+`func (o *RequestSearchResult) SetWorkflow(v Workflow)`
 
-SetCertificate sets Certificate field to given value.
+SetWorkflow sets Workflow field to given value.
 
-### HasCertificate
+### HasWorkflow
 
-`func (o *RequestSearchResult) HasCertificate() bool`
+`func (o *RequestSearchResult) HasWorkflow() bool`
 
-HasCertificate returns a boolean if a field has been set.
-
-### SetCertificateNil
-
-`func (o *RequestSearchResult) SetCertificateNil(b bool)`
-
- SetCertificateNil sets the value for Certificate to be an explicit nil
-
-### UnsetCertificate
-`func (o *RequestSearchResult) UnsetCertificate()`
-
-UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
-### GetDn
-
-`func (o *RequestSearchResult) GetDn() string`
-
-GetDn returns the Dn field if non-nil, zero value otherwise.
-
-### GetDnOk
-
-`func (o *RequestSearchResult) GetDnOk() (*string, bool)`
-
-GetDnOk returns a tuple with the Dn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDn
-
-`func (o *RequestSearchResult) SetDn(v string)`
-
-SetDn sets Dn field to given value.
-
-### HasDn
-
-`func (o *RequestSearchResult) HasDn() bool`
-
-HasDn returns a boolean if a field has been set.
-
-### GetHolderId
-
-`func (o *RequestSearchResult) GetHolderId() string`
-
-GetHolderId returns the HolderId field if non-nil, zero value otherwise.
-
-### GetHolderIdOk
-
-`func (o *RequestSearchResult) GetHolderIdOk() (*string, bool)`
-
-GetHolderIdOk returns a tuple with the HolderId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHolderId
-
-`func (o *RequestSearchResult) SetHolderId(v string)`
-
-SetHolderId sets HolderId field to given value.
-
-### HasHolderId
-
-`func (o *RequestSearchResult) HasHolderId() bool`
-
-HasHolderId returns a boolean if a field has been set.
-
-### GetPermissions
-
-`func (o *RequestSearchResult) GetPermissions() RequestPermissions`
-
-GetPermissions returns the Permissions field if non-nil, zero value otherwise.
-
-### GetPermissionsOk
-
-`func (o *RequestSearchResult) GetPermissionsOk() (*RequestPermissions, bool)`
-
-GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPermissions
-
-`func (o *RequestSearchResult) SetPermissions(v RequestPermissions)`
-
-SetPermissions sets Permissions field to given value.
-
+HasWorkflow returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

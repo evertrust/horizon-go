@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **CertificateId** | Pointer to **NullableString** | Used to pre-fill the template field with the certificate values. | [optional] 
 **CertificatePem** | Pointer to **NullableString** | Used to pre-fill the template field with the certificate values. | [optional] 
 **Module** | Pointer to **string** | The request module | [optional] 
-**Workflow** | Pointer to **string** | The workflow for which to return the template. | [optional] 
 **Profile** | Pointer to **string** | The profile for which to return the template. | [optional] 
+**Workflow** | Pointer to **string** | The workflow for which to return the template. | [optional] 
 
 ## Methods
 
@@ -124,31 +124,6 @@ SetModule sets Module field to given value.
 
 HasModule returns a boolean if a field has been set.
 
-### GetWorkflow
-
-`func (o *WebRABaseRequestOnTemplate) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRABaseRequestOnTemplate) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRABaseRequestOnTemplate) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-### HasWorkflow
-
-`func (o *WebRABaseRequestOnTemplate) HasWorkflow() bool`
-
-HasWorkflow returns a boolean if a field has been set.
-
 ### GetProfile
 
 `func (o *WebRABaseRequestOnTemplate) GetProfile() string`
@@ -173,6 +148,31 @@ SetProfile sets Profile field to given value.
 `func (o *WebRABaseRequestOnTemplate) HasProfile() bool`
 
 HasProfile returns a boolean if a field has been set.
+
+### GetWorkflow
+
+`func (o *WebRABaseRequestOnTemplate) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRABaseRequestOnTemplate) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRABaseRequestOnTemplate) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+### HasWorkflow
+
+`func (o *WebRABaseRequestOnTemplate) HasWorkflow() bool`
+
+HasWorkflow returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

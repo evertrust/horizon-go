@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CustomDashboards** | Pointer to [**[]Dashboard**](Dashboard.md) | The custom dashboards of the principal | [optional] 
 **Identity** | [**Identity**](Identity.md) |  | 
 **Permissions** | Pointer to [**[]Permission**](Permission.md) | The permissions of the principal | [optional] 
-**Roles** | Pointer to **[]string** | The roles of the principal | [optional] 
-**Teams** | Pointer to **[]string** | The teams of the principal | [optional] 
-**TeamInfos** | Pointer to [**[]PrincipalResponseTeamInfosInner**](PrincipalResponseTeamInfosInner.md) |  | [optional] 
 **Preferences** | Pointer to [**NullablePrincipalInfoPreferences**](PrincipalInfoPreferences.md) | The UI preferences of the principal | [optional] 
-**CustomDashboards** | Pointer to [**[]Dashboard**](Dashboard.md) | The custom dashboards of the principal | [optional] 
+**Roles** | Pointer to **[]string** | The roles of the principal | [optional] 
+**TeamInfos** | Pointer to [**[]PrincipalResponseTeamInfosInner**](PrincipalResponseTeamInfosInner.md) |  | [optional] 
+**Teams** | Pointer to **[]string** | The teams of the principal | [optional] 
 
 ## Methods
 
@@ -31,6 +31,41 @@ NewPrincipalResponseWithDefaults instantiates a new PrincipalResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetCustomDashboards
+
+`func (o *PrincipalResponse) GetCustomDashboards() []Dashboard`
+
+GetCustomDashboards returns the CustomDashboards field if non-nil, zero value otherwise.
+
+### GetCustomDashboardsOk
+
+`func (o *PrincipalResponse) GetCustomDashboardsOk() (*[]Dashboard, bool)`
+
+GetCustomDashboardsOk returns a tuple with the CustomDashboards field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomDashboards
+
+`func (o *PrincipalResponse) SetCustomDashboards(v []Dashboard)`
+
+SetCustomDashboards sets CustomDashboards field to given value.
+
+### HasCustomDashboards
+
+`func (o *PrincipalResponse) HasCustomDashboards() bool`
+
+HasCustomDashboards returns a boolean if a field has been set.
+
+### SetCustomDashboardsNil
+
+`func (o *PrincipalResponse) SetCustomDashboardsNil(b bool)`
+
+ SetCustomDashboardsNil sets the value for CustomDashboards to be an explicit nil
+
+### UnsetCustomDashboards
+`func (o *PrincipalResponse) UnsetCustomDashboards()`
+
+UnsetCustomDashboards ensures that no value is present for CustomDashboards, not even an explicit nil
 ### GetIdentity
 
 `func (o *PrincipalResponse) GetIdentity() Identity`
@@ -86,111 +121,6 @@ HasPermissions returns a boolean if a field has been set.
 `func (o *PrincipalResponse) UnsetPermissions()`
 
 UnsetPermissions ensures that no value is present for Permissions, not even an explicit nil
-### GetRoles
-
-`func (o *PrincipalResponse) GetRoles() []string`
-
-GetRoles returns the Roles field if non-nil, zero value otherwise.
-
-### GetRolesOk
-
-`func (o *PrincipalResponse) GetRolesOk() (*[]string, bool)`
-
-GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRoles
-
-`func (o *PrincipalResponse) SetRoles(v []string)`
-
-SetRoles sets Roles field to given value.
-
-### HasRoles
-
-`func (o *PrincipalResponse) HasRoles() bool`
-
-HasRoles returns a boolean if a field has been set.
-
-### SetRolesNil
-
-`func (o *PrincipalResponse) SetRolesNil(b bool)`
-
- SetRolesNil sets the value for Roles to be an explicit nil
-
-### UnsetRoles
-`func (o *PrincipalResponse) UnsetRoles()`
-
-UnsetRoles ensures that no value is present for Roles, not even an explicit nil
-### GetTeams
-
-`func (o *PrincipalResponse) GetTeams() []string`
-
-GetTeams returns the Teams field if non-nil, zero value otherwise.
-
-### GetTeamsOk
-
-`func (o *PrincipalResponse) GetTeamsOk() (*[]string, bool)`
-
-GetTeamsOk returns a tuple with the Teams field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTeams
-
-`func (o *PrincipalResponse) SetTeams(v []string)`
-
-SetTeams sets Teams field to given value.
-
-### HasTeams
-
-`func (o *PrincipalResponse) HasTeams() bool`
-
-HasTeams returns a boolean if a field has been set.
-
-### SetTeamsNil
-
-`func (o *PrincipalResponse) SetTeamsNil(b bool)`
-
- SetTeamsNil sets the value for Teams to be an explicit nil
-
-### UnsetTeams
-`func (o *PrincipalResponse) UnsetTeams()`
-
-UnsetTeams ensures that no value is present for Teams, not even an explicit nil
-### GetTeamInfos
-
-`func (o *PrincipalResponse) GetTeamInfos() []PrincipalResponseTeamInfosInner`
-
-GetTeamInfos returns the TeamInfos field if non-nil, zero value otherwise.
-
-### GetTeamInfosOk
-
-`func (o *PrincipalResponse) GetTeamInfosOk() (*[]PrincipalResponseTeamInfosInner, bool)`
-
-GetTeamInfosOk returns a tuple with the TeamInfos field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTeamInfos
-
-`func (o *PrincipalResponse) SetTeamInfos(v []PrincipalResponseTeamInfosInner)`
-
-SetTeamInfos sets TeamInfos field to given value.
-
-### HasTeamInfos
-
-`func (o *PrincipalResponse) HasTeamInfos() bool`
-
-HasTeamInfos returns a boolean if a field has been set.
-
-### SetTeamInfosNil
-
-`func (o *PrincipalResponse) SetTeamInfosNil(b bool)`
-
- SetTeamInfosNil sets the value for TeamInfos to be an explicit nil
-
-### UnsetTeamInfos
-`func (o *PrincipalResponse) UnsetTeamInfos()`
-
-UnsetTeamInfos ensures that no value is present for TeamInfos, not even an explicit nil
 ### GetPreferences
 
 `func (o *PrincipalResponse) GetPreferences() PrincipalInfoPreferences`
@@ -226,41 +156,111 @@ HasPreferences returns a boolean if a field has been set.
 `func (o *PrincipalResponse) UnsetPreferences()`
 
 UnsetPreferences ensures that no value is present for Preferences, not even an explicit nil
-### GetCustomDashboards
+### GetRoles
 
-`func (o *PrincipalResponse) GetCustomDashboards() []Dashboard`
+`func (o *PrincipalResponse) GetRoles() []string`
 
-GetCustomDashboards returns the CustomDashboards field if non-nil, zero value otherwise.
+GetRoles returns the Roles field if non-nil, zero value otherwise.
 
-### GetCustomDashboardsOk
+### GetRolesOk
 
-`func (o *PrincipalResponse) GetCustomDashboardsOk() (*[]Dashboard, bool)`
+`func (o *PrincipalResponse) GetRolesOk() (*[]string, bool)`
 
-GetCustomDashboardsOk returns a tuple with the CustomDashboards field if it's non-nil, zero value otherwise
+GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCustomDashboards
+### SetRoles
 
-`func (o *PrincipalResponse) SetCustomDashboards(v []Dashboard)`
+`func (o *PrincipalResponse) SetRoles(v []string)`
 
-SetCustomDashboards sets CustomDashboards field to given value.
+SetRoles sets Roles field to given value.
 
-### HasCustomDashboards
+### HasRoles
 
-`func (o *PrincipalResponse) HasCustomDashboards() bool`
+`func (o *PrincipalResponse) HasRoles() bool`
 
-HasCustomDashboards returns a boolean if a field has been set.
+HasRoles returns a boolean if a field has been set.
 
-### SetCustomDashboardsNil
+### SetRolesNil
 
-`func (o *PrincipalResponse) SetCustomDashboardsNil(b bool)`
+`func (o *PrincipalResponse) SetRolesNil(b bool)`
 
- SetCustomDashboardsNil sets the value for CustomDashboards to be an explicit nil
+ SetRolesNil sets the value for Roles to be an explicit nil
 
-### UnsetCustomDashboards
-`func (o *PrincipalResponse) UnsetCustomDashboards()`
+### UnsetRoles
+`func (o *PrincipalResponse) UnsetRoles()`
 
-UnsetCustomDashboards ensures that no value is present for CustomDashboards, not even an explicit nil
+UnsetRoles ensures that no value is present for Roles, not even an explicit nil
+### GetTeamInfos
+
+`func (o *PrincipalResponse) GetTeamInfos() []PrincipalResponseTeamInfosInner`
+
+GetTeamInfos returns the TeamInfos field if non-nil, zero value otherwise.
+
+### GetTeamInfosOk
+
+`func (o *PrincipalResponse) GetTeamInfosOk() (*[]PrincipalResponseTeamInfosInner, bool)`
+
+GetTeamInfosOk returns a tuple with the TeamInfos field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeamInfos
+
+`func (o *PrincipalResponse) SetTeamInfos(v []PrincipalResponseTeamInfosInner)`
+
+SetTeamInfos sets TeamInfos field to given value.
+
+### HasTeamInfos
+
+`func (o *PrincipalResponse) HasTeamInfos() bool`
+
+HasTeamInfos returns a boolean if a field has been set.
+
+### SetTeamInfosNil
+
+`func (o *PrincipalResponse) SetTeamInfosNil(b bool)`
+
+ SetTeamInfosNil sets the value for TeamInfos to be an explicit nil
+
+### UnsetTeamInfos
+`func (o *PrincipalResponse) UnsetTeamInfos()`
+
+UnsetTeamInfos ensures that no value is present for TeamInfos, not even an explicit nil
+### GetTeams
+
+`func (o *PrincipalResponse) GetTeams() []string`
+
+GetTeams returns the Teams field if non-nil, zero value otherwise.
+
+### GetTeamsOk
+
+`func (o *PrincipalResponse) GetTeamsOk() (*[]string, bool)`
+
+GetTeamsOk returns a tuple with the Teams field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeams
+
+`func (o *PrincipalResponse) SetTeams(v []string)`
+
+SetTeams sets Teams field to given value.
+
+### HasTeams
+
+`func (o *PrincipalResponse) HasTeams() bool`
+
+HasTeams returns a boolean if a field has been set.
+
+### SetTeamsNil
+
+`func (o *PrincipalResponse) SetTeamsNil(b bool)`
+
+ SetTeamsNil sets the value for Teams to be an explicit nil
+
+### UnsetTeams
+`func (o *PrincipalResponse) UnsetTeams()`
+
+UnsetTeams ensures that no value is present for Teams, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

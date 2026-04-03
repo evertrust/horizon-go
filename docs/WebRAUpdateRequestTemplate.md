@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | Information about the certificate&#39;s contact email and how to edit it | [optional] 
 **Labels** | Pointer to [**[]RequestLabelElement**](RequestLabelElement.md) | Information about the certificate&#39;s labels and how to edit them | [optional] 
 **Metadata** | Pointer to [**[]CertificateMetadataElement**](CertificateMetadataElement.md) | Information about the certificate&#39;s metadata and how to edit them | [optional] 
 **Owner** | Pointer to [**NullableCertificateOwnerElement**](CertificateOwnerElement.md) | Information about the certificate&#39;s owner and how to edit it | [optional] 
 **Team** | Pointer to [**NullableCertificateTeamElement**](CertificateTeamElement.md) | Information about the certificate&#39;s team and how to edit it | [optional] 
-**ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | Information about the certificate&#39;s contact email and how to edit it | [optional] 
 
 ## Methods
 
@@ -29,6 +29,41 @@ NewWebRAUpdateRequestTemplateWithDefaults instantiates a new WebRAUpdateRequestT
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetContactEmail
+
+`func (o *WebRAUpdateRequestTemplate) GetContactEmail() CertificateContactEmailElement`
+
+GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
+
+### GetContactEmailOk
+
+`func (o *WebRAUpdateRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool)`
+
+GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContactEmail
+
+`func (o *WebRAUpdateRequestTemplate) SetContactEmail(v CertificateContactEmailElement)`
+
+SetContactEmail sets ContactEmail field to given value.
+
+### HasContactEmail
+
+`func (o *WebRAUpdateRequestTemplate) HasContactEmail() bool`
+
+HasContactEmail returns a boolean if a field has been set.
+
+### SetContactEmailNil
+
+`func (o *WebRAUpdateRequestTemplate) SetContactEmailNil(b bool)`
+
+ SetContactEmailNil sets the value for ContactEmail to be an explicit nil
+
+### UnsetContactEmail
+`func (o *WebRAUpdateRequestTemplate) UnsetContactEmail()`
+
+UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
 ### GetLabels
 
 `func (o *WebRAUpdateRequestTemplate) GetLabels() []RequestLabelElement`
@@ -169,41 +204,6 @@ HasTeam returns a boolean if a field has been set.
 `func (o *WebRAUpdateRequestTemplate) UnsetTeam()`
 
 UnsetTeam ensures that no value is present for Team, not even an explicit nil
-### GetContactEmail
-
-`func (o *WebRAUpdateRequestTemplate) GetContactEmail() CertificateContactEmailElement`
-
-GetContactEmail returns the ContactEmail field if non-nil, zero value otherwise.
-
-### GetContactEmailOk
-
-`func (o *WebRAUpdateRequestTemplate) GetContactEmailOk() (*CertificateContactEmailElement, bool)`
-
-GetContactEmailOk returns a tuple with the ContactEmail field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContactEmail
-
-`func (o *WebRAUpdateRequestTemplate) SetContactEmail(v CertificateContactEmailElement)`
-
-SetContactEmail sets ContactEmail field to given value.
-
-### HasContactEmail
-
-`func (o *WebRAUpdateRequestTemplate) HasContactEmail() bool`
-
-HasContactEmail returns a boolean if a field has been set.
-
-### SetContactEmailNil
-
-`func (o *WebRAUpdateRequestTemplate) SetContactEmailNil(b bool)`
-
- SetContactEmailNil sets the value for ContactEmail to be an explicit nil
-
-### UnsetContactEmail
-`func (o *WebRAUpdateRequestTemplate) UnsetContactEmail()`
-
-UnsetContactEmail ensures that no value is present for ContactEmail, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

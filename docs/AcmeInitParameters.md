@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Http01Port** | Pointer to **int64** | The HTTP-01 port for ACME. | [optional] 
+**KeyType** | Pointer to **string** | The key type used for ACME. | [optional] 
 **Module** | **string** | The module of the initialization parameters. | 
 **Profile** | **string** | The profile used for ACME. | 
-**KeyType** | Pointer to **string** | The key type used for ACME. | [optional] 
 **TlsAlpn01Port** | Pointer to **int64** | The TLS-ALPN-01 port for ACME. | [optional] 
-**Http01Port** | Pointer to **int64** | The HTTP-01 port for ACME. | [optional] 
 
 ## Methods
 
@@ -28,6 +28,56 @@ will change when the set of required properties is changed
 NewAcmeInitParametersWithDefaults instantiates a new AcmeInitParameters object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetHttp01Port
+
+`func (o *AcmeInitParameters) GetHttp01Port() int64`
+
+GetHttp01Port returns the Http01Port field if non-nil, zero value otherwise.
+
+### GetHttp01PortOk
+
+`func (o *AcmeInitParameters) GetHttp01PortOk() (*int64, bool)`
+
+GetHttp01PortOk returns a tuple with the Http01Port field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttp01Port
+
+`func (o *AcmeInitParameters) SetHttp01Port(v int64)`
+
+SetHttp01Port sets Http01Port field to given value.
+
+### HasHttp01Port
+
+`func (o *AcmeInitParameters) HasHttp01Port() bool`
+
+HasHttp01Port returns a boolean if a field has been set.
+
+### GetKeyType
+
+`func (o *AcmeInitParameters) GetKeyType() string`
+
+GetKeyType returns the KeyType field if non-nil, zero value otherwise.
+
+### GetKeyTypeOk
+
+`func (o *AcmeInitParameters) GetKeyTypeOk() (*string, bool)`
+
+GetKeyTypeOk returns a tuple with the KeyType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKeyType
+
+`func (o *AcmeInitParameters) SetKeyType(v string)`
+
+SetKeyType sets KeyType field to given value.
+
+### HasKeyType
+
+`func (o *AcmeInitParameters) HasKeyType() bool`
+
+HasKeyType returns a boolean if a field has been set.
 
 ### GetModule
 
@@ -69,31 +119,6 @@ and a boolean to check if the value has been set.
 SetProfile sets Profile field to given value.
 
 
-### GetKeyType
-
-`func (o *AcmeInitParameters) GetKeyType() string`
-
-GetKeyType returns the KeyType field if non-nil, zero value otherwise.
-
-### GetKeyTypeOk
-
-`func (o *AcmeInitParameters) GetKeyTypeOk() (*string, bool)`
-
-GetKeyTypeOk returns a tuple with the KeyType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetKeyType
-
-`func (o *AcmeInitParameters) SetKeyType(v string)`
-
-SetKeyType sets KeyType field to given value.
-
-### HasKeyType
-
-`func (o *AcmeInitParameters) HasKeyType() bool`
-
-HasKeyType returns a boolean if a field has been set.
-
 ### GetTlsAlpn01Port
 
 `func (o *AcmeInitParameters) GetTlsAlpn01Port() int64`
@@ -118,31 +143,6 @@ SetTlsAlpn01Port sets TlsAlpn01Port field to given value.
 `func (o *AcmeInitParameters) HasTlsAlpn01Port() bool`
 
 HasTlsAlpn01Port returns a boolean if a field has been set.
-
-### GetHttp01Port
-
-`func (o *AcmeInitParameters) GetHttp01Port() int64`
-
-GetHttp01Port returns the Http01Port field if non-nil, zero value otherwise.
-
-### GetHttp01PortOk
-
-`func (o *AcmeInitParameters) GetHttp01PortOk() (*int64, bool)`
-
-GetHttp01PortOk returns a tuple with the Http01Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHttp01Port
-
-`func (o *AcmeInitParameters) SetHttp01Port(v int64)`
-
-SetHttp01Port sets Http01Port field to given value.
-
-### HasHttp01Port
-
-`func (o *AcmeInitParameters) HasHttp01Port() bool`
-
-HasHttp01Port returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

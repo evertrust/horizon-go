@@ -3,7 +3,7 @@
 
    ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
 
-   API version: 2.8.0
+   API version: 2.9.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -22,18 +22,18 @@ var _ utils.MappedNullable = &PrincipalResponse{}
 
 // PrincipalResponse struct for PrincipalResponse
 type PrincipalResponse struct {
-	Identity Identity `json:"identity"`
+	// The custom dashboards of the principal
+	CustomDashboards []Dashboard `json:"customDashboards,omitempty"`
+	Identity         Identity    `json:"identity"`
 	// The permissions of the principal
 	Permissions []Permission `json:"permissions,omitempty"`
-	// The roles of the principal
-	Roles []string `json:"roles,omitempty"`
-	// The teams of the principal
-	Teams     []string                          `json:"teams,omitempty"`
-	TeamInfos []PrincipalResponseTeamInfosInner `json:"teamInfos,omitempty"`
 	// The UI preferences of the principal
 	Preferences NullablePrincipalInfoPreferences `json:"preferences,omitempty"`
-	// The custom dashboards of the principal
-	CustomDashboards     []Dashboard `json:"customDashboards,omitempty"`
+	// The roles of the principal
+	Roles     []string                          `json:"roles,omitempty"`
+	TeamInfos []PrincipalResponseTeamInfosInner `json:"teamInfos,omitempty"`
+	// The teams of the principal
+	Teams                []string `json:"teams,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -55,6 +55,39 @@ func NewPrincipalResponse(identity Identity) *PrincipalResponse {
 func NewPrincipalResponseWithDefaults() *PrincipalResponse {
 	this := PrincipalResponse{}
 	return &this
+}
+
+// GetCustomDashboards returns the CustomDashboards field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalResponse) GetCustomDashboards() []Dashboard {
+	if o == nil {
+		var ret []Dashboard
+		return ret
+	}
+	return o.CustomDashboards
+}
+
+// GetCustomDashboardsOk returns a tuple with the CustomDashboards field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalResponse) GetCustomDashboardsOk() ([]Dashboard, bool) {
+	if o == nil || utils.IsNil(o.CustomDashboards) {
+		return nil, false
+	}
+	return o.CustomDashboards, true
+}
+
+// HasCustomDashboards returns a boolean if a field has been set.
+func (o *PrincipalResponse) HasCustomDashboards() bool {
+	if o != nil && !utils.IsNil(o.CustomDashboards) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomDashboards gets a reference to the given []Dashboard and assigns it to the CustomDashboards field.
+func (o *PrincipalResponse) SetCustomDashboards(v []Dashboard) {
+	o.CustomDashboards = v
 }
 
 // GetIdentity returns the Identity field value
@@ -114,105 +147,6 @@ func (o *PrincipalResponse) SetPermissions(v []Permission) {
 	o.Permissions = v
 }
 
-// GetRoles returns the Roles field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalResponse) GetRoles() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Roles
-}
-
-// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalResponse) GetRolesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Roles) {
-		return nil, false
-	}
-	return o.Roles, true
-}
-
-// HasRoles returns a boolean if a field has been set.
-func (o *PrincipalResponse) HasRoles() bool {
-	if o != nil && !utils.IsNil(o.Roles) {
-		return true
-	}
-
-	return false
-}
-
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
-func (o *PrincipalResponse) SetRoles(v []string) {
-	o.Roles = v
-}
-
-// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalResponse) GetTeams() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.Teams
-}
-
-// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalResponse) GetTeamsOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.Teams) {
-		return nil, false
-	}
-	return o.Teams, true
-}
-
-// HasTeams returns a boolean if a field has been set.
-func (o *PrincipalResponse) HasTeams() bool {
-	if o != nil && !utils.IsNil(o.Teams) {
-		return true
-	}
-
-	return false
-}
-
-// SetTeams gets a reference to the given []string and assigns it to the Teams field.
-func (o *PrincipalResponse) SetTeams(v []string) {
-	o.Teams = v
-}
-
-// GetTeamInfos returns the TeamInfos field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalResponse) GetTeamInfos() []PrincipalResponseTeamInfosInner {
-	if o == nil {
-		var ret []PrincipalResponseTeamInfosInner
-		return ret
-	}
-	return o.TeamInfos
-}
-
-// GetTeamInfosOk returns a tuple with the TeamInfos field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalResponse) GetTeamInfosOk() ([]PrincipalResponseTeamInfosInner, bool) {
-	if o == nil || utils.IsNil(o.TeamInfos) {
-		return nil, false
-	}
-	return o.TeamInfos, true
-}
-
-// HasTeamInfos returns a boolean if a field has been set.
-func (o *PrincipalResponse) HasTeamInfos() bool {
-	if o != nil && !utils.IsNil(o.TeamInfos) {
-		return true
-	}
-
-	return false
-}
-
-// SetTeamInfos gets a reference to the given []PrincipalResponseTeamInfosInner and assigns it to the TeamInfos field.
-func (o *PrincipalResponse) SetTeamInfos(v []PrincipalResponseTeamInfosInner) {
-	o.TeamInfos = v
-}
-
 // GetPreferences returns the Preferences field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PrincipalResponse) GetPreferences() PrincipalInfoPreferences {
 	if o == nil || utils.IsNil(o.Preferences.Get()) {
@@ -256,37 +190,103 @@ func (o *PrincipalResponse) UnsetPreferences() {
 	o.Preferences.Unset()
 }
 
-// GetCustomDashboards returns the CustomDashboards field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PrincipalResponse) GetCustomDashboards() []Dashboard {
+// GetRoles returns the Roles field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalResponse) GetRoles() []string {
 	if o == nil {
-		var ret []Dashboard
+		var ret []string
 		return ret
 	}
-	return o.CustomDashboards
+	return o.Roles
 }
 
-// GetCustomDashboardsOk returns a tuple with the CustomDashboards field value if set, nil otherwise
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PrincipalResponse) GetCustomDashboardsOk() ([]Dashboard, bool) {
-	if o == nil || utils.IsNil(o.CustomDashboards) {
+func (o *PrincipalResponse) GetRolesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Roles) {
 		return nil, false
 	}
-	return o.CustomDashboards, true
+	return o.Roles, true
 }
 
-// HasCustomDashboards returns a boolean if a field has been set.
-func (o *PrincipalResponse) HasCustomDashboards() bool {
-	if o != nil && !utils.IsNil(o.CustomDashboards) {
+// HasRoles returns a boolean if a field has been set.
+func (o *PrincipalResponse) HasRoles() bool {
+	if o != nil && !utils.IsNil(o.Roles) {
 		return true
 	}
 
 	return false
 }
 
-// SetCustomDashboards gets a reference to the given []Dashboard and assigns it to the CustomDashboards field.
-func (o *PrincipalResponse) SetCustomDashboards(v []Dashboard) {
-	o.CustomDashboards = v
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *PrincipalResponse) SetRoles(v []string) {
+	o.Roles = v
+}
+
+// GetTeamInfos returns the TeamInfos field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalResponse) GetTeamInfos() []PrincipalResponseTeamInfosInner {
+	if o == nil {
+		var ret []PrincipalResponseTeamInfosInner
+		return ret
+	}
+	return o.TeamInfos
+}
+
+// GetTeamInfosOk returns a tuple with the TeamInfos field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalResponse) GetTeamInfosOk() ([]PrincipalResponseTeamInfosInner, bool) {
+	if o == nil || utils.IsNil(o.TeamInfos) {
+		return nil, false
+	}
+	return o.TeamInfos, true
+}
+
+// HasTeamInfos returns a boolean if a field has been set.
+func (o *PrincipalResponse) HasTeamInfos() bool {
+	if o != nil && !utils.IsNil(o.TeamInfos) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeamInfos gets a reference to the given []PrincipalResponseTeamInfosInner and assigns it to the TeamInfos field.
+func (o *PrincipalResponse) SetTeamInfos(v []PrincipalResponseTeamInfosInner) {
+	o.TeamInfos = v
+}
+
+// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrincipalResponse) GetTeams() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Teams
+}
+
+// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrincipalResponse) GetTeamsOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Teams) {
+		return nil, false
+	}
+	return o.Teams, true
+}
+
+// HasTeams returns a boolean if a field has been set.
+func (o *PrincipalResponse) HasTeams() bool {
+	if o != nil && !utils.IsNil(o.Teams) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeams gets a reference to the given []string and assigns it to the Teams field.
+func (o *PrincipalResponse) SetTeams(v []string) {
+	o.Teams = v
 }
 
 func (o PrincipalResponse) MarshalJSON() ([]byte, error) {
@@ -299,24 +299,24 @@ func (o PrincipalResponse) MarshalJSON() ([]byte, error) {
 
 func (o PrincipalResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.CustomDashboards != nil {
+		toSerialize["customDashboards"] = o.CustomDashboards
+	}
 	toSerialize["identity"] = o.Identity
 	if o.Permissions != nil {
 		toSerialize["permissions"] = o.Permissions
 	}
+	if o.Preferences.IsSet() {
+		toSerialize["preferences"] = o.Preferences.Get()
+	}
 	if o.Roles != nil {
 		toSerialize["roles"] = o.Roles
-	}
-	if o.Teams != nil {
-		toSerialize["teams"] = o.Teams
 	}
 	if o.TeamInfos != nil {
 		toSerialize["teamInfos"] = o.TeamInfos
 	}
-	if o.Preferences.IsSet() {
-		toSerialize["preferences"] = o.Preferences.Get()
-	}
-	if o.CustomDashboards != nil {
-		toSerialize["customDashboards"] = o.CustomDashboards
+	if o.Teams != nil {
+		toSerialize["teams"] = o.Teams
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -361,13 +361,13 @@ func (o *PrincipalResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "customDashboards")
 		delete(additionalProperties, "identity")
 		delete(additionalProperties, "permissions")
-		delete(additionalProperties, "roles")
-		delete(additionalProperties, "teams")
-		delete(additionalProperties, "teamInfos")
 		delete(additionalProperties, "preferences")
-		delete(additionalProperties, "customDashboards")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "teamInfos")
+		delete(additionalProperties, "teams")
 		o.AdditionalProperties = additionalProperties
 	}
 

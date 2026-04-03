@@ -4,37 +4,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Module** | [**Module**](Module.md) | The module of the certificate updated. | 
-**Workflow** | **string** | What this request will do. For an update request, this is always &#x60;update&#x60; | 
-**Template** | [**WebRAUpdateRequestTemplate**](WebRAUpdateRequestTemplate.md) | The user-data that will be used to generate the certificate | 
 **Certificate** | Pointer to [**NullableCertificate**](Certificate.md) | The certificate that was updated for this request. This is only available after the request has been approved | [optional] 
+**Module** | [**Module**](Module.md) | The module of the certificate updated. | 
+**Template** | [**WebRAUpdateRequestTemplate**](WebRAUpdateRequestTemplate.md) | The user-data that will be used to generate the certificate | 
+**Workflow** | **string** | What this request will do. For an update request, this is always &#x60;update&#x60; | 
 **Id** | **string** | Object internal ID | 
-**Status** | [**RequestStatus**](RequestStatus.md) |  | 
-**Profile** | **string** | The associated profile name | 
-**Dn** | Pointer to **string** | Certificate&#39;s Distinguished Name | [optional] 
-**Requester** | Pointer to **NullableString** | The requester&#39;s principal identifier | [optional] 
-**Team** | Pointer to **NullableString** | The team that will be assigned to this certificate. Teams are used to link certificates to people and to assign permissions to them | [optional] 
 **Approver** | Pointer to **NullableString** | The approver&#39;s principal identifier | [optional] 
-**Contact** | Pointer to **NullableString** | The request&#39;s contact email | [optional] 
-**RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
 **ApproverComment** | Pointer to **NullableString** | Free-text field editable by the approver to provider more context on the request | [optional] 
-**RegistrationDate** | **int64** | The date the request was created. This is set by the system | 
-**LastModificationDate** | **int64** | The date the request was last modified. This is set by the system | 
-**ExpirationDate** | Pointer to **int64** | The date the request will expire. This is set by the system | [optional] 
-**RemoveAt** | **int64** | The date the requested will be deleted. This is set by the system | 
-**TriggerResults** | Pointer to [**[]TriggerResult**](TriggerResult.md) | The result of the execution of triggers on this request | [optional] 
-**HolderId** | **string** | The computed holderID for this request. This is set by the system based on DN and SANs | 
-**GlobalHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the Horizon database | [optional] 
-**ProfileHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile | [optional] 
-**Labels** | Pointer to [**[]LabelData**](LabelData.md) | The labels set in this request | [optional] 
-**Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The metadata set in this request | [optional] 
+**Contact** | Pointer to **NullableString** | The request&#39;s contact email | [optional] 
+**Dn** | Pointer to **string** | Certificate&#39;s Distinguished Name | [optional] 
 **DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
+**ExpirationDate** | Pointer to **int64** | The date the request will expire. This is set by the system | [optional] 
+**GlobalHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the Horizon database | [optional] 
+**HolderId** | **string** | The computed holderID for this request. This is set by the system based on DN and SANs | 
+**Labels** | Pointer to [**[]LabelData**](LabelData.md) | The labels set in this request | [optional] 
+**LastModificationDate** | **int64** | The date the request was last modified. This is set by the system | 
+**Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The metadata set in this request | [optional] 
+**Profile** | **string** | The associated profile name | 
+**ProfileHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile | [optional] 
+**RegistrationDate** | **int64** | The date the request was created. This is set by the system | 
+**RemoveAt** | **int64** | The date the requested will be deleted. This is set by the system | 
+**Requester** | Pointer to **NullableString** | The requester&#39;s principal identifier | [optional] 
+**RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
+**Status** | [**RequestStatus**](RequestStatus.md) |  | 
+**Team** | Pointer to **NullableString** | The team that will be assigned to this certificate. Teams are used to link certificates to people and to assign permissions to them | [optional] 
+**TriggerResults** | Pointer to [**[]TriggerResult**](TriggerResult.md) | The result of the execution of triggers on this request | [optional] 
 
 ## Methods
 
 ### NewWebRAUpdateRequestOnSubmitResponse
 
-`func NewWebRAUpdateRequestOnSubmitResponse(module Module, workflow string, template WebRAUpdateRequestTemplate, id string, status RequestStatus, profile string, registrationDate int64, lastModificationDate int64, removeAt int64, holderId string, ) *WebRAUpdateRequestOnSubmitResponse`
+`func NewWebRAUpdateRequestOnSubmitResponse(module Module, template WebRAUpdateRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAUpdateRequestOnSubmitResponse`
 
 NewWebRAUpdateRequestOnSubmitResponse instantiates a new WebRAUpdateRequestOnSubmitResponse object
 This constructor will assign default values to properties that have it defined,
@@ -48,66 +48,6 @@ will change when the set of required properties is changed
 NewWebRAUpdateRequestOnSubmitResponseWithDefaults instantiates a new WebRAUpdateRequestOnSubmitResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetModule
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetModule() Module`
-
-GetModule returns the Module field if non-nil, zero value otherwise.
-
-### GetModuleOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetModuleOk() (*Module, bool)`
-
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModule
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetModule(v Module)`
-
-SetModule sets Module field to given value.
-
-
-### GetWorkflow
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-
-### GetTemplate
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetTemplate() WebRAUpdateRequestTemplate`
-
-GetTemplate returns the Template field if non-nil, zero value otherwise.
-
-### GetTemplateOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool)`
-
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplate
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetTemplate(v WebRAUpdateRequestTemplate)`
-
-SetTemplate sets Template field to given value.
-
 
 ### GetCertificate
 
@@ -144,6 +84,66 @@ HasCertificate returns a boolean if a field has been set.
 `func (o *WebRAUpdateRequestOnSubmitResponse) UnsetCertificate()`
 
 UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
+### GetModule
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetModule() Module`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetModuleOk() (*Module, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetModule(v Module)`
+
+SetModule sets Module field to given value.
+
+
+### GetTemplate
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetTemplate() WebRAUpdateRequestTemplate`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetTemplateOk() (*WebRAUpdateRequestTemplate, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetTemplate(v WebRAUpdateRequestTemplate)`
+
+SetTemplate sets Template field to given value.
+
+
+### GetWorkflow
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
 ### GetId
 
 `func (o *WebRAUpdateRequestOnSubmitResponse) GetId() string`
@@ -164,141 +164,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetStatus
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetStatus() RequestStatus`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetStatusOk() (*RequestStatus, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetStatus(v RequestStatus)`
-
-SetStatus sets Status field to given value.
-
-
-### GetProfile
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-
-### GetDn
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetDn() string`
-
-GetDn returns the Dn field if non-nil, zero value otherwise.
-
-### GetDnOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetDnOk() (*string, bool)`
-
-GetDnOk returns a tuple with the Dn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDn
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetDn(v string)`
-
-SetDn sets Dn field to given value.
-
-### HasDn
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) HasDn() bool`
-
-HasDn returns a boolean if a field has been set.
-
-### GetRequester
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetRequester() string`
-
-GetRequester returns the Requester field if non-nil, zero value otherwise.
-
-### GetRequesterOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetRequesterOk() (*string, bool)`
-
-GetRequesterOk returns a tuple with the Requester field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequester
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetRequester(v string)`
-
-SetRequester sets Requester field to given value.
-
-### HasRequester
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) HasRequester() bool`
-
-HasRequester returns a boolean if a field has been set.
-
-### SetRequesterNil
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetRequesterNil(b bool)`
-
- SetRequesterNil sets the value for Requester to be an explicit nil
-
-### UnsetRequester
-`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetRequester()`
-
-UnsetRequester ensures that no value is present for Requester, not even an explicit nil
-### GetTeam
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetTeam() string`
-
-GetTeam returns the Team field if non-nil, zero value otherwise.
-
-### GetTeamOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetTeamOk() (*string, bool)`
-
-GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTeam
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetTeam(v string)`
-
-SetTeam sets Team field to given value.
-
-### HasTeam
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) HasTeam() bool`
-
-HasTeam returns a boolean if a field has been set.
-
-### SetTeamNil
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetTeamNil(b bool)`
-
- SetTeamNil sets the value for Team to be an explicit nil
-
-### UnsetTeam
-`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetTeam()`
-
-UnsetTeam ensures that no value is present for Team, not even an explicit nil
 ### GetApprover
 
 `func (o *WebRAUpdateRequestOnSubmitResponse) GetApprover() string`
@@ -334,76 +199,6 @@ HasApprover returns a boolean if a field has been set.
 `func (o *WebRAUpdateRequestOnSubmitResponse) UnsetApprover()`
 
 UnsetApprover ensures that no value is present for Approver, not even an explicit nil
-### GetContact
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetContact() string`
-
-GetContact returns the Contact field if non-nil, zero value otherwise.
-
-### GetContactOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetContactOk() (*string, bool)`
-
-GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContact
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetContact(v string)`
-
-SetContact sets Contact field to given value.
-
-### HasContact
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) HasContact() bool`
-
-HasContact returns a boolean if a field has been set.
-
-### SetContactNil
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetContactNil(b bool)`
-
- SetContactNil sets the value for Contact to be an explicit nil
-
-### UnsetContact
-`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetContact()`
-
-UnsetContact ensures that no value is present for Contact, not even an explicit nil
-### GetRequesterComment
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetRequesterComment() string`
-
-GetRequesterComment returns the RequesterComment field if non-nil, zero value otherwise.
-
-### GetRequesterCommentOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetRequesterCommentOk() (*string, bool)`
-
-GetRequesterCommentOk returns a tuple with the RequesterComment field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequesterComment
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetRequesterComment(v string)`
-
-SetRequesterComment sets RequesterComment field to given value.
-
-### HasRequesterComment
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) HasRequesterComment() bool`
-
-HasRequesterComment returns a boolean if a field has been set.
-
-### SetRequesterCommentNil
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetRequesterCommentNil(b bool)`
-
- SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
-
-### UnsetRequesterComment
-`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetRequesterComment()`
-
-UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
 ### GetApproverComment
 
 `func (o *WebRAUpdateRequestOnSubmitResponse) GetApproverComment() string`
@@ -439,46 +234,101 @@ HasApproverComment returns a boolean if a field has been set.
 `func (o *WebRAUpdateRequestOnSubmitResponse) UnsetApproverComment()`
 
 UnsetApproverComment ensures that no value is present for ApproverComment, not even an explicit nil
-### GetRegistrationDate
+### GetContact
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetRegistrationDate() int64`
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetContact() string`
 
-GetRegistrationDate returns the RegistrationDate field if non-nil, zero value otherwise.
+GetContact returns the Contact field if non-nil, zero value otherwise.
 
-### GetRegistrationDateOk
+### GetContactOk
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetRegistrationDateOk() (*int64, bool)`
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetContactOk() (*string, bool)`
 
-GetRegistrationDateOk returns a tuple with the RegistrationDate field if it's non-nil, zero value otherwise
+GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRegistrationDate
+### SetContact
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetRegistrationDate(v int64)`
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetContact(v string)`
 
-SetRegistrationDate sets RegistrationDate field to given value.
+SetContact sets Contact field to given value.
 
+### HasContact
 
-### GetLastModificationDate
+`func (o *WebRAUpdateRequestOnSubmitResponse) HasContact() bool`
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetLastModificationDate() int64`
+HasContact returns a boolean if a field has been set.
 
-GetLastModificationDate returns the LastModificationDate field if non-nil, zero value otherwise.
+### SetContactNil
 
-### GetLastModificationDateOk
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetContactNil(b bool)`
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetLastModificationDateOk() (*int64, bool)`
+ SetContactNil sets the value for Contact to be an explicit nil
 
-GetLastModificationDateOk returns a tuple with the LastModificationDate field if it's non-nil, zero value otherwise
+### UnsetContact
+`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetContact()`
+
+UnsetContact ensures that no value is present for Contact, not even an explicit nil
+### GetDn
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetDn() string`
+
+GetDn returns the Dn field if non-nil, zero value otherwise.
+
+### GetDnOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetDnOk() (*string, bool)`
+
+GetDnOk returns a tuple with the Dn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLastModificationDate
+### SetDn
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetLastModificationDate(v int64)`
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetDn(v string)`
 
-SetLastModificationDate sets LastModificationDate field to given value.
+SetDn sets Dn field to given value.
 
+### HasDn
 
+`func (o *WebRAUpdateRequestOnSubmitResponse) HasDn() bool`
+
+HasDn returns a boolean if a field has been set.
+
+### GetDryRun
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetDryRun() bool`
+
+GetDryRun returns the DryRun field if non-nil, zero value otherwise.
+
+### GetDryRunOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetDryRunOk() (*bool, bool)`
+
+GetDryRunOk returns a tuple with the DryRun field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDryRun
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetDryRun(v bool)`
+
+SetDryRun sets DryRun field to given value.
+
+### HasDryRun
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) HasDryRun() bool`
+
+HasDryRun returns a boolean if a field has been set.
+
+### SetDryRunNil
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetDryRunNil(b bool)`
+
+ SetDryRunNil sets the value for DryRun to be an explicit nil
+
+### UnsetDryRun
+`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetDryRun()`
+
+UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
 ### GetExpirationDate
 
 `func (o *WebRAUpdateRequestOnSubmitResponse) GetExpirationDate() int64`
@@ -503,81 +353,6 @@ SetExpirationDate sets ExpirationDate field to given value.
 `func (o *WebRAUpdateRequestOnSubmitResponse) HasExpirationDate() bool`
 
 HasExpirationDate returns a boolean if a field has been set.
-
-### GetRemoveAt
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetRemoveAt() int64`
-
-GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
-
-### GetRemoveAtOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetRemoveAtOk() (*int64, bool)`
-
-GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoveAt
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetRemoveAt(v int64)`
-
-SetRemoveAt sets RemoveAt field to given value.
-
-
-### GetTriggerResults
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetTriggerResults() []TriggerResult`
-
-GetTriggerResults returns the TriggerResults field if non-nil, zero value otherwise.
-
-### GetTriggerResultsOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetTriggerResultsOk() (*[]TriggerResult, bool)`
-
-GetTriggerResultsOk returns a tuple with the TriggerResults field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTriggerResults
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetTriggerResults(v []TriggerResult)`
-
-SetTriggerResults sets TriggerResults field to given value.
-
-### HasTriggerResults
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) HasTriggerResults() bool`
-
-HasTriggerResults returns a boolean if a field has been set.
-
-### SetTriggerResultsNil
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetTriggerResultsNil(b bool)`
-
- SetTriggerResultsNil sets the value for TriggerResults to be an explicit nil
-
-### UnsetTriggerResults
-`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetTriggerResults()`
-
-UnsetTriggerResults ensures that no value is present for TriggerResults, not even an explicit nil
-### GetHolderId
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetHolderId() string`
-
-GetHolderId returns the HolderId field if non-nil, zero value otherwise.
-
-### GetHolderIdOk
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetHolderIdOk() (*string, bool)`
-
-GetHolderIdOk returns a tuple with the HolderId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHolderId
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetHolderId(v string)`
-
-SetHolderId sets HolderId field to given value.
-
 
 ### GetGlobalHolderIdCount
 
@@ -614,41 +389,26 @@ HasGlobalHolderIdCount returns a boolean if a field has been set.
 `func (o *WebRAUpdateRequestOnSubmitResponse) UnsetGlobalHolderIdCount()`
 
 UnsetGlobalHolderIdCount ensures that no value is present for GlobalHolderIdCount, not even an explicit nil
-### GetProfileHolderIdCount
+### GetHolderId
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetProfileHolderIdCount() int64`
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetHolderId() string`
 
-GetProfileHolderIdCount returns the ProfileHolderIdCount field if non-nil, zero value otherwise.
+GetHolderId returns the HolderId field if non-nil, zero value otherwise.
 
-### GetProfileHolderIdCountOk
+### GetHolderIdOk
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetProfileHolderIdCountOk() (*int64, bool)`
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetHolderIdOk() (*string, bool)`
 
-GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field if it's non-nil, zero value otherwise
+GetHolderIdOk returns a tuple with the HolderId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProfileHolderIdCount
+### SetHolderId
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetProfileHolderIdCount(v int64)`
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetHolderId(v string)`
 
-SetProfileHolderIdCount sets ProfileHolderIdCount field to given value.
+SetHolderId sets HolderId field to given value.
 
-### HasProfileHolderIdCount
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) HasProfileHolderIdCount() bool`
-
-HasProfileHolderIdCount returns a boolean if a field has been set.
-
-### SetProfileHolderIdCountNil
-
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetProfileHolderIdCountNil(b bool)`
-
- SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
-
-### UnsetProfileHolderIdCount
-`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetProfileHolderIdCount()`
-
-UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
 ### GetLabels
 
 `func (o *WebRAUpdateRequestOnSubmitResponse) GetLabels() []LabelData`
@@ -684,6 +444,26 @@ HasLabels returns a boolean if a field has been set.
 `func (o *WebRAUpdateRequestOnSubmitResponse) UnsetLabels()`
 
 UnsetLabels ensures that no value is present for Labels, not even an explicit nil
+### GetLastModificationDate
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetLastModificationDate() int64`
+
+GetLastModificationDate returns the LastModificationDate field if non-nil, zero value otherwise.
+
+### GetLastModificationDateOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetLastModificationDateOk() (*int64, bool)`
+
+GetLastModificationDateOk returns a tuple with the LastModificationDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastModificationDate
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetLastModificationDate(v int64)`
+
+SetLastModificationDate sets LastModificationDate field to given value.
+
+
 ### GetMetadata
 
 `func (o *WebRAUpdateRequestOnSubmitResponse) GetMetadata() []CertificateMetadata`
@@ -719,41 +499,261 @@ HasMetadata returns a boolean if a field has been set.
 `func (o *WebRAUpdateRequestOnSubmitResponse) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
-### GetDryRun
+### GetProfile
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetDryRun() bool`
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetProfile() string`
 
-GetDryRun returns the DryRun field if non-nil, zero value otherwise.
+GetProfile returns the Profile field if non-nil, zero value otherwise.
 
-### GetDryRunOk
+### GetProfileOk
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) GetDryRunOk() (*bool, bool)`
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetProfileOk() (*string, bool)`
 
-GetDryRunOk returns a tuple with the DryRun field if it's non-nil, zero value otherwise
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDryRun
+### SetProfile
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetDryRun(v bool)`
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetProfile(v string)`
 
-SetDryRun sets DryRun field to given value.
+SetProfile sets Profile field to given value.
 
-### HasDryRun
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) HasDryRun() bool`
+### GetProfileHolderIdCount
 
-HasDryRun returns a boolean if a field has been set.
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetProfileHolderIdCount() int64`
 
-### SetDryRunNil
+GetProfileHolderIdCount returns the ProfileHolderIdCount field if non-nil, zero value otherwise.
 
-`func (o *WebRAUpdateRequestOnSubmitResponse) SetDryRunNil(b bool)`
+### GetProfileHolderIdCountOk
 
- SetDryRunNil sets the value for DryRun to be an explicit nil
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetProfileHolderIdCountOk() (*int64, bool)`
 
-### UnsetDryRun
-`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetDryRun()`
+GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
+### SetProfileHolderIdCount
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetProfileHolderIdCount(v int64)`
+
+SetProfileHolderIdCount sets ProfileHolderIdCount field to given value.
+
+### HasProfileHolderIdCount
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) HasProfileHolderIdCount() bool`
+
+HasProfileHolderIdCount returns a boolean if a field has been set.
+
+### SetProfileHolderIdCountNil
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetProfileHolderIdCountNil(b bool)`
+
+ SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
+
+### UnsetProfileHolderIdCount
+`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetProfileHolderIdCount()`
+
+UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
+### GetRegistrationDate
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetRegistrationDate() int64`
+
+GetRegistrationDate returns the RegistrationDate field if non-nil, zero value otherwise.
+
+### GetRegistrationDateOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetRegistrationDateOk() (*int64, bool)`
+
+GetRegistrationDateOk returns a tuple with the RegistrationDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationDate
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetRegistrationDate(v int64)`
+
+SetRegistrationDate sets RegistrationDate field to given value.
+
+
+### GetRemoveAt
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetRemoveAt() int64`
+
+GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
+
+### GetRemoveAtOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetRemoveAtOk() (*int64, bool)`
+
+GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveAt
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetRemoveAt(v int64)`
+
+SetRemoveAt sets RemoveAt field to given value.
+
+
+### GetRequester
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetRequester() string`
+
+GetRequester returns the Requester field if non-nil, zero value otherwise.
+
+### GetRequesterOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetRequesterOk() (*string, bool)`
+
+GetRequesterOk returns a tuple with the Requester field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequester
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetRequester(v string)`
+
+SetRequester sets Requester field to given value.
+
+### HasRequester
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) HasRequester() bool`
+
+HasRequester returns a boolean if a field has been set.
+
+### SetRequesterNil
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetRequesterNil(b bool)`
+
+ SetRequesterNil sets the value for Requester to be an explicit nil
+
+### UnsetRequester
+`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetRequester()`
+
+UnsetRequester ensures that no value is present for Requester, not even an explicit nil
+### GetRequesterComment
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetRequesterComment() string`
+
+GetRequesterComment returns the RequesterComment field if non-nil, zero value otherwise.
+
+### GetRequesterCommentOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetRequesterCommentOk() (*string, bool)`
+
+GetRequesterCommentOk returns a tuple with the RequesterComment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequesterComment
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetRequesterComment(v string)`
+
+SetRequesterComment sets RequesterComment field to given value.
+
+### HasRequesterComment
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) HasRequesterComment() bool`
+
+HasRequesterComment returns a boolean if a field has been set.
+
+### SetRequesterCommentNil
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetRequesterCommentNil(b bool)`
+
+ SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
+
+### UnsetRequesterComment
+`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetRequesterComment()`
+
+UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
+### GetStatus
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetStatus() RequestStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetStatusOk() (*RequestStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetStatus(v RequestStatus)`
+
+SetStatus sets Status field to given value.
+
+
+### GetTeam
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetTeam() string`
+
+GetTeam returns the Team field if non-nil, zero value otherwise.
+
+### GetTeamOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetTeamOk() (*string, bool)`
+
+GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeam
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetTeam(v string)`
+
+SetTeam sets Team field to given value.
+
+### HasTeam
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) HasTeam() bool`
+
+HasTeam returns a boolean if a field has been set.
+
+### SetTeamNil
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetTeamNil(b bool)`
+
+ SetTeamNil sets the value for Team to be an explicit nil
+
+### UnsetTeam
+`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetTeam()`
+
+UnsetTeam ensures that no value is present for Team, not even an explicit nil
+### GetTriggerResults
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetTriggerResults() []TriggerResult`
+
+GetTriggerResults returns the TriggerResults field if non-nil, zero value otherwise.
+
+### GetTriggerResultsOk
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) GetTriggerResultsOk() (*[]TriggerResult, bool)`
+
+GetTriggerResultsOk returns a tuple with the TriggerResults field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggerResults
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetTriggerResults(v []TriggerResult)`
+
+SetTriggerResults sets TriggerResults field to given value.
+
+### HasTriggerResults
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) HasTriggerResults() bool`
+
+HasTriggerResults returns a boolean if a field has been set.
+
+### SetTriggerResultsNil
+
+`func (o *WebRAUpdateRequestOnSubmitResponse) SetTriggerResultsNil(b bool)`
+
+ SetTriggerResultsNil sets the value for TriggerResults to be an explicit nil
+
+### UnsetTriggerResults
+`func (o *WebRAUpdateRequestOnSubmitResponse) UnsetTriggerResults()`
+
+UnsetTriggerResults ensures that no value is present for TriggerResults, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

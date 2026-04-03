@@ -5,22 +5,22 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
+**Count** | Pointer to **NullableInt64** |  | [optional] 
 **CreatedAt** | Pointer to **NullableInt64** |  | [optional] 
+**Error** | Pointer to **NullableString** |  | [optional] 
 **PurgeAt** | Pointer to **NullableInt64** |  | [optional] 
 **Status** | [**ArchiveStatus**](ArchiveStatus.md) |  | 
-**Count** | Pointer to **NullableInt64** |  | [optional] 
-**Error** | Pointer to **NullableString** |  | [optional] 
+**ArchiveKeys** | **bool** |  | 
+**Filename** | **string** |  | 
+**Filter** | Pointer to **NullableString** | An HCQL filter for the archive | [optional] 
 **Name** | **string** |  | 
 **Type** | **string** |  | 
-**Filename** | **string** |  | 
-**ArchiveKeys** | **bool** |  | 
-**Filter** | Pointer to **NullableString** | An HCQL filter for the archive | [optional] 
 
 ## Methods
 
 ### NewCertificateArchiveResponse
 
-`func NewCertificateArchiveResponse(id string, status ArchiveStatus, name string, type_ string, filename string, archiveKeys bool, ) *CertificateArchiveResponse`
+`func NewCertificateArchiveResponse(id string, status ArchiveStatus, archiveKeys bool, filename string, name string, type_ string, ) *CertificateArchiveResponse`
 
 NewCertificateArchiveResponse instantiates a new CertificateArchiveResponse object
 This constructor will assign default values to properties that have it defined,
@@ -55,6 +55,41 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetCount
+
+`func (o *CertificateArchiveResponse) GetCount() int64`
+
+GetCount returns the Count field if non-nil, zero value otherwise.
+
+### GetCountOk
+
+`func (o *CertificateArchiveResponse) GetCountOk() (*int64, bool)`
+
+GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCount
+
+`func (o *CertificateArchiveResponse) SetCount(v int64)`
+
+SetCount sets Count field to given value.
+
+### HasCount
+
+`func (o *CertificateArchiveResponse) HasCount() bool`
+
+HasCount returns a boolean if a field has been set.
+
+### SetCountNil
+
+`func (o *CertificateArchiveResponse) SetCountNil(b bool)`
+
+ SetCountNil sets the value for Count to be an explicit nil
+
+### UnsetCount
+`func (o *CertificateArchiveResponse) UnsetCount()`
+
+UnsetCount ensures that no value is present for Count, not even an explicit nil
 ### GetCreatedAt
 
 `func (o *CertificateArchiveResponse) GetCreatedAt() int64`
@@ -90,6 +125,41 @@ HasCreatedAt returns a boolean if a field has been set.
 `func (o *CertificateArchiveResponse) UnsetCreatedAt()`
 
 UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
+### GetError
+
+`func (o *CertificateArchiveResponse) GetError() string`
+
+GetError returns the Error field if non-nil, zero value otherwise.
+
+### GetErrorOk
+
+`func (o *CertificateArchiveResponse) GetErrorOk() (*string, bool)`
+
+GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetError
+
+`func (o *CertificateArchiveResponse) SetError(v string)`
+
+SetError sets Error field to given value.
+
+### HasError
+
+`func (o *CertificateArchiveResponse) HasError() bool`
+
+HasError returns a boolean if a field has been set.
+
+### SetErrorNil
+
+`func (o *CertificateArchiveResponse) SetErrorNil(b bool)`
+
+ SetErrorNil sets the value for Error to be an explicit nil
+
+### UnsetError
+`func (o *CertificateArchiveResponse) UnsetError()`
+
+UnsetError ensures that no value is present for Error, not even an explicit nil
 ### GetPurgeAt
 
 `func (o *CertificateArchiveResponse) GetPurgeAt() int64`
@@ -145,76 +215,81 @@ and a boolean to check if the value has been set.
 SetStatus sets Status field to given value.
 
 
-### GetCount
+### GetArchiveKeys
 
-`func (o *CertificateArchiveResponse) GetCount() int64`
+`func (o *CertificateArchiveResponse) GetArchiveKeys() bool`
 
-GetCount returns the Count field if non-nil, zero value otherwise.
+GetArchiveKeys returns the ArchiveKeys field if non-nil, zero value otherwise.
 
-### GetCountOk
+### GetArchiveKeysOk
 
-`func (o *CertificateArchiveResponse) GetCountOk() (*int64, bool)`
+`func (o *CertificateArchiveResponse) GetArchiveKeysOk() (*bool, bool)`
 
-GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+GetArchiveKeysOk returns a tuple with the ArchiveKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCount
+### SetArchiveKeys
 
-`func (o *CertificateArchiveResponse) SetCount(v int64)`
+`func (o *CertificateArchiveResponse) SetArchiveKeys(v bool)`
 
-SetCount sets Count field to given value.
+SetArchiveKeys sets ArchiveKeys field to given value.
 
-### HasCount
 
-`func (o *CertificateArchiveResponse) HasCount() bool`
+### GetFilename
 
-HasCount returns a boolean if a field has been set.
+`func (o *CertificateArchiveResponse) GetFilename() string`
 
-### SetCountNil
+GetFilename returns the Filename field if non-nil, zero value otherwise.
 
-`func (o *CertificateArchiveResponse) SetCountNil(b bool)`
+### GetFilenameOk
 
- SetCountNil sets the value for Count to be an explicit nil
+`func (o *CertificateArchiveResponse) GetFilenameOk() (*string, bool)`
 
-### UnsetCount
-`func (o *CertificateArchiveResponse) UnsetCount()`
-
-UnsetCount ensures that no value is present for Count, not even an explicit nil
-### GetError
-
-`func (o *CertificateArchiveResponse) GetError() string`
-
-GetError returns the Error field if non-nil, zero value otherwise.
-
-### GetErrorOk
-
-`func (o *CertificateArchiveResponse) GetErrorOk() (*string, bool)`
-
-GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+GetFilenameOk returns a tuple with the Filename field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetError
+### SetFilename
 
-`func (o *CertificateArchiveResponse) SetError(v string)`
+`func (o *CertificateArchiveResponse) SetFilename(v string)`
 
-SetError sets Error field to given value.
+SetFilename sets Filename field to given value.
 
-### HasError
 
-`func (o *CertificateArchiveResponse) HasError() bool`
+### GetFilter
 
-HasError returns a boolean if a field has been set.
+`func (o *CertificateArchiveResponse) GetFilter() string`
 
-### SetErrorNil
+GetFilter returns the Filter field if non-nil, zero value otherwise.
 
-`func (o *CertificateArchiveResponse) SetErrorNil(b bool)`
+### GetFilterOk
 
- SetErrorNil sets the value for Error to be an explicit nil
+`func (o *CertificateArchiveResponse) GetFilterOk() (*string, bool)`
 
-### UnsetError
-`func (o *CertificateArchiveResponse) UnsetError()`
+GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetError ensures that no value is present for Error, not even an explicit nil
+### SetFilter
+
+`func (o *CertificateArchiveResponse) SetFilter(v string)`
+
+SetFilter sets Filter field to given value.
+
+### HasFilter
+
+`func (o *CertificateArchiveResponse) HasFilter() bool`
+
+HasFilter returns a boolean if a field has been set.
+
+### SetFilterNil
+
+`func (o *CertificateArchiveResponse) SetFilterNil(b bool)`
+
+ SetFilterNil sets the value for Filter to be an explicit nil
+
+### UnsetFilter
+`func (o *CertificateArchiveResponse) UnsetFilter()`
+
+UnsetFilter ensures that no value is present for Filter, not even an explicit nil
 ### GetName
 
 `func (o *CertificateArchiveResponse) GetName() string`
@@ -255,81 +330,6 @@ and a boolean to check if the value has been set.
 SetType sets Type field to given value.
 
 
-### GetFilename
-
-`func (o *CertificateArchiveResponse) GetFilename() string`
-
-GetFilename returns the Filename field if non-nil, zero value otherwise.
-
-### GetFilenameOk
-
-`func (o *CertificateArchiveResponse) GetFilenameOk() (*string, bool)`
-
-GetFilenameOk returns a tuple with the Filename field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilename
-
-`func (o *CertificateArchiveResponse) SetFilename(v string)`
-
-SetFilename sets Filename field to given value.
-
-
-### GetArchiveKeys
-
-`func (o *CertificateArchiveResponse) GetArchiveKeys() bool`
-
-GetArchiveKeys returns the ArchiveKeys field if non-nil, zero value otherwise.
-
-### GetArchiveKeysOk
-
-`func (o *CertificateArchiveResponse) GetArchiveKeysOk() (*bool, bool)`
-
-GetArchiveKeysOk returns a tuple with the ArchiveKeys field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetArchiveKeys
-
-`func (o *CertificateArchiveResponse) SetArchiveKeys(v bool)`
-
-SetArchiveKeys sets ArchiveKeys field to given value.
-
-
-### GetFilter
-
-`func (o *CertificateArchiveResponse) GetFilter() string`
-
-GetFilter returns the Filter field if non-nil, zero value otherwise.
-
-### GetFilterOk
-
-`func (o *CertificateArchiveResponse) GetFilterOk() (*string, bool)`
-
-GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilter
-
-`func (o *CertificateArchiveResponse) SetFilter(v string)`
-
-SetFilter sets Filter field to given value.
-
-### HasFilter
-
-`func (o *CertificateArchiveResponse) HasFilter() bool`
-
-HasFilter returns a boolean if a field has been set.
-
-### SetFilterNil
-
-`func (o *CertificateArchiveResponse) SetFilterNil(b bool)`
-
- SetFilterNil sets the value for Filter to be an explicit nil
-
-### UnsetFilter
-`func (o *CertificateArchiveResponse) UnsetFilter()`
-
-UnsetFilter ensures that no value is present for Filter, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

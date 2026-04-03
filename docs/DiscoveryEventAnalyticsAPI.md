@@ -71,7 +71,7 @@ Other parameters are passed through a pointer to a apiAnalyticsDiscoveryEventFlu
 
 ## AnalyticsDiscoveryEventGet
 
-> []AnalyticsStatus2 AnalyticsDiscoveryEventGet(ctx).Execute()
+> []AnalyticsStatus1 AnalyticsDiscoveryEventGet(ctx).Execute()
 
 Retrieve the discovery event analytics status
 
@@ -98,7 +98,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DiscoveryEventAnalyticsAPI.AnalyticsDiscoveryEventGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AnalyticsDiscoveryEventGet`: []AnalyticsStatus2
+	// response from `AnalyticsDiscoveryEventGet`: []AnalyticsStatus1
 	fmt.Fprintf(os.Stdout, "Response from `DiscoveryEventAnalyticsAPI.AnalyticsDiscoveryEventGet`: %v\n", resp)
 }
 ```
@@ -114,7 +114,7 @@ Other parameters are passed through a pointer to a apiAnalyticsDiscoveryEventGet
 
 ### Return type
 
-[**[]AnalyticsStatus2**](AnalyticsStatus2.md)
+[**[]AnalyticsStatus1**](AnalyticsStatus1.md)
 
 ### Authorization
 

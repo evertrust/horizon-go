@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	passwordPolicy := *openapiclient.NewPasswordPolicy("Horizon-Default", int64(8)) // PasswordPolicy | The password policy to register
+	passwordPolicy := *openapiclient.NewPasswordPolicy(int64(8), "Horizon-Default") // PasswordPolicy | The password policy to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -369,7 +369,7 @@ import (
 )
 
 func main() {
-	passwordPolicy := *openapiclient.NewPasswordPolicy("Horizon-Default", int64(8)) // PasswordPolicy | The password policy to update
+	passwordPolicy := *openapiclient.NewPasswordPolicy(int64(8), "Horizon-Default") // PasswordPolicy | The password policy to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

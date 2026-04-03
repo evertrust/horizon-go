@@ -301,7 +301,7 @@ import (
 )
 
 func main() {
-	resetPasswordRequest := *openapiclient.NewResetPasswordRequest("administrator", "Uuid_example", "Password_example") // ResetPasswordRequest | 
+	resetPasswordRequest := *openapiclient.NewResetPasswordRequest("administrator", "Password_example", "Uuid_example") // ResetPasswordRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

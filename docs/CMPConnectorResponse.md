@@ -5,30 +5,30 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
-**Type** | **string** |  | 
-**EndPoint** | **string** |  | 
-**Profile** | **string** |  | 
-**IssuerCADN** | **string** |  | 
-**IssuerCACert** | **string** |  | 
-**SignerCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to sign on the PKI | 
-**EmailMap** | Pointer to **NullableString** |  | [optional] 
-**SanDnsMap** | Pointer to **NullableString** |  | [optional] 
+**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
 **CnMap** | Pointer to **NullableString** |  | [optional] 
-**ProfileMap** | Pointer to **NullableString** |  | [optional] 
+**EmailMap** | Pointer to **NullableString** |  | [optional] 
+**EndPoint** | **string** |  | 
+**IssuerCACert** | **string** |  | 
+**IssuerCADN** | **string** |  | 
 **IssuerMap** | Pointer to **NullableString** |  | [optional] 
 **LegacyCMPStyle** | Pointer to **NullableBool** |  | [optional] 
-**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Name** | **string** |  | 
+**Profile** | **string** |  | 
+**ProfileMap** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
+**SanDnsMap** | Pointer to **NullableString** |  | [optional] 
+**SignerCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to sign on the PKI | 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewCMPConnectorResponse
 
-`func NewCMPConnectorResponse(id string, name string, type_ string, endPoint string, profile string, issuerCADN string, issuerCACert string, signerCredentials string, authenticationCredentials string, ) *CMPConnectorResponse`
+`func NewCMPConnectorResponse(id string, authenticationCredentials string, endPoint string, issuerCACert string, issuerCADN string, name string, profile string, signerCredentials string, type_ string, ) *CMPConnectorResponse`
 
 NewCMPConnectorResponse instantiates a new CMPConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -63,216 +63,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetName
+### GetAuthenticationCredentials
 
-`func (o *CMPConnectorResponse) GetName() string`
+`func (o *CMPConnectorResponse) GetAuthenticationCredentials() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAuthenticationCredentialsOk
 
-`func (o *CMPConnectorResponse) GetNameOk() (*string, bool)`
+`func (o *CMPConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetAuthenticationCredentials
 
-`func (o *CMPConnectorResponse) SetName(v string)`
+`func (o *CMPConnectorResponse) SetAuthenticationCredentials(v string)`
 
-SetName sets Name field to given value.
+SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
 
 
-### GetType
-
-`func (o *CMPConnectorResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *CMPConnectorResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *CMPConnectorResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetEndPoint
-
-`func (o *CMPConnectorResponse) GetEndPoint() string`
-
-GetEndPoint returns the EndPoint field if non-nil, zero value otherwise.
-
-### GetEndPointOk
-
-`func (o *CMPConnectorResponse) GetEndPointOk() (*string, bool)`
-
-GetEndPointOk returns a tuple with the EndPoint field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEndPoint
-
-`func (o *CMPConnectorResponse) SetEndPoint(v string)`
-
-SetEndPoint sets EndPoint field to given value.
-
-
-### GetProfile
-
-`func (o *CMPConnectorResponse) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *CMPConnectorResponse) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *CMPConnectorResponse) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-
-### GetIssuerCADN
-
-`func (o *CMPConnectorResponse) GetIssuerCADN() string`
-
-GetIssuerCADN returns the IssuerCADN field if non-nil, zero value otherwise.
-
-### GetIssuerCADNOk
-
-`func (o *CMPConnectorResponse) GetIssuerCADNOk() (*string, bool)`
-
-GetIssuerCADNOk returns a tuple with the IssuerCADN field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIssuerCADN
-
-`func (o *CMPConnectorResponse) SetIssuerCADN(v string)`
-
-SetIssuerCADN sets IssuerCADN field to given value.
-
-
-### GetIssuerCACert
-
-`func (o *CMPConnectorResponse) GetIssuerCACert() string`
-
-GetIssuerCACert returns the IssuerCACert field if non-nil, zero value otherwise.
-
-### GetIssuerCACertOk
-
-`func (o *CMPConnectorResponse) GetIssuerCACertOk() (*string, bool)`
-
-GetIssuerCACertOk returns a tuple with the IssuerCACert field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIssuerCACert
-
-`func (o *CMPConnectorResponse) SetIssuerCACert(v string)`
-
-SetIssuerCACert sets IssuerCACert field to given value.
-
-
-### GetSignerCredentials
-
-`func (o *CMPConnectorResponse) GetSignerCredentials() string`
-
-GetSignerCredentials returns the SignerCredentials field if non-nil, zero value otherwise.
-
-### GetSignerCredentialsOk
-
-`func (o *CMPConnectorResponse) GetSignerCredentialsOk() (*string, bool)`
-
-GetSignerCredentialsOk returns a tuple with the SignerCredentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSignerCredentials
-
-`func (o *CMPConnectorResponse) SetSignerCredentials(v string)`
-
-SetSignerCredentials sets SignerCredentials field to given value.
-
-
-### GetEmailMap
-
-`func (o *CMPConnectorResponse) GetEmailMap() string`
-
-GetEmailMap returns the EmailMap field if non-nil, zero value otherwise.
-
-### GetEmailMapOk
-
-`func (o *CMPConnectorResponse) GetEmailMapOk() (*string, bool)`
-
-GetEmailMapOk returns a tuple with the EmailMap field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEmailMap
-
-`func (o *CMPConnectorResponse) SetEmailMap(v string)`
-
-SetEmailMap sets EmailMap field to given value.
-
-### HasEmailMap
-
-`func (o *CMPConnectorResponse) HasEmailMap() bool`
-
-HasEmailMap returns a boolean if a field has been set.
-
-### SetEmailMapNil
-
-`func (o *CMPConnectorResponse) SetEmailMapNil(b bool)`
-
- SetEmailMapNil sets the value for EmailMap to be an explicit nil
-
-### UnsetEmailMap
-`func (o *CMPConnectorResponse) UnsetEmailMap()`
-
-UnsetEmailMap ensures that no value is present for EmailMap, not even an explicit nil
-### GetSanDnsMap
-
-`func (o *CMPConnectorResponse) GetSanDnsMap() string`
-
-GetSanDnsMap returns the SanDnsMap field if non-nil, zero value otherwise.
-
-### GetSanDnsMapOk
-
-`func (o *CMPConnectorResponse) GetSanDnsMapOk() (*string, bool)`
-
-GetSanDnsMapOk returns a tuple with the SanDnsMap field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSanDnsMap
-
-`func (o *CMPConnectorResponse) SetSanDnsMap(v string)`
-
-SetSanDnsMap sets SanDnsMap field to given value.
-
-### HasSanDnsMap
-
-`func (o *CMPConnectorResponse) HasSanDnsMap() bool`
-
-HasSanDnsMap returns a boolean if a field has been set.
-
-### SetSanDnsMapNil
-
-`func (o *CMPConnectorResponse) SetSanDnsMapNil(b bool)`
-
- SetSanDnsMapNil sets the value for SanDnsMap to be an explicit nil
-
-### UnsetSanDnsMap
-`func (o *CMPConnectorResponse) UnsetSanDnsMap()`
-
-UnsetSanDnsMap ensures that no value is present for SanDnsMap, not even an explicit nil
 ### GetCnMap
 
 `func (o *CMPConnectorResponse) GetCnMap() string`
@@ -308,41 +118,101 @@ HasCnMap returns a boolean if a field has been set.
 `func (o *CMPConnectorResponse) UnsetCnMap()`
 
 UnsetCnMap ensures that no value is present for CnMap, not even an explicit nil
-### GetProfileMap
+### GetEmailMap
 
-`func (o *CMPConnectorResponse) GetProfileMap() string`
+`func (o *CMPConnectorResponse) GetEmailMap() string`
 
-GetProfileMap returns the ProfileMap field if non-nil, zero value otherwise.
+GetEmailMap returns the EmailMap field if non-nil, zero value otherwise.
 
-### GetProfileMapOk
+### GetEmailMapOk
 
-`func (o *CMPConnectorResponse) GetProfileMapOk() (*string, bool)`
+`func (o *CMPConnectorResponse) GetEmailMapOk() (*string, bool)`
 
-GetProfileMapOk returns a tuple with the ProfileMap field if it's non-nil, zero value otherwise
+GetEmailMapOk returns a tuple with the EmailMap field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProfileMap
+### SetEmailMap
 
-`func (o *CMPConnectorResponse) SetProfileMap(v string)`
+`func (o *CMPConnectorResponse) SetEmailMap(v string)`
 
-SetProfileMap sets ProfileMap field to given value.
+SetEmailMap sets EmailMap field to given value.
 
-### HasProfileMap
+### HasEmailMap
 
-`func (o *CMPConnectorResponse) HasProfileMap() bool`
+`func (o *CMPConnectorResponse) HasEmailMap() bool`
 
-HasProfileMap returns a boolean if a field has been set.
+HasEmailMap returns a boolean if a field has been set.
 
-### SetProfileMapNil
+### SetEmailMapNil
 
-`func (o *CMPConnectorResponse) SetProfileMapNil(b bool)`
+`func (o *CMPConnectorResponse) SetEmailMapNil(b bool)`
 
- SetProfileMapNil sets the value for ProfileMap to be an explicit nil
+ SetEmailMapNil sets the value for EmailMap to be an explicit nil
 
-### UnsetProfileMap
-`func (o *CMPConnectorResponse) UnsetProfileMap()`
+### UnsetEmailMap
+`func (o *CMPConnectorResponse) UnsetEmailMap()`
 
-UnsetProfileMap ensures that no value is present for ProfileMap, not even an explicit nil
+UnsetEmailMap ensures that no value is present for EmailMap, not even an explicit nil
+### GetEndPoint
+
+`func (o *CMPConnectorResponse) GetEndPoint() string`
+
+GetEndPoint returns the EndPoint field if non-nil, zero value otherwise.
+
+### GetEndPointOk
+
+`func (o *CMPConnectorResponse) GetEndPointOk() (*string, bool)`
+
+GetEndPointOk returns a tuple with the EndPoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndPoint
+
+`func (o *CMPConnectorResponse) SetEndPoint(v string)`
+
+SetEndPoint sets EndPoint field to given value.
+
+
+### GetIssuerCACert
+
+`func (o *CMPConnectorResponse) GetIssuerCACert() string`
+
+GetIssuerCACert returns the IssuerCACert field if non-nil, zero value otherwise.
+
+### GetIssuerCACertOk
+
+`func (o *CMPConnectorResponse) GetIssuerCACertOk() (*string, bool)`
+
+GetIssuerCACertOk returns a tuple with the IssuerCACert field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssuerCACert
+
+`func (o *CMPConnectorResponse) SetIssuerCACert(v string)`
+
+SetIssuerCACert sets IssuerCACert field to given value.
+
+
+### GetIssuerCADN
+
+`func (o *CMPConnectorResponse) GetIssuerCADN() string`
+
+GetIssuerCADN returns the IssuerCADN field if non-nil, zero value otherwise.
+
+### GetIssuerCADNOk
+
+`func (o *CMPConnectorResponse) GetIssuerCADNOk() (*string, bool)`
+
+GetIssuerCADNOk returns a tuple with the IssuerCADN field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssuerCADN
+
+`func (o *CMPConnectorResponse) SetIssuerCADN(v string)`
+
+SetIssuerCADN sets IssuerCADN field to given value.
+
+
 ### GetIssuerMap
 
 `func (o *CMPConnectorResponse) GetIssuerMap() string`
@@ -413,61 +283,81 @@ HasLegacyCMPStyle returns a boolean if a field has been set.
 `func (o *CMPConnectorResponse) UnsetLegacyCMPStyle()`
 
 UnsetLegacyCMPStyle ensures that no value is present for LegacyCMPStyle, not even an explicit nil
-### GetAuthenticationCredentials
+### GetName
 
-`func (o *CMPConnectorResponse) GetAuthenticationCredentials() string`
+`func (o *CMPConnectorResponse) GetName() string`
 
-GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAuthenticationCredentialsOk
+### GetNameOk
 
-`func (o *CMPConnectorResponse) GetAuthenticationCredentialsOk() (*string, bool)`
+`func (o *CMPConnectorResponse) GetNameOk() (*string, bool)`
 
-GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationCredentials
+### SetName
 
-`func (o *CMPConnectorResponse) SetAuthenticationCredentials(v string)`
+`func (o *CMPConnectorResponse) SetName(v string)`
 
-SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
+SetName sets Name field to given value.
 
 
-### GetTimeout
+### GetProfile
 
-`func (o *CMPConnectorResponse) GetTimeout() string`
+`func (o *CMPConnectorResponse) GetProfile() string`
 
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+GetProfile returns the Profile field if non-nil, zero value otherwise.
 
-### GetTimeoutOk
+### GetProfileOk
 
-`func (o *CMPConnectorResponse) GetTimeoutOk() (*string, bool)`
+`func (o *CMPConnectorResponse) GetProfileOk() (*string, bool)`
 
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeout
+### SetProfile
 
-`func (o *CMPConnectorResponse) SetTimeout(v string)`
+`func (o *CMPConnectorResponse) SetProfile(v string)`
 
-SetTimeout sets Timeout field to given value.
+SetProfile sets Profile field to given value.
 
-### HasTimeout
 
-`func (o *CMPConnectorResponse) HasTimeout() bool`
+### GetProfileMap
 
-HasTimeout returns a boolean if a field has been set.
+`func (o *CMPConnectorResponse) GetProfileMap() string`
 
-### SetTimeoutNil
+GetProfileMap returns the ProfileMap field if non-nil, zero value otherwise.
 
-`func (o *CMPConnectorResponse) SetTimeoutNil(b bool)`
+### GetProfileMapOk
 
- SetTimeoutNil sets the value for Timeout to be an explicit nil
+`func (o *CMPConnectorResponse) GetProfileMapOk() (*string, bool)`
 
-### UnsetTimeout
-`func (o *CMPConnectorResponse) UnsetTimeout()`
+GetProfileMapOk returns a tuple with the ProfileMap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### SetProfileMap
+
+`func (o *CMPConnectorResponse) SetProfileMap(v string)`
+
+SetProfileMap sets ProfileMap field to given value.
+
+### HasProfileMap
+
+`func (o *CMPConnectorResponse) HasProfileMap() bool`
+
+HasProfileMap returns a boolean if a field has been set.
+
+### SetProfileMapNil
+
+`func (o *CMPConnectorResponse) SetProfileMapNil(b bool)`
+
+ SetProfileMapNil sets the value for ProfileMap to be an explicit nil
+
+### UnsetProfileMap
+`func (o *CMPConnectorResponse) UnsetProfileMap()`
+
+UnsetProfileMap ensures that no value is present for ProfileMap, not even an explicit nil
 ### GetProxy
 
 `func (o *CMPConnectorResponse) GetProxy() string`
@@ -538,6 +428,61 @@ HasQueue returns a boolean if a field has been set.
 `func (o *CMPConnectorResponse) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetSanDnsMap
+
+`func (o *CMPConnectorResponse) GetSanDnsMap() string`
+
+GetSanDnsMap returns the SanDnsMap field if non-nil, zero value otherwise.
+
+### GetSanDnsMapOk
+
+`func (o *CMPConnectorResponse) GetSanDnsMapOk() (*string, bool)`
+
+GetSanDnsMapOk returns a tuple with the SanDnsMap field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSanDnsMap
+
+`func (o *CMPConnectorResponse) SetSanDnsMap(v string)`
+
+SetSanDnsMap sets SanDnsMap field to given value.
+
+### HasSanDnsMap
+
+`func (o *CMPConnectorResponse) HasSanDnsMap() bool`
+
+HasSanDnsMap returns a boolean if a field has been set.
+
+### SetSanDnsMapNil
+
+`func (o *CMPConnectorResponse) SetSanDnsMapNil(b bool)`
+
+ SetSanDnsMapNil sets the value for SanDnsMap to be an explicit nil
+
+### UnsetSanDnsMap
+`func (o *CMPConnectorResponse) UnsetSanDnsMap()`
+
+UnsetSanDnsMap ensures that no value is present for SanDnsMap, not even an explicit nil
+### GetSignerCredentials
+
+`func (o *CMPConnectorResponse) GetSignerCredentials() string`
+
+GetSignerCredentials returns the SignerCredentials field if non-nil, zero value otherwise.
+
+### GetSignerCredentialsOk
+
+`func (o *CMPConnectorResponse) GetSignerCredentialsOk() (*string, bool)`
+
+GetSignerCredentialsOk returns a tuple with the SignerCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSignerCredentials
+
+`func (o *CMPConnectorResponse) SetSignerCredentials(v string)`
+
+SetSignerCredentials sets SignerCredentials field to given value.
+
+
 ### GetStatus
 
 `func (o *CMPConnectorResponse) GetStatus() PKIConnectorStatus`
@@ -573,6 +518,61 @@ HasStatus returns a boolean if a field has been set.
 `func (o *CMPConnectorResponse) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
+### GetTimeout
+
+`func (o *CMPConnectorResponse) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *CMPConnectorResponse) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *CMPConnectorResponse) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *CMPConnectorResponse) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *CMPConnectorResponse) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *CMPConnectorResponse) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *CMPConnectorResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *CMPConnectorResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *CMPConnectorResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

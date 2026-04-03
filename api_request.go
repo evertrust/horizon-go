@@ -3,7 +3,7 @@
 
    ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
 
-   API version: 2.8.0
+   API version: 2.9.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -114,6 +114,7 @@ func (a *RequestAPIService) RequestAggregateExecute(r RequestAPIRequestAggregate
 			}
 		}
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -126,6 +127,48 @@ func (a *RequestAPIService) RequestAggregateExecute(r RequestAPIRequestAggregate
 				}
 				localVarHeaderParams["X-API-ID"] = key
 			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -151,7 +194,7 @@ func (a *RequestAPIService) RequestAggregateExecute(r RequestAPIRequestAggregate
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.RequestAggregate400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -162,7 +205,7 @@ func (a *RequestAPIService) RequestAggregateExecute(r RequestAPIRequestAggregate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.CertificateList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -173,7 +216,7 @@ func (a *RequestAPIService) RequestAggregateExecute(r RequestAPIRequestAggregate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.CertificateList403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -184,7 +227,7 @@ func (a *RequestAPIService) RequestAggregateExecute(r RequestAPIRequestAggregate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.RequestCancel500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -220,7 +263,7 @@ func (r RequestAPIRequestApproveRequest) RequestApproveRequest(requestApproveReq
 	return r
 }
 
-func (r RequestAPIRequestApproveRequest) Execute() (*models.RequestGet200Response, *http.Response, error) {
+func (r RequestAPIRequestApproveRequest) Execute() (*models.RequestApprove200Response, *http.Response, error) {
 	return r.ApiService.RequestApproveExecute(r)
 }
 
@@ -241,13 +284,13 @@ func (a *RequestAPIService) RequestApprove(ctx context.Context) RequestAPIReques
 
 // Execute executes the request
 //
-//	@return RequestGet200Response
-func (a *RequestAPIService) RequestApproveExecute(r RequestAPIRequestApproveRequest) (*models.RequestGet200Response, *http.Response, error) {
+//	@return RequestApprove200Response
+func (a *RequestAPIService) RequestApproveExecute(r RequestAPIRequestApproveRequest) (*models.RequestApprove200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *models.RequestGet200Response
+		localVarReturnValue *models.RequestApprove200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RequestAPIService.RequestApprove")
@@ -297,6 +340,7 @@ func (a *RequestAPIService) RequestApproveExecute(r RequestAPIRequestApproveRequ
 			}
 		}
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -309,6 +353,48 @@ func (a *RequestAPIService) RequestApproveExecute(r RequestAPIRequestApproveRequ
 				}
 				localVarHeaderParams["X-API-ID"] = key
 			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -334,7 +420,7 @@ func (a *RequestAPIService) RequestApproveExecute(r RequestAPIRequestApproveRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.RequestApprove400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -345,7 +431,7 @@ func (a *RequestAPIService) RequestApproveExecute(r RequestAPIRequestApproveRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.CertificateList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -356,7 +442,7 @@ func (a *RequestAPIService) RequestApproveExecute(r RequestAPIRequestApproveRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.RequestApprove403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -367,7 +453,7 @@ func (a *RequestAPIService) RequestApproveExecute(r RequestAPIRequestApproveRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v models.RequestApprove404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -378,7 +464,7 @@ func (a *RequestAPIService) RequestApproveExecute(r RequestAPIRequestApproveRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.RequestApprove500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -414,7 +500,7 @@ func (r RequestAPIRequestCancelRequest) RequestCancelRequest(requestCancelReques
 	return r
 }
 
-func (r RequestAPIRequestCancelRequest) Execute() (*models.RequestGet200Response, *http.Response, error) {
+func (r RequestAPIRequestCancelRequest) Execute() (*models.RequestApprove200Response, *http.Response, error) {
 	return r.ApiService.RequestCancelExecute(r)
 }
 
@@ -435,13 +521,13 @@ func (a *RequestAPIService) RequestCancel(ctx context.Context) RequestAPIRequest
 
 // Execute executes the request
 //
-//	@return RequestGet200Response
-func (a *RequestAPIService) RequestCancelExecute(r RequestAPIRequestCancelRequest) (*models.RequestGet200Response, *http.Response, error) {
+//	@return RequestApprove200Response
+func (a *RequestAPIService) RequestCancelExecute(r RequestAPIRequestCancelRequest) (*models.RequestApprove200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *models.RequestGet200Response
+		localVarReturnValue *models.RequestApprove200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RequestAPIService.RequestCancel")
@@ -491,6 +577,7 @@ func (a *RequestAPIService) RequestCancelExecute(r RequestAPIRequestCancelReques
 			}
 		}
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -503,6 +590,48 @@ func (a *RequestAPIService) RequestCancelExecute(r RequestAPIRequestCancelReques
 				}
 				localVarHeaderParams["X-API-ID"] = key
 			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -528,7 +657,7 @@ func (a *RequestAPIService) RequestCancelExecute(r RequestAPIRequestCancelReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.RequestCancel400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -539,7 +668,7 @@ func (a *RequestAPIService) RequestCancelExecute(r RequestAPIRequestCancelReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.CertificateList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -550,7 +679,7 @@ func (a *RequestAPIService) RequestCancelExecute(r RequestAPIRequestCancelReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.CertificateGetId403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -561,7 +690,7 @@ func (a *RequestAPIService) RequestCancelExecute(r RequestAPIRequestCancelReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v models.RequestCancel404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -572,7 +701,7 @@ func (a *RequestAPIService) RequestCancelExecute(r RequestAPIRequestCancelReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.RequestCancel500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -693,6 +822,7 @@ func (a *RequestAPIService) RequestCertificateProfileExecute(r RequestAPIRequest
 			}
 		}
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -705,6 +835,48 @@ func (a *RequestAPIService) RequestCertificateProfileExecute(r RequestAPIRequest
 				}
 				localVarHeaderParams["X-API-ID"] = key
 			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -730,7 +902,7 @@ func (a *RequestAPIService) RequestCertificateProfileExecute(r RequestAPIRequest
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.CertificateProfileList403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -741,7 +913,7 @@ func (a *RequestAPIService) RequestCertificateProfileExecute(r RequestAPIRequest
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.RequestCertificateProfile500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -851,6 +1023,7 @@ func (a *RequestAPIService) RequestCsvExecute(r RequestAPIRequestCsvRequest) (*h
 			}
 		}
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -863,6 +1036,48 @@ func (a *RequestAPIService) RequestCsvExecute(r RequestAPIRequestCsvRequest) (*h
 				}
 				localVarHeaderParams["X-API-ID"] = key
 			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -888,7 +1103,7 @@ func (a *RequestAPIService) RequestCsvExecute(r RequestAPIRequestCsvRequest) (*h
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.RequestCsv400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -899,7 +1114,7 @@ func (a *RequestAPIService) RequestCsvExecute(r RequestAPIRequestCsvRequest) (*h
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.RequestCsv401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -910,7 +1125,7 @@ func (a *RequestAPIService) RequestCsvExecute(r RequestAPIRequestCsvRequest) (*h
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.RequestCsv403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -921,7 +1136,7 @@ func (a *RequestAPIService) RequestCsvExecute(r RequestAPIRequestCsvRequest) (*h
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.RequestCsv500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -948,7 +1163,7 @@ func (r RequestAPIRequestDenyRequest) RequestDenyRequest(requestDenyRequest mode
 	return r
 }
 
-func (r RequestAPIRequestDenyRequest) Execute() (*models.RequestGet200Response, *http.Response, error) {
+func (r RequestAPIRequestDenyRequest) Execute() (*models.RequestApprove200Response, *http.Response, error) {
 	return r.ApiService.RequestDenyExecute(r)
 }
 
@@ -969,13 +1184,13 @@ func (a *RequestAPIService) RequestDeny(ctx context.Context) RequestAPIRequestDe
 
 // Execute executes the request
 //
-//	@return RequestGet200Response
-func (a *RequestAPIService) RequestDenyExecute(r RequestAPIRequestDenyRequest) (*models.RequestGet200Response, *http.Response, error) {
+//	@return RequestApprove200Response
+func (a *RequestAPIService) RequestDenyExecute(r RequestAPIRequestDenyRequest) (*models.RequestApprove200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *models.RequestGet200Response
+		localVarReturnValue *models.RequestApprove200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RequestAPIService.RequestDeny")
@@ -1025,6 +1240,7 @@ func (a *RequestAPIService) RequestDenyExecute(r RequestAPIRequestDenyRequest) (
 			}
 		}
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1037,6 +1253,48 @@ func (a *RequestAPIService) RequestDenyExecute(r RequestAPIRequestDenyRequest) (
 				}
 				localVarHeaderParams["X-API-ID"] = key
 			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1062,7 +1320,7 @@ func (a *RequestAPIService) RequestDenyExecute(r RequestAPIRequestDenyRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.RequestDeny400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1073,7 +1331,7 @@ func (a *RequestAPIService) RequestDenyExecute(r RequestAPIRequestDenyRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.CertificateList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1084,7 +1342,7 @@ func (a *RequestAPIService) RequestDenyExecute(r RequestAPIRequestDenyRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.CertificateGetId403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1095,7 +1353,7 @@ func (a *RequestAPIService) RequestDenyExecute(r RequestAPIRequestDenyRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v models.RequestCancel404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1106,7 +1364,7 @@ func (a *RequestAPIService) RequestDenyExecute(r RequestAPIRequestDenyRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.RequestCancel500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1217,6 +1475,7 @@ func (a *RequestAPIService) RequestDictionaryExecute(r RequestAPIRequestDictiona
 			}
 		}
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1229,6 +1488,48 @@ func (a *RequestAPIService) RequestDictionaryExecute(r RequestAPIRequestDictiona
 				}
 				localVarHeaderParams["X-API-ID"] = key
 			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1254,7 +1555,7 @@ func (a *RequestAPIService) RequestDictionaryExecute(r RequestAPIRequestDictiona
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.CertificateList400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1265,7 +1566,7 @@ func (a *RequestAPIService) RequestDictionaryExecute(r RequestAPIRequestDictiona
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.CertificateList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1276,7 +1577,7 @@ func (a *RequestAPIService) RequestDictionaryExecute(r RequestAPIRequestDictiona
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.CertificateList403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1287,7 +1588,7 @@ func (a *RequestAPIService) RequestDictionaryExecute(r RequestAPIRequestDictiona
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.RequestCancel500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1392,6 +1693,7 @@ func (a *RequestAPIService) RequestGetExecute(r RequestAPIRequestGetRequest) (*m
 			}
 		}
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1404,6 +1706,48 @@ func (a *RequestAPIService) RequestGetExecute(r RequestAPIRequestGetRequest) (*m
 				}
 				localVarHeaderParams["X-API-ID"] = key
 			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1429,7 +1773,7 @@ func (a *RequestAPIService) RequestGetExecute(r RequestAPIRequestGetRequest) (*m
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.RequestGet400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1440,7 +1784,7 @@ func (a *RequestAPIService) RequestGetExecute(r RequestAPIRequestGetRequest) (*m
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.AdocGet403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1451,7 +1795,7 @@ func (a *RequestAPIService) RequestGetExecute(r RequestAPIRequestGetRequest) (*m
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v models.RequestGet404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1462,7 +1806,7 @@ func (a *RequestAPIService) RequestGetExecute(r RequestAPIRequestGetRequest) (*m
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.RequestCertificateProfile500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1575,6 +1919,7 @@ func (a *RequestAPIService) RequestSearchExecute(r RequestAPIRequestSearchReques
 			}
 		}
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1587,6 +1932,48 @@ func (a *RequestAPIService) RequestSearchExecute(r RequestAPIRequestSearchReques
 				}
 				localVarHeaderParams["X-API-ID"] = key
 			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1612,7 +1999,7 @@ func (a *RequestAPIService) RequestSearchExecute(r RequestAPIRequestSearchReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.RequestSearch400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1623,7 +2010,7 @@ func (a *RequestAPIService) RequestSearchExecute(r RequestAPIRequestSearchReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.CertificateList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1634,7 +2021,7 @@ func (a *RequestAPIService) RequestSearchExecute(r RequestAPIRequestSearchReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.CertificateList403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1645,7 +2032,7 @@ func (a *RequestAPIService) RequestSearchExecute(r RequestAPIRequestSearchReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.RequestCancel500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1758,6 +2145,7 @@ func (a *RequestAPIService) RequestSubmitExecute(r RequestAPIRequestSubmitReques
 			}
 		}
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1770,6 +2158,48 @@ func (a *RequestAPIService) RequestSubmitExecute(r RequestAPIRequestSubmitReques
 				}
 				localVarHeaderParams["X-API-ID"] = key
 			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1795,7 +2225,7 @@ func (a *RequestAPIService) RequestSubmitExecute(r RequestAPIRequestSubmitReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.RequestSubmit400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1806,7 +2236,7 @@ func (a *RequestAPIService) RequestSubmitExecute(r RequestAPIRequestSubmitReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.CertificateSearch401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1817,7 +2247,7 @@ func (a *RequestAPIService) RequestSubmitExecute(r RequestAPIRequestSubmitReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.RequestSubmit403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1828,7 +2258,7 @@ func (a *RequestAPIService) RequestSubmitExecute(r RequestAPIRequestSubmitReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v models.RequestSubmit404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1839,7 +2269,7 @@ func (a *RequestAPIService) RequestSubmitExecute(r RequestAPIRequestSubmitReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.RequestSubmit500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1952,6 +2382,7 @@ func (a *RequestAPIService) RequestTemplateExecute(r RequestAPIRequestTemplateRe
 			}
 		}
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1964,6 +2395,48 @@ func (a *RequestAPIService) RequestTemplateExecute(r RequestAPIRequestTemplateRe
 				}
 				localVarHeaderParams["X-API-ID"] = key
 			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
@@ -1989,7 +2462,7 @@ func (a *RequestAPIService) RequestTemplateExecute(r RequestAPIRequestTemplateRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v models.RequestTemplate400Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2000,7 +2473,7 @@ func (a *RequestAPIService) RequestTemplateExecute(r RequestAPIRequestTemplateRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.CertificateList401Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2011,7 +2484,7 @@ func (a *RequestAPIService) RequestTemplateExecute(r RequestAPIRequestTemplateRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.RequestTemplate403Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2022,7 +2495,7 @@ func (a *RequestAPIService) RequestTemplateExecute(r RequestAPIRequestTemplateRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v models.RequestTemplate404Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2033,7 +2506,7 @@ func (a *RequestAPIService) RequestTemplateExecute(r RequestAPIRequestTemplateRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.RequestCertificateProfile500Response
+			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

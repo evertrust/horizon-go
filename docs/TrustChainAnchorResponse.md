@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Certificate** | [**CFCertificateResponse**](CFCertificateResponse.md) |  | 
 **Name** | **string** |  | 
-**Certificate** | [**CFCertificate**](CFCertificate.md) |  | 
-**Subordinates** | Pointer to [**[]TrustChainAnchor**](TrustChainAnchor.md) |  | [optional] 
+**Subordinates** | Pointer to [**[]TrustChainAnchorResponse**](TrustChainAnchorResponse.md) |  | [optional] 
 
 ## Methods
 
 ### NewTrustChainAnchorResponse
 
-`func NewTrustChainAnchorResponse(name string, certificate CFCertificate, ) *TrustChainAnchorResponse`
+`func NewTrustChainAnchorResponse(certificate CFCertificateResponse, name string, ) *TrustChainAnchorResponse`
 
 NewTrustChainAnchorResponse instantiates a new TrustChainAnchorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +26,26 @@ will change when the set of required properties is changed
 NewTrustChainAnchorResponseWithDefaults instantiates a new TrustChainAnchorResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCertificate
+
+`func (o *TrustChainAnchorResponse) GetCertificate() CFCertificateResponse`
+
+GetCertificate returns the Certificate field if non-nil, zero value otherwise.
+
+### GetCertificateOk
+
+`func (o *TrustChainAnchorResponse) GetCertificateOk() (*CFCertificateResponse, bool)`
+
+GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificate
+
+`func (o *TrustChainAnchorResponse) SetCertificate(v CFCertificateResponse)`
+
+SetCertificate sets Certificate field to given value.
+
 
 ### GetName
 
@@ -47,42 +67,22 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetCertificate
-
-`func (o *TrustChainAnchorResponse) GetCertificate() CFCertificate`
-
-GetCertificate returns the Certificate field if non-nil, zero value otherwise.
-
-### GetCertificateOk
-
-`func (o *TrustChainAnchorResponse) GetCertificateOk() (*CFCertificate, bool)`
-
-GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificate
-
-`func (o *TrustChainAnchorResponse) SetCertificate(v CFCertificate)`
-
-SetCertificate sets Certificate field to given value.
-
-
 ### GetSubordinates
 
-`func (o *TrustChainAnchorResponse) GetSubordinates() []TrustChainAnchor`
+`func (o *TrustChainAnchorResponse) GetSubordinates() []TrustChainAnchorResponse`
 
 GetSubordinates returns the Subordinates field if non-nil, zero value otherwise.
 
 ### GetSubordinatesOk
 
-`func (o *TrustChainAnchorResponse) GetSubordinatesOk() (*[]TrustChainAnchor, bool)`
+`func (o *TrustChainAnchorResponse) GetSubordinatesOk() (*[]TrustChainAnchorResponse, bool)`
 
 GetSubordinatesOk returns a tuple with the Subordinates field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubordinates
 
-`func (o *TrustChainAnchorResponse) SetSubordinates(v []TrustChainAnchor)`
+`func (o *TrustChainAnchorResponse) SetSubordinates(v []TrustChainAnchorResponse)`
 
 SetSubordinates sets Subordinates field to given value.
 

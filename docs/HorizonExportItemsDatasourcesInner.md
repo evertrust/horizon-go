@@ -5,36 +5,36 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Type** | **string** | Type of datasource | 
-**Name** | **string** | Name of the datasource | 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
 **Description** | Pointer to **string** | Description of the datasource | [optional] 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | The localized name of the datasource | [optional] 
 **Host** | Pointer to **NullableString** | Ip of the DNS server. If empty, Horizon Server DNS is used | [optional] 
-**Port** | Pointer to **NullableInt64** | Port on which to join the LDAP server | [optional] [default to 389]
-**Timeout** | **string** | Timeout for the LDAP request | 
-**RecordTypes** | Pointer to **[]string** | Type of DNS records to fetch. All available record types are fetched if null | [optional] 
 **Lookup** | **string** | Host to lookup | 
-**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for LDAP Authentication | 
-**Method** | **string** | The HTTP method to use for the request | 
-**Url** | **string** | The URL to request | 
-**AuthenticationType** | **string** | The authentication type to use while making the REST call. Is linked to &#x60;credentials&#x60;. | 
-**Headers** | Pointer to [**[]Header**](Header.md) | The headers of the request | [optional] 
-**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
-**Payload** | Pointer to **NullableString** | The body of the request | [optional] 
-**ExpectedHttpCodes** | **[]int64** | The success HTTP codes for the request. If the return code is not in this list, the request will be considered failed. | 
-**Proxy** | Pointer to **NullableString** | Name of the proxy to use to reach the LDAP server | [optional] 
+**Name** | **string** | Name of the datasource | 
+**Port** | Pointer to **NullableInt64** | Port on which to join the LDAP server | [optional] [default to 389]
+**RecordTypes** | Pointer to **[]string** | Type of DNS records to fetch. All available record types are fetched if null | [optional] 
+**Timeout** | **string** | Timeout for the LDAP request | 
+**Type** | **string** | Type of datasource | 
 **Attributes** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of attributes to fetch for this datasource | [optional] 
+**AuthenticationType** | **string** | The authentication type to use while making the REST call. Is linked to &#x60;credentials&#x60;. | 
+**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use for LDAP Authentication | 
+**ExpectedHttpCodes** | **[]int64** | The success HTTP codes for the request. If the return code is not in this list, the request will be considered failed. | 
+**Headers** | Pointer to [**[]Header**](Header.md) | The headers of the request | [optional] 
+**Method** | **string** | The HTTP method to use for the request | 
+**Payload** | Pointer to **NullableString** | The body of the request | [optional] 
+**PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
+**Proxy** | Pointer to **NullableString** | Name of the proxy to use to reach the LDAP server | [optional] 
+**Url** | **string** | The URL to request | 
+**BaseDn** | **string** | LDAP Base DN | 
+**DisableHostnameValidation** | Pointer to **NullableBool** | Disable hostname validation for the LDAP connection | [optional] [default to false]
+**Filter** | **string** | LDAP Filter | 
 **Hostname** | **string** | Hostname of the LDAP server | 
 **Secure** | **bool** | Use secure LDAP connection | 
-**DisableHostnameValidation** | Pointer to **NullableBool** | Disable hostname validation for the LDAP connection | [optional] [default to false]
-**BaseDn** | **string** | LDAP Base DN | 
-**Filter** | **string** | LDAP Filter | 
 
 ## Methods
 
 ### NewHorizonExportItemsDatasourcesInner
 
-`func NewHorizonExportItemsDatasourcesInner(id string, type_ string, name string, timeout string, lookup string, credentials string, method string, url string, authenticationType string, expectedHttpCodes []int64, hostname string, secure bool, baseDn string, filter string, ) *HorizonExportItemsDatasourcesInner`
+`func NewHorizonExportItemsDatasourcesInner(id string, lookup string, name string, timeout string, type_ string, authenticationType string, credentials string, expectedHttpCodes []int64, method string, url string, baseDn string, filter string, hostname string, secure bool, ) *HorizonExportItemsDatasourcesInner`
 
 NewHorizonExportItemsDatasourcesInner instantiates a new HorizonExportItemsDatasourcesInner object
 This constructor will assign default values to properties that have it defined,
@@ -69,45 +69,30 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetType
+### GetDescription
 
-`func (o *HorizonExportItemsDatasourcesInner) GetType() string`
+`func (o *HorizonExportItemsDatasourcesInner) GetDescription() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetDescriptionOk
 
-`func (o *HorizonExportItemsDatasourcesInner) GetTypeOk() (*string, bool)`
+`func (o *HorizonExportItemsDatasourcesInner) GetDescriptionOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetDescription
 
-`func (o *HorizonExportItemsDatasourcesInner) SetType(v string)`
+`func (o *HorizonExportItemsDatasourcesInner) SetDescription(v string)`
 
-SetType sets Type field to given value.
+SetDescription sets Description field to given value.
 
+### HasDescription
 
-### GetName
+`func (o *HorizonExportItemsDatasourcesInner) HasDescription() bool`
 
-`func (o *HorizonExportItemsDatasourcesInner) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *HorizonExportItemsDatasourcesInner) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *HorizonExportItemsDatasourcesInner) SetName(v string)`
-
-SetName sets Name field to given value.
-
+HasDescription returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -144,31 +129,6 @@ HasDisplayName returns a boolean if a field has been set.
 `func (o *HorizonExportItemsDatasourcesInner) UnsetDisplayName()`
 
 UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetDescription
-
-`func (o *HorizonExportItemsDatasourcesInner) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *HorizonExportItemsDatasourcesInner) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *HorizonExportItemsDatasourcesInner) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *HorizonExportItemsDatasourcesInner) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
 ### GetHost
 
 `func (o *HorizonExportItemsDatasourcesInner) GetHost() string`
@@ -204,6 +164,46 @@ HasHost returns a boolean if a field has been set.
 `func (o *HorizonExportItemsDatasourcesInner) UnsetHost()`
 
 UnsetHost ensures that no value is present for Host, not even an explicit nil
+### GetLookup
+
+`func (o *HorizonExportItemsDatasourcesInner) GetLookup() string`
+
+GetLookup returns the Lookup field if non-nil, zero value otherwise.
+
+### GetLookupOk
+
+`func (o *HorizonExportItemsDatasourcesInner) GetLookupOk() (*string, bool)`
+
+GetLookupOk returns a tuple with the Lookup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLookup
+
+`func (o *HorizonExportItemsDatasourcesInner) SetLookup(v string)`
+
+SetLookup sets Lookup field to given value.
+
+
+### GetName
+
+`func (o *HorizonExportItemsDatasourcesInner) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *HorizonExportItemsDatasourcesInner) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *HorizonExportItemsDatasourcesInner) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetPort
 
 `func (o *HorizonExportItemsDatasourcesInner) GetPort() int64`
@@ -239,26 +239,6 @@ HasPort returns a boolean if a field has been set.
 `func (o *HorizonExportItemsDatasourcesInner) UnsetPort()`
 
 UnsetPort ensures that no value is present for Port, not even an explicit nil
-### GetTimeout
-
-`func (o *HorizonExportItemsDatasourcesInner) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *HorizonExportItemsDatasourcesInner) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *HorizonExportItemsDatasourcesInner) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-
 ### GetRecordTypes
 
 `func (o *HorizonExportItemsDatasourcesInner) GetRecordTypes() []string`
@@ -294,24 +274,99 @@ HasRecordTypes returns a boolean if a field has been set.
 `func (o *HorizonExportItemsDatasourcesInner) UnsetRecordTypes()`
 
 UnsetRecordTypes ensures that no value is present for RecordTypes, not even an explicit nil
-### GetLookup
+### GetTimeout
 
-`func (o *HorizonExportItemsDatasourcesInner) GetLookup() string`
+`func (o *HorizonExportItemsDatasourcesInner) GetTimeout() string`
 
-GetLookup returns the Lookup field if non-nil, zero value otherwise.
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
 
-### GetLookupOk
+### GetTimeoutOk
 
-`func (o *HorizonExportItemsDatasourcesInner) GetLookupOk() (*string, bool)`
+`func (o *HorizonExportItemsDatasourcesInner) GetTimeoutOk() (*string, bool)`
 
-GetLookupOk returns a tuple with the Lookup field if it's non-nil, zero value otherwise
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLookup
+### SetTimeout
 
-`func (o *HorizonExportItemsDatasourcesInner) SetLookup(v string)`
+`func (o *HorizonExportItemsDatasourcesInner) SetTimeout(v string)`
 
-SetLookup sets Lookup field to given value.
+SetTimeout sets Timeout field to given value.
+
+
+### GetType
+
+`func (o *HorizonExportItemsDatasourcesInner) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *HorizonExportItemsDatasourcesInner) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *HorizonExportItemsDatasourcesInner) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
+### GetAttributes
+
+`func (o *HorizonExportItemsDatasourcesInner) GetAttributes() []DataSourceOutput`
+
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+
+### GetAttributesOk
+
+`func (o *HorizonExportItemsDatasourcesInner) GetAttributesOk() (*[]DataSourceOutput, bool)`
+
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttributes
+
+`func (o *HorizonExportItemsDatasourcesInner) SetAttributes(v []DataSourceOutput)`
+
+SetAttributes sets Attributes field to given value.
+
+### HasAttributes
+
+`func (o *HorizonExportItemsDatasourcesInner) HasAttributes() bool`
+
+HasAttributes returns a boolean if a field has been set.
+
+### SetAttributesNil
+
+`func (o *HorizonExportItemsDatasourcesInner) SetAttributesNil(b bool)`
+
+ SetAttributesNil sets the value for Attributes to be an explicit nil
+
+### UnsetAttributes
+`func (o *HorizonExportItemsDatasourcesInner) UnsetAttributes()`
+
+UnsetAttributes ensures that no value is present for Attributes, not even an explicit nil
+### GetAuthenticationType
+
+`func (o *HorizonExportItemsDatasourcesInner) GetAuthenticationType() string`
+
+GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
+
+### GetAuthenticationTypeOk
+
+`func (o *HorizonExportItemsDatasourcesInner) GetAuthenticationTypeOk() (*string, bool)`
+
+GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthenticationType
+
+`func (o *HorizonExportItemsDatasourcesInner) SetAuthenticationType(v string)`
+
+SetAuthenticationType sets AuthenticationType field to given value.
 
 
 ### GetCredentials
@@ -334,64 +389,24 @@ and a boolean to check if the value has been set.
 SetCredentials sets Credentials field to given value.
 
 
-### GetMethod
+### GetExpectedHttpCodes
 
-`func (o *HorizonExportItemsDatasourcesInner) GetMethod() string`
+`func (o *HorizonExportItemsDatasourcesInner) GetExpectedHttpCodes() []int64`
 
-GetMethod returns the Method field if non-nil, zero value otherwise.
+GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
 
-### GetMethodOk
+### GetExpectedHttpCodesOk
 
-`func (o *HorizonExportItemsDatasourcesInner) GetMethodOk() (*string, bool)`
+`func (o *HorizonExportItemsDatasourcesInner) GetExpectedHttpCodesOk() (*[]int64, bool)`
 
-GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
+GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMethod
+### SetExpectedHttpCodes
 
-`func (o *HorizonExportItemsDatasourcesInner) SetMethod(v string)`
+`func (o *HorizonExportItemsDatasourcesInner) SetExpectedHttpCodes(v []int64)`
 
-SetMethod sets Method field to given value.
-
-
-### GetUrl
-
-`func (o *HorizonExportItemsDatasourcesInner) GetUrl() string`
-
-GetUrl returns the Url field if non-nil, zero value otherwise.
-
-### GetUrlOk
-
-`func (o *HorizonExportItemsDatasourcesInner) GetUrlOk() (*string, bool)`
-
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUrl
-
-`func (o *HorizonExportItemsDatasourcesInner) SetUrl(v string)`
-
-SetUrl sets Url field to given value.
-
-
-### GetAuthenticationType
-
-`func (o *HorizonExportItemsDatasourcesInner) GetAuthenticationType() string`
-
-GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
-
-### GetAuthenticationTypeOk
-
-`func (o *HorizonExportItemsDatasourcesInner) GetAuthenticationTypeOk() (*string, bool)`
-
-GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticationType
-
-`func (o *HorizonExportItemsDatasourcesInner) SetAuthenticationType(v string)`
-
-SetAuthenticationType sets AuthenticationType field to given value.
+SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
 
 
 ### GetHeaders
@@ -429,41 +444,26 @@ HasHeaders returns a boolean if a field has been set.
 `func (o *HorizonExportItemsDatasourcesInner) UnsetHeaders()`
 
 UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
-### GetPayloadType
+### GetMethod
 
-`func (o *HorizonExportItemsDatasourcesInner) GetPayloadType() string`
+`func (o *HorizonExportItemsDatasourcesInner) GetMethod() string`
 
-GetPayloadType returns the PayloadType field if non-nil, zero value otherwise.
+GetMethod returns the Method field if non-nil, zero value otherwise.
 
-### GetPayloadTypeOk
+### GetMethodOk
 
-`func (o *HorizonExportItemsDatasourcesInner) GetPayloadTypeOk() (*string, bool)`
+`func (o *HorizonExportItemsDatasourcesInner) GetMethodOk() (*string, bool)`
 
-GetPayloadTypeOk returns a tuple with the PayloadType field if it's non-nil, zero value otherwise
+GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPayloadType
+### SetMethod
 
-`func (o *HorizonExportItemsDatasourcesInner) SetPayloadType(v string)`
+`func (o *HorizonExportItemsDatasourcesInner) SetMethod(v string)`
 
-SetPayloadType sets PayloadType field to given value.
+SetMethod sets Method field to given value.
 
-### HasPayloadType
 
-`func (o *HorizonExportItemsDatasourcesInner) HasPayloadType() bool`
-
-HasPayloadType returns a boolean if a field has been set.
-
-### SetPayloadTypeNil
-
-`func (o *HorizonExportItemsDatasourcesInner) SetPayloadTypeNil(b bool)`
-
- SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
-
-### UnsetPayloadType
-`func (o *HorizonExportItemsDatasourcesInner) UnsetPayloadType()`
-
-UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
 ### GetPayload
 
 `func (o *HorizonExportItemsDatasourcesInner) GetPayload() string`
@@ -499,26 +499,41 @@ HasPayload returns a boolean if a field has been set.
 `func (o *HorizonExportItemsDatasourcesInner) UnsetPayload()`
 
 UnsetPayload ensures that no value is present for Payload, not even an explicit nil
-### GetExpectedHttpCodes
+### GetPayloadType
 
-`func (o *HorizonExportItemsDatasourcesInner) GetExpectedHttpCodes() []int64`
+`func (o *HorizonExportItemsDatasourcesInner) GetPayloadType() string`
 
-GetExpectedHttpCodes returns the ExpectedHttpCodes field if non-nil, zero value otherwise.
+GetPayloadType returns the PayloadType field if non-nil, zero value otherwise.
 
-### GetExpectedHttpCodesOk
+### GetPayloadTypeOk
 
-`func (o *HorizonExportItemsDatasourcesInner) GetExpectedHttpCodesOk() (*[]int64, bool)`
+`func (o *HorizonExportItemsDatasourcesInner) GetPayloadTypeOk() (*string, bool)`
 
-GetExpectedHttpCodesOk returns a tuple with the ExpectedHttpCodes field if it's non-nil, zero value otherwise
+GetPayloadTypeOk returns a tuple with the PayloadType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExpectedHttpCodes
+### SetPayloadType
 
-`func (o *HorizonExportItemsDatasourcesInner) SetExpectedHttpCodes(v []int64)`
+`func (o *HorizonExportItemsDatasourcesInner) SetPayloadType(v string)`
 
-SetExpectedHttpCodes sets ExpectedHttpCodes field to given value.
+SetPayloadType sets PayloadType field to given value.
 
+### HasPayloadType
 
+`func (o *HorizonExportItemsDatasourcesInner) HasPayloadType() bool`
+
+HasPayloadType returns a boolean if a field has been set.
+
+### SetPayloadTypeNil
+
+`func (o *HorizonExportItemsDatasourcesInner) SetPayloadTypeNil(b bool)`
+
+ SetPayloadTypeNil sets the value for PayloadType to be an explicit nil
+
+### UnsetPayloadType
+`func (o *HorizonExportItemsDatasourcesInner) UnsetPayloadType()`
+
+UnsetPayloadType ensures that no value is present for PayloadType, not even an explicit nil
 ### GetProxy
 
 `func (o *HorizonExportItemsDatasourcesInner) GetProxy() string`
@@ -554,41 +569,101 @@ HasProxy returns a boolean if a field has been set.
 `func (o *HorizonExportItemsDatasourcesInner) UnsetProxy()`
 
 UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetAttributes
+### GetUrl
 
-`func (o *HorizonExportItemsDatasourcesInner) GetAttributes() []DataSourceOutput`
+`func (o *HorizonExportItemsDatasourcesInner) GetUrl() string`
 
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+GetUrl returns the Url field if non-nil, zero value otherwise.
 
-### GetAttributesOk
+### GetUrlOk
 
-`func (o *HorizonExportItemsDatasourcesInner) GetAttributesOk() (*[]DataSourceOutput, bool)`
+`func (o *HorizonExportItemsDatasourcesInner) GetUrlOk() (*string, bool)`
 
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAttributes
+### SetUrl
 
-`func (o *HorizonExportItemsDatasourcesInner) SetAttributes(v []DataSourceOutput)`
+`func (o *HorizonExportItemsDatasourcesInner) SetUrl(v string)`
 
-SetAttributes sets Attributes field to given value.
+SetUrl sets Url field to given value.
 
-### HasAttributes
 
-`func (o *HorizonExportItemsDatasourcesInner) HasAttributes() bool`
+### GetBaseDn
 
-HasAttributes returns a boolean if a field has been set.
+`func (o *HorizonExportItemsDatasourcesInner) GetBaseDn() string`
 
-### SetAttributesNil
+GetBaseDn returns the BaseDn field if non-nil, zero value otherwise.
 
-`func (o *HorizonExportItemsDatasourcesInner) SetAttributesNil(b bool)`
+### GetBaseDnOk
 
- SetAttributesNil sets the value for Attributes to be an explicit nil
+`func (o *HorizonExportItemsDatasourcesInner) GetBaseDnOk() (*string, bool)`
 
-### UnsetAttributes
-`func (o *HorizonExportItemsDatasourcesInner) UnsetAttributes()`
+GetBaseDnOk returns a tuple with the BaseDn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetAttributes ensures that no value is present for Attributes, not even an explicit nil
+### SetBaseDn
+
+`func (o *HorizonExportItemsDatasourcesInner) SetBaseDn(v string)`
+
+SetBaseDn sets BaseDn field to given value.
+
+
+### GetDisableHostnameValidation
+
+`func (o *HorizonExportItemsDatasourcesInner) GetDisableHostnameValidation() bool`
+
+GetDisableHostnameValidation returns the DisableHostnameValidation field if non-nil, zero value otherwise.
+
+### GetDisableHostnameValidationOk
+
+`func (o *HorizonExportItemsDatasourcesInner) GetDisableHostnameValidationOk() (*bool, bool)`
+
+GetDisableHostnameValidationOk returns a tuple with the DisableHostnameValidation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableHostnameValidation
+
+`func (o *HorizonExportItemsDatasourcesInner) SetDisableHostnameValidation(v bool)`
+
+SetDisableHostnameValidation sets DisableHostnameValidation field to given value.
+
+### HasDisableHostnameValidation
+
+`func (o *HorizonExportItemsDatasourcesInner) HasDisableHostnameValidation() bool`
+
+HasDisableHostnameValidation returns a boolean if a field has been set.
+
+### SetDisableHostnameValidationNil
+
+`func (o *HorizonExportItemsDatasourcesInner) SetDisableHostnameValidationNil(b bool)`
+
+ SetDisableHostnameValidationNil sets the value for DisableHostnameValidation to be an explicit nil
+
+### UnsetDisableHostnameValidation
+`func (o *HorizonExportItemsDatasourcesInner) UnsetDisableHostnameValidation()`
+
+UnsetDisableHostnameValidation ensures that no value is present for DisableHostnameValidation, not even an explicit nil
+### GetFilter
+
+`func (o *HorizonExportItemsDatasourcesInner) GetFilter() string`
+
+GetFilter returns the Filter field if non-nil, zero value otherwise.
+
+### GetFilterOk
+
+`func (o *HorizonExportItemsDatasourcesInner) GetFilterOk() (*string, bool)`
+
+GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilter
+
+`func (o *HorizonExportItemsDatasourcesInner) SetFilter(v string)`
+
+SetFilter sets Filter field to given value.
+
+
 ### GetHostname
 
 `func (o *HorizonExportItemsDatasourcesInner) GetHostname() string`
@@ -627,81 +702,6 @@ and a boolean to check if the value has been set.
 `func (o *HorizonExportItemsDatasourcesInner) SetSecure(v bool)`
 
 SetSecure sets Secure field to given value.
-
-
-### GetDisableHostnameValidation
-
-`func (o *HorizonExportItemsDatasourcesInner) GetDisableHostnameValidation() bool`
-
-GetDisableHostnameValidation returns the DisableHostnameValidation field if non-nil, zero value otherwise.
-
-### GetDisableHostnameValidationOk
-
-`func (o *HorizonExportItemsDatasourcesInner) GetDisableHostnameValidationOk() (*bool, bool)`
-
-GetDisableHostnameValidationOk returns a tuple with the DisableHostnameValidation field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDisableHostnameValidation
-
-`func (o *HorizonExportItemsDatasourcesInner) SetDisableHostnameValidation(v bool)`
-
-SetDisableHostnameValidation sets DisableHostnameValidation field to given value.
-
-### HasDisableHostnameValidation
-
-`func (o *HorizonExportItemsDatasourcesInner) HasDisableHostnameValidation() bool`
-
-HasDisableHostnameValidation returns a boolean if a field has been set.
-
-### SetDisableHostnameValidationNil
-
-`func (o *HorizonExportItemsDatasourcesInner) SetDisableHostnameValidationNil(b bool)`
-
- SetDisableHostnameValidationNil sets the value for DisableHostnameValidation to be an explicit nil
-
-### UnsetDisableHostnameValidation
-`func (o *HorizonExportItemsDatasourcesInner) UnsetDisableHostnameValidation()`
-
-UnsetDisableHostnameValidation ensures that no value is present for DisableHostnameValidation, not even an explicit nil
-### GetBaseDn
-
-`func (o *HorizonExportItemsDatasourcesInner) GetBaseDn() string`
-
-GetBaseDn returns the BaseDn field if non-nil, zero value otherwise.
-
-### GetBaseDnOk
-
-`func (o *HorizonExportItemsDatasourcesInner) GetBaseDnOk() (*string, bool)`
-
-GetBaseDnOk returns a tuple with the BaseDn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBaseDn
-
-`func (o *HorizonExportItemsDatasourcesInner) SetBaseDn(v string)`
-
-SetBaseDn sets BaseDn field to given value.
-
-
-### GetFilter
-
-`func (o *HorizonExportItemsDatasourcesInner) GetFilter() string`
-
-GetFilter returns the Filter field if non-nil, zero value otherwise.
-
-### GetFilterOk
-
-`func (o *HorizonExportItemsDatasourcesInner) GetFilterOk() (*string, bool)`
-
-GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilter
-
-`func (o *HorizonExportItemsDatasourcesInner) SetFilter(v string)`
-
-SetFilter sets Filter field to given value.
 
 
 

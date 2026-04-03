@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. Must be set if password mode is &#x60;manual&#x60; | [optional] 
 **CertificateId** | Pointer to **NullableString** | The id of the certificate to renew | [optional] 
 **CertificatePem** | Pointer to **NullableString** | The PEM encoded certificate to renew | [optional] 
+**Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. Must be set if password mode is &#x60;manual&#x60; | [optional] 
 **RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
-**Workflow** | **string** | What this request will do. For a recovery request, this is always &#x60;recover&#x60; | 
 **DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
+**Workflow** | **string** | What this request will do. For a recovery request, this is always &#x60;recover&#x60; | 
 
 ## Methods
 
@@ -30,41 +30,6 @@ NewWebRARecoverRequestOnSubmitWithDefaults instantiates a new WebRARecoverReques
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetPassword
-
-`func (o *WebRARecoverRequestOnSubmit) GetPassword() SecretString`
-
-GetPassword returns the Password field if non-nil, zero value otherwise.
-
-### GetPasswordOk
-
-`func (o *WebRARecoverRequestOnSubmit) GetPasswordOk() (*SecretString, bool)`
-
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPassword
-
-`func (o *WebRARecoverRequestOnSubmit) SetPassword(v SecretString)`
-
-SetPassword sets Password field to given value.
-
-### HasPassword
-
-`func (o *WebRARecoverRequestOnSubmit) HasPassword() bool`
-
-HasPassword returns a boolean if a field has been set.
-
-### SetPasswordNil
-
-`func (o *WebRARecoverRequestOnSubmit) SetPasswordNil(b bool)`
-
- SetPasswordNil sets the value for Password to be an explicit nil
-
-### UnsetPassword
-`func (o *WebRARecoverRequestOnSubmit) UnsetPassword()`
-
-UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetCertificateId
 
 `func (o *WebRARecoverRequestOnSubmit) GetCertificateId() string`
@@ -135,6 +100,41 @@ HasCertificatePem returns a boolean if a field has been set.
 `func (o *WebRARecoverRequestOnSubmit) UnsetCertificatePem()`
 
 UnsetCertificatePem ensures that no value is present for CertificatePem, not even an explicit nil
+### GetPassword
+
+`func (o *WebRARecoverRequestOnSubmit) GetPassword() SecretString`
+
+GetPassword returns the Password field if non-nil, zero value otherwise.
+
+### GetPasswordOk
+
+`func (o *WebRARecoverRequestOnSubmit) GetPasswordOk() (*SecretString, bool)`
+
+GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPassword
+
+`func (o *WebRARecoverRequestOnSubmit) SetPassword(v SecretString)`
+
+SetPassword sets Password field to given value.
+
+### HasPassword
+
+`func (o *WebRARecoverRequestOnSubmit) HasPassword() bool`
+
+HasPassword returns a boolean if a field has been set.
+
+### SetPasswordNil
+
+`func (o *WebRARecoverRequestOnSubmit) SetPasswordNil(b bool)`
+
+ SetPasswordNil sets the value for Password to be an explicit nil
+
+### UnsetPassword
+`func (o *WebRARecoverRequestOnSubmit) UnsetPassword()`
+
+UnsetPassword ensures that no value is present for Password, not even an explicit nil
 ### GetRequesterComment
 
 `func (o *WebRARecoverRequestOnSubmit) GetRequesterComment() string`
@@ -170,26 +170,6 @@ HasRequesterComment returns a boolean if a field has been set.
 `func (o *WebRARecoverRequestOnSubmit) UnsetRequesterComment()`
 
 UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
-### GetWorkflow
-
-`func (o *WebRARecoverRequestOnSubmit) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *WebRARecoverRequestOnSubmit) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *WebRARecoverRequestOnSubmit) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-
 ### GetDryRun
 
 `func (o *WebRARecoverRequestOnSubmit) GetDryRun() bool`
@@ -225,6 +205,26 @@ HasDryRun returns a boolean if a field has been set.
 `func (o *WebRARecoverRequestOnSubmit) UnsetDryRun()`
 
 UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
+### GetWorkflow
+
+`func (o *WebRARecoverRequestOnSubmit) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *WebRARecoverRequestOnSubmit) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *WebRARecoverRequestOnSubmit) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
