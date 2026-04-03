@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
 **Retries** | Pointer to **interface{}** | Number of retries when the notification fails (depends on &#x60;expectedHttpCodes&#x60;) | [optional] 
 **Sequence** | **[]interface{}** | The REST requests to execute, in execution order. Each request enriches the dictionary with its response for the next one | 
-**Name** | **string** | Name of the notification | 
-**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
-**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**Type** | **string** |  | 
 **Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
+**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**Name** | **string** | Name of the notification | 
 **RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
+**RunPeriod** | Pointer to **NullableString** | Time period at which the notification needs to run. Can only be defined on expiration and pending events. | [optional] 
 
 ## Methods
 
 ### NewREST
 
-`func NewREST(type_ string, sequence []interface{}, name string, events []string, ) *REST`
+`func NewREST(sequence []interface{}, type_ string, events []string, name string, ) *REST`
 
 NewREST instantiates a new REST object
 This constructor will assign default values to properties that have it defined,
@@ -31,26 +31,6 @@ will change when the set of required properties is changed
 NewRESTWithDefaults instantiates a new REST object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetType
-
-`func (o *REST) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *REST) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *REST) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetRetries
 
@@ -107,61 +87,46 @@ and a boolean to check if the value has been set.
 SetSequence sets Sequence field to given value.
 
 
-### GetName
+### GetType
 
-`func (o *REST) GetName() string`
+`func (o *REST) GetType() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetTypeOk
 
-`func (o *REST) GetNameOk() (*string, bool)`
+`func (o *REST) GetTypeOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetType
 
-`func (o *REST) SetName(v string)`
+`func (o *REST) SetType(v string)`
 
-SetName sets Name field to given value.
+SetType sets Type field to given value.
 
 
-### GetRunPeriod
+### GetEvents
 
-`func (o *REST) GetRunPeriod() string`
+`func (o *REST) GetEvents() []string`
 
-GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
+GetEvents returns the Events field if non-nil, zero value otherwise.
 
-### GetRunPeriodOk
+### GetEventsOk
 
-`func (o *REST) GetRunPeriodOk() (*string, bool)`
+`func (o *REST) GetEventsOk() (*[]string, bool)`
 
-GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRunPeriod
+### SetEvents
 
-`func (o *REST) SetRunPeriod(v string)`
+`func (o *REST) SetEvents(v []string)`
 
-SetRunPeriod sets RunPeriod field to given value.
+SetEvents sets Events field to given value.
 
-### HasRunPeriod
 
-`func (o *REST) HasRunPeriod() bool`
-
-HasRunPeriod returns a boolean if a field has been set.
-
-### SetRunPeriodNil
-
-`func (o *REST) SetRunPeriodNil(b bool)`
-
- SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
-
-### UnsetRunPeriod
-`func (o *REST) UnsetRunPeriod()`
-
-UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
 ### GetLicenseUsagePercent
 
 `func (o *REST) GetLicenseUsagePercent() int64`
@@ -197,24 +162,24 @@ HasLicenseUsagePercent returns a boolean if a field has been set.
 `func (o *REST) UnsetLicenseUsagePercent()`
 
 UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
-### GetEvents
+### GetName
 
-`func (o *REST) GetEvents() []string`
+`func (o *REST) GetName() string`
 
-GetEvents returns the Events field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetEventsOk
+### GetNameOk
 
-`func (o *REST) GetEventsOk() (*[]string, bool)`
+`func (o *REST) GetNameOk() (*string, bool)`
 
-GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEvents
+### SetName
 
-`func (o *REST) SetEvents(v []string)`
+`func (o *REST) SetName(v string)`
 
-SetEvents sets Events field to given value.
+SetName sets Name field to given value.
 
 
 ### GetRunOnRenewed
@@ -252,6 +217,41 @@ HasRunOnRenewed returns a boolean if a field has been set.
 `func (o *REST) UnsetRunOnRenewed()`
 
 UnsetRunOnRenewed ensures that no value is present for RunOnRenewed, not even an explicit nil
+### GetRunPeriod
+
+`func (o *REST) GetRunPeriod() string`
+
+GetRunPeriod returns the RunPeriod field if non-nil, zero value otherwise.
+
+### GetRunPeriodOk
+
+`func (o *REST) GetRunPeriodOk() (*string, bool)`
+
+GetRunPeriodOk returns a tuple with the RunPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRunPeriod
+
+`func (o *REST) SetRunPeriod(v string)`
+
+SetRunPeriod sets RunPeriod field to given value.
+
+### HasRunPeriod
+
+`func (o *REST) HasRunPeriod() bool`
+
+HasRunPeriod returns a boolean if a field has been set.
+
+### SetRunPeriodNil
+
+`func (o *REST) SetRunPeriodNil(b bool)`
+
+ SetRunPeriodNil sets the value for RunPeriod to be an explicit nil
+
+### UnsetRunPeriod
+`func (o *REST) UnsetRunPeriod()`
+
+UnsetRunPeriod ensures that no value is present for RunPeriod, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

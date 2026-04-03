@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | The type of the configuration entry | 
-**Logo** | Pointer to **NullableString** | A logo to display on the product, base64 encoded | [optional] 
-**HeaderStart** | Pointer to **NullableString** | The HTML color code for the left side of the banner gradient | [optional] 
+**Announcements** | Pointer to [**[]InterfaceCustomizationConfigurationAnnouncementsInner**](InterfaceCustomizationConfigurationAnnouncementsInner.md) | Announcements to display to all users in the Horizon instance | [optional] 
 **HeaderEnd** | Pointer to **NullableString** | The HTML color code for the right side of the banner gradient | [optional] 
+**HeaderStart** | Pointer to **NullableString** | The HTML color code for the left side of the banner gradient | [optional] 
+**Logo** | Pointer to **NullableString** | A logo to display on the product, base64 encoded | [optional] 
+**Type** | **string** | The type of the configuration entry | 
 
 ## Methods
 
@@ -28,96 +29,31 @@ NewInterfaceCustomizationConfigurationWithDefaults instantiates a new InterfaceC
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetType
+### GetAnnouncements
 
-`func (o *InterfaceCustomizationConfiguration) GetType() string`
+`func (o *InterfaceCustomizationConfiguration) GetAnnouncements() []InterfaceCustomizationConfigurationAnnouncementsInner`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetAnnouncements returns the Announcements field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetAnnouncementsOk
 
-`func (o *InterfaceCustomizationConfiguration) GetTypeOk() (*string, bool)`
+`func (o *InterfaceCustomizationConfiguration) GetAnnouncementsOk() (*[]InterfaceCustomizationConfigurationAnnouncementsInner, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetAnnouncementsOk returns a tuple with the Announcements field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetAnnouncements
 
-`func (o *InterfaceCustomizationConfiguration) SetType(v string)`
+`func (o *InterfaceCustomizationConfiguration) SetAnnouncements(v []InterfaceCustomizationConfigurationAnnouncementsInner)`
 
-SetType sets Type field to given value.
+SetAnnouncements sets Announcements field to given value.
 
+### HasAnnouncements
 
-### GetLogo
+`func (o *InterfaceCustomizationConfiguration) HasAnnouncements() bool`
 
-`func (o *InterfaceCustomizationConfiguration) GetLogo() string`
+HasAnnouncements returns a boolean if a field has been set.
 
-GetLogo returns the Logo field if non-nil, zero value otherwise.
-
-### GetLogoOk
-
-`func (o *InterfaceCustomizationConfiguration) GetLogoOk() (*string, bool)`
-
-GetLogoOk returns a tuple with the Logo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLogo
-
-`func (o *InterfaceCustomizationConfiguration) SetLogo(v string)`
-
-SetLogo sets Logo field to given value.
-
-### HasLogo
-
-`func (o *InterfaceCustomizationConfiguration) HasLogo() bool`
-
-HasLogo returns a boolean if a field has been set.
-
-### SetLogoNil
-
-`func (o *InterfaceCustomizationConfiguration) SetLogoNil(b bool)`
-
- SetLogoNil sets the value for Logo to be an explicit nil
-
-### UnsetLogo
-`func (o *InterfaceCustomizationConfiguration) UnsetLogo()`
-
-UnsetLogo ensures that no value is present for Logo, not even an explicit nil
-### GetHeaderStart
-
-`func (o *InterfaceCustomizationConfiguration) GetHeaderStart() string`
-
-GetHeaderStart returns the HeaderStart field if non-nil, zero value otherwise.
-
-### GetHeaderStartOk
-
-`func (o *InterfaceCustomizationConfiguration) GetHeaderStartOk() (*string, bool)`
-
-GetHeaderStartOk returns a tuple with the HeaderStart field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHeaderStart
-
-`func (o *InterfaceCustomizationConfiguration) SetHeaderStart(v string)`
-
-SetHeaderStart sets HeaderStart field to given value.
-
-### HasHeaderStart
-
-`func (o *InterfaceCustomizationConfiguration) HasHeaderStart() bool`
-
-HasHeaderStart returns a boolean if a field has been set.
-
-### SetHeaderStartNil
-
-`func (o *InterfaceCustomizationConfiguration) SetHeaderStartNil(b bool)`
-
- SetHeaderStartNil sets the value for HeaderStart to be an explicit nil
-
-### UnsetHeaderStart
-`func (o *InterfaceCustomizationConfiguration) UnsetHeaderStart()`
-
-UnsetHeaderStart ensures that no value is present for HeaderStart, not even an explicit nil
 ### GetHeaderEnd
 
 `func (o *InterfaceCustomizationConfiguration) GetHeaderEnd() string`
@@ -153,6 +89,96 @@ HasHeaderEnd returns a boolean if a field has been set.
 `func (o *InterfaceCustomizationConfiguration) UnsetHeaderEnd()`
 
 UnsetHeaderEnd ensures that no value is present for HeaderEnd, not even an explicit nil
+### GetHeaderStart
+
+`func (o *InterfaceCustomizationConfiguration) GetHeaderStart() string`
+
+GetHeaderStart returns the HeaderStart field if non-nil, zero value otherwise.
+
+### GetHeaderStartOk
+
+`func (o *InterfaceCustomizationConfiguration) GetHeaderStartOk() (*string, bool)`
+
+GetHeaderStartOk returns a tuple with the HeaderStart field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHeaderStart
+
+`func (o *InterfaceCustomizationConfiguration) SetHeaderStart(v string)`
+
+SetHeaderStart sets HeaderStart field to given value.
+
+### HasHeaderStart
+
+`func (o *InterfaceCustomizationConfiguration) HasHeaderStart() bool`
+
+HasHeaderStart returns a boolean if a field has been set.
+
+### SetHeaderStartNil
+
+`func (o *InterfaceCustomizationConfiguration) SetHeaderStartNil(b bool)`
+
+ SetHeaderStartNil sets the value for HeaderStart to be an explicit nil
+
+### UnsetHeaderStart
+`func (o *InterfaceCustomizationConfiguration) UnsetHeaderStart()`
+
+UnsetHeaderStart ensures that no value is present for HeaderStart, not even an explicit nil
+### GetLogo
+
+`func (o *InterfaceCustomizationConfiguration) GetLogo() string`
+
+GetLogo returns the Logo field if non-nil, zero value otherwise.
+
+### GetLogoOk
+
+`func (o *InterfaceCustomizationConfiguration) GetLogoOk() (*string, bool)`
+
+GetLogoOk returns a tuple with the Logo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogo
+
+`func (o *InterfaceCustomizationConfiguration) SetLogo(v string)`
+
+SetLogo sets Logo field to given value.
+
+### HasLogo
+
+`func (o *InterfaceCustomizationConfiguration) HasLogo() bool`
+
+HasLogo returns a boolean if a field has been set.
+
+### SetLogoNil
+
+`func (o *InterfaceCustomizationConfiguration) SetLogoNil(b bool)`
+
+ SetLogoNil sets the value for Logo to be an explicit nil
+
+### UnsetLogo
+`func (o *InterfaceCustomizationConfiguration) UnsetLogo()`
+
+UnsetLogo ensures that no value is present for Logo, not even an explicit nil
+### GetType
+
+`func (o *InterfaceCustomizationConfiguration) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *InterfaceCustomizationConfiguration) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *InterfaceCustomizationConfiguration) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Type** | **string** | The type of the configuration entry | 
 **Triggers** | Pointer to [**NullableLicenseTriggers**](LicenseTriggers.md) | Triggers to execute on license events | [optional] 
+**Type** | **string** | The type of the configuration entry | 
 
 ## Methods
 
@@ -47,26 +47,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetType
-
-`func (o *LicenseConfigurationResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *LicenseConfigurationResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *LicenseConfigurationResponse) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 ### GetTriggers
 
 `func (o *LicenseConfigurationResponse) GetTriggers() LicenseTriggers`
@@ -102,6 +82,26 @@ HasTriggers returns a boolean if a field has been set.
 `func (o *LicenseConfigurationResponse) UnsetTriggers()`
 
 UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
+### GetType
+
+`func (o *LicenseConfigurationResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *LicenseConfigurationResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *LicenseConfigurationResponse) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

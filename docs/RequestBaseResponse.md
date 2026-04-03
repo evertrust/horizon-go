@@ -5,28 +5,28 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | Object internal ID | [optional] 
-**Module** | Pointer to **string** |  | [optional] 
-**Workflow** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to [**RequestStatus**](RequestStatus.md) |  | [optional] 
-**Profile** | Pointer to **string** | The associated profile name | [optional] 
-**Dn** | Pointer to **string** | Certificate&#39;s Distinguished Name | [optional] 
-**Requester** | Pointer to **NullableString** | The requester&#39;s principal identifier | [optional] 
-**Team** | Pointer to **NullableString** | The team that will be assigned to this certificate. Teams are used to link certificates to people and to assign permissions to them | [optional] 
 **Approver** | Pointer to **NullableString** | The approver&#39;s principal identifier | [optional] 
-**Contact** | Pointer to **NullableString** | The request&#39;s contact email | [optional] 
-**RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
 **ApproverComment** | Pointer to **NullableString** | Free-text field editable by the approver to provider more context on the request | [optional] 
-**RegistrationDate** | Pointer to **int64** | The date the request was created. This is set by the system | [optional] 
-**LastModificationDate** | Pointer to **int64** | The date the request was last modified. This is set by the system | [optional] 
-**ExpirationDate** | Pointer to **int64** | The date the request will expire. This is set by the system | [optional] 
-**RemoveAt** | Pointer to **int64** | The date the requested will be deleted. This is set by the system | [optional] 
-**TriggerResults** | Pointer to [**[]TriggerResult**](TriggerResult.md) | The result of the execution of triggers on this request | [optional] 
-**HolderId** | Pointer to **string** | The computed holderID for this request. This is set by the system based on DN and SANs | [optional] 
-**GlobalHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the Horizon database | [optional] 
-**ProfileHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile | [optional] 
-**Labels** | Pointer to [**[]LabelData**](LabelData.md) | The labels set in this request | [optional] 
-**Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The metadata set in this request | [optional] 
+**Contact** | Pointer to **NullableString** | The request&#39;s contact email | [optional] 
+**Dn** | Pointer to **string** | Certificate&#39;s Distinguished Name | [optional] 
 **DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
+**ExpirationDate** | Pointer to **int64** | The date the request will expire. This is set by the system | [optional] 
+**GlobalHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the Horizon database | [optional] 
+**HolderId** | Pointer to **string** | The computed holderID for this request. This is set by the system based on DN and SANs | [optional] 
+**Labels** | Pointer to [**[]LabelData**](LabelData.md) | The labels set in this request | [optional] 
+**LastModificationDate** | Pointer to **int64** | The date the request was last modified. This is set by the system | [optional] 
+**Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The metadata set in this request | [optional] 
+**Module** | Pointer to **string** |  | [optional] 
+**Profile** | Pointer to **string** | The associated profile name | [optional] 
+**ProfileHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile | [optional] 
+**RegistrationDate** | Pointer to **int64** | The date the request was created. This is set by the system | [optional] 
+**RemoveAt** | Pointer to **int64** | The date the requested will be deleted. This is set by the system | [optional] 
+**Requester** | Pointer to **NullableString** | The requester&#39;s principal identifier | [optional] 
+**RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
+**Status** | Pointer to [**RequestStatus**](RequestStatus.md) |  | [optional] 
+**Team** | Pointer to **NullableString** | The team that will be assigned to this certificate. Teams are used to link certificates to people and to assign permissions to them | [optional] 
+**TriggerResults** | Pointer to [**[]TriggerResult**](TriggerResult.md) | The result of the execution of triggers on this request | [optional] 
+**Workflow** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -72,201 +72,6 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### GetModule
-
-`func (o *RequestBaseResponse) GetModule() string`
-
-GetModule returns the Module field if non-nil, zero value otherwise.
-
-### GetModuleOk
-
-`func (o *RequestBaseResponse) GetModuleOk() (*string, bool)`
-
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetModule
-
-`func (o *RequestBaseResponse) SetModule(v string)`
-
-SetModule sets Module field to given value.
-
-### HasModule
-
-`func (o *RequestBaseResponse) HasModule() bool`
-
-HasModule returns a boolean if a field has been set.
-
-### GetWorkflow
-
-`func (o *RequestBaseResponse) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *RequestBaseResponse) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *RequestBaseResponse) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
-### HasWorkflow
-
-`func (o *RequestBaseResponse) HasWorkflow() bool`
-
-HasWorkflow returns a boolean if a field has been set.
-
-### GetStatus
-
-`func (o *RequestBaseResponse) GetStatus() RequestStatus`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *RequestBaseResponse) GetStatusOk() (*RequestStatus, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *RequestBaseResponse) SetStatus(v RequestStatus)`
-
-SetStatus sets Status field to given value.
-
-### HasStatus
-
-`func (o *RequestBaseResponse) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
-
-### GetProfile
-
-`func (o *RequestBaseResponse) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *RequestBaseResponse) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *RequestBaseResponse) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
-### HasProfile
-
-`func (o *RequestBaseResponse) HasProfile() bool`
-
-HasProfile returns a boolean if a field has been set.
-
-### GetDn
-
-`func (o *RequestBaseResponse) GetDn() string`
-
-GetDn returns the Dn field if non-nil, zero value otherwise.
-
-### GetDnOk
-
-`func (o *RequestBaseResponse) GetDnOk() (*string, bool)`
-
-GetDnOk returns a tuple with the Dn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDn
-
-`func (o *RequestBaseResponse) SetDn(v string)`
-
-SetDn sets Dn field to given value.
-
-### HasDn
-
-`func (o *RequestBaseResponse) HasDn() bool`
-
-HasDn returns a boolean if a field has been set.
-
-### GetRequester
-
-`func (o *RequestBaseResponse) GetRequester() string`
-
-GetRequester returns the Requester field if non-nil, zero value otherwise.
-
-### GetRequesterOk
-
-`func (o *RequestBaseResponse) GetRequesterOk() (*string, bool)`
-
-GetRequesterOk returns a tuple with the Requester field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequester
-
-`func (o *RequestBaseResponse) SetRequester(v string)`
-
-SetRequester sets Requester field to given value.
-
-### HasRequester
-
-`func (o *RequestBaseResponse) HasRequester() bool`
-
-HasRequester returns a boolean if a field has been set.
-
-### SetRequesterNil
-
-`func (o *RequestBaseResponse) SetRequesterNil(b bool)`
-
- SetRequesterNil sets the value for Requester to be an explicit nil
-
-### UnsetRequester
-`func (o *RequestBaseResponse) UnsetRequester()`
-
-UnsetRequester ensures that no value is present for Requester, not even an explicit nil
-### GetTeam
-
-`func (o *RequestBaseResponse) GetTeam() string`
-
-GetTeam returns the Team field if non-nil, zero value otherwise.
-
-### GetTeamOk
-
-`func (o *RequestBaseResponse) GetTeamOk() (*string, bool)`
-
-GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTeam
-
-`func (o *RequestBaseResponse) SetTeam(v string)`
-
-SetTeam sets Team field to given value.
-
-### HasTeam
-
-`func (o *RequestBaseResponse) HasTeam() bool`
-
-HasTeam returns a boolean if a field has been set.
-
-### SetTeamNil
-
-`func (o *RequestBaseResponse) SetTeamNil(b bool)`
-
- SetTeamNil sets the value for Team to be an explicit nil
-
-### UnsetTeam
-`func (o *RequestBaseResponse) UnsetTeam()`
-
-UnsetTeam ensures that no value is present for Team, not even an explicit nil
 ### GetApprover
 
 `func (o *RequestBaseResponse) GetApprover() string`
@@ -302,76 +107,6 @@ HasApprover returns a boolean if a field has been set.
 `func (o *RequestBaseResponse) UnsetApprover()`
 
 UnsetApprover ensures that no value is present for Approver, not even an explicit nil
-### GetContact
-
-`func (o *RequestBaseResponse) GetContact() string`
-
-GetContact returns the Contact field if non-nil, zero value otherwise.
-
-### GetContactOk
-
-`func (o *RequestBaseResponse) GetContactOk() (*string, bool)`
-
-GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetContact
-
-`func (o *RequestBaseResponse) SetContact(v string)`
-
-SetContact sets Contact field to given value.
-
-### HasContact
-
-`func (o *RequestBaseResponse) HasContact() bool`
-
-HasContact returns a boolean if a field has been set.
-
-### SetContactNil
-
-`func (o *RequestBaseResponse) SetContactNil(b bool)`
-
- SetContactNil sets the value for Contact to be an explicit nil
-
-### UnsetContact
-`func (o *RequestBaseResponse) UnsetContact()`
-
-UnsetContact ensures that no value is present for Contact, not even an explicit nil
-### GetRequesterComment
-
-`func (o *RequestBaseResponse) GetRequesterComment() string`
-
-GetRequesterComment returns the RequesterComment field if non-nil, zero value otherwise.
-
-### GetRequesterCommentOk
-
-`func (o *RequestBaseResponse) GetRequesterCommentOk() (*string, bool)`
-
-GetRequesterCommentOk returns a tuple with the RequesterComment field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequesterComment
-
-`func (o *RequestBaseResponse) SetRequesterComment(v string)`
-
-SetRequesterComment sets RequesterComment field to given value.
-
-### HasRequesterComment
-
-`func (o *RequestBaseResponse) HasRequesterComment() bool`
-
-HasRequesterComment returns a boolean if a field has been set.
-
-### SetRequesterCommentNil
-
-`func (o *RequestBaseResponse) SetRequesterCommentNil(b bool)`
-
- SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
-
-### UnsetRequesterComment
-`func (o *RequestBaseResponse) UnsetRequesterComment()`
-
-UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
 ### GetApproverComment
 
 `func (o *RequestBaseResponse) GetApproverComment() string`
@@ -407,56 +142,101 @@ HasApproverComment returns a boolean if a field has been set.
 `func (o *RequestBaseResponse) UnsetApproverComment()`
 
 UnsetApproverComment ensures that no value is present for ApproverComment, not even an explicit nil
-### GetRegistrationDate
+### GetContact
 
-`func (o *RequestBaseResponse) GetRegistrationDate() int64`
+`func (o *RequestBaseResponse) GetContact() string`
 
-GetRegistrationDate returns the RegistrationDate field if non-nil, zero value otherwise.
+GetContact returns the Contact field if non-nil, zero value otherwise.
 
-### GetRegistrationDateOk
+### GetContactOk
 
-`func (o *RequestBaseResponse) GetRegistrationDateOk() (*int64, bool)`
+`func (o *RequestBaseResponse) GetContactOk() (*string, bool)`
 
-GetRegistrationDateOk returns a tuple with the RegistrationDate field if it's non-nil, zero value otherwise
+GetContactOk returns a tuple with the Contact field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRegistrationDate
+### SetContact
 
-`func (o *RequestBaseResponse) SetRegistrationDate(v int64)`
+`func (o *RequestBaseResponse) SetContact(v string)`
 
-SetRegistrationDate sets RegistrationDate field to given value.
+SetContact sets Contact field to given value.
 
-### HasRegistrationDate
+### HasContact
 
-`func (o *RequestBaseResponse) HasRegistrationDate() bool`
+`func (o *RequestBaseResponse) HasContact() bool`
 
-HasRegistrationDate returns a boolean if a field has been set.
+HasContact returns a boolean if a field has been set.
 
-### GetLastModificationDate
+### SetContactNil
 
-`func (o *RequestBaseResponse) GetLastModificationDate() int64`
+`func (o *RequestBaseResponse) SetContactNil(b bool)`
 
-GetLastModificationDate returns the LastModificationDate field if non-nil, zero value otherwise.
+ SetContactNil sets the value for Contact to be an explicit nil
 
-### GetLastModificationDateOk
+### UnsetContact
+`func (o *RequestBaseResponse) UnsetContact()`
 
-`func (o *RequestBaseResponse) GetLastModificationDateOk() (*int64, bool)`
+UnsetContact ensures that no value is present for Contact, not even an explicit nil
+### GetDn
 
-GetLastModificationDateOk returns a tuple with the LastModificationDate field if it's non-nil, zero value otherwise
+`func (o *RequestBaseResponse) GetDn() string`
+
+GetDn returns the Dn field if non-nil, zero value otherwise.
+
+### GetDnOk
+
+`func (o *RequestBaseResponse) GetDnOk() (*string, bool)`
+
+GetDnOk returns a tuple with the Dn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLastModificationDate
+### SetDn
 
-`func (o *RequestBaseResponse) SetLastModificationDate(v int64)`
+`func (o *RequestBaseResponse) SetDn(v string)`
 
-SetLastModificationDate sets LastModificationDate field to given value.
+SetDn sets Dn field to given value.
 
-### HasLastModificationDate
+### HasDn
 
-`func (o *RequestBaseResponse) HasLastModificationDate() bool`
+`func (o *RequestBaseResponse) HasDn() bool`
 
-HasLastModificationDate returns a boolean if a field has been set.
+HasDn returns a boolean if a field has been set.
 
+### GetDryRun
+
+`func (o *RequestBaseResponse) GetDryRun() bool`
+
+GetDryRun returns the DryRun field if non-nil, zero value otherwise.
+
+### GetDryRunOk
+
+`func (o *RequestBaseResponse) GetDryRunOk() (*bool, bool)`
+
+GetDryRunOk returns a tuple with the DryRun field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDryRun
+
+`func (o *RequestBaseResponse) SetDryRun(v bool)`
+
+SetDryRun sets DryRun field to given value.
+
+### HasDryRun
+
+`func (o *RequestBaseResponse) HasDryRun() bool`
+
+HasDryRun returns a boolean if a field has been set.
+
+### SetDryRunNil
+
+`func (o *RequestBaseResponse) SetDryRunNil(b bool)`
+
+ SetDryRunNil sets the value for DryRun to be an explicit nil
+
+### UnsetDryRun
+`func (o *RequestBaseResponse) UnsetDryRun()`
+
+UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
 ### GetExpirationDate
 
 `func (o *RequestBaseResponse) GetExpirationDate() int64`
@@ -481,91 +261,6 @@ SetExpirationDate sets ExpirationDate field to given value.
 `func (o *RequestBaseResponse) HasExpirationDate() bool`
 
 HasExpirationDate returns a boolean if a field has been set.
-
-### GetRemoveAt
-
-`func (o *RequestBaseResponse) GetRemoveAt() int64`
-
-GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
-
-### GetRemoveAtOk
-
-`func (o *RequestBaseResponse) GetRemoveAtOk() (*int64, bool)`
-
-GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRemoveAt
-
-`func (o *RequestBaseResponse) SetRemoveAt(v int64)`
-
-SetRemoveAt sets RemoveAt field to given value.
-
-### HasRemoveAt
-
-`func (o *RequestBaseResponse) HasRemoveAt() bool`
-
-HasRemoveAt returns a boolean if a field has been set.
-
-### GetTriggerResults
-
-`func (o *RequestBaseResponse) GetTriggerResults() []TriggerResult`
-
-GetTriggerResults returns the TriggerResults field if non-nil, zero value otherwise.
-
-### GetTriggerResultsOk
-
-`func (o *RequestBaseResponse) GetTriggerResultsOk() (*[]TriggerResult, bool)`
-
-GetTriggerResultsOk returns a tuple with the TriggerResults field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTriggerResults
-
-`func (o *RequestBaseResponse) SetTriggerResults(v []TriggerResult)`
-
-SetTriggerResults sets TriggerResults field to given value.
-
-### HasTriggerResults
-
-`func (o *RequestBaseResponse) HasTriggerResults() bool`
-
-HasTriggerResults returns a boolean if a field has been set.
-
-### SetTriggerResultsNil
-
-`func (o *RequestBaseResponse) SetTriggerResultsNil(b bool)`
-
- SetTriggerResultsNil sets the value for TriggerResults to be an explicit nil
-
-### UnsetTriggerResults
-`func (o *RequestBaseResponse) UnsetTriggerResults()`
-
-UnsetTriggerResults ensures that no value is present for TriggerResults, not even an explicit nil
-### GetHolderId
-
-`func (o *RequestBaseResponse) GetHolderId() string`
-
-GetHolderId returns the HolderId field if non-nil, zero value otherwise.
-
-### GetHolderIdOk
-
-`func (o *RequestBaseResponse) GetHolderIdOk() (*string, bool)`
-
-GetHolderIdOk returns a tuple with the HolderId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHolderId
-
-`func (o *RequestBaseResponse) SetHolderId(v string)`
-
-SetHolderId sets HolderId field to given value.
-
-### HasHolderId
-
-`func (o *RequestBaseResponse) HasHolderId() bool`
-
-HasHolderId returns a boolean if a field has been set.
 
 ### GetGlobalHolderIdCount
 
@@ -602,41 +297,31 @@ HasGlobalHolderIdCount returns a boolean if a field has been set.
 `func (o *RequestBaseResponse) UnsetGlobalHolderIdCount()`
 
 UnsetGlobalHolderIdCount ensures that no value is present for GlobalHolderIdCount, not even an explicit nil
-### GetProfileHolderIdCount
+### GetHolderId
 
-`func (o *RequestBaseResponse) GetProfileHolderIdCount() int64`
+`func (o *RequestBaseResponse) GetHolderId() string`
 
-GetProfileHolderIdCount returns the ProfileHolderIdCount field if non-nil, zero value otherwise.
+GetHolderId returns the HolderId field if non-nil, zero value otherwise.
 
-### GetProfileHolderIdCountOk
+### GetHolderIdOk
 
-`func (o *RequestBaseResponse) GetProfileHolderIdCountOk() (*int64, bool)`
+`func (o *RequestBaseResponse) GetHolderIdOk() (*string, bool)`
 
-GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field if it's non-nil, zero value otherwise
+GetHolderIdOk returns a tuple with the HolderId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetProfileHolderIdCount
+### SetHolderId
 
-`func (o *RequestBaseResponse) SetProfileHolderIdCount(v int64)`
+`func (o *RequestBaseResponse) SetHolderId(v string)`
 
-SetProfileHolderIdCount sets ProfileHolderIdCount field to given value.
+SetHolderId sets HolderId field to given value.
 
-### HasProfileHolderIdCount
+### HasHolderId
 
-`func (o *RequestBaseResponse) HasProfileHolderIdCount() bool`
+`func (o *RequestBaseResponse) HasHolderId() bool`
 
-HasProfileHolderIdCount returns a boolean if a field has been set.
+HasHolderId returns a boolean if a field has been set.
 
-### SetProfileHolderIdCountNil
-
-`func (o *RequestBaseResponse) SetProfileHolderIdCountNil(b bool)`
-
- SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
-
-### UnsetProfileHolderIdCount
-`func (o *RequestBaseResponse) UnsetProfileHolderIdCount()`
-
-UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
 ### GetLabels
 
 `func (o *RequestBaseResponse) GetLabels() []LabelData`
@@ -672,6 +357,31 @@ HasLabels returns a boolean if a field has been set.
 `func (o *RequestBaseResponse) UnsetLabels()`
 
 UnsetLabels ensures that no value is present for Labels, not even an explicit nil
+### GetLastModificationDate
+
+`func (o *RequestBaseResponse) GetLastModificationDate() int64`
+
+GetLastModificationDate returns the LastModificationDate field if non-nil, zero value otherwise.
+
+### GetLastModificationDateOk
+
+`func (o *RequestBaseResponse) GetLastModificationDateOk() (*int64, bool)`
+
+GetLastModificationDateOk returns a tuple with the LastModificationDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastModificationDate
+
+`func (o *RequestBaseResponse) SetLastModificationDate(v int64)`
+
+SetLastModificationDate sets LastModificationDate field to given value.
+
+### HasLastModificationDate
+
+`func (o *RequestBaseResponse) HasLastModificationDate() bool`
+
+HasLastModificationDate returns a boolean if a field has been set.
+
 ### GetMetadata
 
 `func (o *RequestBaseResponse) GetMetadata() []CertificateMetadata`
@@ -707,41 +417,331 @@ HasMetadata returns a boolean if a field has been set.
 `func (o *RequestBaseResponse) UnsetMetadata()`
 
 UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
-### GetDryRun
+### GetModule
 
-`func (o *RequestBaseResponse) GetDryRun() bool`
+`func (o *RequestBaseResponse) GetModule() string`
 
-GetDryRun returns the DryRun field if non-nil, zero value otherwise.
+GetModule returns the Module field if non-nil, zero value otherwise.
 
-### GetDryRunOk
+### GetModuleOk
 
-`func (o *RequestBaseResponse) GetDryRunOk() (*bool, bool)`
+`func (o *RequestBaseResponse) GetModuleOk() (*string, bool)`
 
-GetDryRunOk returns a tuple with the DryRun field if it's non-nil, zero value otherwise
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDryRun
+### SetModule
 
-`func (o *RequestBaseResponse) SetDryRun(v bool)`
+`func (o *RequestBaseResponse) SetModule(v string)`
 
-SetDryRun sets DryRun field to given value.
+SetModule sets Module field to given value.
 
-### HasDryRun
+### HasModule
 
-`func (o *RequestBaseResponse) HasDryRun() bool`
+`func (o *RequestBaseResponse) HasModule() bool`
 
-HasDryRun returns a boolean if a field has been set.
+HasModule returns a boolean if a field has been set.
 
-### SetDryRunNil
+### GetProfile
 
-`func (o *RequestBaseResponse) SetDryRunNil(b bool)`
+`func (o *RequestBaseResponse) GetProfile() string`
 
- SetDryRunNil sets the value for DryRun to be an explicit nil
+GetProfile returns the Profile field if non-nil, zero value otherwise.
 
-### UnsetDryRun
-`func (o *RequestBaseResponse) UnsetDryRun()`
+### GetProfileOk
 
-UnsetDryRun ensures that no value is present for DryRun, not even an explicit nil
+`func (o *RequestBaseResponse) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *RequestBaseResponse) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
+
+### HasProfile
+
+`func (o *RequestBaseResponse) HasProfile() bool`
+
+HasProfile returns a boolean if a field has been set.
+
+### GetProfileHolderIdCount
+
+`func (o *RequestBaseResponse) GetProfileHolderIdCount() int64`
+
+GetProfileHolderIdCount returns the ProfileHolderIdCount field if non-nil, zero value otherwise.
+
+### GetProfileHolderIdCountOk
+
+`func (o *RequestBaseResponse) GetProfileHolderIdCountOk() (*int64, bool)`
+
+GetProfileHolderIdCountOk returns a tuple with the ProfileHolderIdCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfileHolderIdCount
+
+`func (o *RequestBaseResponse) SetProfileHolderIdCount(v int64)`
+
+SetProfileHolderIdCount sets ProfileHolderIdCount field to given value.
+
+### HasProfileHolderIdCount
+
+`func (o *RequestBaseResponse) HasProfileHolderIdCount() bool`
+
+HasProfileHolderIdCount returns a boolean if a field has been set.
+
+### SetProfileHolderIdCountNil
+
+`func (o *RequestBaseResponse) SetProfileHolderIdCountNil(b bool)`
+
+ SetProfileHolderIdCountNil sets the value for ProfileHolderIdCount to be an explicit nil
+
+### UnsetProfileHolderIdCount
+`func (o *RequestBaseResponse) UnsetProfileHolderIdCount()`
+
+UnsetProfileHolderIdCount ensures that no value is present for ProfileHolderIdCount, not even an explicit nil
+### GetRegistrationDate
+
+`func (o *RequestBaseResponse) GetRegistrationDate() int64`
+
+GetRegistrationDate returns the RegistrationDate field if non-nil, zero value otherwise.
+
+### GetRegistrationDateOk
+
+`func (o *RequestBaseResponse) GetRegistrationDateOk() (*int64, bool)`
+
+GetRegistrationDateOk returns a tuple with the RegistrationDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegistrationDate
+
+`func (o *RequestBaseResponse) SetRegistrationDate(v int64)`
+
+SetRegistrationDate sets RegistrationDate field to given value.
+
+### HasRegistrationDate
+
+`func (o *RequestBaseResponse) HasRegistrationDate() bool`
+
+HasRegistrationDate returns a boolean if a field has been set.
+
+### GetRemoveAt
+
+`func (o *RequestBaseResponse) GetRemoveAt() int64`
+
+GetRemoveAt returns the RemoveAt field if non-nil, zero value otherwise.
+
+### GetRemoveAtOk
+
+`func (o *RequestBaseResponse) GetRemoveAtOk() (*int64, bool)`
+
+GetRemoveAtOk returns a tuple with the RemoveAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveAt
+
+`func (o *RequestBaseResponse) SetRemoveAt(v int64)`
+
+SetRemoveAt sets RemoveAt field to given value.
+
+### HasRemoveAt
+
+`func (o *RequestBaseResponse) HasRemoveAt() bool`
+
+HasRemoveAt returns a boolean if a field has been set.
+
+### GetRequester
+
+`func (o *RequestBaseResponse) GetRequester() string`
+
+GetRequester returns the Requester field if non-nil, zero value otherwise.
+
+### GetRequesterOk
+
+`func (o *RequestBaseResponse) GetRequesterOk() (*string, bool)`
+
+GetRequesterOk returns a tuple with the Requester field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequester
+
+`func (o *RequestBaseResponse) SetRequester(v string)`
+
+SetRequester sets Requester field to given value.
+
+### HasRequester
+
+`func (o *RequestBaseResponse) HasRequester() bool`
+
+HasRequester returns a boolean if a field has been set.
+
+### SetRequesterNil
+
+`func (o *RequestBaseResponse) SetRequesterNil(b bool)`
+
+ SetRequesterNil sets the value for Requester to be an explicit nil
+
+### UnsetRequester
+`func (o *RequestBaseResponse) UnsetRequester()`
+
+UnsetRequester ensures that no value is present for Requester, not even an explicit nil
+### GetRequesterComment
+
+`func (o *RequestBaseResponse) GetRequesterComment() string`
+
+GetRequesterComment returns the RequesterComment field if non-nil, zero value otherwise.
+
+### GetRequesterCommentOk
+
+`func (o *RequestBaseResponse) GetRequesterCommentOk() (*string, bool)`
+
+GetRequesterCommentOk returns a tuple with the RequesterComment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequesterComment
+
+`func (o *RequestBaseResponse) SetRequesterComment(v string)`
+
+SetRequesterComment sets RequesterComment field to given value.
+
+### HasRequesterComment
+
+`func (o *RequestBaseResponse) HasRequesterComment() bool`
+
+HasRequesterComment returns a boolean if a field has been set.
+
+### SetRequesterCommentNil
+
+`func (o *RequestBaseResponse) SetRequesterCommentNil(b bool)`
+
+ SetRequesterCommentNil sets the value for RequesterComment to be an explicit nil
+
+### UnsetRequesterComment
+`func (o *RequestBaseResponse) UnsetRequesterComment()`
+
+UnsetRequesterComment ensures that no value is present for RequesterComment, not even an explicit nil
+### GetStatus
+
+`func (o *RequestBaseResponse) GetStatus() RequestStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *RequestBaseResponse) GetStatusOk() (*RequestStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *RequestBaseResponse) SetStatus(v RequestStatus)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *RequestBaseResponse) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### GetTeam
+
+`func (o *RequestBaseResponse) GetTeam() string`
+
+GetTeam returns the Team field if non-nil, zero value otherwise.
+
+### GetTeamOk
+
+`func (o *RequestBaseResponse) GetTeamOk() (*string, bool)`
+
+GetTeamOk returns a tuple with the Team field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeam
+
+`func (o *RequestBaseResponse) SetTeam(v string)`
+
+SetTeam sets Team field to given value.
+
+### HasTeam
+
+`func (o *RequestBaseResponse) HasTeam() bool`
+
+HasTeam returns a boolean if a field has been set.
+
+### SetTeamNil
+
+`func (o *RequestBaseResponse) SetTeamNil(b bool)`
+
+ SetTeamNil sets the value for Team to be an explicit nil
+
+### UnsetTeam
+`func (o *RequestBaseResponse) UnsetTeam()`
+
+UnsetTeam ensures that no value is present for Team, not even an explicit nil
+### GetTriggerResults
+
+`func (o *RequestBaseResponse) GetTriggerResults() []TriggerResult`
+
+GetTriggerResults returns the TriggerResults field if non-nil, zero value otherwise.
+
+### GetTriggerResultsOk
+
+`func (o *RequestBaseResponse) GetTriggerResultsOk() (*[]TriggerResult, bool)`
+
+GetTriggerResultsOk returns a tuple with the TriggerResults field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggerResults
+
+`func (o *RequestBaseResponse) SetTriggerResults(v []TriggerResult)`
+
+SetTriggerResults sets TriggerResults field to given value.
+
+### HasTriggerResults
+
+`func (o *RequestBaseResponse) HasTriggerResults() bool`
+
+HasTriggerResults returns a boolean if a field has been set.
+
+### SetTriggerResultsNil
+
+`func (o *RequestBaseResponse) SetTriggerResultsNil(b bool)`
+
+ SetTriggerResultsNil sets the value for TriggerResults to be an explicit nil
+
+### UnsetTriggerResults
+`func (o *RequestBaseResponse) UnsetTriggerResults()`
+
+UnsetTriggerResults ensures that no value is present for TriggerResults, not even an explicit nil
+### GetWorkflow
+
+`func (o *RequestBaseResponse) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *RequestBaseResponse) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *RequestBaseResponse) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
+
+### HasWorkflow
+
+`func (o *RequestBaseResponse) HasWorkflow() bool`
+
+HasWorkflow returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

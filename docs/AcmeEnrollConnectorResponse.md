@@ -5,26 +5,26 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
-**Type** | **string** |  | 
+**AccountEmail** | Pointer to **NullableString** | Email to associate with the account | [optional] 
+**AccountKeyType** | **string** | The key type to use to generate the account key | 
+**AccountUrl** | **string** | Url of the account on the ACME directory | 
+**DnsChallengeProvider** | [**DnsChallengeProviders**](DnsChallengeProviders.md) | DNS Provider configuration to provision the DNS challenge. Available from &#x60;2.7.7&#x60; | 
+**DomainDictionaryProvider** | Pointer to [**NullableDomainDictionaryProviders**](DomainDictionaryProviders.md) | The dictionary provider | [optional] 
+**Eab** | Pointer to **NullableString** | &#x60;password&#x60; credentials name to use for External Account Binding | [optional] 
 **EndPoint** | **string** | The directory url of the ACME endpoint | 
-**Timeout** | **NullableString** |  | 
+**Name** | **string** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
-**Eab** | Pointer to **NullableString** | &#x60;password&#x60; credentials name to use for External Account Binding | [optional] 
-**AccountKeyType** | **string** | The key type to use to generate the account key | 
-**AccountEmail** | Pointer to **NullableString** | Email to associate with the account | [optional] 
 **RotateAccount** | Pointer to **NullableBool** | If enable, regenerate the account (does not need to be specified on creation) | [optional] 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
-**AccountUrl** | **string** | Url of the account on the ACME directory | 
-**DomainDictionaryProvider** | Pointer to [**NullableDomainDictionaryProviders**](DomainDictionaryProviders.md) | The dictionary provider | [optional] 
-**DnsChallengeProvider** | [**DnsChallengeProviders**](DnsChallengeProviders.md) | DNS Provider configuration to provision the DNS challenge. Available from &#x60;2.7.7&#x60; | 
+**Timeout** | **NullableString** |  | 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewAcmeEnrollConnectorResponse
 
-`func NewAcmeEnrollConnectorResponse(id string, name string, type_ string, endPoint string, timeout NullableString, accountKeyType string, accountUrl string, dnsChallengeProvider DnsChallengeProviders, ) *AcmeEnrollConnectorResponse`
+`func NewAcmeEnrollConnectorResponse(id string, accountKeyType string, accountUrl string, dnsChallengeProvider DnsChallengeProviders, endPoint string, name string, timeout NullableString, type_ string, ) *AcmeEnrollConnectorResponse`
 
 NewAcmeEnrollConnectorResponse instantiates a new AcmeEnrollConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -59,46 +59,171 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetName
+### GetAccountEmail
 
-`func (o *AcmeEnrollConnectorResponse) GetName() string`
+`func (o *AcmeEnrollConnectorResponse) GetAccountEmail() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAccountEmail returns the AccountEmail field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAccountEmailOk
 
-`func (o *AcmeEnrollConnectorResponse) GetNameOk() (*string, bool)`
+`func (o *AcmeEnrollConnectorResponse) GetAccountEmailOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAccountEmailOk returns a tuple with the AccountEmail field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetAccountEmail
 
-`func (o *AcmeEnrollConnectorResponse) SetName(v string)`
+`func (o *AcmeEnrollConnectorResponse) SetAccountEmail(v string)`
 
-SetName sets Name field to given value.
+SetAccountEmail sets AccountEmail field to given value.
 
+### HasAccountEmail
 
-### GetType
+`func (o *AcmeEnrollConnectorResponse) HasAccountEmail() bool`
 
-`func (o *AcmeEnrollConnectorResponse) GetType() string`
+HasAccountEmail returns a boolean if a field has been set.
 
-GetType returns the Type field if non-nil, zero value otherwise.
+### SetAccountEmailNil
 
-### GetTypeOk
+`func (o *AcmeEnrollConnectorResponse) SetAccountEmailNil(b bool)`
 
-`func (o *AcmeEnrollConnectorResponse) GetTypeOk() (*string, bool)`
+ SetAccountEmailNil sets the value for AccountEmail to be an explicit nil
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+### UnsetAccountEmail
+`func (o *AcmeEnrollConnectorResponse) UnsetAccountEmail()`
+
+UnsetAccountEmail ensures that no value is present for AccountEmail, not even an explicit nil
+### GetAccountKeyType
+
+`func (o *AcmeEnrollConnectorResponse) GetAccountKeyType() string`
+
+GetAccountKeyType returns the AccountKeyType field if non-nil, zero value otherwise.
+
+### GetAccountKeyTypeOk
+
+`func (o *AcmeEnrollConnectorResponse) GetAccountKeyTypeOk() (*string, bool)`
+
+GetAccountKeyTypeOk returns a tuple with the AccountKeyType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetAccountKeyType
 
-`func (o *AcmeEnrollConnectorResponse) SetType(v string)`
+`func (o *AcmeEnrollConnectorResponse) SetAccountKeyType(v string)`
 
-SetType sets Type field to given value.
+SetAccountKeyType sets AccountKeyType field to given value.
 
 
+### GetAccountUrl
+
+`func (o *AcmeEnrollConnectorResponse) GetAccountUrl() string`
+
+GetAccountUrl returns the AccountUrl field if non-nil, zero value otherwise.
+
+### GetAccountUrlOk
+
+`func (o *AcmeEnrollConnectorResponse) GetAccountUrlOk() (*string, bool)`
+
+GetAccountUrlOk returns a tuple with the AccountUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountUrl
+
+`func (o *AcmeEnrollConnectorResponse) SetAccountUrl(v string)`
+
+SetAccountUrl sets AccountUrl field to given value.
+
+
+### GetDnsChallengeProvider
+
+`func (o *AcmeEnrollConnectorResponse) GetDnsChallengeProvider() DnsChallengeProviders`
+
+GetDnsChallengeProvider returns the DnsChallengeProvider field if non-nil, zero value otherwise.
+
+### GetDnsChallengeProviderOk
+
+`func (o *AcmeEnrollConnectorResponse) GetDnsChallengeProviderOk() (*DnsChallengeProviders, bool)`
+
+GetDnsChallengeProviderOk returns a tuple with the DnsChallengeProvider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnsChallengeProvider
+
+`func (o *AcmeEnrollConnectorResponse) SetDnsChallengeProvider(v DnsChallengeProviders)`
+
+SetDnsChallengeProvider sets DnsChallengeProvider field to given value.
+
+
+### GetDomainDictionaryProvider
+
+`func (o *AcmeEnrollConnectorResponse) GetDomainDictionaryProvider() DomainDictionaryProviders`
+
+GetDomainDictionaryProvider returns the DomainDictionaryProvider field if non-nil, zero value otherwise.
+
+### GetDomainDictionaryProviderOk
+
+`func (o *AcmeEnrollConnectorResponse) GetDomainDictionaryProviderOk() (*DomainDictionaryProviders, bool)`
+
+GetDomainDictionaryProviderOk returns a tuple with the DomainDictionaryProvider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomainDictionaryProvider
+
+`func (o *AcmeEnrollConnectorResponse) SetDomainDictionaryProvider(v DomainDictionaryProviders)`
+
+SetDomainDictionaryProvider sets DomainDictionaryProvider field to given value.
+
+### HasDomainDictionaryProvider
+
+`func (o *AcmeEnrollConnectorResponse) HasDomainDictionaryProvider() bool`
+
+HasDomainDictionaryProvider returns a boolean if a field has been set.
+
+### SetDomainDictionaryProviderNil
+
+`func (o *AcmeEnrollConnectorResponse) SetDomainDictionaryProviderNil(b bool)`
+
+ SetDomainDictionaryProviderNil sets the value for DomainDictionaryProvider to be an explicit nil
+
+### UnsetDomainDictionaryProvider
+`func (o *AcmeEnrollConnectorResponse) UnsetDomainDictionaryProvider()`
+
+UnsetDomainDictionaryProvider ensures that no value is present for DomainDictionaryProvider, not even an explicit nil
+### GetEab
+
+`func (o *AcmeEnrollConnectorResponse) GetEab() string`
+
+GetEab returns the Eab field if non-nil, zero value otherwise.
+
+### GetEabOk
+
+`func (o *AcmeEnrollConnectorResponse) GetEabOk() (*string, bool)`
+
+GetEabOk returns a tuple with the Eab field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEab
+
+`func (o *AcmeEnrollConnectorResponse) SetEab(v string)`
+
+SetEab sets Eab field to given value.
+
+### HasEab
+
+`func (o *AcmeEnrollConnectorResponse) HasEab() bool`
+
+HasEab returns a boolean if a field has been set.
+
+### SetEabNil
+
+`func (o *AcmeEnrollConnectorResponse) SetEabNil(b bool)`
+
+ SetEabNil sets the value for Eab to be an explicit nil
+
+### UnsetEab
+`func (o *AcmeEnrollConnectorResponse) UnsetEab()`
+
+UnsetEab ensures that no value is present for Eab, not even an explicit nil
 ### GetEndPoint
 
 `func (o *AcmeEnrollConnectorResponse) GetEndPoint() string`
@@ -119,36 +244,26 @@ and a boolean to check if the value has been set.
 SetEndPoint sets EndPoint field to given value.
 
 
-### GetTimeout
+### GetName
 
-`func (o *AcmeEnrollConnectorResponse) GetTimeout() string`
+`func (o *AcmeEnrollConnectorResponse) GetName() string`
 
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTimeoutOk
+### GetNameOk
 
-`func (o *AcmeEnrollConnectorResponse) GetTimeoutOk() (*string, bool)`
+`func (o *AcmeEnrollConnectorResponse) GetNameOk() (*string, bool)`
 
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTimeout
+### SetName
 
-`func (o *AcmeEnrollConnectorResponse) SetTimeout(v string)`
+`func (o *AcmeEnrollConnectorResponse) SetName(v string)`
 
-SetTimeout sets Timeout field to given value.
+SetName sets Name field to given value.
 
 
-### SetTimeoutNil
-
-`func (o *AcmeEnrollConnectorResponse) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *AcmeEnrollConnectorResponse) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *AcmeEnrollConnectorResponse) GetProxy() string`
@@ -219,96 +334,6 @@ HasQueue returns a boolean if a field has been set.
 `func (o *AcmeEnrollConnectorResponse) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
-### GetEab
-
-`func (o *AcmeEnrollConnectorResponse) GetEab() string`
-
-GetEab returns the Eab field if non-nil, zero value otherwise.
-
-### GetEabOk
-
-`func (o *AcmeEnrollConnectorResponse) GetEabOk() (*string, bool)`
-
-GetEabOk returns a tuple with the Eab field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEab
-
-`func (o *AcmeEnrollConnectorResponse) SetEab(v string)`
-
-SetEab sets Eab field to given value.
-
-### HasEab
-
-`func (o *AcmeEnrollConnectorResponse) HasEab() bool`
-
-HasEab returns a boolean if a field has been set.
-
-### SetEabNil
-
-`func (o *AcmeEnrollConnectorResponse) SetEabNil(b bool)`
-
- SetEabNil sets the value for Eab to be an explicit nil
-
-### UnsetEab
-`func (o *AcmeEnrollConnectorResponse) UnsetEab()`
-
-UnsetEab ensures that no value is present for Eab, not even an explicit nil
-### GetAccountKeyType
-
-`func (o *AcmeEnrollConnectorResponse) GetAccountKeyType() string`
-
-GetAccountKeyType returns the AccountKeyType field if non-nil, zero value otherwise.
-
-### GetAccountKeyTypeOk
-
-`func (o *AcmeEnrollConnectorResponse) GetAccountKeyTypeOk() (*string, bool)`
-
-GetAccountKeyTypeOk returns a tuple with the AccountKeyType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAccountKeyType
-
-`func (o *AcmeEnrollConnectorResponse) SetAccountKeyType(v string)`
-
-SetAccountKeyType sets AccountKeyType field to given value.
-
-
-### GetAccountEmail
-
-`func (o *AcmeEnrollConnectorResponse) GetAccountEmail() string`
-
-GetAccountEmail returns the AccountEmail field if non-nil, zero value otherwise.
-
-### GetAccountEmailOk
-
-`func (o *AcmeEnrollConnectorResponse) GetAccountEmailOk() (*string, bool)`
-
-GetAccountEmailOk returns a tuple with the AccountEmail field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAccountEmail
-
-`func (o *AcmeEnrollConnectorResponse) SetAccountEmail(v string)`
-
-SetAccountEmail sets AccountEmail field to given value.
-
-### HasAccountEmail
-
-`func (o *AcmeEnrollConnectorResponse) HasAccountEmail() bool`
-
-HasAccountEmail returns a boolean if a field has been set.
-
-### SetAccountEmailNil
-
-`func (o *AcmeEnrollConnectorResponse) SetAccountEmailNil(b bool)`
-
- SetAccountEmailNil sets the value for AccountEmail to be an explicit nil
-
-### UnsetAccountEmail
-`func (o *AcmeEnrollConnectorResponse) UnsetAccountEmail()`
-
-UnsetAccountEmail ensures that no value is present for AccountEmail, not even an explicit nil
 ### GetRotateAccount
 
 `func (o *AcmeEnrollConnectorResponse) GetRotateAccount() bool`
@@ -379,79 +404,54 @@ HasStatus returns a boolean if a field has been set.
 `func (o *AcmeEnrollConnectorResponse) UnsetStatus()`
 
 UnsetStatus ensures that no value is present for Status, not even an explicit nil
-### GetAccountUrl
+### GetTimeout
 
-`func (o *AcmeEnrollConnectorResponse) GetAccountUrl() string`
+`func (o *AcmeEnrollConnectorResponse) GetTimeout() string`
 
-GetAccountUrl returns the AccountUrl field if non-nil, zero value otherwise.
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
 
-### GetAccountUrlOk
+### GetTimeoutOk
 
-`func (o *AcmeEnrollConnectorResponse) GetAccountUrlOk() (*string, bool)`
+`func (o *AcmeEnrollConnectorResponse) GetTimeoutOk() (*string, bool)`
 
-GetAccountUrlOk returns a tuple with the AccountUrl field if it's non-nil, zero value otherwise
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountUrl
+### SetTimeout
 
-`func (o *AcmeEnrollConnectorResponse) SetAccountUrl(v string)`
+`func (o *AcmeEnrollConnectorResponse) SetTimeout(v string)`
 
-SetAccountUrl sets AccountUrl field to given value.
+SetTimeout sets Timeout field to given value.
 
 
-### GetDomainDictionaryProvider
+### SetTimeoutNil
 
-`func (o *AcmeEnrollConnectorResponse) GetDomainDictionaryProvider() DomainDictionaryProviders`
+`func (o *AcmeEnrollConnectorResponse) SetTimeoutNil(b bool)`
 
-GetDomainDictionaryProvider returns the DomainDictionaryProvider field if non-nil, zero value otherwise.
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
 
-### GetDomainDictionaryProviderOk
+### UnsetTimeout
+`func (o *AcmeEnrollConnectorResponse) UnsetTimeout()`
 
-`func (o *AcmeEnrollConnectorResponse) GetDomainDictionaryProviderOk() (*DomainDictionaryProviders, bool)`
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
 
-GetDomainDictionaryProviderOk returns a tuple with the DomainDictionaryProvider field if it's non-nil, zero value otherwise
+`func (o *AcmeEnrollConnectorResponse) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *AcmeEnrollConnectorResponse) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDomainDictionaryProvider
+### SetType
 
-`func (o *AcmeEnrollConnectorResponse) SetDomainDictionaryProvider(v DomainDictionaryProviders)`
+`func (o *AcmeEnrollConnectorResponse) SetType(v string)`
 
-SetDomainDictionaryProvider sets DomainDictionaryProvider field to given value.
-
-### HasDomainDictionaryProvider
-
-`func (o *AcmeEnrollConnectorResponse) HasDomainDictionaryProvider() bool`
-
-HasDomainDictionaryProvider returns a boolean if a field has been set.
-
-### SetDomainDictionaryProviderNil
-
-`func (o *AcmeEnrollConnectorResponse) SetDomainDictionaryProviderNil(b bool)`
-
- SetDomainDictionaryProviderNil sets the value for DomainDictionaryProvider to be an explicit nil
-
-### UnsetDomainDictionaryProvider
-`func (o *AcmeEnrollConnectorResponse) UnsetDomainDictionaryProvider()`
-
-UnsetDomainDictionaryProvider ensures that no value is present for DomainDictionaryProvider, not even an explicit nil
-### GetDnsChallengeProvider
-
-`func (o *AcmeEnrollConnectorResponse) GetDnsChallengeProvider() DnsChallengeProviders`
-
-GetDnsChallengeProvider returns the DnsChallengeProvider field if non-nil, zero value otherwise.
-
-### GetDnsChallengeProviderOk
-
-`func (o *AcmeEnrollConnectorResponse) GetDnsChallengeProviderOk() (*DnsChallengeProviders, bool)`
-
-GetDnsChallengeProviderOk returns a tuple with the DnsChallengeProvider field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDnsChallengeProvider
-
-`func (o *AcmeEnrollConnectorResponse) SetDnsChallengeProvider(v DnsChallengeProviders)`
-
-SetDnsChallengeProvider sets DnsChallengeProvider field to given value.
+SetType sets Type field to given value.
 
 
 

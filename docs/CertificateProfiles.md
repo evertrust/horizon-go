@@ -4,64 +4,65 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Module** | **string** |  | 
-**Name** | **string** |  | 
-**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
-**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
-**Enabled** | **bool** |  | 
-**Timeout** | **string** |  | 
-**Meta** | Pointer to [**NullableDirectoryMeta**](DirectoryMeta.md) |  | [optional] 
-**Constraints** | Pointer to [**NullableCertificateRequestConstraints**](CertificateRequestConstraints.md) |  | [optional] 
+**AuthorizationLevels** | [**CertificateProfileAuthorizationLevels**](CertificateProfileAuthorizationLevels.md) |  | 
 **AuthorizationMethods** | **[]string** |  | 
-**PkiConnector** | **string** |  | 
-**Http01Port** | Pointer to **NullableInt64** |  | [optional] 
-**TlsAlpn01Port** | Pointer to **NullableInt64** |  | [optional] 
-**AuthorizeShortName** | **bool** |  | 
 **AuthorizeEmptyContact** | **bool** |  | 
-**DefaultContacts** | Pointer to **[]string** |  | [optional] 
-**VerifyRetryCount** | **int64** |  | 
-**VerifyRetryDelay** | **string** |  | 
-**RequireTermsOfService** | **bool** |  | 
-**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
+**AuthorizeShortName** | **bool** |  | 
+**CertificateTemplate** | Pointer to [**NullableCertificateTemplate**](CertificateTemplate.md) |  | [optional] 
+**Constraints** | Pointer to [**NullableCertificateRequestConstraints**](CertificateRequestConstraints.md) |  | [optional] 
+**CryptoPolicy** | [**MonitoredCertificateProfileCryptoPolicy**](MonitoredCertificateProfileCryptoPolicy.md) |  | 
 **CsrDataMapping** | Pointer to **map[string]string** |  | [optional] 
+**DefaultContacts** | Pointer to **[]string** |  | [optional] 
+**Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
+**DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
+**DsFlow** | Pointer to [**[]DataSourceFlowEntry**](DataSourceFlowEntry.md) | Representation of a datasource execution flow | [optional] 
+**Enabled** | **bool** |  | 
+**GradingPolicies** | Pointer to **[]string** |  | [optional] 
+**Http01Port** | Pointer to **NullableInt64** |  | [optional] 
 **MaxCertificatePerHolderPolicy** | Pointer to [**NullableMaxCertificatePerHolderPolicy**](MaxCertificatePerHolderPolicy.md) |  | [optional] 
 **MaxDnsName** | Pointer to **NullableInt64** |  | [optional] 
+**Meta** | Pointer to [**NullableDirectoryMeta**](DirectoryMeta.md) |  | [optional] 
+**Module** | **string** |  | 
+**Name** | **string** |  | 
+**PkiConnector** | **string** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
-**AuthorizationLevels** | [**CertificateProfileAuthorizationLevels**](CertificateProfileAuthorizationLevels.md) |  | 
-**Triggers** | Pointer to [**NullableCertificateProfileTriggers**](CertificateProfileTriggers.md) |  | [optional] 
+**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
 **RequestsPolicy** | [**RequestsPolicy**](RequestsPolicy.md) |  | 
+**RequireTermsOfService** | **bool** |  | 
 **SelfPermissions** | [**CertificateProfileSelfPermissions**](CertificateProfileSelfPermissions.md) |  | 
-**CertificateTemplate** | Pointer to [**NullableCertificateTemplate**](CertificateTemplate.md) |  | [optional] 
-**CryptoPolicy** | [**MonitoredCertificateProfileCryptoPolicy**](MonitoredCertificateProfileCryptoPolicy.md) |  | 
-**GradingPolicies** | Pointer to **[]string** |  | [optional] 
-**DsFlow** | Pointer to [**[]DataSourceFlowEntry**](DataSourceFlowEntry.md) | Representation of a datasource execution flow | [optional] 
 **ThirdPartyDiscoverySync** | Pointer to **NullableBool** | Available from &#x60;2.8.2&#x60; | [optional] [default to false]
-**Ca** | **string** |  | 
+**Timeout** | **string** |  | 
+**TlsAlpn01Port** | Pointer to **NullableInt64** |  | [optional] 
+**Triggers** | Pointer to [**NullableCertificateProfileTriggers**](CertificateProfileTriggers.md) |  | [optional] 
+**VerifyRetryCount** | **int64** |  | 
+**VerifyRetryDelay** | **string** |  | 
 **AuthorizationMode** | **string** | The authorization mode to use.  &#x60;authorized&#x60; uses permissions to allow enrollment,  &#x60;auto-validation&#x60; uses the validation ruleset, &#x60;auto-validation-authorized&#x60; uses the validation ruleset, and if enrollment is denied, uses the permissions  | 
+**Ca** | **string** |  | 
 **DnWhitelist** | **bool** |  | 
 **EnrollAuthorizedCas** | Pointer to **[]string** |  | [optional] 
-**RenewalAuthorizedCas** | Pointer to **[]string** |  | [optional] 
 **PasswordPolicy** | Pointer to **NullableString** |  | [optional] 
+**RenewalAuthorizedCas** | Pointer to **[]string** |  | [optional] 
 **ValidationRuleset** | Pointer to [**NullableValidationRuleset**](ValidationRuleset.md) |  | [optional] 
-**Mode** | **string** |  | 
-**ThirdPartyConnector** | **string** |  | 
-**ScepRA** | **string** |  | 
 **Caps** | **[]string** |  | 
-**PostPKIOperation** | Pointer to **NullableBool** |  | [optional] 
-**EncryptionAlgorithm** | **string** |  | 
 **DeviceIdField** | Pointer to **NullableString** |  | [optional] 
 **DeviceIdSeparator** | Pointer to **NullableString** |  | [optional] 
+**EncryptionAlgorithm** | **string** |  | 
+**Mode** | **string** |  | 
+**PostPKIOperation** | Pointer to **NullableBool** |  | [optional] 
+**ScepRA** | **string** |  | 
+**ThirdPartyConnector** | **string** |  | 
 **ExchangeCertificate** | Pointer to **NullableString** |  | [optional] 
+**AutoRenewalPolicy** | Pointer to [**AutoRenewalPolicy**](AutoRenewalPolicy.md) |  | [optional] 
 **AcmeUrl** | Pointer to **string** |  | [optional] 
-**RequireEAB** | **bool** |  | 
 **AuthorizedCas** | **[]string** |  | 
+**RequireEAB** | **bool** |  | 
 **DataFieldIdentifier** | Pointer to **NullableString** | Only when escrow is enabled in the cryptoPolicy, possible values are: &#x60;rfc822name&#x60;, &#x60;othername_upn&#x60;, &#x60;mail&#x60;, &#x60;uid&#x60;, &#x60;cn&#x60; and &#x60;label.&lt;label_name&gt;&#x60;. If a label is used, it should be defined in the certificateTemplate  | [optional] 
 
 ## Methods
 
 ### NewCertificateProfiles
 
-`func NewCertificateProfiles(module string, name string, enabled bool, timeout string, authorizationMethods []string, pkiConnector string, authorizeShortName bool, authorizeEmptyContact bool, verifyRetryCount int64, verifyRetryDelay string, requireTermsOfService bool, authorizationLevels CertificateProfileAuthorizationLevels, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions, cryptoPolicy MonitoredCertificateProfileCryptoPolicy, ca string, authorizationMode string, dnWhitelist bool, mode string, thirdPartyConnector string, scepRA string, caps []string, encryptionAlgorithm string, requireEAB bool, authorizedCas []string, ) *CertificateProfiles`
+`func NewCertificateProfiles(authorizationLevels CertificateProfileAuthorizationLevels, authorizationMethods []string, authorizeEmptyContact bool, authorizeShortName bool, cryptoPolicy MonitoredCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, requireTermsOfService bool, selfPermissions CertificateProfileSelfPermissions, timeout string, verifyRetryCount int64, verifyRetryDelay string, authorizationMode string, ca string, dnWhitelist bool, caps []string, encryptionAlgorithm string, mode string, scepRA string, thirdPartyConnector string, authorizedCas []string, requireEAB bool, ) *CertificateProfiles`
 
 NewCertificateProfiles instantiates a new CertificateProfiles object
 This constructor will assign default values to properties that have it defined,
@@ -76,191 +77,131 @@ NewCertificateProfilesWithDefaults instantiates a new CertificateProfiles object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetModule
+### GetAuthorizationLevels
 
-`func (o *CertificateProfiles) GetModule() string`
+`func (o *CertificateProfiles) GetAuthorizationLevels() CertificateProfileAuthorizationLevels`
 
-GetModule returns the Module field if non-nil, zero value otherwise.
+GetAuthorizationLevels returns the AuthorizationLevels field if non-nil, zero value otherwise.
 
-### GetModuleOk
+### GetAuthorizationLevelsOk
 
-`func (o *CertificateProfiles) GetModuleOk() (*string, bool)`
+`func (o *CertificateProfiles) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool)`
 
-GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetModule
+### SetAuthorizationLevels
 
-`func (o *CertificateProfiles) SetModule(v string)`
+`func (o *CertificateProfiles) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels)`
 
-SetModule sets Module field to given value.
+SetAuthorizationLevels sets AuthorizationLevels field to given value.
 
 
-### GetName
+### GetAuthorizationMethods
 
-`func (o *CertificateProfiles) GetName() string`
+`func (o *CertificateProfiles) GetAuthorizationMethods() []string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAuthorizationMethods returns the AuthorizationMethods field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAuthorizationMethodsOk
 
-`func (o *CertificateProfiles) GetNameOk() (*string, bool)`
+`func (o *CertificateProfiles) GetAuthorizationMethodsOk() (*[]string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAuthorizationMethodsOk returns a tuple with the AuthorizationMethods field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetAuthorizationMethods
 
-`func (o *CertificateProfiles) SetName(v string)`
+`func (o *CertificateProfiles) SetAuthorizationMethods(v []string)`
 
-SetName sets Name field to given value.
+SetAuthorizationMethods sets AuthorizationMethods field to given value.
 
 
-### GetDisplayName
+### SetAuthorizationMethodsNil
 
-`func (o *CertificateProfiles) GetDisplayName() []LocalizedString`
+`func (o *CertificateProfiles) SetAuthorizationMethodsNil(b bool)`
 
-GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+ SetAuthorizationMethodsNil sets the value for AuthorizationMethods to be an explicit nil
 
-### GetDisplayNameOk
+### UnsetAuthorizationMethods
+`func (o *CertificateProfiles) UnsetAuthorizationMethods()`
 
-`func (o *CertificateProfiles) GetDisplayNameOk() (*[]LocalizedString, bool)`
+UnsetAuthorizationMethods ensures that no value is present for AuthorizationMethods, not even an explicit nil
+### GetAuthorizeEmptyContact
 
-GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+`func (o *CertificateProfiles) GetAuthorizeEmptyContact() bool`
+
+GetAuthorizeEmptyContact returns the AuthorizeEmptyContact field if non-nil, zero value otherwise.
+
+### GetAuthorizeEmptyContactOk
+
+`func (o *CertificateProfiles) GetAuthorizeEmptyContactOk() (*bool, bool)`
+
+GetAuthorizeEmptyContactOk returns a tuple with the AuthorizeEmptyContact field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDisplayName
+### SetAuthorizeEmptyContact
 
-`func (o *CertificateProfiles) SetDisplayName(v []LocalizedString)`
+`func (o *CertificateProfiles) SetAuthorizeEmptyContact(v bool)`
 
-SetDisplayName sets DisplayName field to given value.
+SetAuthorizeEmptyContact sets AuthorizeEmptyContact field to given value.
 
-### HasDisplayName
 
-`func (o *CertificateProfiles) HasDisplayName() bool`
+### GetAuthorizeShortName
 
-HasDisplayName returns a boolean if a field has been set.
+`func (o *CertificateProfiles) GetAuthorizeShortName() bool`
 
-### SetDisplayNameNil
+GetAuthorizeShortName returns the AuthorizeShortName field if non-nil, zero value otherwise.
 
-`func (o *CertificateProfiles) SetDisplayNameNil(b bool)`
+### GetAuthorizeShortNameOk
 
- SetDisplayNameNil sets the value for DisplayName to be an explicit nil
+`func (o *CertificateProfiles) GetAuthorizeShortNameOk() (*bool, bool)`
 
-### UnsetDisplayName
-`func (o *CertificateProfiles) UnsetDisplayName()`
-
-UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
-### GetDescription
-
-`func (o *CertificateProfiles) GetDescription() []LocalizedString`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *CertificateProfiles) GetDescriptionOk() (*[]LocalizedString, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetAuthorizeShortNameOk returns a tuple with the AuthorizeShortName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetAuthorizeShortName
 
-`func (o *CertificateProfiles) SetDescription(v []LocalizedString)`
+`func (o *CertificateProfiles) SetAuthorizeShortName(v bool)`
 
-SetDescription sets Description field to given value.
+SetAuthorizeShortName sets AuthorizeShortName field to given value.
 
-### HasDescription
 
-`func (o *CertificateProfiles) HasDescription() bool`
+### GetCertificateTemplate
 
-HasDescription returns a boolean if a field has been set.
+`func (o *CertificateProfiles) GetCertificateTemplate() CertificateTemplate`
 
-### SetDescriptionNil
+GetCertificateTemplate returns the CertificateTemplate field if non-nil, zero value otherwise.
 
-`func (o *CertificateProfiles) SetDescriptionNil(b bool)`
+### GetCertificateTemplateOk
 
- SetDescriptionNil sets the value for Description to be an explicit nil
+`func (o *CertificateProfiles) GetCertificateTemplateOk() (*CertificateTemplate, bool)`
 
-### UnsetDescription
-`func (o *CertificateProfiles) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
-### GetEnabled
-
-`func (o *CertificateProfiles) GetEnabled() bool`
-
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
-
-### GetEnabledOk
-
-`func (o *CertificateProfiles) GetEnabledOk() (*bool, bool)`
-
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetCertificateTemplateOk returns a tuple with the CertificateTemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetCertificateTemplate
 
-`func (o *CertificateProfiles) SetEnabled(v bool)`
+`func (o *CertificateProfiles) SetCertificateTemplate(v CertificateTemplate)`
 
-SetEnabled sets Enabled field to given value.
+SetCertificateTemplate sets CertificateTemplate field to given value.
 
+### HasCertificateTemplate
 
-### GetTimeout
+`func (o *CertificateProfiles) HasCertificateTemplate() bool`
 
-`func (o *CertificateProfiles) GetTimeout() string`
+HasCertificateTemplate returns a boolean if a field has been set.
 
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+### SetCertificateTemplateNil
 
-### GetTimeoutOk
+`func (o *CertificateProfiles) SetCertificateTemplateNil(b bool)`
 
-`func (o *CertificateProfiles) GetTimeoutOk() (*string, bool)`
+ SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
 
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetCertificateTemplate
+`func (o *CertificateProfiles) UnsetCertificateTemplate()`
 
-### SetTimeout
-
-`func (o *CertificateProfiles) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-
-### GetMeta
-
-`func (o *CertificateProfiles) GetMeta() DirectoryMeta`
-
-GetMeta returns the Meta field if non-nil, zero value otherwise.
-
-### GetMetaOk
-
-`func (o *CertificateProfiles) GetMetaOk() (*DirectoryMeta, bool)`
-
-GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMeta
-
-`func (o *CertificateProfiles) SetMeta(v DirectoryMeta)`
-
-SetMeta sets Meta field to given value.
-
-### HasMeta
-
-`func (o *CertificateProfiles) HasMeta() bool`
-
-HasMeta returns a boolean if a field has been set.
-
-### SetMetaNil
-
-`func (o *CertificateProfiles) SetMetaNil(b bool)`
-
- SetMetaNil sets the value for Meta to be an explicit nil
-
-### UnsetMeta
-`func (o *CertificateProfiles) UnsetMeta()`
-
-UnsetMeta ensures that no value is present for Meta, not even an explicit nil
+UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
 ### GetConstraints
 
 `func (o *CertificateProfiles) GetConstraints() CertificateRequestConstraints`
@@ -296,296 +237,26 @@ HasConstraints returns a boolean if a field has been set.
 `func (o *CertificateProfiles) UnsetConstraints()`
 
 UnsetConstraints ensures that no value is present for Constraints, not even an explicit nil
-### GetAuthorizationMethods
+### GetCryptoPolicy
 
-`func (o *CertificateProfiles) GetAuthorizationMethods() []string`
+`func (o *CertificateProfiles) GetCryptoPolicy() MonitoredCertificateProfileCryptoPolicy`
 
-GetAuthorizationMethods returns the AuthorizationMethods field if non-nil, zero value otherwise.
+GetCryptoPolicy returns the CryptoPolicy field if non-nil, zero value otherwise.
 
-### GetAuthorizationMethodsOk
+### GetCryptoPolicyOk
 
-`func (o *CertificateProfiles) GetAuthorizationMethodsOk() (*[]string, bool)`
+`func (o *CertificateProfiles) GetCryptoPolicyOk() (*MonitoredCertificateProfileCryptoPolicy, bool)`
 
-GetAuthorizationMethodsOk returns a tuple with the AuthorizationMethods field if it's non-nil, zero value otherwise
+GetCryptoPolicyOk returns a tuple with the CryptoPolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthorizationMethods
+### SetCryptoPolicy
 
-`func (o *CertificateProfiles) SetAuthorizationMethods(v []string)`
+`func (o *CertificateProfiles) SetCryptoPolicy(v MonitoredCertificateProfileCryptoPolicy)`
 
-SetAuthorizationMethods sets AuthorizationMethods field to given value.
+SetCryptoPolicy sets CryptoPolicy field to given value.
 
 
-### SetAuthorizationMethodsNil
-
-`func (o *CertificateProfiles) SetAuthorizationMethodsNil(b bool)`
-
- SetAuthorizationMethodsNil sets the value for AuthorizationMethods to be an explicit nil
-
-### UnsetAuthorizationMethods
-`func (o *CertificateProfiles) UnsetAuthorizationMethods()`
-
-UnsetAuthorizationMethods ensures that no value is present for AuthorizationMethods, not even an explicit nil
-### GetPkiConnector
-
-`func (o *CertificateProfiles) GetPkiConnector() string`
-
-GetPkiConnector returns the PkiConnector field if non-nil, zero value otherwise.
-
-### GetPkiConnectorOk
-
-`func (o *CertificateProfiles) GetPkiConnectorOk() (*string, bool)`
-
-GetPkiConnectorOk returns a tuple with the PkiConnector field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPkiConnector
-
-`func (o *CertificateProfiles) SetPkiConnector(v string)`
-
-SetPkiConnector sets PkiConnector field to given value.
-
-
-### GetHttp01Port
-
-`func (o *CertificateProfiles) GetHttp01Port() int64`
-
-GetHttp01Port returns the Http01Port field if non-nil, zero value otherwise.
-
-### GetHttp01PortOk
-
-`func (o *CertificateProfiles) GetHttp01PortOk() (*int64, bool)`
-
-GetHttp01PortOk returns a tuple with the Http01Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHttp01Port
-
-`func (o *CertificateProfiles) SetHttp01Port(v int64)`
-
-SetHttp01Port sets Http01Port field to given value.
-
-### HasHttp01Port
-
-`func (o *CertificateProfiles) HasHttp01Port() bool`
-
-HasHttp01Port returns a boolean if a field has been set.
-
-### SetHttp01PortNil
-
-`func (o *CertificateProfiles) SetHttp01PortNil(b bool)`
-
- SetHttp01PortNil sets the value for Http01Port to be an explicit nil
-
-### UnsetHttp01Port
-`func (o *CertificateProfiles) UnsetHttp01Port()`
-
-UnsetHttp01Port ensures that no value is present for Http01Port, not even an explicit nil
-### GetTlsAlpn01Port
-
-`func (o *CertificateProfiles) GetTlsAlpn01Port() int64`
-
-GetTlsAlpn01Port returns the TlsAlpn01Port field if non-nil, zero value otherwise.
-
-### GetTlsAlpn01PortOk
-
-`func (o *CertificateProfiles) GetTlsAlpn01PortOk() (*int64, bool)`
-
-GetTlsAlpn01PortOk returns a tuple with the TlsAlpn01Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTlsAlpn01Port
-
-`func (o *CertificateProfiles) SetTlsAlpn01Port(v int64)`
-
-SetTlsAlpn01Port sets TlsAlpn01Port field to given value.
-
-### HasTlsAlpn01Port
-
-`func (o *CertificateProfiles) HasTlsAlpn01Port() bool`
-
-HasTlsAlpn01Port returns a boolean if a field has been set.
-
-### SetTlsAlpn01PortNil
-
-`func (o *CertificateProfiles) SetTlsAlpn01PortNil(b bool)`
-
- SetTlsAlpn01PortNil sets the value for TlsAlpn01Port to be an explicit nil
-
-### UnsetTlsAlpn01Port
-`func (o *CertificateProfiles) UnsetTlsAlpn01Port()`
-
-UnsetTlsAlpn01Port ensures that no value is present for TlsAlpn01Port, not even an explicit nil
-### GetAuthorizeShortName
-
-`func (o *CertificateProfiles) GetAuthorizeShortName() bool`
-
-GetAuthorizeShortName returns the AuthorizeShortName field if non-nil, zero value otherwise.
-
-### GetAuthorizeShortNameOk
-
-`func (o *CertificateProfiles) GetAuthorizeShortNameOk() (*bool, bool)`
-
-GetAuthorizeShortNameOk returns a tuple with the AuthorizeShortName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthorizeShortName
-
-`func (o *CertificateProfiles) SetAuthorizeShortName(v bool)`
-
-SetAuthorizeShortName sets AuthorizeShortName field to given value.
-
-
-### GetAuthorizeEmptyContact
-
-`func (o *CertificateProfiles) GetAuthorizeEmptyContact() bool`
-
-GetAuthorizeEmptyContact returns the AuthorizeEmptyContact field if non-nil, zero value otherwise.
-
-### GetAuthorizeEmptyContactOk
-
-`func (o *CertificateProfiles) GetAuthorizeEmptyContactOk() (*bool, bool)`
-
-GetAuthorizeEmptyContactOk returns a tuple with the AuthorizeEmptyContact field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthorizeEmptyContact
-
-`func (o *CertificateProfiles) SetAuthorizeEmptyContact(v bool)`
-
-SetAuthorizeEmptyContact sets AuthorizeEmptyContact field to given value.
-
-
-### GetDefaultContacts
-
-`func (o *CertificateProfiles) GetDefaultContacts() []string`
-
-GetDefaultContacts returns the DefaultContacts field if non-nil, zero value otherwise.
-
-### GetDefaultContactsOk
-
-`func (o *CertificateProfiles) GetDefaultContactsOk() (*[]string, bool)`
-
-GetDefaultContactsOk returns a tuple with the DefaultContacts field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultContacts
-
-`func (o *CertificateProfiles) SetDefaultContacts(v []string)`
-
-SetDefaultContacts sets DefaultContacts field to given value.
-
-### HasDefaultContacts
-
-`func (o *CertificateProfiles) HasDefaultContacts() bool`
-
-HasDefaultContacts returns a boolean if a field has been set.
-
-### SetDefaultContactsNil
-
-`func (o *CertificateProfiles) SetDefaultContactsNil(b bool)`
-
- SetDefaultContactsNil sets the value for DefaultContacts to be an explicit nil
-
-### UnsetDefaultContacts
-`func (o *CertificateProfiles) UnsetDefaultContacts()`
-
-UnsetDefaultContacts ensures that no value is present for DefaultContacts, not even an explicit nil
-### GetVerifyRetryCount
-
-`func (o *CertificateProfiles) GetVerifyRetryCount() int64`
-
-GetVerifyRetryCount returns the VerifyRetryCount field if non-nil, zero value otherwise.
-
-### GetVerifyRetryCountOk
-
-`func (o *CertificateProfiles) GetVerifyRetryCountOk() (*int64, bool)`
-
-GetVerifyRetryCountOk returns a tuple with the VerifyRetryCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVerifyRetryCount
-
-`func (o *CertificateProfiles) SetVerifyRetryCount(v int64)`
-
-SetVerifyRetryCount sets VerifyRetryCount field to given value.
-
-
-### GetVerifyRetryDelay
-
-`func (o *CertificateProfiles) GetVerifyRetryDelay() string`
-
-GetVerifyRetryDelay returns the VerifyRetryDelay field if non-nil, zero value otherwise.
-
-### GetVerifyRetryDelayOk
-
-`func (o *CertificateProfiles) GetVerifyRetryDelayOk() (*string, bool)`
-
-GetVerifyRetryDelayOk returns a tuple with the VerifyRetryDelay field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVerifyRetryDelay
-
-`func (o *CertificateProfiles) SetVerifyRetryDelay(v string)`
-
-SetVerifyRetryDelay sets VerifyRetryDelay field to given value.
-
-
-### GetRequireTermsOfService
-
-`func (o *CertificateProfiles) GetRequireTermsOfService() bool`
-
-GetRequireTermsOfService returns the RequireTermsOfService field if non-nil, zero value otherwise.
-
-### GetRequireTermsOfServiceOk
-
-`func (o *CertificateProfiles) GetRequireTermsOfServiceOk() (*bool, bool)`
-
-GetRequireTermsOfServiceOk returns a tuple with the RequireTermsOfService field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequireTermsOfService
-
-`func (o *CertificateProfiles) SetRequireTermsOfService(v bool)`
-
-SetRequireTermsOfService sets RequireTermsOfService field to given value.
-
-
-### GetRenewalPeriod
-
-`func (o *CertificateProfiles) GetRenewalPeriod() string`
-
-GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
-
-### GetRenewalPeriodOk
-
-`func (o *CertificateProfiles) GetRenewalPeriodOk() (*string, bool)`
-
-GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRenewalPeriod
-
-`func (o *CertificateProfiles) SetRenewalPeriod(v string)`
-
-SetRenewalPeriod sets RenewalPeriod field to given value.
-
-### HasRenewalPeriod
-
-`func (o *CertificateProfiles) HasRenewalPeriod() bool`
-
-HasRenewalPeriod returns a boolean if a field has been set.
-
-### SetRenewalPeriodNil
-
-`func (o *CertificateProfiles) SetRenewalPeriodNil(b bool)`
-
- SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-
-### UnsetRenewalPeriod
-`func (o *CertificateProfiles) UnsetRenewalPeriod()`
-
-UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
 ### GetCsrDataMapping
 
 `func (o *CertificateProfiles) GetCsrDataMapping() map[string]string`
@@ -621,6 +292,236 @@ HasCsrDataMapping returns a boolean if a field has been set.
 `func (o *CertificateProfiles) UnsetCsrDataMapping()`
 
 UnsetCsrDataMapping ensures that no value is present for CsrDataMapping, not even an explicit nil
+### GetDefaultContacts
+
+`func (o *CertificateProfiles) GetDefaultContacts() []string`
+
+GetDefaultContacts returns the DefaultContacts field if non-nil, zero value otherwise.
+
+### GetDefaultContactsOk
+
+`func (o *CertificateProfiles) GetDefaultContactsOk() (*[]string, bool)`
+
+GetDefaultContactsOk returns a tuple with the DefaultContacts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultContacts
+
+`func (o *CertificateProfiles) SetDefaultContacts(v []string)`
+
+SetDefaultContacts sets DefaultContacts field to given value.
+
+### HasDefaultContacts
+
+`func (o *CertificateProfiles) HasDefaultContacts() bool`
+
+HasDefaultContacts returns a boolean if a field has been set.
+
+### SetDefaultContactsNil
+
+`func (o *CertificateProfiles) SetDefaultContactsNil(b bool)`
+
+ SetDefaultContactsNil sets the value for DefaultContacts to be an explicit nil
+
+### UnsetDefaultContacts
+`func (o *CertificateProfiles) UnsetDefaultContacts()`
+
+UnsetDefaultContacts ensures that no value is present for DefaultContacts, not even an explicit nil
+### GetDescription
+
+`func (o *CertificateProfiles) GetDescription() []LocalizedString`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *CertificateProfiles) GetDescriptionOk() (*[]LocalizedString, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *CertificateProfiles) SetDescription(v []LocalizedString)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *CertificateProfiles) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescriptionNil
+
+`func (o *CertificateProfiles) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *CertificateProfiles) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetDisplayName
+
+`func (o *CertificateProfiles) GetDisplayName() []LocalizedString`
+
+GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+
+### GetDisplayNameOk
+
+`func (o *CertificateProfiles) GetDisplayNameOk() (*[]LocalizedString, bool)`
+
+GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayName
+
+`func (o *CertificateProfiles) SetDisplayName(v []LocalizedString)`
+
+SetDisplayName sets DisplayName field to given value.
+
+### HasDisplayName
+
+`func (o *CertificateProfiles) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
+
+### SetDisplayNameNil
+
+`func (o *CertificateProfiles) SetDisplayNameNil(b bool)`
+
+ SetDisplayNameNil sets the value for DisplayName to be an explicit nil
+
+### UnsetDisplayName
+`func (o *CertificateProfiles) UnsetDisplayName()`
+
+UnsetDisplayName ensures that no value is present for DisplayName, not even an explicit nil
+### GetDsFlow
+
+`func (o *CertificateProfiles) GetDsFlow() []DataSourceFlowEntry`
+
+GetDsFlow returns the DsFlow field if non-nil, zero value otherwise.
+
+### GetDsFlowOk
+
+`func (o *CertificateProfiles) GetDsFlowOk() (*[]DataSourceFlowEntry, bool)`
+
+GetDsFlowOk returns a tuple with the DsFlow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDsFlow
+
+`func (o *CertificateProfiles) SetDsFlow(v []DataSourceFlowEntry)`
+
+SetDsFlow sets DsFlow field to given value.
+
+### HasDsFlow
+
+`func (o *CertificateProfiles) HasDsFlow() bool`
+
+HasDsFlow returns a boolean if a field has been set.
+
+### SetDsFlowNil
+
+`func (o *CertificateProfiles) SetDsFlowNil(b bool)`
+
+ SetDsFlowNil sets the value for DsFlow to be an explicit nil
+
+### UnsetDsFlow
+`func (o *CertificateProfiles) UnsetDsFlow()`
+
+UnsetDsFlow ensures that no value is present for DsFlow, not even an explicit nil
+### GetEnabled
+
+`func (o *CertificateProfiles) GetEnabled() bool`
+
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+
+### GetEnabledOk
+
+`func (o *CertificateProfiles) GetEnabledOk() (*bool, bool)`
+
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnabled
+
+`func (o *CertificateProfiles) SetEnabled(v bool)`
+
+SetEnabled sets Enabled field to given value.
+
+
+### GetGradingPolicies
+
+`func (o *CertificateProfiles) GetGradingPolicies() []string`
+
+GetGradingPolicies returns the GradingPolicies field if non-nil, zero value otherwise.
+
+### GetGradingPoliciesOk
+
+`func (o *CertificateProfiles) GetGradingPoliciesOk() (*[]string, bool)`
+
+GetGradingPoliciesOk returns a tuple with the GradingPolicies field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGradingPolicies
+
+`func (o *CertificateProfiles) SetGradingPolicies(v []string)`
+
+SetGradingPolicies sets GradingPolicies field to given value.
+
+### HasGradingPolicies
+
+`func (o *CertificateProfiles) HasGradingPolicies() bool`
+
+HasGradingPolicies returns a boolean if a field has been set.
+
+### SetGradingPoliciesNil
+
+`func (o *CertificateProfiles) SetGradingPoliciesNil(b bool)`
+
+ SetGradingPoliciesNil sets the value for GradingPolicies to be an explicit nil
+
+### UnsetGradingPolicies
+`func (o *CertificateProfiles) UnsetGradingPolicies()`
+
+UnsetGradingPolicies ensures that no value is present for GradingPolicies, not even an explicit nil
+### GetHttp01Port
+
+`func (o *CertificateProfiles) GetHttp01Port() int64`
+
+GetHttp01Port returns the Http01Port field if non-nil, zero value otherwise.
+
+### GetHttp01PortOk
+
+`func (o *CertificateProfiles) GetHttp01PortOk() (*int64, bool)`
+
+GetHttp01PortOk returns a tuple with the Http01Port field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHttp01Port
+
+`func (o *CertificateProfiles) SetHttp01Port(v int64)`
+
+SetHttp01Port sets Http01Port field to given value.
+
+### HasHttp01Port
+
+`func (o *CertificateProfiles) HasHttp01Port() bool`
+
+HasHttp01Port returns a boolean if a field has been set.
+
+### SetHttp01PortNil
+
+`func (o *CertificateProfiles) SetHttp01PortNil(b bool)`
+
+ SetHttp01PortNil sets the value for Http01Port to be an explicit nil
+
+### UnsetHttp01Port
+`func (o *CertificateProfiles) UnsetHttp01Port()`
+
+UnsetHttp01Port ensures that no value is present for Http01Port, not even an explicit nil
 ### GetMaxCertificatePerHolderPolicy
 
 `func (o *CertificateProfiles) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy`
@@ -691,6 +592,101 @@ HasMaxDnsName returns a boolean if a field has been set.
 `func (o *CertificateProfiles) UnsetMaxDnsName()`
 
 UnsetMaxDnsName ensures that no value is present for MaxDnsName, not even an explicit nil
+### GetMeta
+
+`func (o *CertificateProfiles) GetMeta() DirectoryMeta`
+
+GetMeta returns the Meta field if non-nil, zero value otherwise.
+
+### GetMetaOk
+
+`func (o *CertificateProfiles) GetMetaOk() (*DirectoryMeta, bool)`
+
+GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeta
+
+`func (o *CertificateProfiles) SetMeta(v DirectoryMeta)`
+
+SetMeta sets Meta field to given value.
+
+### HasMeta
+
+`func (o *CertificateProfiles) HasMeta() bool`
+
+HasMeta returns a boolean if a field has been set.
+
+### SetMetaNil
+
+`func (o *CertificateProfiles) SetMetaNil(b bool)`
+
+ SetMetaNil sets the value for Meta to be an explicit nil
+
+### UnsetMeta
+`func (o *CertificateProfiles) UnsetMeta()`
+
+UnsetMeta ensures that no value is present for Meta, not even an explicit nil
+### GetModule
+
+`func (o *CertificateProfiles) GetModule() string`
+
+GetModule returns the Module field if non-nil, zero value otherwise.
+
+### GetModuleOk
+
+`func (o *CertificateProfiles) GetModuleOk() (*string, bool)`
+
+GetModuleOk returns a tuple with the Module field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModule
+
+`func (o *CertificateProfiles) SetModule(v string)`
+
+SetModule sets Module field to given value.
+
+
+### GetName
+
+`func (o *CertificateProfiles) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *CertificateProfiles) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *CertificateProfiles) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetPkiConnector
+
+`func (o *CertificateProfiles) GetPkiConnector() string`
+
+GetPkiConnector returns the PkiConnector field if non-nil, zero value otherwise.
+
+### GetPkiConnectorOk
+
+`func (o *CertificateProfiles) GetPkiConnectorOk() (*string, bool)`
+
+GetPkiConnectorOk returns a tuple with the PkiConnector field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPkiConnector
+
+`func (o *CertificateProfiles) SetPkiConnector(v string)`
+
+SetPkiConnector sets PkiConnector field to given value.
+
+
 ### GetProxy
 
 `func (o *CertificateProfiles) GetProxy() string`
@@ -726,61 +722,41 @@ HasProxy returns a boolean if a field has been set.
 `func (o *CertificateProfiles) UnsetProxy()`
 
 UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetAuthorizationLevels
+### GetRenewalPeriod
 
-`func (o *CertificateProfiles) GetAuthorizationLevels() CertificateProfileAuthorizationLevels`
+`func (o *CertificateProfiles) GetRenewalPeriod() string`
 
-GetAuthorizationLevels returns the AuthorizationLevels field if non-nil, zero value otherwise.
+GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
 
-### GetAuthorizationLevelsOk
+### GetRenewalPeriodOk
 
-`func (o *CertificateProfiles) GetAuthorizationLevelsOk() (*CertificateProfileAuthorizationLevels, bool)`
+`func (o *CertificateProfiles) GetRenewalPeriodOk() (*string, bool)`
 
-GetAuthorizationLevelsOk returns a tuple with the AuthorizationLevels field if it's non-nil, zero value otherwise
+GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthorizationLevels
+### SetRenewalPeriod
 
-`func (o *CertificateProfiles) SetAuthorizationLevels(v CertificateProfileAuthorizationLevels)`
+`func (o *CertificateProfiles) SetRenewalPeriod(v string)`
 
-SetAuthorizationLevels sets AuthorizationLevels field to given value.
+SetRenewalPeriod sets RenewalPeriod field to given value.
 
+### HasRenewalPeriod
 
-### GetTriggers
+`func (o *CertificateProfiles) HasRenewalPeriod() bool`
 
-`func (o *CertificateProfiles) GetTriggers() CertificateProfileTriggers`
+HasRenewalPeriod returns a boolean if a field has been set.
 
-GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+### SetRenewalPeriodNil
 
-### GetTriggersOk
+`func (o *CertificateProfiles) SetRenewalPeriodNil(b bool)`
 
-`func (o *CertificateProfiles) GetTriggersOk() (*CertificateProfileTriggers, bool)`
+ SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
 
-GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetRenewalPeriod
+`func (o *CertificateProfiles) UnsetRenewalPeriod()`
 
-### SetTriggers
-
-`func (o *CertificateProfiles) SetTriggers(v CertificateProfileTriggers)`
-
-SetTriggers sets Triggers field to given value.
-
-### HasTriggers
-
-`func (o *CertificateProfiles) HasTriggers() bool`
-
-HasTriggers returns a boolean if a field has been set.
-
-### SetTriggersNil
-
-`func (o *CertificateProfiles) SetTriggersNil(b bool)`
-
- SetTriggersNil sets the value for Triggers to be an explicit nil
-
-### UnsetTriggers
-`func (o *CertificateProfiles) UnsetTriggers()`
-
-UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
+UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
 ### GetRequestsPolicy
 
 `func (o *CertificateProfiles) GetRequestsPolicy() RequestsPolicy`
@@ -799,6 +775,26 @@ and a boolean to check if the value has been set.
 `func (o *CertificateProfiles) SetRequestsPolicy(v RequestsPolicy)`
 
 SetRequestsPolicy sets RequestsPolicy field to given value.
+
+
+### GetRequireTermsOfService
+
+`func (o *CertificateProfiles) GetRequireTermsOfService() bool`
+
+GetRequireTermsOfService returns the RequireTermsOfService field if non-nil, zero value otherwise.
+
+### GetRequireTermsOfServiceOk
+
+`func (o *CertificateProfiles) GetRequireTermsOfServiceOk() (*bool, bool)`
+
+GetRequireTermsOfServiceOk returns a tuple with the RequireTermsOfService field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequireTermsOfService
+
+`func (o *CertificateProfiles) SetRequireTermsOfService(v bool)`
+
+SetRequireTermsOfService sets RequireTermsOfService field to given value.
 
 
 ### GetSelfPermissions
@@ -821,131 +817,6 @@ and a boolean to check if the value has been set.
 SetSelfPermissions sets SelfPermissions field to given value.
 
 
-### GetCertificateTemplate
-
-`func (o *CertificateProfiles) GetCertificateTemplate() CertificateTemplate`
-
-GetCertificateTemplate returns the CertificateTemplate field if non-nil, zero value otherwise.
-
-### GetCertificateTemplateOk
-
-`func (o *CertificateProfiles) GetCertificateTemplateOk() (*CertificateTemplate, bool)`
-
-GetCertificateTemplateOk returns a tuple with the CertificateTemplate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificateTemplate
-
-`func (o *CertificateProfiles) SetCertificateTemplate(v CertificateTemplate)`
-
-SetCertificateTemplate sets CertificateTemplate field to given value.
-
-### HasCertificateTemplate
-
-`func (o *CertificateProfiles) HasCertificateTemplate() bool`
-
-HasCertificateTemplate returns a boolean if a field has been set.
-
-### SetCertificateTemplateNil
-
-`func (o *CertificateProfiles) SetCertificateTemplateNil(b bool)`
-
- SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-
-### UnsetCertificateTemplate
-`func (o *CertificateProfiles) UnsetCertificateTemplate()`
-
-UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
-### GetCryptoPolicy
-
-`func (o *CertificateProfiles) GetCryptoPolicy() MonitoredCertificateProfileCryptoPolicy`
-
-GetCryptoPolicy returns the CryptoPolicy field if non-nil, zero value otherwise.
-
-### GetCryptoPolicyOk
-
-`func (o *CertificateProfiles) GetCryptoPolicyOk() (*MonitoredCertificateProfileCryptoPolicy, bool)`
-
-GetCryptoPolicyOk returns a tuple with the CryptoPolicy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCryptoPolicy
-
-`func (o *CertificateProfiles) SetCryptoPolicy(v MonitoredCertificateProfileCryptoPolicy)`
-
-SetCryptoPolicy sets CryptoPolicy field to given value.
-
-
-### GetGradingPolicies
-
-`func (o *CertificateProfiles) GetGradingPolicies() []string`
-
-GetGradingPolicies returns the GradingPolicies field if non-nil, zero value otherwise.
-
-### GetGradingPoliciesOk
-
-`func (o *CertificateProfiles) GetGradingPoliciesOk() (*[]string, bool)`
-
-GetGradingPoliciesOk returns a tuple with the GradingPolicies field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetGradingPolicies
-
-`func (o *CertificateProfiles) SetGradingPolicies(v []string)`
-
-SetGradingPolicies sets GradingPolicies field to given value.
-
-### HasGradingPolicies
-
-`func (o *CertificateProfiles) HasGradingPolicies() bool`
-
-HasGradingPolicies returns a boolean if a field has been set.
-
-### SetGradingPoliciesNil
-
-`func (o *CertificateProfiles) SetGradingPoliciesNil(b bool)`
-
- SetGradingPoliciesNil sets the value for GradingPolicies to be an explicit nil
-
-### UnsetGradingPolicies
-`func (o *CertificateProfiles) UnsetGradingPolicies()`
-
-UnsetGradingPolicies ensures that no value is present for GradingPolicies, not even an explicit nil
-### GetDsFlow
-
-`func (o *CertificateProfiles) GetDsFlow() []DataSourceFlowEntry`
-
-GetDsFlow returns the DsFlow field if non-nil, zero value otherwise.
-
-### GetDsFlowOk
-
-`func (o *CertificateProfiles) GetDsFlowOk() (*[]DataSourceFlowEntry, bool)`
-
-GetDsFlowOk returns a tuple with the DsFlow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDsFlow
-
-`func (o *CertificateProfiles) SetDsFlow(v []DataSourceFlowEntry)`
-
-SetDsFlow sets DsFlow field to given value.
-
-### HasDsFlow
-
-`func (o *CertificateProfiles) HasDsFlow() bool`
-
-HasDsFlow returns a boolean if a field has been set.
-
-### SetDsFlowNil
-
-`func (o *CertificateProfiles) SetDsFlowNil(b bool)`
-
- SetDsFlowNil sets the value for DsFlow to be an explicit nil
-
-### UnsetDsFlow
-`func (o *CertificateProfiles) UnsetDsFlow()`
-
-UnsetDsFlow ensures that no value is present for DsFlow, not even an explicit nil
 ### GetThirdPartyDiscoverySync
 
 `func (o *CertificateProfiles) GetThirdPartyDiscoverySync() bool`
@@ -981,24 +852,134 @@ HasThirdPartyDiscoverySync returns a boolean if a field has been set.
 `func (o *CertificateProfiles) UnsetThirdPartyDiscoverySync()`
 
 UnsetThirdPartyDiscoverySync ensures that no value is present for ThirdPartyDiscoverySync, not even an explicit nil
-### GetCa
+### GetTimeout
 
-`func (o *CertificateProfiles) GetCa() string`
+`func (o *CertificateProfiles) GetTimeout() string`
 
-GetCa returns the Ca field if non-nil, zero value otherwise.
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
 
-### GetCaOk
+### GetTimeoutOk
 
-`func (o *CertificateProfiles) GetCaOk() (*string, bool)`
+`func (o *CertificateProfiles) GetTimeoutOk() (*string, bool)`
 
-GetCaOk returns a tuple with the Ca field if it's non-nil, zero value otherwise
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCa
+### SetTimeout
 
-`func (o *CertificateProfiles) SetCa(v string)`
+`func (o *CertificateProfiles) SetTimeout(v string)`
 
-SetCa sets Ca field to given value.
+SetTimeout sets Timeout field to given value.
+
+
+### GetTlsAlpn01Port
+
+`func (o *CertificateProfiles) GetTlsAlpn01Port() int64`
+
+GetTlsAlpn01Port returns the TlsAlpn01Port field if non-nil, zero value otherwise.
+
+### GetTlsAlpn01PortOk
+
+`func (o *CertificateProfiles) GetTlsAlpn01PortOk() (*int64, bool)`
+
+GetTlsAlpn01PortOk returns a tuple with the TlsAlpn01Port field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTlsAlpn01Port
+
+`func (o *CertificateProfiles) SetTlsAlpn01Port(v int64)`
+
+SetTlsAlpn01Port sets TlsAlpn01Port field to given value.
+
+### HasTlsAlpn01Port
+
+`func (o *CertificateProfiles) HasTlsAlpn01Port() bool`
+
+HasTlsAlpn01Port returns a boolean if a field has been set.
+
+### SetTlsAlpn01PortNil
+
+`func (o *CertificateProfiles) SetTlsAlpn01PortNil(b bool)`
+
+ SetTlsAlpn01PortNil sets the value for TlsAlpn01Port to be an explicit nil
+
+### UnsetTlsAlpn01Port
+`func (o *CertificateProfiles) UnsetTlsAlpn01Port()`
+
+UnsetTlsAlpn01Port ensures that no value is present for TlsAlpn01Port, not even an explicit nil
+### GetTriggers
+
+`func (o *CertificateProfiles) GetTriggers() CertificateProfileTriggers`
+
+GetTriggers returns the Triggers field if non-nil, zero value otherwise.
+
+### GetTriggersOk
+
+`func (o *CertificateProfiles) GetTriggersOk() (*CertificateProfileTriggers, bool)`
+
+GetTriggersOk returns a tuple with the Triggers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTriggers
+
+`func (o *CertificateProfiles) SetTriggers(v CertificateProfileTriggers)`
+
+SetTriggers sets Triggers field to given value.
+
+### HasTriggers
+
+`func (o *CertificateProfiles) HasTriggers() bool`
+
+HasTriggers returns a boolean if a field has been set.
+
+### SetTriggersNil
+
+`func (o *CertificateProfiles) SetTriggersNil(b bool)`
+
+ SetTriggersNil sets the value for Triggers to be an explicit nil
+
+### UnsetTriggers
+`func (o *CertificateProfiles) UnsetTriggers()`
+
+UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
+### GetVerifyRetryCount
+
+`func (o *CertificateProfiles) GetVerifyRetryCount() int64`
+
+GetVerifyRetryCount returns the VerifyRetryCount field if non-nil, zero value otherwise.
+
+### GetVerifyRetryCountOk
+
+`func (o *CertificateProfiles) GetVerifyRetryCountOk() (*int64, bool)`
+
+GetVerifyRetryCountOk returns a tuple with the VerifyRetryCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVerifyRetryCount
+
+`func (o *CertificateProfiles) SetVerifyRetryCount(v int64)`
+
+SetVerifyRetryCount sets VerifyRetryCount field to given value.
+
+
+### GetVerifyRetryDelay
+
+`func (o *CertificateProfiles) GetVerifyRetryDelay() string`
+
+GetVerifyRetryDelay returns the VerifyRetryDelay field if non-nil, zero value otherwise.
+
+### GetVerifyRetryDelayOk
+
+`func (o *CertificateProfiles) GetVerifyRetryDelayOk() (*string, bool)`
+
+GetVerifyRetryDelayOk returns a tuple with the VerifyRetryDelay field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVerifyRetryDelay
+
+`func (o *CertificateProfiles) SetVerifyRetryDelay(v string)`
+
+SetVerifyRetryDelay sets VerifyRetryDelay field to given value.
 
 
 ### GetAuthorizationMode
@@ -1019,6 +1000,26 @@ and a boolean to check if the value has been set.
 `func (o *CertificateProfiles) SetAuthorizationMode(v string)`
 
 SetAuthorizationMode sets AuthorizationMode field to given value.
+
+
+### GetCa
+
+`func (o *CertificateProfiles) GetCa() string`
+
+GetCa returns the Ca field if non-nil, zero value otherwise.
+
+### GetCaOk
+
+`func (o *CertificateProfiles) GetCaOk() (*string, bool)`
+
+GetCaOk returns a tuple with the Ca field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCa
+
+`func (o *CertificateProfiles) SetCa(v string)`
+
+SetCa sets Ca field to given value.
 
 
 ### GetDnWhitelist
@@ -1076,41 +1077,6 @@ HasEnrollAuthorizedCas returns a boolean if a field has been set.
 `func (o *CertificateProfiles) UnsetEnrollAuthorizedCas()`
 
 UnsetEnrollAuthorizedCas ensures that no value is present for EnrollAuthorizedCas, not even an explicit nil
-### GetRenewalAuthorizedCas
-
-`func (o *CertificateProfiles) GetRenewalAuthorizedCas() []string`
-
-GetRenewalAuthorizedCas returns the RenewalAuthorizedCas field if non-nil, zero value otherwise.
-
-### GetRenewalAuthorizedCasOk
-
-`func (o *CertificateProfiles) GetRenewalAuthorizedCasOk() (*[]string, bool)`
-
-GetRenewalAuthorizedCasOk returns a tuple with the RenewalAuthorizedCas field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRenewalAuthorizedCas
-
-`func (o *CertificateProfiles) SetRenewalAuthorizedCas(v []string)`
-
-SetRenewalAuthorizedCas sets RenewalAuthorizedCas field to given value.
-
-### HasRenewalAuthorizedCas
-
-`func (o *CertificateProfiles) HasRenewalAuthorizedCas() bool`
-
-HasRenewalAuthorizedCas returns a boolean if a field has been set.
-
-### SetRenewalAuthorizedCasNil
-
-`func (o *CertificateProfiles) SetRenewalAuthorizedCasNil(b bool)`
-
- SetRenewalAuthorizedCasNil sets the value for RenewalAuthorizedCas to be an explicit nil
-
-### UnsetRenewalAuthorizedCas
-`func (o *CertificateProfiles) UnsetRenewalAuthorizedCas()`
-
-UnsetRenewalAuthorizedCas ensures that no value is present for RenewalAuthorizedCas, not even an explicit nil
 ### GetPasswordPolicy
 
 `func (o *CertificateProfiles) GetPasswordPolicy() string`
@@ -1146,6 +1112,41 @@ HasPasswordPolicy returns a boolean if a field has been set.
 `func (o *CertificateProfiles) UnsetPasswordPolicy()`
 
 UnsetPasswordPolicy ensures that no value is present for PasswordPolicy, not even an explicit nil
+### GetRenewalAuthorizedCas
+
+`func (o *CertificateProfiles) GetRenewalAuthorizedCas() []string`
+
+GetRenewalAuthorizedCas returns the RenewalAuthorizedCas field if non-nil, zero value otherwise.
+
+### GetRenewalAuthorizedCasOk
+
+`func (o *CertificateProfiles) GetRenewalAuthorizedCasOk() (*[]string, bool)`
+
+GetRenewalAuthorizedCasOk returns a tuple with the RenewalAuthorizedCas field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRenewalAuthorizedCas
+
+`func (o *CertificateProfiles) SetRenewalAuthorizedCas(v []string)`
+
+SetRenewalAuthorizedCas sets RenewalAuthorizedCas field to given value.
+
+### HasRenewalAuthorizedCas
+
+`func (o *CertificateProfiles) HasRenewalAuthorizedCas() bool`
+
+HasRenewalAuthorizedCas returns a boolean if a field has been set.
+
+### SetRenewalAuthorizedCasNil
+
+`func (o *CertificateProfiles) SetRenewalAuthorizedCasNil(b bool)`
+
+ SetRenewalAuthorizedCasNil sets the value for RenewalAuthorizedCas to be an explicit nil
+
+### UnsetRenewalAuthorizedCas
+`func (o *CertificateProfiles) UnsetRenewalAuthorizedCas()`
+
+UnsetRenewalAuthorizedCas ensures that no value is present for RenewalAuthorizedCas, not even an explicit nil
 ### GetValidationRuleset
 
 `func (o *CertificateProfiles) GetValidationRuleset() ValidationRuleset`
@@ -1181,66 +1182,6 @@ HasValidationRuleset returns a boolean if a field has been set.
 `func (o *CertificateProfiles) UnsetValidationRuleset()`
 
 UnsetValidationRuleset ensures that no value is present for ValidationRuleset, not even an explicit nil
-### GetMode
-
-`func (o *CertificateProfiles) GetMode() string`
-
-GetMode returns the Mode field if non-nil, zero value otherwise.
-
-### GetModeOk
-
-`func (o *CertificateProfiles) GetModeOk() (*string, bool)`
-
-GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMode
-
-`func (o *CertificateProfiles) SetMode(v string)`
-
-SetMode sets Mode field to given value.
-
-
-### GetThirdPartyConnector
-
-`func (o *CertificateProfiles) GetThirdPartyConnector() string`
-
-GetThirdPartyConnector returns the ThirdPartyConnector field if non-nil, zero value otherwise.
-
-### GetThirdPartyConnectorOk
-
-`func (o *CertificateProfiles) GetThirdPartyConnectorOk() (*string, bool)`
-
-GetThirdPartyConnectorOk returns a tuple with the ThirdPartyConnector field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThirdPartyConnector
-
-`func (o *CertificateProfiles) SetThirdPartyConnector(v string)`
-
-SetThirdPartyConnector sets ThirdPartyConnector field to given value.
-
-
-### GetScepRA
-
-`func (o *CertificateProfiles) GetScepRA() string`
-
-GetScepRA returns the ScepRA field if non-nil, zero value otherwise.
-
-### GetScepRAOk
-
-`func (o *CertificateProfiles) GetScepRAOk() (*string, bool)`
-
-GetScepRAOk returns a tuple with the ScepRA field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetScepRA
-
-`func (o *CertificateProfiles) SetScepRA(v string)`
-
-SetScepRA sets ScepRA field to given value.
-
-
 ### GetCaps
 
 `func (o *CertificateProfiles) GetCaps() []string`
@@ -1259,61 +1200,6 @@ and a boolean to check if the value has been set.
 `func (o *CertificateProfiles) SetCaps(v []string)`
 
 SetCaps sets Caps field to given value.
-
-
-### GetPostPKIOperation
-
-`func (o *CertificateProfiles) GetPostPKIOperation() bool`
-
-GetPostPKIOperation returns the PostPKIOperation field if non-nil, zero value otherwise.
-
-### GetPostPKIOperationOk
-
-`func (o *CertificateProfiles) GetPostPKIOperationOk() (*bool, bool)`
-
-GetPostPKIOperationOk returns a tuple with the PostPKIOperation field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPostPKIOperation
-
-`func (o *CertificateProfiles) SetPostPKIOperation(v bool)`
-
-SetPostPKIOperation sets PostPKIOperation field to given value.
-
-### HasPostPKIOperation
-
-`func (o *CertificateProfiles) HasPostPKIOperation() bool`
-
-HasPostPKIOperation returns a boolean if a field has been set.
-
-### SetPostPKIOperationNil
-
-`func (o *CertificateProfiles) SetPostPKIOperationNil(b bool)`
-
- SetPostPKIOperationNil sets the value for PostPKIOperation to be an explicit nil
-
-### UnsetPostPKIOperation
-`func (o *CertificateProfiles) UnsetPostPKIOperation()`
-
-UnsetPostPKIOperation ensures that no value is present for PostPKIOperation, not even an explicit nil
-### GetEncryptionAlgorithm
-
-`func (o *CertificateProfiles) GetEncryptionAlgorithm() string`
-
-GetEncryptionAlgorithm returns the EncryptionAlgorithm field if non-nil, zero value otherwise.
-
-### GetEncryptionAlgorithmOk
-
-`func (o *CertificateProfiles) GetEncryptionAlgorithmOk() (*string, bool)`
-
-GetEncryptionAlgorithmOk returns a tuple with the EncryptionAlgorithm field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEncryptionAlgorithm
-
-`func (o *CertificateProfiles) SetEncryptionAlgorithm(v string)`
-
-SetEncryptionAlgorithm sets EncryptionAlgorithm field to given value.
 
 
 ### GetDeviceIdField
@@ -1386,6 +1272,121 @@ HasDeviceIdSeparator returns a boolean if a field has been set.
 `func (o *CertificateProfiles) UnsetDeviceIdSeparator()`
 
 UnsetDeviceIdSeparator ensures that no value is present for DeviceIdSeparator, not even an explicit nil
+### GetEncryptionAlgorithm
+
+`func (o *CertificateProfiles) GetEncryptionAlgorithm() string`
+
+GetEncryptionAlgorithm returns the EncryptionAlgorithm field if non-nil, zero value otherwise.
+
+### GetEncryptionAlgorithmOk
+
+`func (o *CertificateProfiles) GetEncryptionAlgorithmOk() (*string, bool)`
+
+GetEncryptionAlgorithmOk returns a tuple with the EncryptionAlgorithm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEncryptionAlgorithm
+
+`func (o *CertificateProfiles) SetEncryptionAlgorithm(v string)`
+
+SetEncryptionAlgorithm sets EncryptionAlgorithm field to given value.
+
+
+### GetMode
+
+`func (o *CertificateProfiles) GetMode() string`
+
+GetMode returns the Mode field if non-nil, zero value otherwise.
+
+### GetModeOk
+
+`func (o *CertificateProfiles) GetModeOk() (*string, bool)`
+
+GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMode
+
+`func (o *CertificateProfiles) SetMode(v string)`
+
+SetMode sets Mode field to given value.
+
+
+### GetPostPKIOperation
+
+`func (o *CertificateProfiles) GetPostPKIOperation() bool`
+
+GetPostPKIOperation returns the PostPKIOperation field if non-nil, zero value otherwise.
+
+### GetPostPKIOperationOk
+
+`func (o *CertificateProfiles) GetPostPKIOperationOk() (*bool, bool)`
+
+GetPostPKIOperationOk returns a tuple with the PostPKIOperation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPostPKIOperation
+
+`func (o *CertificateProfiles) SetPostPKIOperation(v bool)`
+
+SetPostPKIOperation sets PostPKIOperation field to given value.
+
+### HasPostPKIOperation
+
+`func (o *CertificateProfiles) HasPostPKIOperation() bool`
+
+HasPostPKIOperation returns a boolean if a field has been set.
+
+### SetPostPKIOperationNil
+
+`func (o *CertificateProfiles) SetPostPKIOperationNil(b bool)`
+
+ SetPostPKIOperationNil sets the value for PostPKIOperation to be an explicit nil
+
+### UnsetPostPKIOperation
+`func (o *CertificateProfiles) UnsetPostPKIOperation()`
+
+UnsetPostPKIOperation ensures that no value is present for PostPKIOperation, not even an explicit nil
+### GetScepRA
+
+`func (o *CertificateProfiles) GetScepRA() string`
+
+GetScepRA returns the ScepRA field if non-nil, zero value otherwise.
+
+### GetScepRAOk
+
+`func (o *CertificateProfiles) GetScepRAOk() (*string, bool)`
+
+GetScepRAOk returns a tuple with the ScepRA field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScepRA
+
+`func (o *CertificateProfiles) SetScepRA(v string)`
+
+SetScepRA sets ScepRA field to given value.
+
+
+### GetThirdPartyConnector
+
+`func (o *CertificateProfiles) GetThirdPartyConnector() string`
+
+GetThirdPartyConnector returns the ThirdPartyConnector field if non-nil, zero value otherwise.
+
+### GetThirdPartyConnectorOk
+
+`func (o *CertificateProfiles) GetThirdPartyConnectorOk() (*string, bool)`
+
+GetThirdPartyConnectorOk returns a tuple with the ThirdPartyConnector field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThirdPartyConnector
+
+`func (o *CertificateProfiles) SetThirdPartyConnector(v string)`
+
+SetThirdPartyConnector sets ThirdPartyConnector field to given value.
+
+
 ### GetExchangeCertificate
 
 `func (o *CertificateProfiles) GetExchangeCertificate() string`
@@ -1421,6 +1422,31 @@ HasExchangeCertificate returns a boolean if a field has been set.
 `func (o *CertificateProfiles) UnsetExchangeCertificate()`
 
 UnsetExchangeCertificate ensures that no value is present for ExchangeCertificate, not even an explicit nil
+### GetAutoRenewalPolicy
+
+`func (o *CertificateProfiles) GetAutoRenewalPolicy() AutoRenewalPolicy`
+
+GetAutoRenewalPolicy returns the AutoRenewalPolicy field if non-nil, zero value otherwise.
+
+### GetAutoRenewalPolicyOk
+
+`func (o *CertificateProfiles) GetAutoRenewalPolicyOk() (*AutoRenewalPolicy, bool)`
+
+GetAutoRenewalPolicyOk returns a tuple with the AutoRenewalPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenewalPolicy
+
+`func (o *CertificateProfiles) SetAutoRenewalPolicy(v AutoRenewalPolicy)`
+
+SetAutoRenewalPolicy sets AutoRenewalPolicy field to given value.
+
+### HasAutoRenewalPolicy
+
+`func (o *CertificateProfiles) HasAutoRenewalPolicy() bool`
+
+HasAutoRenewalPolicy returns a boolean if a field has been set.
+
 ### GetAcmeUrl
 
 `func (o *CertificateProfiles) GetAcmeUrl() string`
@@ -1445,26 +1471,6 @@ SetAcmeUrl sets AcmeUrl field to given value.
 `func (o *CertificateProfiles) HasAcmeUrl() bool`
 
 HasAcmeUrl returns a boolean if a field has been set.
-
-### GetRequireEAB
-
-`func (o *CertificateProfiles) GetRequireEAB() bool`
-
-GetRequireEAB returns the RequireEAB field if non-nil, zero value otherwise.
-
-### GetRequireEABOk
-
-`func (o *CertificateProfiles) GetRequireEABOk() (*bool, bool)`
-
-GetRequireEABOk returns a tuple with the RequireEAB field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequireEAB
-
-`func (o *CertificateProfiles) SetRequireEAB(v bool)`
-
-SetRequireEAB sets RequireEAB field to given value.
-
 
 ### GetAuthorizedCas
 
@@ -1496,6 +1502,26 @@ SetAuthorizedCas sets AuthorizedCas field to given value.
 `func (o *CertificateProfiles) UnsetAuthorizedCas()`
 
 UnsetAuthorizedCas ensures that no value is present for AuthorizedCas, not even an explicit nil
+### GetRequireEAB
+
+`func (o *CertificateProfiles) GetRequireEAB() bool`
+
+GetRequireEAB returns the RequireEAB field if non-nil, zero value otherwise.
+
+### GetRequireEABOk
+
+`func (o *CertificateProfiles) GetRequireEABOk() (*bool, bool)`
+
+GetRequireEABOk returns a tuple with the RequireEAB field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequireEAB
+
+`func (o *CertificateProfiles) SetRequireEAB(v bool)`
+
+SetRequireEAB sets RequireEAB field to given value.
+
+
 ### GetDataFieldIdentifier
 
 `func (o *CertificateProfiles) GetDataFieldIdentifier() string`

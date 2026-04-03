@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
 **Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
-**Scope** | Pointer to **NullableString** |  | [optional] 
+**Name** | **string** |  | 
 **Rules** | [**[]GradingRule**](GradingRule.md) |  | 
+**Scope** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -49,26 +49,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetName
-
-`func (o *GradingRulesetResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *GradingRulesetResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *GradingRulesetResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetDescription
 
 `func (o *GradingRulesetResponse) GetDescription() []LocalizedString`
@@ -104,6 +84,46 @@ HasDescription returns a boolean if a field has been set.
 `func (o *GradingRulesetResponse) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetName
+
+`func (o *GradingRulesetResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *GradingRulesetResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *GradingRulesetResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetRules
+
+`func (o *GradingRulesetResponse) GetRules() []GradingRule`
+
+GetRules returns the Rules field if non-nil, zero value otherwise.
+
+### GetRulesOk
+
+`func (o *GradingRulesetResponse) GetRulesOk() (*[]GradingRule, bool)`
+
+GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRules
+
+`func (o *GradingRulesetResponse) SetRules(v []GradingRule)`
+
+SetRules sets Rules field to given value.
+
+
 ### GetScope
 
 `func (o *GradingRulesetResponse) GetScope() string`
@@ -139,26 +159,6 @@ HasScope returns a boolean if a field has been set.
 `func (o *GradingRulesetResponse) UnsetScope()`
 
 UnsetScope ensures that no value is present for Scope, not even an explicit nil
-### GetRules
-
-`func (o *GradingRulesetResponse) GetRules() []GradingRule`
-
-GetRules returns the Rules field if non-nil, zero value otherwise.
-
-### GetRulesOk
-
-`func (o *GradingRulesetResponse) GetRulesOk() (*[]GradingRule, bool)`
-
-GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRules
-
-`func (o *GradingRulesetResponse) SetRules(v []GradingRule)`
-
-SetRules sets Rules field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

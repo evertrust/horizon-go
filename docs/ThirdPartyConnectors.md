@@ -4,57 +4,58 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
+**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the account to authenticate on Netscaler | 
 **Name** | **string** |  | 
-**ThrottleDuration** | **string** |  | 
-**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Region** | **string** |  | 
-**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the DN and password to authenticate on Active Directory | 
 **ResourceGroupName** | Pointer to **NullableString** |  | [optional] 
 **RoleArn** | Pointer to **NullableString** |  | [optional] 
 **TagKey** | Pointer to **NullableString** |  | [optional] 
 **TagValue** | Pointer to **NullableString** |  | [optional] 
-**ThrottleParallelism** | **int64** |  | 
-**Tenant** | **string** |  | 
-**VaultBaseUrl** | **string** |  | 
+**ThrottleDuration** | **string** |  | 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
+**AzureTenant** | Pointer to **string** |  | [optional] 
 **Prefix** | Pointer to **NullableString** |  | [optional] 
-**KeyType** | Pointer to **NullableString** | One of &#x60;rsa-2048&#x60;, &#x60;rsa-3072&#x60;, &#x60;rsa-4096&#x60;, &#x60;rsa-8192&#x60;, &#x60;ec-secp256r1&#x60;, &#x60;ec-secp384r1&#x60;, &#x60;ec-secp521r1&#x60;, &#x60;ed-448&#x60;, &#x60;ed-25519&#x60;, &#x60;mldsa-44&#x60;, &#x60;mldsa-65&#x60;, &#x60;mldsa-87&#x60;, &#x60;slhdsa-sha2-128s&#x60;, &#x60;slhdsa-sha2-128f&#x60;, &#x60;slhdsa-sha2-192s&#x60;, &#x60;slhdsa-sha2-192f&#x60;, &#x60;slhdsa-sha2-256s&#x60;, &#x60;slhdsa-sha2-256f&#x60;, &#x60;slhdsa-sha2-128ssha256&#x60;, &#x60;slhdsa-sha2-128fsha256&#x60;, &#x60;slhdsa-sha2-192ssha512&#x60;, &#x60;slhdsa-sha2-192fsha512&#x60;, &#x60;slhdsa-sha2-256ssha512&#x60;, &#x60;slhdsa-sha2-256fsha512&#x60; or &#x60;&lt;primary key type&gt;+&lt;alternate key type&gt;&#x60; | [optional] 
+**ThrottleParallelism** | **int64** |  | 
+**VaultBaseUrl** | **string** |  | 
 **Hostname** | **string** |  | 
+**KeyType** | Pointer to **NullableString** | One of &#x60;rsa-2048&#x60;, &#x60;rsa-3072&#x60;, &#x60;rsa-4096&#x60;, &#x60;rsa-8192&#x60;, &#x60;ec-secp256r1&#x60;, &#x60;ec-secp384r1&#x60;, &#x60;ec-secp521r1&#x60;, &#x60;ed-448&#x60;, &#x60;ed-25519&#x60;, &#x60;mldsa-44&#x60;, &#x60;mldsa-65&#x60;, &#x60;mldsa-87&#x60;, &#x60;slhdsa-sha2-128s&#x60;, &#x60;slhdsa-sha2-128f&#x60;, &#x60;slhdsa-sha2-192s&#x60;, &#x60;slhdsa-sha2-192f&#x60;, &#x60;slhdsa-sha2-256s&#x60;, &#x60;slhdsa-sha2-256f&#x60;, &#x60;slhdsa-sha2-128ssha256&#x60;, &#x60;slhdsa-sha2-128fsha256&#x60;, &#x60;slhdsa-sha2-192ssha512&#x60;, &#x60;slhdsa-sha2-192fsha512&#x60;, &#x60;slhdsa-sha2-256ssha512&#x60;, &#x60;slhdsa-sha2-256fsha512&#x60; or &#x60;&lt;primary key type&gt;+&lt;alternate key type&gt;&#x60; | [optional] 
 **LoginProvider** | Pointer to **NullableString** |  | [optional] 
 **TlsInsecure** | Pointer to **NullableBool** | Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended. | [optional] [default to false]
 **WithChain** | Pointer to **NullableBool** | Enable the certificate trust chain to be pushed. | [optional] [default to true]
-**MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
 **BigIPHostname** | **string** |  | 
+**CipherGroup** | Pointer to **NullableString** |  | [optional] 
+**MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
 **Partition** | Pointer to **NullableString** |  | [optional] 
 **SslParent** | Pointer to **NullableString** |  | [optional] 
-**CipherGroup** | Pointer to **NullableString** |  | [optional] 
 **Version** | Pointer to **NullableString** |  | [optional] 
-**Project** | **string** |  | 
 **Location** | **string** |  | 
+**Project** | **string** |  | 
 **IntuneResourceUrl** | Pointer to **NullableString** |  | [optional] 
-**OsQueryString** | Pointer to **NullableString** |  | [optional] 
 **LegacyRevocationMode** | **bool** |  | 
-**PubKey** | **string** |  | 
+**OsQueryString** | Pointer to **NullableString** |  | [optional] 
+**IntendedPurpose** | Pointer to **NullableString** |  | [optional] 
 **KeyName** | **string** |  | 
 **ProviderName** | Pointer to **NullableString** |  | [optional] 
-**IntendedPurpose** | Pointer to **NullableString** |  | [optional] 
+**PubKey** | **string** |  | 
 **SearchFilter** | Pointer to **NullableString** |  | [optional] 
 **Endpoint** | **string** |  | 
-**Port** | Pointer to **NullableInt64** |  | [optional] 
 **BaseDn** | **string** |  | 
-**Filter** | Pointer to **NullableString** |  | [optional] 
 **CertAttr** | Pointer to **NullableString** |  | [optional] 
-**FollowReferrals** | Pointer to **NullableBool** |  | [optional] 
-**UserIdentifierAttribute** | **string** |  | 
 **CertificateAttribute** | **string** |  | 
+**Filter** | Pointer to **NullableString** |  | [optional] 
+**FollowReferrals** | Pointer to **NullableBool** |  | [optional] 
+**Port** | Pointer to **NullableInt64** |  | [optional] 
+**UserIdentifierAttribute** | **string** |  | 
+**CertificateStorePath** | **string** |  | 
+**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewThirdPartyConnectors
 
-`func NewThirdPartyConnectors(type_ string, name string, throttleDuration string, region string, credentials string, throttleParallelism int64, tenant string, vaultBaseUrl string, hostname string, bigIPHostname string, project string, location string, legacyRevocationMode bool, pubKey string, keyName string, endpoint string, baseDn string, userIdentifierAttribute string, certificateAttribute string, ) *ThirdPartyConnectors`
+`func NewThirdPartyConnectors(credentials string, name string, region string, throttleDuration string, type_ string, throttleParallelism int64, vaultBaseUrl string, hostname string, bigIPHostname string, location string, project string, legacyRevocationMode bool, keyName string, pubKey string, endpoint string, baseDn string, certificateAttribute string, userIdentifierAttribute string, certificateStorePath string, ) *ThirdPartyConnectors`
 
 NewThirdPartyConnectors instantiates a new ThirdPartyConnectors object
 This constructor will assign default values to properties that have it defined,
@@ -69,24 +70,24 @@ NewThirdPartyConnectorsWithDefaults instantiates a new ThirdPartyConnectors obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetType
+### GetCredentials
 
-`func (o *ThirdPartyConnectors) GetType() string`
+`func (o *ThirdPartyConnectors) GetCredentials() string`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetCredentialsOk
 
-`func (o *ThirdPartyConnectors) GetTypeOk() (*string, bool)`
+`func (o *ThirdPartyConnectors) GetCredentialsOk() (*string, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetCredentials
 
-`func (o *ThirdPartyConnectors) SetType(v string)`
+`func (o *ThirdPartyConnectors) SetCredentials(v string)`
 
-SetType sets Type field to given value.
+SetCredentials sets Credentials field to given value.
 
 
 ### GetName
@@ -109,96 +110,6 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetThrottleDuration
-
-`func (o *ThirdPartyConnectors) GetThrottleDuration() string`
-
-GetThrottleDuration returns the ThrottleDuration field if non-nil, zero value otherwise.
-
-### GetThrottleDurationOk
-
-`func (o *ThirdPartyConnectors) GetThrottleDurationOk() (*string, bool)`
-
-GetThrottleDurationOk returns a tuple with the ThrottleDuration field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThrottleDuration
-
-`func (o *ThirdPartyConnectors) SetThrottleDuration(v string)`
-
-SetThrottleDuration sets ThrottleDuration field to given value.
-
-
-### GetRenewalPeriod
-
-`func (o *ThirdPartyConnectors) GetRenewalPeriod() string`
-
-GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
-
-### GetRenewalPeriodOk
-
-`func (o *ThirdPartyConnectors) GetRenewalPeriodOk() (*string, bool)`
-
-GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRenewalPeriod
-
-`func (o *ThirdPartyConnectors) SetRenewalPeriod(v string)`
-
-SetRenewalPeriod sets RenewalPeriod field to given value.
-
-### HasRenewalPeriod
-
-`func (o *ThirdPartyConnectors) HasRenewalPeriod() bool`
-
-HasRenewalPeriod returns a boolean if a field has been set.
-
-### SetRenewalPeriodNil
-
-`func (o *ThirdPartyConnectors) SetRenewalPeriodNil(b bool)`
-
- SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-
-### UnsetRenewalPeriod
-`func (o *ThirdPartyConnectors) UnsetRenewalPeriod()`
-
-UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
-### GetTimeout
-
-`func (o *ThirdPartyConnectors) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *ThirdPartyConnectors) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *ThirdPartyConnectors) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *ThirdPartyConnectors) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *ThirdPartyConnectors) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *ThirdPartyConnectors) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetProxy
 
 `func (o *ThirdPartyConnectors) GetProxy() string`
@@ -252,26 +163,6 @@ and a boolean to check if the value has been set.
 `func (o *ThirdPartyConnectors) SetRegion(v string)`
 
 SetRegion sets Region field to given value.
-
-
-### GetCredentials
-
-`func (o *ThirdPartyConnectors) GetCredentials() string`
-
-GetCredentials returns the Credentials field if non-nil, zero value otherwise.
-
-### GetCredentialsOk
-
-`func (o *ThirdPartyConnectors) GetCredentialsOk() (*string, bool)`
-
-GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCredentials
-
-`func (o *ThirdPartyConnectors) SetCredentials(v string)`
-
-SetCredentials sets Credentials field to given value.
 
 
 ### GetResourceGroupName
@@ -414,65 +305,105 @@ HasTagValue returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetTagValue()`
 
 UnsetTagValue ensures that no value is present for TagValue, not even an explicit nil
-### GetThrottleParallelism
+### GetThrottleDuration
 
-`func (o *ThirdPartyConnectors) GetThrottleParallelism() int64`
+`func (o *ThirdPartyConnectors) GetThrottleDuration() string`
 
-GetThrottleParallelism returns the ThrottleParallelism field if non-nil, zero value otherwise.
+GetThrottleDuration returns the ThrottleDuration field if non-nil, zero value otherwise.
 
-### GetThrottleParallelismOk
+### GetThrottleDurationOk
 
-`func (o *ThirdPartyConnectors) GetThrottleParallelismOk() (*int64, bool)`
+`func (o *ThirdPartyConnectors) GetThrottleDurationOk() (*string, bool)`
 
-GetThrottleParallelismOk returns a tuple with the ThrottleParallelism field if it's non-nil, zero value otherwise
+GetThrottleDurationOk returns a tuple with the ThrottleDuration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetThrottleParallelism
+### SetThrottleDuration
 
-`func (o *ThirdPartyConnectors) SetThrottleParallelism(v int64)`
+`func (o *ThirdPartyConnectors) SetThrottleDuration(v string)`
 
-SetThrottleParallelism sets ThrottleParallelism field to given value.
+SetThrottleDuration sets ThrottleDuration field to given value.
 
 
-### GetTenant
+### GetTimeout
 
-`func (o *ThirdPartyConnectors) GetTenant() string`
+`func (o *ThirdPartyConnectors) GetTimeout() string`
 
-GetTenant returns the Tenant field if non-nil, zero value otherwise.
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
 
-### GetTenantOk
+### GetTimeoutOk
 
-`func (o *ThirdPartyConnectors) GetTenantOk() (*string, bool)`
+`func (o *ThirdPartyConnectors) GetTimeoutOk() (*string, bool)`
 
-GetTenantOk returns a tuple with the Tenant field if it's non-nil, zero value otherwise
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTenant
+### SetTimeout
 
-`func (o *ThirdPartyConnectors) SetTenant(v string)`
+`func (o *ThirdPartyConnectors) SetTimeout(v string)`
 
-SetTenant sets Tenant field to given value.
+SetTimeout sets Timeout field to given value.
 
+### HasTimeout
 
-### GetVaultBaseUrl
+`func (o *ThirdPartyConnectors) HasTimeout() bool`
 
-`func (o *ThirdPartyConnectors) GetVaultBaseUrl() string`
+HasTimeout returns a boolean if a field has been set.
 
-GetVaultBaseUrl returns the VaultBaseUrl field if non-nil, zero value otherwise.
+### SetTimeoutNil
 
-### GetVaultBaseUrlOk
+`func (o *ThirdPartyConnectors) SetTimeoutNil(b bool)`
 
-`func (o *ThirdPartyConnectors) GetVaultBaseUrlOk() (*string, bool)`
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
 
-GetVaultBaseUrlOk returns a tuple with the VaultBaseUrl field if it's non-nil, zero value otherwise
+### UnsetTimeout
+`func (o *ThirdPartyConnectors) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *ThirdPartyConnectors) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ThirdPartyConnectors) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVaultBaseUrl
+### SetType
 
-`func (o *ThirdPartyConnectors) SetVaultBaseUrl(v string)`
+`func (o *ThirdPartyConnectors) SetType(v string)`
 
-SetVaultBaseUrl sets VaultBaseUrl field to given value.
+SetType sets Type field to given value.
 
+
+### GetAzureTenant
+
+`func (o *ThirdPartyConnectors) GetAzureTenant() string`
+
+GetAzureTenant returns the AzureTenant field if non-nil, zero value otherwise.
+
+### GetAzureTenantOk
+
+`func (o *ThirdPartyConnectors) GetAzureTenantOk() (*string, bool)`
+
+GetAzureTenantOk returns a tuple with the AzureTenant field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAzureTenant
+
+`func (o *ThirdPartyConnectors) SetAzureTenant(v string)`
+
+SetAzureTenant sets AzureTenant field to given value.
+
+### HasAzureTenant
+
+`func (o *ThirdPartyConnectors) HasAzureTenant() bool`
+
+HasAzureTenant returns a boolean if a field has been set.
 
 ### GetPrefix
 
@@ -509,6 +440,66 @@ HasPrefix returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetPrefix()`
 
 UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
+### GetThrottleParallelism
+
+`func (o *ThirdPartyConnectors) GetThrottleParallelism() int64`
+
+GetThrottleParallelism returns the ThrottleParallelism field if non-nil, zero value otherwise.
+
+### GetThrottleParallelismOk
+
+`func (o *ThirdPartyConnectors) GetThrottleParallelismOk() (*int64, bool)`
+
+GetThrottleParallelismOk returns a tuple with the ThrottleParallelism field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThrottleParallelism
+
+`func (o *ThirdPartyConnectors) SetThrottleParallelism(v int64)`
+
+SetThrottleParallelism sets ThrottleParallelism field to given value.
+
+
+### GetVaultBaseUrl
+
+`func (o *ThirdPartyConnectors) GetVaultBaseUrl() string`
+
+GetVaultBaseUrl returns the VaultBaseUrl field if non-nil, zero value otherwise.
+
+### GetVaultBaseUrlOk
+
+`func (o *ThirdPartyConnectors) GetVaultBaseUrlOk() (*string, bool)`
+
+GetVaultBaseUrlOk returns a tuple with the VaultBaseUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVaultBaseUrl
+
+`func (o *ThirdPartyConnectors) SetVaultBaseUrl(v string)`
+
+SetVaultBaseUrl sets VaultBaseUrl field to given value.
+
+
+### GetHostname
+
+`func (o *ThirdPartyConnectors) GetHostname() string`
+
+GetHostname returns the Hostname field if non-nil, zero value otherwise.
+
+### GetHostnameOk
+
+`func (o *ThirdPartyConnectors) GetHostnameOk() (*string, bool)`
+
+GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHostname
+
+`func (o *ThirdPartyConnectors) SetHostname(v string)`
+
+SetHostname sets Hostname field to given value.
+
+
 ### GetKeyType
 
 `func (o *ThirdPartyConnectors) GetKeyType() string`
@@ -544,26 +535,6 @@ HasKeyType returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetKeyType()`
 
 UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
-### GetHostname
-
-`func (o *ThirdPartyConnectors) GetHostname() string`
-
-GetHostname returns the Hostname field if non-nil, zero value otherwise.
-
-### GetHostnameOk
-
-`func (o *ThirdPartyConnectors) GetHostnameOk() (*string, bool)`
-
-GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHostname
-
-`func (o *ThirdPartyConnectors) SetHostname(v string)`
-
-SetHostname sets Hostname field to given value.
-
-
 ### GetLoginProvider
 
 `func (o *ThirdPartyConnectors) GetLoginProvider() string`
@@ -669,6 +640,61 @@ HasWithChain returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetWithChain()`
 
 UnsetWithChain ensures that no value is present for WithChain, not even an explicit nil
+### GetBigIPHostname
+
+`func (o *ThirdPartyConnectors) GetBigIPHostname() string`
+
+GetBigIPHostname returns the BigIPHostname field if non-nil, zero value otherwise.
+
+### GetBigIPHostnameOk
+
+`func (o *ThirdPartyConnectors) GetBigIPHostnameOk() (*string, bool)`
+
+GetBigIPHostnameOk returns a tuple with the BigIPHostname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBigIPHostname
+
+`func (o *ThirdPartyConnectors) SetBigIPHostname(v string)`
+
+SetBigIPHostname sets BigIPHostname field to given value.
+
+
+### GetCipherGroup
+
+`func (o *ThirdPartyConnectors) GetCipherGroup() string`
+
+GetCipherGroup returns the CipherGroup field if non-nil, zero value otherwise.
+
+### GetCipherGroupOk
+
+`func (o *ThirdPartyConnectors) GetCipherGroupOk() (*string, bool)`
+
+GetCipherGroupOk returns a tuple with the CipherGroup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCipherGroup
+
+`func (o *ThirdPartyConnectors) SetCipherGroup(v string)`
+
+SetCipherGroup sets CipherGroup field to given value.
+
+### HasCipherGroup
+
+`func (o *ThirdPartyConnectors) HasCipherGroup() bool`
+
+HasCipherGroup returns a boolean if a field has been set.
+
+### SetCipherGroupNil
+
+`func (o *ThirdPartyConnectors) SetCipherGroupNil(b bool)`
+
+ SetCipherGroupNil sets the value for CipherGroup to be an explicit nil
+
+### UnsetCipherGroup
+`func (o *ThirdPartyConnectors) UnsetCipherGroup()`
+
+UnsetCipherGroup ensures that no value is present for CipherGroup, not even an explicit nil
 ### GetMaxStoredCertificatePerHolder
 
 `func (o *ThirdPartyConnectors) GetMaxStoredCertificatePerHolder() int64`
@@ -704,26 +730,6 @@ HasMaxStoredCertificatePerHolder returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetMaxStoredCertificatePerHolder()`
 
 UnsetMaxStoredCertificatePerHolder ensures that no value is present for MaxStoredCertificatePerHolder, not even an explicit nil
-### GetBigIPHostname
-
-`func (o *ThirdPartyConnectors) GetBigIPHostname() string`
-
-GetBigIPHostname returns the BigIPHostname field if non-nil, zero value otherwise.
-
-### GetBigIPHostnameOk
-
-`func (o *ThirdPartyConnectors) GetBigIPHostnameOk() (*string, bool)`
-
-GetBigIPHostnameOk returns a tuple with the BigIPHostname field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBigIPHostname
-
-`func (o *ThirdPartyConnectors) SetBigIPHostname(v string)`
-
-SetBigIPHostname sets BigIPHostname field to given value.
-
-
 ### GetPartition
 
 `func (o *ThirdPartyConnectors) GetPartition() string`
@@ -794,41 +800,6 @@ HasSslParent returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetSslParent()`
 
 UnsetSslParent ensures that no value is present for SslParent, not even an explicit nil
-### GetCipherGroup
-
-`func (o *ThirdPartyConnectors) GetCipherGroup() string`
-
-GetCipherGroup returns the CipherGroup field if non-nil, zero value otherwise.
-
-### GetCipherGroupOk
-
-`func (o *ThirdPartyConnectors) GetCipherGroupOk() (*string, bool)`
-
-GetCipherGroupOk returns a tuple with the CipherGroup field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCipherGroup
-
-`func (o *ThirdPartyConnectors) SetCipherGroup(v string)`
-
-SetCipherGroup sets CipherGroup field to given value.
-
-### HasCipherGroup
-
-`func (o *ThirdPartyConnectors) HasCipherGroup() bool`
-
-HasCipherGroup returns a boolean if a field has been set.
-
-### SetCipherGroupNil
-
-`func (o *ThirdPartyConnectors) SetCipherGroupNil(b bool)`
-
- SetCipherGroupNil sets the value for CipherGroup to be an explicit nil
-
-### UnsetCipherGroup
-`func (o *ThirdPartyConnectors) UnsetCipherGroup()`
-
-UnsetCipherGroup ensures that no value is present for CipherGroup, not even an explicit nil
 ### GetVersion
 
 `func (o *ThirdPartyConnectors) GetVersion() string`
@@ -864,26 +835,6 @@ HasVersion returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetVersion()`
 
 UnsetVersion ensures that no value is present for Version, not even an explicit nil
-### GetProject
-
-`func (o *ThirdPartyConnectors) GetProject() string`
-
-GetProject returns the Project field if non-nil, zero value otherwise.
-
-### GetProjectOk
-
-`func (o *ThirdPartyConnectors) GetProjectOk() (*string, bool)`
-
-GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProject
-
-`func (o *ThirdPartyConnectors) SetProject(v string)`
-
-SetProject sets Project field to given value.
-
-
 ### GetLocation
 
 `func (o *ThirdPartyConnectors) GetLocation() string`
@@ -902,6 +853,26 @@ and a boolean to check if the value has been set.
 `func (o *ThirdPartyConnectors) SetLocation(v string)`
 
 SetLocation sets Location field to given value.
+
+
+### GetProject
+
+`func (o *ThirdPartyConnectors) GetProject() string`
+
+GetProject returns the Project field if non-nil, zero value otherwise.
+
+### GetProjectOk
+
+`func (o *ThirdPartyConnectors) GetProjectOk() (*string, bool)`
+
+GetProjectOk returns a tuple with the Project field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProject
+
+`func (o *ThirdPartyConnectors) SetProject(v string)`
+
+SetProject sets Project field to given value.
 
 
 ### GetIntuneResourceUrl
@@ -939,6 +910,26 @@ HasIntuneResourceUrl returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetIntuneResourceUrl()`
 
 UnsetIntuneResourceUrl ensures that no value is present for IntuneResourceUrl, not even an explicit nil
+### GetLegacyRevocationMode
+
+`func (o *ThirdPartyConnectors) GetLegacyRevocationMode() bool`
+
+GetLegacyRevocationMode returns the LegacyRevocationMode field if non-nil, zero value otherwise.
+
+### GetLegacyRevocationModeOk
+
+`func (o *ThirdPartyConnectors) GetLegacyRevocationModeOk() (*bool, bool)`
+
+GetLegacyRevocationModeOk returns a tuple with the LegacyRevocationMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLegacyRevocationMode
+
+`func (o *ThirdPartyConnectors) SetLegacyRevocationMode(v bool)`
+
+SetLegacyRevocationMode sets LegacyRevocationMode field to given value.
+
+
 ### GetOsQueryString
 
 `func (o *ThirdPartyConnectors) GetOsQueryString() string`
@@ -974,46 +965,41 @@ HasOsQueryString returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetOsQueryString()`
 
 UnsetOsQueryString ensures that no value is present for OsQueryString, not even an explicit nil
-### GetLegacyRevocationMode
+### GetIntendedPurpose
 
-`func (o *ThirdPartyConnectors) GetLegacyRevocationMode() bool`
+`func (o *ThirdPartyConnectors) GetIntendedPurpose() string`
 
-GetLegacyRevocationMode returns the LegacyRevocationMode field if non-nil, zero value otherwise.
+GetIntendedPurpose returns the IntendedPurpose field if non-nil, zero value otherwise.
 
-### GetLegacyRevocationModeOk
+### GetIntendedPurposeOk
 
-`func (o *ThirdPartyConnectors) GetLegacyRevocationModeOk() (*bool, bool)`
+`func (o *ThirdPartyConnectors) GetIntendedPurposeOk() (*string, bool)`
 
-GetLegacyRevocationModeOk returns a tuple with the LegacyRevocationMode field if it's non-nil, zero value otherwise
+GetIntendedPurposeOk returns a tuple with the IntendedPurpose field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLegacyRevocationMode
+### SetIntendedPurpose
 
-`func (o *ThirdPartyConnectors) SetLegacyRevocationMode(v bool)`
+`func (o *ThirdPartyConnectors) SetIntendedPurpose(v string)`
 
-SetLegacyRevocationMode sets LegacyRevocationMode field to given value.
+SetIntendedPurpose sets IntendedPurpose field to given value.
 
+### HasIntendedPurpose
 
-### GetPubKey
+`func (o *ThirdPartyConnectors) HasIntendedPurpose() bool`
 
-`func (o *ThirdPartyConnectors) GetPubKey() string`
+HasIntendedPurpose returns a boolean if a field has been set.
 
-GetPubKey returns the PubKey field if non-nil, zero value otherwise.
+### SetIntendedPurposeNil
 
-### GetPubKeyOk
+`func (o *ThirdPartyConnectors) SetIntendedPurposeNil(b bool)`
 
-`func (o *ThirdPartyConnectors) GetPubKeyOk() (*string, bool)`
+ SetIntendedPurposeNil sets the value for IntendedPurpose to be an explicit nil
 
-GetPubKeyOk returns a tuple with the PubKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetIntendedPurpose
+`func (o *ThirdPartyConnectors) UnsetIntendedPurpose()`
 
-### SetPubKey
-
-`func (o *ThirdPartyConnectors) SetPubKey(v string)`
-
-SetPubKey sets PubKey field to given value.
-
-
+UnsetIntendedPurpose ensures that no value is present for IntendedPurpose, not even an explicit nil
 ### GetKeyName
 
 `func (o *ThirdPartyConnectors) GetKeyName() string`
@@ -1069,41 +1055,26 @@ HasProviderName returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetProviderName()`
 
 UnsetProviderName ensures that no value is present for ProviderName, not even an explicit nil
-### GetIntendedPurpose
+### GetPubKey
 
-`func (o *ThirdPartyConnectors) GetIntendedPurpose() string`
+`func (o *ThirdPartyConnectors) GetPubKey() string`
 
-GetIntendedPurpose returns the IntendedPurpose field if non-nil, zero value otherwise.
+GetPubKey returns the PubKey field if non-nil, zero value otherwise.
 
-### GetIntendedPurposeOk
+### GetPubKeyOk
 
-`func (o *ThirdPartyConnectors) GetIntendedPurposeOk() (*string, bool)`
+`func (o *ThirdPartyConnectors) GetPubKeyOk() (*string, bool)`
 
-GetIntendedPurposeOk returns a tuple with the IntendedPurpose field if it's non-nil, zero value otherwise
+GetPubKeyOk returns a tuple with the PubKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetIntendedPurpose
+### SetPubKey
 
-`func (o *ThirdPartyConnectors) SetIntendedPurpose(v string)`
+`func (o *ThirdPartyConnectors) SetPubKey(v string)`
 
-SetIntendedPurpose sets IntendedPurpose field to given value.
+SetPubKey sets PubKey field to given value.
 
-### HasIntendedPurpose
 
-`func (o *ThirdPartyConnectors) HasIntendedPurpose() bool`
-
-HasIntendedPurpose returns a boolean if a field has been set.
-
-### SetIntendedPurposeNil
-
-`func (o *ThirdPartyConnectors) SetIntendedPurposeNil(b bool)`
-
- SetIntendedPurposeNil sets the value for IntendedPurpose to be an explicit nil
-
-### UnsetIntendedPurpose
-`func (o *ThirdPartyConnectors) UnsetIntendedPurpose()`
-
-UnsetIntendedPurpose ensures that no value is present for IntendedPurpose, not even an explicit nil
 ### GetSearchFilter
 
 `func (o *ThirdPartyConnectors) GetSearchFilter() string`
@@ -1159,41 +1130,6 @@ and a boolean to check if the value has been set.
 SetEndpoint sets Endpoint field to given value.
 
 
-### GetPort
-
-`func (o *ThirdPartyConnectors) GetPort() int64`
-
-GetPort returns the Port field if non-nil, zero value otherwise.
-
-### GetPortOk
-
-`func (o *ThirdPartyConnectors) GetPortOk() (*int64, bool)`
-
-GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPort
-
-`func (o *ThirdPartyConnectors) SetPort(v int64)`
-
-SetPort sets Port field to given value.
-
-### HasPort
-
-`func (o *ThirdPartyConnectors) HasPort() bool`
-
-HasPort returns a boolean if a field has been set.
-
-### SetPortNil
-
-`func (o *ThirdPartyConnectors) SetPortNil(b bool)`
-
- SetPortNil sets the value for Port to be an explicit nil
-
-### UnsetPort
-`func (o *ThirdPartyConnectors) UnsetPort()`
-
-UnsetPort ensures that no value is present for Port, not even an explicit nil
 ### GetBaseDn
 
 `func (o *ThirdPartyConnectors) GetBaseDn() string`
@@ -1212,6 +1148,61 @@ and a boolean to check if the value has been set.
 `func (o *ThirdPartyConnectors) SetBaseDn(v string)`
 
 SetBaseDn sets BaseDn field to given value.
+
+
+### GetCertAttr
+
+`func (o *ThirdPartyConnectors) GetCertAttr() string`
+
+GetCertAttr returns the CertAttr field if non-nil, zero value otherwise.
+
+### GetCertAttrOk
+
+`func (o *ThirdPartyConnectors) GetCertAttrOk() (*string, bool)`
+
+GetCertAttrOk returns a tuple with the CertAttr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertAttr
+
+`func (o *ThirdPartyConnectors) SetCertAttr(v string)`
+
+SetCertAttr sets CertAttr field to given value.
+
+### HasCertAttr
+
+`func (o *ThirdPartyConnectors) HasCertAttr() bool`
+
+HasCertAttr returns a boolean if a field has been set.
+
+### SetCertAttrNil
+
+`func (o *ThirdPartyConnectors) SetCertAttrNil(b bool)`
+
+ SetCertAttrNil sets the value for CertAttr to be an explicit nil
+
+### UnsetCertAttr
+`func (o *ThirdPartyConnectors) UnsetCertAttr()`
+
+UnsetCertAttr ensures that no value is present for CertAttr, not even an explicit nil
+### GetCertificateAttribute
+
+`func (o *ThirdPartyConnectors) GetCertificateAttribute() string`
+
+GetCertificateAttribute returns the CertificateAttribute field if non-nil, zero value otherwise.
+
+### GetCertificateAttributeOk
+
+`func (o *ThirdPartyConnectors) GetCertificateAttributeOk() (*string, bool)`
+
+GetCertificateAttributeOk returns a tuple with the CertificateAttribute field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateAttribute
+
+`func (o *ThirdPartyConnectors) SetCertificateAttribute(v string)`
+
+SetCertificateAttribute sets CertificateAttribute field to given value.
 
 
 ### GetFilter
@@ -1249,41 +1240,6 @@ HasFilter returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetFilter()`
 
 UnsetFilter ensures that no value is present for Filter, not even an explicit nil
-### GetCertAttr
-
-`func (o *ThirdPartyConnectors) GetCertAttr() string`
-
-GetCertAttr returns the CertAttr field if non-nil, zero value otherwise.
-
-### GetCertAttrOk
-
-`func (o *ThirdPartyConnectors) GetCertAttrOk() (*string, bool)`
-
-GetCertAttrOk returns a tuple with the CertAttr field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertAttr
-
-`func (o *ThirdPartyConnectors) SetCertAttr(v string)`
-
-SetCertAttr sets CertAttr field to given value.
-
-### HasCertAttr
-
-`func (o *ThirdPartyConnectors) HasCertAttr() bool`
-
-HasCertAttr returns a boolean if a field has been set.
-
-### SetCertAttrNil
-
-`func (o *ThirdPartyConnectors) SetCertAttrNil(b bool)`
-
- SetCertAttrNil sets the value for CertAttr to be an explicit nil
-
-### UnsetCertAttr
-`func (o *ThirdPartyConnectors) UnsetCertAttr()`
-
-UnsetCertAttr ensures that no value is present for CertAttr, not even an explicit nil
 ### GetFollowReferrals
 
 `func (o *ThirdPartyConnectors) GetFollowReferrals() bool`
@@ -1319,6 +1275,41 @@ HasFollowReferrals returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetFollowReferrals()`
 
 UnsetFollowReferrals ensures that no value is present for FollowReferrals, not even an explicit nil
+### GetPort
+
+`func (o *ThirdPartyConnectors) GetPort() int64`
+
+GetPort returns the Port field if non-nil, zero value otherwise.
+
+### GetPortOk
+
+`func (o *ThirdPartyConnectors) GetPortOk() (*int64, bool)`
+
+GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPort
+
+`func (o *ThirdPartyConnectors) SetPort(v int64)`
+
+SetPort sets Port field to given value.
+
+### HasPort
+
+`func (o *ThirdPartyConnectors) HasPort() bool`
+
+HasPort returns a boolean if a field has been set.
+
+### SetPortNil
+
+`func (o *ThirdPartyConnectors) SetPortNil(b bool)`
+
+ SetPortNil sets the value for Port to be an explicit nil
+
+### UnsetPort
+`func (o *ThirdPartyConnectors) UnsetPort()`
+
+UnsetPort ensures that no value is present for Port, not even an explicit nil
 ### GetUserIdentifierAttribute
 
 `func (o *ThirdPartyConnectors) GetUserIdentifierAttribute() string`
@@ -1339,26 +1330,61 @@ and a boolean to check if the value has been set.
 SetUserIdentifierAttribute sets UserIdentifierAttribute field to given value.
 
 
-### GetCertificateAttribute
+### GetCertificateStorePath
 
-`func (o *ThirdPartyConnectors) GetCertificateAttribute() string`
+`func (o *ThirdPartyConnectors) GetCertificateStorePath() string`
 
-GetCertificateAttribute returns the CertificateAttribute field if non-nil, zero value otherwise.
+GetCertificateStorePath returns the CertificateStorePath field if non-nil, zero value otherwise.
 
-### GetCertificateAttributeOk
+### GetCertificateStorePathOk
 
-`func (o *ThirdPartyConnectors) GetCertificateAttributeOk() (*string, bool)`
+`func (o *ThirdPartyConnectors) GetCertificateStorePathOk() (*string, bool)`
 
-GetCertificateAttributeOk returns a tuple with the CertificateAttribute field if it's non-nil, zero value otherwise
+GetCertificateStorePathOk returns a tuple with the CertificateStorePath field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCertificateAttribute
+### SetCertificateStorePath
 
-`func (o *ThirdPartyConnectors) SetCertificateAttribute(v string)`
+`func (o *ThirdPartyConnectors) SetCertificateStorePath(v string)`
 
-SetCertificateAttribute sets CertificateAttribute field to given value.
+SetCertificateStorePath sets CertificateStorePath field to given value.
 
 
+### GetRenewalPeriod
+
+`func (o *ThirdPartyConnectors) GetRenewalPeriod() string`
+
+GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
+
+### GetRenewalPeriodOk
+
+`func (o *ThirdPartyConnectors) GetRenewalPeriodOk() (*string, bool)`
+
+GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRenewalPeriod
+
+`func (o *ThirdPartyConnectors) SetRenewalPeriod(v string)`
+
+SetRenewalPeriod sets RenewalPeriod field to given value.
+
+### HasRenewalPeriod
+
+`func (o *ThirdPartyConnectors) HasRenewalPeriod() bool`
+
+HasRenewalPeriod returns a boolean if a field has been set.
+
+### SetRenewalPeriodNil
+
+`func (o *ThirdPartyConnectors) SetRenewalPeriodNil(b bool)`
+
+ SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
+
+### UnsetRenewalPeriod
+`func (o *ThirdPartyConnectors) UnsetRenewalPeriod()`
+
+UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

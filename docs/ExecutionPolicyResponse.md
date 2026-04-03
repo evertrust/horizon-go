@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
-**Description** | Pointer to **NullableString** |  | [optional] 
 **AuthorizedPeriods** | Pointer to [**[]ExecutionPeriod**](ExecutionPeriod.md) |  | [optional] 
+**Description** | Pointer to **NullableString** |  | [optional] 
 **ForbiddenPeriods** | Pointer to [**[]ExecutionPeriod**](ExecutionPeriod.md) |  | [optional] 
+**Name** | **string** |  | 
 
 ## Methods
 
@@ -49,61 +49,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetName
-
-`func (o *ExecutionPolicyResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ExecutionPolicyResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ExecutionPolicyResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
-### GetDescription
-
-`func (o *ExecutionPolicyResponse) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *ExecutionPolicyResponse) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *ExecutionPolicyResponse) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *ExecutionPolicyResponse) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescriptionNil
-
-`func (o *ExecutionPolicyResponse) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *ExecutionPolicyResponse) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetAuthorizedPeriods
 
 `func (o *ExecutionPolicyResponse) GetAuthorizedPeriods() []ExecutionPeriod`
@@ -139,6 +84,41 @@ HasAuthorizedPeriods returns a boolean if a field has been set.
 `func (o *ExecutionPolicyResponse) UnsetAuthorizedPeriods()`
 
 UnsetAuthorizedPeriods ensures that no value is present for AuthorizedPeriods, not even an explicit nil
+### GetDescription
+
+`func (o *ExecutionPolicyResponse) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *ExecutionPolicyResponse) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *ExecutionPolicyResponse) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *ExecutionPolicyResponse) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescriptionNil
+
+`func (o *ExecutionPolicyResponse) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *ExecutionPolicyResponse) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetForbiddenPeriods
 
 `func (o *ExecutionPolicyResponse) GetForbiddenPeriods() []ExecutionPeriod`
@@ -174,6 +154,26 @@ HasForbiddenPeriods returns a boolean if a field has been set.
 `func (o *ExecutionPolicyResponse) UnsetForbiddenPeriods()`
 
 UnsetForbiddenPeriods ensures that no value is present for ForbiddenPeriods, not even an explicit nil
+### GetName
+
+`func (o *ExecutionPolicyResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ExecutionPolicyResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ExecutionPolicyResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

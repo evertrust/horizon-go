@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:9000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**SystemConfigurationGet**](SystemConfigurationAPI.md#SystemConfigurationGet) | **Get** /api/v1/system/configuration/{type} | Upsert a system configuration
+[**SystemConfigurationGet**](SystemConfigurationAPI.md#SystemConfigurationGet) | **Get** /api/v1/system/configuration/{type} | Get a system configuration
 [**SystemConfigurationList**](SystemConfigurationAPI.md#SystemConfigurationList) | **Get** /api/v1/system/configuration | List the existing system configurations
 [**SystemConfigurationUpsert**](SystemConfigurationAPI.md#SystemConfigurationUpsert) | **Put** /api/v1/system/configuration | Upsert a system configuration
 
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 > SystemConfigurationList200ResponseInner SystemConfigurationGet(ctx, type_).Execute()
 
-Upsert a system configuration
+Get a system configuration
 
 
 

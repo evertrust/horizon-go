@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AllowedDnsDomains** | Pointer to **NullableString** |  | [optional] 
 **AllowedDomains** | Pointer to **NullableString** |  | [optional] 
 **AllowedEmailDomains** | Pointer to **NullableString** |  | [optional] 
-**AllowedDnsDomains** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -27,6 +27,41 @@ NewCertificateRequestConstraintsWithDefaults instantiates a new CertificateReque
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetAllowedDnsDomains
+
+`func (o *CertificateRequestConstraints) GetAllowedDnsDomains() string`
+
+GetAllowedDnsDomains returns the AllowedDnsDomains field if non-nil, zero value otherwise.
+
+### GetAllowedDnsDomainsOk
+
+`func (o *CertificateRequestConstraints) GetAllowedDnsDomainsOk() (*string, bool)`
+
+GetAllowedDnsDomainsOk returns a tuple with the AllowedDnsDomains field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowedDnsDomains
+
+`func (o *CertificateRequestConstraints) SetAllowedDnsDomains(v string)`
+
+SetAllowedDnsDomains sets AllowedDnsDomains field to given value.
+
+### HasAllowedDnsDomains
+
+`func (o *CertificateRequestConstraints) HasAllowedDnsDomains() bool`
+
+HasAllowedDnsDomains returns a boolean if a field has been set.
+
+### SetAllowedDnsDomainsNil
+
+`func (o *CertificateRequestConstraints) SetAllowedDnsDomainsNil(b bool)`
+
+ SetAllowedDnsDomainsNil sets the value for AllowedDnsDomains to be an explicit nil
+
+### UnsetAllowedDnsDomains
+`func (o *CertificateRequestConstraints) UnsetAllowedDnsDomains()`
+
+UnsetAllowedDnsDomains ensures that no value is present for AllowedDnsDomains, not even an explicit nil
 ### GetAllowedDomains
 
 `func (o *CertificateRequestConstraints) GetAllowedDomains() string`
@@ -97,41 +132,6 @@ HasAllowedEmailDomains returns a boolean if a field has been set.
 `func (o *CertificateRequestConstraints) UnsetAllowedEmailDomains()`
 
 UnsetAllowedEmailDomains ensures that no value is present for AllowedEmailDomains, not even an explicit nil
-### GetAllowedDnsDomains
-
-`func (o *CertificateRequestConstraints) GetAllowedDnsDomains() string`
-
-GetAllowedDnsDomains returns the AllowedDnsDomains field if non-nil, zero value otherwise.
-
-### GetAllowedDnsDomainsOk
-
-`func (o *CertificateRequestConstraints) GetAllowedDnsDomainsOk() (*string, bool)`
-
-GetAllowedDnsDomainsOk returns a tuple with the AllowedDnsDomains field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAllowedDnsDomains
-
-`func (o *CertificateRequestConstraints) SetAllowedDnsDomains(v string)`
-
-SetAllowedDnsDomains sets AllowedDnsDomains field to given value.
-
-### HasAllowedDnsDomains
-
-`func (o *CertificateRequestConstraints) HasAllowedDnsDomains() bool`
-
-HasAllowedDnsDomains returns a boolean if a field has been set.
-
-### SetAllowedDnsDomainsNil
-
-`func (o *CertificateRequestConstraints) SetAllowedDnsDomainsNil(b bool)`
-
- SetAllowedDnsDomainsNil sets the value for AllowedDnsDomains to be an explicit nil
-
-### UnsetAllowedDnsDomains
-`func (o *CertificateRequestConstraints) UnsetAllowedDnsDomains()`
-
-UnsetAllowedDnsDomains ensures that no value is present for AllowedDnsDomains, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

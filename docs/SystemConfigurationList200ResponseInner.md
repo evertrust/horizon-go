@@ -5,12 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Type** | **string** | The type of the configuration entry | 
 **Triggers** | Pointer to [**NullableLicenseTriggers**](LicenseTriggers.md) | Triggers to execute on license events | [optional] 
+**Type** | **string** | The type of the configuration entry | 
 **Cron** | **string** | Cron defining when to run internal monitor checks | 
-**Logo** | Pointer to **NullableString** | A logo to display on the product, base64 encoded | [optional] 
-**HeaderStart** | Pointer to **NullableString** | The HTML color code for the left side of the banner gradient | [optional] 
+**Announcements** | Pointer to [**[]InterfaceCustomizationConfigurationAnnouncementsInner**](InterfaceCustomizationConfigurationAnnouncementsInner.md) | Announcements to display to all users in the Horizon instance | [optional] 
 **HeaderEnd** | Pointer to **NullableString** | The HTML color code for the right side of the banner gradient | [optional] 
+**HeaderStart** | Pointer to **NullableString** | The HTML color code for the left side of the banner gradient | [optional] 
+**Logo** | Pointer to **NullableString** | A logo to display on the product, base64 encoded | [optional] 
+**ArchiveStorage** | Pointer to **string** | Name of a [storage](#tag/system.storage) to use for archive file storage | [optional] 
+**MagicLinkReportStorage** | Pointer to **string** | Name of a [storage](#tag/system.storage) to use for magic link reports storage | [optional] 
 
 ## Methods
 
@@ -51,26 +54,6 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetType
-
-`func (o *SystemConfigurationList200ResponseInner) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *SystemConfigurationList200ResponseInner) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *SystemConfigurationList200ResponseInner) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 ### GetTriggers
 
 `func (o *SystemConfigurationList200ResponseInner) GetTriggers() LicenseTriggers`
@@ -106,6 +89,26 @@ HasTriggers returns a boolean if a field has been set.
 `func (o *SystemConfigurationList200ResponseInner) UnsetTriggers()`
 
 UnsetTriggers ensures that no value is present for Triggers, not even an explicit nil
+### GetType
+
+`func (o *SystemConfigurationList200ResponseInner) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *SystemConfigurationList200ResponseInner) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *SystemConfigurationList200ResponseInner) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 ### GetCron
 
 `func (o *SystemConfigurationList200ResponseInner) GetCron() string`
@@ -126,76 +129,31 @@ and a boolean to check if the value has been set.
 SetCron sets Cron field to given value.
 
 
-### GetLogo
+### GetAnnouncements
 
-`func (o *SystemConfigurationList200ResponseInner) GetLogo() string`
+`func (o *SystemConfigurationList200ResponseInner) GetAnnouncements() []InterfaceCustomizationConfigurationAnnouncementsInner`
 
-GetLogo returns the Logo field if non-nil, zero value otherwise.
+GetAnnouncements returns the Announcements field if non-nil, zero value otherwise.
 
-### GetLogoOk
+### GetAnnouncementsOk
 
-`func (o *SystemConfigurationList200ResponseInner) GetLogoOk() (*string, bool)`
+`func (o *SystemConfigurationList200ResponseInner) GetAnnouncementsOk() (*[]InterfaceCustomizationConfigurationAnnouncementsInner, bool)`
 
-GetLogoOk returns a tuple with the Logo field if it's non-nil, zero value otherwise
+GetAnnouncementsOk returns a tuple with the Announcements field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLogo
+### SetAnnouncements
 
-`func (o *SystemConfigurationList200ResponseInner) SetLogo(v string)`
+`func (o *SystemConfigurationList200ResponseInner) SetAnnouncements(v []InterfaceCustomizationConfigurationAnnouncementsInner)`
 
-SetLogo sets Logo field to given value.
+SetAnnouncements sets Announcements field to given value.
 
-### HasLogo
+### HasAnnouncements
 
-`func (o *SystemConfigurationList200ResponseInner) HasLogo() bool`
+`func (o *SystemConfigurationList200ResponseInner) HasAnnouncements() bool`
 
-HasLogo returns a boolean if a field has been set.
+HasAnnouncements returns a boolean if a field has been set.
 
-### SetLogoNil
-
-`func (o *SystemConfigurationList200ResponseInner) SetLogoNil(b bool)`
-
- SetLogoNil sets the value for Logo to be an explicit nil
-
-### UnsetLogo
-`func (o *SystemConfigurationList200ResponseInner) UnsetLogo()`
-
-UnsetLogo ensures that no value is present for Logo, not even an explicit nil
-### GetHeaderStart
-
-`func (o *SystemConfigurationList200ResponseInner) GetHeaderStart() string`
-
-GetHeaderStart returns the HeaderStart field if non-nil, zero value otherwise.
-
-### GetHeaderStartOk
-
-`func (o *SystemConfigurationList200ResponseInner) GetHeaderStartOk() (*string, bool)`
-
-GetHeaderStartOk returns a tuple with the HeaderStart field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHeaderStart
-
-`func (o *SystemConfigurationList200ResponseInner) SetHeaderStart(v string)`
-
-SetHeaderStart sets HeaderStart field to given value.
-
-### HasHeaderStart
-
-`func (o *SystemConfigurationList200ResponseInner) HasHeaderStart() bool`
-
-HasHeaderStart returns a boolean if a field has been set.
-
-### SetHeaderStartNil
-
-`func (o *SystemConfigurationList200ResponseInner) SetHeaderStartNil(b bool)`
-
- SetHeaderStartNil sets the value for HeaderStart to be an explicit nil
-
-### UnsetHeaderStart
-`func (o *SystemConfigurationList200ResponseInner) UnsetHeaderStart()`
-
-UnsetHeaderStart ensures that no value is present for HeaderStart, not even an explicit nil
 ### GetHeaderEnd
 
 `func (o *SystemConfigurationList200ResponseInner) GetHeaderEnd() string`
@@ -231,6 +189,126 @@ HasHeaderEnd returns a boolean if a field has been set.
 `func (o *SystemConfigurationList200ResponseInner) UnsetHeaderEnd()`
 
 UnsetHeaderEnd ensures that no value is present for HeaderEnd, not even an explicit nil
+### GetHeaderStart
+
+`func (o *SystemConfigurationList200ResponseInner) GetHeaderStart() string`
+
+GetHeaderStart returns the HeaderStart field if non-nil, zero value otherwise.
+
+### GetHeaderStartOk
+
+`func (o *SystemConfigurationList200ResponseInner) GetHeaderStartOk() (*string, bool)`
+
+GetHeaderStartOk returns a tuple with the HeaderStart field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHeaderStart
+
+`func (o *SystemConfigurationList200ResponseInner) SetHeaderStart(v string)`
+
+SetHeaderStart sets HeaderStart field to given value.
+
+### HasHeaderStart
+
+`func (o *SystemConfigurationList200ResponseInner) HasHeaderStart() bool`
+
+HasHeaderStart returns a boolean if a field has been set.
+
+### SetHeaderStartNil
+
+`func (o *SystemConfigurationList200ResponseInner) SetHeaderStartNil(b bool)`
+
+ SetHeaderStartNil sets the value for HeaderStart to be an explicit nil
+
+### UnsetHeaderStart
+`func (o *SystemConfigurationList200ResponseInner) UnsetHeaderStart()`
+
+UnsetHeaderStart ensures that no value is present for HeaderStart, not even an explicit nil
+### GetLogo
+
+`func (o *SystemConfigurationList200ResponseInner) GetLogo() string`
+
+GetLogo returns the Logo field if non-nil, zero value otherwise.
+
+### GetLogoOk
+
+`func (o *SystemConfigurationList200ResponseInner) GetLogoOk() (*string, bool)`
+
+GetLogoOk returns a tuple with the Logo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogo
+
+`func (o *SystemConfigurationList200ResponseInner) SetLogo(v string)`
+
+SetLogo sets Logo field to given value.
+
+### HasLogo
+
+`func (o *SystemConfigurationList200ResponseInner) HasLogo() bool`
+
+HasLogo returns a boolean if a field has been set.
+
+### SetLogoNil
+
+`func (o *SystemConfigurationList200ResponseInner) SetLogoNil(b bool)`
+
+ SetLogoNil sets the value for Logo to be an explicit nil
+
+### UnsetLogo
+`func (o *SystemConfigurationList200ResponseInner) UnsetLogo()`
+
+UnsetLogo ensures that no value is present for Logo, not even an explicit nil
+### GetArchiveStorage
+
+`func (o *SystemConfigurationList200ResponseInner) GetArchiveStorage() string`
+
+GetArchiveStorage returns the ArchiveStorage field if non-nil, zero value otherwise.
+
+### GetArchiveStorageOk
+
+`func (o *SystemConfigurationList200ResponseInner) GetArchiveStorageOk() (*string, bool)`
+
+GetArchiveStorageOk returns a tuple with the ArchiveStorage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetArchiveStorage
+
+`func (o *SystemConfigurationList200ResponseInner) SetArchiveStorage(v string)`
+
+SetArchiveStorage sets ArchiveStorage field to given value.
+
+### HasArchiveStorage
+
+`func (o *SystemConfigurationList200ResponseInner) HasArchiveStorage() bool`
+
+HasArchiveStorage returns a boolean if a field has been set.
+
+### GetMagicLinkReportStorage
+
+`func (o *SystemConfigurationList200ResponseInner) GetMagicLinkReportStorage() string`
+
+GetMagicLinkReportStorage returns the MagicLinkReportStorage field if non-nil, zero value otherwise.
+
+### GetMagicLinkReportStorageOk
+
+`func (o *SystemConfigurationList200ResponseInner) GetMagicLinkReportStorageOk() (*string, bool)`
+
+GetMagicLinkReportStorageOk returns a tuple with the MagicLinkReportStorage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMagicLinkReportStorage
+
+`func (o *SystemConfigurationList200ResponseInner) SetMagicLinkReportStorage(v string)`
+
+SetMagicLinkReportStorage sets MagicLinkReportStorage field to given value.
+
+### HasMagicLinkReportStorage
+
+`func (o *SystemConfigurationList200ResponseInner) HasMagicLinkReportStorage() bool`
+
+HasMagicLinkReportStorage returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

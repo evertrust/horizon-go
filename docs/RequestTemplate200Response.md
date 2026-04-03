@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Workflow** | **string** | The workflow for which to return the template. | 
 **Module** | **string** | The request module | 
 **Profile** | **string** | The profile for which to return the template. | 
 **Template** | [**ScepEnrollRequestTemplateResponse**](ScepEnrollRequestTemplateResponse.md) | The template with the constraint set on the profile | 
+**Workflow** | **string** | The workflow for which to return the template. | 
 
 ## Methods
 
 ### NewRequestTemplate200Response
 
-`func NewRequestTemplate200Response(workflow string, module string, profile string, template ScepEnrollRequestTemplateResponse, ) *RequestTemplate200Response`
+`func NewRequestTemplate200Response(module string, profile string, template ScepEnrollRequestTemplateResponse, workflow string, ) *RequestTemplate200Response`
 
 NewRequestTemplate200Response instantiates a new RequestTemplate200Response object
 This constructor will assign default values to properties that have it defined,
@@ -27,26 +27,6 @@ will change when the set of required properties is changed
 NewRequestTemplate200ResponseWithDefaults instantiates a new RequestTemplate200Response object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetWorkflow
-
-`func (o *RequestTemplate200Response) GetWorkflow() string`
-
-GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
-
-### GetWorkflowOk
-
-`func (o *RequestTemplate200Response) GetWorkflowOk() (*string, bool)`
-
-GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWorkflow
-
-`func (o *RequestTemplate200Response) SetWorkflow(v string)`
-
-SetWorkflow sets Workflow field to given value.
-
 
 ### GetModule
 
@@ -106,6 +86,26 @@ and a boolean to check if the value has been set.
 `func (o *RequestTemplate200Response) SetTemplate(v ScepEnrollRequestTemplateResponse)`
 
 SetTemplate sets Template field to given value.
+
+
+### GetWorkflow
+
+`func (o *RequestTemplate200Response) GetWorkflow() string`
+
+GetWorkflow returns the Workflow field if non-nil, zero value otherwise.
+
+### GetWorkflowOk
+
+`func (o *RequestTemplate200Response) GetWorkflowOk() (*string, bool)`
+
+GetWorkflowOk returns a tuple with the Workflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflow
+
+`func (o *RequestTemplate200Response) SetWorkflow(v string)`
+
+SetWorkflow sets Workflow field to given value.
 
 
 

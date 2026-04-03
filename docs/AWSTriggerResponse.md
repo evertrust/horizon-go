@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Name** | **string** |  | 
-**Type** | **string** |  | 
-**Retries** | Pointer to **NullableInt64** |  | [optional] 
 **Connector** | **string** |  | 
+**Name** | **string** |  | 
+**Retries** | Pointer to **NullableInt64** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewAWSTriggerResponse
 
-`func NewAWSTriggerResponse(id string, name string, type_ string, connector string, ) *AWSTriggerResponse`
+`func NewAWSTriggerResponse(id string, connector string, name string, type_ string, ) *AWSTriggerResponse`
 
 NewAWSTriggerResponse instantiates a new AWSTriggerResponse object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetConnector
+
+`func (o *AWSTriggerResponse) GetConnector() string`
+
+GetConnector returns the Connector field if non-nil, zero value otherwise.
+
+### GetConnectorOk
+
+`func (o *AWSTriggerResponse) GetConnectorOk() (*string, bool)`
+
+GetConnectorOk returns a tuple with the Connector field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConnector
+
+`func (o *AWSTriggerResponse) SetConnector(v string)`
+
+SetConnector sets Connector field to given value.
+
+
 ### GetName
 
 `func (o *AWSTriggerResponse) GetName() string`
@@ -67,26 +87,6 @@ and a boolean to check if the value has been set.
 `func (o *AWSTriggerResponse) SetName(v string)`
 
 SetName sets Name field to given value.
-
-
-### GetType
-
-`func (o *AWSTriggerResponse) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *AWSTriggerResponse) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *AWSTriggerResponse) SetType(v string)`
-
-SetType sets Type field to given value.
 
 
 ### GetRetries
@@ -124,24 +124,24 @@ HasRetries returns a boolean if a field has been set.
 `func (o *AWSTriggerResponse) UnsetRetries()`
 
 UnsetRetries ensures that no value is present for Retries, not even an explicit nil
-### GetConnector
+### GetType
 
-`func (o *AWSTriggerResponse) GetConnector() string`
+`func (o *AWSTriggerResponse) GetType() string`
 
-GetConnector returns the Connector field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetConnectorOk
+### GetTypeOk
 
-`func (o *AWSTriggerResponse) GetConnectorOk() (*string, bool)`
+`func (o *AWSTriggerResponse) GetTypeOk() (*string, bool)`
 
-GetConnectorOk returns a tuple with the Connector field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConnector
+### SetType
 
-`func (o *AWSTriggerResponse) SetConnector(v string)`
+`func (o *AWSTriggerResponse) SetType(v string)`
 
-SetConnector sets Connector field to given value.
+SetType sets Type field to given value.
 
 
 

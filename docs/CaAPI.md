@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	certificateAuthorityRequest := *openapiclient.NewCertificateAuthorityRequest("Certificate_example", "Name_example", false, false, "OutdatedRevocationStatusPolicy_example", false) // CertificateAuthorityRequest | Certificate authority to register
+	certificateAuthorityRequest := *openapiclient.NewCertificateAuthorityRequest("Certificate_example", "Name_example", "OutdatedRevocationStatusPolicy_example", false, false, false) // CertificateAuthorityRequest | Certificate authority to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -298,7 +298,7 @@ import (
 )
 
 func main() {
-	certificateAuthorityRequest := *openapiclient.NewCertificateAuthorityRequest("Certificate_example", "Name_example", false, false, "OutdatedRevocationStatusPolicy_example", false) // CertificateAuthorityRequest | Certificate authority to update
+	certificateAuthorityRequest := *openapiclient.NewCertificateAuthorityRequest("Certificate_example", "Name_example", "OutdatedRevocationStatusPolicy_example", false, false, false) // CertificateAuthorityRequest | Certificate authority to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

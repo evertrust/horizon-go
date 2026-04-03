@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CertificateFields** | Pointer to **[]string** | The user&#39;s preferred columns on certificate view | [optional] 
 **DarkMode** | Pointer to **NullableBool** | Dark Mode is enabled on UI for this user | [optional] [default to false]
 **ExpertMode** | Pointer to **bool** | Expert mode is enabled on UI for this user | [optional] [default to false]
 **Lang** | Pointer to **NullableString** | The preferred language of the user | [optional] 
-**CertificateFields** | Pointer to **[]string** | The user&#39;s preferred columns on certificate view | [optional] 
 **RequestFields** | Pointer to **[]string** | The user&#39;s preferred columns on request view | [optional] 
 
 ## Methods
@@ -29,6 +29,41 @@ NewPrincipalInfoPreferencesWithDefaults instantiates a new PrincipalInfoPreferen
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetCertificateFields
+
+`func (o *PrincipalInfoPreferences) GetCertificateFields() []string`
+
+GetCertificateFields returns the CertificateFields field if non-nil, zero value otherwise.
+
+### GetCertificateFieldsOk
+
+`func (o *PrincipalInfoPreferences) GetCertificateFieldsOk() (*[]string, bool)`
+
+GetCertificateFieldsOk returns a tuple with the CertificateFields field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateFields
+
+`func (o *PrincipalInfoPreferences) SetCertificateFields(v []string)`
+
+SetCertificateFields sets CertificateFields field to given value.
+
+### HasCertificateFields
+
+`func (o *PrincipalInfoPreferences) HasCertificateFields() bool`
+
+HasCertificateFields returns a boolean if a field has been set.
+
+### SetCertificateFieldsNil
+
+`func (o *PrincipalInfoPreferences) SetCertificateFieldsNil(b bool)`
+
+ SetCertificateFieldsNil sets the value for CertificateFields to be an explicit nil
+
+### UnsetCertificateFields
+`func (o *PrincipalInfoPreferences) UnsetCertificateFields()`
+
+UnsetCertificateFields ensures that no value is present for CertificateFields, not even an explicit nil
 ### GetDarkMode
 
 `func (o *PrincipalInfoPreferences) GetDarkMode() bool`
@@ -124,41 +159,6 @@ HasLang returns a boolean if a field has been set.
 `func (o *PrincipalInfoPreferences) UnsetLang()`
 
 UnsetLang ensures that no value is present for Lang, not even an explicit nil
-### GetCertificateFields
-
-`func (o *PrincipalInfoPreferences) GetCertificateFields() []string`
-
-GetCertificateFields returns the CertificateFields field if non-nil, zero value otherwise.
-
-### GetCertificateFieldsOk
-
-`func (o *PrincipalInfoPreferences) GetCertificateFieldsOk() (*[]string, bool)`
-
-GetCertificateFieldsOk returns a tuple with the CertificateFields field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCertificateFields
-
-`func (o *PrincipalInfoPreferences) SetCertificateFields(v []string)`
-
-SetCertificateFields sets CertificateFields field to given value.
-
-### HasCertificateFields
-
-`func (o *PrincipalInfoPreferences) HasCertificateFields() bool`
-
-HasCertificateFields returns a boolean if a field has been set.
-
-### SetCertificateFieldsNil
-
-`func (o *PrincipalInfoPreferences) SetCertificateFieldsNil(b bool)`
-
- SetCertificateFieldsNil sets the value for CertificateFields to be an explicit nil
-
-### UnsetCertificateFields
-`func (o *PrincipalInfoPreferences) UnsetCertificateFields()`
-
-UnsetCertificateFields ensures that no value is present for CertificateFields, not even an explicit nil
 ### GetRequestFields
 
 `func (o *PrincipalInfoPreferences) GetRequestFields() []string`

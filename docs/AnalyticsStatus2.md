@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ready** | **bool** | If the discovery event analytics is ready to use | 
-**Count** | **int64** | The number of discovery event synchronized | 
-**Id** | Pointer to **string** | The last discovery event id synchronized | [optional] [readonly] 
+**Id** | Pointer to **string** | The last event id synchronized | [optional] [readonly] 
+**Count** | **int64** | The number of event synchronized | 
 **Error** | Pointer to **NullableString** | If an error happened during the synchronization process | [optional] [readonly] 
+**Ready** | **bool** | If the event analytics is ready to use | 
 
 ## Methods
 
 ### NewAnalyticsStatus2
 
-`func NewAnalyticsStatus2(ready bool, count int64, ) *AnalyticsStatus2`
+`func NewAnalyticsStatus2(count int64, ready bool, ) *AnalyticsStatus2`
 
 NewAnalyticsStatus2 instantiates a new AnalyticsStatus2 object
 This constructor will assign default values to properties that have it defined,
@@ -27,46 +27,6 @@ will change when the set of required properties is changed
 NewAnalyticsStatus2WithDefaults instantiates a new AnalyticsStatus2 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetReady
-
-`func (o *AnalyticsStatus2) GetReady() bool`
-
-GetReady returns the Ready field if non-nil, zero value otherwise.
-
-### GetReadyOk
-
-`func (o *AnalyticsStatus2) GetReadyOk() (*bool, bool)`
-
-GetReadyOk returns a tuple with the Ready field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReady
-
-`func (o *AnalyticsStatus2) SetReady(v bool)`
-
-SetReady sets Ready field to given value.
-
-
-### GetCount
-
-`func (o *AnalyticsStatus2) GetCount() int64`
-
-GetCount returns the Count field if non-nil, zero value otherwise.
-
-### GetCountOk
-
-`func (o *AnalyticsStatus2) GetCountOk() (*int64, bool)`
-
-GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCount
-
-`func (o *AnalyticsStatus2) SetCount(v int64)`
-
-SetCount sets Count field to given value.
-
 
 ### GetId
 
@@ -92,6 +52,26 @@ SetId sets Id field to given value.
 `func (o *AnalyticsStatus2) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetCount
+
+`func (o *AnalyticsStatus2) GetCount() int64`
+
+GetCount returns the Count field if non-nil, zero value otherwise.
+
+### GetCountOk
+
+`func (o *AnalyticsStatus2) GetCountOk() (*int64, bool)`
+
+GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCount
+
+`func (o *AnalyticsStatus2) SetCount(v int64)`
+
+SetCount sets Count field to given value.
+
 
 ### GetError
 
@@ -128,6 +108,26 @@ HasError returns a boolean if a field has been set.
 `func (o *AnalyticsStatus2) UnsetError()`
 
 UnsetError ensures that no value is present for Error, not even an explicit nil
+### GetReady
+
+`func (o *AnalyticsStatus2) GetReady() bool`
+
+GetReady returns the Ready field if non-nil, zero value otherwise.
+
+### GetReadyOk
+
+`func (o *AnalyticsStatus2) GetReadyOk() (*bool, bool)`
+
+GetReadyOk returns a tuple with the Ready field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReady
+
+`func (o *AnalyticsStatus2) SetReady(v bool)`
+
+SetReady sets Ready field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

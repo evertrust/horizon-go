@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Query** | Pointer to **NullableString** |  | [optional] 
-**SortedBy** | Pointer to [**[]SortElement**](SortElement.md) |  | [optional] 
 **PageIndex** | Pointer to **NullableInt64** |  | [optional] 
 **PageSize** | Pointer to **NullableInt64** |  | [optional] 
+**Query** | Pointer to **NullableString** |  | [optional] 
+**SortedBy** | Pointer to [**[]SortElement**](SortElement.md) |  | [optional] 
 **WithCount** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
@@ -29,76 +29,6 @@ NewDiscoveryEventSearchQueryWithDefaults instantiates a new DiscoveryEventSearch
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetQuery
-
-`func (o *DiscoveryEventSearchQuery) GetQuery() string`
-
-GetQuery returns the Query field if non-nil, zero value otherwise.
-
-### GetQueryOk
-
-`func (o *DiscoveryEventSearchQuery) GetQueryOk() (*string, bool)`
-
-GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQuery
-
-`func (o *DiscoveryEventSearchQuery) SetQuery(v string)`
-
-SetQuery sets Query field to given value.
-
-### HasQuery
-
-`func (o *DiscoveryEventSearchQuery) HasQuery() bool`
-
-HasQuery returns a boolean if a field has been set.
-
-### SetQueryNil
-
-`func (o *DiscoveryEventSearchQuery) SetQueryNil(b bool)`
-
- SetQueryNil sets the value for Query to be an explicit nil
-
-### UnsetQuery
-`func (o *DiscoveryEventSearchQuery) UnsetQuery()`
-
-UnsetQuery ensures that no value is present for Query, not even an explicit nil
-### GetSortedBy
-
-`func (o *DiscoveryEventSearchQuery) GetSortedBy() []SortElement`
-
-GetSortedBy returns the SortedBy field if non-nil, zero value otherwise.
-
-### GetSortedByOk
-
-`func (o *DiscoveryEventSearchQuery) GetSortedByOk() (*[]SortElement, bool)`
-
-GetSortedByOk returns a tuple with the SortedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSortedBy
-
-`func (o *DiscoveryEventSearchQuery) SetSortedBy(v []SortElement)`
-
-SetSortedBy sets SortedBy field to given value.
-
-### HasSortedBy
-
-`func (o *DiscoveryEventSearchQuery) HasSortedBy() bool`
-
-HasSortedBy returns a boolean if a field has been set.
-
-### SetSortedByNil
-
-`func (o *DiscoveryEventSearchQuery) SetSortedByNil(b bool)`
-
- SetSortedByNil sets the value for SortedBy to be an explicit nil
-
-### UnsetSortedBy
-`func (o *DiscoveryEventSearchQuery) UnsetSortedBy()`
-
-UnsetSortedBy ensures that no value is present for SortedBy, not even an explicit nil
 ### GetPageIndex
 
 `func (o *DiscoveryEventSearchQuery) GetPageIndex() int64`
@@ -169,6 +99,76 @@ HasPageSize returns a boolean if a field has been set.
 `func (o *DiscoveryEventSearchQuery) UnsetPageSize()`
 
 UnsetPageSize ensures that no value is present for PageSize, not even an explicit nil
+### GetQuery
+
+`func (o *DiscoveryEventSearchQuery) GetQuery() string`
+
+GetQuery returns the Query field if non-nil, zero value otherwise.
+
+### GetQueryOk
+
+`func (o *DiscoveryEventSearchQuery) GetQueryOk() (*string, bool)`
+
+GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuery
+
+`func (o *DiscoveryEventSearchQuery) SetQuery(v string)`
+
+SetQuery sets Query field to given value.
+
+### HasQuery
+
+`func (o *DiscoveryEventSearchQuery) HasQuery() bool`
+
+HasQuery returns a boolean if a field has been set.
+
+### SetQueryNil
+
+`func (o *DiscoveryEventSearchQuery) SetQueryNil(b bool)`
+
+ SetQueryNil sets the value for Query to be an explicit nil
+
+### UnsetQuery
+`func (o *DiscoveryEventSearchQuery) UnsetQuery()`
+
+UnsetQuery ensures that no value is present for Query, not even an explicit nil
+### GetSortedBy
+
+`func (o *DiscoveryEventSearchQuery) GetSortedBy() []SortElement`
+
+GetSortedBy returns the SortedBy field if non-nil, zero value otherwise.
+
+### GetSortedByOk
+
+`func (o *DiscoveryEventSearchQuery) GetSortedByOk() (*[]SortElement, bool)`
+
+GetSortedByOk returns a tuple with the SortedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSortedBy
+
+`func (o *DiscoveryEventSearchQuery) SetSortedBy(v []SortElement)`
+
+SetSortedBy sets SortedBy field to given value.
+
+### HasSortedBy
+
+`func (o *DiscoveryEventSearchQuery) HasSortedBy() bool`
+
+HasSortedBy returns a boolean if a field has been set.
+
+### SetSortedByNil
+
+`func (o *DiscoveryEventSearchQuery) SetSortedByNil(b bool)`
+
+ SetSortedByNil sets the value for SortedBy to be an explicit nil
+
+### UnsetSortedBy
+`func (o *DiscoveryEventSearchQuery) UnsetSortedBy()`
+
+UnsetSortedBy ensures that no value is present for SortedBy, not even an explicit nil
 ### GetWithCount
 
 `func (o *DiscoveryEventSearchQuery) GetWithCount() bool`

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Query** | Pointer to **NullableString** | The HCQL query to use for the search, represents the way to filter certificates. If not specified, it will filter nothing | [optional] 
 **Fields** | Pointer to **[]string** | The fields to be returned by the search. If this parameter is not specified, everything is returned by default. If this parameter is equal to an empty array, only the &#x60;_id&#x60; field is returned.  | [optional] 
-**SortedBy** | Pointer to [**[]SortElement**](SortElement.md) | The way to sort the search results.  | [optional] 
 **PageIndex** | Pointer to **NullableInt64** | The index of the page to retrieve | [optional] [default to 1]
 **PageSize** | Pointer to **NullableInt64** | The maximum number of items to retrieve for one page | [optional] [default to 50]
+**Query** | Pointer to **NullableString** | The HCQL query to use for the search, represents the way to filter certificates. If not specified, it will filter nothing | [optional] 
+**SortedBy** | Pointer to [**[]SortElement**](SortElement.md) | The way to sort the search results.  | [optional] 
 **WithCount** | Pointer to **NullableBool** | If set to &#x60;true&#x60;, the total count of certificates matching the HCQL query will be returned.  | [optional] [default to false]
 
 ## Methods
@@ -30,41 +30,6 @@ NewCertificateSearchQueryWithDefaults instantiates a new CertificateSearchQuery 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetQuery
-
-`func (o *CertificateSearchQuery) GetQuery() string`
-
-GetQuery returns the Query field if non-nil, zero value otherwise.
-
-### GetQueryOk
-
-`func (o *CertificateSearchQuery) GetQueryOk() (*string, bool)`
-
-GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQuery
-
-`func (o *CertificateSearchQuery) SetQuery(v string)`
-
-SetQuery sets Query field to given value.
-
-### HasQuery
-
-`func (o *CertificateSearchQuery) HasQuery() bool`
-
-HasQuery returns a boolean if a field has been set.
-
-### SetQueryNil
-
-`func (o *CertificateSearchQuery) SetQueryNil(b bool)`
-
- SetQueryNil sets the value for Query to be an explicit nil
-
-### UnsetQuery
-`func (o *CertificateSearchQuery) UnsetQuery()`
-
-UnsetQuery ensures that no value is present for Query, not even an explicit nil
 ### GetFields
 
 `func (o *CertificateSearchQuery) GetFields() []string`
@@ -100,41 +65,6 @@ HasFields returns a boolean if a field has been set.
 `func (o *CertificateSearchQuery) UnsetFields()`
 
 UnsetFields ensures that no value is present for Fields, not even an explicit nil
-### GetSortedBy
-
-`func (o *CertificateSearchQuery) GetSortedBy() []SortElement`
-
-GetSortedBy returns the SortedBy field if non-nil, zero value otherwise.
-
-### GetSortedByOk
-
-`func (o *CertificateSearchQuery) GetSortedByOk() (*[]SortElement, bool)`
-
-GetSortedByOk returns a tuple with the SortedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSortedBy
-
-`func (o *CertificateSearchQuery) SetSortedBy(v []SortElement)`
-
-SetSortedBy sets SortedBy field to given value.
-
-### HasSortedBy
-
-`func (o *CertificateSearchQuery) HasSortedBy() bool`
-
-HasSortedBy returns a boolean if a field has been set.
-
-### SetSortedByNil
-
-`func (o *CertificateSearchQuery) SetSortedByNil(b bool)`
-
- SetSortedByNil sets the value for SortedBy to be an explicit nil
-
-### UnsetSortedBy
-`func (o *CertificateSearchQuery) UnsetSortedBy()`
-
-UnsetSortedBy ensures that no value is present for SortedBy, not even an explicit nil
 ### GetPageIndex
 
 `func (o *CertificateSearchQuery) GetPageIndex() int64`
@@ -205,6 +135,76 @@ HasPageSize returns a boolean if a field has been set.
 `func (o *CertificateSearchQuery) UnsetPageSize()`
 
 UnsetPageSize ensures that no value is present for PageSize, not even an explicit nil
+### GetQuery
+
+`func (o *CertificateSearchQuery) GetQuery() string`
+
+GetQuery returns the Query field if non-nil, zero value otherwise.
+
+### GetQueryOk
+
+`func (o *CertificateSearchQuery) GetQueryOk() (*string, bool)`
+
+GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQuery
+
+`func (o *CertificateSearchQuery) SetQuery(v string)`
+
+SetQuery sets Query field to given value.
+
+### HasQuery
+
+`func (o *CertificateSearchQuery) HasQuery() bool`
+
+HasQuery returns a boolean if a field has been set.
+
+### SetQueryNil
+
+`func (o *CertificateSearchQuery) SetQueryNil(b bool)`
+
+ SetQueryNil sets the value for Query to be an explicit nil
+
+### UnsetQuery
+`func (o *CertificateSearchQuery) UnsetQuery()`
+
+UnsetQuery ensures that no value is present for Query, not even an explicit nil
+### GetSortedBy
+
+`func (o *CertificateSearchQuery) GetSortedBy() []SortElement`
+
+GetSortedBy returns the SortedBy field if non-nil, zero value otherwise.
+
+### GetSortedByOk
+
+`func (o *CertificateSearchQuery) GetSortedByOk() (*[]SortElement, bool)`
+
+GetSortedByOk returns a tuple with the SortedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSortedBy
+
+`func (o *CertificateSearchQuery) SetSortedBy(v []SortElement)`
+
+SetSortedBy sets SortedBy field to given value.
+
+### HasSortedBy
+
+`func (o *CertificateSearchQuery) HasSortedBy() bool`
+
+HasSortedBy returns a boolean if a field has been set.
+
+### SetSortedByNil
+
+`func (o *CertificateSearchQuery) SetSortedByNil(b bool)`
+
+ SetSortedByNil sets the value for SortedBy to be an explicit nil
+
+### UnsetSortedBy
+`func (o *CertificateSearchQuery) UnsetSortedBy()`
+
+UnsetSortedBy ensures that no value is present for SortedBy, not even an explicit nil
 ### GetWithCount
 
 `func (o *CertificateSearchQuery) GetWithCount() bool`

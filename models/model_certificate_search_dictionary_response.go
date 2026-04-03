@@ -3,7 +3,7 @@
 
    ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
 
-   API version: 2.8.0
+   API version: 2.10.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -22,20 +22,20 @@ var _ utils.MappedNullable = &CertificateSearchDictionaryResponse{}
 
 // CertificateSearchDictionaryResponse struct for CertificateSearchDictionaryResponse
 type CertificateSearchDictionaryResponse struct {
-	// The list of profiles the principal is authorized to search on
-	Profiles []CertificateProfileSearchDictionaryLocalizedEntry `json:"profiles,omitempty"`
 	// The list of discovery campaign the principal is authorized to search on
 	Campaigns []string `json:"campaigns,omitempty"`
-	// The list of available teams on this Horizon instance
-	Teams []TeamSearchDictionaryLocalizedEntry `json:"teams,omitempty"`
+	// The list of available grading policies on Horizon
+	GradingPolicies []string `json:"gradingPolicies,omitempty"`
 	// The list of labels the principal is authorized to search on
 	Labels []CertificateLabelSearchDictionaryLocalizedEntry `json:"labels,omitempty"`
 	// The list of available metadata in Horizon
 	Metadata []string `json:"metadata"`
 	// The list of Horizon modules available on this instance
 	Modules []string `json:"modules,omitempty"`
-	// The list of available grading policies on Horizon
-	GradingPolicies      []string `json:"gradingPolicies,omitempty"`
+	// The list of profiles the principal is authorized to search on
+	Profiles []CertificateProfileSearchDictionaryLocalizedEntry `json:"profiles,omitempty"`
+	// The list of available teams on this Horizon instance
+	Teams                []TeamSearchDictionaryLocalizedEntry `json:"teams,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -57,39 +57,6 @@ func NewCertificateSearchDictionaryResponse(metadata []string) *CertificateSearc
 func NewCertificateSearchDictionaryResponseWithDefaults() *CertificateSearchDictionaryResponse {
 	this := CertificateSearchDictionaryResponse{}
 	return &this
-}
-
-// GetProfiles returns the Profiles field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateSearchDictionaryResponse) GetProfiles() []CertificateProfileSearchDictionaryLocalizedEntry {
-	if o == nil {
-		var ret []CertificateProfileSearchDictionaryLocalizedEntry
-		return ret
-	}
-	return o.Profiles
-}
-
-// GetProfilesOk returns a tuple with the Profiles field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateSearchDictionaryResponse) GetProfilesOk() ([]CertificateProfileSearchDictionaryLocalizedEntry, bool) {
-	if o == nil || utils.IsNil(o.Profiles) {
-		return nil, false
-	}
-	return o.Profiles, true
-}
-
-// HasProfiles returns a boolean if a field has been set.
-func (o *CertificateSearchDictionaryResponse) HasProfiles() bool {
-	if o != nil && !utils.IsNil(o.Profiles) {
-		return true
-	}
-
-	return false
-}
-
-// SetProfiles gets a reference to the given []CertificateProfileSearchDictionaryLocalizedEntry and assigns it to the Profiles field.
-func (o *CertificateSearchDictionaryResponse) SetProfiles(v []CertificateProfileSearchDictionaryLocalizedEntry) {
-	o.Profiles = v
 }
 
 // GetCampaigns returns the Campaigns field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -125,37 +92,37 @@ func (o *CertificateSearchDictionaryResponse) SetCampaigns(v []string) {
 	o.Campaigns = v
 }
 
-// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateSearchDictionaryResponse) GetTeams() []TeamSearchDictionaryLocalizedEntry {
+// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateSearchDictionaryResponse) GetGradingPolicies() []string {
 	if o == nil {
-		var ret []TeamSearchDictionaryLocalizedEntry
+		var ret []string
 		return ret
 	}
-	return o.Teams
+	return o.GradingPolicies
 }
 
-// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
+// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateSearchDictionaryResponse) GetTeamsOk() ([]TeamSearchDictionaryLocalizedEntry, bool) {
-	if o == nil || utils.IsNil(o.Teams) {
+func (o *CertificateSearchDictionaryResponse) GetGradingPoliciesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.GradingPolicies) {
 		return nil, false
 	}
-	return o.Teams, true
+	return o.GradingPolicies, true
 }
 
-// HasTeams returns a boolean if a field has been set.
-func (o *CertificateSearchDictionaryResponse) HasTeams() bool {
-	if o != nil && !utils.IsNil(o.Teams) {
+// HasGradingPolicies returns a boolean if a field has been set.
+func (o *CertificateSearchDictionaryResponse) HasGradingPolicies() bool {
+	if o != nil && !utils.IsNil(o.GradingPolicies) {
 		return true
 	}
 
 	return false
 }
 
-// SetTeams gets a reference to the given []TeamSearchDictionaryLocalizedEntry and assigns it to the Teams field.
-func (o *CertificateSearchDictionaryResponse) SetTeams(v []TeamSearchDictionaryLocalizedEntry) {
-	o.Teams = v
+// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
+func (o *CertificateSearchDictionaryResponse) SetGradingPolicies(v []string) {
+	o.GradingPolicies = v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -248,37 +215,70 @@ func (o *CertificateSearchDictionaryResponse) SetModules(v []string) {
 	o.Modules = v
 }
 
-// GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateSearchDictionaryResponse) GetGradingPolicies() []string {
+// GetProfiles returns the Profiles field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateSearchDictionaryResponse) GetProfiles() []CertificateProfileSearchDictionaryLocalizedEntry {
 	if o == nil {
-		var ret []string
+		var ret []CertificateProfileSearchDictionaryLocalizedEntry
 		return ret
 	}
-	return o.GradingPolicies
+	return o.Profiles
 }
 
-// GetGradingPoliciesOk returns a tuple with the GradingPolicies field value if set, nil otherwise
+// GetProfilesOk returns a tuple with the Profiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateSearchDictionaryResponse) GetGradingPoliciesOk() ([]string, bool) {
-	if o == nil || utils.IsNil(o.GradingPolicies) {
+func (o *CertificateSearchDictionaryResponse) GetProfilesOk() ([]CertificateProfileSearchDictionaryLocalizedEntry, bool) {
+	if o == nil || utils.IsNil(o.Profiles) {
 		return nil, false
 	}
-	return o.GradingPolicies, true
+	return o.Profiles, true
 }
 
-// HasGradingPolicies returns a boolean if a field has been set.
-func (o *CertificateSearchDictionaryResponse) HasGradingPolicies() bool {
-	if o != nil && !utils.IsNil(o.GradingPolicies) {
+// HasProfiles returns a boolean if a field has been set.
+func (o *CertificateSearchDictionaryResponse) HasProfiles() bool {
+	if o != nil && !utils.IsNil(o.Profiles) {
 		return true
 	}
 
 	return false
 }
 
-// SetGradingPolicies gets a reference to the given []string and assigns it to the GradingPolicies field.
-func (o *CertificateSearchDictionaryResponse) SetGradingPolicies(v []string) {
-	o.GradingPolicies = v
+// SetProfiles gets a reference to the given []CertificateProfileSearchDictionaryLocalizedEntry and assigns it to the Profiles field.
+func (o *CertificateSearchDictionaryResponse) SetProfiles(v []CertificateProfileSearchDictionaryLocalizedEntry) {
+	o.Profiles = v
+}
+
+// GetTeams returns the Teams field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateSearchDictionaryResponse) GetTeams() []TeamSearchDictionaryLocalizedEntry {
+	if o == nil {
+		var ret []TeamSearchDictionaryLocalizedEntry
+		return ret
+	}
+	return o.Teams
+}
+
+// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateSearchDictionaryResponse) GetTeamsOk() ([]TeamSearchDictionaryLocalizedEntry, bool) {
+	if o == nil || utils.IsNil(o.Teams) {
+		return nil, false
+	}
+	return o.Teams, true
+}
+
+// HasTeams returns a boolean if a field has been set.
+func (o *CertificateSearchDictionaryResponse) HasTeams() bool {
+	if o != nil && !utils.IsNil(o.Teams) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeams gets a reference to the given []TeamSearchDictionaryLocalizedEntry and assigns it to the Teams field.
+func (o *CertificateSearchDictionaryResponse) SetTeams(v []TeamSearchDictionaryLocalizedEntry) {
+	o.Teams = v
 }
 
 func (o CertificateSearchDictionaryResponse) MarshalJSON() ([]byte, error) {
@@ -291,14 +291,11 @@ func (o CertificateSearchDictionaryResponse) MarshalJSON() ([]byte, error) {
 
 func (o CertificateSearchDictionaryResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Profiles != nil {
-		toSerialize["profiles"] = o.Profiles
-	}
 	if o.Campaigns != nil {
 		toSerialize["campaigns"] = o.Campaigns
 	}
-	if o.Teams != nil {
-		toSerialize["teams"] = o.Teams
+	if o.GradingPolicies != nil {
+		toSerialize["gradingPolicies"] = o.GradingPolicies
 	}
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
@@ -307,8 +304,11 @@ func (o CertificateSearchDictionaryResponse) ToMap() (map[string]interface{}, er
 	if o.Modules != nil {
 		toSerialize["modules"] = o.Modules
 	}
-	if o.GradingPolicies != nil {
-		toSerialize["gradingPolicies"] = o.GradingPolicies
+	if o.Profiles != nil {
+		toSerialize["profiles"] = o.Profiles
+	}
+	if o.Teams != nil {
+		toSerialize["teams"] = o.Teams
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -353,13 +353,13 @@ func (o *CertificateSearchDictionaryResponse) UnmarshalJSON(data []byte) (err er
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "profiles")
 		delete(additionalProperties, "campaigns")
-		delete(additionalProperties, "teams")
+		delete(additionalProperties, "gradingPolicies")
 		delete(additionalProperties, "labels")
 		delete(additionalProperties, "metadata")
 		delete(additionalProperties, "modules")
-		delete(additionalProperties, "gradingPolicies")
+		delete(additionalProperties, "profiles")
+		delete(additionalProperties, "teams")
 		o.AdditionalProperties = additionalProperties
 	}
 

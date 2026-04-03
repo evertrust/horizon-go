@@ -3,7 +3,7 @@
 
    ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
 
-   API version: 2.8.0
+   API version: 2.10.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -23,14 +23,14 @@ var _ utils.MappedNullable = &CachedCRLInfosResponse{}
 // CachedCRLInfosResponse struct for CachedCRLInfosResponse
 type CachedCRLInfosResponse struct {
 	Ca                   string                `json:"ca"`
-	Number               utils.NullableFloat32 `json:"number,omitempty"`
+	Error                utils.NullableString  `json:"error,omitempty"`
 	IssuerDn             utils.NullableString  `json:"issuerDn,omitempty"`
-	ThisUpdate           utils.NullableInt64   `json:"thisUpdate,omitempty"`
-	NextUpdate           utils.NullableInt64   `json:"nextUpdate,omitempty"`
 	LastRefresh          utils.NullableInt64   `json:"lastRefresh,omitempty"`
 	NextRefresh          utils.NullableInt64   `json:"nextRefresh,omitempty"`
+	NextUpdate           utils.NullableInt64   `json:"nextUpdate,omitempty"`
+	Number               utils.NullableFloat32 `json:"number,omitempty"`
 	Size                 int64                 `json:"size"`
-	Error                utils.NullableString  `json:"error,omitempty"`
+	ThisUpdate           utils.NullableInt64   `json:"thisUpdate,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -79,47 +79,47 @@ func (o *CachedCRLInfosResponse) SetCa(v string) {
 	o.Ca = v
 }
 
-// GetNumber returns the Number field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CachedCRLInfosResponse) GetNumber() float32 {
-	if o == nil || utils.IsNil(o.Number.Get()) {
-		var ret float32
+// GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CachedCRLInfosResponse) GetError() string {
+	if o == nil || utils.IsNil(o.Error.Get()) {
+		var ret string
 		return ret
 	}
-	return *o.Number.Get()
+	return *o.Error.Get()
 }
 
-// GetNumberOk returns a tuple with the Number field value if set, nil otherwise
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CachedCRLInfosResponse) GetNumberOk() (*float32, bool) {
+func (o *CachedCRLInfosResponse) GetErrorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Number.Get(), o.Number.IsSet()
+	return o.Error.Get(), o.Error.IsSet()
 }
 
-// HasNumber returns a boolean if a field has been set.
-func (o *CachedCRLInfosResponse) HasNumber() bool {
-	if o != nil && o.Number.IsSet() {
+// HasError returns a boolean if a field has been set.
+func (o *CachedCRLInfosResponse) HasError() bool {
+	if o != nil && o.Error.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetNumber gets a reference to the given NullableFloat32 and assigns it to the Number field.
-func (o *CachedCRLInfosResponse) SetNumber(v float32) {
-	o.Number.Set(&v)
+// SetError gets a reference to the given NullableString and assigns it to the Error field.
+func (o *CachedCRLInfosResponse) SetError(v string) {
+	o.Error.Set(&v)
 }
 
-// SetNumberNil sets the value for Number to be an explicit nil
-func (o *CachedCRLInfosResponse) SetNumberNil() {
-	o.Number.Set(nil)
+// SetErrorNil sets the value for Error to be an explicit nil
+func (o *CachedCRLInfosResponse) SetErrorNil() {
+	o.Error.Set(nil)
 }
 
-// UnsetNumber ensures that no value is present for Number, not even an explicit nil
-func (o *CachedCRLInfosResponse) UnsetNumber() {
-	o.Number.Unset()
+// UnsetError ensures that no value is present for Error, not even an explicit nil
+func (o *CachedCRLInfosResponse) UnsetError() {
+	o.Error.Unset()
 }
 
 // GetIssuerDn returns the IssuerDn field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -163,92 +163,6 @@ func (o *CachedCRLInfosResponse) SetIssuerDnNil() {
 // UnsetIssuerDn ensures that no value is present for IssuerDn, not even an explicit nil
 func (o *CachedCRLInfosResponse) UnsetIssuerDn() {
 	o.IssuerDn.Unset()
-}
-
-// GetThisUpdate returns the ThisUpdate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CachedCRLInfosResponse) GetThisUpdate() int64 {
-	if o == nil || utils.IsNil(o.ThisUpdate.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.ThisUpdate.Get()
-}
-
-// GetThisUpdateOk returns a tuple with the ThisUpdate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CachedCRLInfosResponse) GetThisUpdateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ThisUpdate.Get(), o.ThisUpdate.IsSet()
-}
-
-// HasThisUpdate returns a boolean if a field has been set.
-func (o *CachedCRLInfosResponse) HasThisUpdate() bool {
-	if o != nil && o.ThisUpdate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetThisUpdate gets a reference to the given NullableInt64 and assigns it to the ThisUpdate field.
-func (o *CachedCRLInfosResponse) SetThisUpdate(v int64) {
-	o.ThisUpdate.Set(&v)
-}
-
-// SetThisUpdateNil sets the value for ThisUpdate to be an explicit nil
-func (o *CachedCRLInfosResponse) SetThisUpdateNil() {
-	o.ThisUpdate.Set(nil)
-}
-
-// UnsetThisUpdate ensures that no value is present for ThisUpdate, not even an explicit nil
-func (o *CachedCRLInfosResponse) UnsetThisUpdate() {
-	o.ThisUpdate.Unset()
-}
-
-// GetNextUpdate returns the NextUpdate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CachedCRLInfosResponse) GetNextUpdate() int64 {
-	if o == nil || utils.IsNil(o.NextUpdate.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.NextUpdate.Get()
-}
-
-// GetNextUpdateOk returns a tuple with the NextUpdate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CachedCRLInfosResponse) GetNextUpdateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.NextUpdate.Get(), o.NextUpdate.IsSet()
-}
-
-// HasNextUpdate returns a boolean if a field has been set.
-func (o *CachedCRLInfosResponse) HasNextUpdate() bool {
-	if o != nil && o.NextUpdate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetNextUpdate gets a reference to the given NullableInt64 and assigns it to the NextUpdate field.
-func (o *CachedCRLInfosResponse) SetNextUpdate(v int64) {
-	o.NextUpdate.Set(&v)
-}
-
-// SetNextUpdateNil sets the value for NextUpdate to be an explicit nil
-func (o *CachedCRLInfosResponse) SetNextUpdateNil() {
-	o.NextUpdate.Set(nil)
-}
-
-// UnsetNextUpdate ensures that no value is present for NextUpdate, not even an explicit nil
-func (o *CachedCRLInfosResponse) UnsetNextUpdate() {
-	o.NextUpdate.Unset()
 }
 
 // GetLastRefresh returns the LastRefresh field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -337,6 +251,92 @@ func (o *CachedCRLInfosResponse) UnsetNextRefresh() {
 	o.NextRefresh.Unset()
 }
 
+// GetNextUpdate returns the NextUpdate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CachedCRLInfosResponse) GetNextUpdate() int64 {
+	if o == nil || utils.IsNil(o.NextUpdate.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.NextUpdate.Get()
+}
+
+// GetNextUpdateOk returns a tuple with the NextUpdate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CachedCRLInfosResponse) GetNextUpdateOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NextUpdate.Get(), o.NextUpdate.IsSet()
+}
+
+// HasNextUpdate returns a boolean if a field has been set.
+func (o *CachedCRLInfosResponse) HasNextUpdate() bool {
+	if o != nil && o.NextUpdate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNextUpdate gets a reference to the given NullableInt64 and assigns it to the NextUpdate field.
+func (o *CachedCRLInfosResponse) SetNextUpdate(v int64) {
+	o.NextUpdate.Set(&v)
+}
+
+// SetNextUpdateNil sets the value for NextUpdate to be an explicit nil
+func (o *CachedCRLInfosResponse) SetNextUpdateNil() {
+	o.NextUpdate.Set(nil)
+}
+
+// UnsetNextUpdate ensures that no value is present for NextUpdate, not even an explicit nil
+func (o *CachedCRLInfosResponse) UnsetNextUpdate() {
+	o.NextUpdate.Unset()
+}
+
+// GetNumber returns the Number field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CachedCRLInfosResponse) GetNumber() float32 {
+	if o == nil || utils.IsNil(o.Number.Get()) {
+		var ret float32
+		return ret
+	}
+	return *o.Number.Get()
+}
+
+// GetNumberOk returns a tuple with the Number field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CachedCRLInfosResponse) GetNumberOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Number.Get(), o.Number.IsSet()
+}
+
+// HasNumber returns a boolean if a field has been set.
+func (o *CachedCRLInfosResponse) HasNumber() bool {
+	if o != nil && o.Number.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNumber gets a reference to the given NullableFloat32 and assigns it to the Number field.
+func (o *CachedCRLInfosResponse) SetNumber(v float32) {
+	o.Number.Set(&v)
+}
+
+// SetNumberNil sets the value for Number to be an explicit nil
+func (o *CachedCRLInfosResponse) SetNumberNil() {
+	o.Number.Set(nil)
+}
+
+// UnsetNumber ensures that no value is present for Number, not even an explicit nil
+func (o *CachedCRLInfosResponse) UnsetNumber() {
+	o.Number.Unset()
+}
+
 // GetSize returns the Size field value
 func (o *CachedCRLInfosResponse) GetSize() int64 {
 	if o == nil {
@@ -361,47 +361,47 @@ func (o *CachedCRLInfosResponse) SetSize(v int64) {
 	o.Size = v
 }
 
-// GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CachedCRLInfosResponse) GetError() string {
-	if o == nil || utils.IsNil(o.Error.Get()) {
-		var ret string
+// GetThisUpdate returns the ThisUpdate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CachedCRLInfosResponse) GetThisUpdate() int64 {
+	if o == nil || utils.IsNil(o.ThisUpdate.Get()) {
+		var ret int64
 		return ret
 	}
-	return *o.Error.Get()
+	return *o.ThisUpdate.Get()
 }
 
-// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// GetThisUpdateOk returns a tuple with the ThisUpdate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CachedCRLInfosResponse) GetErrorOk() (*string, bool) {
+func (o *CachedCRLInfosResponse) GetThisUpdateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Error.Get(), o.Error.IsSet()
+	return o.ThisUpdate.Get(), o.ThisUpdate.IsSet()
 }
 
-// HasError returns a boolean if a field has been set.
-func (o *CachedCRLInfosResponse) HasError() bool {
-	if o != nil && o.Error.IsSet() {
+// HasThisUpdate returns a boolean if a field has been set.
+func (o *CachedCRLInfosResponse) HasThisUpdate() bool {
+	if o != nil && o.ThisUpdate.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetError gets a reference to the given NullableString and assigns it to the Error field.
-func (o *CachedCRLInfosResponse) SetError(v string) {
-	o.Error.Set(&v)
+// SetThisUpdate gets a reference to the given NullableInt64 and assigns it to the ThisUpdate field.
+func (o *CachedCRLInfosResponse) SetThisUpdate(v int64) {
+	o.ThisUpdate.Set(&v)
 }
 
-// SetErrorNil sets the value for Error to be an explicit nil
-func (o *CachedCRLInfosResponse) SetErrorNil() {
-	o.Error.Set(nil)
+// SetThisUpdateNil sets the value for ThisUpdate to be an explicit nil
+func (o *CachedCRLInfosResponse) SetThisUpdateNil() {
+	o.ThisUpdate.Set(nil)
 }
 
-// UnsetError ensures that no value is present for Error, not even an explicit nil
-func (o *CachedCRLInfosResponse) UnsetError() {
-	o.Error.Unset()
+// UnsetThisUpdate ensures that no value is present for ThisUpdate, not even an explicit nil
+func (o *CachedCRLInfosResponse) UnsetThisUpdate() {
+	o.ThisUpdate.Unset()
 }
 
 func (o CachedCRLInfosResponse) MarshalJSON() ([]byte, error) {
@@ -415,17 +415,11 @@ func (o CachedCRLInfosResponse) MarshalJSON() ([]byte, error) {
 func (o CachedCRLInfosResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["ca"] = o.Ca
-	if o.Number.IsSet() {
-		toSerialize["number"] = o.Number.Get()
+	if o.Error.IsSet() {
+		toSerialize["error"] = o.Error.Get()
 	}
 	if o.IssuerDn.IsSet() {
 		toSerialize["issuerDn"] = o.IssuerDn.Get()
-	}
-	if o.ThisUpdate.IsSet() {
-		toSerialize["thisUpdate"] = o.ThisUpdate.Get()
-	}
-	if o.NextUpdate.IsSet() {
-		toSerialize["nextUpdate"] = o.NextUpdate.Get()
 	}
 	if o.LastRefresh.IsSet() {
 		toSerialize["lastRefresh"] = o.LastRefresh.Get()
@@ -433,9 +427,15 @@ func (o CachedCRLInfosResponse) ToMap() (map[string]interface{}, error) {
 	if o.NextRefresh.IsSet() {
 		toSerialize["nextRefresh"] = o.NextRefresh.Get()
 	}
+	if o.NextUpdate.IsSet() {
+		toSerialize["nextUpdate"] = o.NextUpdate.Get()
+	}
+	if o.Number.IsSet() {
+		toSerialize["number"] = o.Number.Get()
+	}
 	toSerialize["size"] = o.Size
-	if o.Error.IsSet() {
-		toSerialize["error"] = o.Error.Get()
+	if o.ThisUpdate.IsSet() {
+		toSerialize["thisUpdate"] = o.ThisUpdate.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -482,14 +482,14 @@ func (o *CachedCRLInfosResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "ca")
-		delete(additionalProperties, "number")
+		delete(additionalProperties, "error")
 		delete(additionalProperties, "issuerDn")
-		delete(additionalProperties, "thisUpdate")
-		delete(additionalProperties, "nextUpdate")
 		delete(additionalProperties, "lastRefresh")
 		delete(additionalProperties, "nextRefresh")
+		delete(additionalProperties, "nextUpdate")
+		delete(additionalProperties, "number")
 		delete(additionalProperties, "size")
-		delete(additionalProperties, "error")
+		delete(additionalProperties, "thisUpdate")
 		o.AdditionalProperties = additionalProperties
 	}
 

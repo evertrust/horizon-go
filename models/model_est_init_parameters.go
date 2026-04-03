@@ -3,7 +3,7 @@
 
    ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
 
-   API version: 2.8.0
+   API version: 2.10.0
 */
 
 // Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
@@ -22,18 +22,18 @@ var _ utils.MappedNullable = &EstInitParameters{}
 
 // EstInitParameters struct for EstInitParameters
 type EstInitParameters struct {
+	// The authorization mode for EST.
+	AuthorizationMode *string `json:"authorizationMode,omitempty"`
+	// Indicates whether CSR info is ignored for EST.
+	CsrInfoIgnored *bool `json:"csrInfoIgnored,omitempty"`
+	// The enrollment mode for EST.
+	EnrollmentMode *string `json:"enrollmentMode,omitempty"`
+	// The key type used for EST.
+	KeyType *string `json:"keyType,omitempty"`
 	// The module of the initialization parameters.
 	Module string `json:"module"`
 	// The profile used for EST.
-	Profile string `json:"profile"`
-	// The key type used for EST.
-	KeyType *string `json:"keyType,omitempty"`
-	// The authorization mode for EST.
-	AuthorizationMode *string `json:"authorizationMode,omitempty"`
-	// The enrollment mode for EST.
-	EnrollmentMode *string `json:"enrollmentMode,omitempty"`
-	// Indicates whether CSR info is ignored for EST.
-	CsrInfoIgnored       *bool `json:"csrInfoIgnored,omitempty"`
+	Profile              string `json:"profile"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -56,6 +56,134 @@ func NewEstInitParameters(module string, profile string) *EstInitParameters {
 func NewEstInitParametersWithDefaults() *EstInitParameters {
 	this := EstInitParameters{}
 	return &this
+}
+
+// GetAuthorizationMode returns the AuthorizationMode field value if set, zero value otherwise.
+func (o *EstInitParameters) GetAuthorizationMode() string {
+	if o == nil || utils.IsNil(o.AuthorizationMode) {
+		var ret string
+		return ret
+	}
+	return *o.AuthorizationMode
+}
+
+// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EstInitParameters) GetAuthorizationModeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.AuthorizationMode) {
+		return nil, false
+	}
+	return o.AuthorizationMode, true
+}
+
+// HasAuthorizationMode returns a boolean if a field has been set.
+func (o *EstInitParameters) HasAuthorizationMode() bool {
+	if o != nil && !utils.IsNil(o.AuthorizationMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthorizationMode gets a reference to the given string and assigns it to the AuthorizationMode field.
+func (o *EstInitParameters) SetAuthorizationMode(v string) {
+	o.AuthorizationMode = &v
+}
+
+// GetCsrInfoIgnored returns the CsrInfoIgnored field value if set, zero value otherwise.
+func (o *EstInitParameters) GetCsrInfoIgnored() bool {
+	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
+		var ret bool
+		return ret
+	}
+	return *o.CsrInfoIgnored
+}
+
+// GetCsrInfoIgnoredOk returns a tuple with the CsrInfoIgnored field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EstInitParameters) GetCsrInfoIgnoredOk() (*bool, bool) {
+	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
+		return nil, false
+	}
+	return o.CsrInfoIgnored, true
+}
+
+// HasCsrInfoIgnored returns a boolean if a field has been set.
+func (o *EstInitParameters) HasCsrInfoIgnored() bool {
+	if o != nil && !utils.IsNil(o.CsrInfoIgnored) {
+		return true
+	}
+
+	return false
+}
+
+// SetCsrInfoIgnored gets a reference to the given bool and assigns it to the CsrInfoIgnored field.
+func (o *EstInitParameters) SetCsrInfoIgnored(v bool) {
+	o.CsrInfoIgnored = &v
+}
+
+// GetEnrollmentMode returns the EnrollmentMode field value if set, zero value otherwise.
+func (o *EstInitParameters) GetEnrollmentMode() string {
+	if o == nil || utils.IsNil(o.EnrollmentMode) {
+		var ret string
+		return ret
+	}
+	return *o.EnrollmentMode
+}
+
+// GetEnrollmentModeOk returns a tuple with the EnrollmentMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EstInitParameters) GetEnrollmentModeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.EnrollmentMode) {
+		return nil, false
+	}
+	return o.EnrollmentMode, true
+}
+
+// HasEnrollmentMode returns a boolean if a field has been set.
+func (o *EstInitParameters) HasEnrollmentMode() bool {
+	if o != nil && !utils.IsNil(o.EnrollmentMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnrollmentMode gets a reference to the given string and assigns it to the EnrollmentMode field.
+func (o *EstInitParameters) SetEnrollmentMode(v string) {
+	o.EnrollmentMode = &v
+}
+
+// GetKeyType returns the KeyType field value if set, zero value otherwise.
+func (o *EstInitParameters) GetKeyType() string {
+	if o == nil || utils.IsNil(o.KeyType) {
+		var ret string
+		return ret
+	}
+	return *o.KeyType
+}
+
+// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EstInitParameters) GetKeyTypeOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.KeyType) {
+		return nil, false
+	}
+	return o.KeyType, true
+}
+
+// HasKeyType returns a boolean if a field has been set.
+func (o *EstInitParameters) HasKeyType() bool {
+	if o != nil && !utils.IsNil(o.KeyType) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
+func (o *EstInitParameters) SetKeyType(v string) {
+	o.KeyType = &v
 }
 
 // GetModule returns the Module field value
@@ -106,134 +234,6 @@ func (o *EstInitParameters) SetProfile(v string) {
 	o.Profile = v
 }
 
-// GetKeyType returns the KeyType field value if set, zero value otherwise.
-func (o *EstInitParameters) GetKeyType() string {
-	if o == nil || utils.IsNil(o.KeyType) {
-		var ret string
-		return ret
-	}
-	return *o.KeyType
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EstInitParameters) GetKeyTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.KeyType) {
-		return nil, false
-	}
-	return o.KeyType, true
-}
-
-// HasKeyType returns a boolean if a field has been set.
-func (o *EstInitParameters) HasKeyType() bool {
-	if o != nil && !utils.IsNil(o.KeyType) {
-		return true
-	}
-
-	return false
-}
-
-// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
-func (o *EstInitParameters) SetKeyType(v string) {
-	o.KeyType = &v
-}
-
-// GetAuthorizationMode returns the AuthorizationMode field value if set, zero value otherwise.
-func (o *EstInitParameters) GetAuthorizationMode() string {
-	if o == nil || utils.IsNil(o.AuthorizationMode) {
-		var ret string
-		return ret
-	}
-	return *o.AuthorizationMode
-}
-
-// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EstInitParameters) GetAuthorizationModeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.AuthorizationMode) {
-		return nil, false
-	}
-	return o.AuthorizationMode, true
-}
-
-// HasAuthorizationMode returns a boolean if a field has been set.
-func (o *EstInitParameters) HasAuthorizationMode() bool {
-	if o != nil && !utils.IsNil(o.AuthorizationMode) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthorizationMode gets a reference to the given string and assigns it to the AuthorizationMode field.
-func (o *EstInitParameters) SetAuthorizationMode(v string) {
-	o.AuthorizationMode = &v
-}
-
-// GetEnrollmentMode returns the EnrollmentMode field value if set, zero value otherwise.
-func (o *EstInitParameters) GetEnrollmentMode() string {
-	if o == nil || utils.IsNil(o.EnrollmentMode) {
-		var ret string
-		return ret
-	}
-	return *o.EnrollmentMode
-}
-
-// GetEnrollmentModeOk returns a tuple with the EnrollmentMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EstInitParameters) GetEnrollmentModeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.EnrollmentMode) {
-		return nil, false
-	}
-	return o.EnrollmentMode, true
-}
-
-// HasEnrollmentMode returns a boolean if a field has been set.
-func (o *EstInitParameters) HasEnrollmentMode() bool {
-	if o != nil && !utils.IsNil(o.EnrollmentMode) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnrollmentMode gets a reference to the given string and assigns it to the EnrollmentMode field.
-func (o *EstInitParameters) SetEnrollmentMode(v string) {
-	o.EnrollmentMode = &v
-}
-
-// GetCsrInfoIgnored returns the CsrInfoIgnored field value if set, zero value otherwise.
-func (o *EstInitParameters) GetCsrInfoIgnored() bool {
-	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
-		var ret bool
-		return ret
-	}
-	return *o.CsrInfoIgnored
-}
-
-// GetCsrInfoIgnoredOk returns a tuple with the CsrInfoIgnored field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EstInitParameters) GetCsrInfoIgnoredOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.CsrInfoIgnored) {
-		return nil, false
-	}
-	return o.CsrInfoIgnored, true
-}
-
-// HasCsrInfoIgnored returns a boolean if a field has been set.
-func (o *EstInitParameters) HasCsrInfoIgnored() bool {
-	if o != nil && !utils.IsNil(o.CsrInfoIgnored) {
-		return true
-	}
-
-	return false
-}
-
-// SetCsrInfoIgnored gets a reference to the given bool and assigns it to the CsrInfoIgnored field.
-func (o *EstInitParameters) SetCsrInfoIgnored(v bool) {
-	o.CsrInfoIgnored = &v
-}
-
 func (o EstInitParameters) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -244,20 +244,20 @@ func (o EstInitParameters) MarshalJSON() ([]byte, error) {
 
 func (o EstInitParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["module"] = o.Module
-	toSerialize["profile"] = o.Profile
-	if !utils.IsNil(o.KeyType) {
-		toSerialize["keyType"] = o.KeyType
-	}
 	if !utils.IsNil(o.AuthorizationMode) {
 		toSerialize["authorizationMode"] = o.AuthorizationMode
-	}
-	if !utils.IsNil(o.EnrollmentMode) {
-		toSerialize["enrollmentMode"] = o.EnrollmentMode
 	}
 	if !utils.IsNil(o.CsrInfoIgnored) {
 		toSerialize["csrInfoIgnored"] = o.CsrInfoIgnored
 	}
+	if !utils.IsNil(o.EnrollmentMode) {
+		toSerialize["enrollmentMode"] = o.EnrollmentMode
+	}
+	if !utils.IsNil(o.KeyType) {
+		toSerialize["keyType"] = o.KeyType
+	}
+	toSerialize["module"] = o.Module
+	toSerialize["profile"] = o.Profile
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -302,12 +302,12 @@ func (o *EstInitParameters) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authorizationMode")
+		delete(additionalProperties, "csrInfoIgnored")
+		delete(additionalProperties, "enrollmentMode")
+		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "profile")
-		delete(additionalProperties, "keyType")
-		delete(additionalProperties, "authorizationMode")
-		delete(additionalProperties, "enrollmentMode")
-		delete(additionalProperties, "csrInfoIgnored")
 		o.AdditionalProperties = additionalProperties
 	}
 

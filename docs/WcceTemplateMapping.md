@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Template** | **string** |  | 
-**Profile** | **string** |  | 
 **EnrollmentMode** | **string** |  | 
 **EoboTrustedCas** | Pointer to **[]string** |  | [optional] 
+**Profile** | **string** |  | 
+**Template** | **string** |  | 
 **TemplateVersion** | Pointer to **string** | The version of the Microsoft template. Available from &#x60;2.8.1&#x60; | [optional] [default to "v1"]
 
 ## Methods
 
 ### NewWcceTemplateMapping
 
-`func NewWcceTemplateMapping(template string, profile string, enrollmentMode string, ) *WcceTemplateMapping`
+`func NewWcceTemplateMapping(enrollmentMode string, profile string, template string, ) *WcceTemplateMapping`
 
 NewWcceTemplateMapping instantiates a new WcceTemplateMapping object
 This constructor will assign default values to properties that have it defined,
@@ -28,46 +28,6 @@ will change when the set of required properties is changed
 NewWcceTemplateMappingWithDefaults instantiates a new WcceTemplateMapping object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTemplate
-
-`func (o *WcceTemplateMapping) GetTemplate() string`
-
-GetTemplate returns the Template field if non-nil, zero value otherwise.
-
-### GetTemplateOk
-
-`func (o *WcceTemplateMapping) GetTemplateOk() (*string, bool)`
-
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplate
-
-`func (o *WcceTemplateMapping) SetTemplate(v string)`
-
-SetTemplate sets Template field to given value.
-
-
-### GetProfile
-
-`func (o *WcceTemplateMapping) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *WcceTemplateMapping) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *WcceTemplateMapping) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
-
 
 ### GetEnrollmentMode
 
@@ -124,6 +84,46 @@ HasEoboTrustedCas returns a boolean if a field has been set.
 `func (o *WcceTemplateMapping) UnsetEoboTrustedCas()`
 
 UnsetEoboTrustedCas ensures that no value is present for EoboTrustedCas, not even an explicit nil
+### GetProfile
+
+`func (o *WcceTemplateMapping) GetProfile() string`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *WcceTemplateMapping) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *WcceTemplateMapping) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
+
+
+### GetTemplate
+
+`func (o *WcceTemplateMapping) GetTemplate() string`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *WcceTemplateMapping) GetTemplateOk() (*string, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *WcceTemplateMapping) SetTemplate(v string)`
+
+SetTemplate sets Template field to given value.
+
+
 ### GetTemplateVersion
 
 `func (o *WcceTemplateMapping) GetTemplateVersion() string`

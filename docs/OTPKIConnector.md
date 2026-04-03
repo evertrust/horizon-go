@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Type** | **string** |  | 
-**EndPoint** | **string** |  | 
-**Profile** | **string** |  | 
+**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
 **EmailMap** | Pointer to **NullableString** |  | [optional] 
+**EndPoint** | **string** |  | 
+**Name** | **string** |  | 
+**Profile** | **string** |  | 
+**Proxy** | Pointer to **NullableString** |  | [optional] 
+**Queue** | Pointer to **NullableString** |  | [optional] 
 **SanDnsMap** | Pointer to **NullableString** |  | [optional] 
 **SanEmailMap** | Pointer to **NullableString** |  | [optional] 
+**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Type** | **string** |  | 
 **UidMap** | Pointer to **NullableString** |  | [optional] 
 **Zone** | Pointer to **NullableString** |  | [optional] 
 **ZoneLabel** | Pointer to **NullableString** | The name of the label where the zone value is stored on an enrolled certificate | [optional] 
-**AuthenticationCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
-**Proxy** | Pointer to **NullableString** |  | [optional] 
-**Queue** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewOTPKIConnector
 
-`func NewOTPKIConnector(name string, type_ string, endPoint string, profile string, authenticationCredentials string, ) *OTPKIConnector`
+`func NewOTPKIConnector(authenticationCredentials string, endPoint string, name string, profile string, type_ string, ) *OTPKIConnector`
 
 NewOTPKIConnector instantiates a new OTPKIConnector object
 This constructor will assign default values to properties that have it defined,
@@ -38,84 +38,24 @@ NewOTPKIConnectorWithDefaults instantiates a new OTPKIConnector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetName
+### GetAuthenticationCredentials
 
-`func (o *OTPKIConnector) GetName() string`
+`func (o *OTPKIConnector) GetAuthenticationCredentials() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAuthenticationCredentialsOk
 
-`func (o *OTPKIConnector) GetNameOk() (*string, bool)`
+`func (o *OTPKIConnector) GetAuthenticationCredentialsOk() (*string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetName
+### SetAuthenticationCredentials
 
-`func (o *OTPKIConnector) SetName(v string)`
+`func (o *OTPKIConnector) SetAuthenticationCredentials(v string)`
 
-SetName sets Name field to given value.
-
-
-### GetType
-
-`func (o *OTPKIConnector) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *OTPKIConnector) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *OTPKIConnector) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
-### GetEndPoint
-
-`func (o *OTPKIConnector) GetEndPoint() string`
-
-GetEndPoint returns the EndPoint field if non-nil, zero value otherwise.
-
-### GetEndPointOk
-
-`func (o *OTPKIConnector) GetEndPointOk() (*string, bool)`
-
-GetEndPointOk returns a tuple with the EndPoint field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEndPoint
-
-`func (o *OTPKIConnector) SetEndPoint(v string)`
-
-SetEndPoint sets EndPoint field to given value.
-
-
-### GetProfile
-
-`func (o *OTPKIConnector) GetProfile() string`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *OTPKIConnector) GetProfileOk() (*string, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProfile
-
-`func (o *OTPKIConnector) SetProfile(v string)`
-
-SetProfile sets Profile field to given value.
+SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
 
 
 ### GetEmailMap
@@ -153,6 +93,136 @@ HasEmailMap returns a boolean if a field has been set.
 `func (o *OTPKIConnector) UnsetEmailMap()`
 
 UnsetEmailMap ensures that no value is present for EmailMap, not even an explicit nil
+### GetEndPoint
+
+`func (o *OTPKIConnector) GetEndPoint() string`
+
+GetEndPoint returns the EndPoint field if non-nil, zero value otherwise.
+
+### GetEndPointOk
+
+`func (o *OTPKIConnector) GetEndPointOk() (*string, bool)`
+
+GetEndPointOk returns a tuple with the EndPoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndPoint
+
+`func (o *OTPKIConnector) SetEndPoint(v string)`
+
+SetEndPoint sets EndPoint field to given value.
+
+
+### GetName
+
+`func (o *OTPKIConnector) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *OTPKIConnector) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *OTPKIConnector) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetProfile
+
+`func (o *OTPKIConnector) GetProfile() string`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *OTPKIConnector) GetProfileOk() (*string, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfile
+
+`func (o *OTPKIConnector) SetProfile(v string)`
+
+SetProfile sets Profile field to given value.
+
+
+### GetProxy
+
+`func (o *OTPKIConnector) GetProxy() string`
+
+GetProxy returns the Proxy field if non-nil, zero value otherwise.
+
+### GetProxyOk
+
+`func (o *OTPKIConnector) GetProxyOk() (*string, bool)`
+
+GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxy
+
+`func (o *OTPKIConnector) SetProxy(v string)`
+
+SetProxy sets Proxy field to given value.
+
+### HasProxy
+
+`func (o *OTPKIConnector) HasProxy() bool`
+
+HasProxy returns a boolean if a field has been set.
+
+### SetProxyNil
+
+`func (o *OTPKIConnector) SetProxyNil(b bool)`
+
+ SetProxyNil sets the value for Proxy to be an explicit nil
+
+### UnsetProxy
+`func (o *OTPKIConnector) UnsetProxy()`
+
+UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+### GetQueue
+
+`func (o *OTPKIConnector) GetQueue() string`
+
+GetQueue returns the Queue field if non-nil, zero value otherwise.
+
+### GetQueueOk
+
+`func (o *OTPKIConnector) GetQueueOk() (*string, bool)`
+
+GetQueueOk returns a tuple with the Queue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQueue
+
+`func (o *OTPKIConnector) SetQueue(v string)`
+
+SetQueue sets Queue field to given value.
+
+### HasQueue
+
+`func (o *OTPKIConnector) HasQueue() bool`
+
+HasQueue returns a boolean if a field has been set.
+
+### SetQueueNil
+
+`func (o *OTPKIConnector) SetQueueNil(b bool)`
+
+ SetQueueNil sets the value for Queue to be an explicit nil
+
+### UnsetQueue
+`func (o *OTPKIConnector) UnsetQueue()`
+
+UnsetQueue ensures that no value is present for Queue, not even an explicit nil
 ### GetSanDnsMap
 
 `func (o *OTPKIConnector) GetSanDnsMap() string`
@@ -223,6 +293,61 @@ HasSanEmailMap returns a boolean if a field has been set.
 `func (o *OTPKIConnector) UnsetSanEmailMap()`
 
 UnsetSanEmailMap ensures that no value is present for SanEmailMap, not even an explicit nil
+### GetTimeout
+
+`func (o *OTPKIConnector) GetTimeout() string`
+
+GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+
+### GetTimeoutOk
+
+`func (o *OTPKIConnector) GetTimeoutOk() (*string, bool)`
+
+GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimeout
+
+`func (o *OTPKIConnector) SetTimeout(v string)`
+
+SetTimeout sets Timeout field to given value.
+
+### HasTimeout
+
+`func (o *OTPKIConnector) HasTimeout() bool`
+
+HasTimeout returns a boolean if a field has been set.
+
+### SetTimeoutNil
+
+`func (o *OTPKIConnector) SetTimeoutNil(b bool)`
+
+ SetTimeoutNil sets the value for Timeout to be an explicit nil
+
+### UnsetTimeout
+`func (o *OTPKIConnector) UnsetTimeout()`
+
+UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+### GetType
+
+`func (o *OTPKIConnector) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *OTPKIConnector) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *OTPKIConnector) SetType(v string)`
+
+SetType sets Type field to given value.
+
+
 ### GetUidMap
 
 `func (o *OTPKIConnector) GetUidMap() string`
@@ -328,131 +453,6 @@ HasZoneLabel returns a boolean if a field has been set.
 `func (o *OTPKIConnector) UnsetZoneLabel()`
 
 UnsetZoneLabel ensures that no value is present for ZoneLabel, not even an explicit nil
-### GetAuthenticationCredentials
-
-`func (o *OTPKIConnector) GetAuthenticationCredentials() string`
-
-GetAuthenticationCredentials returns the AuthenticationCredentials field if non-nil, zero value otherwise.
-
-### GetAuthenticationCredentialsOk
-
-`func (o *OTPKIConnector) GetAuthenticationCredentialsOk() (*string, bool)`
-
-GetAuthenticationCredentialsOk returns a tuple with the AuthenticationCredentials field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticationCredentials
-
-`func (o *OTPKIConnector) SetAuthenticationCredentials(v string)`
-
-SetAuthenticationCredentials sets AuthenticationCredentials field to given value.
-
-
-### GetTimeout
-
-`func (o *OTPKIConnector) GetTimeout() string`
-
-GetTimeout returns the Timeout field if non-nil, zero value otherwise.
-
-### GetTimeoutOk
-
-`func (o *OTPKIConnector) GetTimeoutOk() (*string, bool)`
-
-GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimeout
-
-`func (o *OTPKIConnector) SetTimeout(v string)`
-
-SetTimeout sets Timeout field to given value.
-
-### HasTimeout
-
-`func (o *OTPKIConnector) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *OTPKIConnector) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *OTPKIConnector) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-### GetProxy
-
-`func (o *OTPKIConnector) GetProxy() string`
-
-GetProxy returns the Proxy field if non-nil, zero value otherwise.
-
-### GetProxyOk
-
-`func (o *OTPKIConnector) GetProxyOk() (*string, bool)`
-
-GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProxy
-
-`func (o *OTPKIConnector) SetProxy(v string)`
-
-SetProxy sets Proxy field to given value.
-
-### HasProxy
-
-`func (o *OTPKIConnector) HasProxy() bool`
-
-HasProxy returns a boolean if a field has been set.
-
-### SetProxyNil
-
-`func (o *OTPKIConnector) SetProxyNil(b bool)`
-
- SetProxyNil sets the value for Proxy to be an explicit nil
-
-### UnsetProxy
-`func (o *OTPKIConnector) UnsetProxy()`
-
-UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetQueue
-
-`func (o *OTPKIConnector) GetQueue() string`
-
-GetQueue returns the Queue field if non-nil, zero value otherwise.
-
-### GetQueueOk
-
-`func (o *OTPKIConnector) GetQueueOk() (*string, bool)`
-
-GetQueueOk returns a tuple with the Queue field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQueue
-
-`func (o *OTPKIConnector) SetQueue(v string)`
-
-SetQueue sets Queue field to given value.
-
-### HasQueue
-
-`func (o *OTPKIConnector) HasQueue() bool`
-
-HasQueue returns a boolean if a field has been set.
-
-### SetQueueNil
-
-`func (o *OTPKIConnector) SetQueueNil(b bool)`
-
- SetQueueNil sets the value for Queue to be an explicit nil
-
-### UnsetQueue
-`func (o *OTPKIConnector) UnsetQueue()`
-
-UnsetQueue ensures that no value is present for Queue, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

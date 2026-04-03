@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ## DatasourceFlowTest
 
-> []DatasourceTest200Response DatasourceFlowTest(ctx).DatasourceFlow(datasourceFlow).Execute()
+> []DatasourceFlowTest200ResponseInner DatasourceFlowTest(ctx).DatasourceFlow(datasourceFlow).Execute()
 
 Test a datasource flow
 
@@ -105,7 +105,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DatasourceFlowAPI.DatasourceFlowTest``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DatasourceFlowTest`: []DatasourceTest200Response
+	// response from `DatasourceFlowTest`: []DatasourceFlowTest200ResponseInner
 	fmt.Fprintf(os.Stdout, "Response from `DatasourceFlowAPI.DatasourceFlowTest`: %v\n", resp)
 }
 ```
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]DatasourceTest200Response**](DatasourceTest200Response.md)
+[**[]DatasourceFlowTest200ResponseInner**](DatasourceFlowTest200ResponseInner.md)
 
 ### Authorization
 
