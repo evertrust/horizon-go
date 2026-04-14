@@ -143,7 +143,7 @@ func (a *SecurityTenantAPIService) SecurityTenantsAddExecute(r SecurityTenantAPI
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -358,7 +358,7 @@ func (a *SecurityTenantAPIService) SecurityTenantsDeleteExecute(r SecurityTenant
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -578,7 +578,7 @@ func (a *SecurityTenantAPIService) SecurityTenantsGetExecute(r SecurityTenantAPI
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -796,7 +796,7 @@ func (a *SecurityTenantAPIService) SecurityTenantsLicenseExecute(r SecurityTenan
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1010,7 +1010,7 @@ func (a *SecurityTenantAPIService) SecurityTenantsListExecute(r SecurityTenantAP
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1217,7 +1217,7 @@ func (a *SecurityTenantAPIService) SecurityTenantsResetExecute(r SecurityTenantA
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1432,7 +1432,7 @@ func (a *SecurityTenantAPIService) SecurityTenantsRestoreExecute(r SecurityTenan
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -1660,7 +1660,7 @@ func (a *SecurityTenantAPIService) SecurityTenantsUpdateExecute(r SecurityTenant
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}

@@ -144,7 +144,7 @@ func (a *ThirdpartyConnectorAPIService) ThirdpartyConnectorAddExecute(r Thirdpar
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -359,7 +359,7 @@ func (a *ThirdpartyConnectorAPIService) ThirdpartyConnectorDeleteExecute(r Third
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -579,7 +579,7 @@ func (a *ThirdpartyConnectorAPIService) ThirdpartyConnectorGetExecute(r Thirdpar
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -811,7 +811,7 @@ func (a *ThirdpartyConnectorAPIService) ThirdpartyConnectorListExecute(r Thirdpa
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1015,7 +1015,7 @@ func (a *ThirdpartyConnectorAPIService) ThirdpartyConnectorRetryExecute(r Thirdp
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -1232,7 +1232,7 @@ func (a *ThirdpartyConnectorAPIService) ThirdpartyConnectorUpdateExecute(r Third
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}

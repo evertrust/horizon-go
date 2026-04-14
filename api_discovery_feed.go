@@ -141,7 +141,7 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedExecute(r DiscoveryFeedAPIDiscove
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -355,7 +355,7 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedEventRegisterExecute(r DiscoveryF
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -576,7 +576,7 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionEndExecute(r DiscoveryFeed
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -796,7 +796,7 @@ func (a *DiscoveryFeedAPIService) DiscoveryFeedSessionStartExecute(r DiscoveryFe
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}

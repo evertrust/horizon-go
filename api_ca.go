@@ -144,7 +144,7 @@ func (a *CaAPIService) CaAddExecute(r CaAPICaAddRequest) (*models.CertificateAut
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -359,7 +359,7 @@ func (a *CaAPIService) CaDeleteExecute(r CaAPICaDeleteRequest) (*http.Response, 
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -568,7 +568,7 @@ func (a *CaAPIService) CaGetExecute(r CaAPICaGetRequest) (*models.CertificateAut
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -782,7 +782,7 @@ func (a *CaAPIService) CaListExecute(r CaAPICaListRequest) ([]models.Certificate
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -997,7 +997,7 @@ func (a *CaAPIService) CaUpdateExecute(r CaAPICaUpdateRequest) (*models.Certific
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
 			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, "{}", localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
