@@ -92,7 +92,7 @@ type Configuration struct {
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
-		HTTPClient:    http.DefaultClient,
+		HTTPClient:    new(http.Client),
 		Scheme:        "https",
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "Horizon-SDK/1.0.0/go",
