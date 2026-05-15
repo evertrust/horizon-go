@@ -35,7 +35,8 @@ type OidcIdentityProvider struct {
 	// Whether the identity provider can be selected on login to the Horizon UI
 	EnabledOnUI bool `json:"enabledOnUI"`
 	// The OpenID information that will be used as the user's identifier in Horizon
-	IdentifierClaim *string `json:"identifierClaim,omitempty"`
+	IdentifierClaim *string                      `json:"identifierClaim,omitempty"`
+	Mapping         *OidcIdentityProviderMapping `json:"mapping,omitempty"`
 	// The internal name of the identity provider
 	Name string `json:"name"`
 	// The OpenID information that will be used as the user's name in Horizon
@@ -296,6 +297,38 @@ func (o *OidcIdentityProvider) HasIdentifierClaim() bool {
 // SetIdentifierClaim gets a reference to the given string and assigns it to the IdentifierClaim field.
 func (o *OidcIdentityProvider) SetIdentifierClaim(v string) {
 	o.IdentifierClaim = &v
+}
+
+// GetMapping returns the Mapping field value if set, zero value otherwise.
+func (o *OidcIdentityProvider) GetMapping() OidcIdentityProviderMapping {
+	if o == nil || utils.IsNil(o.Mapping) {
+		var ret OidcIdentityProviderMapping
+		return ret
+	}
+	return *o.Mapping
+}
+
+// GetMappingOk returns a tuple with the Mapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcIdentityProvider) GetMappingOk() (*OidcIdentityProviderMapping, bool) {
+	if o == nil || utils.IsNil(o.Mapping) {
+		return nil, false
+	}
+	return o.Mapping, true
+}
+
+// HasMapping returns a boolean if a field has been set.
+func (o *OidcIdentityProvider) HasMapping() bool {
+	if o != nil && !utils.IsNil(o.Mapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetMapping gets a reference to the given OidcIdentityProviderMapping and assigns it to the Mapping field.
+func (o *OidcIdentityProvider) SetMapping(v OidcIdentityProviderMapping) {
+	o.Mapping = &v
 }
 
 // GetName returns the Name field value
@@ -561,6 +594,9 @@ func (o OidcIdentityProvider) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.IdentifierClaim) {
 		toSerialize["identifierClaim"] = o.IdentifierClaim
 	}
+	if !utils.IsNil(o.Mapping) {
+		toSerialize["mapping"] = o.Mapping
+	}
 	toSerialize["name"] = o.Name
 	if !utils.IsNil(o.NameClaim) {
 		toSerialize["nameClaim"] = o.NameClaim
@@ -632,6 +668,7 @@ func (o *OidcIdentityProvider) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "enabledOnUI")
 		delete(additionalProperties, "identifierClaim")
+		delete(additionalProperties, "mapping")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "nameClaim")
 		delete(additionalProperties, "providerMetadataUrl")

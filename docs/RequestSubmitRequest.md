@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Password** | Pointer to [**SecretString**](SecretString.md) | The password of the challenge. Must be set if password mode is &#x60;manual&#x60; | [optional] 
-**Profile** | **interface{}** | The SCEP profile name | 
+**Profile** | **string** | The SCEP profile name | 
 **RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
 **DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
 **Module** | **string** | The module that will be used to process this request. For a SCEP request, this is always &#x60;scep&#x60; | 
@@ -13,13 +13,13 @@ Name | Type | Description | Notes
 **Workflow** | **string** | What this request will do. For an enrollment request, this is always &#x60;enroll&#x60; | 
 **CertificateId** | Pointer to **NullableString** | The id of the certificate to import | [optional] 
 **CertificatePem** | Pointer to **NullableString** | The PEM encoded certificate to import | [optional] 
-**Dn** | Pointer to **interface{}** | Fill the DN if DN whitelist is enabled. Contains the DN of the challenge | [optional] 
+**Dn** | Pointer to **string** | Fill the DN if DN whitelist is enabled. Contains the DN of the challenge | [optional] 
 
 ## Methods
 
 ### NewRequestSubmitRequest
 
-`func NewRequestSubmitRequest(profile interface{}, module string, template ScepEnrollRequestTemplate, workflow string, ) *RequestSubmitRequest`
+`func NewRequestSubmitRequest(profile string, module string, template ScepEnrollRequestTemplate, workflow string, ) *RequestSubmitRequest`
 
 NewRequestSubmitRequest instantiates a new RequestSubmitRequest object
 This constructor will assign default values to properties that have it defined,
@@ -61,34 +61,24 @@ HasPassword returns a boolean if a field has been set.
 
 ### GetProfile
 
-`func (o *RequestSubmitRequest) GetProfile() interface{}`
+`func (o *RequestSubmitRequest) GetProfile() string`
 
 GetProfile returns the Profile field if non-nil, zero value otherwise.
 
 ### GetProfileOk
 
-`func (o *RequestSubmitRequest) GetProfileOk() (*interface{}, bool)`
+`func (o *RequestSubmitRequest) GetProfileOk() (*string, bool)`
 
 GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfile
 
-`func (o *RequestSubmitRequest) SetProfile(v interface{})`
+`func (o *RequestSubmitRequest) SetProfile(v string)`
 
 SetProfile sets Profile field to given value.
 
 
-### SetProfileNil
-
-`func (o *RequestSubmitRequest) SetProfileNil(b bool)`
-
- SetProfileNil sets the value for Profile to be an explicit nil
-
-### UnsetProfile
-`func (o *RequestSubmitRequest) UnsetProfile()`
-
-UnsetProfile ensures that no value is present for Profile, not even an explicit nil
 ### GetRequesterComment
 
 `func (o *RequestSubmitRequest) GetRequesterComment() string`
@@ -291,20 +281,20 @@ HasCertificatePem returns a boolean if a field has been set.
 UnsetCertificatePem ensures that no value is present for CertificatePem, not even an explicit nil
 ### GetDn
 
-`func (o *RequestSubmitRequest) GetDn() interface{}`
+`func (o *RequestSubmitRequest) GetDn() string`
 
 GetDn returns the Dn field if non-nil, zero value otherwise.
 
 ### GetDnOk
 
-`func (o *RequestSubmitRequest) GetDnOk() (*interface{}, bool)`
+`func (o *RequestSubmitRequest) GetDnOk() (*string, bool)`
 
 GetDnOk returns a tuple with the Dn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDn
 
-`func (o *RequestSubmitRequest) SetDn(v interface{})`
+`func (o *RequestSubmitRequest) SetDn(v string)`
 
 SetDn sets Dn field to given value.
 
@@ -314,16 +304,6 @@ SetDn sets Dn field to given value.
 
 HasDn returns a boolean if a field has been set.
 
-### SetDnNil
-
-`func (o *RequestSubmitRequest) SetDnNil(b bool)`
-
- SetDnNil sets the value for Dn to be an explicit nil
-
-### UnsetDn
-`func (o *RequestSubmitRequest) UnsetDn()`
-
-UnsetDn ensures that no value is present for Dn, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -23,7 +23,7 @@ var _ utils.MappedNullable = &EstEnrollRequestOnSubmit{}
 // EstEnrollRequestOnSubmit struct for EstEnrollRequestOnSubmit
 type EstEnrollRequestOnSubmit struct {
 	// Fill the DN if DN whitelist is enabled. Contains the DN of the challenge
-	Dn interface{} `json:"dn,omitempty"`
+	Dn *string `json:"dn,omitempty"`
 	// The password of the challenge. Must be set if password mode is `manual`
 	Password NullableSecretString `json:"password,omitempty"`
 	// The EST profile name
@@ -66,23 +66,22 @@ func NewEstEnrollRequestOnSubmitWithDefaults() *EstEnrollRequestOnSubmit {
 	return &this
 }
 
-// GetDn returns the Dn field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EstEnrollRequestOnSubmit) GetDn() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetDn returns the Dn field value if set, zero value otherwise.
+func (o *EstEnrollRequestOnSubmit) GetDn() string {
+	if o == nil || utils.IsNil(o.Dn) {
+		var ret string
 		return ret
 	}
-	return o.Dn
+	return *o.Dn
 }
 
 // GetDnOk returns a tuple with the Dn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EstEnrollRequestOnSubmit) GetDnOk() (*interface{}, bool) {
+func (o *EstEnrollRequestOnSubmit) GetDnOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.Dn) {
 		return nil, false
 	}
-	return &o.Dn, true
+	return o.Dn, true
 }
 
 // HasDn returns a boolean if a field has been set.
@@ -94,9 +93,9 @@ func (o *EstEnrollRequestOnSubmit) HasDn() bool {
 	return false
 }
 
-// SetDn gets a reference to the given interface{} and assigns it to the Dn field.
-func (o *EstEnrollRequestOnSubmit) SetDn(v interface{}) {
-	o.Dn = v
+// SetDn gets a reference to the given string and assigns it to the Dn field.
+func (o *EstEnrollRequestOnSubmit) SetDn(v string) {
+	o.Dn = &v
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -342,7 +341,7 @@ func (o EstEnrollRequestOnSubmit) MarshalJSON() ([]byte, error) {
 
 func (o EstEnrollRequestOnSubmit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Dn != nil {
+	if !utils.IsNil(o.Dn) {
 		toSerialize["dn"] = o.Dn
 	}
 	if o.Password.IsSet() {

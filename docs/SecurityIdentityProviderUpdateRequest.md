@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **ClientCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the client ID  and secret to use to authenticate Horizon against the identity provider | 
 **EmailClaim** | Pointer to **string** | The OpenID information that will be used as the user&#39;s email in Horizon | [optional] [default to "{{email}}"]
 **IdentifierClaim** | Pointer to **string** | The OpenID information that will be used as the user&#39;s identifier in Horizon | [optional] [default to "{{email}}"]
+**Mapping** | Pointer to [**OidcIdentityProviderMapping**](OidcIdentityProviderMapping.md) |  | [optional] 
 **NameClaim** | Pointer to **string** | The OpenID information that will be used as the user&#39;s name in Horizon | [optional] [default to "{{name}}"]
 **ProviderMetadataUrl** | **string** | The URL of the identity provider OpenID callback | 
 **Proxy** | Pointer to **NullableString** | The name of the proxy to use to reach the identity provider | [optional] 
@@ -330,6 +331,31 @@ SetIdentifierClaim sets IdentifierClaim field to given value.
 `func (o *SecurityIdentityProviderUpdateRequest) HasIdentifierClaim() bool`
 
 HasIdentifierClaim returns a boolean if a field has been set.
+
+### GetMapping
+
+`func (o *SecurityIdentityProviderUpdateRequest) GetMapping() OidcIdentityProviderMapping`
+
+GetMapping returns the Mapping field if non-nil, zero value otherwise.
+
+### GetMappingOk
+
+`func (o *SecurityIdentityProviderUpdateRequest) GetMappingOk() (*OidcIdentityProviderMapping, bool)`
+
+GetMappingOk returns a tuple with the Mapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMapping
+
+`func (o *SecurityIdentityProviderUpdateRequest) SetMapping(v OidcIdentityProviderMapping)`
+
+SetMapping sets Mapping field to given value.
+
+### HasMapping
+
+`func (o *SecurityIdentityProviderUpdateRequest) HasMapping() bool`
+
+HasMapping returns a boolean if a field has been set.
 
 ### GetNameClaim
 

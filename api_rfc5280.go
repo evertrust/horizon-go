@@ -28,11 +28,12 @@ type Rfc5280APIService service
 type Rfc5280APIRfc5280DetectRequest struct {
 	ctx        context.Context
 	ApiService *Rfc5280APIService
-	file       *models.GradingPolicyExplainFileRequestX509
+	file       []byte
 }
 
-func (r Rfc5280APIRfc5280DetectRequest) File(file models.GradingPolicyExplainFileRequestX509) Rfc5280APIRfc5280DetectRequest {
-	r.file = &file
+// The RFC 5280 file to detect and parse (certificate, certificate bundle, CRL, or CSR), PEM or DER encoded
+func (r Rfc5280APIRfc5280DetectRequest) File(file []byte) Rfc5280APIRfc5280DetectRequest {
+	r.file = file
 	return r
 }
 
@@ -94,12 +95,11 @@ func (a *Rfc5280APIService) Rfc5280DetectExecute(r Rfc5280APIRfc5280DetectReques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.file != nil {
-		paramJson, err := parameterToJson(*r.file)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-		localVarFormParams.Add("file", paramJson)
+	fileLocalVarFormFileName := "file"
+	fileLocalVarFile := r.file
+
+	if fileLocalVarFile != nil {
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFile, fileName: "file", formFileName: fileLocalVarFormFileName})
 	}
 	if r.ctx != nil {
 		// API Key Authentication
@@ -244,11 +244,12 @@ func (a *Rfc5280APIService) Rfc5280DetectExecute(r Rfc5280APIRfc5280DetectReques
 type Rfc5280APIRfc5280Pkcs10FileRequest struct {
 	ctx        context.Context
 	ApiService *Rfc5280APIService
-	pkcs10     *models.GradingPolicyExplainFileRequestX509
+	pkcs10     []byte
 }
 
-func (r Rfc5280APIRfc5280Pkcs10FileRequest) Pkcs10(pkcs10 models.GradingPolicyExplainFileRequestX509) Rfc5280APIRfc5280Pkcs10FileRequest {
-	r.pkcs10 = &pkcs10
+// The PKCS#10 certificate signing request, PEM or DER encoded
+func (r Rfc5280APIRfc5280Pkcs10FileRequest) Pkcs10(pkcs10 []byte) Rfc5280APIRfc5280Pkcs10FileRequest {
+	r.pkcs10 = pkcs10
 	return r
 }
 
@@ -310,12 +311,11 @@ func (a *Rfc5280APIService) Rfc5280Pkcs10FileExecute(r Rfc5280APIRfc5280Pkcs10Fi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.pkcs10 != nil {
-		paramJson, err := parameterToJson(*r.pkcs10)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-		localVarFormParams.Add("pkcs10", paramJson)
+	pkcs10LocalVarFormFileName := "pkcs10"
+	pkcs10LocalVarFile := r.pkcs10
+
+	if pkcs10LocalVarFile != nil {
+		formFiles = append(formFiles, formFile{fileBytes: pkcs10LocalVarFile, fileName: "pkcs10", formFileName: pkcs10LocalVarFormFileName})
 	}
 	if r.ctx != nil {
 		// API Key Authentication
@@ -667,11 +667,12 @@ func (a *Rfc5280APIService) Rfc5280Pkcs10PemExecute(r Rfc5280APIRfc5280Pkcs10Pem
 type Rfc5280APIRfc5280Pkcs12FileRequest struct {
 	ctx        context.Context
 	ApiService *Rfc5280APIService
-	pkcs12     *models.GradingPolicyExplainFileRequestX509
+	pkcs12     []byte
 }
 
-func (r Rfc5280APIRfc5280Pkcs12FileRequest) Pkcs12(pkcs12 models.GradingPolicyExplainFileRequestX509) Rfc5280APIRfc5280Pkcs12FileRequest {
-	r.pkcs12 = &pkcs12
+// The PKCS#12 keystore, DER encoded
+func (r Rfc5280APIRfc5280Pkcs12FileRequest) Pkcs12(pkcs12 []byte) Rfc5280APIRfc5280Pkcs12FileRequest {
+	r.pkcs12 = pkcs12
 	return r
 }
 
@@ -733,12 +734,11 @@ func (a *Rfc5280APIService) Rfc5280Pkcs12FileExecute(r Rfc5280APIRfc5280Pkcs12Fi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.pkcs12 != nil {
-		paramJson, err := parameterToJson(*r.pkcs12)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-		localVarFormParams.Add("pkcs12", paramJson)
+	pkcs12LocalVarFormFileName := "pkcs12"
+	pkcs12LocalVarFile := r.pkcs12
+
+	if pkcs12LocalVarFile != nil {
+		formFiles = append(formFiles, formFile{fileBytes: pkcs12LocalVarFile, fileName: "pkcs12", formFileName: pkcs12LocalVarFormFileName})
 	}
 	if r.ctx != nil {
 		// API Key Authentication
@@ -884,7 +884,7 @@ type Rfc5280APIRfc5280TcFileRequest struct {
 	ctx        context.Context
 	ApiService *Rfc5280APIService
 	order      *string
-	x509       *models.GradingPolicyExplainFileRequestX509
+	x509       []byte
 }
 
 func (r Rfc5280APIRfc5280TcFileRequest) Order(order string) Rfc5280APIRfc5280TcFileRequest {
@@ -892,8 +892,9 @@ func (r Rfc5280APIRfc5280TcFileRequest) Order(order string) Rfc5280APIRfc5280TcF
 	return r
 }
 
-func (r Rfc5280APIRfc5280TcFileRequest) X509(x509 models.GradingPolicyExplainFileRequestX509) Rfc5280APIRfc5280TcFileRequest {
-	r.x509 = &x509
+// The x509 certificate, PEM or DER encoded
+func (r Rfc5280APIRfc5280TcFileRequest) X509(x509 []byte) Rfc5280APIRfc5280TcFileRequest {
+	r.x509 = x509
 	return r
 }
 
@@ -958,12 +959,11 @@ func (a *Rfc5280APIService) Rfc5280TcFileExecute(r Rfc5280APIRfc5280TcFileReques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.x509 != nil {
-		paramJson, err := parameterToJson(*r.x509)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-		localVarFormParams.Add("x509", paramJson)
+	x509LocalVarFormFileName := "x509"
+	x509LocalVarFile := r.x509
+
+	if x509LocalVarFile != nil {
+		formFiles = append(formFiles, formFile{fileBytes: x509LocalVarFile, fileName: "x509", formFileName: x509LocalVarFormFileName})
 	}
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1324,11 +1324,12 @@ func (a *Rfc5280APIService) Rfc5280TcPemExecute(r Rfc5280APIRfc5280TcPemRequest)
 type Rfc5280APIRfc5280X509FileRequest struct {
 	ctx        context.Context
 	ApiService *Rfc5280APIService
-	x509       *models.GradingPolicyExplainFileRequestX509
+	x509       []byte
 }
 
-func (r Rfc5280APIRfc5280X509FileRequest) X509(x509 models.GradingPolicyExplainFileRequestX509) Rfc5280APIRfc5280X509FileRequest {
-	r.x509 = &x509
+// The x509 certificate, PEM or DER encoded
+func (r Rfc5280APIRfc5280X509FileRequest) X509(x509 []byte) Rfc5280APIRfc5280X509FileRequest {
+	r.x509 = x509
 	return r
 }
 
@@ -1390,12 +1391,11 @@ func (a *Rfc5280APIService) Rfc5280X509FileExecute(r Rfc5280APIRfc5280X509FileRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.x509 != nil {
-		paramJson, err := parameterToJson(*r.x509)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-		localVarFormParams.Add("x509", paramJson)
+	x509LocalVarFormFileName := "x509"
+	x509LocalVarFile := r.x509
+
+	if x509LocalVarFile != nil {
+		formFiles = append(formFiles, formFile{fileBytes: x509LocalVarFile, fileName: "x509", formFileName: x509LocalVarFormFileName})
 	}
 	if r.ctx != nil {
 		// API Key Authentication

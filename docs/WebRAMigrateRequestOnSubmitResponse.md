@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Certificate** | Pointer to [**NullableCertificate**](Certificate.md) | The certificate that was updated for this request. This is only available after the request has been approved | [optional] 
 **DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in a migration | [optional] [default to false]
 **Module** | [**Module**](Module.md) | The module of the certificate migrated. | 
-**Profile** | **interface{}** | The target profile name | 
+**Profile** | **string** | The target profile name | 
 **Template** | [**WebRAMigrateRequestTemplate**](WebRAMigrateRequestTemplate.md) | The user-data that will be used to generate the certificate | 
 **Workflow** | **string** | What this request will do. For a migration request, this is always &#x60;migrate&#x60; | 
 **Id** | **string** | Object internal ID | 
@@ -34,7 +34,7 @@ Name | Type | Description | Notes
 
 ### NewWebRAMigrateRequestOnSubmitResponse
 
-`func NewWebRAMigrateRequestOnSubmitResponse(module Module, profile interface{}, template WebRAMigrateRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAMigrateRequestOnSubmitResponse`
+`func NewWebRAMigrateRequestOnSubmitResponse(module Module, profile string, template WebRAMigrateRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAMigrateRequestOnSubmitResponse`
 
 NewWebRAMigrateRequestOnSubmitResponse instantiates a new WebRAMigrateRequestOnSubmitResponse object
 This constructor will assign default values to properties that have it defined,
@@ -141,34 +141,24 @@ SetModule sets Module field to given value.
 
 ### GetProfile
 
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfile() interface{}`
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfile() string`
 
 GetProfile returns the Profile field if non-nil, zero value otherwise.
 
 ### GetProfileOk
 
-`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfileOk() (*interface{}, bool)`
+`func (o *WebRAMigrateRequestOnSubmitResponse) GetProfileOk() (*string, bool)`
 
 GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfile
 
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetProfile(v interface{})`
+`func (o *WebRAMigrateRequestOnSubmitResponse) SetProfile(v string)`
 
 SetProfile sets Profile field to given value.
 
 
-### SetProfileNil
-
-`func (o *WebRAMigrateRequestOnSubmitResponse) SetProfileNil(b bool)`
-
- SetProfileNil sets the value for Profile to be an explicit nil
-
-### UnsetProfile
-`func (o *WebRAMigrateRequestOnSubmitResponse) UnsetProfile()`
-
-UnsetProfile ensures that no value is present for Profile, not even an explicit nil
 ### GetTemplate
 
 `func (o *WebRAMigrateRequestOnSubmitResponse) GetTemplate() WebRAMigrateRequestTemplate`

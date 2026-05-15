@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Enabled** | **bool** | Whether the identity provider can be used to identify against Horizon | 
 **EnabledOnUI** | **bool** | Whether the identity provider can be selected on login to the Horizon UI | 
 **IdentifierClaim** | **string** | The OpenID information that will be used as the user&#39;s identifier in Horizon | 
+**Mapping** | Pointer to [**OidcIdentityProviderMapping**](OidcIdentityProviderMapping.md) |  | [optional] 
 **Name** | **string** | The internal name of the identity provider | 
 **NameClaim** | **string** | The OpenID information that will be used as the user&#39;s name in Horizon | 
 **ProviderMetadataUrl** | **string** | The URL of the identity provider OpenID callback | 
@@ -229,6 +230,31 @@ and a boolean to check if the value has been set.
 
 SetIdentifierClaim sets IdentifierClaim field to given value.
 
+
+### GetMapping
+
+`func (o *SecurityIdentityProviderAdd201Response) GetMapping() OidcIdentityProviderMapping`
+
+GetMapping returns the Mapping field if non-nil, zero value otherwise.
+
+### GetMappingOk
+
+`func (o *SecurityIdentityProviderAdd201Response) GetMappingOk() (*OidcIdentityProviderMapping, bool)`
+
+GetMappingOk returns a tuple with the Mapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMapping
+
+`func (o *SecurityIdentityProviderAdd201Response) SetMapping(v OidcIdentityProviderMapping)`
+
+SetMapping sets Mapping field to given value.
+
+### HasMapping
+
+`func (o *SecurityIdentityProviderAdd201Response) HasMapping() bool`
+
+HasMapping returns a boolean if a field has been set.
 
 ### GetName
 

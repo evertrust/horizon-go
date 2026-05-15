@@ -12,178 +12,140 @@ package models
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/evertrust/horizon-go/v2/utils"
 )
 
-// checks if the CFCertificationRequestResponse type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &CFCertificationRequestResponse{}
+// checks if the OidcIdentityProviderMappingEntriesInner type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &OidcIdentityProviderMappingEntriesInner{}
 
-// CFCertificationRequestResponse Certification request
-type CFCertificationRequestResponse struct {
-	// Distinguished name
-	Dn         string                `json:"dn"`
-	DnElements []CFDistinguishedName `json:"dnElements"`
-	// One of `rsa-2048`, `rsa-3072`, `rsa-4096`, `rsa-8192`, `ec-secp256r1`, `ec-secp384r1`, `ec-secp521r1`, `ec-brainpoolp256r1`, `ec-brainpoolp384r1`, `ec-brainpoolp512r1`,  `ed-448`, `ed-25519`, `mldsa-44`, `mldsa-65`, `mldsa-87`, `slhdsa-sha2-128s`, `slhdsa-sha2-128f`, `slhdsa-sha2-192s`, `slhdsa-sha2-192f`, `slhdsa-sha2-256s`, `slhdsa-sha2-256f`, `slhdsa-sha2-128ssha256`, `slhdsa-sha2-128fsha256`, `slhdsa-sha2-192ssha512`, `slhdsa-sha2-192fsha512`, `slhdsa-sha2-256ssha512`, `slhdsa-sha2-256fsha512` or `<primary key type>+<alternate key type>`
-	KeyType              string                 `json:"keyType" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ec-brainpoolp256r1|ec-brainpoolp384r1|ec-brainpoolp512r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ec-brainpoolp256r1|ec-brainpoolp384r1|ec-brainpoolp512r1||ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
-	Pem                  string                 `json:"pem"`
-	Sans                 []SubjectAlternateName `json:"sans,omitempty"`
+// OidcIdentityProviderMappingEntriesInner struct for OidcIdentityProviderMappingEntriesInner
+type OidcIdentityProviderMappingEntriesInner struct {
+	// JWT Claim value that will provide the corresponding teams and roles
+	Claim *string `json:"claim,omitempty"`
+	// Name of the roles to map to this claim value
+	Roles []string `json:"roles,omitempty"`
+	// Name of the teams to map to this claim value
+	Teams                []string `json:"teams,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _CFCertificationRequestResponse CFCertificationRequestResponse
+type _OidcIdentityProviderMappingEntriesInner OidcIdentityProviderMappingEntriesInner
 
-// NewCFCertificationRequestResponse instantiates a new CFCertificationRequestResponse object
+// NewOidcIdentityProviderMappingEntriesInner instantiates a new OidcIdentityProviderMappingEntriesInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCFCertificationRequestResponse(dn string, dnElements []CFDistinguishedName, keyType string, pem string) *CFCertificationRequestResponse {
-	this := CFCertificationRequestResponse{}
-	this.Dn = dn
-	this.DnElements = dnElements
-	this.KeyType = keyType
-	this.Pem = pem
+func NewOidcIdentityProviderMappingEntriesInner() *OidcIdentityProviderMappingEntriesInner {
+	this := OidcIdentityProviderMappingEntriesInner{}
 	return &this
 }
 
-// NewCFCertificationRequestResponseWithDefaults instantiates a new CFCertificationRequestResponse object
+// NewOidcIdentityProviderMappingEntriesInnerWithDefaults instantiates a new OidcIdentityProviderMappingEntriesInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCFCertificationRequestResponseWithDefaults() *CFCertificationRequestResponse {
-	this := CFCertificationRequestResponse{}
+func NewOidcIdentityProviderMappingEntriesInnerWithDefaults() *OidcIdentityProviderMappingEntriesInner {
+	this := OidcIdentityProviderMappingEntriesInner{}
 	return &this
 }
 
-// GetDn returns the Dn field value
-func (o *CFCertificationRequestResponse) GetDn() string {
-	if o == nil {
+// GetClaim returns the Claim field value if set, zero value otherwise.
+func (o *OidcIdentityProviderMappingEntriesInner) GetClaim() string {
+	if o == nil || utils.IsNil(o.Claim) {
 		var ret string
 		return ret
 	}
-
-	return o.Dn
+	return *o.Claim
 }
 
-// GetDnOk returns a tuple with the Dn field value
+// GetClaimOk returns a tuple with the Claim field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CFCertificationRequestResponse) GetDnOk() (*string, bool) {
-	if o == nil {
+func (o *OidcIdentityProviderMappingEntriesInner) GetClaimOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Claim) {
 		return nil, false
 	}
-	return &o.Dn, true
+	return o.Claim, true
 }
 
-// SetDn sets field value
-func (o *CFCertificationRequestResponse) SetDn(v string) {
-	o.Dn = v
-}
-
-// GetDnElements returns the DnElements field value
-func (o *CFCertificationRequestResponse) GetDnElements() []CFDistinguishedName {
-	if o == nil {
-		var ret []CFDistinguishedName
-		return ret
-	}
-
-	return o.DnElements
-}
-
-// GetDnElementsOk returns a tuple with the DnElements field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificationRequestResponse) GetDnElementsOk() ([]CFDistinguishedName, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.DnElements, true
-}
-
-// SetDnElements sets field value
-func (o *CFCertificationRequestResponse) SetDnElements(v []CFDistinguishedName) {
-	o.DnElements = v
-}
-
-// GetKeyType returns the KeyType field value
-func (o *CFCertificationRequestResponse) GetKeyType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.KeyType
-}
-
-// GetKeyTypeOk returns a tuple with the KeyType field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificationRequestResponse) GetKeyTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.KeyType, true
-}
-
-// SetKeyType sets field value
-func (o *CFCertificationRequestResponse) SetKeyType(v string) {
-	o.KeyType = v
-}
-
-// GetPem returns the Pem field value
-func (o *CFCertificationRequestResponse) GetPem() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Pem
-}
-
-// GetPemOk returns a tuple with the Pem field value
-// and a boolean to check if the value has been set.
-func (o *CFCertificationRequestResponse) GetPemOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Pem, true
-}
-
-// SetPem sets field value
-func (o *CFCertificationRequestResponse) SetPem(v string) {
-	o.Pem = v
-}
-
-// GetSans returns the Sans field value if set, zero value otherwise.
-func (o *CFCertificationRequestResponse) GetSans() []SubjectAlternateName {
-	if o == nil || utils.IsNil(o.Sans) {
-		var ret []SubjectAlternateName
-		return ret
-	}
-	return o.Sans
-}
-
-// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CFCertificationRequestResponse) GetSansOk() ([]SubjectAlternateName, bool) {
-	if o == nil || utils.IsNil(o.Sans) {
-		return nil, false
-	}
-	return o.Sans, true
-}
-
-// HasSans returns a boolean if a field has been set.
-func (o *CFCertificationRequestResponse) HasSans() bool {
-	if o != nil && !utils.IsNil(o.Sans) {
+// HasClaim returns a boolean if a field has been set.
+func (o *OidcIdentityProviderMappingEntriesInner) HasClaim() bool {
+	if o != nil && !utils.IsNil(o.Claim) {
 		return true
 	}
 
 	return false
 }
 
-// SetSans gets a reference to the given []SubjectAlternateName and assigns it to the Sans field.
-func (o *CFCertificationRequestResponse) SetSans(v []SubjectAlternateName) {
-	o.Sans = v
+// SetClaim gets a reference to the given string and assigns it to the Claim field.
+func (o *OidcIdentityProviderMappingEntriesInner) SetClaim(v string) {
+	o.Claim = &v
 }
 
-func (o CFCertificationRequestResponse) MarshalJSON() ([]byte, error) {
+// GetRoles returns the Roles field value if set, zero value otherwise.
+func (o *OidcIdentityProviderMappingEntriesInner) GetRoles() []string {
+	if o == nil || utils.IsNil(o.Roles) {
+		var ret []string
+		return ret
+	}
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcIdentityProviderMappingEntriesInner) GetRolesOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Roles) {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// HasRoles returns a boolean if a field has been set.
+func (o *OidcIdentityProviderMappingEntriesInner) HasRoles() bool {
+	if o != nil && !utils.IsNil(o.Roles) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *OidcIdentityProviderMappingEntriesInner) SetRoles(v []string) {
+	o.Roles = v
+}
+
+// GetTeams returns the Teams field value if set, zero value otherwise.
+func (o *OidcIdentityProviderMappingEntriesInner) GetTeams() []string {
+	if o == nil || utils.IsNil(o.Teams) {
+		var ret []string
+		return ret
+	}
+	return o.Teams
+}
+
+// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcIdentityProviderMappingEntriesInner) GetTeamsOk() ([]string, bool) {
+	if o == nil || utils.IsNil(o.Teams) {
+		return nil, false
+	}
+	return o.Teams, true
+}
+
+// HasTeams returns a boolean if a field has been set.
+func (o *OidcIdentityProviderMappingEntriesInner) HasTeams() bool {
+	if o != nil && !utils.IsNil(o.Teams) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeams gets a reference to the given []string and assigns it to the Teams field.
+func (o *OidcIdentityProviderMappingEntriesInner) SetTeams(v []string) {
+	o.Teams = v
+}
+
+func (o OidcIdentityProviderMappingEntriesInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -191,14 +153,16 @@ func (o CFCertificationRequestResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CFCertificationRequestResponse) ToMap() (map[string]interface{}, error) {
+func (o OidcIdentityProviderMappingEntriesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["dn"] = o.Dn
-	toSerialize["dnElements"] = o.DnElements
-	toSerialize["keyType"] = o.KeyType
-	toSerialize["pem"] = o.Pem
-	if !utils.IsNil(o.Sans) {
-		toSerialize["sans"] = o.Sans
+	if !utils.IsNil(o.Claim) {
+		toSerialize["claim"] = o.Claim
+	}
+	if !utils.IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
+	if !utils.IsNil(o.Teams) {
+		toSerialize["teams"] = o.Teams
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -208,87 +172,61 @@ func (o CFCertificationRequestResponse) ToMap() (map[string]interface{}, error) 
 	return toSerialize, nil
 }
 
-func (o *CFCertificationRequestResponse) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"dn",
-		"dnElements",
-		"keyType",
-		"pem",
-	}
+func (o *OidcIdentityProviderMappingEntriesInner) UnmarshalJSON(data []byte) (err error) {
+	varOidcIdentityProviderMappingEntriesInner := _OidcIdentityProviderMappingEntriesInner{}
 
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
+	err = json.Unmarshal(data, &varOidcIdentityProviderMappingEntriesInner)
 
 	if err != nil {
 		return err
 	}
 
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCFCertificationRequestResponse := _CFCertificationRequestResponse{}
-
-	err = json.Unmarshal(data, &varCFCertificationRequestResponse)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CFCertificationRequestResponse(varCFCertificationRequestResponse)
+	*o = OidcIdentityProviderMappingEntriesInner(varOidcIdentityProviderMappingEntriesInner)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "dn")
-		delete(additionalProperties, "dnElements")
-		delete(additionalProperties, "keyType")
-		delete(additionalProperties, "pem")
-		delete(additionalProperties, "sans")
+		delete(additionalProperties, "claim")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "teams")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableCFCertificationRequestResponse struct {
-	value *CFCertificationRequestResponse
+type NullableOidcIdentityProviderMappingEntriesInner struct {
+	value *OidcIdentityProviderMappingEntriesInner
 	isSet bool
 }
 
-func (v NullableCFCertificationRequestResponse) Get() *CFCertificationRequestResponse {
+func (v NullableOidcIdentityProviderMappingEntriesInner) Get() *OidcIdentityProviderMappingEntriesInner {
 	return v.value
 }
 
-func (v *NullableCFCertificationRequestResponse) Set(val *CFCertificationRequestResponse) {
+func (v *NullableOidcIdentityProviderMappingEntriesInner) Set(val *OidcIdentityProviderMappingEntriesInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCFCertificationRequestResponse) IsSet() bool {
+func (v NullableOidcIdentityProviderMappingEntriesInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCFCertificationRequestResponse) Unset() {
+func (v *NullableOidcIdentityProviderMappingEntriesInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCFCertificationRequestResponse(val *CFCertificationRequestResponse) *NullableCFCertificationRequestResponse {
-	return &NullableCFCertificationRequestResponse{value: val, isSet: true}
+func NewNullableOidcIdentityProviderMappingEntriesInner(val *OidcIdentityProviderMappingEntriesInner) *NullableOidcIdentityProviderMappingEntriesInner {
+	return &NullableOidcIdentityProviderMappingEntriesInner{value: val, isSet: true}
 }
 
-func (v NullableCFCertificationRequestResponse) MarshalJSON() ([]byte, error) {
+func (v NullableOidcIdentityProviderMappingEntriesInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCFCertificationRequestResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableOidcIdentityProviderMappingEntriesInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
