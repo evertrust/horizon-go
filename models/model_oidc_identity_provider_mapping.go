@@ -16,124 +16,102 @@ import (
 	"github.com/evertrust/horizon-go/v2/utils"
 )
 
-// checks if the WebRARenewRequestTemplate type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &WebRARenewRequestTemplate{}
+// checks if the OidcIdentityProviderMapping type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &OidcIdentityProviderMapping{}
 
-// WebRARenewRequestTemplate struct for WebRARenewRequestTemplate
-type WebRARenewRequestTemplate struct {
-	// The CSR used to renew the certificate, if in decentralized mode
-	Csr utils.NullableString `json:"csr,omitempty"`
-	// The key type of the certificate, if in centralized mode
-	KeyType              utils.NullableString `json:"keyType,omitempty" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ec-brainpoolp256r1|ec-brainpoolp384r1|ec-brainpoolp512r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ec-brainpoolp256r1|ec-brainpoolp384r1|ec-brainpoolp512r1||ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
+// OidcIdentityProviderMapping Mapping to assign roles or teams to users connecting through this Identity Provider using their claims
+type OidcIdentityProviderMapping struct {
+	// Describe how each JWT claim corresponds to Horizon Roles and Teams
+	Entries []OidcIdentityProviderMappingEntriesInner `json:"entries,omitempty"`
+	// Computation Rule to extract the claims to map from the JWT claims
+	Extraction           *string `json:"extraction,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _WebRARenewRequestTemplate WebRARenewRequestTemplate
+type _OidcIdentityProviderMapping OidcIdentityProviderMapping
 
-// NewWebRARenewRequestTemplate instantiates a new WebRARenewRequestTemplate object
+// NewOidcIdentityProviderMapping instantiates a new OidcIdentityProviderMapping object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRARenewRequestTemplate() *WebRARenewRequestTemplate {
-	this := WebRARenewRequestTemplate{}
+func NewOidcIdentityProviderMapping() *OidcIdentityProviderMapping {
+	this := OidcIdentityProviderMapping{}
 	return &this
 }
 
-// NewWebRARenewRequestTemplateWithDefaults instantiates a new WebRARenewRequestTemplate object
+// NewOidcIdentityProviderMappingWithDefaults instantiates a new OidcIdentityProviderMapping object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewWebRARenewRequestTemplateWithDefaults() *WebRARenewRequestTemplate {
-	this := WebRARenewRequestTemplate{}
+func NewOidcIdentityProviderMappingWithDefaults() *OidcIdentityProviderMapping {
+	this := OidcIdentityProviderMapping{}
 	return &this
 }
 
-// GetCsr returns the Csr field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRARenewRequestTemplate) GetCsr() string {
-	if o == nil || utils.IsNil(o.Csr.Get()) {
-		var ret string
+// GetEntries returns the Entries field value if set, zero value otherwise.
+func (o *OidcIdentityProviderMapping) GetEntries() []OidcIdentityProviderMappingEntriesInner {
+	if o == nil || utils.IsNil(o.Entries) {
+		var ret []OidcIdentityProviderMappingEntriesInner
 		return ret
 	}
-	return *o.Csr.Get()
+	return o.Entries
 }
 
-// GetCsrOk returns a tuple with the Csr field value if set, nil otherwise
+// GetEntriesOk returns a tuple with the Entries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRARenewRequestTemplate) GetCsrOk() (*string, bool) {
-	if o == nil {
+func (o *OidcIdentityProviderMapping) GetEntriesOk() ([]OidcIdentityProviderMappingEntriesInner, bool) {
+	if o == nil || utils.IsNil(o.Entries) {
 		return nil, false
 	}
-	return o.Csr.Get(), o.Csr.IsSet()
+	return o.Entries, true
 }
 
-// HasCsr returns a boolean if a field has been set.
-func (o *WebRARenewRequestTemplate) HasCsr() bool {
-	if o != nil && o.Csr.IsSet() {
+// HasEntries returns a boolean if a field has been set.
+func (o *OidcIdentityProviderMapping) HasEntries() bool {
+	if o != nil && !utils.IsNil(o.Entries) {
 		return true
 	}
 
 	return false
 }
 
-// SetCsr gets a reference to the given NullableString and assigns it to the Csr field.
-func (o *WebRARenewRequestTemplate) SetCsr(v string) {
-	o.Csr.Set(&v)
+// SetEntries gets a reference to the given []OidcIdentityProviderMappingEntriesInner and assigns it to the Entries field.
+func (o *OidcIdentityProviderMapping) SetEntries(v []OidcIdentityProviderMappingEntriesInner) {
+	o.Entries = v
 }
 
-// SetCsrNil sets the value for Csr to be an explicit nil
-func (o *WebRARenewRequestTemplate) SetCsrNil() {
-	o.Csr.Set(nil)
-}
-
-// UnsetCsr ensures that no value is present for Csr, not even an explicit nil
-func (o *WebRARenewRequestTemplate) UnsetCsr() {
-	o.Csr.Unset()
-}
-
-// GetKeyType returns the KeyType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebRARenewRequestTemplate) GetKeyType() string {
-	if o == nil || utils.IsNil(o.KeyType.Get()) {
+// GetExtraction returns the Extraction field value if set, zero value otherwise.
+func (o *OidcIdentityProviderMapping) GetExtraction() string {
+	if o == nil || utils.IsNil(o.Extraction) {
 		var ret string
 		return ret
 	}
-	return *o.KeyType.Get()
+	return *o.Extraction
 }
 
-// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
+// GetExtractionOk returns a tuple with the Extraction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRARenewRequestTemplate) GetKeyTypeOk() (*string, bool) {
-	if o == nil {
+func (o *OidcIdentityProviderMapping) GetExtractionOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Extraction) {
 		return nil, false
 	}
-	return o.KeyType.Get(), o.KeyType.IsSet()
+	return o.Extraction, true
 }
 
-// HasKeyType returns a boolean if a field has been set.
-func (o *WebRARenewRequestTemplate) HasKeyType() bool {
-	if o != nil && o.KeyType.IsSet() {
+// HasExtraction returns a boolean if a field has been set.
+func (o *OidcIdentityProviderMapping) HasExtraction() bool {
+	if o != nil && !utils.IsNil(o.Extraction) {
 		return true
 	}
 
 	return false
 }
 
-// SetKeyType gets a reference to the given NullableString and assigns it to the KeyType field.
-func (o *WebRARenewRequestTemplate) SetKeyType(v string) {
-	o.KeyType.Set(&v)
+// SetExtraction gets a reference to the given string and assigns it to the Extraction field.
+func (o *OidcIdentityProviderMapping) SetExtraction(v string) {
+	o.Extraction = &v
 }
 
-// SetKeyTypeNil sets the value for KeyType to be an explicit nil
-func (o *WebRARenewRequestTemplate) SetKeyTypeNil() {
-	o.KeyType.Set(nil)
-}
-
-// UnsetKeyType ensures that no value is present for KeyType, not even an explicit nil
-func (o *WebRARenewRequestTemplate) UnsetKeyType() {
-	o.KeyType.Unset()
-}
-
-func (o WebRARenewRequestTemplate) MarshalJSON() ([]byte, error) {
+func (o OidcIdentityProviderMapping) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -141,13 +119,13 @@ func (o WebRARenewRequestTemplate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o WebRARenewRequestTemplate) ToMap() (map[string]interface{}, error) {
+func (o OidcIdentityProviderMapping) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Csr.IsSet() {
-		toSerialize["csr"] = o.Csr.Get()
+	if !utils.IsNil(o.Entries) {
+		toSerialize["entries"] = o.Entries
 	}
-	if o.KeyType.IsSet() {
-		toSerialize["keyType"] = o.KeyType.Get()
+	if !utils.IsNil(o.Extraction) {
+		toSerialize["extraction"] = o.Extraction
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -157,60 +135,60 @@ func (o WebRARenewRequestTemplate) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *WebRARenewRequestTemplate) UnmarshalJSON(data []byte) (err error) {
-	varWebRARenewRequestTemplate := _WebRARenewRequestTemplate{}
+func (o *OidcIdentityProviderMapping) UnmarshalJSON(data []byte) (err error) {
+	varOidcIdentityProviderMapping := _OidcIdentityProviderMapping{}
 
-	err = json.Unmarshal(data, &varWebRARenewRequestTemplate)
+	err = json.Unmarshal(data, &varOidcIdentityProviderMapping)
 
 	if err != nil {
 		return err
 	}
 
-	*o = WebRARenewRequestTemplate(varWebRARenewRequestTemplate)
+	*o = OidcIdentityProviderMapping(varOidcIdentityProviderMapping)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "csr")
-		delete(additionalProperties, "keyType")
+		delete(additionalProperties, "entries")
+		delete(additionalProperties, "extraction")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableWebRARenewRequestTemplate struct {
-	value *WebRARenewRequestTemplate
+type NullableOidcIdentityProviderMapping struct {
+	value *OidcIdentityProviderMapping
 	isSet bool
 }
 
-func (v NullableWebRARenewRequestTemplate) Get() *WebRARenewRequestTemplate {
+func (v NullableOidcIdentityProviderMapping) Get() *OidcIdentityProviderMapping {
 	return v.value
 }
 
-func (v *NullableWebRARenewRequestTemplate) Set(val *WebRARenewRequestTemplate) {
+func (v *NullableOidcIdentityProviderMapping) Set(val *OidcIdentityProviderMapping) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableWebRARenewRequestTemplate) IsSet() bool {
+func (v NullableOidcIdentityProviderMapping) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableWebRARenewRequestTemplate) Unset() {
+func (v *NullableOidcIdentityProviderMapping) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableWebRARenewRequestTemplate(val *WebRARenewRequestTemplate) *NullableWebRARenewRequestTemplate {
-	return &NullableWebRARenewRequestTemplate{value: val, isSet: true}
+func NewNullableOidcIdentityProviderMapping(val *OidcIdentityProviderMapping) *NullableOidcIdentityProviderMapping {
+	return &NullableOidcIdentityProviderMapping{value: val, isSet: true}
 }
 
-func (v NullableWebRARenewRequestTemplate) MarshalJSON() ([]byte, error) {
+func (v NullableOidcIdentityProviderMapping) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableWebRARenewRequestTemplate) UnmarshalJSON(src []byte) error {
+func (v *NullableOidcIdentityProviderMapping) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

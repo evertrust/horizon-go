@@ -37,7 +37,8 @@ type OidcIdentityProviderResponse struct {
 	// Whether the identity provider can be selected on login to the Horizon UI
 	EnabledOnUI bool `json:"enabledOnUI"`
 	// The OpenID information that will be used as the user's identifier in Horizon
-	IdentifierClaim string `json:"identifierClaim"`
+	IdentifierClaim string                       `json:"identifierClaim"`
+	Mapping         *OidcIdentityProviderMapping `json:"mapping,omitempty"`
 	// The internal name of the identity provider
 	Name string `json:"name"`
 	// The OpenID information that will be used as the user's name in Horizon
@@ -49,7 +50,7 @@ type OidcIdentityProviderResponse struct {
 	// The scope where to retrieve the user data from
 	Scope string `json:"scope"`
 	// The timeout value to use when connecting to the identity provider (must be a valid finite duration)
-	Timeout utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Timeout string `json:"timeout" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	// Trust AC coming from the system trust store or only trust AC imported in Horizon
 	TrustSystemCAs bool `json:"trustSystemCAs"`
 	// The type of Identity provider to register
@@ -63,7 +64,7 @@ type _OidcIdentityProviderResponse OidcIdentityProviderResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOidcIdentityProviderResponse(id string, clientCredentials string, emailClaim string, enabled bool, enabledOnUI bool, identifierClaim string, name string, nameClaim string, providerMetadataUrl string, scope string, trustSystemCAs bool, type_ string) *OidcIdentityProviderResponse {
+func NewOidcIdentityProviderResponse(id string, clientCredentials string, emailClaim string, enabled bool, enabledOnUI bool, identifierClaim string, name string, nameClaim string, providerMetadataUrl string, scope string, timeout string, trustSystemCAs bool, type_ string) *OidcIdentityProviderResponse {
 	this := OidcIdentityProviderResponse{}
 	this.Id = id
 	this.ClientCredentials = clientCredentials
@@ -75,6 +76,7 @@ func NewOidcIdentityProviderResponse(id string, clientCredentials string, emailC
 	this.NameClaim = nameClaim
 	this.ProviderMetadataUrl = providerMetadataUrl
 	this.Scope = scope
+	this.Timeout = timeout
 	this.TrustSystemCAs = trustSystemCAs
 	this.Type = type_
 	return &this
@@ -300,6 +302,38 @@ func (o *OidcIdentityProviderResponse) SetIdentifierClaim(v string) {
 	o.IdentifierClaim = v
 }
 
+// GetMapping returns the Mapping field value if set, zero value otherwise.
+func (o *OidcIdentityProviderResponse) GetMapping() OidcIdentityProviderMapping {
+	if o == nil || utils.IsNil(o.Mapping) {
+		var ret OidcIdentityProviderMapping
+		return ret
+	}
+	return *o.Mapping
+}
+
+// GetMappingOk returns a tuple with the Mapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OidcIdentityProviderResponse) GetMappingOk() (*OidcIdentityProviderMapping, bool) {
+	if o == nil || utils.IsNil(o.Mapping) {
+		return nil, false
+	}
+	return o.Mapping, true
+}
+
+// HasMapping returns a boolean if a field has been set.
+func (o *OidcIdentityProviderResponse) HasMapping() bool {
+	if o != nil && !utils.IsNil(o.Mapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetMapping gets a reference to the given OidcIdentityProviderMapping and assigns it to the Mapping field.
+func (o *OidcIdentityProviderResponse) SetMapping(v OidcIdentityProviderMapping) {
+	o.Mapping = &v
+}
+
 // GetName returns the Name field value
 func (o *OidcIdentityProviderResponse) GetName() string {
 	if o == nil {
@@ -439,47 +473,28 @@ func (o *OidcIdentityProviderResponse) SetScope(v string) {
 	o.Scope = v
 }
 
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTimeout returns the Timeout field value
 func (o *OidcIdentityProviderResponse) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Timeout.Get()
+
+	return o.Timeout
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// GetTimeoutOk returns a tuple with the Timeout field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OidcIdentityProviderResponse) GetTimeoutOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Timeout.Get(), o.Timeout.IsSet()
+	return &o.Timeout, true
 }
 
-// HasTimeout returns a boolean if a field has been set.
-func (o *OidcIdentityProviderResponse) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+// SetTimeout sets field value
 func (o *OidcIdentityProviderResponse) SetTimeout(v string) {
-	o.Timeout.Set(&v)
-}
-
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *OidcIdentityProviderResponse) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *OidcIdentityProviderResponse) UnsetTimeout() {
-	o.Timeout.Unset()
+	o.Timeout = v
 }
 
 // GetTrustSystemCAs returns the TrustSystemCAs field value
@@ -552,6 +567,9 @@ func (o OidcIdentityProviderResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["enabled"] = o.Enabled
 	toSerialize["enabledOnUI"] = o.EnabledOnUI
 	toSerialize["identifierClaim"] = o.IdentifierClaim
+	if !utils.IsNil(o.Mapping) {
+		toSerialize["mapping"] = o.Mapping
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["nameClaim"] = o.NameClaim
 	toSerialize["providerMetadataUrl"] = o.ProviderMetadataUrl
@@ -559,9 +577,7 @@ func (o OidcIdentityProviderResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["proxy"] = o.Proxy.Get()
 	}
 	toSerialize["scope"] = o.Scope
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
+	toSerialize["timeout"] = o.Timeout
 	toSerialize["trustSystemCAs"] = o.TrustSystemCAs
 	toSerialize["type"] = o.Type
 
@@ -587,6 +603,7 @@ func (o *OidcIdentityProviderResponse) UnmarshalJSON(data []byte) (err error) {
 		"nameClaim",
 		"providerMetadataUrl",
 		"scope",
+		"timeout",
 		"trustSystemCAs",
 		"type",
 	}
@@ -626,6 +643,7 @@ func (o *OidcIdentityProviderResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "enabledOnUI")
 		delete(additionalProperties, "identifierClaim")
+		delete(additionalProperties, "mapping")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "nameClaim")
 		delete(additionalProperties, "providerMetadataUrl")

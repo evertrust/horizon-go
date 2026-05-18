@@ -220,7 +220,7 @@ type CertificateAnalyticsAPIAnalyticsCertificateGetRequest struct {
 	ApiService *CertificateAnalyticsAPIService
 }
 
-func (r CertificateAnalyticsAPIAnalyticsCertificateGetRequest) Execute() ([]models.AnalyticsStatus, *http.Response, error) {
+func (r CertificateAnalyticsAPIAnalyticsCertificateGetRequest) Execute() (*models.AnalyticsStatus, *http.Response, error) {
 	return r.ApiService.AnalyticsCertificateGetExecute(r)
 }
 
@@ -241,13 +241,13 @@ func (a *CertificateAnalyticsAPIService) AnalyticsCertificateGet(ctx context.Con
 
 // Execute executes the request
 //
-//	@return []AnalyticsStatus
-func (a *CertificateAnalyticsAPIService) AnalyticsCertificateGetExecute(r CertificateAnalyticsAPIAnalyticsCertificateGetRequest) ([]models.AnalyticsStatus, *http.Response, error) {
+//	@return AnalyticsStatus
+func (a *CertificateAnalyticsAPIService) AnalyticsCertificateGetExecute(r CertificateAnalyticsAPIAnalyticsCertificateGetRequest) (*models.AnalyticsStatus, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []models.AnalyticsStatus
+		localVarReturnValue *models.AnalyticsStatus
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CertificateAnalyticsAPIService.AnalyticsCertificateGet")

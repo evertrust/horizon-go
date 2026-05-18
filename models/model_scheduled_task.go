@@ -23,12 +23,14 @@ var _ utils.MappedNullable = &ScheduledTask{}
 // ScheduledTask struct for ScheduledTask
 type ScheduledTask struct {
 	Cron                 string               `json:"cron"`
+	Description          *string              `json:"description,omitempty"`
 	Detail               utils.NullableString `json:"detail,omitempty"`
 	Enabled              bool                 `json:"enabled"`
 	ExecutionId          utils.NullableString `json:"executionId,omitempty"`
 	Host                 utils.NullableString `json:"host,omitempty"`
 	LastCompletionDate   utils.NullableInt64  `json:"lastCompletionDate,omitempty"`
 	LastExecutionDate    utils.NullableInt64  `json:"lastExecutionDate,omitempty"`
+	Name                 *string              `json:"name,omitempty"`
 	Status               utils.NullableString `json:"status,omitempty"`
 	Type                 string               `json:"type"`
 	AdditionalProperties map[string]interface{}
@@ -78,6 +80,38 @@ func (o *ScheduledTask) GetCronOk() (*string, bool) {
 // SetCron sets field value
 func (o *ScheduledTask) SetCron(v string) {
 	o.Cron = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *ScheduledTask) GetDescription() string {
+	if o == nil || utils.IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScheduledTask) GetDescriptionOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *ScheduledTask) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *ScheduledTask) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -319,6 +353,38 @@ func (o *ScheduledTask) UnsetLastExecutionDate() {
 	o.LastExecutionDate.Unset()
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *ScheduledTask) GetName() string {
+	if o == nil || utils.IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScheduledTask) GetNameOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *ScheduledTask) HasName() bool {
+	if o != nil && !utils.IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *ScheduledTask) SetName(v string) {
+	o.Name = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ScheduledTask) GetStatus() string {
 	if o == nil || utils.IsNil(o.Status.Get()) {
@@ -397,6 +463,9 @@ func (o ScheduledTask) MarshalJSON() ([]byte, error) {
 func (o ScheduledTask) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["cron"] = o.Cron
+	if !utils.IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
 	if o.Detail.IsSet() {
 		toSerialize["detail"] = o.Detail.Get()
 	}
@@ -412,6 +481,9 @@ func (o ScheduledTask) ToMap() (map[string]interface{}, error) {
 	}
 	if o.LastExecutionDate.IsSet() {
 		toSerialize["lastExecutionDate"] = o.LastExecutionDate.Get()
+	}
+	if !utils.IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
@@ -463,12 +535,14 @@ func (o *ScheduledTask) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "cron")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "detail")
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "executionId")
 		delete(additionalProperties, "host")
 		delete(additionalProperties, "lastCompletionDate")
 		delete(additionalProperties, "lastExecutionDate")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties

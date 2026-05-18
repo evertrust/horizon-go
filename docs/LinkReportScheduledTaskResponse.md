@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **ReportType** | **string** |  | 
 **RetentionPeriod** | **string** | Indicates the duration during which the report can be downloaded | 
 **Body** | Pointer to **NullableString** |  | [optional] 
-**Description** | Pointer to **NullableString** |  | [optional] 
 **FileName** | Pointer to **NullableString** |  | [optional] 
 **From** | **string** |  | 
 **HqlFields** | Pointer to **[]string** |  | [optional] 
@@ -16,24 +15,25 @@ Name | Type | Description | Notes
 **HqlSortedBy** | Pointer to [**[]SortElement**](SortElement.md) |  | [optional] 
 **HqlType** | **string** |  | 
 **IsHtml** | **bool** |  | 
-**Name** | **string** |  | 
 **Recipients** | [**[]ReportRecipient**](ReportRecipient.md) |  | 
 **Title** | **string** |  | 
 **Type** | **string** |  | 
 **Cron** | **string** |  | 
+**Description** | Pointer to **string** |  | [optional] 
 **Detail** | Pointer to **NullableString** |  | [optional] 
 **Enabled** | **bool** |  | 
 **ExecutionId** | Pointer to **NullableString** |  | [optional] 
 **Host** | Pointer to **NullableString** |  | [optional] 
 **LastCompletionDate** | Pointer to **NullableInt64** |  | [optional] 
 **LastExecutionDate** | Pointer to **NullableInt64** |  | [optional] 
+**Name** | **string** |  | 
 **Status** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewLinkReportScheduledTaskResponse
 
-`func NewLinkReportScheduledTaskResponse(id string, reportType string, retentionPeriod string, from string, hqlType string, isHtml bool, name string, recipients []ReportRecipient, title string, type_ string, cron string, enabled bool, ) *LinkReportScheduledTaskResponse`
+`func NewLinkReportScheduledTaskResponse(id string, reportType string, retentionPeriod string, from string, hqlType string, isHtml bool, recipients []ReportRecipient, title string, type_ string, cron string, enabled bool, name string, ) *LinkReportScheduledTaskResponse`
 
 NewLinkReportScheduledTaskResponse instantiates a new LinkReportScheduledTaskResponse object
 This constructor will assign default values to properties that have it defined,
@@ -143,41 +143,6 @@ HasBody returns a boolean if a field has been set.
 `func (o *LinkReportScheduledTaskResponse) UnsetBody()`
 
 UnsetBody ensures that no value is present for Body, not even an explicit nil
-### GetDescription
-
-`func (o *LinkReportScheduledTaskResponse) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *LinkReportScheduledTaskResponse) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *LinkReportScheduledTaskResponse) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *LinkReportScheduledTaskResponse) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescriptionNil
-
-`func (o *LinkReportScheduledTaskResponse) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *LinkReportScheduledTaskResponse) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetFileName
 
 `func (o *LinkReportScheduledTaskResponse) GetFileName() string`
@@ -378,26 +343,6 @@ and a boolean to check if the value has been set.
 SetIsHtml sets IsHtml field to given value.
 
 
-### GetName
-
-`func (o *LinkReportScheduledTaskResponse) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *LinkReportScheduledTaskResponse) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *LinkReportScheduledTaskResponse) SetName(v string)`
-
-SetName sets Name field to given value.
-
-
 ### GetRecipients
 
 `func (o *LinkReportScheduledTaskResponse) GetRecipients() []ReportRecipient`
@@ -477,6 +422,31 @@ and a boolean to check if the value has been set.
 
 SetCron sets Cron field to given value.
 
+
+### GetDescription
+
+`func (o *LinkReportScheduledTaskResponse) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *LinkReportScheduledTaskResponse) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *LinkReportScheduledTaskResponse) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *LinkReportScheduledTaskResponse) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetDetail
 
@@ -673,6 +643,26 @@ HasLastExecutionDate returns a boolean if a field has been set.
 `func (o *LinkReportScheduledTaskResponse) UnsetLastExecutionDate()`
 
 UnsetLastExecutionDate ensures that no value is present for LastExecutionDate, not even an explicit nil
+### GetName
+
+`func (o *LinkReportScheduledTaskResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *LinkReportScheduledTaskResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *LinkReportScheduledTaskResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetStatus
 
 `func (o *LinkReportScheduledTaskResponse) GetStatus() string`

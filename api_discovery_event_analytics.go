@@ -220,7 +220,7 @@ type DiscoveryEventAnalyticsAPIAnalyticsDiscoveryEventGetRequest struct {
 	ApiService *DiscoveryEventAnalyticsAPIService
 }
 
-func (r DiscoveryEventAnalyticsAPIAnalyticsDiscoveryEventGetRequest) Execute() ([]models.AnalyticsStatus1, *http.Response, error) {
+func (r DiscoveryEventAnalyticsAPIAnalyticsDiscoveryEventGetRequest) Execute() (*models.AnalyticsStatus1, *http.Response, error) {
 	return r.ApiService.AnalyticsDiscoveryEventGetExecute(r)
 }
 
@@ -241,13 +241,13 @@ func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventGet(ctx conte
 
 // Execute executes the request
 //
-//	@return []AnalyticsStatus1
-func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventGetExecute(r DiscoveryEventAnalyticsAPIAnalyticsDiscoveryEventGetRequest) ([]models.AnalyticsStatus1, *http.Response, error) {
+//	@return AnalyticsStatus1
+func (a *DiscoveryEventAnalyticsAPIService) AnalyticsDiscoveryEventGetExecute(r DiscoveryEventAnalyticsAPIAnalyticsDiscoveryEventGetRequest) (*models.AnalyticsStatus1, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []models.AnalyticsStatus1
+		localVarReturnValue *models.AnalyticsStatus1
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DiscoveryEventAnalyticsAPIService.AnalyticsDiscoveryEventGet")

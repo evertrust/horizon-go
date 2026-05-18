@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **AuthorizationMethods** | **[]string** |  | 
 **AuthorizeEmptyContact** | **bool** |  | 
 **AuthorizeShortName** | **bool** |  | 
-**CertificateTemplate** | Pointer to [**NullableCertificateTemplate**](CertificateTemplate.md) |  | [optional] 
+**CertificateTemplate** | [**NullableCertificateTemplate**](CertificateTemplate.md) |  | 
 **Constraints** | Pointer to [**NullableCertificateRequestConstraints**](CertificateRequestConstraints.md) |  | [optional] 
 **CryptoPolicy** | [**MonitoredCertificateProfileCryptoPolicy**](MonitoredCertificateProfileCryptoPolicy.md) |  | 
 **CsrDataMapping** | Pointer to **map[string]string** |  | [optional] 
@@ -63,7 +63,7 @@ Name | Type | Description | Notes
 
 ### NewCertificateProfileResponses
 
-`func NewCertificateProfileResponses(id string, authorizationLevels CertificateProfileAuthorizationLevels, authorizationMethods []string, authorizeEmptyContact bool, authorizeShortName bool, cryptoPolicy MonitoredCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, requireTermsOfService bool, selfPermissions CertificateProfileSelfPermissions, timeout string, verifyRetryCount int64, verifyRetryDelay string, authorizationMode string, ca string, dnWhitelist bool, caps []string, encryptionAlgorithm string, mode string, scepRA string, thirdPartyConnector string, authorizedCas []string, requireEAB bool, version int64, ) *CertificateProfileResponses`
+`func NewCertificateProfileResponses(id string, authorizationLevels CertificateProfileAuthorizationLevels, authorizationMethods []string, authorizeEmptyContact bool, authorizeShortName bool, certificateTemplate NullableCertificateTemplate, cryptoPolicy MonitoredCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, requireTermsOfService bool, selfPermissions CertificateProfileSelfPermissions, timeout string, verifyRetryCount int64, verifyRetryDelay string, authorizationMode string, ca string, dnWhitelist bool, caps []string, encryptionAlgorithm string, mode string, scepRA string, thirdPartyConnector string, authorizedCas []string, requireEAB bool, version int64, ) *CertificateProfileResponses`
 
 NewCertificateProfileResponses instantiates a new CertificateProfileResponses object
 This constructor will assign default values to properties that have it defined,
@@ -207,11 +207,6 @@ and a boolean to check if the value has been set.
 
 SetCertificateTemplate sets CertificateTemplate field to given value.
 
-### HasCertificateTemplate
-
-`func (o *CertificateProfileResponses) HasCertificateTemplate() bool`
-
-HasCertificateTemplate returns a boolean if a field has been set.
 
 ### SetCertificateTemplateNil
 

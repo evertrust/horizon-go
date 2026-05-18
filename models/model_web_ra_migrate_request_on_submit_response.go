@@ -29,7 +29,7 @@ type WebRAMigrateRequestOnSubmitResponse struct {
 	// The module of the certificate migrated.
 	Module Module `json:"module"`
 	// The target profile name
-	Profile interface{} `json:"profile"`
+	Profile string `json:"profile"`
 	// The user-data that will be used to generate the certificate
 	Template WebRAMigrateRequestTemplate `json:"template"`
 	// What this request will do. For a migration request, this is always `migrate`
@@ -80,7 +80,7 @@ type _WebRAMigrateRequestOnSubmitResponse WebRAMigrateRequestOnSubmitResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAMigrateRequestOnSubmitResponse(module Module, profile interface{}, template WebRAMigrateRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, registrationDate int64, removeAt int64, status RequestStatus) *WebRAMigrateRequestOnSubmitResponse {
+func NewWebRAMigrateRequestOnSubmitResponse(module Module, profile string, template WebRAMigrateRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, registrationDate int64, removeAt int64, status RequestStatus) *WebRAMigrateRequestOnSubmitResponse {
 	this := WebRAMigrateRequestOnSubmitResponse{}
 	this.Id = id
 	var dryRun bool = false
@@ -217,10 +217,9 @@ func (o *WebRAMigrateRequestOnSubmitResponse) SetModule(v Module) {
 }
 
 // GetProfile returns the Profile field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *WebRAMigrateRequestOnSubmitResponse) GetProfile() interface{} {
+func (o *WebRAMigrateRequestOnSubmitResponse) GetProfile() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -229,16 +228,15 @@ func (o *WebRAMigrateRequestOnSubmitResponse) GetProfile() interface{} {
 
 // GetProfileOk returns a tuple with the Profile field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebRAMigrateRequestOnSubmitResponse) GetProfileOk() (*interface{}, bool) {
-	if o == nil || utils.IsNil(o.Profile) {
+func (o *WebRAMigrateRequestOnSubmitResponse) GetProfileOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Profile, true
 }
 
 // SetProfile sets field value
-func (o *WebRAMigrateRequestOnSubmitResponse) SetProfile(v interface{}) {
+func (o *WebRAMigrateRequestOnSubmitResponse) SetProfile(v string) {
 	o.Profile = v
 }
 
@@ -958,9 +956,7 @@ func (o WebRAMigrateRequestOnSubmitResponse) ToMap() (map[string]interface{}, er
 		toSerialize["dryRun"] = o.DryRun.Get()
 	}
 	toSerialize["module"] = o.Module
-	if o.Profile != nil {
-		toSerialize["profile"] = o.Profile
-	}
+	toSerialize["profile"] = o.Profile
 	toSerialize["template"] = o.Template
 	toSerialize["workflow"] = o.Workflow
 	toSerialize["_id"] = o.Id

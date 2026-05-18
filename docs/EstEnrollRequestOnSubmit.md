@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Dn** | Pointer to **interface{}** | Fill the DN if DN whitelist is enabled. Contains the DN of the challenge | [optional] 
+**Dn** | Pointer to **string** | Fill the DN if DN whitelist is enabled. Contains the DN of the challenge | [optional] 
 **Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password of the challenge. Must be set if password mode is &#x60;manual&#x60; | [optional] 
 **Profile** | **string** | The EST profile name | 
 **RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDn
 
-`func (o *EstEnrollRequestOnSubmit) GetDn() interface{}`
+`func (o *EstEnrollRequestOnSubmit) GetDn() string`
 
 GetDn returns the Dn field if non-nil, zero value otherwise.
 
 ### GetDnOk
 
-`func (o *EstEnrollRequestOnSubmit) GetDnOk() (*interface{}, bool)`
+`func (o *EstEnrollRequestOnSubmit) GetDnOk() (*string, bool)`
 
 GetDnOk returns a tuple with the Dn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDn
 
-`func (o *EstEnrollRequestOnSubmit) SetDn(v interface{})`
+`func (o *EstEnrollRequestOnSubmit) SetDn(v string)`
 
 SetDn sets Dn field to given value.
 
@@ -57,16 +57,6 @@ SetDn sets Dn field to given value.
 
 HasDn returns a boolean if a field has been set.
 
-### SetDnNil
-
-`func (o *EstEnrollRequestOnSubmit) SetDnNil(b bool)`
-
- SetDnNil sets the value for Dn to be an explicit nil
-
-### UnsetDn
-`func (o *EstEnrollRequestOnSubmit) UnsetDn()`
-
-UnsetDn ensures that no value is present for Dn, not even an explicit nil
 ### GetPassword
 
 `func (o *EstEnrollRequestOnSubmit) GetPassword() SecretString`

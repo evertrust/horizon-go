@@ -71,7 +71,7 @@ Other parameters are passed through a pointer to a apiAnalyticsCertificateFlushR
 
 ## AnalyticsCertificateGet
 
-> []AnalyticsStatus AnalyticsCertificateGet(ctx).Execute()
+> AnalyticsStatus AnalyticsCertificateGet(ctx).Execute()
 
 Retrieve the certificate analytics status
 
@@ -98,7 +98,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CertificateAnalyticsAPI.AnalyticsCertificateGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AnalyticsCertificateGet`: []AnalyticsStatus
+	// response from `AnalyticsCertificateGet`: AnalyticsStatus
 	fmt.Fprintf(os.Stdout, "Response from `CertificateAnalyticsAPI.AnalyticsCertificateGet`: %v\n", resp)
 }
 ```
@@ -114,7 +114,7 @@ Other parameters are passed through a pointer to a apiAnalyticsCertificateGetReq
 
 ### Return type
 
-[**[]AnalyticsStatus**](AnalyticsStatus.md)
+[**AnalyticsStatus**](AnalyticsStatus.md)
 
 ### Authorization
 

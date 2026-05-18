@@ -25,224 +25,6 @@ import (
 // SecurityPrincipalinfoAPIService SecurityPrincipalinfoAPI service
 type SecurityPrincipalinfoAPIService service
 
-type SecurityPrincipalinfoAPIScurityPrincipalInfoGetRequest struct {
-	ctx        context.Context
-	ApiService *SecurityPrincipalinfoAPIService
-	identifier string
-}
-
-func (r SecurityPrincipalinfoAPIScurityPrincipalInfoGetRequest) Execute() (*models.PrincipalInfoResponse, *http.Response, error) {
-	return r.ApiService.ScurityPrincipalInfoGetExecute(r)
-}
-
-/*
-ScurityPrincipalInfoGet Retrieve a principal information
-
-Retrieve the security information of an existing principal based on its identifier
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param identifier The identifier of the principal to retrieve information of
-	@return SecurityPrincipalinfoAPIScurityPrincipalInfoGetRequest
-*/
-func (a *SecurityPrincipalinfoAPIService) ScurityPrincipalInfoGet(ctx context.Context, identifier string) SecurityPrincipalinfoAPIScurityPrincipalInfoGetRequest {
-	return SecurityPrincipalinfoAPIScurityPrincipalInfoGetRequest{
-		ApiService: a,
-		ctx:        ctx,
-		identifier: identifier,
-	}
-}
-
-// Execute executes the request
-//
-//	@return PrincipalInfoResponse
-func (a *SecurityPrincipalinfoAPIService) ScurityPrincipalInfoGetExecute(r SecurityPrincipalinfoAPIScurityPrincipalInfoGetRequest) (*models.PrincipalInfoResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *models.PrincipalInfoResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityPrincipalinfoAPIService.ScurityPrincipalInfoGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/security/principalinfos/{identifier}"
-	localVarPath = strings.Replace(localVarPath, "{"+"identifier"+"}", url.PathEscape(parameterValueToString(r.identifier, "identifier")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiKey"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-KEY"] = key
-			}
-		}
-	}
-
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["apiId"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-ID"] = key
-			}
-		}
-	}
-
-	if r.ctx != nil {
-
-		// JWT POP
-		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
-			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
-			delete(localVarHeaderParams, "X-API-KEY")
-			delete(localVarHeaderParams, "X-API-ID")
-			// send without the Nonce to get replay nonce
-			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
-			if err != nil {
-				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-			}
-			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-			if err != nil {
-				return localVarReturnValue, nil, err
-			}
-			localVarHTTPResponse, err := a.client.callAPI(req)
-			if err != nil || localVarHTTPResponse == nil {
-				return localVarReturnValue, localVarHTTPResponse, err
-			}
-			// read the response to get the replay nonce
-			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-			localVarHTTPResponse.Body.Close()
-			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-			if err != nil {
-				return localVarReturnValue, localVarHTTPResponse, err
-			}
-			// from the request read the replay nonce from the response header and resend the request
-			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
-			if nonce == "" {
-				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
-			}
-			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
-			if err != nil {
-				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-			}
-			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v models.BasicError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v models.BasicError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v models.BasicError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v models.BasicError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type SecurityPrincipalinfoAPISecurityPrincipalInfoAddRequest struct {
 	ctx           context.Context
 	ApiService    *SecurityPrincipalinfoAPIService
@@ -673,6 +455,224 @@ func (a *SecurityPrincipalinfoAPIService) SecurityPrincipalInfoDeleteExecute(r S
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type SecurityPrincipalinfoAPISecurityPrincipalInfoGetRequest struct {
+	ctx        context.Context
+	ApiService *SecurityPrincipalinfoAPIService
+	identifier string
+}
+
+func (r SecurityPrincipalinfoAPISecurityPrincipalInfoGetRequest) Execute() (*models.PrincipalInfoResponse, *http.Response, error) {
+	return r.ApiService.SecurityPrincipalInfoGetExecute(r)
+}
+
+/*
+SecurityPrincipalInfoGet Retrieve a principal information
+
+Retrieve the security information of an existing principal based on its identifier
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param identifier The identifier of the principal to retrieve information of
+	@return SecurityPrincipalinfoAPISecurityPrincipalInfoGetRequest
+*/
+func (a *SecurityPrincipalinfoAPIService) SecurityPrincipalInfoGet(ctx context.Context, identifier string) SecurityPrincipalinfoAPISecurityPrincipalInfoGetRequest {
+	return SecurityPrincipalinfoAPISecurityPrincipalInfoGetRequest{
+		ApiService: a,
+		ctx:        ctx,
+		identifier: identifier,
+	}
+}
+
+// Execute executes the request
+//
+//	@return PrincipalInfoResponse
+func (a *SecurityPrincipalinfoAPIService) SecurityPrincipalInfoGetExecute(r SecurityPrincipalinfoAPISecurityPrincipalInfoGetRequest) (*models.PrincipalInfoResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *models.PrincipalInfoResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityPrincipalinfoAPIService.SecurityPrincipalInfoGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/security/principalinfos/{identifier}"
+	localVarPath = strings.Replace(localVarPath, "{"+"identifier"+"}", url.PathEscape(parameterValueToString(r.identifier, "identifier")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKey"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-KEY"] = key
+			}
+		}
+	}
+
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiId"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-ID"] = key
+			}
+		}
+	}
+
+	if r.ctx != nil {
+
+		// JWT POP
+		if jwtPopCert, jwtPopSigner, ok := utils.GetJWTPoP(r.ctx); ok {
+			// remove the API keys from the headers to avoid account authentication to interfere with the JWT POP authentication
+			delete(localVarHeaderParams, "X-API-KEY")
+			delete(localVarHeaderParams, "X-API-ID")
+			// send without the Nonce to get replay nonce
+			jwt, err := utils.CreateJWT(*jwtPopCert, jwtPopSigner, "")
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+			// send the request a first time but without any data to get the replay nonce
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+			localVarHTTPResponse, err := a.client.callAPI(req)
+			if err != nil || localVarHTTPResponse == nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// read the response to get the replay nonce
+			localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+			localVarHTTPResponse.Body.Close()
+			localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			// from the request read the replay nonce from the response header and resend the request
+			nonce := localVarHTTPResponse.Header.Get("Replay-Nonce")
+			if nonce == "" {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: "no replay nonce received in response"}
+			}
+			jwt, err = utils.CreateJWT(*jwtPopCert, jwtPopSigner, nonce)
+			if err != nil {
+				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+			}
+			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v models.BasicError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v models.BasicError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v models.BasicError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v models.BasicError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type SecurityPrincipalinfoAPISecurityPrincipalInfoSearchRequest struct {

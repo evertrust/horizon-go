@@ -33,7 +33,7 @@ import (
 
 func main() {
 	ruleset := "ruleset_example" // string | 
-	x509 := openapiclient.grading_policy_explain_file_request_x509{ArrayOfByte: new([]byte)} // GradingPolicyExplainFileRequestX509 |  (optional)
+	x509 := []byte("example") // []byte | The x509 certificate, PEM or DER encoded (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -63,7 +63,7 @@ Other parameters are passed through a pointer to a apiGradingRulesetExplainFileR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **x509** | [**GradingPolicyExplainFileRequestX509**](GradingPolicyExplainFileRequestX509.md) |  | 
+ **x509** | **[]byte** | The x509 certificate, PEM or DER encoded | 
 
 ### Return type
 

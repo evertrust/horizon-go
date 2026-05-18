@@ -29,11 +29,12 @@ type CertificateGradingRulesetAPIGradingRulesetExplainFileRequest struct {
 	ctx        context.Context
 	ApiService *CertificateGradingRulesetAPIService
 	ruleset    string
-	x509       *models.GradingPolicyExplainFileRequestX509
+	x509       []byte
 }
 
-func (r CertificateGradingRulesetAPIGradingRulesetExplainFileRequest) X509(x509 models.GradingPolicyExplainFileRequestX509) CertificateGradingRulesetAPIGradingRulesetExplainFileRequest {
-	r.x509 = &x509
+// The x509 certificate, PEM or DER encoded
+func (r CertificateGradingRulesetAPIGradingRulesetExplainFileRequest) X509(x509 []byte) CertificateGradingRulesetAPIGradingRulesetExplainFileRequest {
+	r.x509 = x509
 	return r
 }
 
@@ -98,12 +99,11 @@ func (a *CertificateGradingRulesetAPIService) GradingRulesetExplainFileExecute(r
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.x509 != nil {
-		paramJson, err := parameterToJson(*r.x509)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-		localVarFormParams.Add("x509", paramJson)
+	x509LocalVarFormFileName := "x509"
+	x509LocalVarFile := r.x509
+
+	if x509LocalVarFile != nil {
+		formFiles = append(formFiles, formFile{fileBytes: x509LocalVarFile, fileName: "x509", formFileName: x509LocalVarFormFileName})
 	}
 	if r.ctx != nil {
 		// API Key Authentication

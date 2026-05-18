@@ -20,13 +20,14 @@ Name | Type | Description | Notes
 **Host** | Pointer to **NullableString** |  | [optional] 
 **LastCompletionDate** | Pointer to **NullableInt64** |  | [optional] 
 **LastExecutionDate** | Pointer to **NullableInt64** |  | [optional] 
+**Name** | **string** |  | 
 **Status** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewThirdPartyScheduledTask
 
-`func NewThirdPartyScheduledTask(connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool, ) *ThirdPartyScheduledTask`
+`func NewThirdPartyScheduledTask(connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool, name string, ) *ThirdPartyScheduledTask`
 
 NewThirdPartyScheduledTask instantiates a new ThirdPartyScheduledTask object
 This constructor will assign default values to properties that have it defined,
@@ -451,6 +452,26 @@ HasLastExecutionDate returns a boolean if a field has been set.
 `func (o *ThirdPartyScheduledTask) UnsetLastExecutionDate()`
 
 UnsetLastExecutionDate ensures that no value is present for LastExecutionDate, not even an explicit nil
+### GetName
+
+`func (o *ThirdPartyScheduledTask) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ThirdPartyScheduledTask) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ThirdPartyScheduledTask) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetStatus
 
 `func (o *ThirdPartyScheduledTask) GetStatus() string`

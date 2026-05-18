@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
 **Connector** | **string** |  | 
-**Description** | Pointer to **NullableString** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
 **DryRun** | **bool** |  | 
 **Enroll** | **bool** |  | 
 **Module** | **string** |  | 
@@ -21,13 +21,14 @@ Name | Type | Description | Notes
 **Host** | Pointer to **NullableString** |  | [optional] 
 **LastCompletionDate** | Pointer to **NullableInt64** |  | [optional] 
 **LastExecutionDate** | Pointer to **NullableInt64** |  | [optional] 
+**Name** | **string** |  | 
 **Status** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
 ### NewThirdPartyScheduledTaskResponse
 
-`func NewThirdPartyScheduledTaskResponse(id string, connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool, ) *ThirdPartyScheduledTaskResponse`
+`func NewThirdPartyScheduledTaskResponse(id string, connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool, name string, ) *ThirdPartyScheduledTaskResponse`
 
 NewThirdPartyScheduledTaskResponse instantiates a new ThirdPartyScheduledTaskResponse object
 This constructor will assign default values to properties that have it defined,
@@ -107,16 +108,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *ThirdPartyScheduledTaskResponse) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *ThirdPartyScheduledTaskResponse) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetDryRun
 
 `func (o *ThirdPartyScheduledTaskResponse) GetDryRun() bool`
@@ -472,6 +463,26 @@ HasLastExecutionDate returns a boolean if a field has been set.
 `func (o *ThirdPartyScheduledTaskResponse) UnsetLastExecutionDate()`
 
 UnsetLastExecutionDate ensures that no value is present for LastExecutionDate, not even an explicit nil
+### GetName
+
+`func (o *ThirdPartyScheduledTaskResponse) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ThirdPartyScheduledTaskResponse) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ThirdPartyScheduledTaskResponse) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetStatus
 
 `func (o *ThirdPartyScheduledTaskResponse) GetStatus() string`

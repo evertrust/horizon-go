@@ -28,7 +28,6 @@ type LinkReportScheduledTaskResponse struct {
 	// Indicates the duration during which the report can be downloaded
 	RetentionPeriod      string               `json:"retentionPeriod"`
 	Body                 utils.NullableString `json:"body,omitempty"`
-	Description          utils.NullableString `json:"description,omitempty"`
 	FileName             utils.NullableString `json:"fileName,omitempty"`
 	From                 string               `json:"from"`
 	HqlFields            []string             `json:"hqlFields,omitempty"`
@@ -36,17 +35,18 @@ type LinkReportScheduledTaskResponse struct {
 	HqlSortedBy          []SortElement        `json:"hqlSortedBy,omitempty"`
 	HqlType              string               `json:"hqlType"`
 	IsHtml               bool                 `json:"isHtml"`
-	Name                 string               `json:"name"`
 	Recipients           []ReportRecipient    `json:"recipients"`
 	Title                string               `json:"title"`
 	Type                 string               `json:"type"`
 	Cron                 string               `json:"cron"`
+	Description          *string              `json:"description,omitempty"`
 	Detail               utils.NullableString `json:"detail,omitempty"`
 	Enabled              bool                 `json:"enabled"`
 	ExecutionId          utils.NullableString `json:"executionId,omitempty"`
 	Host                 utils.NullableString `json:"host,omitempty"`
 	LastCompletionDate   utils.NullableInt64  `json:"lastCompletionDate,omitempty"`
 	LastExecutionDate    utils.NullableInt64  `json:"lastExecutionDate,omitempty"`
+	Name                 string               `json:"name"`
 	Status               utils.NullableString `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -57,19 +57,19 @@ type _LinkReportScheduledTaskResponse LinkReportScheduledTaskResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLinkReportScheduledTaskResponse(id string, reportType string, retentionPeriod string, from string, hqlType string, isHtml bool, name string, recipients []ReportRecipient, title string, type_ string, cron string, enabled bool) *LinkReportScheduledTaskResponse {
+func NewLinkReportScheduledTaskResponse(id string, reportType string, retentionPeriod string, from string, hqlType string, isHtml bool, recipients []ReportRecipient, title string, type_ string, cron string, enabled bool, name string) *LinkReportScheduledTaskResponse {
 	this := LinkReportScheduledTaskResponse{}
 	this.ReportType = reportType
 	this.RetentionPeriod = retentionPeriod
 	this.From = from
 	this.HqlType = hqlType
 	this.IsHtml = isHtml
-	this.Name = name
 	this.Recipients = recipients
 	this.Title = title
 	this.Type = type_
 	this.Cron = cron
 	this.Enabled = enabled
+	this.Name = name
 	return &this
 }
 
@@ -194,49 +194,6 @@ func (o *LinkReportScheduledTaskResponse) SetBodyNil() {
 // UnsetBody ensures that no value is present for Body, not even an explicit nil
 func (o *LinkReportScheduledTaskResponse) UnsetBody() {
 	o.Body.Unset()
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LinkReportScheduledTaskResponse) GetDescription() string {
-	if o == nil || utils.IsNil(o.Description.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Description.Get()
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LinkReportScheduledTaskResponse) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Description.Get(), o.Description.IsSet()
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *LinkReportScheduledTaskResponse) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *LinkReportScheduledTaskResponse) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *LinkReportScheduledTaskResponse) SetDescriptionNil() {
-	o.Description.Set(nil)
-}
-
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *LinkReportScheduledTaskResponse) UnsetDescription() {
-	o.Description.Unset()
 }
 
 // GetFileName returns the FileName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -463,30 +420,6 @@ func (o *LinkReportScheduledTaskResponse) SetIsHtml(v bool) {
 	o.IsHtml = v
 }
 
-// GetName returns the Name field value
-func (o *LinkReportScheduledTaskResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *LinkReportScheduledTaskResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *LinkReportScheduledTaskResponse) SetName(v string) {
-	o.Name = v
-}
-
 // GetRecipients returns the Recipients field value
 func (o *LinkReportScheduledTaskResponse) GetRecipients() []ReportRecipient {
 	if o == nil {
@@ -581,6 +514,38 @@ func (o *LinkReportScheduledTaskResponse) GetCronOk() (*string, bool) {
 // SetCron sets field value
 func (o *LinkReportScheduledTaskResponse) SetCron(v string) {
 	o.Cron = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *LinkReportScheduledTaskResponse) GetDescription() string {
+	if o == nil || utils.IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LinkReportScheduledTaskResponse) GetDescriptionOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *LinkReportScheduledTaskResponse) HasDescription() bool {
+	if o != nil && !utils.IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *LinkReportScheduledTaskResponse) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -822,6 +787,30 @@ func (o *LinkReportScheduledTaskResponse) UnsetLastExecutionDate() {
 	o.LastExecutionDate.Unset()
 }
 
+// GetName returns the Name field value
+func (o *LinkReportScheduledTaskResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *LinkReportScheduledTaskResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *LinkReportScheduledTaskResponse) SetName(v string) {
+	o.Name = v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LinkReportScheduledTaskResponse) GetStatus() string {
 	if o == nil || utils.IsNil(o.Status.Get()) {
@@ -881,9 +870,6 @@ func (o LinkReportScheduledTaskResponse) ToMap() (map[string]interface{}, error)
 	if o.Body.IsSet() {
 		toSerialize["body"] = o.Body.Get()
 	}
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
-	}
 	if o.FileName.IsSet() {
 		toSerialize["fileName"] = o.FileName.Get()
 	}
@@ -899,11 +885,13 @@ func (o LinkReportScheduledTaskResponse) ToMap() (map[string]interface{}, error)
 	}
 	toSerialize["hqlType"] = o.HqlType
 	toSerialize["isHtml"] = o.IsHtml
-	toSerialize["name"] = o.Name
 	toSerialize["recipients"] = o.Recipients
 	toSerialize["title"] = o.Title
 	toSerialize["type"] = o.Type
 	toSerialize["cron"] = o.Cron
+	if !utils.IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
 	if o.Detail.IsSet() {
 		toSerialize["detail"] = o.Detail.Get()
 	}
@@ -920,6 +908,7 @@ func (o LinkReportScheduledTaskResponse) ToMap() (map[string]interface{}, error)
 	if o.LastExecutionDate.IsSet() {
 		toSerialize["lastExecutionDate"] = o.LastExecutionDate.Get()
 	}
+	toSerialize["name"] = o.Name
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
 	}
@@ -942,12 +931,12 @@ func (o *LinkReportScheduledTaskResponse) UnmarshalJSON(data []byte) (err error)
 		"from",
 		"hqlType",
 		"isHtml",
-		"name",
 		"recipients",
 		"title",
 		"type",
 		"cron",
 		"enabled",
+		"name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -981,7 +970,6 @@ func (o *LinkReportScheduledTaskResponse) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "reportType")
 		delete(additionalProperties, "retentionPeriod")
 		delete(additionalProperties, "body")
-		delete(additionalProperties, "description")
 		delete(additionalProperties, "fileName")
 		delete(additionalProperties, "from")
 		delete(additionalProperties, "hqlFields")
@@ -989,17 +977,18 @@ func (o *LinkReportScheduledTaskResponse) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "hqlSortedBy")
 		delete(additionalProperties, "hqlType")
 		delete(additionalProperties, "isHtml")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "recipients")
 		delete(additionalProperties, "title")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "cron")
+		delete(additionalProperties, "description")
 		delete(additionalProperties, "detail")
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "executionId")
 		delete(additionalProperties, "host")
 		delete(additionalProperties, "lastCompletionDate")
 		delete(additionalProperties, "lastExecutionDate")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}

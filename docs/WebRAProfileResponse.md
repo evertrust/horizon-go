@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** | Object internal ID | 
 **AuthorizationLevels** | [**CertificateProfileAuthorizationLevels**](CertificateProfileAuthorizationLevels.md) |  | 
 **AuthorizationMode** | **string** | The authorization mode to use.  &#x60;authorized&#x60; uses permissions to allow enrollment,  &#x60;auto-validation&#x60; uses the validation ruleset, &#x60;auto-validation-authorized&#x60; uses the validation ruleset, and if enrollment is denied, uses the permissions  | 
-**CertificateTemplate** | Pointer to [**NullableCertificateTemplate**](CertificateTemplate.md) |  | [optional] 
+**CertificateTemplate** | [**CertificateTemplate**](CertificateTemplate.md) |  | 
 **CryptoPolicy** | [**ManagedCertificateProfileCryptoPolicy**](ManagedCertificateProfileCryptoPolicy.md) |  | 
 **CsrDataMapping** | Pointer to **map[string]string** |  | [optional] 
 **Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewWebRAProfileResponse
 
-`func NewWebRAProfileResponse(id string, authorizationLevels CertificateProfileAuthorizationLevels, authorizationMode string, cryptoPolicy ManagedCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions, ) *WebRAProfileResponse`
+`func NewWebRAProfileResponse(id string, authorizationLevels CertificateProfileAuthorizationLevels, authorizationMode string, certificateTemplate CertificateTemplate, cryptoPolicy ManagedCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions, ) *WebRAProfileResponse`
 
 NewWebRAProfileResponse instantiates a new WebRAProfileResponse object
 This constructor will assign default values to properties that have it defined,
@@ -124,22 +124,7 @@ and a boolean to check if the value has been set.
 
 SetCertificateTemplate sets CertificateTemplate field to given value.
 
-### HasCertificateTemplate
 
-`func (o *WebRAProfileResponse) HasCertificateTemplate() bool`
-
-HasCertificateTemplate returns a boolean if a field has been set.
-
-### SetCertificateTemplateNil
-
-`func (o *WebRAProfileResponse) SetCertificateTemplateNil(b bool)`
-
- SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-
-### UnsetCertificateTemplate
-`func (o *WebRAProfileResponse) UnsetCertificateTemplate()`
-
-UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
 ### GetCryptoPolicy
 
 `func (o *WebRAProfileResponse) GetCryptoPolicy() ManagedCertificateProfileCryptoPolicy`

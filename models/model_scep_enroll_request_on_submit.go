@@ -23,11 +23,11 @@ var _ utils.MappedNullable = &ScepEnrollRequestOnSubmit{}
 // ScepEnrollRequestOnSubmit struct for ScepEnrollRequestOnSubmit
 type ScepEnrollRequestOnSubmit struct {
 	// Fill the DN if DN whitelist is enabled. Contains the DN of the challenge
-	Dn interface{} `json:"dn,omitempty"`
+	Dn *string `json:"dn,omitempty"`
 	// The password of the challenge. Must be set if password mode is `manual`
 	Password *SecretString `json:"password,omitempty"`
 	// The SCEP profile name
-	Profile interface{} `json:"profile"`
+	Profile string `json:"profile"`
 	// Free-text field editable by the requester to provider more context on the request
 	RequesterComment utils.NullableString `json:"requesterComment,omitempty"`
 	// If true, the request is validated, but will not result in an enrollment
@@ -47,7 +47,7 @@ type _ScepEnrollRequestOnSubmit ScepEnrollRequestOnSubmit
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScepEnrollRequestOnSubmit(profile interface{}, module string, workflow string) *ScepEnrollRequestOnSubmit {
+func NewScepEnrollRequestOnSubmit(profile string, module string, workflow string) *ScepEnrollRequestOnSubmit {
 	this := ScepEnrollRequestOnSubmit{}
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
@@ -66,23 +66,22 @@ func NewScepEnrollRequestOnSubmitWithDefaults() *ScepEnrollRequestOnSubmit {
 	return &this
 }
 
-// GetDn returns the Dn field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ScepEnrollRequestOnSubmit) GetDn() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetDn returns the Dn field value if set, zero value otherwise.
+func (o *ScepEnrollRequestOnSubmit) GetDn() string {
+	if o == nil || utils.IsNil(o.Dn) {
+		var ret string
 		return ret
 	}
-	return o.Dn
+	return *o.Dn
 }
 
 // GetDnOk returns a tuple with the Dn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ScepEnrollRequestOnSubmit) GetDnOk() (*interface{}, bool) {
+func (o *ScepEnrollRequestOnSubmit) GetDnOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.Dn) {
 		return nil, false
 	}
-	return &o.Dn, true
+	return o.Dn, true
 }
 
 // HasDn returns a boolean if a field has been set.
@@ -94,9 +93,9 @@ func (o *ScepEnrollRequestOnSubmit) HasDn() bool {
 	return false
 }
 
-// SetDn gets a reference to the given interface{} and assigns it to the Dn field.
-func (o *ScepEnrollRequestOnSubmit) SetDn(v interface{}) {
-	o.Dn = v
+// SetDn gets a reference to the given string and assigns it to the Dn field.
+func (o *ScepEnrollRequestOnSubmit) SetDn(v string) {
+	o.Dn = &v
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
@@ -132,10 +131,9 @@ func (o *ScepEnrollRequestOnSubmit) SetPassword(v SecretString) {
 }
 
 // GetProfile returns the Profile field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *ScepEnrollRequestOnSubmit) GetProfile() interface{} {
+func (o *ScepEnrollRequestOnSubmit) GetProfile() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -144,16 +142,15 @@ func (o *ScepEnrollRequestOnSubmit) GetProfile() interface{} {
 
 // GetProfileOk returns a tuple with the Profile field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ScepEnrollRequestOnSubmit) GetProfileOk() (*interface{}, bool) {
-	if o == nil || utils.IsNil(o.Profile) {
+func (o *ScepEnrollRequestOnSubmit) GetProfileOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Profile, true
 }
 
 // SetProfile sets field value
-func (o *ScepEnrollRequestOnSubmit) SetProfile(v interface{}) {
+func (o *ScepEnrollRequestOnSubmit) SetProfile(v string) {
 	o.Profile = v
 }
 
@@ -333,15 +330,13 @@ func (o ScepEnrollRequestOnSubmit) MarshalJSON() ([]byte, error) {
 
 func (o ScepEnrollRequestOnSubmit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Dn != nil {
+	if !utils.IsNil(o.Dn) {
 		toSerialize["dn"] = o.Dn
 	}
 	if !utils.IsNil(o.Password) {
 		toSerialize["password"] = o.Password
 	}
-	if o.Profile != nil {
-		toSerialize["profile"] = o.Profile
-	}
+	toSerialize["profile"] = o.Profile
 	if o.RequesterComment.IsSet() {
 		toSerialize["requesterComment"] = o.RequesterComment.Get()
 	}

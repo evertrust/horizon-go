@@ -25,7 +25,7 @@ type ThirdPartyScheduledTaskResponse struct {
 	// Object internal ID
 	Id                   string               `json:"_id"`
 	Connector            string               `json:"connector"`
-	Description          utils.NullableString `json:"description,omitempty"`
+	Description          *string              `json:"description,omitempty"`
 	DryRun               bool                 `json:"dryRun"`
 	Enroll               bool                 `json:"enroll"`
 	Module               string               `json:"module"`
@@ -40,6 +40,7 @@ type ThirdPartyScheduledTaskResponse struct {
 	Host                 utils.NullableString `json:"host,omitempty"`
 	LastCompletionDate   utils.NullableInt64  `json:"lastCompletionDate,omitempty"`
 	LastExecutionDate    utils.NullableInt64  `json:"lastExecutionDate,omitempty"`
+	Name                 string               `json:"name"`
 	Status               utils.NullableString `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -50,7 +51,7 @@ type _ThirdPartyScheduledTaskResponse ThirdPartyScheduledTaskResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewThirdPartyScheduledTaskResponse(id string, connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool) *ThirdPartyScheduledTaskResponse {
+func NewThirdPartyScheduledTaskResponse(id string, connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool, name string) *ThirdPartyScheduledTaskResponse {
 	this := ThirdPartyScheduledTaskResponse{}
 	this.Connector = connector
 	this.DryRun = dryRun
@@ -62,6 +63,7 @@ func NewThirdPartyScheduledTaskResponse(id string, connector string, dryRun bool
 	this.Type = type_
 	this.Cron = cron
 	this.Enabled = enabled
+	this.Name = name
 	return &this
 }
 
@@ -121,47 +123,36 @@ func (o *ThirdPartyScheduledTaskResponse) SetConnector(v string) {
 	o.Connector = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ThirdPartyScheduledTaskResponse) GetDescription() string {
-	if o == nil || utils.IsNil(o.Description.Get()) {
+	if o == nil || utils.IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-	return *o.Description.Get()
+	return *o.Description
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ThirdPartyScheduledTaskResponse) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Description) {
 		return nil, false
 	}
-	return o.Description.Get(), o.Description.IsSet()
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ThirdPartyScheduledTaskResponse) HasDescription() bool {
-	if o != nil && o.Description.IsSet() {
+	if o != nil && !utils.IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *ThirdPartyScheduledTaskResponse) SetDescription(v string) {
-	o.Description.Set(&v)
-}
-
-// SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *ThirdPartyScheduledTaskResponse) SetDescriptionNil() {
-	o.Description.Set(nil)
-}
-
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *ThirdPartyScheduledTaskResponse) UnsetDescription() {
-	o.Description.Unset()
+	o.Description = &v
 }
 
 // GetDryRun returns the DryRun field value
@@ -595,6 +586,30 @@ func (o *ThirdPartyScheduledTaskResponse) UnsetLastExecutionDate() {
 	o.LastExecutionDate.Unset()
 }
 
+// GetName returns the Name field value
+func (o *ThirdPartyScheduledTaskResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ThirdPartyScheduledTaskResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ThirdPartyScheduledTaskResponse) SetName(v string) {
+	o.Name = v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ThirdPartyScheduledTaskResponse) GetStatus() string {
 	if o == nil || utils.IsNil(o.Status.Get()) {
@@ -650,8 +665,8 @@ func (o ThirdPartyScheduledTaskResponse) ToMap() (map[string]interface{}, error)
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
 	toSerialize["connector"] = o.Connector
-	if o.Description.IsSet() {
-		toSerialize["description"] = o.Description.Get()
+	if !utils.IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
 	toSerialize["dryRun"] = o.DryRun
 	toSerialize["enroll"] = o.Enroll
@@ -677,6 +692,7 @@ func (o ThirdPartyScheduledTaskResponse) ToMap() (map[string]interface{}, error)
 	if o.LastExecutionDate.IsSet() {
 		toSerialize["lastExecutionDate"] = o.LastExecutionDate.Get()
 	}
+	toSerialize["name"] = o.Name
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
 	}
@@ -704,6 +720,7 @@ func (o *ThirdPartyScheduledTaskResponse) UnmarshalJSON(data []byte) (err error)
 		"type",
 		"cron",
 		"enabled",
+		"name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -750,6 +767,7 @@ func (o *ThirdPartyScheduledTaskResponse) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "host")
 		delete(additionalProperties, "lastCompletionDate")
 		delete(additionalProperties, "lastExecutionDate")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}

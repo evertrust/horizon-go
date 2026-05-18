@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Dn** | Pointer to **interface{}** | Fill the DN if DN whitelist is enabled. Contains the DN of the challenge | [optional] 
+**Dn** | Pointer to **string** | Fill the DN if DN whitelist is enabled. Contains the DN of the challenge | [optional] 
 **Password** | Pointer to [**SecretString**](SecretString.md) | The password of the challenge. Must be set if password mode is &#x60;manual&#x60; | [optional] 
-**Profile** | **interface{}** | The SCEP profile name | 
+**Profile** | **string** | The SCEP profile name | 
 **RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
 **DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
 **Module** | **string** | The module that will be used to process this request. For a SCEP request, this is always &#x60;scep&#x60; | 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewScepEnrollRequestOnSubmit
 
-`func NewScepEnrollRequestOnSubmit(profile interface{}, module string, workflow string, ) *ScepEnrollRequestOnSubmit`
+`func NewScepEnrollRequestOnSubmit(profile string, module string, workflow string, ) *ScepEnrollRequestOnSubmit`
 
 NewScepEnrollRequestOnSubmit instantiates a new ScepEnrollRequestOnSubmit object
 This constructor will assign default values to properties that have it defined,
@@ -34,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDn
 
-`func (o *ScepEnrollRequestOnSubmit) GetDn() interface{}`
+`func (o *ScepEnrollRequestOnSubmit) GetDn() string`
 
 GetDn returns the Dn field if non-nil, zero value otherwise.
 
 ### GetDnOk
 
-`func (o *ScepEnrollRequestOnSubmit) GetDnOk() (*interface{}, bool)`
+`func (o *ScepEnrollRequestOnSubmit) GetDnOk() (*string, bool)`
 
 GetDnOk returns a tuple with the Dn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDn
 
-`func (o *ScepEnrollRequestOnSubmit) SetDn(v interface{})`
+`func (o *ScepEnrollRequestOnSubmit) SetDn(v string)`
 
 SetDn sets Dn field to given value.
 
@@ -57,16 +57,6 @@ SetDn sets Dn field to given value.
 
 HasDn returns a boolean if a field has been set.
 
-### SetDnNil
-
-`func (o *ScepEnrollRequestOnSubmit) SetDnNil(b bool)`
-
- SetDnNil sets the value for Dn to be an explicit nil
-
-### UnsetDn
-`func (o *ScepEnrollRequestOnSubmit) UnsetDn()`
-
-UnsetDn ensures that no value is present for Dn, not even an explicit nil
 ### GetPassword
 
 `func (o *ScepEnrollRequestOnSubmit) GetPassword() SecretString`
@@ -94,34 +84,24 @@ HasPassword returns a boolean if a field has been set.
 
 ### GetProfile
 
-`func (o *ScepEnrollRequestOnSubmit) GetProfile() interface{}`
+`func (o *ScepEnrollRequestOnSubmit) GetProfile() string`
 
 GetProfile returns the Profile field if non-nil, zero value otherwise.
 
 ### GetProfileOk
 
-`func (o *ScepEnrollRequestOnSubmit) GetProfileOk() (*interface{}, bool)`
+`func (o *ScepEnrollRequestOnSubmit) GetProfileOk() (*string, bool)`
 
 GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProfile
 
-`func (o *ScepEnrollRequestOnSubmit) SetProfile(v interface{})`
+`func (o *ScepEnrollRequestOnSubmit) SetProfile(v string)`
 
 SetProfile sets Profile field to given value.
 
 
-### SetProfileNil
-
-`func (o *ScepEnrollRequestOnSubmit) SetProfileNil(b bool)`
-
- SetProfileNil sets the value for Profile to be an explicit nil
-
-### UnsetProfile
-`func (o *ScepEnrollRequestOnSubmit) UnsetProfile()`
-
-UnsetProfile ensures that no value is present for Profile, not even an explicit nil
 ### GetRequesterComment
 
 `func (o *ScepEnrollRequestOnSubmit) GetRequesterComment() string`

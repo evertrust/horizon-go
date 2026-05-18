@@ -27,7 +27,7 @@ type WebRAProfileResponse struct {
 	AuthorizationLevels CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
 	// The authorization mode to use.  `authorized` uses permissions to allow enrollment,  `auto-validation` uses the validation ruleset, `auto-validation-authorized` uses the validation ruleset, and if enrollment is denied, uses the permissions
 	AuthorizationMode   string                                `json:"authorizationMode"`
-	CertificateTemplate NullableCertificateTemplate           `json:"certificateTemplate,omitempty"`
+	CertificateTemplate CertificateTemplate                   `json:"certificateTemplate"`
 	CryptoPolicy        ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
 	CsrDataMapping      map[string]string                     `json:"csrDataMapping,omitempty"`
 	Description         []LocalizedString                     `json:"description,omitempty"`
@@ -56,11 +56,12 @@ type _WebRAProfileResponse WebRAProfileResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAProfileResponse(id string, authorizationLevels CertificateProfileAuthorizationLevels, authorizationMode string, cryptoPolicy ManagedCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions) *WebRAProfileResponse {
+func NewWebRAProfileResponse(id string, authorizationLevels CertificateProfileAuthorizationLevels, authorizationMode string, certificateTemplate CertificateTemplate, cryptoPolicy ManagedCertificateProfileCryptoPolicy, enabled bool, module string, name string, pkiConnector string, requestsPolicy RequestsPolicy, selfPermissions CertificateProfileSelfPermissions) *WebRAProfileResponse {
 	this := WebRAProfileResponse{}
 	this.Id = id
 	this.AuthorizationLevels = authorizationLevels
 	this.AuthorizationMode = authorizationMode
+	this.CertificateTemplate = certificateTemplate
 	this.CryptoPolicy = cryptoPolicy
 	this.Enabled = enabled
 	this.Module = module
@@ -155,47 +156,28 @@ func (o *WebRAProfileResponse) SetAuthorizationMode(v string) {
 	o.AuthorizationMode = v
 }
 
-// GetCertificateTemplate returns the CertificateTemplate field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCertificateTemplate returns the CertificateTemplate field value
 func (o *WebRAProfileResponse) GetCertificateTemplate() CertificateTemplate {
-	if o == nil || utils.IsNil(o.CertificateTemplate.Get()) {
+	if o == nil {
 		var ret CertificateTemplate
 		return ret
 	}
-	return *o.CertificateTemplate.Get()
+
+	return o.CertificateTemplate
 }
 
-// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value if set, nil otherwise
+// GetCertificateTemplateOk returns a tuple with the CertificateTemplate field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WebRAProfileResponse) GetCertificateTemplateOk() (*CertificateTemplate, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.CertificateTemplate.Get(), o.CertificateTemplate.IsSet()
+	return &o.CertificateTemplate, true
 }
 
-// HasCertificateTemplate returns a boolean if a field has been set.
-func (o *WebRAProfileResponse) HasCertificateTemplate() bool {
-	if o != nil && o.CertificateTemplate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCertificateTemplate gets a reference to the given NullableCertificateTemplate and assigns it to the CertificateTemplate field.
+// SetCertificateTemplate sets field value
 func (o *WebRAProfileResponse) SetCertificateTemplate(v CertificateTemplate) {
-	o.CertificateTemplate.Set(&v)
-}
-
-// SetCertificateTemplateNil sets the value for CertificateTemplate to be an explicit nil
-func (o *WebRAProfileResponse) SetCertificateTemplateNil() {
-	o.CertificateTemplate.Set(nil)
-}
-
-// UnsetCertificateTemplate ensures that no value is present for CertificateTemplate, not even an explicit nil
-func (o *WebRAProfileResponse) UnsetCertificateTemplate() {
-	o.CertificateTemplate.Unset()
+	o.CertificateTemplate = v
 }
 
 // GetCryptoPolicy returns the CryptoPolicy field value
@@ -759,9 +741,7 @@ func (o WebRAProfileResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["_id"] = o.Id
 	toSerialize["authorizationLevels"] = o.AuthorizationLevels
 	toSerialize["authorizationMode"] = o.AuthorizationMode
-	if o.CertificateTemplate.IsSet() {
-		toSerialize["certificateTemplate"] = o.CertificateTemplate.Get()
-	}
+	toSerialize["certificateTemplate"] = o.CertificateTemplate
 	toSerialize["cryptoPolicy"] = o.CryptoPolicy
 	if o.CsrDataMapping != nil {
 		toSerialize["csrDataMapping"] = o.CsrDataMapping
@@ -815,6 +795,7 @@ func (o *WebRAProfileResponse) UnmarshalJSON(data []byte) (err error) {
 		"_id",
 		"authorizationLevels",
 		"authorizationMode",
+		"certificateTemplate",
 		"cryptoPolicy",
 		"enabled",
 		"module",

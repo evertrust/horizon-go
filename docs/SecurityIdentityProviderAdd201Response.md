@@ -12,12 +12,13 @@ Name | Type | Description | Notes
 **Enabled** | **bool** | Whether the identity provider can be used to identify against Horizon | 
 **EnabledOnUI** | **bool** | Whether the identity provider can be selected on login to the Horizon UI | 
 **IdentifierClaim** | **string** | The OpenID information that will be used as the user&#39;s identifier in Horizon | 
+**Mapping** | Pointer to [**OidcIdentityProviderMapping**](OidcIdentityProviderMapping.md) |  | [optional] 
 **Name** | **string** | The internal name of the identity provider | 
 **NameClaim** | **string** | The OpenID information that will be used as the user&#39;s name in Horizon | 
 **ProviderMetadataUrl** | **string** | The URL of the identity provider OpenID callback | 
 **Proxy** | Pointer to **NullableString** | The name of the proxy to use to reach the identity provider | [optional] 
 **Scope** | **string** | The scope where to retrieve the user data from | 
-**Timeout** | Pointer to **NullableString** | The timeout value to use when connecting to the identity provider (must be a valid finite duration) | [optional] 
+**Timeout** | **string** | The timeout value to use when connecting to the identity provider (must be a valid finite duration) | 
 **TrustSystemCAs** | **bool** | Trust AC coming from the system trust store or only trust AC imported in Horizon | [default to true]
 **Type** | **string** | The type of Identity provider to register | 
 
@@ -25,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewSecurityIdentityProviderAdd201Response
 
-`func NewSecurityIdentityProviderAdd201Response(id string, clientCredentials string, emailClaim string, enabled bool, enabledOnUI bool, identifierClaim string, name string, nameClaim string, providerMetadataUrl string, scope string, trustSystemCAs bool, type_ string, ) *SecurityIdentityProviderAdd201Response`
+`func NewSecurityIdentityProviderAdd201Response(id string, clientCredentials string, emailClaim string, enabled bool, enabledOnUI bool, identifierClaim string, name string, nameClaim string, providerMetadataUrl string, scope string, timeout string, trustSystemCAs bool, type_ string, ) *SecurityIdentityProviderAdd201Response`
 
 NewSecurityIdentityProviderAdd201Response instantiates a new SecurityIdentityProviderAdd201Response object
 This constructor will assign default values to properties that have it defined,
@@ -230,6 +231,31 @@ and a boolean to check if the value has been set.
 SetIdentifierClaim sets IdentifierClaim field to given value.
 
 
+### GetMapping
+
+`func (o *SecurityIdentityProviderAdd201Response) GetMapping() OidcIdentityProviderMapping`
+
+GetMapping returns the Mapping field if non-nil, zero value otherwise.
+
+### GetMappingOk
+
+`func (o *SecurityIdentityProviderAdd201Response) GetMappingOk() (*OidcIdentityProviderMapping, bool)`
+
+GetMappingOk returns a tuple with the Mapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMapping
+
+`func (o *SecurityIdentityProviderAdd201Response) SetMapping(v OidcIdentityProviderMapping)`
+
+SetMapping sets Mapping field to given value.
+
+### HasMapping
+
+`func (o *SecurityIdentityProviderAdd201Response) HasMapping() bool`
+
+HasMapping returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *SecurityIdentityProviderAdd201Response) GetName() string`
@@ -364,22 +390,7 @@ and a boolean to check if the value has been set.
 
 SetTimeout sets Timeout field to given value.
 
-### HasTimeout
 
-`func (o *SecurityIdentityProviderAdd201Response) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *SecurityIdentityProviderAdd201Response) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *SecurityIdentityProviderAdd201Response) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetTrustSystemCAs
 
 `func (o *SecurityIdentityProviderAdd201Response) GetTrustSystemCAs() bool`

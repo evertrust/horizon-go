@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Connector** | **string** |  | 
-**Description** | Pointer to **NullableString** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
 **DryRun** | **bool** |  | 
 **Enroll** | **bool** |  | 
 **Module** | **string** |  | 
@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **Host** | Pointer to **NullableString** |  | [optional] 
 **LastCompletionDate** | Pointer to **NullableInt64** |  | [optional] 
 **LastExecutionDate** | Pointer to **NullableInt64** |  | [optional] 
+**Name** | **string** |  | 
 **Status** | Pointer to **NullableString** |  | [optional] 
 **ReportType** | **string** |  | 
 **RetentionPeriod** | **string** | Indicates the duration during which the report can be downloaded | 
@@ -31,7 +32,6 @@ Name | Type | Description | Notes
 **HqlSortedBy** | Pointer to [**[]SortElement**](SortElement.md) |  | [optional] 
 **HqlType** | **string** |  | 
 **IsHtml** | **bool** |  | 
-**Name** | **string** |  | 
 **Recipients** | [**[]ReportRecipient**](ReportRecipient.md) |  | 
 **Title** | **string** |  | 
 **CompressCsv** | Pointer to **bool** | Should the report be compressed using GZ | [optional] 
@@ -40,7 +40,7 @@ Name | Type | Description | Notes
 
 ### NewScheduledTasks
 
-`func NewScheduledTasks(connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool, reportType string, retentionPeriod string, from string, hqlType string, isHtml bool, name string, recipients []ReportRecipient, title string, ) *ScheduledTasks`
+`func NewScheduledTasks(connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool, name string, reportType string, retentionPeriod string, from string, hqlType string, isHtml bool, recipients []ReportRecipient, title string, ) *ScheduledTasks`
 
 NewScheduledTasks instantiates a new ScheduledTasks object
 This constructor will assign default values to properties that have it defined,
@@ -100,16 +100,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescriptionNil
-
-`func (o *ScheduledTasks) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *ScheduledTasks) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetDryRun
 
 `func (o *ScheduledTasks) GetDryRun() bool`
@@ -465,6 +455,26 @@ HasLastExecutionDate returns a boolean if a field has been set.
 `func (o *ScheduledTasks) UnsetLastExecutionDate()`
 
 UnsetLastExecutionDate ensures that no value is present for LastExecutionDate, not even an explicit nil
+### GetName
+
+`func (o *ScheduledTasks) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ScheduledTasks) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ScheduledTasks) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
 ### GetStatus
 
 `func (o *ScheduledTasks) GetStatus() string`
@@ -773,26 +783,6 @@ and a boolean to check if the value has been set.
 `func (o *ScheduledTasks) SetIsHtml(v bool)`
 
 SetIsHtml sets IsHtml field to given value.
-
-
-### GetName
-
-`func (o *ScheduledTasks) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *ScheduledTasks) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *ScheduledTasks) SetName(v string)`
-
-SetName sets Name field to given value.
 
 
 ### GetRecipients
