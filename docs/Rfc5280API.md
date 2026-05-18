@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-	file := os.NewFile(1234, "some_file") // []byte | The RFC 5280 file to detect and parse (certificate, certificate bundle, CRL, or CSR), PEM or DER encoded (optional)
+	file := []byte("example") // []byte | The RFC 5280 file to detect and parse (certificate, certificate bundle, CRL, or CSR), PEM or DER encoded (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -102,7 +102,7 @@ import (
 )
 
 func main() {
-	pkcs10 := os.NewFile(1234, "some_file") // []byte | The PKCS#10 certificate signing request, PEM or DER encoded (optional)
+	pkcs10 := []byte("example") // []byte | The PKCS#10 certificate signing request, PEM or DER encoded (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -238,7 +238,7 @@ import (
 )
 
 func main() {
-	pkcs12 := os.NewFile(1234, "some_file") // []byte | The PKCS#12 keystore, DER encoded (optional)
+	pkcs12 := []byte("example") // []byte | The PKCS#12 keystore, DER encoded (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -305,7 +305,7 @@ import (
 
 func main() {
 	order := "order_example" // string |  (optional)
-	x509 := os.NewFile(1234, "some_file") // []byte | The x509 certificate, PEM or DER encoded (optional)
+	x509 := []byte("example") // []byte | The x509 certificate, PEM or DER encoded (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -444,7 +444,7 @@ import (
 )
 
 func main() {
-	x509 := os.NewFile(1234, "some_file") // []byte | The x509 certificate, PEM or DER encoded (optional)
+	x509 := []byte("example") // []byte | The x509 certificate, PEM or DER encoded (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -220,7 +220,7 @@ type EventAnalyticsAPIAnalyticsEventGetRequest struct {
 	ApiService *EventAnalyticsAPIService
 }
 
-func (r EventAnalyticsAPIAnalyticsEventGetRequest) Execute() ([]models.AnalyticsStatus2, *http.Response, error) {
+func (r EventAnalyticsAPIAnalyticsEventGetRequest) Execute() (*models.AnalyticsStatus2, *http.Response, error) {
 	return r.ApiService.AnalyticsEventGetExecute(r)
 }
 
@@ -241,13 +241,13 @@ func (a *EventAnalyticsAPIService) AnalyticsEventGet(ctx context.Context) EventA
 
 // Execute executes the request
 //
-//	@return []AnalyticsStatus2
-func (a *EventAnalyticsAPIService) AnalyticsEventGetExecute(r EventAnalyticsAPIAnalyticsEventGetRequest) ([]models.AnalyticsStatus2, *http.Response, error) {
+//	@return AnalyticsStatus2
+func (a *EventAnalyticsAPIService) AnalyticsEventGetExecute(r EventAnalyticsAPIAnalyticsEventGetRequest) (*models.AnalyticsStatus2, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []models.AnalyticsStatus2
+		localVarReturnValue *models.AnalyticsStatus2
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventAnalyticsAPIService.AnalyticsEventGet")

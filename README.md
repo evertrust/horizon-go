@@ -23,7 +23,7 @@ import horizon "github.com/evertrust/horizon-go/v2"
 To use a proxy, use the SetProxyURL method on the configuration object:
 
 ```go
-    conf := horizon.NewConfiguration()
+    c := horizon.NewConfiguration()
     c.Host = "horizon.com"
     parsedUrl, err := url.Parse("http://proxy.com")
     c.SetProxyURL(parsedUrl)
@@ -37,7 +37,7 @@ To use a proxy, use the SetProxyURL method on the configuration object:
 You can set up a password authentication like this:
 
 ```go
-    conf := horizon.NewConfiguration()
+    c := horizon.NewConfiguration()
     c.Host = "horizon.com"
     c.SetPasswordAuth("user", "password")
     client := horizon.NewAPIClient(c)
@@ -48,7 +48,7 @@ You can set up a password authentication like this:
 You can set up a certificate authentication like this:
 
 ```go
-    conf := horizon.NewConfiguration()
+    c := horizon.NewConfiguration()
     c.Host = "horizon.com"
     // Load the certificate
     cert, err := tls.LoadX509KeyPair("cert.pem", "key.pem")
@@ -300,9 +300,9 @@ Class | Method | HTTP request | Description
 *SecurityPrincipalAPI* | [**SecurityPrincipalAuthenticate**](docs/SecurityPrincipalAPI.md#securityprincipalauthenticate) | **Get** /api/v1/security/principals/authenticate | Authenticate a principal and redirect to the specified redirect URL
 *SecurityPrincipalAPI* | [**SecurityPrincipalLogout**](docs/SecurityPrincipalAPI.md#securityprincipallogout) | **Get** /api/v1/security/principals/logout | Log out an authenticated principal and flush any cached authorization(s)
 *SecurityPrincipalAPI* | [**SecurityPrincipalSelf**](docs/SecurityPrincipalAPI.md#securityprincipalself) | **Get** /api/v1/security/principals/self | Return the authenticated principal
-*SecurityPrincipalinfoAPI* | [**ScurityPrincipalInfoGet**](docs/SecurityPrincipalinfoAPI.md#scurityprincipalinfoget) | **Get** /api/v1/security/principalinfos/{identifier} | Retrieve a principal information
 *SecurityPrincipalinfoAPI* | [**SecurityPrincipalInfoAdd**](docs/SecurityPrincipalinfoAPI.md#securityprincipalinfoadd) | **Post** /api/v1/security/principalinfos | Create a new principal
 *SecurityPrincipalinfoAPI* | [**SecurityPrincipalInfoDelete**](docs/SecurityPrincipalinfoAPI.md#securityprincipalinfodelete) | **Delete** /api/v1/security/principalinfos/{identifier} | Delete a principal
+*SecurityPrincipalinfoAPI* | [**SecurityPrincipalInfoGet**](docs/SecurityPrincipalinfoAPI.md#securityprincipalinfoget) | **Get** /api/v1/security/principalinfos/{identifier} | Retrieve a principal information
 *SecurityPrincipalinfoAPI* | [**SecurityPrincipalInfoSearch**](docs/SecurityPrincipalinfoAPI.md#securityprincipalinfosearch) | **Post** /api/v1/security/principalinfos/search | Search for principal information
 *SecurityPrincipalinfoAPI* | [**SecurityPrincipalInfoUpdate**](docs/SecurityPrincipalinfoAPI.md#securityprincipalinfoupdate) | **Put** /api/v1/security/principalinfos | Update a principal&#39;s information
 *SecurityRoleAPI* | [**SecurityRoleAdd**](docs/SecurityRoleAPI.md#securityroleadd) | **Post** /api/v1/security/roles | Create a new role

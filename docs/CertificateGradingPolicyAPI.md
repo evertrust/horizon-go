@@ -34,7 +34,7 @@ import (
 
 func main() {
 	policy := "policy_example" // string | 
-	x509 := os.NewFile(1234, "some_file") // []byte | The x509 certificate, PEM or DER encoded (optional)
+	x509 := []byte("example") // []byte | The x509 certificate, PEM or DER encoded (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **ProviderMetadataUrl** | **string** | The URL of the identity provider OpenID callback | 
 **Proxy** | Pointer to **NullableString** | The name of the proxy to use to reach the identity provider | [optional] 
 **Scope** | **string** | The scope where to retrieve the user data from | 
-**Timeout** | Pointer to **NullableString** | The timeout value to use when connecting to the identity provider (must be a valid finite duration) | [optional] 
+**Timeout** | **string** | The timeout value to use when connecting to the identity provider (must be a valid finite duration) | 
 **TrustSystemCAs** | **bool** | Trust AC coming from the system trust store or only trust AC imported in Horizon | [default to true]
 **Type** | **string** | The type of Identity provider to register | 
 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewSecurityIdentityProviderAdd201Response
 
-`func NewSecurityIdentityProviderAdd201Response(id string, clientCredentials string, emailClaim string, enabled bool, enabledOnUI bool, identifierClaim string, name string, nameClaim string, providerMetadataUrl string, scope string, trustSystemCAs bool, type_ string, ) *SecurityIdentityProviderAdd201Response`
+`func NewSecurityIdentityProviderAdd201Response(id string, clientCredentials string, emailClaim string, enabled bool, enabledOnUI bool, identifierClaim string, name string, nameClaim string, providerMetadataUrl string, scope string, timeout string, trustSystemCAs bool, type_ string, ) *SecurityIdentityProviderAdd201Response`
 
 NewSecurityIdentityProviderAdd201Response instantiates a new SecurityIdentityProviderAdd201Response object
 This constructor will assign default values to properties that have it defined,
@@ -390,22 +390,7 @@ and a boolean to check if the value has been set.
 
 SetTimeout sets Timeout field to given value.
 
-### HasTimeout
 
-`func (o *SecurityIdentityProviderAdd201Response) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *SecurityIdentityProviderAdd201Response) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *SecurityIdentityProviderAdd201Response) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetTrustSystemCAs
 
 `func (o *SecurityIdentityProviderAdd201Response) GetTrustSystemCAs() bool`

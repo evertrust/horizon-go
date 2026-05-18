@@ -71,7 +71,7 @@ Other parameters are passed through a pointer to a apiAnalyticsEventFlushRequest
 
 ## AnalyticsEventGet
 
-> []AnalyticsStatus2 AnalyticsEventGet(ctx).Execute()
+> AnalyticsStatus2 AnalyticsEventGet(ctx).Execute()
 
 Retrieve the event analytics status
 
@@ -98,7 +98,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventAnalyticsAPI.AnalyticsEventGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AnalyticsEventGet`: []AnalyticsStatus2
+	// response from `AnalyticsEventGet`: AnalyticsStatus2
 	fmt.Fprintf(os.Stdout, "Response from `EventAnalyticsAPI.AnalyticsEventGet`: %v\n", resp)
 }
 ```
@@ -114,7 +114,7 @@ Other parameters are passed through a pointer to a apiAnalyticsEventGetRequest s
 
 ### Return type
 
-[**[]AnalyticsStatus2**](AnalyticsStatus2.md)
+[**AnalyticsStatus2**](AnalyticsStatus2.md)
 
 ### Authorization
 

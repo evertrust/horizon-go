@@ -5,12 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cron** | **string** |  | 
+**Description** | Pointer to **string** |  | [optional] 
 **Detail** | Pointer to **NullableString** |  | [optional] 
 **Enabled** | **bool** |  | 
 **ExecutionId** | Pointer to **NullableString** |  | [optional] 
 **Host** | Pointer to **NullableString** |  | [optional] 
 **LastCompletionDate** | Pointer to **NullableInt64** |  | [optional] 
 **LastExecutionDate** | Pointer to **NullableInt64** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **NullableString** |  | [optional] 
 **Type** | **string** |  | 
 
@@ -52,6 +54,31 @@ and a boolean to check if the value has been set.
 
 SetCron sets Cron field to given value.
 
+
+### GetDescription
+
+`func (o *ScheduledTask) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *ScheduledTask) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *ScheduledTask) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *ScheduledTask) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetDetail
 
@@ -248,6 +275,31 @@ HasLastExecutionDate returns a boolean if a field has been set.
 `func (o *ScheduledTask) UnsetLastExecutionDate()`
 
 UnsetLastExecutionDate ensures that no value is present for LastExecutionDate, not even an explicit nil
+### GetName
+
+`func (o *ScheduledTask) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *ScheduledTask) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ScheduledTask) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *ScheduledTask) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
 ### GetStatus
 
 `func (o *ScheduledTask) GetStatus() string`

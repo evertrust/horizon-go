@@ -20,14 +20,14 @@ Name | Type | Description | Notes
 **ProviderMetadataUrl** | **string** | The URL of the identity provider OpenID callback | 
 **Proxy** | Pointer to **NullableString** | The name of the proxy to use to reach the identity provider | [optional] 
 **Scope** | **string** | The scope where to retrieve the user data from | 
-**Timeout** | Pointer to **NullableString** | The timeout value to use when connecting to the identity provider (must be a valid finite duration) | [optional] 
+**Timeout** | **string** | The timeout value to use when connecting to the identity provider (must be a valid finite duration) | 
 **TrustSystemCAs** | **bool** | Trust AC coming from the system trust store or only trust AC imported in Horizon | [default to true]
 
 ## Methods
 
 ### NewSecurityIdentityProviderAddRequest
 
-`func NewSecurityIdentityProviderAddRequest(enabled bool, enabledOnUI bool, name string, type_ string, clientCredentials string, providerMetadataUrl string, scope string, trustSystemCAs bool, ) *SecurityIdentityProviderAddRequest`
+`func NewSecurityIdentityProviderAddRequest(enabled bool, enabledOnUI bool, name string, type_ string, clientCredentials string, providerMetadataUrl string, scope string, timeout string, trustSystemCAs bool, ) *SecurityIdentityProviderAddRequest`
 
 NewSecurityIdentityProviderAddRequest instantiates a new SecurityIdentityProviderAddRequest object
 This constructor will assign default values to properties that have it defined,
@@ -476,22 +476,7 @@ and a boolean to check if the value has been set.
 
 SetTimeout sets Timeout field to given value.
 
-### HasTimeout
 
-`func (o *SecurityIdentityProviderAddRequest) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *SecurityIdentityProviderAddRequest) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *SecurityIdentityProviderAddRequest) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetTrustSystemCAs
 
 `func (o *SecurityIdentityProviderAddRequest) GetTrustSystemCAs() bool`

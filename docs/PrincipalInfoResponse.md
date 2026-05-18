@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
 **Contact** | Pointer to **NullableString** | The contact e-mail of the principal | [optional] 
-**CreationDate** | **int64** | The creation date of the principal (UNIX Timestamp in milliseconds) | 
+**CreationDate** | Pointer to **int64** | The creation date of the principal (UNIX Timestamp in milliseconds) | [optional] 
 **CustomDashboards** | Pointer to [**[]Dashboard**](Dashboard.md) | The custom dashboards of the principal. This is used by UI only. These values should not be manually set but should be copied on update | [optional] 
 **Enabled** | **bool** | If the principal is allowed to login horizon | 
 **Identifier** | **string** | The identifier of the principal | 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewPrincipalInfoResponse
 
-`func NewPrincipalInfoResponse(id string, creationDate int64, enabled bool, identifier string, ) *PrincipalInfoResponse`
+`func NewPrincipalInfoResponse(id string, enabled bool, identifier string, ) *PrincipalInfoResponse`
 
 NewPrincipalInfoResponse instantiates a new PrincipalInfoResponse object
 This constructor will assign default values to properties that have it defined,
@@ -111,6 +111,11 @@ and a boolean to check if the value has been set.
 
 SetCreationDate sets CreationDate field to given value.
 
+### HasCreationDate
+
+`func (o *PrincipalInfoResponse) HasCreationDate() bool`
+
+HasCreationDate returns a boolean if a field has been set.
 
 ### GetCustomDashboards
 

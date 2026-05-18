@@ -27,7 +27,7 @@ type PrincipalInfoResponse struct {
 	// The contact e-mail of the principal
 	Contact utils.NullableString `json:"contact,omitempty"`
 	// The creation date of the principal (UNIX Timestamp in milliseconds)
-	CreationDate int64 `json:"creationDate"`
+	CreationDate *int64 `json:"creationDate,omitempty"`
 	// The custom dashboards of the principal. This is used by UI only. These values should not be manually set but should be copied on update
 	CustomDashboards []Dashboard `json:"customDashboards,omitempty"`
 	// If the principal is allowed to login horizon
@@ -57,10 +57,9 @@ type _PrincipalInfoResponse PrincipalInfoResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrincipalInfoResponse(id string, creationDate int64, enabled bool, identifier string) *PrincipalInfoResponse {
+func NewPrincipalInfoResponse(id string, enabled bool, identifier string) *PrincipalInfoResponse {
 	this := PrincipalInfoResponse{}
 	this.Id = id
-	this.CreationDate = creationDate
 	this.Enabled = enabled
 	this.Identifier = identifier
 	return &this
@@ -141,28 +140,36 @@ func (o *PrincipalInfoResponse) UnsetContact() {
 	o.Contact.Unset()
 }
 
-// GetCreationDate returns the CreationDate field value
+// GetCreationDate returns the CreationDate field value if set, zero value otherwise.
 func (o *PrincipalInfoResponse) GetCreationDate() int64 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.CreationDate) {
 		var ret int64
 		return ret
 	}
-
-	return o.CreationDate
+	return *o.CreationDate
 }
 
-// GetCreationDateOk returns a tuple with the CreationDate field value
+// GetCreationDateOk returns a tuple with the CreationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PrincipalInfoResponse) GetCreationDateOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.CreationDate) {
 		return nil, false
 	}
-	return &o.CreationDate, true
+	return o.CreationDate, true
 }
 
-// SetCreationDate sets field value
+// HasCreationDate returns a boolean if a field has been set.
+func (o *PrincipalInfoResponse) HasCreationDate() bool {
+	if o != nil && !utils.IsNil(o.CreationDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreationDate gets a reference to the given int64 and assigns it to the CreationDate field.
 func (o *PrincipalInfoResponse) SetCreationDate(v int64) {
-	o.CreationDate = v
+	o.CreationDate = &v
 }
 
 // GetCustomDashboards returns the CustomDashboards field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -521,7 +528,9 @@ func (o PrincipalInfoResponse) ToMap() (map[string]interface{}, error) {
 	if o.Contact.IsSet() {
 		toSerialize["contact"] = o.Contact.Get()
 	}
-	toSerialize["creationDate"] = o.CreationDate
+	if !utils.IsNil(o.CreationDate) {
+		toSerialize["creationDate"] = o.CreationDate
+	}
 	if o.CustomDashboards != nil {
 		toSerialize["customDashboards"] = o.CustomDashboards
 	}
@@ -562,7 +571,6 @@ func (o *PrincipalInfoResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"creationDate",
 		"enabled",
 		"identifier",
 	}

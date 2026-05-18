@@ -38,6 +38,7 @@ type ThirdPartyScheduledTask struct {
 	Host                 utils.NullableString `json:"host,omitempty"`
 	LastCompletionDate   utils.NullableInt64  `json:"lastCompletionDate,omitempty"`
 	LastExecutionDate    utils.NullableInt64  `json:"lastExecutionDate,omitempty"`
+	Name                 string               `json:"name"`
 	Status               utils.NullableString `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -48,10 +49,11 @@ type _ThirdPartyScheduledTask ThirdPartyScheduledTask
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewThirdPartyScheduledTask(connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool) *ThirdPartyScheduledTask {
+func NewThirdPartyScheduledTask(connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool, name string) *ThirdPartyScheduledTask {
 	this := ThirdPartyScheduledTask{}
 	this.Cron = cron
 	this.Enabled = enabled
+	this.Name = name
 	this.Type = type_
 	return &this
 }
@@ -562,6 +564,30 @@ func (o *ThirdPartyScheduledTask) UnsetLastExecutionDate() {
 	o.LastExecutionDate.Unset()
 }
 
+// GetName returns the Name field value
+func (o *ThirdPartyScheduledTask) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ThirdPartyScheduledTask) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *ThirdPartyScheduledTask) SetName(v string) {
+	o.Name = v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ThirdPartyScheduledTask) GetStatus() string {
 	if o == nil || utils.IsNil(o.Status.Get()) {
@@ -643,6 +669,7 @@ func (o ThirdPartyScheduledTask) ToMap() (map[string]interface{}, error) {
 	if o.LastExecutionDate.IsSet() {
 		toSerialize["lastExecutionDate"] = o.LastExecutionDate.Get()
 	}
+	toSerialize["name"] = o.Name
 	if o.Status.IsSet() {
 		toSerialize["status"] = o.Status.Get()
 	}
@@ -669,6 +696,7 @@ func (o *ThirdPartyScheduledTask) UnmarshalJSON(data []byte) (err error) {
 		"type",
 		"cron",
 		"enabled",
+		"name",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -714,6 +742,7 @@ func (o *ThirdPartyScheduledTask) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "host")
 		delete(additionalProperties, "lastCompletionDate")
 		delete(additionalProperties, "lastExecutionDate")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}
