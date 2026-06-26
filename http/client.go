@@ -28,15 +28,21 @@ import (
 )
 
 type Client struct {
-	client      gohttp.Client
-	baseUrl     string
-	headerCreds *ApiCreds
-	jwt         *JwtParams
+	client              gohttp.Client
+	baseUrl             string
+	headerCreds         *ApiCreds
+	serviceAccountCreds *ServiceAccountCreds
+	jwt                 *JwtParams
 }
 
 type ApiCreds struct {
 	id  string
 	key string
+}
+
+type ServiceAccountCreds struct {
+	serviceAccountName  string
+	serviceAccountToken string
 }
 
 type JwtParams struct {
@@ -63,6 +69,7 @@ func (c *Client) SetBaseUrl(baseUrl url.URL) *Client {
 
 func (c *Client) ClearAuth() {
 	c.headerCreds = nil
+	c.serviceAccountCreds = nil
 	c.jwt = nil
 	tlsConfig := c.GetTlsConfig()
 	tlsConfig.Certificates = nil
@@ -73,6 +80,15 @@ func (c *Client) SetPasswordAuth(apiId string, apiKey string) *Client {
 	c.headerCreds = &ApiCreds{
 		id:  apiId,
 		key: apiKey,
+	}
+	return c
+}
+
+func (c *Client) SetServiceAccountAuth(serviceAccountName string, serviceAccountToken string) *Client {
+	c.ClearAuth()
+	c.serviceAccountCreds = &ServiceAccountCreds{
+		serviceAccountName:  serviceAccountName,
+		serviceAccountToken: serviceAccountToken,
 	}
 	return c
 }
@@ -335,6 +351,11 @@ func (c *Client) sendRequest(method, urlToRequest string, body []byte) (*gohttp.
 		log.Debug("Authentication using local account " + c.headerCreds.id)
 		request.Header.Set("X-API-ID", c.headerCreds.id)
 		request.Header.Set("X-API-KEY", c.headerCreds.key)
+	}
+	if c.serviceAccountCreds != nil {
+		log.Debug("Authentication using service account " + c.serviceAccountCreds.serviceAccountName)
+		request.Header.Set("X-API-SVA", c.serviceAccountCreds.serviceAccountName)
+		request.Header.Set("X-API-TOKEN", c.serviceAccountCreds.serviceAccountToken)
 	}
 	if len(c.GetTlsConfig().Certificates) > 0 {
 		log.Debug("Authenticating using certificate")
