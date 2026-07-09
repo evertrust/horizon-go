@@ -325,7 +325,7 @@ func (c *Client) sendRequest(method, urlToRequest string, body []byte) (*gohttp.
 
 	// Define auth
 	if c.JwtEnabled() {
-		log.Debug("Authentication using JWT")
+		log.Debug("Authenticating using JWT")
 		// Do a first request to get the nonce
 		requestForNonce, err := gohttp.NewRequest(method, urlToSend, nil)
 		if err != nil {
@@ -348,12 +348,12 @@ func (c *Client) sendRequest(method, urlToRequest string, body []byte) (*gohttp.
 		request.Header.Set("X-JWT-CERT-POP", jwtValue)
 	}
 	if c.headerCreds != nil {
-		log.Debug("Authentication using local account " + c.headerCreds.id)
+		log.Debug("Authenticating using local account " + c.headerCreds.id)
 		request.Header.Set("X-API-ID", c.headerCreds.id)
 		request.Header.Set("X-API-KEY", c.headerCreds.key)
 	}
 	if c.serviceAccountCreds != nil {
-		log.Debug("Authentication using service account " + c.serviceAccountCreds.serviceAccountName)
+		log.Debug("Authenticating using service account " + c.serviceAccountCreds.serviceAccountName)
 		request.Header.Set("X-API-SVA", c.serviceAccountCreds.serviceAccountName)
 		request.Header.Set("X-API-TOKEN", c.serviceAccountCreds.serviceAccountToken)
 	}
