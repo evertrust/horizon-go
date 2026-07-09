@@ -4,6 +4,12 @@ import (
 	"crypto"
 	"crypto/tls"
 	"crypto/x509"
+	"io"
+	"log"
+	gohttp "net/http"
+	"net/url"
+	"time"
+
 	"github.com/evertrust/horizon-go/automation"
 	"github.com/evertrust/horizon-go/certificates"
 	"github.com/evertrust/horizon-go/discovery"
@@ -14,11 +20,6 @@ import (
 	"github.com/evertrust/horizon-go/principals"
 	"github.com/evertrust/horizon-go/requests"
 	"github.com/evertrust/horizon-go/rfc5280"
-	"io"
-	"log"
-	gohttp "net/http"
-	"net/url"
-	"time"
 )
 
 type Client struct {
@@ -69,6 +70,11 @@ func (c *Client) ClearAuth() {
 
 func (c *Client) SetPasswordAuth(apiId string, apiKey string) *Client {
 	c.Http.SetPasswordAuth(apiId, apiKey)
+	return c
+}
+
+func (c *Client) SetServiceAccountAuth(serviceAccountName string, serviceAccountToken string) *Client {
+	c.Http.SetServiceAccountAuth(serviceAccountName, serviceAccountToken)
 	return c
 }
 
