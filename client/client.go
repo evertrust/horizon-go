@@ -78,6 +78,11 @@ func (c *Client) SetServiceAccountAuth(serviceAccountName string, serviceAccount
 	return c
 }
 
+func (c *Client) SetServiceAccountAuthFunc(name string, tokenFn func() (string, error)) *Client {
+	c.Http.SetServiceAccountAuthFunc(name, tokenFn)
+	return c
+}
+
 // SetCertAuth sets the client certificate than can be used for authentication.
 func (c *Client) SetCertAuth(cert tls.Certificate) *Client {
 	c.Http.SetCertAuth(cert)
