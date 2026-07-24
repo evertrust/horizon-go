@@ -26,6 +26,8 @@ const (
 	Canceled   Status = "canceled"
 	Completed  Status = "completed"
 	Processing Status = "processing"
+	Failed     Status = "failed"
+	InProgress Status = "in_progress"
 )
 
 func invalidModuleError(found, expected Module) error {
