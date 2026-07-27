@@ -42,7 +42,6 @@ type ApiCreds struct {
 
 type ServiceAccountCreds struct {
 	name    string
-	token   string
 	tokenFn func() (string, error)
 }
 
@@ -94,14 +93,6 @@ func (c *Client) SetPasswordAuth(apiId string, apiKey string) *Client {
 	return c
 }
 
-func (c *Client) SetServiceAccountAuth(serviceAccountName string, serviceAccountToken string) *Client {
-	c.ClearAuth()
-	c.serviceAccountCreds = &ServiceAccountCreds{
-		name:  serviceAccountName,
-		token: serviceAccountToken,
-	}
-	return c
-}
 
 // SetCertAuth sets the client certificate than can be used for authentication.
 func (c *Client) SetCertAuth(cert tls.Certificate) *Client {
@@ -363,13 +354,9 @@ func (c *Client) sendRequest(method, urlToRequest string, body []byte) (*gohttp.
 		request.Header.Set("X-API-KEY", c.headerCreds.key)
 	}
 	if c.serviceAccountCreds != nil {
-		token := c.serviceAccountCreds.token
-		if c.serviceAccountCreds.tokenFn != nil {
-			resolved, err := c.serviceAccountCreds.tokenFn()
-			if err != nil {
-				return nil, fmt.Errorf("could not resolve service account token: %s", err.Error())
-			}
-			token = resolved
+		token, err := c.serviceAccountCreds.tokenFn()
+		if err != nil {
+			return nil, fmt.Errorf("could not resolve service account token: %s", err.Error())
 		}
 		log.Debug("Authenticating using service account " + c.serviceAccountCreds.name)
 		request.Header.Set("X-API-SVA", c.serviceAccountCreds.name)

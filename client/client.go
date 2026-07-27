@@ -73,10 +73,6 @@ func (c *Client) SetPasswordAuth(apiId string, apiKey string) *Client {
 	return c
 }
 
-func (c *Client) SetServiceAccountAuth(serviceAccountName string, serviceAccountToken string) *Client {
-	c.Http.SetServiceAccountAuth(serviceAccountName, serviceAccountToken)
-	return c
-}
 
 func (c *Client) SetServiceAccountAuthFunc(name string, tokenFn func() (string, error)) *Client {
 	c.Http.SetServiceAccountAuthFunc(name, tokenFn)
