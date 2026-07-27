@@ -41,8 +41,8 @@ type ApiCreds struct {
 }
 
 type ServiceAccountCreds struct {
-	serviceAccountName  string
-	serviceAccountToken string
+	name    string
+	tokenFn func() (string, error)
 }
 
 type JwtParams struct {
@@ -75,6 +75,15 @@ func (c *Client) ClearAuth() {
 	tlsConfig.Certificates = nil
 }
 
+func (c *Client) SetServiceAccountAuthFunc(name string, tokenFn func() (string, error)) *Client {
+	c.ClearAuth()
+	c.serviceAccountCreds = &ServiceAccountCreds{
+		name:    name,
+		tokenFn: tokenFn,
+	}
+	return c
+}
+
 func (c *Client) SetPasswordAuth(apiId string, apiKey string) *Client {
 	c.ClearAuth()
 	c.headerCreds = &ApiCreds{
@@ -84,14 +93,6 @@ func (c *Client) SetPasswordAuth(apiId string, apiKey string) *Client {
 	return c
 }
 
-func (c *Client) SetServiceAccountAuth(serviceAccountName string, serviceAccountToken string) *Client {
-	c.ClearAuth()
-	c.serviceAccountCreds = &ServiceAccountCreds{
-		serviceAccountName:  serviceAccountName,
-		serviceAccountToken: serviceAccountToken,
-	}
-	return c
-}
 
 // SetCertAuth sets the client certificate than can be used for authentication.
 func (c *Client) SetCertAuth(cert tls.Certificate) *Client {
@@ -353,9 +354,13 @@ func (c *Client) sendRequest(method, urlToRequest string, body []byte) (*gohttp.
 		request.Header.Set("X-API-KEY", c.headerCreds.key)
 	}
 	if c.serviceAccountCreds != nil {
-		log.Debug("Authenticating using service account " + c.serviceAccountCreds.serviceAccountName)
-		request.Header.Set("X-API-SVA", c.serviceAccountCreds.serviceAccountName)
-		request.Header.Set("X-API-TOKEN", c.serviceAccountCreds.serviceAccountToken)
+		token, err := c.serviceAccountCreds.tokenFn()
+		if err != nil {
+			return nil, fmt.Errorf("could not resolve service account token: %s", err.Error())
+		}
+		log.Debug("Authenticating using service account " + c.serviceAccountCreds.name)
+		request.Header.Set("X-API-SVA", c.serviceAccountCreds.name)
+		request.Header.Set("X-API-TOKEN", token)
 	}
 	if len(c.GetTlsConfig().Certificates) > 0 {
 		log.Debug("Authenticating using certificate")
