@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Asynchronous** | Pointer to **bool** | Allow this request to be asynchronous if the PKI uses asynchronous requests | [optional] [default to false]
+**AutoRenew** | Pointer to [**CertificateAutoRenewElement**](CertificateAutoRenewElement.md) |  | [optional] 
 **Csr** | Pointer to **NullableString** | The CSR used to renew the certificate, if in decentralized mode | [optional] 
 **KeyType** | Pointer to **NullableString** | The key type of the certificate, if in centralized mode | [optional] 
 
@@ -25,6 +27,56 @@ will change when the set of required properties is changed
 NewWebRARenewRequestTemplateWithDefaults instantiates a new WebRARenewRequestTemplate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAsynchronous
+
+`func (o *WebRARenewRequestTemplate) GetAsynchronous() bool`
+
+GetAsynchronous returns the Asynchronous field if non-nil, zero value otherwise.
+
+### GetAsynchronousOk
+
+`func (o *WebRARenewRequestTemplate) GetAsynchronousOk() (*bool, bool)`
+
+GetAsynchronousOk returns a tuple with the Asynchronous field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAsynchronous
+
+`func (o *WebRARenewRequestTemplate) SetAsynchronous(v bool)`
+
+SetAsynchronous sets Asynchronous field to given value.
+
+### HasAsynchronous
+
+`func (o *WebRARenewRequestTemplate) HasAsynchronous() bool`
+
+HasAsynchronous returns a boolean if a field has been set.
+
+### GetAutoRenew
+
+`func (o *WebRARenewRequestTemplate) GetAutoRenew() CertificateAutoRenewElement`
+
+GetAutoRenew returns the AutoRenew field if non-nil, zero value otherwise.
+
+### GetAutoRenewOk
+
+`func (o *WebRARenewRequestTemplate) GetAutoRenewOk() (*CertificateAutoRenewElement, bool)`
+
+GetAutoRenewOk returns a tuple with the AutoRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenew
+
+`func (o *WebRARenewRequestTemplate) SetAutoRenew(v CertificateAutoRenewElement)`
+
+SetAutoRenew sets AutoRenew field to given value.
+
+### HasAutoRenew
+
+`func (o *WebRARenewRequestTemplate) HasAutoRenew() bool`
+
+HasAutoRenew returns a boolean if a field has been set.
 
 ### GetCsr
 

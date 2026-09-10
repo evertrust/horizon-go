@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **EoboTrustedCas** | Pointer to **[]string** |  | [optional] 
 **Profile** | **string** |  | 
 **Template** | **string** |  | 
-**TemplateVersion** | Pointer to **string** | The version of the Microsoft template. Available from &#x60;2.8.1&#x60; | [optional] [default to "v1"]
+**TemplateVersion** | Pointer to **string** | The version of the Microsoft template. | [optional] [default to "v1"]
 
 ## Methods
 

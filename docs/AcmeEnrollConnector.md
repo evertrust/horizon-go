@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 **DnsChallengeProvider** | [**DnsChallengeProviders**](DnsChallengeProviders.md) | DNS Provider configuration to provision the DNS challenge | 
 **DomainDictionaryProvider** | Pointer to [**NullableDomainDictionaryProviders**](DomainDictionaryProviders.md) | The dictionary provider | [optional] 
 **Eab** | Pointer to **NullableString** | &#x60;password&#x60; credentials name to use for External Account Binding | [optional] 
+**EabMacAlgorithm** | Pointer to **NullableString** | The MAC algorithm to use for External Account Binding. Can only be set when &#x60;eab&#x60; is defined | [optional] 
 **EndPoint** | **string** | The directory url of the ACME endpoint | 
 **Name** | **string** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
+**RetryInterval** | Pointer to **NullableString** | The interval between retries when polling for order completion | [optional] [default to "6s"]
 **RotateAccount** | Pointer to **NullableBool** | If enabled, regenerate the account (does not need to be specified on creation) | [optional] 
 **Timeout** | **NullableString** |  | 
 **Type** | **string** |  | 
@@ -181,6 +183,41 @@ HasEab returns a boolean if a field has been set.
 `func (o *AcmeEnrollConnector) UnsetEab()`
 
 UnsetEab ensures that no value is present for Eab, not even an explicit nil
+### GetEabMacAlgorithm
+
+`func (o *AcmeEnrollConnector) GetEabMacAlgorithm() string`
+
+GetEabMacAlgorithm returns the EabMacAlgorithm field if non-nil, zero value otherwise.
+
+### GetEabMacAlgorithmOk
+
+`func (o *AcmeEnrollConnector) GetEabMacAlgorithmOk() (*string, bool)`
+
+GetEabMacAlgorithmOk returns a tuple with the EabMacAlgorithm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEabMacAlgorithm
+
+`func (o *AcmeEnrollConnector) SetEabMacAlgorithm(v string)`
+
+SetEabMacAlgorithm sets EabMacAlgorithm field to given value.
+
+### HasEabMacAlgorithm
+
+`func (o *AcmeEnrollConnector) HasEabMacAlgorithm() bool`
+
+HasEabMacAlgorithm returns a boolean if a field has been set.
+
+### SetEabMacAlgorithmNil
+
+`func (o *AcmeEnrollConnector) SetEabMacAlgorithmNil(b bool)`
+
+ SetEabMacAlgorithmNil sets the value for EabMacAlgorithm to be an explicit nil
+
+### UnsetEabMacAlgorithm
+`func (o *AcmeEnrollConnector) UnsetEabMacAlgorithm()`
+
+UnsetEabMacAlgorithm ensures that no value is present for EabMacAlgorithm, not even an explicit nil
 ### GetEndPoint
 
 `func (o *AcmeEnrollConnector) GetEndPoint() string`
@@ -291,6 +328,41 @@ HasQueue returns a boolean if a field has been set.
 `func (o *AcmeEnrollConnector) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetRetryInterval
+
+`func (o *AcmeEnrollConnector) GetRetryInterval() string`
+
+GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
+
+### GetRetryIntervalOk
+
+`func (o *AcmeEnrollConnector) GetRetryIntervalOk() (*string, bool)`
+
+GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryInterval
+
+`func (o *AcmeEnrollConnector) SetRetryInterval(v string)`
+
+SetRetryInterval sets RetryInterval field to given value.
+
+### HasRetryInterval
+
+`func (o *AcmeEnrollConnector) HasRetryInterval() bool`
+
+HasRetryInterval returns a boolean if a field has been set.
+
+### SetRetryIntervalNil
+
+`func (o *AcmeEnrollConnector) SetRetryIntervalNil(b bool)`
+
+ SetRetryIntervalNil sets the value for RetryInterval to be an explicit nil
+
+### UnsetRetryInterval
+`func (o *AcmeEnrollConnector) UnsetRetryInterval()`
+
+UnsetRetryInterval ensures that no value is present for RetryInterval, not even an explicit nil
 ### GetRotateAccount
 
 `func (o *AcmeEnrollConnector) GetRotateAccount() bool`

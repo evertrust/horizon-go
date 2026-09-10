@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **IfPkcs12** | Pointer to **NullableBool** | On events triggering an enrollment, select if mail is sent: - **Always**: set the value to &#x60;null&#x60;  - **Only when a PKCS#12 is available in the request**: set the value to &#x60;true&#x60;  - **Only when a PKCS#12 is not in the request**: set the value to &#x60;false&#x60;  | [optional] 
 **Type** | **string** | The type of notification | 
 **Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
-**LicenseUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
+**LicenceUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
 **Name** | **string** | Name of the notification | 
 **Retries** | Pointer to **NullableInt64** | Number of retries when the notification fails | [optional] 
 **RunOnRenewed** | Pointer to **NullableBool** | Must be defined on &#x60;on_expire&#x60; event and must NOT be defined otherwise. If true, the notification runs even if the certificate was renewed. | [optional] 
@@ -369,41 +369,41 @@ and a boolean to check if the value has been set.
 SetEvents sets Events field to given value.
 
 
-### GetLicenseUsagePercent
+### GetLicenceUsagePercent
 
-`func (o *HorizonExportItemsNotificationsInner) GetLicenseUsagePercent() int64`
+`func (o *HorizonExportItemsNotificationsInner) GetLicenceUsagePercent() int64`
 
-GetLicenseUsagePercent returns the LicenseUsagePercent field if non-nil, zero value otherwise.
+GetLicenceUsagePercent returns the LicenceUsagePercent field if non-nil, zero value otherwise.
 
-### GetLicenseUsagePercentOk
+### GetLicenceUsagePercentOk
 
-`func (o *HorizonExportItemsNotificationsInner) GetLicenseUsagePercentOk() (*int64, bool)`
+`func (o *HorizonExportItemsNotificationsInner) GetLicenceUsagePercentOk() (*int64, bool)`
 
-GetLicenseUsagePercentOk returns a tuple with the LicenseUsagePercent field if it's non-nil, zero value otherwise
+GetLicenceUsagePercentOk returns a tuple with the LicenceUsagePercent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLicenseUsagePercent
+### SetLicenceUsagePercent
 
-`func (o *HorizonExportItemsNotificationsInner) SetLicenseUsagePercent(v int64)`
+`func (o *HorizonExportItemsNotificationsInner) SetLicenceUsagePercent(v int64)`
 
-SetLicenseUsagePercent sets LicenseUsagePercent field to given value.
+SetLicenceUsagePercent sets LicenceUsagePercent field to given value.
 
-### HasLicenseUsagePercent
+### HasLicenceUsagePercent
 
-`func (o *HorizonExportItemsNotificationsInner) HasLicenseUsagePercent() bool`
+`func (o *HorizonExportItemsNotificationsInner) HasLicenceUsagePercent() bool`
 
-HasLicenseUsagePercent returns a boolean if a field has been set.
+HasLicenceUsagePercent returns a boolean if a field has been set.
 
-### SetLicenseUsagePercentNil
+### SetLicenceUsagePercentNil
 
-`func (o *HorizonExportItemsNotificationsInner) SetLicenseUsagePercentNil(b bool)`
+`func (o *HorizonExportItemsNotificationsInner) SetLicenceUsagePercentNil(b bool)`
 
- SetLicenseUsagePercentNil sets the value for LicenseUsagePercent to be an explicit nil
+ SetLicenceUsagePercentNil sets the value for LicenceUsagePercent to be an explicit nil
 
-### UnsetLicenseUsagePercent
-`func (o *HorizonExportItemsNotificationsInner) UnsetLicenseUsagePercent()`
+### UnsetLicenceUsagePercent
+`func (o *HorizonExportItemsNotificationsInner) UnsetLicenceUsagePercent()`
 
-UnsetLicenseUsagePercent ensures that no value is present for LicenseUsagePercent, not even an explicit nil
+UnsetLicenceUsagePercent ensures that no value is present for LicenceUsagePercent, not even an explicit nil
 ### GetName
 
 `func (o *HorizonExportItemsNotificationsInner) GetName() string`

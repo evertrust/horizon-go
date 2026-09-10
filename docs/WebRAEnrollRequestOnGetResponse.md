@@ -5,9 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Certificate** | Pointer to [**NullableCertificate**](Certificate.md) | The certificate that was generated for this request. This is only available after the request has been approved | [optional] 
+**Error** | Pointer to **string** | Information about the error that occurred when executing this request | [optional] 
+**ExternalId** | Pointer to **map[string]interface{}** | Information about the request on the underlying PKI | [optional] 
 **Module** | **string** | The module that will be used to process this request. For a WebRA request, this is always &#x60;webra&#x60; | 
 **Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. | [optional] 
 **Pkcs12** | Pointer to [**NullableSecretString**](SecretString.md) | The generated PKCS#12 for this request. This is only available after the request has been approved in centralized mode | [optional] 
+**RetryAt** | Pointer to **int64** | Timestamp after which the &#x60;in_progress&#x60; request will be polled again | [optional] 
+**RetryCount** | Pointer to **int64** | Number of retries on the polling of the certificate emission | [optional] 
 **Template** | [**WebRAEnrollRequestTemplateResponse**](WebRAEnrollRequestTemplateResponse.md) | The user-data that will be used to generate the certificate | 
 **Workflow** | **string** | What this request will do. For an enrollment request, this is always &#x60;enroll&#x60; | 
 **Id** | **string** | Object internal ID | 
@@ -86,6 +90,56 @@ HasCertificate returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestOnGetResponse) UnsetCertificate()`
 
 UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
+### GetError
+
+`func (o *WebRAEnrollRequestOnGetResponse) GetError() string`
+
+GetError returns the Error field if non-nil, zero value otherwise.
+
+### GetErrorOk
+
+`func (o *WebRAEnrollRequestOnGetResponse) GetErrorOk() (*string, bool)`
+
+GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetError
+
+`func (o *WebRAEnrollRequestOnGetResponse) SetError(v string)`
+
+SetError sets Error field to given value.
+
+### HasError
+
+`func (o *WebRAEnrollRequestOnGetResponse) HasError() bool`
+
+HasError returns a boolean if a field has been set.
+
+### GetExternalId
+
+`func (o *WebRAEnrollRequestOnGetResponse) GetExternalId() map[string]interface{}`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *WebRAEnrollRequestOnGetResponse) GetExternalIdOk() (*map[string]interface{}, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *WebRAEnrollRequestOnGetResponse) SetExternalId(v map[string]interface{})`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *WebRAEnrollRequestOnGetResponse) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
+
 ### GetModule
 
 `func (o *WebRAEnrollRequestOnGetResponse) GetModule() string`
@@ -176,6 +230,56 @@ HasPkcs12 returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestOnGetResponse) UnsetPkcs12()`
 
 UnsetPkcs12 ensures that no value is present for Pkcs12, not even an explicit nil
+### GetRetryAt
+
+`func (o *WebRAEnrollRequestOnGetResponse) GetRetryAt() int64`
+
+GetRetryAt returns the RetryAt field if non-nil, zero value otherwise.
+
+### GetRetryAtOk
+
+`func (o *WebRAEnrollRequestOnGetResponse) GetRetryAtOk() (*int64, bool)`
+
+GetRetryAtOk returns a tuple with the RetryAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryAt
+
+`func (o *WebRAEnrollRequestOnGetResponse) SetRetryAt(v int64)`
+
+SetRetryAt sets RetryAt field to given value.
+
+### HasRetryAt
+
+`func (o *WebRAEnrollRequestOnGetResponse) HasRetryAt() bool`
+
+HasRetryAt returns a boolean if a field has been set.
+
+### GetRetryCount
+
+`func (o *WebRAEnrollRequestOnGetResponse) GetRetryCount() int64`
+
+GetRetryCount returns the RetryCount field if non-nil, zero value otherwise.
+
+### GetRetryCountOk
+
+`func (o *WebRAEnrollRequestOnGetResponse) GetRetryCountOk() (*int64, bool)`
+
+GetRetryCountOk returns a tuple with the RetryCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryCount
+
+`func (o *WebRAEnrollRequestOnGetResponse) SetRetryCount(v int64)`
+
+SetRetryCount sets RetryCount field to given value.
+
+### HasRetryCount
+
+`func (o *WebRAEnrollRequestOnGetResponse) HasRetryCount() bool`
+
+HasRetryCount returns a boolean if a field has been set.
+
 ### GetTemplate
 
 `func (o *WebRAEnrollRequestOnGetResponse) GetTemplate() WebRAEnrollRequestTemplateResponse`

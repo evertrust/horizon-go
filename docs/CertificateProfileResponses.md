@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **RequestsPolicy** | [**RequestsPolicy**](RequestsPolicy.md) |  | 
 **RequireTermsOfService** | **bool** |  | 
 **SelfPermissions** | [**CertificateProfileSelfPermissions**](CertificateProfileSelfPermissions.md) |  | 
-**ThirdPartyDiscoverySync** | Pointer to **NullableBool** | Available from &#x60;2.8.2&#x60; | [optional] [default to false]
+**ThirdPartyDiscoverySync** | Pointer to **NullableBool** |  | [optional] [default to false]
 **Timeout** | **string** |  | 
 **TlsAlpn01Port** | Pointer to **NullableInt64** |  | [optional] 
 **Triggers** | Pointer to [**NullableCertificateProfileTriggers**](CertificateProfileTriggers.md) |  | [optional] 
@@ -43,6 +43,7 @@ Name | Type | Description | Notes
 **EnrollAuthorizedCas** | Pointer to **[]string** |  | [optional] 
 **PasswordPolicy** | Pointer to **NullableString** |  | [optional] 
 **RenewalAuthorizedCas** | Pointer to **[]string** |  | [optional] 
+**TermsOfService** | Pointer to **string** | Reference to a &#x60;Terms of service&#x60; object. If defined, it will be displayed on the enrollment workflow before starting certificate enrollment | [optional] 
 **ValidationRuleset** | Pointer to [**NullableValidationRuleset**](ValidationRuleset.md) |  | [optional] 
 **Caps** | **[]string** |  | 
 **DeviceIdField** | Pointer to **NullableString** |  | [optional] 
@@ -53,6 +54,7 @@ Name | Type | Description | Notes
 **ScepRA** | **string** |  | 
 **ThirdPartyConnector** | **string** |  | 
 **ExchangeCertificate** | Pointer to **NullableString** |  | [optional] 
+**AutoRenewalPolicy** | Pointer to [**AutoRenewalPolicy**](AutoRenewalPolicy.md) |  | [optional] 
 **AcmeUrl** | Pointer to **string** |  | [optional] 
 **AuthorizedCas** | **[]string** |  | 
 **RequireEAB** | **bool** |  | 
@@ -1163,6 +1165,31 @@ HasRenewalAuthorizedCas returns a boolean if a field has been set.
 `func (o *CertificateProfileResponses) UnsetRenewalAuthorizedCas()`
 
 UnsetRenewalAuthorizedCas ensures that no value is present for RenewalAuthorizedCas, not even an explicit nil
+### GetTermsOfService
+
+`func (o *CertificateProfileResponses) GetTermsOfService() string`
+
+GetTermsOfService returns the TermsOfService field if non-nil, zero value otherwise.
+
+### GetTermsOfServiceOk
+
+`func (o *CertificateProfileResponses) GetTermsOfServiceOk() (*string, bool)`
+
+GetTermsOfServiceOk returns a tuple with the TermsOfService field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTermsOfService
+
+`func (o *CertificateProfileResponses) SetTermsOfService(v string)`
+
+SetTermsOfService sets TermsOfService field to given value.
+
+### HasTermsOfService
+
+`func (o *CertificateProfileResponses) HasTermsOfService() bool`
+
+HasTermsOfService returns a boolean if a field has been set.
+
 ### GetValidationRuleset
 
 `func (o *CertificateProfileResponses) GetValidationRuleset() ValidationRuleset`
@@ -1438,6 +1465,31 @@ HasExchangeCertificate returns a boolean if a field has been set.
 `func (o *CertificateProfileResponses) UnsetExchangeCertificate()`
 
 UnsetExchangeCertificate ensures that no value is present for ExchangeCertificate, not even an explicit nil
+### GetAutoRenewalPolicy
+
+`func (o *CertificateProfileResponses) GetAutoRenewalPolicy() AutoRenewalPolicy`
+
+GetAutoRenewalPolicy returns the AutoRenewalPolicy field if non-nil, zero value otherwise.
+
+### GetAutoRenewalPolicyOk
+
+`func (o *CertificateProfileResponses) GetAutoRenewalPolicyOk() (*AutoRenewalPolicy, bool)`
+
+GetAutoRenewalPolicyOk returns a tuple with the AutoRenewalPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenewalPolicy
+
+`func (o *CertificateProfileResponses) SetAutoRenewalPolicy(v AutoRenewalPolicy)`
+
+SetAutoRenewalPolicy sets AutoRenewalPolicy field to given value.
+
+### HasAutoRenewalPolicy
+
+`func (o *CertificateProfileResponses) HasAutoRenewalPolicy() bool`
+
+HasAutoRenewalPolicy returns a boolean if a field has been set.
+
 ### GetAcmeUrl
 
 `func (o *CertificateProfileResponses) GetAcmeUrl() string`

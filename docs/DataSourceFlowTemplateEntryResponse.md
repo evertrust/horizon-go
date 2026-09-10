@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **NullableString** | Description of the datasource | [optional] 
 **DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) | Display name of the datasource | [optional] 
 **Inputs** | Pointer to [**[]DataSourceInput**](DataSourceInput.md) | List of inputs to use for this datasource | [optional] 
+**Mandatory** | Pointer to **bool** | If true, the flow will stop with an error if this datasource does not return any result | [optional] [default to false]
 **Name** | Pointer to **string** | Name of the datasource | [optional] 
 **Outputs** | Pointer to [**[]DataSourceOutput**](DataSourceOutput.md) | List of outputs for this datasource | [optional] 
 **StopOnSuccess** | Pointer to **bool** | Stop the execution if this datasource&#39;s execution is successful | [optional] [default to false]
@@ -136,6 +137,31 @@ HasInputs returns a boolean if a field has been set.
 `func (o *DataSourceFlowTemplateEntryResponse) UnsetInputs()`
 
 UnsetInputs ensures that no value is present for Inputs, not even an explicit nil
+### GetMandatory
+
+`func (o *DataSourceFlowTemplateEntryResponse) GetMandatory() bool`
+
+GetMandatory returns the Mandatory field if non-nil, zero value otherwise.
+
+### GetMandatoryOk
+
+`func (o *DataSourceFlowTemplateEntryResponse) GetMandatoryOk() (*bool, bool)`
+
+GetMandatoryOk returns a tuple with the Mandatory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMandatory
+
+`func (o *DataSourceFlowTemplateEntryResponse) SetMandatory(v bool)`
+
+SetMandatory sets Mandatory field to given value.
+
+### HasMandatory
+
+`func (o *DataSourceFlowTemplateEntryResponse) HasMandatory() bool`
+
+HasMandatory returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *DataSourceFlowTemplateEntryResponse) GetName() string`

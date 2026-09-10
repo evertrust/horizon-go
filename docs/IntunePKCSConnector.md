@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **ProviderName** | Pointer to **NullableString** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **PubKey** | **string** |  | 
-**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
 **SearchFilter** | Pointer to **NullableString** |  | [optional] 
 **ThrottleDuration** | **string** |  | 
 **ThrottleParallelism** | **int64** |  | 
@@ -284,41 +283,6 @@ and a boolean to check if the value has been set.
 SetPubKey sets PubKey field to given value.
 
 
-### GetRenewalPeriod
-
-`func (o *IntunePKCSConnector) GetRenewalPeriod() string`
-
-GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
-
-### GetRenewalPeriodOk
-
-`func (o *IntunePKCSConnector) GetRenewalPeriodOk() (*string, bool)`
-
-GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRenewalPeriod
-
-`func (o *IntunePKCSConnector) SetRenewalPeriod(v string)`
-
-SetRenewalPeriod sets RenewalPeriod field to given value.
-
-### HasRenewalPeriod
-
-`func (o *IntunePKCSConnector) HasRenewalPeriod() bool`
-
-HasRenewalPeriod returns a boolean if a field has been set.
-
-### SetRenewalPeriodNil
-
-`func (o *IntunePKCSConnector) SetRenewalPeriodNil(b bool)`
-
- SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-
-### UnsetRenewalPeriod
-`func (o *IntunePKCSConnector) UnsetRenewalPeriod()`
-
-UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
 ### GetSearchFilter
 
 `func (o *IntunePKCSConnector) GetSearchFilter() string`

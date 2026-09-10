@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **Reports** | Pointer to [**[]HorizonExportableItem**](HorizonExportableItem.md) |  | [optional] 
 **Roles** | Pointer to [**[]HorizonExportableItem**](HorizonExportableItem.md) |  | [optional] 
 **ScimProfiles** | Pointer to [**[]HorizonExportableItem**](HorizonExportableItem.md) |  | [optional] 
+**Storages** | Pointer to [**[]HorizonExportableItem**](HorizonExportableItem.md) |  | [optional] 
 **Teams** | Pointer to [**[]HorizonExportableItem**](HorizonExportableItem.md) |  | [optional] 
 **ThirdParties** | Pointer to [**[]HorizonExportableItem**](HorizonExportableItem.md) |  | [optional] 
 **Triggers** | Pointer to [**[]HorizonExportableItem**](HorizonExportableItem.md) |  | [optional] 
@@ -603,6 +604,41 @@ HasScimProfiles returns a boolean if a field has been set.
 `func (o *HorizonExportableItems) UnsetScimProfiles()`
 
 UnsetScimProfiles ensures that no value is present for ScimProfiles, not even an explicit nil
+### GetStorages
+
+`func (o *HorizonExportableItems) GetStorages() []HorizonExportableItem`
+
+GetStorages returns the Storages field if non-nil, zero value otherwise.
+
+### GetStoragesOk
+
+`func (o *HorizonExportableItems) GetStoragesOk() (*[]HorizonExportableItem, bool)`
+
+GetStoragesOk returns a tuple with the Storages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStorages
+
+`func (o *HorizonExportableItems) SetStorages(v []HorizonExportableItem)`
+
+SetStorages sets Storages field to given value.
+
+### HasStorages
+
+`func (o *HorizonExportableItems) HasStorages() bool`
+
+HasStorages returns a boolean if a field has been set.
+
+### SetStoragesNil
+
+`func (o *HorizonExportableItems) SetStoragesNil(b bool)`
+
+ SetStoragesNil sets the value for Storages to be an explicit nil
+
+### UnsetStorages
+`func (o *HorizonExportableItems) UnsetStorages()`
+
+UnsetStorages ensures that no value is present for Storages, not even an explicit nil
 ### GetTeams
 
 `func (o *HorizonExportableItems) GetTeams() []HorizonExportableItem`

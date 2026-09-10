@@ -34,14 +34,14 @@ Name | Type | Description | Notes
 **Enroll** | **bool** |  | 
 **Module** | **string** |  | 
 **Profile** | **string** |  | 
-**Renew** | **bool** |  | 
+**Renew** | Pointer to **bool** |  | [optional] 
 **Revoke** | **bool** |  | 
 
 ## Methods
 
 ### NewScheduledTaskResponses
 
-`func NewScheduledTaskResponses(id string, reportType string, retentionPeriod string, from string, hqlType string, isHtml bool, recipients []ReportRecipient, title string, type_ string, cron string, enabled bool, name string, connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, ) *ScheduledTaskResponses`
+`func NewScheduledTaskResponses(id string, reportType string, retentionPeriod string, from string, hqlType string, isHtml bool, recipients []ReportRecipient, title string, type_ string, cron string, enabled bool, name string, connector string, dryRun bool, enroll bool, module string, profile string, revoke bool, ) *ScheduledTaskResponses`
 
 NewScheduledTaskResponses instantiates a new ScheduledTaskResponses object
 This constructor will assign default values to properties that have it defined,
@@ -850,6 +850,11 @@ and a boolean to check if the value has been set.
 
 SetRenew sets Renew field to given value.
 
+### HasRenew
+
+`func (o *ScheduledTaskResponses) HasRenew() bool`
+
+HasRenew returns a boolean if a field has been set.
 
 ### GetRevoke
 

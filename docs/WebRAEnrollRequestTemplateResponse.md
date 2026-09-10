@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AutoRenew** | Pointer to [**CertificateAutoRenewElementResponse**](CertificateAutoRenewElementResponse.md) |  | [optional] 
 **Capabilities** | Pointer to [**NullableManagedCertificateProfileCryptoPolicy**](ManagedCertificateProfileCryptoPolicy.md) | Describes how certificates will be enrolled on this profile | [optional] 
 **ContactEmail** | Pointer to [**NullableCertificateContactEmailElementResponse**](CertificateContactEmailElementResponse.md) | Information about the certificate&#39;s contact email and how to edit it | [optional] 
 **Extensions** | Pointer to [**[]CertificateExtensionElementResponse**](CertificateExtensionElementResponse.md) | Information about the certificate&#39;s extensions and how to edit them | [optional] 
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **Sans** | Pointer to [**[]ListSANElementResponse**](ListSANElementResponse.md) | List of SAN elements that will be used to build the certificate&#39;s Subject Alternative Name | [optional] 
 **Subject** | Pointer to [**[]IndexedDNElementResponse**](IndexedDNElementResponse.md) | List of DN elements that will be used to build the certificate&#39;s Distinguished Name | [optional] 
 **Team** | Pointer to [**NullableCertificateTeamElementResponse**](CertificateTeamElementResponse.md) | Information about the certificate&#39;s team and how to edit it | [optional] 
+**TermsOfService** | Pointer to **string** | If the query parameter &#x60;termsOfService&#x60; was set to &#x60;true&#x60;, and the profile contains Terms Of Service, contains the contents of the terms of service | [optional] 
 
 ## Methods
 
@@ -33,6 +35,31 @@ will change when the set of required properties is changed
 NewWebRAEnrollRequestTemplateResponseWithDefaults instantiates a new WebRAEnrollRequestTemplateResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAutoRenew
+
+`func (o *WebRAEnrollRequestTemplateResponse) GetAutoRenew() CertificateAutoRenewElementResponse`
+
+GetAutoRenew returns the AutoRenew field if non-nil, zero value otherwise.
+
+### GetAutoRenewOk
+
+`func (o *WebRAEnrollRequestTemplateResponse) GetAutoRenewOk() (*CertificateAutoRenewElementResponse, bool)`
+
+GetAutoRenewOk returns a tuple with the AutoRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenew
+
+`func (o *WebRAEnrollRequestTemplateResponse) SetAutoRenew(v CertificateAutoRenewElementResponse)`
+
+SetAutoRenew sets AutoRenew field to given value.
+
+### HasAutoRenew
+
+`func (o *WebRAEnrollRequestTemplateResponse) HasAutoRenew() bool`
+
+HasAutoRenew returns a boolean if a field has been set.
 
 ### GetCapabilities
 
@@ -384,6 +411,31 @@ HasTeam returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestTemplateResponse) UnsetTeam()`
 
 UnsetTeam ensures that no value is present for Team, not even an explicit nil
+### GetTermsOfService
+
+`func (o *WebRAEnrollRequestTemplateResponse) GetTermsOfService() string`
+
+GetTermsOfService returns the TermsOfService field if non-nil, zero value otherwise.
+
+### GetTermsOfServiceOk
+
+`func (o *WebRAEnrollRequestTemplateResponse) GetTermsOfServiceOk() (*string, bool)`
+
+GetTermsOfServiceOk returns a tuple with the TermsOfService field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTermsOfService
+
+`func (o *WebRAEnrollRequestTemplateResponse) SetTermsOfService(v string)`
+
+SetTermsOfService sets TermsOfService field to given value.
+
+### HasTermsOfService
+
+`func (o *WebRAEnrollRequestTemplateResponse) HasTermsOfService() bool`
+
+HasTermsOfService returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -72,7 +72,7 @@ Other parameters are passed through a pointer to a apiLicensesListRequest struct
 
 ## LicensesModules
 
-> []string LicensesModules(ctx).Execute()
+> []HorizonEntitlement LicensesModules(ctx).Execute()
 
 Retrieve the license entitled modules
 
@@ -99,7 +99,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LicenseAPI.LicensesModules``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `LicensesModules`: []string
+	// response from `LicensesModules`: []HorizonEntitlement
 	fmt.Fprintf(os.Stdout, "Response from `LicenseAPI.LicensesModules`: %v\n", resp)
 }
 ```
@@ -115,7 +115,7 @@ Other parameters are passed through a pointer to a apiLicensesModulesRequest str
 
 ### Return type
 
-**[]string**
+[**[]HorizonEntitlement**](HorizonEntitlement.md)
 
 ### Authorization
 

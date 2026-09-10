@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DnWhitelist** | Pointer to **NullableBool** | DN whitelist is enabled on this request | [optional] 
+**TermsOfService** | Pointer to **string** | If the query parameter &#x60;termsOfService&#x60; was set to &#x60;true&#x60;, and the profile contains Terms Of Service, contains the contents of the terms of service | [optional] 
 **ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | Information about the certificate&#39;s contact email and how to edit it | [optional] 
 **Extensions** | Pointer to [**[]CertificateExtensionElement**](CertificateExtensionElement.md) | Information about the certificate&#39;s extensions and how to edit them | [optional] 
 **Labels** | Pointer to [**[]RequestLabelElement**](RequestLabelElement.md) | List of labels used internally to tag and group certificates | [optional] 
@@ -67,6 +68,31 @@ HasDnWhitelist returns a boolean if a field has been set.
 `func (o *ScepEnrollRequestTemplateResponse) UnsetDnWhitelist()`
 
 UnsetDnWhitelist ensures that no value is present for DnWhitelist, not even an explicit nil
+### GetTermsOfService
+
+`func (o *ScepEnrollRequestTemplateResponse) GetTermsOfService() string`
+
+GetTermsOfService returns the TermsOfService field if non-nil, zero value otherwise.
+
+### GetTermsOfServiceOk
+
+`func (o *ScepEnrollRequestTemplateResponse) GetTermsOfServiceOk() (*string, bool)`
+
+GetTermsOfServiceOk returns a tuple with the TermsOfService field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTermsOfService
+
+`func (o *ScepEnrollRequestTemplateResponse) SetTermsOfService(v string)`
+
+SetTermsOfService sets TermsOfService field to given value.
+
+### HasTermsOfService
+
+`func (o *ScepEnrollRequestTemplateResponse) HasTermsOfService() bool`
+
+HasTermsOfService returns a boolean if a field has been set.
+
 ### GetContactEmail
 
 `func (o *ScepEnrollRequestTemplateResponse) GetContactEmail() CertificateContactEmailElement`

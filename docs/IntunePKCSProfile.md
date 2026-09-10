@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **RequestsPolicy** | [**RequestsPolicy**](RequestsPolicy.md) |  | 
 **SelfPermissions** | [**CertificateProfileSelfPermissions**](CertificateProfileSelfPermissions.md) |  | 
 **ThirdPartyConnector** | **string** |  | 
-**ThirdPartyDiscoverySync** | Pointer to **NullableBool** | Available from &#x60;2.8.2&#x60; | [optional] [default to false]
+**ThirdPartyDiscoverySync** | Pointer to **NullableBool** |  | [optional] [default to false]
 **Triggers** | Pointer to [**NullableCertificateProfileTriggers**](CertificateProfileTriggers.md) |  | [optional] 
 
 ## Methods

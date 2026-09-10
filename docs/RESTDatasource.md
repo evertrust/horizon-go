@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Headers** | Pointer to [**[]Header**](Header.md) | The headers of the request | [optional] 
 **Method** | **string** | The HTTP method to use for the request | 
 **Name** | **string** | Name of the datasource | 
+**NotFoundHttpCodes** | Pointer to **[]int64** | HTTP response codes that indicate a \&quot;not found\&quot; result. Must not overlap with &#x60;expectedHttpCodes&#x60;. When received, the datasource will return a &#x60;not_found&#x60; status with no results. Combined with the &#x60;mandatory&#x60; parameter on a datasource flow entry, this can be used to stop a flow when a required resource is not found. | [optional] 
 **Payload** | Pointer to **NullableString** | The body of the request | [optional] 
 **PayloadType** | Pointer to **NullableString** | For UI purposes in order to format the body correctly | [optional] 
 **Proxy** | Pointer to **NullableString** | Name of a Proxy to use while making the request | [optional] 
@@ -273,6 +274,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetNotFoundHttpCodes
+
+`func (o *RESTDatasource) GetNotFoundHttpCodes() []int64`
+
+GetNotFoundHttpCodes returns the NotFoundHttpCodes field if non-nil, zero value otherwise.
+
+### GetNotFoundHttpCodesOk
+
+`func (o *RESTDatasource) GetNotFoundHttpCodesOk() (*[]int64, bool)`
+
+GetNotFoundHttpCodesOk returns a tuple with the NotFoundHttpCodes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotFoundHttpCodes
+
+`func (o *RESTDatasource) SetNotFoundHttpCodes(v []int64)`
+
+SetNotFoundHttpCodes sets NotFoundHttpCodes field to given value.
+
+### HasNotFoundHttpCodes
+
+`func (o *RESTDatasource) HasNotFoundHttpCodes() bool`
+
+HasNotFoundHttpCodes returns a boolean if a field has been set.
 
 ### GetPayload
 

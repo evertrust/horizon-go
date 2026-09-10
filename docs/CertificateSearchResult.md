@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **NullableString** |  | [optional] 
+**AutoRenew** | Pointer to **bool** | &#x60;true&#x60; if auto renewal is enabled on this certificate | [optional] 
 **Certificate** | Pointer to **NullableString** |  | [optional] 
 **ContactEmail** | Pointer to **NullableString** |  | [optional] 
 **DiscoveredTrusted** | Pointer to **NullableBool** |  | [optional] 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 **Grades** | Pointer to [**[]GradingPolicyResult**](GradingPolicyResult.md) |  | [optional] 
 **HolderId** | Pointer to **NullableString** |  | [optional] 
 **Issuer** | Pointer to **NullableString** |  | [optional] 
-**KeyType** | Pointer to **NullableString** | One of &#x60;rsa-2048&#x60;, &#x60;rsa-3072&#x60;, &#x60;rsa-4096&#x60;, &#x60;rsa-8192&#x60;, &#x60;ec-secp256r1&#x60;, &#x60;ec-secp384r1&#x60;, &#x60;ec-secp521r1&#x60;, &#x60;ec-brainpoolp256r1&#x60;, &#x60;ec-brainpoolp384r1&#x60;, &#x60;ec-brainpoolp512r1&#x60;,  &#x60;ed-448&#x60;, &#x60;ed-25519&#x60;, &#x60;mldsa-44&#x60;, &#x60;mldsa-65&#x60;, &#x60;mldsa-87&#x60;, &#x60;slhdsa-sha2-128s&#x60;, &#x60;slhdsa-sha2-128f&#x60;, &#x60;slhdsa-sha2-192s&#x60;, &#x60;slhdsa-sha2-192f&#x60;, &#x60;slhdsa-sha2-256s&#x60;, &#x60;slhdsa-sha2-256f&#x60;, &#x60;slhdsa-sha2-128ssha256&#x60;, &#x60;slhdsa-sha2-128fsha256&#x60;, &#x60;slhdsa-sha2-192ssha512&#x60;, &#x60;slhdsa-sha2-192fsha512&#x60;, &#x60;slhdsa-sha2-256ssha512&#x60;, &#x60;slhdsa-sha2-256fsha512&#x60; or &#x60;&lt;primary key type&gt;+&lt;alternate key type&gt;&#x60; | [optional] 
+**KeyType** | Pointer to **NullableString** | One of &#x60;rsa-2048&#x60;, &#x60;rsa-3072&#x60;, &#x60;rsa-4096&#x60;, &#x60;rsa-8192&#x60;, &#x60;ec-secp256r1&#x60;, &#x60;ec-secp384r1&#x60;, &#x60;ec-secp521r1&#x60;, &#x60;ec-brainpoolp256r1&#x60;, &#x60;ec-brainpoolp384r1&#x60;, &#x60;ec-brainpoolp512r1&#x60;, &#x60;ed-448&#x60;, &#x60;ed-25519&#x60;, &#x60;mldsa-44&#x60;, &#x60;mldsa-65&#x60;, &#x60;mldsa-87&#x60;, &#x60;slhdsa-sha2-128s&#x60;, &#x60;slhdsa-sha2-128f&#x60;, &#x60;slhdsa-sha2-192s&#x60;, &#x60;slhdsa-sha2-192f&#x60;, &#x60;slhdsa-sha2-256s&#x60;, &#x60;slhdsa-sha2-256f&#x60;, &#x60;slhdsa-sha2-128ssha256&#x60;, &#x60;slhdsa-sha2-128fsha256&#x60;, &#x60;slhdsa-sha2-192ssha512&#x60;, &#x60;slhdsa-sha2-192fsha512&#x60;, &#x60;slhdsa-sha2-256ssha512&#x60;, &#x60;slhdsa-sha2-256fsha512&#x60; or &#x60;&lt;primary key type&gt;+&lt;alternate key type&gt;&#x60; | [optional] 
 **Labels** | Pointer to [**[]LabelData**](LabelData.md) |  | [optional] 
 **Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) |  | [optional] 
 **Module** | Pointer to **NullableString** |  | [optional] 
@@ -90,6 +91,31 @@ HasId returns a boolean if a field has been set.
 `func (o *CertificateSearchResult) UnsetId()`
 
 UnsetId ensures that no value is present for Id, not even an explicit nil
+### GetAutoRenew
+
+`func (o *CertificateSearchResult) GetAutoRenew() bool`
+
+GetAutoRenew returns the AutoRenew field if non-nil, zero value otherwise.
+
+### GetAutoRenewOk
+
+`func (o *CertificateSearchResult) GetAutoRenewOk() (*bool, bool)`
+
+GetAutoRenewOk returns a tuple with the AutoRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenew
+
+`func (o *CertificateSearchResult) SetAutoRenew(v bool)`
+
+SetAutoRenew sets AutoRenew field to given value.
+
+### HasAutoRenew
+
+`func (o *CertificateSearchResult) HasAutoRenew() bool`
+
+HasAutoRenew returns a boolean if a field has been set.
+
 ### GetCertificate
 
 `func (o *CertificateSearchResult) GetCertificate() string`

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
 **ApiCredentials** | **string** | Name of the &#x60;api-key&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**CustomConnectorDataMapping** | Pointer to **map[string]string** | Custom mapping of connector data fields | [optional] 
 **CustomerId** | **string** |  | 
 **Environment** | **string** | The testing environment will use https://ote-api.nameshield.net endpoint  and the production will use https://api.nameshield.net  | 
 **Name** | **string** |  | 
@@ -13,6 +14,7 @@ Name | Type | Description | Notes
 **ProductId** | **string** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
+**RetryInterval** | **string** |  | 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
 **Timeout** | Pointer to **NullableString** |  | [optional] 
 **Type** | **string** |  | 
@@ -21,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewNameshieldResponse
 
-`func NewNameshieldResponse(id string, apiCredentials string, customerId string, environment string, name string, organizationId string, productId string, type_ string, ) *NameshieldResponse`
+`func NewNameshieldResponse(id string, apiCredentials string, customerId string, environment string, name string, organizationId string, productId string, retryInterval string, type_ string, ) *NameshieldResponse`
 
 NewNameshieldResponse instantiates a new NameshieldResponse object
 This constructor will assign default values to properties that have it defined,
@@ -76,6 +78,41 @@ and a boolean to check if the value has been set.
 SetApiCredentials sets ApiCredentials field to given value.
 
 
+### GetCustomConnectorDataMapping
+
+`func (o *NameshieldResponse) GetCustomConnectorDataMapping() map[string]string`
+
+GetCustomConnectorDataMapping returns the CustomConnectorDataMapping field if non-nil, zero value otherwise.
+
+### GetCustomConnectorDataMappingOk
+
+`func (o *NameshieldResponse) GetCustomConnectorDataMappingOk() (*map[string]string, bool)`
+
+GetCustomConnectorDataMappingOk returns a tuple with the CustomConnectorDataMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomConnectorDataMapping
+
+`func (o *NameshieldResponse) SetCustomConnectorDataMapping(v map[string]string)`
+
+SetCustomConnectorDataMapping sets CustomConnectorDataMapping field to given value.
+
+### HasCustomConnectorDataMapping
+
+`func (o *NameshieldResponse) HasCustomConnectorDataMapping() bool`
+
+HasCustomConnectorDataMapping returns a boolean if a field has been set.
+
+### SetCustomConnectorDataMappingNil
+
+`func (o *NameshieldResponse) SetCustomConnectorDataMappingNil(b bool)`
+
+ SetCustomConnectorDataMappingNil sets the value for CustomConnectorDataMapping to be an explicit nil
+
+### UnsetCustomConnectorDataMapping
+`func (o *NameshieldResponse) UnsetCustomConnectorDataMapping()`
+
+UnsetCustomConnectorDataMapping ensures that no value is present for CustomConnectorDataMapping, not even an explicit nil
 ### GetCustomerId
 
 `func (o *NameshieldResponse) GetCustomerId() string`
@@ -246,6 +283,26 @@ HasQueue returns a boolean if a field has been set.
 `func (o *NameshieldResponse) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetRetryInterval
+
+`func (o *NameshieldResponse) GetRetryInterval() string`
+
+GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
+
+### GetRetryIntervalOk
+
+`func (o *NameshieldResponse) GetRetryIntervalOk() (*string, bool)`
+
+GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryInterval
+
+`func (o *NameshieldResponse) SetRetryInterval(v string)`
+
+SetRetryInterval sets RetryInterval field to given value.
+
+
 ### GetStatus
 
 `func (o *NameshieldResponse) GetStatus() PKIConnectorStatus`

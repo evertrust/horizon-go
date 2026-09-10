@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-	tenantCreationRequest := *openapiclient.NewTenantCreationRequest(int64(123), "Name_example") // TenantCreationRequest | 
+	tenantCreationRequest := *openapiclient.NewTenantCreationRequest(*openapiclient.NewTenantLicenseConfiguration(), "Name_example") // TenantCreationRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -509,7 +509,7 @@ import (
 )
 
 func main() {
-	tenantUpdateRequest := *openapiclient.NewTenantUpdateRequest(int64(123), "Name_example") // TenantUpdateRequest | The tenant to update
+	tenantUpdateRequest := *openapiclient.NewTenantUpdateRequest(*openapiclient.NewTenantLicenseConfiguration(), "Name_example") // TenantUpdateRequest | The tenant to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

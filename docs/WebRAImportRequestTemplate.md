@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AutoRenew** | Pointer to [**CertificateAutoRenewElement**](CertificateAutoRenewElement.md) |  | [optional] 
 **ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | The contact email for this certificate | [optional] 
 **DiscoveryData** | Pointer to [**HostDiscoveryData**](HostDiscoveryData.md) | The host discovery data associated with the certificate (discovery metadata) | [optional] 
 **DiscoveryInfo** | Pointer to [**NullableDiscoveryInfo**](DiscoveryInfo.md) | Information about the discovery of this certificate | [optional] 
@@ -32,6 +33,31 @@ will change when the set of required properties is changed
 NewWebRAImportRequestTemplateWithDefaults instantiates a new WebRAImportRequestTemplate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAutoRenew
+
+`func (o *WebRAImportRequestTemplate) GetAutoRenew() CertificateAutoRenewElement`
+
+GetAutoRenew returns the AutoRenew field if non-nil, zero value otherwise.
+
+### GetAutoRenewOk
+
+`func (o *WebRAImportRequestTemplate) GetAutoRenewOk() (*CertificateAutoRenewElement, bool)`
+
+GetAutoRenewOk returns a tuple with the AutoRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenew
+
+`func (o *WebRAImportRequestTemplate) SetAutoRenew(v CertificateAutoRenewElement)`
+
+SetAutoRenew sets AutoRenew field to given value.
+
+### HasAutoRenew
+
+`func (o *WebRAImportRequestTemplate) HasAutoRenew() bool`
+
+HasAutoRenew returns a boolean if a field has been set.
 
 ### GetContactEmail
 

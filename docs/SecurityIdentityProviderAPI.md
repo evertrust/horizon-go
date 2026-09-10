@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## SecurityIdentityProviderAdd
 
-> SecurityIdentityProviderAdd201Response SecurityIdentityProviderAdd(ctx).SecurityIdentityProviderAddRequest(securityIdentityProviderAddRequest).Execute()
+> SecurityIdentityProviderAdd201Response SecurityIdentityProviderAdd(ctx).SecurityIdentityProviderUpdateRequest(securityIdentityProviderUpdateRequest).Execute()
 
 Create a new identity provider
 
@@ -35,11 +35,11 @@ import (
 )
 
 func main() {
-	securityIdentityProviderAddRequest := openapiclient.security_identity_provider_add_request{LocalIdentityProvider: openapiclient.NewLocalIdentityProvider(true, true, "local", "Local")} // SecurityIdentityProviderAddRequest | The identity provider to register
+	securityIdentityProviderUpdateRequest := openapiclient.security_identity_provider_update_request{LocalIdentityProvider: openapiclient.NewLocalIdentityProvider(true, true, "local", "Local")} // SecurityIdentityProviderUpdateRequest | The identity provider to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityIdentityProviderAPI.SecurityIdentityProviderAdd(context.Background()).SecurityIdentityProviderAddRequest(securityIdentityProviderAddRequest).Execute()
+	resp, r, err := apiClient.SecurityIdentityProviderAPI.SecurityIdentityProviderAdd(context.Background()).SecurityIdentityProviderUpdateRequest(securityIdentityProviderUpdateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityIdentityProviderAPI.SecurityIdentityProviderAdd``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,7 +60,7 @@ Other parameters are passed through a pointer to a apiSecurityIdentityProviderAd
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **securityIdentityProviderAddRequest** | [**SecurityIdentityProviderAddRequest**](SecurityIdentityProviderAddRequest.md) | The identity provider to register | 
+ **securityIdentityProviderUpdateRequest** | [**SecurityIdentityProviderUpdateRequest**](SecurityIdentityProviderUpdateRequest.md) | The identity provider to register | 
 
 ### Return type
 

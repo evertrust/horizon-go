@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
+**AsyncParams** | Pointer to [**IntegratedCAConnectorAsyncParams**](IntegratedCAConnectorAsyncParams.md) |  | [optional] 
 **CaCert** | Pointer to **NullableString** |  | [optional] 
 **CaKey** | Pointer to [**NullableSecretString**](SecretString.md) |  | [optional] 
 **CertType** | Pointer to **NullableString** |  | [optional] 
@@ -16,6 +17,7 @@ Name | Type | Description | Notes
 **CryptoType** | **string** |  | 
 **Name** | **string** |  | 
 **Queue** | Pointer to **NullableString** |  | [optional] 
+**RetryInterval** | Pointer to **string** | Interval between retry attempts for asynchronous enrollment polling | [optional] 
 **SignAlg** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
 **Type** | **string** |  | 
@@ -58,6 +60,31 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetAsyncParams
+
+`func (o *IntegratedCAConnectorResponse) GetAsyncParams() IntegratedCAConnectorAsyncParams`
+
+GetAsyncParams returns the AsyncParams field if non-nil, zero value otherwise.
+
+### GetAsyncParamsOk
+
+`func (o *IntegratedCAConnectorResponse) GetAsyncParamsOk() (*IntegratedCAConnectorAsyncParams, bool)`
+
+GetAsyncParamsOk returns a tuple with the AsyncParams field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAsyncParams
+
+`func (o *IntegratedCAConnectorResponse) SetAsyncParams(v IntegratedCAConnectorAsyncParams)`
+
+SetAsyncParams sets AsyncParams field to given value.
+
+### HasAsyncParams
+
+`func (o *IntegratedCAConnectorResponse) HasAsyncParams() bool`
+
+HasAsyncParams returns a boolean if a field has been set.
 
 ### GetCaCert
 
@@ -414,6 +441,31 @@ HasQueue returns a boolean if a field has been set.
 `func (o *IntegratedCAConnectorResponse) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetRetryInterval
+
+`func (o *IntegratedCAConnectorResponse) GetRetryInterval() string`
+
+GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
+
+### GetRetryIntervalOk
+
+`func (o *IntegratedCAConnectorResponse) GetRetryIntervalOk() (*string, bool)`
+
+GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryInterval
+
+`func (o *IntegratedCAConnectorResponse) SetRetryInterval(v string)`
+
+SetRetryInterval sets RetryInterval field to given value.
+
+### HasRetryInterval
+
+`func (o *IntegratedCAConnectorResponse) HasRetryInterval() bool`
+
+HasRetryInterval returns a boolean if a field has been set.
+
 ### GetSignAlg
 
 `func (o *IntegratedCAConnectorResponse) GetSignAlg() string`

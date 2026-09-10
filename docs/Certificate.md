@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
+**AutoRenew** | **bool** | &#x60;true&#x60; if auto renewal is enabled on this certificate | 
 **Certificate** | **string** | The certificate&#39;s PEM-encoded content | 
 **ContactEmail** | Pointer to **NullableString** | The certificate&#39;s contact email. It will be used to send notifications about the certificate&#39;s expiration and revocation | [optional] 
 **CrlSynchronized** | Pointer to **NullableBool** | Whether the certificate&#39;s revocation status is synchronized with a CRL | [optional] 
@@ -42,7 +43,7 @@ Name | Type | Description | Notes
 
 ### NewCertificate
 
-`func NewCertificate(id string, certificate string, dn string, escrowed bool, holderId string, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string, ) *Certificate`
+`func NewCertificate(id string, autoRenew bool, certificate string, dn string, escrowed bool, holderId string, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string, ) *Certificate`
 
 NewCertificate instantiates a new Certificate object
 This constructor will assign default values to properties that have it defined,
@@ -75,6 +76,26 @@ and a boolean to check if the value has been set.
 `func (o *Certificate) SetId(v string)`
 
 SetId sets Id field to given value.
+
+
+### GetAutoRenew
+
+`func (o *Certificate) GetAutoRenew() bool`
+
+GetAutoRenew returns the AutoRenew field if non-nil, zero value otherwise.
+
+### GetAutoRenewOk
+
+`func (o *Certificate) GetAutoRenewOk() (*bool, bool)`
+
+GetAutoRenewOk returns a tuple with the AutoRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenew
+
+`func (o *Certificate) SetAutoRenew(v bool)`
+
+SetAutoRenew sets AutoRenew field to given value.
 
 
 ### GetCertificate

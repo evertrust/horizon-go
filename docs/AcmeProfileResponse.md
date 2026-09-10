@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **RequestsPolicy** | [**RequestsPolicy**](RequestsPolicy.md) |  | 
 **RequireTermsOfService** | **bool** |  | 
 **SelfPermissions** | [**CertificateProfileSelfPermissions**](CertificateProfileSelfPermissions.md) |  | 
-**ThirdPartyDiscoverySync** | Pointer to **NullableBool** | Available from &#x60;2.8.2&#x60; | [optional] [default to false]
+**ThirdPartyDiscoverySync** | Pointer to **NullableBool** |  | [optional] [default to false]
 **Timeout** | **string** |  | 
 **TlsAlpn01Port** | Pointer to **NullableInt64** |  | [optional] 
 **Triggers** | Pointer to [**NullableCertificateProfileTriggers**](CertificateProfileTriggers.md) |  | [optional] 

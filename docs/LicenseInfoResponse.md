@@ -5,9 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BuildTime** | **int64** |  | 
+**Count** | **int64** | Current certificate count | 
+**DcvCount** | **int64** | Current DCV count | 
+**DcvLimit** | Pointer to **NullableInt64** | DCV license limit | [optional] 
 **Expiration** | Pointer to **NullableInt64** |  | [optional] 
 **IsValid** | **bool** |  | 
 **Libraries** | [**[]LibraryInfoResponse**](LibraryInfoResponse.md) |  | 
+**Limit** | Pointer to **NullableInt64** | Certificate license limit | [optional] 
 **Modules** | [**[]ModuleLicenseInfoResponse**](ModuleLicenseInfoResponse.md) |  | 
 **ReleaseChannel** | Pointer to **string** |  | [optional] 
 **Version** | **string** |  | 
@@ -16,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewLicenseInfoResponse
 
-`func NewLicenseInfoResponse(buildTime int64, isValid bool, libraries []LibraryInfoResponse, modules []ModuleLicenseInfoResponse, version string, ) *LicenseInfoResponse`
+`func NewLicenseInfoResponse(buildTime int64, count int64, dcvCount int64, isValid bool, libraries []LibraryInfoResponse, modules []ModuleLicenseInfoResponse, version string, ) *LicenseInfoResponse`
 
 NewLicenseInfoResponse instantiates a new LicenseInfoResponse object
 This constructor will assign default values to properties that have it defined,
@@ -51,6 +55,81 @@ and a boolean to check if the value has been set.
 SetBuildTime sets BuildTime field to given value.
 
 
+### GetCount
+
+`func (o *LicenseInfoResponse) GetCount() int64`
+
+GetCount returns the Count field if non-nil, zero value otherwise.
+
+### GetCountOk
+
+`func (o *LicenseInfoResponse) GetCountOk() (*int64, bool)`
+
+GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCount
+
+`func (o *LicenseInfoResponse) SetCount(v int64)`
+
+SetCount sets Count field to given value.
+
+
+### GetDcvCount
+
+`func (o *LicenseInfoResponse) GetDcvCount() int64`
+
+GetDcvCount returns the DcvCount field if non-nil, zero value otherwise.
+
+### GetDcvCountOk
+
+`func (o *LicenseInfoResponse) GetDcvCountOk() (*int64, bool)`
+
+GetDcvCountOk returns a tuple with the DcvCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDcvCount
+
+`func (o *LicenseInfoResponse) SetDcvCount(v int64)`
+
+SetDcvCount sets DcvCount field to given value.
+
+
+### GetDcvLimit
+
+`func (o *LicenseInfoResponse) GetDcvLimit() int64`
+
+GetDcvLimit returns the DcvLimit field if non-nil, zero value otherwise.
+
+### GetDcvLimitOk
+
+`func (o *LicenseInfoResponse) GetDcvLimitOk() (*int64, bool)`
+
+GetDcvLimitOk returns a tuple with the DcvLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDcvLimit
+
+`func (o *LicenseInfoResponse) SetDcvLimit(v int64)`
+
+SetDcvLimit sets DcvLimit field to given value.
+
+### HasDcvLimit
+
+`func (o *LicenseInfoResponse) HasDcvLimit() bool`
+
+HasDcvLimit returns a boolean if a field has been set.
+
+### SetDcvLimitNil
+
+`func (o *LicenseInfoResponse) SetDcvLimitNil(b bool)`
+
+ SetDcvLimitNil sets the value for DcvLimit to be an explicit nil
+
+### UnsetDcvLimit
+`func (o *LicenseInfoResponse) UnsetDcvLimit()`
+
+UnsetDcvLimit ensures that no value is present for DcvLimit, not even an explicit nil
 ### GetExpiration
 
 `func (o *LicenseInfoResponse) GetExpiration() int64`
@@ -126,6 +205,41 @@ and a boolean to check if the value has been set.
 SetLibraries sets Libraries field to given value.
 
 
+### GetLimit
+
+`func (o *LicenseInfoResponse) GetLimit() int64`
+
+GetLimit returns the Limit field if non-nil, zero value otherwise.
+
+### GetLimitOk
+
+`func (o *LicenseInfoResponse) GetLimitOk() (*int64, bool)`
+
+GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLimit
+
+`func (o *LicenseInfoResponse) SetLimit(v int64)`
+
+SetLimit sets Limit field to given value.
+
+### HasLimit
+
+`func (o *LicenseInfoResponse) HasLimit() bool`
+
+HasLimit returns a boolean if a field has been set.
+
+### SetLimitNil
+
+`func (o *LicenseInfoResponse) SetLimitNil(b bool)`
+
+ SetLimitNil sets the value for Limit to be an explicit nil
+
+### UnsetLimit
+`func (o *LicenseInfoResponse) UnsetLimit()`
+
+UnsetLimit ensures that no value is present for Limit, not even an explicit nil
 ### GetModules
 
 `func (o *LicenseInfoResponse) GetModules() []ModuleLicenseInfoResponse`

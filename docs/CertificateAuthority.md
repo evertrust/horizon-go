@@ -7,7 +7,10 @@ Name | Type | Description | Notes
 **CacheTimeToIdle** | Pointer to **NullableString** |  | [optional] 
 **CrlUrl** | Pointer to **NullableString** |  | [optional] 
 **Downloadable** | Pointer to **bool** |  | [optional] 
+**EmailMapping** | Pointer to **string** | A template string to apply to determine the principal email when a certificate from this CA is used for client authentication | [optional] [default to "{{certificate.san.rfc822name.1}}"]
+**IdentifierMapping** | Pointer to **string** | A template string to apply to determine the principal identifier when a certificate from this CA is used for client authentication | [optional] [default to "{{certificate.dn}}"]
 **Name** | Pointer to **string** |  | [optional] 
+**NameMapping** | Pointer to **string** | A template string to apply to determine the principal name when a certificate from this CA is used for client authentication | [optional] [default to "{{certificate.subject.cn.1}}"]
 **OutdatedRevocationStatusPolicy** | Pointer to **string** |  | [optional] 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Public** | Pointer to **bool** |  | [optional] 
@@ -132,6 +135,56 @@ SetDownloadable sets Downloadable field to given value.
 
 HasDownloadable returns a boolean if a field has been set.
 
+### GetEmailMapping
+
+`func (o *CertificateAuthority) GetEmailMapping() string`
+
+GetEmailMapping returns the EmailMapping field if non-nil, zero value otherwise.
+
+### GetEmailMappingOk
+
+`func (o *CertificateAuthority) GetEmailMappingOk() (*string, bool)`
+
+GetEmailMappingOk returns a tuple with the EmailMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmailMapping
+
+`func (o *CertificateAuthority) SetEmailMapping(v string)`
+
+SetEmailMapping sets EmailMapping field to given value.
+
+### HasEmailMapping
+
+`func (o *CertificateAuthority) HasEmailMapping() bool`
+
+HasEmailMapping returns a boolean if a field has been set.
+
+### GetIdentifierMapping
+
+`func (o *CertificateAuthority) GetIdentifierMapping() string`
+
+GetIdentifierMapping returns the IdentifierMapping field if non-nil, zero value otherwise.
+
+### GetIdentifierMappingOk
+
+`func (o *CertificateAuthority) GetIdentifierMappingOk() (*string, bool)`
+
+GetIdentifierMappingOk returns a tuple with the IdentifierMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdentifierMapping
+
+`func (o *CertificateAuthority) SetIdentifierMapping(v string)`
+
+SetIdentifierMapping sets IdentifierMapping field to given value.
+
+### HasIdentifierMapping
+
+`func (o *CertificateAuthority) HasIdentifierMapping() bool`
+
+HasIdentifierMapping returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *CertificateAuthority) GetName() string`
@@ -156,6 +209,31 @@ SetName sets Name field to given value.
 `func (o *CertificateAuthority) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetNameMapping
+
+`func (o *CertificateAuthority) GetNameMapping() string`
+
+GetNameMapping returns the NameMapping field if non-nil, zero value otherwise.
+
+### GetNameMappingOk
+
+`func (o *CertificateAuthority) GetNameMappingOk() (*string, bool)`
+
+GetNameMappingOk returns a tuple with the NameMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNameMapping
+
+`func (o *CertificateAuthority) SetNameMapping(v string)`
+
+SetNameMapping sets NameMapping field to given value.
+
+### HasNameMapping
+
+`func (o *CertificateAuthority) HasNameMapping() bool`
+
+HasNameMapping returns a boolean if a field has been set.
 
 ### GetOutdatedRevocationStatusPolicy
 

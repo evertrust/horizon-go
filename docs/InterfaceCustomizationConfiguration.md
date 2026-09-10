@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Announcements** | Pointer to [**[]InterfaceCustomizationConfigurationAnnouncementsInner**](InterfaceCustomizationConfigurationAnnouncementsInner.md) | Announcements to display to all users in the Horizon instance | [optional] 
 **HeaderEnd** | Pointer to **NullableString** | The HTML color code for the right side of the banner gradient | [optional] 
 **HeaderStart** | Pointer to **NullableString** | The HTML color code for the left side of the banner gradient | [optional] 
 **Logo** | Pointer to **NullableString** | A logo to display on the product, base64 encoded | [optional] 
@@ -27,6 +28,31 @@ will change when the set of required properties is changed
 NewInterfaceCustomizationConfigurationWithDefaults instantiates a new InterfaceCustomizationConfiguration object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAnnouncements
+
+`func (o *InterfaceCustomizationConfiguration) GetAnnouncements() []InterfaceCustomizationConfigurationAnnouncementsInner`
+
+GetAnnouncements returns the Announcements field if non-nil, zero value otherwise.
+
+### GetAnnouncementsOk
+
+`func (o *InterfaceCustomizationConfiguration) GetAnnouncementsOk() (*[]InterfaceCustomizationConfigurationAnnouncementsInner, bool)`
+
+GetAnnouncementsOk returns a tuple with the Announcements field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAnnouncements
+
+`func (o *InterfaceCustomizationConfiguration) SetAnnouncements(v []InterfaceCustomizationConfigurationAnnouncementsInner)`
+
+SetAnnouncements sets Announcements field to given value.
+
+### HasAnnouncements
+
+`func (o *InterfaceCustomizationConfiguration) HasAnnouncements() bool`
+
+HasAnnouncements returns a boolean if a field has been set.
 
 ### GetHeaderEnd
 

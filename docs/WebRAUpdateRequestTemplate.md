@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AutoRenew** | Pointer to [**CertificateAutoRenewElement**](CertificateAutoRenewElement.md) |  | [optional] 
 **ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | Information about the certificate&#39;s contact email and how to edit it | [optional] 
 **Labels** | Pointer to [**[]RequestLabelElement**](RequestLabelElement.md) | Information about the certificate&#39;s labels and how to edit them | [optional] 
 **Metadata** | Pointer to [**[]CertificateMetadataElement**](CertificateMetadataElement.md) | Information about the certificate&#39;s metadata and how to edit them | [optional] 
@@ -28,6 +29,31 @@ will change when the set of required properties is changed
 NewWebRAUpdateRequestTemplateWithDefaults instantiates a new WebRAUpdateRequestTemplate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAutoRenew
+
+`func (o *WebRAUpdateRequestTemplate) GetAutoRenew() CertificateAutoRenewElement`
+
+GetAutoRenew returns the AutoRenew field if non-nil, zero value otherwise.
+
+### GetAutoRenewOk
+
+`func (o *WebRAUpdateRequestTemplate) GetAutoRenewOk() (*CertificateAutoRenewElement, bool)`
+
+GetAutoRenewOk returns a tuple with the AutoRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenew
+
+`func (o *WebRAUpdateRequestTemplate) SetAutoRenew(v CertificateAutoRenewElement)`
+
+SetAutoRenew sets AutoRenew field to given value.
+
+### HasAutoRenew
+
+`func (o *WebRAUpdateRequestTemplate) HasAutoRenew() bool`
+
+HasAutoRenew returns a boolean if a field has been set.
 
 ### GetContactEmail
 

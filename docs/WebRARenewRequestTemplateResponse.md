@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AutoRenew** | Pointer to [**CertificateAutoRenewElementResponse**](CertificateAutoRenewElementResponse.md) |  | [optional] 
 **Capabilities** | Pointer to [**NullableManagedCertificateProfileCryptoPolicy**](ManagedCertificateProfileCryptoPolicy.md) | Describes how certificates will be enrolled on this profile | [optional] 
 **PasswordPolicy** | Pointer to [**NullablePasswordPolicy**](PasswordPolicy.md) | The password policy that will be used to generate the certificate&#39;s PKCS#12 password | [optional] 
 
@@ -25,6 +26,31 @@ will change when the set of required properties is changed
 NewWebRARenewRequestTemplateResponseWithDefaults instantiates a new WebRARenewRequestTemplateResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAutoRenew
+
+`func (o *WebRARenewRequestTemplateResponse) GetAutoRenew() CertificateAutoRenewElementResponse`
+
+GetAutoRenew returns the AutoRenew field if non-nil, zero value otherwise.
+
+### GetAutoRenewOk
+
+`func (o *WebRARenewRequestTemplateResponse) GetAutoRenewOk() (*CertificateAutoRenewElementResponse, bool)`
+
+GetAutoRenewOk returns a tuple with the AutoRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenew
+
+`func (o *WebRARenewRequestTemplateResponse) SetAutoRenew(v CertificateAutoRenewElementResponse)`
+
+SetAutoRenew sets AutoRenew field to given value.
+
+### HasAutoRenew
+
+`func (o *WebRARenewRequestTemplateResponse) HasAutoRenew() bool`
+
+HasAutoRenew returns a boolean if a field has been set.
 
 ### GetCapabilities
 

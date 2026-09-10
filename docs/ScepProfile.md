@@ -29,7 +29,8 @@ Name | Type | Description | Notes
 **RequestsPolicy** | [**RequestsPolicy**](RequestsPolicy.md) |  | 
 **ScepRA** | **string** |  | 
 **SelfPermissions** | [**CertificateProfileSelfPermissions**](CertificateProfileSelfPermissions.md) |  | 
-**ThirdPartyDiscoverySync** | Pointer to **NullableBool** | Available from &#x60;2.8.2&#x60; | [optional] [default to false]
+**TermsOfService** | Pointer to **string** | Reference to a &#x60;Terms of service&#x60; object. If defined, it will be displayed on the enrollment workflow before starting certificate enrollment | [optional] 
+**ThirdPartyDiscoverySync** | Pointer to **NullableBool** |  | [optional] [default to false]
 **Triggers** | Pointer to [**NullableCertificateProfileTriggers**](CertificateProfileTriggers.md) |  | [optional] 
 **ValidationRuleset** | Pointer to [**NullableValidationRuleset**](ValidationRuleset.md) |  | [optional] 
 
@@ -716,6 +717,31 @@ and a boolean to check if the value has been set.
 
 SetSelfPermissions sets SelfPermissions field to given value.
 
+
+### GetTermsOfService
+
+`func (o *ScepProfile) GetTermsOfService() string`
+
+GetTermsOfService returns the TermsOfService field if non-nil, zero value otherwise.
+
+### GetTermsOfServiceOk
+
+`func (o *ScepProfile) GetTermsOfServiceOk() (*string, bool)`
+
+GetTermsOfServiceOk returns a tuple with the TermsOfService field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTermsOfService
+
+`func (o *ScepProfile) SetTermsOfService(v string)`
+
+SetTermsOfService sets TermsOfService field to given value.
+
+### HasTermsOfService
+
+`func (o *ScepProfile) HasTermsOfService() bool`
+
+HasTermsOfService returns a boolean if a field has been set.
 
 ### GetThirdPartyDiscoverySync
 

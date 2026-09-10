@@ -679,7 +679,7 @@ Name | Type | Description  | Notes
 
 ## RequestTemplate
 
-> RequestTemplate200Response RequestTemplate(ctx).RequestTemplateRequest(requestTemplateRequest).Execute()
+> RequestTemplate200Response RequestTemplate(ctx).RequestTemplateRequest(requestTemplateRequest).TermsOfService(termsOfService).Execute()
 
 Retrieve a request template
 
@@ -699,10 +699,11 @@ import (
 
 func main() {
 	requestTemplateRequest := openapiclient.request_template_request{EstEnrollRequestOnTemplate: openapiclient.NewEstEnrollRequestOnTemplate("Module_example", "Workflow_example", "webra_centralized")} // RequestTemplateRequest | The request on which to return the template
+	termsOfService := true // bool | If true, include the Terms of Service entry configured on the profile in the response. Only applies to WebRA, EST and SCEP enroll requests. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.RequestAPI.RequestTemplate(context.Background()).RequestTemplateRequest(requestTemplateRequest).Execute()
+	resp, r, err := apiClient.RequestAPI.RequestTemplate(context.Background()).RequestTemplateRequest(requestTemplateRequest).TermsOfService(termsOfService).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RequestAPI.RequestTemplate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -724,6 +725,7 @@ Other parameters are passed through a pointer to a apiRequestTemplateRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **requestTemplateRequest** | [**RequestTemplateRequest**](RequestTemplateRequest.md) | The request on which to return the template | 
+ **termsOfService** | **bool** | If true, include the Terms of Service entry configured on the profile in the response. Only applies to WebRA, EST and SCEP enroll requests. | [default to false]
 
 ### Return type
 

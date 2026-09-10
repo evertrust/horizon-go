@@ -7,9 +7,12 @@ Name | Type | Description | Notes
 **Triggers** | Pointer to [**NullableLicenseTriggers**](LicenseTriggers.md) | Triggers to execute on license events | [optional] 
 **Type** | **string** | The type of the configuration entry | 
 **Cron** | **string** | Cron defining when to run internal monitor checks | 
+**Announcements** | Pointer to [**[]InterfaceCustomizationConfigurationAnnouncementsInner**](InterfaceCustomizationConfigurationAnnouncementsInner.md) | Announcements to display to all users in the Horizon instance | [optional] 
 **HeaderEnd** | Pointer to **NullableString** | The HTML color code for the right side of the banner gradient | [optional] 
 **HeaderStart** | Pointer to **NullableString** | The HTML color code for the left side of the banner gradient | [optional] 
 **Logo** | Pointer to **NullableString** | A logo to display on the product, base64 encoded | [optional] 
+**ArchiveStorage** | Pointer to **string** | Name of a [storage](#tag/system.storage) to use for archive file storage | [optional] 
+**MagicLinkReportStorage** | Pointer to **string** | Name of a [storage](#tag/system.storage) to use for magic link reports storage | [optional] 
 
 ## Methods
 
@@ -104,6 +107,31 @@ and a boolean to check if the value has been set.
 
 SetCron sets Cron field to given value.
 
+
+### GetAnnouncements
+
+`func (o *SystemConfigurationUpsertRequest) GetAnnouncements() []InterfaceCustomizationConfigurationAnnouncementsInner`
+
+GetAnnouncements returns the Announcements field if non-nil, zero value otherwise.
+
+### GetAnnouncementsOk
+
+`func (o *SystemConfigurationUpsertRequest) GetAnnouncementsOk() (*[]InterfaceCustomizationConfigurationAnnouncementsInner, bool)`
+
+GetAnnouncementsOk returns a tuple with the Announcements field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAnnouncements
+
+`func (o *SystemConfigurationUpsertRequest) SetAnnouncements(v []InterfaceCustomizationConfigurationAnnouncementsInner)`
+
+SetAnnouncements sets Announcements field to given value.
+
+### HasAnnouncements
+
+`func (o *SystemConfigurationUpsertRequest) HasAnnouncements() bool`
+
+HasAnnouncements returns a boolean if a field has been set.
 
 ### GetHeaderEnd
 
@@ -210,6 +238,56 @@ HasLogo returns a boolean if a field has been set.
 `func (o *SystemConfigurationUpsertRequest) UnsetLogo()`
 
 UnsetLogo ensures that no value is present for Logo, not even an explicit nil
+### GetArchiveStorage
+
+`func (o *SystemConfigurationUpsertRequest) GetArchiveStorage() string`
+
+GetArchiveStorage returns the ArchiveStorage field if non-nil, zero value otherwise.
+
+### GetArchiveStorageOk
+
+`func (o *SystemConfigurationUpsertRequest) GetArchiveStorageOk() (*string, bool)`
+
+GetArchiveStorageOk returns a tuple with the ArchiveStorage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetArchiveStorage
+
+`func (o *SystemConfigurationUpsertRequest) SetArchiveStorage(v string)`
+
+SetArchiveStorage sets ArchiveStorage field to given value.
+
+### HasArchiveStorage
+
+`func (o *SystemConfigurationUpsertRequest) HasArchiveStorage() bool`
+
+HasArchiveStorage returns a boolean if a field has been set.
+
+### GetMagicLinkReportStorage
+
+`func (o *SystemConfigurationUpsertRequest) GetMagicLinkReportStorage() string`
+
+GetMagicLinkReportStorage returns the MagicLinkReportStorage field if non-nil, zero value otherwise.
+
+### GetMagicLinkReportStorageOk
+
+`func (o *SystemConfigurationUpsertRequest) GetMagicLinkReportStorageOk() (*string, bool)`
+
+GetMagicLinkReportStorageOk returns a tuple with the MagicLinkReportStorage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMagicLinkReportStorage
+
+`func (o *SystemConfigurationUpsertRequest) SetMagicLinkReportStorage(v string)`
+
+SetMagicLinkReportStorage sets MagicLinkReportStorage field to given value.
+
+### HasMagicLinkReportStorage
+
+`func (o *SystemConfigurationUpsertRequest) HasMagicLinkReportStorage() bool`
+
+HasMagicLinkReportStorage returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **EnabledOnUI** | **bool** | Whether the identity provider can be selected on login to the Horizon UI | 
 **Name** | **string** | The internal name of the identity provider | 
 **PasswordPolicy** | Pointer to **NullableString** | The password policy to enforce for user passwords on the local identity provider | [optional] 
-**Type** | **string** | The type of Identity provider to register | 
+**Type** | **string** | The type of identity provider | 
 **ClientCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the client ID  and secret to use to authenticate Horizon against the identity provider | 
 **EmailClaim** | Pointer to **string** | The OpenID information that will be used as the user&#39;s email in Horizon | [optional] [default to "{{email}}"]
 **IdentifierClaim** | Pointer to **string** | The OpenID information that will be used as the user&#39;s identifier in Horizon | [optional] [default to "{{email}}"]

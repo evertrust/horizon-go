@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Dictionary** | Pointer to [**[]MapEntry**](MapEntry.md) | Data fetched from the datasource | [optional] 
 **Error** | Pointer to **NullableString** | If &#x60;status&#x60; is &#x60;failure&#x60;, the error message | [optional] 
 **Name** | Pointer to **string** | Name of the executed datasource | [optional] 
-**Status** | Pointer to **string** | Status of the execution. &#x60;success&#x60; if the datasource data was fetched correctly, &#x60;failure&#x60; if an error occured and &#x60;ignored&#x60; if inputs were not all filled, resulting in no request being sent | [optional] 
+**Status** | Pointer to **string** | Status of the execution. &#x60;success&#x60; if the datasource data was fetched correctly, &#x60;failure&#x60; if an error occured, &#x60;not_found&#x60; if the datasource query returned no results and &#x60;ignored&#x60; if inputs were not all filled, resulting in no request being sent | [optional] 
 **Type** | Pointer to **string** | Type of the datasource executed | [optional] 
 
 ## Methods

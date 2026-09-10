@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **Reports** | Pointer to [**[]ReportScheduledTaskResponse**](ReportScheduledTaskResponse.md) |  | [optional] 
 **Roles** | Pointer to [**[]RoleResponse**](RoleResponse.md) |  | [optional] 
 **ScimProfiles** | Pointer to [**[]ScimProfileResponse**](ScimProfileResponse.md) |  | [optional] 
+**Storages** | Pointer to [**[]S3StorageBackendConfigResponse**](S3StorageBackendConfigResponse.md) |  | [optional] 
 **Teams** | Pointer to [**[]TeamResponse**](TeamResponse.md) |  | [optional] 
 **ThirdParties** | Pointer to [**[]ThirdPartyConnectorResponses**](ThirdPartyConnectorResponses.md) |  | [optional] 
 **Triggers** | Pointer to [**[]HorizonExportItemsTriggersInner**](HorizonExportItemsTriggersInner.md) |  | [optional] 
@@ -442,6 +443,31 @@ SetScimProfiles sets ScimProfiles field to given value.
 `func (o *HorizonExportItems) HasScimProfiles() bool`
 
 HasScimProfiles returns a boolean if a field has been set.
+
+### GetStorages
+
+`func (o *HorizonExportItems) GetStorages() []S3StorageBackendConfigResponse`
+
+GetStorages returns the Storages field if non-nil, zero value otherwise.
+
+### GetStoragesOk
+
+`func (o *HorizonExportItems) GetStoragesOk() (*[]S3StorageBackendConfigResponse, bool)`
+
+GetStoragesOk returns a tuple with the Storages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStorages
+
+`func (o *HorizonExportItems) SetStorages(v []S3StorageBackendConfigResponse)`
+
+SetStorages sets Storages field to given value.
+
+### HasStorages
+
+`func (o *HorizonExportItems) HasStorages() bool`
+
+HasStorages returns a boolean if a field has been set.
 
 ### GetTeams
 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApiCredentials** | **string** | Name of the &#x60;api-key&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
+**CustomConnectorDataMapping** | Pointer to **map[string]string** | Custom mapping of connector data fields | [optional] 
 **CustomerId** | **string** |  | 
 **Environment** | **string** | The testing environment will use https://ote-api.nameshield.net endpoint  and the production will use https://api.nameshield.net  | 
 **Name** | **string** |  | 
@@ -12,6 +13,7 @@ Name | Type | Description | Notes
 **ProductId** | **string** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
+**RetryInterval** | Pointer to **string** |  | [optional] 
 **Timeout** | Pointer to **NullableString** |  | [optional] 
 **Type** | **string** |  | 
 
@@ -54,6 +56,41 @@ and a boolean to check if the value has been set.
 SetApiCredentials sets ApiCredentials field to given value.
 
 
+### GetCustomConnectorDataMapping
+
+`func (o *Nameshield) GetCustomConnectorDataMapping() map[string]string`
+
+GetCustomConnectorDataMapping returns the CustomConnectorDataMapping field if non-nil, zero value otherwise.
+
+### GetCustomConnectorDataMappingOk
+
+`func (o *Nameshield) GetCustomConnectorDataMappingOk() (*map[string]string, bool)`
+
+GetCustomConnectorDataMappingOk returns a tuple with the CustomConnectorDataMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomConnectorDataMapping
+
+`func (o *Nameshield) SetCustomConnectorDataMapping(v map[string]string)`
+
+SetCustomConnectorDataMapping sets CustomConnectorDataMapping field to given value.
+
+### HasCustomConnectorDataMapping
+
+`func (o *Nameshield) HasCustomConnectorDataMapping() bool`
+
+HasCustomConnectorDataMapping returns a boolean if a field has been set.
+
+### SetCustomConnectorDataMappingNil
+
+`func (o *Nameshield) SetCustomConnectorDataMappingNil(b bool)`
+
+ SetCustomConnectorDataMappingNil sets the value for CustomConnectorDataMapping to be an explicit nil
+
+### UnsetCustomConnectorDataMapping
+`func (o *Nameshield) UnsetCustomConnectorDataMapping()`
+
+UnsetCustomConnectorDataMapping ensures that no value is present for CustomConnectorDataMapping, not even an explicit nil
 ### GetCustomerId
 
 `func (o *Nameshield) GetCustomerId() string`
@@ -224,6 +261,31 @@ HasQueue returns a boolean if a field has been set.
 `func (o *Nameshield) UnsetQueue()`
 
 UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+### GetRetryInterval
+
+`func (o *Nameshield) GetRetryInterval() string`
+
+GetRetryInterval returns the RetryInterval field if non-nil, zero value otherwise.
+
+### GetRetryIntervalOk
+
+`func (o *Nameshield) GetRetryIntervalOk() (*string, bool)`
+
+GetRetryIntervalOk returns a tuple with the RetryInterval field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryInterval
+
+`func (o *Nameshield) SetRetryInterval(v string)`
+
+SetRetryInterval sets RetryInterval field to given value.
+
+### HasRetryInterval
+
+`func (o *Nameshield) HasRetryInterval() bool`
+
+HasRetryInterval returns a boolean if a field has been set.
+
 ### GetTimeout
 
 `func (o *Nameshield) GetTimeout() string`

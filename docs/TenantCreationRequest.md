@@ -6,15 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AdministratorPassword** | Pointer to **string** | Password to use for the administrator account of this tenant | [optional] 
 **Description** | Pointer to **string** | A simple description for this tenant | [optional] 
-**LicenseExpiration** | Pointer to **int64** | Custom license expiration date for this tenant | [optional] 
-**LicenseLimit** | **int64** | License limit for this tenant | 
+**License** | [**TenantLicenseConfiguration**](TenantLicenseConfiguration.md) |  | 
 **Name** | **string** | The tenant internal name | 
 
 ## Methods
 
 ### NewTenantCreationRequest
 
-`func NewTenantCreationRequest(licenseLimit int64, name string, ) *TenantCreationRequest`
+`func NewTenantCreationRequest(license TenantLicenseConfiguration, name string, ) *TenantCreationRequest`
 
 NewTenantCreationRequest instantiates a new TenantCreationRequest object
 This constructor will assign default values to properties that have it defined,
@@ -79,49 +78,24 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetLicenseExpiration
+### GetLicense
 
-`func (o *TenantCreationRequest) GetLicenseExpiration() int64`
+`func (o *TenantCreationRequest) GetLicense() TenantLicenseConfiguration`
 
-GetLicenseExpiration returns the LicenseExpiration field if non-nil, zero value otherwise.
+GetLicense returns the License field if non-nil, zero value otherwise.
 
-### GetLicenseExpirationOk
+### GetLicenseOk
 
-`func (o *TenantCreationRequest) GetLicenseExpirationOk() (*int64, bool)`
+`func (o *TenantCreationRequest) GetLicenseOk() (*TenantLicenseConfiguration, bool)`
 
-GetLicenseExpirationOk returns a tuple with the LicenseExpiration field if it's non-nil, zero value otherwise
+GetLicenseOk returns a tuple with the License field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLicenseExpiration
+### SetLicense
 
-`func (o *TenantCreationRequest) SetLicenseExpiration(v int64)`
+`func (o *TenantCreationRequest) SetLicense(v TenantLicenseConfiguration)`
 
-SetLicenseExpiration sets LicenseExpiration field to given value.
-
-### HasLicenseExpiration
-
-`func (o *TenantCreationRequest) HasLicenseExpiration() bool`
-
-HasLicenseExpiration returns a boolean if a field has been set.
-
-### GetLicenseLimit
-
-`func (o *TenantCreationRequest) GetLicenseLimit() int64`
-
-GetLicenseLimit returns the LicenseLimit field if non-nil, zero value otherwise.
-
-### GetLicenseLimitOk
-
-`func (o *TenantCreationRequest) GetLicenseLimitOk() (*int64, bool)`
-
-GetLicenseLimitOk returns a tuple with the LicenseLimit field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLicenseLimit
-
-`func (o *TenantCreationRequest) SetLicenseLimit(v int64)`
-
-SetLicenseLimit sets LicenseLimit field to given value.
+SetLicense sets License field to given value.
 
 
 ### GetName

@@ -5,10 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Certificate** | Pointer to [**NullableCertificate**](Certificate.md) | The certificate that was generated for this request. This is only available after the request has been approved | [optional] 
+**Error** | Pointer to **string** | Information about the error that occurred when executing this request | [optional] 
+**ExternalId** | Pointer to **map[string]interface{}** | Information about the request on the underlying PKI | [optional] 
 **Module** | **string** | The module that will be used to process this request. For a WebRA request, this is always &#x60;webra&#x60; | 
 **Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. | [optional] 
 **Pkcs12** | Pointer to [**NullableSecretString**](SecretString.md) | The generated PKCS#12 for this request. This is only available after the request has been approved in centralized mode | [optional] 
-**Template** | [**WebRAEnrollRequestTemplate**](WebRAEnrollRequestTemplate.md) | The user-data that will be used to generate the certificate | 
+**RetryAt** | Pointer to **int64** | Timestamp after which the &#x60;in_progress&#x60; request will be polled again | [optional] 
+**RetryCount** | Pointer to **int64** | Number of retries on the polling of the certificate emission | [optional] 
+**Template** | [**WebRAEnrollRequestTemplateResponse**](WebRAEnrollRequestTemplateResponse.md) | The user-data that will be used to generate the certificate | 
 **Workflow** | **string** | What this request will do. For an enrollment request, this is always &#x60;enroll&#x60; | 
 **Id** | **string** | Object internal ID | 
 **Approver** | Pointer to **NullableString** | The approver&#39;s principal identifier | [optional] 
@@ -36,7 +40,7 @@ Name | Type | Description | Notes
 
 ### NewWebRAEnrollRequestOnSubmitResponse
 
-`func NewWebRAEnrollRequestOnSubmitResponse(module string, template WebRAEnrollRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAEnrollRequestOnSubmitResponse`
+`func NewWebRAEnrollRequestOnSubmitResponse(module string, template WebRAEnrollRequestTemplateResponse, workflow string, id string, holderId string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAEnrollRequestOnSubmitResponse`
 
 NewWebRAEnrollRequestOnSubmitResponse instantiates a new WebRAEnrollRequestOnSubmitResponse object
 This constructor will assign default values to properties that have it defined,
@@ -86,6 +90,56 @@ HasCertificate returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestOnSubmitResponse) UnsetCertificate()`
 
 UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
+### GetError
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) GetError() string`
+
+GetError returns the Error field if non-nil, zero value otherwise.
+
+### GetErrorOk
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) GetErrorOk() (*string, bool)`
+
+GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetError
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) SetError(v string)`
+
+SetError sets Error field to given value.
+
+### HasError
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) HasError() bool`
+
+HasError returns a boolean if a field has been set.
+
+### GetExternalId
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) GetExternalId() map[string]interface{}`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) GetExternalIdOk() (*map[string]interface{}, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) SetExternalId(v map[string]interface{})`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
+
 ### GetModule
 
 `func (o *WebRAEnrollRequestOnSubmitResponse) GetModule() string`
@@ -176,22 +230,72 @@ HasPkcs12 returns a boolean if a field has been set.
 `func (o *WebRAEnrollRequestOnSubmitResponse) UnsetPkcs12()`
 
 UnsetPkcs12 ensures that no value is present for Pkcs12, not even an explicit nil
+### GetRetryAt
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) GetRetryAt() int64`
+
+GetRetryAt returns the RetryAt field if non-nil, zero value otherwise.
+
+### GetRetryAtOk
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) GetRetryAtOk() (*int64, bool)`
+
+GetRetryAtOk returns a tuple with the RetryAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryAt
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) SetRetryAt(v int64)`
+
+SetRetryAt sets RetryAt field to given value.
+
+### HasRetryAt
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) HasRetryAt() bool`
+
+HasRetryAt returns a boolean if a field has been set.
+
+### GetRetryCount
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) GetRetryCount() int64`
+
+GetRetryCount returns the RetryCount field if non-nil, zero value otherwise.
+
+### GetRetryCountOk
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) GetRetryCountOk() (*int64, bool)`
+
+GetRetryCountOk returns a tuple with the RetryCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryCount
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) SetRetryCount(v int64)`
+
+SetRetryCount sets RetryCount field to given value.
+
+### HasRetryCount
+
+`func (o *WebRAEnrollRequestOnSubmitResponse) HasRetryCount() bool`
+
+HasRetryCount returns a boolean if a field has been set.
+
 ### GetTemplate
 
-`func (o *WebRAEnrollRequestOnSubmitResponse) GetTemplate() WebRAEnrollRequestTemplate`
+`func (o *WebRAEnrollRequestOnSubmitResponse) GetTemplate() WebRAEnrollRequestTemplateResponse`
 
 GetTemplate returns the Template field if non-nil, zero value otherwise.
 
 ### GetTemplateOk
 
-`func (o *WebRAEnrollRequestOnSubmitResponse) GetTemplateOk() (*WebRAEnrollRequestTemplate, bool)`
+`func (o *WebRAEnrollRequestOnSubmitResponse) GetTemplateOk() (*WebRAEnrollRequestTemplateResponse, bool)`
 
 GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplate
 
-`func (o *WebRAEnrollRequestOnSubmitResponse) SetTemplate(v WebRAEnrollRequestTemplate)`
+`func (o *WebRAEnrollRequestOnSubmitResponse) SetTemplate(v WebRAEnrollRequestTemplateResponse)`
 
 SetTemplate sets Template field to given value.
 

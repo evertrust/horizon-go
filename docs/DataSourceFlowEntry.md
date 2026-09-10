@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ds** | **string** | Name of the datasource to execute for this step | 
 **Inputs** | Pointer to [**[]DataSourceInput**](DataSourceInput.md) | List of inputs to use for this datasource | [optional] 
+**Mandatory** | Pointer to **bool** | If true, the flow will stop with an error if this datasource does not return any result | [optional] [default to false]
 **StopOnSuccess** | Pointer to **bool** | Stop the flow if this datasource is successfully executed | [optional] [default to false]
 
 ## Methods
@@ -82,6 +83,31 @@ HasInputs returns a boolean if a field has been set.
 `func (o *DataSourceFlowEntry) UnsetInputs()`
 
 UnsetInputs ensures that no value is present for Inputs, not even an explicit nil
+### GetMandatory
+
+`func (o *DataSourceFlowEntry) GetMandatory() bool`
+
+GetMandatory returns the Mandatory field if non-nil, zero value otherwise.
+
+### GetMandatoryOk
+
+`func (o *DataSourceFlowEntry) GetMandatoryOk() (*bool, bool)`
+
+GetMandatoryOk returns a tuple with the Mandatory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMandatory
+
+`func (o *DataSourceFlowEntry) SetMandatory(v bool)`
+
+SetMandatory sets Mandatory field to given value.
+
+### HasMandatory
+
+`func (o *DataSourceFlowEntry) HasMandatory() bool`
+
+HasMandatory returns a boolean if a field has been set.
+
 ### GetStopOnSuccess
 
 `func (o *DataSourceFlowEntry) GetStopOnSuccess() bool`

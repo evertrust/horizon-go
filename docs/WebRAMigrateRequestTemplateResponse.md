@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AutoRenew** | Pointer to [**CertificateAutoRenewElementResponse**](CertificateAutoRenewElementResponse.md) |  | [optional] 
 **ContactEmail** | Pointer to [**NullableCertificateContactEmailElementResponse**](CertificateContactEmailElementResponse.md) |  | [optional] 
 **Labels** | Pointer to [**[]RequestLabelElementResponse**](RequestLabelElementResponse.md) |  | [optional] 
 **Metadata** | Pointer to [**[]CertificateMetadataElementResponse**](CertificateMetadataElementResponse.md) |  | [optional] 
@@ -28,6 +29,31 @@ will change when the set of required properties is changed
 NewWebRAMigrateRequestTemplateResponseWithDefaults instantiates a new WebRAMigrateRequestTemplateResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAutoRenew
+
+`func (o *WebRAMigrateRequestTemplateResponse) GetAutoRenew() CertificateAutoRenewElementResponse`
+
+GetAutoRenew returns the AutoRenew field if non-nil, zero value otherwise.
+
+### GetAutoRenewOk
+
+`func (o *WebRAMigrateRequestTemplateResponse) GetAutoRenewOk() (*CertificateAutoRenewElementResponse, bool)`
+
+GetAutoRenewOk returns a tuple with the AutoRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenew
+
+`func (o *WebRAMigrateRequestTemplateResponse) SetAutoRenew(v CertificateAutoRenewElementResponse)`
+
+SetAutoRenew sets AutoRenew field to given value.
+
+### HasAutoRenew
+
+`func (o *WebRAMigrateRequestTemplateResponse) HasAutoRenew() bool`
+
+HasAutoRenew returns a boolean if a field has been set.
 
 ### GetContactEmail
 

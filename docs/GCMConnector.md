@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Project** | **string** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
-**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
 **TagKey** | Pointer to **NullableString** |  | [optional] 
 **TagValue** | Pointer to **NullableString** |  | [optional] 
 **ThrottleDuration** | **string** |  | 
@@ -150,41 +149,6 @@ HasProxy returns a boolean if a field has been set.
 `func (o *GCMConnector) UnsetProxy()`
 
 UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-### GetRenewalPeriod
-
-`func (o *GCMConnector) GetRenewalPeriod() string`
-
-GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
-
-### GetRenewalPeriodOk
-
-`func (o *GCMConnector) GetRenewalPeriodOk() (*string, bool)`
-
-GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRenewalPeriod
-
-`func (o *GCMConnector) SetRenewalPeriod(v string)`
-
-SetRenewalPeriod sets RenewalPeriod field to given value.
-
-### HasRenewalPeriod
-
-`func (o *GCMConnector) HasRenewalPeriod() bool`
-
-HasRenewalPeriod returns a boolean if a field has been set.
-
-### SetRenewalPeriodNil
-
-`func (o *GCMConnector) SetRenewalPeriodNil(b bool)`
-
- SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-
-### UnsetRenewalPeriod
-`func (o *GCMConnector) UnsetRenewalPeriod()`
-
-UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
 ### GetTagKey
 
 `func (o *GCMConnector) GetTagKey() string`

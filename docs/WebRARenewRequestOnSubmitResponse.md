@@ -5,10 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Certificate** | Pointer to [**NullableCertificate**](Certificate.md) | The certificate that was generated for this request. This is only available after the request has been approved | [optional] 
+**Error** | Pointer to **string** | Information about the error that occurred when executing this request | [optional] 
+**ExternalId** | Pointer to **map[string]interface{}** | Information about the request on the underlying PKI | [optional] 
 **Module** | **string** | The module that will be used to process this request. For a WebRA request, this is always &#x60;webra&#x60; | 
 **Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. | [optional] 
 **Pkcs12** | Pointer to [**NullableSecretString**](SecretString.md) | The generated PKCS#12 for this request. This is only available after the request has been approved in centralized mode | [optional] 
-**Template** | Pointer to [**WebRARenewRequestTemplate**](WebRARenewRequestTemplate.md) | The user-data that will be used to generate the certificate | [optional] 
+**RetryAt** | Pointer to **int64** | Timestamp after which the &#x60;in_progress&#x60; request will be polled again | [optional] 
+**RetryCount** | Pointer to **int64** | Number of retries on the polling of the certificate emission | [optional] 
+**Template** | Pointer to [**WebRARenewRequestTemplateResponse**](WebRARenewRequestTemplateResponse.md) | The user-data that will be used to generate the certificate | [optional] 
 **Workflow** | **string** | What this request will do. For a renewal request, this is always &#x60;renew&#x60; | 
 **Id** | **string** | Object internal ID | 
 **Approver** | Pointer to **NullableString** | The approver&#39;s principal identifier | [optional] 
@@ -86,6 +90,56 @@ HasCertificate returns a boolean if a field has been set.
 `func (o *WebRARenewRequestOnSubmitResponse) UnsetCertificate()`
 
 UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
+### GetError
+
+`func (o *WebRARenewRequestOnSubmitResponse) GetError() string`
+
+GetError returns the Error field if non-nil, zero value otherwise.
+
+### GetErrorOk
+
+`func (o *WebRARenewRequestOnSubmitResponse) GetErrorOk() (*string, bool)`
+
+GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetError
+
+`func (o *WebRARenewRequestOnSubmitResponse) SetError(v string)`
+
+SetError sets Error field to given value.
+
+### HasError
+
+`func (o *WebRARenewRequestOnSubmitResponse) HasError() bool`
+
+HasError returns a boolean if a field has been set.
+
+### GetExternalId
+
+`func (o *WebRARenewRequestOnSubmitResponse) GetExternalId() map[string]interface{}`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *WebRARenewRequestOnSubmitResponse) GetExternalIdOk() (*map[string]interface{}, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *WebRARenewRequestOnSubmitResponse) SetExternalId(v map[string]interface{})`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *WebRARenewRequestOnSubmitResponse) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
+
 ### GetModule
 
 `func (o *WebRARenewRequestOnSubmitResponse) GetModule() string`
@@ -176,22 +230,72 @@ HasPkcs12 returns a boolean if a field has been set.
 `func (o *WebRARenewRequestOnSubmitResponse) UnsetPkcs12()`
 
 UnsetPkcs12 ensures that no value is present for Pkcs12, not even an explicit nil
+### GetRetryAt
+
+`func (o *WebRARenewRequestOnSubmitResponse) GetRetryAt() int64`
+
+GetRetryAt returns the RetryAt field if non-nil, zero value otherwise.
+
+### GetRetryAtOk
+
+`func (o *WebRARenewRequestOnSubmitResponse) GetRetryAtOk() (*int64, bool)`
+
+GetRetryAtOk returns a tuple with the RetryAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryAt
+
+`func (o *WebRARenewRequestOnSubmitResponse) SetRetryAt(v int64)`
+
+SetRetryAt sets RetryAt field to given value.
+
+### HasRetryAt
+
+`func (o *WebRARenewRequestOnSubmitResponse) HasRetryAt() bool`
+
+HasRetryAt returns a boolean if a field has been set.
+
+### GetRetryCount
+
+`func (o *WebRARenewRequestOnSubmitResponse) GetRetryCount() int64`
+
+GetRetryCount returns the RetryCount field if non-nil, zero value otherwise.
+
+### GetRetryCountOk
+
+`func (o *WebRARenewRequestOnSubmitResponse) GetRetryCountOk() (*int64, bool)`
+
+GetRetryCountOk returns a tuple with the RetryCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryCount
+
+`func (o *WebRARenewRequestOnSubmitResponse) SetRetryCount(v int64)`
+
+SetRetryCount sets RetryCount field to given value.
+
+### HasRetryCount
+
+`func (o *WebRARenewRequestOnSubmitResponse) HasRetryCount() bool`
+
+HasRetryCount returns a boolean if a field has been set.
+
 ### GetTemplate
 
-`func (o *WebRARenewRequestOnSubmitResponse) GetTemplate() WebRARenewRequestTemplate`
+`func (o *WebRARenewRequestOnSubmitResponse) GetTemplate() WebRARenewRequestTemplateResponse`
 
 GetTemplate returns the Template field if non-nil, zero value otherwise.
 
 ### GetTemplateOk
 
-`func (o *WebRARenewRequestOnSubmitResponse) GetTemplateOk() (*WebRARenewRequestTemplate, bool)`
+`func (o *WebRARenewRequestOnSubmitResponse) GetTemplateOk() (*WebRARenewRequestTemplateResponse, bool)`
 
 GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTemplate
 
-`func (o *WebRARenewRequestOnSubmitResponse) SetTemplate(v WebRARenewRequestTemplate)`
+`func (o *WebRARenewRequestOnSubmitResponse) SetTemplate(v WebRARenewRequestTemplateResponse)`
 
 SetTemplate sets Template field to given value.
 

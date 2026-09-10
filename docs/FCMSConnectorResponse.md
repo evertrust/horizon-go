@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
 **ApiCredentials** | **string** | Name of the &#x60;raw&#x60; [credentials](#tag/security.credentials) containing the API key to authenticate on the PKI | 
-**AuthenticationDomainId** | **int64** |  | 
+**AuthenticationDomainId** | Pointer to **int64** |  | [optional] 
 **DefaultOwner** | **string** |  | 
 **DeleteOnRevoke** | **bool** |  | 
 **EndPoint** | **string** |  | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewFCMSConnectorResponse
 
-`func NewFCMSConnectorResponse(id string, apiCredentials string, authenticationDomainId int64, defaultOwner string, deleteOnRevoke bool, endPoint string, name string, templateId int64, type_ string, ) *FCMSConnectorResponse`
+`func NewFCMSConnectorResponse(id string, apiCredentials string, defaultOwner string, deleteOnRevoke bool, endPoint string, name string, templateId int64, type_ string, ) *FCMSConnectorResponse`
 
 NewFCMSConnectorResponse instantiates a new FCMSConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -97,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetAuthenticationDomainId sets AuthenticationDomainId field to given value.
 
+### HasAuthenticationDomainId
+
+`func (o *FCMSConnectorResponse) HasAuthenticationDomainId() bool`
+
+HasAuthenticationDomainId returns a boolean if a field has been set.
 
 ### GetDefaultOwner
 

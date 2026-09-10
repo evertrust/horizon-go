@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AuthorizationLevels** | [**CertificateProfileAuthorizationLevels**](CertificateProfileAuthorizationLevels.md) |  | 
 **AuthorizationMode** | **string** | The authorization mode to use.  &#x60;authorized&#x60; uses permissions to allow enrollment,  &#x60;auto-validation&#x60; uses the validation ruleset, &#x60;auto-validation-authorized&#x60; uses the validation ruleset, and if enrollment is denied, uses the permissions  | 
+**AutoRenewalPolicy** | Pointer to [**AutoRenewalPolicy**](AutoRenewalPolicy.md) |  | [optional] 
 **CertificateTemplate** | [**CertificateTemplate**](CertificateTemplate.md) |  | 
 **CryptoPolicy** | [**ManagedCertificateProfileCryptoPolicy**](ManagedCertificateProfileCryptoPolicy.md) |  | 
 **CsrDataMapping** | Pointer to **map[string]string** |  | [optional] 
@@ -21,7 +22,8 @@ Name | Type | Description | Notes
 **RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
 **RequestsPolicy** | [**RequestsPolicy**](RequestsPolicy.md) |  | 
 **SelfPermissions** | [**CertificateProfileSelfPermissions**](CertificateProfileSelfPermissions.md) |  | 
-**ThirdPartyDiscoverySync** | Pointer to **NullableBool** | Available from &#x60;2.8.2&#x60; | [optional] [default to false]
+**TermsOfService** | Pointer to **string** | Reference to a &#x60;Terms of service&#x60; object. If defined, it will be displayed on the enrollment workflow before starting certificate enrollment | [optional] 
+**ThirdPartyDiscoverySync** | Pointer to **NullableBool** |  | [optional] [default to false]
 **Triggers** | Pointer to [**NullableCertificateProfileTriggers**](CertificateProfileTriggers.md) |  | [optional] 
 **ValidationRuleset** | Pointer to [**NullableValidationRuleset**](ValidationRuleset.md) |  | [optional] 
 
@@ -83,6 +85,31 @@ and a boolean to check if the value has been set.
 
 SetAuthorizationMode sets AuthorizationMode field to given value.
 
+
+### GetAutoRenewalPolicy
+
+`func (o *WebRAProfile) GetAutoRenewalPolicy() AutoRenewalPolicy`
+
+GetAutoRenewalPolicy returns the AutoRenewalPolicy field if non-nil, zero value otherwise.
+
+### GetAutoRenewalPolicyOk
+
+`func (o *WebRAProfile) GetAutoRenewalPolicyOk() (*AutoRenewalPolicy, bool)`
+
+GetAutoRenewalPolicyOk returns a tuple with the AutoRenewalPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenewalPolicy
+
+`func (o *WebRAProfile) SetAutoRenewalPolicy(v AutoRenewalPolicy)`
+
+SetAutoRenewalPolicy sets AutoRenewalPolicy field to given value.
+
+### HasAutoRenewalPolicy
+
+`func (o *WebRAProfile) HasAutoRenewalPolicy() bool`
+
+HasAutoRenewalPolicy returns a boolean if a field has been set.
 
 ### GetCertificateTemplate
 
@@ -488,6 +515,31 @@ and a boolean to check if the value has been set.
 
 SetSelfPermissions sets SelfPermissions field to given value.
 
+
+### GetTermsOfService
+
+`func (o *WebRAProfile) GetTermsOfService() string`
+
+GetTermsOfService returns the TermsOfService field if non-nil, zero value otherwise.
+
+### GetTermsOfServiceOk
+
+`func (o *WebRAProfile) GetTermsOfServiceOk() (*string, bool)`
+
+GetTermsOfServiceOk returns a tuple with the TermsOfService field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTermsOfService
+
+`func (o *WebRAProfile) SetTermsOfService(v string)`
+
+SetTermsOfService sets TermsOfService field to given value.
+
+### HasTermsOfService
+
+`func (o *WebRAProfile) HasTermsOfService() bool`
+
+HasTermsOfService returns a boolean if a field has been set.
 
 ### GetThirdPartyDiscoverySync
 

@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Region** | **string** |  | 
-**RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
 **ResourceGroupName** | Pointer to **NullableString** |  | [optional] 
 **RoleArn** | Pointer to **NullableString** |  | [optional] 
 **TagKey** | Pointer to **NullableString** |  | [optional] 
@@ -167,41 +166,6 @@ and a boolean to check if the value has been set.
 SetRegion sets Region field to given value.
 
 
-### GetRenewalPeriod
-
-`func (o *AWSConnectorResponse) GetRenewalPeriod() string`
-
-GetRenewalPeriod returns the RenewalPeriod field if non-nil, zero value otherwise.
-
-### GetRenewalPeriodOk
-
-`func (o *AWSConnectorResponse) GetRenewalPeriodOk() (*string, bool)`
-
-GetRenewalPeriodOk returns a tuple with the RenewalPeriod field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRenewalPeriod
-
-`func (o *AWSConnectorResponse) SetRenewalPeriod(v string)`
-
-SetRenewalPeriod sets RenewalPeriod field to given value.
-
-### HasRenewalPeriod
-
-`func (o *AWSConnectorResponse) HasRenewalPeriod() bool`
-
-HasRenewalPeriod returns a boolean if a field has been set.
-
-### SetRenewalPeriodNil
-
-`func (o *AWSConnectorResponse) SetRenewalPeriodNil(b bool)`
-
- SetRenewalPeriodNil sets the value for RenewalPeriod to be an explicit nil
-
-### UnsetRenewalPeriod
-`func (o *AWSConnectorResponse) UnsetRenewalPeriod()`
-
-UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
 ### GetResourceGroupName
 
 `func (o *AWSConnectorResponse) GetResourceGroupName() string`

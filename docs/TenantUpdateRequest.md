@@ -5,15 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** | A simple description for this tenant | [optional] 
-**LicenseExpiration** | Pointer to **int64** | Custom license expiration date for this tenant | [optional] 
-**LicenseLimit** | **int64** | License limit for this tenant | 
+**License** | [**TenantLicenseConfiguration**](TenantLicenseConfiguration.md) |  | 
 **Name** | **string** | The tenant internal name | 
 
 ## Methods
 
 ### NewTenantUpdateRequest
 
-`func NewTenantUpdateRequest(licenseLimit int64, name string, ) *TenantUpdateRequest`
+`func NewTenantUpdateRequest(license TenantLicenseConfiguration, name string, ) *TenantUpdateRequest`
 
 NewTenantUpdateRequest instantiates a new TenantUpdateRequest object
 This constructor will assign default values to properties that have it defined,
@@ -53,49 +52,24 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetLicenseExpiration
+### GetLicense
 
-`func (o *TenantUpdateRequest) GetLicenseExpiration() int64`
+`func (o *TenantUpdateRequest) GetLicense() TenantLicenseConfiguration`
 
-GetLicenseExpiration returns the LicenseExpiration field if non-nil, zero value otherwise.
+GetLicense returns the License field if non-nil, zero value otherwise.
 
-### GetLicenseExpirationOk
+### GetLicenseOk
 
-`func (o *TenantUpdateRequest) GetLicenseExpirationOk() (*int64, bool)`
+`func (o *TenantUpdateRequest) GetLicenseOk() (*TenantLicenseConfiguration, bool)`
 
-GetLicenseExpirationOk returns a tuple with the LicenseExpiration field if it's non-nil, zero value otherwise
+GetLicenseOk returns a tuple with the License field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLicenseExpiration
+### SetLicense
 
-`func (o *TenantUpdateRequest) SetLicenseExpiration(v int64)`
+`func (o *TenantUpdateRequest) SetLicense(v TenantLicenseConfiguration)`
 
-SetLicenseExpiration sets LicenseExpiration field to given value.
-
-### HasLicenseExpiration
-
-`func (o *TenantUpdateRequest) HasLicenseExpiration() bool`
-
-HasLicenseExpiration returns a boolean if a field has been set.
-
-### GetLicenseLimit
-
-`func (o *TenantUpdateRequest) GetLicenseLimit() int64`
-
-GetLicenseLimit returns the LicenseLimit field if non-nil, zero value otherwise.
-
-### GetLicenseLimitOk
-
-`func (o *TenantUpdateRequest) GetLicenseLimitOk() (*int64, bool)`
-
-GetLicenseLimitOk returns a tuple with the LicenseLimit field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLicenseLimit
-
-`func (o *TenantUpdateRequest) SetLicenseLimit(v int64)`
-
-SetLicenseLimit sets LicenseLimit field to given value.
+SetLicense sets License field to given value.
 
 
 ### GetName

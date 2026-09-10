@@ -5,17 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
+**Detail** | Pointer to **string** |  | [optional] 
 **Connector** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **DryRun** | **bool** |  | 
 **Enroll** | **bool** |  | 
 **Module** | **string** |  | 
 **Profile** | **string** |  | 
-**Renew** | **bool** |  | 
+**Renew** | Pointer to **bool** |  | [optional] 
 **Revoke** | **bool** |  | 
 **Type** | **string** |  | 
 **Cron** | **string** |  | 
-**Detail** | Pointer to **NullableString** |  | [optional] 
 **Enabled** | **bool** |  | 
 **ExecutionId** | Pointer to **NullableString** |  | [optional] 
 **Host** | Pointer to **NullableString** |  | [optional] 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewThirdPartyScheduledTaskResponse
 
-`func NewThirdPartyScheduledTaskResponse(id string, connector string, dryRun bool, enroll bool, module string, profile string, renew bool, revoke bool, type_ string, cron string, enabled bool, name string, ) *ThirdPartyScheduledTaskResponse`
+`func NewThirdPartyScheduledTaskResponse(id string, connector string, dryRun bool, enroll bool, module string, profile string, revoke bool, type_ string, cron string, enabled bool, name string, ) *ThirdPartyScheduledTaskResponse`
 
 NewThirdPartyScheduledTaskResponse instantiates a new ThirdPartyScheduledTaskResponse object
 This constructor will assign default values to properties that have it defined,
@@ -62,6 +62,31 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+
+### GetDetail
+
+`func (o *ThirdPartyScheduledTaskResponse) GetDetail() string`
+
+GetDetail returns the Detail field if non-nil, zero value otherwise.
+
+### GetDetailOk
+
+`func (o *ThirdPartyScheduledTaskResponse) GetDetailOk() (*string, bool)`
+
+GetDetailOk returns a tuple with the Detail field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDetail
+
+`func (o *ThirdPartyScheduledTaskResponse) SetDetail(v string)`
+
+SetDetail sets Detail field to given value.
+
+### HasDetail
+
+`func (o *ThirdPartyScheduledTaskResponse) HasDetail() bool`
+
+HasDetail returns a boolean if a field has been set.
 
 ### GetConnector
 
@@ -207,6 +232,11 @@ and a boolean to check if the value has been set.
 
 SetRenew sets Renew field to given value.
 
+### HasRenew
+
+`func (o *ThirdPartyScheduledTaskResponse) HasRenew() bool`
+
+HasRenew returns a boolean if a field has been set.
 
 ### GetRevoke
 
@@ -268,41 +298,6 @@ and a boolean to check if the value has been set.
 SetCron sets Cron field to given value.
 
 
-### GetDetail
-
-`func (o *ThirdPartyScheduledTaskResponse) GetDetail() string`
-
-GetDetail returns the Detail field if non-nil, zero value otherwise.
-
-### GetDetailOk
-
-`func (o *ThirdPartyScheduledTaskResponse) GetDetailOk() (*string, bool)`
-
-GetDetailOk returns a tuple with the Detail field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDetail
-
-`func (o *ThirdPartyScheduledTaskResponse) SetDetail(v string)`
-
-SetDetail sets Detail field to given value.
-
-### HasDetail
-
-`func (o *ThirdPartyScheduledTaskResponse) HasDetail() bool`
-
-HasDetail returns a boolean if a field has been set.
-
-### SetDetailNil
-
-`func (o *ThirdPartyScheduledTaskResponse) SetDetailNil(b bool)`
-
- SetDetailNil sets the value for Detail to be an explicit nil
-
-### UnsetDetail
-`func (o *ThirdPartyScheduledTaskResponse) UnsetDetail()`
-
-UnsetDetail ensures that no value is present for Detail, not even an explicit nil
 ### GetEnabled
 
 `func (o *ThirdPartyScheduledTaskResponse) GetEnabled() bool`

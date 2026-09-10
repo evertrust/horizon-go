@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Asynchronous** | Pointer to **bool** | Allow this request to be asynchronous if the PKI uses asynchronous requests | [optional] [default to false]
+**AutoRenew** | Pointer to [**CertificateAutoRenewElement**](CertificateAutoRenewElement.md) |  | [optional] 
 **ContactEmail** | Pointer to [**NullableCertificateContactEmailElement**](CertificateContactEmailElement.md) | Information about the certificate&#39;s contact email and how to edit it | [optional] 
 **Csr** | Pointer to **NullableString** | If decentralized enrollment is enabled, this field will contain the CSR that will be used to generate the certificate | [optional] 
 **Extensions** | Pointer to [**[]CertificateExtensionElement**](CertificateExtensionElement.md) | Information about the certificate&#39;s extensions and how to edit them | [optional] 
@@ -33,6 +35,56 @@ will change when the set of required properties is changed
 NewWebRAEnrollRequestTemplateWithDefaults instantiates a new WebRAEnrollRequestTemplate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAsynchronous
+
+`func (o *WebRAEnrollRequestTemplate) GetAsynchronous() bool`
+
+GetAsynchronous returns the Asynchronous field if non-nil, zero value otherwise.
+
+### GetAsynchronousOk
+
+`func (o *WebRAEnrollRequestTemplate) GetAsynchronousOk() (*bool, bool)`
+
+GetAsynchronousOk returns a tuple with the Asynchronous field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAsynchronous
+
+`func (o *WebRAEnrollRequestTemplate) SetAsynchronous(v bool)`
+
+SetAsynchronous sets Asynchronous field to given value.
+
+### HasAsynchronous
+
+`func (o *WebRAEnrollRequestTemplate) HasAsynchronous() bool`
+
+HasAsynchronous returns a boolean if a field has been set.
+
+### GetAutoRenew
+
+`func (o *WebRAEnrollRequestTemplate) GetAutoRenew() CertificateAutoRenewElement`
+
+GetAutoRenew returns the AutoRenew field if non-nil, zero value otherwise.
+
+### GetAutoRenewOk
+
+`func (o *WebRAEnrollRequestTemplate) GetAutoRenewOk() (*CertificateAutoRenewElement, bool)`
+
+GetAutoRenewOk returns a tuple with the AutoRenew field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoRenew
+
+`func (o *WebRAEnrollRequestTemplate) SetAutoRenew(v CertificateAutoRenewElement)`
+
+SetAutoRenew sets AutoRenew field to given value.
+
+### HasAutoRenew
+
+`func (o *WebRAEnrollRequestTemplate) HasAutoRenew() bool`
+
+HasAutoRenew returns a boolean if a field has been set.
 
 ### GetContactEmail
 
