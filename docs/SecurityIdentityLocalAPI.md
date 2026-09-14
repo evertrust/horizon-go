@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**SecurityIdentityLocalDelete**](SecurityIdentityLocalAPI.md#SecurityIdentityLocalDelete) | **Delete** /api/v1/security/identity/locals/{identifier} | Delete a local identity
 [**SecurityIdentityLocalGet**](SecurityIdentityLocalAPI.md#SecurityIdentityLocalGet) | **Get** /api/v1/security/identity/locals/{identifier} | Retrieve a local identity
 [**SecurityIdentityLocalList**](SecurityIdentityLocalAPI.md#SecurityIdentityLocalList) | **Get** /api/v1/security/identity/locals | List local identities
+[**SecurityIdentityLocalPasswordGenerate**](SecurityIdentityLocalAPI.md#SecurityIdentityLocalPasswordGenerate) | **Post** /api/v1/security/identity/locals/generate-password | Generate a local identity password
 [**SecurityIdentityLocalPasswordReset**](SecurityIdentityLocalAPI.md#SecurityIdentityLocalPasswordReset) | **Post** /api/v1/security/identity/locals/password | Reset a password
 [**SecurityIdentityLocalPasswordResetRequest**](SecurityIdentityLocalAPI.md#SecurityIdentityLocalPasswordResetRequest) | **Get** /api/v1/security/identity/locals/password/{identifier} | Request a password reset
 [**SecurityIdentityLocalPasswordSet**](SecurityIdentityLocalAPI.md#SecurityIdentityLocalPasswordSet) | **Patch** /api/v1/security/identity/locals | Set the password for a local identity
@@ -274,6 +275,67 @@ Other parameters are passed through a pointer to a apiSecurityIdentityLocalListR
 
 - **Content-Type**: Not defined
 - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SecurityIdentityLocalPasswordGenerate
+
+> string SecurityIdentityLocalPasswordGenerate(ctx).Execute()
+
+Generate a local identity password
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/evertrust/horizon-go/v2"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SecurityIdentityLocalAPI.SecurityIdentityLocalPasswordGenerate(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityIdentityLocalAPI.SecurityIdentityLocalPasswordGenerate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SecurityIdentityLocalPasswordGenerate`: string
+	fmt.Fprintf(os.Stdout, "Response from `SecurityIdentityLocalAPI.SecurityIdentityLocalPasswordGenerate`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSecurityIdentityLocalPasswordGenerateRequest struct via the builder pattern
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

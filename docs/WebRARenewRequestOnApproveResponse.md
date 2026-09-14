@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Module** | **string** |  | 
 **Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. | [optional] 
 **Pkcs12** | Pointer to [**NullableSecretString**](SecretString.md) | The generated PKCS#12 for this request. This is only available after the request has been approved in centralized mode | [optional] 
+**RequestedX509Data** | Pointer to [**X509CertificateElements**](X509CertificateElements.md) | The X.509 data (subject, SANs, extensions) that was requested when this request was submitted to the PKI. Only populated for asynchronous requests | [optional] 
 **RetryAt** | Pointer to **int64** | Timestamp after which the &#x60;in_progress&#x60; request will be polled again | [optional] 
 **RetryCount** | Pointer to **int64** | Number of retries on the polling of the certificate emission | [optional] 
 **Template** | Pointer to [**WebRARenewRequestTemplateResponse**](WebRARenewRequestTemplateResponse.md) | The user-data that will be used to generate the certificate | [optional] 
@@ -230,6 +231,31 @@ HasPkcs12 returns a boolean if a field has been set.
 `func (o *WebRARenewRequestOnApproveResponse) UnsetPkcs12()`
 
 UnsetPkcs12 ensures that no value is present for Pkcs12, not even an explicit nil
+### GetRequestedX509Data
+
+`func (o *WebRARenewRequestOnApproveResponse) GetRequestedX509Data() X509CertificateElements`
+
+GetRequestedX509Data returns the RequestedX509Data field if non-nil, zero value otherwise.
+
+### GetRequestedX509DataOk
+
+`func (o *WebRARenewRequestOnApproveResponse) GetRequestedX509DataOk() (*X509CertificateElements, bool)`
+
+GetRequestedX509DataOk returns a tuple with the RequestedX509Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestedX509Data
+
+`func (o *WebRARenewRequestOnApproveResponse) SetRequestedX509Data(v X509CertificateElements)`
+
+SetRequestedX509Data sets RequestedX509Data field to given value.
+
+### HasRequestedX509Data
+
+`func (o *WebRARenewRequestOnApproveResponse) HasRequestedX509Data() bool`
+
+HasRequestedX509Data returns a boolean if a field has been set.
+
 ### GetRetryAt
 
 `func (o *WebRARenewRequestOnApproveResponse) GetRetryAt() int64`

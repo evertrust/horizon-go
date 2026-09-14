@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Operator** | **string** | A mongoDB operator for comparison | 
+**Operator** | **string** | An operator for comparison | 
 **Value** | **int64** | An integer for the right hand side of the condition | 
 
 ## Methods

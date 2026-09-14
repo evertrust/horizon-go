@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BaseDn** | **string** |  | 
 **Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the DN and password to authenticate on Active Directory | 
-**Filter** | Pointer to **NullableString** |  | [optional] 
+**Filter** | Pointer to **NullableString** |  | [optional] [default to "(objectclass=user)"]
 **Hostname** | **string** |  | 
 **MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
 **Name** | **string** |  | 
-**Port** | Pointer to **NullableInt64** |  | [optional] 
+**Port** | Pointer to **NullableInt64** |  | [optional] [default to 389]
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **ThrottleDuration** | **string** |  | 
 **ThrottleParallelism** | **int64** |  | 

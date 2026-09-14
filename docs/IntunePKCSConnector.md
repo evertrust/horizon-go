@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AzureTenant** | Pointer to **string** |  | [optional] 
 **Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the App ID and Key to authenticate on Intune PKCS | 
-**IntendedPurpose** | Pointer to **NullableString** |  | [optional] 
+**IntendedPurpose** | Pointer to **NullableString** |  | [optional] [default to "smimeEncryption"]
 **KeyName** | **string** |  | 
 **MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
 **Name** | **string** |  | 
-**ProviderName** | Pointer to **NullableString** |  | [optional] 
+**ProviderName** | Pointer to **NullableString** |  | [optional] [default to "Microsoft Software Key Storage Provider"]
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **PubKey** | **string** |  | 
-**SearchFilter** | Pointer to **NullableString** |  | [optional] 
+**SearchFilter** | Pointer to **NullableString** |  | [optional] [default to "users"]
 **ThrottleDuration** | **string** |  | 
 **ThrottleParallelism** | **int64** |  | 
 **Timeout** | Pointer to **NullableString** |  | [optional] 

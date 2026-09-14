@@ -349,7 +349,7 @@ Name | Type | Description  | Notes
 
 ## CertificateGetPem
 
-> CertificateResponse CertificateGetPem(ctx, pem).Execute()
+> Certificate CertificateGetPem(ctx, pem).Execute()
 
 Retrieve a certificate by PEM
 
@@ -377,7 +377,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CertificateAPI.CertificateGetPem``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CertificateGetPem`: CertificateResponse
+	// response from `CertificateGetPem`: Certificate
 	fmt.Fprintf(os.Stdout, "Response from `CertificateAPI.CertificateGetPem`: %v\n", resp)
 }
 ```
@@ -401,7 +401,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CertificateResponse**](CertificateResponse.md)
+[**Certificate**](Certificate.md)
 
 ### Authorization
 

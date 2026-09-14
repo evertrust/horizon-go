@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
 **Connector** | **string** |  | 
+**Events** | [**[]TriggerEvent**](TriggerEvent.md) |  | 
 **Name** | **string** |  | 
 **Retries** | Pointer to **NullableInt64** |  | [optional] 
 **Type** | **string** |  | 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewNetscalerTriggerResponse
 
-`func NewNetscalerTriggerResponse(id string, connector string, name string, type_ string, ) *NetscalerTriggerResponse`
+`func NewNetscalerTriggerResponse(id string, connector string, events []TriggerEvent, name string, type_ string, ) *NetscalerTriggerResponse`
 
 NewNetscalerTriggerResponse instantiates a new NetscalerTriggerResponse object
 This constructor will assign default values to properties that have it defined,
@@ -67,6 +68,26 @@ and a boolean to check if the value has been set.
 `func (o *NetscalerTriggerResponse) SetConnector(v string)`
 
 SetConnector sets Connector field to given value.
+
+
+### GetEvents
+
+`func (o *NetscalerTriggerResponse) GetEvents() []TriggerEvent`
+
+GetEvents returns the Events field if non-nil, zero value otherwise.
+
+### GetEventsOk
+
+`func (o *NetscalerTriggerResponse) GetEventsOk() (*[]TriggerEvent, bool)`
+
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvents
+
+`func (o *NetscalerTriggerResponse) SetEvents(v []TriggerEvent)`
+
+SetEvents sets Events field to given value.
 
 
 ### GetName

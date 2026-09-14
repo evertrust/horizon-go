@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **EmailTemplate** | [**EmailTemplate**](EmailTemplate.md) |  | 
 **IfPkcs12** | Pointer to **NullableBool** | On events triggering an enrollment, select if mail is sent: - **Always**: set the value to &#x60;null&#x60;  - **Only when a PKCS#12 is available in the request**: set the value to &#x60;true&#x60;  - **Only when a PKCS#12 is not in the request**: set the value to &#x60;false&#x60;  | [optional] 
 **Type** | **string** | The type of notification | 
-**Events** | **[]string** | Event on which the notification runs. This MUST contain only one value. | 
+**Events** | [**[]TriggerEvent**](TriggerEvent.md) |  | 
 **LicenceUsagePercent** | Pointer to **NullableInt64** | License usage at which the notification needs to run (between 0 and 100). Must be defined on &#x60;on_license_usage&#x60; event and must NOT be defined otherwise. | [optional] 
 **Name** | **string** |  | 
 **Retries** | Pointer to **NullableInt64** |  | [optional] 
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewTriggerList200ResponseInner
 
-`func NewTriggerList200ResponseInner(id string, emailTemplate EmailTemplate, type_ string, events []string, name string, webhookTemplate WebhookTemplate, sequence []map[string]interface{}, connector string, ) *TriggerList200ResponseInner`
+`func NewTriggerList200ResponseInner(id string, emailTemplate EmailTemplate, type_ string, events []TriggerEvent, name string, webhookTemplate WebhookTemplate, sequence []map[string]interface{}, connector string, ) *TriggerList200ResponseInner`
 
 NewTriggerList200ResponseInner instantiates a new TriggerList200ResponseInner object
 This constructor will assign default values to properties that have it defined,
@@ -352,20 +352,20 @@ SetType sets Type field to given value.
 
 ### GetEvents
 
-`func (o *TriggerList200ResponseInner) GetEvents() []string`
+`func (o *TriggerList200ResponseInner) GetEvents() []TriggerEvent`
 
 GetEvents returns the Events field if non-nil, zero value otherwise.
 
 ### GetEventsOk
 
-`func (o *TriggerList200ResponseInner) GetEventsOk() (*[]string, bool)`
+`func (o *TriggerList200ResponseInner) GetEventsOk() (*[]TriggerEvent, bool)`
 
 GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEvents
 
-`func (o *TriggerList200ResponseInner) SetEvents(v []string)`
+`func (o *TriggerList200ResponseInner) SetEvents(v []TriggerEvent)`
 
 SetEvents sets Events field to given value.
 

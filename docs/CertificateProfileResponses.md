@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **Enabled** | **bool** |  | 
 **GradingPolicies** | Pointer to **[]string** |  | [optional] 
 **Http01Port** | Pointer to **NullableInt64** |  | [optional] 
+**IpIdentifierConstraint** | Pointer to **NullableString** |  | [optional] [default to "false"]
 **MaxCertificatePerHolderPolicy** | Pointer to [**NullableMaxCertificatePerHolderPolicy**](MaxCertificatePerHolderPolicy.md) |  | [optional] 
 **MaxDnsName** | Pointer to **NullableInt64** |  | [optional] 
 **Meta** | Pointer to [**NullableDirectoryMeta**](DirectoryMeta.md) |  | [optional] 
@@ -540,6 +541,41 @@ HasHttp01Port returns a boolean if a field has been set.
 `func (o *CertificateProfileResponses) UnsetHttp01Port()`
 
 UnsetHttp01Port ensures that no value is present for Http01Port, not even an explicit nil
+### GetIpIdentifierConstraint
+
+`func (o *CertificateProfileResponses) GetIpIdentifierConstraint() string`
+
+GetIpIdentifierConstraint returns the IpIdentifierConstraint field if non-nil, zero value otherwise.
+
+### GetIpIdentifierConstraintOk
+
+`func (o *CertificateProfileResponses) GetIpIdentifierConstraintOk() (*string, bool)`
+
+GetIpIdentifierConstraintOk returns a tuple with the IpIdentifierConstraint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpIdentifierConstraint
+
+`func (o *CertificateProfileResponses) SetIpIdentifierConstraint(v string)`
+
+SetIpIdentifierConstraint sets IpIdentifierConstraint field to given value.
+
+### HasIpIdentifierConstraint
+
+`func (o *CertificateProfileResponses) HasIpIdentifierConstraint() bool`
+
+HasIpIdentifierConstraint returns a boolean if a field has been set.
+
+### SetIpIdentifierConstraintNil
+
+`func (o *CertificateProfileResponses) SetIpIdentifierConstraintNil(b bool)`
+
+ SetIpIdentifierConstraintNil sets the value for IpIdentifierConstraint to be an explicit nil
+
+### UnsetIpIdentifierConstraint
+`func (o *CertificateProfileResponses) UnsetIpIdentifierConstraint()`
+
+UnsetIpIdentifierConstraint ensures that no value is present for IpIdentifierConstraint, not even an explicit nil
 ### GetMaxCertificatePerHolderPolicy
 
 `func (o *CertificateProfileResponses) GetMaxCertificatePerHolderPolicy() MaxCertificatePerHolderPolicy`

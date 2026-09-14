@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the account to authenticate on Netscaler | 
+**Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the account to authenticate on FortiManager | 
 **Name** | **string** |  | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Region** | **string** |  | 
@@ -14,13 +14,13 @@ Name | Type | Description | Notes
 **TagKey** | Pointer to **NullableString** |  | [optional] 
 **TagValue** | Pointer to **NullableString** |  | [optional] 
 **ThrottleDuration** | **string** |  | 
-**Timeout** | Pointer to **NullableString** |  | [optional] 
+**Timeout** | **string** |  | 
 **Type** | **string** |  | 
 **AzureTenant** | Pointer to **string** |  | [optional] 
-**Prefix** | Pointer to **NullableString** |  | [optional] 
+**Prefix** | **string** | Certificate name prefix used when deploying certificates | 
 **ThrottleParallelism** | **int64** |  | 
 **VaultBaseUrl** | **string** |  | 
-**Hostname** | **string** |  | 
+**Hostname** | **string** | The hostname or URL of the FortiManager appliance | 
 **KeyType** | Pointer to **NullableString** | One of &#x60;rsa-2048&#x60;, &#x60;rsa-3072&#x60;, &#x60;rsa-4096&#x60;, &#x60;rsa-8192&#x60;, &#x60;ec-secp256r1&#x60;, &#x60;ec-secp384r1&#x60;, &#x60;ec-secp521r1&#x60;, &#x60;ec-brainpoolp256r1&#x60;, &#x60;ec-brainpoolp384r1&#x60;, &#x60;ec-brainpoolp512r1&#x60;, &#x60;ed-448&#x60;, &#x60;ed-25519&#x60;, &#x60;mldsa-44&#x60;, &#x60;mldsa-65&#x60;, &#x60;mldsa-87&#x60;, &#x60;slhdsa-sha2-128s&#x60;, &#x60;slhdsa-sha2-128f&#x60;, &#x60;slhdsa-sha2-192s&#x60;, &#x60;slhdsa-sha2-192f&#x60;, &#x60;slhdsa-sha2-256s&#x60;, &#x60;slhdsa-sha2-256f&#x60;, &#x60;slhdsa-sha2-128ssha256&#x60;, &#x60;slhdsa-sha2-128fsha256&#x60;, &#x60;slhdsa-sha2-192ssha512&#x60;, &#x60;slhdsa-sha2-192fsha512&#x60;, &#x60;slhdsa-sha2-256ssha512&#x60;, &#x60;slhdsa-sha2-256fsha512&#x60; or &#x60;&lt;primary key type&gt;+&lt;alternate key type&gt;&#x60; | [optional] 
 **LoginProvider** | Pointer to **NullableString** |  | [optional] 
 **TlsInsecure** | Pointer to **NullableBool** | Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended. | [optional] [default to false]
@@ -51,12 +51,21 @@ Name | Type | Description | Notes
 **UserIdentifierAttribute** | **string** |  | 
 **CertificateStorePath** | **string** |  | 
 **RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
+**JobRetryParameters** | [**RetryParameters**](RetryParameters.md) | Retry policy applied to the asynchronous deployment jobs run by this connector. | 
+**SynchronizeDevices** | **bool** | Synchronize (commit) the configuration to the devices managed by the Panorama after pushing the certificate | 
+**Template** | Pointer to **NullableString** | Name of the Panorama template to push certificates to | [optional] 
+**TemplateStack** | Pointer to **NullableString** | Name of the Panorama template stack to push changes to | [optional] 
+**Vsys** | Pointer to **NullableString** | Virtual system name for multi-VSYS firewalls | [optional] 
+**CertificateCredentials** | Pointer to **NullableString** | Optional name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) used for mutual TLS in addition to the API key | [optional] 
+**Vdom** | Pointer to **NullableString** | Virtual domain to deploy to; when absent the certificate is imported in the global scope | [optional] 
+**ManagedDevice** | Pointer to [**NullableFortiManagerConnectorResponseManagedDevice**](FortiManagerConnectorResponseManagedDevice.md) |  | [optional] 
+**Target** | **string** | Selects what the connector deploys certificates to. &#x60;unit&#x60; targets the FortiManager unit&#39;s own certificate store, &#x60;device&#x60; targets a FortiGate device managed by the FortiManager. When set to &#x60;device&#x60;, &#x60;managedDevice&#x60; is provided; when set to &#x60;unit&#x60;, &#x60;managedDevice&#x60; is omitted. | 
 
 ## Methods
 
 ### NewThirdPartyConnectorResponses
 
-`func NewThirdPartyConnectorResponses(id string, credentials string, name string, region string, throttleDuration string, type_ string, throttleParallelism int64, vaultBaseUrl string, hostname string, bigIPHostname string, location string, project string, legacyRevocationMode bool, keyName string, pubKey string, endpoint string, baseDn string, certificateAttribute string, userIdentifierAttribute string, certificateStorePath string, ) *ThirdPartyConnectorResponses`
+`func NewThirdPartyConnectorResponses(id string, credentials string, name string, region string, throttleDuration string, timeout string, type_ string, prefix string, throttleParallelism int64, vaultBaseUrl string, hostname string, bigIPHostname string, location string, project string, legacyRevocationMode bool, keyName string, pubKey string, endpoint string, baseDn string, certificateAttribute string, userIdentifierAttribute string, certificateStorePath string, jobRetryParameters RetryParameters, synchronizeDevices bool, target string, ) *ThirdPartyConnectorResponses`
 
 NewThirdPartyConnectorResponses instantiates a new ThirdPartyConnectorResponses object
 This constructor will assign default values to properties that have it defined,
@@ -365,22 +374,7 @@ and a boolean to check if the value has been set.
 
 SetTimeout sets Timeout field to given value.
 
-### HasTimeout
 
-`func (o *ThirdPartyConnectorResponses) HasTimeout() bool`
-
-HasTimeout returns a boolean if a field has been set.
-
-### SetTimeoutNil
-
-`func (o *ThirdPartyConnectorResponses) SetTimeoutNil(b bool)`
-
- SetTimeoutNil sets the value for Timeout to be an explicit nil
-
-### UnsetTimeout
-`func (o *ThirdPartyConnectorResponses) UnsetTimeout()`
-
-UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
 ### GetType
 
 `func (o *ThirdPartyConnectorResponses) GetType() string`
@@ -445,22 +439,7 @@ and a boolean to check if the value has been set.
 
 SetPrefix sets Prefix field to given value.
 
-### HasPrefix
 
-`func (o *ThirdPartyConnectorResponses) HasPrefix() bool`
-
-HasPrefix returns a boolean if a field has been set.
-
-### SetPrefixNil
-
-`func (o *ThirdPartyConnectorResponses) SetPrefixNil(b bool)`
-
- SetPrefixNil sets the value for Prefix to be an explicit nil
-
-### UnsetPrefix
-`func (o *ThirdPartyConnectorResponses) UnsetPrefix()`
-
-UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
 ### GetThrottleParallelism
 
 `func (o *ThirdPartyConnectorResponses) GetThrottleParallelism() int64`
@@ -1406,6 +1385,276 @@ HasRenewalPeriod returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectorResponses) UnsetRenewalPeriod()`
 
 UnsetRenewalPeriod ensures that no value is present for RenewalPeriod, not even an explicit nil
+### GetJobRetryParameters
+
+`func (o *ThirdPartyConnectorResponses) GetJobRetryParameters() RetryParameters`
+
+GetJobRetryParameters returns the JobRetryParameters field if non-nil, zero value otherwise.
+
+### GetJobRetryParametersOk
+
+`func (o *ThirdPartyConnectorResponses) GetJobRetryParametersOk() (*RetryParameters, bool)`
+
+GetJobRetryParametersOk returns a tuple with the JobRetryParameters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetJobRetryParameters
+
+`func (o *ThirdPartyConnectorResponses) SetJobRetryParameters(v RetryParameters)`
+
+SetJobRetryParameters sets JobRetryParameters field to given value.
+
+
+### GetSynchronizeDevices
+
+`func (o *ThirdPartyConnectorResponses) GetSynchronizeDevices() bool`
+
+GetSynchronizeDevices returns the SynchronizeDevices field if non-nil, zero value otherwise.
+
+### GetSynchronizeDevicesOk
+
+`func (o *ThirdPartyConnectorResponses) GetSynchronizeDevicesOk() (*bool, bool)`
+
+GetSynchronizeDevicesOk returns a tuple with the SynchronizeDevices field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSynchronizeDevices
+
+`func (o *ThirdPartyConnectorResponses) SetSynchronizeDevices(v bool)`
+
+SetSynchronizeDevices sets SynchronizeDevices field to given value.
+
+
+### GetTemplate
+
+`func (o *ThirdPartyConnectorResponses) GetTemplate() string`
+
+GetTemplate returns the Template field if non-nil, zero value otherwise.
+
+### GetTemplateOk
+
+`func (o *ThirdPartyConnectorResponses) GetTemplateOk() (*string, bool)`
+
+GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplate
+
+`func (o *ThirdPartyConnectorResponses) SetTemplate(v string)`
+
+SetTemplate sets Template field to given value.
+
+### HasTemplate
+
+`func (o *ThirdPartyConnectorResponses) HasTemplate() bool`
+
+HasTemplate returns a boolean if a field has been set.
+
+### SetTemplateNil
+
+`func (o *ThirdPartyConnectorResponses) SetTemplateNil(b bool)`
+
+ SetTemplateNil sets the value for Template to be an explicit nil
+
+### UnsetTemplate
+`func (o *ThirdPartyConnectorResponses) UnsetTemplate()`
+
+UnsetTemplate ensures that no value is present for Template, not even an explicit nil
+### GetTemplateStack
+
+`func (o *ThirdPartyConnectorResponses) GetTemplateStack() string`
+
+GetTemplateStack returns the TemplateStack field if non-nil, zero value otherwise.
+
+### GetTemplateStackOk
+
+`func (o *ThirdPartyConnectorResponses) GetTemplateStackOk() (*string, bool)`
+
+GetTemplateStackOk returns a tuple with the TemplateStack field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplateStack
+
+`func (o *ThirdPartyConnectorResponses) SetTemplateStack(v string)`
+
+SetTemplateStack sets TemplateStack field to given value.
+
+### HasTemplateStack
+
+`func (o *ThirdPartyConnectorResponses) HasTemplateStack() bool`
+
+HasTemplateStack returns a boolean if a field has been set.
+
+### SetTemplateStackNil
+
+`func (o *ThirdPartyConnectorResponses) SetTemplateStackNil(b bool)`
+
+ SetTemplateStackNil sets the value for TemplateStack to be an explicit nil
+
+### UnsetTemplateStack
+`func (o *ThirdPartyConnectorResponses) UnsetTemplateStack()`
+
+UnsetTemplateStack ensures that no value is present for TemplateStack, not even an explicit nil
+### GetVsys
+
+`func (o *ThirdPartyConnectorResponses) GetVsys() string`
+
+GetVsys returns the Vsys field if non-nil, zero value otherwise.
+
+### GetVsysOk
+
+`func (o *ThirdPartyConnectorResponses) GetVsysOk() (*string, bool)`
+
+GetVsysOk returns a tuple with the Vsys field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVsys
+
+`func (o *ThirdPartyConnectorResponses) SetVsys(v string)`
+
+SetVsys sets Vsys field to given value.
+
+### HasVsys
+
+`func (o *ThirdPartyConnectorResponses) HasVsys() bool`
+
+HasVsys returns a boolean if a field has been set.
+
+### SetVsysNil
+
+`func (o *ThirdPartyConnectorResponses) SetVsysNil(b bool)`
+
+ SetVsysNil sets the value for Vsys to be an explicit nil
+
+### UnsetVsys
+`func (o *ThirdPartyConnectorResponses) UnsetVsys()`
+
+UnsetVsys ensures that no value is present for Vsys, not even an explicit nil
+### GetCertificateCredentials
+
+`func (o *ThirdPartyConnectorResponses) GetCertificateCredentials() string`
+
+GetCertificateCredentials returns the CertificateCredentials field if non-nil, zero value otherwise.
+
+### GetCertificateCredentialsOk
+
+`func (o *ThirdPartyConnectorResponses) GetCertificateCredentialsOk() (*string, bool)`
+
+GetCertificateCredentialsOk returns a tuple with the CertificateCredentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateCredentials
+
+`func (o *ThirdPartyConnectorResponses) SetCertificateCredentials(v string)`
+
+SetCertificateCredentials sets CertificateCredentials field to given value.
+
+### HasCertificateCredentials
+
+`func (o *ThirdPartyConnectorResponses) HasCertificateCredentials() bool`
+
+HasCertificateCredentials returns a boolean if a field has been set.
+
+### SetCertificateCredentialsNil
+
+`func (o *ThirdPartyConnectorResponses) SetCertificateCredentialsNil(b bool)`
+
+ SetCertificateCredentialsNil sets the value for CertificateCredentials to be an explicit nil
+
+### UnsetCertificateCredentials
+`func (o *ThirdPartyConnectorResponses) UnsetCertificateCredentials()`
+
+UnsetCertificateCredentials ensures that no value is present for CertificateCredentials, not even an explicit nil
+### GetVdom
+
+`func (o *ThirdPartyConnectorResponses) GetVdom() string`
+
+GetVdom returns the Vdom field if non-nil, zero value otherwise.
+
+### GetVdomOk
+
+`func (o *ThirdPartyConnectorResponses) GetVdomOk() (*string, bool)`
+
+GetVdomOk returns a tuple with the Vdom field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVdom
+
+`func (o *ThirdPartyConnectorResponses) SetVdom(v string)`
+
+SetVdom sets Vdom field to given value.
+
+### HasVdom
+
+`func (o *ThirdPartyConnectorResponses) HasVdom() bool`
+
+HasVdom returns a boolean if a field has been set.
+
+### SetVdomNil
+
+`func (o *ThirdPartyConnectorResponses) SetVdomNil(b bool)`
+
+ SetVdomNil sets the value for Vdom to be an explicit nil
+
+### UnsetVdom
+`func (o *ThirdPartyConnectorResponses) UnsetVdom()`
+
+UnsetVdom ensures that no value is present for Vdom, not even an explicit nil
+### GetManagedDevice
+
+`func (o *ThirdPartyConnectorResponses) GetManagedDevice() FortiManagerConnectorResponseManagedDevice`
+
+GetManagedDevice returns the ManagedDevice field if non-nil, zero value otherwise.
+
+### GetManagedDeviceOk
+
+`func (o *ThirdPartyConnectorResponses) GetManagedDeviceOk() (*FortiManagerConnectorResponseManagedDevice, bool)`
+
+GetManagedDeviceOk returns a tuple with the ManagedDevice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetManagedDevice
+
+`func (o *ThirdPartyConnectorResponses) SetManagedDevice(v FortiManagerConnectorResponseManagedDevice)`
+
+SetManagedDevice sets ManagedDevice field to given value.
+
+### HasManagedDevice
+
+`func (o *ThirdPartyConnectorResponses) HasManagedDevice() bool`
+
+HasManagedDevice returns a boolean if a field has been set.
+
+### SetManagedDeviceNil
+
+`func (o *ThirdPartyConnectorResponses) SetManagedDeviceNil(b bool)`
+
+ SetManagedDeviceNil sets the value for ManagedDevice to be an explicit nil
+
+### UnsetManagedDevice
+`func (o *ThirdPartyConnectorResponses) UnsetManagedDevice()`
+
+UnsetManagedDevice ensures that no value is present for ManagedDevice, not even an explicit nil
+### GetTarget
+
+`func (o *ThirdPartyConnectorResponses) GetTarget() string`
+
+GetTarget returns the Target field if non-nil, zero value otherwise.
+
+### GetTargetOk
+
+`func (o *ThirdPartyConnectorResponses) GetTargetOk() (*string, bool)`
+
+GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTarget
+
+`func (o *ThirdPartyConnectorResponses) SetTarget(v string)`
+
+SetTarget sets Target field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Colors** | **[]string** | The colors of the chart | 
 **Description** | Pointer to **NullableString** | The description of the chart | [optional] 
-**Direction** | Pointer to **NullableString** |  | [optional] 
+**Direction** | Pointer to **NullableString** | The sort direction applied to the chart values | [optional] 
 **Fields** | **[]string** | The field that will be used to group data | 
 **H** | Pointer to **NullableInt64** | The height of the chart | [optional] 
 **Having** | Pointer to [**NullableHaving**](Having.md) | A condition to apply to the results of the aggregate. Only the aggregates results with more than 5 items in them can be kept for example | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Log** | **bool** | Whether the logarithm scale is enabled or not | 
 **SortOrder** | Pointer to **NullableString** | How to sort the results in the chart (if applicable) | [optional] 
 **Title** | **string** | Title of the chart | 
-**Type** | **string** | The type of the chart | 
+**Type** | [**ChartType**](ChartType.md) |  | 
 **W** | Pointer to **NullableInt64** | The width of the chart | [optional] 
 **X** | Pointer to **NullableInt64** | The horizontal position of the chart on the grid | [optional] 
 **Y** | Pointer to **NullableInt64** | The vertical position of the chart on the grid | [optional] 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewChart
 
-`func NewChart(colors []string, fields []string, log bool, title string, type_ string, ) *Chart`
+`func NewChart(colors []string, fields []string, log bool, title string, type_ ChartType, ) *Chart`
 
 NewChart instantiates a new Chart object
 This constructor will assign default values to properties that have it defined,
@@ -402,20 +402,20 @@ SetTitle sets Title field to given value.
 
 ### GetType
 
-`func (o *Chart) GetType() string`
+`func (o *Chart) GetType() ChartType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Chart) GetTypeOk() (*string, bool)`
+`func (o *Chart) GetTypeOk() (*ChartType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Chart) SetType(v string)`
+`func (o *Chart) SetType(v ChartType)`
 
 SetType sets Type field to given value.
 

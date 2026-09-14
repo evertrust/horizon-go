@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**AutoRenew** | Pointer to **bool** | &#x60;true&#x60; if auto renewal is enabled on this certificate | [optional] 
+**AutoRenew** | **bool** | &#x60;true&#x60; if auto renewal is enabled on this certificate | 
 **Certificate** | **string** | The certificate&#39;s PEM-encoded content | 
 **ContactEmail** | Pointer to **NullableString** | The certificate&#39;s contact email. It will be used to send notifications about the certificate&#39;s expiration and revocation | [optional] 
 **CrlSynchronized** | Pointer to **NullableBool** | Whether the certificate&#39;s revocation status is synchronized with a CRL | [optional] 
@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **Owner** | Pointer to **NullableString** | The certificate&#39;s owner. This is a reference to a local identity identifier | [optional] 
 **Profile** | Pointer to **NullableString** | The certificate&#39;s profile | [optional] 
 **PublicKeyThumbprint** | **string** | The certificate&#39;s public key thumbprint | 
+**RequestedX509Data** | Pointer to [**X509CertificateElements**](X509CertificateElements.md) | The X.509 data (subject, SANs, extensions) that was requested at enrollment time, as sent to the PKI. When present, it is replayed at renewal time instead of being deduced from the issued certificate. Absent on certificates enrolled before this data was captured, and on imported or discovered certificates | [optional] 
 **RevocationDate** | Pointer to **NullableInt64** | The certificate&#39;s revocation date in milliseconds since the epoch. This field is only present if the certificate is revoked | [optional] 
 **RevocationReason** | Pointer to **NullableString** | The certificate&#39;s revocation reason | [optional] 
 **Revoked** | **bool** | Whether the certificate is revoked | 
@@ -43,7 +44,7 @@ Name | Type | Description | Notes
 
 ### NewCertificate
 
-`func NewCertificate(id string, certificate string, dn string, escrowed bool, holderId string, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string, ) *Certificate`
+`func NewCertificate(id string, autoRenew bool, certificate string, dn string, escrowed bool, holderId string, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string, ) *Certificate`
 
 NewCertificate instantiates a new Certificate object
 This constructor will assign default values to properties that have it defined,
@@ -97,11 +98,6 @@ and a boolean to check if the value has been set.
 
 SetAutoRenew sets AutoRenew field to given value.
 
-### HasAutoRenew
-
-`func (o *Certificate) HasAutoRenew() bool`
-
-HasAutoRenew returns a boolean if a field has been set.
 
 ### GetCertificate
 
@@ -662,6 +658,31 @@ and a boolean to check if the value has been set.
 
 SetPublicKeyThumbprint sets PublicKeyThumbprint field to given value.
 
+
+### GetRequestedX509Data
+
+`func (o *Certificate) GetRequestedX509Data() X509CertificateElements`
+
+GetRequestedX509Data returns the RequestedX509Data field if non-nil, zero value otherwise.
+
+### GetRequestedX509DataOk
+
+`func (o *Certificate) GetRequestedX509DataOk() (*X509CertificateElements, bool)`
+
+GetRequestedX509DataOk returns a tuple with the RequestedX509Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestedX509Data
+
+`func (o *Certificate) SetRequestedX509Data(v X509CertificateElements)`
+
+SetRequestedX509Data sets RequestedX509Data field to given value.
+
+### HasRequestedX509Data
+
+`func (o *Certificate) HasRequestedX509Data() bool`
+
+HasRequestedX509Data returns a boolean if a field has been set.
 
 ### GetRevocationDate
 

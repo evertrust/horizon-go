@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **Status** | [**RequestStatus**](RequestStatus.md) |  | 
 **Team** | Pointer to **NullableString** | The team that will be assigned to this certificate. Teams are used to link certificates to people and to assign permissions to them | [optional] 
 **TriggerResults** | Pointer to [**[]TriggerResult**](TriggerResult.md) | The result of the execution of triggers on this request | [optional] 
+**RequestedX509Data** | Pointer to [**X509CertificateElements**](X509CertificateElements.md) | The X.509 data (subject, SANs, extensions) that was requested when this request was submitted to the PKI. Only populated for asynchronous requests | [optional] 
 
 ## Methods
 
@@ -925,6 +926,31 @@ HasTriggerResults returns a boolean if a field has been set.
 `func (o *RequestApprove200Response) UnsetTriggerResults()`
 
 UnsetTriggerResults ensures that no value is present for TriggerResults, not even an explicit nil
+### GetRequestedX509Data
+
+`func (o *RequestApprove200Response) GetRequestedX509Data() X509CertificateElements`
+
+GetRequestedX509Data returns the RequestedX509Data field if non-nil, zero value otherwise.
+
+### GetRequestedX509DataOk
+
+`func (o *RequestApprove200Response) GetRequestedX509DataOk() (*X509CertificateElements, bool)`
+
+GetRequestedX509DataOk returns a tuple with the RequestedX509Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestedX509Data
+
+`func (o *RequestApprove200Response) SetRequestedX509Data(v X509CertificateElements)`
+
+SetRequestedX509Data sets RequestedX509Data field to given value.
+
+### HasRequestedX509Data
+
+`func (o *RequestApprove200Response) HasRequestedX509Data() bool`
+
+HasRequestedX509Data returns a boolean if a field has been set.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

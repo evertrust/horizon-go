@@ -36,6 +36,14 @@ Name | Type | Description | Notes
 **SigningHash** | Pointer to **NullableString** |  | [optional] 
 **TemplateArn** | Pointer to **NullableString** |  | [optional] 
 **ValidDays** | Pointer to **NullableString** |  | [optional] 
+**CaPool** | **string** | Identifier of the CA pool to issue from. The pool auto-selects an enabled certificate authority. | 
+**CertificateLifetime** | **string** | Validity applied to every certificate issued through this connector. | 
+**CertificateTemplate** | Pointer to **string** | Certificate template governing issuance policy. Accepts the template short name or its full resource path. | [optional] 
+**Credentials** | Pointer to **string** | Name of the &#x60;raw&#x60; [credentials](#tag/security.credentials) holding the Google service account key (JSON). If not defined, Application Default Credentials are used (environment variable or workload identity). | [optional] 
+**Endpoint** | Pointer to **string** | Overrides the default Certificate Authority Service address and port (&#x60;privateca.googleapis.com:443&#x60;). If not set, the default service URL is used. | [optional] 
+**Impersonation** | Pointer to [**GCPConnectorImpersonation**](GCPConnectorImpersonation.md) |  | [optional] 
+**Location** | **string** | Google Cloud location (region) of the CA pool | 
+**ProjectId** | **string** | Identifier of the Google Cloud project hosting the CA pool | 
 **OfferId** | **string** |  | 
 **OrganizationId** | **int64** |  | 
 **RevReason** | Pointer to **NullableString** |  | [optional] 
@@ -97,7 +105,7 @@ Name | Type | Description | Notes
 
 ### NewPKIConnectors
 
-`func NewPKIConnectors(authenticationCredentials string, ca string, endPoint string, loginCredentials string, name string, template string, timeout NullableString, type_ string, accountKeyType string, dnsChallengeProvider DnsChallengeProviders, acmeDirectoryUrl string, caConfig string, domain string, enrollmentCredentials string, profile string, caArn string, region string, offerId string, organizationId int64, issuerCACert string, issuerCADN string, signerCredentials string, apiCredentials string, baseUrl string, productId string, caName string, cryptoType string, defaultOwner string, deleteOnRevoke bool, templateId int64, domainId string, endpointType string, endPointIssuingCA string, profilCle NullableString, workflow NullableString, customerId string, environment string, procedure string, customerUri string, mpkiCredentials string, productUuid string, ) *PKIConnectors`
+`func NewPKIConnectors(authenticationCredentials string, ca string, endPoint string, loginCredentials string, name string, template string, timeout NullableString, type_ string, accountKeyType string, dnsChallengeProvider DnsChallengeProviders, acmeDirectoryUrl string, caConfig string, domain string, enrollmentCredentials string, profile string, caArn string, region string, caPool string, certificateLifetime string, location string, projectId string, offerId string, organizationId int64, issuerCACert string, issuerCADN string, signerCredentials string, apiCredentials string, baseUrl string, productId string, caName string, cryptoType string, defaultOwner string, deleteOnRevoke bool, templateId int64, domainId string, endpointType string, endPointIssuingCA string, profilCle NullableString, workflow NullableString, customerId string, environment string, procedure string, customerUri string, mpkiCredentials string, productUuid string, ) *PKIConnectors`
 
 NewPKIConnectors instantiates a new PKIConnectors object
 This constructor will assign default values to properties that have it defined,
@@ -987,6 +995,186 @@ HasValidDays returns a boolean if a field has been set.
 `func (o *PKIConnectors) UnsetValidDays()`
 
 UnsetValidDays ensures that no value is present for ValidDays, not even an explicit nil
+### GetCaPool
+
+`func (o *PKIConnectors) GetCaPool() string`
+
+GetCaPool returns the CaPool field if non-nil, zero value otherwise.
+
+### GetCaPoolOk
+
+`func (o *PKIConnectors) GetCaPoolOk() (*string, bool)`
+
+GetCaPoolOk returns a tuple with the CaPool field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCaPool
+
+`func (o *PKIConnectors) SetCaPool(v string)`
+
+SetCaPool sets CaPool field to given value.
+
+
+### GetCertificateLifetime
+
+`func (o *PKIConnectors) GetCertificateLifetime() string`
+
+GetCertificateLifetime returns the CertificateLifetime field if non-nil, zero value otherwise.
+
+### GetCertificateLifetimeOk
+
+`func (o *PKIConnectors) GetCertificateLifetimeOk() (*string, bool)`
+
+GetCertificateLifetimeOk returns a tuple with the CertificateLifetime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateLifetime
+
+`func (o *PKIConnectors) SetCertificateLifetime(v string)`
+
+SetCertificateLifetime sets CertificateLifetime field to given value.
+
+
+### GetCertificateTemplate
+
+`func (o *PKIConnectors) GetCertificateTemplate() string`
+
+GetCertificateTemplate returns the CertificateTemplate field if non-nil, zero value otherwise.
+
+### GetCertificateTemplateOk
+
+`func (o *PKIConnectors) GetCertificateTemplateOk() (*string, bool)`
+
+GetCertificateTemplateOk returns a tuple with the CertificateTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateTemplate
+
+`func (o *PKIConnectors) SetCertificateTemplate(v string)`
+
+SetCertificateTemplate sets CertificateTemplate field to given value.
+
+### HasCertificateTemplate
+
+`func (o *PKIConnectors) HasCertificateTemplate() bool`
+
+HasCertificateTemplate returns a boolean if a field has been set.
+
+### GetCredentials
+
+`func (o *PKIConnectors) GetCredentials() string`
+
+GetCredentials returns the Credentials field if non-nil, zero value otherwise.
+
+### GetCredentialsOk
+
+`func (o *PKIConnectors) GetCredentialsOk() (*string, bool)`
+
+GetCredentialsOk returns a tuple with the Credentials field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCredentials
+
+`func (o *PKIConnectors) SetCredentials(v string)`
+
+SetCredentials sets Credentials field to given value.
+
+### HasCredentials
+
+`func (o *PKIConnectors) HasCredentials() bool`
+
+HasCredentials returns a boolean if a field has been set.
+
+### GetEndpoint
+
+`func (o *PKIConnectors) GetEndpoint() string`
+
+GetEndpoint returns the Endpoint field if non-nil, zero value otherwise.
+
+### GetEndpointOk
+
+`func (o *PKIConnectors) GetEndpointOk() (*string, bool)`
+
+GetEndpointOk returns a tuple with the Endpoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndpoint
+
+`func (o *PKIConnectors) SetEndpoint(v string)`
+
+SetEndpoint sets Endpoint field to given value.
+
+### HasEndpoint
+
+`func (o *PKIConnectors) HasEndpoint() bool`
+
+HasEndpoint returns a boolean if a field has been set.
+
+### GetImpersonation
+
+`func (o *PKIConnectors) GetImpersonation() GCPConnectorImpersonation`
+
+GetImpersonation returns the Impersonation field if non-nil, zero value otherwise.
+
+### GetImpersonationOk
+
+`func (o *PKIConnectors) GetImpersonationOk() (*GCPConnectorImpersonation, bool)`
+
+GetImpersonationOk returns a tuple with the Impersonation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetImpersonation
+
+`func (o *PKIConnectors) SetImpersonation(v GCPConnectorImpersonation)`
+
+SetImpersonation sets Impersonation field to given value.
+
+### HasImpersonation
+
+`func (o *PKIConnectors) HasImpersonation() bool`
+
+HasImpersonation returns a boolean if a field has been set.
+
+### GetLocation
+
+`func (o *PKIConnectors) GetLocation() string`
+
+GetLocation returns the Location field if non-nil, zero value otherwise.
+
+### GetLocationOk
+
+`func (o *PKIConnectors) GetLocationOk() (*string, bool)`
+
+GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocation
+
+`func (o *PKIConnectors) SetLocation(v string)`
+
+SetLocation sets Location field to given value.
+
+
+### GetProjectId
+
+`func (o *PKIConnectors) GetProjectId() string`
+
+GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
+
+### GetProjectIdOk
+
+`func (o *PKIConnectors) GetProjectIdOk() (*string, bool)`
+
+GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectId
+
+`func (o *PKIConnectors) SetProjectId(v string)`
+
+SetProjectId sets ProjectId field to given value.
+
+
 ### GetOfferId
 
 `func (o *PKIConnectors) GetOfferId() string`

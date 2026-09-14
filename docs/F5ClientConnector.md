@@ -7,12 +7,14 @@ Name | Type | Description | Notes
 **BigIPHostname** | **string** |  | 
 **CipherGroup** | Pointer to **NullableString** |  | [optional] 
 **Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the account to authenticate on F5 | 
+**LoginProvider** | Pointer to **NullableString** | Name of the F5 BIG-IP authentication provider to use for login (e.g. &#x60;tmos&#x60;). Defaults to the device&#39;s default provider when unset. | [optional] 
 **MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
 **Name** | **string** |  | 
-**Partition** | Pointer to **NullableString** |  | [optional] 
-**Prefix** | Pointer to **NullableString** |  | [optional] 
+**OverrideProfileConfiguration** | Pointer to **NullableBool** | Whether to override the existing SSL profile&#39;s parent profile and cipher group on update. When &#x60;false&#x60;, only the certificate and key are updated. | [optional] [default to true]
+**Partition** | Pointer to **NullableString** |  | [optional] [default to "Common"]
+**Prefix** | Pointer to **NullableString** |  | [optional] [default to "hrz-"]
 **Proxy** | Pointer to **NullableString** |  | [optional] 
-**SslParent** | Pointer to **NullableString** |  | [optional] 
+**SslParent** | Pointer to **NullableString** |  | [optional] [default to "clientssl"]
 **ThrottleDuration** | **string** |  | 
 **ThrottleParallelism** | **int64** |  | 
 **Timeout** | Pointer to **NullableString** |  | [optional] 
@@ -114,6 +116,41 @@ and a boolean to check if the value has been set.
 SetCredentials sets Credentials field to given value.
 
 
+### GetLoginProvider
+
+`func (o *F5ClientConnector) GetLoginProvider() string`
+
+GetLoginProvider returns the LoginProvider field if non-nil, zero value otherwise.
+
+### GetLoginProviderOk
+
+`func (o *F5ClientConnector) GetLoginProviderOk() (*string, bool)`
+
+GetLoginProviderOk returns a tuple with the LoginProvider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoginProvider
+
+`func (o *F5ClientConnector) SetLoginProvider(v string)`
+
+SetLoginProvider sets LoginProvider field to given value.
+
+### HasLoginProvider
+
+`func (o *F5ClientConnector) HasLoginProvider() bool`
+
+HasLoginProvider returns a boolean if a field has been set.
+
+### SetLoginProviderNil
+
+`func (o *F5ClientConnector) SetLoginProviderNil(b bool)`
+
+ SetLoginProviderNil sets the value for LoginProvider to be an explicit nil
+
+### UnsetLoginProvider
+`func (o *F5ClientConnector) UnsetLoginProvider()`
+
+UnsetLoginProvider ensures that no value is present for LoginProvider, not even an explicit nil
 ### GetMaxStoredCertificatePerHolder
 
 `func (o *F5ClientConnector) GetMaxStoredCertificatePerHolder() int64`
@@ -169,6 +206,41 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetOverrideProfileConfiguration
+
+`func (o *F5ClientConnector) GetOverrideProfileConfiguration() bool`
+
+GetOverrideProfileConfiguration returns the OverrideProfileConfiguration field if non-nil, zero value otherwise.
+
+### GetOverrideProfileConfigurationOk
+
+`func (o *F5ClientConnector) GetOverrideProfileConfigurationOk() (*bool, bool)`
+
+GetOverrideProfileConfigurationOk returns a tuple with the OverrideProfileConfiguration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverrideProfileConfiguration
+
+`func (o *F5ClientConnector) SetOverrideProfileConfiguration(v bool)`
+
+SetOverrideProfileConfiguration sets OverrideProfileConfiguration field to given value.
+
+### HasOverrideProfileConfiguration
+
+`func (o *F5ClientConnector) HasOverrideProfileConfiguration() bool`
+
+HasOverrideProfileConfiguration returns a boolean if a field has been set.
+
+### SetOverrideProfileConfigurationNil
+
+`func (o *F5ClientConnector) SetOverrideProfileConfigurationNil(b bool)`
+
+ SetOverrideProfileConfigurationNil sets the value for OverrideProfileConfiguration to be an explicit nil
+
+### UnsetOverrideProfileConfiguration
+`func (o *F5ClientConnector) UnsetOverrideProfileConfiguration()`
+
+UnsetOverrideProfileConfiguration ensures that no value is present for OverrideProfileConfiguration, not even an explicit nil
 ### GetPartition
 
 `func (o *F5ClientConnector) GetPartition() string`

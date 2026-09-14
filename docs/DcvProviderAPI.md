@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## DcvProviderAdd
 
-> DigicertDCVProviderConfigResponse DcvProviderAdd(ctx).DigicertDCVProviderConfig(digicertDCVProviderConfig).Execute()
+> DcvProviderList200ResponseInner DcvProviderAdd(ctx).DcvProviderUpdateRequest(dcvProviderUpdateRequest).Execute()
 
 Register a new DCV provider configuration
 
@@ -33,16 +33,16 @@ import (
 )
 
 func main() {
-	digicertDCVProviderConfig := *openapiclient.NewDigicertDCVProviderConfig("Credentials_example", "https://www.digicert.com", "Name_example", "Type_example") // DigicertDCVProviderConfig | DCV provider configuration to register
+	dcvProviderUpdateRequest := openapiclient.dcv_provider_update_request{DigicertDCVProviderConfig: openapiclient.NewDigicertDCVProviderConfig("Credentials_example", "https://www.digicert.com", "Name_example", "Type_example")} // DcvProviderUpdateRequest | DCV provider configuration to register
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DcvProviderAPI.DcvProviderAdd(context.Background()).DigicertDCVProviderConfig(digicertDCVProviderConfig).Execute()
+	resp, r, err := apiClient.DcvProviderAPI.DcvProviderAdd(context.Background()).DcvProviderUpdateRequest(dcvProviderUpdateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DcvProviderAPI.DcvProviderAdd``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DcvProviderAdd`: DigicertDCVProviderConfigResponse
+	// response from `DcvProviderAdd`: DcvProviderList200ResponseInner
 	fmt.Fprintf(os.Stdout, "Response from `DcvProviderAPI.DcvProviderAdd`: %v\n", resp)
 }
 ```
@@ -58,11 +58,11 @@ Other parameters are passed through a pointer to a apiDcvProviderAddRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **digicertDCVProviderConfig** | [**DigicertDCVProviderConfig**](DigicertDCVProviderConfig.md) | DCV provider configuration to register | 
+ **dcvProviderUpdateRequest** | [**DcvProviderUpdateRequest**](DcvProviderUpdateRequest.md) | DCV provider configuration to register | 
 
 ### Return type
 
-[**DigicertDCVProviderConfigResponse**](DigicertDCVProviderConfigResponse.md)
+[**DcvProviderList200ResponseInner**](DcvProviderList200ResponseInner.md)
 
 ### Authorization
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## DcvProviderGet
 
-> DigicertDCVProviderConfigResponse DcvProviderGet(ctx, name).Execute()
+> DcvProviderList200ResponseInner DcvProviderGet(ctx, name).Execute()
 
 Retrieve an existing DCV provider configuration
 
@@ -176,7 +176,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DcvProviderAPI.DcvProviderGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DcvProviderGet`: DigicertDCVProviderConfigResponse
+	// response from `DcvProviderGet`: DcvProviderList200ResponseInner
 	fmt.Fprintf(os.Stdout, "Response from `DcvProviderAPI.DcvProviderGet`: %v\n", resp)
 }
 ```
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DigicertDCVProviderConfigResponse**](DigicertDCVProviderConfigResponse.md)
+[**DcvProviderList200ResponseInner**](DcvProviderList200ResponseInner.md)
 
 ### Authorization
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## DcvProviderList
 
-> []DigicertDCVProviderConfigResponse DcvProviderList(ctx).Execute()
+> []DcvProviderList200ResponseInner DcvProviderList(ctx).Execute()
 
 List the existing DCV provider configurations
 
@@ -245,7 +245,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DcvProviderAPI.DcvProviderList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DcvProviderList`: []DigicertDCVProviderConfigResponse
+	// response from `DcvProviderList`: []DcvProviderList200ResponseInner
 	fmt.Fprintf(os.Stdout, "Response from `DcvProviderAPI.DcvProviderList`: %v\n", resp)
 }
 ```
@@ -261,7 +261,7 @@ Other parameters are passed through a pointer to a apiDcvProviderListRequest str
 
 ### Return type
 
-[**[]DigicertDCVProviderConfigResponse**](DigicertDCVProviderConfigResponse.md)
+[**[]DcvProviderList200ResponseInner**](DcvProviderList200ResponseInner.md)
 
 ### Authorization
 
@@ -279,7 +279,7 @@ Other parameters are passed through a pointer to a apiDcvProviderListRequest str
 
 ## DcvProviderUpdate
 
-> DigicertDCVProviderConfigResponse DcvProviderUpdate(ctx).DigicertDCVProviderConfig(digicertDCVProviderConfig).Execute()
+> DcvProviderList200ResponseInner DcvProviderUpdate(ctx).DcvProviderUpdateRequest(dcvProviderUpdateRequest).Execute()
 
 Update an existing DCV provider configuration
 
@@ -298,16 +298,16 @@ import (
 )
 
 func main() {
-	digicertDCVProviderConfig := *openapiclient.NewDigicertDCVProviderConfig("Credentials_example", "https://www.digicert.com", "Name_example", "Type_example") // DigicertDCVProviderConfig | DCV provider configuration to update
+	dcvProviderUpdateRequest := openapiclient.dcv_provider_update_request{DigicertDCVProviderConfig: openapiclient.NewDigicertDCVProviderConfig("Credentials_example", "https://www.digicert.com", "Name_example", "Type_example")} // DcvProviderUpdateRequest | DCV provider configuration to update
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DcvProviderAPI.DcvProviderUpdate(context.Background()).DigicertDCVProviderConfig(digicertDCVProviderConfig).Execute()
+	resp, r, err := apiClient.DcvProviderAPI.DcvProviderUpdate(context.Background()).DcvProviderUpdateRequest(dcvProviderUpdateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DcvProviderAPI.DcvProviderUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DcvProviderUpdate`: DigicertDCVProviderConfigResponse
+	// response from `DcvProviderUpdate`: DcvProviderList200ResponseInner
 	fmt.Fprintf(os.Stdout, "Response from `DcvProviderAPI.DcvProviderUpdate`: %v\n", resp)
 }
 ```
@@ -323,11 +323,11 @@ Other parameters are passed through a pointer to a apiDcvProviderUpdateRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **digicertDCVProviderConfig** | [**DigicertDCVProviderConfig**](DigicertDCVProviderConfig.md) | DCV provider configuration to update | 
+ **dcvProviderUpdateRequest** | [**DcvProviderUpdateRequest**](DcvProviderUpdateRequest.md) | DCV provider configuration to update | 
 
 ### Return type
 
-[**DigicertDCVProviderConfigResponse**](DigicertDCVProviderConfigResponse.md)
+[**DcvProviderList200ResponseInner**](DcvProviderList200ResponseInner.md)
 
 ### Authorization
 

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
 **Connector** | **string** |  | 
+**Events** | [**[]TriggerEvent**](TriggerEvent.md) |  | 
 **Name** | **string** |  | 
 **Retries** | Pointer to **NullableInt64** |  | [optional] 
 **Type** | **string** |  | 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewAWSTriggerResponse
 
-`func NewAWSTriggerResponse(id string, connector string, name string, type_ string, ) *AWSTriggerResponse`
+`func NewAWSTriggerResponse(id string, connector string, events []TriggerEvent, name string, type_ string, ) *AWSTriggerResponse`
 
 NewAWSTriggerResponse instantiates a new AWSTriggerResponse object
 This constructor will assign default values to properties that have it defined,
@@ -67,6 +68,26 @@ and a boolean to check if the value has been set.
 `func (o *AWSTriggerResponse) SetConnector(v string)`
 
 SetConnector sets Connector field to given value.
+
+
+### GetEvents
+
+`func (o *AWSTriggerResponse) GetEvents() []TriggerEvent`
+
+GetEvents returns the Events field if non-nil, zero value otherwise.
+
+### GetEventsOk
+
+`func (o *AWSTriggerResponse) GetEventsOk() (*[]TriggerEvent, bool)`
+
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvents
+
+`func (o *AWSTriggerResponse) SetEvents(v []TriggerEvent)`
+
+SetEvents sets Events field to given value.
 
 
 ### GetName

@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CertificateStorePath** | **string** |  | 
+**CertificateStorePath** | Pointer to **NullableString** |  | [optional] [default to "/nsconfig/ssl"]
 **Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the account to authenticate on Netscaler | 
 **Hostname** | **string** |  | 
 **MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
 **Name** | **string** |  | 
-**Prefix** | Pointer to **NullableString** |  | [optional] 
+**Prefix** | Pointer to **NullableString** |  | [optional] [default to "hrz-"]
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
 **ThrottleDuration** | **string** |  | 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewNetscalerConnector
 
-`func NewNetscalerConnector(certificateStorePath string, credentials string, hostname string, name string, throttleDuration string, throttleParallelism int64, type_ string, ) *NetscalerConnector`
+`func NewNetscalerConnector(credentials string, hostname string, name string, throttleDuration string, throttleParallelism int64, type_ string, ) *NetscalerConnector`
 
 NewNetscalerConnector instantiates a new NetscalerConnector object
 This constructor will assign default values to properties that have it defined,
@@ -56,7 +56,22 @@ and a boolean to check if the value has been set.
 
 SetCertificateStorePath sets CertificateStorePath field to given value.
 
+### HasCertificateStorePath
 
+`func (o *NetscalerConnector) HasCertificateStorePath() bool`
+
+HasCertificateStorePath returns a boolean if a field has been set.
+
+### SetCertificateStorePathNil
+
+`func (o *NetscalerConnector) SetCertificateStorePathNil(b bool)`
+
+ SetCertificateStorePathNil sets the value for CertificateStorePath to be an explicit nil
+
+### UnsetCertificateStorePath
+`func (o *NetscalerConnector) UnsetCertificateStorePath()`
+
+UnsetCertificateStorePath ensures that no value is present for CertificateStorePath, not even an explicit nil
 ### GetCredentials
 
 `func (o *NetscalerConnector) GetCredentials() string`

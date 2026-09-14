@@ -5,15 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BaseDn** | **string** |  | 
-**CertAttr** | Pointer to **NullableString** |  | [optional] 
+**CertAttr** | Pointer to **NullableString** |  | [optional] [default to "userCertificate"]
 **CertificateAttribute** | **string** |  | 
+**CreateEntry** | Pointer to **NullableBool** | Create a new directory entry when no matching entry is found for the certificate, instead of failing the publish. | [optional] [default to false]
 **Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing login DN and password. | 
-**Filter** | Pointer to **NullableString** |  | [optional] 
-**FollowReferrals** | Pointer to **NullableBool** |  | [optional] 
+**Filter** | Pointer to **NullableString** |  | [optional] [default to "(objectclass=user)"]
+**FollowReferrals** | Pointer to **NullableBool** |  | [optional] [default to false]
 **Hostname** | **string** |  | 
 **MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
 **Name** | **string** |  | 
-**Port** | Pointer to **NullableInt64** |  | [optional] 
+**Port** | Pointer to **NullableInt64** |  | [optional] [default to 389]
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **ThrottleDuration** | **string** |  | 
 **ThrottleParallelism** | Pointer to **int64** |  | [optional] 
@@ -116,6 +117,41 @@ and a boolean to check if the value has been set.
 SetCertificateAttribute sets CertificateAttribute field to given value.
 
 
+### GetCreateEntry
+
+`func (o *LDAPConnector) GetCreateEntry() bool`
+
+GetCreateEntry returns the CreateEntry field if non-nil, zero value otherwise.
+
+### GetCreateEntryOk
+
+`func (o *LDAPConnector) GetCreateEntryOk() (*bool, bool)`
+
+GetCreateEntryOk returns a tuple with the CreateEntry field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreateEntry
+
+`func (o *LDAPConnector) SetCreateEntry(v bool)`
+
+SetCreateEntry sets CreateEntry field to given value.
+
+### HasCreateEntry
+
+`func (o *LDAPConnector) HasCreateEntry() bool`
+
+HasCreateEntry returns a boolean if a field has been set.
+
+### SetCreateEntryNil
+
+`func (o *LDAPConnector) SetCreateEntryNil(b bool)`
+
+ SetCreateEntryNil sets the value for CreateEntry to be an explicit nil
+
+### UnsetCreateEntry
+`func (o *LDAPConnector) UnsetCreateEntry()`
+
+UnsetCreateEntry ensures that no value is present for CreateEntry, not even an explicit nil
 ### GetCredentials
 
 `func (o *LDAPConnector) GetCredentials() string`
