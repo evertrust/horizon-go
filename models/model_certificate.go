@@ -25,7 +25,7 @@ type Certificate struct {
 	// Object internal ID
 	Id string `json:"_id"`
 	// `true` if auto renewal is enabled on this certificate
-	AutoRenew bool `json:"autoRenew"`
+	AutoRenew *bool `json:"autoRenew,omitempty"`
 	// The certificate's PEM-encoded content
 	Certificate string `json:"certificate"`
 	// The certificate's contact email. It will be used to send notifications about the certificate's expiration and revocation
@@ -101,10 +101,9 @@ type _Certificate Certificate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificate(id string, autoRenew bool, certificate string, dn string, escrowed bool, holderId string, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string) *Certificate {
+func NewCertificate(id string, certificate string, dn string, escrowed bool, holderId string, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string) *Certificate {
 	this := Certificate{}
 	this.Id = id
-	this.AutoRenew = autoRenew
 	this.Certificate = certificate
 	this.Dn = dn
 	this.Escrowed = escrowed
@@ -157,28 +156,36 @@ func (o *Certificate) SetId(v string) {
 	o.Id = v
 }
 
-// GetAutoRenew returns the AutoRenew field value
+// GetAutoRenew returns the AutoRenew field value if set, zero value otherwise.
 func (o *Certificate) GetAutoRenew() bool {
-	if o == nil {
+	if o == nil || utils.IsNil(o.AutoRenew) {
 		var ret bool
 		return ret
 	}
-
-	return o.AutoRenew
+	return *o.AutoRenew
 }
 
-// GetAutoRenewOk returns a tuple with the AutoRenew field value
+// GetAutoRenewOk returns a tuple with the AutoRenew field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetAutoRenewOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.AutoRenew) {
 		return nil, false
 	}
-	return &o.AutoRenew, true
+	return o.AutoRenew, true
 }
 
-// SetAutoRenew sets field value
+// HasAutoRenew returns a boolean if a field has been set.
+func (o *Certificate) HasAutoRenew() bool {
+	if o != nil && !utils.IsNil(o.AutoRenew) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoRenew gets a reference to the given bool and assigns it to the AutoRenew field.
 func (o *Certificate) SetAutoRenew(v bool) {
-	o.AutoRenew = v
+	o.AutoRenew = &v
 }
 
 // GetCertificate returns the Certificate field value
@@ -1206,7 +1213,9 @@ func (o Certificate) MarshalJSON() ([]byte, error) {
 func (o Certificate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["_id"] = o.Id
-	toSerialize["autoRenew"] = o.AutoRenew
+	if !utils.IsNil(o.AutoRenew) {
+		toSerialize["autoRenew"] = o.AutoRenew
+	}
 	toSerialize["certificate"] = o.Certificate
 	if o.ContactEmail.IsSet() {
 		toSerialize["contactEmail"] = o.ContactEmail.Get()
@@ -1286,7 +1295,6 @@ func (o *Certificate) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"_id",
-		"autoRenew",
 		"certificate",
 		"dn",
 		"escrowed",
