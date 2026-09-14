@@ -9,6 +9,8 @@
 
 * `PENDING` (value: `"pending"`)
 
+* `PROCESSING` (value: `"processing"`)
+
 * `CANCELED` (value: `"canceled"`)
 
 * `COMPLETED` (value: `"completed"`)

@@ -23,6 +23,7 @@ const (
 	REQUESTSTATUS_DENIED      RequestStatus = "denied"
 	REQUESTSTATUS_APPROVED    RequestStatus = "approved"
 	REQUESTSTATUS_PENDING     RequestStatus = "pending"
+	REQUESTSTATUS_PROCESSING  RequestStatus = "processing"
 	REQUESTSTATUS_CANCELED    RequestStatus = "canceled"
 	REQUESTSTATUS_COMPLETED   RequestStatus = "completed"
 	REQUESTSTATUS_FAILED      RequestStatus = "failed"
@@ -34,6 +35,7 @@ var AllowedRequestStatusEnumValues = []RequestStatus{
 	"denied",
 	"approved",
 	"pending",
+	"processing",
 	"canceled",
 	"completed",
 	"failed",
