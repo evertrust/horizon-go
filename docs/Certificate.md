@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**AutoRenew** | **bool** | &#x60;true&#x60; if auto renewal is enabled on this certificate | 
+**AutoRenew** | Pointer to **bool** | &#x60;true&#x60; if auto renewal is enabled on this certificate | [optional] 
 **Certificate** | **string** | The certificate&#39;s PEM-encoded content | 
 **ContactEmail** | Pointer to **NullableString** | The certificate&#39;s contact email. It will be used to send notifications about the certificate&#39;s expiration and revocation | [optional] 
 **CrlSynchronized** | Pointer to **NullableBool** | Whether the certificate&#39;s revocation status is synchronized with a CRL | [optional] 
@@ -43,7 +43,7 @@ Name | Type | Description | Notes
 
 ### NewCertificate
 
-`func NewCertificate(id string, autoRenew bool, certificate string, dn string, escrowed bool, holderId string, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string, ) *Certificate`
+`func NewCertificate(id string, certificate string, dn string, escrowed bool, holderId string, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string, ) *Certificate`
 
 NewCertificate instantiates a new Certificate object
 This constructor will assign default values to properties that have it defined,
@@ -97,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetAutoRenew sets AutoRenew field to given value.
 
+### HasAutoRenew
+
+`func (o *Certificate) HasAutoRenew() bool`
+
+HasAutoRenew returns a boolean if a field has been set.
 
 ### GetCertificate
 
