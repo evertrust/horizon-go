@@ -185,14 +185,15 @@ func (a *SecurityPrincipalAPIService) SecurityPrincipalAuthenticateExecute(r Sec
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -203,7 +204,7 @@ func (a *SecurityPrincipalAPIService) SecurityPrincipalAuthenticateExecute(r Sec
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -214,11 +215,20 @@ func (a *SecurityPrincipalAPIService) SecurityPrincipalAuthenticateExecute(r Sec
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -376,14 +386,15 @@ func (a *SecurityPrincipalAPIService) SecurityPrincipalLogoutExecute(r SecurityP
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -394,11 +405,20 @@ func (a *SecurityPrincipalAPIService) SecurityPrincipalLogoutExecute(r SecurityP
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -564,14 +584,15 @@ func (a *SecurityPrincipalAPIService) SecurityPrincipalSelfExecute(r SecurityPri
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -582,7 +603,7 @@ func (a *SecurityPrincipalAPIService) SecurityPrincipalSelfExecute(r SecurityPri
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -593,11 +614,20 @@ func (a *SecurityPrincipalAPIService) SecurityPrincipalSelfExecute(r SecurityPri
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -605,8 +635,9 @@ func (a *SecurityPrincipalAPIService) SecurityPrincipalSelfExecute(r SecurityPri
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
