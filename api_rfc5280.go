@@ -191,14 +191,15 @@ func (a *Rfc5280APIService) Rfc5280DetectExecute(r Rfc5280APIRfc5280DetectReques
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -209,7 +210,7 @@ func (a *Rfc5280APIService) Rfc5280DetectExecute(r Rfc5280APIRfc5280DetectReques
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -220,11 +221,20 @@ func (a *Rfc5280APIService) Rfc5280DetectExecute(r Rfc5280APIRfc5280DetectReques
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -232,8 +242,9 @@ func (a *Rfc5280APIService) Rfc5280DetectExecute(r Rfc5280APIRfc5280DetectReques
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -407,14 +418,15 @@ func (a *Rfc5280APIService) Rfc5280Pkcs10FileExecute(r Rfc5280APIRfc5280Pkcs10Fi
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -425,7 +437,7 @@ func (a *Rfc5280APIService) Rfc5280Pkcs10FileExecute(r Rfc5280APIRfc5280Pkcs10Fi
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -436,11 +448,20 @@ func (a *Rfc5280APIService) Rfc5280Pkcs10FileExecute(r Rfc5280APIRfc5280Pkcs10Fi
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -448,8 +469,9 @@ func (a *Rfc5280APIService) Rfc5280Pkcs10FileExecute(r Rfc5280APIRfc5280Pkcs10Fi
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -614,14 +636,15 @@ func (a *Rfc5280APIService) Rfc5280Pkcs10PemExecute(r Rfc5280APIRfc5280Pkcs10Pem
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -632,7 +655,7 @@ func (a *Rfc5280APIService) Rfc5280Pkcs10PemExecute(r Rfc5280APIRfc5280Pkcs10Pem
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -643,11 +666,20 @@ func (a *Rfc5280APIService) Rfc5280Pkcs10PemExecute(r Rfc5280APIRfc5280Pkcs10Pem
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -655,8 +687,9 @@ func (a *Rfc5280APIService) Rfc5280Pkcs10PemExecute(r Rfc5280APIRfc5280Pkcs10Pem
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -830,14 +863,15 @@ func (a *Rfc5280APIService) Rfc5280Pkcs12FileExecute(r Rfc5280APIRfc5280Pkcs12Fi
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -848,7 +882,7 @@ func (a *Rfc5280APIService) Rfc5280Pkcs12FileExecute(r Rfc5280APIRfc5280Pkcs12Fi
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -859,11 +893,20 @@ func (a *Rfc5280APIService) Rfc5280Pkcs12FileExecute(r Rfc5280APIRfc5280Pkcs12Fi
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -871,8 +914,9 @@ func (a *Rfc5280APIService) Rfc5280Pkcs12FileExecute(r Rfc5280APIRfc5280Pkcs12Fi
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1055,14 +1099,15 @@ func (a *Rfc5280APIService) Rfc5280TcFileExecute(r Rfc5280APIRfc5280TcFileReques
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1073,7 +1118,7 @@ func (a *Rfc5280APIService) Rfc5280TcFileExecute(r Rfc5280APIRfc5280TcFileReques
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1084,11 +1129,20 @@ func (a *Rfc5280APIService) Rfc5280TcFileExecute(r Rfc5280APIRfc5280TcFileReques
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1096,8 +1150,9 @@ func (a *Rfc5280APIService) Rfc5280TcFileExecute(r Rfc5280APIRfc5280TcFileReques
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1271,14 +1326,15 @@ func (a *Rfc5280APIService) Rfc5280TcPemExecute(r Rfc5280APIRfc5280TcPemRequest)
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1289,7 +1345,7 @@ func (a *Rfc5280APIService) Rfc5280TcPemExecute(r Rfc5280APIRfc5280TcPemRequest)
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1300,11 +1356,20 @@ func (a *Rfc5280APIService) Rfc5280TcPemExecute(r Rfc5280APIRfc5280TcPemRequest)
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1312,8 +1377,9 @@ func (a *Rfc5280APIService) Rfc5280TcPemExecute(r Rfc5280APIRfc5280TcPemRequest)
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1487,14 +1553,15 @@ func (a *Rfc5280APIService) Rfc5280X509FileExecute(r Rfc5280APIRfc5280X509FileRe
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1505,7 +1572,7 @@ func (a *Rfc5280APIService) Rfc5280X509FileExecute(r Rfc5280APIRfc5280X509FileRe
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1516,11 +1583,20 @@ func (a *Rfc5280APIService) Rfc5280X509FileExecute(r Rfc5280APIRfc5280X509FileRe
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1528,8 +1604,9 @@ func (a *Rfc5280APIService) Rfc5280X509FileExecute(r Rfc5280APIRfc5280X509FileRe
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1694,14 +1771,15 @@ func (a *Rfc5280APIService) Rfc5280X509PemExecute(r Rfc5280APIRfc5280X509PemRequ
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1712,7 +1790,7 @@ func (a *Rfc5280APIService) Rfc5280X509PemExecute(r Rfc5280APIRfc5280X509PemRequ
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1723,11 +1801,20 @@ func (a *Rfc5280APIService) Rfc5280X509PemExecute(r Rfc5280APIRfc5280X509PemRequ
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1735,8 +1822,9 @@ func (a *Rfc5280APIService) Rfc5280X509PemExecute(r Rfc5280APIRfc5280X509PemRequ
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

@@ -394,6 +394,23 @@ func NewStrictDecoder(data []byte) *json.Decoder {
 	return dec
 }
 
+// MatchOneOfDiscriminator reports whether a decoded JSON object matches a oneOf
+// discriminator mapping entry. A plain mapping name is compared with the value of
+// the discriminator property. A composite mapping name of the form
+// "prop1=value1;prop2=value2" requires every listed property to hold its value.
+func MatchOneOfDiscriminator(dict map[string]interface{}, property string, mappingName string) bool {
+	if !strings.Contains(mappingName, "=") {
+		return dict[property] == mappingName
+	}
+	for _, pair := range strings.Split(mappingName, ";") {
+		key, value, found := strings.Cut(pair, "=")
+		if !found || dict[key] != value {
+			return false
+		}
+	}
+	return true
+}
+
 // Prevent trying to import "fmt"
 func ReportError(format string, a ...interface{}) error {
 	return fmt.Errorf(format, a...)

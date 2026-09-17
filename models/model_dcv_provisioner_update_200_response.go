@@ -71,7 +71,7 @@ func (dst *DcvProvisionerUpdate200Response) UnmarshalJSON(data []byte) error {
 	}
 
 	if match >= 1 {
-		return nil // exactly one match
+		return nil // at least one variant matched; GetActualInstance returns the first one
 	} else { // no match
 		return fmt.Errorf("data failed to match schemas in oneOf(DcvProvisionerUpdate200Response)")
 	}

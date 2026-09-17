@@ -190,14 +190,15 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignAddExecute(r DiscoveryCam
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -208,7 +209,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignAddExecute(r DiscoveryCam
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -219,7 +220,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignAddExecute(r DiscoveryCam
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -230,11 +231,20 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignAddExecute(r DiscoveryCam
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -242,8 +252,9 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignAddExecute(r DiscoveryCam
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -405,14 +416,15 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignDeleteExecute(r Discovery
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -423,7 +435,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignDeleteExecute(r Discovery
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -434,7 +446,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignDeleteExecute(r Discovery
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -445,11 +457,20 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignDeleteExecute(r Discovery
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -615,14 +636,15 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignFlushExecute(r DiscoveryC
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -633,7 +655,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignFlushExecute(r DiscoveryC
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -644,7 +666,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignFlushExecute(r DiscoveryC
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -655,11 +677,20 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignFlushExecute(r DiscoveryC
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -824,14 +855,15 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignGetExecute(r DiscoveryCam
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -842,7 +874,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignGetExecute(r DiscoveryCam
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -853,7 +885,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignGetExecute(r DiscoveryCam
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -864,11 +896,20 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignGetExecute(r DiscoveryCam
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -876,8 +917,9 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignGetExecute(r DiscoveryCam
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1038,14 +1080,15 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignListExecute(r DiscoveryCa
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1056,7 +1099,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignListExecute(r DiscoveryCa
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1067,11 +1110,20 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignListExecute(r DiscoveryCa
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1079,8 +1131,9 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignListExecute(r DiscoveryCa
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1253,14 +1306,15 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignUpdateExecute(r Discovery
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status,
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1271,7 +1325,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignUpdateExecute(r Discovery
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1282,7 +1336,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignUpdateExecute(r Discovery
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1293,7 +1347,7 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignUpdateExecute(r Discovery
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1304,11 +1358,20 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignUpdateExecute(r Discovery
 			var v models.BasicError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
+				newErr.error = localVarHTTPResponse.Status + ": " + err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
+		}
+		// Status code not declared in the spec (e.g. 409, 502): Horizon and most
+		// proxies still answer with an RFC 7807 body, so try to expose it as a model.
+		if newErr.model == nil {
+			var v models.BasicError
+			if decodeErr := a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type")); decodeErr == nil {
+				newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+				newErr.model = v
+			}
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1316,8 +1379,9 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignUpdateExecute(r Discovery
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+			body:       localVarBody,
+			error:      localVarHTTPResponse.Status + ": failed to decode response: " + err.Error(),
+			statusCode: localVarHTTPResponse.StatusCode,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

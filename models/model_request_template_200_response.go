@@ -15,7 +15,6 @@ import (
 	"fmt"
 
 	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
 // RequestTemplate200Response - struct for RequestTemplate200Response
@@ -97,138 +96,176 @@ func WebRAUpdateRequestOnTemplateResponseAsRequestTemplate200Response(v *WebRAUp
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *RequestTemplate200Response) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into EstEnrollRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.EstEnrollRequestOnTemplateResponse)
-	if err == nil {
-		jsonEstEnrollRequestOnTemplateResponse, _ := json.Marshal(dst.EstEnrollRequestOnTemplateResponse)
-		if string(jsonEstEnrollRequestOnTemplateResponse) == "{}" { // empty struct
+	// use the discriminator to select exactly one variant
+	var jsonDict map[string]interface{}
+	err = json.Unmarshal(data, &jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "module=est;workflow=enroll") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.EstEnrollRequestOnTemplateResponse)
+		if err != nil {
 			dst.EstEnrollRequestOnTemplateResponse = nil
-		} else {
-			_ = validator.Validate(dst.EstEnrollRequestOnTemplateResponse)
-			match++
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as EstEnrollRequestOnTemplateResponse: %s", err.Error())
 		}
-	} else {
-		dst.EstEnrollRequestOnTemplateResponse = nil
+		return nil
 	}
 
-	// try to unmarshal data into ScepEnrollRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.ScepEnrollRequestOnTemplateResponse)
-	if err == nil {
-		jsonScepEnrollRequestOnTemplateResponse, _ := json.Marshal(dst.ScepEnrollRequestOnTemplateResponse)
-		if string(jsonScepEnrollRequestOnTemplateResponse) == "{}" { // empty struct
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "module=scep;workflow=enroll") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.ScepEnrollRequestOnTemplateResponse)
+		if err != nil {
 			dst.ScepEnrollRequestOnTemplateResponse = nil
-		} else {
-			_ = validator.Validate(dst.ScepEnrollRequestOnTemplateResponse)
-			match++
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as ScepEnrollRequestOnTemplateResponse: %s", err.Error())
 		}
-	} else {
-		dst.ScepEnrollRequestOnTemplateResponse = nil
+		return nil
 	}
 
-	// try to unmarshal data into WebRAEnrollRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAEnrollRequestOnTemplateResponse)
-	if err == nil {
-		jsonWebRAEnrollRequestOnTemplateResponse, _ := json.Marshal(dst.WebRAEnrollRequestOnTemplateResponse)
-		if string(jsonWebRAEnrollRequestOnTemplateResponse) == "{}" { // empty struct
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "module=webra;workflow=enroll") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRAEnrollRequestOnTemplateResponse)
+		if err != nil {
 			dst.WebRAEnrollRequestOnTemplateResponse = nil
-		} else {
-			_ = validator.Validate(dst.WebRAEnrollRequestOnTemplateResponse)
-			match++
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRAEnrollRequestOnTemplateResponse: %s", err.Error())
 		}
-	} else {
-		dst.WebRAEnrollRequestOnTemplateResponse = nil
+		return nil
 	}
 
-	// try to unmarshal data into WebRAImportRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAImportRequestOnTemplateResponse)
-	if err == nil {
-		jsonWebRAImportRequestOnTemplateResponse, _ := json.Marshal(dst.WebRAImportRequestOnTemplateResponse)
-		if string(jsonWebRAImportRequestOnTemplateResponse) == "{}" { // empty struct
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "module=webra;workflow=import") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRAImportRequestOnTemplateResponse)
+		if err != nil {
 			dst.WebRAImportRequestOnTemplateResponse = nil
-		} else {
-			_ = validator.Validate(dst.WebRAImportRequestOnTemplateResponse)
-			match++
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRAImportRequestOnTemplateResponse: %s", err.Error())
 		}
-	} else {
-		dst.WebRAImportRequestOnTemplateResponse = nil
+		return nil
 	}
 
-	// try to unmarshal data into WebRAMigrateRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAMigrateRequestOnTemplateResponse)
-	if err == nil {
-		jsonWebRAMigrateRequestOnTemplateResponse, _ := json.Marshal(dst.WebRAMigrateRequestOnTemplateResponse)
-		if string(jsonWebRAMigrateRequestOnTemplateResponse) == "{}" { // empty struct
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "module=webra;workflow=migrate") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRAMigrateRequestOnTemplateResponse)
+		if err != nil {
 			dst.WebRAMigrateRequestOnTemplateResponse = nil
-		} else {
-			_ = validator.Validate(dst.WebRAMigrateRequestOnTemplateResponse)
-			match++
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRAMigrateRequestOnTemplateResponse: %s", err.Error())
 		}
-	} else {
-		dst.WebRAMigrateRequestOnTemplateResponse = nil
+		return nil
 	}
 
-	// try to unmarshal data into WebRARecoverRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARecoverRequestOnTemplateResponse)
-	if err == nil {
-		jsonWebRARecoverRequestOnTemplateResponse, _ := json.Marshal(dst.WebRARecoverRequestOnTemplateResponse)
-		if string(jsonWebRARecoverRequestOnTemplateResponse) == "{}" { // empty struct
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "module=webra;workflow=recover") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRARecoverRequestOnTemplateResponse)
+		if err != nil {
 			dst.WebRARecoverRequestOnTemplateResponse = nil
-		} else {
-			_ = validator.Validate(dst.WebRARecoverRequestOnTemplateResponse)
-			match++
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRARecoverRequestOnTemplateResponse: %s", err.Error())
 		}
-	} else {
-		dst.WebRARecoverRequestOnTemplateResponse = nil
+		return nil
 	}
 
-	// try to unmarshal data into WebRARenewRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARenewRequestOnTemplateResponse)
-	if err == nil {
-		jsonWebRARenewRequestOnTemplateResponse, _ := json.Marshal(dst.WebRARenewRequestOnTemplateResponse)
-		if string(jsonWebRARenewRequestOnTemplateResponse) == "{}" { // empty struct
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "module=webra;workflow=renew") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRARenewRequestOnTemplateResponse)
+		if err != nil {
 			dst.WebRARenewRequestOnTemplateResponse = nil
-		} else {
-			_ = validator.Validate(dst.WebRARenewRequestOnTemplateResponse)
-			match++
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRARenewRequestOnTemplateResponse: %s", err.Error())
 		}
-	} else {
-		dst.WebRARenewRequestOnTemplateResponse = nil
+		return nil
 	}
 
-	// try to unmarshal data into WebRARevokeRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRARevokeRequestOnTemplateResponse)
-	if err == nil {
-		jsonWebRARevokeRequestOnTemplateResponse, _ := json.Marshal(dst.WebRARevokeRequestOnTemplateResponse)
-		if string(jsonWebRARevokeRequestOnTemplateResponse) == "{}" { // empty struct
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "module=webra;workflow=revoke") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRARevokeRequestOnTemplateResponse)
+		if err != nil {
 			dst.WebRARevokeRequestOnTemplateResponse = nil
-		} else {
-			_ = validator.Validate(dst.WebRARevokeRequestOnTemplateResponse)
-			match++
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRARevokeRequestOnTemplateResponse: %s", err.Error())
 		}
-	} else {
-		dst.WebRARevokeRequestOnTemplateResponse = nil
+		return nil
 	}
 
-	// try to unmarshal data into WebRAUpdateRequestOnTemplateResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.WebRAUpdateRequestOnTemplateResponse)
-	if err == nil {
-		jsonWebRAUpdateRequestOnTemplateResponse, _ := json.Marshal(dst.WebRAUpdateRequestOnTemplateResponse)
-		if string(jsonWebRAUpdateRequestOnTemplateResponse) == "{}" { // empty struct
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "module=webra;workflow=update") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRAUpdateRequestOnTemplateResponse)
+		if err != nil {
 			dst.WebRAUpdateRequestOnTemplateResponse = nil
-		} else {
-			_ = validator.Validate(dst.WebRAUpdateRequestOnTemplateResponse)
-			match++
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRAUpdateRequestOnTemplateResponse: %s", err.Error())
 		}
-	} else {
-		dst.WebRAUpdateRequestOnTemplateResponse = nil
+		return nil
 	}
 
-	if match >= 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(RequestTemplate200Response)")
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "EstEnrollRequestOnTemplateResponse") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.EstEnrollRequestOnTemplateResponse)
+		if err != nil {
+			dst.EstEnrollRequestOnTemplateResponse = nil
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as EstEnrollRequestOnTemplateResponse: %s", err.Error())
+		}
+		return nil
 	}
+
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "ScepEnrollRequestOnTemplateResponse") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.ScepEnrollRequestOnTemplateResponse)
+		if err != nil {
+			dst.ScepEnrollRequestOnTemplateResponse = nil
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as ScepEnrollRequestOnTemplateResponse: %s", err.Error())
+		}
+		return nil
+	}
+
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "WebRAEnrollRequestOnTemplateResponse") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRAEnrollRequestOnTemplateResponse)
+		if err != nil {
+			dst.WebRAEnrollRequestOnTemplateResponse = nil
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRAEnrollRequestOnTemplateResponse: %s", err.Error())
+		}
+		return nil
+	}
+
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "WebRAImportRequestOnTemplateResponse") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRAImportRequestOnTemplateResponse)
+		if err != nil {
+			dst.WebRAImportRequestOnTemplateResponse = nil
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRAImportRequestOnTemplateResponse: %s", err.Error())
+		}
+		return nil
+	}
+
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "WebRAMigrateRequestOnTemplateResponse") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRAMigrateRequestOnTemplateResponse)
+		if err != nil {
+			dst.WebRAMigrateRequestOnTemplateResponse = nil
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRAMigrateRequestOnTemplateResponse: %s", err.Error())
+		}
+		return nil
+	}
+
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "WebRARecoverRequestOnTemplateResponse") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRARecoverRequestOnTemplateResponse)
+		if err != nil {
+			dst.WebRARecoverRequestOnTemplateResponse = nil
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRARecoverRequestOnTemplateResponse: %s", err.Error())
+		}
+		return nil
+	}
+
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "WebRARenewRequestOnTemplateResponse") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRARenewRequestOnTemplateResponse)
+		if err != nil {
+			dst.WebRARenewRequestOnTemplateResponse = nil
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRARenewRequestOnTemplateResponse: %s", err.Error())
+		}
+		return nil
+	}
+
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "WebRARevokeRequestOnTemplateResponse") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRARevokeRequestOnTemplateResponse)
+		if err != nil {
+			dst.WebRARevokeRequestOnTemplateResponse = nil
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRARevokeRequestOnTemplateResponse: %s", err.Error())
+		}
+		return nil
+	}
+
+	if utils.MatchOneOfDiscriminator(jsonDict, "workflow", "WebRAUpdateRequestOnTemplateResponse") {
+		err = utils.NewStrictDecoder(data).Decode(&dst.WebRAUpdateRequestOnTemplateResponse)
+		if err != nil {
+			dst.WebRAUpdateRequestOnTemplateResponse = nil
+			return fmt.Errorf("failed to unmarshal RequestTemplate200Response as WebRAUpdateRequestOnTemplateResponse: %s", err.Error())
+		}
+		return nil
+	}
+
+	return fmt.Errorf("data failed to match schemas in oneOf(RequestTemplate200Response): no variant matches discriminator 'workflow' (%v)", jsonDict["workflow"])
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

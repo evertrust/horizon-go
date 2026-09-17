@@ -801,9 +801,10 @@ func strlen(s string) int {
 
 // GenericOpenAPIError Provides access to the body, error and model on returned errors.
 type GenericOpenAPIError struct {
-	body  []byte
-	error string
-	model interface{}
+	body       []byte
+	error      string
+	model      interface{}
+	statusCode int
 }
 
 // Error returns non-empty string if there was an error.
@@ -819,6 +820,14 @@ func (e GenericOpenAPIError) Body() []byte {
 // Model returns the unpacked model of the error
 func (e GenericOpenAPIError) Model() interface{} {
 	return e.model
+}
+
+// StatusCode returns the HTTP status code of the response that produced the
+// error, or 0 when the error happened before a response was received.
+// It is always set, even when Model() is nil (undeclared status code, body
+// that is not an RFC 7807 problem, or an undecodable success body).
+func (e GenericOpenAPIError) StatusCode() int {
+	return e.statusCode
 }
 
 // Unwrap allows errors.As / errors.Is to reach the underlying model
