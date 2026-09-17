@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
 **DsFlow** | Pointer to [**[]DataSourceFlowEntry**](DataSourceFlowEntry.md) | Representation of a datasource execution flow | [optional] 
 **Enabled** | **bool** |  | 
+**ExcludeRootCA** | Pointer to **bool** | If &#x60;true&#x60;, the root CA will be excluded from the response chain, as it should already be present on the target system | [optional] [default to false]
 **GradingPolicies** | Pointer to **[]string** |  | [optional] 
 **Http01Port** | Pointer to **NullableInt64** |  | [optional] 
 **IpIdentifierConstraint** | Pointer to **NullableString** |  | [optional] [default to "false"]
@@ -38,11 +39,11 @@ Name | Type | Description | Notes
 **Triggers** | Pointer to [**NullableCertificateProfileTriggers**](CertificateProfileTriggers.md) |  | [optional] 
 **VerifyRetryCount** | **int64** |  | 
 **VerifyRetryDelay** | **string** |  | 
-**AuthorizationMode** | **string** | The authorization mode to use.  &#x60;authorized&#x60; uses permissions to allow enrollment,  &#x60;auto-validation&#x60; uses the validation ruleset, &#x60;auto-validation-authorized&#x60; uses the validation ruleset, and if enrollment is denied, uses the permissions  | 
+**AuthorizationMode** | **string** | The authorization mode to use.  &#x60;authorized&#x60; uses permissions to allow enrollment,  &#x60;auto-validation&#x60; uses the validation ruleset, &#x60;auto-validation-authorized&#x60; uses the validation ruleset, and if enrollment is denied, uses the permissions, &#x60;challenge&#x60; allows enrollment through a one-time challenge, submitted on &#x60;/api/v1/challenge/submit&#x60;  | 
 **Ca** | **string** |  | 
 **DnWhitelist** | **bool** |  | 
 **EnrollAuthorizedCas** | Pointer to **[]string** |  | [optional] 
-**PasswordPolicy** | Pointer to **NullableString** |  | [optional] 
+**PasswordPolicy** | Pointer to **string** | Reference to a &#x60;Password policy&#x60; object, used to generate the challenge. Required when the authorization mode is &#x60;challenge&#x60;, and rejected otherwise | [optional] 
 **RenewalAuthorizedCas** | Pointer to **[]string** |  | [optional] 
 **TermsOfService** | Pointer to **string** | Reference to a &#x60;Terms of service&#x60; object. If defined, it will be displayed on the enrollment workflow before starting certificate enrollment | [optional] 
 **ValidationRuleset** | Pointer to [**NullableValidationRuleset**](ValidationRuleset.md) |  | [optional] 
@@ -470,6 +471,31 @@ and a boolean to check if the value has been set.
 
 SetEnabled sets Enabled field to given value.
 
+
+### GetExcludeRootCA
+
+`func (o *CertificateProfileResponses) GetExcludeRootCA() bool`
+
+GetExcludeRootCA returns the ExcludeRootCA field if non-nil, zero value otherwise.
+
+### GetExcludeRootCAOk
+
+`func (o *CertificateProfileResponses) GetExcludeRootCAOk() (*bool, bool)`
+
+GetExcludeRootCAOk returns a tuple with the ExcludeRootCA field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludeRootCA
+
+`func (o *CertificateProfileResponses) SetExcludeRootCA(v bool)`
+
+SetExcludeRootCA sets ExcludeRootCA field to given value.
+
+### HasExcludeRootCA
+
+`func (o *CertificateProfileResponses) HasExcludeRootCA() bool`
+
+HasExcludeRootCA returns a boolean if a field has been set.
 
 ### GetGradingPolicies
 
@@ -1156,16 +1182,6 @@ SetPasswordPolicy sets PasswordPolicy field to given value.
 
 HasPasswordPolicy returns a boolean if a field has been set.
 
-### SetPasswordPolicyNil
-
-`func (o *CertificateProfileResponses) SetPasswordPolicyNil(b bool)`
-
- SetPasswordPolicyNil sets the value for PasswordPolicy to be an explicit nil
-
-### UnsetPasswordPolicy
-`func (o *CertificateProfileResponses) UnsetPasswordPolicy()`
-
-UnsetPasswordPolicy ensures that no value is present for PasswordPolicy, not even an explicit nil
 ### GetRenewalAuthorizedCas
 
 `func (o *CertificateProfileResponses) GetRenewalAuthorizedCas() []string`

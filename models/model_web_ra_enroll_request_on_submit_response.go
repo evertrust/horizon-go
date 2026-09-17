@@ -30,7 +30,7 @@ type WebRAEnrollRequestOnSubmitResponse struct {
 	ExternalId map[string]interface{} `json:"externalId,omitempty"`
 	// The module that will be used to process this request. For a WebRA request, this is always `webra`
 	Module string `json:"module"`
-	// The password to decrypt the PKCS12 file.
+	// The password to decrypt the PKCS12 file. On a profile whose authorization mode is `challenge`, this holds the generated challenge instead
 	Password NullableSecretString `json:"password,omitempty"`
 	// The generated PKCS#12 for this request. This is only available after the request has been approved in centralized mode
 	Pkcs12 NullableSecretString `json:"pkcs12,omitempty"`

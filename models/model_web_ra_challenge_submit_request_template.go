@@ -12,145 +12,115 @@ package models
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/evertrust/horizon-go/v2/utils"
 )
 
-// checks if the WebraInitParameters type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &WebraInitParameters{}
+// checks if the WebRAChallengeSubmitRequestTemplate type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &WebRAChallengeSubmitRequestTemplate{}
 
-// WebraInitParameters struct for WebraInitParameters
-type WebraInitParameters struct {
-	// The authorization mode for WebRA.
-	AuthorizationMode *string `json:"authorizationMode,omitempty"`
-	// If true, the certificate data passed in the request submission will be ignored by the server
-	CertificateDataIgnored bool `json:"certificateDataIgnored"`
-	// The enrollment mode for WebRA.
-	EnrollmentMode *string `json:"enrollmentMode,omitempty"`
-	// The key type used for WebRA.
-	KeyType *string `json:"keyType,omitempty"`
-	// The module of the initialization parameters.
-	Module string `json:"module"`
-	// The password policy for WebRA.
-	PasswordPolicy *PasswordPolicy `json:"passwordPolicy,omitempty"`
-	// The profile used for WebRA.
-	Profile              string `json:"profile"`
+// WebRAChallengeSubmitRequestTemplate The user-data that will be used to generate the certificate.  The identity is either fixed by the profile's certificate template, or supplied here: - if the profile defines a certificate template, the identity is taken from the challenge and the `subject`, `sans` and `extensions` fields are rejected; - if the profile's certificate template is empty, the identity is taken from the `subject`, `sans` and `extensions` fields.
+type WebRAChallengeSubmitRequestTemplate struct {
+	// The certificate signing request to enroll, in decentralized mode. Mutually exclusive with `keyType`
+	Csr *string `json:"csr,omitempty"`
+	// List of extension elements that will be used to build the certificate's extensions. Only accepted if the profile's certificate template is empty
+	Extensions []CertificateExtensionElement `json:"extensions,omitempty"`
+	// The type of key that will be generated, in centralized mode. Mutually exclusive with `csr`
+	KeyType *string `json:"keyType,omitempty" validate:"regexp=(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ec-brainpoolp256r1|ec-brainpoolp384r1|ec-brainpoolp512r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512)(\\\\\\\\+(rsa-2048|rsa-3072|rsa-4096|rsa-8192|ec-secp256r1|ec-secp384r1|ec-secp521r1|ec-brainpoolp256r1|ec-brainpoolp384r1|ec-brainpoolp512r1|ed-448|ed-25519|mldsa-44|mldsa-65|mldsa-87|slhdsa-sha2-128s|slhdsa-sha2-128f|slhdsa-sha2-192s|slhdsa-sha2-192f|slhdsa-sha2-256s|slhdsa-sha2-256f|slhdsa-sha2-128ssha256|slhdsa-sha2-128fsha256|slhdsa-sha2-192ssha512|slhdsa-sha2-192fsha512|slhdsa-sha2-256ssha512|slhdsa-sha2-256fsha512))?"`
+	// List of metadata elements to set on the certificate. Only the `automation_policy` metadata may be set here, and only to a policy authorized on the profile
+	Metadata []CertificateMetadataElement `json:"metadata,omitempty"`
+	// List of SAN elements that will be used to build the certificate's Subject Alternative Name. Only accepted if the profile's certificate template is empty
+	Sans []ListSANElement `json:"sans,omitempty"`
+	// List of DN elements that will be used to build the certificate's Distinguished Name. Only accepted if the profile's certificate template is empty
+	Subject              []IndexedDNElement `json:"subject,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _WebraInitParameters WebraInitParameters
+type _WebRAChallengeSubmitRequestTemplate WebRAChallengeSubmitRequestTemplate
 
-// NewWebraInitParameters instantiates a new WebraInitParameters object
+// NewWebRAChallengeSubmitRequestTemplate instantiates a new WebRAChallengeSubmitRequestTemplate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebraInitParameters(certificateDataIgnored bool, module string, profile string) *WebraInitParameters {
-	this := WebraInitParameters{}
-	this.CertificateDataIgnored = certificateDataIgnored
-	this.Module = module
-	this.Profile = profile
+func NewWebRAChallengeSubmitRequestTemplate() *WebRAChallengeSubmitRequestTemplate {
+	this := WebRAChallengeSubmitRequestTemplate{}
 	return &this
 }
 
-// NewWebraInitParametersWithDefaults instantiates a new WebraInitParameters object
+// NewWebRAChallengeSubmitRequestTemplateWithDefaults instantiates a new WebRAChallengeSubmitRequestTemplate object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewWebraInitParametersWithDefaults() *WebraInitParameters {
-	this := WebraInitParameters{}
+func NewWebRAChallengeSubmitRequestTemplateWithDefaults() *WebRAChallengeSubmitRequestTemplate {
+	this := WebRAChallengeSubmitRequestTemplate{}
 	return &this
 }
 
-// GetAuthorizationMode returns the AuthorizationMode field value if set, zero value otherwise.
-func (o *WebraInitParameters) GetAuthorizationMode() string {
-	if o == nil || utils.IsNil(o.AuthorizationMode) {
+// GetCsr returns the Csr field value if set, zero value otherwise.
+func (o *WebRAChallengeSubmitRequestTemplate) GetCsr() string {
+	if o == nil || utils.IsNil(o.Csr) {
 		var ret string
 		return ret
 	}
-	return *o.AuthorizationMode
+	return *o.Csr
 }
 
-// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value if set, nil otherwise
+// GetCsrOk returns a tuple with the Csr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetAuthorizationModeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.AuthorizationMode) {
+func (o *WebRAChallengeSubmitRequestTemplate) GetCsrOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Csr) {
 		return nil, false
 	}
-	return o.AuthorizationMode, true
+	return o.Csr, true
 }
 
-// HasAuthorizationMode returns a boolean if a field has been set.
-func (o *WebraInitParameters) HasAuthorizationMode() bool {
-	if o != nil && !utils.IsNil(o.AuthorizationMode) {
+// HasCsr returns a boolean if a field has been set.
+func (o *WebRAChallengeSubmitRequestTemplate) HasCsr() bool {
+	if o != nil && !utils.IsNil(o.Csr) {
 		return true
 	}
 
 	return false
 }
 
-// SetAuthorizationMode gets a reference to the given string and assigns it to the AuthorizationMode field.
-func (o *WebraInitParameters) SetAuthorizationMode(v string) {
-	o.AuthorizationMode = &v
+// SetCsr gets a reference to the given string and assigns it to the Csr field.
+func (o *WebRAChallengeSubmitRequestTemplate) SetCsr(v string) {
+	o.Csr = &v
 }
 
-// GetCertificateDataIgnored returns the CertificateDataIgnored field value
-func (o *WebraInitParameters) GetCertificateDataIgnored() bool {
-	if o == nil {
-		var ret bool
+// GetExtensions returns the Extensions field value if set, zero value otherwise.
+func (o *WebRAChallengeSubmitRequestTemplate) GetExtensions() []CertificateExtensionElement {
+	if o == nil || utils.IsNil(o.Extensions) {
+		var ret []CertificateExtensionElement
 		return ret
 	}
-
-	return o.CertificateDataIgnored
+	return o.Extensions
 }
 
-// GetCertificateDataIgnoredOk returns a tuple with the CertificateDataIgnored field value
+// GetExtensionsOk returns a tuple with the Extensions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetCertificateDataIgnoredOk() (*bool, bool) {
-	if o == nil {
+func (o *WebRAChallengeSubmitRequestTemplate) GetExtensionsOk() ([]CertificateExtensionElement, bool) {
+	if o == nil || utils.IsNil(o.Extensions) {
 		return nil, false
 	}
-	return &o.CertificateDataIgnored, true
+	return o.Extensions, true
 }
 
-// SetCertificateDataIgnored sets field value
-func (o *WebraInitParameters) SetCertificateDataIgnored(v bool) {
-	o.CertificateDataIgnored = v
-}
-
-// GetEnrollmentMode returns the EnrollmentMode field value if set, zero value otherwise.
-func (o *WebraInitParameters) GetEnrollmentMode() string {
-	if o == nil || utils.IsNil(o.EnrollmentMode) {
-		var ret string
-		return ret
-	}
-	return *o.EnrollmentMode
-}
-
-// GetEnrollmentModeOk returns a tuple with the EnrollmentMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetEnrollmentModeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.EnrollmentMode) {
-		return nil, false
-	}
-	return o.EnrollmentMode, true
-}
-
-// HasEnrollmentMode returns a boolean if a field has been set.
-func (o *WebraInitParameters) HasEnrollmentMode() bool {
-	if o != nil && !utils.IsNil(o.EnrollmentMode) {
+// HasExtensions returns a boolean if a field has been set.
+func (o *WebRAChallengeSubmitRequestTemplate) HasExtensions() bool {
+	if o != nil && !utils.IsNil(o.Extensions) {
 		return true
 	}
 
 	return false
 }
 
-// SetEnrollmentMode gets a reference to the given string and assigns it to the EnrollmentMode field.
-func (o *WebraInitParameters) SetEnrollmentMode(v string) {
-	o.EnrollmentMode = &v
+// SetExtensions gets a reference to the given []CertificateExtensionElement and assigns it to the Extensions field.
+func (o *WebRAChallengeSubmitRequestTemplate) SetExtensions(v []CertificateExtensionElement) {
+	o.Extensions = v
 }
 
 // GetKeyType returns the KeyType field value if set, zero value otherwise.
-func (o *WebraInitParameters) GetKeyType() string {
+func (o *WebRAChallengeSubmitRequestTemplate) GetKeyType() string {
 	if o == nil || utils.IsNil(o.KeyType) {
 		var ret string
 		return ret
@@ -160,7 +130,7 @@ func (o *WebraInitParameters) GetKeyType() string {
 
 // GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetKeyTypeOk() (*string, bool) {
+func (o *WebRAChallengeSubmitRequestTemplate) GetKeyTypeOk() (*string, bool) {
 	if o == nil || utils.IsNil(o.KeyType) {
 		return nil, false
 	}
@@ -168,7 +138,7 @@ func (o *WebraInitParameters) GetKeyTypeOk() (*string, bool) {
 }
 
 // HasKeyType returns a boolean if a field has been set.
-func (o *WebraInitParameters) HasKeyType() bool {
+func (o *WebRAChallengeSubmitRequestTemplate) HasKeyType() bool {
 	if o != nil && !utils.IsNil(o.KeyType) {
 		return true
 	}
@@ -177,91 +147,107 @@ func (o *WebraInitParameters) HasKeyType() bool {
 }
 
 // SetKeyType gets a reference to the given string and assigns it to the KeyType field.
-func (o *WebraInitParameters) SetKeyType(v string) {
+func (o *WebRAChallengeSubmitRequestTemplate) SetKeyType(v string) {
 	o.KeyType = &v
 }
 
-// GetModule returns the Module field value
-func (o *WebraInitParameters) GetModule() string {
-	if o == nil {
-		var ret string
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *WebRAChallengeSubmitRequestTemplate) GetMetadata() []CertificateMetadataElement {
+	if o == nil || utils.IsNil(o.Metadata) {
+		var ret []CertificateMetadataElement
 		return ret
 	}
-
-	return o.Module
+	return o.Metadata
 }
 
-// GetModuleOk returns a tuple with the Module field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetModuleOk() (*string, bool) {
-	if o == nil {
+func (o *WebRAChallengeSubmitRequestTemplate) GetMetadataOk() ([]CertificateMetadataElement, bool) {
+	if o == nil || utils.IsNil(o.Metadata) {
 		return nil, false
 	}
-	return &o.Module, true
+	return o.Metadata, true
 }
 
-// SetModule sets field value
-func (o *WebraInitParameters) SetModule(v string) {
-	o.Module = v
-}
-
-// GetPasswordPolicy returns the PasswordPolicy field value if set, zero value otherwise.
-func (o *WebraInitParameters) GetPasswordPolicy() PasswordPolicy {
-	if o == nil || utils.IsNil(o.PasswordPolicy) {
-		var ret PasswordPolicy
-		return ret
-	}
-	return *o.PasswordPolicy
-}
-
-// GetPasswordPolicyOk returns a tuple with the PasswordPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetPasswordPolicyOk() (*PasswordPolicy, bool) {
-	if o == nil || utils.IsNil(o.PasswordPolicy) {
-		return nil, false
-	}
-	return o.PasswordPolicy, true
-}
-
-// HasPasswordPolicy returns a boolean if a field has been set.
-func (o *WebraInitParameters) HasPasswordPolicy() bool {
-	if o != nil && !utils.IsNil(o.PasswordPolicy) {
+// HasMetadata returns a boolean if a field has been set.
+func (o *WebRAChallengeSubmitRequestTemplate) HasMetadata() bool {
+	if o != nil && !utils.IsNil(o.Metadata) {
 		return true
 	}
 
 	return false
 }
 
-// SetPasswordPolicy gets a reference to the given PasswordPolicy and assigns it to the PasswordPolicy field.
-func (o *WebraInitParameters) SetPasswordPolicy(v PasswordPolicy) {
-	o.PasswordPolicy = &v
+// SetMetadata gets a reference to the given []CertificateMetadataElement and assigns it to the Metadata field.
+func (o *WebRAChallengeSubmitRequestTemplate) SetMetadata(v []CertificateMetadataElement) {
+	o.Metadata = v
 }
 
-// GetProfile returns the Profile field value
-func (o *WebraInitParameters) GetProfile() string {
-	if o == nil {
-		var ret string
+// GetSans returns the Sans field value if set, zero value otherwise.
+func (o *WebRAChallengeSubmitRequestTemplate) GetSans() []ListSANElement {
+	if o == nil || utils.IsNil(o.Sans) {
+		var ret []ListSANElement
 		return ret
 	}
-
-	return o.Profile
+	return o.Sans
 }
 
-// GetProfileOk returns a tuple with the Profile field value
+// GetSansOk returns a tuple with the Sans field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetProfileOk() (*string, bool) {
-	if o == nil {
+func (o *WebRAChallengeSubmitRequestTemplate) GetSansOk() ([]ListSANElement, bool) {
+	if o == nil || utils.IsNil(o.Sans) {
 		return nil, false
 	}
-	return &o.Profile, true
+	return o.Sans, true
 }
 
-// SetProfile sets field value
-func (o *WebraInitParameters) SetProfile(v string) {
-	o.Profile = v
+// HasSans returns a boolean if a field has been set.
+func (o *WebRAChallengeSubmitRequestTemplate) HasSans() bool {
+	if o != nil && !utils.IsNil(o.Sans) {
+		return true
+	}
+
+	return false
 }
 
-func (o WebraInitParameters) MarshalJSON() ([]byte, error) {
+// SetSans gets a reference to the given []ListSANElement and assigns it to the Sans field.
+func (o *WebRAChallengeSubmitRequestTemplate) SetSans(v []ListSANElement) {
+	o.Sans = v
+}
+
+// GetSubject returns the Subject field value if set, zero value otherwise.
+func (o *WebRAChallengeSubmitRequestTemplate) GetSubject() []IndexedDNElement {
+	if o == nil || utils.IsNil(o.Subject) {
+		var ret []IndexedDNElement
+		return ret
+	}
+	return o.Subject
+}
+
+// GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRAChallengeSubmitRequestTemplate) GetSubjectOk() ([]IndexedDNElement, bool) {
+	if o == nil || utils.IsNil(o.Subject) {
+		return nil, false
+	}
+	return o.Subject, true
+}
+
+// HasSubject returns a boolean if a field has been set.
+func (o *WebRAChallengeSubmitRequestTemplate) HasSubject() bool {
+	if o != nil && !utils.IsNil(o.Subject) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubject gets a reference to the given []IndexedDNElement and assigns it to the Subject field.
+func (o *WebRAChallengeSubmitRequestTemplate) SetSubject(v []IndexedDNElement) {
+	o.Subject = v
+}
+
+func (o WebRAChallengeSubmitRequestTemplate) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -269,23 +255,26 @@ func (o WebraInitParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o WebraInitParameters) ToMap() (map[string]interface{}, error) {
+func (o WebRAChallengeSubmitRequestTemplate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.AuthorizationMode) {
-		toSerialize["authorizationMode"] = o.AuthorizationMode
+	if !utils.IsNil(o.Csr) {
+		toSerialize["csr"] = o.Csr
 	}
-	toSerialize["certificateDataIgnored"] = o.CertificateDataIgnored
-	if !utils.IsNil(o.EnrollmentMode) {
-		toSerialize["enrollmentMode"] = o.EnrollmentMode
+	if !utils.IsNil(o.Extensions) {
+		toSerialize["extensions"] = o.Extensions
 	}
 	if !utils.IsNil(o.KeyType) {
 		toSerialize["keyType"] = o.KeyType
 	}
-	toSerialize["module"] = o.Module
-	if !utils.IsNil(o.PasswordPolicy) {
-		toSerialize["passwordPolicy"] = o.PasswordPolicy
+	if !utils.IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
 	}
-	toSerialize["profile"] = o.Profile
+	if !utils.IsNil(o.Sans) {
+		toSerialize["sans"] = o.Sans
+	}
+	if !utils.IsNil(o.Subject) {
+		toSerialize["subject"] = o.Subject
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -294,88 +283,64 @@ func (o WebraInitParameters) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *WebraInitParameters) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"certificateDataIgnored",
-		"module",
-		"profile",
-	}
+func (o *WebRAChallengeSubmitRequestTemplate) UnmarshalJSON(data []byte) (err error) {
+	varWebRAChallengeSubmitRequestTemplate := _WebRAChallengeSubmitRequestTemplate{}
 
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
+	err = json.Unmarshal(data, &varWebRAChallengeSubmitRequestTemplate)
 
 	if err != nil {
 		return err
 	}
 
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWebraInitParameters := _WebraInitParameters{}
-
-	err = json.Unmarshal(data, &varWebraInitParameters)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WebraInitParameters(varWebraInitParameters)
+	*o = WebRAChallengeSubmitRequestTemplate(varWebRAChallengeSubmitRequestTemplate)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "authorizationMode")
-		delete(additionalProperties, "certificateDataIgnored")
-		delete(additionalProperties, "enrollmentMode")
+		delete(additionalProperties, "csr")
+		delete(additionalProperties, "extensions")
 		delete(additionalProperties, "keyType")
-		delete(additionalProperties, "module")
-		delete(additionalProperties, "passwordPolicy")
-		delete(additionalProperties, "profile")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "sans")
+		delete(additionalProperties, "subject")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableWebraInitParameters struct {
-	value *WebraInitParameters
+type NullableWebRAChallengeSubmitRequestTemplate struct {
+	value *WebRAChallengeSubmitRequestTemplate
 	isSet bool
 }
 
-func (v NullableWebraInitParameters) Get() *WebraInitParameters {
+func (v NullableWebRAChallengeSubmitRequestTemplate) Get() *WebRAChallengeSubmitRequestTemplate {
 	return v.value
 }
 
-func (v *NullableWebraInitParameters) Set(val *WebraInitParameters) {
+func (v *NullableWebRAChallengeSubmitRequestTemplate) Set(val *WebRAChallengeSubmitRequestTemplate) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableWebraInitParameters) IsSet() bool {
+func (v NullableWebRAChallengeSubmitRequestTemplate) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableWebraInitParameters) Unset() {
+func (v *NullableWebRAChallengeSubmitRequestTemplate) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableWebraInitParameters(val *WebraInitParameters) *NullableWebraInitParameters {
-	return &NullableWebraInitParameters{value: val, isSet: true}
+func NewNullableWebRAChallengeSubmitRequestTemplate(val *WebRAChallengeSubmitRequestTemplate) *NullableWebRAChallengeSubmitRequestTemplate {
+	return &NullableWebRAChallengeSubmitRequestTemplate{value: val, isSet: true}
 }
 
-func (v NullableWebraInitParameters) MarshalJSON() ([]byte, error) {
+func (v NullableWebRAChallengeSubmitRequestTemplate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableWebraInitParameters) UnmarshalJSON(src []byte) error {
+func (v *NullableWebRAChallengeSubmitRequestTemplate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

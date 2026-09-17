@@ -25,14 +25,16 @@ type WebRAProfileResponse struct {
 	// Object internal ID
 	Id                  string                                `json:"_id"`
 	AuthorizationLevels CertificateProfileAuthorizationLevels `json:"authorizationLevels"`
-	// The authorization mode to use.  `authorized` uses permissions to allow enrollment,  `auto-validation` uses the validation ruleset, `auto-validation-authorized` uses the validation ruleset, and if enrollment is denied, uses the permissions
-	AuthorizationMode   string                                `json:"authorizationMode"`
-	AutoRenewalPolicy   *AutoRenewalPolicy                    `json:"autoRenewalPolicy,omitempty"`
-	CertificateTemplate CertificateTemplate                   `json:"certificateTemplate"`
-	CryptoPolicy        ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
-	CsrDataMapping      map[string]string                     `json:"csrDataMapping,omitempty"`
-	Description         []LocalizedString                     `json:"description,omitempty"`
-	DisplayName         []LocalizedString                     `json:"displayName,omitempty"`
+	// The authorization mode to use.  `authorized` uses permissions to allow enrollment,  `auto-validation` uses the validation ruleset, `auto-validation-authorized` uses the validation ruleset, and if enrollment is denied, uses the permissions, `challenge` allows enrollment through a one-time challenge, submitted on `/api/v1/challenge/submit`
+	AuthorizationMode   string              `json:"authorizationMode"`
+	AutoRenewalPolicy   *AutoRenewalPolicy  `json:"autoRenewalPolicy,omitempty"`
+	CertificateTemplate CertificateTemplate `json:"certificateTemplate"`
+	// Restricts the identity a certificate may carry on this profile
+	Constraints    *CertificateRequestConstraints        `json:"constraints,omitempty"`
+	CryptoPolicy   ManagedCertificateProfileCryptoPolicy `json:"cryptoPolicy"`
+	CsrDataMapping map[string]string                     `json:"csrDataMapping,omitempty"`
+	Description    []LocalizedString                     `json:"description,omitempty"`
+	DisplayName    []LocalizedString                     `json:"displayName,omitempty"`
 	// Representation of a datasource execution flow
 	DsFlow                        []DataSourceFlowEntry                 `json:"dsFlow,omitempty"`
 	Enabled                       bool                                  `json:"enabled"`
@@ -40,10 +42,12 @@ type WebRAProfileResponse struct {
 	MaxCertificatePerHolderPolicy NullableMaxCertificatePerHolderPolicy `json:"maxCertificatePerHolderPolicy,omitempty"`
 	Module                        string                                `json:"module"`
 	Name                          string                                `json:"name"`
-	PkiConnector                  string                                `json:"pkiConnector"`
-	RenewalPeriod                 utils.NullableString                  `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	RequestsPolicy                RequestsPolicy                        `json:"requestsPolicy"`
-	SelfPermissions               CertificateProfileSelfPermissions     `json:"selfPermissions"`
+	// Reference to a `Password policy` object, used to generate the challenge. Required when the authorization mode is `challenge`, and rejected otherwise
+	PasswordPolicy  *string                           `json:"passwordPolicy,omitempty"`
+	PkiConnector    string                            `json:"pkiConnector"`
+	RenewalPeriod   utils.NullableString              `json:"renewalPeriod,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	RequestsPolicy  RequestsPolicy                    `json:"requestsPolicy"`
+	SelfPermissions CertificateProfileSelfPermissions `json:"selfPermissions"`
 	// Reference to a `Terms of service` object. If defined, it will be displayed on the enrollment workflow before starting certificate enrollment
 	TermsOfService          *string                            `json:"termsOfService,omitempty"`
 	ThirdPartyDiscoverySync utils.NullableBool                 `json:"thirdPartyDiscoverySync,omitempty"`
@@ -212,6 +216,38 @@ func (o *WebRAProfileResponse) GetCertificateTemplateOk() (*CertificateTemplate,
 // SetCertificateTemplate sets field value
 func (o *WebRAProfileResponse) SetCertificateTemplate(v CertificateTemplate) {
 	o.CertificateTemplate = v
+}
+
+// GetConstraints returns the Constraints field value if set, zero value otherwise.
+func (o *WebRAProfileResponse) GetConstraints() CertificateRequestConstraints {
+	if o == nil || utils.IsNil(o.Constraints) {
+		var ret CertificateRequestConstraints
+		return ret
+	}
+	return *o.Constraints
+}
+
+// GetConstraintsOk returns a tuple with the Constraints field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRAProfileResponse) GetConstraintsOk() (*CertificateRequestConstraints, bool) {
+	if o == nil || utils.IsNil(o.Constraints) {
+		return nil, false
+	}
+	return o.Constraints, true
+}
+
+// HasConstraints returns a boolean if a field has been set.
+func (o *WebRAProfileResponse) HasConstraints() bool {
+	if o != nil && !utils.IsNil(o.Constraints) {
+		return true
+	}
+
+	return false
+}
+
+// SetConstraints gets a reference to the given CertificateRequestConstraints and assigns it to the Constraints field.
+func (o *WebRAProfileResponse) SetConstraints(v CertificateRequestConstraints) {
+	o.Constraints = &v
 }
 
 // GetCryptoPolicy returns the CryptoPolicy field value
@@ -518,6 +554,38 @@ func (o *WebRAProfileResponse) SetName(v string) {
 	o.Name = v
 }
 
+// GetPasswordPolicy returns the PasswordPolicy field value if set, zero value otherwise.
+func (o *WebRAProfileResponse) GetPasswordPolicy() string {
+	if o == nil || utils.IsNil(o.PasswordPolicy) {
+		var ret string
+		return ret
+	}
+	return *o.PasswordPolicy
+}
+
+// GetPasswordPolicyOk returns a tuple with the PasswordPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRAProfileResponse) GetPasswordPolicyOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.PasswordPolicy) {
+		return nil, false
+	}
+	return o.PasswordPolicy, true
+}
+
+// HasPasswordPolicy returns a boolean if a field has been set.
+func (o *WebRAProfileResponse) HasPasswordPolicy() bool {
+	if o != nil && !utils.IsNil(o.PasswordPolicy) {
+		return true
+	}
+
+	return false
+}
+
+// SetPasswordPolicy gets a reference to the given string and assigns it to the PasswordPolicy field.
+func (o *WebRAProfileResponse) SetPasswordPolicy(v string) {
+	o.PasswordPolicy = &v
+}
+
 // GetPkiConnector returns the PkiConnector field value
 func (o *WebRAProfileResponse) GetPkiConnector() string {
 	if o == nil {
@@ -811,6 +879,9 @@ func (o WebRAProfileResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["autoRenewalPolicy"] = o.AutoRenewalPolicy
 	}
 	toSerialize["certificateTemplate"] = o.CertificateTemplate
+	if !utils.IsNil(o.Constraints) {
+		toSerialize["constraints"] = o.Constraints
+	}
 	toSerialize["cryptoPolicy"] = o.CryptoPolicy
 	if o.CsrDataMapping != nil {
 		toSerialize["csrDataMapping"] = o.CsrDataMapping
@@ -833,6 +904,9 @@ func (o WebRAProfileResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["module"] = o.Module
 	toSerialize["name"] = o.Name
+	if !utils.IsNil(o.PasswordPolicy) {
+		toSerialize["passwordPolicy"] = o.PasswordPolicy
+	}
 	toSerialize["pkiConnector"] = o.PkiConnector
 	if o.RenewalPeriod.IsSet() {
 		toSerialize["renewalPeriod"] = o.RenewalPeriod.Get()
@@ -909,6 +983,7 @@ func (o *WebRAProfileResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "authorizationMode")
 		delete(additionalProperties, "autoRenewalPolicy")
 		delete(additionalProperties, "certificateTemplate")
+		delete(additionalProperties, "constraints")
 		delete(additionalProperties, "cryptoPolicy")
 		delete(additionalProperties, "csrDataMapping")
 		delete(additionalProperties, "description")
@@ -919,6 +994,7 @@ func (o *WebRAProfileResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "maxCertificatePerHolderPolicy")
 		delete(additionalProperties, "module")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "passwordPolicy")
 		delete(additionalProperties, "pkiConnector")
 		delete(additionalProperties, "renewalPeriod")
 		delete(additionalProperties, "requestsPolicy")

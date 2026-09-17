@@ -15,160 +15,193 @@ import (
 	"fmt"
 
 	"github.com/evertrust/horizon-go/v2/utils"
-	"gopkg.in/validator.v2"
 )
 
-// DcvProviderList200ResponseInner - struct for DcvProviderList200ResponseInner
-type DcvProviderList200ResponseInner struct {
-	DigicertDCVProviderConfigResponse       *DigicertDCVProviderConfigResponse
-	GlobalSignMsslDCVProviderConfigResponse *GlobalSignMsslDCVProviderConfigResponse
-	SectigoDCVProviderConfigResponse        *SectigoDCVProviderConfigResponse
+// checks if the WebRAChallengeSubmitResponse type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &WebRAChallengeSubmitResponse{}
+
+// WebRAChallengeSubmitResponse The result of a challenge consumption. The challenge is consumed whether or not it is presented again: a second call presenting the same challenge is rejected.  In centralized mode, the PKCS#12 is returned here and never persisted: it is encrypted with the submitted challenge as its password, and cannot be retrieved afterwards.
+type WebRAChallengeSubmitResponse struct {
+	// The certificate that was enrolled (PEM)
+	Certificate string `json:"certificate"`
+	// The generated PKCS#12, only returned in centralized mode. It is encrypted with the submitted challenge as its password, in DER Base64 format.
+	Pkcs12               *string `json:"pkcs12,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
-// DigicertDCVProviderConfigResponseAsDcvProviderList200ResponseInner is a convenience function that returns DigicertDCVProviderConfigResponse wrapped in DcvProviderList200ResponseInner
-func DigicertDCVProviderConfigResponseAsDcvProviderList200ResponseInner(v *DigicertDCVProviderConfigResponse) DcvProviderList200ResponseInner {
-	return DcvProviderList200ResponseInner{
-		DigicertDCVProviderConfigResponse: v,
+type _WebRAChallengeSubmitResponse WebRAChallengeSubmitResponse
+
+// NewWebRAChallengeSubmitResponse instantiates a new WebRAChallengeSubmitResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewWebRAChallengeSubmitResponse(certificate string) *WebRAChallengeSubmitResponse {
+	this := WebRAChallengeSubmitResponse{}
+	this.Certificate = certificate
+	return &this
+}
+
+// NewWebRAChallengeSubmitResponseWithDefaults instantiates a new WebRAChallengeSubmitResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewWebRAChallengeSubmitResponseWithDefaults() *WebRAChallengeSubmitResponse {
+	this := WebRAChallengeSubmitResponse{}
+	return &this
+}
+
+// GetCertificate returns the Certificate field value
+func (o *WebRAChallengeSubmitResponse) GetCertificate() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
+
+	return o.Certificate
 }
 
-// GlobalSignMsslDCVProviderConfigResponseAsDcvProviderList200ResponseInner is a convenience function that returns GlobalSignMsslDCVProviderConfigResponse wrapped in DcvProviderList200ResponseInner
-func GlobalSignMsslDCVProviderConfigResponseAsDcvProviderList200ResponseInner(v *GlobalSignMsslDCVProviderConfigResponse) DcvProviderList200ResponseInner {
-	return DcvProviderList200ResponseInner{
-		GlobalSignMsslDCVProviderConfigResponse: v,
+// GetCertificateOk returns a tuple with the Certificate field value
+// and a boolean to check if the value has been set.
+func (o *WebRAChallengeSubmitResponse) GetCertificateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
 	}
+	return &o.Certificate, true
 }
 
-// SectigoDCVProviderConfigResponseAsDcvProviderList200ResponseInner is a convenience function that returns SectigoDCVProviderConfigResponse wrapped in DcvProviderList200ResponseInner
-func SectigoDCVProviderConfigResponseAsDcvProviderList200ResponseInner(v *SectigoDCVProviderConfigResponse) DcvProviderList200ResponseInner {
-	return DcvProviderList200ResponseInner{
-		SectigoDCVProviderConfigResponse: v,
+// SetCertificate sets field value
+func (o *WebRAChallengeSubmitResponse) SetCertificate(v string) {
+	o.Certificate = v
+}
+
+// GetPkcs12 returns the Pkcs12 field value if set, zero value otherwise.
+func (o *WebRAChallengeSubmitResponse) GetPkcs12() string {
+	if o == nil || utils.IsNil(o.Pkcs12) {
+		var ret string
+		return ret
 	}
+	return *o.Pkcs12
 }
 
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *DcvProviderList200ResponseInner) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into DigicertDCVProviderConfigResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.DigicertDCVProviderConfigResponse)
-	if err == nil {
-		jsonDigicertDCVProviderConfigResponse, _ := json.Marshal(dst.DigicertDCVProviderConfigResponse)
-		if string(jsonDigicertDCVProviderConfigResponse) == "{}" { // empty struct
-			dst.DigicertDCVProviderConfigResponse = nil
-		} else {
-			_ = validator.Validate(dst.DigicertDCVProviderConfigResponse)
-			match++
+// GetPkcs12Ok returns a tuple with the Pkcs12 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebRAChallengeSubmitResponse) GetPkcs12Ok() (*string, bool) {
+	if o == nil || utils.IsNil(o.Pkcs12) {
+		return nil, false
+	}
+	return o.Pkcs12, true
+}
+
+// HasPkcs12 returns a boolean if a field has been set.
+func (o *WebRAChallengeSubmitResponse) HasPkcs12() bool {
+	if o != nil && !utils.IsNil(o.Pkcs12) {
+		return true
+	}
+
+	return false
+}
+
+// SetPkcs12 gets a reference to the given string and assigns it to the Pkcs12 field.
+func (o *WebRAChallengeSubmitResponse) SetPkcs12(v string) {
+	o.Pkcs12 = &v
+}
+
+func (o WebRAChallengeSubmitResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o WebRAChallengeSubmitResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["certificate"] = o.Certificate
+	if !utils.IsNil(o.Pkcs12) {
+		toSerialize["pkcs12"] = o.Pkcs12
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *WebRAChallengeSubmitResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"certificate",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
-	} else {
-		dst.DigicertDCVProviderConfigResponse = nil
 	}
 
-	// try to unmarshal data into GlobalSignMsslDCVProviderConfigResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.GlobalSignMsslDCVProviderConfigResponse)
-	if err == nil {
-		jsonGlobalSignMsslDCVProviderConfigResponse, _ := json.Marshal(dst.GlobalSignMsslDCVProviderConfigResponse)
-		if string(jsonGlobalSignMsslDCVProviderConfigResponse) == "{}" { // empty struct
-			dst.GlobalSignMsslDCVProviderConfigResponse = nil
-		} else {
-			_ = validator.Validate(dst.GlobalSignMsslDCVProviderConfigResponse)
-			match++
-		}
-	} else {
-		dst.GlobalSignMsslDCVProviderConfigResponse = nil
+	varWebRAChallengeSubmitResponse := _WebRAChallengeSubmitResponse{}
+
+	err = json.Unmarshal(data, &varWebRAChallengeSubmitResponse)
+
+	if err != nil {
+		return err
 	}
 
-	// try to unmarshal data into SectigoDCVProviderConfigResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.SectigoDCVProviderConfigResponse)
-	if err == nil {
-		jsonSectigoDCVProviderConfigResponse, _ := json.Marshal(dst.SectigoDCVProviderConfigResponse)
-		if string(jsonSectigoDCVProviderConfigResponse) == "{}" { // empty struct
-			dst.SectigoDCVProviderConfigResponse = nil
-		} else {
-			_ = validator.Validate(dst.SectigoDCVProviderConfigResponse)
-			match++
-		}
-	} else {
-		dst.SectigoDCVProviderConfigResponse = nil
+	*o = WebRAChallengeSubmitResponse(varWebRAChallengeSubmitResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "certificate")
+		delete(additionalProperties, "pkcs12")
+		o.AdditionalProperties = additionalProperties
 	}
 
-	if match >= 1 {
-		return nil // at least one variant matched; GetActualInstance returns the first one
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(DcvProviderList200ResponseInner)")
-	}
+	return err
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src DcvProviderList200ResponseInner) MarshalJSON() ([]byte, error) {
-	if src.DigicertDCVProviderConfigResponse != nil {
-		return json.Marshal(&src.DigicertDCVProviderConfigResponse)
-	}
-
-	if src.GlobalSignMsslDCVProviderConfigResponse != nil {
-		return json.Marshal(&src.GlobalSignMsslDCVProviderConfigResponse)
-	}
-
-	if src.SectigoDCVProviderConfigResponse != nil {
-		return json.Marshal(&src.SectigoDCVProviderConfigResponse)
-	}
-
-	return nil, nil // no data in oneOf schemas
-}
-
-// Get the actual instance
-func (obj *DcvProviderList200ResponseInner) GetActualInstance() interface{} {
-	if obj == nil {
-		return nil
-	}
-	if obj.DigicertDCVProviderConfigResponse != nil {
-		return obj.DigicertDCVProviderConfigResponse
-	}
-
-	if obj.GlobalSignMsslDCVProviderConfigResponse != nil {
-		return obj.GlobalSignMsslDCVProviderConfigResponse
-	}
-
-	if obj.SectigoDCVProviderConfigResponse != nil {
-		return obj.SectigoDCVProviderConfigResponse
-	}
-
-	// all schemas are nil
-	return nil
-}
-
-type NullableDcvProviderList200ResponseInner struct {
-	value *DcvProviderList200ResponseInner
+type NullableWebRAChallengeSubmitResponse struct {
+	value *WebRAChallengeSubmitResponse
 	isSet bool
 }
 
-func (v NullableDcvProviderList200ResponseInner) Get() *DcvProviderList200ResponseInner {
+func (v NullableWebRAChallengeSubmitResponse) Get() *WebRAChallengeSubmitResponse {
 	return v.value
 }
 
-func (v *NullableDcvProviderList200ResponseInner) Set(val *DcvProviderList200ResponseInner) {
+func (v *NullableWebRAChallengeSubmitResponse) Set(val *WebRAChallengeSubmitResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDcvProviderList200ResponseInner) IsSet() bool {
+func (v NullableWebRAChallengeSubmitResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDcvProviderList200ResponseInner) Unset() {
+func (v *NullableWebRAChallengeSubmitResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDcvProviderList200ResponseInner(val *DcvProviderList200ResponseInner) *NullableDcvProviderList200ResponseInner {
-	return &NullableDcvProviderList200ResponseInner{value: val, isSet: true}
+func NewNullableWebRAChallengeSubmitResponse(val *WebRAChallengeSubmitResponse) *NullableWebRAChallengeSubmitResponse {
+	return &NullableWebRAChallengeSubmitResponse{value: val, isSet: true}
 }
 
-func (v NullableDcvProviderList200ResponseInner) MarshalJSON() ([]byte, error) {
+func (v NullableWebRAChallengeSubmitResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDcvProviderList200ResponseInner) UnmarshalJSON(src []byte) error {
+func (v *NullableWebRAChallengeSubmitResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

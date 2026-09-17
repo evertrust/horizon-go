@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AzureTenant** | Pointer to **string** |  | [optional] 
 **Credentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) containing the App ID and Key to authenticate on Intune | 
-**IntuneResourceUrl** | Pointer to **NullableString** | Override the Microsoft Graph API base URL (e.g. for Azure US Government or Azure China sovereign clouds). Defaults to the public cloud endpoint (&#x60;https://graph.microsoft.com&#x60;) when unset. | [optional] 
+**IntuneResourceUrl** | Pointer to **NullableString** | Base URL of the Microsoft Intune service handling certificate revocation requests (e.g. for Azure US Government or Azure China sovereign clouds). Defaults to the public cloud endpoint (&#x60;https://api.manage.microsoft.com/&#x60;) when unset. | [optional] 
 **LegacyRevocationMode** | **bool** |  | 
 **Name** | **string** |  | 
 **OsQueryString** | Pointer to **NullableString** |  | [optional] [default to "operatingSystem eq 'iOS' or operatingSystem eq 'IPhone' or operatingSystem eq 'Android' or operatingSystem eq 'AndroidForWork' or operatingSystem eq 'IPad' or operatingSystem eq 'Desktop' or operatingSystem eq 'Windows'"]

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Error** | Pointer to **string** | Information about the error that occurred when executing this request | [optional] 
 **ExternalId** | Pointer to **map[string]interface{}** | Information about the request on the underlying PKI | [optional] 
 **Module** | **string** |  | 
-**Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. | [optional] 
+**Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. On a profile whose authorization mode is &#x60;challenge&#x60;, this holds the generated challenge instead | [optional] 
 **Pkcs12** | Pointer to [**NullableSecretString**](SecretString.md) | The generated PKCS#12 for this request. This is only available after the request has been approved in centralized mode | [optional] 
 **RetryAt** | Pointer to **int64** | Timestamp after which the &#x60;in_progress&#x60; request will be polled again | [optional] 
 **RetryCount** | Pointer to **int64** | Number of retries on the polling of the certificate emission | [optional] 

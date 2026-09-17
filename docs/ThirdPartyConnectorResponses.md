@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **CipherGroup** | Pointer to **NullableString** |  | [optional] 
 **MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
 **Partition** | Pointer to **NullableString** |  | [optional] 
+**PersistConfiguration** | Pointer to **bool** | When enabled, Horizon saves the F5 running configuration to &#x60;bigip.conf&#x60; after each successful deployment so that pushed changes survive an appliance reboot. Requires an admin-level F5 technical account. | [optional] [default to false]
 **SslParent** | Pointer to **NullableString** |  | [optional] 
 **Version** | Pointer to **NullableString** |  | [optional] 
 **Location** | **string** |  | 
@@ -765,6 +766,31 @@ HasPartition returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectorResponses) UnsetPartition()`
 
 UnsetPartition ensures that no value is present for Partition, not even an explicit nil
+### GetPersistConfiguration
+
+`func (o *ThirdPartyConnectorResponses) GetPersistConfiguration() bool`
+
+GetPersistConfiguration returns the PersistConfiguration field if non-nil, zero value otherwise.
+
+### GetPersistConfigurationOk
+
+`func (o *ThirdPartyConnectorResponses) GetPersistConfigurationOk() (*bool, bool)`
+
+GetPersistConfigurationOk returns a tuple with the PersistConfiguration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPersistConfiguration
+
+`func (o *ThirdPartyConnectorResponses) SetPersistConfiguration(v bool)`
+
+SetPersistConfiguration sets PersistConfiguration field to given value.
+
+### HasPersistConfiguration
+
+`func (o *ThirdPartyConnectorResponses) HasPersistConfiguration() bool`
+
+HasPersistConfiguration returns a boolean if a field has been set.
+
 ### GetSslParent
 
 `func (o *ThirdPartyConnectorResponses) GetSslParent() string`

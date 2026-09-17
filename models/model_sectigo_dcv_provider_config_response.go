@@ -17,90 +17,89 @@ import (
 	"github.com/evertrust/horizon-go/v2/utils"
 )
 
-// checks if the IntuneConnector type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &IntuneConnector{}
+// checks if the SectigoDCVProviderConfigResponse type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &SectigoDCVProviderConfigResponse{}
 
-// IntuneConnector struct for IntuneConnector
-type IntuneConnector struct {
-	AzureTenant *string `json:"azureTenant,omitempty"`
-	// Name of the `password` [credentials](#tag/security.credentials) containing the App ID and Key to authenticate on Intune
+// SectigoDCVProviderConfigResponse struct for SectigoDCVProviderConfigResponse
+type SectigoDCVProviderConfigResponse struct {
+	// Object internal ID
+	Id string `json:"_id"`
+	// Name of the login/password credentials configuration holding the SCM API client, with the OAuth client id as login and the client secret as password
 	Credentials string `json:"credentials"`
-	// Base URL of the Microsoft Intune service handling certificate revocation requests (e.g. for Azure US Government or Azure China sovereign clouds). Defaults to the public cloud endpoint (`https://api.manage.microsoft.com/`) when unset.
-	IntuneResourceUrl    utils.NullableString `json:"intuneResourceUrl,omitempty"`
-	LegacyRevocationMode bool                 `json:"legacyRevocationMode"`
-	Name                 string               `json:"name"`
-	OsQueryString        utils.NullableString `json:"osQueryString,omitempty"`
-	Proxy                utils.NullableString `json:"proxy,omitempty"`
-	ThrottleDuration     string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	ThrottleParallelism  int64                `json:"throttleParallelism"`
-	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	Type                 string               `json:"type"`
+	// DNS method used to validate a domain. It is a fallback: a domain that already holds a CNAME or TXT validation is re-validated with its own method, and this method applies only to a domain that has never been validated or whose existing validation uses a method that cannot be published over DNS.
+	DcvMethod string `json:"dcvMethod"`
+	// Sectigo Certificate Manager (SCM) API base URL
+	Endpoint string `json:"endpoint"`
+	// Unique name of the DCV provider configuration
+	Name string `json:"name"`
+	// OAuth token endpoint used to obtain a bearer token for the SCM API. Defaults to Sectigo's SSO realm.
+	OauthTokenEndpoint string `json:"oauthTokenEndpoint"`
+	// Restricts the domain listing to this Sectigo organization or department. When unset, every domain of the customer account is listed.
+	OrganizationId *int64 `json:"organizationId,omitempty"`
+	// Name of the HTTP proxy configuration to use
+	Proxy *string `json:"proxy,omitempty"`
+	// Request timeout
+	Timeout utils.NullableString `json:"timeout" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	// Provider type discriminator
+	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _IntuneConnector IntuneConnector
+type _SectigoDCVProviderConfigResponse SectigoDCVProviderConfigResponse
 
-// NewIntuneConnector instantiates a new IntuneConnector object
+// NewSectigoDCVProviderConfigResponse instantiates a new SectigoDCVProviderConfigResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntuneConnector(credentials string, legacyRevocationMode bool, name string, throttleDuration string, throttleParallelism int64, type_ string) *IntuneConnector {
-	this := IntuneConnector{}
+func NewSectigoDCVProviderConfigResponse(id string, credentials string, dcvMethod string, endpoint string, name string, oauthTokenEndpoint string, timeout utils.NullableString, type_ string) *SectigoDCVProviderConfigResponse {
+	this := SectigoDCVProviderConfigResponse{}
+	this.Id = id
 	this.Credentials = credentials
-	this.LegacyRevocationMode = legacyRevocationMode
+	this.DcvMethod = dcvMethod
+	this.Endpoint = endpoint
 	this.Name = name
-	this.ThrottleDuration = throttleDuration
-	this.ThrottleParallelism = throttleParallelism
+	this.OauthTokenEndpoint = oauthTokenEndpoint
+	this.Timeout = timeout
 	this.Type = type_
-	var osQueryString string = "operatingSystem eq 'iOS' or operatingSystem eq 'IPhone' or operatingSystem eq 'Android' or operatingSystem eq 'AndroidForWork' or operatingSystem eq 'IPad' or operatingSystem eq 'Desktop' or operatingSystem eq 'Windows'"
-	this.OsQueryString = *utils.NewNullableString(&osQueryString)
 	return &this
 }
 
-// NewIntuneConnectorWithDefaults instantiates a new IntuneConnector object
+// NewSectigoDCVProviderConfigResponseWithDefaults instantiates a new SectigoDCVProviderConfigResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIntuneConnectorWithDefaults() *IntuneConnector {
-	this := IntuneConnector{}
-	var osQueryString string = "operatingSystem eq 'iOS' or operatingSystem eq 'IPhone' or operatingSystem eq 'Android' or operatingSystem eq 'AndroidForWork' or operatingSystem eq 'IPad' or operatingSystem eq 'Desktop' or operatingSystem eq 'Windows'"
-	this.OsQueryString = *utils.NewNullableString(&osQueryString)
+func NewSectigoDCVProviderConfigResponseWithDefaults() *SectigoDCVProviderConfigResponse {
+	this := SectigoDCVProviderConfigResponse{}
+	var oauthTokenEndpoint string = "https://auth.sso.sectigo.com/auth/realms/apiclients/protocol/openid-connect/token"
+	this.OauthTokenEndpoint = oauthTokenEndpoint
 	return &this
 }
 
-// GetAzureTenant returns the AzureTenant field value if set, zero value otherwise.
-func (o *IntuneConnector) GetAzureTenant() string {
-	if o == nil || utils.IsNil(o.AzureTenant) {
+// GetId returns the Id field value
+func (o *SectigoDCVProviderConfigResponse) GetId() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.AzureTenant
+
+	return o.Id
 }
 
-// GetAzureTenantOk returns a tuple with the AzureTenant field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *IntuneConnector) GetAzureTenantOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.AzureTenant) {
+func (o *SectigoDCVProviderConfigResponse) GetIdOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.AzureTenant, true
+	return &o.Id, true
 }
 
-// HasAzureTenant returns a boolean if a field has been set.
-func (o *IntuneConnector) HasAzureTenant() bool {
-	if o != nil && !utils.IsNil(o.AzureTenant) {
-		return true
-	}
-
-	return false
-}
-
-// SetAzureTenant gets a reference to the given string and assigns it to the AzureTenant field.
-func (o *IntuneConnector) SetAzureTenant(v string) {
-	o.AzureTenant = &v
+// SetId sets field value
+func (o *SectigoDCVProviderConfigResponse) SetId(v string) {
+	o.Id = v
 }
 
 // GetCredentials returns the Credentials field value
-func (o *IntuneConnector) GetCredentials() string {
+func (o *SectigoDCVProviderConfigResponse) GetCredentials() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -111,7 +110,7 @@ func (o *IntuneConnector) GetCredentials() string {
 
 // GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
-func (o *IntuneConnector) GetCredentialsOk() (*string, bool) {
+func (o *SectigoDCVProviderConfigResponse) GetCredentialsOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -119,79 +118,60 @@ func (o *IntuneConnector) GetCredentialsOk() (*string, bool) {
 }
 
 // SetCredentials sets field value
-func (o *IntuneConnector) SetCredentials(v string) {
+func (o *SectigoDCVProviderConfigResponse) SetCredentials(v string) {
 	o.Credentials = v
 }
 
-// GetIntuneResourceUrl returns the IntuneResourceUrl field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntuneConnector) GetIntuneResourceUrl() string {
-	if o == nil || utils.IsNil(o.IntuneResourceUrl.Get()) {
+// GetDcvMethod returns the DcvMethod field value
+func (o *SectigoDCVProviderConfigResponse) GetDcvMethod() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.IntuneResourceUrl.Get()
+
+	return o.DcvMethod
 }
 
-// GetIntuneResourceUrlOk returns a tuple with the IntuneResourceUrl field value if set, nil otherwise
+// GetDcvMethodOk returns a tuple with the DcvMethod field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntuneConnector) GetIntuneResourceUrlOk() (*string, bool) {
+func (o *SectigoDCVProviderConfigResponse) GetDcvMethodOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.IntuneResourceUrl.Get(), o.IntuneResourceUrl.IsSet()
+	return &o.DcvMethod, true
 }
 
-// HasIntuneResourceUrl returns a boolean if a field has been set.
-func (o *IntuneConnector) HasIntuneResourceUrl() bool {
-	if o != nil && o.IntuneResourceUrl.IsSet() {
-		return true
-	}
-
-	return false
+// SetDcvMethod sets field value
+func (o *SectigoDCVProviderConfigResponse) SetDcvMethod(v string) {
+	o.DcvMethod = v
 }
 
-// SetIntuneResourceUrl gets a reference to the given NullableString and assigns it to the IntuneResourceUrl field.
-func (o *IntuneConnector) SetIntuneResourceUrl(v string) {
-	o.IntuneResourceUrl.Set(&v)
-}
-
-// SetIntuneResourceUrlNil sets the value for IntuneResourceUrl to be an explicit nil
-func (o *IntuneConnector) SetIntuneResourceUrlNil() {
-	o.IntuneResourceUrl.Set(nil)
-}
-
-// UnsetIntuneResourceUrl ensures that no value is present for IntuneResourceUrl, not even an explicit nil
-func (o *IntuneConnector) UnsetIntuneResourceUrl() {
-	o.IntuneResourceUrl.Unset()
-}
-
-// GetLegacyRevocationMode returns the LegacyRevocationMode field value
-func (o *IntuneConnector) GetLegacyRevocationMode() bool {
+// GetEndpoint returns the Endpoint field value
+func (o *SectigoDCVProviderConfigResponse) GetEndpoint() string {
 	if o == nil {
-		var ret bool
+		var ret string
 		return ret
 	}
 
-	return o.LegacyRevocationMode
+	return o.Endpoint
 }
 
-// GetLegacyRevocationModeOk returns a tuple with the LegacyRevocationMode field value
+// GetEndpointOk returns a tuple with the Endpoint field value
 // and a boolean to check if the value has been set.
-func (o *IntuneConnector) GetLegacyRevocationModeOk() (*bool, bool) {
+func (o *SectigoDCVProviderConfigResponse) GetEndpointOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.LegacyRevocationMode, true
+	return &o.Endpoint, true
 }
 
-// SetLegacyRevocationMode sets field value
-func (o *IntuneConnector) SetLegacyRevocationMode(v bool) {
-	o.LegacyRevocationMode = v
+// SetEndpoint sets field value
+func (o *SectigoDCVProviderConfigResponse) SetEndpoint(v string) {
+	o.Endpoint = v
 }
 
 // GetName returns the Name field value
-func (o *IntuneConnector) GetName() string {
+func (o *SectigoDCVProviderConfigResponse) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -202,7 +182,7 @@ func (o *IntuneConnector) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *IntuneConnector) GetNameOk() (*string, bool) {
+func (o *SectigoDCVProviderConfigResponse) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -210,189 +190,126 @@ func (o *IntuneConnector) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *IntuneConnector) SetName(v string) {
+func (o *SectigoDCVProviderConfigResponse) SetName(v string) {
 	o.Name = v
 }
 
-// GetOsQueryString returns the OsQueryString field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntuneConnector) GetOsQueryString() string {
-	if o == nil || utils.IsNil(o.OsQueryString.Get()) {
+// GetOauthTokenEndpoint returns the OauthTokenEndpoint field value
+func (o *SectigoDCVProviderConfigResponse) GetOauthTokenEndpoint() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.OsQueryString.Get()
+
+	return o.OauthTokenEndpoint
 }
 
-// GetOsQueryStringOk returns a tuple with the OsQueryString field value if set, nil otherwise
+// GetOauthTokenEndpointOk returns a tuple with the OauthTokenEndpoint field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntuneConnector) GetOsQueryStringOk() (*string, bool) {
+func (o *SectigoDCVProviderConfigResponse) GetOauthTokenEndpointOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.OsQueryString.Get(), o.OsQueryString.IsSet()
+	return &o.OauthTokenEndpoint, true
 }
 
-// HasOsQueryString returns a boolean if a field has been set.
-func (o *IntuneConnector) HasOsQueryString() bool {
-	if o != nil && o.OsQueryString.IsSet() {
+// SetOauthTokenEndpoint sets field value
+func (o *SectigoDCVProviderConfigResponse) SetOauthTokenEndpoint(v string) {
+	o.OauthTokenEndpoint = v
+}
+
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
+func (o *SectigoDCVProviderConfigResponse) GetOrganizationId() int64 {
+	if o == nil || utils.IsNil(o.OrganizationId) {
+		var ret int64
+		return ret
+	}
+	return *o.OrganizationId
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SectigoDCVProviderConfigResponse) GetOrganizationIdOk() (*int64, bool) {
+	if o == nil || utils.IsNil(o.OrganizationId) {
+		return nil, false
+	}
+	return o.OrganizationId, true
+}
+
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *SectigoDCVProviderConfigResponse) HasOrganizationId() bool {
+	if o != nil && !utils.IsNil(o.OrganizationId) {
 		return true
 	}
 
 	return false
 }
 
-// SetOsQueryString gets a reference to the given NullableString and assigns it to the OsQueryString field.
-func (o *IntuneConnector) SetOsQueryString(v string) {
-	o.OsQueryString.Set(&v)
+// SetOrganizationId gets a reference to the given int64 and assigns it to the OrganizationId field.
+func (o *SectigoDCVProviderConfigResponse) SetOrganizationId(v int64) {
+	o.OrganizationId = &v
 }
 
-// SetOsQueryStringNil sets the value for OsQueryString to be an explicit nil
-func (o *IntuneConnector) SetOsQueryStringNil() {
-	o.OsQueryString.Set(nil)
-}
-
-// UnsetOsQueryString ensures that no value is present for OsQueryString, not even an explicit nil
-func (o *IntuneConnector) UnsetOsQueryString() {
-	o.OsQueryString.Unset()
-}
-
-// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntuneConnector) GetProxy() string {
-	if o == nil || utils.IsNil(o.Proxy.Get()) {
+// GetProxy returns the Proxy field value if set, zero value otherwise.
+func (o *SectigoDCVProviderConfigResponse) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy) {
 		var ret string
 		return ret
 	}
-	return *o.Proxy.Get()
+	return *o.Proxy
 }
 
 // GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntuneConnector) GetProxyOk() (*string, bool) {
-	if o == nil {
+func (o *SectigoDCVProviderConfigResponse) GetProxyOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Proxy) {
 		return nil, false
 	}
-	return o.Proxy.Get(), o.Proxy.IsSet()
+	return o.Proxy, true
 }
 
 // HasProxy returns a boolean if a field has been set.
-func (o *IntuneConnector) HasProxy() bool {
-	if o != nil && o.Proxy.IsSet() {
+func (o *SectigoDCVProviderConfigResponse) HasProxy() bool {
+	if o != nil && !utils.IsNil(o.Proxy) {
 		return true
 	}
 
 	return false
 }
 
-// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
-func (o *IntuneConnector) SetProxy(v string) {
-	o.Proxy.Set(&v)
+// SetProxy gets a reference to the given string and assigns it to the Proxy field.
+func (o *SectigoDCVProviderConfigResponse) SetProxy(v string) {
+	o.Proxy = &v
 }
 
-// SetProxyNil sets the value for Proxy to be an explicit nil
-func (o *IntuneConnector) SetProxyNil() {
-	o.Proxy.Set(nil)
-}
-
-// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
-func (o *IntuneConnector) UnsetProxy() {
-	o.Proxy.Unset()
-}
-
-// GetThrottleDuration returns the ThrottleDuration field value
-func (o *IntuneConnector) GetThrottleDuration() string {
-	if o == nil {
+// GetTimeout returns the Timeout field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *SectigoDCVProviderConfigResponse) GetTimeout() string {
+	if o == nil || o.Timeout.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ThrottleDuration
-}
-
-// GetThrottleDurationOk returns a tuple with the ThrottleDuration field value
-// and a boolean to check if the value has been set.
-func (o *IntuneConnector) GetThrottleDurationOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ThrottleDuration, true
-}
-
-// SetThrottleDuration sets field value
-func (o *IntuneConnector) SetThrottleDuration(v string) {
-	o.ThrottleDuration = v
-}
-
-// GetThrottleParallelism returns the ThrottleParallelism field value
-func (o *IntuneConnector) GetThrottleParallelism() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.ThrottleParallelism
-}
-
-// GetThrottleParallelismOk returns a tuple with the ThrottleParallelism field value
-// and a boolean to check if the value has been set.
-func (o *IntuneConnector) GetThrottleParallelismOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ThrottleParallelism, true
-}
-
-// SetThrottleParallelism sets field value
-func (o *IntuneConnector) SetThrottleParallelism(v int64) {
-	o.ThrottleParallelism = v
-}
-
-// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IntuneConnector) GetTimeout() string {
-	if o == nil || utils.IsNil(o.Timeout.Get()) {
-		var ret string
-		return ret
-	}
 	return *o.Timeout.Get()
 }
 
-// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// GetTimeoutOk returns a tuple with the Timeout field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IntuneConnector) GetTimeoutOk() (*string, bool) {
+func (o *SectigoDCVProviderConfigResponse) GetTimeoutOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
 	return o.Timeout.Get(), o.Timeout.IsSet()
 }
 
-// HasTimeout returns a boolean if a field has been set.
-func (o *IntuneConnector) HasTimeout() bool {
-	if o != nil && o.Timeout.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
-func (o *IntuneConnector) SetTimeout(v string) {
+// SetTimeout sets field value
+func (o *SectigoDCVProviderConfigResponse) SetTimeout(v string) {
 	o.Timeout.Set(&v)
 }
 
-// SetTimeoutNil sets the value for Timeout to be an explicit nil
-func (o *IntuneConnector) SetTimeoutNil() {
-	o.Timeout.Set(nil)
-}
-
-// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
-func (o *IntuneConnector) UnsetTimeout() {
-	o.Timeout.Unset()
-}
-
 // GetType returns the Type field value
-func (o *IntuneConnector) GetType() string {
+func (o *SectigoDCVProviderConfigResponse) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -403,7 +320,7 @@ func (o *IntuneConnector) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *IntuneConnector) GetTypeOk() (*string, bool) {
+func (o *SectigoDCVProviderConfigResponse) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -411,11 +328,11 @@ func (o *IntuneConnector) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *IntuneConnector) SetType(v string) {
+func (o *SectigoDCVProviderConfigResponse) SetType(v string) {
 	o.Type = v
 }
 
-func (o IntuneConnector) MarshalJSON() ([]byte, error) {
+func (o SectigoDCVProviderConfigResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -423,28 +340,21 @@ func (o IntuneConnector) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o IntuneConnector) ToMap() (map[string]interface{}, error) {
+func (o SectigoDCVProviderConfigResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.AzureTenant) {
-		toSerialize["azureTenant"] = o.AzureTenant
-	}
+	toSerialize["_id"] = o.Id
 	toSerialize["credentials"] = o.Credentials
-	if o.IntuneResourceUrl.IsSet() {
-		toSerialize["intuneResourceUrl"] = o.IntuneResourceUrl.Get()
-	}
-	toSerialize["legacyRevocationMode"] = o.LegacyRevocationMode
+	toSerialize["dcvMethod"] = o.DcvMethod
+	toSerialize["endpoint"] = o.Endpoint
 	toSerialize["name"] = o.Name
-	if o.OsQueryString.IsSet() {
-		toSerialize["osQueryString"] = o.OsQueryString.Get()
+	toSerialize["oauthTokenEndpoint"] = o.OauthTokenEndpoint
+	if !utils.IsNil(o.OrganizationId) {
+		toSerialize["organizationId"] = o.OrganizationId
 	}
-	if o.Proxy.IsSet() {
-		toSerialize["proxy"] = o.Proxy.Get()
+	if !utils.IsNil(o.Proxy) {
+		toSerialize["proxy"] = o.Proxy
 	}
-	toSerialize["throttleDuration"] = o.ThrottleDuration
-	toSerialize["throttleParallelism"] = o.ThrottleParallelism
-	if o.Timeout.IsSet() {
-		toSerialize["timeout"] = o.Timeout.Get()
-	}
+	toSerialize["timeout"] = o.Timeout.Get()
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -454,16 +364,18 @@ func (o IntuneConnector) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *IntuneConnector) UnmarshalJSON(data []byte) (err error) {
+func (o *SectigoDCVProviderConfigResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"_id",
 		"credentials",
-		"legacyRevocationMode",
+		"dcvMethod",
+		"endpoint",
 		"name",
-		"throttleDuration",
-		"throttleParallelism",
+		"oauthTokenEndpoint",
+		"timeout",
 		"type",
 	}
 
@@ -481,28 +393,27 @@ func (o *IntuneConnector) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varIntuneConnector := _IntuneConnector{}
+	varSectigoDCVProviderConfigResponse := _SectigoDCVProviderConfigResponse{}
 
-	err = json.Unmarshal(data, &varIntuneConnector)
+	err = json.Unmarshal(data, &varSectigoDCVProviderConfigResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = IntuneConnector(varIntuneConnector)
+	*o = SectigoDCVProviderConfigResponse(varSectigoDCVProviderConfigResponse)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "azureTenant")
+		delete(additionalProperties, "_id")
 		delete(additionalProperties, "credentials")
-		delete(additionalProperties, "intuneResourceUrl")
-		delete(additionalProperties, "legacyRevocationMode")
+		delete(additionalProperties, "dcvMethod")
+		delete(additionalProperties, "endpoint")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "osQueryString")
+		delete(additionalProperties, "oauthTokenEndpoint")
+		delete(additionalProperties, "organizationId")
 		delete(additionalProperties, "proxy")
-		delete(additionalProperties, "throttleDuration")
-		delete(additionalProperties, "throttleParallelism")
 		delete(additionalProperties, "timeout")
 		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
@@ -511,38 +422,38 @@ func (o *IntuneConnector) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableIntuneConnector struct {
-	value *IntuneConnector
+type NullableSectigoDCVProviderConfigResponse struct {
+	value *SectigoDCVProviderConfigResponse
 	isSet bool
 }
 
-func (v NullableIntuneConnector) Get() *IntuneConnector {
+func (v NullableSectigoDCVProviderConfigResponse) Get() *SectigoDCVProviderConfigResponse {
 	return v.value
 }
 
-func (v *NullableIntuneConnector) Set(val *IntuneConnector) {
+func (v *NullableSectigoDCVProviderConfigResponse) Set(val *SectigoDCVProviderConfigResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableIntuneConnector) IsSet() bool {
+func (v NullableSectigoDCVProviderConfigResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableIntuneConnector) Unset() {
+func (v *NullableSectigoDCVProviderConfigResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableIntuneConnector(val *IntuneConnector) *NullableIntuneConnector {
-	return &NullableIntuneConnector{value: val, isSet: true}
+func NewNullableSectigoDCVProviderConfigResponse(val *SectigoDCVProviderConfigResponse) *NullableSectigoDCVProviderConfigResponse {
+	return &NullableSectigoDCVProviderConfigResponse{value: val, isSet: true}
 }
 
-func (v NullableIntuneConnector) MarshalJSON() ([]byte, error) {
+func (v NullableSectigoDCVProviderConfigResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableIntuneConnector) UnmarshalJSON(src []byte) error {
+func (v *NullableSectigoDCVProviderConfigResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

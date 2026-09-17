@@ -29,7 +29,7 @@ type WebRAEnrollRequestOnApproveResponse struct {
 	// Information about the request on the underlying PKI
 	ExternalId map[string]interface{} `json:"externalId,omitempty"`
 	Module     string                 `json:"module"`
-	// The password to decrypt the PKCS12 file.
+	// The password to decrypt the PKCS12 file. On a profile whose authorization mode is `challenge`, this holds the generated challenge instead
 	Password NullableSecretString `json:"password,omitempty"`
 	// The generated PKCS#12 for this request. This is only available after the request has been approved in centralized mode
 	Pkcs12 NullableSecretString `json:"pkcs12,omitempty"`

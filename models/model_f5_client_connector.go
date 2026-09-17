@@ -33,12 +33,14 @@ type F5ClientConnector struct {
 	// Whether to override the existing SSL profile's parent profile and cipher group on update. When `false`, only the certificate and key are updated.
 	OverrideProfileConfiguration utils.NullableBool   `json:"overrideProfileConfiguration,omitempty"`
 	Partition                    utils.NullableString `json:"partition,omitempty"`
-	Prefix                       utils.NullableString `json:"prefix,omitempty"`
-	Proxy                        utils.NullableString `json:"proxy,omitempty"`
-	SslParent                    utils.NullableString `json:"sslParent,omitempty"`
-	ThrottleDuration             string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
-	ThrottleParallelism          int64                `json:"throttleParallelism"`
-	Timeout                      utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	// When enabled, Horizon saves the F5 running configuration to `bigip.conf` after each successful deployment so that pushed changes survive an appliance reboot. Requires an admin-level F5 technical account.
+	PersistConfiguration *bool                `json:"persistConfiguration,omitempty"`
+	Prefix               utils.NullableString `json:"prefix,omitempty"`
+	Proxy                utils.NullableString `json:"proxy,omitempty"`
+	SslParent            utils.NullableString `json:"sslParent,omitempty"`
+	ThrottleDuration     string               `json:"throttleDuration" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	ThrottleParallelism  int64                `json:"throttleParallelism"`
+	Timeout              utils.NullableString `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
 	// Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended.
 	TlsInsecure          utils.NullableBool   `json:"tlsInsecure,omitempty"`
 	Type                 string               `json:"type"`
@@ -64,6 +66,8 @@ func NewF5ClientConnector(bigIPHostname string, credentials string, name string,
 	this.OverrideProfileConfiguration = *utils.NewNullableBool(&overrideProfileConfiguration)
 	var partition string = "Common"
 	this.Partition = *utils.NewNullableString(&partition)
+	var persistConfiguration bool = false
+	this.PersistConfiguration = &persistConfiguration
 	var prefix string = "hrz-"
 	this.Prefix = *utils.NewNullableString(&prefix)
 	var sslParent string = "clientssl"
@@ -82,6 +86,8 @@ func NewF5ClientConnectorWithDefaults() *F5ClientConnector {
 	this.OverrideProfileConfiguration = *utils.NewNullableBool(&overrideProfileConfiguration)
 	var partition string = "Common"
 	this.Partition = *utils.NewNullableString(&partition)
+	var persistConfiguration bool = false
+	this.PersistConfiguration = &persistConfiguration
 	var prefix string = "hrz-"
 	this.Prefix = *utils.NewNullableString(&prefix)
 	var sslParent string = "clientssl"
@@ -376,6 +382,38 @@ func (o *F5ClientConnector) SetPartitionNil() {
 // UnsetPartition ensures that no value is present for Partition, not even an explicit nil
 func (o *F5ClientConnector) UnsetPartition() {
 	o.Partition.Unset()
+}
+
+// GetPersistConfiguration returns the PersistConfiguration field value if set, zero value otherwise.
+func (o *F5ClientConnector) GetPersistConfiguration() bool {
+	if o == nil || utils.IsNil(o.PersistConfiguration) {
+		var ret bool
+		return ret
+	}
+	return *o.PersistConfiguration
+}
+
+// GetPersistConfigurationOk returns a tuple with the PersistConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *F5ClientConnector) GetPersistConfigurationOk() (*bool, bool) {
+	if o == nil || utils.IsNil(o.PersistConfiguration) {
+		return nil, false
+	}
+	return o.PersistConfiguration, true
+}
+
+// HasPersistConfiguration returns a boolean if a field has been set.
+func (o *F5ClientConnector) HasPersistConfiguration() bool {
+	if o != nil && !utils.IsNil(o.PersistConfiguration) {
+		return true
+	}
+
+	return false
+}
+
+// SetPersistConfiguration gets a reference to the given bool and assigns it to the PersistConfiguration field.
+func (o *F5ClientConnector) SetPersistConfiguration(v bool) {
+	o.PersistConfiguration = &v
 }
 
 // GetPrefix returns the Prefix field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -736,6 +774,9 @@ func (o F5ClientConnector) ToMap() (map[string]interface{}, error) {
 	if o.Partition.IsSet() {
 		toSerialize["partition"] = o.Partition.Get()
 	}
+	if !utils.IsNil(o.PersistConfiguration) {
+		toSerialize["persistConfiguration"] = o.PersistConfiguration
+	}
 	if o.Prefix.IsSet() {
 		toSerialize["prefix"] = o.Prefix.Get()
 	}
@@ -813,6 +854,7 @@ func (o *F5ClientConnector) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "overrideProfileConfiguration")
 		delete(additionalProperties, "partition")
+		delete(additionalProperties, "persistConfiguration")
 		delete(additionalProperties, "prefix")
 		delete(additionalProperties, "proxy")
 		delete(additionalProperties, "sslParent")

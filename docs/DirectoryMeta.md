@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CaaIdentities** | Pointer to **[]string** |  | [optional] 
-**ExternalAccountRequired** | Pointer to **NullableBool** |  | [optional] 
 **TermsOfService** | Pointer to **NullableString** |  | [optional] 
 **Website** | Pointer to **NullableString** |  | [optional] 
 
@@ -63,41 +62,6 @@ HasCaaIdentities returns a boolean if a field has been set.
 `func (o *DirectoryMeta) UnsetCaaIdentities()`
 
 UnsetCaaIdentities ensures that no value is present for CaaIdentities, not even an explicit nil
-### GetExternalAccountRequired
-
-`func (o *DirectoryMeta) GetExternalAccountRequired() bool`
-
-GetExternalAccountRequired returns the ExternalAccountRequired field if non-nil, zero value otherwise.
-
-### GetExternalAccountRequiredOk
-
-`func (o *DirectoryMeta) GetExternalAccountRequiredOk() (*bool, bool)`
-
-GetExternalAccountRequiredOk returns a tuple with the ExternalAccountRequired field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExternalAccountRequired
-
-`func (o *DirectoryMeta) SetExternalAccountRequired(v bool)`
-
-SetExternalAccountRequired sets ExternalAccountRequired field to given value.
-
-### HasExternalAccountRequired
-
-`func (o *DirectoryMeta) HasExternalAccountRequired() bool`
-
-HasExternalAccountRequired returns a boolean if a field has been set.
-
-### SetExternalAccountRequiredNil
-
-`func (o *DirectoryMeta) SetExternalAccountRequiredNil(b bool)`
-
- SetExternalAccountRequiredNil sets the value for ExternalAccountRequired to be an explicit nil
-
-### UnsetExternalAccountRequired
-`func (o *DirectoryMeta) UnsetExternalAccountRequired()`
-
-UnsetExternalAccountRequired ensures that no value is present for ExternalAccountRequired, not even an explicit nil
 ### GetTermsOfService
 
 `func (o *DirectoryMeta) GetTermsOfService() string`

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
-**Credentials** | **string** | Name of the login/password credentials configuration holding the GlobalSign MSSL API credentials | 
-**Endpoint** | **string** | GlobalSign Managed SSL (MSSL) API endpoint URL | 
+**Credentials** | **string** | Name of the login/password credentials configuration holding the SCM API client, with the OAuth client id as login and the client secret as password | 
+**Endpoint** | **string** | Sectigo Certificate Manager (SCM) API base URL | 
 **Name** | **string** | Unique name of the DCV provider configuration | 
 **Proxy** | Pointer to **string** | Name of the HTTP proxy configuration to use | [optional] 
 **Timeout** | **NullableString** | Request timeout | 
@@ -14,12 +14,15 @@ Name | Type | Description | Notes
 **DefaultEmail** | **string** | Default contact email used when renewing a domain | 
 **DefaultPhone** | **string** | Default contact phone number used when renewing a domain | 
 **Profile** | **string** | GlobalSign MSSL profile ID the domains belong to | 
+**DcvMethod** | **string** | DNS method used to validate a domain. It is a fallback: a domain that already holds a CNAME or TXT validation is re-validated with its own method, and this method applies only to a domain that has never been validated or whose existing validation uses a method that cannot be published over DNS. | 
+**OauthTokenEndpoint** | **string** | OAuth token endpoint used to obtain a bearer token for the SCM API. Defaults to Sectigo&#39;s SSO realm. | [default to "https://auth.sso.sectigo.com/auth/realms/apiclients/protocol/openid-connect/token"]
+**OrganizationId** | Pointer to **int64** | Restricts the domain listing to this Sectigo organization or department. When unset, every domain of the customer account is listed. | [optional] 
 
 ## Methods
 
 ### NewDcvProviderList200ResponseInner
 
-`func NewDcvProviderList200ResponseInner(id string, credentials string, endpoint string, name string, timeout NullableString, type_ string, defaultEmail string, defaultPhone string, profile string, ) *DcvProviderList200ResponseInner`
+`func NewDcvProviderList200ResponseInner(id string, credentials string, endpoint string, name string, timeout NullableString, type_ string, defaultEmail string, defaultPhone string, profile string, dcvMethod string, oauthTokenEndpoint string, ) *DcvProviderList200ResponseInner`
 
 NewDcvProviderList200ResponseInner instantiates a new DcvProviderList200ResponseInner object
 This constructor will assign default values to properties that have it defined,
@@ -248,6 +251,71 @@ and a boolean to check if the value has been set.
 
 SetProfile sets Profile field to given value.
 
+
+### GetDcvMethod
+
+`func (o *DcvProviderList200ResponseInner) GetDcvMethod() string`
+
+GetDcvMethod returns the DcvMethod field if non-nil, zero value otherwise.
+
+### GetDcvMethodOk
+
+`func (o *DcvProviderList200ResponseInner) GetDcvMethodOk() (*string, bool)`
+
+GetDcvMethodOk returns a tuple with the DcvMethod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDcvMethod
+
+`func (o *DcvProviderList200ResponseInner) SetDcvMethod(v string)`
+
+SetDcvMethod sets DcvMethod field to given value.
+
+
+### GetOauthTokenEndpoint
+
+`func (o *DcvProviderList200ResponseInner) GetOauthTokenEndpoint() string`
+
+GetOauthTokenEndpoint returns the OauthTokenEndpoint field if non-nil, zero value otherwise.
+
+### GetOauthTokenEndpointOk
+
+`func (o *DcvProviderList200ResponseInner) GetOauthTokenEndpointOk() (*string, bool)`
+
+GetOauthTokenEndpointOk returns a tuple with the OauthTokenEndpoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOauthTokenEndpoint
+
+`func (o *DcvProviderList200ResponseInner) SetOauthTokenEndpoint(v string)`
+
+SetOauthTokenEndpoint sets OauthTokenEndpoint field to given value.
+
+
+### GetOrganizationId
+
+`func (o *DcvProviderList200ResponseInner) GetOrganizationId() int64`
+
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
+
+### GetOrganizationIdOk
+
+`func (o *DcvProviderList200ResponseInner) GetOrganizationIdOk() (*int64, bool)`
+
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationId
+
+`func (o *DcvProviderList200ResponseInner) SetOrganizationId(v int64)`
+
+SetOrganizationId sets OrganizationId field to given value.
+
+### HasOrganizationId
+
+`func (o *DcvProviderList200ResponseInner) HasOrganizationId() bool`
+
+HasOrganizationId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

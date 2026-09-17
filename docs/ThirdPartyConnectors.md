@@ -28,11 +28,12 @@ Name | Type | Description | Notes
 **MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
 **OverrideProfileConfiguration** | Pointer to **NullableBool** | Whether to override the existing SSL profile&#39;s parent profile and cipher group on update. When &#x60;false&#x60;, only the certificate and key are updated. | [optional] [default to true]
 **Partition** | Pointer to **NullableString** |  | [optional] [default to "Common"]
+**PersistConfiguration** | Pointer to **bool** | When enabled, Horizon saves the F5 running configuration to &#x60;bigip.conf&#x60; after each successful deployment so that pushed changes survive an appliance reboot. Requires an admin-level F5 technical account. | [optional] [default to false]
 **SslParent** | Pointer to **NullableString** |  | [optional] [default to "clientssl"]
 **Version** | Pointer to **NullableString** |  | [optional] 
 **Location** | **string** |  | 
 **Project** | **string** |  | 
-**IntuneResourceUrl** | Pointer to **NullableString** | Override the Microsoft Graph API base URL (e.g. for Azure US Government or Azure China sovereign clouds). Defaults to the public cloud endpoint (&#x60;https://graph.microsoft.com&#x60;) when unset. | [optional] 
+**IntuneResourceUrl** | Pointer to **NullableString** | Base URL of the Microsoft Intune service handling certificate revocation requests (e.g. for Azure US Government or Azure China sovereign clouds). Defaults to the public cloud endpoint (&#x60;https://api.manage.microsoft.com/&#x60;) when unset. | [optional] 
 **LegacyRevocationMode** | **bool** |  | 
 **OsQueryString** | Pointer to **NullableString** |  | [optional] [default to "operatingSystem eq 'iOS' or operatingSystem eq 'IPhone' or operatingSystem eq 'Android' or operatingSystem eq 'AndroidForWork' or operatingSystem eq 'IPad' or operatingSystem eq 'Desktop' or operatingSystem eq 'Windows'"]
 **IntendedPurpose** | Pointer to **NullableString** |  | [optional] [default to "smimeEncryption"]
@@ -745,6 +746,31 @@ HasPartition returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectors) UnsetPartition()`
 
 UnsetPartition ensures that no value is present for Partition, not even an explicit nil
+### GetPersistConfiguration
+
+`func (o *ThirdPartyConnectors) GetPersistConfiguration() bool`
+
+GetPersistConfiguration returns the PersistConfiguration field if non-nil, zero value otherwise.
+
+### GetPersistConfigurationOk
+
+`func (o *ThirdPartyConnectors) GetPersistConfigurationOk() (*bool, bool)`
+
+GetPersistConfigurationOk returns a tuple with the PersistConfiguration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPersistConfiguration
+
+`func (o *ThirdPartyConnectors) SetPersistConfiguration(v bool)`
+
+SetPersistConfiguration sets PersistConfiguration field to given value.
+
+### HasPersistConfiguration
+
+`func (o *ThirdPartyConnectors) HasPersistConfiguration() bool`
+
+HasPersistConfiguration returns a boolean if a field has been set.
+
 ### GetSslParent
 
 `func (o *ThirdPartyConnectors) GetSslParent() string`

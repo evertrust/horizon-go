@@ -84,6 +84,8 @@ type APIClient struct {
 
 	CertificateProfileAPI *CertificateProfileAPIService
 
+	ChallengeAPI *ChallengeAPIService
+
 	ConfigurationsExportAPI *ConfigurationsExportAPIService
 
 	DashboardAPI *DashboardAPIService
@@ -202,6 +204,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CertificateGradingRulesetAPI = (*CertificateGradingRulesetAPIService)(&c.common)
 	c.CertificateLabelAPI = (*CertificateLabelAPIService)(&c.common)
 	c.CertificateProfileAPI = (*CertificateProfileAPIService)(&c.common)
+	c.ChallengeAPI = (*ChallengeAPIService)(&c.common)
 	c.ConfigurationsExportAPI = (*ConfigurationsExportAPIService)(&c.common)
 	c.DashboardAPI = (*DashboardAPIService)(&c.common)
 	c.DatasourceAPI = (*DatasourceAPIService)(&c.common)

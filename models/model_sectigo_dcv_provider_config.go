@@ -17,251 +17,304 @@ import (
 	"github.com/evertrust/horizon-go/v2/utils"
 )
 
-// checks if the WebraInitParameters type satisfies the MappedNullable interface at compile time
-var _ utils.MappedNullable = &WebraInitParameters{}
+// checks if the SectigoDCVProviderConfig type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &SectigoDCVProviderConfig{}
 
-// WebraInitParameters struct for WebraInitParameters
-type WebraInitParameters struct {
-	// The authorization mode for WebRA.
-	AuthorizationMode *string `json:"authorizationMode,omitempty"`
-	// If true, the certificate data passed in the request submission will be ignored by the server
-	CertificateDataIgnored bool `json:"certificateDataIgnored"`
-	// The enrollment mode for WebRA.
-	EnrollmentMode *string `json:"enrollmentMode,omitempty"`
-	// The key type used for WebRA.
-	KeyType *string `json:"keyType,omitempty"`
-	// The module of the initialization parameters.
-	Module string `json:"module"`
-	// The password policy for WebRA.
-	PasswordPolicy *PasswordPolicy `json:"passwordPolicy,omitempty"`
-	// The profile used for WebRA.
-	Profile              string `json:"profile"`
+// SectigoDCVProviderConfig struct for SectigoDCVProviderConfig
+type SectigoDCVProviderConfig struct {
+	// Name of the login/password credentials configuration holding the SCM API client, with the OAuth client id as login and the client secret as password
+	Credentials string `json:"credentials"`
+	// DNS method used to validate a domain. It is a fallback: a domain that already holds a CNAME or TXT validation is re-validated with its own method, and this method applies only to a domain that has never been validated or whose existing validation uses a method that cannot be published over DNS.
+	DcvMethod string `json:"dcvMethod"`
+	// Sectigo Certificate Manager (SCM) API base URL
+	Endpoint string `json:"endpoint"`
+	// Unique name of the DCV provider configuration
+	Name string `json:"name"`
+	// OAuth token endpoint used to obtain a bearer token for the SCM API. Defaults to Sectigo's SSO realm.
+	OauthTokenEndpoint *string `json:"oauthTokenEndpoint,omitempty"`
+	// Restricts the domain listing to this Sectigo organization or department. When unset, every domain of the customer account is listed.
+	OrganizationId *int64 `json:"organizationId,omitempty"`
+	// Name of the HTTP proxy configuration to use
+	Proxy *string `json:"proxy,omitempty"`
+	// Request timeout
+	Timeout utils.NullableString `json:"timeout" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	// Provider type discriminator
+	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _WebraInitParameters WebraInitParameters
+type _SectigoDCVProviderConfig SectigoDCVProviderConfig
 
-// NewWebraInitParameters instantiates a new WebraInitParameters object
+// NewSectigoDCVProviderConfig instantiates a new SectigoDCVProviderConfig object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebraInitParameters(certificateDataIgnored bool, module string, profile string) *WebraInitParameters {
-	this := WebraInitParameters{}
-	this.CertificateDataIgnored = certificateDataIgnored
-	this.Module = module
-	this.Profile = profile
+func NewSectigoDCVProviderConfig(credentials string, dcvMethod string, endpoint string, name string, timeout utils.NullableString, type_ string) *SectigoDCVProviderConfig {
+	this := SectigoDCVProviderConfig{}
+	this.Credentials = credentials
+	this.DcvMethod = dcvMethod
+	this.Endpoint = endpoint
+	this.Name = name
+	this.Timeout = timeout
+	this.Type = type_
+	var oauthTokenEndpoint string = "https://auth.sso.sectigo.com/auth/realms/apiclients/protocol/openid-connect/token"
+	this.OauthTokenEndpoint = &oauthTokenEndpoint
 	return &this
 }
 
-// NewWebraInitParametersWithDefaults instantiates a new WebraInitParameters object
+// NewSectigoDCVProviderConfigWithDefaults instantiates a new SectigoDCVProviderConfig object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewWebraInitParametersWithDefaults() *WebraInitParameters {
-	this := WebraInitParameters{}
+func NewSectigoDCVProviderConfigWithDefaults() *SectigoDCVProviderConfig {
+	this := SectigoDCVProviderConfig{}
+	var oauthTokenEndpoint string = "https://auth.sso.sectigo.com/auth/realms/apiclients/protocol/openid-connect/token"
+	this.OauthTokenEndpoint = &oauthTokenEndpoint
 	return &this
 }
 
-// GetAuthorizationMode returns the AuthorizationMode field value if set, zero value otherwise.
-func (o *WebraInitParameters) GetAuthorizationMode() string {
-	if o == nil || utils.IsNil(o.AuthorizationMode) {
+// GetCredentials returns the Credentials field value
+func (o *SectigoDCVProviderConfig) GetCredentials() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.AuthorizationMode
+
+	return o.Credentials
 }
 
-// GetAuthorizationModeOk returns a tuple with the AuthorizationMode field value if set, nil otherwise
+// GetCredentialsOk returns a tuple with the Credentials field value
 // and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetAuthorizationModeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.AuthorizationMode) {
+func (o *SectigoDCVProviderConfig) GetCredentialsOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.AuthorizationMode, true
+	return &o.Credentials, true
 }
 
-// HasAuthorizationMode returns a boolean if a field has been set.
-func (o *WebraInitParameters) HasAuthorizationMode() bool {
-	if o != nil && !utils.IsNil(o.AuthorizationMode) {
+// SetCredentials sets field value
+func (o *SectigoDCVProviderConfig) SetCredentials(v string) {
+	o.Credentials = v
+}
+
+// GetDcvMethod returns the DcvMethod field value
+func (o *SectigoDCVProviderConfig) GetDcvMethod() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DcvMethod
+}
+
+// GetDcvMethodOk returns a tuple with the DcvMethod field value
+// and a boolean to check if the value has been set.
+func (o *SectigoDCVProviderConfig) GetDcvMethodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DcvMethod, true
+}
+
+// SetDcvMethod sets field value
+func (o *SectigoDCVProviderConfig) SetDcvMethod(v string) {
+	o.DcvMethod = v
+}
+
+// GetEndpoint returns the Endpoint field value
+func (o *SectigoDCVProviderConfig) GetEndpoint() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Endpoint
+}
+
+// GetEndpointOk returns a tuple with the Endpoint field value
+// and a boolean to check if the value has been set.
+func (o *SectigoDCVProviderConfig) GetEndpointOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Endpoint, true
+}
+
+// SetEndpoint sets field value
+func (o *SectigoDCVProviderConfig) SetEndpoint(v string) {
+	o.Endpoint = v
+}
+
+// GetName returns the Name field value
+func (o *SectigoDCVProviderConfig) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SectigoDCVProviderConfig) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *SectigoDCVProviderConfig) SetName(v string) {
+	o.Name = v
+}
+
+// GetOauthTokenEndpoint returns the OauthTokenEndpoint field value if set, zero value otherwise.
+func (o *SectigoDCVProviderConfig) GetOauthTokenEndpoint() string {
+	if o == nil || utils.IsNil(o.OauthTokenEndpoint) {
+		var ret string
+		return ret
+	}
+	return *o.OauthTokenEndpoint
+}
+
+// GetOauthTokenEndpointOk returns a tuple with the OauthTokenEndpoint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SectigoDCVProviderConfig) GetOauthTokenEndpointOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.OauthTokenEndpoint) {
+		return nil, false
+	}
+	return o.OauthTokenEndpoint, true
+}
+
+// HasOauthTokenEndpoint returns a boolean if a field has been set.
+func (o *SectigoDCVProviderConfig) HasOauthTokenEndpoint() bool {
+	if o != nil && !utils.IsNil(o.OauthTokenEndpoint) {
 		return true
 	}
 
 	return false
 }
 
-// SetAuthorizationMode gets a reference to the given string and assigns it to the AuthorizationMode field.
-func (o *WebraInitParameters) SetAuthorizationMode(v string) {
-	o.AuthorizationMode = &v
+// SetOauthTokenEndpoint gets a reference to the given string and assigns it to the OauthTokenEndpoint field.
+func (o *SectigoDCVProviderConfig) SetOauthTokenEndpoint(v string) {
+	o.OauthTokenEndpoint = &v
 }
 
-// GetCertificateDataIgnored returns the CertificateDataIgnored field value
-func (o *WebraInitParameters) GetCertificateDataIgnored() bool {
-	if o == nil {
-		var ret bool
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
+func (o *SectigoDCVProviderConfig) GetOrganizationId() int64 {
+	if o == nil || utils.IsNil(o.OrganizationId) {
+		var ret int64
 		return ret
 	}
-
-	return o.CertificateDataIgnored
+	return *o.OrganizationId
 }
 
-// GetCertificateDataIgnoredOk returns a tuple with the CertificateDataIgnored field value
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetCertificateDataIgnoredOk() (*bool, bool) {
-	if o == nil {
+func (o *SectigoDCVProviderConfig) GetOrganizationIdOk() (*int64, bool) {
+	if o == nil || utils.IsNil(o.OrganizationId) {
 		return nil, false
 	}
-	return &o.CertificateDataIgnored, true
+	return o.OrganizationId, true
 }
 
-// SetCertificateDataIgnored sets field value
-func (o *WebraInitParameters) SetCertificateDataIgnored(v bool) {
-	o.CertificateDataIgnored = v
-}
-
-// GetEnrollmentMode returns the EnrollmentMode field value if set, zero value otherwise.
-func (o *WebraInitParameters) GetEnrollmentMode() string {
-	if o == nil || utils.IsNil(o.EnrollmentMode) {
-		var ret string
-		return ret
-	}
-	return *o.EnrollmentMode
-}
-
-// GetEnrollmentModeOk returns a tuple with the EnrollmentMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetEnrollmentModeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.EnrollmentMode) {
-		return nil, false
-	}
-	return o.EnrollmentMode, true
-}
-
-// HasEnrollmentMode returns a boolean if a field has been set.
-func (o *WebraInitParameters) HasEnrollmentMode() bool {
-	if o != nil && !utils.IsNil(o.EnrollmentMode) {
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *SectigoDCVProviderConfig) HasOrganizationId() bool {
+	if o != nil && !utils.IsNil(o.OrganizationId) {
 		return true
 	}
 
 	return false
 }
 
-// SetEnrollmentMode gets a reference to the given string and assigns it to the EnrollmentMode field.
-func (o *WebraInitParameters) SetEnrollmentMode(v string) {
-	o.EnrollmentMode = &v
+// SetOrganizationId gets a reference to the given int64 and assigns it to the OrganizationId field.
+func (o *SectigoDCVProviderConfig) SetOrganizationId(v int64) {
+	o.OrganizationId = &v
 }
 
-// GetKeyType returns the KeyType field value if set, zero value otherwise.
-func (o *WebraInitParameters) GetKeyType() string {
-	if o == nil || utils.IsNil(o.KeyType) {
+// GetProxy returns the Proxy field value if set, zero value otherwise.
+func (o *SectigoDCVProviderConfig) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy) {
 		var ret string
 		return ret
 	}
-	return *o.KeyType
+	return *o.Proxy
 }
 
-// GetKeyTypeOk returns a tuple with the KeyType field value if set, nil otherwise
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetKeyTypeOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.KeyType) {
+func (o *SectigoDCVProviderConfig) GetProxyOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Proxy) {
 		return nil, false
 	}
-	return o.KeyType, true
+	return o.Proxy, true
 }
 
-// HasKeyType returns a boolean if a field has been set.
-func (o *WebraInitParameters) HasKeyType() bool {
-	if o != nil && !utils.IsNil(o.KeyType) {
+// HasProxy returns a boolean if a field has been set.
+func (o *SectigoDCVProviderConfig) HasProxy() bool {
+	if o != nil && !utils.IsNil(o.Proxy) {
 		return true
 	}
 
 	return false
 }
 
-// SetKeyType gets a reference to the given string and assigns it to the KeyType field.
-func (o *WebraInitParameters) SetKeyType(v string) {
-	o.KeyType = &v
+// SetProxy gets a reference to the given string and assigns it to the Proxy field.
+func (o *SectigoDCVProviderConfig) SetProxy(v string) {
+	o.Proxy = &v
 }
 
-// GetModule returns the Module field value
-func (o *WebraInitParameters) GetModule() string {
+// GetTimeout returns the Timeout field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *SectigoDCVProviderConfig) GetTimeout() string {
+	if o == nil || o.Timeout.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SectigoDCVProviderConfig) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// SetTimeout sets field value
+func (o *SectigoDCVProviderConfig) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// GetType returns the Type field value
+func (o *SectigoDCVProviderConfig) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Module
+	return o.Type
 }
 
-// GetModuleOk returns a tuple with the Module field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetModuleOk() (*string, bool) {
+func (o *SectigoDCVProviderConfig) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Module, true
+	return &o.Type, true
 }
 
-// SetModule sets field value
-func (o *WebraInitParameters) SetModule(v string) {
-	o.Module = v
+// SetType sets field value
+func (o *SectigoDCVProviderConfig) SetType(v string) {
+	o.Type = v
 }
 
-// GetPasswordPolicy returns the PasswordPolicy field value if set, zero value otherwise.
-func (o *WebraInitParameters) GetPasswordPolicy() PasswordPolicy {
-	if o == nil || utils.IsNil(o.PasswordPolicy) {
-		var ret PasswordPolicy
-		return ret
-	}
-	return *o.PasswordPolicy
-}
-
-// GetPasswordPolicyOk returns a tuple with the PasswordPolicy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetPasswordPolicyOk() (*PasswordPolicy, bool) {
-	if o == nil || utils.IsNil(o.PasswordPolicy) {
-		return nil, false
-	}
-	return o.PasswordPolicy, true
-}
-
-// HasPasswordPolicy returns a boolean if a field has been set.
-func (o *WebraInitParameters) HasPasswordPolicy() bool {
-	if o != nil && !utils.IsNil(o.PasswordPolicy) {
-		return true
-	}
-
-	return false
-}
-
-// SetPasswordPolicy gets a reference to the given PasswordPolicy and assigns it to the PasswordPolicy field.
-func (o *WebraInitParameters) SetPasswordPolicy(v PasswordPolicy) {
-	o.PasswordPolicy = &v
-}
-
-// GetProfile returns the Profile field value
-func (o *WebraInitParameters) GetProfile() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Profile
-}
-
-// GetProfileOk returns a tuple with the Profile field value
-// and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetProfileOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Profile, true
-}
-
-// SetProfile sets field value
-func (o *WebraInitParameters) SetProfile(v string) {
-	o.Profile = v
-}
-
-func (o WebraInitParameters) MarshalJSON() ([]byte, error) {
+func (o SectigoDCVProviderConfig) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -269,23 +322,23 @@ func (o WebraInitParameters) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o WebraInitParameters) ToMap() (map[string]interface{}, error) {
+func (o SectigoDCVProviderConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !utils.IsNil(o.AuthorizationMode) {
-		toSerialize["authorizationMode"] = o.AuthorizationMode
+	toSerialize["credentials"] = o.Credentials
+	toSerialize["dcvMethod"] = o.DcvMethod
+	toSerialize["endpoint"] = o.Endpoint
+	toSerialize["name"] = o.Name
+	if !utils.IsNil(o.OauthTokenEndpoint) {
+		toSerialize["oauthTokenEndpoint"] = o.OauthTokenEndpoint
 	}
-	toSerialize["certificateDataIgnored"] = o.CertificateDataIgnored
-	if !utils.IsNil(o.EnrollmentMode) {
-		toSerialize["enrollmentMode"] = o.EnrollmentMode
+	if !utils.IsNil(o.OrganizationId) {
+		toSerialize["organizationId"] = o.OrganizationId
 	}
-	if !utils.IsNil(o.KeyType) {
-		toSerialize["keyType"] = o.KeyType
+	if !utils.IsNil(o.Proxy) {
+		toSerialize["proxy"] = o.Proxy
 	}
-	toSerialize["module"] = o.Module
-	if !utils.IsNil(o.PasswordPolicy) {
-		toSerialize["passwordPolicy"] = o.PasswordPolicy
-	}
-	toSerialize["profile"] = o.Profile
+	toSerialize["timeout"] = o.Timeout.Get()
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -294,14 +347,17 @@ func (o WebraInitParameters) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *WebraInitParameters) UnmarshalJSON(data []byte) (err error) {
+func (o *SectigoDCVProviderConfig) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"certificateDataIgnored",
-		"module",
-		"profile",
+		"credentials",
+		"dcvMethod",
+		"endpoint",
+		"name",
+		"timeout",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -318,64 +374,66 @@ func (o *WebraInitParameters) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varWebraInitParameters := _WebraInitParameters{}
+	varSectigoDCVProviderConfig := _SectigoDCVProviderConfig{}
 
-	err = json.Unmarshal(data, &varWebraInitParameters)
+	err = json.Unmarshal(data, &varSectigoDCVProviderConfig)
 
 	if err != nil {
 		return err
 	}
 
-	*o = WebraInitParameters(varWebraInitParameters)
+	*o = SectigoDCVProviderConfig(varSectigoDCVProviderConfig)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "authorizationMode")
-		delete(additionalProperties, "certificateDataIgnored")
-		delete(additionalProperties, "enrollmentMode")
-		delete(additionalProperties, "keyType")
-		delete(additionalProperties, "module")
-		delete(additionalProperties, "passwordPolicy")
-		delete(additionalProperties, "profile")
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "dcvMethod")
+		delete(additionalProperties, "endpoint")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "oauthTokenEndpoint")
+		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableWebraInitParameters struct {
-	value *WebraInitParameters
+type NullableSectigoDCVProviderConfig struct {
+	value *SectigoDCVProviderConfig
 	isSet bool
 }
 
-func (v NullableWebraInitParameters) Get() *WebraInitParameters {
+func (v NullableSectigoDCVProviderConfig) Get() *SectigoDCVProviderConfig {
 	return v.value
 }
 
-func (v *NullableWebraInitParameters) Set(val *WebraInitParameters) {
+func (v *NullableSectigoDCVProviderConfig) Set(val *SectigoDCVProviderConfig) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableWebraInitParameters) IsSet() bool {
+func (v NullableSectigoDCVProviderConfig) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableWebraInitParameters) Unset() {
+func (v *NullableSectigoDCVProviderConfig) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableWebraInitParameters(val *WebraInitParameters) *NullableWebraInitParameters {
-	return &NullableWebraInitParameters{value: val, isSet: true}
+func NewNullableSectigoDCVProviderConfig(val *SectigoDCVProviderConfig) *NullableSectigoDCVProviderConfig {
+	return &NullableSectigoDCVProviderConfig{value: val, isSet: true}
 }
 
-func (v NullableWebraInitParameters) MarshalJSON() ([]byte, error) {
+func (v NullableSectigoDCVProviderConfig) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableWebraInitParameters) UnmarshalJSON(src []byte) error {
+func (v *NullableSectigoDCVProviderConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
