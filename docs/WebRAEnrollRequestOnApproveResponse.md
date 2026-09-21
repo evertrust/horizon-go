@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
 **ExpirationDate** | Pointer to **int64** | The date the request will expire. This is set by the system | [optional] 
 **GlobalHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the Horizon database | [optional] 
-**HolderId** | **string** | The computed holderID for this request. This is set by the system based on DN and SANs | 
+**HolderId** | Pointer to **string** | The computed holderID for this request. This is set by the system based on DN and SANs | [optional] 
 **Labels** | Pointer to [**[]LabelData**](LabelData.md) | The labels set in this request | [optional] 
 **LastModificationDate** | **int64** | The date the request was last modified. This is set by the system | 
 **Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The metadata set in this request | [optional] 
@@ -40,7 +40,7 @@ Name | Type | Description | Notes
 
 ### NewWebRAEnrollRequestOnApproveResponse
 
-`func NewWebRAEnrollRequestOnApproveResponse(module string, template WebRAEnrollRequestTemplateResponse, workflow string, id string, holderId string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAEnrollRequestOnApproveResponse`
+`func NewWebRAEnrollRequestOnApproveResponse(module string, template WebRAEnrollRequestTemplateResponse, workflow string, id string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAEnrollRequestOnApproveResponse`
 
 NewWebRAEnrollRequestOnApproveResponse instantiates a new WebRAEnrollRequestOnApproveResponse object
 This constructor will assign default values to properties that have it defined,
@@ -584,6 +584,11 @@ and a boolean to check if the value has been set.
 
 SetHolderId sets HolderId field to given value.
 
+### HasHolderId
+
+`func (o *WebRAEnrollRequestOnApproveResponse) HasHolderId() bool`
+
+HasHolderId returns a boolean if a field has been set.
 
 ### GetLabels
 

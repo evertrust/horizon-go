@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **Dn** | Pointer to **string** | Certificate&#39;s Distinguished Name | [optional] 
 **ExpirationDate** | Pointer to **int64** | The date the request will expire. This is set by the system | [optional] 
 **GlobalHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the Horizon database | [optional] 
-**HolderId** | **string** | The computed holderID for this request. This is set by the system based on DN and SANs | 
+**HolderId** | Pointer to **string** | The computed holderID for this request. This is set by the system based on DN and SANs | [optional] 
 **Labels** | Pointer to [**[]LabelData**](LabelData.md) | The labels set in this request | [optional] 
 **LastModificationDate** | **int64** | The date the request was last modified. This is set by the system | 
 **Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The metadata set in this request | [optional] 
@@ -34,7 +34,7 @@ Name | Type | Description | Notes
 
 ### NewWebRAMigrateRequestOnSubmitResponse
 
-`func NewWebRAMigrateRequestOnSubmitResponse(module Module, profile string, template WebRAMigrateRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAMigrateRequestOnSubmitResponse`
+`func NewWebRAMigrateRequestOnSubmitResponse(module Module, profile string, template WebRAMigrateRequestTemplate, workflow string, id string, lastModificationDate int64, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAMigrateRequestOnSubmitResponse`
 
 NewWebRAMigrateRequestOnSubmitResponse instantiates a new WebRAMigrateRequestOnSubmitResponse object
 This constructor will assign default values to properties that have it defined,
@@ -428,6 +428,11 @@ and a boolean to check if the value has been set.
 
 SetHolderId sets HolderId field to given value.
 
+### HasHolderId
+
+`func (o *WebRAMigrateRequestOnSubmitResponse) HasHolderId() bool`
+
+HasHolderId returns a boolean if a field has been set.
 
 ### GetLabels
 

@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Escrowed** | **bool** | Whether the certificate is escrowed | 
 **Extensions** | Pointer to [**[]CertificateExtension**](CertificateExtension.md) | The certificate&#39;s extensions | [optional] 
 **Grades** | Pointer to [**[]GradingPolicyResult**](GradingPolicyResult.md) | The certificate&#39;s grades for the enabled grading policies | [optional] 
-**HolderId** | **string** | The certificate&#39;s holder ID. This is a computed field that is used to count how many similar certificates are in use simultaneously by the same holder | 
+**HolderId** | Pointer to **string** | The certificate&#39;s holder ID. This is a computed field that is used to count how many similar certificates are in use simultaneously by the same holder | [optional] 
 **Issuer** | **string** | The certificate&#39;s issuer Distinguished Name | 
 **KeyType** | **string** | The certificate&#39;s key type | 
 **Labels** | Pointer to [**[]LabelData**](LabelData.md) | The certificate&#39;s labels | [optional] 
@@ -44,7 +44,7 @@ Name | Type | Description | Notes
 
 ### NewCertificate
 
-`func NewCertificate(id string, certificate string, dn string, escrowed bool, holderId string, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string, ) *Certificate`
+`func NewCertificate(id string, certificate string, dn string, escrowed bool, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string, ) *Certificate`
 
 NewCertificate instantiates a new Certificate object
 This constructor will assign default values to properties that have it defined,
@@ -418,6 +418,11 @@ and a boolean to check if the value has been set.
 
 SetHolderId sets HolderId field to given value.
 
+### HasHolderId
+
+`func (o *Certificate) HasHolderId() bool`
+
+HasHolderId returns a boolean if a field has been set.
 
 ### GetIssuer
 
