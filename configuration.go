@@ -130,13 +130,14 @@ func (c *Configuration) GetTlsConfig() *tls.Config {
 
 func (c *Configuration) GetTransport() *http.Transport {
 	if c.HTTPClient.Transport == nil {
-		tr := &http.Transport{}
-		c.HTTPClient.Transport = tr
+		// Clone the stdlib default transport to inherit its timeouts (IdleConnTimeout, MaxIdleConns,
+		// TLSHandshakeTimeout, HTTP/2) instead of a bare transport that never closes idle connections.
+		// The clone also honors HTTP(S)_PROXY through ProxyFromEnvironment; SetProxyUrl overrides it.
+		c.HTTPClient.Transport = http.DefaultTransport.(*http.Transport).Clone()
 	}
 	transportTlS := c.HTTPClient.Transport.(*http.Transport)
 	if transportTlS.TLSClientConfig == nil {
 		transportTlS.TLSClientConfig = &tls.Config{}
-		c.HTTPClient.Transport = transportTlS
 	}
 	return transportTlS
 }
