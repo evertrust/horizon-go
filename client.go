@@ -453,6 +453,14 @@ func (c *APIClient) GetConfig() *Configuration {
 	return c.cfg
 }
 
+// CloseIdleConnections releases the idle connections held by this client's transport.
+// Call it when discarding a short-lived client, otherwise its keep-alive connections stay open.
+func (c *APIClient) CloseIdleConnections() {
+	if c.cfg != nil && c.cfg.HTTPClient != nil {
+		c.cfg.HTTPClient.CloseIdleConnections()
+	}
+}
+
 type formFile struct {
 	fileBytes    []byte
 	fileName     string
