@@ -6,9 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
 **AuthorizationLevels** | [**CertificateProfileAuthorizationLevels**](CertificateProfileAuthorizationLevels.md) |  | 
-**AuthorizationMode** | **string** | The authorization mode to use.  &#x60;authorized&#x60; uses permissions to allow enrollment,  &#x60;auto-validation&#x60; uses the validation ruleset, &#x60;auto-validation-authorized&#x60; uses the validation ruleset, and if enrollment is denied, uses the permissions  | 
+**AuthorizationMode** | **string** | The authorization mode to use.  &#x60;authorized&#x60; uses permissions to allow enrollment,  &#x60;auto-validation&#x60; uses the validation ruleset, &#x60;auto-validation-authorized&#x60; uses the validation ruleset, and if enrollment is denied, uses the permissions, &#x60;challenge&#x60; allows enrollment through a one-time challenge, submitted on &#x60;/api/v1/challenge/submit&#x60;  | 
 **AutoRenewalPolicy** | Pointer to [**AutoRenewalPolicy**](AutoRenewalPolicy.md) |  | [optional] 
 **CertificateTemplate** | [**CertificateTemplate**](CertificateTemplate.md) |  | 
+**Constraints** | Pointer to [**CertificateRequestConstraints**](CertificateRequestConstraints.md) | Restricts the identity a certificate may carry on this profile | [optional] 
 **CryptoPolicy** | [**ManagedCertificateProfileCryptoPolicy**](ManagedCertificateProfileCryptoPolicy.md) |  | 
 **CsrDataMapping** | Pointer to **map[string]string** |  | [optional] 
 **Description** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
@@ -19,6 +20,7 @@ Name | Type | Description | Notes
 **MaxCertificatePerHolderPolicy** | Pointer to [**NullableMaxCertificatePerHolderPolicy**](MaxCertificatePerHolderPolicy.md) |  | [optional] 
 **Module** | **string** |  | 
 **Name** | **string** |  | 
+**PasswordPolicy** | Pointer to **string** | Reference to a &#x60;Password policy&#x60; object, used to generate the challenge. Required when the authorization mode is &#x60;challenge&#x60;, and rejected otherwise | [optional] 
 **PkiConnector** | **string** |  | 
 **RenewalPeriod** | Pointer to **NullableString** |  | [optional] 
 **RequestsPolicy** | [**RequestsPolicy**](RequestsPolicy.md) |  | 
@@ -151,6 +153,31 @@ and a boolean to check if the value has been set.
 
 SetCertificateTemplate sets CertificateTemplate field to given value.
 
+
+### GetConstraints
+
+`func (o *WebRAProfileResponse) GetConstraints() CertificateRequestConstraints`
+
+GetConstraints returns the Constraints field if non-nil, zero value otherwise.
+
+### GetConstraintsOk
+
+`func (o *WebRAProfileResponse) GetConstraintsOk() (*CertificateRequestConstraints, bool)`
+
+GetConstraintsOk returns a tuple with the Constraints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConstraints
+
+`func (o *WebRAProfileResponse) SetConstraints(v CertificateRequestConstraints)`
+
+SetConstraints sets Constraints field to given value.
+
+### HasConstraints
+
+`func (o *WebRAProfileResponse) HasConstraints() bool`
+
+HasConstraints returns a boolean if a field has been set.
 
 ### GetCryptoPolicy
 
@@ -441,6 +468,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetPasswordPolicy
+
+`func (o *WebRAProfileResponse) GetPasswordPolicy() string`
+
+GetPasswordPolicy returns the PasswordPolicy field if non-nil, zero value otherwise.
+
+### GetPasswordPolicyOk
+
+`func (o *WebRAProfileResponse) GetPasswordPolicyOk() (*string, bool)`
+
+GetPasswordPolicyOk returns a tuple with the PasswordPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPasswordPolicy
+
+`func (o *WebRAProfileResponse) SetPasswordPolicy(v string)`
+
+SetPasswordPolicy sets PasswordPolicy field to given value.
+
+### HasPasswordPolicy
+
+`func (o *WebRAProfileResponse) HasPasswordPolicy() bool`
+
+HasPasswordPolicy returns a boolean if a field has been set.
 
 ### GetPkiConnector
 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AuthorizationMode** | Pointer to **string** | The authorization mode for WebRA. | [optional] 
+**CertificateDataIgnored** | **bool** | If true, the certificate data passed in the request submission will be ignored by the server | 
 **EnrollmentMode** | Pointer to **string** | The enrollment mode for WebRA. | [optional] 
 **KeyType** | Pointer to **string** | The key type used for WebRA. | [optional] 
 **Module** | **string** | The module of the initialization parameters. | 
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewWebraInitParameters
 
-`func NewWebraInitParameters(module string, profile string, ) *WebraInitParameters`
+`func NewWebraInitParameters(certificateDataIgnored bool, module string, profile string, ) *WebraInitParameters`
 
 NewWebraInitParameters instantiates a new WebraInitParameters object
 This constructor will assign default values to properties that have it defined,
@@ -54,6 +55,26 @@ SetAuthorizationMode sets AuthorizationMode field to given value.
 `func (o *WebraInitParameters) HasAuthorizationMode() bool`
 
 HasAuthorizationMode returns a boolean if a field has been set.
+
+### GetCertificateDataIgnored
+
+`func (o *WebraInitParameters) GetCertificateDataIgnored() bool`
+
+GetCertificateDataIgnored returns the CertificateDataIgnored field if non-nil, zero value otherwise.
+
+### GetCertificateDataIgnoredOk
+
+`func (o *WebraInitParameters) GetCertificateDataIgnoredOk() (*bool, bool)`
+
+GetCertificateDataIgnoredOk returns a tuple with the CertificateDataIgnored field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateDataIgnored
+
+`func (o *WebraInitParameters) SetCertificateDataIgnored(v bool)`
+
+SetCertificateDataIgnored sets CertificateDataIgnored field to given value.
+
 
 ### GetEnrollmentMode
 

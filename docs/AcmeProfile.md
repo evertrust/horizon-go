@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **DisplayName** | Pointer to [**[]LocalizedString**](LocalizedString.md) |  | [optional] 
 **DsFlow** | Pointer to [**[]DataSourceFlowEntry**](DataSourceFlowEntry.md) | Representation of a datasource execution flow | [optional] 
 **Enabled** | **bool** |  | 
+**ExcludeRootCA** | Pointer to **bool** | If &#x60;true&#x60;, the root CA will be excluded from the response chain, as it should already be present on the target system | [optional] [default to false]
 **GradingPolicies** | Pointer to **[]string** |  | [optional] 
 **Http01Port** | Pointer to **NullableInt64** |  | [optional] 
 **IpIdentifierConstraint** | Pointer to **NullableString** |  | [optional] 
@@ -436,6 +437,31 @@ and a boolean to check if the value has been set.
 
 SetEnabled sets Enabled field to given value.
 
+
+### GetExcludeRootCA
+
+`func (o *AcmeProfile) GetExcludeRootCA() bool`
+
+GetExcludeRootCA returns the ExcludeRootCA field if non-nil, zero value otherwise.
+
+### GetExcludeRootCAOk
+
+`func (o *AcmeProfile) GetExcludeRootCAOk() (*bool, bool)`
+
+GetExcludeRootCAOk returns a tuple with the ExcludeRootCA field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludeRootCA
+
+`func (o *AcmeProfile) SetExcludeRootCA(v bool)`
+
+SetExcludeRootCA sets ExcludeRootCA field to given value.
+
+### HasExcludeRootCA
+
+`func (o *AcmeProfile) HasExcludeRootCA() bool`
+
+HasExcludeRootCA returns a boolean if a field has been set.
 
 ### GetGradingPolicies
 

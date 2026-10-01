@@ -15,13 +15,14 @@ Name | Type | Description | Notes
 **AuthorizationMode** | Pointer to **string** | The authorization mode for WebRA. | [optional] 
 **CsrInfoIgnored** | Pointer to **bool** | Indicates whether CSR info is ignored for SCEP. | [optional] 
 **EnrollmentMode** | Pointer to **string** | The enrollment mode for WebRA. | [optional] 
+**CertificateDataIgnored** | **bool** | If true, the certificate data passed in the request submission will be ignored by the server | 
 **PasswordPolicy** | Pointer to [**PasswordPolicy**](PasswordPolicy.md) | The password policy for WebRA. | [optional] 
 
 ## Methods
 
 ### NewAutomationPolicyLifecycleGet201Response
 
-`func NewAutomationPolicyLifecycleGet201Response(module string, profile string, ) *AutomationPolicyLifecycleGet201Response`
+`func NewAutomationPolicyLifecycleGet201Response(module string, profile string, certificateDataIgnored bool, ) *AutomationPolicyLifecycleGet201Response`
 
 NewAutomationPolicyLifecycleGet201Response instantiates a new AutomationPolicyLifecycleGet201Response object
 This constructor will assign default values to properties that have it defined,
@@ -300,6 +301,26 @@ SetEnrollmentMode sets EnrollmentMode field to given value.
 `func (o *AutomationPolicyLifecycleGet201Response) HasEnrollmentMode() bool`
 
 HasEnrollmentMode returns a boolean if a field has been set.
+
+### GetCertificateDataIgnored
+
+`func (o *AutomationPolicyLifecycleGet201Response) GetCertificateDataIgnored() bool`
+
+GetCertificateDataIgnored returns the CertificateDataIgnored field if non-nil, zero value otherwise.
+
+### GetCertificateDataIgnoredOk
+
+`func (o *AutomationPolicyLifecycleGet201Response) GetCertificateDataIgnoredOk() (*bool, bool)`
+
+GetCertificateDataIgnoredOk returns a tuple with the CertificateDataIgnored field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateDataIgnored
+
+`func (o *AutomationPolicyLifecycleGet201Response) SetCertificateDataIgnored(v bool)`
+
+SetCertificateDataIgnored sets CertificateDataIgnored field to given value.
+
 
 ### GetPasswordPolicy
 

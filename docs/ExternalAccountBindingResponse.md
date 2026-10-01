@@ -14,9 +14,7 @@ Name | Type | Description | Notes
 **EmailConstraint** | Pointer to **string** |  | [optional] 
 **ExpirationDate** | Pointer to **int64** |  | [optional] 
 **IdentifierConstraint** | Pointer to **string** |  | [optional] 
-**MacKey** | **string** |  | 
 **MacKeyAlgorithm** | [**ExternalAccountBindingAlgorithm**](ExternalAccountBindingAlgorithm.md) |  | 
-**MacKeyId** | **string** |  | 
 **Name** | **string** |  | 
 **NumberOfKeyRegeneration** | **int64** |  | 
 **Status** | [**ExternalAccountBindingStatus**](ExternalAccountBindingStatus.md) |  | 
@@ -26,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewExternalAccountBindingResponse
 
-`func NewExternalAccountBindingResponse(id string, allowedProfiles []string, createdAt int64, eabPolicy string, macKey string, macKeyAlgorithm ExternalAccountBindingAlgorithm, macKeyId string, name string, numberOfKeyRegeneration int64, status ExternalAccountBindingStatus, validationMethods []AcmeAuthorizationType, ) *ExternalAccountBindingResponse`
+`func NewExternalAccountBindingResponse(id string, allowedProfiles []string, createdAt int64, eabPolicy string, macKeyAlgorithm ExternalAccountBindingAlgorithm, name string, numberOfKeyRegeneration int64, status ExternalAccountBindingStatus, validationMethods []AcmeAuthorizationType, ) *ExternalAccountBindingResponse`
 
 NewExternalAccountBindingResponse instantiates a new ExternalAccountBindingResponse object
 This constructor will assign default values to properties that have it defined,
@@ -281,26 +279,6 @@ SetIdentifierConstraint sets IdentifierConstraint field to given value.
 
 HasIdentifierConstraint returns a boolean if a field has been set.
 
-### GetMacKey
-
-`func (o *ExternalAccountBindingResponse) GetMacKey() string`
-
-GetMacKey returns the MacKey field if non-nil, zero value otherwise.
-
-### GetMacKeyOk
-
-`func (o *ExternalAccountBindingResponse) GetMacKeyOk() (*string, bool)`
-
-GetMacKeyOk returns a tuple with the MacKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMacKey
-
-`func (o *ExternalAccountBindingResponse) SetMacKey(v string)`
-
-SetMacKey sets MacKey field to given value.
-
-
 ### GetMacKeyAlgorithm
 
 `func (o *ExternalAccountBindingResponse) GetMacKeyAlgorithm() ExternalAccountBindingAlgorithm`
@@ -319,26 +297,6 @@ and a boolean to check if the value has been set.
 `func (o *ExternalAccountBindingResponse) SetMacKeyAlgorithm(v ExternalAccountBindingAlgorithm)`
 
 SetMacKeyAlgorithm sets MacKeyAlgorithm field to given value.
-
-
-### GetMacKeyId
-
-`func (o *ExternalAccountBindingResponse) GetMacKeyId() string`
-
-GetMacKeyId returns the MacKeyId field if non-nil, zero value otherwise.
-
-### GetMacKeyIdOk
-
-`func (o *ExternalAccountBindingResponse) GetMacKeyIdOk() (*string, bool)`
-
-GetMacKeyIdOk returns a tuple with the MacKeyId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMacKeyId
-
-`func (o *ExternalAccountBindingResponse) SetMacKeyId(v string)`
-
-SetMacKeyId sets MacKeyId field to given value.
 
 
 ### GetName

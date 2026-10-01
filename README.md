@@ -159,6 +159,7 @@ Class | Method | HTTP request | Description
 *CertificateProfileAPI* | [**CertificateProfileGet**](docs/CertificateProfileAPI.md#certificateprofileget) | **Get** /api/v1/certificate/profiles/{name} | Retrieve a specific certificate profile
 *CertificateProfileAPI* | [**CertificateProfileList**](docs/CertificateProfileAPI.md#certificateprofilelist) | **Get** /api/v1/certificate/profiles | List the existing certificate profiles
 *CertificateProfileAPI* | [**CertificateProfileUpdate**](docs/CertificateProfileAPI.md#certificateprofileupdate) | **Put** /api/v1/certificate/profiles | Update an existing certificate profile
+*ChallengeAPI* | [**ChallengeSubmit**](docs/ChallengeAPI.md#challengesubmit) | **Post** /api/v1/challenge/submit | Consume a challenge
 *ConfigurationsExportAPI* | [**ExportExportItems**](docs/ConfigurationsExportAPI.md#exportexportitems) | **Post** /api/v1/system/configurations/export | Export configuration items
 *ConfigurationsExportAPI* | [**ExportImportItems**](docs/ConfigurationsExportAPI.md#exportimportitems) | **Post** /api/v1/system/configurations/import | Import configuration items
 *ConfigurationsExportAPI* | [**ExportListItems**](docs/ConfigurationsExportAPI.md#exportlistitems) | **Get** /api/v1/system/configurations/export | List exportable configuration items
@@ -559,11 +560,14 @@ Class | Method | HTTP request | Description
  - [EJBCARESTConnector](docs/EJBCARESTConnector.md)
  - [EJBCARESTConnectorResponse](docs/EJBCARESTConnectorResponse.md)
  - [EabAddRequest](docs/EabAddRequest.md)
+ - [EabAddResponse](docs/EabAddResponse.md)
  - [EabPolicyAddRequest](docs/EabPolicyAddRequest.md)
  - [EabPolicyUpdateRequest](docs/EabPolicyUpdateRequest.md)
  - [EabRenewRequest](docs/EabRenewRequest.md)
+ - [EabRenewResponse](docs/EabRenewResponse.md)
  - [EabStatusUpdateRequest](docs/EabStatusUpdateRequest.md)
  - [EabUpdateRequest](docs/EabUpdateRequest.md)
+ - [EabUpdateResponse](docs/EabUpdateResponse.md)
  - [EfficientIpProvisionerConfig](docs/EfficientIpProvisionerConfig.md)
  - [EfficientIpProvisionerConfigResponse](docs/EfficientIpProvisionerConfigResponse.md)
  - [EmailNotification](docs/EmailNotification.md)
@@ -870,6 +874,8 @@ Class | Method | HTTP request | Description
  - [SecretString](docs/SecretString.md)
  - [SectigoCMSConnector](docs/SectigoCMSConnector.md)
  - [SectigoCMSConnectorResponse](docs/SectigoCMSConnectorResponse.md)
+ - [SectigoDCVProviderConfig](docs/SectigoDCVProviderConfig.md)
+ - [SectigoDCVProviderConfigResponse](docs/SectigoDCVProviderConfigResponse.md)
  - [SecurityCredentialsList200ResponseInner](docs/SecurityCredentialsList200ResponseInner.md)
  - [SecurityCredentialsUpdateRequest](docs/SecurityCredentialsUpdateRequest.md)
  - [SecurityIdentityProviderAdd201Response](docs/SecurityIdentityProviderAdd201Response.md)
@@ -935,6 +941,9 @@ Class | Method | HTTP request | Description
  - [WcceProfileResponse](docs/WcceProfileResponse.md)
  - [WcceTemplateMapping](docs/WcceTemplateMapping.md)
  - [WebRABaseRequestOnTemplate](docs/WebRABaseRequestOnTemplate.md)
+ - [WebRAChallengeSubmitRequest](docs/WebRAChallengeSubmitRequest.md)
+ - [WebRAChallengeSubmitRequestTemplate](docs/WebRAChallengeSubmitRequestTemplate.md)
+ - [WebRAChallengeSubmitResponse](docs/WebRAChallengeSubmitResponse.md)
  - [WebRAEnrollRequestBase](docs/WebRAEnrollRequestBase.md)
  - [WebRAEnrollRequestOnApprove](docs/WebRAEnrollRequestOnApprove.md)
  - [WebRAEnrollRequestOnApproveResponse](docs/WebRAEnrollRequestOnApproveResponse.md)

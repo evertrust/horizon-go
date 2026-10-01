@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Error** | Pointer to **string** | Information about the error that occurred when executing this request | [optional] 
 **ExternalId** | Pointer to **map[string]interface{}** | Information about the request on the underlying PKI | [optional] 
 **Module** | **string** |  | 
-**Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. | [optional] 
+**Password** | Pointer to [**NullableSecretString**](SecretString.md) | The password to decrypt the PKCS12 file. On a profile whose authorization mode is &#x60;challenge&#x60;, this holds the generated challenge instead | [optional] 
 **Pkcs12** | Pointer to [**NullableSecretString**](SecretString.md) | The generated PKCS#12 for this request. This is only available after the request has been approved in centralized mode | [optional] 
 **RetryAt** | Pointer to **int64** | Timestamp after which the &#x60;in_progress&#x60; request will be polled again | [optional] 
 **RetryCount** | Pointer to **int64** | Number of retries on the polling of the certificate emission | [optional] 
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **DryRun** | Pointer to **NullableBool** | If true, the request is validated, but will not result in an enrollment | [optional] [default to false]
 **ExpirationDate** | Pointer to **int64** | The date the request will expire. This is set by the system | [optional] 
 **GlobalHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the Horizon database | [optional] 
-**HolderId** | **string** | The computed holderID for this request. This is set by the system based on DN and SANs | 
+**HolderId** | Pointer to **string** | The computed holderID for this request. This is set by the system based on DN and SANs | [optional] 
 **Labels** | Pointer to [**[]LabelData**](LabelData.md) | The labels set in this request | [optional] 
 **LastModificationDate** | **int64** | The date the request was last modified. This is set by the system | 
 **Metadata** | Pointer to [**[]CertificateMetadata**](CertificateMetadata.md) | The metadata set in this request | [optional] 
@@ -40,7 +40,7 @@ Name | Type | Description | Notes
 
 ### NewWebRAEnrollRequestOnApproveResponse
 
-`func NewWebRAEnrollRequestOnApproveResponse(module string, template WebRAEnrollRequestTemplateResponse, workflow string, id string, holderId string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAEnrollRequestOnApproveResponse`
+`func NewWebRAEnrollRequestOnApproveResponse(module string, template WebRAEnrollRequestTemplateResponse, workflow string, id string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRAEnrollRequestOnApproveResponse`
 
 NewWebRAEnrollRequestOnApproveResponse instantiates a new WebRAEnrollRequestOnApproveResponse object
 This constructor will assign default values to properties that have it defined,
@@ -584,6 +584,11 @@ and a boolean to check if the value has been set.
 
 SetHolderId sets HolderId field to given value.
 
+### HasHolderId
+
+`func (o *WebRAEnrollRequestOnApproveResponse) HasHolderId() bool`
+
+HasHolderId returns a boolean if a field has been set.
 
 ### GetLabels
 

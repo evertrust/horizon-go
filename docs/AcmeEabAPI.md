@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## AcmeEabAdd
 
-> ExternalAccountBindingResponse AcmeEabAdd(ctx).EabAddRequest(eabAddRequest).Execute()
+> EabAddResponse AcmeEabAdd(ctx).EabAddRequest(eabAddRequest).Execute()
 
 Add a new External Account Binding
 
@@ -44,7 +44,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcmeEabAPI.AcmeEabAdd``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AcmeEabAdd`: ExternalAccountBindingResponse
+	// response from `AcmeEabAdd`: EabAddResponse
 	fmt.Fprintf(os.Stdout, "Response from `AcmeEabAPI.AcmeEabAdd`: %v\n", resp)
 }
 ```
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAccountBindingResponse**](ExternalAccountBindingResponse.md)
+[**EabAddResponse**](EabAddResponse.md)
 
 ### Authorization
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ## AcmeEabRenew
 
-> ExternalAccountBindingResponse AcmeEabRenew(ctx, name).EabRenewRequest(eabRenewRequest).Execute()
+> EabRenewResponse AcmeEabRenew(ctx, name).EabRenewRequest(eabRenewRequest).Execute()
 
 Renew an External Account Binding
 
@@ -249,7 +249,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcmeEabAPI.AcmeEabRenew``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AcmeEabRenew`: ExternalAccountBindingResponse
+	// response from `AcmeEabRenew`: EabRenewResponse
 	fmt.Fprintf(os.Stdout, "Response from `AcmeEabAPI.AcmeEabRenew`: %v\n", resp)
 }
 ```
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAccountBindingResponse**](ExternalAccountBindingResponse.md)
+[**EabRenewResponse**](EabRenewResponse.md)
 
 ### Authorization
 
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 
 ## AcmeEabUpdate
 
-> ExternalAccountBindingResponse AcmeEabUpdate(ctx).EabUpdateRequest(eabUpdateRequest).Execute()
+> EabUpdateResponse AcmeEabUpdate(ctx).EabUpdateRequest(eabUpdateRequest).Execute()
 
 Update an existing External Account Binding (metadata only)
 
@@ -386,7 +386,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcmeEabAPI.AcmeEabUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AcmeEabUpdate`: ExternalAccountBindingResponse
+	// response from `AcmeEabUpdate`: EabUpdateResponse
 	fmt.Fprintf(os.Stdout, "Response from `AcmeEabAPI.AcmeEabUpdate`: %v\n", resp)
 }
 ```
@@ -406,7 +406,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAccountBindingResponse**](ExternalAccountBindingResponse.md)
+[**EabUpdateResponse**](EabUpdateResponse.md)
 
 ### Authorization
 
@@ -424,7 +424,7 @@ Name | Type | Description  | Notes
 
 ## AcmeEabUpdateStatus
 
-> ExternalAccountBindingResponse AcmeEabUpdateStatus(ctx, eabName).EabStatusUpdateRequest(eabStatusUpdateRequest).Execute()
+> EabUpdateResponse AcmeEabUpdateStatus(ctx, eabName).EabStatusUpdateRequest(eabStatusUpdateRequest).Execute()
 
 Update External Account Binding status
 
@@ -453,7 +453,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AcmeEabAPI.AcmeEabUpdateStatus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AcmeEabUpdateStatus`: ExternalAccountBindingResponse
+	// response from `AcmeEabUpdateStatus`: EabUpdateResponse
 	fmt.Fprintf(os.Stdout, "Response from `AcmeEabAPI.AcmeEabUpdateStatus`: %v\n", resp)
 }
 ```
@@ -478,7 +478,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAccountBindingResponse**](ExternalAccountBindingResponse.md)
+[**EabUpdateResponse**](EabUpdateResponse.md)
 
 ### Authorization
 
