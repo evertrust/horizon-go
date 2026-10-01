@@ -24,8 +24,6 @@ var _ utils.MappedNullable = &WebraInitParameters{}
 type WebraInitParameters struct {
 	// The authorization mode for WebRA.
 	AuthorizationMode *string `json:"authorizationMode,omitempty"`
-	// If true, the certificate data passed in the request submission will be ignored by the server
-	CertificateDataIgnored bool `json:"certificateDataIgnored"`
 	// The enrollment mode for WebRA.
 	EnrollmentMode *string `json:"enrollmentMode,omitempty"`
 	// The key type used for WebRA.
@@ -45,9 +43,8 @@ type _WebraInitParameters WebraInitParameters
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebraInitParameters(certificateDataIgnored bool, module string, profile string) *WebraInitParameters {
+func NewWebraInitParameters(module string, profile string) *WebraInitParameters {
 	this := WebraInitParameters{}
-	this.CertificateDataIgnored = certificateDataIgnored
 	this.Module = module
 	this.Profile = profile
 	return &this
@@ -91,30 +88,6 @@ func (o *WebraInitParameters) HasAuthorizationMode() bool {
 // SetAuthorizationMode gets a reference to the given string and assigns it to the AuthorizationMode field.
 func (o *WebraInitParameters) SetAuthorizationMode(v string) {
 	o.AuthorizationMode = &v
-}
-
-// GetCertificateDataIgnored returns the CertificateDataIgnored field value
-func (o *WebraInitParameters) GetCertificateDataIgnored() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.CertificateDataIgnored
-}
-
-// GetCertificateDataIgnoredOk returns a tuple with the CertificateDataIgnored field value
-// and a boolean to check if the value has been set.
-func (o *WebraInitParameters) GetCertificateDataIgnoredOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CertificateDataIgnored, true
-}
-
-// SetCertificateDataIgnored sets field value
-func (o *WebraInitParameters) SetCertificateDataIgnored(v bool) {
-	o.CertificateDataIgnored = v
 }
 
 // GetEnrollmentMode returns the EnrollmentMode field value if set, zero value otherwise.
@@ -274,7 +247,6 @@ func (o WebraInitParameters) ToMap() (map[string]interface{}, error) {
 	if !utils.IsNil(o.AuthorizationMode) {
 		toSerialize["authorizationMode"] = o.AuthorizationMode
 	}
-	toSerialize["certificateDataIgnored"] = o.CertificateDataIgnored
 	if !utils.IsNil(o.EnrollmentMode) {
 		toSerialize["enrollmentMode"] = o.EnrollmentMode
 	}
@@ -299,7 +271,6 @@ func (o *WebraInitParameters) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"certificateDataIgnored",
 		"module",
 		"profile",
 	}
@@ -332,7 +303,6 @@ func (o *WebraInitParameters) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "authorizationMode")
-		delete(additionalProperties, "certificateDataIgnored")
 		delete(additionalProperties, "enrollmentMode")
 		delete(additionalProperties, "keyType")
 		delete(additionalProperties, "module")

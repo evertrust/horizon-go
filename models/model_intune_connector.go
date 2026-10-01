@@ -25,7 +25,7 @@ type IntuneConnector struct {
 	AzureTenant *string `json:"azureTenant,omitempty"`
 	// Name of the `password` [credentials](#tag/security.credentials) containing the App ID and Key to authenticate on Intune
 	Credentials string `json:"credentials"`
-	// Base URL of the Microsoft Intune service handling certificate revocation requests (e.g. for Azure US Government or Azure China sovereign clouds). Defaults to the public cloud endpoint (`https://api.manage.microsoft.com/`) when unset.
+	// Override the Microsoft Graph API base URL (e.g. for Azure US Government or Azure China sovereign clouds). Defaults to the public cloud endpoint (`https://graph.microsoft.com`) when unset.
 	IntuneResourceUrl    utils.NullableString `json:"intuneResourceUrl,omitempty"`
 	LegacyRevocationMode bool                 `json:"legacyRevocationMode"`
 	Name                 string               `json:"name"`

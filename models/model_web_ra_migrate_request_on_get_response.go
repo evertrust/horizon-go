@@ -49,7 +49,7 @@ type WebRAMigrateRequestOnGetResponse struct {
 	// The number of certificates that are currently valid and have the same DN and SANs in the Horizon database
 	GlobalHolderIdCount utils.NullableInt64 `json:"globalHolderIdCount,omitempty"`
 	// The computed holderID for this request. This is set by the system based on DN and SANs
-	HolderId *string `json:"holderId,omitempty"`
+	HolderId string `json:"holderId"`
 	// The labels set in this request
 	Labels []LabelData `json:"labels,omitempty"`
 	// The date the request was last modified. This is set by the system
@@ -80,13 +80,14 @@ type _WebRAMigrateRequestOnGetResponse WebRAMigrateRequestOnGetResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAMigrateRequestOnGetResponse(module Module, profile interface{}, template WebRAMigrateRequestTemplateResponse, workflow string, id string, lastModificationDate int64, registrationDate int64, removeAt int64, status RequestStatus) *WebRAMigrateRequestOnGetResponse {
+func NewWebRAMigrateRequestOnGetResponse(module Module, profile interface{}, template WebRAMigrateRequestTemplateResponse, workflow string, id string, holderId string, lastModificationDate int64, registrationDate int64, removeAt int64, status RequestStatus) *WebRAMigrateRequestOnGetResponse {
 	this := WebRAMigrateRequestOnGetResponse{}
 	this.Module = module
 	this.Profile = profile
 	this.Template = template
 	this.Workflow = workflow
 	this.Id = id
+	this.HolderId = holderId
 	this.LastModificationDate = lastModificationDate
 	this.RegistrationDate = registrationDate
 	this.RemoveAt = removeAt
@@ -550,36 +551,28 @@ func (o *WebRAMigrateRequestOnGetResponse) UnsetGlobalHolderIdCount() {
 	o.GlobalHolderIdCount.Unset()
 }
 
-// GetHolderId returns the HolderId field value if set, zero value otherwise.
+// GetHolderId returns the HolderId field value
 func (o *WebRAMigrateRequestOnGetResponse) GetHolderId() string {
-	if o == nil || utils.IsNil(o.HolderId) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.HolderId
+
+	return o.HolderId
 }
 
-// GetHolderIdOk returns a tuple with the HolderId field value if set, nil otherwise
+// GetHolderIdOk returns a tuple with the HolderId field value
 // and a boolean to check if the value has been set.
 func (o *WebRAMigrateRequestOnGetResponse) GetHolderIdOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.HolderId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.HolderId, true
+	return &o.HolderId, true
 }
 
-// HasHolderId returns a boolean if a field has been set.
-func (o *WebRAMigrateRequestOnGetResponse) HasHolderId() bool {
-	if o != nil && !utils.IsNil(o.HolderId) {
-		return true
-	}
-
-	return false
-}
-
-// SetHolderId gets a reference to the given string and assigns it to the HolderId field.
+// SetHolderId sets field value
 func (o *WebRAMigrateRequestOnGetResponse) SetHolderId(v string) {
-	o.HolderId = &v
+	o.HolderId = v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -990,9 +983,7 @@ func (o WebRAMigrateRequestOnGetResponse) ToMap() (map[string]interface{}, error
 	if o.GlobalHolderIdCount.IsSet() {
 		toSerialize["globalHolderIdCount"] = o.GlobalHolderIdCount.Get()
 	}
-	if !utils.IsNil(o.HolderId) {
-		toSerialize["holderId"] = o.HolderId
-	}
+	toSerialize["holderId"] = o.HolderId
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
@@ -1036,6 +1027,7 @@ func (o *WebRAMigrateRequestOnGetResponse) UnmarshalJSON(data []byte) (err error
 		"template",
 		"workflow",
 		"_id",
+		"holderId",
 		"lastModificationDate",
 		"registrationDate",
 		"removeAt",

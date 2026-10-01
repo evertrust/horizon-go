@@ -34,10 +34,8 @@ type AcmeProfile struct {
 	Description           []LocalizedString                     `json:"description,omitempty"`
 	DisplayName           []LocalizedString                     `json:"displayName,omitempty"`
 	// Representation of a datasource execution flow
-	DsFlow  []DataSourceFlowEntry `json:"dsFlow,omitempty"`
-	Enabled bool                  `json:"enabled"`
-	// If `true`, the root CA will be excluded from the response chain, as it should already be present on the target system
-	ExcludeRootCA                 *bool                                 `json:"excludeRootCA,omitempty"`
+	DsFlow                        []DataSourceFlowEntry                 `json:"dsFlow,omitempty"`
+	Enabled                       bool                                  `json:"enabled"`
 	GradingPolicies               []string                              `json:"gradingPolicies,omitempty"`
 	Http01Port                    utils.NullableInt64                   `json:"http01Port,omitempty"`
 	IpIdentifierConstraint        utils.NullableString                  `json:"ipIdentifierConstraint,omitempty"`
@@ -83,8 +81,6 @@ func NewAcmeProfile(authorizationLevels CertificateProfileAuthorizationLevels, a
 	this.Timeout = timeout
 	this.VerifyRetryCount = verifyRetryCount
 	this.VerifyRetryDelay = verifyRetryDelay
-	var excludeRootCA bool = false
-	this.ExcludeRootCA = &excludeRootCA
 	var thirdPartyDiscoverySync bool = false
 	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
@@ -95,8 +91,6 @@ func NewAcmeProfile(authorizationLevels CertificateProfileAuthorizationLevels, a
 // but it doesn't guarantee that properties required by API are set
 func NewAcmeProfileWithDefaults() *AcmeProfile {
 	this := AcmeProfile{}
-	var excludeRootCA bool = false
-	this.ExcludeRootCA = &excludeRootCA
 	var thirdPartyDiscoverySync bool = false
 	this.ThirdPartyDiscoverySync = *utils.NewNullableBool(&thirdPartyDiscoverySync)
 	return &this
@@ -504,38 +498,6 @@ func (o *AcmeProfile) GetEnabledOk() (*bool, bool) {
 // SetEnabled sets field value
 func (o *AcmeProfile) SetEnabled(v bool) {
 	o.Enabled = v
-}
-
-// GetExcludeRootCA returns the ExcludeRootCA field value if set, zero value otherwise.
-func (o *AcmeProfile) GetExcludeRootCA() bool {
-	if o == nil || utils.IsNil(o.ExcludeRootCA) {
-		var ret bool
-		return ret
-	}
-	return *o.ExcludeRootCA
-}
-
-// GetExcludeRootCAOk returns a tuple with the ExcludeRootCA field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AcmeProfile) GetExcludeRootCAOk() (*bool, bool) {
-	if o == nil || utils.IsNil(o.ExcludeRootCA) {
-		return nil, false
-	}
-	return o.ExcludeRootCA, true
-}
-
-// HasExcludeRootCA returns a boolean if a field has been set.
-func (o *AcmeProfile) HasExcludeRootCA() bool {
-	if o != nil && !utils.IsNil(o.ExcludeRootCA) {
-		return true
-	}
-
-	return false
-}
-
-// SetExcludeRootCA gets a reference to the given bool and assigns it to the ExcludeRootCA field.
-func (o *AcmeProfile) SetExcludeRootCA(v bool) {
-	o.ExcludeRootCA = &v
 }
 
 // GetGradingPolicies returns the GradingPolicies field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1256,9 +1218,6 @@ func (o AcmeProfile) ToMap() (map[string]interface{}, error) {
 		toSerialize["dsFlow"] = o.DsFlow
 	}
 	toSerialize["enabled"] = o.Enabled
-	if !utils.IsNil(o.ExcludeRootCA) {
-		toSerialize["excludeRootCA"] = o.ExcludeRootCA
-	}
 	if o.GradingPolicies != nil {
 		toSerialize["gradingPolicies"] = o.GradingPolicies
 	}
@@ -1370,7 +1329,6 @@ func (o *AcmeProfile) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "displayName")
 		delete(additionalProperties, "dsFlow")
 		delete(additionalProperties, "enabled")
-		delete(additionalProperties, "excludeRootCA")
 		delete(additionalProperties, "gradingPolicies")
 		delete(additionalProperties, "http01Port")
 		delete(additionalProperties, "ipIdentifierConstraint")

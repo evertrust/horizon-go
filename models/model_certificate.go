@@ -47,7 +47,7 @@ type Certificate struct {
 	// The certificate's grades for the enabled grading policies
 	Grades []GradingPolicyResult `json:"grades,omitempty"`
 	// The certificate's holder ID. This is a computed field that is used to count how many similar certificates are in use simultaneously by the same holder
-	HolderId *string `json:"holderId,omitempty"`
+	HolderId string `json:"holderId"`
 	// The certificate's issuer Distinguished Name
 	Issuer string `json:"issuer"`
 	// The certificate's key type
@@ -101,12 +101,13 @@ type _Certificate Certificate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificate(id string, certificate string, dn string, escrowed bool, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string) *Certificate {
+func NewCertificate(id string, certificate string, dn string, escrowed bool, holderId string, issuer string, keyType string, metadata []CertificateMetadata, module string, notAfter int64, notBefore int64, publicKeyThumbprint string, revoked bool, selfSigned bool, serial string, signingAlgorithm string, subjectAlternateNames []SubjectAlternateName, thumbprint string) *Certificate {
 	this := Certificate{}
 	this.Id = id
 	this.Certificate = certificate
 	this.Dn = dn
 	this.Escrowed = escrowed
+	this.HolderId = holderId
 	this.Issuer = issuer
 	this.KeyType = keyType
 	this.Metadata = metadata
@@ -519,36 +520,28 @@ func (o *Certificate) SetGrades(v []GradingPolicyResult) {
 	o.Grades = v
 }
 
-// GetHolderId returns the HolderId field value if set, zero value otherwise.
+// GetHolderId returns the HolderId field value
 func (o *Certificate) GetHolderId() string {
-	if o == nil || utils.IsNil(o.HolderId) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.HolderId
+
+	return o.HolderId
 }
 
-// GetHolderIdOk returns a tuple with the HolderId field value if set, nil otherwise
+// GetHolderIdOk returns a tuple with the HolderId field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetHolderIdOk() (*string, bool) {
-	if o == nil || utils.IsNil(o.HolderId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.HolderId, true
+	return &o.HolderId, true
 }
 
-// HasHolderId returns a boolean if a field has been set.
-func (o *Certificate) HasHolderId() bool {
-	if o != nil && !utils.IsNil(o.HolderId) {
-		return true
-	}
-
-	return false
-}
-
-// SetHolderId gets a reference to the given string and assigns it to the HolderId field.
+// SetHolderId sets field value
 func (o *Certificate) SetHolderId(v string) {
-	o.HolderId = &v
+	o.HolderId = v
 }
 
 // GetIssuer returns the Issuer field value
@@ -1247,9 +1240,7 @@ func (o Certificate) ToMap() (map[string]interface{}, error) {
 	if o.Grades != nil {
 		toSerialize["grades"] = o.Grades
 	}
-	if !utils.IsNil(o.HolderId) {
-		toSerialize["holderId"] = o.HolderId
-	}
+	toSerialize["holderId"] = o.HolderId
 	toSerialize["issuer"] = o.Issuer
 	toSerialize["keyType"] = o.KeyType
 	if o.Labels != nil {
@@ -1307,6 +1298,7 @@ func (o *Certificate) UnmarshalJSON(data []byte) (err error) {
 		"certificate",
 		"dn",
 		"escrowed",
+		"holderId",
 		"issuer",
 		"keyType",
 		"metadata",

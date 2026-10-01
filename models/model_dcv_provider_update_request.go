@@ -22,7 +22,6 @@ import (
 type DcvProviderUpdateRequest struct {
 	DigicertDCVProviderConfig       *DigicertDCVProviderConfig
 	GlobalSignMsslDCVProviderConfig *GlobalSignMsslDCVProviderConfig
-	SectigoDCVProviderConfig        *SectigoDCVProviderConfig
 }
 
 // DigicertDCVProviderConfigAsDcvProviderUpdateRequest is a convenience function that returns DigicertDCVProviderConfig wrapped in DcvProviderUpdateRequest
@@ -36,13 +35,6 @@ func DigicertDCVProviderConfigAsDcvProviderUpdateRequest(v *DigicertDCVProviderC
 func GlobalSignMsslDCVProviderConfigAsDcvProviderUpdateRequest(v *GlobalSignMsslDCVProviderConfig) DcvProviderUpdateRequest {
 	return DcvProviderUpdateRequest{
 		GlobalSignMsslDCVProviderConfig: v,
-	}
-}
-
-// SectigoDCVProviderConfigAsDcvProviderUpdateRequest is a convenience function that returns SectigoDCVProviderConfig wrapped in DcvProviderUpdateRequest
-func SectigoDCVProviderConfigAsDcvProviderUpdateRequest(v *SectigoDCVProviderConfig) DcvProviderUpdateRequest {
-	return DcvProviderUpdateRequest{
-		SectigoDCVProviderConfig: v,
 	}
 }
 
@@ -78,20 +70,6 @@ func (dst *DcvProviderUpdateRequest) UnmarshalJSON(data []byte) error {
 		dst.GlobalSignMsslDCVProviderConfig = nil
 	}
 
-	// try to unmarshal data into SectigoDCVProviderConfig
-	err = utils.NewStrictDecoder(data).Decode(&dst.SectigoDCVProviderConfig)
-	if err == nil {
-		jsonSectigoDCVProviderConfig, _ := json.Marshal(dst.SectigoDCVProviderConfig)
-		if string(jsonSectigoDCVProviderConfig) == "{}" { // empty struct
-			dst.SectigoDCVProviderConfig = nil
-		} else {
-			_ = validator.Validate(dst.SectigoDCVProviderConfig)
-			match++
-		}
-	} else {
-		dst.SectigoDCVProviderConfig = nil
-	}
-
 	if match >= 1 {
 		return nil // at least one variant matched; GetActualInstance returns the first one
 	} else { // no match
@@ -109,10 +87,6 @@ func (src DcvProviderUpdateRequest) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.GlobalSignMsslDCVProviderConfig)
 	}
 
-	if src.SectigoDCVProviderConfig != nil {
-		return json.Marshal(&src.SectigoDCVProviderConfig)
-	}
-
 	return nil, nil // no data in oneOf schemas
 }
 
@@ -127,10 +101,6 @@ func (obj *DcvProviderUpdateRequest) GetActualInstance() interface{} {
 
 	if obj.GlobalSignMsslDCVProviderConfig != nil {
 		return obj.GlobalSignMsslDCVProviderConfig
-	}
-
-	if obj.SectigoDCVProviderConfig != nil {
-		return obj.SectigoDCVProviderConfig
 	}
 
 	// all schemas are nil

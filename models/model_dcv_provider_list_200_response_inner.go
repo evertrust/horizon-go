@@ -22,7 +22,6 @@ import (
 type DcvProviderList200ResponseInner struct {
 	DigicertDCVProviderConfigResponse       *DigicertDCVProviderConfigResponse
 	GlobalSignMsslDCVProviderConfigResponse *GlobalSignMsslDCVProviderConfigResponse
-	SectigoDCVProviderConfigResponse        *SectigoDCVProviderConfigResponse
 }
 
 // DigicertDCVProviderConfigResponseAsDcvProviderList200ResponseInner is a convenience function that returns DigicertDCVProviderConfigResponse wrapped in DcvProviderList200ResponseInner
@@ -36,13 +35,6 @@ func DigicertDCVProviderConfigResponseAsDcvProviderList200ResponseInner(v *Digic
 func GlobalSignMsslDCVProviderConfigResponseAsDcvProviderList200ResponseInner(v *GlobalSignMsslDCVProviderConfigResponse) DcvProviderList200ResponseInner {
 	return DcvProviderList200ResponseInner{
 		GlobalSignMsslDCVProviderConfigResponse: v,
-	}
-}
-
-// SectigoDCVProviderConfigResponseAsDcvProviderList200ResponseInner is a convenience function that returns SectigoDCVProviderConfigResponse wrapped in DcvProviderList200ResponseInner
-func SectigoDCVProviderConfigResponseAsDcvProviderList200ResponseInner(v *SectigoDCVProviderConfigResponse) DcvProviderList200ResponseInner {
-	return DcvProviderList200ResponseInner{
-		SectigoDCVProviderConfigResponse: v,
 	}
 }
 
@@ -78,20 +70,6 @@ func (dst *DcvProviderList200ResponseInner) UnmarshalJSON(data []byte) error {
 		dst.GlobalSignMsslDCVProviderConfigResponse = nil
 	}
 
-	// try to unmarshal data into SectigoDCVProviderConfigResponse
-	err = utils.NewStrictDecoder(data).Decode(&dst.SectigoDCVProviderConfigResponse)
-	if err == nil {
-		jsonSectigoDCVProviderConfigResponse, _ := json.Marshal(dst.SectigoDCVProviderConfigResponse)
-		if string(jsonSectigoDCVProviderConfigResponse) == "{}" { // empty struct
-			dst.SectigoDCVProviderConfigResponse = nil
-		} else {
-			_ = validator.Validate(dst.SectigoDCVProviderConfigResponse)
-			match++
-		}
-	} else {
-		dst.SectigoDCVProviderConfigResponse = nil
-	}
-
 	if match >= 1 {
 		return nil // at least one variant matched; GetActualInstance returns the first one
 	} else { // no match
@@ -109,10 +87,6 @@ func (src DcvProviderList200ResponseInner) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.GlobalSignMsslDCVProviderConfigResponse)
 	}
 
-	if src.SectigoDCVProviderConfigResponse != nil {
-		return json.Marshal(&src.SectigoDCVProviderConfigResponse)
-	}
-
 	return nil, nil // no data in oneOf schemas
 }
 
@@ -127,10 +101,6 @@ func (obj *DcvProviderList200ResponseInner) GetActualInstance() interface{} {
 
 	if obj.GlobalSignMsslDCVProviderConfigResponse != nil {
 		return obj.GlobalSignMsslDCVProviderConfigResponse
-	}
-
-	if obj.SectigoDCVProviderConfigResponse != nil {
-		return obj.SectigoDCVProviderConfigResponse
 	}
 
 	// all schemas are nil
