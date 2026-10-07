@@ -103,6 +103,8 @@ type WebRAInitParameters struct {
 	AuthorizationMode string         `json:"authorizationMode"`
 	EnrollmentMode    string         `json:"enrollmentMode"`
 	PasswordPolicy    PasswordPolicy `json:"passwordPolicy"`
+	// CertificateDataIgnored is only meaningful in challenge authorization mode
+	CertificateDataIgnored bool `json:"certificateDataIgnored"`
 }
 
 func (p *WebRAInitParameters) GetModule() Module {
