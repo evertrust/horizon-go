@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **Profile** | **string** | The associated profile name | 
 **ProfileHolderIdCount** | Pointer to **NullableInt64** | The number of certificates that are currently valid and have the same DN and SANs in the same enrollment profile | [optional] 
 **RegistrationDate** | **int64** | The date the request was created. This is set by the system | 
-**RemoveAt** | **int64** | The date the requested will be deleted. This is set by the system | 
+**RemoveAt** | Pointer to **int64** | The date the requested will be deleted. This is set by the system | [optional] 
 **Requester** | Pointer to **NullableString** | The requester&#39;s principal identifier | [optional] 
 **RequesterComment** | Pointer to **NullableString** | Free-text field editable by the requester to provider more context on the request | [optional] 
 **Status** | [**RequestStatus**](RequestStatus.md) |  | 
@@ -34,7 +34,7 @@ Name | Type | Description | Notes
 
 ### NewWebRARevokeRequestOnApproveResponse
 
-`func NewWebRARevokeRequestOnApproveResponse(module string, template WebRARevokeRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, profile string, registrationDate int64, removeAt int64, status RequestStatus, ) *WebRARevokeRequestOnApproveResponse`
+`func NewWebRARevokeRequestOnApproveResponse(module string, template WebRARevokeRequestTemplate, workflow string, id string, holderId string, lastModificationDate int64, profile string, registrationDate int64, status RequestStatus, ) *WebRARevokeRequestOnApproveResponse`
 
 NewWebRARevokeRequestOnApproveResponse instantiates a new WebRARevokeRequestOnApproveResponse object
 This constructor will assign default values to properties that have it defined,
@@ -593,6 +593,11 @@ and a boolean to check if the value has been set.
 
 SetRemoveAt sets RemoveAt field to given value.
 
+### HasRemoveAt
+
+`func (o *WebRARevokeRequestOnApproveResponse) HasRemoveAt() bool`
+
+HasRemoveAt returns a boolean if a field has been set.
 
 ### GetRequester
 

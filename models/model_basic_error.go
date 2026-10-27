@@ -25,13 +25,13 @@ type BasicError struct {
 	// A human-readable explanation specific to this occurrence of the problem. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807)
 	Detail utils.NullableString `json:"detail,omitempty"`
 	// The error code of the problem
-	Error string `json:"error"`
+	Error *string `json:"error,omitempty"`
 	// A short, human-readable summary of the problem type
 	Message string `json:"message"`
 	// The http status code of the error. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807)
-	Status int64 `json:"status"`
+	Status *int64 `json:"status,omitempty"`
 	// A short, human-readable summary of the problem type. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807)
-	Title                string `json:"title"`
+	Title                *string `json:"title,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,12 +41,9 @@ type _BasicError BasicError
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBasicError(error_ string, message string, status int64, title string) *BasicError {
+func NewBasicError(message string) *BasicError {
 	this := BasicError{}
-	this.Error = error_
 	this.Message = message
-	this.Status = status
-	this.Title = title
 	return &this
 }
 
@@ -101,28 +98,36 @@ func (o *BasicError) UnsetDetail() {
 	o.Detail.Unset()
 }
 
-// GetError returns the Error field value
+// GetError returns the Error field value if set, zero value otherwise.
 func (o *BasicError) GetError() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Error) {
 		var ret string
 		return ret
 	}
-
-	return o.Error
+	return *o.Error
 }
 
-// GetErrorOk returns a tuple with the Error field value
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BasicError) GetErrorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Error) {
 		return nil, false
 	}
-	return &o.Error, true
+	return o.Error, true
 }
 
-// SetError sets field value
+// HasError returns a boolean if a field has been set.
+func (o *BasicError) HasError() bool {
+	if o != nil && !utils.IsNil(o.Error) {
+		return true
+	}
+
+	return false
+}
+
+// SetError gets a reference to the given string and assigns it to the Error field.
 func (o *BasicError) SetError(v string) {
-	o.Error = v
+	o.Error = &v
 }
 
 // GetMessage returns the Message field value
@@ -149,52 +154,68 @@ func (o *BasicError) SetMessage(v string) {
 	o.Message = v
 }
 
-// GetStatus returns the Status field value
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *BasicError) GetStatus() int64 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Status) {
 		var ret int64
 		return ret
 	}
-
-	return o.Status
+	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BasicError) GetStatusOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
-// SetStatus sets field value
+// HasStatus returns a boolean if a field has been set.
+func (o *BasicError) HasStatus() bool {
+	if o != nil && !utils.IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given int64 and assigns it to the Status field.
 func (o *BasicError) SetStatus(v int64) {
-	o.Status = v
+	o.Status = &v
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value if set, zero value otherwise.
 func (o *BasicError) GetTitle() string {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Title) {
 		var ret string
 		return ret
 	}
-
-	return o.Title
+	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BasicError) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Title) {
 		return nil, false
 	}
-	return &o.Title, true
+	return o.Title, true
 }
 
-// SetTitle sets field value
+// HasTitle returns a boolean if a field has been set.
+func (o *BasicError) HasTitle() bool {
+	if o != nil && !utils.IsNil(o.Title) {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
 func (o *BasicError) SetTitle(v string) {
-	o.Title = v
+	o.Title = &v
 }
 
 func (o BasicError) MarshalJSON() ([]byte, error) {
@@ -210,10 +231,16 @@ func (o BasicError) ToMap() (map[string]interface{}, error) {
 	if o.Detail.IsSet() {
 		toSerialize["detail"] = o.Detail.Get()
 	}
-	toSerialize["error"] = o.Error
+	if !utils.IsNil(o.Error) {
+		toSerialize["error"] = o.Error
+	}
 	toSerialize["message"] = o.Message
-	toSerialize["status"] = o.Status
-	toSerialize["title"] = o.Title
+	if !utils.IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !utils.IsNil(o.Title) {
+		toSerialize["title"] = o.Title
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -227,10 +254,7 @@ func (o *BasicError) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"error",
 		"message",
-		"status",
-		"title",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Detail** | Pointer to **NullableString** | A human-readable explanation specific to this occurrence of the problem. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | [optional] 
-**Error** | **string** | The error code of the problem | 
+**Error** | Pointer to **string** | The error code of the problem | [optional] 
 **Message** | **string** | A short, human-readable summary of the problem type | 
-**Status** | **int64** | The http status code of the error. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | 
-**Title** | **string** | A short, human-readable summary of the problem type. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | 
+**Status** | Pointer to **int64** | The http status code of the error. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | [optional] 
+**Title** | Pointer to **string** | A short, human-readable summary of the problem type. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | [optional] 
 
 ## Methods
 
 ### NewBasicError
 
-`func NewBasicError(error_ string, message string, status int64, title string, ) *BasicError`
+`func NewBasicError(message string, ) *BasicError`
 
 NewBasicError instantiates a new BasicError object
 This constructor will assign default values to properties that have it defined,
@@ -83,6 +83,11 @@ and a boolean to check if the value has been set.
 
 SetError sets Error field to given value.
 
+### HasError
+
+`func (o *BasicError) HasError() bool`
+
+HasError returns a boolean if a field has been set.
 
 ### GetMessage
 
@@ -123,6 +128,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *BasicError) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetTitle
 
@@ -143,6 +153,11 @@ and a boolean to check if the value has been set.
 
 SetTitle sets Title field to given value.
 
+### HasTitle
+
+`func (o *BasicError) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

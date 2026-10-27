@@ -877,37 +877,48 @@ func (e *GenericOpenAPIError) As(target any) bool {
 	return false
 }
 
-// format error message using title and detail when model implements rfc7807
+// format error message as "status: error: message: detail" from the fields Horizon
+// fills, falling back to the rfc7807 title when message is missing. Empty fields
+// and repeated values are skipped.
 func formatErrorMessage(status string, v interface{}) string {
-	str := ""
 	metaValue := reflect.ValueOf(v).Elem()
-
-	if metaValue.Kind() == reflect.Struct {
-		field := metaValue.FieldByName("Title")
-		if field != (reflect.Value{}) {
-			str = fmt.Sprintf("%s", field.Interface())
-		}
-
-		field = metaValue.FieldByName("Detail")
-		if field != (reflect.Value{}) {
-			// try the get method first, if it exists
-			getMethod := field.MethodByName("Get")
-			if getMethod != (reflect.Value{}) {
-				result := getMethod.Call([]reflect.Value{})
-				if len(result) > 0 {
-					// string in a pointer
-					s, ok := result[0].Interface().(*string)
-					if ok && s != nil {
-						str = fmt.Sprintf("%s: %s", str, *s)
-					} else {
-						str = fmt.Sprintf("%s: %v", str, result[0].Interface())
-					}
-				}
-			} else {
-				str = fmt.Sprintf("%s: %s", str, field.Interface())
-			}
-		}
+	if metaValue.Kind() != reflect.Struct {
+		return status
 	}
 
-	return strings.TrimSpace(fmt.Sprintf("%s %s", status, str))
+	message := errorModelField(metaValue, "Message")
+	if message == "" {
+		message = errorModelField(metaValue, "Title")
+	}
+
+	parts := []string{status}
+	for _, part := range []string{errorModelField(metaValue, "Error"), message, errorModelField(metaValue, "Detail")} {
+		if part != "" && part != parts[len(parts)-1] {
+			parts = append(parts, part)
+		}
+	}
+	return strings.Join(parts, ": ")
+}
+
+// errorModelField returns the value of a string field of an error model, whether
+// it is a string, a *string or a nullable wrapper exposing Get() *string.
+// It returns an empty string when the field does not exist or is not set.
+func errorModelField(model reflect.Value, name string) string {
+	field := model.FieldByName(name)
+	if !field.IsValid() {
+		return ""
+	}
+	if getMethod := field.MethodByName("Get"); getMethod.IsValid() && getMethod.Type().NumIn() == 0 && getMethod.Type().NumOut() == 1 {
+		field = getMethod.Call(nil)[0]
+	}
+	if field.Kind() == reflect.Ptr {
+		if field.IsNil() {
+			return ""
+		}
+		field = field.Elem()
+	}
+	if field.Kind() != reflect.String {
+		return ""
+	}
+	return strings.TrimSpace(field.String())
 }

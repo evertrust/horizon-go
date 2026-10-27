@@ -28,7 +28,7 @@ type Acme004 struct {
 	// A human-readable explanation specific to this occurrence of the problem. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807)
 	Detail utils.NullableString `json:"detail,omitempty"`
 	// The http status code of the error. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807)
-	Status               int64 `json:"status"`
+	Status               *int64 `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,12 +38,11 @@ type _Acme004 Acme004
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAcme004(error_ string, message string, title string, status int64) *Acme004 {
+func NewAcme004(error_ string, message string, title string) *Acme004 {
 	this := Acme004{}
 	this.Error = error_
 	this.Message = message
 	this.Title = title
-	this.Status = status
 	return &this
 }
 
@@ -170,28 +169,36 @@ func (o *Acme004) UnsetDetail() {
 	o.Detail.Unset()
 }
 
-// GetStatus returns the Status field value
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Acme004) GetStatus() int64 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Status) {
 		var ret int64
 		return ret
 	}
-
-	return o.Status
+	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Acme004) GetStatusOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
-// SetStatus sets field value
+// HasStatus returns a boolean if a field has been set.
+func (o *Acme004) HasStatus() bool {
+	if o != nil && !utils.IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given int64 and assigns it to the Status field.
 func (o *Acme004) SetStatus(v int64) {
-	o.Status = v
+	o.Status = &v
 }
 
 func (o Acme004) MarshalJSON() ([]byte, error) {
@@ -210,7 +217,9 @@ func (o Acme004) ToMap() (map[string]interface{}, error) {
 	if o.Detail.IsSet() {
 		toSerialize["detail"] = o.Detail.Get()
 	}
-	toSerialize["status"] = o.Status
+	if !utils.IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -227,7 +236,6 @@ func (o *Acme004) UnmarshalJSON(data []byte) (err error) {
 		"error",
 		"message",
 		"title",
-		"status",
 	}
 
 	allProperties := make(map[string]interface{})

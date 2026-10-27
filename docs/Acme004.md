@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **Message** | **string** |  | 
 **Title** | **string** |  | 
 **Detail** | Pointer to **NullableString** | A human-readable explanation specific to this occurrence of the problem. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | [optional] 
-**Status** | **int64** | The http status code of the error. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | 
+**Status** | Pointer to **int64** | The http status code of the error. In compliance with [RFC7807](https://datatracker.ietf.org/doc/html/rfc7807) | [optional] 
 
 ## Methods
 
 ### NewAcme004
 
-`func NewAcme004(error_ string, message string, title string, status int64, ) *Acme004`
+`func NewAcme004(error_ string, message string, title string, ) *Acme004`
 
 NewAcme004 instantiates a new Acme004 object
 This constructor will assign default values to properties that have it defined,
@@ -143,6 +143,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *Acme004) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

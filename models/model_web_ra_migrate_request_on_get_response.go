@@ -61,7 +61,7 @@ type WebRAMigrateRequestOnGetResponse struct {
 	// The date the request was created. This is set by the system
 	RegistrationDate int64 `json:"registrationDate"`
 	// The date the requested will be deleted. This is set by the system
-	RemoveAt int64 `json:"removeAt"`
+	RemoveAt *int64 `json:"removeAt,omitempty"`
 	// The requester's principal identifier
 	Requester utils.NullableString `json:"requester,omitempty"`
 	// Free-text field editable by the requester to provider more context on the request
@@ -80,7 +80,7 @@ type _WebRAMigrateRequestOnGetResponse WebRAMigrateRequestOnGetResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebRAMigrateRequestOnGetResponse(module Module, profile interface{}, template WebRAMigrateRequestTemplateResponse, workflow string, id string, holderId string, lastModificationDate int64, registrationDate int64, removeAt int64, status RequestStatus) *WebRAMigrateRequestOnGetResponse {
+func NewWebRAMigrateRequestOnGetResponse(module Module, profile interface{}, template WebRAMigrateRequestTemplateResponse, workflow string, id string, holderId string, lastModificationDate int64, registrationDate int64, status RequestStatus) *WebRAMigrateRequestOnGetResponse {
 	this := WebRAMigrateRequestOnGetResponse{}
 	this.Module = module
 	this.Profile = profile
@@ -90,7 +90,6 @@ func NewWebRAMigrateRequestOnGetResponse(module Module, profile interface{}, tem
 	this.HolderId = holderId
 	this.LastModificationDate = lastModificationDate
 	this.RegistrationDate = registrationDate
-	this.RemoveAt = removeAt
 	this.Status = status
 	var dryRun bool = false
 	this.DryRun = *utils.NewNullableBool(&dryRun)
@@ -732,28 +731,36 @@ func (o *WebRAMigrateRequestOnGetResponse) SetRegistrationDate(v int64) {
 	o.RegistrationDate = v
 }
 
-// GetRemoveAt returns the RemoveAt field value
+// GetRemoveAt returns the RemoveAt field value if set, zero value otherwise.
 func (o *WebRAMigrateRequestOnGetResponse) GetRemoveAt() int64 {
-	if o == nil {
+	if o == nil || utils.IsNil(o.RemoveAt) {
 		var ret int64
 		return ret
 	}
-
-	return o.RemoveAt
+	return *o.RemoveAt
 }
 
-// GetRemoveAtOk returns a tuple with the RemoveAt field value
+// GetRemoveAtOk returns a tuple with the RemoveAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WebRAMigrateRequestOnGetResponse) GetRemoveAtOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || utils.IsNil(o.RemoveAt) {
 		return nil, false
 	}
-	return &o.RemoveAt, true
+	return o.RemoveAt, true
 }
 
-// SetRemoveAt sets field value
+// HasRemoveAt returns a boolean if a field has been set.
+func (o *WebRAMigrateRequestOnGetResponse) HasRemoveAt() bool {
+	if o != nil && !utils.IsNil(o.RemoveAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoveAt gets a reference to the given int64 and assigns it to the RemoveAt field.
 func (o *WebRAMigrateRequestOnGetResponse) SetRemoveAt(v int64) {
-	o.RemoveAt = v
+	o.RemoveAt = &v
 }
 
 // GetRequester returns the Requester field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -995,7 +1002,9 @@ func (o WebRAMigrateRequestOnGetResponse) ToMap() (map[string]interface{}, error
 		toSerialize["profileHolderIdCount"] = o.ProfileHolderIdCount.Get()
 	}
 	toSerialize["registrationDate"] = o.RegistrationDate
-	toSerialize["removeAt"] = o.RemoveAt
+	if !utils.IsNil(o.RemoveAt) {
+		toSerialize["removeAt"] = o.RemoveAt
+	}
 	if o.Requester.IsSet() {
 		toSerialize["requester"] = o.Requester.Get()
 	}
@@ -1030,7 +1039,6 @@ func (o *WebRAMigrateRequestOnGetResponse) UnmarshalJSON(data []byte) (err error
 		"holderId",
 		"lastModificationDate",
 		"registrationDate",
-		"removeAt",
 		"status",
 	}
 
