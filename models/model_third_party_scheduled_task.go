@@ -32,14 +32,8 @@ type ThirdPartyScheduledTask struct {
 	Revoke               bool                 `json:"revoke"`
 	Type                 string               `json:"type"`
 	Cron                 string               `json:"cron"`
-	Detail               utils.NullableString `json:"detail,omitempty"`
 	Enabled              bool                 `json:"enabled"`
-	ExecutionId          utils.NullableString `json:"executionId,omitempty"`
-	Host                 utils.NullableString `json:"host,omitempty"`
-	LastCompletionDate   utils.NullableInt64  `json:"lastCompletionDate,omitempty"`
-	LastExecutionDate    utils.NullableInt64  `json:"lastExecutionDate,omitempty"`
 	Name                 string               `json:"name"`
-	Status               utils.NullableString `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -339,49 +333,6 @@ func (o *ThirdPartyScheduledTask) SetCron(v string) {
 	o.Cron = v
 }
 
-// GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ThirdPartyScheduledTask) GetDetail() string {
-	if o == nil || utils.IsNil(o.Detail.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Detail.Get()
-}
-
-// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ThirdPartyScheduledTask) GetDetailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Detail.Get(), o.Detail.IsSet()
-}
-
-// HasDetail returns a boolean if a field has been set.
-func (o *ThirdPartyScheduledTask) HasDetail() bool {
-	if o != nil && o.Detail.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDetail gets a reference to the given NullableString and assigns it to the Detail field.
-func (o *ThirdPartyScheduledTask) SetDetail(v string) {
-	o.Detail.Set(&v)
-}
-
-// SetDetailNil sets the value for Detail to be an explicit nil
-func (o *ThirdPartyScheduledTask) SetDetailNil() {
-	o.Detail.Set(nil)
-}
-
-// UnsetDetail ensures that no value is present for Detail, not even an explicit nil
-func (o *ThirdPartyScheduledTask) UnsetDetail() {
-	o.Detail.Unset()
-}
-
 // GetEnabled returns the Enabled field value
 func (o *ThirdPartyScheduledTask) GetEnabled() bool {
 	if o == nil {
@@ -404,178 +355,6 @@ func (o *ThirdPartyScheduledTask) GetEnabledOk() (*bool, bool) {
 // SetEnabled sets field value
 func (o *ThirdPartyScheduledTask) SetEnabled(v bool) {
 	o.Enabled = v
-}
-
-// GetExecutionId returns the ExecutionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ThirdPartyScheduledTask) GetExecutionId() string {
-	if o == nil || utils.IsNil(o.ExecutionId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ExecutionId.Get()
-}
-
-// GetExecutionIdOk returns a tuple with the ExecutionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ThirdPartyScheduledTask) GetExecutionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ExecutionId.Get(), o.ExecutionId.IsSet()
-}
-
-// HasExecutionId returns a boolean if a field has been set.
-func (o *ThirdPartyScheduledTask) HasExecutionId() bool {
-	if o != nil && o.ExecutionId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetExecutionId gets a reference to the given NullableString and assigns it to the ExecutionId field.
-func (o *ThirdPartyScheduledTask) SetExecutionId(v string) {
-	o.ExecutionId.Set(&v)
-}
-
-// SetExecutionIdNil sets the value for ExecutionId to be an explicit nil
-func (o *ThirdPartyScheduledTask) SetExecutionIdNil() {
-	o.ExecutionId.Set(nil)
-}
-
-// UnsetExecutionId ensures that no value is present for ExecutionId, not even an explicit nil
-func (o *ThirdPartyScheduledTask) UnsetExecutionId() {
-	o.ExecutionId.Unset()
-}
-
-// GetHost returns the Host field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ThirdPartyScheduledTask) GetHost() string {
-	if o == nil || utils.IsNil(o.Host.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Host.Get()
-}
-
-// GetHostOk returns a tuple with the Host field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ThirdPartyScheduledTask) GetHostOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Host.Get(), o.Host.IsSet()
-}
-
-// HasHost returns a boolean if a field has been set.
-func (o *ThirdPartyScheduledTask) HasHost() bool {
-	if o != nil && o.Host.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHost gets a reference to the given NullableString and assigns it to the Host field.
-func (o *ThirdPartyScheduledTask) SetHost(v string) {
-	o.Host.Set(&v)
-}
-
-// SetHostNil sets the value for Host to be an explicit nil
-func (o *ThirdPartyScheduledTask) SetHostNil() {
-	o.Host.Set(nil)
-}
-
-// UnsetHost ensures that no value is present for Host, not even an explicit nil
-func (o *ThirdPartyScheduledTask) UnsetHost() {
-	o.Host.Unset()
-}
-
-// GetLastCompletionDate returns the LastCompletionDate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ThirdPartyScheduledTask) GetLastCompletionDate() int64 {
-	if o == nil || utils.IsNil(o.LastCompletionDate.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.LastCompletionDate.Get()
-}
-
-// GetLastCompletionDateOk returns a tuple with the LastCompletionDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ThirdPartyScheduledTask) GetLastCompletionDateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LastCompletionDate.Get(), o.LastCompletionDate.IsSet()
-}
-
-// HasLastCompletionDate returns a boolean if a field has been set.
-func (o *ThirdPartyScheduledTask) HasLastCompletionDate() bool {
-	if o != nil && o.LastCompletionDate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastCompletionDate gets a reference to the given NullableInt64 and assigns it to the LastCompletionDate field.
-func (o *ThirdPartyScheduledTask) SetLastCompletionDate(v int64) {
-	o.LastCompletionDate.Set(&v)
-}
-
-// SetLastCompletionDateNil sets the value for LastCompletionDate to be an explicit nil
-func (o *ThirdPartyScheduledTask) SetLastCompletionDateNil() {
-	o.LastCompletionDate.Set(nil)
-}
-
-// UnsetLastCompletionDate ensures that no value is present for LastCompletionDate, not even an explicit nil
-func (o *ThirdPartyScheduledTask) UnsetLastCompletionDate() {
-	o.LastCompletionDate.Unset()
-}
-
-// GetLastExecutionDate returns the LastExecutionDate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ThirdPartyScheduledTask) GetLastExecutionDate() int64 {
-	if o == nil || utils.IsNil(o.LastExecutionDate.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.LastExecutionDate.Get()
-}
-
-// GetLastExecutionDateOk returns a tuple with the LastExecutionDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ThirdPartyScheduledTask) GetLastExecutionDateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LastExecutionDate.Get(), o.LastExecutionDate.IsSet()
-}
-
-// HasLastExecutionDate returns a boolean if a field has been set.
-func (o *ThirdPartyScheduledTask) HasLastExecutionDate() bool {
-	if o != nil && o.LastExecutionDate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastExecutionDate gets a reference to the given NullableInt64 and assigns it to the LastExecutionDate field.
-func (o *ThirdPartyScheduledTask) SetLastExecutionDate(v int64) {
-	o.LastExecutionDate.Set(&v)
-}
-
-// SetLastExecutionDateNil sets the value for LastExecutionDate to be an explicit nil
-func (o *ThirdPartyScheduledTask) SetLastExecutionDateNil() {
-	o.LastExecutionDate.Set(nil)
-}
-
-// UnsetLastExecutionDate ensures that no value is present for LastExecutionDate, not even an explicit nil
-func (o *ThirdPartyScheduledTask) UnsetLastExecutionDate() {
-	o.LastExecutionDate.Unset()
 }
 
 // GetName returns the Name field value
@@ -602,49 +381,6 @@ func (o *ThirdPartyScheduledTask) SetName(v string) {
 	o.Name = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ThirdPartyScheduledTask) GetStatus() string {
-	if o == nil || utils.IsNil(o.Status.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Status.Get()
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ThirdPartyScheduledTask) GetStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Status.Get(), o.Status.IsSet()
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *ThirdPartyScheduledTask) HasStatus() bool {
-	if o != nil && o.Status.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given NullableString and assigns it to the Status field.
-func (o *ThirdPartyScheduledTask) SetStatus(v string) {
-	o.Status.Set(&v)
-}
-
-// SetStatusNil sets the value for Status to be an explicit nil
-func (o *ThirdPartyScheduledTask) SetStatusNil() {
-	o.Status.Set(nil)
-}
-
-// UnsetStatus ensures that no value is present for Status, not even an explicit nil
-func (o *ThirdPartyScheduledTask) UnsetStatus() {
-	o.Status.Unset()
-}
-
 func (o ThirdPartyScheduledTask) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -669,26 +405,8 @@ func (o ThirdPartyScheduledTask) ToMap() (map[string]interface{}, error) {
 	toSerialize["revoke"] = o.Revoke
 	toSerialize["type"] = o.Type
 	toSerialize["cron"] = o.Cron
-	if o.Detail.IsSet() {
-		toSerialize["detail"] = o.Detail.Get()
-	}
 	toSerialize["enabled"] = o.Enabled
-	if o.ExecutionId.IsSet() {
-		toSerialize["executionId"] = o.ExecutionId.Get()
-	}
-	if o.Host.IsSet() {
-		toSerialize["host"] = o.Host.Get()
-	}
-	if o.LastCompletionDate.IsSet() {
-		toSerialize["lastCompletionDate"] = o.LastCompletionDate.Get()
-	}
-	if o.LastExecutionDate.IsSet() {
-		toSerialize["lastExecutionDate"] = o.LastExecutionDate.Get()
-	}
 	toSerialize["name"] = o.Name
-	if o.Status.IsSet() {
-		toSerialize["status"] = o.Status.Get()
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -751,14 +469,8 @@ func (o *ThirdPartyScheduledTask) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "revoke")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "cron")
-		delete(additionalProperties, "detail")
 		delete(additionalProperties, "enabled")
-		delete(additionalProperties, "executionId")
-		delete(additionalProperties, "host")
-		delete(additionalProperties, "lastCompletionDate")
-		delete(additionalProperties, "lastExecutionDate")
 		delete(additionalProperties, "name")
-		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}
 

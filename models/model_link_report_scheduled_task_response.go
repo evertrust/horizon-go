@@ -40,14 +40,14 @@ type LinkReportScheduledTaskResponse struct {
 	Type                 string               `json:"type"`
 	Cron                 string               `json:"cron"`
 	Description          *string              `json:"description,omitempty"`
-	Detail               utils.NullableString `json:"detail,omitempty"`
 	Enabled              bool                 `json:"enabled"`
-	ExecutionId          utils.NullableString `json:"executionId,omitempty"`
-	Host                 utils.NullableString `json:"host,omitempty"`
-	LastCompletionDate   utils.NullableInt64  `json:"lastCompletionDate,omitempty"`
-	LastExecutionDate    utils.NullableInt64  `json:"lastExecutionDate,omitempty"`
 	Name                 string               `json:"name"`
-	Status               utils.NullableString `json:"status,omitempty"`
+	Detail               *string              `json:"detail,omitempty"`
+	ExecutionId          *string              `json:"executionId,omitempty"`
+	Host                 *string              `json:"host,omitempty"`
+	LastCompletionDate   *int64               `json:"lastCompletionDate,omitempty"`
+	LastExecutionDate    *int64               `json:"lastExecutionDate,omitempty"`
+	Status               *string              `json:"status,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -549,49 +549,6 @@ func (o *LinkReportScheduledTaskResponse) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LinkReportScheduledTaskResponse) GetDetail() string {
-	if o == nil || utils.IsNil(o.Detail.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Detail.Get()
-}
-
-// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LinkReportScheduledTaskResponse) GetDetailOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Detail.Get(), o.Detail.IsSet()
-}
-
-// HasDetail returns a boolean if a field has been set.
-func (o *LinkReportScheduledTaskResponse) HasDetail() bool {
-	if o != nil && o.Detail.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetDetail gets a reference to the given NullableString and assigns it to the Detail field.
-func (o *LinkReportScheduledTaskResponse) SetDetail(v string) {
-	o.Detail.Set(&v)
-}
-
-// SetDetailNil sets the value for Detail to be an explicit nil
-func (o *LinkReportScheduledTaskResponse) SetDetailNil() {
-	o.Detail.Set(nil)
-}
-
-// UnsetDetail ensures that no value is present for Detail, not even an explicit nil
-func (o *LinkReportScheduledTaskResponse) UnsetDetail() {
-	o.Detail.Unset()
-}
-
 // GetEnabled returns the Enabled field value
 func (o *LinkReportScheduledTaskResponse) GetEnabled() bool {
 	if o == nil {
@@ -614,178 +571,6 @@ func (o *LinkReportScheduledTaskResponse) GetEnabledOk() (*bool, bool) {
 // SetEnabled sets field value
 func (o *LinkReportScheduledTaskResponse) SetEnabled(v bool) {
 	o.Enabled = v
-}
-
-// GetExecutionId returns the ExecutionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LinkReportScheduledTaskResponse) GetExecutionId() string {
-	if o == nil || utils.IsNil(o.ExecutionId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ExecutionId.Get()
-}
-
-// GetExecutionIdOk returns a tuple with the ExecutionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LinkReportScheduledTaskResponse) GetExecutionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ExecutionId.Get(), o.ExecutionId.IsSet()
-}
-
-// HasExecutionId returns a boolean if a field has been set.
-func (o *LinkReportScheduledTaskResponse) HasExecutionId() bool {
-	if o != nil && o.ExecutionId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetExecutionId gets a reference to the given NullableString and assigns it to the ExecutionId field.
-func (o *LinkReportScheduledTaskResponse) SetExecutionId(v string) {
-	o.ExecutionId.Set(&v)
-}
-
-// SetExecutionIdNil sets the value for ExecutionId to be an explicit nil
-func (o *LinkReportScheduledTaskResponse) SetExecutionIdNil() {
-	o.ExecutionId.Set(nil)
-}
-
-// UnsetExecutionId ensures that no value is present for ExecutionId, not even an explicit nil
-func (o *LinkReportScheduledTaskResponse) UnsetExecutionId() {
-	o.ExecutionId.Unset()
-}
-
-// GetHost returns the Host field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LinkReportScheduledTaskResponse) GetHost() string {
-	if o == nil || utils.IsNil(o.Host.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Host.Get()
-}
-
-// GetHostOk returns a tuple with the Host field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LinkReportScheduledTaskResponse) GetHostOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Host.Get(), o.Host.IsSet()
-}
-
-// HasHost returns a boolean if a field has been set.
-func (o *LinkReportScheduledTaskResponse) HasHost() bool {
-	if o != nil && o.Host.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetHost gets a reference to the given NullableString and assigns it to the Host field.
-func (o *LinkReportScheduledTaskResponse) SetHost(v string) {
-	o.Host.Set(&v)
-}
-
-// SetHostNil sets the value for Host to be an explicit nil
-func (o *LinkReportScheduledTaskResponse) SetHostNil() {
-	o.Host.Set(nil)
-}
-
-// UnsetHost ensures that no value is present for Host, not even an explicit nil
-func (o *LinkReportScheduledTaskResponse) UnsetHost() {
-	o.Host.Unset()
-}
-
-// GetLastCompletionDate returns the LastCompletionDate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LinkReportScheduledTaskResponse) GetLastCompletionDate() int64 {
-	if o == nil || utils.IsNil(o.LastCompletionDate.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.LastCompletionDate.Get()
-}
-
-// GetLastCompletionDateOk returns a tuple with the LastCompletionDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LinkReportScheduledTaskResponse) GetLastCompletionDateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LastCompletionDate.Get(), o.LastCompletionDate.IsSet()
-}
-
-// HasLastCompletionDate returns a boolean if a field has been set.
-func (o *LinkReportScheduledTaskResponse) HasLastCompletionDate() bool {
-	if o != nil && o.LastCompletionDate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastCompletionDate gets a reference to the given NullableInt64 and assigns it to the LastCompletionDate field.
-func (o *LinkReportScheduledTaskResponse) SetLastCompletionDate(v int64) {
-	o.LastCompletionDate.Set(&v)
-}
-
-// SetLastCompletionDateNil sets the value for LastCompletionDate to be an explicit nil
-func (o *LinkReportScheduledTaskResponse) SetLastCompletionDateNil() {
-	o.LastCompletionDate.Set(nil)
-}
-
-// UnsetLastCompletionDate ensures that no value is present for LastCompletionDate, not even an explicit nil
-func (o *LinkReportScheduledTaskResponse) UnsetLastCompletionDate() {
-	o.LastCompletionDate.Unset()
-}
-
-// GetLastExecutionDate returns the LastExecutionDate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LinkReportScheduledTaskResponse) GetLastExecutionDate() int64 {
-	if o == nil || utils.IsNil(o.LastExecutionDate.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.LastExecutionDate.Get()
-}
-
-// GetLastExecutionDateOk returns a tuple with the LastExecutionDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LinkReportScheduledTaskResponse) GetLastExecutionDateOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LastExecutionDate.Get(), o.LastExecutionDate.IsSet()
-}
-
-// HasLastExecutionDate returns a boolean if a field has been set.
-func (o *LinkReportScheduledTaskResponse) HasLastExecutionDate() bool {
-	if o != nil && o.LastExecutionDate.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastExecutionDate gets a reference to the given NullableInt64 and assigns it to the LastExecutionDate field.
-func (o *LinkReportScheduledTaskResponse) SetLastExecutionDate(v int64) {
-	o.LastExecutionDate.Set(&v)
-}
-
-// SetLastExecutionDateNil sets the value for LastExecutionDate to be an explicit nil
-func (o *LinkReportScheduledTaskResponse) SetLastExecutionDateNil() {
-	o.LastExecutionDate.Set(nil)
-}
-
-// UnsetLastExecutionDate ensures that no value is present for LastExecutionDate, not even an explicit nil
-func (o *LinkReportScheduledTaskResponse) UnsetLastExecutionDate() {
-	o.LastExecutionDate.Unset()
 }
 
 // GetName returns the Name field value
@@ -812,47 +597,196 @@ func (o *LinkReportScheduledTaskResponse) SetName(v string) {
 	o.Name = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *LinkReportScheduledTaskResponse) GetStatus() string {
-	if o == nil || utils.IsNil(o.Status.Get()) {
+// GetDetail returns the Detail field value if set, zero value otherwise.
+func (o *LinkReportScheduledTaskResponse) GetDetail() string {
+	if o == nil || utils.IsNil(o.Detail) {
 		var ret string
 		return ret
 	}
-	return *o.Status.Get()
+	return *o.Detail
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *LinkReportScheduledTaskResponse) GetStatusOk() (*string, bool) {
-	if o == nil {
+func (o *LinkReportScheduledTaskResponse) GetDetailOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Detail) {
 		return nil, false
 	}
-	return o.Status.Get(), o.Status.IsSet()
+	return o.Detail, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *LinkReportScheduledTaskResponse) HasStatus() bool {
-	if o != nil && o.Status.IsSet() {
+// HasDetail returns a boolean if a field has been set.
+func (o *LinkReportScheduledTaskResponse) HasDetail() bool {
+	if o != nil && !utils.IsNil(o.Detail) {
 		return true
 	}
 
 	return false
 }
 
-// SetStatus gets a reference to the given NullableString and assigns it to the Status field.
+// SetDetail gets a reference to the given string and assigns it to the Detail field.
+func (o *LinkReportScheduledTaskResponse) SetDetail(v string) {
+	o.Detail = &v
+}
+
+// GetExecutionId returns the ExecutionId field value if set, zero value otherwise.
+func (o *LinkReportScheduledTaskResponse) GetExecutionId() string {
+	if o == nil || utils.IsNil(o.ExecutionId) {
+		var ret string
+		return ret
+	}
+	return *o.ExecutionId
+}
+
+// GetExecutionIdOk returns a tuple with the ExecutionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LinkReportScheduledTaskResponse) GetExecutionIdOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.ExecutionId) {
+		return nil, false
+	}
+	return o.ExecutionId, true
+}
+
+// HasExecutionId returns a boolean if a field has been set.
+func (o *LinkReportScheduledTaskResponse) HasExecutionId() bool {
+	if o != nil && !utils.IsNil(o.ExecutionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExecutionId gets a reference to the given string and assigns it to the ExecutionId field.
+func (o *LinkReportScheduledTaskResponse) SetExecutionId(v string) {
+	o.ExecutionId = &v
+}
+
+// GetHost returns the Host field value if set, zero value otherwise.
+func (o *LinkReportScheduledTaskResponse) GetHost() string {
+	if o == nil || utils.IsNil(o.Host) {
+		var ret string
+		return ret
+	}
+	return *o.Host
+}
+
+// GetHostOk returns a tuple with the Host field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LinkReportScheduledTaskResponse) GetHostOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Host) {
+		return nil, false
+	}
+	return o.Host, true
+}
+
+// HasHost returns a boolean if a field has been set.
+func (o *LinkReportScheduledTaskResponse) HasHost() bool {
+	if o != nil && !utils.IsNil(o.Host) {
+		return true
+	}
+
+	return false
+}
+
+// SetHost gets a reference to the given string and assigns it to the Host field.
+func (o *LinkReportScheduledTaskResponse) SetHost(v string) {
+	o.Host = &v
+}
+
+// GetLastCompletionDate returns the LastCompletionDate field value if set, zero value otherwise.
+func (o *LinkReportScheduledTaskResponse) GetLastCompletionDate() int64 {
+	if o == nil || utils.IsNil(o.LastCompletionDate) {
+		var ret int64
+		return ret
+	}
+	return *o.LastCompletionDate
+}
+
+// GetLastCompletionDateOk returns a tuple with the LastCompletionDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LinkReportScheduledTaskResponse) GetLastCompletionDateOk() (*int64, bool) {
+	if o == nil || utils.IsNil(o.LastCompletionDate) {
+		return nil, false
+	}
+	return o.LastCompletionDate, true
+}
+
+// HasLastCompletionDate returns a boolean if a field has been set.
+func (o *LinkReportScheduledTaskResponse) HasLastCompletionDate() bool {
+	if o != nil && !utils.IsNil(o.LastCompletionDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastCompletionDate gets a reference to the given int64 and assigns it to the LastCompletionDate field.
+func (o *LinkReportScheduledTaskResponse) SetLastCompletionDate(v int64) {
+	o.LastCompletionDate = &v
+}
+
+// GetLastExecutionDate returns the LastExecutionDate field value if set, zero value otherwise.
+func (o *LinkReportScheduledTaskResponse) GetLastExecutionDate() int64 {
+	if o == nil || utils.IsNil(o.LastExecutionDate) {
+		var ret int64
+		return ret
+	}
+	return *o.LastExecutionDate
+}
+
+// GetLastExecutionDateOk returns a tuple with the LastExecutionDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LinkReportScheduledTaskResponse) GetLastExecutionDateOk() (*int64, bool) {
+	if o == nil || utils.IsNil(o.LastExecutionDate) {
+		return nil, false
+	}
+	return o.LastExecutionDate, true
+}
+
+// HasLastExecutionDate returns a boolean if a field has been set.
+func (o *LinkReportScheduledTaskResponse) HasLastExecutionDate() bool {
+	if o != nil && !utils.IsNil(o.LastExecutionDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastExecutionDate gets a reference to the given int64 and assigns it to the LastExecutionDate field.
+func (o *LinkReportScheduledTaskResponse) SetLastExecutionDate(v int64) {
+	o.LastExecutionDate = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *LinkReportScheduledTaskResponse) GetStatus() string {
+	if o == nil || utils.IsNil(o.Status) {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LinkReportScheduledTaskResponse) GetStatusOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *LinkReportScheduledTaskResponse) HasStatus() bool {
+	if o != nil && !utils.IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *LinkReportScheduledTaskResponse) SetStatus(v string) {
-	o.Status.Set(&v)
-}
-
-// SetStatusNil sets the value for Status to be an explicit nil
-func (o *LinkReportScheduledTaskResponse) SetStatusNil() {
-	o.Status.Set(nil)
-}
-
-// UnsetStatus ensures that no value is present for Status, not even an explicit nil
-func (o *LinkReportScheduledTaskResponse) UnsetStatus() {
-	o.Status.Unset()
+	o.Status = &v
 }
 
 func (o LinkReportScheduledTaskResponse) MarshalJSON() ([]byte, error) {
@@ -893,25 +827,25 @@ func (o LinkReportScheduledTaskResponse) ToMap() (map[string]interface{}, error)
 	if !utils.IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if o.Detail.IsSet() {
-		toSerialize["detail"] = o.Detail.Get()
-	}
 	toSerialize["enabled"] = o.Enabled
-	if o.ExecutionId.IsSet() {
-		toSerialize["executionId"] = o.ExecutionId.Get()
-	}
-	if o.Host.IsSet() {
-		toSerialize["host"] = o.Host.Get()
-	}
-	if o.LastCompletionDate.IsSet() {
-		toSerialize["lastCompletionDate"] = o.LastCompletionDate.Get()
-	}
-	if o.LastExecutionDate.IsSet() {
-		toSerialize["lastExecutionDate"] = o.LastExecutionDate.Get()
-	}
 	toSerialize["name"] = o.Name
-	if o.Status.IsSet() {
-		toSerialize["status"] = o.Status.Get()
+	if !utils.IsNil(o.Detail) {
+		toSerialize["detail"] = o.Detail
+	}
+	if !utils.IsNil(o.ExecutionId) {
+		toSerialize["executionId"] = o.ExecutionId
+	}
+	if !utils.IsNil(o.Host) {
+		toSerialize["host"] = o.Host
+	}
+	if !utils.IsNil(o.LastCompletionDate) {
+		toSerialize["lastCompletionDate"] = o.LastCompletionDate
+	}
+	if !utils.IsNil(o.LastExecutionDate) {
+		toSerialize["lastExecutionDate"] = o.LastExecutionDate
+	}
+	if !utils.IsNil(o.Status) {
+		toSerialize["status"] = o.Status
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -983,13 +917,13 @@ func (o *LinkReportScheduledTaskResponse) UnmarshalJSON(data []byte) (err error)
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "cron")
 		delete(additionalProperties, "description")
-		delete(additionalProperties, "detail")
 		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "detail")
 		delete(additionalProperties, "executionId")
 		delete(additionalProperties, "host")
 		delete(additionalProperties, "lastCompletionDate")
 		delete(additionalProperties, "lastExecutionDate")
-		delete(additionalProperties, "name")
 		delete(additionalProperties, "status")
 		o.AdditionalProperties = additionalProperties
 	}

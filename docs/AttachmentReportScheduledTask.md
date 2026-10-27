@@ -19,14 +19,8 @@ Name | Type | Description | Notes
 **Type** | **string** |  | 
 **Cron** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
-**Detail** | Pointer to **NullableString** |  | [optional] 
 **Enabled** | **bool** |  | 
-**ExecutionId** | Pointer to **NullableString** |  | [optional] 
-**Host** | Pointer to **NullableString** |  | [optional] 
-**LastCompletionDate** | Pointer to **NullableInt64** |  | [optional] 
-**LastExecutionDate** | Pointer to **NullableInt64** |  | [optional] 
 **Name** | **string** |  | 
-**Status** | Pointer to **NullableString** |  | [optional] 
 
 ## Methods
 
@@ -432,41 +426,6 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetDetail
-
-`func (o *AttachmentReportScheduledTask) GetDetail() string`
-
-GetDetail returns the Detail field if non-nil, zero value otherwise.
-
-### GetDetailOk
-
-`func (o *AttachmentReportScheduledTask) GetDetailOk() (*string, bool)`
-
-GetDetailOk returns a tuple with the Detail field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDetail
-
-`func (o *AttachmentReportScheduledTask) SetDetail(v string)`
-
-SetDetail sets Detail field to given value.
-
-### HasDetail
-
-`func (o *AttachmentReportScheduledTask) HasDetail() bool`
-
-HasDetail returns a boolean if a field has been set.
-
-### SetDetailNil
-
-`func (o *AttachmentReportScheduledTask) SetDetailNil(b bool)`
-
- SetDetailNil sets the value for Detail to be an explicit nil
-
-### UnsetDetail
-`func (o *AttachmentReportScheduledTask) UnsetDetail()`
-
-UnsetDetail ensures that no value is present for Detail, not even an explicit nil
 ### GetEnabled
 
 `func (o *AttachmentReportScheduledTask) GetEnabled() bool`
@@ -487,146 +446,6 @@ and a boolean to check if the value has been set.
 SetEnabled sets Enabled field to given value.
 
 
-### GetExecutionId
-
-`func (o *AttachmentReportScheduledTask) GetExecutionId() string`
-
-GetExecutionId returns the ExecutionId field if non-nil, zero value otherwise.
-
-### GetExecutionIdOk
-
-`func (o *AttachmentReportScheduledTask) GetExecutionIdOk() (*string, bool)`
-
-GetExecutionIdOk returns a tuple with the ExecutionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExecutionId
-
-`func (o *AttachmentReportScheduledTask) SetExecutionId(v string)`
-
-SetExecutionId sets ExecutionId field to given value.
-
-### HasExecutionId
-
-`func (o *AttachmentReportScheduledTask) HasExecutionId() bool`
-
-HasExecutionId returns a boolean if a field has been set.
-
-### SetExecutionIdNil
-
-`func (o *AttachmentReportScheduledTask) SetExecutionIdNil(b bool)`
-
- SetExecutionIdNil sets the value for ExecutionId to be an explicit nil
-
-### UnsetExecutionId
-`func (o *AttachmentReportScheduledTask) UnsetExecutionId()`
-
-UnsetExecutionId ensures that no value is present for ExecutionId, not even an explicit nil
-### GetHost
-
-`func (o *AttachmentReportScheduledTask) GetHost() string`
-
-GetHost returns the Host field if non-nil, zero value otherwise.
-
-### GetHostOk
-
-`func (o *AttachmentReportScheduledTask) GetHostOk() (*string, bool)`
-
-GetHostOk returns a tuple with the Host field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHost
-
-`func (o *AttachmentReportScheduledTask) SetHost(v string)`
-
-SetHost sets Host field to given value.
-
-### HasHost
-
-`func (o *AttachmentReportScheduledTask) HasHost() bool`
-
-HasHost returns a boolean if a field has been set.
-
-### SetHostNil
-
-`func (o *AttachmentReportScheduledTask) SetHostNil(b bool)`
-
- SetHostNil sets the value for Host to be an explicit nil
-
-### UnsetHost
-`func (o *AttachmentReportScheduledTask) UnsetHost()`
-
-UnsetHost ensures that no value is present for Host, not even an explicit nil
-### GetLastCompletionDate
-
-`func (o *AttachmentReportScheduledTask) GetLastCompletionDate() int64`
-
-GetLastCompletionDate returns the LastCompletionDate field if non-nil, zero value otherwise.
-
-### GetLastCompletionDateOk
-
-`func (o *AttachmentReportScheduledTask) GetLastCompletionDateOk() (*int64, bool)`
-
-GetLastCompletionDateOk returns a tuple with the LastCompletionDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastCompletionDate
-
-`func (o *AttachmentReportScheduledTask) SetLastCompletionDate(v int64)`
-
-SetLastCompletionDate sets LastCompletionDate field to given value.
-
-### HasLastCompletionDate
-
-`func (o *AttachmentReportScheduledTask) HasLastCompletionDate() bool`
-
-HasLastCompletionDate returns a boolean if a field has been set.
-
-### SetLastCompletionDateNil
-
-`func (o *AttachmentReportScheduledTask) SetLastCompletionDateNil(b bool)`
-
- SetLastCompletionDateNil sets the value for LastCompletionDate to be an explicit nil
-
-### UnsetLastCompletionDate
-`func (o *AttachmentReportScheduledTask) UnsetLastCompletionDate()`
-
-UnsetLastCompletionDate ensures that no value is present for LastCompletionDate, not even an explicit nil
-### GetLastExecutionDate
-
-`func (o *AttachmentReportScheduledTask) GetLastExecutionDate() int64`
-
-GetLastExecutionDate returns the LastExecutionDate field if non-nil, zero value otherwise.
-
-### GetLastExecutionDateOk
-
-`func (o *AttachmentReportScheduledTask) GetLastExecutionDateOk() (*int64, bool)`
-
-GetLastExecutionDateOk returns a tuple with the LastExecutionDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastExecutionDate
-
-`func (o *AttachmentReportScheduledTask) SetLastExecutionDate(v int64)`
-
-SetLastExecutionDate sets LastExecutionDate field to given value.
-
-### HasLastExecutionDate
-
-`func (o *AttachmentReportScheduledTask) HasLastExecutionDate() bool`
-
-HasLastExecutionDate returns a boolean if a field has been set.
-
-### SetLastExecutionDateNil
-
-`func (o *AttachmentReportScheduledTask) SetLastExecutionDateNil(b bool)`
-
- SetLastExecutionDateNil sets the value for LastExecutionDate to be an explicit nil
-
-### UnsetLastExecutionDate
-`func (o *AttachmentReportScheduledTask) UnsetLastExecutionDate()`
-
-UnsetLastExecutionDate ensures that no value is present for LastExecutionDate, not even an explicit nil
 ### GetName
 
 `func (o *AttachmentReportScheduledTask) GetName() string`
@@ -647,41 +466,6 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetStatus
-
-`func (o *AttachmentReportScheduledTask) GetStatus() string`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *AttachmentReportScheduledTask) GetStatusOk() (*string, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *AttachmentReportScheduledTask) SetStatus(v string)`
-
-SetStatus sets Status field to given value.
-
-### HasStatus
-
-`func (o *AttachmentReportScheduledTask) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
-
-### SetStatusNil
-
-`func (o *AttachmentReportScheduledTask) SetStatusNil(b bool)`
-
- SetStatusNil sets the value for Status to be an explicit nil
-
-### UnsetStatus
-`func (o *AttachmentReportScheduledTask) UnsetStatus()`
-
-UnsetStatus ensures that no value is present for Status, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

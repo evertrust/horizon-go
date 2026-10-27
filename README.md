@@ -864,6 +864,7 @@ Class | Method | HTTP request | Description
  - [ScepProfile](docs/ScepProfile.md)
  - [ScepProfileResponse](docs/ScepProfileResponse.md)
  - [ScheduledTask](docs/ScheduledTask.md)
+ - [ScheduledTaskExecution](docs/ScheduledTaskExecution.md)
  - [ScheduledTaskResponses](docs/ScheduledTaskResponses.md)
  - [ScheduledTasks](docs/ScheduledTasks.md)
  - [ScimProfile](docs/ScimProfile.md)
