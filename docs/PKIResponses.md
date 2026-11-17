@@ -60,13 +60,18 @@ Name | Type | Description | Notes
 **SanDnsMap** | Pointer to **NullableString** |  | [optional] 
 **SignerCredentials** | **string** | Name of the &#x60;certificate&#x60; [credentials](#tag/security.credentials) to use to sign on the PKI | 
 **ApiCredentials** | **string** | Name of the &#x60;api-key&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI | 
-**BaseUrl** | **string** | The base URL of the used digicert instance. | 
+**BaseUrl** | **string** | The base URL of the DigiCert ONE instance. | 
 **CaCertId** | Pointer to **NullableString** |  | [optional] 
 **CustomConnectorDataMapping** | Pointer to **map[string]string** | Custom mapping of connector data fields | [optional] 
 **ProductId** | **string** |  | 
 **SkipApproval** | Pointer to **NullableBool** |  | [optional] 
+**ProfileId** | **string** | Identifier of the CA Gateway profile used to enroll certificates | 
+**Seat** | [**DigiCertOneConnectorSeat**](DigiCertOneConnectorSeat.md) |  | 
+**Validity** | Pointer to **int64** | Overrides the default validity of the bound SwissSign product. The unit and accepted values are defined by that product, so this must be a valid validity length for it. | [optional] 
 **CaName** | **string** |  | 
 **EeProfile** | Pointer to **NullableString** |  | [optional] 
+**CaId** | **string** | Identifier of the CA on the Entrust CA Gateway | 
+**ValidityPeriod** | Pointer to **string** | Overrides the validity of the issued certificates, as an ISO 8601 interval or duration accepted by the Entrust CA Gateway. The profile must allow the validity to be overridden. Accepted forms: - a duration only, starting when the certificate is issued: &#x60;P1Y3M10DT0H0M&#x60; - a start date and an expiry date: &#x60;2018-07-06T13:00Z/2019-07-06T13:00:00Z&#x60; - a start date and a duration: &#x60;2018-07-06T13:00Z/P1Y3M0DT0H0M&#x60; - a duration and an expiry date, the start date being computed from them: &#x60;P0Y3M0DT0H0M/2018-12-31T00:00Z&#x60; | [optional] 
 **AsyncParams** | Pointer to [**IntegratedCAConnectorAsyncParams**](IntegratedCAConnectorAsyncParams.md) |  | [optional] 
 **CaCert** | Pointer to **NullableString** |  | [optional] 
 **CaKey** | Pointer to [**NullableSecretString**](SecretString.md) |  | [optional] 
@@ -101,14 +106,14 @@ Name | Type | Description | Notes
 **Environment** | **string** | The testing environment will use https://ote-api.nameshield.net endpoint  and the production will use https://api.nameshield.net  | 
 **Procedure** | **string** |  | 
 **CustomerUri** | **string** |  | 
-**MpkiCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI.  It should contains the mpkiId as the login and the apiKey as password.  | 
-**ProductUuid** | **string** | The product Uuid that need to be retrieved from the swiss sign api&#39;s (&lt;endpoints&gt;/v2/clients) | 
+**MpkiCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI.  It should contain the mpkiId as the login and the apiKey as the password.  | 
+**ProductUuid** | **string** | The product UUID to retrieve from the SwissSign API (&lt;endpoints&gt;/v2/clients). | 
 
 ## Methods
 
 ### NewPKIResponses
 
-`func NewPKIResponses(id string, authenticationCredentials string, ca string, endPoint string, loginCredentials string, name string, template string, timeout NullableString, type_ string, accountKeyType string, accountUrl string, dnsChallengeProvider DnsChallengeProviders, retryInterval NullableString, acmeDirectoryUrl string, caConfig string, domain string, enrollmentCredentials string, profile string, caArn string, region string, caPool string, certificateLifetime string, location string, projectId string, offerId string, organizationId int64, issuerCACert string, issuerCADN string, signerCredentials string, apiCredentials string, baseUrl string, productId string, caName string, cryptoType string, defaultOwner string, deleteOnRevoke bool, templateId int64, domainId string, endpointType string, endPointIssuingCA string, profilCle NullableString, workflow NullableString, customerId string, environment string, procedure string, customerUri string, mpkiCredentials string, productUuid string, ) *PKIResponses`
+`func NewPKIResponses(id string, authenticationCredentials string, ca string, endPoint string, loginCredentials string, name string, template string, timeout NullableString, type_ string, accountKeyType string, accountUrl string, dnsChallengeProvider DnsChallengeProviders, retryInterval NullableString, acmeDirectoryUrl string, caConfig string, domain string, enrollmentCredentials string, profile string, caArn string, region string, caPool string, certificateLifetime string, location string, projectId string, offerId string, organizationId int64, issuerCACert string, issuerCADN string, signerCredentials string, apiCredentials string, baseUrl string, productId string, profileId string, seat DigiCertOneConnectorSeat, caName string, caId string, cryptoType string, defaultOwner string, deleteOnRevoke bool, templateId int64, domainId string, endpointType string, endPointIssuingCA string, profilCle NullableString, workflow NullableString, customerId string, environment string, procedure string, customerUri string, mpkiCredentials string, productUuid string, ) *PKIResponses`
 
 NewPKIResponses instantiates a new PKIResponses object
 This constructor will assign default values to properties that have it defined,
@@ -1758,6 +1763,71 @@ HasSkipApproval returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetSkipApproval()`
 
 UnsetSkipApproval ensures that no value is present for SkipApproval, not even an explicit nil
+### GetProfileId
+
+`func (o *PKIResponses) GetProfileId() string`
+
+GetProfileId returns the ProfileId field if non-nil, zero value otherwise.
+
+### GetProfileIdOk
+
+`func (o *PKIResponses) GetProfileIdOk() (*string, bool)`
+
+GetProfileIdOk returns a tuple with the ProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProfileId
+
+`func (o *PKIResponses) SetProfileId(v string)`
+
+SetProfileId sets ProfileId field to given value.
+
+
+### GetSeat
+
+`func (o *PKIResponses) GetSeat() DigiCertOneConnectorSeat`
+
+GetSeat returns the Seat field if non-nil, zero value otherwise.
+
+### GetSeatOk
+
+`func (o *PKIResponses) GetSeatOk() (*DigiCertOneConnectorSeat, bool)`
+
+GetSeatOk returns a tuple with the Seat field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSeat
+
+`func (o *PKIResponses) SetSeat(v DigiCertOneConnectorSeat)`
+
+SetSeat sets Seat field to given value.
+
+
+### GetValidity
+
+`func (o *PKIResponses) GetValidity() int64`
+
+GetValidity returns the Validity field if non-nil, zero value otherwise.
+
+### GetValidityOk
+
+`func (o *PKIResponses) GetValidityOk() (*int64, bool)`
+
+GetValidityOk returns a tuple with the Validity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidity
+
+`func (o *PKIResponses) SetValidity(v int64)`
+
+SetValidity sets Validity field to given value.
+
+### HasValidity
+
+`func (o *PKIResponses) HasValidity() bool`
+
+HasValidity returns a boolean if a field has been set.
+
 ### GetCaName
 
 `func (o *PKIResponses) GetCaName() string`
@@ -1813,6 +1883,51 @@ HasEeProfile returns a boolean if a field has been set.
 `func (o *PKIResponses) UnsetEeProfile()`
 
 UnsetEeProfile ensures that no value is present for EeProfile, not even an explicit nil
+### GetCaId
+
+`func (o *PKIResponses) GetCaId() string`
+
+GetCaId returns the CaId field if non-nil, zero value otherwise.
+
+### GetCaIdOk
+
+`func (o *PKIResponses) GetCaIdOk() (*string, bool)`
+
+GetCaIdOk returns a tuple with the CaId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCaId
+
+`func (o *PKIResponses) SetCaId(v string)`
+
+SetCaId sets CaId field to given value.
+
+
+### GetValidityPeriod
+
+`func (o *PKIResponses) GetValidityPeriod() string`
+
+GetValidityPeriod returns the ValidityPeriod field if non-nil, zero value otherwise.
+
+### GetValidityPeriodOk
+
+`func (o *PKIResponses) GetValidityPeriodOk() (*string, bool)`
+
+GetValidityPeriodOk returns a tuple with the ValidityPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidityPeriod
+
+`func (o *PKIResponses) SetValidityPeriod(v string)`
+
+SetValidityPeriod sets ValidityPeriod field to given value.
+
+### HasValidityPeriod
+
+`func (o *PKIResponses) HasValidityPeriod() bool`
+
+HasValidityPeriod returns a boolean if a field has been set.
+
 ### GetAsyncParams
 
 `func (o *PKIResponses) GetAsyncParams() IntegratedCAConnectorAsyncParams`

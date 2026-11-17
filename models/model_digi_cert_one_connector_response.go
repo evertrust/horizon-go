@@ -1,0 +1,606 @@
+/*
+   Horizon API
+
+   ## Authentication  Most of the API calls that Horizon uses require you to be authenticated to the API. The first authentication can either be done through the use of an X509 certificate or using credentials of a local account, but every single API call afterward will need to bear the authentication information nonetheless. Regardless of the chosen authentication method, the authorization used must have sufficient permissions to perform the desired operation.  ### Authenticating using API-ID and API-KEY  This method of authentication requires you to send your Horizon local account credentials as HTTP headers. To check whether the credentials are correct, you can perform a *GET* request on `/api/v1/security/principals/self` and check for the response status : ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-ID: administrator\" -H \"X-API-KEY: horizon\" -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using an X509 certificate  This method of authentication requires to have a created authorization based on an X509 certificate that has the clientAuth EKU. It also requires you to have imported the CA that issued this certificate in Horizon and turning on the \"Trusted for client authentication\" switch on that CA. You must then present the certificate on the request you are performing.  To check for the authentication, you can perform a *GET* request on `/api/v1/security/principals/self` :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --cert horizon-login-dev-guide.pem --key horizon-login-dev-guide.key -H \"Accept: application/json\" ```  Possible responses are:  | HTTP Response code | Additional information                                                   | |--------------------|--------------------------------------------------------------------------| | 200                | The login information were correct                                       | | 401                | Authentication error, please refer to the response body for more details |  ### Authenticating using a JWKS service account  This method of authentication is designed for machine-to-machine clients (CI/CD pipelines, Kubernetes workloads, SaaS automation) that obtain a short-lived JWT from a third-party Identity Provider (e.g. GitHub CI, GitLab CI, Kubernetes).  It requires a service account to be declared in Horizon with: - a name, - one or more JWKS (static content or a JWKS URL) used to verify the JWT signature, - a set of validation rules applied to the JWT claims, - the roles and permissions granted on successful authentication.  The service account name is sent in the `X-API-SVA` header and the JWT in either the `X-API-TOKEN` header or the `Authorization` header using the `Bearer` scheme:  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-SVA: my-service-account\" -H \"X-API-TOKEN: eyJhbGciOiJSUzI1NiIs...\" -H \"Accept: application/json\" ```  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -H \"X-API-SVA: my-service-account\" -H \"Authorization: Bearer eyJhbGciOiJSUzI1NiIs...\" -H \"Accept: application/json\" ```  Unlike `API-ID`/`API-KEY` or X509 authentication, JWKS service account authentication does not create a `PLAY_SESSION` cookie: the JWT must be presented on every request.  Possible responses are:  | HTTP Response code | Additional information                                                                                                                      | |--------------------|---------------------------------------------------------------------------------------------------------------------------------------------| | 200                | The token was successfully authenticated                                                                                                    | | 401                | Authentication error, the precise cause is not exposed in the response body and is only recorded in the technical logs, not in audit events |  ### Handling next authentications using the Play Session  Once the first authentication is done, the API generates a cookie called \"PLAY_SESSION\". This cookie holds the authentication information that was used to make the first login (using either previously mentioned method). To save its value for later use, just append the _-c cookies.txt_ to either of the previous curl requests. Instead of using the credentials as headers or passing the certificate at each API call, you can use the cookie :  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self -b cookies.txt -H \"Accept: application/json\" ```  ### Handling CSRF Token    Our api are used by a frontend and require a CSRF protection. A CSRF token validation is needed when all of the following are true:  - The request method is not GET, HEAD or OPTIONS. - The request has one or more Cookie or Authorization headers.  Receiving the following response with valid credentials can mean that your request has failed the CSRF token validation:  ```json {     \"error\": \"SEC-AUTH-002\",     \"message\": \"Invalid credentials or principal does not exist\",     \"title\": \"Invalid credentials or principal does not exist\",     \"status\": 401 } ```  To avoid the CSRF token validation in api usage: - Authentication using API-ID and API-KEY headers should be prioritized as http basic authentication results in the creation of an Authorization header.  - Avoid the use of cookies as api usage does not require them.  If you cannot avoid those cases, the following procedure explains how to handle the CSRF token validation.   First you will have to retrieve a valid cookie CSRF token from the server.  ```shell  $ curl https://horizon.evertrust.fr/api/v1/security/principals/self --header 'X-API-ID:administrator' --header 'X-API-KEY:horizon' -c cookies.txt ```  Once done the file `cookies.txt` should have two entries: - A play session  - A CSRF token:  ```text localhost FALSE / FALSE 0 csrf-token 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d localhost FALSE / FALSE 1708942383 PLAY_SESSION eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkZW50aWZpZXIiOiJhZG1pbmlzdHJhdG9yIiwibmFtZSI6Ikhvcml6b24gQWRtaW5pc3RyYXRvciIsImlkcFR5cGUiOiJMb2NhbCIsImlkcE5hbWUiOiJsb2NhbCJ9LCJleHAiOjE3MDg5NDIzODMsIm5iZiI6MTcwODk0MTQ4MywiaWF0IjoxNzA4OTQxNDgzfQ.79xRjdGhaVv_5mM8bpkLgcL78QCEWu08zgthP_dt9Pc ```  To successfully authenticate to the server, both the csrf-token cookie and a `csrf-token` header containing the cookie content should be defined.  Sending a POST request using cookies without the `csrf-token` header will result in the forbidden html page:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'Content-Type: application/json' \\ -b cookies.txt \\ --data '{     \"name\": \"NEW_LABEL\",     \"displayName\" : [],     \"description\": [] }' ```  A valid authentication also copies the content in the `csrf-token` header:  ```shell curl --location 'localhost:9000/api/v1/certificate/labels' \\ --header 'X-API-ID: administrator' \\ --header 'X-API-KEY: evertrust' \\ --header 'csrf-token: 456aa18162e8736047dbd878617283aa361cd83e-1708941483170-da503a15304a666a96748f5d' \\ --header 'Content-Type: application/json' \\ --data '{     \"name\": \"NEW_LABEL\",     \"regex\": null,     \"displayName\" : [],     \"description\": [] }' ```
+
+   API version: 2.12.0
+*/
+
+// Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
+
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/evertrust/horizon-go/v2/utils"
+)
+
+// checks if the DigiCertOneConnectorResponse type satisfies the MappedNullable interface at compile time
+var _ utils.MappedNullable = &DigiCertOneConnectorResponse{}
+
+// DigiCertOneConnectorResponse struct for DigiCertOneConnectorResponse
+type DigiCertOneConnectorResponse struct {
+	// Object internal ID
+	Id string `json:"_id"`
+	// Name of the `raw` [credentials](#tag/security.credentials) containing the API key to authenticate on the PKI
+	ApiCredentials string `json:"apiCredentials"`
+	// The base URL of the DigiCert ONE instance.
+	BaseUrl string `json:"baseUrl"`
+	Name    string `json:"name"`
+	// Identifier of the DigiCert ONE certificate profile used to issue certificates.
+	ProfileId string               `json:"profileId"`
+	Proxy     utils.NullableString `json:"proxy,omitempty"`
+	Queue     utils.NullableString `json:"queue,omitempty"`
+	// Interval between two polls of a pending certificate request.
+	RetryInterval string                     `json:"retryInterval" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Seat          DigiCertOneConnectorSeat   `json:"seat"`
+	Status        NullablePKIConnectorStatus `json:"status,omitempty"`
+	Timeout       utils.NullableString       `json:"timeout,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	Type          string                     `json:"type"`
+	// Overrides the validity of the certificates issued through this connector. When not set, the validity defined by the DigiCert ONE certificate profile is used. The validity is converted to minutes when sent to DigiCert ONE, so any precision below the minute is truncated.
+	Validity             *string `json:"validity,omitempty" validate:"regexp=^([0-9]+) *(ms|millisecond|milliseconds|s|second|seconds|m|minute|minutes|h|hour|hours|d|day|days)$"`
+	AdditionalProperties map[string]interface{}
+}
+
+type _DigiCertOneConnectorResponse DigiCertOneConnectorResponse
+
+// NewDigiCertOneConnectorResponse instantiates a new DigiCertOneConnectorResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDigiCertOneConnectorResponse(id string, apiCredentials string, baseUrl string, name string, profileId string, retryInterval string, seat DigiCertOneConnectorSeat, type_ string) *DigiCertOneConnectorResponse {
+	this := DigiCertOneConnectorResponse{}
+	this.Id = id
+	this.ApiCredentials = apiCredentials
+	this.BaseUrl = baseUrl
+	this.Name = name
+	this.ProfileId = profileId
+	this.RetryInterval = retryInterval
+	this.Seat = seat
+	this.Type = type_
+	return &this
+}
+
+// NewDigiCertOneConnectorResponseWithDefaults instantiates a new DigiCertOneConnectorResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDigiCertOneConnectorResponseWithDefaults() *DigiCertOneConnectorResponse {
+	this := DigiCertOneConnectorResponse{}
+	return &this
+}
+
+// GetId returns the Id field value
+func (o *DigiCertOneConnectorResponse) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertOneConnectorResponse) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *DigiCertOneConnectorResponse) SetId(v string) {
+	o.Id = v
+}
+
+// GetApiCredentials returns the ApiCredentials field value
+func (o *DigiCertOneConnectorResponse) GetApiCredentials() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ApiCredentials
+}
+
+// GetApiCredentialsOk returns a tuple with the ApiCredentials field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertOneConnectorResponse) GetApiCredentialsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApiCredentials, true
+}
+
+// SetApiCredentials sets field value
+func (o *DigiCertOneConnectorResponse) SetApiCredentials(v string) {
+	o.ApiCredentials = v
+}
+
+// GetBaseUrl returns the BaseUrl field value
+func (o *DigiCertOneConnectorResponse) GetBaseUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BaseUrl
+}
+
+// GetBaseUrlOk returns a tuple with the BaseUrl field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertOneConnectorResponse) GetBaseUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BaseUrl, true
+}
+
+// SetBaseUrl sets field value
+func (o *DigiCertOneConnectorResponse) SetBaseUrl(v string) {
+	o.BaseUrl = v
+}
+
+// GetName returns the Name field value
+func (o *DigiCertOneConnectorResponse) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertOneConnectorResponse) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value
+func (o *DigiCertOneConnectorResponse) SetName(v string) {
+	o.Name = v
+}
+
+// GetProfileId returns the ProfileId field value
+func (o *DigiCertOneConnectorResponse) GetProfileId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProfileId
+}
+
+// GetProfileIdOk returns a tuple with the ProfileId field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertOneConnectorResponse) GetProfileIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProfileId, true
+}
+
+// SetProfileId sets field value
+func (o *DigiCertOneConnectorResponse) SetProfileId(v string) {
+	o.ProfileId = v
+}
+
+// GetProxy returns the Proxy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DigiCertOneConnectorResponse) GetProxy() string {
+	if o == nil || utils.IsNil(o.Proxy.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Proxy.Get()
+}
+
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DigiCertOneConnectorResponse) GetProxyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Proxy.Get(), o.Proxy.IsSet()
+}
+
+// HasProxy returns a boolean if a field has been set.
+func (o *DigiCertOneConnectorResponse) HasProxy() bool {
+	if o != nil && o.Proxy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given NullableString and assigns it to the Proxy field.
+func (o *DigiCertOneConnectorResponse) SetProxy(v string) {
+	o.Proxy.Set(&v)
+}
+
+// SetProxyNil sets the value for Proxy to be an explicit nil
+func (o *DigiCertOneConnectorResponse) SetProxyNil() {
+	o.Proxy.Set(nil)
+}
+
+// UnsetProxy ensures that no value is present for Proxy, not even an explicit nil
+func (o *DigiCertOneConnectorResponse) UnsetProxy() {
+	o.Proxy.Unset()
+}
+
+// GetQueue returns the Queue field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DigiCertOneConnectorResponse) GetQueue() string {
+	if o == nil || utils.IsNil(o.Queue.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Queue.Get()
+}
+
+// GetQueueOk returns a tuple with the Queue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DigiCertOneConnectorResponse) GetQueueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Queue.Get(), o.Queue.IsSet()
+}
+
+// HasQueue returns a boolean if a field has been set.
+func (o *DigiCertOneConnectorResponse) HasQueue() bool {
+	if o != nil && o.Queue.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetQueue gets a reference to the given NullableString and assigns it to the Queue field.
+func (o *DigiCertOneConnectorResponse) SetQueue(v string) {
+	o.Queue.Set(&v)
+}
+
+// SetQueueNil sets the value for Queue to be an explicit nil
+func (o *DigiCertOneConnectorResponse) SetQueueNil() {
+	o.Queue.Set(nil)
+}
+
+// UnsetQueue ensures that no value is present for Queue, not even an explicit nil
+func (o *DigiCertOneConnectorResponse) UnsetQueue() {
+	o.Queue.Unset()
+}
+
+// GetRetryInterval returns the RetryInterval field value
+func (o *DigiCertOneConnectorResponse) GetRetryInterval() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RetryInterval
+}
+
+// GetRetryIntervalOk returns a tuple with the RetryInterval field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertOneConnectorResponse) GetRetryIntervalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RetryInterval, true
+}
+
+// SetRetryInterval sets field value
+func (o *DigiCertOneConnectorResponse) SetRetryInterval(v string) {
+	o.RetryInterval = v
+}
+
+// GetSeat returns the Seat field value
+func (o *DigiCertOneConnectorResponse) GetSeat() DigiCertOneConnectorSeat {
+	if o == nil {
+		var ret DigiCertOneConnectorSeat
+		return ret
+	}
+
+	return o.Seat
+}
+
+// GetSeatOk returns a tuple with the Seat field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertOneConnectorResponse) GetSeatOk() (*DigiCertOneConnectorSeat, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Seat, true
+}
+
+// SetSeat sets field value
+func (o *DigiCertOneConnectorResponse) SetSeat(v DigiCertOneConnectorSeat) {
+	o.Seat = v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DigiCertOneConnectorResponse) GetStatus() PKIConnectorStatus {
+	if o == nil || utils.IsNil(o.Status.Get()) {
+		var ret PKIConnectorStatus
+		return ret
+	}
+	return *o.Status.Get()
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DigiCertOneConnectorResponse) GetStatusOk() (*PKIConnectorStatus, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Status.Get(), o.Status.IsSet()
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *DigiCertOneConnectorResponse) HasStatus() bool {
+	if o != nil && o.Status.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given NullablePKIConnectorStatus and assigns it to the Status field.
+func (o *DigiCertOneConnectorResponse) SetStatus(v PKIConnectorStatus) {
+	o.Status.Set(&v)
+}
+
+// SetStatusNil sets the value for Status to be an explicit nil
+func (o *DigiCertOneConnectorResponse) SetStatusNil() {
+	o.Status.Set(nil)
+}
+
+// UnsetStatus ensures that no value is present for Status, not even an explicit nil
+func (o *DigiCertOneConnectorResponse) UnsetStatus() {
+	o.Status.Unset()
+}
+
+// GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DigiCertOneConnectorResponse) GetTimeout() string {
+	if o == nil || utils.IsNil(o.Timeout.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Timeout.Get()
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DigiCertOneConnectorResponse) GetTimeoutOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Timeout.Get(), o.Timeout.IsSet()
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (o *DigiCertOneConnectorResponse) HasTimeout() bool {
+	if o != nil && o.Timeout.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout gets a reference to the given NullableString and assigns it to the Timeout field.
+func (o *DigiCertOneConnectorResponse) SetTimeout(v string) {
+	o.Timeout.Set(&v)
+}
+
+// SetTimeoutNil sets the value for Timeout to be an explicit nil
+func (o *DigiCertOneConnectorResponse) SetTimeoutNil() {
+	o.Timeout.Set(nil)
+}
+
+// UnsetTimeout ensures that no value is present for Timeout, not even an explicit nil
+func (o *DigiCertOneConnectorResponse) UnsetTimeout() {
+	o.Timeout.Unset()
+}
+
+// GetType returns the Type field value
+func (o *DigiCertOneConnectorResponse) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *DigiCertOneConnectorResponse) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *DigiCertOneConnectorResponse) SetType(v string) {
+	o.Type = v
+}
+
+// GetValidity returns the Validity field value if set, zero value otherwise.
+func (o *DigiCertOneConnectorResponse) GetValidity() string {
+	if o == nil || utils.IsNil(o.Validity) {
+		var ret string
+		return ret
+	}
+	return *o.Validity
+}
+
+// GetValidityOk returns a tuple with the Validity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DigiCertOneConnectorResponse) GetValidityOk() (*string, bool) {
+	if o == nil || utils.IsNil(o.Validity) {
+		return nil, false
+	}
+	return o.Validity, true
+}
+
+// HasValidity returns a boolean if a field has been set.
+func (o *DigiCertOneConnectorResponse) HasValidity() bool {
+	if o != nil && !utils.IsNil(o.Validity) {
+		return true
+	}
+
+	return false
+}
+
+// SetValidity gets a reference to the given string and assigns it to the Validity field.
+func (o *DigiCertOneConnectorResponse) SetValidity(v string) {
+	o.Validity = &v
+}
+
+func (o DigiCertOneConnectorResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o DigiCertOneConnectorResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["_id"] = o.Id
+	toSerialize["apiCredentials"] = o.ApiCredentials
+	toSerialize["baseUrl"] = o.BaseUrl
+	toSerialize["name"] = o.Name
+	toSerialize["profileId"] = o.ProfileId
+	if o.Proxy.IsSet() {
+		toSerialize["proxy"] = o.Proxy.Get()
+	}
+	if o.Queue.IsSet() {
+		toSerialize["queue"] = o.Queue.Get()
+	}
+	toSerialize["retryInterval"] = o.RetryInterval
+	toSerialize["seat"] = o.Seat
+	if o.Status.IsSet() {
+		toSerialize["status"] = o.Status.Get()
+	}
+	if o.Timeout.IsSet() {
+		toSerialize["timeout"] = o.Timeout.Get()
+	}
+	toSerialize["type"] = o.Type
+	if !utils.IsNil(o.Validity) {
+		toSerialize["validity"] = o.Validity
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	return toSerialize, nil
+}
+
+func (o *DigiCertOneConnectorResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"_id",
+		"apiCredentials",
+		"baseUrl",
+		"name",
+		"profileId",
+		"retryInterval",
+		"seat",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDigiCertOneConnectorResponse := _DigiCertOneConnectorResponse{}
+
+	err = json.Unmarshal(data, &varDigiCertOneConnectorResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DigiCertOneConnectorResponse(varDigiCertOneConnectorResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "_id")
+		delete(additionalProperties, "apiCredentials")
+		delete(additionalProperties, "baseUrl")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "profileId")
+		delete(additionalProperties, "proxy")
+		delete(additionalProperties, "queue")
+		delete(additionalProperties, "retryInterval")
+		delete(additionalProperties, "seat")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "validity")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
+}
+
+type NullableDigiCertOneConnectorResponse struct {
+	value *DigiCertOneConnectorResponse
+	isSet bool
+}
+
+func (v NullableDigiCertOneConnectorResponse) Get() *DigiCertOneConnectorResponse {
+	return v.value
+}
+
+func (v *NullableDigiCertOneConnectorResponse) Set(val *DigiCertOneConnectorResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDigiCertOneConnectorResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDigiCertOneConnectorResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDigiCertOneConnectorResponse(val *DigiCertOneConnectorResponse) *NullableDigiCertOneConnectorResponse {
+	return &NullableDigiCertOneConnectorResponse{value: val, isSet: true}
+}
+
+func (v NullableDigiCertOneConnectorResponse) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableDigiCertOneConnectorResponse) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}

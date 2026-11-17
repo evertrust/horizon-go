@@ -6,14 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Object internal ID | 
 **EndPoint** | **string** | Swiss base endpoint | 
-**MpkiCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI.  It should contains the mpkiId as the login and the apiKey as password.  | 
+**MpkiCredentials** | **string** | Name of the &#x60;password&#x60; [credentials](#tag/security.credentials) to use to authenticate on the PKI.  It should contain the mpkiId as the login and the apiKey as the password.  | 
 **Name** | **string** |  | 
-**ProductUuid** | **string** | The product Uuid that need to be retrieved from the swiss sign api&#39;s (&lt;endpoints&gt;/v2/clients) | 
+**ProductUuid** | **string** | The product UUID to retrieve from the SwissSign API (&lt;endpoints&gt;/v2/clients). | 
 **Proxy** | Pointer to **NullableString** |  | [optional] 
 **Queue** | Pointer to **NullableString** |  | [optional] 
 **Status** | Pointer to [**NullablePKIConnectorStatus**](PKIConnectorStatus.md) |  | [optional] 
 **Timeout** | Pointer to **NullableString** |  | [optional] 
 **Type** | **string** |  | 
+**Validity** | Pointer to **int64** | Overrides the default validity of the bound SwissSign product. The unit and accepted values are defined by that product, so this must be a valid validity length for it. | [optional] 
 
 ## Methods
 
@@ -293,6 +294,31 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+
+### GetValidity
+
+`func (o *SwissSignConnectorResponse) GetValidity() int64`
+
+GetValidity returns the Validity field if non-nil, zero value otherwise.
+
+### GetValidityOk
+
+`func (o *SwissSignConnectorResponse) GetValidityOk() (*int64, bool)`
+
+GetValidityOk returns a tuple with the Validity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidity
+
+`func (o *SwissSignConnectorResponse) SetValidity(v int64)`
+
+SetValidity sets Validity field to given value.
+
+### HasValidity
+
+`func (o *SwissSignConnectorResponse) HasValidity() bool`
+
+HasValidity returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

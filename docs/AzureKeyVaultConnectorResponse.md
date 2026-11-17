@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Timeout** | Pointer to **NullableString** |  | [optional] 
 **Type** | **string** |  | 
 **VaultBaseUrl** | **string** |  | 
+**WithChain** | Pointer to **NullableBool** | Enable the certificate trust chain to be pushed. When enabled, the CA chain is imported in the Key Vault certificate along with the leaf certificate and its private key. | [optional] [default to false]
 
 ## Methods
 
@@ -305,6 +306,41 @@ and a boolean to check if the value has been set.
 SetVaultBaseUrl sets VaultBaseUrl field to given value.
 
 
+### GetWithChain
+
+`func (o *AzureKeyVaultConnectorResponse) GetWithChain() bool`
+
+GetWithChain returns the WithChain field if non-nil, zero value otherwise.
+
+### GetWithChainOk
+
+`func (o *AzureKeyVaultConnectorResponse) GetWithChainOk() (*bool, bool)`
+
+GetWithChainOk returns a tuple with the WithChain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWithChain
+
+`func (o *AzureKeyVaultConnectorResponse) SetWithChain(v bool)`
+
+SetWithChain sets WithChain field to given value.
+
+### HasWithChain
+
+`func (o *AzureKeyVaultConnectorResponse) HasWithChain() bool`
+
+HasWithChain returns a boolean if a field has been set.
+
+### SetWithChainNil
+
+`func (o *AzureKeyVaultConnectorResponse) SetWithChainNil(b bool)`
+
+ SetWithChainNil sets the value for WithChain to be an explicit nil
+
+### UnsetWithChain
+`func (o *AzureKeyVaultConnectorResponse) UnsetWithChain()`
+
+UnsetWithChain ensures that no value is present for WithChain, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

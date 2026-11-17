@@ -20,11 +20,11 @@ Name | Type | Description | Notes
 **Prefix** | **string** | Certificate name prefix used when deploying certificates | 
 **ThrottleParallelism** | **int64** |  | 
 **VaultBaseUrl** | **string** |  | 
+**WithChain** | Pointer to **NullableBool** | Enable the certificate trust chain to be pushed. | [optional] [default to true]
 **Hostname** | **string** | The hostname or URL of the FortiManager appliance | 
 **KeyType** | Pointer to **NullableString** | One of &#x60;rsa-2048&#x60;, &#x60;rsa-3072&#x60;, &#x60;rsa-4096&#x60;, &#x60;rsa-8192&#x60;, &#x60;ec-secp256r1&#x60;, &#x60;ec-secp384r1&#x60;, &#x60;ec-secp521r1&#x60;, &#x60;ec-brainpoolp256r1&#x60;, &#x60;ec-brainpoolp384r1&#x60;, &#x60;ec-brainpoolp512r1&#x60;, &#x60;ed-448&#x60;, &#x60;ed-25519&#x60;, &#x60;mldsa-44&#x60;, &#x60;mldsa-65&#x60;, &#x60;mldsa-87&#x60;, &#x60;slhdsa-sha2-128s&#x60;, &#x60;slhdsa-sha2-128f&#x60;, &#x60;slhdsa-sha2-192s&#x60;, &#x60;slhdsa-sha2-192f&#x60;, &#x60;slhdsa-sha2-256s&#x60;, &#x60;slhdsa-sha2-256f&#x60;, &#x60;slhdsa-sha2-128ssha256&#x60;, &#x60;slhdsa-sha2-128fsha256&#x60;, &#x60;slhdsa-sha2-192ssha512&#x60;, &#x60;slhdsa-sha2-192fsha512&#x60;, &#x60;slhdsa-sha2-256ssha512&#x60;, &#x60;slhdsa-sha2-256fsha512&#x60; or &#x60;&lt;primary key type&gt;+&lt;alternate key type&gt;&#x60; | [optional] 
 **LoginProvider** | Pointer to **NullableString** |  | [optional] 
 **TlsInsecure** | Pointer to **NullableBool** | Allow invalid server certificates when establishing the TLS connection. Use in production is *not* recommended. | [optional] [default to false]
-**WithChain** | Pointer to **NullableBool** | Enable the certificate trust chain to be pushed. | [optional] [default to true]
 **BigIPHostname** | **string** |  | 
 **CipherGroup** | Pointer to **NullableString** |  | [optional] 
 **MaxStoredCertificatePerHolder** | Pointer to **NullableInt64** |  | [optional] 
@@ -481,6 +481,41 @@ and a boolean to check if the value has been set.
 SetVaultBaseUrl sets VaultBaseUrl field to given value.
 
 
+### GetWithChain
+
+`func (o *ThirdPartyConnectorResponses) GetWithChain() bool`
+
+GetWithChain returns the WithChain field if non-nil, zero value otherwise.
+
+### GetWithChainOk
+
+`func (o *ThirdPartyConnectorResponses) GetWithChainOk() (*bool, bool)`
+
+GetWithChainOk returns a tuple with the WithChain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWithChain
+
+`func (o *ThirdPartyConnectorResponses) SetWithChain(v bool)`
+
+SetWithChain sets WithChain field to given value.
+
+### HasWithChain
+
+`func (o *ThirdPartyConnectorResponses) HasWithChain() bool`
+
+HasWithChain returns a boolean if a field has been set.
+
+### SetWithChainNil
+
+`func (o *ThirdPartyConnectorResponses) SetWithChainNil(b bool)`
+
+ SetWithChainNil sets the value for WithChain to be an explicit nil
+
+### UnsetWithChain
+`func (o *ThirdPartyConnectorResponses) UnsetWithChain()`
+
+UnsetWithChain ensures that no value is present for WithChain, not even an explicit nil
 ### GetHostname
 
 `func (o *ThirdPartyConnectorResponses) GetHostname() string`
@@ -606,41 +641,6 @@ HasTlsInsecure returns a boolean if a field has been set.
 `func (o *ThirdPartyConnectorResponses) UnsetTlsInsecure()`
 
 UnsetTlsInsecure ensures that no value is present for TlsInsecure, not even an explicit nil
-### GetWithChain
-
-`func (o *ThirdPartyConnectorResponses) GetWithChain() bool`
-
-GetWithChain returns the WithChain field if non-nil, zero value otherwise.
-
-### GetWithChainOk
-
-`func (o *ThirdPartyConnectorResponses) GetWithChainOk() (*bool, bool)`
-
-GetWithChainOk returns a tuple with the WithChain field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWithChain
-
-`func (o *ThirdPartyConnectorResponses) SetWithChain(v bool)`
-
-SetWithChain sets WithChain field to given value.
-
-### HasWithChain
-
-`func (o *ThirdPartyConnectorResponses) HasWithChain() bool`
-
-HasWithChain returns a boolean if a field has been set.
-
-### SetWithChainNil
-
-`func (o *ThirdPartyConnectorResponses) SetWithChainNil(b bool)`
-
- SetWithChainNil sets the value for WithChain to be an explicit nil
-
-### UnsetWithChain
-`func (o *ThirdPartyConnectorResponses) UnsetWithChain()`
-
-UnsetWithChain ensures that no value is present for WithChain, not even an explicit nil
 ### GetBigIPHostname
 
 `func (o *ThirdPartyConnectorResponses) GetBigIPHostname() string`
