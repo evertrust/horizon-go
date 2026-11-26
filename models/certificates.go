@@ -1,3 +1,6 @@
+// Copyright 2022-2026 EVERTRUST
+// SPDX-License-Identifier: Apache-2.0
+
 package models
 
 import (
