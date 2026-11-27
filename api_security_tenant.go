@@ -145,8 +145,8 @@ func (a *SecurityTenantAPIService) SecurityTenantsAddExecute(r SecurityTenantAPI
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -371,8 +371,8 @@ func (a *SecurityTenantAPIService) SecurityTenantsDeleteExecute(r SecurityTenant
 				return nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -601,8 +601,8 @@ func (a *SecurityTenantAPIService) SecurityTenantsGetExecute(r SecurityTenantAPI
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -830,8 +830,8 @@ func (a *SecurityTenantAPIService) SecurityTenantsLicenseExecute(r SecurityTenan
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1055,8 +1055,8 @@ func (a *SecurityTenantAPIService) SecurityTenantsListExecute(r SecurityTenantAP
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1273,8 +1273,8 @@ func (a *SecurityTenantAPIService) SecurityTenantsResetExecute(r SecurityTenantA
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1499,8 +1499,8 @@ func (a *SecurityTenantAPIService) SecurityTenantsRestoreExecute(r SecurityTenan
 				return nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -1737,8 +1737,8 @@ func (a *SecurityTenantAPIService) SecurityTenantsUpdateExecute(r SecurityTenant
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}

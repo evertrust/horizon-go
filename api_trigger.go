@@ -147,8 +147,8 @@ func (a *TriggerAPIService) TriggerAddExecute(r TriggerAPITriggerAddRequest) (*m
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -373,8 +373,8 @@ func (a *TriggerAPIService) TriggerDeleteExecute(r TriggerAPITriggerDeleteReques
 				return nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -603,8 +603,8 @@ func (a *TriggerAPIService) TriggerGetExecute(r TriggerAPITriggerGetRequest) (*m
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -854,8 +854,8 @@ func (a *TriggerAPIService) TriggerListExecute(r TriggerAPITriggerListRequest) (
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1080,8 +1080,8 @@ func (a *TriggerAPIService) TriggerTestExecute(r TriggerAPITriggerTestRequest) (
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1317,8 +1317,8 @@ func (a *TriggerAPIService) TriggerUpdateExecute(r TriggerAPITriggerUpdateReques
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}

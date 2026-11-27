@@ -146,8 +146,8 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignAddExecute(r DiscoveryCam
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -372,8 +372,8 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignDeleteExecute(r Discovery
 				return nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -592,8 +592,8 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignFlushExecute(r DiscoveryC
 				return nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -811,8 +811,8 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignGetExecute(r DiscoveryCam
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1036,8 +1036,8 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignListExecute(r DiscoveryCa
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1262,8 +1262,8 @@ func (a *DiscoveryCampaignAPIService) DiscoveryCampaignUpdateExecute(r Discovery
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
