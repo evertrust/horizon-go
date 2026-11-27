@@ -146,8 +146,8 @@ func (a *SecurityPrincipalinfoAPIService) SecurityPrincipalInfoAddExecute(r Secu
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -372,8 +372,8 @@ func (a *SecurityPrincipalinfoAPIService) SecurityPrincipalInfoDeleteExecute(r S
 				return nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return nil, err
 			}
@@ -591,8 +591,8 @@ func (a *SecurityPrincipalinfoAPIService) SecurityPrincipalInfoGetExecute(r Secu
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -828,8 +828,8 @@ func (a *SecurityPrincipalinfoAPIService) SecurityPrincipalInfoSearchExecute(r S
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
@@ -1065,8 +1065,8 @@ func (a *SecurityPrincipalinfoAPIService) SecurityPrincipalInfoUpdateExecute(r S
 				return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 			}
 			localVarHeaderParams["X-JWT-CERT-POP"] = jwt
-			// send the request a first time but without any data to get the replay nonce
-			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, nil, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+			// send the request a first time with its body to get the replay nonce, Horizon answers a body-less POST without one
+			req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 			if err != nil {
 				return localVarReturnValue, nil, err
 			}
